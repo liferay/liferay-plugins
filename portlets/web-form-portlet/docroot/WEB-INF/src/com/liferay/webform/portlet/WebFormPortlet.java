@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -212,9 +213,6 @@ public class WebFormPortlet extends MVCPortlet {
 			if (cmd.equals("captcha")) {
 				serveCaptcha(resourceRequest, resourceResponse);
 			}
-			else if (cmd.equals("edit-field")) {
-				editField(resourceRequest, resourceResponse);
-			}
 			else if (cmd.equals("export")) {
 				exportData(resourceRequest, resourceResponse);
 			}
@@ -224,22 +222,14 @@ public class WebFormPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void editField(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		resourceRequest.setAttribute(
-			"aui:form:useNamespace", Boolean.FALSE.toString());
-
-		include("/edit_field.jsp", resourceRequest, resourceResponse);
-	}
-
 	protected void exportData(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		String languageId = themeDisplay.getLanguageId();
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(resourceRequest);
@@ -256,6 +246,9 @@ public class WebFormPortlet extends MVCPortlet {
 			String fieldLabel = preferences.getValue(
 				"fieldLabel" + i, StringPool.BLANK);
 
+			String localizedfieldLabel = LocalizationUtil.getPreferencesValue(
+				preferences, "fieldLabel" + i, languageId);
+
 			if (Validator.isNull(fieldLabel)) {
 				break;
 			}
@@ -263,7 +256,7 @@ public class WebFormPortlet extends MVCPortlet {
 			fieldLabels.add(fieldLabel);
 
 			sb.append("\"");
-			sb.append(fieldLabel.replaceAll("\"", "\\\""));
+			sb.append(localizedfieldLabel.replaceAll("\"", "\\\""));
 			sb.append("\";");
 		}
 

@@ -23,6 +23,7 @@
 }
 
 .portlet-configuration .lfr-form-row .aui-field.options, .portlet-configuration .lfr-form-row .validation .aui-field {
+	clear: both;
 	display: block;
 }
 
@@ -39,4 +40,12 @@
 
 .portlet-configuration .validation {
 	clear: left;
+}
+
+.portlet-configuration .label-name .aui-field-wrapper-content {
+	margin-top: 0;
+}
+
+.portlet-configuration .label-name input, .portlet-configuration .options input {
+	width: 200px;
 }

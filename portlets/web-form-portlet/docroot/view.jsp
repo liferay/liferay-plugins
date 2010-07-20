@@ -17,6 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String languageId = LocaleUtil.toLanguageId(locale);
+
 String title = preferences.getValue("title", StringPool.BLANK);
 String description = preferences.getValue("description", StringPool.BLANK);
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
@@ -50,14 +52,14 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 		int i = 1;
 
 		String fieldName = "field" + i;
-		String fieldLabel = preferences.getValue("fieldLabel" + i, StringPool.BLANK);
+		String fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, languageId);
 		boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
 		String fieldValue = ParamUtil.getString(request, fieldName);
 		String[] options = null;
 
 		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
 			String fieldType = preferences.getValue("fieldType" + i, "text");
-			String fieldOptions = preferences.getValue("fieldOptions" + i, "unknown");
+			String fieldOptions = LocalizationUtil.getPreferencesValue(preferences, "fieldOptions" + i, languageId);
 			String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
 			String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
@@ -134,7 +136,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			i++;
 
 			fieldName = "field" + i;
-			fieldLabel = preferences.getValue("fieldLabel" + i, "");
+			fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, languageId);
 			fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
 			fieldValue = ParamUtil.getString(request, fieldName);
 		}

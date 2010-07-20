@@ -256,9 +256,9 @@ if (!fieldsEditingDisabled) {
 			'.label-name input'
 		);
 
-		<liferay-portlet:resourceURL var="editFieldURL" portletName="<%= portletResource %>">
-			<portlet:param name="<%= Constants.CMD %>" value="edit-field" />
-		</liferay-portlet:resourceURL>
+		<liferay-portlet:renderURL portletConfiguration="true" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editFieldURL">
+			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
+		</liferay-portlet:renderURL>
 
 		new Liferay.AutoFields(
 			{

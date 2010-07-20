@@ -17,16 +17,18 @@
 <%@ include file="init.jsp" %>
 
 <%
-String randomNamespace = PortalUtil.generateRandomKey(request, "portlet_web_form_edit_field") + StringPool.UNDERLINE;
+String languageId = LocaleUtil.toLanguageId(locale);
 
 int index = ParamUtil.getInteger(request, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsindex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
 
-String fieldLabel = PrefsParamUtil.getString(preferences, request, "fieldLabel" + formFieldsIndex);
+String fieldLabelXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldLabel" + formFieldsIndex);
+String fieldOptionsXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldOptions" + formFieldsIndex);
+String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, languageId);
 String fieldType = PrefsParamUtil.getString(preferences, request, "fieldType" + formFieldsIndex);
 boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + formFieldsIndex);
-String fieldOptions = PrefsParamUtil.getString(preferences, request, "fieldOptions" + formFieldsIndex);
+String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, languageId);
 String fieldValidationScript = StringPool.BLANK;
 String fieldValidationErrorMessage = StringPool.BLANK;
 
@@ -53,7 +55,11 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input cssClass="lfr-input-text-container label-name" label="name" name='<%= "fieldLabel" + index %>' size="50" value="<%= fieldLabel %>" />
+			<aui:input type="hidden" name='<%= "_field" + index %>' />
+
+			<aui:field-wrapper cssClass="label-name" label="name">
+				<liferay-ui:input-localized name='<%= "fieldLabel" + index %>' xml="<%= fieldLabelXml %>" />
+			</aui:field-wrapper>
 		</c:when>
 		<c:otherwise>
 			<dl class="editing-disabled">
@@ -103,7 +109,9 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input cssClass='<%= "options lfr-input-text-container" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " aui-helper-hidden" : StringPool.BLANK) %>' helpMessage="add-options-separated-by-commas" label="options" name='<%= "fieldOptions" + index %>' value="<%= fieldOptions %>" />
+			<aui:field-wrapper cssClass='<%= "options" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " aui-helper-hidden" : StringPool.BLANK) %>' helpMessage="add-options-separated-by-commas" label="options">
+				<liferay-ui:input-localized name='<%= "fieldOptions" + index %>' xml="<%= fieldOptionsXml %>" />
+			</aui:field-wrapper>
 		</c:when>
 		<c:when test="<%= Validator.isNotNull(fieldOptions) %>">
 				<dt>

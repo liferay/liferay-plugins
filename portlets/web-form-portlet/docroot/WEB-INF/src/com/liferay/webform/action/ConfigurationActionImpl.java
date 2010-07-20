@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -28,10 +30,15 @@ import com.liferay.webform.util.WebFormUtil;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
+import java.util.Locale;
+import java.util.Map;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 /**
  * @author Jorge Ferrer
@@ -47,10 +54,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (!cmd.equals(Constants.UPDATE)) {
-			return;
-		}
 
 		String title = ParamUtil.getString(actionRequest, "title");
 		String description = ParamUtil.getString(actionRequest, "description");
@@ -135,6 +138,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (updateFields) {
 			int i = 1;
+			Locale defaultLocale = LocaleUtil.getDefault();
+			String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 			String databaseTableName = WebFormUtil.getNewDatabaseTableName(
 				portletResource);
@@ -145,10 +150,11 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				ParamUtil.getString(actionRequest, "formFieldsIndexes"), 0);
 
 			for (int formFieldsIndex : formFieldsIndexes) {
-				String fieldLabel = ParamUtil.getString(
-					actionRequest, "fieldLabel" + formFieldsIndex);
+				Map<Locale, String> fieldLabelMap =
+					LocalizationUtil.getLocalizationMap(
+						actionRequest, "fieldLabel" + formFieldsIndex);
 
-				if (Validator.isNull(fieldLabel)) {
+				if (Validator.isNull(fieldLabelMap.get(defaultLocale))) {
 					continue;
 				}
 
@@ -156,8 +162,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 					actionRequest, "fieldType" + formFieldsIndex);
 				boolean fieldOptional = ParamUtil.getBoolean(
 					actionRequest, "fieldOptional" + formFieldsIndex);
-				String fieldOptions = ParamUtil.getString(
-					actionRequest, "fieldOptions" + formFieldsIndex);
+				Map<Locale, String> fieldOptionsMap =
+					LocalizationUtil.getLocalizationMap(
+						actionRequest, "fieldOptions" + formFieldsIndex);
 				String fieldValidationScript = ParamUtil.getString(
 					actionRequest, "fieldValidationScript" + formFieldsIndex);
 				String fieldValidationErrorMessage = ParamUtil.getString(
@@ -171,11 +178,27 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 						actionRequest, "invalidValidationDefinition" + i);
 				}
 
-				preferences.setValue("fieldLabel" + i, fieldLabel);
+				for (Locale locale : fieldLabelMap.keySet()) {
+					String languageId = LocaleUtil.toLanguageId(locale);
+					String fieldLabelValue = fieldLabelMap.get(locale);
+					String fieldOptionsValue = fieldOptionsMap.get(locale);
+
+					if (Validator.isNotNull(fieldLabelValue)) {
+						LocalizationUtil.setPreferencesValue(
+							preferences, "fieldLabel" + i, languageId,
+							fieldLabelValue);
+					}
+
+					if (Validator.isNotNull(fieldOptionsValue)) {
+						LocalizationUtil.setPreferencesValue(
+							preferences, "fieldOptions" + i, languageId,
+							fieldOptionsValue);
+					}
+				}
+
 				preferences.setValue("fieldType" + i, fieldType);
 				preferences.setValue(
 					"fieldOptional" + i, String.valueOf(fieldOptional));
-				preferences.setValue("fieldOptions" + i, fieldOptions);
 				preferences.setValue(
 					"fieldValidationScript" + i, fieldValidationScript);
 				preferences.setValue(
@@ -191,14 +214,28 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 			// Clear previous preferences that are now blank
 
-			String fieldLabel = preferences.getValue(
-				"fieldLabel" + i, StringPool.BLANK);
+			String fieldLabel = LocalizationUtil.getPreferencesValue(
+				preferences, "fieldLabel" + i, defaultLanguageId);
 
 			while (Validator.isNotNull(fieldLabel)) {
-				preferences.setValue("fieldLabel" + i, StringPool.BLANK);
+				Map<Locale, String> fieldLabelMap =
+					LocalizationUtil.getLocalizationMap(
+						actionRequest, "fieldLabel" + i);
+
+				for (Locale locale : fieldLabelMap.keySet()) {
+					String languageId = LocaleUtil.toLanguageId(locale);
+
+					LocalizationUtil.setPreferencesValue(
+						preferences, "fieldLabel" + i, languageId,
+						StringPool.BLANK);
+
+					LocalizationUtil.setPreferencesValue(
+						preferences, "fieldOptions" + i, languageId,
+						StringPool.BLANK);
+				}
+
 				preferences.setValue("fieldType" + i, StringPool.BLANK);
 				preferences.setValue("fieldOptional" + i, StringPool.BLANK);
-				preferences.setValue("fieldOptions" + i, StringPool.BLANK);
 				preferences.setValue(
 					"fieldValidationScript" + i, StringPool.BLANK);
 				preferences.setValue(
@@ -206,8 +243,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 				i++;
 
-				fieldLabel = preferences.getValue(
-					"fieldLabel" + i, StringPool.BLANK);
+				fieldLabel = LocalizationUtil.getPreferencesValue(
+					preferences, "fieldLabel" + i, defaultLanguageId);
 			}
 		}
 
@@ -216,6 +253,20 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 			SessionMessages.add(
 				actionRequest, portletConfig.getPortletName() + ".doConfigure");
+		}
+	}
+
+	public String render(
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
+		throws Exception {
+
+		String cmd = ParamUtil.getString(renderRequest, Constants.CMD);
+
+		if (cmd.equals(Constants.ADD)) {
+			return "/edit_field.jsp";
+}		else {
+			return "/configuration.jsp";
 		}
 	}
 
