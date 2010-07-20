@@ -19,8 +19,8 @@
 <%
 String languageId = LocaleUtil.toLanguageId(locale);
 
-String title = preferences.getValue("title", StringPool.BLANK);
-String description = preferences.getValue("description", StringPool.BLANK);
+String title = LocalizationUtil.getPreferencesValue(preferences, "title", languageId);
+String description = LocalizationUtil.getPreferencesValue(preferences, "description", languageId);
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
 %>
@@ -34,10 +34,8 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	</c:if>
 
-	<aui:fieldset>
-		<legend><%= HtmlUtil.escape(title) %></legend>
-
-		<p class="description"><%= HtmlUtil.escape(description) %></p>
+	<aui:fieldset label="<%= HtmlUtil.escape(title) %>">
+		<em class="description"><%= HtmlUtil.escape(description) %></em>
 
 		<liferay-ui:success key="success" message="the-form-information-was-sent-successfully" />
 

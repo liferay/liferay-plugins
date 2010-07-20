@@ -19,8 +19,8 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-String title = PrefsParamUtil.getString(preferences, request, "title");
-String description = PrefsParamUtil.getString(preferences, request, "description");
+String titleXml = WebFormUtil.getLocalizationXml(preferences, request, "title");
+String descriptionXml = WebFormUtil.getLocalizationXml(preferences, request, "description");
 boolean requireCaptcha = PrefsParamUtil.getBoolean(preferences, request, "requireCaptcha");
 String successURL = PrefsParamUtil.getString(preferences, request, "successURL");
 
@@ -52,9 +52,13 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 			<aui:fieldset>
 				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
 
-				<aui:input cssClass="lfr-input-text-container" name="title" value="<%= HtmlUtil.toInputSafe(title) %>" />
+				<aui:field-wrapper cssClass="lfr-input-text-container" label="title">
+					<liferay-ui:input-localized  name="title" xml="<%= titleXml %>" />
+				</aui:field-wrapper>
 
-				<aui:input cssClass="lfr-textarea-container" name="description" type="textarea" value="<%= HtmlUtil.toInputSafe(description) %>" wrap="soft" />
+				<aui:field-wrapper cssClass="lfr-textarea-container" label="description">
+					<liferay-ui:input-localized name="description" type="textarea" xml="<%= descriptionXml %>" />
+				</aui:field-wrapper>
 
 				<aui:input name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
 

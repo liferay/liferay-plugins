@@ -55,8 +55,11 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-		String title = ParamUtil.getString(actionRequest, "title");
-		String description = ParamUtil.getString(actionRequest, "description");
+		Locale defaultLocale = LocaleUtil.getDefault();
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
+
+		String title = ParamUtil.getString(
+			actionRequest, "title" + StringPool.UNDERLINE + defaultLanguageId);
 		boolean requireCaptcha = ParamUtil.getBoolean(
 			actionRequest, "requireCaptcha");
 		String successURL = ParamUtil.getString(actionRequest, "successURL");
@@ -125,8 +128,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			return;
 		}
 
-		preferences.setValue("title", title);
-		preferences.setValue("description", description);
+		LocalizationUtil.setLocalizedPreferencesValues(
+			actionRequest, preferences, "title");
+		LocalizationUtil.setLocalizedPreferencesValues(
+			actionRequest, preferences, "description");
 		preferences.setValue("requireCaptcha", String.valueOf(requireCaptcha));
 		preferences.setValue("successURL", successURL);
 		preferences.setValue("sendAsEmail", String.valueOf(sendAsEmail));
@@ -138,8 +143,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (updateFields) {
 			int i = 1;
-			Locale defaultLocale = LocaleUtil.getDefault();
-			String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 			String databaseTableName = WebFormUtil.getNewDatabaseTableName(
 				portletResource);
