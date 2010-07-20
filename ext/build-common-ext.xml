@@ -110,6 +110,14 @@ then "app.server.dir" should point to
 	</target>
 
 	<target name="clean">
+		<delete includeemptydirs="true">
+			<fileset dir="docroot/WEB-INF" includes="ext-*/classes/**,ext-*/ext-*.jar" />
+		</delete>
+
+		<delete file="${plugin.file}" />
+	</target>
+
+	<target name="clean-app-server">
 		<antcall target="check-ext-property">
 			<param name="property.name" value="${app.server.zip.name}" />
 		</antcall>
@@ -118,19 +126,11 @@ then "app.server.dir" should point to
 			<param name="property.name" value="${ext.work.dir}" />
 		</antcall>
 
-		<antcall target="clean-generated" />
+		<antcall target="clean" />
 
 		<delete dir="${app.server.dir}" />
 
 		<unzip src="${app.server.zip.name}" dest="${ext.work.dir}" />
-	</target>
-
-	<target name="clean-generated">
-		<delete includeemptydirs="true">
-			<fileset dir="docroot/WEB-INF" includes="ext-*/classes/**,ext-*/ext-*.jar" />
-		</delete>
-
-		<delete file="${plugin.file}" />
 	</target>
 
 	<target name="compile">
@@ -207,7 +207,7 @@ loader.
 		</antcall>
 	</target>
 
-	<target name="deploy" depends="war">
+	<target name="direct-deploy" depends="war">
 		<copy todir="${app.server.lib.global.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-service" includes="*.jar" />
