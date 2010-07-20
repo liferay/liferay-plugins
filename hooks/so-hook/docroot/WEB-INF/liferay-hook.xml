@@ -5,4 +5,8 @@
 	<portal-properties>portal.properties</portal-properties>
 	<language-properties>content/Language_en.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<service>
+		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
+		<service-impl>com.liferay.so.hook.service.CompanyLocalServiceImpl</service-impl>
+	</service>
 </hook>

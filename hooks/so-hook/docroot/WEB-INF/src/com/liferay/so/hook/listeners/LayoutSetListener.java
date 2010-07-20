@@ -72,6 +72,12 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			Group group = GroupLocalServiceUtil.getGroup (
 				layoutSet.getGroupId());
 
+			String name = group.getName();
+
+			if (name.equals(GroupConstants.GUEST)) {
+				return;
+			}
+
 			if (group.isCommunity()) {
 				addCommunityLayouts(group);
 				updateFriendlyURL(group);
