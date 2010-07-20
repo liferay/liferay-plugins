@@ -4,22 +4,21 @@
 
 /* ---------- Base styles ---------- */
 
-#main {
-	min-width: 960px;
+#content {
+	margin: 10px 10px 0;
 }
 
-#signIn {
+#login {
 	border-bottom: 1px solid #EEF0F2;
 	min-width: 960px;
 	padding: 3px;
 	text-align: right;
 }
 
-#signIn a {
-	color: #FFF;
+#login a {
 	margin-right: 10px;
 }
 
-#content {
-	margin: 10px 10px 0;
+#main {
+	min-width: 960px;
 }

@@ -1,13 +1,11 @@
+/* ---------- Base styles ---------- */
+
+.simple #login a {
+	color: #FFF;
+}
+
 /* ---------- Wallpaper ---------- */
 
-#maximized.simple {
-	background-color: #555;
-}
-
-#signedIn.simple {
-	background: url(../../images/color_schemes/simple/wallpaper/signed_in.jpg) no-repeat fixed 50% 50%;
-}
-
-#signedOut.simple {
-	background: url(../../images/color_schemes/simple/wallpaper/signed_out.jpg) no-repeat fixed 50% 50%;
+body.simple {
+	background: url(../../images/color_schemes/simple/wallpaper/bg.jpg) no-repeat fixed 50% 50%;
 }

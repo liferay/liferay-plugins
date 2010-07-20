@@ -8,8 +8,8 @@
 	<theme id="desktop" name="Desktop">
 		<color-scheme id="01" name="Nature">
 			<default-cs>true</default-cs>
-			<css-class></css-class>
-			<color-scheme-images-path>${images-path}</color-scheme-images-path>
+			<css-class>nature</css-class>
+			<color-scheme-images-path>${images-path}/color_schemes/${css-class}</color-scheme-images-path>
 		</color-scheme>
 		<color-scheme id="02" name="Simple">
 			<css-class>simple</css-class>

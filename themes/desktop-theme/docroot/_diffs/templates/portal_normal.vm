@@ -10,25 +10,16 @@
 	$theme.include($top_head_include)
 </head>
 
-<body
-	class="$css_class"
-	#if ($is_maximized)
-		id="maximized"
-	#elseif ($is_signed_in)
-		id="signedIn"
-	#else
-		id="signedOut"
-	#end
->
+<body class="$css_class">
 
-#if($is_signed_in && !$is_maximized)
+#if ($is_signed_in && !$is_maximized)
 	#dockbar()
 #end
 
 <div id="main">
 	<header id="banner" role="banner">
-		#if(!$is_signed_in && !$is_maximized)
-			<div id="signIn">
+		#if (!$is_signed_in && !$is_maximized)
+			<div id="login">
 				<a href="$sign_in_url">$sign_in_text</a>
 			</div>
 		#end

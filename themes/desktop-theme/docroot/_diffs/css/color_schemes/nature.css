@@ -1,13 +1,5 @@
 /* ---------- Wallpaper ---------- */
 
-#maximized {
-	background-color: #555;
-}
-
-#signedIn {
-	background: url(../../images/wallpaper/signed_in.jpg) no-repeat fixed bottom left;
-}
-
-#signedOut {
-	background: url(../../images/wallpaper/signed_out.jpg) no-repeat fixed bottom left;
+body.nature {
+	background: url(../../images/color_schemes/nature/wallpaper/bg.jpg) no-repeat fixed bottom left;
 }
