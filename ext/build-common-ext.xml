@@ -257,10 +257,9 @@ loader.
 	</target>
 
 	<target name="war" depends="compile">
-		<zip
+		<jar
 			basedir="docroot/WEB-INF/ext-service/classes"
 			destfile="docroot/WEB-INF/ext-service/ext-service.jar"
-			whenempty="create"
 		/>
 
 		<antcall target="war-util">
@@ -275,11 +274,10 @@ loader.
 			<param name="util.suffix" value="taglib" />
 		</antcall>
 
-		<zip
+		<jar
 			basedir="docroot/WEB-INF/ext-impl/classes"
 			destfile="docroot/WEB-INF/ext-impl/ext-impl.jar"
 			excludes="portal-*.properties,system-*.properties"
-			whenempty="create"
 		/>
 
 		<java
@@ -312,10 +310,9 @@ loader.
 	</target>
 
 	<target name="war-util">
-		<zip
+		<jar
 			basedir="docroot/WEB-INF/ext-util-${util.suffix}/classes"
 			destfile="docroot/WEB-INF/ext-util-${util.suffix}/ext-util-${util.suffix}.jar"
-			whenempty="create"
 		/>
 
 		<copy
