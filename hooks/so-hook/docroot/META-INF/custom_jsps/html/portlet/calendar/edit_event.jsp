@@ -20,7 +20,12 @@
 <%@ include file="/html/portlet/calendar/init.jsp" %>
 
 <c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-	<script src="<%= themeDisplay.getPortalURL() %>/html/js/liferay/service.js" type="text/javascript"></script>
+
+	<%
+	long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
+	%>
+
+	<script src="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getPathJavaScript() + "/liferay/service.js", javaScriptLastModified)) %>" type="text/javascript"></script>
 </c:if>
 
 <liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
