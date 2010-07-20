@@ -3,7 +3,10 @@
 <web-app xmlns="http://geronimo.apache.org/xml/ns/j2ee/web-1.1">
 	<environment>
 		<moduleId>
+			<groupId>liferay</groupId>
 			<artifactId>sample-icefaces-jsf-1-2-sun-facelets-portlet</artifactId>
+			<version></version>
+			<type>car</type>
 		</moduleId>
 		<dependencies>
 			<dependency>
