@@ -268,7 +268,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (cmd.equals(Constants.ADD)) {
 			return "/edit_field.jsp";
-}		else {
+		}
+		else {
 			return "/configuration.jsp";
 		}
 	}

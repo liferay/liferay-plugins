@@ -260,7 +260,7 @@ if (!fieldsEditingDisabled) {
 			'.label-name input'
 		);
 
-		<liferay-portlet:renderURL portletConfiguration="true" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editFieldURL">
+		<liferay-portlet:renderURL portletConfiguration="true" var="editFieldURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		</liferay-portlet:renderURL>
 

@@ -17,18 +17,16 @@
 <%@ include file="init.jsp" %>
 
 <%
-String languageId = LocaleUtil.toLanguageId(locale);
-
 int index = ParamUtil.getInteger(request, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsindex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
 
 String fieldLabelXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldLabel" + formFieldsIndex);
-String fieldOptionsXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldOptions" + formFieldsIndex);
-String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, languageId);
+String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
 String fieldType = PrefsParamUtil.getString(preferences, request, "fieldType" + formFieldsIndex);
 boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + formFieldsIndex);
-String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, languageId);
+String fieldOptionsXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldOptions" + formFieldsIndex);
+String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
 String fieldValidationScript = StringPool.BLANK;
 String fieldValidationErrorMessage = StringPool.BLANK;
 

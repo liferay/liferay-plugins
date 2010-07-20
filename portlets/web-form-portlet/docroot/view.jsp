@@ -17,10 +17,8 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String languageId = LocaleUtil.toLanguageId(locale);
-
-String title = LocalizationUtil.getPreferencesValue(preferences, "title", languageId);
-String description = LocalizationUtil.getPreferencesValue(preferences, "description", languageId);
+String title = LocalizationUtil.getPreferencesValue(preferences, "title", themeDisplay.getLanguageId());
+String description = LocalizationUtil.getPreferencesValue(preferences, "description", themeDisplay.getLanguageId());
 boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
 String successURL = preferences.getValue("successURL", StringPool.BLANK);
 %>
@@ -50,14 +48,14 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 		int i = 1;
 
 		String fieldName = "field" + i;
-		String fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, languageId);
+		String fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, themeDisplay.getLanguageId());
 		boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
 		String fieldValue = ParamUtil.getString(request, fieldName);
 		String[] options = null;
 
 		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
 			String fieldType = preferences.getValue("fieldType" + i, "text");
-			String fieldOptions = LocalizationUtil.getPreferencesValue(preferences, "fieldOptions" + i, languageId);
+			String fieldOptions = LocalizationUtil.getPreferencesValue(preferences, "fieldOptions" + i, themeDisplay.getLanguageId());
 			String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
 			String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 		%>
@@ -134,7 +132,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			i++;
 
 			fieldName = "field" + i;
-			fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, languageId);
+			fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, themeDisplay.getLanguageId());
 			fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
 			fieldValue = ParamUtil.getString(request, fieldName);
 		}

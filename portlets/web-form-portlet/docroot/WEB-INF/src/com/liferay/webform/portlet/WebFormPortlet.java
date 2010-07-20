@@ -229,8 +229,6 @@ public class WebFormPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String languageId = themeDisplay.getLanguageId();
-
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(resourceRequest);
 
@@ -247,7 +245,7 @@ public class WebFormPortlet extends MVCPortlet {
 				"fieldLabel" + i, StringPool.BLANK);
 
 			String localizedfieldLabel = LocalizationUtil.getPreferencesValue(
-				preferences, "fieldLabel" + i, languageId);
+				preferences, "fieldLabel" + i, themeDisplay.getLanguageId());
 
 			if (Validator.isNull(fieldLabel)) {
 				break;
