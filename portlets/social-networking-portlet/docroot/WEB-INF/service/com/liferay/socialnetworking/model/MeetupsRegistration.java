@@ -14,7 +14,6 @@
 
 package com.liferay.socialnetworking.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the SN_MeetupsRegistration table in the

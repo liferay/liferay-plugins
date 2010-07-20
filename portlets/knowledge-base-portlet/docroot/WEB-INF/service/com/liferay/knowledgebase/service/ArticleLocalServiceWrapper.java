@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link ArticleLocalService}.

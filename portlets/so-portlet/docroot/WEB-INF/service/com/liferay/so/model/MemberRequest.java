@@ -14,7 +14,6 @@
 
 package com.liferay.so.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the SO_MemberRequest table in the

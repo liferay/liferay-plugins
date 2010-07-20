@@ -14,7 +14,6 @@
 
 package com.liferay.sampleservicebuilder.service.http;
 
-
 /**
  * <p>
  * This class provides a SOAP utility for the

@@ -14,7 +14,6 @@
 
 package com.liferay.twitter.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the Twitter_Feed table in the

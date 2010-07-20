@@ -14,7 +14,6 @@
 
 package com.liferay.ams.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the AMS_Type table in the

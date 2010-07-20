@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link Article}.

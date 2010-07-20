@@ -14,7 +14,6 @@
 
 package com.liferay.mail.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the Mail_Folder table in the

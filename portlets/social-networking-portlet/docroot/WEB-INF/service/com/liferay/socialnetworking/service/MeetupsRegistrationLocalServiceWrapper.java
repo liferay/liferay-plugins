@@ -14,7 +14,6 @@
 
 package com.liferay.socialnetworking.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link MeetupsRegistrationLocalService}.

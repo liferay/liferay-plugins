@@ -14,7 +14,6 @@
 
 package com.liferay.chat.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link StatusLocalService}.

@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link WSRPConsumer}.

@@ -14,7 +14,6 @@
 
 package com.liferay.so.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link MemberRequestLocalService}.

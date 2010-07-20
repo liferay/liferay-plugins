@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the KB_Article table in the

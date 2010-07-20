@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link ArticleService}.
@@ -154,6 +153,13 @@ public class ArticleServiceWrapper implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getLatestArticle(resourcePrimKey);
+	}
+
+	public com.liferay.portal.kernel.util.ListTree<com.liferay.knowledgebase.model.Article> getLatestArticleTree(
+		long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getLatestArticleTree(resourcePrimKey);
 	}
 
 	public void subscribe(long groupId)

@@ -14,7 +14,6 @@
 
 package com.liferay.sampleservicebuilder.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the SSB_Foo table in the

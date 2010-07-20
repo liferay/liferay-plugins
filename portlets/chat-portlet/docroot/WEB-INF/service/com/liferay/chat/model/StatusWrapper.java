@@ -14,7 +14,6 @@
 
 package com.liferay.chat.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link Status}.

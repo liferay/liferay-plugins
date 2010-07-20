@@ -1504,8 +1504,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	private static final String _FINDER_COLUMN_UUID_G_UUID_3 = "(template.uuid IS NULL OR template.uuid = ?) AND ";
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "template.groupId = ?";
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "template.groupId = ?";
-	private static final String _FILTER_SQL_SELECT_TEMPLATE_WHERE = "SELECT DISTINCT {template.*} FROM Template template WHERE ";
-	private static final String _FILTER_SQL_COUNT_TEMPLATE_WHERE = "SELECT COUNT(DISTINCT template.templateId) AS COUNT_VALUE FROM Template template WHERE ";
+	private static final String _FILTER_SQL_SELECT_TEMPLATE_WHERE = "SELECT DISTINCT {template.*} FROM KB_Template template WHERE ";
+	private static final String _FILTER_SQL_COUNT_TEMPLATE_WHERE = "SELECT COUNT(DISTINCT template.templateId) AS COUNT_VALUE FROM KB_Template template WHERE ";
 	private static final String _FILTER_COLUMN_PK = "template.templateId";
 	private static final String _FILTER_COLUMN_USERID = "template.userId";
 	private static final String _FILTER_ENTITY_ALIAS = "template";

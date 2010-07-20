@@ -14,7 +14,6 @@
 
 package com.liferay.ams.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link Checkout}.

@@ -14,7 +14,6 @@
 
 package com.liferay.opensocial.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link Gadget}.

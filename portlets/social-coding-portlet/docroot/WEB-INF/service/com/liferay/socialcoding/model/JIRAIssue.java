@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the jiraissue table in the

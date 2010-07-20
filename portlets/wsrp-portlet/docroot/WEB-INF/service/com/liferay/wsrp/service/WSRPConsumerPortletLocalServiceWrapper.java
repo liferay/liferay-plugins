@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link WSRPConsumerPortletLocalService}.

@@ -14,7 +14,6 @@
 
 package com.liferay.socialnetworking.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link WallEntry}.

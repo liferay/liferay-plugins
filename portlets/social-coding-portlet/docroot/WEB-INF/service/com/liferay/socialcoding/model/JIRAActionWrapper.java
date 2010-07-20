@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link JIRAAction}.

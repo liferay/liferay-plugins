@@ -14,7 +14,6 @@
 
 package com.liferay.socialcoding.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link JIRAChangeItemLocalService}.

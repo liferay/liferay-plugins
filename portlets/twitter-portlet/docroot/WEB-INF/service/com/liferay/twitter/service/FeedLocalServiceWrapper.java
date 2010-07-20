@@ -14,7 +14,6 @@
 
 package com.liferay.twitter.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link FeedLocalService}.

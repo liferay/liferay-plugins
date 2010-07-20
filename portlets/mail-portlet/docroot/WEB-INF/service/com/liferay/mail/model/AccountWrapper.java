@@ -14,7 +14,6 @@
 
 package com.liferay.mail.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link Account}.

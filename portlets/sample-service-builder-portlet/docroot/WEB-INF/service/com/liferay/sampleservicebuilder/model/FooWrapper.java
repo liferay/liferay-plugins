@@ -14,7 +14,6 @@
 
 package com.liferay.sampleservicebuilder.model;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link Foo}.

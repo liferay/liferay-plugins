@@ -14,7 +14,6 @@
 
 package com.liferay.opensocial.model;
 
-
 /**
  * <p>
  * This interface is a model that represents the OpenSocial_Gadget table in the

@@ -14,7 +14,6 @@
 
 package com.liferay.opensocial.service;
 
-
 /**
  * <p>
  * This class is a wrapper for {@link GadgetLocalService}.
