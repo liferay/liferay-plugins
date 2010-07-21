@@ -124,7 +124,7 @@
 		<property name="currentAssigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="currentAssigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="comment" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="comment" column="comment_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="startDate" type="org.hibernate.type.TimestampType" />
 		<property name="endDate" type="org.hibernate.type.TimestampType" />
 		<property name="duration" type="com.liferay.portal.dao.orm.hibernate.LongType" />

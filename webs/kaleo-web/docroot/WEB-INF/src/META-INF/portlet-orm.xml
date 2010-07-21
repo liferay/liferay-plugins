@@ -147,7 +147,9 @@
 			<basic name="type">
 				<column name="TYPE_" />
 			</basic>
-			<basic name="comment" />
+			<basic name="comment">
+				<column name="COMMENT_" />
+			</basic>
 			<basic name="startDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>

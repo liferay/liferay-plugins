@@ -96,7 +96,7 @@ create table Kaleo_KaleoLog (
 	currentAssigneeClassName VARCHAR(200) null,
 	currentAssigneeClassPK LONG,
 	type_ VARCHAR(50) null,
-	comment VARCHAR(2000) null,
+	comment_ VARCHAR(2000) null,
 	startDate DATE null,
 	endDate DATE null,
 	duration LONG,
