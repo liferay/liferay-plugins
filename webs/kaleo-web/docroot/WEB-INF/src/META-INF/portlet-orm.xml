@@ -179,7 +179,9 @@
 			<basic name="type">
 				<column name="TYPE_" />
 			</basic>
-			<basic name="initial" />
+			<basic name="initial">
+				<column name="INITIAL_" />
+			</basic>
 			<basic name="terminal" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />

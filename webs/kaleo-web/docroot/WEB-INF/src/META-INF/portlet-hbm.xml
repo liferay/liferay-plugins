@@ -145,7 +145,7 @@
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="initial" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="initial" column="initial_" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="terminal" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl" table="Kaleo_KaleoNotification">

@@ -115,7 +115,7 @@ create table Kaleo_KaleoNode (
 	name VARCHAR(200) null,
 	description VARCHAR(2000) null,
 	type_ VARCHAR(20) null,
-	initial BOOLEAN,
+	initial_ BOOLEAN,
 	terminal BOOLEAN
 );
 
