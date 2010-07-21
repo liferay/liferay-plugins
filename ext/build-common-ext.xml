@@ -16,21 +16,7 @@ are not meant to contain new custom services. Please migrate your service.xml to
 a portlet plugin.
 		</echo>
 
-		<java
-			classname="com.liferay.portal.tools.DBBuilder"
-			classpathref="portal.classpath"
-			fork="true"
-			maxmemory="384m"
-			newenvironment="true"
-		>
-
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dsql.dir=docroot/WEB-INF/sql" />
-			<arg value="${database.name}" />
-			<arg value="${database.types}" />
-		</java>
-
-		<delete file="velocity.log" quiet="true" />
+		<antcall target="build-common-plugin.build-db" />
 	</target>
 
 	<target name="build-service">

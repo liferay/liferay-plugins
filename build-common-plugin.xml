@@ -105,6 +105,23 @@
 		<delete dir="docroot/WEB-INF/client/src" />
 	</target>
 
+	<target name="build-db">
+		<java
+			classname="com.liferay.portal.tools.DBBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			maxmemory="384m"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<jvmarg value="-Dsql.dir=docroot/WEB-INF/sql" />
+			<arg value="${database.name}" />
+			<arg value="${database.types}" />
+		</java>
+
+		<delete file="velocity.log" quiet="true" />
+	</target>
+
 	<target name="build-lang-cmd">
 		<antcall target="build-lang-native2ascii-all" />
 
