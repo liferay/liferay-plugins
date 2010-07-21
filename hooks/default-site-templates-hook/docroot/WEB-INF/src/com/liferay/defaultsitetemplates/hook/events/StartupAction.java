@@ -272,7 +272,7 @@ public class StartupAction extends SimpleAction {
 		throws Exception {
 
 		LayoutSet layoutSet = addLayoutSetPrototype(
-			companyId, defaultUserId, "Site with Blogs, Wiki and Forum",
+			companyId, defaultUserId, "Site with Blog, Wiki and Forum",
 			"Pages that are available to both guests and members of this " +
 				"community or organization.",
 			layoutSetPrototypes);
