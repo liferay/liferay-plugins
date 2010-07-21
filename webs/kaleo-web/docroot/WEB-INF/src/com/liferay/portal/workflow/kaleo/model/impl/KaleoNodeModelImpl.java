@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoNode table in the
+ * This interface is a model that represents the KaleoNode table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	implements KaleoNodeModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoNode";
+	public static final String TABLE_NAME = "KaleoNode";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoNodeId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -66,10 +66,10 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 			{ "initial_", new Integer(Types.BOOLEAN) },
 			{ "terminal", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNode (kaleoNodeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,name VARCHAR(200) null,description VARCHAR(2000) null,type_ VARCHAR(20) null,initial_ BOOLEAN,terminal BOOLEAN)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNode";
+	public static final String TABLE_SQL_CREATE = "create table KaleoNode (kaleoNodeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,name VARCHAR(200) null,description VARCHAR(2000) null,type_ VARCHAR(20) null,initial_ BOOLEAN,terminal BOOLEAN)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoNode";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNode.kaleoNodeId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNode.kaleoNodeId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoNode.kaleoNodeId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

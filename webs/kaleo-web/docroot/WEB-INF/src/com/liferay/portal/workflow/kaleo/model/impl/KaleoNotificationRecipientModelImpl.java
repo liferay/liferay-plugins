@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoNotificationRecipient table in the
+ * This interface is a model that represents the KaleoNotificationRecipient table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNotificationRecipient>
 	implements KaleoNotificationRecipientModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoNotificationRecipient";
+	public static final String TABLE_NAME = "KaleoNotificationRecipient";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoNotificationRecipientId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -66,10 +66,10 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 			{ "recipientRoleType", new Integer(Types.INTEGER) },
 			{ "address", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotificationRecipient (kaleoNotificationRecipientId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNotificationId LONG,recipientClassName VARCHAR(75) null,recipientClassPK LONG,recipientRoleType INTEGER,address VARCHAR(75) null)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNotificationRecipient";
+	public static final String TABLE_SQL_CREATE = "create table KaleoNotificationRecipient (kaleoNotificationRecipientId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNotificationId LONG,recipientClassName VARCHAR(75) null,recipientClassPK LONG,recipientRoleType INTEGER,address VARCHAR(75) null)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoNotificationRecipient";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoNotificationRecipient.kaleoNotificationRecipientId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

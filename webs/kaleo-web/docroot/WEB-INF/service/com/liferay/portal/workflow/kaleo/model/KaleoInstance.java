@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoInstance table in the
+ * This interface is a model that represents the KaleoInstance table in the
  * database.
  * </p>
  *

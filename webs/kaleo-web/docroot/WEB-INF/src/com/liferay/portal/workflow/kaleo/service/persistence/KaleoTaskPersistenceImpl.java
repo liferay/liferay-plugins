@@ -1311,7 +1311,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("Kaleo_KaleoTaskAssignment",
+				q.addEntity("KaleoTaskAssignment",
 					com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
@@ -1521,9 +1521,9 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	private static final String _SQL_SELECT_KALEOTASK_WHERE = "SELECT kaleoTask FROM KaleoTask kaleoTask WHERE ";
 	private static final String _SQL_COUNT_KALEOTASK = "SELECT COUNT(kaleoTask) FROM KaleoTask kaleoTask";
 	private static final String _SQL_COUNT_KALEOTASK_WHERE = "SELECT COUNT(kaleoTask) FROM KaleoTask kaleoTask WHERE ";
-	private static final String _SQL_GETKALEOTASKASSIGNMENTS = "SELECT {Kaleo_KaleoTaskAssignment.*} FROM Kaleo_KaleoTaskAssignment INNER JOIN Kaleo_KaleoTask ON (Kaleo_KaleoTask.kaleoTaskId = Kaleo_KaleoTaskAssignment.kaleoTaskId) WHERE (Kaleo_KaleoTask.kaleoTaskId = ?)";
-	private static final String _SQL_GETKALEOTASKASSIGNMENTSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoTaskAssignment WHERE kaleoTaskId = ?";
-	private static final String _SQL_CONTAINSKALEOTASKASSIGNMENT = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoTaskAssignment WHERE kaleoTaskId = ? AND kaleoTaskAssignmentId = ?";
+	private static final String _SQL_GETKALEOTASKASSIGNMENTS = "SELECT {KaleoTaskAssignment.*} FROM KaleoTaskAssignment INNER JOIN KaleoTask ON (KaleoTask.kaleoTaskId = KaleoTaskAssignment.kaleoTaskId) WHERE (KaleoTask.kaleoTaskId = ?)";
+	private static final String _SQL_GETKALEOTASKASSIGNMENTSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoTaskAssignment WHERE kaleoTaskId = ?";
+	private static final String _SQL_CONTAINSKALEOTASKASSIGNMENT = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoTaskAssignment WHERE kaleoTaskId = ? AND kaleoTaskAssignmentId = ?";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoTask.companyId = ?";
 	private static final String _FINDER_COLUMN_KALEODEFINITIONID_KALEODEFINITIONID_2 =
 		"kaleoTask.kaleoDefinitionId = ?";

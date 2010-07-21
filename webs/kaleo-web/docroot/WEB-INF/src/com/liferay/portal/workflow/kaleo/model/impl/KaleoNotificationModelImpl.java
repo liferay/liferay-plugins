@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoNotification table in the
+ * This interface is a model that represents the KaleoNotification table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	implements KaleoNotificationModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoNotification";
+	public static final String TABLE_NAME = "KaleoNotification";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoNotificationId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -69,10 +69,10 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 			{ "templateLanguage", new Integer(Types.VARCHAR) },
 			{ "notificationTypes", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoNotification (kaleoNotificationId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,executionType VARCHAR(20) null,template TEXT null,templateLanguage VARCHAR(75) null,notificationTypes VARCHAR(25) null)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoNotification";
+	public static final String TABLE_SQL_CREATE = "create table KaleoNotification (kaleoNotificationId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,executionType VARCHAR(20) null,template TEXT null,templateLanguage VARCHAR(75) null,notificationTypes VARCHAR(25) null)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoNotification";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNotification.kaleoNotificationId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoNotification.kaleoNotificationId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoNotification.kaleoNotificationId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

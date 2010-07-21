@@ -1484,7 +1484,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("Kaleo_KaleoTaskAssignmentInstance",
+				q.addEntity("KaleoTaskAssignmentInstance",
 					com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
@@ -1700,9 +1700,9 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	private static final String _SQL_SELECT_KALEOTASKINSTANCETOKEN_WHERE = "SELECT kaleoTaskInstanceToken FROM KaleoTaskInstanceToken kaleoTaskInstanceToken WHERE ";
 	private static final String _SQL_COUNT_KALEOTASKINSTANCETOKEN = "SELECT COUNT(kaleoTaskInstanceToken) FROM KaleoTaskInstanceToken kaleoTaskInstanceToken";
 	private static final String _SQL_COUNT_KALEOTASKINSTANCETOKEN_WHERE = "SELECT COUNT(kaleoTaskInstanceToken) FROM KaleoTaskInstanceToken kaleoTaskInstanceToken WHERE ";
-	private static final String _SQL_GETKALEOTASKASSIGNMENTINSTANCES = "SELECT {Kaleo_KaleoTaskAssignmentInstance.*} FROM Kaleo_KaleoTaskAssignmentInstance INNER JOIN Kaleo_KaleoTaskInstanceToken ON (Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId = Kaleo_KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId) WHERE (Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId = ?)";
-	private static final String _SQL_GETKALEOTASKASSIGNMENTINSTANCESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoTaskAssignmentInstance WHERE kaleoTaskInstanceTokenId = ?";
-	private static final String _SQL_CONTAINSKALEOTASKASSIGNMENTINSTANCE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoTaskAssignmentInstance WHERE kaleoTaskInstanceTokenId = ? AND kaleoTaskAssignmentInstanceId = ?";
+	private static final String _SQL_GETKALEOTASKASSIGNMENTINSTANCES = "SELECT {KaleoTaskAssignmentInstance.*} FROM KaleoTaskAssignmentInstance INNER JOIN KaleoTaskInstanceToken ON (KaleoTaskInstanceToken.kaleoTaskInstanceTokenId = KaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId) WHERE (KaleoTaskInstanceToken.kaleoTaskInstanceTokenId = ?)";
+	private static final String _SQL_GETKALEOTASKASSIGNMENTINSTANCESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoTaskAssignmentInstance WHERE kaleoTaskInstanceTokenId = ?";
+	private static final String _SQL_CONTAINSKALEOTASKASSIGNMENTINSTANCE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoTaskAssignmentInstance WHERE kaleoTaskInstanceTokenId = ? AND kaleoTaskAssignmentInstanceId = ?";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoTaskInstanceToken.companyId = ?";
 	private static final String _FINDER_COLUMN_KALEODEFINITIONID_KALEODEFINITIONID_2 =
 		"kaleoTaskInstanceToken.kaleoDefinitionId = ?";

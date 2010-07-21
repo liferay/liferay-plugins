@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoNotificationRecipient table in the
+ * This interface is a model that represents the KaleoNotificationRecipient table in the
  * database.
  * </p>
  *

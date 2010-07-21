@@ -1,4 +1,4 @@
-create table Kaleo_KaleoAction (
+create table KaleoAction (
 	kaleoActionId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -17,7 +17,7 @@ create table Kaleo_KaleoAction (
 	priority INTEGER
 );
 
-create table Kaleo_KaleoDefinition (
+create table KaleoDefinition (
 	kaleoDefinitionId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -33,7 +33,7 @@ create table Kaleo_KaleoDefinition (
 	startKaleoNodeId LONG
 );
 
-create table Kaleo_KaleoInstance (
+create table KaleoInstance (
 	kaleoInstanceId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -52,7 +52,7 @@ create table Kaleo_KaleoInstance (
 	workflowContext TEXT null
 );
 
-create table Kaleo_KaleoInstanceToken (
+create table KaleoInstanceToken (
 	kaleoInstanceTokenId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -71,7 +71,7 @@ create table Kaleo_KaleoInstanceToken (
 	completionDate DATE null
 );
 
-create table Kaleo_KaleoLog (
+create table KaleoLog (
 	kaleoLogId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -103,7 +103,7 @@ create table Kaleo_KaleoLog (
 	workflowContext TEXT null
 );
 
-create table Kaleo_KaleoNode (
+create table KaleoNode (
 	kaleoNodeId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -119,7 +119,7 @@ create table Kaleo_KaleoNode (
 	terminal BOOLEAN
 );
 
-create table Kaleo_KaleoNotification (
+create table KaleoNotification (
 	kaleoNotificationId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -138,7 +138,7 @@ create table Kaleo_KaleoNotification (
 	notificationTypes VARCHAR(25) null
 );
 
-create table Kaleo_KaleoNotificationRecipient (
+create table KaleoNotificationRecipient (
 	kaleoNotificationRecipientId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -154,7 +154,7 @@ create table Kaleo_KaleoNotificationRecipient (
 	address VARCHAR(75) null
 );
 
-create table Kaleo_KaleoTask (
+create table KaleoTask (
 	kaleoTaskId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -170,7 +170,7 @@ create table Kaleo_KaleoTask (
 	dueDateScale VARCHAR(75) null
 );
 
-create table Kaleo_KaleoTaskAssignment (
+create table KaleoTaskAssignment (
 	kaleoTaskAssignmentId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -185,7 +185,7 @@ create table Kaleo_KaleoTaskAssignment (
 	assigneeClassPK LONG
 );
 
-create table Kaleo_KaleoTaskAssignmentInstance (
+create table KaleoTaskAssignmentInstance (
 	kaleoTaskAssignmentInstanceId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -205,7 +205,7 @@ create table Kaleo_KaleoTaskAssignmentInstance (
 	completionDate DATE null
 );
 
-create table Kaleo_KaleoTaskInstanceToken (
+create table KaleoTaskInstanceToken (
 	kaleoTaskInstanceTokenId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,
@@ -227,7 +227,7 @@ create table Kaleo_KaleoTaskInstanceToken (
 	workflowContext TEXT null
 );
 
-create table Kaleo_KaleoTransition (
+create table KaleoTransition (
 	kaleoTransitionId LONG not null primary key,
 	groupId LONG,
 	companyId LONG,

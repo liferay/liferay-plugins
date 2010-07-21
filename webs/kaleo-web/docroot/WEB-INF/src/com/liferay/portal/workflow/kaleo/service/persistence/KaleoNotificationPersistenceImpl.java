@@ -1526,7 +1526,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("Kaleo_KaleoNotificationRecipient",
+				q.addEntity("KaleoNotificationRecipient",
 					com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
@@ -1742,9 +1742,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	private static final String _SQL_SELECT_KALEONOTIFICATION_WHERE = "SELECT kaleoNotification FROM KaleoNotification kaleoNotification WHERE ";
 	private static final String _SQL_COUNT_KALEONOTIFICATION = "SELECT COUNT(kaleoNotification) FROM KaleoNotification kaleoNotification";
 	private static final String _SQL_COUNT_KALEONOTIFICATION_WHERE = "SELECT COUNT(kaleoNotification) FROM KaleoNotification kaleoNotification WHERE ";
-	private static final String _SQL_GETKALEONOTIFICATIONRECIPIENTS = "SELECT {Kaleo_KaleoNotificationRecipient.*} FROM Kaleo_KaleoNotificationRecipient INNER JOIN Kaleo_KaleoNotification ON (Kaleo_KaleoNotification.kaleoNotificationId = Kaleo_KaleoNotificationRecipient.kaleoNotificationId) WHERE (Kaleo_KaleoNotification.kaleoNotificationId = ?)";
-	private static final String _SQL_GETKALEONOTIFICATIONRECIPIENTSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNotificationRecipient WHERE kaleoNotificationId = ?";
-	private static final String _SQL_CONTAINSKALEONOTIFICATIONRECIPIENT = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNotificationRecipient WHERE kaleoNotificationId = ? AND kaleoNotificationRecipientId = ?";
+	private static final String _SQL_GETKALEONOTIFICATIONRECIPIENTS = "SELECT {KaleoNotificationRecipient.*} FROM KaleoNotificationRecipient INNER JOIN KaleoNotification ON (KaleoNotification.kaleoNotificationId = KaleoNotificationRecipient.kaleoNotificationId) WHERE (KaleoNotification.kaleoNotificationId = ?)";
+	private static final String _SQL_GETKALEONOTIFICATIONRECIPIENTSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoNotificationRecipient WHERE kaleoNotificationId = ?";
+	private static final String _SQL_CONTAINSKALEONOTIFICATIONRECIPIENT = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoNotificationRecipient WHERE kaleoNotificationId = ? AND kaleoNotificationRecipientId = ?";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoNotification.companyId = ?";
 	private static final String _FINDER_COLUMN_KALEODEFINITIONID_KALEODEFINITIONID_2 =
 		"kaleoNotification.kaleoDefinitionId = ?";

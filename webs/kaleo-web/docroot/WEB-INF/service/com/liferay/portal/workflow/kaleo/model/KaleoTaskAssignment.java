@@ -16,7 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoTaskAssignment table in the
+ * This interface is a model that represents the KaleoTaskAssignment table in the
  * database.
  * </p>
  *

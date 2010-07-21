@@ -1468,7 +1468,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("Kaleo_KaleoAction",
+				q.addEntity("KaleoAction",
 					com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
@@ -1676,9 +1676,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	private static final String _SQL_SELECT_KALEONODE_WHERE = "SELECT kaleoNode FROM KaleoNode kaleoNode WHERE ";
 	private static final String _SQL_COUNT_KALEONODE = "SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode";
 	private static final String _SQL_COUNT_KALEONODE_WHERE = "SELECT COUNT(kaleoNode) FROM KaleoNode kaleoNode WHERE ";
-	private static final String _SQL_GETKALEOACTIONS = "SELECT {Kaleo_KaleoAction.*} FROM Kaleo_KaleoAction INNER JOIN Kaleo_KaleoNode ON (Kaleo_KaleoNode.kaleoNodeId = Kaleo_KaleoAction.kaleoNodeId) WHERE (Kaleo_KaleoNode.kaleoNodeId = ?)";
-	private static final String _SQL_GETKALEOACTIONSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoAction WHERE kaleoNodeId = ?";
-	private static final String _SQL_CONTAINSKALEOACTION = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoAction WHERE kaleoNodeId = ? AND kaleoActionId = ?";
+	private static final String _SQL_GETKALEOACTIONS = "SELECT {KaleoAction.*} FROM KaleoAction INNER JOIN KaleoNode ON (KaleoNode.kaleoNodeId = KaleoAction.kaleoNodeId) WHERE (KaleoNode.kaleoNodeId = ?)";
+	private static final String _SQL_GETKALEOACTIONSSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoAction WHERE kaleoNodeId = ?";
+	private static final String _SQL_CONTAINSKALEOACTION = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoAction WHERE kaleoNodeId = ? AND kaleoActionId = ?";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoNode.companyId = ?";
 	private static final String _FINDER_COLUMN_KALEODEFINITIONID_KALEODEFINITIONID_2 =
 		"kaleoNode.kaleoDefinitionId = ?";

@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoTaskInstanceToken table in the
+ * This interface is a model that represents the KaleoTaskInstanceToken table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInstanceToken>
 	implements KaleoTaskInstanceTokenModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoTaskInstanceToken";
+	public static final String TABLE_NAME = "KaleoTaskInstanceToken";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTaskInstanceTokenId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -72,10 +72,10 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 			{ "dueDate", new Integer(Types.TIMESTAMP) },
 			{ "workflowContext", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,className VARCHAR(75) null,classPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskInstanceToken";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,className VARCHAR(75) null,classPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoTaskInstanceToken";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskInstanceToken.kaleoTaskInstanceTokenId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

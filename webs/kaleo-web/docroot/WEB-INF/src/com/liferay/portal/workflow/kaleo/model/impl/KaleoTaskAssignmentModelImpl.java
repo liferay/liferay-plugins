@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoTaskAssignment table in the
+ * This interface is a model that represents the KaleoTaskAssignment table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignment>
 	implements KaleoTaskAssignmentModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoTaskAssignment";
+	public static final String TABLE_NAME = "KaleoTaskAssignment";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTaskAssignmentId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -65,10 +65,10 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			{ "assigneeClassName", new Integer(Types.VARCHAR) },
 			{ "assigneeClassPK", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskAssignment";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoTaskAssignment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskAssignment.kaleoTaskAssignmentId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskAssignment.kaleoTaskAssignmentId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskAssignment.kaleoTaskAssignmentId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

@@ -373,57 +373,57 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl" name="KaleoAction">
-		<table name="Kaleo_KaleoAction" />
+		<table name="KaleoAction" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl" name="KaleoDefinition">
-		<table name="Kaleo_KaleoDefinition" />
+		<table name="KaleoDefinition" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl" name="KaleoInstance">
-		<table name="Kaleo_KaleoInstance" />
+		<table name="KaleoInstance" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl" name="KaleoInstanceToken">
-		<table name="Kaleo_KaleoInstanceToken" />
+		<table name="KaleoInstanceToken" />
 		<attributes>
 			<transient name="currentKaleoNode" />
 		</attributes>
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoLogImpl" name="KaleoLog">
-		<table name="Kaleo_KaleoLog" />
+		<table name="KaleoLog" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl" name="KaleoNode">
-		<table name="Kaleo_KaleoNode" />
+		<table name="KaleoNode" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl" name="KaleoNotification">
-		<table name="Kaleo_KaleoNotification" />
+		<table name="KaleoNotification" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl" name="KaleoNotificationRecipient">
-		<table name="Kaleo_KaleoNotificationRecipient" />
+		<table name="KaleoNotificationRecipient" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl" name="KaleoTask">
-		<table name="Kaleo_KaleoTask" />
+		<table name="KaleoTask" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl" name="KaleoTaskAssignment">
-		<table name="Kaleo_KaleoTaskAssignment" />
+		<table name="KaleoTaskAssignment" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl" name="KaleoTaskAssignmentInstance">
-		<table name="Kaleo_KaleoTaskAssignmentInstance" />
+		<table name="KaleoTaskAssignmentInstance" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" name="KaleoTaskInstanceToken">
-		<table name="Kaleo_KaleoTaskInstanceToken" />
+		<table name="KaleoTaskInstanceToken" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl" name="KaleoTransition">
-		<table name="Kaleo_KaleoTransition" />
+		<table name="KaleoTransition" />
 		<attributes />
 	</entity>
 </entity-mappings>

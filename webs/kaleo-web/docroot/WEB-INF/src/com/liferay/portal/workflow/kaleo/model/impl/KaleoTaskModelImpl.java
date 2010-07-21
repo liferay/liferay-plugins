@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoTask table in the
+ * This interface is a model that represents the KaleoTask table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	implements KaleoTaskModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoTask";
+	public static final String TABLE_NAME = "KaleoTask";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTaskId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -66,10 +66,10 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 			{ "dueDateDuration", new Integer(Types.DOUBLE) },
 			{ "dueDateScale", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTask (kaleoTaskId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(75) null,description VARCHAR(75) null,dueDateDuration DOUBLE,dueDateScale VARCHAR(75) null)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTask";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTask (kaleoTaskId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(75) null,description VARCHAR(75) null,dueDateDuration DOUBLE,dueDateScale VARCHAR(75) null)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoTask";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTask.kaleoTaskId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTask.kaleoTaskId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoTask.kaleoTaskId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoInstance table in the
+ * This interface is a model that represents the KaleoInstance table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	implements KaleoInstanceModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoInstance";
+	public static final String TABLE_NAME = "KaleoInstance";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoInstanceId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -69,10 +69,10 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 			{ "completionDate", new Integer(Types.TIMESTAMP) },
 			{ "workflowContext", new Integer(Types.CLOB) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoInstance (kaleoInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,workflowContext TEXT null)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoInstance";
+	public static final String TABLE_SQL_CREATE = "create table KaleoInstance (kaleoInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,workflowContext TEXT null)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoInstance";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoInstance.kaleoInstanceId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoInstance.kaleoInstanceId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoInstance.kaleoInstanceId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";

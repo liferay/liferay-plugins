@@ -2221,7 +2221,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 				SQLQuery q = session.createSQLQuery(sql);
 
-				q.addEntity("Kaleo_KaleoNode",
+				q.addEntity("KaleoNode",
 					com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl.class);
 
 				QueryPos qPos = QueryPos.getInstance(q);
@@ -2430,9 +2430,9 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	private static final String _SQL_SELECT_KALEODEFINITION_WHERE = "SELECT kaleoDefinition FROM KaleoDefinition kaleoDefinition WHERE ";
 	private static final String _SQL_COUNT_KALEODEFINITION = "SELECT COUNT(kaleoDefinition) FROM KaleoDefinition kaleoDefinition";
 	private static final String _SQL_COUNT_KALEODEFINITION_WHERE = "SELECT COUNT(kaleoDefinition) FROM KaleoDefinition kaleoDefinition WHERE ";
-	private static final String _SQL_GETKALEONODES = "SELECT {Kaleo_KaleoNode.*} FROM Kaleo_KaleoNode INNER JOIN Kaleo_KaleoDefinition ON (Kaleo_KaleoDefinition.kaleoDefinitionId = Kaleo_KaleoNode.kaleoDefinitionId) WHERE (Kaleo_KaleoDefinition.kaleoDefinitionId = ?)";
-	private static final String _SQL_GETKALEONODESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNode WHERE kaleoDefinitionId = ?";
-	private static final String _SQL_CONTAINSKALEONODE = "SELECT COUNT(*) AS COUNT_VALUE FROM Kaleo_KaleoNode WHERE kaleoDefinitionId = ? AND kaleoNodeId = ?";
+	private static final String _SQL_GETKALEONODES = "SELECT {KaleoNode.*} FROM KaleoNode INNER JOIN KaleoDefinition ON (KaleoDefinition.kaleoDefinitionId = KaleoNode.kaleoDefinitionId) WHERE (KaleoDefinition.kaleoDefinitionId = ?)";
+	private static final String _SQL_GETKALEONODESSIZE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoNode WHERE kaleoDefinitionId = ?";
+	private static final String _SQL_CONTAINSKALEONODE = "SELECT COUNT(*) AS COUNT_VALUE FROM KaleoNode WHERE kaleoDefinitionId = ? AND kaleoNodeId = ?";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoDefinition.companyId = ?";
 	private static final String _FINDER_COLUMN_C_N_COMPANYID_2 = "kaleoDefinition.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_N_NAME_1 = "kaleoDefinition.name IS NULL";

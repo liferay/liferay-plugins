@@ -38,7 +38,7 @@ import java.util.Date;
 
 /**
  * <p>
- * This interface is a model that represents the Kaleo_KaleoTaskAssignmentInstance table in the
+ * This interface is a model that represents the KaleoTaskAssignmentInstance table in the
  * database.
  * </p>
  *
@@ -50,7 +50,7 @@ import java.util.Date;
  */
 public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTaskAssignmentInstance>
 	implements KaleoTaskAssignmentInstanceModel {
-	public static final String TABLE_NAME = "Kaleo_KaleoTaskAssignmentInstance";
+	public static final String TABLE_NAME = "KaleoTaskAssignmentInstance";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "kaleoTaskAssignmentInstanceId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
@@ -70,10 +70,10 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 			{ "completed", new Integer(Types.BOOLEAN) },
 			{ "completionDate", new Integer(Types.TIMESTAMP) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Kaleo_KaleoTaskAssignmentInstance (kaleoTaskAssignmentInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(75) null,assigneeClassName VARCHAR(75) null,assigneeClassPK LONG,completed BOOLEAN,completionDate DATE null)";
-	public static final String TABLE_SQL_DROP = "drop table Kaleo_KaleoTaskAssignmentInstance";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignmentInstance (kaleoTaskAssignmentInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(75) null,assigneeClassName VARCHAR(75) null,assigneeClassPK LONG,completed BOOLEAN,completionDate DATE null)";
+	public static final String TABLE_SQL_DROP = "drop table KaleoTaskAssignmentInstance";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskAssignmentInstance.kaleoTaskAssignmentInstanceId ASC";
-	public static final String ORDER_BY_SQL = " ORDER BY Kaleo_KaleoTaskAssignmentInstance.kaleoTaskAssignmentInstanceId ASC";
+	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskAssignmentInstance.kaleoTaskAssignmentInstanceId ASC";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
 	public static final String TX_MANAGER = "liferayTransactionManager";
