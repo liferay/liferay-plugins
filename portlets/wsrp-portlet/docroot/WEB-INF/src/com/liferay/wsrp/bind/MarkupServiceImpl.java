@@ -232,11 +232,6 @@ public class MarkupServiceImpl
 		markupContext.setItemString(content);
 		markupContext.setRequiresRewriting(true);
 
-		Extension[] configurationURLExtension =
-			getConfigurationURLExtension(rawContent);
-
-		markupContext.setExtensions(configurationURLExtension);
-
 		MarkupResponse markupResponse = new MarkupResponse();
 
 		markupResponse.setMarkupContext(markupContext);
@@ -429,11 +424,6 @@ public class MarkupServiceImpl
 			markupContext.setItemString(content);
 			markupContext.setRequiresRewriting(true);
 
-			Extension[] configurationURLExtension =
-				getConfigurationURLExtension(rawContent);
-
-			markupContext.setExtensions(configurationURLExtension);
-
 			UpdateResponse updateResponse = new UpdateResponse();
 
 			updateResponse.setMarkupContext(markupContext);
@@ -470,16 +460,6 @@ public class MarkupServiceImpl
 		}
 
 		return binaryContent;
-	}
-
-	protected Extension[] getConfigurationURLExtension(String rawContent) {
-		int x = rawContent.indexOf("<div id=\"wsrp-configuration-url\">");
-		int y = rawContent.indexOf("</div>", x);
-
-		String configurationURL = rawContent.substring(x + 33, y);
-
-		return ExtensionUtil.getExtensions(
-			"configurationURL", configurationURL);
 	}
 
 	protected String getContent(String rawContent) throws Exception {

@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.SimpleHTTPSender;
@@ -325,25 +324,6 @@ public class ConsumerPortlet extends GenericPortlet {
 				renderRequest, renderResponse);
 
 			markupContext = markupResponse.getMarkupContext();
-		}
-
-		MessageElement[] messageElements =
-			ExtensionUtil.getMessageElements(markupContext.getExtensions());
-
-		if ((messageElements != null) && (messageElements.length > 0)) {
-			MessageElement messageElement = messageElements[0];
-
-			if (messageElement.getName().equals("configurationURL")) {
-				PortletDisplay portletDisplay =
-					themeDisplay.getPortletDisplay();
-
-				String configurationURL = messageElement.getValue();
-
-				configurationURL = rewriteURLs(
-					renderResponse, configurationURL);
-
-				portletDisplay.setURLConfiguration(configurationURL);
-			}
 		}
 
 		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
