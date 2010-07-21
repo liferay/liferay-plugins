@@ -23,6 +23,7 @@
 		<replace file="tmp/WEB-INF/web.xml">
 			<replacefilter token="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" value="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" />
 			<replacefilter token="http://java.sun.com/xml/ns/javaee" value="http://java.sun.com/xml/ns/j2ee" />
+			<replacefilter token="id=&quot;Shindig&quot;" value="" />
 			<replacefilter token="version=&quot;2.5&quot;" value="version=&quot;2.4&quot;" />
 		</replace>
 
