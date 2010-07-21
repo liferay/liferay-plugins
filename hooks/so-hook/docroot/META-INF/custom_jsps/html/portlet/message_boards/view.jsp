@@ -116,7 +116,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 				curCategory = curCategory.toEscapedModel();
 
-				ResultRow row = new ResultRow(new Object[] {curCategory, categorySubscriptionClassPKs}, curCategory.getCategoryId(), i);
+				ResultRow row = new ResultRow(curCategory, curCategory.getCategoryId(), i);
 
 				boolean restricted = !MBCategoryPermission.contains(permissionChecker, curCategory, ActionKeys.VIEW);
 
