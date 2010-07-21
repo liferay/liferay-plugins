@@ -4,7 +4,7 @@
 	<import file="../build-common-portlet.xml" />
 
 	<!-- Revision 966261 -->
-	
+
 	<property name="original.war.file" value="shindig-server-2.0.0-SNAPSHOT.war" />
 
 	<target name="merge">
@@ -34,7 +34,7 @@
 				value="version=&quot;2.4&quot;" 
 			/>
 		</replace>
-		
+
 		<replace file="tmp/WEB-INF/web.xml">
 			<replacefilter 
 				token="org.apache.shindig.social.sample.SampleModule"
@@ -67,14 +67,14 @@
 		/>
 
 		<!-- Convert mappings for Servlet 2.4 Compliance -->
-		
+
 		<replaceregexp
 			flags="gs"
 			file="tmp/WEB-INF/web.xml"
 			match="&lt;filter-mapping&gt;(\s*?)&lt;filter-name&gt;authFilter(.*?)filter-mapping&gt;"
 			replace="@AUTH_FILTER_TOKEN@"
 		/>
-		
+
 		<replaceregexp
 			flags="gs"
 			file="tmp/WEB-INF/web.xml"
@@ -167,19 +167,20 @@
 			overwrite="true"
 		/>
 
-		<replace file="tmp/WEB-INF/classes/containers/default/container.js">			
-			<replacefilter token=":${SERVER_PORT}" value="" />			
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacefilter token=":${SERVER_PORT}" value="" />
 			<replacefilter token=":8080" value="" />
 			<replacefilter token="-a.example.com" value="%host%" />
 			<replacefilter token="www.example.com" value="%host%" />
-			<replacefilter token="localhost" value="%host%" />			
+			<replacefilter token="localhost" value="%host%" />
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
 			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
 		</replace>
 	</target>
-	
+
 	<target name="merge-unzip">
 		<antcall target="build-common-plugin.merge-unzip" />
+
 		<copy
 			file="tmp/WEB-INF/web.xml"
 			tofile="tmp/WEB-INF/web.xml.original"

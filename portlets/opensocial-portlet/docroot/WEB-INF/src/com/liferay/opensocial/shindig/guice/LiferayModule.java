@@ -44,11 +44,10 @@ public class LiferayModule extends AbstractModule {
 
 		bind(ActivityService.class).to(LiferayActivityService.class);
 		bind(AppDataService.class).to(LiferayAppDataService.class);
+		bind(ContainerConfig.class).to(LiferayJsonContainerConfig.class);
 		bind(MessageService.class).to(NotImplementedMessageService.class);
 		bind(OAuthDataStore.class).to(SampleOAuthDataStore.class);
 		bind(PersonService.class).to(LiferayPersonService.class);
-
-		bind(ContainerConfig.class).to(LiferayJsonContainerConfig.class);
 
 		requestStaticInjection(ShindigUtil.class);
 	}

@@ -44,10 +44,6 @@ public class LiferayJsonContainerConfig extends JsonContainerConfig {
 		super(containers, port, expressions);
 	}
 
-	public void setHost(String host) {
-		_host.set(host);
-	}
-
 	public String getString(String container, String property) {
 		String value = super.getString(container, property);
 
@@ -56,6 +52,10 @@ public class LiferayJsonContainerConfig extends JsonContainerConfig {
 		}
 
 		return value;
+	}
+
+	public void setHost(String host) {
+		_host.set(host);
 	}
 
 	private static AutoResetThreadLocal<String> _host =
