@@ -10,6 +10,14 @@
 	<listener>
 		<listener-class>com.liferay.opensocial.servlet.OpenSocialServletContextListener</listener-class>
 	</listener>
+	<filter>
+		<filter-name>Shindig Filter</filter-name>
+		<filter-class>com.liferay.opensocial.shindig.servlet.ShindigFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Shindig Filter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
 	<jsp-config>
 		<taglib>
 			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>

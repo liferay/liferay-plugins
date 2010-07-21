@@ -88,7 +88,7 @@ public class ShindigUtil {
 			BasicSecurityToken basicSecurityToken = new BasicSecurityToken(
 				ownerId, String.valueOf(viewerId), appId, domain, appUrl,
 				String.valueOf(moduleId), ContainerConfig.DEFAULT_CONTAINER,
-				activeUrl);
+				activeUrl, null);
 
 			securityToken = _basicSecurityTokenDecoder.encodeToken(
 				basicSecurityToken);

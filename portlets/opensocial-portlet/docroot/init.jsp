@@ -47,6 +47,7 @@
 <%@ page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %>
 
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 

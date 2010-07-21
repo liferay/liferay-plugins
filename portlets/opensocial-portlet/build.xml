@@ -3,41 +3,12 @@
 <project name="portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<property name="original.war.file" value="shindig-server-1.1-BETA5-incubating.war" />
+	<!-- Revision 966261 -->
+	
+	<property name="original.war.file" value="shindig-server-2.0.0-SNAPSHOT.war" />
 
 	<target name="merge">
 		<antcall target="build-common-plugin.merge" />
-
-		<java
-			classname="com.liferay.portal.tools.WebXMLBuilder"
-			classpathref="portal.classpath"
-			fork="true"
-			newenvironment="true"
-		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<arg value="tmp/WEB-INF/web.full.xml" />
-			<arg value="docroot/WEB-INF/web.xml" />
-			<arg value="tmp/WEB-INF/web.xml" />
-		</java>
-
-		<replace file="tmp/WEB-INF/web.xml">
-			<replacefilter token="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" value="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" />
-			<replacefilter token="http://java.sun.com/xml/ns/javaee" value="http://java.sun.com/xml/ns/j2ee" />
-			<replacefilter token="id=&quot;Shindig&quot;" value="" />
-			<replacefilter token="version=&quot;2.5&quot;" value="version=&quot;2.4&quot;" />
-		</replace>
-
-		<if>
-			<not>
-				<available file="tmp/WEB-INF/web.xml.original" />
-			</not>
-			<then>
-				<copy
-					file="tmp/WEB-INF/web.xml"
-					tofile="tmp/WEB-INF/web.xml.original"
-				/>
-			</then>
-		</if>
 
 		<copy
 			file="tmp/WEB-INF/web.xml.original"
@@ -47,10 +18,103 @@
 
 		<replace file="tmp/WEB-INF/web.xml">
 			<replacefilter 
-				token="org.apache.shindig.social.sample.SampleModule"
-				value="com.liferay.opensocial.shindig.guice.LiferayGuiceModule" 
+				token="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+				value="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" 
+			/>
+			<replacefilter 
+				token="http://java.sun.com/xml/ns/javaee" 
+				value="http://java.sun.com/xml/ns/j2ee" 
+			/>
+			<replacefilter
+				token="id=&quot;Shindig&quot;"
+				value=""
+			/>
+			<replacefilter 
+				token="version=&quot;2.5&quot;" 
+				value="version=&quot;2.4&quot;" 
 			/>
 		</replace>
+		
+		<replace file="tmp/WEB-INF/web.xml">
+			<replacefilter 
+				token="org.apache.shindig.social.sample.SampleModule"
+				value="com.liferay.opensocial.shindig.guice.LiferayModule" 
+			/>
+			<replacefilter 
+				token="org.apache.shindig.sample.shiro.ShiroGuiceModule:"
+				value="" 
+			/>
+			<replacefilter 
+				token="org.apache.shindig.sample.container.SampleContainerGuiceModule:"
+				value="" 
+			/>
+		</replace>
+
+		<!-- Remove Shiro filter -->
+
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;filter&gt;(\s*?)&lt;filter-name&gt;ShiroFilter(.*?)filter&gt;"
+			replace=""
+		/>
+
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;filter-mapping&gt;(\s*?)&lt;filter-name&gt;ShiroFilter(.*?)filter-mapping&gt;"
+			replace=""
+		/>
+
+		<!-- Convert mappings for Servlet 2.4 Compliance -->
+		
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;filter-mapping&gt;(\s*?)&lt;filter-name&gt;authFilter(.*?)filter-mapping&gt;"
+			replace="@AUTH_FILTER_TOKEN@"
+		/>
+		
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;servlet-mapping&gt;(\s*?)&lt;servlet-name&gt;jsonRpcServlet(.*?)servlet-mapping&gt;"
+			replace="@JSON_RPC_SERVLET_TOKEN@"
+		/>
+
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;servlet-mapping&gt;(\s*?)&lt;servlet-name&gt;restapiServlet(.*?)servlet-mapping&gt;"
+			replace="@REST_API_SERVLET_TOKEN@"
+		/>
+
+		<replace file="tmp/WEB-INF/web.xml" propertyFile="docroot/WEB-INF/web.xml.properties">
+			<replacefilter 
+				token="@AUTH_FILTER_TOKEN@" 
+				property="auth.filter.replace" 
+			/>
+			<replacefilter 
+				token="@JSON_RPC_SERVLET_TOKEN@" 
+				property="json.rpc.servlet.replace"
+			/>
+			<replacefilter
+				token="@REST_API_SERVLET_TOKEN@" 
+				property="rest.api.servlet.replace"
+			/>
+		</replace>
+
+		<java
+			classname="com.liferay.portal.tools.WebXMLBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="tmp/WEB-INF/web.xml" />
+			<arg value="docroot/WEB-INF/web.xml" />
+			<arg value="tmp/WEB-INF/web.xml" />
+		</java>
 
 		<if>
 			<not>
@@ -58,7 +122,7 @@
 			</not>
 			<then>
 				<unzip
-					src="tmp/WEB-INF/lib/shindig-common-1.1-BETA5-incubating.jar"
+					src="tmp/WEB-INF/lib/shindig-common-2.0.0-SNAPSHOT.jar"
 					dest="tmp/WEB-INF/classes"
 				>
 					<patternset
@@ -103,10 +167,23 @@
 			overwrite="true"
 		/>
 
-		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
-			<replacefilter token="localhost" value="%host%" />
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">			
+			<replacefilter token=":${SERVER_PORT}" value="" />			
+			<replacefilter token=":8080" value="" />
+			<replacefilter token="-a.example.com" value="%host%" />
+			<replacefilter token="www.example.com" value="%host%" />
+			<replacefilter token="localhost" value="%host%" />			
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
-			<replacefilter token="/social/" value="/opensocial-portlet/social/" />
+			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
 		</replace>
+	</target>
+	
+	<target name="merge-unzip">
+		<antcall target="build-common-plugin.merge-unzip" />
+		<copy
+			file="tmp/WEB-INF/web.xml"
+			tofile="tmp/WEB-INF/web.xml.original"
+			overwrite="true"
+		/>
 	</target>
 </project>

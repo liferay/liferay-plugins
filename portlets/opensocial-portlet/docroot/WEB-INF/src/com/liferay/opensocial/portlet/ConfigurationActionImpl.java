@@ -28,7 +28,7 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.expando.service.ExpandoValueServiceUtil;
 
-import java.util.List;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -55,9 +55,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		JSONObject userPrefsJsonObject = JSONFactoryUtil.createJSONObject();
 
-		List<UserPref> userPrefs = getUserPrefs(actionRequest);
+		Map<String, UserPref> userPrefs = getUserPrefs(actionRequest);
 
-		for (UserPref userPref : userPrefs) {
+		for (UserPref userPref : userPrefs.values()) {
 			String name = userPref.getName();
 
 			String value = ParamUtil.getString(actionRequest, name);
@@ -83,7 +83,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
-		List<UserPref> userPrefs = getUserPrefs(renderRequest);
+		Map<String, UserPref> userPrefs = getUserPrefs(renderRequest);
 
 		if ((userPrefs != null) && !userPrefs.isEmpty()) {
 			renderRequest.setAttribute(WebKeys.USER_PREFS, userPrefs);
@@ -95,7 +95,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		}
 	}
 
-	protected List<UserPref> getUserPrefs(PortletRequest portletRequest)
+	protected Map<String, UserPref> getUserPrefs(PortletRequest portletRequest)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(

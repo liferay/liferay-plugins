@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List<UserPref> userPrefs = (List<UserPref>)renderRequest.getAttribute(WebKeys.USER_PREFS);
+Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttribute(WebKeys.USER_PREFS);
 
 String namespace = ShindigUtil.getPortletResourceNamespace(renderRequest, themeDisplay);
 
@@ -30,7 +30,7 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 	<aui:fieldset>
 
 		<%
-		for (UserPref userPref : userPrefs) {
+		for (UserPref userPref : userPrefs.values()) {
 			String value = userPref.getDefaultValue();
 
 			if (jsonObject != null) {
