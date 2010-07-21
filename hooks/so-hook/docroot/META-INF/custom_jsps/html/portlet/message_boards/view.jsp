@@ -27,7 +27,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
 
-long categoryId = BeanParamUtil.getLong(category, request, "mbCategoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
+long categoryId = MBUtil.getCategoryId(request, category);
 
 boolean defaultShowCategories = false;
 
@@ -116,7 +116,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 				curCategory = curCategory.toEscapedModel();
 
-				ResultRow row = new ResultRow(new Object[] {curCategory, categorySubscriptionClassPKs}, curCategory.getCategoryId(), i);
+				ResultRow row = new ResultRow(curCategory, curCategory.getCategoryId(), i);
 
 				boolean restricted = !MBCategoryPermission.contains(permissionChecker, curCategory, ActionKeys.VIEW);
 
