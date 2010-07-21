@@ -83,7 +83,7 @@ else {
 								removeFriendURL.setWindowState(WindowState.NORMAL);
 
 								removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
-								removeFriendURL.setParameter("redirect", currentURL);
+								removeFriendURL.setParameter("redirect", PortalUtil.getLayoutURL(layout, themeDisplay));
 								removeFriendURL.setParameter("userId", String.valueOf(curUser.getUserId()));
 
 								String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", curUser.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
@@ -104,7 +104,7 @@ else {
 								addAsFriendURL.setWindowState(WindowState.NORMAL);
 
 								addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
-								addAsFriendURL.setParameter("redirect", currentURL);
+								addAsFriendURL.setParameter("redirect", PortalUtil.getLayoutURL(layout, themeDisplay));
 								addAsFriendURL.setParameter("userId", String.valueOf(curUser.getUserId()));
 								%>
 
