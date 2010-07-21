@@ -8,13 +8,51 @@
 	<property name="original.war.file" value="shindig-server-2.0.0-SNAPSHOT.war" />
 
 	<target name="merge">
+
+		<!-- Merge -->
+
 		<antcall target="build-common-plugin.merge" />
+
+		<!-- Configure Modules -->
 
 		<copy
 			file="tmp/WEB-INF/web.xml.original"
 			tofile="tmp/WEB-INF/web.xml"
 			overwrite="true"
 		/>
+
+		<replace file="tmp/WEB-INF/web.xml">
+			<replacefilter 
+				token="org.apache.shindig.social.sample.SampleModule"
+				value="com.liferay.opensocial.shindig.guice.LiferayModule" 
+			/>
+			<replacefilter 
+				token="org.apache.shindig.sample.shiro.ShiroGuiceModule:"
+				value="" 
+			/>
+			<replacefilter 
+				token="org.apache.shindig.sample.container.SampleContainerGuiceModule:"
+				value="" 
+			/>
+		</replace>
+
+		<!-- Remove Shiro Filter -->
+
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;filter&gt;(\s*?)&lt;filter-name&gt;ShiroFilter(.*?)filter&gt;"
+			replace=""
+		/>
+
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;filter-mapping&gt;(\s*?)&lt;filter-name&gt;ShiroFilter(.*?)filter-mapping&gt;"
+			replace=""
+		/>
+
+		<!-- Convert Mappings for Servlet 2.4 Compliance -->
 
 		<replace file="tmp/WEB-INF/web.xml">
 			<replacefilter 
@@ -34,39 +72,6 @@
 				value="version=&quot;2.4&quot;" 
 			/>
 		</replace>
-
-		<replace file="tmp/WEB-INF/web.xml">
-			<replacefilter 
-				token="org.apache.shindig.social.sample.SampleModule"
-				value="com.liferay.opensocial.shindig.guice.LiferayModule" 
-			/>
-			<replacefilter 
-				token="org.apache.shindig.sample.shiro.ShiroGuiceModule:"
-				value="" 
-			/>
-			<replacefilter 
-				token="org.apache.shindig.sample.container.SampleContainerGuiceModule:"
-				value="" 
-			/>
-		</replace>
-
-		<!-- Remove Shiro filter -->
-
-		<replaceregexp
-			flags="gs"
-			file="tmp/WEB-INF/web.xml"
-			match="&lt;filter&gt;(\s*?)&lt;filter-name&gt;ShiroFilter(.*?)filter&gt;"
-			replace=""
-		/>
-
-		<replaceregexp
-			flags="gs"
-			file="tmp/WEB-INF/web.xml"
-			match="&lt;filter-mapping&gt;(\s*?)&lt;filter-name&gt;ShiroFilter(.*?)filter-mapping&gt;"
-			replace=""
-		/>
-
-		<!-- Convert mappings for Servlet 2.4 Compliance -->
 
 		<replaceregexp
 			flags="gs"
@@ -104,6 +109,8 @@
 			/>
 		</replace>
 
+		<!-- Merge web.xml -->
+
 		<java
 			classname="com.liferay.portal.tools.WebXMLBuilder"
 			classpathref="portal.classpath"
@@ -115,6 +122,40 @@
 			<arg value="docroot/WEB-INF/web.xml" />
 			<arg value="tmp/WEB-INF/web.xml" />
 		</java>
+
+		<!-- Configure container.js -->
+
+		<if>
+			<not>
+				<available file="tmp/WEB-INF/classes/containers/default/container.js.original" />
+			</not>
+			<then>
+				<copy
+					file="tmp/WEB-INF/classes/containers/default/container.js"
+					tofile="tmp/WEB-INF/classes/containers/default/container.js.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/WEB-INF/classes/containers/default/container.js.original"
+			tofile="tmp/WEB-INF/classes/containers/default/container.js"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacefilter token=":${SERVER_PORT}" value="" />
+			<replacefilter token=":8080" value="" />
+			<replacefilter token="-a.example.com" value="%host%" />
+			<replacefilter token="www.example.com" value="%host%" />
+			<replacefilter token="localhost" value="%host%" />
+			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
+			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
+		</replace>
+
+		<!--
+		Configure shindig.js
+		-->
 
 		<if>
 			<not>
@@ -149,33 +190,29 @@
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
 		</replace>
 
-		<if>
-			<not>
-				<available file="tmp/WEB-INF/classes/containers/default/container.js.original" />
-			</not>
-			<then>
-				<copy
-					file="tmp/WEB-INF/classes/containers/default/container.js"
-					tofile="tmp/WEB-INF/classes/containers/default/container.js.original"
-				/>
-			</then>
-		</if>
+		<!-- Fix shiro.tld -->
 
-		<copy
-			file="tmp/WEB-INF/classes/containers/default/container.js.original"
-			tofile="tmp/WEB-INF/classes/containers/default/container.js"
-			overwrite="true"
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<unjar
+			dest="${tstamp.value}"
+			src="tmp/WEB-INF/lib/shiro-web-1.0.0-incubating.jar"
 		/>
 
-		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
-			<replacefilter token=":${SERVER_PORT}" value="" />
-			<replacefilter token=":8080" value="" />
-			<replacefilter token="-a.example.com" value="%host%" />
-			<replacefilter token="www.example.com" value="%host%" />
-			<replacefilter token="localhost" value="%host%" />
-			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
-			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
+		<replace file="${tstamp.value}/META-INF/shiro.tld">
+			<replacefilter token="&lt;short-name&gt;Apache Shiro&lt;/short-name&gt;" value="&lt;short-name&gt;shiro&lt;/short-name&gt;" />
 		</replace>
+
+		<delete file="tmp/WEB-INF/lib/shiro-web-1.0.0-incubating.jar" />
+
+		<jar
+			basedir="${tstamp.value}"
+			destfile="tmp/WEB-INF/lib/shiro-web-1.0.0-incubating.jar"
+		/>
+
+		<delete dir="${tstamp.value}" />
 	</target>
 
 	<target name="merge-unzip">
