@@ -35,7 +35,7 @@ public String getFolderBreadcrumbs(long folderId, PageContext pageContext, Rende
 	portletURL.setParameter("struts_action", "/document_library/view");
 	portletURL.setParameter("folderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
 
-	String head = "<span><a href=\"" + portletURL.toString() + "\">" + LanguageUtil.get(pageContext, "document-home") + "</a></span> &raquo; ";
+	String head = "<span><a href=\"" + portletURL.toString() + "\">" + LanguageUtil.get(pageContext, "documents-home") + "</a></span> &raquo; ";
 
 	if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 		return head;

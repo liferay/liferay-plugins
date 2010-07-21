@@ -97,25 +97,27 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 				</c:choose>
 			</div>
 
-			<aui:column columnWidth="100" cssClass="folder-column folder-column-first" first="<%= true %>">
+			<aui:column columnWidth="100" cssClass="lfr-asset-column lfr-asset-column-details" first="<%= true %>">
 				<liferay-ui:panel-container extended="<%= false %>" id="documentLibraryPanelContainer" persistState="<%= true %>">
 					<c:if test="<%= showSubfolders %>">
 						<c:if test="<%= folder != null %>">
-							<div class="folder-description">
-								<%= folder.getDescription() %>
-							</div>
+							<c:if test="<%= Validator.isNotNull(folder.getDescription()) %>">
+								<div class="lfr-asset-description">
+									<%= folder.getDescription() %>
+								</div>
+							</c:if>
 
-							<div class="folder-metadata">
-								<div class="folder-date">
+							<div class="lfr-asset-metadata">
+								<div class="lfr-asset-icon lfr-asset-date">
 									<%= LanguageUtil.format(pageContext, "last-updated-x", dateFormatDateTime.format(folder.getModifiedDate())) %>
 								</div>
 
-								<div class="folder-subfolders">
-									<%= foldersCount %> <liferay-ui:message key="subfolders" />
+								<div class="lfr-asset-icon lfr-asset-subfolders">
+									<%= foldersCount %> <liferay-ui:message key='<%= (foldersCount == 1) ? "subfolder" : "subfolders" %>' />
 								</div>
 
-								<div class="folder-file-entries">
-									<%= fileEntriesCount %> <liferay-ui:message key="documents" />
+								<div class="lfr-asset-icon lfr-asset-items last">
+									<%= fileEntriesCount %> <liferay-ui:message key='<%= (fileEntriesCount == 1) ? "document" : "documents" %>' />
 								</div>
 							</div>
 
