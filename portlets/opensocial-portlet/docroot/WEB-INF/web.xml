@@ -7,7 +7,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>Shindig Filter</filter-name>
-		<url-pattern>*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
