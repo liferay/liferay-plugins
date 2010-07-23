@@ -12,13 +12,11 @@
  * details.
  */
 
-package com.liferay.sevencogs.hook.events;
+package com.liferay.sevencogs.hook.upgrade.v1_0_0;
 
 import com.liferay.documentlibrary.DuplicateFileException;
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.events.ActionException;
-import com.liferay.portal.kernel.events.SimpleAction;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -28,6 +26,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -41,6 +40,7 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
@@ -104,17 +104,9 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Ryan Park
  */
-public class StartupAction extends SimpleAction {
-
-	public void run(String[] ids) throws ActionException {
-		try {
-			doRun(GetterUtil.getLong(ids[0]));
-		}
-		catch (Exception e) {
-			throw new ActionException(e);
-		}
-	}
+public class UpgradeCompany extends UpgradeProcess {
 
 	protected AssetCategory addAssetCategory(
 			long userId, long parentCategoryId, String title, long vocabularyId,
@@ -659,10 +651,15 @@ public class StartupAction extends SimpleAction {
 		}
 	}
 
-	protected void doRun(long companyId) throws Exception {
-		if (isAlreadyRan(companyId)) {
-			return;
-		}
+	protected void doUpgrade() throws Exception {
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		Company company = companies.get(0);
+
+		long companyId = company.getCompanyId();
+
+		System.out.println("############## COMPANY ID" + companyId);
+
 
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
@@ -701,23 +698,6 @@ public class StartupAction extends SimpleAction {
 			"portlet-setup-css", getString("/preferences/highlight.json"));
 
 		portletSetup.store();
-	}
-
-	protected boolean isAlreadyRan(long companyId) throws Exception {
-		boolean alreadyRan = false;
-
-		try {
-
-			// If Bruno exists, do not run again
-
-			UserLocalServiceUtil.getUserByScreenName(companyId, "bruno");
-
-			alreadyRan = true;
-		}
-		catch (NoSuchUserException nsue) {
-		}
-
-		return alreadyRan;
 	}
 
 	protected void removePortletBorder(Layout layout, String portletId)
