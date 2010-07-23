@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
@@ -40,7 +39,6 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
@@ -652,14 +650,7 @@ public class UpgradeCompany extends UpgradeProcess {
 	}
 
 	protected void doUpgrade() throws Exception {
-		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-
-		Company company = companies.get(0);
-
-		long companyId = company.getCompanyId();
-
-		System.out.println("############## COMPANY ID" + companyId);
-
+		long companyId = PortalUtil.getDefaultCompanyId();
 
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
