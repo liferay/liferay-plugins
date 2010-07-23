@@ -18,6 +18,7 @@ import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -225,7 +226,10 @@ public class MarkupServiceImpl
 
 		String rawContent = getRawContent(httpOptions);
 
-		String content = getContent(rawContent);
+		String windowState = getWindowState(
+			getMarkup.getMarkupParams());
+
+		String content = getContent(rawContent, windowState);
 
 		MarkupContext markupContext = new MarkupContext();
 
@@ -417,7 +421,10 @@ public class MarkupServiceImpl
 				rawContent = getRawContent(httpOptions);
 			}
 
-			String content = getContent(rawContent);
+			String windowState = getWindowState(
+				performBlockingInteraction.getMarkupParams());
+
+			String content = getContent(rawContent, windowState);
 
 			MarkupContext markupContext = new MarkupContext();
 
@@ -462,7 +469,13 @@ public class MarkupServiceImpl
 		return binaryContent;
 	}
 
-	protected String getContent(String rawContent) throws Exception {
+	protected String getContent(String rawContent, String windowState)
+		throws Exception {
+
+		if (windowState.equals(LiferayWindowState.EXCLUSIVE.toString())) {
+			return rawContent;
+		}
+
 		String beginPortletContent = "<liferay-wsrp-portlet>";
 		String endPortletContent = "</liferay-wsrp-portlet>";
 
