@@ -158,7 +158,6 @@ public class PreferencesView extends VerticalLayout {
 						public void buttonClick(ClickEvent event) {
 
 							deleteAccount(account);
-							controller.showInfo(Lang.get("account-has-been-deleted"));
 						}
 					});
 					grid.addComponent(deleteButton);
@@ -188,6 +187,8 @@ public class PreferencesView extends VerticalLayout {
 					confirm.closeDialog();
 
 					AccountLocalServiceUtil.deleteAccount(account);
+
+					controller.showInfo(Lang.get("account-has-been-deleted"));
 				}
 				catch (SystemException e) {
 					controller.showError(
