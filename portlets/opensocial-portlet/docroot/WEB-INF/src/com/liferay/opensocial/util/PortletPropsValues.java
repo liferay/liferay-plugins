@@ -25,4 +25,7 @@ public class PortletPropsValues {
 	public static final int SHINDIG_JS_DEBUG = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.SHINDIG_JS_DEBUG));
 
+	public static final int SHINDIG_NOCACHE = GetterUtil.getInteger(
+			PortletProps.get(PortletPropsKeys.SHINDIG_NOCACHE));
+
 }

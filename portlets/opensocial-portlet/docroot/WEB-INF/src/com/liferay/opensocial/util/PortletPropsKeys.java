@@ -21,4 +21,6 @@ public class PortletPropsKeys {
 
 	public static final String SHINDIG_JS_DEBUG = "shindig.js.debug";
 
+	public static final String SHINDIG_NOCACHE = "shindig.nocache";
+
 }

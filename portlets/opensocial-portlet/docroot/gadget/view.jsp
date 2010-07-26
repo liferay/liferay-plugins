@@ -35,6 +35,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			appId: '<%= gadgetUrl %>',
 			debug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
 			moduleId: '<%= moduleId %>',
+			nocache: '<%= PortletPropsValues.SHINDIG_NOCACHE %>',
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',
