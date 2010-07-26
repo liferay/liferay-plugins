@@ -621,6 +621,12 @@ public class MarkupServiceImpl
 		sb.append(getWidgetPath());
 		sb.append(StringPool.QUESTION);
 
+		String windowState = getWindowState(mimeRequest);
+
+		if (windowState.equals(LiferayWindowState.EXCLUSIVE.toString())) {
+			sb.append("ensureContentLength=1&");
+		}
+
 		String propertiesAuthenticatonTokenSharedSecret = Encryptor.digest(
 			PropsUtil.get(PropsKeys.AUTH_TOKEN_SHARED_SECRET));
 
@@ -640,10 +646,10 @@ public class MarkupServiceImpl
 		sb.append("&p_p_id=");
 		sb.append(HttpUtil.encodeURL(portletId));
 
+		sb.append("&p_p_isolated=1");
+
 		sb.append("&p_p_lifecycle=");
 		sb.append(lifecycle);
-
-		String windowState = getWindowState(mimeRequest);
 
 		sb.append("&p_p_state=");
 		sb.append(HttpUtil.encodeURL(windowState));
