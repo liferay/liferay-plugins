@@ -20,7 +20,7 @@
 WindowState windowState = renderRequest.getWindowState();
 
 if (windowState.equals(WindowState.MAXIMIZED)) {
-	String cur = ParamUtil.getString(request, "cur", "1");
+	int cur = ParamUtil.getInteger(request, "cur", 1);
 %>
 
 	<img alt="large" src="<%= request.getContextPath() %>/photo_gallery/photo_<%= cur %>_large.jpg" /><br />
