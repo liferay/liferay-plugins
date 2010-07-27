@@ -43,13 +43,13 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 		%>
 
 			<c:choose>
-				<c:when test="<%= dataType.equals(UserPref.DataType.BOOL) %>">
+				<c:when test="<%= dataType == UserPref.DataType.BOOL %>">
 					<aui:select label="<%= displayName %>" name="<%= name %>">
 						<aui:option label='<%= LanguageUtil.get(pageContext, "yes") %>' selected="<%= GetterUtil.getBoolean(value) %>" />
 						<aui:option label='<%= LanguageUtil.get(pageContext, "no") %>' selected="<%= !GetterUtil.getBoolean(value) %>" />
 					</aui:select>
 				</c:when>
-				<c:when test="<%= dataType.equals(UserPref.DataType.ENUM) %>">
+				<c:when test="<%= dataType == UserPref.DataType.ENUM %>">
 					<aui:select label="<%= displayName %>" name="<%= name %>">
 
 						<%
@@ -66,7 +66,7 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 
 					</aui:select>
 				</c:when>
-				<c:when test="<%= dataType.equals(UserPref.DataType.HIDDEN) %>">
+				<c:when test="<%= dataType.equals == UserPref.DataType.HIDDEN %>">
 				</c:when>
 				<c:otherwise>
 					<aui:input cssClass="lfr-input-text-container" label="<%= displayName %>" name="<%= name %>" type="text" value="<%= value %>" />
