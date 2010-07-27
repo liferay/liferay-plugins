@@ -34,30 +34,31 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 			UserPref.DataType dataType = userPref.getDataType();
 			String displayName = userPref.getDisplayName();
 			String name = userPref.getName();
+
 			String value = userPref.getDefaultValue();
 
 			if (jsonObject != null) {
-				value = GetterUtil.getString(jsonObject.getString(userPref.getName()), value);
+				value = GetterUtil.getString(jsonObject.getString(name), value);
 			}
-
-
 		%>
 
 			<c:choose>
-				<c:when test="<%= dataType == UserPref.DataType.BOOL %>">
+				<c:when test="<%= dataType.equals(UserPref.DataType.BOOL) %>">
 					<aui:select label="<%= displayName %>" name="<%= name %>">
 						<aui:option label='<%= LanguageUtil.get(pageContext, "yes") %>' selected="<%= GetterUtil.getBoolean(value) %>" />
 						<aui:option label='<%= LanguageUtil.get(pageContext, "no") %>' selected="<%= !GetterUtil.getBoolean(value) %>" />
 					</aui:select>
 				</c:when>
-				<c:when test="<%= dataType == UserPref.DataType.ENUM %>">
+				<c:when test="<%= dataType.equals(UserPref.DataType.ENUM) %>">
 					<aui:select label="<%= displayName %>" name="<%= name %>">
+
 						<%
-						for (UserPref.EnumValuePair enumValuePair: userPref.getOrderedEnumValues()) {
+						for (UserPref.EnumValuePair enumValuePair : userPref.getOrderedEnumValues()) {
+							String enumDisplayValue = enumValuePair.getDisplayValue();
 							String enumValue = enumValuePair.getValue();
 						%>
 
-							<aui:option label="<%= enumValuePair.getDisplayValue() %>" selected="<%= value.equals(enumValue) %>" value="<%= enumValue %>" />
+							<aui:option label="<%= enumDisplayValue %>" selected="<%= value.equals(enumValue) %>" value="<%= enumValue %>" />
 
 						<%
 						}
@@ -65,10 +66,10 @@ JSONObject jsonObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getComp
 
 					</aui:select>
 				</c:when>
-				<c:when test="<%= dataType == UserPref.DataType.HIDDEN %>">
+				<c:when test="<%= dataType.equals(UserPref.DataType.HIDDEN) %>">
 				</c:when>
 				<c:otherwise>
-					<aui:input cssClass="lfr-input-text-container" label="<%= userPref.getDisplayName() %>" name="<%= userPref.getName() %>" type="text" value="<%= value %>" />
+					<aui:input cssClass="lfr-input-text-container" label="<%= displayName %>" name="<%= name %>" type="text" value="<%= value %>" />
 				</c:otherwise>
 			</c:choose>
 
