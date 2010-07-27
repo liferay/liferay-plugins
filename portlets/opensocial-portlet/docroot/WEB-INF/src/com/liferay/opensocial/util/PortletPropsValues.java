@@ -22,10 +22,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final int SHINDIG_JS_DEBUG = GetterUtil.getInteger(
+	public static final String SHINDIG_JS_DEBUG = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.SHINDIG_JS_DEBUG));
 
-	public static final int SHINDIG_NO_CACHE = GetterUtil.getInteger(
+	public static final String SHINDIG_NO_CACHE = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.SHINDIG_NO_CACHE));
 
 }

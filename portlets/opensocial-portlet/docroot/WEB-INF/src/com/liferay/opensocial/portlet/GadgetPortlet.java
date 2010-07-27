@@ -21,6 +21,9 @@ import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.theme.PortletDisplay;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.NoSuchColumnException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -31,10 +34,15 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import java.util.Map;
+
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+
+import org.apache.shindig.gadgets.spec.GadgetSpec;
+import org.apache.shindig.gadgets.spec.UserPref;
 
 /**
  * @author Michael Young
@@ -109,7 +117,40 @@ public class GadgetPortlet extends MVCPortlet {
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 		Gadget gadget = getGadget();
+
+		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
+
+		Map<String, UserPref> userPrefs = gadgetSpec.getUserPrefs();
+
+		String portletId = PortalUtil.getPortletId(renderRequest);
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), portletId);
+
+		String urlConfiguration = portletDisplay.getURLConfiguration();
+
+		if ((userPrefs != null) && !userPrefs.isEmpty()) {
+			urlConfiguration = urlConfiguration.replaceAll(
+				"edit_permissions",
+				"edit_configuration");
+
+			portlet.setConfigurationActionClass(_CONFIGURATION_ACTION_CLASS);
+		}
+		else {
+			urlConfiguration = urlConfiguration.replaceAll(
+				"edit_configuration",
+				"edit_permissions");
+
+			portlet.setConfigurationActionClass(null);
+		}
+
+		portletDisplay.setURLConfiguration(urlConfiguration);
 
 		renderRequest.setAttribute(WebKeys.GADGET, gadget);
 	}
@@ -128,5 +169,8 @@ public class GadgetPortlet extends MVCPortlet {
 			return super.getTitle(renderRequest);
 		}
 	}
+
+	private final String _CONFIGURATION_ACTION_CLASS =
+		"com.liferay.opensocial.portlet.ConfigurationActionImpl";
 
 }

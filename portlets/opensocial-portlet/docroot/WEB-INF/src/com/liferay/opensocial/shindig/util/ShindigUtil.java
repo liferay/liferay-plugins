@@ -18,6 +18,7 @@ import com.google.inject.Inject;
 
 import com.liferay.opensocial.portlet.GadgetPortlet;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -123,6 +124,14 @@ public class ShindigUtil {
 		throws Exception {
 
 		JSONObject gadgetContext = new JSONObject();
+
+		gadgetContext.put(
+			"ignoreCache",
+			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_NO_CACHE));
+		gadgetContext.put(
+			"debug",
+			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_JS_DEBUG));
+
 		JSONObject gadgetRequest = new JSONObject();
 
 		gadgetRequest.put("url", liferayGadget.getUrl());

@@ -85,14 +85,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		Map<String, UserPref> userPrefs = getUserPrefs(renderRequest);
 
-		if ((userPrefs != null) && !userPrefs.isEmpty()) {
-			renderRequest.setAttribute(WebKeys.USER_PREFS, userPrefs);
+		renderRequest.setAttribute(WebKeys.USER_PREFS, userPrefs);
 
-			return "/gadget/configuration.jsp";
-		}
-		else {
-			return super.render(portletConfig, renderRequest, renderResponse);
-		}
+		return "/gadget/configuration.jsp";
 	}
 
 	protected Map<String, UserPref> getUserPrefs(PortletRequest portletRequest)
