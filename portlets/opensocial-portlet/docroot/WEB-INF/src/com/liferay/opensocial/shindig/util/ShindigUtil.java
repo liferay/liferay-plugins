@@ -126,18 +126,18 @@ public class ShindigUtil {
 		JSONObject gadgetContext = new JSONObject();
 
 		gadgetContext.put(
-			"ignoreCache",
-			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_NO_CACHE));
-		gadgetContext.put(
 			"debug",
 			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_JS_DEBUG));
+		gadgetContext.put(
+			"ignoreCache",
+			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_NO_CACHE));
 
 		JSONObject gadgetRequest = new JSONObject();
 
 		gadgetRequest.put("url", liferayGadget.getUrl());
 
-		JsonRpcGadgetContext context =
-			new JsonRpcGadgetContext(gadgetContext, gadgetRequest);
+		JsonRpcGadgetContext context = new JsonRpcGadgetContext(
+			gadgetContext, gadgetRequest);
 
 		Gadget gadget = _processor.process(context);
 

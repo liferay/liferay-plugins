@@ -118,9 +118,12 @@ public class GadgetPortlet extends MVCPortlet {
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+			WebKeys.THEME_DISPLAY);
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), portletDisplay.getId());
 
 		Gadget gadget = getGadget();
 
@@ -128,26 +131,20 @@ public class GadgetPortlet extends MVCPortlet {
 
 		Map<String, UserPref> userPrefs = gadgetSpec.getUserPrefs();
 
-		String portletId = PortalUtil.getPortletId(renderRequest);
-
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			themeDisplay.getCompanyId(), portletId);
-
 		String urlConfiguration = portletDisplay.getURLConfiguration();
 
 		if ((userPrefs != null) && !userPrefs.isEmpty()) {
-			urlConfiguration = urlConfiguration.replaceAll(
-				"edit_permissions",
-				"edit_configuration");
+			portlet.setConfigurationActionClass(
+				ConfigurationActionImpl.class.getName());
 
-			portlet.setConfigurationActionClass(_CONFIGURATION_ACTION_CLASS);
+			urlConfiguration = urlConfiguration.replaceAll(
+				"edit_permissions", "edit_configuration");
 		}
 		else {
-			urlConfiguration = urlConfiguration.replaceAll(
-				"edit_configuration",
-				"edit_permissions");
-
 			portlet.setConfigurationActionClass(null);
+
+			urlConfiguration = urlConfiguration.replaceAll(
+				"edit_configuration", "edit_permissions");
 		}
 
 		portletDisplay.setURLConfiguration(urlConfiguration);
@@ -169,8 +166,5 @@ public class GadgetPortlet extends MVCPortlet {
 			return super.getTitle(renderRequest);
 		}
 	}
-
-	private final String _CONFIGURATION_ACTION_CLASS =
-		"com.liferay.opensocial.portlet.ConfigurationActionImpl";
 
 }
