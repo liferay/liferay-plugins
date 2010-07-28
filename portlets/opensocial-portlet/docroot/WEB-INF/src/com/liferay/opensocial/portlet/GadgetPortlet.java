@@ -40,6 +40,7 @@ import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import javax.portlet.WindowState;
 
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.UserPref;
@@ -129,11 +130,9 @@ public class GadgetPortlet extends MVCPortlet {
 
 		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
 
-		Map<String, UserPref> userPrefs = gadgetSpec.getUserPrefs();
-
 		String urlConfiguration = portletDisplay.getURLConfiguration();
 
-		if ((userPrefs != null) && !userPrefs.isEmpty()) {
+		if (hasUserPrefs(gadgetSpec)) {
 			portlet.setConfigurationActionClass(
 				ConfigurationActionImpl.class.getName());
 
@@ -150,10 +149,53 @@ public class GadgetPortlet extends MVCPortlet {
 		portletDisplay.setURLConfiguration(urlConfiguration);
 
 		renderRequest.setAttribute(WebKeys.GADGET, gadget);
+
+		String view = getView(renderRequest, gadgetSpec);
+
+		renderRequest.setAttribute(WebKeys.VIEW, view);
 	}
 
 	protected Gadget getGadget() throws Exception {
 		return ShindigUtil.getGadget(getPortletConfig().getPortletName());
+	}
+
+	protected String getView(
+		RenderRequest renderRequest, GadgetSpec gadgetSpec) {
+
+		WindowState windowState = renderRequest.getWindowState();
+
+		String view = "default";
+
+		if (windowState.equals(WindowState.NORMAL)) {
+			if (gadgetSpec.getView("default") != null) {
+				view = "default";
+			}
+			else if (gadgetSpec.getView("home") != null) {
+				view = "home";
+			}
+			else if (gadgetSpec.getView("profile") != null) {
+				view = "profile";
+			}
+			else if (gadgetSpec.getView("canvas") != null) {
+				view = "canvas";
+			}
+		}
+		else if (windowState.equals(WindowState.MAXIMIZED)) {
+			if (gadgetSpec.getView("canvas") != null) {
+				view = "canvas";
+			}
+			else if (gadgetSpec.getView("default") != null) {
+				view = "default";
+			}
+			else if (gadgetSpec.getView("home") != null) {
+				view = "home";
+			}
+			else if (gadgetSpec.getView("profile") != null) {
+				view = "profile";
+			}
+		}
+
+		return view;
 	}
 
 	protected String getTitle(RenderRequest renderRequest) {
@@ -165,6 +207,20 @@ public class GadgetPortlet extends MVCPortlet {
 		catch (Exception e) {
 			return super.getTitle(renderRequest);
 		}
+	}
+
+	protected boolean hasUserPrefs(GadgetSpec gadgetSpec) throws Exception {
+		Map<String, UserPref> userPrefs = gadgetSpec.getUserPrefs();
+
+		if ((userPrefs != null) && !userPrefs.isEmpty()) {
+			for (UserPref userPref : userPrefs.values()) {
+				if (userPref.getDataType() != UserPref.DataType.HIDDEN) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 }

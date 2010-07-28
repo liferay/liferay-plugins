@@ -18,6 +18,7 @@
 
 <%
 Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
+String view = (String) renderRequest.getAttribute(WebKeys.VIEW);
 
 String ownerId = ShindigUtil.getOwnerId(layout);
 String appId = gadget.getUrl();
@@ -43,7 +44,8 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 				{
 					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
 				}
-			)
+			),
+			view: '<%= view %>'
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>
