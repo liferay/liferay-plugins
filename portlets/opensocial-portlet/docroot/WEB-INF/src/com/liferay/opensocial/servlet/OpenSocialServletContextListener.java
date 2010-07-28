@@ -16,10 +16,7 @@ package com.liferay.opensocial.servlet;
 
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
+import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -35,30 +32,14 @@ import javax.servlet.ServletContextListener;
  * @author Michael Young
  */
 public class OpenSocialServletContextListener
-	implements PortalInitable, ServletContextListener {
+	extends BasePortalLifecycle implements ServletContextListener {
 
-	public void contextDestroyed(ServletContextEvent event) {
-		try {
-			GadgetLocalServiceUtil.destroyGadgets();
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		portalDestroy();
 	}
 
-	public void contextInitialized(ServletContextEvent event) {
-		PortalInitableUtil.init(this);
-	}
-
-	public void portalInit() {
-		try {
-			GadgetLocalServiceUtil.initGadgets();
-
-			checkExpando();
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		registerPortalLifecycle();
 	}
 
 	protected void checkExpando() throws Exception {
@@ -78,7 +59,14 @@ public class OpenSocialServletContextListener
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		OpenSocialServletContextListener.class);
+	protected void doPortalDestroy() throws Exception {
+		GadgetLocalServiceUtil.destroyGadgets();
+	}
+
+	protected void doPortalInit() throws Exception {
+		GadgetLocalServiceUtil.initGadgets();
+
+		checkExpando();
+	}
 
 }

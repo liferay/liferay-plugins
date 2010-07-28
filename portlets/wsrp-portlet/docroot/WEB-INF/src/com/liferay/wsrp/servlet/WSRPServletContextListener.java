@@ -14,11 +14,8 @@
 
 package com.liferay.wsrp.servlet;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
+import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 import javax.servlet.ServletContextEvent;
@@ -28,33 +25,29 @@ import javax.servlet.ServletContextListener;
  * @author Brian Wing Shun Chan
  */
 public class WSRPServletContextListener
-	implements PortalInitable, ServletContextListener {
+	extends BasePortalLifecycle implements ServletContextListener {
 
-	public void contextDestroyed(ServletContextEvent event) {
-		try {
-			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		portalDestroy();
 	}
 
-	public void contextInitialized(ServletContextEvent event) {
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		_classLoader = PortletClassLoaderUtil.getClassLoader();
 
-		PortalInitableUtil.init(this);
+		registerPortalLifecycle();
 	}
 
-	public void portalInit() {
+	protected void doPortalDestroy() throws Exception {
+		WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
+	}
+
+	protected void doPortalInit() {
 		PortalInitThread portalInitThread = new PortalInitThread();
 
 		portalInitThread.setContextClassLoader(_classLoader);
 
 		portalInitThread.start();
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		WSRPServletContextListener.class);
 
 	private ClassLoader _classLoader;
 

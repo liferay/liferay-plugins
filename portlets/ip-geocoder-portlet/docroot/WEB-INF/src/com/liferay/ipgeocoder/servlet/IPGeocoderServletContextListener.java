@@ -20,8 +20,7 @@ import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.ParallelDestination;
-import com.liferay.portal.kernel.util.PortalInitable;
-import com.liferay.portal.kernel.util.PortalInitableUtil;
+import com.liferay.portal.kernel.util.BasePortalLifecycle;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -30,9 +29,18 @@ import javax.servlet.ServletContextListener;
  * @author Brian Wing Shun Chan
  */
 public class IPGeocoderServletContextListener
-	implements PortalInitable, ServletContextListener {
+	extends BasePortalLifecycle implements ServletContextListener {
 
-	public void contextDestroyed(ServletContextEvent event) {
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		portalDestroy();
+	}
+
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		registerPortalLifecycle();
+	}
+
+	protected void doPortalDestroy() {
+System.out.println("### IPGeocoderServletContextListener doPortalDestroy");
 		_ipGeocoderDestination.unregister(_ipGeocoderMessageListener);
 
 		MessageBusUtil.removeDestination(
@@ -41,11 +49,7 @@ public class IPGeocoderServletContextListener
 		MessageBusUtil.removeDestination(DestinationNames.IP_GEOCODER_RESPONSE);
 	}
 
-	public void contextInitialized(ServletContextEvent event) {
-		PortalInitableUtil.init(this);
-	}
-
-	public void portalInit() {
+	protected void doPortalInit() {
 		_ipGeocoderDestination = new ParallelDestination(
 			DestinationNames.IP_GEOCODER);
 
