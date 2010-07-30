@@ -15,10 +15,8 @@
 package com.liferay.portal.workflow.kaleo.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 
@@ -31,14 +29,10 @@ public class CompanyModelListener extends BaseModelListener<Company> {
 		throws ModelListenerException {
 
 		try {
-			boolean isSetupComplete = isSetupComplete(company);
+			PortalKaleoManager portalKaleoManager =
+				PortalKaleoManagerUtil.getPortalKaleoManager();
 
-			if (isSetupComplete) {
-				PortalKaleoManager portalKaleoManager =
-					PortalKaleoManagerUtil.getPortalKaleoManager();
-
-				portalKaleoManager.deployKaleoDefaults();
-			}
+			portalKaleoManager.deployKaleoDefaults();
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -56,17 +50,6 @@ public class CompanyModelListener extends BaseModelListener<Company> {
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
-		}
-	}
-
-	protected boolean isSetupComplete(Company company) throws Exception {
-		try {
-			UserLocalServiceUtil.getDefaultUser(company.getCompanyId());
-
-			return true;
-		}
-		catch (NoSuchUserException nsue) {
-			return false;
 		}
 	}
 
