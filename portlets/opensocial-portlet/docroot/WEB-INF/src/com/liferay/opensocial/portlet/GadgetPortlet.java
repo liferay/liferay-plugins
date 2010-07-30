@@ -178,11 +178,11 @@ public class GadgetPortlet extends MVCPortlet {
 		WindowState windowState = renderRequest.getWindowState();
 
 		String view = ParamUtil.getString(renderRequest, "view");
-		
+
 		if (gadgetSpec.getView(view) != null) {
 			return view;
 		}
-		
+
 		if (windowState.equals(WindowState.NORMAL)) {
 			if (gadgetSpec.getView("default") != null) {
 				view = "default";
