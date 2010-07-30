@@ -18,7 +18,7 @@
 
 <%
 Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
-String view = (String) renderRequest.getAttribute(WebKeys.VIEW);
+String view = (String)renderRequest.getAttribute(WebKeys.VIEW);
 
 String ownerId = ShindigUtil.getOwnerId(layout);
 String appId = gadget.getUrl();

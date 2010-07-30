@@ -159,6 +159,17 @@ public class GadgetPortlet extends MVCPortlet {
 		return ShindigUtil.getGadget(getPortletConfig().getPortletName());
 	}
 
+	protected String getTitle(RenderRequest renderRequest) {
+		try {
+			Gadget gadget = getGadget();
+
+			return gadget.getName();
+		}
+		catch (Exception e) {
+			return super.getTitle(renderRequest);
+		}
+	}
+
 	protected String getView(
 		RenderRequest renderRequest, GadgetSpec gadgetSpec) {
 
@@ -167,7 +178,10 @@ public class GadgetPortlet extends MVCPortlet {
 		String view = "default";
 
 		if (windowState.equals(WindowState.NORMAL)) {
-			if (gadgetSpec.getView("default") != null) {
+			if (gadgetSpec.getView("canvas") != null) {
+				view = "canvas";
+			}
+			else if (gadgetSpec.getView("default") != null) {
 				view = "default";
 			}
 			else if (gadgetSpec.getView("home") != null) {
@@ -175,9 +189,6 @@ public class GadgetPortlet extends MVCPortlet {
 			}
 			else if (gadgetSpec.getView("profile") != null) {
 				view = "profile";
-			}
-			else if (gadgetSpec.getView("canvas") != null) {
-				view = "canvas";
 			}
 		}
 		else if (windowState.equals(WindowState.MAXIMIZED)) {
@@ -196,17 +207,6 @@ public class GadgetPortlet extends MVCPortlet {
 		}
 
 		return view;
-	}
-
-	protected String getTitle(RenderRequest renderRequest) {
-		try {
-			Gadget gadget = getGadget();
-
-			return gadget.getName();
-		}
-		catch (Exception e) {
-			return super.getTitle(renderRequest);
-		}
 	}
 
 	protected boolean hasUserPrefs(GadgetSpec gadgetSpec) throws Exception {
