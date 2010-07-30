@@ -15,20 +15,16 @@
 package com.liferay.socialcoding.model;
 
 /**
- * <p>
- * This interface is a model that represents the SC_SVNRepository table in the
- * database.
- * </p>
+ * The model interface for the SVNRepository service. Represents a row in the &quot;SC_SVNRepository&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.socialcoding.model.impl.SVNRepositoryImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRepositoryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       SVNRepositoryModel
- * @see       com.liferay.socialcoding.model.impl.SVNRepositoryImpl
- * @see       com.liferay.socialcoding.model.impl.SVNRepositoryModelImpl
+ * @author Brian Wing Shun Chan
+ * @see SVNRepositoryModel
+ * @see com.liferay.socialcoding.model.impl.SVNRepositoryImpl
+ * @see com.liferay.socialcoding.model.impl.SVNRepositoryModelImpl
  * @generated
  */
 public interface SVNRepository extends SVNRepositoryModel {

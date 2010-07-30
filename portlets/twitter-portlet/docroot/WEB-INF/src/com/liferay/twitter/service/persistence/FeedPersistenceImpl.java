@@ -52,9 +52,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       FeedPersistence
- * @see       FeedUtil
+ * The persistence for the feed service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see FeedPersistence
+ * @see FeedUtil
  * @generated
  */
 public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
@@ -81,6 +91,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the feed in the entity cache if it is enabled.
+	 *
+	 * @param feed the feed to cache
+	 */
 	public void cacheResult(Feed feed) {
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
@@ -92,6 +107,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			new Object[] { feed.getTwitterScreenName() }, feed);
 	}
 
+	/**
+	 * Caches the feeds in the entity cache if it is enabled.
+	 *
+	 * @param feeds the feeds to cache
+	 */
 	public void cacheResult(List<Feed> feeds) {
 		for (Feed feed : feeds) {
 			if (EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
@@ -101,6 +121,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 	}
 
+	/**
+	 * Clears the cache for all feeds.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(FeedImpl.class.getName());
 		EntityCacheUtil.clearCache(FeedImpl.class.getName());
@@ -108,6 +135,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the feed.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Feed feed) {
 		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey());
@@ -119,6 +153,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			new Object[] { feed.getTwitterScreenName() });
 	}
 
+	/**
+	 * Creates a new feed with the primary key.
+	 *
+	 * @param feedId the primary key for the new feed
+	 * @return the new feed
+	 */
 	public Feed create(long feedId) {
 		Feed feed = new FeedImpl();
 
@@ -128,11 +168,27 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return feed;
 	}
 
+	/**
+	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the feed to remove
+	 * @return the feed that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the feed with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param feedId the primary key of the feed to remove
+	 * @return the feed that was removed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed remove(long feedId) throws NoSuchFeedException, SystemException {
 		Session session = null;
 
@@ -285,11 +341,27 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return feedImpl;
 	}
 
+	/**
+	 * Finds the feed with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the feed to find
+	 * @return the feed
+	 * @throws com.liferay.portal.NoSuchModelException if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the feed with the primary key or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
+	 *
+	 * @param feedId the primary key of the feed to find
+	 * @return the feed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed findByPrimaryKey(long feedId)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = fetchByPrimaryKey(feedId);
@@ -306,11 +378,25 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return feed;
 	}
 
+	/**
+	 * Finds the feed with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the feed to find
+	 * @return the feed, or <code>null</code> if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the feed with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param feedId the primary key of the feed to find
+	 * @return the feed, or <code>null</code> if a feed with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed fetchByPrimaryKey(long feedId) throws SystemException {
 		Feed feed = (Feed)EntityCacheUtil.getResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 				FeedImpl.class, feedId, this);
@@ -338,6 +424,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return feed;
 	}
 
+	/**
+	 * Finds the feed where twitterUserId = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
+	 *
+	 * @param twitterUserId the twitter user id to search with
+	 * @return the matching feed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed findByTwitterUserId(long twitterUserId)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = fetchByTwitterUserId(twitterUserId);
@@ -362,11 +456,25 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return feed;
 	}
 
+	/**
+	 * Finds the feed where twitterUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param twitterUserId the twitter user id to search with
+	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed fetchByTwitterUserId(long twitterUserId)
 		throws SystemException {
 		return fetchByTwitterUserId(twitterUserId, true);
 	}
 
+	/**
+	 * Finds the feed where twitterUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param twitterUserId the twitter user id to search with
+	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed fetchByTwitterUserId(long twitterUserId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { twitterUserId };
@@ -443,6 +551,14 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 	}
 
+	/**
+	 * Finds the feed where twitterScreenName = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
+	 *
+	 * @param twitterScreenName the twitter screen name to search with
+	 * @return the matching feed
+	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed findByTwitterScreenName(String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = fetchByTwitterScreenName(twitterScreenName);
@@ -467,11 +583,25 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return feed;
 	}
 
+	/**
+	 * Finds the feed where twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param twitterScreenName the twitter screen name to search with
+	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed fetchByTwitterScreenName(String twitterScreenName)
 		throws SystemException {
 		return fetchByTwitterScreenName(twitterScreenName, true);
 	}
 
+	/**
+	 * Finds the feed where twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param twitterScreenName the twitter screen name to search with
+	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Feed fetchByTwitterScreenName(String twitterScreenName,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { twitterScreenName };
@@ -562,14 +692,45 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 	}
 
+	/**
+	 * Finds all the feeds.
+	 *
+	 * @return the feeds
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Feed> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the feeds.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of feeds to return
+	 * @param end the upper bound of the range of feeds to return (not inclusive)
+	 * @return the range of feeds
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Feed> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the feeds.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of feeds to return
+	 * @param end the upper bound of the range of feeds to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of feeds
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Feed> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -636,6 +797,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return list;
 	}
 
+	/**
+	 * Removes the feed where twitterUserId = &#63; from the database.
+	 *
+	 * @param twitterUserId the twitter user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByTwitterUserId(long twitterUserId)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByTwitterUserId(twitterUserId);
@@ -643,6 +810,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		remove(feed);
 	}
 
+	/**
+	 * Removes the feed where twitterScreenName = &#63; from the database.
+	 *
+	 * @param twitterScreenName the twitter screen name to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByTwitterScreenName(String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByTwitterScreenName(twitterScreenName);
@@ -650,12 +823,24 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		remove(feed);
 	}
 
+	/**
+	 * Removes all the feeds from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Feed feed : findAll()) {
 			remove(feed);
 		}
 	}
 
+	/**
+	 * Counts all the feeds where twitterUserId = &#63;.
+	 *
+	 * @param twitterUserId the twitter user id to search with
+	 * @return the number of matching feeds
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByTwitterUserId(long twitterUserId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { twitterUserId };
@@ -703,6 +888,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the feeds where twitterScreenName = &#63;.
+	 *
+	 * @param twitterScreenName the twitter screen name to search with
+	 * @return the number of matching feeds
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByTwitterScreenName(String twitterScreenName)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { twitterScreenName };
@@ -762,6 +954,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the feeds.
+	 *
+	 * @return the number of feeds
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -796,6 +994,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the feed persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

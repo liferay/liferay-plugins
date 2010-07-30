@@ -15,20 +15,16 @@
 package com.liferay.wsrp.model;
 
 /**
- * <p>
- * This interface is a model that represents the WSRP_WSRPProducer table in the
- * database.
- * </p>
+ * The model interface for the WSRPProducer service. Represents a row in the &quot;WSRP_WSRPProducer&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.wsrp.model.impl.WSRPProducerImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPProducerImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       WSRPProducerModel
- * @see       com.liferay.wsrp.model.impl.WSRPProducerImpl
- * @see       com.liferay.wsrp.model.impl.WSRPProducerModelImpl
+ * @author Brian Wing Shun Chan
+ * @see WSRPProducerModel
+ * @see com.liferay.wsrp.model.impl.WSRPProducerImpl
+ * @see com.liferay.wsrp.model.impl.WSRPProducerModelImpl
  * @generated
  */
 public interface WSRPProducer extends WSRPProducerModel {

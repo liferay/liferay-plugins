@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       MeetupsEntryPersistence
- * @see       MeetupsEntryUtil
+ * The persistence for the meetups entry service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see MeetupsEntryPersistence
+ * @see MeetupsEntryUtil
  * @generated
  */
 public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntry>
@@ -92,11 +102,21 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			MeetupsEntryModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the meetups entry in the entity cache if it is enabled.
+	 *
+	 * @param meetupsEntry the meetups entry to cache
+	 */
 	public void cacheResult(MeetupsEntry meetupsEntry) {
 		EntityCacheUtil.putResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey(), meetupsEntry);
 	}
 
+	/**
+	 * Caches the meetups entries in the entity cache if it is enabled.
+	 *
+	 * @param meetupsEntries the meetups entries to cache
+	 */
 	public void cacheResult(List<MeetupsEntry> meetupsEntries) {
 		for (MeetupsEntry meetupsEntry : meetupsEntries) {
 			if (EntityCacheUtil.getResult(
@@ -108,6 +128,13 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Clears the cache for all meetups entries.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(MeetupsEntryImpl.class.getName());
 		EntityCacheUtil.clearCache(MeetupsEntryImpl.class.getName());
@@ -115,11 +142,24 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the meetups entry.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(MeetupsEntry meetupsEntry) {
 		EntityCacheUtil.removeResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new meetups entry with the primary key.
+	 *
+	 * @param meetupsEntryId the primary key for the new meetups entry
+	 * @return the new meetups entry
+	 */
 	public MeetupsEntry create(long meetupsEntryId) {
 		MeetupsEntry meetupsEntry = new MeetupsEntryImpl();
 
@@ -129,11 +169,27 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return meetupsEntry;
 	}
 
+	/**
+	 * Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the meetups entry to remove
+	 * @return the meetups entry that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the meetups entry with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param meetupsEntryId the primary key of the meetups entry to remove
+	 * @return the meetups entry that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry remove(long meetupsEntryId)
 		throws NoSuchMeetupsEntryException, SystemException {
 		Session session = null;
@@ -261,11 +317,27 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return meetupsEntryImpl;
 	}
 
+	/**
+	 * Finds the meetups entry with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the meetups entry to find
+	 * @return the meetups entry
+	 * @throws com.liferay.portal.NoSuchModelException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the meetups entry with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsEntryException} if it could not be found.
+	 *
+	 * @param meetupsEntryId the primary key of the meetups entry to find
+	 * @return the meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry findByPrimaryKey(long meetupsEntryId)
 		throws NoSuchMeetupsEntryException, SystemException {
 		MeetupsEntry meetupsEntry = fetchByPrimaryKey(meetupsEntryId);
@@ -282,11 +354,25 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return meetupsEntry;
 	}
 
+	/**
+	 * Finds the meetups entry with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the meetups entry to find
+	 * @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the meetups entry with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param meetupsEntryId the primary key of the meetups entry to find
+	 * @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry fetchByPrimaryKey(long meetupsEntryId)
 		throws SystemException {
 		MeetupsEntry meetupsEntry = (MeetupsEntry)EntityCacheUtil.getResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
@@ -316,17 +402,51 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return meetupsEntry;
 	}
 
+	/**
+	 * Finds all the meetups entries where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the meetups entries where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of meetups entries to return
+	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @return the range of matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the meetups entries where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of meetups entries to return
+	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -399,6 +519,19 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return list;
 	}
 
+	/**
+	 * Finds the first meetups entry in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsEntryException, SystemException {
@@ -422,6 +555,19 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Finds the last meetups entry in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsEntryException, SystemException {
@@ -447,6 +593,20 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Finds the meetups entries before and after the current meetups entry in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the primary key of the current meetups entry
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry[] findByCompanyId_PrevAndNext(long meetupsEntryId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchMeetupsEntryException, SystemException {
@@ -581,16 +741,50 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Finds all the meetups entries where userId = &#63;.
+	 *
+	 * @param userId the user id to search with
+	 * @return the matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findByUserId(long userId)
 		throws SystemException {
 		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the meetups entries where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param start the lower bound of the range of meetups entries to return
+	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @return the range of matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findByUserId(long userId, int start, int end)
 		throws SystemException {
 		return findByUserId(userId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the meetups entries where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param start the lower bound of the range of meetups entries to return
+	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findByUserId(long userId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -663,6 +857,19 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return list;
 	}
 
+	/**
+	 * Finds the first meetups entry in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry findByUserId_First(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsEntryException, SystemException {
@@ -685,6 +892,19 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Finds the last meetups entry in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry findByUserId_Last(long userId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsEntryException, SystemException {
@@ -710,6 +930,20 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Finds the meetups entries before and after the current meetups entry in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the primary key of the current meetups entry
+	 * @param userId the user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next meetups entry
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsEntry[] findByUserId_PrevAndNext(long meetupsEntryId,
 		long userId, OrderByComparator orderByComparator)
 		throws NoSuchMeetupsEntryException, SystemException {
@@ -844,15 +1078,46 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Finds all the meetups entries.
+	 *
+	 * @return the meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the meetups entries.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of meetups entries to return
+	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @return the range of meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the meetups entries.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of meetups entries to return
+	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsEntry> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -919,24 +1184,48 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return list;
 	}
 
+	/**
+	 * Removes all the meetups entries where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (MeetupsEntry meetupsEntry : findByCompanyId(companyId)) {
 			remove(meetupsEntry);
 		}
 	}
 
+	/**
+	 * Removes all the meetups entries where userId = &#63; from the database.
+	 *
+	 * @param userId the user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (MeetupsEntry meetupsEntry : findByUserId(userId)) {
 			remove(meetupsEntry);
 		}
 	}
 
+	/**
+	 * Removes all the meetups entries from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (MeetupsEntry meetupsEntry : findAll()) {
 			remove(meetupsEntry);
 		}
 	}
 
+	/**
+	 * Counts all the meetups entries where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the number of matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -983,6 +1272,13 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the meetups entries where userId = &#63;.
+	 *
+	 * @param userId the user id to search with
+	 * @return the number of matching meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByUserId(long userId) throws SystemException {
 		Object[] finderArgs = new Object[] { userId };
 
@@ -1029,6 +1325,12 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the meetups entries.
+	 *
+	 * @return the number of meetups entries
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1063,6 +1365,9 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the meetups entry persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

@@ -19,19 +19,49 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       ArticlePersistenceImpl
- * @see       ArticleUtil
+ * The persistence interface for the article service.
+ *
+ * <p>
+ * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see ArticlePersistenceImpl
+ * @see ArticleUtil
  * @generated
  */
 public interface ArticlePersistence extends BasePersistence<Article> {
+	/**
+	* Caches the article in the entity cache if it is enabled.
+	*
+	* @param article the article to cache
+	*/
 	public void cacheResult(com.liferay.knowledgebase.model.Article article);
 
+	/**
+	* Caches the articles in the entity cache if it is enabled.
+	*
+	* @param articles the articles to cache
+	*/
 	public void cacheResult(
 		java.util.List<com.liferay.knowledgebase.model.Article> articles);
 
+	/**
+	* Creates a new article with the primary key.
+	*
+	* @param articleId the primary key for the new article
+	* @return the new article
+	*/
 	public com.liferay.knowledgebase.model.Article create(long articleId);
 
+	/**
+	* Removes the article with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param articleId the primary key of the article to remove
+	* @return the article that was removed
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article remove(long articleId)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -40,144 +70,455 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 		com.liferay.knowledgebase.model.Article article, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	*
+	* @param articleId the primary key of the article to find
+	* @return the article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByPrimaryKey(
 		long articleId)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param articleId the primary key of the article to find
+	* @return the article, or <code>null</code> if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article fetchByPrimaryKey(
 		long articleId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds all the articles where uuid = &#63;.
+	*
+	* @param uuid the uuid to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findByUuid(
 		java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds a range of all the articles where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findByUuid(
 		java.lang.String uuid, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds an ordered range of all the articles where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findByUuid(
 		java.lang.String uuid, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the first article in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the last article in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the articles before and after the current article in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param uuid the uuid to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article[] findByUuid_PrevAndNext(
 		long articleId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	*
+	* @param uuid the uuid to search with
+	* @param groupId the group id to search with
+	* @return the matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByUUID_G(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param uuid the uuid to search with
+	* @param groupId the group id to search with
+	* @return the matching article, or <code>null</code> if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article fetchByUUID_G(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param uuid the uuid to search with
+	* @param groupId the group id to search with
+	* @return the matching article, or <code>null</code> if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article fetchByUUID_G(
 		java.lang.String uuid, long groupId, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds all the articles where resourcePrimKey = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findByResourcePrimKey(
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds a range of all the articles where resourcePrimKey = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findByResourcePrimKey(
 		long resourcePrimKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the first article in the ordered set where resourcePrimKey = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByResourcePrimKey_First(
 		long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the last article in the ordered set where resourcePrimKey = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByResourcePrimKey_Last(
 		long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article[] findByResourcePrimKey_PrevAndNext(
 		long articleId, long resourcePrimKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article where resourcePrimKey = &#63; and version = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param version the version to search with
+	* @return the matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article findByR_V(
 		long resourcePrimKey, int version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param version the version to search with
+	* @return the matching article, or <code>null</code> if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article fetchByR_V(
 		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param version the version to search with
+	* @return the matching article, or <code>null</code> if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article fetchByR_V(
 		long resourcePrimKey, int version, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds all the articles.
+	*
+	* @return the articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds a range of all the articles.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds an ordered range of all the articles.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Removes all the articles where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public void removeByUuid(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Removes the article where uuid = &#63; and groupId = &#63; from the database.
+	*
+	* @param uuid the uuid to search with
+	* @param groupId the group id to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public void removeByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Removes all the articles where resourcePrimKey = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public void removeByResourcePrimKey(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Removes the article where resourcePrimKey = &#63; and version = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param version the version to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public void removeByR_V(long resourcePrimKey, int version)
 		throws com.liferay.knowledgebase.NoSuchArticleException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Removes all the articles from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Counts all the articles where uuid = &#63;.
+	*
+	* @param uuid the uuid to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public int countByUuid(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Counts all the articles where uuid = &#63; and groupId = &#63;.
+	*
+	* @param uuid the uuid to search with
+	* @param groupId the group id to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public int countByUUID_G(java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Counts all the articles where resourcePrimKey = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public int countByResourcePrimKey(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Counts all the articles where resourcePrimKey = &#63; and version = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param version the version to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public int countByR_V(long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Counts all the articles.
+	*
+	* @return the number of articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

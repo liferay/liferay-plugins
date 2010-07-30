@@ -15,20 +15,16 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * <p>
- * This interface is a model that represents the KaleoNode table in the
- * database.
- * </p>
+ * The model interface for the KaleoNode service. Represents a row in the &quot;KaleoNode&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoNodeModel
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl
+ * @author Brian Wing Shun Chan
+ * @see KaleoNodeModel
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeImpl
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNodeModelImpl
  * @generated
  */
 public interface KaleoNode extends KaleoNodeModel {

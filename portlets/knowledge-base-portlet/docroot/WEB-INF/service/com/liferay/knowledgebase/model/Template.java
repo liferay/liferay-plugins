@@ -15,20 +15,16 @@
 package com.liferay.knowledgebase.model;
 
 /**
- * <p>
- * This interface is a model that represents the KB_Template table in the
- * database.
- * </p>
+ * The model interface for the Template service. Represents a row in the &quot;KB_Template&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.knowledgebase.model.impl.TemplateImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.TemplateImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       TemplateModel
- * @see       com.liferay.knowledgebase.model.impl.TemplateImpl
- * @see       com.liferay.knowledgebase.model.impl.TemplateModelImpl
+ * @author Brian Wing Shun Chan
+ * @see TemplateModel
+ * @see com.liferay.knowledgebase.model.impl.TemplateImpl
+ * @see com.liferay.knowledgebase.model.impl.TemplateModelImpl
  * @generated
  */
 public interface Template extends TemplateModel {

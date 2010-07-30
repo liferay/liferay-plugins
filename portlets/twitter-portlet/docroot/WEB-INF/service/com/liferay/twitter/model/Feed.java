@@ -15,20 +15,16 @@
 package com.liferay.twitter.model;
 
 /**
- * <p>
- * This interface is a model that represents the Twitter_Feed table in the
- * database.
- * </p>
+ * The model interface for the Feed service. Represents a row in the &quot;Twitter_Feed&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.twitter.model.impl.FeedImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.twitter.model.impl.FeedImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       FeedModel
- * @see       com.liferay.twitter.model.impl.FeedImpl
- * @see       com.liferay.twitter.model.impl.FeedModelImpl
+ * @author Brian Wing Shun Chan
+ * @see FeedModel
+ * @see com.liferay.twitter.model.impl.FeedImpl
+ * @see com.liferay.twitter.model.impl.FeedModelImpl
  * @generated
  */
 public interface Feed extends FeedModel {

@@ -25,9 +25,15 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       WSRPConsumerPersistence
- * @see       WSRPConsumerPersistenceImpl
+ * The persistence utility for the w s r p consumer service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see WSRPConsumerPersistence
+ * @see WSRPConsumerPersistenceImpl
  * @generated
  */
 public class WSRPConsumerUtil {
@@ -105,21 +111,45 @@ public class WSRPConsumerUtil {
 		return getPersistence().update(wsrpConsumer, merge, serviceContext);
 	}
 
+	/**
+	* Caches the w s r p consumer in the entity cache if it is enabled.
+	*
+	* @param wsrpConsumer the w s r p consumer to cache
+	*/
 	public static void cacheResult(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer) {
 		getPersistence().cacheResult(wsrpConsumer);
 	}
 
+	/**
+	* Caches the w s r p consumers in the entity cache if it is enabled.
+	*
+	* @param wsrpConsumers the w s r p consumers to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.wsrp.model.WSRPConsumer> wsrpConsumers) {
 		getPersistence().cacheResult(wsrpConsumers);
 	}
 
+	/**
+	* Creates a new w s r p consumer with the primary key.
+	*
+	* @param wsrpConsumerId the primary key for the new w s r p consumer
+	* @return the new w s r p consumer
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer create(
 		long wsrpConsumerId) {
 		return getPersistence().create(wsrpConsumerId);
 	}
 
+	/**
+	* Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumerId the primary key of the w s r p consumer to remove
+	* @return the w s r p consumer that was removed
+	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer remove(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -133,6 +163,14 @@ public class WSRPConsumerUtil {
 		return getPersistence().updateImpl(wsrpConsumer, merge);
 	}
 
+	/**
+	* Finds the w s r p consumer with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerException} if it could not be found.
+	*
+	* @param wsrpConsumerId the primary key of the w s r p consumer to find
+	* @return the w s r p consumer
+	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByPrimaryKey(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -140,24 +178,65 @@ public class WSRPConsumerUtil {
 		return getPersistence().findByPrimaryKey(wsrpConsumerId);
 	}
 
+	/**
+	* Finds the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param wsrpConsumerId the primary key of the w s r p consumer to find
+	* @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchByPrimaryKey(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(wsrpConsumerId);
 	}
 
+	/**
+	* Finds all the w s r p consumers where companyId = &#63;.
+	*
+	* @param companyId the company id to search with
+	* @return the matching w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
+	/**
+	* Finds a range of all the w s r p consumers where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company id to search with
+	* @param start the lower bound of the range of w s r p consumers to return
+	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @return the range of matching w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the w s r p consumers where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company id to search with
+	* @param start the lower bound of the range of w s r p consumers to return
+	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findByCompanyId(
 		long companyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -166,6 +245,19 @@ public class WSRPConsumerUtil {
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
 
+	/**
+	* Finds the first w s r p consumer in the ordered set where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching w s r p consumer
+	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -175,6 +267,19 @@ public class WSRPConsumerUtil {
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
 
+	/**
+	* Finds the last w s r p consumer in the ordered set where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching w s r p consumer
+	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -184,6 +289,20 @@ public class WSRPConsumerUtil {
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
 
+	/**
+	* Finds the w s r p consumers before and after the current w s r p consumer in the ordered set where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param wsrpConsumerId the primary key of the current w s r p consumer
+	* @param companyId the company id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next w s r p consumer
+	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.wsrp.model.WSRPConsumer[] findByCompanyId_PrevAndNext(
 		long wsrpConsumerId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -194,17 +313,48 @@ public class WSRPConsumerUtil {
 			orderByComparator);
 	}
 
+	/**
+	* Finds all the w s r p consumers.
+	*
+	* @return the w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the w s r p consumers.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of w s r p consumers to return
+	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @return the range of w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the w s r p consumers.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of w s r p consumers to return
+	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -212,21 +362,45 @@ public class WSRPConsumerUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the w s r p consumers where companyId = &#63; from the database.
+	*
+	* @param companyId the company id to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
+	/**
+	* Removes all the w s r p consumers from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the w s r p consumers where companyId = &#63;.
+	*
+	* @param companyId the company id to search with
+	* @return the number of matching w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
+	/**
+	* Counts all the w s r p consumers.
+	*
+	* @return the number of w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

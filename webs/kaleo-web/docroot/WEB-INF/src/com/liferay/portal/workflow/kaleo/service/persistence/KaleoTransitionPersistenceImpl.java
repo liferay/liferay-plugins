@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       KaleoTransitionPersistence
- * @see       KaleoTransitionUtil
+ * The persistence for the kaleo transition service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see KaleoTransitionPersistence
+ * @see KaleoTransitionUtil
  * @generated
  */
 public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTransition>
@@ -123,6 +133,11 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			KaleoTransitionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
+	/**
+	 * Caches the kaleo transition in the entity cache if it is enabled.
+	 *
+	 * @param kaleoTransition the kaleo transition to cache
+	 */
 	public void cacheResult(KaleoTransition kaleoTransition) {
 		EntityCacheUtil.putResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey(),
@@ -142,6 +157,11 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}, kaleoTransition);
 	}
 
+	/**
+	 * Caches the kaleo transitions in the entity cache if it is enabled.
+	 *
+	 * @param kaleoTransitions the kaleo transitions to cache
+	 */
 	public void cacheResult(List<KaleoTransition> kaleoTransitions) {
 		for (KaleoTransition kaleoTransition : kaleoTransitions) {
 			if (EntityCacheUtil.getResult(
@@ -153,6 +173,13 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Clears the cache for all kaleo transitions.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(KaleoTransitionImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoTransitionImpl.class.getName());
@@ -160,6 +187,13 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the kaleo transition.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(KaleoTransition kaleoTransition) {
 		EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey());
@@ -178,6 +212,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			});
 	}
 
+	/**
+	 * Creates a new kaleo transition with the primary key.
+	 *
+	 * @param kaleoTransitionId the primary key for the new kaleo transition
+	 * @return the new kaleo transition
+	 */
 	public KaleoTransition create(long kaleoTransitionId) {
 		KaleoTransition kaleoTransition = new KaleoTransitionImpl();
 
@@ -187,11 +227,27 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransition;
 	}
 
+	/**
+	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo transition to remove
+	 * @return the kaleo transition that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the kaleo transition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTransitionId the primary key of the kaleo transition to remove
+	 * @return the kaleo transition that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition remove(long kaleoTransitionId)
 		throws NoSuchTransitionException, SystemException {
 		Session session = null;
@@ -388,11 +444,27 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransitionImpl;
 	}
 
+	/**
+	 * Finds the kaleo transition with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo transition to find
+	 * @return the kaleo transition
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the kaleo transition with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
+	 *
+	 * @param kaleoTransitionId the primary key of the kaleo transition to find
+	 * @return the kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByPrimaryKey(long kaleoTransitionId)
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = fetchByPrimaryKey(kaleoTransitionId);
@@ -409,11 +481,25 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransition;
 	}
 
+	/**
+	 * Finds the kaleo transition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo transition to find
+	 * @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the kaleo transition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoTransitionId the primary key of the kaleo transition to find
+	 * @return the kaleo transition, or <code>null</code> if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition fetchByPrimaryKey(long kaleoTransitionId)
 		throws SystemException {
 		KaleoTransition kaleoTransition = (KaleoTransition)EntityCacheUtil.getResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
@@ -443,17 +529,51 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransition;
 	}
 
+	/**
+	 * Finds all the kaleo transitions where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo transitions where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @return the range of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByCompanyId(long companyId, int start,
 		int end) throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo transitions where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -526,6 +646,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo transition in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTransitionException, SystemException {
@@ -549,6 +682,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the last kaleo transition in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTransitionException, SystemException {
@@ -574,6 +720,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the kaleo transitions before and after the current kaleo transition in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoTransitionId the primary key of the current kaleo transition
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition[] findByCompanyId_PrevAndNext(
 		long kaleoTransitionId, long companyId,
 		OrderByComparator orderByComparator)
@@ -709,17 +869,51 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds all the kaleo transitions where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo transitions where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @return the range of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo transitions where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -793,6 +987,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchTransitionException, SystemException {
@@ -816,6 +1023,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the last kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchTransitionException, SystemException {
@@ -841,6 +1061,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the kaleo transitions before and after the current kaleo transition in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoTransitionId the primary key of the current kaleo transition
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoTransitionId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
@@ -977,17 +1211,51 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds all the kaleo transitions where kaleoNodeId = &#63;.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @return the matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId)
 		throws SystemException {
 		return findByKaleoNodeId(kaleoNodeId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo transitions where kaleoNodeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @return the range of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId, int start,
 		int end) throws SystemException {
 		return findByKaleoNodeId(kaleoNodeId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo transitions where kaleoNodeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findByKaleoNodeId(long kaleoNodeId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1060,6 +1328,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo transition in the ordered set where kaleoNodeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByKaleoNodeId_First(long kaleoNodeId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTransitionException, SystemException {
@@ -1083,6 +1364,19 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the last kaleo transition in the ordered set where kaleoNodeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByKaleoNodeId_Last(long kaleoNodeId,
 		OrderByComparator orderByComparator)
 		throws NoSuchTransitionException, SystemException {
@@ -1108,6 +1402,20 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the kaleo transitions before and after the current kaleo transition in the ordered set where kaleoNodeId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoTransitionId the primary key of the current kaleo transition
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition[] findByKaleoNodeId_PrevAndNext(
 		long kaleoTransitionId, long kaleoNodeId,
 		OrderByComparator orderByComparator)
@@ -1243,6 +1551,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the kaleo transition where kaleoNodeId = &#63; and name = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param name the name to search with
+	 * @return the matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByKNI_N(long kaleoNodeId, String name)
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = fetchByKNI_N(kaleoNodeId, name);
@@ -1270,11 +1587,27 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransition;
 	}
 
+	/**
+	 * Finds the kaleo transition where kaleoNodeId = &#63; and name = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param name the name to search with
+	 * @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition fetchByKNI_N(long kaleoNodeId, String name)
 		throws SystemException {
 		return fetchByKNI_N(kaleoNodeId, name, true);
 	}
 
+	/**
+	 * Finds the kaleo transition where kaleoNodeId = &#63; and name = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param name the name to search with
+	 * @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition fetchByKNI_N(long kaleoNodeId, String name,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoNodeId, name };
@@ -1371,6 +1704,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTransitionException} if it could not be found.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param defaultTransition the default transition to search with
+	 * @return the matching kaleo transition
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition findByKNI_DT(long kaleoNodeId,
 		boolean defaultTransition)
 		throws NoSuchTransitionException, SystemException {
@@ -1400,11 +1742,27 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return kaleoTransition;
 	}
 
+	/**
+	 * Finds the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param defaultTransition the default transition to search with
+	 * @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition fetchByKNI_DT(long kaleoNodeId,
 		boolean defaultTransition) throws SystemException {
 		return fetchByKNI_DT(kaleoNodeId, defaultTransition, true);
 	}
 
+	/**
+	 * Finds the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param defaultTransition the default transition to search with
+	 * @return the matching kaleo transition, or <code>null</code> if a matching kaleo transition could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoTransition fetchByKNI_DT(long kaleoNodeId,
 		boolean defaultTransition, boolean retrieveFromCache)
 		throws SystemException {
@@ -1489,15 +1847,46 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Finds all the kaleo transitions.
+	 *
+	 * @return the kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo transitions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @return the range of kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo transitions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of kaleo transitions to return
+	 * @param end the upper bound of the range of kaleo transitions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoTransition> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1564,12 +1953,24 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return list;
 	}
 
+	/**
+	 * Removes all the kaleo transitions where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTransition kaleoTransition : findByCompanyId(companyId)) {
 			remove(kaleoTransition);
 		}
 	}
 
+	/**
+	 * Removes all the kaleo transitions where kaleoDefinitionId = &#63; from the database.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoTransition kaleoTransition : findByKaleoDefinitionId(
@@ -1578,12 +1979,25 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Removes all the kaleo transitions where kaleoNodeId = &#63; from the database.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKaleoNodeId(long kaleoNodeId) throws SystemException {
 		for (KaleoTransition kaleoTransition : findByKaleoNodeId(kaleoNodeId)) {
 			remove(kaleoTransition);
 		}
 	}
 
+	/**
+	 * Removes the kaleo transition where kaleoNodeId = &#63; and name = &#63; from the database.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param name the name to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKNI_N(long kaleoNodeId, String name)
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = findByKNI_N(kaleoNodeId, name);
@@ -1591,6 +2005,13 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		remove(kaleoTransition);
 	}
 
+	/**
+	 * Removes the kaleo transition where kaleoNodeId = &#63; and defaultTransition = &#63; from the database.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param defaultTransition the default transition to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKNI_DT(long kaleoNodeId, boolean defaultTransition)
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = findByKNI_DT(kaleoNodeId,
@@ -1599,12 +2020,24 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		remove(kaleoTransition);
 	}
 
+	/**
+	 * Removes all the kaleo transitions from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTransition kaleoTransition : findAll()) {
 			remove(kaleoTransition);
 		}
 	}
 
+	/**
+	 * Counts all the kaleo transitions where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the number of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -1651,6 +2084,13 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo transitions where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the number of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoDefinitionId };
@@ -1698,6 +2138,13 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo transitions where kaleoNodeId = &#63;.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @return the number of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKaleoNodeId(long kaleoNodeId) throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoNodeId };
 
@@ -1744,6 +2191,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo transitions where kaleoNodeId = &#63; and name = &#63;.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param name the name to search with
+	 * @return the number of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKNI_N(long kaleoNodeId, String name)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoNodeId, name };
@@ -1807,6 +2262,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo transitions where kaleoNodeId = &#63; and defaultTransition = &#63;.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param defaultTransition the default transition to search with
+	 * @return the number of matching kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKNI_DT(long kaleoNodeId, boolean defaultTransition)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoNodeId, defaultTransition };
@@ -1858,6 +2321,12 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo transitions.
+	 *
+	 * @return the number of kaleo transitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1892,6 +2361,9 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the kaleo transition persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

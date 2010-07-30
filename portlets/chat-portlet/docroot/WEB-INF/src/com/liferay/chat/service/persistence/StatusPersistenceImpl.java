@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       StatusPersistence
- * @see       StatusUtil
+ * The persistence for the status service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see StatusPersistence
+ * @see StatusUtil
  * @generated
  */
 public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
@@ -111,6 +121,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the status in the entity cache if it is enabled.
+	 *
+	 * @param status the status to cache
+	 */
 	public void cacheResult(Status status) {
 		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey(), status);
@@ -119,6 +134,11 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			new Object[] { new Long(status.getUserId()) }, status);
 	}
 
+	/**
+	 * Caches the statuses in the entity cache if it is enabled.
+	 *
+	 * @param statuses the statuses to cache
+	 */
 	public void cacheResult(List<Status> statuses) {
 		for (Status status : statuses) {
 			if (EntityCacheUtil.getResult(
@@ -129,6 +149,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Clears the cache for all statuses.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(StatusImpl.class.getName());
 		EntityCacheUtil.clearCache(StatusImpl.class.getName());
@@ -136,6 +163,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the status.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Status status) {
 		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey());
@@ -144,6 +178,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			new Object[] { new Long(status.getUserId()) });
 	}
 
+	/**
+	 * Creates a new status with the primary key.
+	 *
+	 * @param statusId the primary key for the new status
+	 * @return the new status
+	 */
 	public Status create(long statusId) {
 		Status status = new StatusImpl();
 
@@ -153,11 +193,27 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return status;
 	}
 
+	/**
+	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the status to remove
+	 * @return the status that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the status with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param statusId the primary key of the status to remove
+	 * @return the status that was removed
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status remove(long statusId)
 		throws NoSuchStatusException, SystemException {
 		Session session = null;
@@ -297,11 +353,27 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return statusImpl;
 	}
 
+	/**
+	 * Finds the status with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the status to find
+	 * @return the status
+	 * @throws com.liferay.portal.NoSuchModelException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the status with the primary key or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
+	 *
+	 * @param statusId the primary key of the status to find
+	 * @return the status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByPrimaryKey(long statusId)
 		throws NoSuchStatusException, SystemException {
 		Status status = fetchByPrimaryKey(statusId);
@@ -318,11 +390,25 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return status;
 	}
 
+	/**
+	 * Finds the status with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the status to find
+	 * @return the status, or <code>null</code> if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the status with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param statusId the primary key of the status to find
+	 * @return the status, or <code>null</code> if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status fetchByPrimaryKey(long statusId) throws SystemException {
 		Status status = (Status)EntityCacheUtil.getResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 				StatusImpl.class, statusId, this);
@@ -351,6 +437,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return status;
 	}
 
+	/**
+	 * Finds the status where userId = &#63; or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
+	 *
+	 * @param userId the user id to search with
+	 * @return the matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByUserId(long userId)
 		throws NoSuchStatusException, SystemException {
 		Status status = fetchByUserId(userId);
@@ -375,10 +469,24 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return status;
 	}
 
+	/**
+	 * Finds the status where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user id to search with
+	 * @return the matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status fetchByUserId(long userId) throws SystemException {
 		return fetchByUserId(userId, true);
 	}
 
+	/**
+	 * Finds the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user id to search with
+	 * @return the matching status, or <code>null</code> if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status fetchByUserId(long userId, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { userId };
@@ -455,17 +563,51 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds all the statuses where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @return the matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByModifiedDate(long modifiedDate)
 		throws SystemException {
 		return findByModifiedDate(modifiedDate, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the statuses where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @return the range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByModifiedDate(long modifiedDate, int start, int end)
 		throws SystemException {
 		return findByModifiedDate(modifiedDate, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the statuses where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByModifiedDate(long modifiedDate, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -533,6 +675,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return list;
 	}
 
+	/**
+	 * Finds the first status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByModifiedDate_First(long modifiedDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -556,6 +711,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds the last status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByModifiedDate_Last(long modifiedDate,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -581,6 +749,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds the statuses before and after the current status in the ordered set where modifiedDate = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param statusId the primary key of the current status
+	 * @param modifiedDate the modified date to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status[] findByModifiedDate_PrevAndNext(long statusId,
 		long modifiedDate, OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -711,15 +893,49 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds all the statuses where online = &#63;.
+	 *
+	 * @param online the online to search with
+	 * @return the matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByOnline(boolean online) throws SystemException {
 		return findByOnline(online, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the statuses where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param online the online to search with
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @return the range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByOnline(boolean online, int start, int end)
 		throws SystemException {
 		return findByOnline(online, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the statuses where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param online the online to search with
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByOnline(boolean online, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -787,6 +1003,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return list;
 	}
 
+	/**
+	 * Finds the first status in the ordered set where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param online the online to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByOnline_First(boolean online,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -809,6 +1038,19 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds the last status in the ordered set where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param online the online to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByOnline_Last(boolean online,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -834,6 +1076,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds the statuses before and after the current status in the ordered set where online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param statusId the primary key of the current status
+	 * @param online the online to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status[] findByOnline_PrevAndNext(long statusId, boolean online,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -963,17 +1219,54 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @return the matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByM_O(long modifiedDate, boolean online)
 		throws SystemException {
 		return findByM_O(modifiedDate, online, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @return the range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
 		int end) throws SystemException {
 		return findByM_O(modifiedDate, online, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findByM_O(long modifiedDate, boolean online, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1045,6 +1338,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return list;
 	}
 
+	/**
+	 * Finds the first status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByM_O_First(long modifiedDate, boolean online,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -1071,6 +1378,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds the last status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching status
+	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status findByM_O_Last(long modifiedDate, boolean online,
 		OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -1099,6 +1420,21 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds the statuses before and after the current status in the ordered set where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param statusId the primary key of the current status
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next status
+	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Status[] findByM_O_PrevAndNext(long statusId, long modifiedDate,
 		boolean online, OrderByComparator orderByComparator)
 		throws NoSuchStatusException, SystemException {
@@ -1233,14 +1569,45 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Finds all the statuses.
+	 *
+	 * @return the statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the statuses.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @return the range of statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the statuses.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of statuses to return
+	 * @param end the upper bound of the range of statuses to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Status> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1307,6 +1674,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return list;
 	}
 
+	/**
+	 * Removes the status where userId = &#63; from the database.
+	 *
+	 * @param userId the user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByUserId(long userId)
 		throws NoSuchStatusException, SystemException {
 		Status status = findByUserId(userId);
@@ -1314,6 +1687,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		remove(status);
 	}
 
+	/**
+	 * Removes all the statuses where modifiedDate = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByModifiedDate(long modifiedDate)
 		throws SystemException {
 		for (Status status : findByModifiedDate(modifiedDate)) {
@@ -1321,12 +1700,25 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Removes all the statuses where online = &#63; from the database.
+	 *
+	 * @param online the online to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByOnline(boolean online) throws SystemException {
 		for (Status status : findByOnline(online)) {
 			remove(status);
 		}
 	}
 
+	/**
+	 * Removes all the statuses where modifiedDate = &#63; and online = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByM_O(long modifiedDate, boolean online)
 		throws SystemException {
 		for (Status status : findByM_O(modifiedDate, online)) {
@@ -1334,12 +1726,24 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Removes all the statuses from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Status status : findAll()) {
 			remove(status);
 		}
 	}
 
+	/**
+	 * Counts all the statuses where userId = &#63;.
+	 *
+	 * @param userId the user id to search with
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByUserId(long userId) throws SystemException {
 		Object[] finderArgs = new Object[] { userId };
 
@@ -1386,6 +1790,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the statuses where modifiedDate = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByModifiedDate(long modifiedDate) throws SystemException {
 		Object[] finderArgs = new Object[] { modifiedDate };
 
@@ -1432,6 +1843,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the statuses where online = &#63;.
+	 *
+	 * @param online the online to search with
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByOnline(boolean online) throws SystemException {
 		Object[] finderArgs = new Object[] { online };
 
@@ -1478,6 +1896,14 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the statuses where modifiedDate = &#63; and online = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param online the online to search with
+	 * @return the number of matching statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByM_O(long modifiedDate, boolean online)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { modifiedDate, online };
@@ -1529,6 +1955,12 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the statuses.
+	 *
+	 * @return the number of statuses
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1563,6 +1995,9 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the status persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

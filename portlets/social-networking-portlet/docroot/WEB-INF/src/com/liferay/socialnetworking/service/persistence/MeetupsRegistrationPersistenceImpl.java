@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       MeetupsRegistrationPersistence
- * @see       MeetupsRegistrationUtil
+ * The persistence for the meetups registration service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see MeetupsRegistrationPersistence
+ * @see MeetupsRegistrationUtil
  * @generated
  */
 public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<MeetupsRegistration>
@@ -102,6 +112,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			MeetupsRegistrationModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
+	/**
+	 * Caches the meetups registration in the entity cache if it is enabled.
+	 *
+	 * @param meetupsRegistration the meetups registration to cache
+	 */
 	public void cacheResult(MeetupsRegistration meetupsRegistration) {
 		EntityCacheUtil.putResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey(),
@@ -114,6 +129,11 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			}, meetupsRegistration);
 	}
 
+	/**
+	 * Caches the meetups registrations in the entity cache if it is enabled.
+	 *
+	 * @param meetupsRegistrations the meetups registrations to cache
+	 */
 	public void cacheResult(List<MeetupsRegistration> meetupsRegistrations) {
 		for (MeetupsRegistration meetupsRegistration : meetupsRegistrations) {
 			if (EntityCacheUtil.getResult(
@@ -125,6 +145,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Clears the cache for all meetups registrations.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(MeetupsRegistrationImpl.class.getName());
 		EntityCacheUtil.clearCache(MeetupsRegistrationImpl.class.getName());
@@ -132,6 +159,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the meetups registration.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(MeetupsRegistration meetupsRegistration) {
 		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey());
@@ -143,6 +177,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			});
 	}
 
+	/**
+	 * Creates a new meetups registration with the primary key.
+	 *
+	 * @param meetupsRegistrationId the primary key for the new meetups registration
+	 * @return the new meetups registration
+	 */
 	public MeetupsRegistration create(long meetupsRegistrationId) {
 		MeetupsRegistration meetupsRegistration = new MeetupsRegistrationImpl();
 
@@ -152,11 +192,27 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return meetupsRegistration;
 	}
 
+	/**
+	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the meetups registration to remove
+	 * @return the meetups registration that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the meetups registration with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param meetupsRegistrationId the primary key of the meetups registration to remove
+	 * @return the meetups registration that was removed
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration remove(long meetupsRegistrationId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		Session session = null;
@@ -314,11 +370,27 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return meetupsRegistrationImpl;
 	}
 
+	/**
+	 * Finds the meetups registration with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the meetups registration to find
+	 * @return the meetups registration
+	 * @throws com.liferay.portal.NoSuchModelException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the meetups registration with the primary key or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsRegistrationException} if it could not be found.
+	 *
+	 * @param meetupsRegistrationId the primary key of the meetups registration to find
+	 * @return the meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByPrimaryKey(long meetupsRegistrationId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = fetchByPrimaryKey(meetupsRegistrationId);
@@ -336,11 +408,25 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return meetupsRegistration;
 	}
 
+	/**
+	 * Finds the meetups registration with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the meetups registration to find
+	 * @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the meetups registration with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param meetupsRegistrationId the primary key of the meetups registration to find
+	 * @return the meetups registration, or <code>null</code> if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration fetchByPrimaryKey(long meetupsRegistrationId)
 		throws SystemException {
 		MeetupsRegistration meetupsRegistration = (MeetupsRegistration)EntityCacheUtil.getResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
@@ -370,17 +456,51 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return meetupsRegistration;
 	}
 
+	/**
+	 * Finds all the meetups registrations where meetupsEntryId = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @return the matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
 		return findByMeetupsEntryId(meetupsEntryId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the meetups registrations where meetupsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param start the lower bound of the range of meetups registrations to return
+	 * @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	 * @return the range of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
 		int start, int end) throws SystemException {
 		return findByMeetupsEntryId(meetupsEntryId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the meetups registrations where meetupsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param start the lower bound of the range of meetups registrations to return
+	 * @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findByMeetupsEntryId(long meetupsEntryId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -454,6 +574,19 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return list;
 	}
 
+	/**
+	 * Finds the first meetups registration in the ordered set where meetupsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByMeetupsEntryId_First(long meetupsEntryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -477,6 +610,19 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds the last meetups registration in the ordered set where meetupsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByMeetupsEntryId_Last(long meetupsEntryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -502,6 +648,20 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsRegistrationId the primary key of the current meetups registration
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration[] findByMeetupsEntryId_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId,
 		OrderByComparator orderByComparator)
@@ -639,6 +799,15 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds the meetups registration where userId = &#63; and meetupsEntryId = &#63; or throws a {@link com.liferay.socialnetworking.NoSuchMeetupsRegistrationException} if it could not be found.
+	 *
+	 * @param userId the user id to search with
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @return the matching meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByU_ME(long userId, long meetupsEntryId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = fetchByU_ME(userId,
@@ -667,11 +836,27 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return meetupsRegistration;
 	}
 
+	/**
+	 * Finds the meetups registration where userId = &#63; and meetupsEntryId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user id to search with
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
 		return fetchByU_ME(userId, meetupsEntryId, true);
 	}
 
+	/**
+	 * Finds the meetups registration where userId = &#63; and meetupsEntryId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user id to search with
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @return the matching meetups registration, or <code>null</code> if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration fetchByU_ME(long userId, long meetupsEntryId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { userId, meetupsEntryId };
@@ -755,17 +940,54 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds all the meetups registrations where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @return the matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId, int status)
 		throws SystemException {
 		return findByME_S(meetupsEntryId, status, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the meetups registrations where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of meetups registrations to return
+	 * @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	 * @return the range of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
 		int status, int start, int end) throws SystemException {
 		return findByME_S(meetupsEntryId, status, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the meetups registrations where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of meetups registrations to return
+	 * @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findByME_S(long meetupsEntryId,
 		int status, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -843,6 +1065,20 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return list;
 	}
 
+	/**
+	 * Finds the first meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByME_S_First(long meetupsEntryId,
 		int status, OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -869,6 +1105,20 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds the last meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration findByME_S_Last(long meetupsEntryId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMeetupsRegistrationException, SystemException {
@@ -897,6 +1147,21 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds the meetups registrations before and after the current meetups registration in the ordered set where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param meetupsRegistrationId the primary key of the current meetups registration
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next meetups registration
+	 * @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MeetupsRegistration[] findByME_S_PrevAndNext(
 		long meetupsRegistrationId, long meetupsEntryId, int status,
 		OrderByComparator orderByComparator)
@@ -1036,15 +1301,46 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Finds all the meetups registrations.
+	 *
+	 * @return the meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the meetups registrations.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of meetups registrations to return
+	 * @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	 * @return the range of meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the meetups registrations.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of meetups registrations to return
+	 * @param end the upper bound of the range of meetups registrations to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MeetupsRegistration> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1111,6 +1407,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return list;
 	}
 
+	/**
+	 * Removes all the meetups registrations where meetupsEntryId = &#63; from the database.
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByMeetupsEntryId(
@@ -1119,6 +1421,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Removes the meetups registration where userId = &#63; and meetupsEntryId = &#63; from the database.
+	 *
+	 * @param userId the user id to search with
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByU_ME(long userId, long meetupsEntryId)
 		throws NoSuchMeetupsRegistrationException, SystemException {
 		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
@@ -1127,6 +1436,13 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		remove(meetupsRegistration);
 	}
 
+	/**
+	 * Removes all the meetups registrations where meetupsEntryId = &#63; and status = &#63; from the database.
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByME_S(long meetupsEntryId, int status)
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByME_S(
@@ -1135,12 +1451,24 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Removes all the meetups registrations from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findAll()) {
 			remove(meetupsRegistration);
 		}
 	}
 
+	/**
+	 * Counts all the meetups registrations where meetupsEntryId = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @return the number of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByMeetupsEntryId(long meetupsEntryId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { meetupsEntryId };
@@ -1188,6 +1516,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the meetups registrations where userId = &#63; and meetupsEntryId = &#63;.
+	 *
+	 * @param userId the user id to search with
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @return the number of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByU_ME(long userId, long meetupsEntryId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { userId, meetupsEntryId };
@@ -1239,6 +1575,14 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the meetups registrations where meetupsEntryId = &#63; and status = &#63;.
+	 *
+	 * @param meetupsEntryId the meetups entry id to search with
+	 * @param status the status to search with
+	 * @return the number of matching meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByME_S(long meetupsEntryId, int status)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { meetupsEntryId, status };
@@ -1290,6 +1634,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the meetups registrations.
+	 *
+	 * @return the number of meetups registrations
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1324,6 +1674,9 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the meetups registration persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

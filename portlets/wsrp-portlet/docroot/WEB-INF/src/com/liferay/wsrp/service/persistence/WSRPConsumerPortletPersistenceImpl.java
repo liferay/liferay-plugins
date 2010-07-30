@@ -52,9 +52,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       WSRPConsumerPortletPersistence
- * @see       WSRPConsumerPortletUtil
+ * The persistence for the w s r p consumer portlet service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see WSRPConsumerPortletPersistence
+ * @see WSRPConsumerPortletUtil
  * @generated
  */
 public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRPConsumerPortlet>
@@ -90,6 +100,11 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			WSRPConsumerPortletModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
+	/**
+	 * Caches the w s r p consumer portlet in the entity cache if it is enabled.
+	 *
+	 * @param wsrpConsumerPortlet the w s r p consumer portlet to cache
+	 */
 	public void cacheResult(WSRPConsumerPortlet wsrpConsumerPortlet) {
 		EntityCacheUtil.putResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey(),
@@ -103,6 +118,11 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			}, wsrpConsumerPortlet);
 	}
 
+	/**
+	 * Caches the w s r p consumer portlets in the entity cache if it is enabled.
+	 *
+	 * @param wsrpConsumerPortlets the w s r p consumer portlets to cache
+	 */
 	public void cacheResult(List<WSRPConsumerPortlet> wsrpConsumerPortlets) {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : wsrpConsumerPortlets) {
 			if (EntityCacheUtil.getResult(
@@ -114,6 +134,13 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Clears the cache for all w s r p consumer portlets.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(WSRPConsumerPortletImpl.class.getName());
 		EntityCacheUtil.clearCache(WSRPConsumerPortletImpl.class.getName());
@@ -121,6 +148,13 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the w s r p consumer portlet.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(WSRPConsumerPortlet wsrpConsumerPortlet) {
 		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerPortletImpl.class, wsrpConsumerPortlet.getPrimaryKey());
@@ -133,6 +167,12 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			});
 	}
 
+	/**
+	 * Creates a new w s r p consumer portlet with the primary key.
+	 *
+	 * @param wsrpConsumerPortletId the primary key for the new w s r p consumer portlet
+	 * @return the new w s r p consumer portlet
+	 */
 	public WSRPConsumerPortlet create(long wsrpConsumerPortletId) {
 		WSRPConsumerPortlet wsrpConsumerPortlet = new WSRPConsumerPortletImpl();
 
@@ -142,11 +182,27 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return wsrpConsumerPortlet;
 	}
 
+	/**
+	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer portlet to remove
+	 * @return the w s r p consumer portlet that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the w s r p consumer portlet with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet to remove
+	 * @return the w s r p consumer portlet that was removed
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet remove(long wsrpConsumerPortletId)
 		throws NoSuchConsumerPortletException, SystemException {
 		Session session = null;
@@ -307,11 +363,27 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return wsrpConsumerPortletImpl;
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer portlet to find
+	 * @return the w s r p consumer portlet
+	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
+	 *
+	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet to find
+	 * @return the w s r p consumer portlet
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet findByPrimaryKey(long wsrpConsumerPortletId)
 		throws NoSuchConsumerPortletException, SystemException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = fetchByPrimaryKey(wsrpConsumerPortletId);
@@ -329,11 +401,25 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return wsrpConsumerPortlet;
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer portlet to find
+	 * @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet to find
+	 * @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet fetchByPrimaryKey(long wsrpConsumerPortletId)
 		throws SystemException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)EntityCacheUtil.getResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,
@@ -363,17 +449,51 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return wsrpConsumerPortlet;
 	}
 
+	/**
+	 * Finds all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @return the matching w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId)
 		throws SystemException {
 		return findByWsrpConsumerId(wsrpConsumerId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param start the lower bound of the range of w s r p consumer portlets to return
+	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	 * @return the range of matching w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId,
 		int start, int end) throws SystemException {
 		return findByWsrpConsumerId(wsrpConsumerId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param start the lower bound of the range of w s r p consumer portlets to return
+	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumerPortlet> findByWsrpConsumerId(long wsrpConsumerId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -447,6 +567,19 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return list;
 	}
 
+	/**
+	 * Finds the first w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching w s r p consumer portlet
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet findByWsrpConsumerId_First(long wsrpConsumerId,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerPortletException, SystemException {
@@ -470,6 +603,19 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Finds the last w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching w s r p consumer portlet
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet findByWsrpConsumerId_Last(long wsrpConsumerId,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerPortletException, SystemException {
@@ -495,6 +641,20 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Finds the w s r p consumer portlets before and after the current w s r p consumer portlet in the ordered set where wsrpConsumerId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param wsrpConsumerPortletId the primary key of the current w s r p consumer portlet
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next w s r p consumer portlet
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 		long wsrpConsumerPortletId, long wsrpConsumerId,
 		OrderByComparator orderByComparator)
@@ -632,6 +792,15 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or throws a {@link com.liferay.wsrp.NoSuchConsumerPortletException} if it could not be found.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param portletHandle the portlet handle to search with
+	 * @return the matching w s r p consumer portlet
+	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet findByW_P(long wsrpConsumerId,
 		String portletHandle)
 		throws NoSuchConsumerPortletException, SystemException {
@@ -661,11 +830,27 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return wsrpConsumerPortlet;
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param portletHandle the portlet handle to search with
+	 * @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet fetchByW_P(long wsrpConsumerId,
 		String portletHandle) throws SystemException {
 		return fetchByW_P(wsrpConsumerId, portletHandle, true);
 	}
 
+	/**
+	 * Finds the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param portletHandle the portlet handle to search with
+	 * @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumerPortlet fetchByW_P(long wsrpConsumerId,
 		String portletHandle, boolean retrieveFromCache)
 		throws SystemException {
@@ -764,15 +949,46 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Finds all the w s r p consumer portlets.
+	 *
+	 * @return the w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumerPortlet> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the w s r p consumer portlets.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of w s r p consumer portlets to return
+	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	 * @return the range of w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumerPortlet> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the w s r p consumer portlets.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of w s r p consumer portlets to return
+	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumerPortlet> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -839,6 +1055,12 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return list;
 	}
 
+	/**
+	 * Removes all the w s r p consumer portlets where wsrpConsumerId = &#63; from the database.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByWsrpConsumerId(long wsrpConsumerId)
 		throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findByWsrpConsumerId(
@@ -847,6 +1069,13 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Removes the w s r p consumer portlet where wsrpConsumerId = &#63; and portletHandle = &#63; from the database.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param portletHandle the portlet handle to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByW_P(long wsrpConsumerId, String portletHandle)
 		throws NoSuchConsumerPortletException, SystemException {
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByW_P(wsrpConsumerId,
@@ -855,12 +1084,24 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		remove(wsrpConsumerPortlet);
 	}
 
+	/**
+	 * Removes all the w s r p consumer portlets from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findAll()) {
 			remove(wsrpConsumerPortlet);
 		}
 	}
 
+	/**
+	 * Counts all the w s r p consumer portlets where wsrpConsumerId = &#63;.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @return the number of matching w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByWsrpConsumerId(long wsrpConsumerId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { wsrpConsumerId };
@@ -908,6 +1149,14 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the w s r p consumer portlets where wsrpConsumerId = &#63; and portletHandle = &#63;.
+	 *
+	 * @param wsrpConsumerId the wsrp consumer id to search with
+	 * @param portletHandle the portlet handle to search with
+	 * @return the number of matching w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByW_P(long wsrpConsumerId, String portletHandle)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { wsrpConsumerId, portletHandle };
@@ -971,6 +1220,12 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the w s r p consumer portlets.
+	 *
+	 * @return the number of w s r p consumer portlets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1005,6 +1260,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the w s r p consumer portlet persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

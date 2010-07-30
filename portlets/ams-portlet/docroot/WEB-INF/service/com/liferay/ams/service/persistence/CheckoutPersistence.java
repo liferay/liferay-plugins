@@ -19,19 +19,49 @@ import com.liferay.ams.model.Checkout;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       CheckoutPersistenceImpl
- * @see       CheckoutUtil
+ * The persistence interface for the checkout service.
+ *
+ * <p>
+ * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see CheckoutPersistenceImpl
+ * @see CheckoutUtil
  * @generated
  */
 public interface CheckoutPersistence extends BasePersistence<Checkout> {
+	/**
+	* Caches the checkout in the entity cache if it is enabled.
+	*
+	* @param checkout the checkout to cache
+	*/
 	public void cacheResult(com.liferay.ams.model.Checkout checkout);
 
+	/**
+	* Caches the checkouts in the entity cache if it is enabled.
+	*
+	* @param checkouts the checkouts to cache
+	*/
 	public void cacheResult(
 		java.util.List<com.liferay.ams.model.Checkout> checkouts);
 
+	/**
+	* Creates a new checkout with the primary key.
+	*
+	* @param checkoutId the primary key for the new checkout
+	* @return the new checkout
+	*/
 	public com.liferay.ams.model.Checkout create(long checkoutId);
 
+	/**
+	* Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param checkoutId the primary key of the checkout to remove
+	* @return the checkout that was removed
+	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.ams.model.Checkout remove(long checkoutId)
 		throws com.liferay.ams.NoSuchCheckoutException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -40,27 +70,84 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 		com.liferay.ams.model.Checkout checkout, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
+	*
+	* @param checkoutId the primary key of the checkout to find
+	* @return the checkout
+	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.ams.model.Checkout findByPrimaryKey(long checkoutId)
 		throws com.liferay.ams.NoSuchCheckoutException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds the checkout with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param checkoutId the primary key of the checkout to find
+	* @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.ams.model.Checkout fetchByPrimaryKey(long checkoutId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds all the checkouts.
+	*
+	* @return the checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.ams.model.Checkout> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds a range of all the checkouts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of checkouts to return
+	* @param end the upper bound of the range of checkouts to return (not inclusive)
+	* @return the range of checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.ams.model.Checkout> findAll(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Finds an ordered range of all the checkouts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of checkouts to return
+	* @param end the upper bound of the range of checkouts to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.ams.model.Checkout> findAll(int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Removes all the checkouts from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Counts all the checkouts.
+	*
+	* @return the number of checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

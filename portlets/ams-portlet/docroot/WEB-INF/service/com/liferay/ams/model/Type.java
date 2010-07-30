@@ -15,20 +15,16 @@
 package com.liferay.ams.model;
 
 /**
- * <p>
- * This interface is a model that represents the AMS_Type table in the
- * database.
- * </p>
+ * The model interface for the Type service. Represents a row in the &quot;AMS_Type&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.ams.model.impl.TypeImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.TypeImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       TypeModel
- * @see       com.liferay.ams.model.impl.TypeImpl
- * @see       com.liferay.ams.model.impl.TypeModelImpl
+ * @author Brian Wing Shun Chan
+ * @see TypeModel
+ * @see com.liferay.ams.model.impl.TypeImpl
+ * @see com.liferay.ams.model.impl.TypeModelImpl
  * @generated
  */
 public interface Type extends TypeModel {

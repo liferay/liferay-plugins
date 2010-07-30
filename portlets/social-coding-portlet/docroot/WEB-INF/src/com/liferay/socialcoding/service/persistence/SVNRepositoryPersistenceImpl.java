@@ -52,9 +52,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       SVNRepositoryPersistence
- * @see       SVNRepositoryUtil
+ * The persistence for the s v n repository service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see SVNRepositoryPersistence
+ * @see SVNRepositoryUtil
  * @generated
  */
 public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNRepository>
@@ -77,6 +87,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			SVNRepositoryModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
+	/**
+	 * Caches the s v n repository in the entity cache if it is enabled.
+	 *
+	 * @param svnRepository the s v n repository to cache
+	 */
 	public void cacheResult(SVNRepository svnRepository) {
 		EntityCacheUtil.putResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey(),
@@ -86,6 +101,11 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			new Object[] { svnRepository.getUrl() }, svnRepository);
 	}
 
+	/**
+	 * Caches the s v n repositories in the entity cache if it is enabled.
+	 *
+	 * @param svnRepositories the s v n repositories to cache
+	 */
 	public void cacheResult(List<SVNRepository> svnRepositories) {
 		for (SVNRepository svnRepository : svnRepositories) {
 			if (EntityCacheUtil.getResult(
@@ -97,6 +117,13 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		}
 	}
 
+	/**
+	 * Clears the cache for all s v n repositories.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(SVNRepositoryImpl.class.getName());
 		EntityCacheUtil.clearCache(SVNRepositoryImpl.class.getName());
@@ -104,6 +131,13 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the s v n repository.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(SVNRepository svnRepository) {
 		EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
@@ -112,6 +146,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			new Object[] { svnRepository.getUrl() });
 	}
 
+	/**
+	 * Creates a new s v n repository with the primary key.
+	 *
+	 * @param svnRepositoryId the primary key for the new s v n repository
+	 * @return the new s v n repository
+	 */
 	public SVNRepository create(long svnRepositoryId) {
 		SVNRepository svnRepository = new SVNRepositoryImpl();
 
@@ -121,11 +161,27 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return svnRepository;
 	}
 
+	/**
+	 * Removes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the s v n repository to remove
+	 * @return the s v n repository that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a s v n repository with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the s v n repository with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param svnRepositoryId the primary key of the s v n repository to remove
+	 * @return the s v n repository that was removed
+	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository remove(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
 		Session session = null;
@@ -266,11 +322,27 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return svnRepositoryImpl;
 	}
 
+	/**
+	 * Finds the s v n repository with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the s v n repository to find
+	 * @return the s v n repository
+	 * @throws com.liferay.portal.NoSuchModelException if a s v n repository with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the s v n repository with the primary key or throws a {@link com.liferay.socialcoding.NoSuchSVNRepositoryException} if it could not be found.
+	 *
+	 * @param svnRepositoryId the primary key of the s v n repository to find
+	 * @return the s v n repository
+	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository findByPrimaryKey(long svnRepositoryId)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = fetchByPrimaryKey(svnRepositoryId);
@@ -287,11 +359,25 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return svnRepository;
 	}
 
+	/**
+	 * Finds the s v n repository with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the s v n repository to find
+	 * @return the s v n repository, or <code>null</code> if a s v n repository with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the s v n repository with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param svnRepositoryId the primary key of the s v n repository to find
+	 * @return the s v n repository, or <code>null</code> if a s v n repository with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository fetchByPrimaryKey(long svnRepositoryId)
 		throws SystemException {
 		SVNRepository svnRepository = (SVNRepository)EntityCacheUtil.getResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
@@ -321,6 +407,14 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return svnRepository;
 	}
 
+	/**
+	 * Finds the s v n repository where url = &#63; or throws a {@link com.liferay.socialcoding.NoSuchSVNRepositoryException} if it could not be found.
+	 *
+	 * @param url the url to search with
+	 * @return the matching s v n repository
+	 * @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a matching s v n repository could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository findByUrl(String url)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = fetchByUrl(url);
@@ -345,10 +439,24 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return svnRepository;
 	}
 
+	/**
+	 * Finds the s v n repository where url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param url the url to search with
+	 * @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository fetchByUrl(String url) throws SystemException {
 		return fetchByUrl(url, true);
 	}
 
+	/**
+	 * Finds the s v n repository where url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param url the url to search with
+	 * @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRepository fetchByUrl(String url, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { url };
@@ -440,15 +548,46 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		}
 	}
 
+	/**
+	 * Finds all the s v n repositories.
+	 *
+	 * @return the s v n repositories
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRepository> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the s v n repositories.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of s v n repositories to return
+	 * @param end the upper bound of the range of s v n repositories to return (not inclusive)
+	 * @return the range of s v n repositories
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRepository> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the s v n repositories.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of s v n repositories to return
+	 * @param end the upper bound of the range of s v n repositories to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of s v n repositories
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRepository> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -515,6 +654,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return list;
 	}
 
+	/**
+	 * Removes the s v n repository where url = &#63; from the database.
+	 *
+	 * @param url the url to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByUrl(String url)
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = findByUrl(url);
@@ -522,12 +667,24 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		remove(svnRepository);
 	}
 
+	/**
+	 * Removes all the s v n repositories from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (SVNRepository svnRepository : findAll()) {
 			remove(svnRepository);
 		}
 	}
 
+	/**
+	 * Counts all the s v n repositories where url = &#63;.
+	 *
+	 * @param url the url to search with
+	 * @return the number of matching s v n repositories
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByUrl(String url) throws SystemException {
 		Object[] finderArgs = new Object[] { url };
 
@@ -586,6 +743,12 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the s v n repositories.
+	 *
+	 * @return the number of s v n repositories
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -620,6 +783,9 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the s v n repository persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

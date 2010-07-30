@@ -15,20 +15,16 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * <p>
- * This interface is a model that represents the KaleoTask table in the
- * database.
- * </p>
+ * The model interface for the KaleoTask service. Represents a row in the &quot;KaleoTask&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTaskModel
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskModelImpl
+ * @author Brian Wing Shun Chan
+ * @see KaleoTaskModel
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskImpl
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskModelImpl
  * @generated
  */
 public interface KaleoTask extends KaleoTaskModel {

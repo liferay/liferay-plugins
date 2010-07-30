@@ -15,20 +15,16 @@
 package com.liferay.so.model;
 
 /**
- * <p>
- * This interface is a model that represents the SO_MemberRequest table in the
- * database.
- * </p>
+ * The model interface for the MemberRequest service. Represents a row in the &quot;SO_MemberRequest&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.so.model.impl.MemberRequestImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.MemberRequestImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       MemberRequestModel
- * @see       com.liferay.so.model.impl.MemberRequestImpl
- * @see       com.liferay.so.model.impl.MemberRequestModelImpl
+ * @author Brian Wing Shun Chan
+ * @see MemberRequestModel
+ * @see com.liferay.so.model.impl.MemberRequestImpl
+ * @see com.liferay.so.model.impl.MemberRequestModelImpl
  * @generated
  */
 public interface MemberRequest extends MemberRequestModel {

@@ -49,9 +49,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       AssetPersistence
- * @see       AssetUtil
+ * The persistence for the asset service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see AssetPersistence
+ * @see AssetUtil
  * @generated
  */
 public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
@@ -66,11 +76,21 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			AssetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the asset in the entity cache if it is enabled.
+	 *
+	 * @param asset the asset to cache
+	 */
 	public void cacheResult(Asset asset) {
 		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey(), asset);
 	}
 
+	/**
+	 * Caches the assets in the entity cache if it is enabled.
+	 *
+	 * @param assets the assets to cache
+	 */
 	public void cacheResult(List<Asset> assets) {
 		for (Asset asset : assets) {
 			if (EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
@@ -80,6 +100,13 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		}
 	}
 
+	/**
+	 * Clears the cache for all assets.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(AssetImpl.class.getName());
 		EntityCacheUtil.clearCache(AssetImpl.class.getName());
@@ -87,11 +114,24 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the asset.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Asset asset) {
 		EntityCacheUtil.removeResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new asset with the primary key.
+	 *
+	 * @param assetId the primary key for the new asset
+	 * @return the new asset
+	 */
 	public Asset create(long assetId) {
 		Asset asset = new AssetImpl();
 
@@ -101,11 +141,27 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return asset;
 	}
 
+	/**
+	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the asset to remove
+	 * @return the asset that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Asset remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param assetId the primary key of the asset to remove
+	 * @return the asset that was removed
+	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Asset remove(long assetId)
 		throws NoSuchAssetException, SystemException {
 		Session session = null;
@@ -225,11 +281,27 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return assetImpl;
 	}
 
+	/**
+	 * Finds the asset with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the asset to find
+	 * @return the asset
+	 * @throws com.liferay.portal.NoSuchModelException if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Asset findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
+	 *
+	 * @param assetId the primary key of the asset to find
+	 * @return the asset
+	 * @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Asset findByPrimaryKey(long assetId)
 		throws NoSuchAssetException, SystemException {
 		Asset asset = fetchByPrimaryKey(assetId);
@@ -246,11 +318,25 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return asset;
 	}
 
+	/**
+	 * Finds the asset with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the asset to find
+	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Asset fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the asset with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param assetId the primary key of the asset to find
+	 * @return the asset, or <code>null</code> if a asset with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Asset fetchByPrimaryKey(long assetId) throws SystemException {
 		Asset asset = (Asset)EntityCacheUtil.getResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 				AssetImpl.class, assetId, this);
@@ -278,14 +364,45 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return asset;
 	}
 
+	/**
+	 * Finds all the assets.
+	 *
+	 * @return the assets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Asset> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the assets.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of assets to return
+	 * @param end the upper bound of the range of assets to return (not inclusive)
+	 * @return the range of assets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Asset> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the assets.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of assets to return
+	 * @param end the upper bound of the range of assets to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of assets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Asset> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -352,12 +469,23 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return list;
 	}
 
+	/**
+	 * Removes all the assets from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Asset asset : findAll()) {
 			remove(asset);
 		}
 	}
 
+	/**
+	 * Counts all the assets.
+	 *
+	 * @return the number of assets
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -392,6 +520,9 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the asset persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

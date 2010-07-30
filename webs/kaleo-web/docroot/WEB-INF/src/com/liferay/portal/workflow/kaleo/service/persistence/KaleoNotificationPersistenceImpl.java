@@ -54,9 +54,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       KaleoNotificationPersistence
- * @see       KaleoNotificationUtil
+ * The persistence for the kaleo notification service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see KaleoNotificationPersistence
+ * @see KaleoNotificationUtil
  * @generated
  */
 public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoNotification>
@@ -110,12 +120,22 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			KaleoNotificationModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
+	/**
+	 * Caches the kaleo notification in the entity cache if it is enabled.
+	 *
+	 * @param kaleoNotification the kaleo notification to cache
+	 */
 	public void cacheResult(KaleoNotification kaleoNotification) {
 		EntityCacheUtil.putResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationImpl.class, kaleoNotification.getPrimaryKey(),
 			kaleoNotification);
 	}
 
+	/**
+	 * Caches the kaleo notifications in the entity cache if it is enabled.
+	 *
+	 * @param kaleoNotifications the kaleo notifications to cache
+	 */
 	public void cacheResult(List<KaleoNotification> kaleoNotifications) {
 		for (KaleoNotification kaleoNotification : kaleoNotifications) {
 			if (EntityCacheUtil.getResult(
@@ -127,6 +147,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Clears the cache for all kaleo notifications.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(KaleoNotificationImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoNotificationImpl.class.getName());
@@ -134,11 +161,24 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the kaleo notification.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(KaleoNotification kaleoNotification) {
 		EntityCacheUtil.removeResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationImpl.class, kaleoNotification.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new kaleo notification with the primary key.
+	 *
+	 * @param kaleoNotificationId the primary key for the new kaleo notification
+	 * @return the new kaleo notification
+	 */
 	public KaleoNotification create(long kaleoNotificationId) {
 		KaleoNotification kaleoNotification = new KaleoNotificationImpl();
 
@@ -148,11 +188,27 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return kaleoNotification;
 	}
 
+	/**
+	 * Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo notification to remove
+	 * @return the kaleo notification that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the kaleo notification with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoNotificationId the primary key of the kaleo notification to remove
+	 * @return the kaleo notification that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification remove(long kaleoNotificationId)
 		throws NoSuchNotificationException, SystemException {
 		Session session = null;
@@ -285,11 +341,27 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return kaleoNotificationImpl;
 	}
 
+	/**
+	 * Finds the kaleo notification with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo notification to find
+	 * @return the kaleo notification
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the kaleo notification with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNotificationException} if it could not be found.
+	 *
+	 * @param kaleoNotificationId the primary key of the kaleo notification to find
+	 * @return the kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByPrimaryKey(long kaleoNotificationId)
 		throws NoSuchNotificationException, SystemException {
 		KaleoNotification kaleoNotification = fetchByPrimaryKey(kaleoNotificationId);
@@ -307,11 +379,25 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return kaleoNotification;
 	}
 
+	/**
+	 * Finds the kaleo notification with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo notification to find
+	 * @return the kaleo notification, or <code>null</code> if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the kaleo notification with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoNotificationId the primary key of the kaleo notification to find
+	 * @return the kaleo notification, or <code>null</code> if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification fetchByPrimaryKey(long kaleoNotificationId)
 		throws SystemException {
 		KaleoNotification kaleoNotification = (KaleoNotification)EntityCacheUtil.getResult(KaleoNotificationModelImpl.ENTITY_CACHE_ENABLED,
@@ -341,17 +427,51 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return kaleoNotification;
 	}
 
+	/**
+	 * Finds all the kaleo notifications where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo notifications where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @return the range of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByCompanyId(long companyId, int start,
 		int end) throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo notifications where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -424,6 +544,19 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo notification in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationException, SystemException {
@@ -447,6 +580,19 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds the last kaleo notification in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNotificationException, SystemException {
@@ -472,6 +618,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds the kaleo notifications before and after the current kaleo notification in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNotificationId the primary key of the current kaleo notification
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification[] findByCompanyId_PrevAndNext(
 		long kaleoNotificationId, long companyId,
 		OrderByComparator orderByComparator)
@@ -607,17 +767,51 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds all the kaleo notifications where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByKaleoDefinitionId(
 		long kaleoDefinitionId) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo notifications where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @return the range of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo notifications where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -691,6 +885,19 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo notification in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByKaleoDefinitionId_First(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationException, SystemException {
@@ -714,6 +921,19 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds the last kaleo notification in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNotificationException, SystemException {
@@ -739,6 +959,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds the kaleo notifications before and after the current kaleo notification in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNotificationId the primary key of the current kaleo notification
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoNotificationId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
@@ -877,17 +1111,54 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds all the kaleo notifications where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @return the matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByKNI_ET(long kaleoNodeId,
 		String executionType) throws SystemException {
 		return findByKNI_ET(kaleoNodeId, executionType, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo notifications where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @return the range of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByKNI_ET(long kaleoNodeId,
 		String executionType, int start, int end) throws SystemException {
 		return findByKNI_ET(kaleoNodeId, executionType, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo notifications where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findByKNI_ET(long kaleoNodeId,
 		String executionType, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -977,6 +1248,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo notification in the ordered set where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByKNI_ET_First(long kaleoNodeId,
 		String executionType, OrderByComparator orderByComparator)
 		throws NoSuchNotificationException, SystemException {
@@ -1003,6 +1288,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds the last kaleo notification in the ordered set where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification findByKNI_ET_Last(long kaleoNodeId,
 		String executionType, OrderByComparator orderByComparator)
 		throws NoSuchNotificationException, SystemException {
@@ -1031,6 +1330,21 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds the kaleo notifications before and after the current kaleo notification in the ordered set where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNotificationId the primary key of the current kaleo notification
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo notification
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNotification[] findByKNI_ET_PrevAndNext(
 		long kaleoNotificationId, long kaleoNodeId, String executionType,
 		OrderByComparator orderByComparator)
@@ -1183,15 +1497,46 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Finds all the kaleo notifications.
+	 *
+	 * @return the kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo notifications.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @return the range of kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo notifications.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNotification> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1258,12 +1603,24 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return list;
 	}
 
+	/**
+	 * Removes all the kaleo notifications where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNotification kaleoNotification : findByCompanyId(companyId)) {
 			remove(kaleoNotification);
 		}
 	}
 
+	/**
+	 * Removes all the kaleo notifications where kaleoDefinitionId = &#63; from the database.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNotification kaleoNotification : findByKaleoDefinitionId(
@@ -1272,6 +1629,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Removes all the kaleo notifications where kaleoNodeId = &#63; and executionType = &#63; from the database.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKNI_ET(long kaleoNodeId, String executionType)
 		throws SystemException {
 		for (KaleoNotification kaleoNotification : findByKNI_ET(kaleoNodeId,
@@ -1280,12 +1644,24 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Removes all the kaleo notifications from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (KaleoNotification kaleoNotification : findAll()) {
 			remove(kaleoNotification);
 		}
 	}
 
+	/**
+	 * Counts all the kaleo notifications where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the number of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -1332,6 +1708,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo notifications where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the number of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoDefinitionId };
@@ -1379,6 +1762,14 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo notifications where kaleoNodeId = &#63; and executionType = &#63;.
+	 *
+	 * @param kaleoNodeId the kaleo node id to search with
+	 * @param executionType the execution type to search with
+	 * @return the number of matching kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKNI_ET(long kaleoNodeId, String executionType)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoNodeId, executionType };
@@ -1442,6 +1833,12 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo notifications.
+	 *
+	 * @return the number of kaleo notifications
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1476,12 +1873,32 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return count.intValue();
 	}
 
+	/**
+	 * Gets all the kaleo notification recipients associated with the kaleo notification.
+	 *
+	 * @param pk the primary key of the kaleo notification to get the associated kaleo notification recipients for
+	 * @return the kaleo notification recipients associated with the kaleo notification
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
 		long pk) throws SystemException {
 		return getKaleoNotificationRecipients(pk, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);
 	}
 
+	/**
+	 * Gets a range of all the kaleo notification recipients associated with the kaleo notification.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param pk the primary key of the kaleo notification to get the associated kaleo notification recipients for
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @return the range of kaleo notification recipients associated with the kaleo notification
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
 		long pk, int start, int end) throws SystemException {
 		return getKaleoNotificationRecipients(pk, start, end, null);
@@ -1496,6 +1913,20 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	/**
+	 * Gets an ordered range of all the kaleo notification recipients associated with the kaleo notification.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param pk the primary key of the kaleo notification to get the associated kaleo notification recipients for
+	 * @param start the lower bound of the range of kaleo notifications to return
+	 * @param end the upper bound of the range of kaleo notifications to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of kaleo notification recipients associated with the kaleo notification
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
 		long pk, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1563,6 +1994,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			"getKaleoNotificationRecipientsSize",
 			new String[] { Long.class.getName() });
 
+	/**
+	 * Gets the number of kaleo notification recipients associated with the kaleo notification.
+	 *
+	 * @param pk the primary key of the kaleo notification to get the number of associated kaleo notification recipients for
+	 * @return the number of kaleo notification recipients associated with the kaleo notification
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int getKaleoNotificationRecipientsSize(long pk)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { pk };
@@ -1612,6 +2050,14 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			"containsKaleoNotificationRecipient",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
+	/**
+	 * Determines whether the kaleo notification recipient is associated with the kaleo notification.
+	 *
+	 * @param pk the primary key of the kaleo notification
+	 * @param kaleoNotificationRecipientPK the primary key of the kaleo notification recipient
+	 * @return whether the kaleo notification recipient is associated with the kaleo notification
+	 * @throws SystemException if a system exception occurred
+	 */
 	public boolean containsKaleoNotificationRecipient(long pk,
 		long kaleoNotificationRecipientPK) throws SystemException {
 		Object[] finderArgs = new Object[] { pk, kaleoNotificationRecipientPK };
@@ -1640,6 +2086,13 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		return value.booleanValue();
 	}
 
+	/**
+	 * Determines whether the kaleo notification has any kaleo notification recipients associated with it.
+	 *
+	 * @param pk the primary key of the kaleo notification to check for associations with kaleo notification recipients
+	 * @return whether the kaleo notification has any kaleo notification recipients associated with it
+	 * @throws SystemException if a system exception occurred
+	 */
 	public boolean containsKaleoNotificationRecipients(long pk)
 		throws SystemException {
 		if (getKaleoNotificationRecipientsSize(pk) > 0) {
@@ -1650,6 +2103,9 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Initializes the kaleo notification persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

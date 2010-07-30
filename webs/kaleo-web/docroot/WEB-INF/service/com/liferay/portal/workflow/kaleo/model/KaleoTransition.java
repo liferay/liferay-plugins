@@ -15,20 +15,16 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * <p>
- * This interface is a model that represents the KaleoTransition table in the
- * database.
- * </p>
+ * The model interface for the KaleoTransition service. Represents a row in the &quot;KaleoTransition&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTransitionModel
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl
+ * @author Brian Wing Shun Chan
+ * @see KaleoTransitionModel
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl
  * @generated
  */
 public interface KaleoTransition extends KaleoTransitionModel {

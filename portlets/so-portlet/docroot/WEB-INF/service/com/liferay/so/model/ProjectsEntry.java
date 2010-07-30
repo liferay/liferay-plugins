@@ -15,20 +15,16 @@
 package com.liferay.so.model;
 
 /**
- * <p>
- * This interface is a model that represents the SO_ProjectsEntry table in the
- * database.
- * </p>
+ * The model interface for the ProjectsEntry service. Represents a row in the &quot;SO_ProjectsEntry&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.so.model.impl.ProjectsEntryImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.ProjectsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       ProjectsEntryModel
- * @see       com.liferay.so.model.impl.ProjectsEntryImpl
- * @see       com.liferay.so.model.impl.ProjectsEntryModelImpl
+ * @author Brian Wing Shun Chan
+ * @see ProjectsEntryModel
+ * @see com.liferay.so.model.impl.ProjectsEntryImpl
+ * @see com.liferay.so.model.impl.ProjectsEntryModelImpl
  * @generated
  */
 public interface ProjectsEntry extends ProjectsEntryModel {

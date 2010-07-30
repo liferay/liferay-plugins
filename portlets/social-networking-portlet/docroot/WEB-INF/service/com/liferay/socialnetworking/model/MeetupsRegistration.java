@@ -15,20 +15,16 @@
 package com.liferay.socialnetworking.model;
 
 /**
- * <p>
- * This interface is a model that represents the SN_MeetupsRegistration table in the
- * database.
- * </p>
+ * The model interface for the MeetupsRegistration service. Represents a row in the &quot;SN_MeetupsRegistration&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       MeetupsRegistrationModel
- * @see       com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl
- * @see       com.liferay.socialnetworking.model.impl.MeetupsRegistrationModelImpl
+ * @author Brian Wing Shun Chan
+ * @see MeetupsRegistrationModel
+ * @see com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl
+ * @see com.liferay.socialnetworking.model.impl.MeetupsRegistrationModelImpl
  * @generated
  */
 public interface MeetupsRegistration extends MeetupsRegistrationModel {

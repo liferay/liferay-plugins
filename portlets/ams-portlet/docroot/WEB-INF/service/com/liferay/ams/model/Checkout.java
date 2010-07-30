@@ -15,20 +15,16 @@
 package com.liferay.ams.model;
 
 /**
- * <p>
- * This interface is a model that represents the AMS_Checkout table in the
- * database.
- * </p>
+ * The model interface for the Checkout service. Represents a row in the &quot;AMS_Checkout&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.ams.model.impl.CheckoutImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.CheckoutImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       CheckoutModel
- * @see       com.liferay.ams.model.impl.CheckoutImpl
- * @see       com.liferay.ams.model.impl.CheckoutModelImpl
+ * @author Brian Wing Shun Chan
+ * @see CheckoutModel
+ * @see com.liferay.ams.model.impl.CheckoutImpl
+ * @see com.liferay.ams.model.impl.CheckoutModelImpl
  * @generated
  */
 public interface Checkout extends CheckoutModel {

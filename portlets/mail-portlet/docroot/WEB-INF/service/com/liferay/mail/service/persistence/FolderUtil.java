@@ -25,9 +25,15 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       FolderPersistence
- * @see       FolderPersistenceImpl
+ * The persistence utility for the folder service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see FolderPersistence
+ * @see FolderPersistenceImpl
  * @generated
  */
 public class FolderUtil {
@@ -103,19 +109,43 @@ public class FolderUtil {
 		return getPersistence().update(folder, merge, serviceContext);
 	}
 
+	/**
+	* Caches the folder in the entity cache if it is enabled.
+	*
+	* @param folder the folder to cache
+	*/
 	public static void cacheResult(com.liferay.mail.model.Folder folder) {
 		getPersistence().cacheResult(folder);
 	}
 
+	/**
+	* Caches the folders in the entity cache if it is enabled.
+	*
+	* @param folders the folders to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.mail.model.Folder> folders) {
 		getPersistence().cacheResult(folders);
 	}
 
+	/**
+	* Creates a new folder with the primary key.
+	*
+	* @param folderId the primary key for the new folder
+	* @return the new folder
+	*/
 	public static com.liferay.mail.model.Folder create(long folderId) {
 		return getPersistence().create(folderId);
 	}
 
+	/**
+	* Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param folderId the primary key of the folder to remove
+	* @return the folder that was removed
+	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder remove(long folderId)
 		throws com.liferay.mail.NoSuchFolderException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -128,29 +158,78 @@ public class FolderUtil {
 		return getPersistence().updateImpl(folder, merge);
 	}
 
+	/**
+	* Finds the folder with the primary key or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
+	*
+	* @param folderId the primary key of the folder to find
+	* @return the folder
+	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder findByPrimaryKey(long folderId)
 		throws com.liferay.mail.NoSuchFolderException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(folderId);
 	}
 
+	/**
+	* Finds the folder with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param folderId the primary key of the folder to find
+	* @return the folder, or <code>null</code> if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(folderId);
 	}
 
+	/**
+	* Finds all the folders where accountId = &#63;.
+	*
+	* @param accountId the account id to search with
+	* @return the matching folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
 		long accountId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByAccountId(accountId);
 	}
 
+	/**
+	* Finds a range of all the folders where accountId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param accountId the account id to search with
+	* @param start the lower bound of the range of folders to return
+	* @param end the upper bound of the range of folders to return (not inclusive)
+	* @return the range of matching folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
 		long accountId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByAccountId(accountId, start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the folders where accountId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param accountId the account id to search with
+	* @param start the lower bound of the range of folders to return
+	* @param end the upper bound of the range of folders to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
 		long accountId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -159,6 +238,19 @@ public class FolderUtil {
 				   .findByAccountId(accountId, start, end, orderByComparator);
 	}
 
+	/**
+	* Finds the first folder in the ordered set where accountId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param accountId the account id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching folder
+	* @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder findByAccountId_First(
 		long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -168,6 +260,19 @@ public class FolderUtil {
 				   .findByAccountId_First(accountId, orderByComparator);
 	}
 
+	/**
+	* Finds the last folder in the ordered set where accountId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param accountId the account id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching folder
+	* @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder findByAccountId_Last(
 		long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -177,6 +282,20 @@ public class FolderUtil {
 				   .findByAccountId_Last(accountId, orderByComparator);
 	}
 
+	/**
+	* Finds the folders before and after the current folder in the ordered set where accountId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param folderId the primary key of the current folder
+	* @param accountId the account id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next folder
+	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder[] findByAccountId_PrevAndNext(
 		long folderId, long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -187,6 +306,15 @@ public class FolderUtil {
 			orderByComparator);
 	}
 
+	/**
+	* Finds the folder where accountId = &#63; and fullName = &#63; or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
+	*
+	* @param accountId the account id to search with
+	* @param fullName the full name to search with
+	* @return the matching folder
+	* @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder findByA_F(long accountId,
 		java.lang.String fullName)
 		throws com.liferay.mail.NoSuchFolderException,
@@ -194,12 +322,28 @@ public class FolderUtil {
 		return getPersistence().findByA_F(accountId, fullName);
 	}
 
+	/**
+	* Finds the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param accountId the account id to search with
+	* @param fullName the full name to search with
+	* @return the matching folder, or <code>null</code> if a matching folder could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder fetchByA_F(long accountId,
 		java.lang.String fullName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByA_F(accountId, fullName);
 	}
 
+	/**
+	* Finds the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param accountId the account id to search with
+	* @param fullName the full name to search with
+	* @return the matching folder, or <code>null</code> if a matching folder could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Folder fetchByA_F(long accountId,
 		java.lang.String fullName, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -207,17 +351,48 @@ public class FolderUtil {
 				   .fetchByA_F(accountId, fullName, retrieveFromCache);
 	}
 
+	/**
+	* Finds all the folders.
+	*
+	* @return the folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the folders.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of folders to return
+	* @param end the upper bound of the range of folders to return (not inclusive)
+	* @return the range of folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the folders.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of folders to return
+	* @param end the upper bound of the range of folders to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -225,32 +400,71 @@ public class FolderUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the folders where accountId = &#63; from the database.
+	*
+	* @param accountId the account id to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeByAccountId(long accountId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByAccountId(accountId);
 	}
 
+	/**
+	* Removes the folder where accountId = &#63; and fullName = &#63; from the database.
+	*
+	* @param accountId the account id to search with
+	* @param fullName the full name to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeByA_F(long accountId, java.lang.String fullName)
 		throws com.liferay.mail.NoSuchFolderException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByA_F(accountId, fullName);
 	}
 
+	/**
+	* Removes all the folders from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the folders where accountId = &#63;.
+	*
+	* @param accountId the account id to search with
+	* @return the number of matching folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countByAccountId(long accountId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByAccountId(accountId);
 	}
 
+	/**
+	* Counts all the folders where accountId = &#63; and fullName = &#63;.
+	*
+	* @param accountId the account id to search with
+	* @param fullName the full name to search with
+	* @return the number of matching folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countByA_F(long accountId, java.lang.String fullName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByA_F(accountId, fullName);
 	}
 
+	/**
+	* Counts all the folders.
+	*
+	* @return the number of folders
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

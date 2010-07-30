@@ -15,20 +15,16 @@
 package com.liferay.mail.model;
 
 /**
- * <p>
- * This interface is a model that represents the Mail_Account table in the
- * database.
- * </p>
+ * The model interface for the Account service. Represents a row in the &quot;Mail_Account&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.mail.model.impl.AccountImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.AccountImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       AccountModel
- * @see       com.liferay.mail.model.impl.AccountImpl
- * @see       com.liferay.mail.model.impl.AccountModelImpl
+ * @author Brian Wing Shun Chan
+ * @see AccountModel
+ * @see com.liferay.mail.model.impl.AccountImpl
+ * @see com.liferay.mail.model.impl.AccountModelImpl
  * @generated
  */
 public interface Account extends AccountModel {

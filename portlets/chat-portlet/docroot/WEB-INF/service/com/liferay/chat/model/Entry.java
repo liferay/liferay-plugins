@@ -15,20 +15,16 @@
 package com.liferay.chat.model;
 
 /**
- * <p>
- * This interface is a model that represents the Chat_Entry table in the
- * database.
- * </p>
+ * The model interface for the Entry service. Represents a row in the &quot;Chat_Entry&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.chat.model.impl.EntryImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.chat.model.impl.EntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       EntryModel
- * @see       com.liferay.chat.model.impl.EntryImpl
- * @see       com.liferay.chat.model.impl.EntryModelImpl
+ * @author Brian Wing Shun Chan
+ * @see EntryModel
+ * @see com.liferay.chat.model.impl.EntryImpl
+ * @see com.liferay.chat.model.impl.EntryModelImpl
  * @generated
  */
 public interface Entry extends EntryModel {

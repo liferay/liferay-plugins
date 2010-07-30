@@ -15,20 +15,16 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * <p>
- * This interface is a model that represents the KaleoNotificationRecipient table in the
- * database.
- * </p>
+ * The model interface for the KaleoNotificationRecipient service. Represents a row in the &quot;KaleoNotificationRecipient&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoNotificationRecipientModel
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl
+ * @author Brian Wing Shun Chan
+ * @see KaleoNotificationRecipientModel
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientImpl
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationRecipientModelImpl
  * @generated
  */
 public interface KaleoNotificationRecipient

@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       SVNRevisionPersistence
- * @see       SVNRevisionUtil
+ * The persistence for the s v n revision service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see SVNRevisionPersistence
+ * @see SVNRevisionUtil
  * @generated
  */
 public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
@@ -105,11 +115,21 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			SVNRevisionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the s v n revision in the entity cache if it is enabled.
+	 *
+	 * @param svnRevision the s v n revision to cache
+	 */
 	public void cacheResult(SVNRevision svnRevision) {
 		EntityCacheUtil.putResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRevisionImpl.class, svnRevision.getPrimaryKey(), svnRevision);
 	}
 
+	/**
+	 * Caches the s v n revisions in the entity cache if it is enabled.
+	 *
+	 * @param svnRevisions the s v n revisions to cache
+	 */
 	public void cacheResult(List<SVNRevision> svnRevisions) {
 		for (SVNRevision svnRevision : svnRevisions) {
 			if (EntityCacheUtil.getResult(
@@ -120,6 +140,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Clears the cache for all s v n revisions.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(SVNRevisionImpl.class.getName());
 		EntityCacheUtil.clearCache(SVNRevisionImpl.class.getName());
@@ -127,11 +154,24 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the s v n revision.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(SVNRevision svnRevision) {
 		EntityCacheUtil.removeResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRevisionImpl.class, svnRevision.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new s v n revision with the primary key.
+	 *
+	 * @param svnRevisionId the primary key for the new s v n revision
+	 * @return the new s v n revision
+	 */
 	public SVNRevision create(long svnRevisionId) {
 		SVNRevision svnRevision = new SVNRevisionImpl();
 
@@ -141,11 +181,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return svnRevision;
 	}
 
+	/**
+	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the s v n revision to remove
+	 * @return the s v n revision that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the s v n revision with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param svnRevisionId the primary key of the s v n revision to remove
+	 * @return the s v n revision that was removed
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision remove(long svnRevisionId)
 		throws NoSuchSVNRevisionException, SystemException {
 		Session session = null;
@@ -264,11 +320,27 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return svnRevisionImpl;
 	}
 
+	/**
+	 * Finds the s v n revision with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the s v n revision to find
+	 * @return the s v n revision
+	 * @throws com.liferay.portal.NoSuchModelException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the s v n revision with the primary key or throws a {@link com.liferay.socialcoding.NoSuchSVNRevisionException} if it could not be found.
+	 *
+	 * @param svnRevisionId the primary key of the s v n revision to find
+	 * @return the s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findByPrimaryKey(long svnRevisionId)
 		throws NoSuchSVNRevisionException, SystemException {
 		SVNRevision svnRevision = fetchByPrimaryKey(svnRevisionId);
@@ -285,11 +357,25 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return svnRevision;
 	}
 
+	/**
+	 * Finds the s v n revision with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the s v n revision to find
+	 * @return the s v n revision, or <code>null</code> if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the s v n revision with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param svnRevisionId the primary key of the s v n revision to find
+	 * @return the s v n revision, or <code>null</code> if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision fetchByPrimaryKey(long svnRevisionId)
 		throws SystemException {
 		SVNRevision svnRevision = (SVNRevision)EntityCacheUtil.getResult(SVNRevisionModelImpl.ENTITY_CACHE_ENABLED,
@@ -319,17 +405,51 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return svnRevision;
 	}
 
+	/**
+	 * Finds all the s v n revisions where svnUserId = &#63;.
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @return the matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNUserId(String svnUserId)
 		throws SystemException {
 		return findBySVNUserId(svnUserId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the s v n revisions where svnUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @return the range of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
 		int end) throws SystemException {
 		return findBySVNUserId(svnUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the s v n revisions where svnUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNUserId(String svnUserId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -414,6 +534,19 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return list;
 	}
 
+	/**
+	 * Finds the first s v n revision in the ordered set where svnUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findBySVNUserId_First(String svnUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -437,6 +570,19 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds the last s v n revision in the ordered set where svnUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findBySVNUserId_Last(String svnUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -462,6 +608,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds the s v n revisions before and after the current s v n revision in the ordered set where svnUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRevisionId the primary key of the current s v n revision
+	 * @param svnUserId the svn user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision[] findBySVNUserId_PrevAndNext(long svnRevisionId,
 		String svnUserId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -608,17 +768,51 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds all the s v n revisions where svnRepositoryId = &#63;.
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @return the matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		return findBySVNRepositoryId(svnRepositoryId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the s v n revisions where svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @return the range of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
 		int start, int end) throws SystemException {
 		return findBySVNRepositoryId(svnRepositoryId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the s v n revisions where svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNRepositoryId(long svnRepositoryId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -692,6 +886,19 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return list;
 	}
 
+	/**
+	 * Finds the first s v n revision in the ordered set where svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findBySVNRepositoryId_First(long svnRepositoryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -715,6 +922,19 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds the last s v n revision in the ordered set where svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findBySVNRepositoryId_Last(long svnRepositoryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -740,6 +960,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds the s v n revisions before and after the current s v n revision in the ordered set where svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRevisionId the primary key of the current s v n revision
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision[] findBySVNRepositoryId_PrevAndNext(long svnRevisionId,
 		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -874,17 +1108,54 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @return the matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
 		long svnRepositoryId) throws SystemException {
 		return findBySVNU_SVNR(svnUserId, svnRepositoryId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @return the range of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
 		long svnRepositoryId, int start, int end) throws SystemException {
 		return findBySVNU_SVNR(svnUserId, svnRepositoryId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findBySVNU_SVNR(String svnUserId,
 		long svnRepositoryId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -974,6 +1245,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return list;
 	}
 
+	/**
+	 * Finds the first s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findBySVNU_SVNR_First(String svnUserId,
 		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -1000,6 +1285,20 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds the last s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision findBySVNU_SVNR_Last(String svnUserId,
 		long svnRepositoryId, OrderByComparator orderByComparator)
 		throws NoSuchSVNRevisionException, SystemException {
@@ -1028,6 +1327,21 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds the s v n revisions before and after the current s v n revision in the ordered set where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param svnRevisionId the primary key of the current s v n revision
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next s v n revision
+	 * @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public SVNRevision[] findBySVNU_SVNR_PrevAndNext(long svnRevisionId,
 		String svnUserId, long svnRepositoryId,
 		OrderByComparator orderByComparator)
@@ -1179,15 +1493,46 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Finds all the s v n revisions.
+	 *
+	 * @return the s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the s v n revisions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @return the range of s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the s v n revisions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of s v n revisions to return
+	 * @param end the upper bound of the range of s v n revisions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<SVNRevision> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1254,12 +1599,24 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return list;
 	}
 
+	/**
+	 * Removes all the s v n revisions where svnUserId = &#63; from the database.
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeBySVNUserId(String svnUserId) throws SystemException {
 		for (SVNRevision svnRevision : findBySVNUserId(svnUserId)) {
 			remove(svnRevision);
 		}
 	}
 
+	/**
+	 * Removes all the s v n revisions where svnRepositoryId = &#63; from the database.
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNRepositoryId(svnRepositoryId)) {
@@ -1267,6 +1624,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Removes all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63; from the database.
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeBySVNU_SVNR(String svnUserId, long svnRepositoryId)
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNU_SVNR(svnUserId,
@@ -1275,12 +1639,24 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Removes all the s v n revisions from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (SVNRevision svnRevision : findAll()) {
 			remove(svnRevision);
 		}
 	}
 
+	/**
+	 * Counts all the s v n revisions where svnUserId = &#63;.
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @return the number of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countBySVNUserId(String svnUserId) throws SystemException {
 		Object[] finderArgs = new Object[] { svnUserId };
 
@@ -1339,6 +1715,13 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the s v n revisions where svnRepositoryId = &#63;.
+	 *
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @return the number of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { svnRepositoryId };
@@ -1386,6 +1769,14 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the s v n revisions where svnUserId = &#63; and svnRepositoryId = &#63;.
+	 *
+	 * @param svnUserId the svn user id to search with
+	 * @param svnRepositoryId the svn repository id to search with
+	 * @return the number of matching s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countBySVNU_SVNR(String svnUserId, long svnRepositoryId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { svnUserId, svnRepositoryId };
@@ -1449,6 +1840,12 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the s v n revisions.
+	 *
+	 * @return the number of s v n revisions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1483,6 +1880,9 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the s v n revision persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

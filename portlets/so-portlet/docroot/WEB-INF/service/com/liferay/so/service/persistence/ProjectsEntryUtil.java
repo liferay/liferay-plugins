@@ -25,9 +25,15 @@ import com.liferay.so.model.ProjectsEntry;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       ProjectsEntryPersistence
- * @see       ProjectsEntryPersistenceImpl
+ * The persistence utility for the projects entry service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see ProjectsEntryPersistence
+ * @see ProjectsEntryPersistenceImpl
  * @generated
  */
 public class ProjectsEntryUtil {
@@ -105,21 +111,45 @@ public class ProjectsEntryUtil {
 		return getPersistence().update(projectsEntry, merge, serviceContext);
 	}
 
+	/**
+	* Caches the projects entry in the entity cache if it is enabled.
+	*
+	* @param projectsEntry the projects entry to cache
+	*/
 	public static void cacheResult(
 		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		getPersistence().cacheResult(projectsEntry);
 	}
 
+	/**
+	* Caches the projects entries in the entity cache if it is enabled.
+	*
+	* @param projectsEntries the projects entries to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.so.model.ProjectsEntry> projectsEntries) {
 		getPersistence().cacheResult(projectsEntries);
 	}
 
+	/**
+	* Creates a new projects entry with the primary key.
+	*
+	* @param projectsEntryId the primary key for the new projects entry
+	* @return the new projects entry
+	*/
 	public static com.liferay.so.model.ProjectsEntry create(
 		long projectsEntryId) {
 		return getPersistence().create(projectsEntryId);
 	}
 
+	/**
+	* Removes the projects entry with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param projectsEntryId the primary key of the projects entry to remove
+	* @return the projects entry that was removed
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.so.model.ProjectsEntry remove(
 		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -133,6 +163,14 @@ public class ProjectsEntryUtil {
 		return getPersistence().updateImpl(projectsEntry, merge);
 	}
 
+	/**
+	* Finds the projects entry with the primary key or throws a {@link com.liferay.so.NoSuchProjectsEntryException} if it could not be found.
+	*
+	* @param projectsEntryId the primary key of the projects entry to find
+	* @return the projects entry
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.so.model.ProjectsEntry findByPrimaryKey(
 		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
@@ -140,23 +178,64 @@ public class ProjectsEntryUtil {
 		return getPersistence().findByPrimaryKey(projectsEntryId);
 	}
 
+	/**
+	* Finds the projects entry with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param projectsEntryId the primary key of the projects entry to find
+	* @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
 		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(projectsEntryId);
 	}
 
+	/**
+	* Finds all the projects entries where userId = &#63;.
+	*
+	* @param userId the user id to search with
+	* @return the matching projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
+	/**
+	* Finds a range of all the projects entries where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param start the lower bound of the range of projects entries to return
+	* @param end the upper bound of the range of projects entries to return (not inclusive)
+	* @return the range of matching projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the projects entries where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param start the lower bound of the range of projects entries to return
+	* @param end the upper bound of the range of projects entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -165,6 +244,19 @@ public class ProjectsEntryUtil {
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
 
+	/**
+	* Finds the first projects entry in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching projects entry
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.so.model.ProjectsEntry findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -173,6 +265,19 @@ public class ProjectsEntryUtil {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
+	/**
+	* Finds the last projects entry in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching projects entry
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.so.model.ProjectsEntry findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -181,6 +286,20 @@ public class ProjectsEntryUtil {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
+	/**
+	* Finds the projects entries before and after the current projects entry in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param projectsEntryId the primary key of the current projects entry
+	* @param userId the user id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next projects entry
+	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -191,17 +310,48 @@ public class ProjectsEntryUtil {
 			orderByComparator);
 	}
 
+	/**
+	* Finds all the projects entries.
+	*
+	* @return the projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the projects entries.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of projects entries to return
+	* @param end the upper bound of the range of projects entries to return (not inclusive)
+	* @return the range of projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the projects entries.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of projects entries to return
+	* @param end the upper bound of the range of projects entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -209,21 +359,45 @@ public class ProjectsEntryUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the projects entries where userId = &#63; from the database.
+	*
+	* @param userId the user id to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByUserId(userId);
 	}
 
+	/**
+	* Removes all the projects entries from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the projects entries where userId = &#63;.
+	*
+	* @param userId the user id to search with
+	* @return the number of matching projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
 	}
 
+	/**
+	* Counts all the projects entries.
+	*
+	* @return the number of projects entries
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

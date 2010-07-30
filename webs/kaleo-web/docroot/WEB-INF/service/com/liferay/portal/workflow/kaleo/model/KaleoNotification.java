@@ -15,20 +15,16 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * <p>
- * This interface is a model that represents the KaleoNotification table in the
- * database.
- * </p>
+ * The model interface for the KaleoNotification service. Represents a row in the &quot;KaleoNotification&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoNotificationModel
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationModelImpl
+ * @author Brian Wing Shun Chan
+ * @see KaleoNotificationModel
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationModelImpl
  * @generated
  */
 public interface KaleoNotification extends KaleoNotificationModel {

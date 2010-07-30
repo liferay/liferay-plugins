@@ -15,20 +15,16 @@
 package com.liferay.sampleservicebuilder.model;
 
 /**
- * <p>
- * This interface is a model that represents the SSB_Foo table in the
- * database.
- * </p>
+ * The model interface for the Foo service. Represents a row in the &quot;SSB_Foo&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.sampleservicebuilder.model.impl.FooImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.sampleservicebuilder.model.impl.FooImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       FooModel
- * @see       com.liferay.sampleservicebuilder.model.impl.FooImpl
- * @see       com.liferay.sampleservicebuilder.model.impl.FooModelImpl
+ * @author Brian Wing Shun Chan
+ * @see FooModel
+ * @see com.liferay.sampleservicebuilder.model.impl.FooImpl
+ * @see com.liferay.sampleservicebuilder.model.impl.FooModelImpl
  * @generated
  */
 public interface Foo extends FooModel {

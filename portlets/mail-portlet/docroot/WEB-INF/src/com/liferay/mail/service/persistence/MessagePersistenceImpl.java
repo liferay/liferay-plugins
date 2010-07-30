@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       MessagePersistence
- * @see       MessageUtil
+ * The persistence for the message service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see MessagePersistence
+ * @see MessageUtil
  * @generated
  */
 public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
@@ -100,6 +110,11 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			MessageModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the message in the entity cache if it is enabled.
+	 *
+	 * @param message the message to cache
+	 */
 	public void cacheResult(Message message) {
 		EntityCacheUtil.putResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey(), message);
@@ -111,6 +126,11 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			}, message);
 	}
 
+	/**
+	 * Caches the messages in the entity cache if it is enabled.
+	 *
+	 * @param messages the messages to cache
+	 */
 	public void cacheResult(List<Message> messages) {
 		for (Message message : messages) {
 			if (EntityCacheUtil.getResult(
@@ -121,6 +141,13 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Clears the cache for all messages.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(MessageImpl.class.getName());
 		EntityCacheUtil.clearCache(MessageImpl.class.getName());
@@ -128,6 +155,13 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the message.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Message message) {
 		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 			MessageImpl.class, message.getPrimaryKey());
@@ -139,6 +173,12 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			});
 	}
 
+	/**
+	 * Creates a new message with the primary key.
+	 *
+	 * @param messageId the primary key for the new message
+	 * @return the new message
+	 */
 	public Message create(long messageId) {
 		Message message = new MessageImpl();
 
@@ -148,11 +188,27 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return message;
 	}
 
+	/**
+	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the message to remove
+	 * @return the message that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the message with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param messageId the primary key of the message to remove
+	 * @return the message that was removed
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message remove(long messageId)
 		throws NoSuchMessageException, SystemException {
 		Session session = null;
@@ -314,11 +370,27 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return messageImpl;
 	}
 
+	/**
+	 * Finds the message with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the message to find
+	 * @return the message
+	 * @throws com.liferay.portal.NoSuchModelException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the message with the primary key or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
+	 *
+	 * @param messageId the primary key of the message to find
+	 * @return the message
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByPrimaryKey(long messageId)
 		throws NoSuchMessageException, SystemException {
 		Message message = fetchByPrimaryKey(messageId);
@@ -335,11 +407,25 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return message;
 	}
 
+	/**
+	 * Finds the message with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the message to find
+	 * @return the message, or <code>null</code> if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the message with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param messageId the primary key of the message to find
+	 * @return the message, or <code>null</code> if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message fetchByPrimaryKey(long messageId) throws SystemException {
 		Message message = (Message)EntityCacheUtil.getResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
 				MessageImpl.class, messageId, this);
@@ -368,17 +454,51 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return message;
 	}
 
+	/**
+	 * Finds all the messages where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the messages where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of messages to return
+	 * @param end the upper bound of the range of messages to return (not inclusive)
+	 * @return the range of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the messages where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of messages to return
+	 * @param end the upper bound of the range of messages to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -450,6 +570,19 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return list;
 	}
 
+	/**
+	 * Finds the first message in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching message
+	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -472,6 +605,19 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds the last message in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching message
+	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -497,6 +643,20 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds the messages before and after the current message in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param messageId the primary key of the current message
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next message
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message[] findByCompanyId_PrevAndNext(long messageId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -631,17 +791,51 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds all the messages where folderId = &#63;.
+	 *
+	 * @param folderId the folder id to search with
+	 * @return the matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findByFolderId(long folderId)
 		throws SystemException {
 		return findByFolderId(folderId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the messages where folderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param folderId the folder id to search with
+	 * @param start the lower bound of the range of messages to return
+	 * @param end the upper bound of the range of messages to return (not inclusive)
+	 * @return the range of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findByFolderId(long folderId, int start, int end)
 		throws SystemException {
 		return findByFolderId(folderId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the messages where folderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param folderId the folder id to search with
+	 * @param start the lower bound of the range of messages to return
+	 * @param end the upper bound of the range of messages to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findByFolderId(long folderId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -713,6 +907,19 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return list;
 	}
 
+	/**
+	 * Finds the first message in the ordered set where folderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param folderId the folder id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching message
+	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByFolderId_First(long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -735,6 +942,19 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds the last message in the ordered set where folderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param folderId the folder id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching message
+	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByFolderId_Last(long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -760,6 +980,20 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds the messages before and after the current message in the ordered set where folderId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param messageId the primary key of the current message
+	 * @param folderId the folder id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next message
+	 * @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message[] findByFolderId_PrevAndNext(long messageId, long folderId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMessageException, SystemException {
@@ -894,6 +1128,15 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds the message where folderId = &#63; and remoteMessageId = &#63; or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
+	 *
+	 * @param folderId the folder id to search with
+	 * @param remoteMessageId the remote message id to search with
+	 * @return the matching message
+	 * @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message findByF_R(long folderId, long remoteMessageId)
 		throws NoSuchMessageException, SystemException {
 		Message message = fetchByF_R(folderId, remoteMessageId);
@@ -921,11 +1164,27 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return message;
 	}
 
+	/**
+	 * Finds the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param folderId the folder id to search with
+	 * @param remoteMessageId the remote message id to search with
+	 * @return the matching message, or <code>null</code> if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message fetchByF_R(long folderId, long remoteMessageId)
 		throws SystemException {
 		return fetchByF_R(folderId, remoteMessageId, true);
 	}
 
+	/**
+	 * Finds the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param folderId the folder id to search with
+	 * @param remoteMessageId the remote message id to search with
+	 * @return the matching message, or <code>null</code> if a matching message could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Message fetchByF_R(long folderId, long remoteMessageId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { folderId, remoteMessageId };
@@ -1009,14 +1268,45 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Finds all the messages.
+	 *
+	 * @return the messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the messages.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of messages to return
+	 * @param end the upper bound of the range of messages to return (not inclusive)
+	 * @return the range of messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the messages.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of messages to return
+	 * @param end the upper bound of the range of messages to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Message> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1083,18 +1373,37 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return list;
 	}
 
+	/**
+	 * Removes all the messages where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Message message : findByCompanyId(companyId)) {
 			remove(message);
 		}
 	}
 
+	/**
+	 * Removes all the messages where folderId = &#63; from the database.
+	 *
+	 * @param folderId the folder id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByFolderId(long folderId) throws SystemException {
 		for (Message message : findByFolderId(folderId)) {
 			remove(message);
 		}
 	}
 
+	/**
+	 * Removes the message where folderId = &#63; and remoteMessageId = &#63; from the database.
+	 *
+	 * @param folderId the folder id to search with
+	 * @param remoteMessageId the remote message id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByF_R(long folderId, long remoteMessageId)
 		throws NoSuchMessageException, SystemException {
 		Message message = findByF_R(folderId, remoteMessageId);
@@ -1102,12 +1411,24 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		remove(message);
 	}
 
+	/**
+	 * Removes all the messages from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Message message : findAll()) {
 			remove(message);
 		}
 	}
 
+	/**
+	 * Counts all the messages where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the number of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -1154,6 +1475,13 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the messages where folderId = &#63;.
+	 *
+	 * @param folderId the folder id to search with
+	 * @return the number of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByFolderId(long folderId) throws SystemException {
 		Object[] finderArgs = new Object[] { folderId };
 
@@ -1200,6 +1528,14 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the messages where folderId = &#63; and remoteMessageId = &#63;.
+	 *
+	 * @param folderId the folder id to search with
+	 * @param remoteMessageId the remote message id to search with
+	 * @return the number of matching messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByF_R(long folderId, long remoteMessageId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { folderId, remoteMessageId };
@@ -1251,6 +1587,12 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the messages.
+	 *
+	 * @return the number of messages
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1285,6 +1627,9 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the message persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

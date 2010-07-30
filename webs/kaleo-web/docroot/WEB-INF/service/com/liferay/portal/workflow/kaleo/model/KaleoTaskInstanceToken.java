@@ -15,20 +15,16 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 /**
- * <p>
- * This interface is a model that represents the KaleoTaskInstanceToken table in the
- * database.
- * </p>
+ * The model interface for the KaleoTaskInstanceToken service. Represents a row in the &quot;KaleoTaskInstanceToken&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoTaskInstanceTokenModel
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl
- * @see       com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl
+ * @author Brian Wing Shun Chan
+ * @see KaleoTaskInstanceTokenModel
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl
+ * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl
  * @generated
  */
 public interface KaleoTaskInstanceToken extends KaleoTaskInstanceTokenModel {

@@ -55,9 +55,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       MemberRequestPersistence
- * @see       MemberRequestUtil
+ * The persistence for the member request service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see MemberRequestPersistence
+ * @see MemberRequestUtil
  * @generated
  */
 public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequest>
@@ -120,6 +130,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			MemberRequestModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countAll", new String[0]);
 
+	/**
+	 * Caches the member request in the entity cache if it is enabled.
+	 *
+	 * @param memberRequest the member request to cache
+	 */
 	public void cacheResult(MemberRequest memberRequest) {
 		EntityCacheUtil.putResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestImpl.class, memberRequest.getPrimaryKey(),
@@ -136,6 +151,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			}, memberRequest);
 	}
 
+	/**
+	 * Caches the member requests in the entity cache if it is enabled.
+	 *
+	 * @param memberRequests the member requests to cache
+	 */
 	public void cacheResult(List<MemberRequest> memberRequests) {
 		for (MemberRequest memberRequest : memberRequests) {
 			if (EntityCacheUtil.getResult(
@@ -147,6 +167,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Clears the cache for all member requests.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(MemberRequestImpl.class.getName());
 		EntityCacheUtil.clearCache(MemberRequestImpl.class.getName());
@@ -154,6 +181,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the member request.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(MemberRequest memberRequest) {
 		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 			MemberRequestImpl.class, memberRequest.getPrimaryKey());
@@ -169,6 +203,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			});
 	}
 
+	/**
+	 * Creates a new member request with the primary key.
+	 *
+	 * @param memberRequestId the primary key for the new member request
+	 * @return the new member request
+	 */
 	public MemberRequest create(long memberRequestId) {
 		MemberRequest memberRequest = new MemberRequestImpl();
 
@@ -178,11 +218,27 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequest;
 	}
 
+	/**
+	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the member request to remove
+	 * @return the member request that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the member request with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param memberRequestId the primary key of the member request to remove
+	 * @return the member request that was removed
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest remove(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
 		Session session = null;
@@ -363,11 +419,27 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequestImpl;
 	}
 
+	/**
+	 * Finds the member request with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the member request to find
+	 * @return the member request
+	 * @throws com.liferay.portal.NoSuchModelException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the member request with the primary key or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	 *
+	 * @param memberRequestId the primary key of the member request to find
+	 * @return the member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByPrimaryKey(long memberRequestId)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = fetchByPrimaryKey(memberRequestId);
@@ -384,11 +456,25 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequest;
 	}
 
+	/**
+	 * Finds the member request with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the member request to find
+	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the member request with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param memberRequestId the primary key of the member request to find
+	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest fetchByPrimaryKey(long memberRequestId)
 		throws SystemException {
 		MemberRequest memberRequest = (MemberRequest)EntityCacheUtil.getResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
@@ -418,6 +504,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequest;
 	}
 
+	/**
+	 * Finds the member request where key = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	 *
+	 * @param key the key to search with
+	 * @return the matching member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByKey(String key)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = fetchByKey(key);
@@ -442,10 +536,24 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequest;
 	}
 
+	/**
+	 * Finds the member request where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param key the key to search with
+	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest fetchByKey(String key) throws SystemException {
 		return fetchByKey(key, true);
 	}
 
+	/**
+	 * Finds the member request where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param key the key to search with
+	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest fetchByKey(String key, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { key };
@@ -537,17 +645,51 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds all the member requests where receiverUserId = &#63;.
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @return the matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId)
 		throws SystemException {
 		return findByReceiverUserId(receiverUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the member requests where receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param start the lower bound of the range of member requests to return
+	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @return the range of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId,
 		int start, int end) throws SystemException {
 		return findByReceiverUserId(receiverUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the member requests where receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param start the lower bound of the range of member requests to return
+	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -621,6 +763,19 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return list;
 	}
 
+	/**
+	 * Finds the first member request in the ordered set where receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByReceiverUserId_First(long receiverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
@@ -644,6 +799,19 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds the last member request in the ordered set where receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByReceiverUserId_Last(long receiverUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
@@ -669,6 +837,20 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds the member requests before and after the current member request in the ordered set where receiverUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param memberRequestId the primary key of the current member request
+	 * @param receiverUserId the receiver user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
 		OrderByComparator orderByComparator)
@@ -804,17 +986,54 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds all the member requests where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @return the matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findByR_S(long receiverUserId, int status)
 		throws SystemException {
 		return findByR_S(receiverUserId, status, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the member requests where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of member requests to return
+	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @return the range of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findByR_S(long receiverUserId, int status,
 		int start, int end) throws SystemException {
 		return findByR_S(receiverUserId, status, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the member requests where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of member requests to return
+	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findByR_S(long receiverUserId, int status,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -892,6 +1111,20 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return list;
 	}
 
+	/**
+	 * Finds the first member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByR_S_First(long receiverUserId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
@@ -918,6 +1151,20 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds the last member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByR_S_Last(long receiverUserId, int status,
 		OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
@@ -946,6 +1193,21 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds the member requests before and after the current member request in the ordered set where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param memberRequestId the primary key of the current member request
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest[] findByR_S_PrevAndNext(long memberRequestId,
 		long receiverUserId, int status, OrderByComparator orderByComparator)
 		throws NoSuchMemberRequestException, SystemException {
@@ -1084,6 +1346,16 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
+	 *
+	 * @param groupId the group id to search with
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @return the matching member request
+	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest findByG_R_S(long groupId, long receiverUserId,
 		int status) throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = fetchByG_R_S(groupId, receiverUserId,
@@ -1115,11 +1387,29 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return memberRequest;
 	}
 
+	/**
+	 * Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param groupId the group id to search with
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest fetchByG_R_S(long groupId, long receiverUserId,
 		int status) throws SystemException {
 		return fetchByG_R_S(groupId, receiverUserId, status, true);
 	}
 
+	/**
+	 * Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param groupId the group id to search with
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public MemberRequest fetchByG_R_S(long groupId, long receiverUserId,
 		int status, boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, receiverUserId, status };
@@ -1208,15 +1498,46 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Finds all the member requests.
+	 *
+	 * @return the member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the member requests.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of member requests to return
+	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @return the range of member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the member requests.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of member requests to return
+	 * @param end the upper bound of the range of member requests to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<MemberRequest> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1283,6 +1604,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return list;
 	}
 
+	/**
+	 * Removes the member request where key = &#63; from the database.
+	 *
+	 * @param key the key to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKey(String key)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByKey(key);
@@ -1290,6 +1617,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		remove(memberRequest);
 	}
 
+	/**
+	 * Removes all the member requests where receiverUserId = &#63; from the database.
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByReceiverUserId(long receiverUserId)
 		throws SystemException {
 		for (MemberRequest memberRequest : findByReceiverUserId(receiverUserId)) {
@@ -1297,6 +1630,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Removes all the member requests where receiverUserId = &#63; and status = &#63; from the database.
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByR_S(long receiverUserId, int status)
 		throws SystemException {
 		for (MemberRequest memberRequest : findByR_S(receiverUserId, status)) {
@@ -1304,6 +1644,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Removes the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; from the database.
+	 *
+	 * @param groupId the group id to search with
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByG_R_S(long groupId, long receiverUserId, int status)
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByG_R_S(groupId, receiverUserId,
@@ -1312,12 +1660,24 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		remove(memberRequest);
 	}
 
+	/**
+	 * Removes all the member requests from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (MemberRequest memberRequest : findAll()) {
 			remove(memberRequest);
 		}
 	}
 
+	/**
+	 * Counts all the member requests where key = &#63;.
+	 *
+	 * @param key the key to search with
+	 * @return the number of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKey(String key) throws SystemException {
 		Object[] finderArgs = new Object[] { key };
 
@@ -1376,6 +1736,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the member requests where receiverUserId = &#63;.
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @return the number of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByReceiverUserId(long receiverUserId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { receiverUserId };
@@ -1423,6 +1790,14 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the member requests where receiverUserId = &#63; and status = &#63;.
+	 *
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @return the number of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByR_S(long receiverUserId, int status)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { receiverUserId, status };
@@ -1474,6 +1849,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group id to search with
+	 * @param receiverUserId the receiver user id to search with
+	 * @param status the status to search with
+	 * @return the number of matching member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByG_R_S(long groupId, long receiverUserId, int status)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, receiverUserId, status };
@@ -1529,6 +1913,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the member requests.
+	 *
+	 * @return the number of member requests
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1563,6 +1953,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the member request persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

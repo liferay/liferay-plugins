@@ -62,9 +62,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       ArticlePersistence
- * @see       ArticleUtil
+ * The persistence for the article service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see ArticlePersistence
+ * @see ArticleUtil
  * @generated
  */
 public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
@@ -119,6 +129,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the article in the entity cache if it is enabled.
+	 *
+	 * @param article the article to cache
+	 */
 	public void cacheResult(Article article) {
 		EntityCacheUtil.putResult(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleImpl.class, article.getPrimaryKey(), article);
@@ -134,6 +149,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			}, article);
 	}
 
+	/**
+	 * Caches the articles in the entity cache if it is enabled.
+	 *
+	 * @param articles the articles to cache
+	 */
 	public void cacheResult(List<Article> articles) {
 		for (Article article : articles) {
 			if (EntityCacheUtil.getResult(
@@ -144,6 +164,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Clears the cache for all articles.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(ArticleImpl.class.getName());
 		EntityCacheUtil.clearCache(ArticleImpl.class.getName());
@@ -151,6 +178,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the article.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Article article) {
 		EntityCacheUtil.removeResult(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleImpl.class, article.getPrimaryKey());
@@ -165,6 +199,12 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			});
 	}
 
+	/**
+	 * Creates a new article with the primary key.
+	 *
+	 * @param articleId the primary key for the new article
+	 * @return the new article
+	 */
 	public Article create(long articleId) {
 		Article article = new ArticleImpl();
 
@@ -178,11 +218,27 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return article;
 	}
 
+	/**
+	 * Removes the article with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the article to remove
+	 * @return the article that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the article with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param articleId the primary key of the article to remove
+	 * @return the article that was removed
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article remove(long articleId)
 		throws NoSuchArticleException, SystemException {
 		Session session = null;
@@ -372,11 +428,27 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return articleImpl;
 	}
 
+	/**
+	 * Finds the article with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the article to find
+	 * @return the article
+	 * @throws com.liferay.portal.NoSuchModelException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the article with the primary key or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	 *
+	 * @param articleId the primary key of the article to find
+	 * @return the article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByPrimaryKey(long articleId)
 		throws NoSuchArticleException, SystemException {
 		Article article = fetchByPrimaryKey(articleId);
@@ -393,11 +465,25 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return article;
 	}
 
+	/**
+	 * Finds the article with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the article to find
+	 * @return the article, or <code>null</code> if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the article with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param articleId the primary key of the article to find
+	 * @return the article, or <code>null</code> if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article fetchByPrimaryKey(long articleId) throws SystemException {
 		Article article = (Article)EntityCacheUtil.getResult(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 				ArticleImpl.class, articleId, this);
@@ -426,15 +512,49 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return article;
 	}
 
+	/**
+	 * Finds all the articles where uuid = &#63;.
+	 *
+	 * @param uuid the uuid to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findByUuid(String uuid) throws SystemException {
 		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the articles where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findByUuid(String uuid, int start, int end)
 		throws SystemException {
 		return findByUuid(uuid, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the articles where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findByUuid(String uuid, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -518,6 +638,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return list;
 	}
 
+	/**
+	 * Finds the first article in the ordered set where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByUuid_First(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
@@ -540,6 +673,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds the last article in the ordered set where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByUuid_Last(String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
@@ -565,6 +711,20 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds the articles before and after the current article in the ordered set where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param uuid the uuid to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article[] findByUuid_PrevAndNext(long articleId, String uuid,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
@@ -710,6 +870,15 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds the article where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	 *
+	 * @param uuid the uuid to search with
+	 * @param groupId the group id to search with
+	 * @return the matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByUUID_G(String uuid, long groupId)
 		throws NoSuchArticleException, SystemException {
 		Article article = fetchByUUID_G(uuid, groupId);
@@ -737,11 +906,27 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return article;
 	}
 
+	/**
+	 * Finds the article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param uuid the uuid to search with
+	 * @param groupId the group id to search with
+	 * @return the matching article, or <code>null</code> if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article fetchByUUID_G(String uuid, long groupId)
 		throws SystemException {
 		return fetchByUUID_G(uuid, groupId, true);
 	}
 
+	/**
+	 * Finds the article where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param uuid the uuid to search with
+	 * @param groupId the group id to search with
+	 * @return the matching article, or <code>null</code> if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article fetchByUUID_G(String uuid, long groupId,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -838,17 +1023,51 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds all the articles where resourcePrimKey = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
 		return findByResourcePrimKey(resourcePrimKey, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findByResourcePrimKey(long resourcePrimKey, int start,
 		int end) throws SystemException {
 		return findByResourcePrimKey(resourcePrimKey, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findByResourcePrimKey(long resourcePrimKey, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -920,6 +1139,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return list;
 	}
 
+	/**
+	 * Finds the first article in the ordered set where resourcePrimKey = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByResourcePrimKey_First(long resourcePrimKey,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
@@ -943,6 +1175,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds the last article in the ordered set where resourcePrimKey = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByResourcePrimKey_Last(long resourcePrimKey,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
@@ -968,6 +1213,20 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article[] findByResourcePrimKey_PrevAndNext(long articleId,
 		long resourcePrimKey, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
@@ -1102,6 +1361,15 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds the article where resourcePrimKey = &#63; and version = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchArticleException} if it could not be found.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param version the version to search with
+	 * @return the matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article findByR_V(long resourcePrimKey, int version)
 		throws NoSuchArticleException, SystemException {
 		Article article = fetchByR_V(resourcePrimKey, version);
@@ -1129,11 +1397,27 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return article;
 	}
 
+	/**
+	 * Finds the article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param version the version to search with
+	 * @return the matching article, or <code>null</code> if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article fetchByR_V(long resourcePrimKey, int version)
 		throws SystemException {
 		return fetchByR_V(resourcePrimKey, version, true);
 	}
 
+	/**
+	 * Finds the article where resourcePrimKey = &#63; and version = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param version the version to search with
+	 * @return the matching article, or <code>null</code> if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Article fetchByR_V(long resourcePrimKey, int version,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { resourcePrimKey, version };
@@ -1217,14 +1501,45 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Finds all the articles.
+	 *
+	 * @return the articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the articles.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the articles.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Article> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1291,12 +1606,25 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return list;
 	}
 
+	/**
+	 * Removes all the articles where uuid = &#63; from the database.
+	 *
+	 * @param uuid the uuid to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Article article : findByUuid(uuid)) {
 			remove(article);
 		}
 	}
 
+	/**
+	 * Removes the article where uuid = &#63; and groupId = &#63; from the database.
+	 *
+	 * @param uuid the uuid to search with
+	 * @param groupId the group id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByUUID_G(String uuid, long groupId)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByUUID_G(uuid, groupId);
@@ -1304,6 +1632,12 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		remove(article);
 	}
 
+	/**
+	 * Removes all the articles where resourcePrimKey = &#63; from the database.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
 		for (Article article : findByResourcePrimKey(resourcePrimKey)) {
@@ -1311,6 +1645,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Removes the article where resourcePrimKey = &#63; and version = &#63; from the database.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param version the version to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByR_V(long resourcePrimKey, int version)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByR_V(resourcePrimKey, version);
@@ -1318,12 +1659,24 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		remove(article);
 	}
 
+	/**
+	 * Removes all the articles from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Article article : findAll()) {
 			remove(article);
 		}
 	}
 
+	/**
+	 * Counts all the articles where uuid = &#63;.
+	 *
+	 * @param uuid the uuid to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByUuid(String uuid) throws SystemException {
 		Object[] finderArgs = new Object[] { uuid };
 
@@ -1382,6 +1735,14 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the articles where uuid = &#63; and groupId = &#63;.
+	 *
+	 * @param uuid the uuid to search with
+	 * @param groupId the group id to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByUUID_G(String uuid, long groupId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -1445,6 +1806,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the articles where resourcePrimKey = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { resourcePrimKey };
@@ -1492,6 +1860,14 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the articles where resourcePrimKey = &#63; and version = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param version the version to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByR_V(long resourcePrimKey, int version)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { resourcePrimKey, version };
@@ -1543,6 +1919,12 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the articles.
+	 *
+	 * @return the number of articles
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1577,6 +1959,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the article persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

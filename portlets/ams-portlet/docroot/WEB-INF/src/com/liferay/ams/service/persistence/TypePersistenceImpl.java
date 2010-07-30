@@ -49,9 +49,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       TypePersistence
- * @see       TypeUtil
+ * The persistence for the type service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see TypePersistence
+ * @see TypeUtil
  * @generated
  */
 public class TypePersistenceImpl extends BasePersistenceImpl<Type>
@@ -66,11 +76,21 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			TypeModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the type in the entity cache if it is enabled.
+	 *
+	 * @param type the type to cache
+	 */
 	public void cacheResult(Type type) {
 		EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 			TypeImpl.class, type.getPrimaryKey(), type);
 	}
 
+	/**
+	 * Caches the types in the entity cache if it is enabled.
+	 *
+	 * @param types the types to cache
+	 */
 	public void cacheResult(List<Type> types) {
 		for (Type type : types) {
 			if (EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
@@ -80,6 +100,13 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		}
 	}
 
+	/**
+	 * Clears the cache for all types.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(TypeImpl.class.getName());
 		EntityCacheUtil.clearCache(TypeImpl.class.getName());
@@ -87,11 +114,24 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the type.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Type type) {
 		EntityCacheUtil.removeResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 			TypeImpl.class, type.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new type with the primary key.
+	 *
+	 * @param typeId the primary key for the new type
+	 * @return the new type
+	 */
 	public Type create(long typeId) {
 		Type type = new TypeImpl();
 
@@ -101,11 +141,27 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return type;
 	}
 
+	/**
+	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the type to remove
+	 * @return the type that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Type remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param typeId the primary key of the type to remove
+	 * @return the type that was removed
+	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Type remove(long typeId) throws NoSuchTypeException, SystemException {
 		Session session = null;
 
@@ -217,11 +273,27 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return typeImpl;
 	}
 
+	/**
+	 * Finds the type with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the type to find
+	 * @return the type
+	 * @throws com.liferay.portal.NoSuchModelException if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Type findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the type with the primary key or throws a {@link com.liferay.ams.NoSuchTypeException} if it could not be found.
+	 *
+	 * @param typeId the primary key of the type to find
+	 * @return the type
+	 * @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Type findByPrimaryKey(long typeId)
 		throws NoSuchTypeException, SystemException {
 		Type type = fetchByPrimaryKey(typeId);
@@ -238,11 +310,25 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return type;
 	}
 
+	/**
+	 * Finds the type with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the type to find
+	 * @return the type, or <code>null</code> if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Type fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the type with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param typeId the primary key of the type to find
+	 * @return the type, or <code>null</code> if a type with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Type fetchByPrimaryKey(long typeId) throws SystemException {
 		Type type = (Type)EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 				TypeImpl.class, typeId, this);
@@ -270,14 +356,45 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return type;
 	}
 
+	/**
+	 * Finds all the types.
+	 *
+	 * @return the types
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Type> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the types.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of types to return
+	 * @param end the upper bound of the range of types to return (not inclusive)
+	 * @return the range of types
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Type> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the types.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of types to return
+	 * @param end the upper bound of the range of types to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of types
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Type> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -344,12 +461,23 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return list;
 	}
 
+	/**
+	 * Removes all the types from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Type type : findAll()) {
 			remove(type);
 		}
 	}
 
+	/**
+	 * Counts all the types.
+	 *
+	 * @return the number of types
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -384,6 +512,9 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the type persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

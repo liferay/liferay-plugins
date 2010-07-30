@@ -25,9 +25,15 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       TypePersistence
- * @see       TypePersistenceImpl
+ * The persistence utility for the type service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see TypePersistence
+ * @see TypePersistenceImpl
  * @generated
  */
 public class TypeUtil {
@@ -103,19 +109,43 @@ public class TypeUtil {
 		return getPersistence().update(type, merge, serviceContext);
 	}
 
+	/**
+	* Caches the type in the entity cache if it is enabled.
+	*
+	* @param type the type to cache
+	*/
 	public static void cacheResult(com.liferay.ams.model.Type type) {
 		getPersistence().cacheResult(type);
 	}
 
+	/**
+	* Caches the types in the entity cache if it is enabled.
+	*
+	* @param types the types to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.ams.model.Type> types) {
 		getPersistence().cacheResult(types);
 	}
 
+	/**
+	* Creates a new type with the primary key.
+	*
+	* @param typeId the primary key for the new type
+	* @return the new type
+	*/
 	public static com.liferay.ams.model.Type create(long typeId) {
 		return getPersistence().create(typeId);
 	}
 
+	/**
+	* Removes the type with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param typeId the primary key of the type to remove
+	* @return the type that was removed
+	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Type remove(long typeId)
 		throws com.liferay.ams.NoSuchTypeException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -128,28 +158,74 @@ public class TypeUtil {
 		return getPersistence().updateImpl(type, merge);
 	}
 
+	/**
+	* Finds the type with the primary key or throws a {@link com.liferay.ams.NoSuchTypeException} if it could not be found.
+	*
+	* @param typeId the primary key of the type to find
+	* @return the type
+	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Type findByPrimaryKey(long typeId)
 		throws com.liferay.ams.NoSuchTypeException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(typeId);
 	}
 
+	/**
+	* Finds the type with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param typeId the primary key of the type to find
+	* @return the type, or <code>null</code> if a type with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Type fetchByPrimaryKey(long typeId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(typeId);
 	}
 
+	/**
+	* Finds all the types.
+	*
+	* @return the types
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Type> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the types.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of types to return
+	* @param end the upper bound of the range of types to return (not inclusive)
+	* @return the range of types
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Type> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the types.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of types to return
+	* @param end the upper bound of the range of types to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of types
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Type> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -157,11 +233,22 @@ public class TypeUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the types from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the types.
+	*
+	* @return the number of types
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       JIRAActionPersistence
- * @see       JIRAActionUtil
+ * The persistence for the j i r a action service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see JIRAActionPersistence
+ * @see JIRAActionUtil
  * @generated
  */
 public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
@@ -104,11 +114,21 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			JIRAActionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the j i r a action in the entity cache if it is enabled.
+	 *
+	 * @param jiraAction the j i r a action to cache
+	 */
 	public void cacheResult(JIRAAction jiraAction) {
 		EntityCacheUtil.putResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionImpl.class, jiraAction.getPrimaryKey(), jiraAction);
 	}
 
+	/**
+	 * Caches the j i r a actions in the entity cache if it is enabled.
+	 *
+	 * @param jiraActions the j i r a actions to cache
+	 */
 	public void cacheResult(List<JIRAAction> jiraActions) {
 		for (JIRAAction jiraAction : jiraActions) {
 			if (EntityCacheUtil.getResult(
@@ -119,6 +139,13 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Clears the cache for all j i r a actions.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(JIRAActionImpl.class.getName());
 		EntityCacheUtil.clearCache(JIRAActionImpl.class.getName());
@@ -126,11 +153,24 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the j i r a action.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(JIRAAction jiraAction) {
 		EntityCacheUtil.removeResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionImpl.class, jiraAction.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new j i r a action with the primary key.
+	 *
+	 * @param jiraActionId the primary key for the new j i r a action
+	 * @return the new j i r a action
+	 */
 	public JIRAAction create(long jiraActionId) {
 		JIRAAction jiraAction = new JIRAActionImpl();
 
@@ -140,11 +180,27 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return jiraAction;
 	}
 
+	/**
+	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the j i r a action to remove
+	 * @return the j i r a action that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the j i r a action with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraActionId the primary key of the j i r a action to remove
+	 * @return the j i r a action that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction remove(long jiraActionId)
 		throws NoSuchJIRAActionException, SystemException {
 		Session session = null;
@@ -265,11 +321,27 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return jiraActionImpl;
 	}
 
+	/**
+	 * Finds the j i r a action with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the j i r a action to find
+	 * @return the j i r a action
+	 * @throws com.liferay.portal.NoSuchModelException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the j i r a action with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAActionException} if it could not be found.
+	 *
+	 * @param jiraActionId the primary key of the j i r a action to find
+	 * @return the j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByPrimaryKey(long jiraActionId)
 		throws NoSuchJIRAActionException, SystemException {
 		JIRAAction jiraAction = fetchByPrimaryKey(jiraActionId);
@@ -286,11 +358,25 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return jiraAction;
 	}
 
+	/**
+	 * Finds the j i r a action with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the j i r a action to find
+	 * @return the j i r a action, or <code>null</code> if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the j i r a action with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param jiraActionId the primary key of the j i r a action to find
+	 * @return the j i r a action, or <code>null</code> if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction fetchByPrimaryKey(long jiraActionId)
 		throws SystemException {
 		JIRAAction jiraAction = (JIRAAction)EntityCacheUtil.getResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
@@ -320,17 +406,51 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return jiraAction;
 	}
 
+	/**
+	 * Finds all the j i r a actions where jiraUserId = &#63;.
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @return the matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByJiraUserId(String jiraUserId)
 		throws SystemException {
 		return findByJiraUserId(jiraUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a actions where jiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @return the range of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByJiraUserId(String jiraUserId, int start,
 		int end) throws SystemException {
 		return findByJiraUserId(jiraUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a actions where jiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByJiraUserId(String jiraUserId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -415,6 +535,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a action in the ordered set where jiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByJiraUserId_First(String jiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -438,6 +571,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a action in the ordered set where jiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByJiraUserId_Last(String jiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -463,6 +609,20 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds the j i r a actions before and after the current j i r a action in the ordered set where jiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraActionId the primary key of the current j i r a action
+	 * @param jiraUserId the jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction[] findByJiraUserId_PrevAndNext(long jiraActionId,
 		String jiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -609,17 +769,51 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a actions where jiraIssueId = &#63;.
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @return the matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId)
 		throws SystemException {
 		return findByJiraIssueId(jiraIssueId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a actions where jiraIssueId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @return the range of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
 		int end) throws SystemException {
 		return findByJiraIssueId(jiraIssueId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a actions where jiraIssueId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByJiraIssueId(long jiraIssueId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -692,6 +886,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a action in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByJiraIssueId_First(long jiraIssueId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -715,6 +922,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a action in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByJiraIssueId_Last(long jiraIssueId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -740,6 +960,20 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds the j i r a actions before and after the current j i r a action in the ordered set where jiraIssueId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraActionId the primary key of the current j i r a action
+	 * @param jiraIssueId the jira issue id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction[] findByJiraIssueId_PrevAndNext(long jiraActionId,
 		long jiraIssueId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -874,15 +1108,49 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a actions where type = &#63;.
+	 *
+	 * @param type the type to search with
+	 * @return the matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByType(String type) throws SystemException {
 		return findByType(type, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a actions where type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @return the range of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByType(String type, int start, int end)
 		throws SystemException {
 		return findByType(type, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a actions where type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findByType(String type, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -967,6 +1235,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a action in the ordered set where type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByType_First(String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -989,6 +1270,19 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a action in the ordered set where type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param type the type to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction findByType_Last(String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -1014,6 +1308,20 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds the j i r a actions before and after the current j i r a action in the ordered set where type = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraActionId the primary key of the current j i r a action
+	 * @param type the type to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a action
+	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAAction[] findByType_PrevAndNext(long jiraActionId, String type,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAActionException, SystemException {
@@ -1160,15 +1468,46 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a actions.
+	 *
+	 * @return the j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a actions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @return the range of j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a actions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of j i r a actions to return
+	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAAction> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1235,30 +1574,60 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return list;
 	}
 
+	/**
+	 * Removes all the j i r a actions where jiraUserId = &#63; from the database.
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
 		for (JIRAAction jiraAction : findByJiraUserId(jiraUserId)) {
 			remove(jiraAction);
 		}
 	}
 
+	/**
+	 * Removes all the j i r a actions where jiraIssueId = &#63; from the database.
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
 		for (JIRAAction jiraAction : findByJiraIssueId(jiraIssueId)) {
 			remove(jiraAction);
 		}
 	}
 
+	/**
+	 * Removes all the j i r a actions where type = &#63; from the database.
+	 *
+	 * @param type the type to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByType(String type) throws SystemException {
 		for (JIRAAction jiraAction : findByType(type)) {
 			remove(jiraAction);
 		}
 	}
 
+	/**
+	 * Removes all the j i r a actions from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (JIRAAction jiraAction : findAll()) {
 			remove(jiraAction);
 		}
 	}
 
+	/**
+	 * Counts all the j i r a actions where jiraUserId = &#63;.
+	 *
+	 * @param jiraUserId the jira user id to search with
+	 * @return the number of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByJiraUserId(String jiraUserId) throws SystemException {
 		Object[] finderArgs = new Object[] { jiraUserId };
 
@@ -1317,6 +1686,13 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a actions where jiraIssueId = &#63;.
+	 *
+	 * @param jiraIssueId the jira issue id to search with
+	 * @return the number of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByJiraIssueId(long jiraIssueId) throws SystemException {
 		Object[] finderArgs = new Object[] { jiraIssueId };
 
@@ -1363,6 +1739,13 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a actions where type = &#63;.
+	 *
+	 * @param type the type to search with
+	 * @return the number of matching j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByType(String type) throws SystemException {
 		Object[] finderArgs = new Object[] { type };
 
@@ -1421,6 +1804,12 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a actions.
+	 *
+	 * @return the number of j i r a actions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1455,6 +1844,9 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the j i r a action persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

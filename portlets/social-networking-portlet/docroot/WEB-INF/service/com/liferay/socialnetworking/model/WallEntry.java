@@ -15,20 +15,16 @@
 package com.liferay.socialnetworking.model;
 
 /**
- * <p>
- * This interface is a model that represents the SN_WallEntry table in the
- * database.
- * </p>
+ * The model interface for the WallEntry service. Represents a row in the &quot;SN_WallEntry&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.socialnetworking.model.impl.WallEntryImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.socialnetworking.model.impl.WallEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       WallEntryModel
- * @see       com.liferay.socialnetworking.model.impl.WallEntryImpl
- * @see       com.liferay.socialnetworking.model.impl.WallEntryModelImpl
+ * @author Brian Wing Shun Chan
+ * @see WallEntryModel
+ * @see com.liferay.socialnetworking.model.impl.WallEntryImpl
+ * @see com.liferay.socialnetworking.model.impl.WallEntryModelImpl
  * @generated
  */
 public interface WallEntry extends WallEntryModel {

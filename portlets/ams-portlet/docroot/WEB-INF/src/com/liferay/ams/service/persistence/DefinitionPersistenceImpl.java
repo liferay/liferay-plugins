@@ -49,9 +49,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       DefinitionPersistence
- * @see       DefinitionUtil
+ * The persistence for the definition service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see DefinitionPersistence
+ * @see DefinitionUtil
  * @generated
  */
 public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
@@ -66,11 +76,21 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			DefinitionModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the definition in the entity cache if it is enabled.
+	 *
+	 * @param definition the definition to cache
+	 */
 	public void cacheResult(Definition definition) {
 		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey(), definition);
 	}
 
+	/**
+	 * Caches the definitions in the entity cache if it is enabled.
+	 *
+	 * @param definitions the definitions to cache
+	 */
 	public void cacheResult(List<Definition> definitions) {
 		for (Definition definition : definitions) {
 			if (EntityCacheUtil.getResult(
@@ -81,6 +101,13 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		}
 	}
 
+	/**
+	 * Clears the cache for all definitions.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(DefinitionImpl.class.getName());
 		EntityCacheUtil.clearCache(DefinitionImpl.class.getName());
@@ -88,11 +115,24 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the definition.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Definition definition) {
 		EntityCacheUtil.removeResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new definition with the primary key.
+	 *
+	 * @param definitionId the primary key for the new definition
+	 * @return the new definition
+	 */
 	public Definition create(long definitionId) {
 		Definition definition = new DefinitionImpl();
 
@@ -102,11 +142,27 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return definition;
 	}
 
+	/**
+	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the definition to remove
+	 * @return the definition that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Definition remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the definition with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param definitionId the primary key of the definition to remove
+	 * @return the definition that was removed
+	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Definition remove(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
 		Session session = null;
@@ -231,11 +287,27 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return definitionImpl;
 	}
 
+	/**
+	 * Finds the definition with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the definition to find
+	 * @return the definition
+	 * @throws com.liferay.portal.NoSuchModelException if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Definition findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the definition with the primary key or throws a {@link com.liferay.ams.NoSuchDefinitionException} if it could not be found.
+	 *
+	 * @param definitionId the primary key of the definition to find
+	 * @return the definition
+	 * @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Definition findByPrimaryKey(long definitionId)
 		throws NoSuchDefinitionException, SystemException {
 		Definition definition = fetchByPrimaryKey(definitionId);
@@ -252,11 +324,25 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return definition;
 	}
 
+	/**
+	 * Finds the definition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the definition to find
+	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Definition fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the definition with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param definitionId the primary key of the definition to find
+	 * @return the definition, or <code>null</code> if a definition with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Definition fetchByPrimaryKey(long definitionId)
 		throws SystemException {
 		Definition definition = (Definition)EntityCacheUtil.getResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
@@ -286,15 +372,46 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return definition;
 	}
 
+	/**
+	 * Finds all the definitions.
+	 *
+	 * @return the definitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Definition> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the definitions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of definitions to return
+	 * @param end the upper bound of the range of definitions to return (not inclusive)
+	 * @return the range of definitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Definition> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the definitions.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of definitions to return
+	 * @param end the upper bound of the range of definitions to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of definitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Definition> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -361,12 +478,23 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return list;
 	}
 
+	/**
+	 * Removes all the definitions from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Definition definition : findAll()) {
 			remove(definition);
 		}
 	}
 
+	/**
+	 * Counts all the definitions.
+	 *
+	 * @return the number of definitions
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -401,6 +529,9 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the definition persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

@@ -25,9 +25,15 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       CheckoutPersistence
- * @see       CheckoutPersistenceImpl
+ * The persistence utility for the checkout service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see CheckoutPersistence
+ * @see CheckoutPersistenceImpl
  * @generated
  */
 public class CheckoutUtil {
@@ -104,19 +110,43 @@ public class CheckoutUtil {
 		return getPersistence().update(checkout, merge, serviceContext);
 	}
 
+	/**
+	* Caches the checkout in the entity cache if it is enabled.
+	*
+	* @param checkout the checkout to cache
+	*/
 	public static void cacheResult(com.liferay.ams.model.Checkout checkout) {
 		getPersistence().cacheResult(checkout);
 	}
 
+	/**
+	* Caches the checkouts in the entity cache if it is enabled.
+	*
+	* @param checkouts the checkouts to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.ams.model.Checkout> checkouts) {
 		getPersistence().cacheResult(checkouts);
 	}
 
+	/**
+	* Creates a new checkout with the primary key.
+	*
+	* @param checkoutId the primary key for the new checkout
+	* @return the new checkout
+	*/
 	public static com.liferay.ams.model.Checkout create(long checkoutId) {
 		return getPersistence().create(checkoutId);
 	}
 
+	/**
+	* Removes the checkout with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param checkoutId the primary key of the checkout to remove
+	* @return the checkout that was removed
+	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Checkout remove(long checkoutId)
 		throws com.liferay.ams.NoSuchCheckoutException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -129,6 +159,14 @@ public class CheckoutUtil {
 		return getPersistence().updateImpl(checkout, merge);
 	}
 
+	/**
+	* Finds the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
+	*
+	* @param checkoutId the primary key of the checkout to find
+	* @return the checkout
+	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Checkout findByPrimaryKey(
 		long checkoutId)
 		throws com.liferay.ams.NoSuchCheckoutException,
@@ -136,23 +174,61 @@ public class CheckoutUtil {
 		return getPersistence().findByPrimaryKey(checkoutId);
 	}
 
+	/**
+	* Finds the checkout with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param checkoutId the primary key of the checkout to find
+	* @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Checkout fetchByPrimaryKey(
 		long checkoutId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(checkoutId);
 	}
 
+	/**
+	* Finds all the checkouts.
+	*
+	* @return the checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Checkout> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the checkouts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of checkouts to return
+	* @param end the upper bound of the range of checkouts to return (not inclusive)
+	* @return the range of checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Checkout> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the checkouts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of checkouts to return
+	* @param end the upper bound of the range of checkouts to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Checkout> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -160,11 +236,22 @@ public class CheckoutUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the checkouts from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the checkouts.
+	*
+	* @return the number of checkouts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

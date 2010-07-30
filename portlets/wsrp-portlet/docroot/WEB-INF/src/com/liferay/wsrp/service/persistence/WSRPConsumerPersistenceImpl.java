@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       WSRPConsumerPersistence
- * @see       WSRPConsumerUtil
+ * The persistence for the w s r p consumer service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see WSRPConsumerPersistence
+ * @see WSRPConsumerUtil
  * @generated
  */
 public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsumer>
@@ -80,11 +90,21 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 			WSRPConsumerModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the w s r p consumer in the entity cache if it is enabled.
+	 *
+	 * @param wsrpConsumer the w s r p consumer to cache
+	 */
 	public void cacheResult(WSRPConsumer wsrpConsumer) {
 		EntityCacheUtil.putResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(), wsrpConsumer);
 	}
 
+	/**
+	 * Caches the w s r p consumers in the entity cache if it is enabled.
+	 *
+	 * @param wsrpConsumers the w s r p consumers to cache
+	 */
 	public void cacheResult(List<WSRPConsumer> wsrpConsumers) {
 		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
 			if (EntityCacheUtil.getResult(
@@ -96,6 +116,13 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 	}
 
+	/**
+	 * Clears the cache for all w s r p consumers.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(WSRPConsumerImpl.class.getName());
 		EntityCacheUtil.clearCache(WSRPConsumerImpl.class.getName());
@@ -103,11 +130,24 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the w s r p consumer.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(WSRPConsumer wsrpConsumer) {
 		EntityCacheUtil.removeResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new w s r p consumer with the primary key.
+	 *
+	 * @param wsrpConsumerId the primary key for the new w s r p consumer
+	 * @return the new w s r p consumer
+	 */
 	public WSRPConsumer create(long wsrpConsumerId) {
 		WSRPConsumer wsrpConsumer = new WSRPConsumerImpl();
 
@@ -117,11 +157,27 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return wsrpConsumer;
 	}
 
+	/**
+	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer to remove
+	 * @return the w s r p consumer that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpConsumerId the primary key of the w s r p consumer to remove
+	 * @return the w s r p consumer that was removed
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer remove(long wsrpConsumerId)
 		throws NoSuchConsumerException, SystemException {
 		Session session = null;
@@ -244,11 +300,27 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return wsrpConsumerImpl;
 	}
 
+	/**
+	 * Finds the w s r p consumer with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer to find
+	 * @return the w s r p consumer
+	 * @throws com.liferay.portal.NoSuchModelException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the w s r p consumer with the primary key or throws a {@link com.liferay.wsrp.NoSuchConsumerException} if it could not be found.
+	 *
+	 * @param wsrpConsumerId the primary key of the w s r p consumer to find
+	 * @return the w s r p consumer
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer findByPrimaryKey(long wsrpConsumerId)
 		throws NoSuchConsumerException, SystemException {
 		WSRPConsumer wsrpConsumer = fetchByPrimaryKey(wsrpConsumerId);
@@ -265,11 +337,25 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return wsrpConsumer;
 	}
 
+	/**
+	 * Finds the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the w s r p consumer to find
+	 * @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the w s r p consumer with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param wsrpConsumerId the primary key of the w s r p consumer to find
+	 * @return the w s r p consumer, or <code>null</code> if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer fetchByPrimaryKey(long wsrpConsumerId)
 		throws SystemException {
 		WSRPConsumer wsrpConsumer = (WSRPConsumer)EntityCacheUtil.getResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
@@ -299,17 +385,51 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return wsrpConsumer;
 	}
 
+	/**
+	 * Finds all the w s r p consumers where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the matching w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumer> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the w s r p consumers where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of w s r p consumers to return
+	 * @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	 * @return the range of matching w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumer> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the w s r p consumers where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of w s r p consumers to return
+	 * @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumer> findByCompanyId(long companyId, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -382,6 +502,19 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return list;
 	}
 
+	/**
+	 * Finds the first w s r p consumer in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching w s r p consumer
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
@@ -405,6 +538,19 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 	}
 
+	/**
+	 * Finds the last w s r p consumer in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching w s r p consumer
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
@@ -430,6 +576,20 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 	}
 
+	/**
+	 * Finds the w s r p consumers before and after the current w s r p consumer in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param wsrpConsumerId the primary key of the current w s r p consumer
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next w s r p consumer
+	 * @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public WSRPConsumer[] findByCompanyId_PrevAndNext(long wsrpConsumerId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchConsumerException, SystemException {
@@ -564,15 +724,46 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 	}
 
+	/**
+	 * Finds all the w s r p consumers.
+	 *
+	 * @return the w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumer> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the w s r p consumers.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of w s r p consumers to return
+	 * @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	 * @return the range of w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumer> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the w s r p consumers.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of w s r p consumers to return
+	 * @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<WSRPConsumer> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -639,18 +830,36 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return list;
 	}
 
+	/**
+	 * Removes all the w s r p consumers where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (WSRPConsumer wsrpConsumer : findByCompanyId(companyId)) {
 			remove(wsrpConsumer);
 		}
 	}
 
+	/**
+	 * Removes all the w s r p consumers from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (WSRPConsumer wsrpConsumer : findAll()) {
 			remove(wsrpConsumer);
 		}
 	}
 
+	/**
+	 * Counts all the w s r p consumers where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the number of matching w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -697,6 +906,12 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the w s r p consumers.
+	 *
+	 * @return the number of w s r p consumers
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -731,6 +946,9 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the w s r p consumer persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

@@ -15,20 +15,16 @@
 package com.liferay.wsrp.model;
 
 /**
- * <p>
- * This interface is a model that represents the WSRP_WSRPConsumerPortlet table in the
- * database.
- * </p>
+ * The model interface for the WSRPConsumerPortlet service. Represents a row in the &quot;WSRP_WSRPConsumerPortlet&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       WSRPConsumerPortletModel
- * @see       com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl
- * @see       com.liferay.wsrp.model.impl.WSRPConsumerPortletModelImpl
+ * @author Brian Wing Shun Chan
+ * @see WSRPConsumerPortletModel
+ * @see com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl
+ * @see com.liferay.wsrp.model.impl.WSRPConsumerPortletModelImpl
  * @generated
  */
 public interface WSRPConsumerPortlet extends WSRPConsumerPortletModel {

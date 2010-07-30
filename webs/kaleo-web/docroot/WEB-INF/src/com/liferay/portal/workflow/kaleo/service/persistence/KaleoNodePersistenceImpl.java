@@ -54,9 +54,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       KaleoNodePersistence
- * @see       KaleoNodeUtil
+ * The persistence for the kaleo node service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see KaleoNodePersistence
+ * @see KaleoNodeUtil
  * @generated
  */
 public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
@@ -108,11 +118,21 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			KaleoNodeModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the kaleo node in the entity cache if it is enabled.
+	 *
+	 * @param kaleoNode the kaleo node to cache
+	 */
 	public void cacheResult(KaleoNode kaleoNode) {
 		EntityCacheUtil.putResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), kaleoNode);
 	}
 
+	/**
+	 * Caches the kaleo nodes in the entity cache if it is enabled.
+	 *
+	 * @param kaleoNodes the kaleo nodes to cache
+	 */
 	public void cacheResult(List<KaleoNode> kaleoNodes) {
 		for (KaleoNode kaleoNode : kaleoNodes) {
 			if (EntityCacheUtil.getResult(
@@ -123,6 +143,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Clears the cache for all kaleo nodes.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(KaleoNodeImpl.class.getName());
 		EntityCacheUtil.clearCache(KaleoNodeImpl.class.getName());
@@ -130,11 +157,24 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the kaleo node.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(KaleoNode kaleoNode) {
 		EntityCacheUtil.removeResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNodeImpl.class, kaleoNode.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new kaleo node with the primary key.
+	 *
+	 * @param kaleoNodeId the primary key for the new kaleo node
+	 * @return the new kaleo node
+	 */
 	public KaleoNode create(long kaleoNodeId) {
 		KaleoNode kaleoNode = new KaleoNodeImpl();
 
@@ -144,11 +184,27 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return kaleoNode;
 	}
 
+	/**
+	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the kaleo node to remove
+	 * @return the kaleo node that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the kaleo node with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoNodeId the primary key of the kaleo node to remove
+	 * @return the kaleo node that was removed
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode remove(long kaleoNodeId)
 		throws NoSuchNodeException, SystemException {
 		Session session = null;
@@ -274,11 +330,27 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return kaleoNodeImpl;
 	}
 
+	/**
+	 * Finds the kaleo node with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo node to find
+	 * @return the kaleo node
+	 * @throws com.liferay.portal.NoSuchModelException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the kaleo node with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchNodeException} if it could not be found.
+	 *
+	 * @param kaleoNodeId the primary key of the kaleo node to find
+	 * @return the kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByPrimaryKey(long kaleoNodeId)
 		throws NoSuchNodeException, SystemException {
 		KaleoNode kaleoNode = fetchByPrimaryKey(kaleoNodeId);
@@ -295,11 +367,25 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return kaleoNode;
 	}
 
+	/**
+	 * Finds the kaleo node with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the kaleo node to find
+	 * @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the kaleo node with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param kaleoNodeId the primary key of the kaleo node to find
+	 * @return the kaleo node, or <code>null</code> if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode fetchByPrimaryKey(long kaleoNodeId)
 		throws SystemException {
 		KaleoNode kaleoNode = (KaleoNode)EntityCacheUtil.getResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
@@ -329,17 +415,51 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return kaleoNode;
 	}
 
+	/**
+	 * Finds all the kaleo nodes where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByCompanyId(long companyId)
 		throws SystemException {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo nodes where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @return the range of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByCompanyId(long companyId, int start, int end)
 		throws SystemException {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo nodes where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByCompanyId(long companyId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -412,6 +532,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo node in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByCompanyId_First(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -435,6 +568,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds the last kaleo node in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -460,6 +606,20 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds the kaleo nodes before and after the current kaleo node in the ordered set where companyId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the primary key of the current kaleo node
+	 * @param companyId the company id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode[] findByCompanyId_PrevAndNext(long kaleoNodeId,
 		long companyId, OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -594,17 +754,51 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds all the kaleo nodes where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo nodes where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @return the range of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByKaleoDefinitionId(long kaleoDefinitionId,
 		int start, int end) throws SystemException {
 		return findByKaleoDefinitionId(kaleoDefinitionId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo nodes where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByKaleoDefinitionId(long kaleoDefinitionId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -678,6 +872,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo node in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByKaleoDefinitionId_First(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -701,6 +908,19 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds the last kaleo node in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -726,6 +946,20 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds the kaleo nodes before and after the current kaleo node in the ordered set where kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the primary key of the current kaleo node
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode[] findByKaleoDefinitionId_PrevAndNext(long kaleoNodeId,
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -860,17 +1094,54 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		return findByC_KDI(companyId, kaleoDefinitionId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @return the range of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId,
 		int start, int end) throws SystemException {
 		return findByC_KDI(companyId, kaleoDefinitionId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findByC_KDI(long companyId, long kaleoDefinitionId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -948,6 +1219,20 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return list;
 	}
 
+	/**
+	 * Finds the first kaleo node in the ordered set where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByC_KDI_First(long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -974,6 +1259,20 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds the last kaleo node in the ordered set where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode findByC_KDI_Last(long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
 		throws NoSuchNodeException, SystemException {
@@ -1002,6 +1301,21 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds the kaleo nodes before and after the current kaleo node in the ordered set where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param kaleoNodeId the primary key of the current kaleo node
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next kaleo node
+	 * @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public KaleoNode[] findByC_KDI_PrevAndNext(long kaleoNodeId,
 		long companyId, long kaleoDefinitionId,
 		OrderByComparator orderByComparator)
@@ -1141,15 +1455,46 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Finds all the kaleo nodes.
+	 *
+	 * @return the kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the kaleo nodes.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @return the range of kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the kaleo nodes.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<KaleoNode> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -1216,12 +1561,24 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return list;
 	}
 
+	/**
+	 * Removes all the kaleo nodes where companyId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNode kaleoNode : findByCompanyId(companyId)) {
 			remove(kaleoNode);
 		}
 	}
 
+	/**
+	 * Removes all the kaleo nodes where kaleoDefinitionId = &#63; from the database.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNode kaleoNode : findByKaleoDefinitionId(kaleoDefinitionId)) {
@@ -1229,6 +1586,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Removes all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63; from the database.
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoNode kaleoNode : findByC_KDI(companyId, kaleoDefinitionId)) {
@@ -1236,12 +1600,24 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Removes all the kaleo nodes from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (KaleoNode kaleoNode : findAll()) {
 			remove(kaleoNode);
 		}
 	}
 
+	/**
+	 * Counts all the kaleo nodes where companyId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @return the number of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByCompanyId(long companyId) throws SystemException {
 		Object[] finderArgs = new Object[] { companyId };
 
@@ -1288,6 +1664,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo nodes where kaleoDefinitionId = &#63;.
+	 *
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the number of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { kaleoDefinitionId };
@@ -1335,6 +1718,14 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo nodes where companyId = &#63; and kaleoDefinitionId = &#63;.
+	 *
+	 * @param companyId the company id to search with
+	 * @param kaleoDefinitionId the kaleo definition id to search with
+	 * @return the number of matching kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByC_KDI(long companyId, long kaleoDefinitionId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { companyId, kaleoDefinitionId };
@@ -1386,6 +1777,12 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the kaleo nodes.
+	 *
+	 * @return the number of kaleo nodes
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -1420,11 +1817,31 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return count.intValue();
 	}
 
+	/**
+	 * Gets all the kaleo actions associated with the kaleo node.
+	 *
+	 * @param pk the primary key of the kaleo node to get the associated kaleo actions for
+	 * @return the kaleo actions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
 		long pk) throws SystemException {
 		return getKaleoActions(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 	}
 
+	/**
+	 * Gets a range of all the kaleo actions associated with the kaleo node.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param pk the primary key of the kaleo node to get the associated kaleo actions for
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @return the range of kaleo actions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
 		long pk, int start, int end) throws SystemException {
 		return getKaleoActions(pk, start, end, null);
@@ -1439,6 +1856,20 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
 
+	/**
+	 * Gets an ordered range of all the kaleo actions associated with the kaleo node.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param pk the primary key of the kaleo node to get the associated kaleo actions for
+	 * @param start the lower bound of the range of kaleo nodes to return
+	 * @param end the upper bound of the range of kaleo nodes to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of kaleo actions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<com.liferay.portal.workflow.kaleo.model.KaleoAction> getKaleoActions(
 		long pk, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1503,6 +1934,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistenceImpl.FINDER_CLASS_NAME_LIST,
 			"getKaleoActionsSize", new String[] { Long.class.getName() });
 
+	/**
+	 * Gets the number of kaleo actions associated with the kaleo node.
+	 *
+	 * @param pk the primary key of the kaleo node to get the number of associated kaleo actions for
+	 * @return the number of kaleo actions associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int getKaleoActionsSize(long pk) throws SystemException {
 		Object[] finderArgs = new Object[] { pk };
 
@@ -1550,6 +1988,14 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 			"containsKaleoAction",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
+	/**
+	 * Determines whether the kaleo action is associated with the kaleo node.
+	 *
+	 * @param pk the primary key of the kaleo node
+	 * @param kaleoActionPK the primary key of the kaleo action
+	 * @return whether the kaleo action is associated with the kaleo node
+	 * @throws SystemException if a system exception occurred
+	 */
 	public boolean containsKaleoAction(long pk, long kaleoActionPK)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { pk, kaleoActionPK };
@@ -1578,6 +2024,13 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		return value.booleanValue();
 	}
 
+	/**
+	 * Determines whether the kaleo node has any kaleo actions associated with it.
+	 *
+	 * @param pk the primary key of the kaleo node to check for associations with kaleo actions
+	 * @return whether the kaleo node has any kaleo actions associated with it
+	 * @throws SystemException if a system exception occurred
+	 */
 	public boolean containsKaleoActions(long pk) throws SystemException {
 		if (getKaleoActionsSize(pk) > 0) {
 			return true;
@@ -1587,6 +2040,9 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Initializes the kaleo node persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

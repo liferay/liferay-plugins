@@ -54,9 +54,19 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       JIRAIssuePersistence
- * @see       JIRAIssueUtil
+ * The persistence for the j i r a issue service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see JIRAIssuePersistence
+ * @see JIRAIssueUtil
  * @generated
  */
 public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
@@ -220,6 +230,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			JIRAIssueModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the j i r a issue in the entity cache if it is enabled.
+	 *
+	 * @param jiraIssue the j i r a issue to cache
+	 */
 	public void cacheResult(JIRAIssue jiraIssue) {
 		EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue);
@@ -228,6 +243,11 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			new Object[] { jiraIssue.getKey() }, jiraIssue);
 	}
 
+	/**
+	 * Caches the j i r a issues in the entity cache if it is enabled.
+	 *
+	 * @param jiraIssues the j i r a issues to cache
+	 */
 	public void cacheResult(List<JIRAIssue> jiraIssues) {
 		for (JIRAIssue jiraIssue : jiraIssues) {
 			if (EntityCacheUtil.getResult(
@@ -238,6 +258,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Clears the cache for all j i r a issues.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(JIRAIssueImpl.class.getName());
 		EntityCacheUtil.clearCache(JIRAIssueImpl.class.getName());
@@ -245,6 +272,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the j i r a issue.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(JIRAIssue jiraIssue) {
 		EntityCacheUtil.removeResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAIssueImpl.class, jiraIssue.getPrimaryKey());
@@ -253,6 +287,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			new Object[] { jiraIssue.getKey() });
 	}
 
+	/**
+	 * Creates a new j i r a issue with the primary key.
+	 *
+	 * @param jiraIssueId the primary key for the new j i r a issue
+	 * @return the new j i r a issue
+	 */
 	public JIRAIssue create(long jiraIssueId) {
 		JIRAIssue jiraIssue = new JIRAIssueImpl();
 
@@ -262,11 +302,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return jiraIssue;
 	}
 
+	/**
+	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the j i r a issue to remove
+	 * @return the j i r a issue that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the j i r a issue with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraIssueId the primary key of the j i r a issue to remove
+	 * @return the j i r a issue that was removed
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue remove(long jiraIssueId)
 		throws NoSuchJIRAIssueException, SystemException {
 		Session session = null;
@@ -413,11 +469,27 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return jiraIssueImpl;
 	}
 
+	/**
+	 * Finds the j i r a issue with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the j i r a issue to find
+	 * @return the j i r a issue
+	 * @throws com.liferay.portal.NoSuchModelException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the j i r a issue with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAIssueException} if it could not be found.
+	 *
+	 * @param jiraIssueId the primary key of the j i r a issue to find
+	 * @return the j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByPrimaryKey(long jiraIssueId)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = fetchByPrimaryKey(jiraIssueId);
@@ -434,11 +506,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return jiraIssue;
 	}
 
+	/**
+	 * Finds the j i r a issue with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the j i r a issue to find
+	 * @return the j i r a issue, or <code>null</code> if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the j i r a issue with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param jiraIssueId the primary key of the j i r a issue to find
+	 * @return the j i r a issue, or <code>null</code> if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue fetchByPrimaryKey(long jiraIssueId)
 		throws SystemException {
 		JIRAIssue jiraIssue = (JIRAIssue)EntityCacheUtil.getResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
@@ -468,17 +554,51 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return jiraIssue;
 	}
 
+	/**
+	 * Finds all the j i r a issues where projectId = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByProjectId(long projectId)
 		throws SystemException {
 		return findByProjectId(projectId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end)
 		throws SystemException {
 		return findByProjectId(projectId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByProjectId(long projectId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -551,6 +671,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByProjectId_First(long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -574,6 +707,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByProjectId_Last(long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -599,6 +745,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param projectId the project id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByProjectId_PrevAndNext(long jiraIssueId,
 		long projectId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -733,6 +893,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issue where key = &#63; or throws a {@link com.liferay.socialcoding.NoSuchJIRAIssueException} if it could not be found.
+	 *
+	 * @param key the key to search with
+	 * @return the matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByKey(String key)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = fetchByKey(key);
@@ -757,10 +925,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return jiraIssue;
 	}
 
+	/**
+	 * Finds the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param key the key to search with
+	 * @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue fetchByKey(String key) throws SystemException {
 		return fetchByKey(key, true);
 	}
 
+	/**
+	 * Finds the j i r a issue where key = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param key the key to search with
+	 * @return the matching j i r a issue, or <code>null</code> if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue fetchByKey(String key, boolean retrieveFromCache)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { key };
@@ -852,17 +1034,51 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where reporterJiraUserId = &#63;.
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
 		return findByReporterJiraUserId(reporterJiraUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
 		int start, int end) throws SystemException {
 		return findByReporterJiraUserId(reporterJiraUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByReporterJiraUserId(String reporterJiraUserId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -948,6 +1164,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByReporterJiraUserId_First(String reporterJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -971,6 +1200,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByReporterJiraUserId_Last(String reporterJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -996,6 +1238,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByReporterJiraUserId_PrevAndNext(long jiraIssueId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1142,17 +1398,51 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where assigneeJiraUserId = &#63;.
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
 		return findByAssigneeJiraUserId(assigneeJiraUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
 		int start, int end) throws SystemException {
 		return findByAssigneeJiraUserId(assigneeJiraUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByAssigneeJiraUserId(String assigneeJiraUserId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1238,6 +1528,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByAssigneeJiraUserId_First(String assigneeJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1261,6 +1564,19 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByAssigneeJiraUserId_Last(String assigneeJiraUserId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1286,6 +1602,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByAssigneeJiraUserId_PrevAndNext(long jiraIssueId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1432,17 +1762,54 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
 		return findByMD_P(modifiedDate, projectId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
 		int start, int end) throws SystemException {
 		return findByMD_P(modifiedDate, projectId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P(Date modifiedDate, long projectId,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
@@ -1527,6 +1894,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByMD_P_First(Date modifiedDate, long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1553,6 +1934,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByMD_P_Last(Date modifiedDate, long projectId,
 		OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1581,6 +1976,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByMD_P_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1726,18 +2136,55 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId) throws SystemException {
 		return findByP_RJUI(projectId, reporterJiraUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId, int start, int end)
 		throws SystemException {
 		return findByP_RJUI(projectId, reporterJiraUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_RJUI(long projectId,
 		String reporterJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -1827,6 +2274,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_RJUI_First(long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1853,6 +2314,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_RJUI_Last(long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -1881,6 +2356,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByP_RJUI_PrevAndNext(long jiraIssueId,
 		long projectId, String reporterJiraUserId,
 		OrderByComparator orderByComparator)
@@ -2032,18 +2522,55 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_AJUI(long projectId,
 		String assigneeJiraUserId) throws SystemException {
 		return findByP_AJUI(projectId, assigneeJiraUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_AJUI(long projectId,
 		String assigneeJiraUserId, int start, int end)
 		throws SystemException {
 		return findByP_AJUI(projectId, assigneeJiraUserId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_AJUI(long projectId,
 		String assigneeJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -2133,6 +2660,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_AJUI_First(long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -2159,6 +2700,20 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_AJUI_Last(long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -2187,6 +2742,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByP_AJUI_PrevAndNext(long jiraIssueId,
 		long projectId, String assigneeJiraUserId,
 		OrderByComparator orderByComparator)
@@ -2338,12 +2908,36 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId) throws SystemException {
 		return findByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId, int start, int end)
 		throws SystemException {
@@ -2351,6 +2945,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -2451,6 +3061,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByMD_P_RJUI_First(Date modifiedDate, long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -2480,6 +3105,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByMD_P_RJUI_Last(Date modifiedDate, long projectId,
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -2511,6 +3151,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByMD_P_RJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, String reporterJiraUserId,
 		OrderByComparator orderByComparator)
@@ -2676,12 +3332,36 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId) throws SystemException {
 		return findByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, int start, int end)
 		throws SystemException {
@@ -2689,6 +3369,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -2789,6 +3485,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByMD_P_AJUI_First(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -2818,6 +3529,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByMD_P_AJUI_Last(Date modifiedDate, long projectId,
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws NoSuchJIRAIssueException, SystemException {
@@ -2849,6 +3575,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByMD_P_AJUI_PrevAndNext(long jiraIssueId,
 		Date modifiedDate, long projectId, String assigneeJiraUserId,
 		OrderByComparator orderByComparator)
@@ -3014,12 +3756,36 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status) throws SystemException {
 		return findByP_RJUI_S(projectId, reporterJiraUserId, status,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status, int start, int end)
 		throws SystemException {
@@ -3027,6 +3793,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_RJUI_S(long projectId,
 		String reporterJiraUserId, String status, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -3132,6 +3914,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_RJUI_S_First(long projectId,
 		String reporterJiraUserId, String status,
 		OrderByComparator orderByComparator)
@@ -3162,6 +3959,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_RJUI_S_Last(long projectId,
 		String reporterJiraUserId, String status,
 		OrderByComparator orderByComparator)
@@ -3194,6 +4006,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByP_RJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, String reporterJiraUserId, String status,
 		OrderByComparator orderByComparator)
@@ -3361,12 +4189,36 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @return the matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status) throws SystemException {
 		return findByP_AJUI_S(projectId, assigneeJiraUserId, status,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status, int start, int end)
 		throws SystemException {
@@ -3374,6 +4226,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findByP_AJUI_S(long projectId,
 		String assigneeJiraUserId, String status, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
@@ -3479,6 +4347,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Finds the first j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_AJUI_S_First(long projectId,
 		String assigneeJiraUserId, String status,
 		OrderByComparator orderByComparator)
@@ -3509,6 +4392,21 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the last j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a matching j i r a issue could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue findByP_AJUI_S_Last(long projectId,
 		String assigneeJiraUserId, String status,
 		OrderByComparator orderByComparator)
@@ -3541,6 +4439,22 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds the j i r a issues before and after the current j i r a issue in the ordered set where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param jiraIssueId the primary key of the current j i r a issue
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next j i r a issue
+	 * @throws com.liferay.socialcoding.NoSuchJIRAIssueException if a j i r a issue with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public JIRAIssue[] findByP_AJUI_S_PrevAndNext(long jiraIssueId,
 		long projectId, String assigneeJiraUserId, String status,
 		OrderByComparator orderByComparator)
@@ -3708,15 +4622,46 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Finds all the j i r a issues.
+	 *
+	 * @return the j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the j i r a issues.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @return the range of j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findAll(int start, int end)
 		throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the j i r a issues.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of j i r a issues to return
+	 * @param end the upper bound of the range of j i r a issues to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<JIRAIssue> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -3783,12 +4728,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return list;
 	}
 
+	/**
+	 * Removes all the j i r a issues where projectId = &#63; from the database.
+	 *
+	 * @param projectId the project id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByProjectId(long projectId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByProjectId(projectId)) {
 			remove(jiraIssue);
 		}
 	}
 
+	/**
+	 * Removes the j i r a issue where key = &#63; from the database.
+	 *
+	 * @param key the key to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByKey(String key)
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByKey(key);
@@ -3796,6 +4753,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		remove(jiraIssue);
 	}
 
+	/**
+	 * Removes all the j i r a issues where reporterJiraUserId = &#63; from the database.
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByReporterJiraUserId(reporterJiraUserId)) {
@@ -3803,6 +4766,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where assigneeJiraUserId = &#63; from the database.
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByAssigneeJiraUserId(assigneeJiraUserId)) {
@@ -3810,6 +4779,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P(modifiedDate, projectId)) {
@@ -3817,6 +4793,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; from the database.
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI(projectId, reporterJiraUserId)) {
@@ -3824,6 +4807,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; from the database.
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByP_AJUI(long projectId, String assigneeJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_AJUI(projectId, assigneeJiraUserId)) {
@@ -3831,6 +4821,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P_RJUI(modifiedDate, projectId,
@@ -3839,6 +4837,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63; from the database.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P_AJUI(modifiedDate, projectId,
@@ -3847,6 +4853,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63; from the database.
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByP_RJUI_S(long projectId, String reporterJiraUserId,
 		String status) throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI_S(projectId,
@@ -3855,6 +4869,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63; from the database.
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByP_AJUI_S(long projectId, String assigneeJiraUserId,
 		String status) throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_AJUI_S(projectId,
@@ -3863,12 +4885,24 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes all the j i r a issues from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (JIRAIssue jiraIssue : findAll()) {
 			remove(jiraIssue);
 		}
 	}
 
+	/**
+	 * Counts all the j i r a issues where projectId = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByProjectId(long projectId) throws SystemException {
 		Object[] finderArgs = new Object[] { projectId };
 
@@ -3915,6 +4949,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where key = &#63;.
+	 *
+	 * @param key the key to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByKey(String key) throws SystemException {
 		Object[] finderArgs = new Object[] { key };
 
@@ -3973,6 +5014,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where reporterJiraUserId = &#63;.
+	 *
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { reporterJiraUserId };
@@ -4032,6 +5080,13 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where assigneeJiraUserId = &#63;.
+	 *
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { assigneeJiraUserId };
@@ -4091,6 +5146,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { modifiedDate, projectId };
@@ -4149,6 +5212,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { projectId, reporterJiraUserId };
@@ -4212,6 +5283,14 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByP_AJUI(long projectId, String assigneeJiraUserId)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { projectId, assigneeJiraUserId };
@@ -4275,6 +5354,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and reporterJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByMD_P_RJUI(Date modifiedDate, long projectId,
 		String reporterJiraUserId) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -4351,6 +5439,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where modifiedDate &gt; &#63; and projectId = &#63; and assigneeJiraUserId = &#63;.
+	 *
+	 * @param modifiedDate the modified date to search with
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByMD_P_AJUI(Date modifiedDate, long projectId,
 		String assigneeJiraUserId) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -4427,6 +5524,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where projectId = &#63; and reporterJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param reporterJiraUserId the reporter jira user id to search with
+	 * @param status the status to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByP_RJUI_S(long projectId, String reporterJiraUserId,
 		String status) throws SystemException {
 		Object[] finderArgs = new Object[] { projectId, reporterJiraUserId, status };
@@ -4506,6 +5612,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues where projectId = &#63; and assigneeJiraUserId = &#63; and status = &#63;.
+	 *
+	 * @param projectId the project id to search with
+	 * @param assigneeJiraUserId the assignee jira user id to search with
+	 * @param status the status to search with
+	 * @return the number of matching j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByP_AJUI_S(long projectId, String assigneeJiraUserId,
 		String status) throws SystemException {
 		Object[] finderArgs = new Object[] { projectId, assigneeJiraUserId, status };
@@ -4585,6 +5700,12 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the j i r a issues.
+	 *
+	 * @return the number of j i r a issues
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -4619,6 +5740,9 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the j i r a issue persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

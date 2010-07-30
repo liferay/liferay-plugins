@@ -15,20 +15,16 @@
 package com.liferay.knowledgebase.model;
 
 /**
- * <p>
- * This interface is a model that represents the KB_Article table in the
- * database.
- * </p>
+ * The model interface for the Article service. Represents a row in the &quot;KB_Article&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.knowledgebase.model.impl.ArticleImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.ArticleImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       ArticleModel
- * @see       com.liferay.knowledgebase.model.impl.ArticleImpl
- * @see       com.liferay.knowledgebase.model.impl.ArticleModelImpl
+ * @author Brian Wing Shun Chan
+ * @see ArticleModel
+ * @see com.liferay.knowledgebase.model.impl.ArticleImpl
+ * @see com.liferay.knowledgebase.model.impl.ArticleModelImpl
  * @generated
  */
 public interface Article extends ArticleModel {

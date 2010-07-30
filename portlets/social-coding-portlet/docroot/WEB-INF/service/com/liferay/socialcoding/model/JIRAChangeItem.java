@@ -15,20 +15,16 @@
 package com.liferay.socialcoding.model;
 
 /**
- * <p>
- * This interface is a model that represents the changeitem table in the
- * database.
- * </p>
+ * The model interface for the JIRAChangeItem service. Represents a row in the &quot;changeitem&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.socialcoding.model.impl.JIRAChangeItemImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAChangeItemImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       JIRAChangeItemModel
- * @see       com.liferay.socialcoding.model.impl.JIRAChangeItemImpl
- * @see       com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl
+ * @author Brian Wing Shun Chan
+ * @see JIRAChangeItemModel
+ * @see com.liferay.socialcoding.model.impl.JIRAChangeItemImpl
+ * @see com.liferay.socialcoding.model.impl.JIRAChangeItemModelImpl
  * @generated
  */
 public interface JIRAChangeItem extends JIRAChangeItemModel {

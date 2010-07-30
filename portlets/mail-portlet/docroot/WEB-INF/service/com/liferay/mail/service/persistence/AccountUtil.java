@@ -25,9 +25,15 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       AccountPersistence
- * @see       AccountPersistenceImpl
+ * The persistence utility for the account service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see AccountPersistence
+ * @see AccountPersistenceImpl
  * @generated
  */
 public class AccountUtil {
@@ -104,19 +110,43 @@ public class AccountUtil {
 		return getPersistence().update(account, merge, serviceContext);
 	}
 
+	/**
+	* Caches the account in the entity cache if it is enabled.
+	*
+	* @param account the account to cache
+	*/
 	public static void cacheResult(com.liferay.mail.model.Account account) {
 		getPersistence().cacheResult(account);
 	}
 
+	/**
+	* Caches the accounts in the entity cache if it is enabled.
+	*
+	* @param accounts the accounts to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.mail.model.Account> accounts) {
 		getPersistence().cacheResult(accounts);
 	}
 
+	/**
+	* Creates a new account with the primary key.
+	*
+	* @param accountId the primary key for the new account
+	* @return the new account
+	*/
 	public static com.liferay.mail.model.Account create(long accountId) {
 		return getPersistence().create(accountId);
 	}
 
+	/**
+	* Removes the account with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param accountId the primary key of the account to remove
+	* @return the account that was removed
+	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account remove(long accountId)
 		throws com.liferay.mail.NoSuchAccountException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -129,6 +159,14 @@ public class AccountUtil {
 		return getPersistence().updateImpl(account, merge);
 	}
 
+	/**
+	* Finds the account with the primary key or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
+	*
+	* @param accountId the primary key of the account to find
+	* @return the account
+	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account findByPrimaryKey(
 		long accountId)
 		throws com.liferay.mail.NoSuchAccountException,
@@ -136,23 +174,64 @@ public class AccountUtil {
 		return getPersistence().findByPrimaryKey(accountId);
 	}
 
+	/**
+	* Finds the account with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param accountId the primary key of the account to find
+	* @return the account, or <code>null</code> if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account fetchByPrimaryKey(
 		long accountId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(accountId);
 	}
 
+	/**
+	* Finds all the accounts where userId = &#63;.
+	*
+	* @param userId the user id to search with
+	* @return the matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Account> findByUserId(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId);
 	}
 
+	/**
+	* Finds a range of all the accounts where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param start the lower bound of the range of accounts to return
+	* @param end the upper bound of the range of accounts to return (not inclusive)
+	* @return the range of matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Account> findByUserId(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the accounts where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param start the lower bound of the range of accounts to return
+	* @param end the upper bound of the range of accounts to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Account> findByUserId(
 		long userId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -161,6 +240,19 @@ public class AccountUtil {
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
 
+	/**
+	* Finds the first account in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching account
+	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -169,6 +261,19 @@ public class AccountUtil {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
+	/**
+	* Finds the last account in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching account
+	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -177,6 +282,20 @@ public class AccountUtil {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
+	/**
+	* Finds the accounts before and after the current account in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param accountId the primary key of the current account
+	* @param userId the user id to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next account
+	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account[] findByUserId_PrevAndNext(
 		long accountId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -187,6 +306,15 @@ public class AccountUtil {
 			orderByComparator);
 	}
 
+	/**
+	* Finds the account where userId = &#63; and address = &#63; or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
+	*
+	* @param userId the user id to search with
+	* @param address the address to search with
+	* @return the matching account
+	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account findByU_A(long userId,
 		java.lang.String address)
 		throws com.liferay.mail.NoSuchAccountException,
@@ -194,29 +322,76 @@ public class AccountUtil {
 		return getPersistence().findByU_A(userId, address);
 	}
 
+	/**
+	* Finds the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user id to search with
+	* @param address the address to search with
+	* @return the matching account, or <code>null</code> if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account fetchByU_A(long userId,
 		java.lang.String address)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByU_A(userId, address);
 	}
 
+	/**
+	* Finds the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user id to search with
+	* @param address the address to search with
+	* @return the matching account, or <code>null</code> if a matching account could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.mail.model.Account fetchByU_A(long userId,
 		java.lang.String address, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByU_A(userId, address, retrieveFromCache);
 	}
 
+	/**
+	* Finds all the accounts.
+	*
+	* @return the accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Account> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the accounts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of accounts to return
+	* @param end the upper bound of the range of accounts to return (not inclusive)
+	* @return the range of accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Account> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the accounts.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of accounts to return
+	* @param end the upper bound of the range of accounts to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.mail.model.Account> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -224,32 +399,71 @@ public class AccountUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the accounts where userId = &#63; from the database.
+	*
+	* @param userId the user id to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByUserId(userId);
 	}
 
+	/**
+	* Removes the account where userId = &#63; and address = &#63; from the database.
+	*
+	* @param userId the user id to search with
+	* @param address the address to search with
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeByU_A(long userId, java.lang.String address)
 		throws com.liferay.mail.NoSuchAccountException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByU_A(userId, address);
 	}
 
+	/**
+	* Removes all the accounts from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the accounts where userId = &#63;.
+	*
+	* @param userId the user id to search with
+	* @return the number of matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
 	}
 
+	/**
+	* Counts all the accounts where userId = &#63; and address = &#63;.
+	*
+	* @param userId the user id to search with
+	* @param address the address to search with
+	* @return the number of matching accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countByU_A(long userId, java.lang.String address)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByU_A(userId, address);
 	}
 
+	/**
+	* Counts all the accounts.
+	*
+	* @return the number of accounts
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

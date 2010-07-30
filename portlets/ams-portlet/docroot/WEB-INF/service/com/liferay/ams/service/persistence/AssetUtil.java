@@ -25,9 +25,15 @@ import com.liferay.portal.service.ServiceContext;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       AssetPersistence
- * @see       AssetPersistenceImpl
+ * The persistence utility for the asset service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see AssetPersistence
+ * @see AssetPersistenceImpl
  * @generated
  */
 public class AssetUtil {
@@ -103,19 +109,43 @@ public class AssetUtil {
 		return getPersistence().update(asset, merge, serviceContext);
 	}
 
+	/**
+	* Caches the asset in the entity cache if it is enabled.
+	*
+	* @param asset the asset to cache
+	*/
 	public static void cacheResult(com.liferay.ams.model.Asset asset) {
 		getPersistence().cacheResult(asset);
 	}
 
+	/**
+	* Caches the assets in the entity cache if it is enabled.
+	*
+	* @param assets the assets to cache
+	*/
 	public static void cacheResult(
 		java.util.List<com.liferay.ams.model.Asset> assets) {
 		getPersistence().cacheResult(assets);
 	}
 
+	/**
+	* Creates a new asset with the primary key.
+	*
+	* @param assetId the primary key for the new asset
+	* @return the new asset
+	*/
 	public static com.liferay.ams.model.Asset create(long assetId) {
 		return getPersistence().create(assetId);
 	}
 
+	/**
+	* Removes the asset with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param assetId the primary key of the asset to remove
+	* @return the asset that was removed
+	* @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Asset remove(long assetId)
 		throws com.liferay.ams.NoSuchAssetException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -128,28 +158,74 @@ public class AssetUtil {
 		return getPersistence().updateImpl(asset, merge);
 	}
 
+	/**
+	* Finds the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
+	*
+	* @param assetId the primary key of the asset to find
+	* @return the asset
+	* @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Asset findByPrimaryKey(long assetId)
 		throws com.liferay.ams.NoSuchAssetException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByPrimaryKey(assetId);
 	}
 
+	/**
+	* Finds the asset with the primary key or returns <code>null</code> if it could not be found.
+	*
+	* @param assetId the primary key of the asset to find
+	* @return the asset, or <code>null</code> if a asset with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.ams.model.Asset fetchByPrimaryKey(long assetId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByPrimaryKey(assetId);
 	}
 
+	/**
+	* Finds all the assets.
+	*
+	* @return the assets
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Asset> findAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll();
 	}
 
+	/**
+	* Finds a range of all the assets.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of assets to return
+	* @param end the upper bound of the range of assets to return (not inclusive)
+	* @return the range of assets
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Asset> findAll(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findAll(start, end);
 	}
 
+	/**
+	* Finds an ordered range of all the assets.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of assets to return
+	* @param end the upper bound of the range of assets to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of assets
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.ams.model.Asset> findAll(
 		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -157,11 +233,22 @@ public class AssetUtil {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
+	/**
+	* Removes all the assets from the database.
+	*
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void removeAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeAll();
 	}
 
+	/**
+	* Counts all the assets.
+	*
+	* @return the number of assets
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countAll();

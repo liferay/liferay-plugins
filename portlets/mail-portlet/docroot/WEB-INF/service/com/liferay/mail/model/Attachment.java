@@ -15,20 +15,16 @@
 package com.liferay.mail.model;
 
 /**
- * <p>
- * This interface is a model that represents the Mail_Attachment table in the
- * database.
- * </p>
+ * The model interface for the Attachment service. Represents a row in the &quot;Mail_Attachment&quot; database table, with each column mapped to a property of this class.
  *
  * <p>
- * Customize {@link com.liferay.mail.model.impl.AttachmentImpl} and rerun the
- * ServiceBuilder to generate the new methods.
+ * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.AttachmentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       AttachmentModel
- * @see       com.liferay.mail.model.impl.AttachmentImpl
- * @see       com.liferay.mail.model.impl.AttachmentModelImpl
+ * @author Brian Wing Shun Chan
+ * @see AttachmentModel
+ * @see com.liferay.mail.model.impl.AttachmentImpl
+ * @see com.liferay.mail.model.impl.AttachmentModelImpl
  * @generated
  */
 public interface Attachment extends AttachmentModel {

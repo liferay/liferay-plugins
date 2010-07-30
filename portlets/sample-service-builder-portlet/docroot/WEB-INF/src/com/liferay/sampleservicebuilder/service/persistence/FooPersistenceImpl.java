@@ -51,9 +51,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       FooPersistence
- * @see       FooUtil
+ * The persistence for the foo service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see FooPersistence
+ * @see FooUtil
  * @generated
  */
 public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
@@ -80,11 +90,21 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FooModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the foo in the entity cache if it is enabled.
+	 *
+	 * @param foo the foo to cache
+	 */
 	public void cacheResult(Foo foo) {
 		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooImpl.class, foo.getPrimaryKey(), foo);
 	}
 
+	/**
+	 * Caches the foos in the entity cache if it is enabled.
+	 *
+	 * @param foos the foos to cache
+	 */
 	public void cacheResult(List<Foo> foos) {
 		for (Foo foo : foos) {
 			if (EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
@@ -94,6 +114,13 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	/**
+	 * Clears the cache for all foos.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(FooImpl.class.getName());
 		EntityCacheUtil.clearCache(FooImpl.class.getName());
@@ -101,11 +128,24 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the foo.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Foo foo) {
 		EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooImpl.class, foo.getPrimaryKey());
 	}
 
+	/**
+	 * Creates a new foo with the primary key.
+	 *
+	 * @param fooId the primary key for the new foo
+	 * @return the new foo
+	 */
 	public Foo create(long fooId) {
 		Foo foo = new FooImpl();
 
@@ -115,11 +155,27 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return foo;
 	}
 
+	/**
+	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the foo to remove
+	 * @return the foo that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the foo with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param fooId the primary key of the foo to remove
+	 * @return the foo that was removed
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo remove(long fooId) throws NoSuchFooException, SystemException {
 		Session session = null;
 
@@ -239,11 +295,27 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return fooImpl;
 	}
 
+	/**
+	 * Finds the foo with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the foo to find
+	 * @return the foo
+	 * @throws com.liferay.portal.NoSuchModelException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the foo with the primary key or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
+	 *
+	 * @param fooId the primary key of the foo to find
+	 * @return the foo
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo findByPrimaryKey(long fooId)
 		throws NoSuchFooException, SystemException {
 		Foo foo = fetchByPrimaryKey(fooId);
@@ -260,11 +332,25 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return foo;
 	}
 
+	/**
+	 * Finds the foo with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the foo to find
+	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the foo with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param fooId the primary key of the foo to find
+	 * @return the foo, or <code>null</code> if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo fetchByPrimaryKey(long fooId) throws SystemException {
 		Foo foo = (Foo)EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 				FooImpl.class, fooId, this);
@@ -292,15 +378,49 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return foo;
 	}
 
+	/**
+	 * Finds all the foos where field2 = &#63;.
+	 *
+	 * @param field2 the field2 to search with
+	 * @return the matching foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Foo> findByField2(boolean field2) throws SystemException {
 		return findByField2(field2, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the foos where field2 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param field2 the field2 to search with
+	 * @param start the lower bound of the range of foos to return
+	 * @param end the upper bound of the range of foos to return (not inclusive)
+	 * @return the range of matching foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Foo> findByField2(boolean field2, int start, int end)
 		throws SystemException {
 		return findByField2(field2, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the foos where field2 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param field2 the field2 to search with
+	 * @param start the lower bound of the range of foos to return
+	 * @param end the upper bound of the range of foos to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Foo> findByField2(boolean field2, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -372,6 +492,19 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return list;
 	}
 
+	/**
+	 * Finds the first foo in the ordered set where field2 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param field2 the field2 to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching foo
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo findByField2_First(boolean field2,
 		OrderByComparator orderByComparator)
 		throws NoSuchFooException, SystemException {
@@ -394,6 +527,19 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	/**
+	 * Finds the last foo in the ordered set where field2 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param field2 the field2 to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching foo
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo findByField2_Last(boolean field2,
 		OrderByComparator orderByComparator)
 		throws NoSuchFooException, SystemException {
@@ -419,6 +565,20 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	/**
+	 * Finds the foos before and after the current foo in the ordered set where field2 = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param fooId the primary key of the current foo
+	 * @param field2 the field2 to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next foo
+	 * @throws com.liferay.sampleservicebuilder.NoSuchFooException if a foo with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Foo[] findByField2_PrevAndNext(long fooId, boolean field2,
 		OrderByComparator orderByComparator)
 		throws NoSuchFooException, SystemException {
@@ -552,14 +712,45 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	/**
+	 * Finds all the foos.
+	 *
+	 * @return the foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Foo> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the foos.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of foos to return
+	 * @param end the upper bound of the range of foos to return (not inclusive)
+	 * @return the range of foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Foo> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the foos.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of foos to return
+	 * @param end the upper bound of the range of foos to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Foo> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -625,18 +816,36 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return list;
 	}
 
+	/**
+	 * Removes all the foos where field2 = &#63; from the database.
+	 *
+	 * @param field2 the field2 to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByField2(boolean field2) throws SystemException {
 		for (Foo foo : findByField2(field2)) {
 			remove(foo);
 		}
 	}
 
+	/**
+	 * Removes all the foos from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Foo foo : findAll()) {
 			remove(foo);
 		}
 	}
 
+	/**
+	 * Counts all the foos where field2 = &#63;.
+	 *
+	 * @param field2 the field2 to search with
+	 * @return the number of matching foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByField2(boolean field2) throws SystemException {
 		Object[] finderArgs = new Object[] { field2 };
 
@@ -683,6 +892,12 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the foos.
+	 *
+	 * @return the number of foos
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -717,6 +932,9 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the foo persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(

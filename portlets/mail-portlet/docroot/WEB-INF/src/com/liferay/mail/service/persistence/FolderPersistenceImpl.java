@@ -52,9 +52,19 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author    Brian Wing Shun Chan
- * @see       FolderPersistence
- * @see       FolderUtil
+ * The persistence for the folder service.
+ *
+ * <p>
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see FolderPersistence
+ * @see FolderUtil
  * @generated
  */
 public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
@@ -89,6 +99,11 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			FolderModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countAll", new String[0]);
 
+	/**
+	 * Caches the folder in the entity cache if it is enabled.
+	 *
+	 * @param folder the folder to cache
+	 */
 	public void cacheResult(Folder folder) {
 		EntityCacheUtil.putResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey(), folder);
@@ -98,6 +113,11 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			folder);
 	}
 
+	/**
+	 * Caches the folders in the entity cache if it is enabled.
+	 *
+	 * @param folders the folders to cache
+	 */
 	public void cacheResult(List<Folder> folders) {
 		for (Folder folder : folders) {
 			if (EntityCacheUtil.getResult(
@@ -108,6 +128,13 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	/**
+	 * Clears the cache for all folders.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache() {
 		CacheRegistryUtil.clear(FolderImpl.class.getName());
 		EntityCacheUtil.clearCache(FolderImpl.class.getName());
@@ -115,6 +142,13 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 	}
 
+	/**
+	 * Clears the cache for the folder.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
 	public void clearCache(Folder folder) {
 		EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 			FolderImpl.class, folder.getPrimaryKey());
@@ -123,6 +157,12 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			new Object[] { new Long(folder.getAccountId()), folder.getFullName() });
 	}
 
+	/**
+	 * Creates a new folder with the primary key.
+	 *
+	 * @param folderId the primary key for the new folder
+	 * @return the new folder
+	 */
 	public Folder create(long folderId) {
 		Folder folder = new FolderImpl();
 
@@ -132,11 +172,27 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folder;
 	}
 
+	/**
+	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the folder to remove
+	 * @return the folder that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder remove(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return remove(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Removes the folder with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param folderId the primary key of the folder to remove
+	 * @return the folder that was removed
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder remove(long folderId)
 		throws NoSuchFolderException, SystemException {
 		Session session = null;
@@ -294,11 +350,27 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folderImpl;
 	}
 
+	/**
+	 * Finds the folder with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the folder to find
+	 * @return the folder
+	 * @throws com.liferay.portal.NoSuchModelException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder findByPrimaryKey(Serializable primaryKey)
 		throws NoSuchModelException, SystemException {
 		return findByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the folder with the primary key or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
+	 *
+	 * @param folderId the primary key of the folder to find
+	 * @return the folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder findByPrimaryKey(long folderId)
 		throws NoSuchFolderException, SystemException {
 		Folder folder = fetchByPrimaryKey(folderId);
@@ -315,11 +387,25 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folder;
 	}
 
+	/**
+	 * Finds the folder with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the folder to find
+	 * @return the folder, or <code>null</code> if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder fetchByPrimaryKey(Serializable primaryKey)
 		throws SystemException {
 		return fetchByPrimaryKey(((Long)primaryKey).longValue());
 	}
 
+	/**
+	 * Finds the folder with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param folderId the primary key of the folder to find
+	 * @return the folder, or <code>null</code> if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder fetchByPrimaryKey(long folderId) throws SystemException {
 		Folder folder = (Folder)EntityCacheUtil.getResult(FolderModelImpl.ENTITY_CACHE_ENABLED,
 				FolderImpl.class, folderId, this);
@@ -348,17 +434,51 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folder;
 	}
 
+	/**
+	 * Finds all the folders where accountId = &#63;.
+	 *
+	 * @param accountId the account id to search with
+	 * @return the matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Folder> findByAccountId(long accountId)
 		throws SystemException {
 		return findByAccountId(accountId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
 
+	/**
+	 * Finds a range of all the folders where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accountId the account id to search with
+	 * @param start the lower bound of the range of folders to return
+	 * @param end the upper bound of the range of folders to return (not inclusive)
+	 * @return the range of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Folder> findByAccountId(long accountId, int start, int end)
 		throws SystemException {
 		return findByAccountId(accountId, start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the folders where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accountId the account id to search with
+	 * @param start the lower bound of the range of folders to return
+	 * @param end the upper bound of the range of folders to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Folder> findByAccountId(long accountId, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -430,6 +550,19 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return list;
 	}
 
+	/**
+	 * Finds the first folder in the ordered set where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accountId the account id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder findByAccountId_First(long accountId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFolderException, SystemException {
@@ -452,6 +585,19 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	/**
+	 * Finds the last folder in the ordered set where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param accountId the account id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder findByAccountId_Last(long accountId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFolderException, SystemException {
@@ -477,6 +623,20 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	/**
+	 * Finds the folders before and after the current folder in the ordered set where accountId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param folderId the primary key of the current folder
+	 * @param accountId the account id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder[] findByAccountId_PrevAndNext(long folderId, long accountId,
 		OrderByComparator orderByComparator)
 		throws NoSuchFolderException, SystemException {
@@ -610,6 +770,15 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	/**
+	 * Finds the folder where accountId = &#63; and fullName = &#63; or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
+	 *
+	 * @param accountId the account id to search with
+	 * @param fullName the full name to search with
+	 * @return the matching folder
+	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder findByA_F(long accountId, String fullName)
 		throws NoSuchFolderException, SystemException {
 		Folder folder = fetchByA_F(accountId, fullName);
@@ -637,11 +806,27 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return folder;
 	}
 
+	/**
+	 * Finds the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param accountId the account id to search with
+	 * @param fullName the full name to search with
+	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder fetchByA_F(long accountId, String fullName)
 		throws SystemException {
 		return fetchByA_F(accountId, fullName, true);
 	}
 
+	/**
+	 * Finds the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param accountId the account id to search with
+	 * @param fullName the full name to search with
+	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
 	public Folder fetchByA_F(long accountId, String fullName,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { accountId, fullName };
@@ -738,14 +923,45 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	/**
+	 * Finds all the folders.
+	 *
+	 * @return the folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Folder> findAll() throws SystemException {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
+	/**
+	 * Finds a range of all the folders.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of folders to return
+	 * @param end the upper bound of the range of folders to return (not inclusive)
+	 * @return the range of folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Folder> findAll(int start, int end) throws SystemException {
 		return findAll(start, end, null);
 	}
 
+	/**
+	 * Finds an ordered range of all the folders.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of folders to return
+	 * @param end the upper bound of the range of folders to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public List<Folder> findAll(int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -812,12 +1028,25 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return list;
 	}
 
+	/**
+	 * Removes all the folders where accountId = &#63; from the database.
+	 *
+	 * @param accountId the account id to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByAccountId(long accountId) throws SystemException {
 		for (Folder folder : findByAccountId(accountId)) {
 			remove(folder);
 		}
 	}
 
+	/**
+	 * Removes the folder where accountId = &#63; and fullName = &#63; from the database.
+	 *
+	 * @param accountId the account id to search with
+	 * @param fullName the full name to search with
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeByA_F(long accountId, String fullName)
 		throws NoSuchFolderException, SystemException {
 		Folder folder = findByA_F(accountId, fullName);
@@ -825,12 +1054,24 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		remove(folder);
 	}
 
+	/**
+	 * Removes all the folders from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
 	public void removeAll() throws SystemException {
 		for (Folder folder : findAll()) {
 			remove(folder);
 		}
 	}
 
+	/**
+	 * Counts all the folders where accountId = &#63;.
+	 *
+	 * @param accountId the account id to search with
+	 * @return the number of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByAccountId(long accountId) throws SystemException {
 		Object[] finderArgs = new Object[] { accountId };
 
@@ -877,6 +1118,14 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the folders where accountId = &#63; and fullName = &#63;.
+	 *
+	 * @param accountId the account id to search with
+	 * @param fullName the full name to search with
+	 * @return the number of matching folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countByA_F(long accountId, String fullName)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { accountId, fullName };
@@ -940,6 +1189,12 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return count.intValue();
 	}
 
+	/**
+	 * Counts all the folders.
+	 *
+	 * @return the number of folders
+	 * @throws SystemException if a system exception occurred
+	 */
 	public int countAll() throws SystemException {
 		Object[] finderArgs = new Object[0];
 
@@ -974,6 +1229,9 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		return count.intValue();
 	}
 
+	/**
+	 * Initializes the folder persistence.
+	 */
 	public void afterPropertiesSet() {
 		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
 					com.liferay.util.service.ServiceProps.get(
