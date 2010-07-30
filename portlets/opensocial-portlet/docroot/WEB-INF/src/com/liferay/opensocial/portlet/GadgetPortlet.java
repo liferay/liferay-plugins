@@ -18,6 +18,8 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
@@ -175,13 +177,14 @@ public class GadgetPortlet extends MVCPortlet {
 
 		WindowState windowState = renderRequest.getWindowState();
 
-		String view = "default";
-
+		String view = ParamUtil.getString(renderRequest, "view");
+		
+		if (gadgetSpec.getView(view) != null) {
+			return view;
+		}
+		
 		if (windowState.equals(WindowState.NORMAL)) {
-			if (gadgetSpec.getView("canvas") != null) {
-				view = "canvas";
-			}
-			else if (gadgetSpec.getView("default") != null) {
+			if (gadgetSpec.getView("default") != null) {
 				view = "default";
 			}
 			else if (gadgetSpec.getView("home") != null) {
@@ -189,6 +192,9 @@ public class GadgetPortlet extends MVCPortlet {
 			}
 			else if (gadgetSpec.getView("profile") != null) {
 				view = "profile";
+			}
+			else if (gadgetSpec.getView("canvas") != null) {
+				view = "canvas";
 			}
 		}
 		else if (windowState.equals(WindowState.MAXIMIZED)) {
