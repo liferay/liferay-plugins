@@ -12,31 +12,47 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.hook.listeners;
+package com.liferay.portal.workflow.kaleo.hook.service;
 
-import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalService;
+import com.liferay.portal.service.CompanyLocalServiceWrapper;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManagerUtil;
 
 /**
- * @author Michael C. Han
+ * @author Brian Wing Shun Chan
  */
-public class CompanyModelListener extends BaseModelListener<Company> {
+public class CompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 
-	public void onAfterRemove(Company company)
-		throws ModelListenerException {
+	public CompanyLocalServiceImpl(CompanyLocalService companyLocalService) {
+		super(companyLocalService);
+	}
+
+	public Company checkCompany(String webId, String mx, String shardName)
+		throws PortalException, SystemException {
+
+		Company company = super.checkCompany(webId, mx, shardName);
 
 		try {
 			PortalKaleoManager portalKaleoManager =
 				PortalKaleoManagerUtil.getPortalKaleoManager();
 
-			portalKaleoManager.deleteKaleoData(company);
+			portalKaleoManager.deployKaleoDefaults();
+		}
+		catch (PortalException pe) {
+			throw pe;
+		}
+		catch (SystemException se) {
+			throw se;
 		}
 		catch (Exception e) {
-			throw new ModelListenerException(e);
+			throw new SystemException(e);
 		}
+
+		return company;
 	}
 
 }

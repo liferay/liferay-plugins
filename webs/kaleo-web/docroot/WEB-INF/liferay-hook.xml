@@ -3,4 +3,8 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<service>
+		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
+		<service-impl>com.liferay.portal.workflow.kaleo.hook.service.CompanyLocalServiceImpl</service-impl>
+	</service>
 </hook>
