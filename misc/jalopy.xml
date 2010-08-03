@@ -17,13 +17,9 @@
 </generate>
 <templates>
 <class>/**
- * &lt;a href="$fileName$.html"&gt;&lt;b&gt;&lt;i&gt;View Source&lt;/i&gt;&lt;/b&gt;&lt;/a&gt;
- *
  * @author $author$
 */</class>
 <interface>/**
- * &lt;a href="$fileName$.html"&gt;&lt;b&gt;&lt;i&gt;View Source&lt;/i&gt;&lt;/b&gt;&lt;/a&gt;
- *
  * @author $author$
 */</interface>
 </templates>
