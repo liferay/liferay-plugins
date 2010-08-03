@@ -17,15 +17,15 @@
 <%@ include file="init.jsp" %>
 
 <%
-int index = ParamUtil.getInteger(request, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
+int index = ParamUtil.getInteger(renderRequest, "index", GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-index")));
 int formFieldsIndex = GetterUtil.getInteger((String)request.getAttribute("configuration.jsp-formFieldsindex"));
 boolean fieldsEditingDisabled = GetterUtil.getBoolean((String)request.getAttribute("configuration.jsp-fieldsEditingDisabled"));
 
-String fieldLabelXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldLabel" + formFieldsIndex);
+String fieldLabelXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "fieldLabel" + formFieldsIndex);
 String fieldLabel = LocalizationUtil.getLocalization(fieldLabelXml, themeDisplay.getLanguageId());
-String fieldType = PrefsParamUtil.getString(preferences, request, "fieldType" + formFieldsIndex);
-boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + formFieldsIndex);
-String fieldOptionsXml = WebFormUtil.getLocalizationXml(preferences, request, "fieldOptions" + formFieldsIndex);
+String fieldType = PrefsParamUtil.getString(preferences, renderRequest, "fieldType" + formFieldsIndex);
+boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, renderRequest, "fieldOptional" + formFieldsIndex);
+String fieldOptionsXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "fieldOptions" + formFieldsIndex);
 String fieldOptions = LocalizationUtil.getLocalization(fieldOptionsXml, themeDisplay.getLanguageId());
 String fieldValidationScript = StringPool.BLANK;
 String fieldValidationErrorMessage = StringPool.BLANK;
