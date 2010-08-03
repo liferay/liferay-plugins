@@ -100,7 +100,7 @@
 			</c:if>
 
 			<%
-			int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(14, user2.getUserId()).getMessageCount();
+			int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(guestGroup.getGroupId(), user2.getUserId()).getMessageCount();
 			int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
 			%>
 
@@ -110,41 +110,63 @@
 				<table class="lfr-table">
 
 				<c:if test="<%= mbMessagesCount > 0 %>">
-					<tr>
-						<td>
-							<liferay-ui:icon
-								image="view"
-								label="<%= true %>"
-								message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
-								url='<%= themeDisplay.getPathContext() + "/web/guest/community/forums/-/message_boards/recent_posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
-							/>
-						</td>
-						<td>
-							<liferay-ui:icon
-								image="rss"
-								url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=1403921&groupId=14&userId=" + user2.getUserId() %>'
-							/>
-						</td>
-					</tr>
+					<c:choose>
+						<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
+							<tr>
+								<td>
+									<liferay-ui:icon
+										image="view"
+										label="<%= true %>"
+										message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
+										url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+									/>
+								</td>
+								<td>
+									<liferay-ui:icon
+										image="rss"
+										url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
+									/>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>
+									<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</c:if>
 
 				<c:if test="<%= blogsEntriesCount > 0 %>">
-					<tr>
-						<td>
-							<liferay-ui:icon
-								image="view"
-								label="<%= true %>"
-								message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
-								url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog" %>'
-							/>
-						</td>
-						<td>
-							<liferay-ui:icon
-								image="rss"
-								url='<%= themeDisplay.getPathContext() + "/web/" + user2.getScreenName() + "/blog/-/blogs/rss" %>'
-							/>
-						</td>
-					</tr>
+					<c:choose>
+						<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
+							<tr>
+								<td>
+									<liferay-ui:icon
+										image="view"
+										label="<%= true %>"
+										message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
+										url='<%= blogsFriendlyURL %>'
+									/>
+								</td>
+								<td>
+									<liferay-ui:icon
+										image="rss"
+										url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
+									/>
+								</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td>
+									<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</c:if>
 
 				</table>

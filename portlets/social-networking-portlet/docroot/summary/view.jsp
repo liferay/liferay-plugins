@@ -14,7 +14,7 @@
  */
 %>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/summary/init.jsp" %>
 
 <c:choose>
 	<c:when test="<%= organization != null %>">
