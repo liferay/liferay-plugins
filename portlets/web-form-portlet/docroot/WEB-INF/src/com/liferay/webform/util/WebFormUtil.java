@@ -109,43 +109,6 @@ public class WebFormUtil {
 		return expandoTable;
 	}
 
-	public static String getLocalizationXml(
-		PortletPreferences preferences,  HttpServletRequest request,
-		String parameter) {
-
-		String xml = StringPool.BLANK;
-
-		Locale[] locales = LanguageUtil.getAvailableLocales();
-		Locale defaultLocale = LocaleUtil.getDefault();
-		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
-
-		for (Locale locale : locales) {
-			String languageId = LocaleUtil.toLanguageId(locale);
-			String localParameter =
-				parameter + StringPool.UNDERLINE + languageId;
-
-			String value = PrefsParamUtil.getString(
-				preferences, request, localParameter);
-
-			if (Validator.isNotNull(value)) {
-				xml = LocalizationUtil.updateLocalization(
-					xml, parameter, value ,languageId);
-			}
-		}
-
-		if (Validator.isNull(
-				LocalizationUtil.getLocalization(xml, defaultLanguageId))) {
-
-			String oldValue = PrefsParamUtil.getString(
-				preferences, request, parameter);
-
-			xml = LocalizationUtil.updateLocalization(
-				xml, parameter, oldValue);
-		}
-
-		return xml;
-	}
-
 	public static String getNewDatabaseTableName(String portletId)
 		throws SystemException {
 

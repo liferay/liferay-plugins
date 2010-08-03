@@ -17,22 +17,22 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
+String redirect = ParamUtil.getString(renderRequest, "redirect");
 
-String titleXml = WebFormUtil.getLocalizationXml(preferences, request, "title");
-String descriptionXml = WebFormUtil.getLocalizationXml(preferences, request, "description");
-boolean requireCaptcha = PrefsParamUtil.getBoolean(preferences, request, "requireCaptcha");
-String successURL = PrefsParamUtil.getString(preferences, request, "successURL");
+String titleXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "title");
+String descriptionXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "description");
+boolean requireCaptcha = PrefsParamUtil.getBoolean(preferences, renderRequest, "requireCaptcha");
+String successURL = PrefsParamUtil.getString(preferences, renderRequest, "successURL");
 
-boolean sendAsEmail = PrefsParamUtil.getBoolean(preferences, request, "sendAsEmail");
-String subject = PrefsParamUtil.getString(preferences, request, "subject");
-String emailAddress = PrefsParamUtil.getString(preferences, request, "emailAddress");
+boolean sendAsEmail = PrefsParamUtil.getBoolean(preferences, renderRequest, "sendAsEmail");
+String subject = PrefsParamUtil.getString(preferences, renderRequest, "subject");
+String emailAddress = PrefsParamUtil.getString(preferences, renderRequest, "emailAddress");
 
-boolean saveToDatabase = PrefsParamUtil.getBoolean(preferences, request, "saveToDatabase");
+boolean saveToDatabase = PrefsParamUtil.getBoolean(preferences, renderRequest, "saveToDatabase");
 String databaseTableName = preferences.getValue("databaseTableName", StringPool.BLANK);
 
-boolean saveToFile = PrefsParamUtil.getBoolean(preferences, request, "saveToFile");
-String fileName = PrefsParamUtil.getString(preferences, request, "fileName");
+boolean saveToFile = PrefsParamUtil.getBoolean(preferences, renderRequest, "saveToFile");
+String fileName = PrefsParamUtil.getString(preferences, renderRequest, "fileName");
 
 boolean fieldsEditingDisabled = false;
 
