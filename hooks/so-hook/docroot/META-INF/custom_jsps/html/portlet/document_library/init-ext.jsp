@@ -23,7 +23,7 @@ fileEntryColumns = folderColumns;
 
 mergedView = true;
 
-Format longDateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("EEE, MMM d yyyy h:mm aaa");
+Format longDateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("EEE, MMMMM d yyyy h:mm aaa", locale, timeZone);
 %>
 
 <%!
