@@ -20,6 +20,7 @@
 Group guestGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.GUEST);
 
 long blogsPlid = PortalUtil.getPlidFromPortletId(group.getGroupId(), PortletKeys.BLOGS);
+
 String blogsFriendlyURL = null;
 
 if (blogsPlid != LayoutConstants.DEFAULT_PLID) {
@@ -27,6 +28,7 @@ if (blogsPlid != LayoutConstants.DEFAULT_PLID) {
 }
 
 long mbPlid = PortalUtil.getPlidFromPortletId(guestGroup.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+
 String mbFriendlyURL = null;
 
 if (mbPlid != LayoutConstants.DEFAULT_PLID) {
