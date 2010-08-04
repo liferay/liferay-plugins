@@ -61,4 +61,57 @@ public String getFolderBreadcrumbs(long folderId, PageContext pageContext, Rende
 
 	return breadcrumb;
 }
+
+public String getOfficeDocumentType(String title) {
+	if (Validator.isNotNull(title)) {
+		String extension = FileUtil.getExtension(title);
+
+		if (extension.equalsIgnoreCase("doc") ||
+			extension.equalsIgnoreCase("dot") ||
+			extension.equalsIgnoreCase("ppt") ||
+			extension.equalsIgnoreCase("xls")) {
+
+			return "SharePoint.OpenDocuments.1";
+		}
+		else if (extension.equalsIgnoreCase("docx") ||
+				 extension.equalsIgnoreCase("pptx") ||
+				 extension.equalsIgnoreCase("xlsx")) {
+
+			return"SharePoint.OpenDocuments.2";
+		}
+	}
+
+	return null;
+}
+
+public String getWebDavUrl(DLFileEntry fileEntry, PortletDisplay portletDisplay, ThemeDisplay themeDisplay) throws Exception {
+	if (!portletDisplay.isWebDAVEnabled()) {
+		return StringPool.BLANK;
+	}
+
+	StringBuilder sb = new StringBuilder();
+
+	if (fileEntry.getFolderId() != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+		DLFolder folder = DLFolderLocalServiceUtil.getFolder(fileEntry.getFolderId());
+
+		while (true) {
+			sb.insert(0, HttpUtil.encodeURL(folder.getName(), true));
+			sb.insert(0, StringPool.SLASH);
+
+			if (folder.getParentFolderId() == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				break;
+			}
+			else {
+				folder = DLFolderLocalServiceUtil.getFolder(folder.getParentFolderId());
+			}
+		}
+	}
+
+	sb.append(StringPool.SLASH);
+	sb.append(HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getTitle()), true));
+
+	Group group = themeDisplay.getScopeGroup();
+
+	return themeDisplay.getPortalURL() + "/tunnel-web/secure/webdav" + group.getFriendlyURL() + "/document_library" + sb.toString();
+}
 %>

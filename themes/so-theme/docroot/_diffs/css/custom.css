@@ -1141,6 +1141,7 @@ table.calendar {
 .portlet-document-library .file-lock a,
 .portlet-document-library .file-lock div {
 	display: block;
+	float: left;
 	height: 16px;
 	width: 16px;
 }
@@ -1151,6 +1152,11 @@ table.calendar {
 
 .portlet-document-library .file-lock .locked {
 	background: url(../images/custom/lock_break.png) no-repeat;
+}
+
+.portlet-document-library .file-lock .online-edit {
+	background: url(../images/custom/online_edit.png) no-repeat;
+	margin-left: 3px;
 }
 
 .portlet-document-library .file-lock .unlockable {

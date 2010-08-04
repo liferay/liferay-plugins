@@ -67,6 +67,12 @@ else if (fileShortcut != null) {
 	folderId = fileShortcut.getFolderId();
 }
 
+String extension = StringPool.BLANK;
+
+if (Validator.isNotNull(fileEntry.getTitle())) {
+	extension = FileUtil.getExtension(fileEntry.getTitle());
+}
+
 PortletURL viewFolderURL = renderResponse.createRenderURL();
 
 viewFolderURL.setParameter("struts_action", "/document_library/view");
@@ -81,6 +87,39 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 					image="download"
 					message='<%= LanguageUtil.get(pageContext, "download") + " (" + TextFormatter.formatKB(fileEntry.getSize(), locale) + "k)" %>'
 					url='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + fileEntry.getFolderId() + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getTitle())) %>'
+				/>
+			</c:if>
+
+			<%
+			String officeDoc = getOfficeDocumentType(fileEntry.getTitle());
+
+			boolean viewOnlineEdit = Validator.isNotNull(officeDoc) && (!fileEntry.isLocked() || fileEntry.hasLock(user.getUserId())) && BrowserSnifferUtil.isIe(request);
+			%>
+
+			<c:if test="<%= !view && viewOnlineEdit && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE)%>">
+
+				<%
+				String webDavUrl = getWebDavUrl(fileEntry, portletDisplay, themeDisplay);
+
+				PortletURL lockURL = null;
+
+				if (!fileEntry.hasLock(user.getUserId())) {
+					lockURL = renderResponse.createActionURL();
+
+					lockURL.setParameter("struts_action", "/document_library/edit_file_entry");
+					lockURL.setParameter(Constants.CMD, Constants.LOCK);
+					lockURL.setParameter("redirect", currentURL);
+					lockURL.setParameter("folderId", String.valueOf(fileEntry.getFolderId()));
+					lockURL.setParameter("name", fileEntry.getName());
+				}
+
+				String taglibOnlineEditUrl = "javascript:" + renderResponse.getNamespace() + "openDocument('" + officeDoc + "','" + webDavUrl+ "','" + (lockURL == null ? StringPool.BLANK : lockURL.toString()) + "');";
+				%>
+
+				<liferay-ui:icon
+					image="../custom/online_edit"
+					message="edit-document-online"
+					url="<%= taglibOnlineEditUrl %>"
 				/>
 			</c:if>
 

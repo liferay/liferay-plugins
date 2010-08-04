@@ -68,7 +68,29 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					<div class="file-lock">
 						<c:choose>
 							<c:when test="<%= hasLock %>">
-								<a class="unlockable" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
+
+								<%
+								String officeDoc = getOfficeDocumentType(fileEntry.getTitle());
+								%>
+
+								<c:choose>
+									<c:when test="<%= BrowserSnifferUtil.isIe(request) && Validator.isNotNull(officeDoc) %>">
+										<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
+											<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+											<portlet:param name="display_section" value="online" />
+											<portlet:param name="redirect" value="<%= currentURL %>" />
+											<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+											<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+										</portlet:renderURL>
+
+
+										<a class="unlockable" href="javascript:;" onClick="<portlet:namespace />unlockDocument('<%= editURL %>', '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
+										<a class="online-edit" href="javascript:;" onClick="<portlet:namespace />openDocument('<%= officeDoc %>', '<%= getWebDavUrl(fileEntry, portletDisplay, themeDisplay) %>', '')"><span><liferay-ui:message key="edit-document-online" /></span></a>
+									</c:when>
+									<c:otherwise>
+										<a class="unlockable" href="javascript:;" onClick="submitForm(document.hrefFm, '<%= lockURL %>');"><span><liferay-ui:message key="unlock" /></span></a>
+									</c:otherwise>
+								</c:choose>
 							</c:when>
 							<c:when test="<%= isLocked %>">
 								<div class="locked"><span><liferay-ui:message key="unlock" /></span></div>

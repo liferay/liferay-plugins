@@ -145,6 +145,93 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 			</aui:column>
 		</aui:layout>
 
+		<c:if test="<%= BrowserSnifferUtil.isIe(request) %>">
+			<aui:script>
+				function <portlet:namespace />openDocument(officeDoc, webDavURL, lockURL) {
+					var officeDoc = new ActiveXObject(officeDoc);
+
+					officeDoc.EditDocument(webDavURL);
+
+					if (lockURL) {
+						submitForm(document.hrefFm, lockURL);
+					}
+				}
+
+				Liferay.provide(
+					window,
+					'<portlet:namespace />unlockDocument',
+					function(editURL, unlockURL) {
+						var A = AUI();
+
+						A.io.request(
+							editURL,
+							{
+								on: {
+									success: function(event, id, obj) {
+										var html = this.get('responseData');
+
+										console.log(arguments);
+
+										if (html.indexOf('no-document-changes') >= 0) {
+											submitForm(document.hrefFm, unlockURL);
+										}
+										else {
+											console.log('starting submit');
+
+											Liferay.SO.DocumentLibrary.displayPopup(html, '<liferay-ui:message key="finish-editing-online" />');
+										}
+									}
+								}
+							}
+						);
+					},
+					['aui-base', 'aui-dialog', 'aui-io']
+				);
+			</aui:script>
+
+			<aui:script use="aui-dialog">
+				Liferay.namespace('SO');
+
+				Liferay.SO.DocumentLibrary = {
+					closePopup: function() {
+						var instance = this;
+
+						var popup = instance._getPopup();
+
+						popup.hide();
+					},
+
+					displayPopup: function(html, title) {
+						var instance = this;
+
+						var popup = instance._getPopup();
+
+						popup.set('bodyContent', html);
+						popup.set('title', title);
+
+						popup.show();
+					},
+
+					_getPopup: function() {
+						var instance = this;
+
+						if (!instance._popup) {
+							instance._popup = new A.Dialog(
+								{
+									cssClass: 'document-library-dialog',
+									resizable: false,
+									width: 600,
+									xy: [15,15]
+								}
+							).render();
+						}
+
+						return instance._popup;
+					}
+				}
+			</aui:script>
+		</c:if>
+
 		<%
 		if (folder != null) {
 			DLUtil.addPortletBreadcrumbEntries(folder, request, renderResponse);
