@@ -37,6 +37,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			debug: '<%= PortletPropsValues.SHINDIG_JS_DEBUG %>',
 			moduleId: '<%= moduleId %>',
 			nocache: '<%= PortletPropsValues.SHINDIG_NO_CACHE %>',
+			portletId: '<%= portletDisplay.getId() %>',
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',
@@ -45,7 +46,8 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 					userPrefsKey: '<%= ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace()) %>'
 				}
 			),
-			view: '<%= view %>'
+			view: '<%= view %>',
+			viewParams: '<%= ParamUtil.getString(renderRequest, "viewParams") %>'
 		}
 	).render('#<portlet:namespace />gadget');
 </aui:script>

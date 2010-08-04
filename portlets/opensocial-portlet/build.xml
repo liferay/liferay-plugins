@@ -153,6 +153,17 @@
 			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
 		</replace>
 
+		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
+			<replacetoken>"profile" : {</replacetoken>
+			<replacevalue><![CDATA[
+				"home" : {
+			      "isOnlyVisible" : true,
+			      "urlTemplate" : "http://%host%/opensocial-portlet/gadgets/home{var}"
+			    },
+				"profile" : {]]>
+			</replacevalue>
+		</replace>
+	
 		<!--
 		Configure shindig.js
 		-->

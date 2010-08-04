@@ -48,6 +48,7 @@ AUI().add(
 						value: 'http://' + document.location.host,
 						setter: '_setParentUrl'
 					},
+					portletId:{},
 					rpcRelay: {},
 					rpcToken: {
 						value: Math.round(0x7FFFFFFF * Math.random())
@@ -412,6 +413,37 @@ AUI().add(
 		);
 
 		gadgets.rpc.register(
+			'requestNavigateTo',
+			function(view, viewParams) {
+				var gadget = Gadget.get(this.f);
+				var portletURL = Liferay.PortletURL.createRenderURL();
+
+				portletURL.setPortletId(gadget.get('portletId'));
+				portletURL.setParameter('returnToFullPageURL', document.location.href);
+				portletURL.setParameter('view', view);
+
+				if (view == 'default') {
+					portletURL.setWindowState('normal');
+				}
+				else if (view == 'canvas') {
+					portletURL.setWindowState('maximized');
+				} 
+				else if (view == 'home') {
+					portletURL.setWindowState('normal');
+				} 
+				else if (view == 'profile') {
+					portletURL.setWindowState('normal');
+				} 
+
+				if (typeof viewParams === 'string') {
+					portletURL.setParameter('viewParams', viewParams);
+				}
+
+				document.location.href = portletURL.toString();
+			}
+		);
+
+		gadgets.rpc.register(
 			'set_pref',
 			 function(editToken, name, value) {
 				var gadget = Gadget.get(this.f);
@@ -431,7 +463,6 @@ AUI().add(
 			}
 		);
 		gadgets.rpc.register('set_title', Lang.emptyFn);
-		gadgets.rpc.register('requestNavigateTo', Lang.emptyFn);
 		gadgets.rpc.register('requestSendMessage', Lang.emptyFn);
 
 		var OpenSocial = Liferay.namespace('OpenSocial');
@@ -441,7 +472,7 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-io', 'cookie', 'json', 'liferay-service', 'querystring', 'substitute'],
+		requires: ['aui-base', 'aui-io', 'cookie', 'json', 'liferay-portlet-url', 'liferay-service', 'querystring', 'substitute'],
 		use: []
 	}
 );
