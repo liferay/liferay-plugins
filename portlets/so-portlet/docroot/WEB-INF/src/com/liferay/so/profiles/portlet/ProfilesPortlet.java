@@ -35,6 +35,7 @@ import com.liferay.portal.UserIdException;
 import com.liferay.portal.UserPasswordException;
 import com.liferay.portal.WebsiteURLException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
@@ -247,15 +248,14 @@ public class ProfilesPortlet extends MVCPortlet {
 		List<UserGroupRole> userGroupRoles = null;
 		long[] userGroupIds = null;
 		List<Address> addresses = (List<Address>)PortalClassInvoker.invoke(
-			_CLASS_NAME_ENTERPRISE_ADMIN_UTIL, "getAddresses", actionRequest);
+			true, _GET_ADDRESSES_METHOD_KEY, actionRequest);
 		List<EmailAddress> emailAddresses =
 			(List<EmailAddress>)PortalClassInvoker.invoke(
-				_CLASS_NAME_ENTERPRISE_ADMIN_UTIL, "getEmailAddresses",
-					actionRequest);
+				true, _GET_EMAIL_ADDRESSES_METHOD_KEY, actionRequest);
 		List<Phone> phones = (List<Phone>)PortalClassInvoker.invoke(
-			_CLASS_NAME_ENTERPRISE_ADMIN_UTIL, "getPhones", actionRequest);
+			true, _GET_PHONES_METHOD_KEY, actionRequest);
 		List<Website> websites = (List<Website>)PortalClassInvoker.invoke(
-			_CLASS_NAME_ENTERPRISE_ADMIN_UTIL, "getWebsites", actionRequest);
+			true, _GET_WEBSITES_METHOD_KEY, actionRequest);
 		List<AnnouncementsDelivery> announcementsDeliveries =
 			new ArrayList<AnnouncementsDelivery>();
 
@@ -422,7 +422,19 @@ public class ProfilesPortlet extends MVCPortlet {
 		}
 	}
 
-	private static final String _CLASS_NAME_ENTERPRISE_ADMIN_UTIL =
+	private static final String _CLASS =
 		"com.liferay.portlet.enterpriseadmin.util.EnterpriseAdminUtil";
+
+	private static final MethodKey _GET_ADDRESSES_METHOD_KEY =
+		new MethodKey(_CLASS, "getAddresses", ActionRequest.class);
+
+	private static final MethodKey _GET_EMAIL_ADDRESSES_METHOD_KEY =
+		new MethodKey(_CLASS, "getEmailAddresses", ActionRequest.class);
+
+	private static final MethodKey _GET_PHONES_METHOD_KEY =
+		new MethodKey(_CLASS, "getPhones", ActionRequest.class);
+
+	private static final MethodKey _GET_WEBSITES_METHOD_KEY =
+		new MethodKey(_CLASS, "getWebsites", ActionRequest.class);
 
 }

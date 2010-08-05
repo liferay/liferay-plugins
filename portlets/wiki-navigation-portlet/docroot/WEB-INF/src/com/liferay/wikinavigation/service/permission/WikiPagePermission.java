@@ -16,6 +16,7 @@ package com.liferay.wikinavigation.service.permission;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.wiki.model.WikiPage;
@@ -31,12 +32,9 @@ public class WikiPagePermission {
 		String actionId) {
 
 		try {
-			Object[] args = new Object[] {
-				permissionChecker, wikiPage, actionId
-			};
-
 			return (Boolean)PortalClassInvoker.invoke(
-				_CLASS_NAME_WIKI_PAGE_PERMISSION, "contains", args);
+				true, _CONTAINS_METHOD_KEY, permissionChecker, wikiPage,
+				actionId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -47,7 +45,9 @@ public class WikiPagePermission {
 
 	private static Log _log = LogFactoryUtil.getLog(WikiPagePermission.class);
 
-	private static final String _CLASS_NAME_WIKI_PAGE_PERMISSION =
-		"com.liferay.portlet.wiki.service.permission.WikiPagePermission";
+	private static final MethodKey _CONTAINS_METHOD_KEY =
+		new MethodKey(
+			"com.liferay.portlet.wiki.service.permission.WikiPagePermission",
+			"contains", PermissionChecker.class, WikiPage.class, String.class);
 
 }
