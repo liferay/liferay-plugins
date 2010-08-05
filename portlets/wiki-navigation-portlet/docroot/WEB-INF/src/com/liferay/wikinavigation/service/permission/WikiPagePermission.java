@@ -33,7 +33,7 @@ public class WikiPagePermission {
 
 		try {
 			return (Boolean)PortalClassInvoker.invoke(
-				true, _CONTAINS_METHOD_KEY, permissionChecker, wikiPage,
+				true, _containsMethodKey, permissionChecker, wikiPage,
 				actionId);
 		}
 		catch (Exception e) {
@@ -45,8 +45,7 @@ public class WikiPagePermission {
 
 	private static Log _log = LogFactoryUtil.getLog(WikiPagePermission.class);
 
-	private static final MethodKey _CONTAINS_METHOD_KEY =
-		new MethodKey(
+	private static MethodKey _containsMethodKey = new MethodKey(
 			"com.liferay.portlet.wiki.service.permission.WikiPagePermission",
 			"contains", PermissionChecker.class, WikiPage.class, String.class);
 

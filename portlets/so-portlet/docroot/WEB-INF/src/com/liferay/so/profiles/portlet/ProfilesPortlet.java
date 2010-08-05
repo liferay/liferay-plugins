@@ -248,14 +248,14 @@ public class ProfilesPortlet extends MVCPortlet {
 		List<UserGroupRole> userGroupRoles = null;
 		long[] userGroupIds = null;
 		List<Address> addresses = (List<Address>)PortalClassInvoker.invoke(
-			true, _GET_ADDRESSES_METHOD_KEY, actionRequest);
+			true, _getAddressesMethodKey, actionRequest);
 		List<EmailAddress> emailAddresses =
 			(List<EmailAddress>)PortalClassInvoker.invoke(
-				true, _GET_EMAIL_ADDRESSES_METHOD_KEY, actionRequest);
+				true, _getEmailAddressesMethodKey, actionRequest);
 		List<Phone> phones = (List<Phone>)PortalClassInvoker.invoke(
-			true, _GET_PHONES_METHOD_KEY, actionRequest);
+			true, _getPhonesMethodKey, actionRequest);
 		List<Website> websites = (List<Website>)PortalClassInvoker.invoke(
-			true, _GET_WEBSITES_METHOD_KEY, actionRequest);
+			true, _getWebsitesMethodKey, actionRequest);
 		List<AnnouncementsDelivery> announcementsDeliveries =
 			new ArrayList<AnnouncementsDelivery>();
 
@@ -422,19 +422,16 @@ public class ProfilesPortlet extends MVCPortlet {
 		}
 	}
 
-	private static final String _CLASS =
+	private static final String _CLASS_NAME =
 		"com.liferay.portlet.enterpriseadmin.util.EnterpriseAdminUtil";
 
-	private static final MethodKey _GET_ADDRESSES_METHOD_KEY =
-		new MethodKey(_CLASS, "getAddresses", ActionRequest.class);
-
-	private static final MethodKey _GET_EMAIL_ADDRESSES_METHOD_KEY =
-		new MethodKey(_CLASS, "getEmailAddresses", ActionRequest.class);
-
-	private static final MethodKey _GET_PHONES_METHOD_KEY =
-		new MethodKey(_CLASS, "getPhones", ActionRequest.class);
-
-	private static final MethodKey _GET_WEBSITES_METHOD_KEY =
-		new MethodKey(_CLASS, "getWebsites", ActionRequest.class);
+	private static MethodKey _getAddressesMethodKey = new MethodKey(
+		_CLASS_NAME, "getAddresses", ActionRequest.class);
+	private static MethodKey _getEmailAddressesMethodKey = new MethodKey(
+		_CLASS_NAME, "getEmailAddresses", ActionRequest.class);
+	private static MethodKey _getPhonesMethodKey = new MethodKey(
+		_CLASS_NAME, "getPhones", ActionRequest.class);
+	private static MethodKey _getWebsitesMethodKey = new MethodKey(
+		_CLASS_NAME, "getWebsites", ActionRequest.class);
 
 }
