@@ -416,6 +416,7 @@ AUI().add(
 			'requestNavigateTo',
 			function(view, viewParams) {
 				var gadget = Gadget.get(this.f);
+
 				var portletURL = Liferay.PortletURL.createRenderURL();
 
 				portletURL.setPortletId(gadget.get('portletId'));
