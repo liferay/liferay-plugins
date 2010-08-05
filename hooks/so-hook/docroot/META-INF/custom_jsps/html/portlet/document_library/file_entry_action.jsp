@@ -96,7 +96,7 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 			boolean viewOnlineEdit = Validator.isNotNull(officeDoc) && (!fileEntry.isLocked() || fileEntry.hasLock(user.getUserId())) && BrowserSnifferUtil.isIe(request);
 			%>
 
-			<c:if test="<%= !view && viewOnlineEdit && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE)%>">
+			<c:if test="<%= !view && viewOnlineEdit && DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE) %>">
 
 				<%
 				String webDavUrl = getWebDavUrl(fileEntry, portletDisplay, themeDisplay);

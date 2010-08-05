@@ -3,19 +3,19 @@
 
 <routes>
 	<route>
-		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}</pattern>
-		<implicit-parameter name="jspPage">/display/view_article.jsp</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}/history</pattern>
-		<implicit-parameter name="jspPage">/display/history.jsp</implicit-parameter>
-	</route>
-	<route>
 		<pattern>/{instanceId}/rss</pattern>
 		<ignored-parameter name="jspPage" />
 		<ignored-parameter name="p_p_state" />
 		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
 		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}</pattern>
+		<implicit-parameter name="jspPage">/display/view_article.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/{instanceId}/article/{resourcePrimKey:\d+}/history</pattern>
+		<implicit-parameter name="jspPage">/display/history.jsp</implicit-parameter>
 	</route>
 </routes>

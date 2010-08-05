@@ -3,24 +3,6 @@
 
 <routes>
 	<route>
-		<pattern>/all-articles</pattern>
-		<implicit-parameter name="jspPage">/admin/view_all_articles.jsp</implicit-parameter>
-		<implicit-parameter name="topLink">all-articles</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/article/{resourcePrimKey:\d+}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_article.jsp</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/article/{resourcePrimKey:\d+}/history</pattern>
-		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/home</pattern>
-		<implicit-parameter name="jspPage">/admin/view.jsp</implicit-parameter>
-		<implicit-parameter name="topLink">home</implicit-parameter>
-	</route>
-	<route>
 		<pattern>/rss</pattern>
 		<ignored-parameter name="jspPage" />
 		<ignored-parameter name="p_p_state" />
@@ -29,12 +11,30 @@
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/template/{templateId:\d+}</pattern>
-		<implicit-parameter name="jspPage">/admin/view_template.jsp</implicit-parameter>
+		<pattern>/all-articles</pattern>
+		<implicit-parameter name="jspPage">/admin/view_all_articles.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">all-articles</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/home</pattern>
+		<implicit-parameter name="jspPage">/admin/view.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">home</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/templates</pattern>
 		<implicit-parameter name="jspPage">/admin/view_templates.jsp</implicit-parameter>
 		<implicit-parameter name="topLink">templates</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/article/{resourcePrimKey:\d+}</pattern>
+		<implicit-parameter name="jspPage">/admin/view_article.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/template/{templateId:\d+}</pattern>
+		<implicit-parameter name="jspPage">/admin/view_template.jsp</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/article/{resourcePrimKey:\d+}/history</pattern>
+		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
 	</route>
 </routes>

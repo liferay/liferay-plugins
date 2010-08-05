@@ -3,9 +3,10 @@
 
 <routes>
 	<route>
-		<pattern>/rss/user/portal/trunk</pattern>
+		<pattern>/rss/all/plugin/trunk</pattern>
+		<implicit-parameter name="all">1</implicit-parameter>
 		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
-		<implicit-parameter name="url">/portal/trunk</implicit-parameter>
+		<implicit-parameter name="url">/plugin/trunk</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/rss/all/portal/trunk</pattern>
@@ -19,9 +20,8 @@
 		<implicit-parameter name="url">/plugin/trunk</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/rss/all/plugin/trunk</pattern>
-		<implicit-parameter name="all">1</implicit-parameter>
+		<pattern>/rss/user/portal/trunk</pattern>
 		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
-		<implicit-parameter name="url">/plugin/trunk</implicit-parameter>
+		<implicit-parameter name="url">/portal/trunk</implicit-parameter>
 	</route>
 </routes>
