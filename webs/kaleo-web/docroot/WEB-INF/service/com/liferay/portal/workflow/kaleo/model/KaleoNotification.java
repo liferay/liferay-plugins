@@ -21,6 +21,10 @@ package com.liferay.portal.workflow.kaleo.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a kaleo notification model instance should use the {@link KaleoNotification} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see KaleoNotificationModel
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoNotificationImpl

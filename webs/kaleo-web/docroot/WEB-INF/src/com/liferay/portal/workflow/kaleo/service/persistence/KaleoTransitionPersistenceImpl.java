@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo transition service.
+ * The persistence implementation for the kaleo transition service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoTransitionUtil} to access the kaleo transition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -213,7 +213,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	}
 
 	/**
-	 * Creates a new kaleo transition with the primary key.
+	 * Creates a new kaleo transition with the primary key. Does not add the kaleo transition to the database.
 	 *
 	 * @param kaleoTransitionId the primary key for the new kaleo transition
 	 * @return the new kaleo transition

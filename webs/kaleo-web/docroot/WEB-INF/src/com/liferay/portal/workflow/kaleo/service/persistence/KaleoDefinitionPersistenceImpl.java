@@ -55,10 +55,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo definition service.
+ * The persistence implementation for the kaleo definition service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoDefinitionUtil} to access the kaleo definition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -220,7 +220,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	}
 
 	/**
-	 * Creates a new kaleo definition with the primary key.
+	 * Creates a new kaleo definition with the primary key. Does not add the kaleo definition to the database.
 	 *
 	 * @param kaleoDefinitionId the primary key for the new kaleo definition
 	 * @return the new kaleo definition

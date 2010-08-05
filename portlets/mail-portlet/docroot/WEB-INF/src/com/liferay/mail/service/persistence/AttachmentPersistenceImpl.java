@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the attachment service.
+ * The persistence implementation for the attachment service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link AttachmentUtil} to access the attachment persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -142,7 +142,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	}
 
 	/**
-	 * Creates a new attachment with the primary key.
+	 * Creates a new attachment with the primary key. Does not add the attachment to the database.
 	 *
 	 * @param attachmentId the primary key for the new attachment
 	 * @return the new attachment

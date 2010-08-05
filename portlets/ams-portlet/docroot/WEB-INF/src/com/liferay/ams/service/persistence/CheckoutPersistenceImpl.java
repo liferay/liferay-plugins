@@ -49,10 +49,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the checkout service.
+ * The persistence implementation for the checkout service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link CheckoutUtil} to access the checkout persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -128,7 +128,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	}
 
 	/**
-	 * Creates a new checkout with the primary key.
+	 * Creates a new checkout with the primary key. Does not add the checkout to the database.
 	 *
 	 * @param checkoutId the primary key for the new checkout
 	 * @return the new checkout

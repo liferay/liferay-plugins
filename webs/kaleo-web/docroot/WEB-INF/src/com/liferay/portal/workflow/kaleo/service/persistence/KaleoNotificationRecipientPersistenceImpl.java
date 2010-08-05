@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo notification recipient service.
+ * The persistence implementation for the kaleo notification recipient service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoNotificationRecipientUtil} to access the kaleo notification recipient persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -177,7 +177,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	}
 
 	/**
-	 * Creates a new kaleo notification recipient with the primary key.
+	 * Creates a new kaleo notification recipient with the primary key. Does not add the kaleo notification recipient to the database.
 	 *
 	 * @param kaleoNotificationRecipientId the primary key for the new kaleo notification recipient
 	 * @return the new kaleo notification recipient

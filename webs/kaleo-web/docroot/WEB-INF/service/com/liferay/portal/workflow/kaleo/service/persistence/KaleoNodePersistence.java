@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
  * The persistence interface for the kaleo node service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoNodeUtil} to access the kaleo node persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNode> kaleoNodes);
 
 	/**
-	* Creates a new kaleo node with the primary key.
+	* Creates a new kaleo node with the primary key. Does not add the kaleo node to the database.
 	*
 	* @param kaleoNodeId the primary key for the new kaleo node
 	* @return the new kaleo node

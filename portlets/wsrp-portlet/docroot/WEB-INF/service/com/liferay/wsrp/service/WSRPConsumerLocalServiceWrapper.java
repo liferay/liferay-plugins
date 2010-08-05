@@ -29,23 +29,49 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		_wsrpConsumerLocalService = wsrpConsumerLocalService;
 	}
 
+	/**
+	* Adds the w s r p consumer to the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumer the w s r p consumer to add
+	* @return the w s r p consumer that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.addWSRPConsumer(wsrpConsumer);
 	}
 
+	/**
+	* Creates a new w s r p consumer with the primary key. Does not add the w s r p consumer to the database.
+	*
+	* @param wsrpConsumerId the primary key for the new w s r p consumer
+	* @return the new w s r p consumer
+	*/
 	public com.liferay.wsrp.model.WSRPConsumer createWSRPConsumer(
 		long wsrpConsumerId) {
 		return _wsrpConsumerLocalService.createWSRPConsumer(wsrpConsumerId);
 	}
 
+	/**
+	* Deletes the w s r p consumer with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumerId the primary key of the w s r p consumer to delete
+	* @throws PortalException if a w s r p consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteWSRPConsumer(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_wsrpConsumerLocalService.deleteWSRPConsumer(wsrpConsumerId);
 	}
 
+	/**
+	* Deletes the w s r p consumer from the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumer the w s r p consumer to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -53,6 +79,13 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		_wsrpConsumerLocalService.deleteWSRPConsumer(wsrpConsumer);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -60,6 +93,19 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService.dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -67,6 +113,20 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -77,12 +137,27 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 			orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the w s r p consumer with the primary key.
+	*
+	* @param wsrpConsumerId the primary key of the w s r p consumer to get
+	* @return the w s r p consumer
+	* @throws PortalException if a w s r p consumer with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
 		long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -90,23 +165,56 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService.getWSRPConsumer(wsrpConsumerId);
 	}
 
+	/**
+	* Gets a range of all the w s r p consumers.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of w s r p consumers to return
+	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
+	* @return the range of w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.getWSRPConsumers(start, end);
 	}
 
+	/**
+	* Gets the number of w s r p consumers.
+	*
+	* @return the number of w s r p consumers
+	* @throws SystemException if a system exception occurred
+	*/
 	public int getWSRPConsumersCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.getWSRPConsumersCount();
 	}
 
+	/**
+	* Updates the w s r p consumer in the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumer the w s r p consumer to update
+	* @return the w s r p consumer that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.updateWSRPConsumer(wsrpConsumer);
 	}
 
+	/**
+	* Updates the w s r p consumer in the database. Also notifies the appropriate model listeners.
+	*
+	* @param wsrpConsumer the w s r p consumer to update
+	* @param merge whether to merge the w s r p consumer with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the w s r p consumer that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {

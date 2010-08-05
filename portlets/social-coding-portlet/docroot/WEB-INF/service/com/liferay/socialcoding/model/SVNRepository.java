@@ -21,6 +21,10 @@ package com.liferay.socialcoding.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRepositoryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a s v n repository model instance should use the {@link SVNRepository} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see SVNRepositoryModel
  * @see com.liferay.socialcoding.model.impl.SVNRepositoryImpl

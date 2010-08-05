@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the wall entry service.
+ * The persistence implementation for the wall entry service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link WallEntryUtil} to access the wall entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -167,7 +167,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	}
 
 	/**
-	 * Creates a new wall entry with the primary key.
+	 * Creates a new wall entry with the primary key. Does not add the wall entry to the database.
 	 *
 	 * @param wallEntryId the primary key for the new wall entry
 	 * @return the new wall entry

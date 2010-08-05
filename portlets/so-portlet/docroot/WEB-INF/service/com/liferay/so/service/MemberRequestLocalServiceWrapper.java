@@ -30,29 +30,62 @@ public class MemberRequestLocalServiceWrapper
 		_memberRequestLocalService = memberRequestLocalService;
 	}
 
+	/**
+	* Adds the member request to the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request to add
+	* @return the member request that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.so.model.MemberRequest addMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.addMemberRequest(memberRequest);
 	}
 
+	/**
+	* Creates a new member request with the primary key. Does not add the member request to the database.
+	*
+	* @param memberRequestId the primary key for the new member request
+	* @return the new member request
+	*/
 	public com.liferay.so.model.MemberRequest createMemberRequest(
 		long memberRequestId) {
 		return _memberRequestLocalService.createMemberRequest(memberRequestId);
 	}
 
+	/**
+	* Deletes the member request with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequestId the primary key of the member request to delete
+	* @throws PortalException if a member request with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteMemberRequest(long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.deleteMemberRequest(memberRequestId);
 	}
 
+	/**
+	* Deletes the member request from the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_memberRequestLocalService.deleteMemberRequest(memberRequest);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -60,6 +93,19 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService.dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -67,6 +113,20 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -77,12 +137,27 @@ public class MemberRequestLocalServiceWrapper
 			end, orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the member request with the primary key.
+	*
+	* @param memberRequestId the primary key of the member request to get
+	* @return the member request
+	* @throws PortalException if a member request with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.so.model.MemberRequest getMemberRequest(
 		long memberRequestId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -90,23 +165,56 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService.getMemberRequest(memberRequestId);
 	}
 
+	/**
+	* Gets a range of all the member requests.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of member requests to return
+	* @param end the upper bound of the range of member requests to return (not inclusive)
+	* @return the range of member requests
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.so.model.MemberRequest> getMemberRequests(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getMemberRequests(start, end);
 	}
 
+	/**
+	* Gets the number of member requests.
+	*
+	* @return the number of member requests
+	* @throws SystemException if a system exception occurred
+	*/
 	public int getMemberRequestsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.getMemberRequestsCount();
 	}
 
+	/**
+	* Updates the member request in the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request to update
+	* @return the member request that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequestLocalService.updateMemberRequest(memberRequest);
 	}
 
+	/**
+	* Updates the member request in the database. Also notifies the appropriate model listeners.
+	*
+	* @param memberRequest the member request to update
+	* @param merge whether to merge the member request with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the member request that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		com.liferay.so.model.MemberRequest memberRequest, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {

@@ -52,10 +52,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the s v n repository service.
+ * The persistence implementation for the s v n repository service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link SVNRepositoryUtil} to access the s v n repository persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -147,7 +147,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	}
 
 	/**
-	 * Creates a new s v n repository with the primary key.
+	 * Creates a new s v n repository with the primary key. Does not add the s v n repository to the database.
 	 *
 	 * @param svnRepositoryId the primary key for the new s v n repository
 	 * @return the new s v n repository

@@ -18,42 +18,79 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
+ * The utility for the kaleo definition local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ *
  * <p>
- * This class provides static methods for the
- * {@link KaleoDefinitionLocalService} bean. The static methods of
- * this class calls the same methods of the bean instance. It's convenient to be
- * able to just write one line to call a method on a bean instead of writing a
- * lookup call and a method call.
+ * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoDefinitionLocalService
+ * <p>
+ * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see KaleoDefinitionLocalService
+ * @see com.liferay.portal.workflow.kaleo.service.base.KaleoDefinitionLocalServiceBaseImpl
+ * @see com.liferay.portal.workflow.kaleo.service.impl.KaleoDefinitionLocalServiceImpl
  * @generated
  */
 public class KaleoDefinitionLocalServiceUtil {
+	/**
+	* Adds the kaleo definition to the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinition the kaleo definition to add
+	* @return the kaleo definition that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition addKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().addKaleoDefinition(kaleoDefinition);
 	}
 
+	/**
+	* Creates a new kaleo definition with the primary key. Does not add the kaleo definition to the database.
+	*
+	* @param kaleoDefinitionId the primary key for the new kaleo definition
+	* @return the new kaleo definition
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition createKaleoDefinition(
 		long kaleoDefinitionId) {
 		return getService().createKaleoDefinition(kaleoDefinitionId);
 	}
 
+	/**
+	* Deletes the kaleo definition with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinitionId the primary key of the kaleo definition to delete
+	* @throws PortalException if a kaleo definition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void deleteKaleoDefinition(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteKaleoDefinition(kaleoDefinitionId);
 	}
 
+	/**
+	* Deletes the kaleo definition from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinition the kaleo definition to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void deleteKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteKaleoDefinition(kaleoDefinition);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -61,6 +98,19 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -68,6 +118,20 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -78,12 +142,27 @@ public class KaleoDefinitionLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the kaleo definition with the primary key.
+	*
+	* @param kaleoDefinitionId the primary key of the kaleo definition to get
+	* @return the kaleo definition
+	* @throws PortalException if a kaleo definition with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -91,23 +170,56 @@ public class KaleoDefinitionLocalServiceUtil {
 		return getService().getKaleoDefinition(kaleoDefinitionId);
 	}
 
+	/**
+	* Gets a range of all the kaleo definitions.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of kaleo definitions to return
+	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
+	* @return the range of kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> getKaleoDefinitions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKaleoDefinitions(start, end);
 	}
 
+	/**
+	* Gets the number of kaleo definitions.
+	*
+	* @return the number of kaleo definitions
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int getKaleoDefinitionsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKaleoDefinitionsCount();
 	}
 
+	/**
+	* Updates the kaleo definition in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinition the kaleo definition to update
+	* @return the kaleo definition that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateKaleoDefinition(kaleoDefinition);
 	}
 
+	/**
+	* Updates the kaleo definition in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoDefinition the kaleo definition to update
+	* @param merge whether to merge the kaleo definition with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the kaleo definition that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoDefinition updateKaleoDefinition(
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition,
 		boolean merge)

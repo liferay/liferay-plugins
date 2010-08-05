@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
  * The persistence interface for the kaleo definition service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoDefinitionUtil} to access the kaleo definition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoDefinition> kaleoDefinitions);
 
 	/**
-	* Creates a new kaleo definition with the primary key.
+	* Creates a new kaleo definition with the primary key. Does not add the kaleo definition to the database.
 	*
 	* @param kaleoDefinitionId the primary key for the new kaleo definition
 	* @return the new kaleo definition

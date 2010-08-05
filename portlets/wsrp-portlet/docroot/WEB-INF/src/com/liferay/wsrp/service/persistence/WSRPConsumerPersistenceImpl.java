@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the w s r p consumer service.
+ * The persistence implementation for the w s r p consumer service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link WSRPConsumerUtil} to access the w s r p consumer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -143,7 +143,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	}
 
 	/**
-	 * Creates a new w s r p consumer with the primary key.
+	 * Creates a new w s r p consumer with the primary key. Does not add the w s r p consumer to the database.
 	 *
 	 * @param wsrpConsumerId the primary key for the new w s r p consumer
 	 * @return the new w s r p consumer

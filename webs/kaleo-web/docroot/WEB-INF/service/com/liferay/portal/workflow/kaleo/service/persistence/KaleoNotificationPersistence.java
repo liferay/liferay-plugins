@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
  * The persistence interface for the kaleo notification service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoNotificationUtil} to access the kaleo notification persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotification> kaleoNotifications);
 
 	/**
-	* Creates a new kaleo notification with the primary key.
+	* Creates a new kaleo notification with the primary key. Does not add the kaleo notification to the database.
 	*
 	* @param kaleoNotificationId the primary key for the new kaleo notification
 	* @return the new kaleo notification

@@ -52,10 +52,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the w s r p consumer portlet service.
+ * The persistence implementation for the w s r p consumer portlet service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link WSRPConsumerPortletUtil} to access the w s r p consumer portlet persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -168,7 +168,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	}
 
 	/**
-	 * Creates a new w s r p consumer portlet with the primary key.
+	 * Creates a new w s r p consumer portlet with the primary key. Does not add the w s r p consumer portlet to the database.
 	 *
 	 * @param wsrpConsumerPortletId the primary key for the new w s r p consumer portlet
 	 * @return the new w s r p consumer portlet

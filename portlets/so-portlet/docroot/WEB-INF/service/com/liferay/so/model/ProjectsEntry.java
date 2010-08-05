@@ -21,6 +21,10 @@ package com.liferay.so.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.ProjectsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a projects entry model instance should use the {@link ProjectsEntry} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see ProjectsEntryModel
  * @see com.liferay.so.model.impl.ProjectsEntryImpl

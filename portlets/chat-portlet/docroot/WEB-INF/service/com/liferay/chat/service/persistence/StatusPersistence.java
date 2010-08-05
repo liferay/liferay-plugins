@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the status service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link StatusUtil} to access the status persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 		java.util.List<com.liferay.chat.model.Status> statuses);
 
 	/**
-	* Creates a new status with the primary key.
+	* Creates a new status with the primary key. Does not add the status to the database.
 	*
 	* @param statusId the primary key for the new status
 	* @return the new status

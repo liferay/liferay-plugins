@@ -21,6 +21,10 @@ package com.liferay.so.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.so.model.impl.MemberRequestImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a member request model instance should use the {@link MemberRequest} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see MemberRequestModel
  * @see com.liferay.so.model.impl.MemberRequestImpl

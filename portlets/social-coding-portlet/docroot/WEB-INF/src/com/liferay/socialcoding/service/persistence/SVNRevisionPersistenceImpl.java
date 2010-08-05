@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the s v n revision service.
+ * The persistence implementation for the s v n revision service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link SVNRevisionUtil} to access the s v n revision persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -167,7 +167,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	}
 
 	/**
-	 * Creates a new s v n revision with the primary key.
+	 * Creates a new s v n revision with the primary key. Does not add the s v n revision to the database.
 	 *
 	 * @param svnRevisionId the primary key for the new s v n revision
 	 * @return the new s v n revision

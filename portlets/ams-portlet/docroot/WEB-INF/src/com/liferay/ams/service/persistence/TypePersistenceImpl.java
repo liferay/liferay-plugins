@@ -49,10 +49,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the type service.
+ * The persistence implementation for the type service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link TypeUtil} to access the type persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -127,7 +127,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	/**
-	 * Creates a new type with the primary key.
+	 * Creates a new type with the primary key. Does not add the type to the database.
 	 *
 	 * @param typeId the primary key for the new type
 	 * @return the new type

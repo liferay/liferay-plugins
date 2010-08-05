@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the asset service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link AssetUtil} to access the asset persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -46,7 +50,7 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	public void cacheResult(java.util.List<com.liferay.ams.model.Asset> assets);
 
 	/**
-	* Creates a new asset with the primary key.
+	* Creates a new asset with the primary key. Does not add the asset to the database.
 	*
 	* @param assetId the primary key for the new asset
 	* @return the new asset

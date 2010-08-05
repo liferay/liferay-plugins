@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoAction;
  * The persistence interface for the kaleo action service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoActionUtil} to access the kaleo action persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoAction> kaleoActions);
 
 	/**
-	* Creates a new kaleo action with the primary key.
+	* Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
 	*
 	* @param kaleoActionId the primary key for the new kaleo action
 	* @return the new kaleo action

@@ -22,7 +22,11 @@ import com.liferay.socialnetworking.model.MeetupsEntry;
  * The persistence interface for the meetups entry service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link MeetupsEntryUtil} to access the meetups entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -48,7 +52,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 		java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> meetupsEntries);
 
 	/**
-	* Creates a new meetups entry with the primary key.
+	* Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
 	*
 	* @param meetupsEntryId the primary key for the new meetups entry
 	* @return the new meetups entry

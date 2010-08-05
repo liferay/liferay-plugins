@@ -22,7 +22,11 @@ import com.liferay.sampleservicebuilder.model.Foo;
  * The persistence interface for the foo service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link FooUtil} to access the foo persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 		java.util.List<com.liferay.sampleservicebuilder.model.Foo> foos);
 
 	/**
-	* Creates a new foo with the primary key.
+	* Creates a new foo with the primary key. Does not add the foo to the database.
 	*
 	* @param fooId the primary key for the new foo
 	* @return the new foo

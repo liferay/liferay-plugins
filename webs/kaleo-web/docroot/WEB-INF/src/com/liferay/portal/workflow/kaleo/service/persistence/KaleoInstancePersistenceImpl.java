@@ -52,10 +52,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The persistence for the kaleo instance service.
+ * The persistence implementation for the kaleo instance service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoInstanceUtil} to access the kaleo instance persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -189,7 +189,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	}
 
 	/**
-	 * Creates a new kaleo instance with the primary key.
+	 * Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
 	 *
 	 * @param kaleoInstanceId the primary key for the new kaleo instance
 	 * @return the new kaleo instance

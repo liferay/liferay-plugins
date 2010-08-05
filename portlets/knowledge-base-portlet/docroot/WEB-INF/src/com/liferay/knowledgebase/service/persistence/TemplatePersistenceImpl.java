@@ -58,10 +58,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the template service.
+ * The persistence implementation for the template service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link TemplateUtil} to access the template persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -176,7 +176,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	}
 
 	/**
-	 * Creates a new template with the primary key.
+	 * Creates a new template with the primary key. Does not add the template to the database.
 	 *
 	 * @param templateId the primary key for the new template
 	 * @return the new template

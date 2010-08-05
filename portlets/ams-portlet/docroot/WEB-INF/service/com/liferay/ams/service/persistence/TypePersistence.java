@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the type service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link TypeUtil} to access the type persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -46,7 +50,7 @@ public interface TypePersistence extends BasePersistence<Type> {
 	public void cacheResult(java.util.List<com.liferay.ams.model.Type> types);
 
 	/**
-	* Creates a new type with the primary key.
+	* Creates a new type with the primary key. Does not add the type to the database.
 	*
 	* @param typeId the primary key for the new type
 	* @return the new type

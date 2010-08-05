@@ -30,29 +30,62 @@ public class KaleoInstanceLocalServiceWrapper
 		_kaleoInstanceLocalService = kaleoInstanceLocalService;
 	}
 
+	/**
+	* Adds the kaleo instance to the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstance the kaleo instance to add
+	* @return the kaleo instance that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance addKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.addKaleoInstance(kaleoInstance);
 	}
 
+	/**
+	* Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
+	*
+	* @param kaleoInstanceId the primary key for the new kaleo instance
+	* @return the new kaleo instance
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance createKaleoInstance(
 		long kaleoInstanceId) {
 		return _kaleoInstanceLocalService.createKaleoInstance(kaleoInstanceId);
 	}
 
+	/**
+	* Deletes the kaleo instance with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstanceId the primary key of the kaleo instance to delete
+	* @throws PortalException if a kaleo instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteKaleoInstance(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kaleoInstanceLocalService.deleteKaleoInstance(kaleoInstanceId);
 	}
 
+	/**
+	* Deletes the kaleo instance from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstance the kaleo instance to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoInstanceLocalService.deleteKaleoInstance(kaleoInstance);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -60,6 +93,19 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -67,6 +113,20 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -77,12 +137,27 @@ public class KaleoInstanceLocalServiceWrapper
 			end, orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the kaleo instance with the primary key.
+	*
+	* @param kaleoInstanceId the primary key of the kaleo instance to get
+	* @return the kaleo instance
+	* @throws PortalException if a kaleo instance with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance getKaleoInstance(
 		long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -90,23 +165,56 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService.getKaleoInstance(kaleoInstanceId);
 	}
 
+	/**
+	* Gets a range of all the kaleo instances.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of kaleo instances to return
+	* @param end the upper bound of the range of kaleo instances to return (not inclusive)
+	* @return the range of kaleo instances
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> getKaleoInstances(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.getKaleoInstances(start, end);
 	}
 
+	/**
+	* Gets the number of kaleo instances.
+	*
+	* @return the number of kaleo instances
+	* @throws SystemException if a system exception occurred
+	*/
 	public int getKaleoInstancesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.getKaleoInstancesCount();
 	}
 
+	/**
+	* Updates the kaleo instance in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstance the kaleo instance to update
+	* @return the kaleo instance that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstanceLocalService.updateKaleoInstance(kaleoInstance);
 	}
 
+	/**
+	* Updates the kaleo instance in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoInstance the kaleo instance to update
+	* @param merge whether to merge the kaleo instance with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the kaleo instance that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance updateKaleoInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstance kaleoInstance,
 		boolean merge)

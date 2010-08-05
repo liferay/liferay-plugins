@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
  * The persistence interface for the kaleo task assignment service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoTaskAssignmentUtil} to access the kaleo task assignment persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> kaleoTaskAssignments);
 
 	/**
-	* Creates a new kaleo task assignment with the primary key.
+	* Creates a new kaleo task assignment with the primary key. Does not add the kaleo task assignment to the database.
 	*
 	* @param kaleoTaskAssignmentId the primary key for the new kaleo task assignment
 	* @return the new kaleo task assignment

@@ -50,10 +50,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo log service.
+ * The persistence implementation for the kaleo log service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoLogUtil} to access the kaleo log persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -209,7 +209,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	}
 
 	/**
-	 * Creates a new kaleo log with the primary key.
+	 * Creates a new kaleo log with the primary key. Does not add the kaleo log to the database.
 	 *
 	 * @param kaleoLogId the primary key for the new kaleo log
 	 * @return the new kaleo log

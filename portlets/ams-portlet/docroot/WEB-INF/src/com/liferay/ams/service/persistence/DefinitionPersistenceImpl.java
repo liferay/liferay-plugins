@@ -49,10 +49,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the definition service.
+ * The persistence implementation for the definition service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link DefinitionUtil} to access the definition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -128,7 +128,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	}
 
 	/**
-	 * Creates a new definition with the primary key.
+	 * Creates a new definition with the primary key. Does not add the definition to the database.
 	 *
 	 * @param definitionId the primary key for the new definition
 	 * @return the new definition

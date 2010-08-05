@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the definition service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link DefinitionUtil} to access the definition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 		java.util.List<com.liferay.ams.model.Definition> definitions);
 
 	/**
-	* Creates a new definition with the primary key.
+	* Creates a new definition with the primary key. Does not add the definition to the database.
 	*
 	* @param definitionId the primary key for the new definition
 	* @return the new definition

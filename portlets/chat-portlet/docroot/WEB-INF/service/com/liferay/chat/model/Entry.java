@@ -21,6 +21,10 @@ package com.liferay.chat.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.chat.model.impl.EntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a entry model instance should use the {@link Entry} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see EntryModel
  * @see com.liferay.chat.model.impl.EntryImpl

@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the meetups registration service.
+ * The persistence implementation for the meetups registration service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -178,7 +178,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	}
 
 	/**
-	 * Creates a new meetups registration with the primary key.
+	 * Creates a new meetups registration with the primary key. Does not add the meetups registration to the database.
 	 *
 	 * @param meetupsRegistrationId the primary key for the new meetups registration
 	 * @return the new meetups registration

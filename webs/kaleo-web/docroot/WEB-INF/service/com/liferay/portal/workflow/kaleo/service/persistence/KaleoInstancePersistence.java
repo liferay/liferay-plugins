@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
  * The persistence interface for the kaleo instance service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoInstanceUtil} to access the kaleo instance persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstance> kaleoInstances);
 
 	/**
-	* Creates a new kaleo instance with the primary key.
+	* Creates a new kaleo instance with the primary key. Does not add the kaleo instance to the database.
 	*
 	* @param kaleoInstanceId the primary key for the new kaleo instance
 	* @return the new kaleo instance

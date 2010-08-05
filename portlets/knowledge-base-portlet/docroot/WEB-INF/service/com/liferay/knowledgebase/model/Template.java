@@ -21,6 +21,10 @@ package com.liferay.knowledgebase.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.TemplateImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a template model instance should use the {@link Template} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see TemplateModel
  * @see com.liferay.knowledgebase.model.impl.TemplateImpl

@@ -22,7 +22,11 @@ import com.liferay.socialnetworking.model.WallEntry;
  * The persistence interface for the wall entry service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link WallEntryUtil} to access the wall entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -48,7 +52,7 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 		java.util.List<com.liferay.socialnetworking.model.WallEntry> wallEntries);
 
 	/**
-	* Creates a new wall entry with the primary key.
+	* Creates a new wall entry with the primary key. Does not add the wall entry to the database.
 	*
 	* @param wallEntryId the primary key for the new wall entry
 	* @return the new wall entry

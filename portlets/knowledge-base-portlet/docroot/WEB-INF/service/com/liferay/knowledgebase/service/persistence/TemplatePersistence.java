@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the template service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link TemplateUtil} to access the template persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface TemplatePersistence extends BasePersistence<Template> {
 		java.util.List<com.liferay.knowledgebase.model.Template> templates);
 
 	/**
-	* Creates a new template with the primary key.
+	* Creates a new template with the primary key. Does not add the template to the database.
 	*
 	* @param templateId the primary key for the new template
 	* @return the new template

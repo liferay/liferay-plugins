@@ -30,29 +30,62 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		_kaleoTaskInstanceTokenLocalService = kaleoTaskInstanceTokenLocalService;
 	}
 
+	/**
+	* Adds the kaleo task instance token to the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskInstanceToken the kaleo task instance token to add
+	* @return the kaleo task instance token that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 	}
 
+	/**
+	* Creates a new kaleo task instance token with the primary key. Does not add the kaleo task instance token to the database.
+	*
+	* @param kaleoTaskInstanceTokenId the primary key for the new kaleo task instance token
+	* @return the new kaleo task instance token
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken createKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId) {
 		return _kaleoTaskInstanceTokenLocalService.createKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
 	}
 
+	/**
+	* Deletes the kaleo task instance token with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token to delete
+	* @throws PortalException if a kaleo task instance token with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteKaleoTaskInstanceToken(long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskInstanceTokenLocalService.deleteKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
 	}
 
+	/**
+	* Deletes the kaleo task instance token from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskInstanceToken the kaleo task instance token to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteKaleoTaskInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_kaleoTaskInstanceTokenLocalService.deleteKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -60,6 +93,19 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		return _kaleoTaskInstanceTokenLocalService.dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -68,6 +114,20 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -78,12 +138,27 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			start, end, orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the kaleo task instance token with the primary key.
+	*
+	* @param kaleoTaskInstanceTokenId the primary key of the kaleo task instance token to get
+	* @return the kaleo task instance token
+	* @throws PortalException if a kaleo task instance token with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceToken(
 		long kaleoTaskInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -91,6 +166,18 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(kaleoTaskInstanceTokenId);
 	}
 
+	/**
+	* Gets a range of all the kaleo task instance tokens.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of kaleo task instance tokens to return
+	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
+	* @return the range of kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -98,17 +185,38 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 			end);
 	}
 
+	/**
+	* Gets the number of kaleo task instance tokens.
+	*
+	* @return the number of kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
 	public int getKaleoTaskInstanceTokensCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokensCount();
 	}
 
+	/**
+	* Updates the kaleo task instance token in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskInstanceToken the kaleo task instance token to update
+	* @return the kaleo task instance token that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateKaleoTaskInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskInstanceTokenLocalService.updateKaleoTaskInstanceToken(kaleoTaskInstanceToken);
 	}
 
+	/**
+	* Updates the kaleo task instance token in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoTaskInstanceToken the kaleo task instance token to update
+	* @param merge whether to merge the kaleo task instance token with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the kaleo task instance token that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken updateKaleoTaskInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		boolean merge)

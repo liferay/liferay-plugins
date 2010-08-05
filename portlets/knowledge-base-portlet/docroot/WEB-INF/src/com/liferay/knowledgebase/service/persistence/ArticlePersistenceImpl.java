@@ -62,10 +62,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the article service.
+ * The persistence implementation for the article service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link ArticleUtil} to access the article persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -200,7 +200,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Creates a new article with the primary key.
+	 * Creates a new article with the primary key. Does not add the article to the database.
 	 *
 	 * @param articleId the primary key for the new article
 	 * @return the new article

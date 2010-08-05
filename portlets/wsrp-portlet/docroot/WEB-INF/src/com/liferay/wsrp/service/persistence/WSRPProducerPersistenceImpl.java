@@ -53,10 +53,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the w s r p producer service.
+ * The persistence implementation for the w s r p producer service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link WSRPProducerUtil} to access the w s r p producer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -145,7 +145,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	}
 
 	/**
-	 * Creates a new w s r p producer with the primary key.
+	 * Creates a new w s r p producer with the primary key. Does not add the w s r p producer to the database.
 	 *
 	 * @param wsrpProducerId the primary key for the new w s r p producer
 	 * @return the new w s r p producer

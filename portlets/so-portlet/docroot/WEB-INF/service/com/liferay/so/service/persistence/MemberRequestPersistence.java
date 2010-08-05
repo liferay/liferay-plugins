@@ -22,7 +22,11 @@ import com.liferay.so.model.MemberRequest;
  * The persistence interface for the member request service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link MemberRequestUtil} to access the member request persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 		java.util.List<com.liferay.so.model.MemberRequest> memberRequests);
 
 	/**
-	* Creates a new member request with the primary key.
+	* Creates a new member request with the primary key. Does not add the member request to the database.
 	*
 	* @param memberRequestId the primary key for the new member request
 	* @return the new member request

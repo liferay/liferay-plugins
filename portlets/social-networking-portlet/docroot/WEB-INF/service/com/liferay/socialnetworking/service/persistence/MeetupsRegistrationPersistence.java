@@ -22,7 +22,11 @@ import com.liferay.socialnetworking.model.MeetupsRegistration;
  * The persistence interface for the meetups registration service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -48,7 +52,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 		java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> meetupsRegistrations);
 
 	/**
-	* Creates a new meetups registration with the primary key.
+	* Creates a new meetups registration with the primary key. Does not add the meetups registration to the database.
 	*
 	* @param meetupsRegistrationId the primary key for the new meetups registration
 	* @return the new meetups registration

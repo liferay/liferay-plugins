@@ -54,10 +54,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo task service.
+ * The persistence implementation for the kaleo task service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoTaskUtil} to access the kaleo task persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -169,7 +169,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	}
 
 	/**
-	 * Creates a new kaleo task with the primary key.
+	 * Creates a new kaleo task with the primary key. Does not add the kaleo task to the database.
 	 *
 	 * @param kaleoTaskId the primary key for the new kaleo task
 	 * @return the new kaleo task

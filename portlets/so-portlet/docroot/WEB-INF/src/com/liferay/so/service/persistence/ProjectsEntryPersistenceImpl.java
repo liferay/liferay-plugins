@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the projects entry service.
+ * The persistence implementation for the projects entry service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link ProjectsEntryUtil} to access the projects entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -145,7 +145,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	/**
-	 * Creates a new projects entry with the primary key.
+	 * Creates a new projects entry with the primary key. Does not add the projects entry to the database.
 	 *
 	 * @param projectsEntryId the primary key for the new projects entry
 	 * @return the new projects entry

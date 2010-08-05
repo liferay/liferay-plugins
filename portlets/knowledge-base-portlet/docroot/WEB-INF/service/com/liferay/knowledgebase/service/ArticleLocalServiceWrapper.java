@@ -28,28 +28,61 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService = articleLocalService;
 	}
 
+	/**
+	* Adds the article to the database. Also notifies the appropriate model listeners.
+	*
+	* @param article the article to add
+	* @return the article that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article addArticle(
 		com.liferay.knowledgebase.model.Article article)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.addArticle(article);
 	}
 
+	/**
+	* Creates a new article with the primary key. Does not add the article to the database.
+	*
+	* @param articleId the primary key for the new article
+	* @return the new article
+	*/
 	public com.liferay.knowledgebase.model.Article createArticle(long articleId) {
 		return _articleLocalService.createArticle(articleId);
 	}
 
+	/**
+	* Deletes the article with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param articleId the primary key of the article to delete
+	* @throws PortalException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteArticle(long articleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleLocalService.deleteArticle(articleId);
 	}
 
+	/**
+	* Deletes the article from the database. Also notifies the appropriate model listeners.
+	*
+	* @param article the article to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public void deleteArticle(com.liferay.knowledgebase.model.Article article)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleLocalService.deleteArticle(article);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -57,6 +90,19 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -64,6 +110,20 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -74,18 +134,42 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the article with the primary key.
+	*
+	* @param articleId the primary key of the article to get
+	* @return the article
+	* @throws PortalException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article getArticle(long articleId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticle(articleId);
 	}
 
+	/**
+	* Gets the article with the UUID and group id.
+	*
+	* @param uuid the UUID of article to get
+	* @param groupId the group id of the article to get
+	* @return the article
+	* @throws PortalException if a article with the UUID and group id could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article getArticleByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -93,23 +177,56 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getArticleByUuidAndGroupId(uuid, groupId);
 	}
 
+	/**
+	* Gets a range of all the articles.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticles(start, end);
 	}
 
+	/**
+	* Gets the number of articles.
+	*
+	* @return the number of articles
+	* @throws SystemException if a system exception occurred
+	*/
 	public int getArticlesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticlesCount();
 	}
 
+	/**
+	* Updates the article in the database. Also notifies the appropriate model listeners.
+	*
+	* @param article the article to update
+	* @return the article that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		com.liferay.knowledgebase.model.Article article)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.updateArticle(article);
 	}
 
+	/**
+	* Updates the article in the database. Also notifies the appropriate model listeners.
+	*
+	* @param article the article to update
+	* @param merge whether to merge the article with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the article that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		com.liferay.knowledgebase.model.Article article, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {

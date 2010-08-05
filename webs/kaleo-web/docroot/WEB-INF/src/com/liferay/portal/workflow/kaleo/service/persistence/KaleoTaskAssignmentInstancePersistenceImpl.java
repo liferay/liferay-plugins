@@ -50,10 +50,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo task assignment instance service.
+ * The persistence implementation for the kaleo task assignment instance service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoTaskAssignmentInstanceUtil} to access the kaleo task assignment instance persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -190,7 +190,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 	}
 
 	/**
-	 * Creates a new kaleo task assignment instance with the primary key.
+	 * Creates a new kaleo task assignment instance with the primary key. Does not add the kaleo task assignment instance to the database.
 	 *
 	 * @param kaleoTaskAssignmentInstanceId the primary key for the new kaleo task assignment instance
 	 * @return the new kaleo task assignment instance

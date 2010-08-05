@@ -22,7 +22,11 @@ import com.liferay.socialcoding.model.JIRAIssue;
  * The persistence interface for the j i r a issue service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link JIRAIssueUtil} to access the j i r a issue persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 		java.util.List<com.liferay.socialcoding.model.JIRAIssue> jiraIssues);
 
 	/**
-	* Creates a new j i r a issue with the primary key.
+	* Creates a new j i r a issue with the primary key. Does not add the j i r a issue to the database.
 	*
 	* @param jiraIssueId the primary key for the new j i r a issue
 	* @return the new j i r a issue

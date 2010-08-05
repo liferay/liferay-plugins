@@ -22,7 +22,11 @@ import com.liferay.wsrp.model.WSRPProducer;
  * The persistence interface for the w s r p producer service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link WSRPProducerUtil} to access the w s r p producer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 		java.util.List<com.liferay.wsrp.model.WSRPProducer> wsrpProducers);
 
 	/**
-	* Creates a new w s r p producer with the primary key.
+	* Creates a new w s r p producer with the primary key. Does not add the w s r p producer to the database.
 	*
 	* @param wsrpProducerId the primary key for the new w s r p producer
 	* @return the new w s r p producer

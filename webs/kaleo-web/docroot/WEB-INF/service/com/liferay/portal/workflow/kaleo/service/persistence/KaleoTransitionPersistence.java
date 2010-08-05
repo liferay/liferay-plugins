@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
  * The persistence interface for the kaleo transition service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoTransitionUtil} to access the kaleo transition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTransition> kaleoTransitions);
 
 	/**
-	* Creates a new kaleo transition with the primary key.
+	* Creates a new kaleo transition with the primary key. Does not add the kaleo transition to the database.
 	*
 	* @param kaleoTransitionId the primary key for the new kaleo transition
 	* @return the new kaleo transition

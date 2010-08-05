@@ -18,19 +18,30 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
 
 /**
+ * The utility for the kaleo notification recipient local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationRecipientLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
+ *
  * <p>
- * This class provides static methods for the
- * {@link KaleoNotificationRecipientLocalService} bean. The static methods of
- * this class calls the same methods of the bean instance. It's convenient to be
- * able to just write one line to call a method on a bean instead of writing a
- * lookup call and a method call.
+ * Never modify this class directly. Add custom service methods to {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationRecipientLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
- * @author    Brian Wing Shun Chan
- * @see       KaleoNotificationRecipientLocalService
+ * <p>
+ * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see KaleoNotificationRecipientLocalService
+ * @see com.liferay.portal.workflow.kaleo.service.base.KaleoNotificationRecipientLocalServiceBaseImpl
+ * @see com.liferay.portal.workflow.kaleo.service.impl.KaleoNotificationRecipientLocalServiceImpl
  * @generated
  */
 public class KaleoNotificationRecipientLocalServiceUtil {
+	/**
+	* Adds the kaleo notification recipient to the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationRecipient the kaleo notification recipient to add
+	* @return the kaleo notification recipient that was added
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -38,12 +49,25 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 				   .addKaleoNotificationRecipient(kaleoNotificationRecipient);
 	}
 
+	/**
+	* Creates a new kaleo notification recipient with the primary key. Does not add the kaleo notification recipient to the database.
+	*
+	* @param kaleoNotificationRecipientId the primary key for the new kaleo notification recipient
+	* @return the new kaleo notification recipient
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient createKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId) {
 		return getService()
 				   .createKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
+	/**
+	* Deletes the kaleo notification recipient with the primary key from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient to delete
+	* @throws PortalException if a kaleo notification recipient with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void deleteKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -52,12 +76,25 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 			.deleteKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
+	/**
+	* Deletes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationRecipient the kaleo notification recipient to delete
+	* @throws SystemException if a system exception occurred
+	*/
 	public static void deleteKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteKaleoNotificationRecipient(kaleoNotificationRecipient);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns the matching rows.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
@@ -65,6 +102,19 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns a range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @return the range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -72,6 +122,20 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
+	/**
+	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @param start the lower bound of the range of model instances to return
+	* @param end the upper bound of the range of model instances to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching rows
+	* @throws SystemException if a system exception occurred
+	*/
 	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
@@ -82,12 +146,27 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
+	/**
+	* Counts the number of rows that match the dynamic query.
+	*
+	* @param dynamicQuery the dynamic query to search with
+	* @return the number of rows that match the dynamic query
+	* @throws SystemException if a system exception occurred
+	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
+	/**
+	* Gets the kaleo notification recipient with the primary key.
+	*
+	* @param kaleoNotificationRecipientId the primary key of the kaleo notification recipient to get
+	* @return the kaleo notification recipient
+	* @throws PortalException if a kaleo notification recipient with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient getKaleoNotificationRecipient(
 		long kaleoNotificationRecipientId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -96,17 +175,42 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 				   .getKaleoNotificationRecipient(kaleoNotificationRecipientId);
 	}
 
+	/**
+	* Gets a range of all the kaleo notification recipients.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param start the lower bound of the range of kaleo notification recipients to return
+	* @param end the upper bound of the range of kaleo notification recipients to return (not inclusive)
+	* @return the range of kaleo notification recipients
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> getKaleoNotificationRecipients(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKaleoNotificationRecipients(start, end);
 	}
 
+	/**
+	* Gets the number of kaleo notification recipients.
+	*
+	* @return the number of kaleo notification recipients
+	* @throws SystemException if a system exception occurred
+	*/
 	public static int getKaleoNotificationRecipientsCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getKaleoNotificationRecipientsCount();
 	}
 
+	/**
+	* Updates the kaleo notification recipient in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationRecipient the kaleo notification recipient to update
+	* @return the kaleo notification recipient that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -114,6 +218,14 @@ public class KaleoNotificationRecipientLocalServiceUtil {
 				   .updateKaleoNotificationRecipient(kaleoNotificationRecipient);
 	}
 
+	/**
+	* Updates the kaleo notification recipient in the database. Also notifies the appropriate model listeners.
+	*
+	* @param kaleoNotificationRecipient the kaleo notification recipient to update
+	* @param merge whether to merge the kaleo notification recipient with the current session. See {@link com.liferay.portal.service.persistence.BatchSession#update(com.liferay.portal.kernel.dao.orm.Session, com.liferay.portal.model.BaseModel, boolean)} for an explanation.
+	* @return the kaleo notification recipient that was updated
+	* @throws SystemException if a system exception occurred
+	*/
 	public static com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient updateKaleoNotificationRecipient(
 		com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient kaleoNotificationRecipient,
 		boolean merge)

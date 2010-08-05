@@ -22,7 +22,11 @@ import com.liferay.wsrp.model.WSRPConsumer;
  * The persistence interface for the w s r p consumer service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link WSRPConsumerUtil} to access the w s r p consumer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 		java.util.List<com.liferay.wsrp.model.WSRPConsumer> wsrpConsumers);
 
 	/**
-	* Creates a new w s r p consumer with the primary key.
+	* Creates a new w s r p consumer with the primary key. Does not add the w s r p consumer to the database.
 	*
 	* @param wsrpConsumerId the primary key for the new w s r p consumer
 	* @return the new w s r p consumer

@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the j i r a action service.
+ * The persistence implementation for the j i r a action service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link JIRAActionUtil} to access the j i r a action persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -166,7 +166,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	}
 
 	/**
-	 * Creates a new j i r a action with the primary key.
+	 * Creates a new j i r a action with the primary key. Does not add the j i r a action to the database.
 	 *
 	 * @param jiraActionId the primary key for the new j i r a action
 	 * @return the new j i r a action

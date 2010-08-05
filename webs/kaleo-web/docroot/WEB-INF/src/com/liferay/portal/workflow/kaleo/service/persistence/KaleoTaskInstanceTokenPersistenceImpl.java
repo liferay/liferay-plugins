@@ -54,10 +54,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo task instance token service.
+ * The persistence implementation for the kaleo task instance token service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoTaskInstanceTokenUtil} to access the kaleo task instance token persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -176,7 +176,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	}
 
 	/**
-	 * Creates a new kaleo task instance token with the primary key.
+	 * Creates a new kaleo task instance token with the primary key. Does not add the kaleo task instance token to the database.
 	 *
 	 * @param kaleoTaskInstanceTokenId the primary key for the new kaleo task instance token
 	 * @return the new kaleo task instance token

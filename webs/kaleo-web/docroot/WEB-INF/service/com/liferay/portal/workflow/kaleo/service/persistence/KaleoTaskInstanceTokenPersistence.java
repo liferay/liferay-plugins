@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
  * The persistence interface for the kaleo task instance token service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoTaskInstanceTokenUtil} to access the kaleo task instance token persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> kaleoTaskInstanceTokens);
 
 	/**
-	* Creates a new kaleo task instance token with the primary key.
+	* Creates a new kaleo task instance token with the primary key. Does not add the kaleo task instance token to the database.
 	*
 	* @param kaleoTaskInstanceTokenId the primary key for the new kaleo task instance token
 	* @return the new kaleo task instance token

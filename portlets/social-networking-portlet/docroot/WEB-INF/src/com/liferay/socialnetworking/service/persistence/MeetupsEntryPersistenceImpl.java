@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the meetups entry service.
+ * The persistence implementation for the meetups entry service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link MeetupsEntryUtil} to access the meetups entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -155,7 +155,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	}
 
 	/**
-	 * Creates a new meetups entry with the primary key.
+	 * Creates a new meetups entry with the primary key. Does not add the meetups entry to the database.
 	 *
 	 * @param meetupsEntryId the primary key for the new meetups entry
 	 * @return the new meetups entry

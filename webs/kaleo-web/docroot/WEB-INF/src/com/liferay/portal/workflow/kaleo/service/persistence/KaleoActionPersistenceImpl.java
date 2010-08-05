@@ -50,10 +50,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the kaleo action service.
+ * The persistence implementation for the kaleo action service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link KaleoActionUtil} to access the kaleo action persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -166,7 +166,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	}
 
 	/**
-	 * Creates a new kaleo action with the primary key.
+	 * Creates a new kaleo action with the primary key. Does not add the kaleo action to the database.
 	 *
 	 * @param kaleoActionId the primary key for the new kaleo action
 	 * @return the new kaleo action

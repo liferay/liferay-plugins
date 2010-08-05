@@ -21,6 +21,10 @@ package com.liferay.mail.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.AttachmentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a attachment model instance should use the {@link Attachment} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see AttachmentModel
  * @see com.liferay.mail.model.impl.AttachmentImpl

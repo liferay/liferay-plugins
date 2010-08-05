@@ -22,7 +22,11 @@ import com.liferay.socialcoding.model.JIRAAction;
  * The persistence interface for the j i r a action service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link JIRAActionUtil} to access the j i r a action persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -48,7 +52,7 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 		java.util.List<com.liferay.socialcoding.model.JIRAAction> jiraActions);
 
 	/**
-	* Creates a new j i r a action with the primary key.
+	* Creates a new j i r a action with the primary key. Does not add the j i r a action to the database.
 	*
 	* @param jiraActionId the primary key for the new j i r a action
 	* @return the new j i r a action

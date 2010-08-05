@@ -21,6 +21,10 @@ package com.liferay.socialcoding.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAChangeItemImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a j i r a change item model instance should use the {@link JIRAChangeItem} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see JIRAChangeItemModel
  * @see com.liferay.socialcoding.model.impl.JIRAChangeItemImpl

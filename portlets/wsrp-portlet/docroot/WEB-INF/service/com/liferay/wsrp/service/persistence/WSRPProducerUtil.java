@@ -25,10 +25,14 @@ import com.liferay.wsrp.model.WSRPProducer;
 import java.util.List;
 
 /**
- * The persistence utility for the w s r p producer service.
+ * The persistence utility for the w s r p producer service. This utility wraps {@link WSRPProducerPersistenceImpl} and provides direct access to the database for CRUD operations. This utility should only be used by the service layer, as it must operate within a transaction. Never access this utility in a JSP, controller, model, or other front-end class.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -132,7 +136,7 @@ public class WSRPProducerUtil {
 	}
 
 	/**
-	* Creates a new w s r p producer with the primary key.
+	* Creates a new w s r p producer with the primary key. Does not add the w s r p producer to the database.
 	*
 	* @param wsrpProducerId the primary key for the new w s r p producer
 	* @return the new w s r p producer

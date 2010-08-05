@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the folder service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link FolderUtil} to access the folder persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 		java.util.List<com.liferay.mail.model.Folder> folders);
 
 	/**
-	* Creates a new folder with the primary key.
+	* Creates a new folder with the primary key. Does not add the folder to the database.
 	*
 	* @param folderId the primary key for the new folder
 	* @return the new folder

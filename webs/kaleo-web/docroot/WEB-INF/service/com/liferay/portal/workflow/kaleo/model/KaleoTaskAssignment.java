@@ -21,6 +21,10 @@ package com.liferay.portal.workflow.kaleo.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
+ * <p>
+ * Never reference this interface directly. All methods that expect a kaleo task assignment model instance should use the {@link KaleoTaskAssignment} interface instead.
+ * </p>
+ *
  * @author Brian Wing Shun Chan
  * @see KaleoTaskAssignmentModel
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl

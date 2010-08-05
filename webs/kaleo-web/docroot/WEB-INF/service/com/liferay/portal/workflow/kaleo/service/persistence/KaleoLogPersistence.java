@@ -21,7 +21,11 @@ import com.liferay.portal.workflow.kaleo.model.KaleoLog;
  * The persistence interface for the kaleo log service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link KaleoLogUtil} to access the kaleo log persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> kaleoLogs);
 
 	/**
-	* Creates a new kaleo log with the primary key.
+	* Creates a new kaleo log with the primary key. Does not add the kaleo log to the database.
 	*
 	* @param kaleoLogId the primary key for the new kaleo log
 	* @return the new kaleo log

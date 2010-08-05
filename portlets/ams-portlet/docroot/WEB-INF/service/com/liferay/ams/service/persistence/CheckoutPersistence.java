@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the checkout service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link CheckoutUtil} to access the checkout persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 		java.util.List<com.liferay.ams.model.Checkout> checkouts);
 
 	/**
-	* Creates a new checkout with the primary key.
+	* Creates a new checkout with the primary key. Does not add the checkout to the database.
 	*
 	* @param checkoutId the primary key for the new checkout
 	* @return the new checkout

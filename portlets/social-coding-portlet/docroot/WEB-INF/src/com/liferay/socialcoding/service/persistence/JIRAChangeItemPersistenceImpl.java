@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the j i r a change item service.
+ * The persistence implementation for the j i r a change item service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link JIRAChangeItemUtil} to access the j i r a change item persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -145,7 +145,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 	}
 
 	/**
-	 * Creates a new j i r a change item with the primary key.
+	 * Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
 	 *
 	 * @param jiraChangeItemId the primary key for the new j i r a change item
 	 * @return the new j i r a change item

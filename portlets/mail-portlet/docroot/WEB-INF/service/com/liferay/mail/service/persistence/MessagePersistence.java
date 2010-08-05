@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the message service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link MessageUtil} to access the message persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 		java.util.List<com.liferay.mail.model.Message> messages);
 
 	/**
-	* Creates a new message with the primary key.
+	* Creates a new message with the primary key. Does not add the message to the database.
 	*
 	* @param messageId the primary key for the new message
 	* @return the new message

@@ -22,7 +22,11 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the article service.
  *
  * <p>
- * Never modify this interface directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this interface.
+ * Never modify or reference this interface directly. Always use {@link ArticleUtil} to access the article persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+ * </p>
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
  * @author Brian Wing Shun Chan
@@ -47,7 +51,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 		java.util.List<com.liferay.knowledgebase.model.Article> articles);
 
 	/**
-	* Creates a new article with the primary key.
+	* Creates a new article with the primary key. Does not add the article to the database.
 	*
 	* @param articleId the primary key for the new article
 	* @return the new article

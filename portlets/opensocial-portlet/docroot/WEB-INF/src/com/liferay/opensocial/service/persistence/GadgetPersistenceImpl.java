@@ -51,10 +51,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the gadget service.
+ * The persistence implementation for the gadget service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link GadgetUtil} to access the gadget persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -142,7 +142,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	}
 
 	/**
-	 * Creates a new gadget with the primary key.
+	 * Creates a new gadget with the primary key. Does not add the gadget to the database.
 	 *
 	 * @param gadgetId the primary key for the new gadget
 	 * @return the new gadget

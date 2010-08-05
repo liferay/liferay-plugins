@@ -52,10 +52,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The persistence for the folder service.
+ * The persistence implementation for the folder service.
  *
  * <p>
- * Never modify this class directly. Modify <code>service.xml</code> and rerun ServiceBuilder to regnerate this class.
+ * Never modify or reference this class directly. Always use {@link FolderUtil} to access the folder persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
  * </p>
  *
  * <p>
@@ -158,7 +158,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	}
 
 	/**
-	 * Creates a new folder with the primary key.
+	 * Creates a new folder with the primary key. Does not add the folder to the database.
 	 *
 	 * @param folderId the primary key for the new folder
 	 * @return the new folder
