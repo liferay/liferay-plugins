@@ -3,7 +3,7 @@
 
 <routes>
 	<route>
-		<pattern>/</pattern>
+		<pattern></pattern>
 		<implicit-parameter name="p_p_state">maximized</implicit-parameter>
 	</route>
 </routes>
