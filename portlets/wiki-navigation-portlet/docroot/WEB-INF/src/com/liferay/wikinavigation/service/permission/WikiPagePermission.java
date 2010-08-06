@@ -46,7 +46,7 @@ public class WikiPagePermission {
 	private static Log _log = LogFactoryUtil.getLog(WikiPagePermission.class);
 
 	private static MethodKey _containsMethodKey = new MethodKey(
-			"com.liferay.portlet.wiki.service.permission.WikiPagePermission",
-			"contains", PermissionChecker.class, WikiPage.class, String.class);
+		"com.liferay.portlet.wiki.service.permission.WikiPagePermission",
+		"contains", PermissionChecker.class, WikiPage.class, String.class);
 
 }
