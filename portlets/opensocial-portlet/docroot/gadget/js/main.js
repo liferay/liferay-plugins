@@ -412,6 +412,13 @@ AUI().add(
 			}
 		);
 
+		var viewWindowStateMap = {
+			canvas: 'maximized',
+			'default': 'normal',
+			home: 'normal',
+			profile: 'normal'
+		};
+
 		gadgets.rpc.register(
 			'requestNavigateTo',
 			function(view, viewParams) {
@@ -423,20 +430,13 @@ AUI().add(
 				portletURL.setParameter('returnToFullPageURL', document.location.href);
 				portletURL.setParameter('view', view);
 
-				if (view == 'default') {
-					portletURL.setWindowState('normal');
-				}
-				else if (view == 'canvas') {
-					portletURL.setWindowState('maximized');
-				} 
-				else if (view == 'home') {
-					portletURL.setWindowState('normal');
-				} 
-				else if (view == 'profile') {
-					portletURL.setWindowState('normal');
-				} 
+				var windowState = viewWindowStateMap[view];
 
-				if (typeof viewParams === 'string') {
+				if (windowState) {
+					portletURL.setWindowState(windowState);
+				}
+
+				if (Lang.isString(viewParams)) {
 					portletURL.setParameter('viewParams', viewParams);
 				}
 
