@@ -368,6 +368,11 @@ body #banner h1.logo a {
 	width: 475px;
 }
 
+.lfr-upload-container .upload-error .error-message {
+	background-color: #FDD;
+	padding-left: 5px;
+}
+
 /* Forms */
 
 .lfr-label {
