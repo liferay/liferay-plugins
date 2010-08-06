@@ -14,34 +14,30 @@
 
 package com.liferay.ams.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class CheckoutLocalServiceClp implements CheckoutLocalService {
-	public CheckoutLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+	public CheckoutLocalServiceClp(String className,
+		ClassLoaderProxy classLoaderProxy) {
+		_className = className;
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.ams.model.Checkout addCheckout(
 		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(checkout);
-
-		if (checkout == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Checkout");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addCheckoutMethodKey0,
+				checkout);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addCheckout",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -61,13 +57,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	public com.liferay.ams.model.Checkout createCheckout(long checkoutId) {
-		Object paramObj0 = new LongWrapper(checkoutId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createCheckoutMethodKey1,
+				checkoutId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createCheckout",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -85,11 +81,11 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public void deleteCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(checkoutId);
+		MethodHandler methodHandler = new MethodHandler(_deleteCheckoutMethodKey2,
+				checkoutId);
 
 		try {
-			_classLoaderProxy.invoke("deleteCheckout",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -112,15 +108,11 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 
 	public void deleteCheckout(com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(checkout);
-
-		if (checkout == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Checkout");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteCheckoutMethodKey3,
+				checkout);
 
 		try {
-			_classLoaderProxy.invoke("deleteCheckout",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -137,22 +129,17 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -171,26 +158,17 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -209,35 +187,19 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -259,18 +221,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -292,13 +249,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public com.liferay.ams.model.Checkout getCheckout(long checkoutId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(checkoutId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getCheckoutMethodKey8,
+				checkoutId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getCheckout",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -324,15 +281,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public java.util.List<com.liferay.ams.model.Checkout> getCheckouts(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getCheckoutsMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getCheckouts",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -355,9 +310,10 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getCheckoutsCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getCheckoutsCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -379,17 +335,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public com.liferay.ams.model.Checkout updateCheckout(
 		com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(checkout);
-
-		if (checkout == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Checkout");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey11,
+				checkout);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateCheckout",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -411,19 +363,13 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public com.liferay.ams.model.Checkout updateCheckout(
 		com.liferay.ams.model.Checkout checkout, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(checkout);
-
-		if (checkout == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Checkout");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey12,
+				checkout, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateCheckout",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -446,5 +392,38 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		return _classLoaderProxy;
 	}
 
+	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
+	private final MethodKey _addCheckoutMethodKey0 = new MethodKey(_className,
+			"addCheckout", com.liferay.ams.model.Checkout.class);
+	private final MethodKey _createCheckoutMethodKey1 = new MethodKey(_className,
+			"createCheckout", long.class);
+	private final MethodKey _deleteCheckoutMethodKey2 = new MethodKey(_className,
+			"deleteCheckout", long.class);
+	private final MethodKey _deleteCheckoutMethodKey3 = new MethodKey(_className,
+			"deleteCheckout", com.liferay.ams.model.Checkout.class);
+	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _getCheckoutMethodKey8 = new MethodKey(_className,
+			"getCheckout", long.class);
+	private final MethodKey _getCheckoutsMethodKey9 = new MethodKey(_className,
+			"getCheckouts", int.class, int.class);
+	private final MethodKey _getCheckoutsCountMethodKey10 = new MethodKey(_className,
+			"getCheckoutsCount");
+	private final MethodKey _updateCheckoutMethodKey11 = new MethodKey(_className,
+			"updateCheckout", com.liferay.ams.model.Checkout.class);
+	private final MethodKey _updateCheckoutMethodKey12 = new MethodKey(_className,
+			"updateCheckout", com.liferay.ams.model.Checkout.class,
+			boolean.class);
 }

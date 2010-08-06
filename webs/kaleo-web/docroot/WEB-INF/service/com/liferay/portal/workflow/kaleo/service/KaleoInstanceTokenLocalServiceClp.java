@@ -14,36 +14,31 @@
 
 package com.liferay.portal.workflow.kaleo.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class KaleoInstanceTokenLocalServiceClp
 	implements KaleoInstanceTokenLocalService {
-	public KaleoInstanceTokenLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+	public KaleoInstanceTokenLocalServiceClp(String className,
+		ClassLoaderProxy classLoaderProxy) {
+		_className = className;
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken addKaleoInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(kaleoInstanceToken);
-
-		if (kaleoInstanceToken == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addKaleoInstanceTokenMethodKey0,
+				kaleoInstanceToken);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addKaleoInstanceToken",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -64,13 +59,13 @@ public class KaleoInstanceTokenLocalServiceClp
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken createKaleoInstanceToken(
 		long kaleoInstanceTokenId) {
-		Object paramObj0 = new LongWrapper(kaleoInstanceTokenId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createKaleoInstanceTokenMethodKey1,
+				kaleoInstanceTokenId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createKaleoInstanceToken",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -88,11 +83,11 @@ public class KaleoInstanceTokenLocalServiceClp
 	public void deleteKaleoInstanceToken(long kaleoInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoInstanceTokenId);
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoInstanceTokenMethodKey2,
+				kaleoInstanceTokenId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoInstanceToken",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -116,16 +111,11 @@ public class KaleoInstanceTokenLocalServiceClp
 	public void deleteKaleoInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(kaleoInstanceToken);
-
-		if (kaleoInstanceToken == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoInstanceTokenMethodKey3,
+				kaleoInstanceToken);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoInstanceToken",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -142,22 +132,17 @@ public class KaleoInstanceTokenLocalServiceClp
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -176,26 +161,17 @@ public class KaleoInstanceTokenLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -214,35 +190,19 @@ public class KaleoInstanceTokenLocalServiceClp
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -264,18 +224,13 @@ public class KaleoInstanceTokenLocalServiceClp
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -298,13 +253,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		long kaleoInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoInstanceTokenId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokenMethodKey8,
+				kaleoInstanceTokenId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceToken",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -330,15 +285,13 @@ public class KaleoInstanceTokenLocalServiceClp
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> getKaleoInstanceTokens(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceTokens",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -361,9 +314,10 @@ public class KaleoInstanceTokenLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceTokensCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -385,18 +339,13 @@ public class KaleoInstanceTokenLocalServiceClp
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken updateKaleoInstanceToken(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(kaleoInstanceToken);
-
-		if (kaleoInstanceToken == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceTokenMethodKey11,
+				kaleoInstanceToken);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateKaleoInstanceToken",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -419,20 +368,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(kaleoInstanceToken);
-
-		if (kaleoInstanceToken == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceTokenMethodKey12,
+				kaleoInstanceToken, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateKaleoInstanceToken",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -457,26 +399,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(parentKaleoInstanceTokenId);
-
-		Object paramObj1 = ClpSerializer.translateInput(workflowContext);
-
-		if (workflowContext == null) {
-			paramObj1 = new NullWrapper("java.util.Map");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj2 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addKaleoInstanceTokenMethodKey13,
+				parentKaleoInstanceTokenId, workflowContext, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addKaleoInstanceToken",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -503,13 +432,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		long kaleoInstanceTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoInstanceTokenId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_completeKaleoInstanceTokenMethodKey14,
+				kaleoInstanceTokenId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("completeKaleoInstanceToken",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -534,11 +463,11 @@ public class KaleoInstanceTokenLocalServiceClp
 
 	public void deleteCompanyKaleoInstanceTokens(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
+		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoInstanceTokensMethodKey15,
+				companyId);
 
 		try {
-			_classLoaderProxy.invoke("deleteCompanyKaleoInstanceTokens",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -557,11 +486,11 @@ public class KaleoInstanceTokenLocalServiceClp
 
 	public void deleteKaleoDefinitionKaleoInstanceTokens(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoDefinitionId);
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoInstanceTokensMethodKey16,
+				kaleoDefinitionId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoDefinitionKaleoInstanceTokens",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -580,11 +509,11 @@ public class KaleoInstanceTokenLocalServiceClp
 
 	public void deleteKaleoInstanceKaleoInstanceTokens(long kaleoInstanceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoInstanceId);
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoInstanceKaleoInstanceTokensMethodKey17,
+				kaleoInstanceId);
 
 		try {
-			_classLoaderProxy.invoke("deleteKaleoInstanceKaleoInstanceTokens",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -605,26 +534,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		long parentKaleoInstanceTokenId, java.util.Date completionDate,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(parentKaleoInstanceTokenId);
-
-		Object paramObj1 = ClpSerializer.translateInput(completionDate);
-
-		if (completionDate == null) {
-			paramObj1 = new NullWrapper("java.util.Date");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj2 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensMethodKey18,
+				parentKaleoInstanceTokenId, completionDate, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceTokens",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -647,20 +563,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		long parentKaleoInstanceTokenId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(parentKaleoInstanceTokenId);
-
-		Object paramObj1 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj1 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensMethodKey19,
+				parentKaleoInstanceTokenId, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceTokens",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -683,26 +592,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		java.util.Date completionDate,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(parentKaleoInstanceTokenId);
-
-		Object paramObj1 = ClpSerializer.translateInput(completionDate);
-
-		if (completionDate == null) {
-			paramObj1 = new NullWrapper("java.util.Date");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj2 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensCountMethodKey20,
+				parentKaleoInstanceTokenId, completionDate, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceTokensCount",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -724,20 +620,13 @@ public class KaleoInstanceTokenLocalServiceClp
 	public int getKaleoInstanceTokensCount(long parentKaleoInstanceTokenId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(parentKaleoInstanceTokenId);
-
-		Object paramObj1 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj1 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensCountMethodKey21,
+				parentKaleoInstanceTokenId, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getKaleoInstanceTokensCount",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -762,26 +651,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoInstanceId);
-
-		Object paramObj1 = ClpSerializer.translateInput(workflowContext);
-
-		if (workflowContext == null) {
-			paramObj1 = new NullWrapper("java.util.Map");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj2 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getRootKaleoInstanceTokenMethodKey22,
+				kaleoInstanceId, workflowContext, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getRootKaleoInstanceToken",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -808,15 +684,13 @@ public class KaleoInstanceTokenLocalServiceClp
 		long kaleoInstanceTokenId, long currentKaleoNodeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(kaleoInstanceTokenId);
-
-		Object paramObj1 = new LongWrapper(currentKaleoNodeId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceTokenMethodKey23,
+				kaleoInstanceTokenId, currentKaleoNodeId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateKaleoInstanceToken",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -843,5 +717,71 @@ public class KaleoInstanceTokenLocalServiceClp
 		return _classLoaderProxy;
 	}
 
+	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
+	private final MethodKey _addKaleoInstanceTokenMethodKey0 = new MethodKey(_className,
+			"addKaleoInstanceToken",
+			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
+	private final MethodKey _createKaleoInstanceTokenMethodKey1 = new MethodKey(_className,
+			"createKaleoInstanceToken", long.class);
+	private final MethodKey _deleteKaleoInstanceTokenMethodKey2 = new MethodKey(_className,
+			"deleteKaleoInstanceToken", long.class);
+	private final MethodKey _deleteKaleoInstanceTokenMethodKey3 = new MethodKey(_className,
+			"deleteKaleoInstanceToken",
+			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
+	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _getKaleoInstanceTokenMethodKey8 = new MethodKey(_className,
+			"getKaleoInstanceToken", long.class);
+	private final MethodKey _getKaleoInstanceTokensMethodKey9 = new MethodKey(_className,
+			"getKaleoInstanceTokens", int.class, int.class);
+	private final MethodKey _getKaleoInstanceTokensCountMethodKey10 = new MethodKey(_className,
+			"getKaleoInstanceTokensCount");
+	private final MethodKey _updateKaleoInstanceTokenMethodKey11 = new MethodKey(_className,
+			"updateKaleoInstanceToken",
+			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
+	private final MethodKey _updateKaleoInstanceTokenMethodKey12 = new MethodKey(_className,
+			"updateKaleoInstanceToken",
+			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+			boolean.class);
+	private final MethodKey _addKaleoInstanceTokenMethodKey13 = new MethodKey(_className,
+			"addKaleoInstanceToken", long.class, java.util.Map.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private final MethodKey _completeKaleoInstanceTokenMethodKey14 = new MethodKey(_className,
+			"completeKaleoInstanceToken", long.class);
+	private final MethodKey _deleteCompanyKaleoInstanceTokensMethodKey15 = new MethodKey(_className,
+			"deleteCompanyKaleoInstanceTokens", long.class);
+	private final MethodKey _deleteKaleoDefinitionKaleoInstanceTokensMethodKey16 =
+		new MethodKey(_className, "deleteKaleoDefinitionKaleoInstanceTokens",
+			long.class);
+	private final MethodKey _deleteKaleoInstanceKaleoInstanceTokensMethodKey17 = new MethodKey(_className,
+			"deleteKaleoInstanceKaleoInstanceTokens", long.class);
+	private final MethodKey _getKaleoInstanceTokensMethodKey18 = new MethodKey(_className,
+			"getKaleoInstanceTokens", long.class, java.util.Date.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private final MethodKey _getKaleoInstanceTokensMethodKey19 = new MethodKey(_className,
+			"getKaleoInstanceTokens", long.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private final MethodKey _getKaleoInstanceTokensCountMethodKey20 = new MethodKey(_className,
+			"getKaleoInstanceTokensCount", long.class, java.util.Date.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private final MethodKey _getKaleoInstanceTokensCountMethodKey21 = new MethodKey(_className,
+			"getKaleoInstanceTokensCount", long.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private final MethodKey _getRootKaleoInstanceTokenMethodKey22 = new MethodKey(_className,
+			"getRootKaleoInstanceToken", long.class, java.util.Map.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private final MethodKey _updateKaleoInstanceTokenMethodKey23 = new MethodKey(_className,
+			"updateKaleoInstanceToken", long.class, long.class);
 }

@@ -91,7 +91,7 @@ public class JIRAChangeGroupLocalServiceUtil {
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -111,7 +111,7 @@ public class JIRAChangeGroupLocalServiceUtil {
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
@@ -132,7 +132,7 @@ public class JIRAChangeGroupLocalServiceUtil {
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
@@ -239,10 +239,10 @@ public class JIRAChangeGroupLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					JIRAChangeGroupLocalService.class.getName(),
 					portletClassLoader);
 
-			_service = new JIRAChangeGroupLocalServiceClp(classLoaderProxy);
+			_service = new JIRAChangeGroupLocalServiceClp(JIRAChangeGroupLocalService.class.getName(),
+					classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}

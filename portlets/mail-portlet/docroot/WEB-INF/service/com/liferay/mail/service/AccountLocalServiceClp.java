@@ -14,34 +14,30 @@
 
 package com.liferay.mail.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class AccountLocalServiceClp implements AccountLocalService {
-	public AccountLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+	public AccountLocalServiceClp(String className,
+		ClassLoaderProxy classLoaderProxy) {
+		_className = className;
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.mail.model.Account addAccount(
 		com.liferay.mail.model.Account account)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(account);
-
-		if (account == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Account");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addAccountMethodKey0,
+				account);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addAccount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -61,13 +57,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	public com.liferay.mail.model.Account createAccount(long accountId) {
-		Object paramObj0 = new LongWrapper(accountId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createAccountMethodKey1,
+				accountId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createAccount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -85,10 +81,11 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public void deleteAccount(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(accountId);
+		MethodHandler methodHandler = new MethodHandler(_deleteAccountMethodKey2,
+				accountId);
 
 		try {
-			_classLoaderProxy.invoke("deleteAccount", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -112,14 +109,11 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public void deleteAccount(com.liferay.mail.model.Account account)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(account);
-
-		if (account == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Account");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteAccountMethodKey3,
+				account);
 
 		try {
-			_classLoaderProxy.invoke("deleteAccount", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -140,22 +134,17 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -174,26 +163,17 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -212,35 +192,19 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -262,18 +226,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -295,13 +254,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public com.liferay.mail.model.Account getAccount(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(accountId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAccountMethodKey8,
+				accountId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAccount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -327,15 +286,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAccountsMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAccounts",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -358,9 +315,10 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAccountsCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAccountsCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -382,17 +340,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public com.liferay.mail.model.Account updateAccount(
 		com.liferay.mail.model.Account account)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(account);
-
-		if (account == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Account");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey11,
+				account);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAccount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -414,19 +368,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public com.liferay.mail.model.Account updateAccount(
 		com.liferay.mail.model.Account account, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(account);
-
-		if (account == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Account");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey12,
+				account, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAccount",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -457,95 +405,17 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		long sentFolderId, long trashFolderId, boolean defaultSender)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = ClpSerializer.translateInput(address);
-
-		if (address == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(personalName);
-
-		if (personalName == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(protocol);
-
-		if (protocol == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = ClpSerializer.translateInput(incomingHostName);
-
-		if (incomingHostName == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj5 = new IntegerWrapper(incomingPort);
-
-		Object paramObj6 = new BooleanWrapper(incomingSecure);
-
-		Object paramObj7 = ClpSerializer.translateInput(outgoingHostName);
-
-		if (outgoingHostName == null) {
-			paramObj7 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj8 = new IntegerWrapper(outgoingPort);
-
-		Object paramObj9 = new BooleanWrapper(outgoingSecure);
-
-		Object paramObj10 = ClpSerializer.translateInput(login);
-
-		if (login == null) {
-			paramObj10 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj11 = ClpSerializer.translateInput(password);
-
-		if (password == null) {
-			paramObj11 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj12 = new BooleanWrapper(savePassword);
-
-		Object paramObj13 = ClpSerializer.translateInput(signature);
-
-		if (signature == null) {
-			paramObj13 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj14 = new BooleanWrapper(useSignature);
-
-		Object paramObj15 = ClpSerializer.translateInput(folderPrefix);
-
-		if (folderPrefix == null) {
-			paramObj15 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj16 = new LongWrapper(inboxFolderId);
-
-		Object paramObj17 = new LongWrapper(draftFolderId);
-
-		Object paramObj18 = new LongWrapper(sentFolderId);
-
-		Object paramObj19 = new LongWrapper(trashFolderId);
-
-		Object paramObj20 = new BooleanWrapper(defaultSender);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addAccountMethodKey13,
+				userId, address, personalName, protocol, incomingHostName,
+				incomingPort, incomingSecure, outgoingHostName, outgoingPort,
+				outgoingSecure, login, password, savePassword, signature,
+				useSignature, folderPrefix, inboxFolderId, draftFolderId,
+				sentFolderId, trashFolderId, defaultSender);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addAccount",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10, paramObj11, paramObj12, paramObj13,
-						paramObj14, paramObj15, paramObj16, paramObj17,
-						paramObj18, paramObj19, paramObj20
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -571,11 +441,11 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	public void deleteAccounts(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
+		MethodHandler methodHandler = new MethodHandler(_deleteAccountsMethodKey14,
+				userId);
 
 		try {
-			_classLoaderProxy.invoke("deleteAccounts",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -600,19 +470,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		java.lang.String address)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = ClpSerializer.translateInput(address);
-
-		if (address == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAccountMethodKey15,
+				userId, address);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAccount",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -637,13 +501,13 @@ public class AccountLocalServiceClp implements AccountLocalService {
 
 	public java.util.List<com.liferay.mail.model.Account> getAccounts(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAccountsMethodKey16,
+				userId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAccounts",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -668,46 +532,14 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		java.lang.String folderPrefix, boolean defaultSender)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(accountId);
-
-		Object paramObj1 = ClpSerializer.translateInput(personalName);
-
-		if (personalName == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(password);
-
-		if (password == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = new BooleanWrapper(savePassword);
-
-		Object paramObj4 = ClpSerializer.translateInput(signature);
-
-		if (signature == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj5 = new BooleanWrapper(useSignature);
-
-		Object paramObj6 = ClpSerializer.translateInput(folderPrefix);
-
-		if (folderPrefix == null) {
-			paramObj6 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj7 = new BooleanWrapper(defaultSender);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey17,
+				accountId, personalName, password, savePassword, signature,
+				useSignature, folderPrefix, defaultSender);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAccount",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -735,23 +567,14 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		long trashFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(accountId);
-
-		Object paramObj1 = new LongWrapper(inboxFolderId);
-
-		Object paramObj2 = new LongWrapper(draftFolderId);
-
-		Object paramObj3 = new LongWrapper(sentFolderId);
-
-		Object paramObj4 = new LongWrapper(trashFolderId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateFoldersMethodKey18,
+				accountId, inboxFolderId, draftFolderId, sentFolderId,
+				trashFolderId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateFolders",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -778,5 +601,58 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		return _classLoaderProxy;
 	}
 
+	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
+	private final MethodKey _addAccountMethodKey0 = new MethodKey(_className,
+			"addAccount", com.liferay.mail.model.Account.class);
+	private final MethodKey _createAccountMethodKey1 = new MethodKey(_className,
+			"createAccount", long.class);
+	private final MethodKey _deleteAccountMethodKey2 = new MethodKey(_className,
+			"deleteAccount", long.class);
+	private final MethodKey _deleteAccountMethodKey3 = new MethodKey(_className,
+			"deleteAccount", com.liferay.mail.model.Account.class);
+	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _getAccountMethodKey8 = new MethodKey(_className,
+			"getAccount", long.class);
+	private final MethodKey _getAccountsMethodKey9 = new MethodKey(_className,
+			"getAccounts", int.class, int.class);
+	private final MethodKey _getAccountsCountMethodKey10 = new MethodKey(_className,
+			"getAccountsCount");
+	private final MethodKey _updateAccountMethodKey11 = new MethodKey(_className,
+			"updateAccount", com.liferay.mail.model.Account.class);
+	private final MethodKey _updateAccountMethodKey12 = new MethodKey(_className,
+			"updateAccount", com.liferay.mail.model.Account.class, boolean.class);
+	private final MethodKey _addAccountMethodKey13 = new MethodKey(_className,
+			"addAccount", long.class, java.lang.String.class,
+			java.lang.String.class, java.lang.String.class,
+			java.lang.String.class, int.class, boolean.class,
+			java.lang.String.class, int.class, boolean.class,
+			java.lang.String.class, java.lang.String.class, boolean.class,
+			java.lang.String.class, boolean.class, java.lang.String.class,
+			long.class, long.class, long.class, long.class, boolean.class);
+	private final MethodKey _deleteAccountsMethodKey14 = new MethodKey(_className,
+			"deleteAccounts", long.class);
+	private final MethodKey _getAccountMethodKey15 = new MethodKey(_className,
+			"getAccount", long.class, java.lang.String.class);
+	private final MethodKey _getAccountsMethodKey16 = new MethodKey(_className,
+			"getAccounts", long.class);
+	private final MethodKey _updateAccountMethodKey17 = new MethodKey(_className,
+			"updateAccount", long.class, java.lang.String.class,
+			java.lang.String.class, boolean.class, java.lang.String.class,
+			boolean.class, java.lang.String.class, boolean.class);
+	private final MethodKey _updateFoldersMethodKey18 = new MethodKey(_className,
+			"updateFolders", long.class, long.class, long.class, long.class,
+			long.class);
 }

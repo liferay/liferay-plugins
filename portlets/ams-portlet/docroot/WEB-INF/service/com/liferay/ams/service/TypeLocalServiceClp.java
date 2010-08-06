@@ -14,33 +14,28 @@
 
 package com.liferay.ams.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class TypeLocalServiceClp implements TypeLocalService {
-	public TypeLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
+	public TypeLocalServiceClp(String className,
+		ClassLoaderProxy classLoaderProxy) {
+		_className = className;
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(type);
-
-		if (type == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Type");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addTypeMethodKey0, type);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addType",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -60,13 +55,13 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	}
 
 	public com.liferay.ams.model.Type createType(long typeId) {
-		Object paramObj0 = new LongWrapper(typeId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createTypeMethodKey1,
+				typeId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createType",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -84,10 +79,11 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public void deleteType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(typeId);
+		MethodHandler methodHandler = new MethodHandler(_deleteTypeMethodKey2,
+				typeId);
 
 		try {
-			_classLoaderProxy.invoke("deleteType", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -110,14 +106,11 @@ public class TypeLocalServiceClp implements TypeLocalService {
 
 	public void deleteType(com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(type);
-
-		if (type == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Type");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteTypeMethodKey3,
+				type);
 
 		try {
-			_classLoaderProxy.invoke("deleteType", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -134,22 +127,17 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -168,26 +156,17 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -206,35 +185,19 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -256,18 +219,13 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -289,13 +247,13 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public com.liferay.ams.model.Type getType(long typeId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(typeId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTypeMethodKey8,
+				typeId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getType",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -320,15 +278,13 @@ public class TypeLocalServiceClp implements TypeLocalService {
 
 	public java.util.List<com.liferay.ams.model.Type> getTypes(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTypesMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getTypes",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -351,8 +307,10 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTypesCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getTypesCount", new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -374,17 +332,13 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public com.liferay.ams.model.Type updateType(
 		com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(type);
-
-		if (type == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Type");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey11,
+				type);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateType",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -406,19 +360,13 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public com.liferay.ams.model.Type updateType(
 		com.liferay.ams.model.Type type, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(type);
-
-		if (type == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Type");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey12,
+				type, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateType",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -441,5 +389,37 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		return _classLoaderProxy;
 	}
 
+	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
+	private final MethodKey _addTypeMethodKey0 = new MethodKey(_className,
+			"addType", com.liferay.ams.model.Type.class);
+	private final MethodKey _createTypeMethodKey1 = new MethodKey(_className,
+			"createType", long.class);
+	private final MethodKey _deleteTypeMethodKey2 = new MethodKey(_className,
+			"deleteType", long.class);
+	private final MethodKey _deleteTypeMethodKey3 = new MethodKey(_className,
+			"deleteType", com.liferay.ams.model.Type.class);
+	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private final MethodKey _getTypeMethodKey8 = new MethodKey(_className,
+			"getType", long.class);
+	private final MethodKey _getTypesMethodKey9 = new MethodKey(_className,
+			"getTypes", int.class, int.class);
+	private final MethodKey _getTypesCountMethodKey10 = new MethodKey(_className,
+			"getTypesCount");
+	private final MethodKey _updateTypeMethodKey11 = new MethodKey(_className,
+			"updateType", com.liferay.ams.model.Type.class);
+	private final MethodKey _updateTypeMethodKey12 = new MethodKey(_className,
+			"updateType", com.liferay.ams.model.Type.class, boolean.class);
 }
