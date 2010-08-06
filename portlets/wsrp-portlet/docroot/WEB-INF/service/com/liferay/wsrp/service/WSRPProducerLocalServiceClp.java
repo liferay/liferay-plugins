@@ -14,30 +14,34 @@
 
 package com.liferay.wsrp.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.MethodHandler;
-import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.IntegerWrapper;
+import com.liferay.portal.kernel.util.LongWrapper;
+import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
-	public WSRPProducerLocalServiceClp(String className,
-		ClassLoaderProxy classLoaderProxy) {
-		_className = className;
+	public WSRPProducerLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(wsrpProducer);
+
+		if (wsrpProducer == null) {
+			paramObj0 = new NullWrapper("com.liferay.wsrp.model.WSRPProducer");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey0,
-				wsrpProducer);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addWSRPProducer",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -58,13 +62,13 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 
 	public com.liferay.wsrp.model.WSRPProducer createWSRPProducer(
 		long wsrpProducerId) {
+		Object paramObj0 = new LongWrapper(wsrpProducerId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_createWSRPProducerMethodKey1,
-				wsrpProducerId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("createWSRPProducer",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -82,11 +86,11 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public void deleteWSRPProducer(long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteWSRPProducerMethodKey2,
-				wsrpProducerId);
+		Object paramObj0 = new LongWrapper(wsrpProducerId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteWSRPProducer",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -111,11 +115,15 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteWSRPProducerMethodKey3,
-				wsrpProducer);
+		Object paramObj0 = ClpSerializer.translateInput(wsrpProducer);
+
+		if (wsrpProducer == null) {
+			paramObj0 = new NullWrapper("com.liferay.wsrp.model.WSRPProducer");
+		}
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteWSRPProducer",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -136,17 +144,22 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -165,17 +178,26 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -194,19 +216,35 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -228,13 +266,18 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -257,13 +300,13 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		long wsrpProducerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(wsrpProducerId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducerMethodKey8,
-				wsrpProducerId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getWSRPProducer",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -289,13 +332,15 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new IntegerWrapper(start);
+
+		Object paramObj1 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersMethodKey9,
-				start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getWSRPProducers",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -318,10 +363,9 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersCountMethodKey10);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getWSRPProducersCount",
+					new Object[0]);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -343,13 +387,17 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(wsrpProducer);
+
+		if (wsrpProducer == null) {
+			paramObj0 = new NullWrapper("com.liferay.wsrp.model.WSRPProducer");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey11,
-				wsrpProducer);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateWSRPProducer",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -371,13 +419,19 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(wsrpProducer);
+
+		if (wsrpProducer == null) {
+			paramObj0 = new NullWrapper("com.liferay.wsrp.model.WSRPProducer");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey12,
-				wsrpProducer, merge);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateWSRPProducer",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -400,13 +454,25 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(portletIds);
+
+		if (portletIds == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey13,
-				userId, name, portletIds);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addWSRPProducer",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -433,13 +499,27 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		long groupId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(groupId);
+
+		Object paramObj2 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(portletIds);
+
+		if (portletIds == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey14,
-				userId, groupId, name, portletIds);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addWSRPProducer",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -465,13 +545,17 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersMethodKey15,
-				companyId, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getWSRPProducers",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -492,13 +576,13 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 
 	public int getWSRPProducersCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersCountMethodKey16,
-				companyId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getWSRPProducersCount",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -521,13 +605,25 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		long wsrpProducerId, java.lang.String name, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(wsrpProducerId);
+
+		Object paramObj1 = ClpSerializer.translateInput(name);
+
+		if (name == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(portletIds);
+
+		if (portletIds == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey17,
-				wsrpProducerId, name, portletIds);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateWSRPProducer",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -554,51 +650,5 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		return _classLoaderProxy;
 	}
 
-	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
-	private final MethodKey _addWSRPProducerMethodKey0 = new MethodKey(_className,
-			"addWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
-	private final MethodKey _createWSRPProducerMethodKey1 = new MethodKey(_className,
-			"createWSRPProducer", long.class);
-	private final MethodKey _deleteWSRPProducerMethodKey2 = new MethodKey(_className,
-			"deleteWSRPProducer", long.class);
-	private final MethodKey _deleteWSRPProducerMethodKey3 = new MethodKey(_className,
-			"deleteWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
-	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _getWSRPProducerMethodKey8 = new MethodKey(_className,
-			"getWSRPProducer", long.class);
-	private final MethodKey _getWSRPProducersMethodKey9 = new MethodKey(_className,
-			"getWSRPProducers", int.class, int.class);
-	private final MethodKey _getWSRPProducersCountMethodKey10 = new MethodKey(_className,
-			"getWSRPProducersCount");
-	private final MethodKey _updateWSRPProducerMethodKey11 = new MethodKey(_className,
-			"updateWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
-	private final MethodKey _updateWSRPProducerMethodKey12 = new MethodKey(_className,
-			"updateWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class,
-			boolean.class);
-	private final MethodKey _addWSRPProducerMethodKey13 = new MethodKey(_className,
-			"addWSRPProducer", long.class, java.lang.String.class,
-			java.lang.String.class);
-	private final MethodKey _addWSRPProducerMethodKey14 = new MethodKey(_className,
-			"addWSRPProducer", long.class, long.class, java.lang.String.class,
-			java.lang.String.class);
-	private final MethodKey _getWSRPProducersMethodKey15 = new MethodKey(_className,
-			"getWSRPProducers", long.class, int.class, int.class);
-	private final MethodKey _getWSRPProducersCountMethodKey16 = new MethodKey(_className,
-			"getWSRPProducersCount", long.class);
-	private final MethodKey _updateWSRPProducerMethodKey17 = new MethodKey(_className,
-			"updateWSRPProducer", long.class, java.lang.String.class,
-			java.lang.String.class);
 }

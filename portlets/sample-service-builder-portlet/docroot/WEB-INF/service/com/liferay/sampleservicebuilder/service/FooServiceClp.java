@@ -20,8 +20,7 @@ import com.liferay.portal.kernel.util.ClassLoaderProxy;
  * @author Brian Wing Shun Chan
  */
 public class FooServiceClp implements FooService {
-	public FooServiceClp(String className, ClassLoaderProxy classLoaderProxy) {
-		_className = className;
+	public FooServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
@@ -29,6 +28,5 @@ public class FooServiceClp implements FooService {
 		return _classLoaderProxy;
 	}
 
-	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
 }

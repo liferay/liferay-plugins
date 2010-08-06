@@ -91,7 +91,7 @@ public class KaleoActionLocalServiceUtil {
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -111,7 +111,7 @@ public class KaleoActionLocalServiceUtil {
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
@@ -132,7 +132,7 @@ public class KaleoActionLocalServiceUtil {
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
@@ -267,10 +267,9 @@ public class KaleoActionLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					KaleoActionLocalService.class.getName(), portletClassLoader);
 
-			_service = new KaleoActionLocalServiceClp(KaleoActionLocalService.class.getName(),
-					classLoaderProxy);
+			_service = new KaleoActionLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}

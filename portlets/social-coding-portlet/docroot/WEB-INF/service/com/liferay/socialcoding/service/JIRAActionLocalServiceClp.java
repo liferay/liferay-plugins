@@ -14,30 +14,35 @@
 
 package com.liferay.socialcoding.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.MethodHandler;
-import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.IntegerWrapper;
+import com.liferay.portal.kernel.util.LongWrapper;
+import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
-	public JIRAActionLocalServiceClp(String className,
-		ClassLoaderProxy classLoaderProxy) {
-		_className = className;
+	public JIRAActionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.socialcoding.model.JIRAAction addJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(jiraAction);
+
+		if (jiraAction == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialcoding.model.JIRAAction");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addJIRAActionMethodKey0,
-				jiraAction);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addJIRAAction",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -58,13 +63,13 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 
 	public com.liferay.socialcoding.model.JIRAAction createJIRAAction(
 		long jiraActionId) {
+		Object paramObj0 = new LongWrapper(jiraActionId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_createJIRAActionMethodKey1,
-				jiraActionId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("createJIRAAction",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -82,11 +87,11 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public void deleteJIRAAction(long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteJIRAActionMethodKey2,
-				jiraActionId);
+		Object paramObj0 = new LongWrapper(jiraActionId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteJIRAAction",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -110,11 +115,16 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public void deleteJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteJIRAActionMethodKey3,
-				jiraAction);
+		Object paramObj0 = ClpSerializer.translateInput(jiraAction);
+
+		if (jiraAction == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialcoding.model.JIRAAction");
+		}
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteJIRAAction",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -131,17 +141,22 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -160,17 +175,26 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -189,19 +213,35 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -223,13 +263,18 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -252,13 +297,13 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		long jiraActionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(jiraActionId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAActionMethodKey8,
-				jiraActionId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getJIRAAction",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -284,13 +329,15 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> getJIRAActions(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new IntegerWrapper(start);
+
+		Object paramObj1 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAActionsMethodKey9,
-				start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getJIRAActions",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -313,10 +360,9 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAActionsCountMethodKey10);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getJIRAActionsCount",
+					new Object[0]);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -338,13 +384,18 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(jiraAction);
+
+		if (jiraAction == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialcoding.model.JIRAAction");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey11,
-				jiraAction);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateJIRAAction",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -366,13 +417,20 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public com.liferay.socialcoding.model.JIRAAction updateJIRAAction(
 		com.liferay.socialcoding.model.JIRAAction jiraAction, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(jiraAction);
+
+		if (jiraAction == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialcoding.model.JIRAAction");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey12,
-				jiraAction, merge);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateJIRAAction",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -395,38 +453,5 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		return _classLoaderProxy;
 	}
 
-	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
-	private final MethodKey _addJIRAActionMethodKey0 = new MethodKey(_className,
-			"addJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
-	private final MethodKey _createJIRAActionMethodKey1 = new MethodKey(_className,
-			"createJIRAAction", long.class);
-	private final MethodKey _deleteJIRAActionMethodKey2 = new MethodKey(_className,
-			"deleteJIRAAction", long.class);
-	private final MethodKey _deleteJIRAActionMethodKey3 = new MethodKey(_className,
-			"deleteJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
-	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _getJIRAActionMethodKey8 = new MethodKey(_className,
-			"getJIRAAction", long.class);
-	private final MethodKey _getJIRAActionsMethodKey9 = new MethodKey(_className,
-			"getJIRAActions", int.class, int.class);
-	private final MethodKey _getJIRAActionsCountMethodKey10 = new MethodKey(_className,
-			"getJIRAActionsCount");
-	private final MethodKey _updateJIRAActionMethodKey11 = new MethodKey(_className,
-			"updateJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
-	private final MethodKey _updateJIRAActionMethodKey12 = new MethodKey(_className,
-			"updateJIRAAction",
-			com.liferay.socialcoding.model.JIRAAction.class, boolean.class);
 }

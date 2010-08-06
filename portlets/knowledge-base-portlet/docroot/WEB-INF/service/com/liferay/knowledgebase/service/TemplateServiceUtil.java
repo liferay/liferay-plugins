@@ -94,10 +94,9 @@ public class TemplateServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					TemplateService.class.getName(), portletClassLoader);
 
-			_service = new TemplateServiceClp(TemplateService.class.getName(),
-					classLoaderProxy);
+			_service = new TemplateServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}

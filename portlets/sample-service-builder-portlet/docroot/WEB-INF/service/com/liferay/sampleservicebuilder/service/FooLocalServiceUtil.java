@@ -90,7 +90,7 @@ public class FooLocalServiceUtil {
 	* @return the matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -110,7 +110,7 @@ public class FooLocalServiceUtil {
 	* @return the range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
@@ -131,7 +131,7 @@ public class FooLocalServiceUtil {
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
@@ -264,10 +264,9 @@ public class FooLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					FooLocalService.class.getName(), portletClassLoader);
 
-			_service = new FooLocalServiceClp(FooLocalService.class.getName(),
-					classLoaderProxy);
+			_service = new FooLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}

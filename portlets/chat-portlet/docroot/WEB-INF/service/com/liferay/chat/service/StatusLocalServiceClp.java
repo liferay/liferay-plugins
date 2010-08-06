@@ -14,30 +14,34 @@
 
 package com.liferay.chat.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.MethodHandler;
-import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.IntegerWrapper;
+import com.liferay.portal.kernel.util.LongWrapper;
+import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class StatusLocalServiceClp implements StatusLocalService {
-	public StatusLocalServiceClp(String className,
-		ClassLoaderProxy classLoaderProxy) {
-		_className = className;
+	public StatusLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.chat.model.Status addStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(status);
+
+		if (status == null) {
+			paramObj0 = new NullWrapper("com.liferay.chat.model.Status");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addStatusMethodKey0,
-				status);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addStatus",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -57,13 +61,13 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	public com.liferay.chat.model.Status createStatus(long statusId) {
+		Object paramObj0 = new LongWrapper(statusId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_createStatusMethodKey1,
-				statusId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("createStatus",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -81,11 +85,10 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public void deleteStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteStatusMethodKey2,
-				statusId);
+		Object paramObj0 = new LongWrapper(statusId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteStatus", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -108,11 +111,14 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	public void deleteStatus(com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteStatusMethodKey3,
-				status);
+		Object paramObj0 = ClpSerializer.translateInput(status);
+
+		if (status == null) {
+			paramObj0 = new NullWrapper("com.liferay.chat.model.Status");
+		}
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteStatus", new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -129,17 +135,22 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -158,17 +169,26 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -187,19 +207,35 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -221,13 +257,18 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -249,13 +290,13 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public com.liferay.chat.model.Status getStatus(long statusId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(statusId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getStatusMethodKey8,
-				statusId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getStatus",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -281,13 +322,15 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public java.util.List<com.liferay.chat.model.Status> getStatuses(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new IntegerWrapper(start);
+
+		Object paramObj1 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getStatusesMethodKey9,
-				start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getStatuses",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -310,10 +353,9 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getStatusesCountMethodKey10);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getStatusesCount",
+					new Object[0]);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -335,13 +377,17 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(status);
+
+		if (status == null) {
+			paramObj0 = new NullWrapper("com.liferay.chat.model.Status");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey11,
-				status);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateStatus",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -363,13 +409,19 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public com.liferay.chat.model.Status updateStatus(
 		com.liferay.chat.model.Status status, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(status);
+
+		if (status == null) {
+			paramObj0 = new NullWrapper("com.liferay.chat.model.Status");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey12,
-				status, merge);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateStatus",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -391,13 +443,23 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public java.util.List<java.lang.Object[]> getAllStatuses(long companyId,
 		long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
+		Object paramObj1 = new LongWrapper(userId);
+
+		Object paramObj2 = new LongWrapper(modifiedDate);
+
+		Object paramObj3 = new IntegerWrapper(start);
+
+		Object paramObj4 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getAllStatusesMethodKey13,
-				companyId, userId, modifiedDate, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getAllStatuses",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -419,13 +481,19 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public java.util.List<java.lang.Object[]> getGroupStatuses(long userId,
 		long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(modifiedDate);
+
+		Object paramObj2 = new IntegerWrapper(start);
+
+		Object paramObj3 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupStatusesMethodKey14,
-				userId, modifiedDate, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getGroupStatuses",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -447,13 +515,23 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
 		int type, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new IntegerWrapper(type);
+
+		Object paramObj2 = new LongWrapper(modifiedDate);
+
+		Object paramObj3 = new IntegerWrapper(start);
+
+		Object paramObj4 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSocialStatusesMethodKey15,
-				userId, type, modifiedDate, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getSocialStatuses",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -475,13 +553,13 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getUserStatusMethodKey16,
-				userId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getUserStatus",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -508,13 +586,15 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		long modifiedDate)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(modifiedDate);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey17,
-				userId, modifiedDate);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateStatus",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -542,14 +622,36 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		java.lang.String activePanelId, java.lang.String message, int playSound)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(modifiedDate);
+
+		Object paramObj2 = new IntegerWrapper(online);
+
+		Object paramObj3 = new IntegerWrapper(awake);
+
+		Object paramObj4 = ClpSerializer.translateInput(activePanelId);
+
+		if (activePanelId == null) {
+			paramObj4 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj5 = ClpSerializer.translateInput(message);
+
+		if (message == null) {
+			paramObj5 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj6 = new IntegerWrapper(playSound);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey18,
-				userId, modifiedDate, online, awake, activePanelId, message,
-				playSound);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateStatus",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -576,52 +678,5 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		return _classLoaderProxy;
 	}
 
-	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
-	private final MethodKey _addStatusMethodKey0 = new MethodKey(_className,
-			"addStatus", com.liferay.chat.model.Status.class);
-	private final MethodKey _createStatusMethodKey1 = new MethodKey(_className,
-			"createStatus", long.class);
-	private final MethodKey _deleteStatusMethodKey2 = new MethodKey(_className,
-			"deleteStatus", long.class);
-	private final MethodKey _deleteStatusMethodKey3 = new MethodKey(_className,
-			"deleteStatus", com.liferay.chat.model.Status.class);
-	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _getStatusMethodKey8 = new MethodKey(_className,
-			"getStatus", long.class);
-	private final MethodKey _getStatusesMethodKey9 = new MethodKey(_className,
-			"getStatuses", int.class, int.class);
-	private final MethodKey _getStatusesCountMethodKey10 = new MethodKey(_className,
-			"getStatusesCount");
-	private final MethodKey _updateStatusMethodKey11 = new MethodKey(_className,
-			"updateStatus", com.liferay.chat.model.Status.class);
-	private final MethodKey _updateStatusMethodKey12 = new MethodKey(_className,
-			"updateStatus", com.liferay.chat.model.Status.class, boolean.class);
-	private final MethodKey _getAllStatusesMethodKey13 = new MethodKey(_className,
-			"getAllStatuses", long.class, long.class, long.class, int.class,
-			int.class);
-	private final MethodKey _getGroupStatusesMethodKey14 = new MethodKey(_className,
-			"getGroupStatuses", long.class, long.class, int.class, int.class);
-	private final MethodKey _getSocialStatusesMethodKey15 = new MethodKey(_className,
-			"getSocialStatuses", long.class, int.class, long.class, int.class,
-			int.class);
-	private final MethodKey _getUserStatusMethodKey16 = new MethodKey(_className,
-			"getUserStatus", long.class);
-	private final MethodKey _updateStatusMethodKey17 = new MethodKey(_className,
-			"updateStatus", long.class, long.class);
-	private final MethodKey _updateStatusMethodKey18 = new MethodKey(_className,
-			"updateStatus", long.class, long.class, int.class, int.class,
-			java.lang.String.class, java.lang.String.class, int.class);
 }

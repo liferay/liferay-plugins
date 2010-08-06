@@ -114,7 +114,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService {
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return folderPersistence.findWithDynamicQuery(dynamicQuery);
@@ -133,7 +133,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService {
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
 		return folderPersistence.findWithDynamicQuery(dynamicQuery, start, end);
@@ -153,7 +153,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService {
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		return folderPersistence.findWithDynamicQuery(dynamicQuery, start, end,

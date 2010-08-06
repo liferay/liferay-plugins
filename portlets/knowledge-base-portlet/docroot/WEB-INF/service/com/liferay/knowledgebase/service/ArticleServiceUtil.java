@@ -235,10 +235,9 @@ public class ArticleServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					ArticleService.class.getName(), portletClassLoader);
 
-			_service = new ArticleServiceClp(ArticleService.class.getName(),
-					classLoaderProxy);
+			_service = new ArticleServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}

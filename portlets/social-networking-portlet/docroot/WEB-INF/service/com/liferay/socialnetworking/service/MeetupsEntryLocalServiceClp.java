@@ -14,30 +14,36 @@
 
 package com.liferay.socialnetworking.service;
 
+import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.MethodHandler;
-import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.DoubleWrapper;
+import com.liferay.portal.kernel.util.IntegerWrapper;
+import com.liferay.portal.kernel.util.LongWrapper;
+import com.liferay.portal.kernel.util.NullWrapper;
 
 /**
  * @author Brian Wing Shun Chan
  */
 public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
-	public MeetupsEntryLocalServiceClp(String className,
-		ClassLoaderProxy classLoaderProxy) {
-		_className = className;
+	public MeetupsEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
 	}
 
 	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(meetupsEntry);
+
+		if (meetupsEntry == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialnetworking.model.MeetupsEntry");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addMeetupsEntryMethodKey0,
-				meetupsEntry);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addMeetupsEntry",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -58,13 +64,13 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 
 	public com.liferay.socialnetworking.model.MeetupsEntry createMeetupsEntry(
 		long meetupsEntryId) {
+		Object paramObj0 = new LongWrapper(meetupsEntryId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_createMeetupsEntryMethodKey1,
-				meetupsEntryId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("createMeetupsEntry",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -82,11 +88,11 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public void deleteMeetupsEntry(long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteMeetupsEntryMethodKey2,
-				meetupsEntryId);
+		Object paramObj0 = new LongWrapper(meetupsEntryId);
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteMeetupsEntry",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -110,11 +116,16 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public void deleteMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteMeetupsEntryMethodKey3,
-				meetupsEntry);
+		Object paramObj0 = ClpSerializer.translateInput(meetupsEntry);
+
+		if (meetupsEntry == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialnetworking.model.MeetupsEntry");
+		}
 
 		try {
-			_classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke("deleteMeetupsEntry",
+				new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -131,17 +142,22 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -160,17 +176,26 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -189,19 +214,35 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
+		Object paramObj1 = new IntegerWrapper(start);
+
+		Object paramObj2 = new IntegerWrapper(end);
+
+		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
+
+		if (orderByComparator == null) {
+			paramObj3 = new NullWrapper(
+					"com.liferay.portal.kernel.util.OrderByComparator");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQuery",
+					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -223,13 +264,18 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
+
+		if (dynamicQuery == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -252,13 +298,13 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		long meetupsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(meetupsEntryId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntryMethodKey8,
-				meetupsEntryId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntry",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -284,13 +330,15 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new IntegerWrapper(start);
+
+		Object paramObj1 = new IntegerWrapper(end);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesMethodKey9,
-				start, end);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntries",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -313,10 +361,9 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesCountMethodKey10);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesCount",
+					new Object[0]);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -338,13 +385,18 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(meetupsEntry);
+
+		if (meetupsEntry == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialnetworking.model.MeetupsEntry");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey11,
-				meetupsEntry);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateMeetupsEntry",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -367,13 +419,20 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = ClpSerializer.translateInput(meetupsEntry);
+
+		if (meetupsEntry == null) {
+			paramObj0 = new NullWrapper(
+					"com.liferay.socialnetworking.model.MeetupsEntry");
+		}
+
+		Object paramObj1 = new BooleanWrapper(merge);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey12,
-				meetupsEntry, merge);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateMeetupsEntry",
+					new Object[] { paramObj0, paramObj1 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -400,16 +459,62 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = ClpSerializer.translateInput(title);
+
+		if (title == null) {
+			paramObj1 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj2 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = new IntegerWrapper(startDateMonth);
+
+		Object paramObj4 = new IntegerWrapper(startDateDay);
+
+		Object paramObj5 = new IntegerWrapper(startDateYear);
+
+		Object paramObj6 = new IntegerWrapper(startDateHour);
+
+		Object paramObj7 = new IntegerWrapper(startDateMinute);
+
+		Object paramObj8 = new IntegerWrapper(endDateMonth);
+
+		Object paramObj9 = new IntegerWrapper(endDateDay);
+
+		Object paramObj10 = new IntegerWrapper(endDateYear);
+
+		Object paramObj11 = new IntegerWrapper(endDateHour);
+
+		Object paramObj12 = new IntegerWrapper(endDateMinute);
+
+		Object paramObj13 = new IntegerWrapper(totalAttendees);
+
+		Object paramObj14 = new IntegerWrapper(maxAttendees);
+
+		Object paramObj15 = new DoubleWrapper(price);
+
+		Object paramObj16 = ClpSerializer.translateInput(thumbnail);
+
+		if (thumbnail == null) {
+			paramObj16 = new NullWrapper("[B");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addMeetupsEntryMethodKey13,
-				userId, title, description, startDateMonth, startDateDay,
-				startDateYear, startDateHour, startDateMinute, endDateMonth,
-				endDateDay, endDateYear, endDateHour, endDateMinute,
-				totalAttendees, maxAttendees, price, thumbnail);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("addMeetupsEntry",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+						paramObj10, paramObj11, paramObj12, paramObj13,
+						paramObj14, paramObj15, paramObj16
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -435,13 +540,13 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
 		long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(companyId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesByCompanyMethodKey14,
-				companyId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByCompany",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -462,13 +567,13 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesByUserMethodKey15,
-				userId);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("getMeetupsEntriesByUser",
+					new Object[] { paramObj0 });
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -496,16 +601,64 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		byte[] thumbnail)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object paramObj0 = new LongWrapper(userId);
+
+		Object paramObj1 = new LongWrapper(meetupsEntryId);
+
+		Object paramObj2 = ClpSerializer.translateInput(title);
+
+		if (title == null) {
+			paramObj2 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj3 = ClpSerializer.translateInput(description);
+
+		if (description == null) {
+			paramObj3 = new NullWrapper("java.lang.String");
+		}
+
+		Object paramObj4 = new IntegerWrapper(startDateMonth);
+
+		Object paramObj5 = new IntegerWrapper(startDateDay);
+
+		Object paramObj6 = new IntegerWrapper(startDateYear);
+
+		Object paramObj7 = new IntegerWrapper(startDateHour);
+
+		Object paramObj8 = new IntegerWrapper(startDateMinute);
+
+		Object paramObj9 = new IntegerWrapper(endDateMonth);
+
+		Object paramObj10 = new IntegerWrapper(endDateDay);
+
+		Object paramObj11 = new IntegerWrapper(endDateYear);
+
+		Object paramObj12 = new IntegerWrapper(endDateHour);
+
+		Object paramObj13 = new IntegerWrapper(endDateMinute);
+
+		Object paramObj14 = new IntegerWrapper(totalAttendees);
+
+		Object paramObj15 = new IntegerWrapper(maxAttendees);
+
+		Object paramObj16 = new DoubleWrapper(price);
+
+		Object paramObj17 = ClpSerializer.translateInput(thumbnail);
+
+		if (thumbnail == null) {
+			paramObj17 = new NullWrapper("[B");
+		}
+
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey16,
-				userId, meetupsEntryId, title, description, startDateMonth,
-				startDateDay, startDateYear, startDateHour, startDateMinute,
-				endDateMonth, endDateDay, endDateYear, endDateHour,
-				endDateMinute, totalAttendees, maxAttendees, price, thumbnail);
-
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			returnObj = _classLoaderProxy.invoke("updateMeetupsEntry",
+					new Object[] {
+						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
+						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
+						paramObj10, paramObj11, paramObj12, paramObj13,
+						paramObj14, paramObj15, paramObj16, paramObj17
+					});
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -532,56 +685,5 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return _classLoaderProxy;
 	}
 
-	private String _className;
 	private ClassLoaderProxy _classLoaderProxy;
-	private final MethodKey _addMeetupsEntryMethodKey0 = new MethodKey(_className,
-			"addMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class);
-	private final MethodKey _createMeetupsEntryMethodKey1 = new MethodKey(_className,
-			"createMeetupsEntry", long.class);
-	private final MethodKey _deleteMeetupsEntryMethodKey2 = new MethodKey(_className,
-			"deleteMeetupsEntry", long.class);
-	private final MethodKey _deleteMeetupsEntryMethodKey3 = new MethodKey(_className,
-			"deleteMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class);
-	private final MethodKey _dynamicQueryMethodKey4 = new MethodKey(_className,
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _dynamicQueryMethodKey5 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private final MethodKey _dynamicQueryMethodKey6 = new MethodKey(_className,
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private final MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_className,
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private final MethodKey _getMeetupsEntryMethodKey8 = new MethodKey(_className,
-			"getMeetupsEntry", long.class);
-	private final MethodKey _getMeetupsEntriesMethodKey9 = new MethodKey(_className,
-			"getMeetupsEntries", int.class, int.class);
-	private final MethodKey _getMeetupsEntriesCountMethodKey10 = new MethodKey(_className,
-			"getMeetupsEntriesCount");
-	private final MethodKey _updateMeetupsEntryMethodKey11 = new MethodKey(_className,
-			"updateMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class);
-	private final MethodKey _updateMeetupsEntryMethodKey12 = new MethodKey(_className,
-			"updateMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class, boolean.class);
-	private final MethodKey _addMeetupsEntryMethodKey13 = new MethodKey(_className,
-			"addMeetupsEntry", long.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, double.class, byte[].class);
-	private final MethodKey _getMeetupsEntriesByCompanyMethodKey14 = new MethodKey(_className,
-			"getMeetupsEntriesByCompany", long.class);
-	private final MethodKey _getMeetupsEntriesByUserMethodKey15 = new MethodKey(_className,
-			"getMeetupsEntriesByUser", long.class);
-	private final MethodKey _updateMeetupsEntryMethodKey16 = new MethodKey(_className,
-			"updateMeetupsEntry", long.class, long.class,
-			java.lang.String.class, java.lang.String.class, int.class,
-			int.class, int.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, int.class, int.class, int.class,
-			double.class, byte[].class);
 }

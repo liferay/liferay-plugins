@@ -47,10 +47,9 @@ public class FooServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
-					portletClassLoader);
+					FooService.class.getName(), portletClassLoader);
 
-			_service = new FooServiceClp(FooService.class.getName(),
-					classLoaderProxy);
+			_service = new FooServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
 		}
