@@ -133,7 +133,7 @@ public abstract class KaleoTaskLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return kaleoTaskPersistence.findWithDynamicQuery(dynamicQuery);
@@ -152,7 +152,7 @@ public abstract class KaleoTaskLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
 		return kaleoTaskPersistence.findWithDynamicQuery(dynamicQuery, start,
@@ -173,7 +173,7 @@ public abstract class KaleoTaskLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		return kaleoTaskPersistence.findWithDynamicQuery(dynamicQuery, start,

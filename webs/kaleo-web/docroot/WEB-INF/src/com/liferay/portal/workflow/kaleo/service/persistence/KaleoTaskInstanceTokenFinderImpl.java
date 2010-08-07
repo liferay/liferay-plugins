@@ -36,7 +36,6 @@ import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.sql.Timestamp;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -98,24 +97,9 @@ public class KaleoTaskInstanceTokenFinderImpl
 			SQLQuery q = buildKaleoTaskInstanceTokenQuerySQL(
 				kaleoTaskInstanceTokenQuery, false, session);
 
-			List<KaleoTaskInstanceToken> tokens =
-				new ArrayList<KaleoTaskInstanceToken>();
-
-			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
+			return (List<KaleoTaskInstanceToken>)QueryUtil.list(
 				q, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
 				kaleoTaskInstanceTokenQuery.getEnd());
-
-			while(itr.hasNext()) {
-				long kaleoTaskInstanceTokenId = itr.next();
-
-				KaleoTaskInstanceToken token =
-					KaleoTaskInstanceTokenUtil.findByPrimaryKey(
-						kaleoTaskInstanceTokenId);
-
-				tokens.add(token);
-			}
-
-			return tokens;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
@@ -196,7 +180,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 		}
 		else {
-			q.addScalar("KaleoTaskInstanceTokenId", Type.LONG);
+			q.addEntity(
+				"KaleoTaskInstanceToken", KaleoTaskInstanceTokenImpl.class);
 		}
 
 		QueryPos qPos = QueryPos.getInstance(q);

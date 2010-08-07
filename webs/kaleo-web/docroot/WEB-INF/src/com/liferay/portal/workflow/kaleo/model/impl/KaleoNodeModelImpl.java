@@ -71,7 +71,7 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 			{ "initial_", new Integer(Types.BOOLEAN) },
 			{ "terminal", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoNode (kaleoNodeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,name VARCHAR(200) null,description STRING null,type_ VARCHAR(20) null,initial_ BOOLEAN,terminal BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoNode (kaleoNodeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,name VARCHAR(200) null,description VARCHAR(2000) null,type_ VARCHAR(20) null,initial_ BOOLEAN,terminal BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoNode";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoNode.kaleoNodeId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoNode.kaleoNodeId ASC";

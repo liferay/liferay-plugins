@@ -20,7 +20,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="executionType" type="String">
 			<hint name="max-length">20</hint>
@@ -48,7 +48,7 @@
 			<hint name="max-length">4000</hint>
 		</field>
 		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="version" type="int" />
 		<field name="active" type="boolean" />
@@ -126,7 +126,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="kaleoActionDescription" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="previousKaleoNodeId" type="long" />
 		<field name="previousKaleoNodeName" type="String">
@@ -144,7 +144,7 @@
 			<hint name="max-length">50</hint>
 		</field>
 		<field name="comment" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="startDate" type="Date" />
 		<field name="endDate" type="Date" />
@@ -168,7 +168,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="type" type="String">
 			<hint name="max-length">20</hint>
@@ -195,7 +195,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="executionType" type="String">
 			<hint name="max-length">20</hint>
@@ -320,7 +320,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="description" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint name="max-length">2000</hint>
 		</field>
 		<field name="sourceKaleoNodeId" type="long" />
 		<field name="sourceKaleoNodeName" type="String">

@@ -74,7 +74,7 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 			{ "scriptLanguage", new Integer(Types.VARCHAR) },
 			{ "priority", new Integer(Types.INTEGER) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoAction (kaleoActionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description STRING null,executionType VARCHAR(20) null,script TEXT null,scriptLanguage VARCHAR(75) null,priority INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoAction (kaleoActionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description VARCHAR(2000) null,executionType VARCHAR(20) null,script TEXT null,scriptLanguage VARCHAR(75) null,priority INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoAction";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoAction.priority ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoAction.priority ASC";
