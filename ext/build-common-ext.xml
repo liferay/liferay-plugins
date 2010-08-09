@@ -196,13 +196,41 @@ loader.
 	<target name="direct-deploy" depends="war">
 		<copy todir="${app.server.lib.global.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
-			<fileset dir="docroot/WEB-INF/ext-service" includes="*.jar" />
 		</copy>
+
+		<copy
+			file="docroot/WEB-INF/ext-service/ext-service.jar"
+			tofile="${app.server.lib.global.dir}/ext-${plugin.name}-service.jar"
+			overwrite="true"
+		/>
 
 		<copy todir="${app.server.lib.portal.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
-			<fileset dir="docroot/WEB-INF/ext-impl" includes="*.jar" />
 		</copy>
+
+		<copy
+			file="docroot/WEB-INF/ext-impl/ext-impl.jar"
+			tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-impl.jar"
+			overwrite="true"
+		/>
+
+		<copy
+			file="docroot/WEB-INF/ext-util-bridges/ext-util-bridges.jar"
+			tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-bridges.jar"
+			overwrite="true"
+		/>
+
+		<copy
+			file="docroot/WEB-INF/ext-util-java/ext-util-java.jar"
+			tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-java.jar"
+			overwrite="true"
+		/>
+
+		<copy
+			file="docroot/WEB-INF/ext-util-taglib/ext-util-taglib.jar"
+			tofile="${app.server.lib.portal.dir}/ext-${plugin.name}-util-taglib.jar"
+			overwrite="true"
+		/>
 
 		<copy todir="${app.server.portal.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-web/docroot" excludes="WEB-INF/web.xml" />
