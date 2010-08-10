@@ -391,14 +391,14 @@ public class WebFormPortlet extends MVCPortlet {
 
 			try {
 				String smtpUser = PropsUtil.get(
-						PropsKeys.MAIL_SESSION_MAIL_SMTP_USER);
+					PropsKeys.MAIL_SESSION_MAIL_SMTP_USER);
 
 				if (Validator.isNotNull(smtpUser)) {
 					fromAddress = new InternetAddress(smtpUser);
 				}
 			}
 			catch (Exception e) {
-				_log.error(e);
+				_log.error(e, e);
 			}
 
 			if (fromAddress == null) {
