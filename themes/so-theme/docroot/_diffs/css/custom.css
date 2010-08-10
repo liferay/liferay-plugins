@@ -1446,6 +1446,11 @@ table.calendar {
 	margin-top: 1em;
 }
 
+.so-portlet-profiles .date-selectors .ctrl-holder {
+	float: left;
+	padding-right: 15px;
+}
+
 .so-portlet-profiles .user-address {
 	float: left;
 	padding: 0 25px 5px 5px;
