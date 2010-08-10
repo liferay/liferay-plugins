@@ -246,11 +246,11 @@ portletURL.setParameter("name", name);
 					</c:if>
 				</div>
 				<div class="section-properties">
-					<aui:input label="title" name="extraSettingsProperties(name)" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("name")) %>' />
+					<aui:input label="title" name="extraSettingsProperties--name--" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("name")) %>' />
 
 					<aui:input label="name" name="title" />
 
-					<aui:input label="author" name="extraSettingsProperties(author)" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("author")) %>' />
+					<aui:input label="author" name="extraSettingsProperties--author--" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("author")) %>' />
 
 					<aui:input name="description" />
 
