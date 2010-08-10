@@ -7,10 +7,6 @@
 <head>
 	<title>$the_title - $company_name</title>
 
-	#if ($browserSniffer.isIe($request))
-		<meta http-equiv="X-UA-Compatible" content="IE=7" />
-	#end
-
 	$theme.include($top_head_include)
 </head>
 
