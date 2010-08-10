@@ -30,6 +30,8 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -385,7 +387,24 @@ public class WebFormPortlet extends MVCPortlet {
 
 			String body = getMailBody(fieldsMap);
 
-			InternetAddress fromAddress = new InternetAddress(emailAddress);
+			InternetAddress fromAddress = null;
+
+			try {
+				String smtpUser = PropsUtil.get(
+						PropsKeys.MAIL_SESSION_MAIL_SMTP_USER);
+
+				if (Validator.isNotNull(smtpUser)) {
+					fromAddress = new InternetAddress(smtpUser);
+				}
+			}
+			catch (Exception e) {
+				_log.error(e);
+			}
+
+			if (fromAddress == null) {
+				fromAddress = new InternetAddress(emailAddress);
+			}
+
 			InternetAddress toAddress = new InternetAddress(emailAddress);
 
 			MailMessage mailMessage = new MailMessage(
