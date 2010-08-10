@@ -267,6 +267,10 @@ body #banner h1.logo a {
 	display: none;
 }
 
+.ie6 .portlet-msg-success, .ie6 .portlet-msg-error {
+	height: 1px;
+}
+
 /* ---------- Layout ---------- */
 
 .portlet-column-content {
@@ -420,6 +424,16 @@ body #banner h1.logo a {
 .aui-panel-hd-text {
 	font-size: 12px;
 	font-weight: bold;
+}
+
+/* Ratings */
+
+.ie6 .taglib-ratings.stars {
+	width: 100%;
+}
+
+.ie6 .taglib-ratings .aui-rating {
+	width: 110px;
 }
 
 /* Search Iterator */
