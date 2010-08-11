@@ -193,6 +193,12 @@ loader.
 		</antcall>
 	</target>
 
+	<target name="deploy-properties">
+		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
+			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
+		</copy>
+	</target>
+
 	<target name="direct-deploy" depends="war">
 		<copy todir="${app.server.lib.global.dir}" overwrite="true">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
@@ -262,12 +268,6 @@ loader.
 		</unzip>
 
 		<antcall target="deploy-properties" />
-	</target>
-
-	<target name="deploy-properties">
-		<copy todir="${app.server.classes.portal.dir}" overwrite="true">
-			<fileset dir="docroot/WEB-INF/ext-impl/src" includes="portal-*.properties,system-*.properties" />
-		</copy>
 	</target>
 
 	<target name="war" depends="compile">
