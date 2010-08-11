@@ -88,13 +88,17 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 	>
 
 		<%
-		StringBuilder sb = new StringBuilder();
+		String rowHREF = null;
 
-		sb.append(themeDisplay.getPathMain());
-		sb.append("/bookmarks/open_entry?entryId=");
-		sb.append(entry.getEntryId());
+		if (BookmarksEntryPermission.contains(permissionChecker, entry, ActionKeys.VIEW)) {
+			StringBuilder sb = new StringBuilder();
 
-		String rowHREF = sb.toString();
+			sb.append(themeDisplay.getPathMain());
+			sb.append("/bookmarks/open_entry?entryId=");
+			sb.append(entry.getEntryId());
+
+			rowHREF = sb.toString();
+		}
 		%>
 
 		<liferay-ui:search-container-column-text
