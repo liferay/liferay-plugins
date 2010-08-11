@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="portlet" basedir="." default="deploy">
+<project name="test-clp-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
 	<target name="compile">

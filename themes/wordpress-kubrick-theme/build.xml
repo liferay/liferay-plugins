@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="theme" basedir="." default="deploy">
+<project name="wordpress-kubrick-theme" basedir="." default="deploy">
 	<import file="../build-common-theme.xml" />
 
 	<property name="theme.parent" value="_styled" />

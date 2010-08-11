@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="web" basedir="." default="deploy">
+<project name="cas-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="cas-web.war" />

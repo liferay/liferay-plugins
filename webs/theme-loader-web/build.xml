@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 
-<project name="web" basedir="." default="deploy">
+<project name="theme-loader-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 </project>

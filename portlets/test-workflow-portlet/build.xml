@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="portlet" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="test-workflow-portlet" basedir="." default="deploy" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="../build-common-portlet.xml" />
 
 	<target name="compile-jbpm-tests">

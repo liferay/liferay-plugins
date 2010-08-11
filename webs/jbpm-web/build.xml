@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="web" basedir="." default="deploy">
+<project name="jbpm-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
 
 	<property name="original.war.file" value="jbpm-installer-3.2.6.SP1.jar" />

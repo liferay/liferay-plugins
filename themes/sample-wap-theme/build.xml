@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="theme" basedir="." default="deploy">
+<project name="sample-wap-theme" basedir="." default="deploy">
 	<property name="plugin.version" value="1" />
 
 	<import file="../build-common-theme.xml" />
