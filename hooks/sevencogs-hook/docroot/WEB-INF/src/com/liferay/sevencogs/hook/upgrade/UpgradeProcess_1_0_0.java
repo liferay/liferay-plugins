@@ -14,8 +14,14 @@
 
 package com.liferay.sevencogs.hook.upgrade;
 
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.sevencogs.hook.upgrade.v1_0_0.UpgradeCompany;
+
+import java.util.List;
 
 /**
  * @author Ryan Park
@@ -27,7 +33,36 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 	}
 
 	protected void doUpgrade() throws Exception {
+		if (!isFirstRun()) {
+			return;
+		}
+
 		upgrade(UpgradeCompany.class);
+	}
+
+	protected boolean isFirstRun() throws Exception{
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		if (companies.isEmpty() || companies.size() > 1) {
+			return false;
+		}
+
+		Company company = companies.get(0);
+
+		long companyId = company.getCompanyId();
+
+		try {
+
+			// If Bruno exists, do not run again
+
+			UserLocalServiceUtil.getUserByScreenName(companyId, "bruno");
+
+			return true;
+		}
+		catch (NoSuchUserException nsue) {
+		}
+
+		return false;
 	}
 
 }
