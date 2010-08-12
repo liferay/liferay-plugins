@@ -70,7 +70,7 @@ public class ProfilesRequestInterpreter extends BaseSocialRequestInterpreter {
 			String creatorUserNameURL = sb.toString();
 
 			title = themeDisplay.translate(
-				"request-wol-summary-add-friend",
+				"request-social-networking-summary-add-friend",
 				new Object[] {creatorUserNameURL});
 		}
 
