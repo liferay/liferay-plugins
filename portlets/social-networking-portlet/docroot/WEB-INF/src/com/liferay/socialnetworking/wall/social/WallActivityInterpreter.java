@@ -49,7 +49,7 @@ public class WallActivityInterpreter extends BaseSocialActivityInterpreter {
 			activity.getReceiverUserId());
 
 		if (!SocialRelationLocalServiceUtil.hasRelation(
-			themeDisplay.getUserId(), activity.getReceiverUserId(),
+			activity.getUserId(), activity.getReceiverUserId(),
 			SocialRelationConstants.TYPE_BI_FRIEND)) {
 
 			return null;
