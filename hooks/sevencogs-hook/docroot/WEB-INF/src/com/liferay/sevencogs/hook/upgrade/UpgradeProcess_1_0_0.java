@@ -40,7 +40,7 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 		upgrade(UpgradeCompany.class);
 	}
 
-	protected boolean isFirstRun() throws Exception{
+	protected boolean isFirstRun() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		if (companies.isEmpty() || companies.size() > 1) {
@@ -57,12 +57,12 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
 			UserLocalServiceUtil.getUserByScreenName(companyId, "bruno");
 
-			return true;
+			return false;
 		}
 		catch (NoSuchUserException nsue) {
 		}
 
-		return false;
+		return true;
 	}
 
 }
