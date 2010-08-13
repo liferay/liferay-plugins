@@ -15,6 +15,7 @@
 package com.liferay.wsrp.bind;
 
 import com.liferay.portal.NoSuchLayoutException;
+import com.liferay.portal.kernel.dao.shard.ShardUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -500,30 +501,38 @@ public class MarkupServiceImpl
 			PortletContext portletContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
-		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-			wsrpProducer.getGroupId(), false,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0, 1);
+		ShardUtil.pushCompanyService(wsrpProducer.getCompanyId());
 
-		if (layouts.isEmpty()) {
-			throw new NoSuchLayoutException();
+		try {
+			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
+				wsrpProducer.getGroupId(), false,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0, 1);
+
+			if (layouts.isEmpty()) {
+				throw new NoSuchLayoutException();
+			}
+
+			Layout layout = layouts.get(0);
+
+			LayoutTypePortlet layoutTypePortlet =
+				(LayoutTypePortlet)layout.getLayoutType();
+
+			String portletId = getPortletId(portletContext);
+
+			if (!layoutTypePortlet.hasPortletId(portletId)) {
+				layoutTypePortlet.addPortletId(
+					0, portletId, "column-1", -1, false);
+
+				LayoutLocalServiceUtil.updateLayout(
+					layout.getGroupId(), layout.isPrivateLayout(),
+					layout.getLayoutId(), layout.getTypeSettings());
+			}
+
+			return layout;
 		}
-
-		Layout layout = layouts.get(0);
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		String portletId = getPortletId(portletContext);
-
-		if (!layoutTypePortlet.hasPortletId(portletId)) {
-			layoutTypePortlet.addPortletId(0, portletId, "column-1", -1, false);
-
-			LayoutLocalServiceUtil.updateLayout(
-				layout.getGroupId(), layout.isPrivateLayout(),
-				layout.getLayoutId(), layout.getTypeSettings());
+		finally {
+			ShardUtil.popCompanyService();
 		}
-
-		return layout;
 	}
 
 	protected String getPortletId(PortletContext portletContext)
