@@ -55,6 +55,8 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.model.WikiPage;
 
+import java.io.InputStream;
+
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -130,7 +132,11 @@ public class InstanceUtil {
 		PortletLocalServiceUtil.clearCache();
 	}
 
-	protected static void setupCompany(long companyId) throws SystemException {
+	protected static void setupCompany(long companyId)
+		throws PortalException, SystemException {
+
+		// Security settings
+
 		String authType = CompanyConstants.AUTH_TYPE_SN;
 		boolean autoLogin = true;
 		boolean sendPassword = true;
@@ -142,6 +148,15 @@ public class InstanceUtil {
 		CompanyLocalServiceUtil.updateSecurity(
 			companyId, authType, autoLogin, sendPassword, strangers,
 			strangersWithMx, strangersVerify, communityLogo);
+
+		// Company logo
+
+		ClassLoader classLoader = InstanceUtil.class.getClassLoader();
+
+		InputStream inputStream =
+			classLoader.getResourceAsStream("/resources/logo.png");
+
+		CompanyLocalServiceUtil.updateLogo(companyId, inputStream);
 	}
 
 	protected static void setupLayouts(long companyId)

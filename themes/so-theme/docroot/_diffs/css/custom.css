@@ -36,18 +36,8 @@ a:active {
 	border-bottom: 3px solid #3E3639;
 }
 
-body #banner h1.logo {
-	margin: 0 0 0 15px;
-	padding-top: 15px;
-}
-
-body #banner h1.logo a {
-	background: url(../images/custom/logo.png) no-repeat bottom center;
-	display: block;
-	height: 59px;
-	overflow: hidden;
-	text-indent: -100em;
-	width: 272px;
+#banner h1.company-title {
+	margin: 15px 0 0 15px;
 }
 
 #banner .group {

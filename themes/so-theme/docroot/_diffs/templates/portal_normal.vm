@@ -16,15 +16,13 @@ $theme.include($top_messages_include)
 
 <div id="wrapper">
 	<div id="banner">
-		<h1 class="logo">
-			#if ($is_signed_in)
-				<a class="png" href="$themeDisplay.getPathFriendlyURLPublic()/$user.getScreenName()">
-			#else
-				<a class="png" href="$company_url">
-			#end
-				<span>$company_name</span>
-			</a>
-		</h1>
+		<div id="heading">
+			<h1 class="company-title">
+				<a class="logo" href="$company_url" title="#language("go-to") $company_name">
+					<span>$company_name</span>
+				</a>
+			</h1>
+		</div>
 
 		#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
 		#set ($guestGroup = $groupLocalService.getGroup($company_id, "Guest"))
