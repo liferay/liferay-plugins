@@ -31,13 +31,5 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		<div id="so-invitemembers-wrapper" class="aui-helper-hidden">
 			<liferay-util:include page="/invite_members/view_community.jsp" portletId="<%= portletDisplay.getId() %>" />
 		</div>
-
-		<aui:script use="liferay-soffice-invitemembers">
-			new Liferay.SO.InviteMembers(
-				{
-					portletNamespace: '<portlet:namespace />'
-				}
-			);
-		</aui:script>
 	</c:when>
 </c:choose>

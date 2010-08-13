@@ -21,15 +21,41 @@ AUI().add(
 					var instance = this;
 
 					instance._inviteMembersWrapper = A.one('#so-invitemembers-wrapper');
+					instance._inviteMembersContainer = A.one('#so-invitemembers-container');
 
-					if (!instance._inviteMembersWrapper) {
+					if (!instance._inviteMembersContainer) {
 						return;
 					}
 
-					instance._findMembersList = instance._inviteMembersWrapper.one('.search .list');
-					instance._emailInput = instance._inviteMembersWrapper.one('#new-member-email-address');
-					instance._invitedEmailList = instance._inviteMembersWrapper.one('.email-invited .list');
-					instance._invitedMembersList = instance._inviteMembersWrapper.one('.user-invited .list');
+					instance._findMembersList = instance._inviteMembersContainer.one('.search .list');
+					instance._emailInput = instance._inviteMembersContainer.one('#new-member-email-address');
+					instance._invitedEmailList = instance._inviteMembersContainer.one('.email-invited .list');
+					instance._invitedMembersList = instance._inviteMembersContainer.one('.user-invited .list');
+
+					var form = instance._inviteMembersContainer.one('form');
+
+					form.on(
+						'submit',
+						function(event) {
+							event.preventDefault();
+
+							instance._syncFields(form);
+
+							if (!instance._inviteMembersWrapper.io) {
+								instance._inviteMembersWrapper.plug(
+									A.Plugin.IO,
+									{
+										autoLoad: false,
+										form: {id: form.getDOM()},
+										method: 'POST',
+										uri: form.getAttribute('action')
+									}
+								);
+							}
+
+							instance._inviteMembersWrapper.io.start();
+						}
+					);
 
 					A.one('.so-portlet-members .invite-members a').on(
 						'click',
@@ -38,7 +64,7 @@ AUI().add(
 						}
 					);
 
-					instance._inviteMembersWrapper.delegate(
+					instance._inviteMembersContainer.delegate(
 						'click',
 						function(event) {
 							var user = event.currentTarget;
@@ -61,7 +87,7 @@ AUI().add(
 						'.user'
 					);
 
-					instance._inviteMembersWrapper.delegate(
+					instance._inviteMembersContainer.delegate(
 						'keyup',
 						function(event) {
 							if (event.keyCode == 13) {
@@ -71,7 +97,7 @@ AUI().add(
 						'.controls'
 					);
 
-					instance._inviteMembersWrapper.delegate(
+					instance._inviteMembersContainer.delegate(
 						'click',
 						function(event) {
 							instance._addMemberEmail();
@@ -80,8 +106,6 @@ AUI().add(
 						},
 						'#so-add-email-address'
 					);
-
-					instance._bindForm();
 
 					new A.LiveSearch(
 						{
@@ -109,36 +133,6 @@ AUI().add(
 					var instance = this;
 
 					user.addClass('invited').cloneNode(true).appendTo(instance._invitedMembersList);
-				},
-
-				_bindForm: function() {
-					var instance = this;
-
-					var form = instance._inviteMembersWrapper.one('form');
-
-					form.on(
-						'submit',
-						function(event) {
-							event.preventDefault();
-
-							instance._syncFields(form);
-
-							if (!instance._inviteMembersWrapper.io) {
-								instance._inviteMembersWrapper.plug(
-									A.Plugin.IO,
-									{
-										autoLoad: false,
-										form: {id: form.getDOM()},
-										method: 'POST',
-										on: {success: A.bind(instance._bindForm, instance)},
-										uri: form.getAttribute('action')
-									}
-								);
-							}
-
-							instance._inviteMembersWrapper.io.start();
-						}
-					);
 				},
 
 				_removeEmailInvite: function(user) {
@@ -187,8 +181,8 @@ AUI().add(
 						}
 					);
 
-					var role = instance._inviteMembersWrapper.one('select[name=' + instance.get('portletNamespace') + 'roleId]');
-					var team = instance._inviteMembersWrapper.one('select[name=' + instance.get('portletNamespace') + 'teamId]');
+					var role = instance._inviteMembersContainer.one('select[name=' + instance.get('portletNamespace') + 'roleId]');
+					var team = instance._inviteMembersContainer.one('select[name=' + instance.get('portletNamespace') + 'teamId]');
 
 					form.one('input[name="' + instance.get('portletNamespace') + 'receiverUserIds"]').val(userIds.join());
 					form.one('input[name="' + instance.get('portletNamespace') + 'receiverEmailAddresses"]').val(emailAddresses.join());
