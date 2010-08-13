@@ -25,8 +25,7 @@ html body {
 
 .chat-bar {
 	background: url(<%= request.getContextPath() %>/images/btm-dock_bg.png);
-	border: 1px solid #b5b5b5;
-	border-bottom: none;
+	border: 1px 1px 1px 0 solid #b5b5b5;
 	bottom: 0;
 	height: 24px;
 	left: 15px;
@@ -87,12 +86,11 @@ html body {
 
 .chat-bar div ul li.selected .panel-trigger {
 	background: #fff;
-	border: 1px solid #262626;
-	border-top: none;
-	-moz-border-radius-bottomleft: 4px;
-	-webkit-border-radius-bottomleft: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-webkit-border-radius-bottomright: 4px;
+	border: 0 1px 1px solid #262626;
+	border-radius: 0 4px;
+	-moz-border-radius: 0 4px;
+	-o-border-radius: 0 4px;
+	-webkit-border-radius: 0 4px;
 	line-height: 27px;
 	height: 25px;
 	position: relative;
@@ -261,10 +259,10 @@ html body {
 }
 
 .panel-window {
-	-moz-border-radius: 4px;
-	-moz-border-radius-bottomright: 0;
-	-webkit-border-radius: 4px;
-	-webkit-border-radius-bottomright: 0;
+	border-radius: 4px 4px 0 4px;
+	-moz-border-radius: 4px 4px 0 4px;
+	-o-border-radius: 4px 4px 0 4px;
+	-webkit-border-radius: 4px 4px 0 4px;
 	background: #fff;
 	border: 1px solid #262626;
 	font: 11px Tahoma, Geneva, sans-serif;
