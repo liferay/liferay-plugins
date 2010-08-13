@@ -31,6 +31,8 @@ if (fileEntry != null) {
 	}
 }
 
+UnicodeProperties extraSettingsProperties = fileEntry.getExtraSettingsProperties();
+
 for (int j = 0; j < fileEntryColumns.length; j++) {
 	String fileEntryColumn = fileEntryColumns[j];
 %>
@@ -121,7 +123,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 
 					<c:if test="<%= Validator.isNotNull(fileEntry.getDescription()) %>">
 						<div class="result-description">
-							<a href="<%= viewURL %>"><%= StringUtil.shorten(fileEntry.getDescription(), 120) %></a>
+							<a href="<%= viewURL %>"><%= GetterUtil.getString(extraSettingsProperties.getProperty("description")) %></a>
 						</div>
 					</c:if>
 

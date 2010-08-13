@@ -172,7 +172,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 				<liferay-ui:message key="description" />
 			</td>
 			<td>
-				<%= fileEntry.getDescription() %>
+				<%= GetterUtil.getString(extraSettingsProperties.getProperty("description")) %>
 			</td>
 		</tr>
 		<tr>

@@ -242,7 +242,7 @@ portletURL.setParameter("name", name);
 					<aui:input name="file" type="file" />
 
 					<c:if test="<%= fileEntry != null %>">
-						<aui:input label="version-description" name="versionDescription" style="width: 350px;" type="textarea" />
+						<aui:input label="version-description" name="description" style="width: 350px;" type="textarea" />
 					</c:if>
 				</div>
 				<div class="section-properties">
@@ -252,7 +252,7 @@ portletURL.setParameter("name", name);
 
 					<aui:input label="author" name="extraSettingsProperties--author--" style="width: 350px;" type="text" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("author")) %>' />
 
-					<aui:input name="description" />
+					<aui:input label="description" name="extraSettingsProperties--description--" style="width: 350px;" type="textarea" value='<%= GetterUtil.getString(extraSettingsProperties.getProperty("description")) %>' />
 
 					<liferay-ui:custom-attributes-available className="<%= DLFileEntry.class.getName() %>">
 						<liferay-ui:custom-attribute-list
