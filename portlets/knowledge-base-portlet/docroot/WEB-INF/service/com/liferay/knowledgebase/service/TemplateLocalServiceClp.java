@@ -14,11 +14,9 @@
 
 package com.liferay.knowledgebase.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,18 +29,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public com.liferay.knowledgebase.model.Template addTemplate(
 		com.liferay.knowledgebase.model.Template template)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addTemplateMethodKey0,
+				template);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addTemplate",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -63,13 +56,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 
 	public com.liferay.knowledgebase.model.Template createTemplate(
 		long templateId) {
-		Object paramObj0 = new LongWrapper(templateId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createTemplateMethodKey1,
+				templateId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createTemplate",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -87,11 +80,11 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public void deleteTemplate(long templateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(templateId);
+		MethodHandler methodHandler = new MethodHandler(_deleteTemplateMethodKey2,
+				templateId);
 
 		try {
-			_classLoaderProxy.invoke("deleteTemplate",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -116,16 +109,11 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		com.liferay.knowledgebase.model.Template template)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteTemplateMethodKey3,
+				template);
 
 		try {
-			_classLoaderProxy.invoke("deleteTemplate",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -146,22 +134,17 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -180,26 +163,17 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -218,35 +192,19 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -268,18 +226,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -301,13 +254,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public com.liferay.knowledgebase.model.Template getTemplate(long templateId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(templateId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTemplateMethodKey8,
+				templateId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getTemplate",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -334,19 +287,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		java.lang.String uuid, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(uuid);
-
-		if (uuid == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new LongWrapper(groupId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTemplateByUuidAndGroupIdMethodKey9,
+				uuid, groupId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getTemplateByUuidAndGroupId",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -372,15 +319,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public java.util.List<com.liferay.knowledgebase.model.Template> getTemplates(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTemplatesMethodKey10,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getTemplates",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -403,9 +348,10 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getTemplatesCountMethodKey11);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getTemplatesCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -427,18 +373,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		com.liferay.knowledgebase.model.Template template)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey12,
+				template);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateTemplate",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -460,20 +401,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		com.liferay.knowledgebase.model.Template template, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey13,
+				template, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateTemplate",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -498,40 +432,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(content);
-
-		if (content == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addTemplateMethodKey14,
+				userId, title, content, description, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addTemplate",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -559,20 +466,11 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		boolean addCommunityPermissions, boolean addGuestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
-
-		Object paramObj1 = new BooleanWrapper(addCommunityPermissions);
-
-		Object paramObj2 = new BooleanWrapper(addGuestPermissions);
+		MethodHandler methodHandler = new MethodHandler(_addTemplateResourcesMethodKey15,
+				template, addCommunityPermissions, addGuestPermissions);
 
 		try {
-			_classLoaderProxy.invoke("addTemplateResources",
-				new Object[] { paramObj0, paramObj1, paramObj2 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -599,28 +497,11 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
-
-		Object paramObj1 = ClpSerializer.translateInput(communityPermissions);
-
-		if (communityPermissions == null) {
-			paramObj1 = new NullWrapper("[Ljava.lang.String;");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(guestPermissions);
-
-		if (guestPermissions == null) {
-			paramObj2 = new NullWrapper("[Ljava.lang.String;");
-		}
+		MethodHandler methodHandler = new MethodHandler(_addTemplateResourcesMethodKey16,
+				template, communityPermissions, guestPermissions);
 
 		try {
-			_classLoaderProxy.invoke("addTemplateResources",
-				new Object[] { paramObj0, paramObj1, paramObj2 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -644,11 +525,11 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	public void deleteGroupTemplates(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
+		MethodHandler methodHandler = new MethodHandler(_deleteGroupTemplatesMethodKey17,
+				groupId);
 
 		try {
-			_classLoaderProxy.invoke("deleteGroupTemplates",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -673,24 +554,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesMethodKey18,
+				groupId, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupTemplates",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -711,13 +581,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 
 	public int getGroupTemplatesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesCountMethodKey19,
+				groupId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupTemplatesCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -742,40 +612,13 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(templateId);
-
-		Object paramObj1 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(content);
-
-		if (content == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey20,
+				templateId, title, content, description, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateTemplate",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -804,28 +647,11 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(template);
-
-		if (template == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.knowledgebase.model.Template");
-		}
-
-		Object paramObj1 = ClpSerializer.translateInput(communityPermissions);
-
-		if (communityPermissions == null) {
-			paramObj1 = new NullWrapper("[Ljava.lang.String;");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(guestPermissions);
-
-		if (guestPermissions == null) {
-			paramObj2 = new NullWrapper("[Ljava.lang.String;");
-		}
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateResourcesMethodKey21,
+				template, communityPermissions, guestPermissions);
 
 		try {
-			_classLoaderProxy.invoke("updateTemplateResources",
-				new Object[] { paramObj0, paramObj1, paramObj2 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -851,4 +677,65 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addTemplateMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addTemplate", com.liferay.knowledgebase.model.Template.class);
+	private MethodKey _createTemplateMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createTemplate", long.class);
+	private MethodKey _deleteTemplateMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteTemplate", long.class);
+	private MethodKey _deleteTemplateMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteTemplate", com.liferay.knowledgebase.model.Template.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getTemplateMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getTemplate", long.class);
+	private MethodKey _getTemplateByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getTemplateByUuidAndGroupId", java.lang.String.class, long.class);
+	private MethodKey _getTemplatesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getTemplates", int.class, int.class);
+	private MethodKey _getTemplatesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getTemplatesCount");
+	private MethodKey _updateTemplateMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateTemplate", com.liferay.knowledgebase.model.Template.class);
+	private MethodKey _updateTemplateMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateTemplate", com.liferay.knowledgebase.model.Template.class,
+			boolean.class);
+	private MethodKey _addTemplateMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addTemplate", long.class, java.lang.String.class,
+			java.lang.String.class, java.lang.String.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _addTemplateResourcesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addTemplateResources",
+			com.liferay.knowledgebase.model.Template.class, boolean.class,
+			boolean.class);
+	private MethodKey _addTemplateResourcesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addTemplateResources",
+			com.liferay.knowledgebase.model.Template.class,
+			java.lang.String[].class, java.lang.String[].class);
+	private MethodKey _deleteGroupTemplatesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteGroupTemplates", long.class);
+	private MethodKey _getGroupTemplatesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGroupTemplates", long.class, int.class, int.class,
+			com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _getGroupTemplatesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGroupTemplatesCount", long.class);
+	private MethodKey _updateTemplateMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateTemplate", long.class, java.lang.String.class,
+			java.lang.String.class, java.lang.String.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _updateTemplateResourcesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateTemplateResources",
+			com.liferay.knowledgebase.model.Template.class,
+			java.lang.String[].class, java.lang.String[].class);
 }

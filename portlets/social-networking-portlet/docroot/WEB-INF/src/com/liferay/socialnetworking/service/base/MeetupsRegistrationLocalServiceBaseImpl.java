@@ -116,7 +116,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery);
@@ -135,7 +135,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
 		throws SystemException {
 		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery,
@@ -156,7 +156,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery,

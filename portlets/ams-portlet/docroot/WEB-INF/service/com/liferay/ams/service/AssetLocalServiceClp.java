@@ -14,11 +14,9 @@
 
 package com.liferay.ams.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,17 +29,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public com.liferay.ams.model.Asset addAsset(
 		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(asset);
-
-		if (asset == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Asset");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addAssetMethodKey0,
+				asset);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addAsset",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -61,13 +55,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	}
 
 	public com.liferay.ams.model.Asset createAsset(long assetId) {
-		Object paramObj0 = new LongWrapper(assetId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createAssetMethodKey1,
+				assetId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createAsset",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -85,10 +79,11 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public void deleteAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(assetId);
+		MethodHandler methodHandler = new MethodHandler(_deleteAssetMethodKey2,
+				assetId);
 
 		try {
-			_classLoaderProxy.invoke("deleteAsset", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -111,14 +106,11 @@ public class AssetLocalServiceClp implements AssetLocalService {
 
 	public void deleteAsset(com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(asset);
-
-		if (asset == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Asset");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteAssetMethodKey3,
+				asset);
 
 		try {
-			_classLoaderProxy.invoke("deleteAsset", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -135,22 +127,17 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -169,26 +156,17 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -207,35 +185,19 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -257,18 +219,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -290,13 +247,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public com.liferay.ams.model.Asset getAsset(long assetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(assetId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAssetMethodKey8,
+				assetId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAsset",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -321,15 +278,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 
 	public java.util.List<com.liferay.ams.model.Asset> getAssets(int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAssetsMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAssets",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -352,8 +307,10 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAssetsCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAssetsCount", new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -375,17 +332,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public com.liferay.ams.model.Asset updateAsset(
 		com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(asset);
-
-		if (asset == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Asset");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey11,
+				asset);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAsset",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -407,19 +360,13 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public com.liferay.ams.model.Asset updateAsset(
 		com.liferay.ams.model.Asset asset, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(asset);
-
-		if (asset == null) {
-			paramObj0 = new NullWrapper("com.liferay.ams.model.Asset");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey12,
+				asset, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAsset",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -443,4 +390,35 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addAssetMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addAsset", com.liferay.ams.model.Asset.class);
+	private MethodKey _createAssetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createAsset", long.class);
+	private MethodKey _deleteAssetMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteAsset", long.class);
+	private MethodKey _deleteAssetMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteAsset", com.liferay.ams.model.Asset.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getAssetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAsset", long.class);
+	private MethodKey _getAssetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAssets", int.class, int.class);
+	private MethodKey _getAssetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAssetsCount");
+	private MethodKey _updateAssetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateAsset", com.liferay.ams.model.Asset.class);
+	private MethodKey _updateAssetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateAsset", com.liferay.ams.model.Asset.class, boolean.class);
 }

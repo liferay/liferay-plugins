@@ -14,11 +14,9 @@
 
 package com.liferay.sampleservicebuilder.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,18 +29,12 @@ public class FooLocalServiceClp implements FooLocalService {
 	public com.liferay.sampleservicebuilder.model.Foo addFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(foo);
-
-		if (foo == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.sampleservicebuilder.model.Foo");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey0, foo);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addFoo",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -62,13 +54,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	public com.liferay.sampleservicebuilder.model.Foo createFoo(long fooId) {
-		Object paramObj0 = new LongWrapper(fooId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createFooMethodKey1,
+				fooId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createFoo",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -86,10 +78,11 @@ public class FooLocalServiceClp implements FooLocalService {
 	public void deleteFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(fooId);
+		MethodHandler methodHandler = new MethodHandler(_deleteFooMethodKey2,
+				fooId);
 
 		try {
-			_classLoaderProxy.invoke("deleteFoo", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -112,15 +105,11 @@ public class FooLocalServiceClp implements FooLocalService {
 
 	public void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(foo);
-
-		if (foo == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.sampleservicebuilder.model.Foo");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteFooMethodKey3,
+				foo);
 
 		try {
-			_classLoaderProxy.invoke("deleteFoo", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -137,22 +126,17 @@ public class FooLocalServiceClp implements FooLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -171,26 +155,17 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -209,35 +184,19 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -259,18 +218,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -292,13 +246,12 @@ public class FooLocalServiceClp implements FooLocalService {
 	public com.liferay.sampleservicebuilder.model.Foo getFoo(long fooId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(fooId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getFooMethodKey8, fooId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getFoo",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -324,15 +277,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getFoos",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -355,8 +306,10 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getFoosCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getFoosCount", new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -378,18 +331,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(foo);
-
-		if (foo == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.sampleservicebuilder.model.Foo");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey11,
+				foo);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateFoo",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -411,20 +359,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	public com.liferay.sampleservicebuilder.model.Foo updateFoo(
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(foo);
-
-		if (foo == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.sampleservicebuilder.model.Foo");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey12,
+				foo, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateFoo",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -447,36 +388,11 @@ public class FooLocalServiceClp implements FooLocalService {
 		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = ClpSerializer.translateInput(field1);
-
-		if (field1 == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = new BooleanWrapper(field2);
-
-		Object paramObj3 = new IntegerWrapper(field3);
-
-		Object paramObj4 = ClpSerializer.translateInput(field4);
-
-		if (field4 == null) {
-			paramObj4 = new NullWrapper("java.util.Date");
-		}
-
-		Object paramObj5 = ClpSerializer.translateInput(field5);
-
-		if (field5 == null) {
-			paramObj5 = new NullWrapper("java.lang.String");
-		}
+		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey13,
+				userId, field1, field2, field3, field4, field5);
 
 		try {
-			_classLoaderProxy.invoke("addFoo",
-				new Object[] {
-					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-					paramObj5
-				});
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -500,18 +416,12 @@ public class FooLocalServiceClp implements FooLocalService {
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(obc);
-
-		if (obc == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey14, obc);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getFoos",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -533,22 +443,13 @@ public class FooLocalServiceClp implements FooLocalService {
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
-		Object paramObj2 = ClpSerializer.translateInput(obc);
-
-		if (obc == null) {
-			paramObj2 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey15,
+				start, end, obc);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getFoos",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -571,36 +472,11 @@ public class FooLocalServiceClp implements FooLocalService {
 		int field3, java.util.Date field4, java.lang.String field5)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(fooId);
-
-		Object paramObj1 = ClpSerializer.translateInput(field1);
-
-		if (field1 == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = new BooleanWrapper(field2);
-
-		Object paramObj3 = new IntegerWrapper(field3);
-
-		Object paramObj4 = ClpSerializer.translateInput(field4);
-
-		if (field4 == null) {
-			paramObj4 = new NullWrapper("java.util.Date");
-		}
-
-		Object paramObj5 = ClpSerializer.translateInput(field5);
-
-		if (field5 == null) {
-			paramObj5 = new NullWrapper("java.lang.String");
-		}
+		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey16,
+				fooId, field1, field2, field3, field4, field5);
 
 		try {
-			_classLoaderProxy.invoke("updateFoo",
-				new Object[] {
-					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-					paramObj5
-				});
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -626,4 +502,47 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addFooMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addFoo", com.liferay.sampleservicebuilder.model.Foo.class);
+	private MethodKey _createFooMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createFoo", long.class);
+	private MethodKey _deleteFooMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteFoo", long.class);
+	private MethodKey _deleteFooMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteFoo", com.liferay.sampleservicebuilder.model.Foo.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getFooMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getFoo", long.class);
+	private MethodKey _getFoosMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getFoos", int.class, int.class);
+	private MethodKey _getFoosCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getFoosCount");
+	private MethodKey _updateFooMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class);
+	private MethodKey _updateFooMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class,
+			boolean.class);
+	private MethodKey _addFooMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addFoo", long.class, java.lang.String.class, boolean.class,
+			int.class, java.util.Date.class, java.lang.String.class);
+	private MethodKey _getFoosMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getFoos", com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _getFoosMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getFoos", int.class, int.class,
+			com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _updateFooMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateFoo", long.class, java.lang.String.class, boolean.class,
+			int.class, java.util.Date.class, java.lang.String.class);
 }

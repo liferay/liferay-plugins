@@ -14,11 +14,9 @@
 
 package com.liferay.so.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,17 +29,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
-
-		if (projectsEntry == null) {
-			paramObj0 = new NullWrapper("com.liferay.so.model.ProjectsEntry");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addProjectsEntryMethodKey0,
+				projectsEntry);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addProjectsEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -62,13 +56,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public com.liferay.so.model.ProjectsEntry createProjectsEntry(
 		long projectsEntryId) {
-		Object paramObj0 = new LongWrapper(projectsEntryId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createProjectsEntryMethodKey1,
+				projectsEntryId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createProjectsEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -86,11 +80,11 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public void deleteProjectsEntry(long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(projectsEntryId);
+		MethodHandler methodHandler = new MethodHandler(_deleteProjectsEntryMethodKey2,
+				projectsEntryId);
 
 		try {
-			_classLoaderProxy.invoke("deleteProjectsEntry",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -114,15 +108,11 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public void deleteProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
-
-		if (projectsEntry == null) {
-			paramObj0 = new NullWrapper("com.liferay.so.model.ProjectsEntry");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteProjectsEntryMethodKey3,
+				projectsEntry);
 
 		try {
-			_classLoaderProxy.invoke("deleteProjectsEntry",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -139,22 +129,17 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -173,26 +158,17 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -211,35 +187,19 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -261,18 +221,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -295,13 +250,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		long projectsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(projectsEntryId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getProjectsEntryMethodKey8,
+				projectsEntryId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getProjectsEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -327,15 +282,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getProjectsEntriesMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getProjectsEntries",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -358,9 +311,10 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getProjectsEntriesCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getProjectsEntriesCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -382,17 +336,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
-
-		if (projectsEntry == null) {
-			paramObj0 = new NullWrapper("com.liferay.so.model.ProjectsEntry");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey11,
+				projectsEntry);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateProjectsEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -414,19 +364,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		com.liferay.so.model.ProjectsEntry projectsEntry, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(projectsEntry);
-
-		if (projectsEntry == null) {
-			paramObj0 = new NullWrapper("com.liferay.so.model.ProjectsEntry");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey12,
+				projectsEntry, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateProjectsEntry",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -452,49 +396,15 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		java.lang.String data)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = new IntegerWrapper(startDateMonth);
-
-		Object paramObj4 = new IntegerWrapper(startDateDay);
-
-		Object paramObj5 = new IntegerWrapper(startDateYear);
-
-		Object paramObj6 = new IntegerWrapper(endDateMonth);
-
-		Object paramObj7 = new IntegerWrapper(endDateDay);
-
-		Object paramObj8 = new IntegerWrapper(endDateYear);
-
-		Object paramObj9 = new BooleanWrapper(current);
-
-		Object paramObj10 = ClpSerializer.translateInput(data);
-
-		if (data == null) {
-			paramObj10 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addProjectsEntryMethodKey13,
+				userId, title, description, startDateMonth, startDateDay,
+				startDateYear, endDateMonth, endDateDay, endDateYear, current,
+				data);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addProjectsEntry",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -519,13 +429,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getUserProjectsEntriesMethodKey14,
+				userId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getUserProjectsEntries",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -546,13 +456,13 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 
 	public int getUserProjectsEntriesCount(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getUserProjectsEntriesCountMethodKey15,
+				userId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getUserProjectsEntriesCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -578,49 +488,15 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		boolean current, java.lang.String data)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(projectsEntryId);
-
-		Object paramObj1 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = new IntegerWrapper(startDateMonth);
-
-		Object paramObj4 = new IntegerWrapper(startDateDay);
-
-		Object paramObj5 = new IntegerWrapper(startDateYear);
-
-		Object paramObj6 = new IntegerWrapper(endDateMonth);
-
-		Object paramObj7 = new IntegerWrapper(endDateDay);
-
-		Object paramObj8 = new IntegerWrapper(endDateYear);
-
-		Object paramObj9 = new BooleanWrapper(current);
-
-		Object paramObj10 = ClpSerializer.translateInput(data);
-
-		if (data == null) {
-			paramObj10 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey16,
+				projectsEntryId, title, description, startDateMonth,
+				startDateDay, startDateYear, endDateMonth, endDateDay,
+				endDateYear, current, data);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateProjectsEntry",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7, paramObj8, paramObj9,
-						paramObj10
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -648,4 +524,48 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addProjectsEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
+	private MethodKey _createProjectsEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createProjectsEntry", long.class);
+	private MethodKey _deleteProjectsEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteProjectsEntry", long.class);
+	private MethodKey _deleteProjectsEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getProjectsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getProjectsEntry", long.class);
+	private MethodKey _getProjectsEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getProjectsEntries", int.class, int.class);
+	private MethodKey _getProjectsEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getProjectsEntriesCount");
+	private MethodKey _updateProjectsEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
+	private MethodKey _updateProjectsEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateProjectsEntry", com.liferay.so.model.ProjectsEntry.class,
+			boolean.class);
+	private MethodKey _addProjectsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addProjectsEntry", long.class, java.lang.String.class,
+			java.lang.String.class, int.class, int.class, int.class, int.class,
+			int.class, int.class, boolean.class, java.lang.String.class);
+	private MethodKey _getUserProjectsEntriesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserProjectsEntries", long.class);
+	private MethodKey _getUserProjectsEntriesCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserProjectsEntriesCount", long.class);
+	private MethodKey _updateProjectsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateProjectsEntry", long.class, java.lang.String.class,
+			java.lang.String.class, int.class, int.class, int.class, int.class,
+			int.class, int.class, boolean.class, java.lang.String.class);
 }

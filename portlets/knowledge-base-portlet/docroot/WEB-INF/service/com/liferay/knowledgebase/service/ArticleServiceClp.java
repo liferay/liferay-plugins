@@ -14,12 +14,9 @@
 
 package com.liferay.knowledgebase.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.DoubleWrapper;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -36,49 +33,14 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(parentResourcePrimKey);
-
-		Object paramObj1 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(content);
-
-		if (content == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = new IntegerWrapper(priority);
-
-		Object paramObj5 = ClpSerializer.translateInput(dirName);
-
-		if (dirName == null) {
-			paramObj5 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj6 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj6 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addArticleMethodKey0,
+				parentResourcePrimKey, title, content, description, priority,
+				dirName, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -106,36 +68,12 @@ public class ArticleServiceClp implements ArticleService {
 		java.lang.String shortFileName, java.io.InputStream inputStream)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(groupId);
-
-		Object paramObj2 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj3 = ClpSerializer.translateInput(dirName);
-
-		if (dirName == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = ClpSerializer.translateInput(shortFileName);
-
-		if (shortFileName == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj5 = ClpSerializer.translateInput(inputStream);
-
-		if (inputStream == null) {
-			paramObj5 = new NullWrapper("java.io.InputStream");
-		}
+		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey1,
+				companyId, groupId, resourcePrimKey, dirName, shortFileName,
+				inputStream);
 
 		try {
-			_classLoaderProxy.invoke("addAttachment",
-				new Object[] {
-					paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-					paramObj5
-				});
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -159,10 +97,11 @@ public class ArticleServiceClp implements ArticleService {
 	public void deleteArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
+		MethodHandler methodHandler = new MethodHandler(_deleteArticleMethodKey2,
+				resourcePrimKey);
 
 		try {
-			_classLoaderProxy.invoke("deleteArticle", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -187,21 +126,11 @@ public class ArticleServiceClp implements ArticleService {
 		long resourcePrimKey, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(groupId);
-
-		Object paramObj2 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj3 = ClpSerializer.translateInput(fileName);
-
-		if (fileName == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey3,
+				companyId, groupId, resourcePrimKey, fileName);
 
 		try {
-			_classLoaderProxy.invoke("deleteAttachment",
-				new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -226,15 +155,13 @@ public class ArticleServiceClp implements ArticleService {
 		long resourcePrimKey, int version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj1 = new IntegerWrapper(version);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getArticleMethodKey4,
+				resourcePrimKey, version);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getArticle",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -262,24 +189,13 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey5,
+				resourcePrimKey, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getArticles",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -308,32 +224,13 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(params);
-
-		if (params == null) {
-			paramObj0 = new NullWrapper("java.util.Map");
-		}
-
-		Object paramObj1 = new BooleanWrapper(allVersions);
-
-		Object paramObj2 = new IntegerWrapper(start);
-
-		Object paramObj3 = new IntegerWrapper(end);
-
-		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey6,
+				params, allVersions, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getArticles",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -358,13 +255,13 @@ public class ArticleServiceClp implements ArticleService {
 
 	public int getArticlesCount(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getArticlesCountMethodKey7,
+				resourcePrimKey);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getArticlesCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -387,19 +284,13 @@ public class ArticleServiceClp implements ArticleService {
 		java.util.Map<java.lang.String, java.lang.Object> params,
 		boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(params);
-
-		if (params == null) {
-			paramObj0 = new NullWrapper("java.util.Map");
-		}
-
-		Object paramObj1 = new BooleanWrapper(allVersions);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getArticlesCountMethodKey8,
+				params, allVersions);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getArticlesCount",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -424,46 +315,14 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(portletId);
-
-		if (portletId == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj2 = new IntegerWrapper(max);
-
-		Object paramObj3 = ClpSerializer.translateInput(type);
-
-		if (type == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = new DoubleWrapper(version);
-
-		Object paramObj5 = ClpSerializer.translateInput(displayStyle);
-
-		if (displayStyle == null) {
-			paramObj5 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj6 = new BooleanWrapper(maximized);
-
-		Object paramObj7 = ClpSerializer.translateInput(themeDisplay);
-
-		if (themeDisplay == null) {
-			paramObj7 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getArticlesRSSMethodKey9,
+				portletId, resourcePrimKey, max, type, version, displayStyle,
+				maximized, themeDisplay);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getArticlesRSS",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -491,28 +350,13 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new BooleanWrapper(allVersions);
-
-		Object paramObj2 = new IntegerWrapper(start);
-
-		Object paramObj3 = new IntegerWrapper(end);
-
-		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getCompanyArticlesMethodKey10,
+				companyId, allVersions, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getCompanyArticles",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -537,15 +381,13 @@ public class ArticleServiceClp implements ArticleService {
 
 	public int getCompanyArticlesCount(long companyId, boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new BooleanWrapper(allVersions);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getCompanyArticlesCountMethodKey11,
+				companyId, allVersions);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getCompanyArticlesCount",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -569,28 +411,13 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new BooleanWrapper(allVersions);
-
-		Object paramObj2 = new IntegerWrapper(start);
-
-		Object paramObj3 = new IntegerWrapper(end);
-
-		Object paramObj4 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj4 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesMethodKey12,
+				groupId, allVersions, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticles",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -615,15 +442,13 @@ public class ArticleServiceClp implements ArticleService {
 
 	public int getGroupArticlesCount(long groupId, boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new BooleanWrapper(allVersions);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesCountMethodKey13,
+				groupId, allVersions);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticlesCount",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -648,44 +473,14 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(portletId);
-
-		if (portletId == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new IntegerWrapper(max);
-
-		Object paramObj2 = ClpSerializer.translateInput(type);
-
-		if (type == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = new DoubleWrapper(version);
-
-		Object paramObj4 = ClpSerializer.translateInput(displayStyle);
-
-		if (displayStyle == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj5 = new BooleanWrapper(maximized);
-
-		Object paramObj6 = ClpSerializer.translateInput(themeDisplay);
-
-		if (themeDisplay == null) {
-			paramObj6 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesRSSMethodKey14,
+				portletId, max, type, version, displayStyle, maximized,
+				themeDisplay);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGroupArticlesRSS",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -712,13 +507,13 @@ public class ArticleServiceClp implements ArticleService {
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getLatestArticleMethodKey15,
+				resourcePrimKey);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getLatestArticle",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -745,13 +540,13 @@ public class ArticleServiceClp implements ArticleService {
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getLatestArticleTreeMethodKey16,
+				resourcePrimKey);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getLatestArticleTree",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -777,10 +572,11 @@ public class ArticleServiceClp implements ArticleService {
 	public void subscribe(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
+		MethodHandler methodHandler = new MethodHandler(_subscribeMethodKey17,
+				groupId);
 
 		try {
-			_classLoaderProxy.invoke("subscribe", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -805,17 +601,11 @@ public class ArticleServiceClp implements ArticleService {
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(portletId);
-
-		if (portletId == null) {
-			paramObj0 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj1 = new LongWrapper(resourcePrimKey);
+		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey18,
+				portletId, resourcePrimKey);
 
 		try {
-			_classLoaderProxy.invoke("subscribeArticle",
-				new Object[] { paramObj0, paramObj1 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -839,10 +629,11 @@ public class ArticleServiceClp implements ArticleService {
 	public void unsubscribe(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeMethodKey19,
+				groupId);
 
 		try {
-			_classLoaderProxy.invoke("unsubscribe", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -866,13 +657,11 @@ public class ArticleServiceClp implements ArticleService {
 	public void unsubscribeArticle(long companyId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(resourcePrimKey);
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey20,
+				companyId, resourcePrimKey);
 
 		try {
-			_classLoaderProxy.invoke("unsubscribeArticle",
-				new Object[] { paramObj0, paramObj1 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -900,51 +689,14 @@ public class ArticleServiceClp implements ArticleService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj1 = new LongWrapper(parentResourcePrimKey);
-
-		Object paramObj2 = ClpSerializer.translateInput(title);
-
-		if (title == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(content);
-
-		if (content == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = ClpSerializer.translateInput(description);
-
-		if (description == null) {
-			paramObj4 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj5 = new IntegerWrapper(priority);
-
-		Object paramObj6 = ClpSerializer.translateInput(dirName);
-
-		if (dirName == null) {
-			paramObj6 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj7 = ClpSerializer.translateInput(serviceContext);
-
-		if (serviceContext == null) {
-			paramObj7 = new NullWrapper(
-					"com.liferay.portal.service.ServiceContext");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateArticleMethodKey21,
+				resourcePrimKey, parentResourcePrimKey, title, content,
+				description, priority, dirName, serviceContext);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateArticle",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5, paramObj6, paramObj7
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -971,23 +723,13 @@ public class ArticleServiceClp implements ArticleService {
 		long resourcePrimKey, java.lang.String dirName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(groupId);
-
-		Object paramObj2 = new LongWrapper(resourcePrimKey);
-
-		Object paramObj3 = ClpSerializer.translateInput(dirName);
-
-		if (dirName == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey22,
+				companyId, groupId, resourcePrimKey, dirName);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAttachments",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -1015,4 +757,68 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addArticleMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addArticle", long.class, java.lang.String.class,
+			java.lang.String.class, java.lang.String.class, int.class,
+			java.lang.String.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _addAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addAttachment", long.class, long.class, long.class,
+			java.lang.String.class, java.lang.String.class,
+			java.io.InputStream.class);
+	private MethodKey _deleteArticleMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteArticle", long.class);
+	private MethodKey _deleteAttachmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteAttachment", long.class, long.class, long.class,
+			java.lang.String.class);
+	private MethodKey _getArticleMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getArticle", long.class, int.class);
+	private MethodKey _getArticlesMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getArticles", long.class, int.class, int.class,
+			com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _getArticlesMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getArticles", java.util.Map.class, boolean.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _getArticlesCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getArticlesCount", long.class);
+	private MethodKey _getArticlesCountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getArticlesCount", java.util.Map.class, boolean.class);
+	private MethodKey _getArticlesRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getArticlesRSS", java.lang.String.class, long.class, int.class,
+			java.lang.String.class, double.class, java.lang.String.class,
+			boolean.class, com.liferay.portal.theme.ThemeDisplay.class);
+	private MethodKey _getCompanyArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getCompanyArticles", long.class, boolean.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _getCompanyArticlesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getCompanyArticlesCount", long.class, boolean.class);
+	private MethodKey _getGroupArticlesMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGroupArticles", long.class, boolean.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _getGroupArticlesCountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGroupArticlesCount", long.class, boolean.class);
+	private MethodKey _getGroupArticlesRSSMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGroupArticlesRSS", java.lang.String.class, int.class,
+			java.lang.String.class, double.class, java.lang.String.class,
+			boolean.class, com.liferay.portal.theme.ThemeDisplay.class);
+	private MethodKey _getLatestArticleMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getLatestArticle", long.class);
+	private MethodKey _getLatestArticleTreeMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getLatestArticleTree", long.class);
+	private MethodKey _subscribeMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+			"subscribe", long.class);
+	private MethodKey _subscribeArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+			"subscribeArticle", java.lang.String.class, long.class);
+	private MethodKey _unsubscribeMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+			"unsubscribe", long.class);
+	private MethodKey _unsubscribeArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+			"unsubscribeArticle", long.class, long.class);
+	private MethodKey _updateArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateArticle", long.class, long.class, java.lang.String.class,
+			java.lang.String.class, java.lang.String.class, int.class,
+			java.lang.String.class,
+			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _updateAttachmentsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateAttachments", long.class, long.class, long.class,
+			java.lang.String.class);
 }

@@ -14,11 +14,9 @@
 
 package com.liferay.mail.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,17 +29,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public com.liferay.mail.model.Attachment addAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(attachment);
-
-		if (attachment == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Attachment");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey0,
+				attachment);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addAttachment",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -61,13 +55,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	public com.liferay.mail.model.Attachment createAttachment(long attachmentId) {
-		Object paramObj0 = new LongWrapper(attachmentId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createAttachmentMethodKey1,
+				attachmentId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createAttachment",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -85,11 +79,11 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public void deleteAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(attachmentId);
+		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey2,
+				attachmentId);
 
 		try {
-			_classLoaderProxy.invoke("deleteAttachment",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -112,15 +106,11 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 
 	public void deleteAttachment(com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(attachment);
-
-		if (attachment == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Attachment");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey3,
+				attachment);
 
 		try {
-			_classLoaderProxy.invoke("deleteAttachment",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -137,22 +127,17 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -171,26 +156,17 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -209,35 +185,19 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -259,18 +219,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -292,13 +247,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public com.liferay.mail.model.Attachment getAttachment(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(attachmentId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentMethodKey8,
+				attachmentId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAttachment",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -324,15 +279,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentsMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAttachments",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -355,9 +308,10 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentsCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAttachmentsCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -379,17 +333,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public com.liferay.mail.model.Attachment updateAttachment(
 		com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(attachment);
-
-		if (attachment == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Attachment");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey11,
+				attachment);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAttachment",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -411,19 +361,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public com.liferay.mail.model.Attachment updateAttachment(
 		com.liferay.mail.model.Attachment attachment, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(attachment);
-
-		if (attachment == null) {
-			paramObj0 = new NullWrapper("com.liferay.mail.model.Attachment");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey12,
+				attachment, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateAttachment",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -447,38 +391,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		java.lang.String fileName, long size, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(userId);
-
-		Object paramObj1 = new LongWrapper(messageId);
-
-		Object paramObj2 = ClpSerializer.translateInput(contentPath);
-
-		if (contentPath == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(fileName);
-
-		if (fileName == null) {
-			paramObj3 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj4 = new LongWrapper(size);
-
-		Object paramObj5 = ClpSerializer.translateInput(file);
-
-		if (file == null) {
-			paramObj5 = new NullWrapper("java.io.File");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey13,
+				userId, messageId, contentPath, fileName, size, file);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addAttachment",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -504,13 +423,11 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public void deleteAttachments(long companyId, long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(messageId);
+		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentsMethodKey14,
+				companyId, messageId);
 
 		try {
-			_classLoaderProxy.invoke("deleteAttachments",
-				new Object[] { paramObj0, paramObj1 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -534,13 +451,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public java.util.List<com.liferay.mail.model.Attachment> getAttachments(
 		long messageId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(messageId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getAttachmentsMethodKey15,
+				messageId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getAttachments",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -562,13 +479,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public java.io.File getFile(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(attachmentId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getFileMethodKey16,
+				attachmentId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getFile",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -594,13 +511,13 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public java.io.InputStream getInputStream(long attachmentId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(attachmentId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getInputStreamMethodKey17,
+				attachmentId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getInputStream",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -628,4 +545,47 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addAttachmentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addAttachment", com.liferay.mail.model.Attachment.class);
+	private MethodKey _createAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createAttachment", long.class);
+	private MethodKey _deleteAttachmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteAttachment", long.class);
+	private MethodKey _deleteAttachmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteAttachment", com.liferay.mail.model.Attachment.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getAttachmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAttachment", long.class);
+	private MethodKey _getAttachmentsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAttachments", int.class, int.class);
+	private MethodKey _getAttachmentsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAttachmentsCount");
+	private MethodKey _updateAttachmentMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateAttachment", com.liferay.mail.model.Attachment.class);
+	private MethodKey _updateAttachmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateAttachment", com.liferay.mail.model.Attachment.class,
+			boolean.class);
+	private MethodKey _addAttachmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addAttachment", long.class, long.class, java.lang.String.class,
+			java.lang.String.class, long.class, java.io.File.class);
+	private MethodKey _deleteAttachmentsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteAttachments", long.class, long.class);
+	private MethodKey _getAttachmentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getAttachments", long.class);
+	private MethodKey _getFileMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getFile", long.class);
+	private MethodKey _getInputStreamMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getInputStream", long.class);
 }

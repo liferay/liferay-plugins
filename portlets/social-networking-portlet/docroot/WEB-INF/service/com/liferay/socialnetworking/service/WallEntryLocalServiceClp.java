@@ -14,11 +14,9 @@
 
 package com.liferay.socialnetworking.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,18 +29,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
-
-		if (wallEntry == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialnetworking.model.WallEntry");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addWallEntryMethodKey0,
+				wallEntry);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addWallEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -63,13 +56,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	public com.liferay.socialnetworking.model.WallEntry createWallEntry(
 		long wallEntryId) {
-		Object paramObj0 = new LongWrapper(wallEntryId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createWallEntryMethodKey1,
+				wallEntryId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createWallEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -87,11 +80,11 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public void deleteWallEntry(long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(wallEntryId);
+		MethodHandler methodHandler = new MethodHandler(_deleteWallEntryMethodKey2,
+				wallEntryId);
 
 		try {
-			_classLoaderProxy.invoke("deleteWallEntry",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -115,16 +108,11 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public void deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
-
-		if (wallEntry == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialnetworking.model.WallEntry");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteWallEntryMethodKey3,
+				wallEntry);
 
 		try {
-			_classLoaderProxy.invoke("deleteWallEntry",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -141,22 +129,17 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -175,26 +158,17 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -213,35 +187,19 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -263,18 +221,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -297,13 +250,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		long wallEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(wallEntryId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallEntryMethodKey8,
+				wallEntryId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -329,15 +282,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallEntries",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -360,9 +311,10 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallEntriesCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -384,18 +336,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
-
-		if (wallEntry == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialnetworking.model.WallEntry");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey11,
+				wallEntry);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateWallEntry",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -417,20 +364,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(wallEntry);
-
-		if (wallEntry == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialnetworking.model.WallEntry");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey12,
+				wallEntry, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateWallEntry",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -454,27 +394,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new LongWrapper(userId);
-
-		Object paramObj2 = ClpSerializer.translateInput(comments);
-
-		if (comments == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj3 = ClpSerializer.translateInput(themeDisplay);
-
-		if (themeDisplay == null) {
-			paramObj3 = new NullWrapper("com.liferay.portal.theme.ThemeDisplay");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addWallEntryMethodKey13,
+				groupId, userId, comments, themeDisplay);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addWallEntry",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -499,11 +425,11 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	public void deleteWallEntries(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
+		MethodHandler methodHandler = new MethodHandler(_deleteWallEntriesMethodKey14,
+				groupId);
 
 		try {
-			_classLoaderProxy.invoke("deleteWallEntries",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -523,17 +449,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
 		long groupId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesMethodKey15,
+				groupId, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallEntries",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -554,13 +476,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	public int getWallEntriesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallEntriesCountMethodKey16,
+				groupId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallEntriesCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -582,26 +504,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId1);
-
-		Object paramObj1 = new LongWrapper(groupId2);
-
-		Object paramObj2 = new LongWrapper(userId1);
-
-		Object paramObj3 = new LongWrapper(userId2);
-
-		Object paramObj4 = new IntegerWrapper(start);
-
-		Object paramObj5 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallToWallEntriesMethodKey17,
+				groupId1, groupId2, userId1, userId2, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallToWallEntries",
-					new Object[] {
-						paramObj0, paramObj1, paramObj2, paramObj3, paramObj4,
-						paramObj5
-					});
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -623,19 +532,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public int getWallToWallEntriesCount(long groupId1, long groupId2,
 		long userId1, long userId2)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(groupId1);
-
-		Object paramObj1 = new LongWrapper(groupId2);
-
-		Object paramObj2 = new LongWrapper(userId1);
-
-		Object paramObj3 = new LongWrapper(userId2);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getWallToWallEntriesCountMethodKey18,
+				groupId1, groupId2, userId1, userId2);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getWallToWallEntriesCount",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -658,19 +561,13 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		long wallEntryId, java.lang.String comments)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(wallEntryId);
-
-		Object paramObj1 = ClpSerializer.translateInput(comments);
-
-		if (comments == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateWallEntryMethodKey19,
+				wallEntryId, comments);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateWallEntry",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -698,4 +595,55 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addWallEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addWallEntry", com.liferay.socialnetworking.model.WallEntry.class);
+	private MethodKey _createWallEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createWallEntry", long.class);
+	private MethodKey _deleteWallEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteWallEntry", long.class);
+	private MethodKey _deleteWallEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteWallEntry",
+			com.liferay.socialnetworking.model.WallEntry.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getWallEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallEntry", long.class);
+	private MethodKey _getWallEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallEntries", int.class, int.class);
+	private MethodKey _getWallEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallEntriesCount");
+	private MethodKey _updateWallEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateWallEntry",
+			com.liferay.socialnetworking.model.WallEntry.class);
+	private MethodKey _updateWallEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateWallEntry",
+			com.liferay.socialnetworking.model.WallEntry.class, boolean.class);
+	private MethodKey _addWallEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addWallEntry", long.class, long.class, java.lang.String.class,
+			com.liferay.portal.theme.ThemeDisplay.class);
+	private MethodKey _deleteWallEntriesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteWallEntries", long.class);
+	private MethodKey _getWallEntriesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallEntries", long.class, int.class, int.class);
+	private MethodKey _getWallEntriesCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallEntriesCount", long.class);
+	private MethodKey _getWallToWallEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallToWallEntries", long.class, long.class, long.class,
+			long.class, int.class, int.class);
+	private MethodKey _getWallToWallEntriesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getWallToWallEntriesCount", long.class, long.class, long.class,
+			long.class);
+	private MethodKey _updateWallEntryMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateWallEntry", long.class, java.lang.String.class);
 }

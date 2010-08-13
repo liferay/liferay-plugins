@@ -14,11 +14,9 @@
 
 package com.liferay.opensocial.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,17 +29,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public com.liferay.opensocial.model.Gadget addGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(gadget);
-
-		if (gadget == null) {
-			paramObj0 = new NullWrapper("com.liferay.opensocial.model.Gadget");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey0,
+				gadget);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addGadget",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -61,13 +55,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public com.liferay.opensocial.model.Gadget createGadget(long gadgetId) {
-		Object paramObj0 = new LongWrapper(gadgetId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createGadgetMethodKey1,
+				gadgetId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createGadget",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -85,10 +79,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void deleteGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(gadgetId);
+		MethodHandler methodHandler = new MethodHandler(_deleteGadgetMethodKey2,
+				gadgetId);
 
 		try {
-			_classLoaderProxy.invoke("deleteGadget", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -112,14 +107,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(gadget);
-
-		if (gadget == null) {
-			paramObj0 = new NullWrapper("com.liferay.opensocial.model.Gadget");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteGadgetMethodKey3,
+				gadget);
 
 		try {
-			_classLoaderProxy.invoke("deleteGadget", new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -140,22 +132,17 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -174,26 +161,17 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -212,35 +190,19 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -262,18 +224,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -295,13 +252,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(gadgetId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey8,
+				gadgetId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGadget",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -327,15 +284,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGadgetsMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGadgets",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -358,9 +313,10 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGadgetsCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGadgetsCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -382,17 +338,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public com.liferay.opensocial.model.Gadget updateGadget(
 		com.liferay.opensocial.model.Gadget gadget)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(gadget);
-
-		if (gadget == null) {
-			paramObj0 = new NullWrapper("com.liferay.opensocial.model.Gadget");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey11,
+				gadget);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateGadget",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -414,19 +366,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public com.liferay.opensocial.model.Gadget updateGadget(
 		com.liferay.opensocial.model.Gadget gadget, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(gadget);
-
-		if (gadget == null) {
-			paramObj0 = new NullWrapper("com.liferay.opensocial.model.Gadget");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey12,
+				gadget, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateGadget",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -449,25 +395,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		java.lang.String name, java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = ClpSerializer.translateInput(name);
-
-		if (name == null) {
-			paramObj1 = new NullWrapper("java.lang.String");
-		}
-
-		Object paramObj2 = ClpSerializer.translateInput(url);
-
-		if (url == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey13,
+				companyId, name, url);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addGadget",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -494,19 +428,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(gadgetId);
-
-		Object paramObj2 = ClpSerializer.translateInput(name);
-
-		if (name == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
+		MethodHandler methodHandler = new MethodHandler(_destroyGadgetMethodKey14,
+				companyId, gadgetId, name);
 
 		try {
-			_classLoaderProxy.invoke("destroyGadget",
-				new Object[] { paramObj0, paramObj1, paramObj2 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -530,8 +456,10 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_destroyGadgetsMethodKey15);
+
 		try {
-			_classLoaderProxy.invoke("destroyGadgets", new Object[0]);
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -555,17 +483,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
 		long companyId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGadgetsMethodKey16,
+				companyId, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGadgets",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -586,13 +510,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 	public int getGadgetsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getGadgetsCountMethodKey17,
+				companyId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getGadgetsCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -614,19 +538,11 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void initGadget(long companyId, long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(gadgetId);
-
-		Object paramObj2 = ClpSerializer.translateInput(name);
-
-		if (name == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
+		MethodHandler methodHandler = new MethodHandler(_initGadgetMethodKey18,
+				companyId, gadgetId, name);
 
 		try {
-			_classLoaderProxy.invoke("initGadget",
-				new Object[] { paramObj0, paramObj1, paramObj2 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -650,8 +566,10 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_initGadgetsMethodKey19);
+
 		try {
-			_classLoaderProxy.invoke("initGadgets", new Object[0]);
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -676,21 +594,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(companyId);
-
-		Object paramObj1 = new LongWrapper(gadgetId);
-
-		Object paramObj2 = ClpSerializer.translateInput(name);
-
-		if (name == null) {
-			paramObj2 = new NullWrapper("java.lang.String");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey20,
+				companyId, gadgetId, name);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateGadget",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -718,4 +628,53 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addGadgetMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addGadget", com.liferay.opensocial.model.Gadget.class);
+	private MethodKey _createGadgetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createGadget", long.class);
+	private MethodKey _deleteGadgetMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteGadget", long.class);
+	private MethodKey _deleteGadgetMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteGadget", com.liferay.opensocial.model.Gadget.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getGadgetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGadget", long.class);
+	private MethodKey _getGadgetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGadgets", int.class, int.class);
+	private MethodKey _getGadgetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGadgetsCount");
+	private MethodKey _updateGadgetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateGadget", com.liferay.opensocial.model.Gadget.class);
+	private MethodKey _updateGadgetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateGadget", com.liferay.opensocial.model.Gadget.class,
+			boolean.class);
+	private MethodKey _addGadgetMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addGadget", long.class, java.lang.String.class,
+			java.lang.String.class);
+	private MethodKey _destroyGadgetMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+			"destroyGadget", long.class, long.class, java.lang.String.class);
+	private MethodKey _destroyGadgetsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+			"destroyGadgets");
+	private MethodKey _getGadgetsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGadgets", long.class, int.class, int.class);
+	private MethodKey _getGadgetsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getGadgetsCount", long.class);
+	private MethodKey _initGadgetMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+			"initGadget", long.class, long.class, java.lang.String.class);
+	private MethodKey _initGadgetsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+			"initGadgets");
+	private MethodKey _updateGadgetMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateGadget", long.class, long.class, java.lang.String.class);
 }

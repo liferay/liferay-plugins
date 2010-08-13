@@ -14,11 +14,9 @@
 
 package com.liferay.socialcoding.service;
 
-import com.liferay.portal.kernel.util.BooleanWrapper;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
-import com.liferay.portal.kernel.util.IntegerWrapper;
-import com.liferay.portal.kernel.util.LongWrapper;
-import com.liferay.portal.kernel.util.NullWrapper;
+import com.liferay.portal.kernel.util.MethodHandler;
+import com.liferay.portal.kernel.util.MethodKey;
 
 /**
  * @author Brian Wing Shun Chan
@@ -31,18 +29,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public com.liferay.socialcoding.model.JIRAChangeItem addJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(jiraChangeItem);
-
-		if (jiraChangeItem == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialcoding.model.JIRAChangeItem");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_addJIRAChangeItemMethodKey0,
+				jiraChangeItem);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("addJIRAChangeItem",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -63,13 +56,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 
 	public com.liferay.socialcoding.model.JIRAChangeItem createJIRAChangeItem(
 		long jiraChangeItemId) {
-		Object paramObj0 = new LongWrapper(jiraChangeItemId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_createJIRAChangeItemMethodKey1,
+				jiraChangeItemId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("createJIRAChangeItem",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof RuntimeException) {
@@ -87,11 +80,11 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public void deleteJIRAChangeItem(long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(jiraChangeItemId);
+		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeItemMethodKey2,
+				jiraChangeItemId);
 
 		try {
-			_classLoaderProxy.invoke("deleteJIRAChangeItem",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -115,16 +108,11 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public void deleteJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(jiraChangeItem);
-
-		if (jiraChangeItem == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialcoding.model.JIRAChangeItem");
-		}
+		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeItemMethodKey3,
+				jiraChangeItem);
 
 		try {
-			_classLoaderProxy.invoke("deleteJIRAChangeItem",
-				new Object[] { paramObj0 });
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -141,22 +129,17 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		}
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -175,26 +158,17 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
+				dynamicQuery, start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -213,35 +187,19 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (java.util.List)ClpSerializer.translateOutput(returnObj);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
-		Object paramObj1 = new IntegerWrapper(start);
-
-		Object paramObj2 = new IntegerWrapper(end);
-
-		Object paramObj3 = ClpSerializer.translateInput(orderByComparator);
-
-		if (orderByComparator == null) {
-			paramObj3 = new NullWrapper(
-					"com.liferay.portal.kernel.util.OrderByComparator");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
+				dynamicQuery, start, end, orderByComparator);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQuery",
-					new Object[] { paramObj0, paramObj1, paramObj2, paramObj3 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -263,18 +221,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(dynamicQuery);
-
-		if (dynamicQuery == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.portal.kernel.dao.orm.DynamicQuery");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
+				dynamicQuery);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("dynamicQueryCount",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -297,13 +250,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		long jiraChangeItemId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(jiraChangeItemId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemMethodKey8,
+				jiraChangeItemId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getJIRAChangeItem",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -329,15 +282,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new IntegerWrapper(start);
-
-		Object paramObj1 = new IntegerWrapper(end);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey9,
+				start, end);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getJIRAChangeItems",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -360,9 +311,10 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsCountMethodKey10);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getJIRAChangeItemsCount",
-					new Object[0]);
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -384,18 +336,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(jiraChangeItem);
-
-		if (jiraChangeItem == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialcoding.model.JIRAChangeItem");
-		}
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeItemMethodKey11,
+				jiraChangeItem);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateJIRAChangeItem",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -418,20 +365,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem,
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = ClpSerializer.translateInput(jiraChangeItem);
-
-		if (jiraChangeItem == null) {
-			paramObj0 = new NullWrapper(
-					"com.liferay.socialcoding.model.JIRAChangeItem");
-		}
-
-		Object paramObj1 = new BooleanWrapper(merge);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeItemMethodKey12,
+				jiraChangeItem, merge);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("updateJIRAChangeItem",
-					new Object[] { paramObj0, paramObj1 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -453,13 +393,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		Object paramObj0 = new LongWrapper(jiraChangeGroupId);
-
 		Object returnObj = null;
 
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey13,
+				jiraChangeGroupId);
+
 		try {
-			returnObj = _classLoaderProxy.invoke("getJIRAChangeItems",
-					new Object[] { paramObj0 });
+			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
@@ -483,4 +423,41 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
+	private MethodKey _addJIRAChangeItemMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+			"addJIRAChangeItem",
+			com.liferay.socialcoding.model.JIRAChangeItem.class);
+	private MethodKey _createJIRAChangeItemMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+			"createJIRAChangeItem", long.class);
+	private MethodKey _deleteJIRAChangeItemMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteJIRAChangeItem", long.class);
+	private MethodKey _deleteJIRAChangeItemMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+			"deleteJIRAChangeItem",
+			com.liferay.socialcoding.model.JIRAChangeItem.class);
+	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class);
+	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQuery",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
+			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
+	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+			"dynamicQueryCount",
+			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+	private MethodKey _getJIRAChangeItemMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getJIRAChangeItem", long.class);
+	private MethodKey _getJIRAChangeItemsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getJIRAChangeItems", int.class, int.class);
+	private MethodKey _getJIRAChangeItemsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getJIRAChangeItemsCount");
+	private MethodKey _updateJIRAChangeItemMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateJIRAChangeItem",
+			com.liferay.socialcoding.model.JIRAChangeItem.class);
+	private MethodKey _updateJIRAChangeItemMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+			"updateJIRAChangeItem",
+			com.liferay.socialcoding.model.JIRAChangeItem.class, boolean.class);
+	private MethodKey _getJIRAChangeItemsMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getJIRAChangeItems", long.class);
 }
