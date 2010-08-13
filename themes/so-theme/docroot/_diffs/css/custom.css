@@ -37,7 +37,8 @@ a:active {
 }
 
 #banner h1.company-title {
-	margin: 15px 0 0 15px;
+	margin: 0 0 0 15px;
+	padding-top: 15px;
 }
 
 #banner .group {
