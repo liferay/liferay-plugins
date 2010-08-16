@@ -23,11 +23,17 @@ import com.liferay.util.portlet.PortletProps;
  */
  public class PortletPropsValues {
 
+	public static final String[] DRAFT_FOLDER_NAMES = PortletProps.getArray(
+		PortletPropsKeys.DRAFT_FOLDER_NAMES);
+
 	public static final String DEFAULT_ACCOUNTS = PortletProps.get(
 		PortletPropsKeys.DEFAULT_ACCOUNTS);
 
 	public static final boolean JAVAMAIL_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JAVAMAIL_DEBUG));
+
+	public static final String[] INBOX_FOLDER_NAMES = PortletProps.getArray(
+		PortletPropsKeys.INBOX_FOLDER_NAMES);
 
 	public static final int[] INCOMING_PORTS = StringUtil.split(
 		PortletProps.get(PortletPropsKeys.INCOMING_PORTS), 0);
@@ -37,5 +43,11 @@ import com.liferay.util.portlet.PortletProps;
 
 	public static final int[] OUTGOING_PORTS = StringUtil.split(
 		PortletProps.get(PortletPropsKeys.OUTGOING_PORTS), 0);
+
+	public static final String[] SENT_FOLDER_NAMES = PortletProps.getArray(
+		PortletPropsKeys.SENT_FOLDER_NAMES);
+
+	public static final String[] TRASH_FOLDER_NAMES = PortletProps.getArray(
+		PortletPropsKeys.TRASH_FOLDER_NAMES);
 
 }

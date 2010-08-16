@@ -33,6 +33,7 @@ import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.mail.util.AccountLock;
 import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.mail.util.MailConstants;
+import com.liferay.mail.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -43,6 +44,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.mail.InternetAddressUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import java.io.File;
 import java.io.IOException;
@@ -484,6 +486,14 @@ public class IMAPMailbox extends BaseMailbox {
 		long sentFolderId = account.getSentFolderId();
 		long trashFolderId = account.getTrashFolderId();
 
+		String[] draftFolderNames = PortletPropsValues.DRAFT_FOLDER_NAMES;
+
+		String[] inboxFolderNames = PortletPropsValues.INBOX_FOLDER_NAMES;
+
+		String[] sentFolderNames = PortletPropsValues.SENT_FOLDER_NAMES;
+
+		String[] trashFolderNames = PortletPropsValues.TRASH_FOLDER_NAMES;
+
 		for (javax.mail.Folder jxFolder : jxFolders) {
 			Folder folder = null;
 
@@ -497,20 +507,52 @@ public class IMAPMailbox extends BaseMailbox {
 					jxFolder.getFullName(), jxFolder.getName(), 0);
 			}
 
-			String folderName = jxFolder.getName().toLowerCase();
+			String folderName = jxFolder.getName();
 
-			if ((draftFolderId == 0) && folderName.contains("draft")) {
+			if ((draftFolderId == 0) &&
+				findFolderName(folderName, draftFolderNames)) {
 				draftFolderId = folder.getFolderId();
 			}
-			else if ((inboxFolderId == 0) && folderName.contains("inbox")) {
+			else if ((inboxFolderId == 0) &&
+				findFolderName(folderName, inboxFolderNames)) {
 				inboxFolderId = folder.getFolderId();
 			}
-			else if ((sentFolderId == 0) && folderName.contains("sent")) {
+			else if ((sentFolderId == 0) &&
+				findFolderName(folderName, sentFolderNames)) {
 				sentFolderId = folder.getFolderId();
 			}
-			else if ((trashFolderId == 0) && folderName.contains("trash")) {
+			else if ((trashFolderId == 0) &&
+				findFolderName(folderName, trashFolderNames)) {
 				trashFolderId = folder.getFolderId();
 			}
+		}
+
+		if (draftFolderId == 0) {
+			_log.error(
+				"draft folder id is not updated properly please refer to" +
+					" your mail server setttings and set your draft forlder" +
+						" name in portlet.properties");
+		}
+
+		if (inboxFolderId == 0) {
+			_log.error(
+				"inbox folder id is not updated properly please refer to" +
+					" your mail server setttings and set your inbox folder" +
+						" name in portlet.properties");
+		}
+
+		if(sentFolderId == 0) {
+			_log.error(
+				"sent folder id is not updated properly please refer to" +
+					" your mail server setttings and set your sent folder" +
+						" name in portlet.properties");
+		}
+
+		if(trashFolderId == 0) {
+			_log.error(
+				"trash folder id is not updated properly please refer to" +
+					" your mail server setttings and set your trash folder" +
+						" name in portlet.properties");
 		}
 
 		AccountLocalServiceUtil.updateFolders(
@@ -529,6 +571,16 @@ public class IMAPMailbox extends BaseMailbox {
 			outgoingPort, outgoingSecure, login, password);
 
 		imapConnection.testConnection();
+	}
+
+	protected boolean findFolderName(String folderName, String[] folderNames) {
+		for(String curFolderName : folderNames) {
+			if(folderName.contains(curFolderName)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(IMAPMailbox.class);
