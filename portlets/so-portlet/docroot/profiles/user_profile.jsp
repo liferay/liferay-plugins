@@ -477,14 +477,9 @@ else {
 							%>
 
 								<div class="site-name">
-									<c:choose>
-										<c:when test="<%= curGroup.hasPublicLayouts() %>">
-											<a href="<%= myPlacesURL.toString() %>"><%= curGroup.getName() %></a>
-										</c:when>
-										<c:otherwise>
-											<%= curGroup.getName() %>
-										</c:otherwise>
-									</c:choose>
+									<c:if test="<%= curGroup.hasPublicLayouts() || GroupLocalServiceUtil.hasUserGroup(themeDisplay.getUserId(), curGroup.getGroupId()) %>">
+										<a href="<%= myPlacesURL.toString() %>"><%= curGroup.getName() %></a>
+									</c:if>
 								</div>
 
 							<%
