@@ -19,11 +19,7 @@ package com.liferay.mail.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String DRAFT_FOLDER_NAMES = "draft.folder.names";
-
 	public static final String DEFAULT_ACCOUNTS = "default.accounts";
-
-	public static final String INBOX_FOLDER_NAMES = "inbox.folder.names";
 
 	public static final String INCOMING_PORTS = "incoming.ports";
 
@@ -33,7 +29,4 @@ public interface PortletPropsKeys {
 
 	public static final String OUTGOING_PORTS = "outgoing.ports";
 
-	public static final String SENT_FOLDER_NAMES = "sent.folder.names";
-
-	public static final String TRASH_FOLDER_NAMES = "trash.folder.names";
 }
