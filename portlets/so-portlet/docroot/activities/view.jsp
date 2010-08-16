@@ -27,16 +27,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
-%>
 
-<c:if test="<%= group.isUser() %>">
-	<liferay-ui:tabs
-		names="my-sites,my-friends,me"
-		url="<%= portletURL.toString() %>"
-	/>
-</c:if>
-
-<%
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
 List<SocialActivity> activities = null;
@@ -74,6 +65,13 @@ PortletURL rssURL = renderResponse.createRenderURL();
 
 rssURL.setParameter("rss", "1");
 %>
+
+<c:if test="<%= group.isUser() && (themeDisplay.getUserId() == curUser.getUserId()) %>">
+	<liferay-ui:tabs
+		names="my-sites,my-friends,me"
+		url="<%= portletURL.toString() %>"
+	/>
+</c:if>
 
 <liferay-ui:social-activities
 	activities="<%= activities %>"
