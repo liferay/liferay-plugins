@@ -14,7 +14,6 @@ Liferay.Service.registerClass(
 		getGroupArticles: true,
 		getGroupArticlesCount: true,
 		getLatestArticle: true,
-		getLatestArticleTree: true,
 		subscribe: true,
 		subscribeArticle: true,
 		unsubscribe: true,

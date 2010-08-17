@@ -170,13 +170,6 @@ public class ArticleServiceUtil {
 		return getService().getLatestArticle(resourcePrimKey);
 	}
 
-	public static com.liferay.portal.kernel.util.ListTree<com.liferay.knowledgebase.model.Article> getLatestArticleTree(
-		long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getLatestArticleTree(resourcePrimKey);
-	}
-
 	public static void subscribe(long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

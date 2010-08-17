@@ -235,21 +235,6 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static com.liferay.portal.kernel.util.ListTree<com.liferay.knowledgebase.model.Article> getLatestArticleTree(
-		long resourcePrimKey) throws RemoteException {
-		try {
-			com.liferay.portal.kernel.util.ListTree<com.liferay.knowledgebase.model.Article> returnValue =
-				ArticleServiceUtil.getLatestArticleTree(resourcePrimKey);
-
-			return returnValue;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static void subscribe(long groupId) throws RemoteException {
 		try {
 			ArticleServiceUtil.subscribe(groupId);
