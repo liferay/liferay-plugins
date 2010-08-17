@@ -293,23 +293,22 @@ else if (tabs2.equals("article-updated-email")) {
 				<c:choose>
 					<c:when test='<%= tabs3.equals("article") %>'>
 						<aui:select label="maximum-items-to-display" name="articlesDelta">
-							<aui:option label="1" selected="<%= articlesDelta == 1 %>" />
-							<aui:option label="2" selected="<%= articlesDelta == 2 %>" />
-							<aui:option label="3" selected="<%= articlesDelta == 3 %>" />
-							<aui:option label="4" selected="<%= articlesDelta == 4 %>" />
-							<aui:option label="5" selected="<%= articlesDelta == 5 %>" />
-							<aui:option label="10" selected="<%= articlesDelta == 10 %>" />
-							<aui:option label="15" selected="<%= articlesDelta == 15 %>" />
-							<aui:option label="20" selected="<%= articlesDelta == 20 %>" />
-							<aui:option label="25" selected="<%= articlesDelta == 25 %>" />
-							<aui:option label="30" selected="<%= articlesDelta == 30 %>" />
-							<aui:option label="40" selected="<%= articlesDelta == 40 %>" />
-							<aui:option label="50" selected="<%= articlesDelta == 50 %>" />
-							<aui:option label="60" selected="<%= articlesDelta == 60 %>" />
-							<aui:option label="70" selected="<%= articlesDelta == 70 %>" />
-							<aui:option label="80" selected="<%= articlesDelta == 80 %>" />
-							<aui:option label="90" selected="<%= articlesDelta == 90 %>" />
-							<aui:option label="100" selected="<%= articlesDelta == 100 %>" />
+
+							<%
+							int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+
+							for (int pageDeltaValue : pageDeltaValues) {
+								if (pageDeltaValue > SearchContainer.MAX_DELTA) {
+									break;
+								}
+							%>
+
+								<aui:option label="<%= pageDeltaValue %>" selected="<%= articlesDelta == pageDeltaValue %>" />
+
+							<%
+							}
+							%>
+
 						</aui:select>
 
 						<aui:select label="display-style" name="articlesDisplayStyle">
@@ -332,23 +331,22 @@ else if (tabs2.equals("article-updated-email")) {
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
 						<aui:select label="maximum-items-to-display" name="templatesDelta">
-							<aui:option label="1" selected="<%= templatesDelta == 1 %>" />
-							<aui:option label="2" selected="<%= templatesDelta == 2 %>" />
-							<aui:option label="3" selected="<%= templatesDelta == 3 %>" />
-							<aui:option label="4" selected="<%= templatesDelta == 4 %>" />
-							<aui:option label="5" selected="<%= templatesDelta == 5 %>" />
-							<aui:option label="10" selected="<%= templatesDelta == 10 %>" />
-							<aui:option label="15" selected="<%= templatesDelta == 15 %>" />
-							<aui:option label="20" selected="<%= templatesDelta == 20 %>" />
-							<aui:option label="25" selected="<%= templatesDelta == 25 %>" />
-							<aui:option label="30" selected="<%= templatesDelta == 30 %>" />
-							<aui:option label="40" selected="<%= templatesDelta == 40 %>" />
-							<aui:option label="50" selected="<%= templatesDelta == 50 %>" />
-							<aui:option label="60" selected="<%= templatesDelta == 60 %>" />
-							<aui:option label="70" selected="<%= templatesDelta == 70 %>" />
-							<aui:option label="80" selected="<%= templatesDelta == 80 %>" />
-							<aui:option label="90" selected="<%= templatesDelta == 90 %>" />
-							<aui:option label="100" selected="<%= templatesDelta == 100 %>" />
+
+							<%
+							int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+
+							for (int pageDeltaValue : pageDeltaValues) {
+								if (pageDeltaValue > SearchContainer.MAX_DELTA) {
+									break;
+								}
+							%>
+
+								<aui:option label="<%= pageDeltaValue %>" selected="<%= templatesDelta == pageDeltaValue %>" />
+
+							<%
+							}
+							%>
+
 						</aui:select>
 
 						<aui:select label="display-style" name="templatesDisplayStyle">

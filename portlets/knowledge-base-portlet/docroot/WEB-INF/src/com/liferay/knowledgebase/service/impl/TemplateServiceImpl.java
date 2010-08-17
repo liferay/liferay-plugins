@@ -20,10 +20,12 @@ import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.TemplatePermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -57,14 +59,16 @@ public class TemplateServiceImpl extends TemplateServiceBaseImpl {
 	public List<Template> getGroupTemplates(
 			long groupId, int start, int end,
 			OrderByComparator orderByComparator)
-		throws SystemException {
+		throws PortalException, SystemException {
 
-		return templatePersistence.filterFindByGroupId(
+		List<Template> templates = templateLocalService.getGroupTemplates(
 			groupId, start, end, orderByComparator);
+
+		return filterTemplates(templates);
 	}
 
 	public int getGroupTemplatesCount(long groupId) throws SystemException {
-		return templatePersistence.filterCountByGroupId(groupId);
+		return templateLocalService.getGroupTemplatesCount(groupId);
 	}
 
 	public Template getTemplate(long templateId)
@@ -86,6 +90,24 @@ public class TemplateServiceImpl extends TemplateServiceBaseImpl {
 
 		return templateLocalService.updateTemplate(
 			templateId, title, content, description, serviceContext);
+	}
+
+	protected List<Template> filterTemplates(List<Template> templates)
+		throws PortalException {
+
+		templates = ListUtil.copy(templates);
+
+		Iterator<Template> itr = templates.iterator();
+
+		while (itr.hasNext()) {
+			if (!TemplatePermission.contains(
+					getPermissionChecker(), itr.next(), ActionKeys.VIEW)) {
+
+				itr.remove();
+			}
+		}
+
+		return templates;
 	}
 
 }

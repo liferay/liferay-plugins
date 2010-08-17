@@ -20,18 +20,14 @@ import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.ListTree;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.TreeNode;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -52,7 +48,6 @@ import com.sun.syndication.io.FeedException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -252,23 +247,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
 
 		return articleLocalService.getLatestArticle(resourcePrimKey);
-	}
-
-	public ListTree<Article> getLatestArticleTree(long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		ArticlePermission.check(
-			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
-
-		Article article = articleLocalService.getLatestArticle(resourcePrimKey);
-
-		ListTree<Article> tree = new ListTree<Article>(article);
-
-		populateLatestArticleTree(
-			Arrays.asList(tree.getRootNode()), article.getGroupId(),
-			new long[] {resourcePrimKey});
-
-		return tree;
 	}
 
 	public void subscribe(long groupId)
@@ -509,51 +487,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		return articles;
-	}
-
-	protected void populateLatestArticleTree(
-			List<TreeNode<Article>> nodes, long groupId,
-			long[] parentResourcePrimKeys)
-		throws PortalException, SystemException {
-
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", groupId);
-		params.put(
-			"parentResourcePrimKey", ArrayUtil.toArray(parentResourcePrimKeys));
-
-		List<Article> articles = getArticles(
-			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator(true));
-
-		if (articles.isEmpty()) {
-			return;
-		}
-
-		Map<Long, TreeNode<Article>> nodeMap =
-			new HashMap<Long, TreeNode<Article>>();
-
-		for (TreeNode<Article> node : nodes) {
-			Article article = node.getValue();
-
-			nodeMap.put(article.getResourcePrimKey(), node);
-		}
-
-		List<TreeNode<Article>> childNodes = new ArrayList<TreeNode<Article>>();
-
-		for (Article article : articles) {
-			TreeNode<Article> node = nodeMap.get(
-				article.getParentResourcePrimKey());
-
-			TreeNode<Article> childNode = node.addChildNode(article);
-
-			childNodes.add(childNode);
-		}
-
-		long[] resourcePrimKeys = StringUtil.split(
-			ListUtil.toString(articles, "resourcePrimKey"), 0L);
-
-		populateLatestArticleTree(childNodes, groupId, resourcePrimKeys);
 	}
 
 }

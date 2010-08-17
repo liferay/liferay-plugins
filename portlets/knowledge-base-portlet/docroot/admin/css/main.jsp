@@ -26,14 +26,6 @@
 	border-width: 0;
 }
 
-.knowledge-base-portlet-admin .taglib-page-iterator .delta-selector {
-	display: none;
-}
-
-.knowledge-base-portlet-admin .taglib-page-iterator .page-selector {
-	display: none;
-}
-
 .knowledge-base-portlet-admin .taglib-search-iterator-page-iterator-bottom {
 	margin: 5px 2px 0;
 	padding: 0;

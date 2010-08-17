@@ -81,7 +81,7 @@
 			</portlet:renderURL>
 
 			<liferay-ui:icon
-				cssClass='<%= "kb-title" + ((Validator.isNull(articlesTitle) && (i == 0)) ? " kb-first" : StringPool.BLANK) %>'
+				cssClass='<%= "kb-title" + ((Validator.isNull(articlesTitle) && (i == 0)) ? " kb-title-first" : StringPool.BLANK) %>'
 				image="../trees/page"
 				label="<%= true %>"
 				message="<%= article.getTitle() %>"

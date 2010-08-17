@@ -23,7 +23,7 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), 50);
+int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));

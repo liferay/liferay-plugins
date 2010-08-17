@@ -42,7 +42,7 @@
 
 /* ---------- Portlet ---------- */
 
-.knowledge-base-portlet-aggregator .kb-results-body .kb-first a {
+.knowledge-base-portlet-aggregator .kb-results-body .kb-title-first a {
 	margin-top: 0;
 }
 

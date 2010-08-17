@@ -55,23 +55,22 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 		<c:choose>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<aui:select label="maximum-items-to-display" name="articlesDelta">
-					<aui:option label="1" selected="<%= articlesDelta == 1 %>" />
-					<aui:option label="2" selected="<%= articlesDelta == 2 %>" />
-					<aui:option label="3" selected="<%= articlesDelta == 3 %>" />
-					<aui:option label="4" selected="<%= articlesDelta == 4 %>" />
-					<aui:option label="5" selected="<%= articlesDelta == 5 %>" />
-					<aui:option label="10" selected="<%= articlesDelta == 10 %>" />
-					<aui:option label="15" selected="<%= articlesDelta == 15 %>" />
-					<aui:option label="20" selected="<%= articlesDelta == 20 %>" />
-					<aui:option label="25" selected="<%= articlesDelta == 25 %>" />
-					<aui:option label="30" selected="<%= articlesDelta == 30 %>" />
-					<aui:option label="40" selected="<%= articlesDelta == 40 %>" />
-					<aui:option label="50" selected="<%= articlesDelta == 50 %>" />
-					<aui:option label="60" selected="<%= articlesDelta == 60 %>" />
-					<aui:option label="70" selected="<%= articlesDelta == 70 %>" />
-					<aui:option label="80" selected="<%= articlesDelta == 80 %>" />
-					<aui:option label="90" selected="<%= articlesDelta == 90 %>" />
-					<aui:option label="100" selected="<%= articlesDelta == 100 %>" />
+
+					<%
+					int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+
+					for (int pageDeltaValue : pageDeltaValues) {
+						if (pageDeltaValue > SearchContainer.MAX_DELTA) {
+							break;
+						}
+					%>
+
+						<aui:option label="<%= pageDeltaValue %>" selected="<%= articlesDelta == pageDeltaValue %>" />
+
+					<%
+					}
+					%>
+
 				</aui:select>
 
 				<aui:select name="childArticlesDisplayStyle">
