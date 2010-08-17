@@ -17,10 +17,10 @@
 <%
 List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
 
-for (Folder folder : folders) {
+for (Folder curFolder : folders) {
 %>
 
-	<aui:option selected="<%= selectedFolderId == folder.getFolderId() %>" value="<%= folder.getFolderId() %>"><%= folder.getDisplayName() %></aui:option>
+	<aui:option selected="<%= selectedFolderId == curFolder.getFolderId() %>" value="<%= curFolder.getFolderId() %>"><%= curFolder.getDisplayName() %></aui:option>
 
 <%
 }

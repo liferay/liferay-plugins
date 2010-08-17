@@ -49,7 +49,10 @@ MailManager mailManager = MailManager.getInstance(request);
 			<aui:select cssClass="move-messages" name="moveMessages" showEmptyOption="true">
 
 				<%
-				long accountId = FolderLocalServiceUtil.getFolder(folderId).getAccountId();
+				Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+
+				long accountId = folder.getAccountId();
+
 				long selectedFolderId = 0;
 				%>
 
