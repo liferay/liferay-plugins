@@ -297,6 +297,8 @@ else if (tabs2.equals("article-updated-email")) {
 							<%
 							int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
 
+							Arrays.sort(pageDeltaValues);
+
 							for (int pageDeltaValue : pageDeltaValues) {
 								if (pageDeltaValue > SearchContainer.MAX_DELTA) {
 									break;
@@ -334,6 +336,8 @@ else if (tabs2.equals("article-updated-email")) {
 
 							<%
 							int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+
+							Arrays.sort(pageDeltaValues);
 
 							for (int pageDeltaValue : pageDeltaValues) {
 								if (pageDeltaValue > SearchContainer.MAX_DELTA) {

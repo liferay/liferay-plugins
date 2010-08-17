@@ -61,6 +61,8 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 					<%
 					int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
 
+					Arrays.sort(pageDeltaValues);
+
 					for (int pageDeltaValue : pageDeltaValues) {
 						if (pageDeltaValue > SearchContainer.MAX_DELTA) {
 							break;
