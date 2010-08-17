@@ -35,6 +35,10 @@ boolean useSignature = ParamUtil.getBoolean(request, "useSignature");
 String folderPrefix = ParamUtil.getString(request, "folderPrefix");
 boolean defaultSender = ParamUtil.getBoolean(request, "defaultSender");
 boolean useLocalPartAsLogin = ParamUtil.getBoolean(request, "useLocalPartAsLogin");
+long inboxFolderId = ParamUtil.getLong(request, "inboxFolderId");
+long draftFolderId = ParamUtil.getLong(request, "draftFolderId");
+long sentFolderId = ParamUtil.getLong(request, "sentFolderId");
+long trashFolderId = ParamUtil.getLong(request, "trashFolderId");
 
 if (useLocalPartAsLogin) {
 	login = address.split("@")[0];
@@ -49,7 +53,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			<%= mailManager.addAccount(address, personalName, protocol, incomingHostName, incomingPort, incomingSecure, outgoingHostName, outgoingPort, outgoingSecure, login, password, savePassword, signature, useSignature, folderPrefix, defaultSender) %>
 		</c:when>
 		<c:otherwise>
-			<%= mailManager.updateAccount(accountId, personalName, password, savePassword, signature, useSignature, folderPrefix, defaultSender) %>
+			<%= mailManager.updateAccount(accountId, personalName, password, savePassword, signature, useSignature, folderPrefix, defaultSender, inboxFolderId, draftFolderId, sentFolderId, trashFolderId) %>
 		</c:otherwise>
 	</c:choose>
 </c:if>

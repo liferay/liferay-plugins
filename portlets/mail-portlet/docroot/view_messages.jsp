@@ -49,19 +49,11 @@ MailManager mailManager = MailManager.getInstance(request);
 			<aui:select cssClass="move-messages" name="moveMessages" showEmptyOption="true">
 
 				<%
-				Folder folder = FolderLocalServiceUtil.getFolder(folderId);
-
-				List<Folder> folders = FolderLocalServiceUtil.getFolders(folder.getAccountId());
-
-				for (Folder curFolder : folders) {
+				long accountId = FolderLocalServiceUtil.getFolder(folderId).getAccountId();
+				long selectedFolderId = 0;
 				%>
 
-					<aui:option value="<%= curFolder.getFolderId() %>"><%= curFolder.getDisplayName() %></aui:option>
-
-				<%
-				}
-				%>
-
+				<%@ include file="/select_folder.jspf" %>
 			</aui:select>
 		</aui:column>
 		<aui:column cssClass="search">

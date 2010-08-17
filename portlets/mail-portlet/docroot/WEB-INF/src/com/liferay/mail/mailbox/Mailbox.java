@@ -123,6 +123,11 @@ public interface Mailbox {
 
 	public void updateFolders() throws PortalException, SystemException;
 
+	public void updateFolders(
+			long inboxFolderId, long draftFolderId, long sentFolderId,
+			long trashFolderId)
+		throws PortalException, SystemException;
+
 	public void validateAccount(
 			String incomingHostName, int incomingPort, boolean incomingSecure,
 			String outgoingHostName, int outgoingPort, boolean outgoingSecure,

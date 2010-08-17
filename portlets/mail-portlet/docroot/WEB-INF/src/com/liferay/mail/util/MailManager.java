@@ -724,6 +724,18 @@ public class MailManager {
 			String folderPrefix, boolean defaultSender)
 		throws PortalException, SystemException {
 
+		return updateAccount(
+			accountId, personalName, password, savePassword, signature,
+			useSignature, folderPrefix, defaultSender, 0, 0, 0, 0);
+	}
+
+	public JSONObject updateAccount(
+			long accountId, String personalName, String password,
+			boolean savePassword, String signature, boolean useSignature,
+			String folderPrefix, boolean defaultSender, long inboxFolderId,
+			long draftFolderId, long sentFolderId, long trashFolderId)
+		throws PortalException, SystemException {
+
 		try {
 			if (savePassword) {
 				_passwordRetriever.removePassword(accountId);
@@ -747,6 +759,14 @@ public class MailManager {
 			mailbox.updateAccount(
 				accountId, personalName, password, savePassword, signature,
 				useSignature, folderPrefix, defaultSender);
+
+			if (inboxFolderId > 0) {
+				mailbox.updateFolders(
+					inboxFolderId, draftFolderId, sentFolderId, trashFolderId);
+			}
+			else {
+				mailbox.updateFolders();
+			}
 
 			return createJSONResult("success", "account-has-been-updated");
 		}

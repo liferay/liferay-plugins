@@ -27,17 +27,57 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 <aui:layout cssClass="mail-status" />
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
-	<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
-	<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
-	<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
-	<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
+	<aui:fieldset column="<%= true %>" cssClass="aui-w50" label="general">
+		<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
+		<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
+		<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
+		<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
+		<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
 
-	<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
+		<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
 
-	<aui:input name="password" type="password" />
+		<aui:input name="password" type="password" />
 
-	<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
+		<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
+	</aui:fieldset>
+
+	<aui:fieldset column="<%= true %>" cssClass="aui-w50" label="folders">
+		<aui:select name="inboxFolderId" label="inbox">
+
+			<%
+			long selectedFolderId = mailAccount.getInboxFolderId();
+			%>
+
+			<%@ include file="/select_folder.jspf" %>
+		</aui:select>
+
+		<aui:select name="sentFolderId" label="sent">
+
+			<%
+			long selectedFolderId = mailAccount.getSentFolderId();
+			%>
+
+			<%@ include file="/select_folder.jspf" %>
+		</aui:select>
+
+		<aui:select name="draftFolderId" label="draft">
+
+			<%
+			long selectedFolderId = mailAccount.getDraftFolderId();
+			%>
+
+			<%@ include file="/select_folder.jspf" %>
+		</aui:select>
+
+		<aui:select name="trashFolderId" label="trash">
+
+			<%
+			long selectedFolderId = mailAccount.getTrashFolderId();
+			%>
+
+			<%@ include file="/select_folder.jspf" %>
+		</aui:select>
+	</aui:fieldset>
 
 	<aui:button-row>
 		<aui:button name="updateAccount" type="submit" value="update-account" />

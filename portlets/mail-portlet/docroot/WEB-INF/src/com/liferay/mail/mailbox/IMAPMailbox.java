@@ -35,6 +35,7 @@ import com.liferay.mail.util.AttachmentHandler;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -49,6 +50,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.mail.Address;
 import javax.mail.internet.AddressException;
@@ -479,11 +481,6 @@ public class IMAPMailbox extends BaseMailbox {
 
 		List<javax.mail.Folder> jxFolders = _imapAccessor.getFolders();
 
-		long draftFolderId = account.getDraftFolderId();
-		long inboxFolderId = account.getInboxFolderId();
-		long sentFolderId = account.getSentFolderId();
-		long trashFolderId = account.getTrashFolderId();
-
 		for (javax.mail.Folder jxFolder : jxFolders) {
 			Folder folder = null;
 
@@ -496,26 +493,31 @@ public class IMAPMailbox extends BaseMailbox {
 					user.getUserId(), account.getAccountId(),
 					jxFolder.getFullName(), jxFolder.getName(), 0);
 			}
-
-			String folderName = jxFolder.getName().toLowerCase();
-
-			if ((draftFolderId == 0) && folderName.contains("draft")) {
-				draftFolderId = folder.getFolderId();
-			}
-			else if ((inboxFolderId == 0) && folderName.contains("inbox")) {
-				inboxFolderId = folder.getFolderId();
-			}
-			else if ((sentFolderId == 0) && folderName.contains("sent")) {
-				sentFolderId = folder.getFolderId();
-			}
-			else if ((trashFolderId == 0) && folderName.contains("trash")) {
-				trashFolderId = folder.getFolderId();
-			}
 		}
 
-		AccountLocalServiceUtil.updateFolders(
-			account.getAccountId(), inboxFolderId, draftFolderId, sentFolderId,
-			trashFolderId);
+		long draftFolderId = account.getDraftFolderId();
+		long inboxFolderId = account.getInboxFolderId();
+		long sentFolderId = account.getSentFolderId();
+		long trashFolderId = account.getTrashFolderId();
+
+		if (draftFolderId <= 0) {
+			draftFolderId = getFolderId("draft");
+		}
+
+		if (inboxFolderId <= 0) {
+			inboxFolderId = getFolderId("inbox");
+		}
+
+		if (sentFolderId <= 0) {
+			sentFolderId = getFolderId("sent");
+		}
+
+		if (trashFolderId <= 0) {
+			trashFolderId = getFolderId("trash");
+		}
+
+		updateFolders(
+			inboxFolderId, draftFolderId, sentFolderId, trashFolderId);
 	}
 
 	public void validateAccount(
@@ -529,6 +531,31 @@ public class IMAPMailbox extends BaseMailbox {
 			outgoingPort, outgoingSecure, login, password);
 
 		imapConnection.testConnection();
+	}
+
+	protected long getFolderId(String type) throws SystemException {
+		Locale[] locales = LanguageUtil.getAvailableLocales();
+
+		String[] names = new String[locales.length];
+
+		for (int i = 0; i < locales.length; i++) {
+			names[i] = LanguageUtil.get(locales[i], type).toLowerCase();
+		}
+
+		List<Folder> folders = FolderLocalServiceUtil.getFolders(
+			account.getAccountId());
+
+		for (Folder folder : folders) {
+			String folderName = folder.getDisplayName().toLowerCase();
+
+			for (String name : names) {
+				if (folderName.contains(name)) {
+					return folder.getFolderId();
+				}
+			}
+		}
+
+		return 0;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(IMAPMailbox.class);

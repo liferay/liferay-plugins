@@ -100,6 +100,16 @@ public abstract class BaseMailbox implements Mailbox {
 			useSignature, folderPrefix, defaultSender);
 	}
 
+	public void updateFolders(
+			long inboxFolderId, long draftFolderId, long sentFolderId,
+			long trashFolderId)
+		throws PortalException, SystemException {
+
+		AccountLocalServiceUtil.updateFolders(
+			account.getAccountId(), inboxFolderId, draftFolderId, sentFolderId,
+			trashFolderId);
+	}
+
 	protected Account account;
 	protected User user;
 
