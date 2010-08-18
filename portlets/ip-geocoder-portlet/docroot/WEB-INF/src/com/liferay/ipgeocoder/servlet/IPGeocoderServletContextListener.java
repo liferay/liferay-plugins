@@ -40,7 +40,6 @@ public class IPGeocoderServletContextListener
 	}
 
 	protected void doPortalDestroy() {
-System.out.println("### IPGeocoderServletContextListener doPortalDestroy");
 		_ipGeocoderDestination.unregister(_ipGeocoderMessageListener);
 
 		MessageBusUtil.removeDestination(
