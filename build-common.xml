@@ -9,8 +9,8 @@
 	<property file="${project.dir}/build.${env.HOSTNAME}.properties" />
 	<property file="${project.dir}/build.properties" />
 
-    <property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
-    <property name="app.server.lib.portal.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
+	<property name="app.server.classes.portal.dir" value="${app.server.portal.dir}/WEB-INF/classes" />
+	<property name="app.server.lib.portal.dir" value="${app.server.portal.dir}/WEB-INF/lib" />
 
 	<path id="lib.classpath">
 		<fileset dir="${project.dir}/lib" includes="*.jar" />
@@ -82,6 +82,7 @@ ECJ was automatically installed. Please rerun your task.
 					debug="${javac.debug}"
 					deprecation="${javac.deprecation}"
 					destdir="${javac.destdir}"
+					encoding="${javac.encoding}"
 					fork="${javac.fork}"
 					includeAntRuntime="false"
 					memoryMaximumSize="${javac.memoryMaximumSize}"
@@ -96,6 +97,7 @@ ECJ was automatically installed. Please rerun your task.
 					debug="${javac.debug}"
 					deprecation="${javac.deprecation}"
 					destdir="${javac.destdir}"
+					encoding="${javac.encoding}"
 					includeAntRuntime="false"
 					nowarn="${javac.nowarn}"
 					srcdir="${javac.srcdir}"
