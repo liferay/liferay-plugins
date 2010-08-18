@@ -8,6 +8,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
+	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryCleaner" />
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 	<bean class="com.liferay.portal.spring.annotation.BeanReferenceAnnotationBeanPostProcessor" />
 	<bean id="portletClassLoader" class="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" factory-method="getClassLoader" />
@@ -16,7 +17,7 @@
 		<property name="dataSource" ref="liferayDataSource" />
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
-	<bean id="serviceAdvice" class="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice" factory-method="getInstance">
+	<bean id="serviceAdvice" class="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice">
 		<property name="monitoringDestinationName" value="liferay/monitoring" />
 		<property name="nextMethodInterceptor" ref="asyncAdvice" />
 	</bean>
