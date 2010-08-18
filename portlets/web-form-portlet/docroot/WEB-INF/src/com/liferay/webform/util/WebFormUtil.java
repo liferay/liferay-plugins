@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -194,7 +195,14 @@ public class WebFormUtil {
 			sb.append("fieldsMap['");
 			sb.append(key);
 			sb.append("'] = '");
-			sb.append(fieldsMap.get(key));
+
+			String value = StringUtil.replace(
+				fieldsMap.get(key),
+				new String[] {"\r\n", "\r", "\n"},
+				new String[] {"\\n", "\\n", "\\n"});
+
+			sb.append(value);
+
 			sb.append("';\n");
 		}
 
