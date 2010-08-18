@@ -22,6 +22,7 @@ import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -41,6 +42,7 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
@@ -325,6 +327,27 @@ public class KnowledgeBaseUtil {
 		}
 
 		return null;
+	}
+
+	public static List<Group> getScopeGroups(long[] scopeGroupIds)
+		throws Exception {
+
+		List<Group> scopeGroups = new ArrayList<Group>();
+
+		for (long curScopeGroupId : scopeGroupIds) {
+			Group group = null;
+
+			try {
+				group = GroupLocalServiceUtil.getGroup(curScopeGroupId);
+			}
+			catch (NoSuchGroupException nsge) {
+				continue;
+			}
+
+			scopeGroups.add(group);
+		}
+
+		return scopeGroups;
 	}
 
 	protected static Object[] getAdminPlidAndWindowState(

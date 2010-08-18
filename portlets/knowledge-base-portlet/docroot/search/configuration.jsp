@@ -19,17 +19,7 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Group> scopeGroups = new ArrayList<Group>();
-
-for (long curScopeGroupId : scopeGroupIds) {
-	try {
-		scopeGroups.add(GroupLocalServiceUtil.getGroup(curScopeGroupId));
-	}
-	catch (NoSuchGroupException nsge) {
-		continue;
-	}
-}
-
+List<Group> scopeGroups = KnowledgeBaseUtil.getScopeGroups(scopeGroupIds);
 List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 %>
 
