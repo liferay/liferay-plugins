@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -32,6 +33,7 @@ public class WSRPServletContextListener
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		_servletContext = servletContextEvent.getServletContext();
 		_classLoader = PortletClassLoaderUtil.getClassLoader();
 
 		registerPortalLifecycle();
@@ -45,10 +47,12 @@ public class WSRPServletContextListener
 		PortalInitThread portalInitThread = new PortalInitThread();
 
 		portalInitThread.setContextClassLoader(_classLoader);
+		portalInitThread.setServletContext(_servletContext);
 
 		portalInitThread.start();
 	}
 
 	private ClassLoader _classLoader;
+	private ServletContext _servletContext;
 
 }

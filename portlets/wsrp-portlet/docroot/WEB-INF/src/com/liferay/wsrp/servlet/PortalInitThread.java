@@ -16,7 +16,14 @@ package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.PortletServlet;
+import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.PortletApp;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+
+import java.util.List;
+
+import javax.servlet.ServletContext;
 
 /**
  * @author Brian Wing Shun Chan
@@ -32,6 +39,15 @@ public class PortalInitThread extends Thread {
 			Thread.sleep(4000);
 
 			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+
+			PortletApp portletApp = (PortletApp)_servletContext.getAttribute(
+				PortletServlet.PORTLET_APP);
+
+			List<Portlet> portlets = portletApp.getPortlets();
+
+			for (Portlet portlet : portlets) {
+				portlet.setReady(true);
+			}
 		}
 		catch (InterruptedException ie) {
 		}
@@ -40,6 +56,12 @@ public class PortalInitThread extends Thread {
 		}
 	}
 
+	public void setServletContext(ServletContext servletContext) {
+		_servletContext = servletContext;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(PortalInitThread.class);
+
+	private ServletContext _servletContext;
 
 }
