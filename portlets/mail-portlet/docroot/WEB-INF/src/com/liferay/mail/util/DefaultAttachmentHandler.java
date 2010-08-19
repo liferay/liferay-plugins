@@ -21,9 +21,9 @@ import javax.mail.Folder;
 /**
  * @author Scott Lee
  */
-public class BaseAttachmentHandler implements AttachmentHandler {
+public class DefaultAttachmentHandler implements AttachmentHandler {
 
-	public BaseAttachmentHandler(InputStream inputStream, Folder folder) {
+	public DefaultAttachmentHandler(InputStream inputStream, Folder folder) {
 		_inputStream = inputStream;
 		_folder = folder;
 	}

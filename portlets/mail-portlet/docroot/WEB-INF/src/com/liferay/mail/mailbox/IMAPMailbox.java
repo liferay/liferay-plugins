@@ -31,7 +31,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.mail.util.AccountLock;
 import com.liferay.mail.util.AttachmentHandler;
-import com.liferay.mail.util.BaseAttachmentHandler;
+import com.liferay.mail.util.DefaultAttachmentHandler;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -128,7 +128,7 @@ public class IMAPMailbox extends BaseMailbox {
 			attachment.getMessageId());
 
 		if (account.getDraftFolderId() == attachment.getFolderId()) {
-			return new BaseAttachmentHandler(
+			return new DefaultAttachmentHandler(
 				AttachmentLocalServiceUtil.getInputStream(attachmentId), null);
 		}
 		else {

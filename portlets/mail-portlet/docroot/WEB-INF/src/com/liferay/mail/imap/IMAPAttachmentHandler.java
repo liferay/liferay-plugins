@@ -14,7 +14,7 @@
 
 package com.liferay.mail.imap;
 
-import com.liferay.mail.util.BaseAttachmentHandler;
+import com.liferay.mail.util.DefaultAttachmentHandler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -26,7 +26,7 @@ import javax.mail.MessagingException;
 /**
  * @author Ryan Park
  */
-public class IMAPAttachmentHandler extends BaseAttachmentHandler {
+public class IMAPAttachmentHandler extends DefaultAttachmentHandler {
 
 	public IMAPAttachmentHandler(InputStream inputStream, Folder folder) {
 		super(inputStream, folder);
