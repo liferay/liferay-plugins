@@ -1254,6 +1254,12 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(FolderImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = AccountPersistence.class)
 	protected AccountPersistence accountPersistence;
 	@BeanReference(type = AttachmentPersistence.class)

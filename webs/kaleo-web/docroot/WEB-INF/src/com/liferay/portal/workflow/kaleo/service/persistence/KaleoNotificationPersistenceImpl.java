@@ -2130,6 +2130,12 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		containsKaleoNotificationRecipient = new ContainsKaleoNotificationRecipient(this);
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(KaleoNotificationImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = KaleoActionPersistence.class)
 	protected KaleoActionPersistence kaleoActionPersistence;
 	@BeanReference(type = KaleoDefinitionPersistence.class)

@@ -1984,6 +1984,12 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(ArticleImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = ArticlePersistence.class)
 	protected ArticlePersistence articlePersistence;
 	@BeanReference(type = TemplatePersistence.class)

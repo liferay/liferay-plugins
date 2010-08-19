@@ -1847,6 +1847,12 @@ public class KaleoNotificationRecipientPersistenceImpl
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(KaleoNotificationRecipientImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = KaleoActionPersistence.class)
 	protected KaleoActionPersistence kaleoActionPersistence;
 	@BeanReference(type = KaleoDefinitionPersistence.class)

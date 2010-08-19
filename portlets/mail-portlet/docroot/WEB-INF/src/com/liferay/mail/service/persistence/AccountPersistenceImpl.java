@@ -1265,6 +1265,12 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(AccountImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = AccountPersistence.class)
 	protected AccountPersistence accountPersistence;
 	@BeanReference(type = AttachmentPersistence.class)

@@ -1285,6 +1285,12 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(WSRPConsumerPortletImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = WSRPConsumerPersistence.class)
 	protected WSRPConsumerPersistence wsrpConsumerPersistence;
 	@BeanReference(type = WSRPConsumerPortletPersistence.class)

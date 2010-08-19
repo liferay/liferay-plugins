@@ -957,6 +957,12 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(FooImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = FooPersistence.class)
 	protected FooPersistence fooPersistence;
 	@BeanReference(type = ResourcePersistence.class)

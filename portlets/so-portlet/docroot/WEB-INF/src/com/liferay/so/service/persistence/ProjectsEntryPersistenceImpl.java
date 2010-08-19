@@ -974,6 +974,12 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(ProjectsEntryImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = MemberRequestPersistence.class)
 	protected MemberRequestPersistence memberRequestPersistence;
 	@BeanReference(type = ProjectsEntryPersistence.class)

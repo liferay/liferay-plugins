@@ -1019,6 +1019,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(FeedImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = FeedPersistence.class)
 	protected FeedPersistence feedPersistence;
 	@BeanReference(type = ResourcePersistence.class)

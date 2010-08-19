@@ -1879,6 +1879,12 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(KaleoActionImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = KaleoActionPersistence.class)
 	protected KaleoActionPersistence kaleoActionPersistence;
 	@BeanReference(type = KaleoDefinitionPersistence.class)

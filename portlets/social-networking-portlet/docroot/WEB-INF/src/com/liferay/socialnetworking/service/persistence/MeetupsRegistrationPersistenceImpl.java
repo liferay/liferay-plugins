@@ -1699,6 +1699,12 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(MeetupsRegistrationImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = MeetupsEntryPersistence.class)
 	protected MeetupsEntryPersistence meetupsEntryPersistence;
 	@BeanReference(type = MeetupsRegistrationPersistence.class)

@@ -545,6 +545,12 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(AssetImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = AssetPersistence.class)
 	protected AssetPersistence assetPersistence;
 	@BeanReference(type = CheckoutPersistence.class)

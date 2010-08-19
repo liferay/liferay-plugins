@@ -1823,6 +1823,12 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(WallEntryImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = MeetupsEntryPersistence.class)
 	protected MeetupsEntryPersistence meetupsEntryPersistence;
 	@BeanReference(type = MeetupsRegistrationPersistence.class)

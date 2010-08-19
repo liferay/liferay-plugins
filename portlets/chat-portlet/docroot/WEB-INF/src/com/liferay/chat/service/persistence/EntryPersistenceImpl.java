@@ -3652,6 +3652,12 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(EntryImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = EntryPersistence.class)
 	protected EntryPersistence entryPersistence;
 	@BeanReference(type = StatusPersistence.class)

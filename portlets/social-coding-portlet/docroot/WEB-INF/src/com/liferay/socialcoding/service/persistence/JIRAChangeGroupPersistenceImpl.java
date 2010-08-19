@@ -1425,6 +1425,12 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(JIRAChangeGroupImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = JIRAActionPersistence.class)
 	protected JIRAActionPersistence jiraActionPersistence;
 	@BeanReference(type = JIRAChangeGroupPersistence.class)

@@ -959,6 +959,12 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 	}
 
+	public void destroy() {
+		EntityCacheUtil.removeCache(GadgetImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
 	@BeanReference(type = GadgetPersistence.class)
 	protected GadgetPersistence gadgetPersistence;
 	@BeanReference(type = ResourcePersistence.class)
