@@ -815,20 +815,25 @@ public class MailManager {
 			int messagesPerPage)
 		throws PortalException, SystemException {
 
-		com.liferay.portal.kernel.messaging.Message message =
-			new com.liferay.portal.kernel.messaging.Message();
+		String password = _passwordRetriever.getPassword(accountId);
 
-		message.put("command", "synchronize");
+		if (Validator.isNotNull(password)) {
+			com.liferay.portal.kernel.messaging.Message message =
+				new com.liferay.portal.kernel.messaging.Message();
 
-		message.put("userId", _user.getUserId());
-		message.put("accountId", accountId);
-		message.put("password", _passwordRetriever.getPassword(accountId));
-		message.put("folderId", folderId);
-		message.put("messageId", messageId);
-		message.put("pageNumber", pageNumber);
-		message.put("messagesPerPage", messagesPerPage);
+			message.put("command", "synchronize");
 
-		MessageBusUtil.sendMessage(DestinationNames.MAIL_SYNCHRONIZER, message);
+			message.put("userId", _user.getUserId());
+			message.put("accountId", accountId);
+			message.put("password", password);
+			message.put("folderId", folderId);
+			message.put("messageId", messageId);
+			message.put("pageNumber", pageNumber);
+			message.put("messagesPerPage", messagesPerPage);
+
+			MessageBusUtil.sendMessage(
+				DestinationNames.MAIL_SYNCHRONIZER, message);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);
