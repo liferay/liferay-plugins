@@ -817,23 +817,24 @@ public class MailManager {
 
 		String password = _passwordRetriever.getPassword(accountId);
 
-		if (Validator.isNotNull(password)) {
-			com.liferay.portal.kernel.messaging.Message message =
-				new com.liferay.portal.kernel.messaging.Message();
-
-			message.put("command", "synchronize");
-
-			message.put("userId", _user.getUserId());
-			message.put("accountId", accountId);
-			message.put("password", password);
-			message.put("folderId", folderId);
-			message.put("messageId", messageId);
-			message.put("pageNumber", pageNumber);
-			message.put("messagesPerPage", messagesPerPage);
-
-			MessageBusUtil.sendMessage(
-				DestinationNames.MAIL_SYNCHRONIZER, message);
+		if (Validator.isNull(password)) {
+			return;
 		}
+
+		com.liferay.portal.kernel.messaging.Message message =
+			new com.liferay.portal.kernel.messaging.Message();
+
+		message.put("command", "synchronize");
+
+		message.put("userId", _user.getUserId());
+		message.put("accountId", accountId);
+		message.put("password", password);
+		message.put("folderId", folderId);
+		message.put("messageId", messageId);
+		message.put("pageNumber", pageNumber);
+		message.put("messagesPerPage", messagesPerPage);
+
+		MessageBusUtil.sendMessage(DestinationNames.MAIL_SYNCHRONIZER, message);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(MailManager.class);
