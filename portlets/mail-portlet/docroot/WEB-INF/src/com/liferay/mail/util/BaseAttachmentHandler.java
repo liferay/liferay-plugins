@@ -12,40 +12,30 @@
  * details.
  */
 
-package com.liferay.mail.imap;
-
-import com.liferay.mail.util.BaseAttachmentHandler;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+package com.liferay.mail.util;
 
 import java.io.InputStream;
 
 import javax.mail.Folder;
-import javax.mail.MessagingException;
 
 /**
- * @author Ryan Park
+ * @author Scott Lee
  */
-public class IMAPAttachmentHandler extends BaseAttachmentHandler {
+public class BaseAttachmentHandler implements AttachmentHandler {
 
-	public IMAPAttachmentHandler(InputStream inputStream, Folder folder) {
-		super(inputStream, folder);
+	public BaseAttachmentHandler(InputStream inputStream, Folder folder) {
+		_inputStream = inputStream;
+		_folder = folder;
 	}
 
 	public void cleanUp() {
-		try {
-			if ((_folder == null) || !_folder.isOpen()) {
-				return;
-			}
-
-			_folder.close(false);
-		}
-		catch (MessagingException me) {
-			_log.error(me, me);
-		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		IMAPAttachmentHandler.class);
+	public InputStream getInputStream() {
+		return _inputStream;
+	}
+
+	protected InputStream _inputStream;
+	protected Folder _folder;
 
 }

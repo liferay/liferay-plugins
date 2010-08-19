@@ -18,7 +18,6 @@ import com.liferay.mail.MailException;
 import com.liferay.mail.NoSuchFolderException;
 import com.liferay.mail.NoSuchMessageException;
 import com.liferay.mail.imap.IMAPAccessor;
-import com.liferay.mail.imap.IMAPAttachmentHandler;
 import com.liferay.mail.imap.IMAPConnection;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.model.Attachment;
@@ -32,6 +31,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
 import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.mail.util.AccountLock;
 import com.liferay.mail.util.AttachmentHandler;
+import com.liferay.mail.util.BaseAttachmentHandler;
 import com.liferay.mail.util.MailConstants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -128,7 +128,7 @@ public class IMAPMailbox extends BaseMailbox {
 			attachment.getMessageId());
 
 		if (account.getDraftFolderId() == attachment.getFolderId()) {
-			return new IMAPAttachmentHandler(
+			return new BaseAttachmentHandler(
 				AttachmentLocalServiceUtil.getInputStream(attachmentId), null);
 		}
 		else {
