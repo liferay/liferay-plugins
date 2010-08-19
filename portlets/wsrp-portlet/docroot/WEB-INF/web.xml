@@ -21,7 +21,11 @@
 	</listener>
 	<servlet>
 		<servlet-name>Axis Servlet</servlet-name>
-		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+		<servlet-class>com.liferay.portal.kernel.servlet.ThreadLocalEscapeServletWrapper</servlet-class>
+		<init-param>
+			<param-name>class-name</param-name>
+			<param-value>org.apache.axis.transport.http.AxisServlet</param-value>
+		</init-param>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet>
