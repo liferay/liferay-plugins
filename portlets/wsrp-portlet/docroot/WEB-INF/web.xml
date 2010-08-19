@@ -10,6 +10,16 @@
 		<param-name>portlets-ready-by-default</param-name>
 		<param-value>false</param-value>
 	</context-param>
+	<filter>
+		<filter-name>Axis Clean Up Filter</filter-name>
+		<filter-class>com.liferay.util.axis.AxisCleanUpFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Axis Clean Up Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
 	<listener>
 		<listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
 	</listener>
@@ -21,7 +31,7 @@
 	</listener>
 	<servlet>
 		<servlet-name>Axis Servlet</servlet-name>
-		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+		<servlet-class>com.liferay.util.axis.AxisServlet</servlet-class>
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	<servlet>
