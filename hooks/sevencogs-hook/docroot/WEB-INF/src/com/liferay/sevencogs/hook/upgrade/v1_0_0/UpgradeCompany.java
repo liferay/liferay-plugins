@@ -129,7 +129,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		titleMap.put(Locale.US, title);
 
 		return AssetVocabularyLocalServiceUtil.addVocabulary(
-			userId, titleMap, null, null, serviceContext);
+			userId, StringPool.BLANK, titleMap, null, null, serviceContext);
 	}
 
 	protected BlogsEntry addBlogsEntry(
