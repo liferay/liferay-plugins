@@ -16,6 +16,7 @@ package com.liferay.mail.util;
 
 import com.liferay.mail.MailException;
 import com.liferay.mail.mailbox.Mailbox;
+import com.liferay.mail.mailbox.MailboxFactory;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.mail.mailbox.PasswordRetriever;
 import com.liferay.mail.model.Account;
@@ -75,6 +76,17 @@ public class MailManager {
 
 		return new MailManager(
 			user, new PasswordRetriever(request), portletConfig);
+	}
+
+	public static void initializeMailboxFactories()
+		throws PortalException, SystemException {
+
+		List<MailboxFactory> mailboxFactories =
+			MailboxFactoryUtil.getMailboxFactories();
+
+		for (MailboxFactory mailboxFactory : mailboxFactories) {
+			mailboxFactory.initialize();
+		}
 	}
 
 	public MailManager(

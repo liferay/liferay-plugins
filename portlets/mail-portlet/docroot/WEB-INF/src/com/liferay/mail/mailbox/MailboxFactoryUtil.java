@@ -21,7 +21,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Scott Lee
@@ -58,6 +61,18 @@ public class MailboxFactoryUtil {
 		}
 
 		return mailboxFactory.getMailbox(user, protocol);
+	}
+
+	public static List<MailboxFactory> getMailboxFactories() {
+		Set<String> protocols = _mailboxFactories.keySet();
+
+		List<MailboxFactory> mailboxFactories = new ArrayList<MailboxFactory>();
+
+		for (String protocol : protocols) {
+			mailboxFactories.add(_mailboxFactories.get(protocol));
+		}
+
+		return mailboxFactories;
 	}
 
 	public void setMailboxFactories(

@@ -12,22 +12,24 @@
  * details.
  */
 
-package com.liferay.mail.mailbox;
+package com.liferay.mail.hook.events;
 
-import com.liferay.mail.model.Account;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.User;
+import com.liferay.mail.util.MailManager;
+import com.liferay.portal.kernel.events.ActionException;
+import com.liferay.portal.kernel.events.SimpleAction;
 
 /**
  * @author Scott Lee
  */
-public interface MailboxFactory {
+public class StartupAction extends SimpleAction {
 
-	public Mailbox getMailbox(User user, Account account, String password);
-
-	public Mailbox getMailbox(User user, String protocol);
-
-	public void initialize() throws PortalException, SystemException;
+	public void run(String[] ids) throws ActionException {
+		try {
+			MailManager.initializeMailboxFactories();
+		}
+		catch (Exception e) {
+			throw new ActionException(e);
+		}
+	}
 
 }
