@@ -49,6 +49,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 	<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
 	<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
+	<liferay-ui:asset-tags-error />
 
 	<aui:model-context bean="<%= article %>" model="<%= Article.class %>" />
 
@@ -110,6 +111,10 @@ String dirName = ParamUtil.getString(request, "dirName");
 				<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="edit-attachments" /> &raquo;</aui:a>
 			</div>
 		</aui:field-wrapper>
+
+		<aui:input classPK="<%= resourcePrimKey %>" name="categories" type="assetCategories" />
+
+		<aui:input classPK="<%= resourcePrimKey %>" name="tags" type="assetTags" />
 
 		<c:if test="<%= article == null %>">
 			<aui:field-wrapper label="permissions">

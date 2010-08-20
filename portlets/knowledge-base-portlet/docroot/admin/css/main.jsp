@@ -83,6 +83,10 @@
 	padding: 0 7px;
 }
 
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-assets {
+	margin: 10px 0 0;
+}
+
 .knowledge-base-portlet-admin .kb-entity-body .kb-article-attachments {
 	margin: 10px 0 0;
 }

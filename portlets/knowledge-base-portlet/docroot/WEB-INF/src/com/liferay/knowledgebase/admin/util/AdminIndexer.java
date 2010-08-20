@@ -37,6 +37,8 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -168,6 +170,11 @@ public class AdminIndexer extends BaseIndexer {
 		String description = article.getDescription();
 		Date modifiedDate = article.getModifiedDate();
 
+		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
+			Article.class.getName(), resourcePrimKey);
+		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
+			Article.class.getName(), resourcePrimKey);
+
 		Document document = new DocumentImpl();
 
 		document.addUID(PORTLET_ID, resourcePrimKey);
@@ -184,6 +191,8 @@ public class AdminIndexer extends BaseIndexer {
 		document.addText(Field.TITLE, title);
 		document.addText(Field.CONTENT, content);
 		document.addText(Field.DESCRIPTION, description);
+		document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
+		document.addKeyword(Field.ASSET_TAG_NAMES, assetTagNames);
 
 		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);

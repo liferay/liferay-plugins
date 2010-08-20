@@ -153,8 +153,17 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			exportArticleAttachments(context, rootElement, article);
 		}
 
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "categories")) {
+			context.addAssetCategories(
+				Article.class, article.getResourcePrimKey());
+		}
+
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
 			context.addComments(Article.class, article.getResourcePrimKey());
+		}
+
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "tags")) {
+			context.addAssetTags(Article.class, article.getResourcePrimKey());
 		}
 	}
 
@@ -352,10 +361,25 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			priority = maxPriority;
 		}
 
+		long[] assetCategoryIds = null;
+		String[] assetTagNames = null;
+
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "categories")) {
+			assetCategoryIds = context.getAssetCategoryIds(
+				Article.class, article.getResourcePrimKey());
+		}
+
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "tags")) {
+			assetTagNames = context.getAssetTagNames(
+				Article.class, article.getResourcePrimKey());
+		}
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setAssetCategoryIds(assetCategoryIds);
+		serviceContext.setAssetTagNames(assetTagNames);
 		serviceContext.setCreateDate(article.getCreateDate());
 		serviceContext.setModifiedDate(article.getModifiedDate());
 		serviceContext.setScopeGroupId(context.getScopeGroupId());
@@ -369,7 +393,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			if (existingArticle == null) {
 				importedArticle = importArticleVersions(
 					context, article.getUuid(), parentResourcePrimKey, priority,
-					dirName, articleElement);
+					dirName, assetCategoryIds, assetTagNames, articleElement);
 			}
 			else {
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
@@ -382,7 +406,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		else {
 			importedArticle = importArticleVersions(
 				context, null, parentResourcePrimKey, priority, dirName,
-				articleElement);
+				assetCategoryIds, assetTagNames, articleElement);
 		}
 
 		resourcePrimKeys.put(
@@ -446,7 +470,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected Article importArticleVersions(
 			PortletDataContext context, String uuid, long parentResourcePrimKey,
-			int priority, String dirName, Element articleElement)
+			int priority, String dirName, long[] assetCategoryIds,
+			String[] assetTagNames, Element articleElement)
 		throws Exception {
 
 		Element versionsElement = articleElement.element("versions");
@@ -462,17 +487,23 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			long userId = context.getUserId(curArticle.getUserUuid());
 
 			String curDirName = StringPool.BLANK;
+			long[] curAssetCategoryIds = null;
+			String[] curAssetTagNames = null;
 
 			int index = articleElements.indexOf(curArticleElement);
 
 			if (index == (articleElements.size() - 1)) {
 				curDirName = dirName;
+				curAssetCategoryIds = assetCategoryIds;
+				curAssetTagNames = assetTagNames;
 			}
 
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAddCommunityPermissions(true);
 			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setAssetCategoryIds(curAssetCategoryIds);
+			serviceContext.setAssetTagNames(curAssetTagNames);
 			serviceContext.setCreateDate(curArticle.getCreateDate());
 			serviceContext.setModifiedDate(curArticle.getModifiedDate());
 			serviceContext.setScopeGroupId(context.getScopeGroupId());
@@ -620,6 +651,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	private static PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
+			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "categories"),
+			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "tags"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
 		};
 
