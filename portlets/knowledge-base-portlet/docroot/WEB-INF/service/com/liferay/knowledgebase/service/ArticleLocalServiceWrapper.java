@@ -352,6 +352,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getGroupArticlesCount(groupId, allVersions);
 	}
 
+	public long[] getGroupIds(long parentGroupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getGroupIds(parentGroupId);
+	}
+
 	public com.liferay.knowledgebase.model.Article getLatestArticle(
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -413,6 +418,15 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleLocalService.updateArticleResources(article,
 			communityPermissions, guestPermissions);
+	}
+
+	public void updateAsset(long userId,
+		com.liferay.knowledgebase.model.Article article,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.updateAsset(userId, article, assetCategoryIds,
+			assetTagNames);
 	}
 
 	public java.lang.String updateAttachments(long companyId,
