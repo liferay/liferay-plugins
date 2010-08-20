@@ -4,7 +4,7 @@
 <routes>
 	<route>
 		<pattern>/{jspPageName}</pattern>
-		<generated-parameter name="jspPage">/mail/{jspPageName}.jsp</generated-parameter>
+		<generated-parameter name="jspPage">/{jspPageName}.jsp</generated-parameter>
 		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 </routes>
