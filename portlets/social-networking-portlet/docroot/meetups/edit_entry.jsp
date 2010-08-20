@@ -46,7 +46,7 @@ endDate.add(Calendar.HOUR, 3);
 
 if (meetupsEntry != null) {
 	if (meetupsEntry.getStartDate() != null) {
-		endDate.setTime(meetupsEntry.getStartDate());
+		endDate.setTime(meetupsEntry.getEndDate());
 	}
 }
 %>
