@@ -50,9 +50,9 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
-				<aui:input inlineLabel="left" label="enable-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
+				<aui:input inlineLabel="left" label="show-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 
-				<aui:input inlineLabel="left" label="enable-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
+				<aui:input inlineLabel="left" label="show-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("selection-method") %>'>
 				<div class="portlet-msg-info">
