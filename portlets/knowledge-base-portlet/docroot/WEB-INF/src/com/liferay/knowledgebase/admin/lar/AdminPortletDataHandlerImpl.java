@@ -362,12 +362,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		long[] assetCategoryIds = null;
-		String[] assetTagNames = null;
 
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "categories")) {
 			assetCategoryIds = context.getAssetCategoryIds(
 				Article.class, article.getResourcePrimKey());
 		}
+
+		String[] assetTagNames = null;
 
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "tags")) {
 			assetTagNames = context.getAssetTagNames(
