@@ -56,7 +56,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				long selectedFolderId = 0;
 				%>
 
-				<%@ include file="/select_folder.jspf" %>
+				<%@ include file="/mail/select_folder.jspf" %>
 			</aui:select>
 		</aui:column>
 		<aui:column cssClass="search">

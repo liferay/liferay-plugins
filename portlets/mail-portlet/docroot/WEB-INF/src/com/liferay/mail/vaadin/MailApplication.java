@@ -384,7 +384,7 @@ public class MailApplication extends Application {
 		}
 		if (context != null) {
 			PortletRequestDispatcher portletRequestDispatcher = context
-					.getRequestDispatcher("/vaadin_summary_view.jsp");
+					.getRequestDispatcher("/mail/vaadin_summary_view.jsp");
 			if (portletRequestDispatcher != null) {
 				portletRequestDispatcher.include(request, response);
 			}

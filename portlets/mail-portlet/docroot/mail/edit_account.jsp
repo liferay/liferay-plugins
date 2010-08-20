@@ -48,7 +48,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			long selectedFolderId = mailAccount.getInboxFolderId();
 			%>
 
-			<%@ include file="/select_folder.jspf" %>
+			<%@ include file="/mail/select_folder.jspf" %>
 		</aui:select>
 
 		<aui:select name="sentFolderId" label="sent">
@@ -57,7 +57,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			long selectedFolderId = mailAccount.getSentFolderId();
 			%>
 
-			<%@ include file="/select_folder.jspf" %>
+			<%@ include file="/mail/select_folder.jspf" %>
 		</aui:select>
 
 		<aui:select name="draftFolderId" label="draft">
@@ -66,7 +66,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			long selectedFolderId = mailAccount.getDraftFolderId();
 			%>
 
-			<%@ include file="/select_folder.jspf" %>
+			<%@ include file="/mail/select_folder.jspf" %>
 		</aui:select>
 
 		<aui:select name="trashFolderId" label="trash">
@@ -75,7 +75,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			long selectedFolderId = mailAccount.getTrashFolderId();
 			%>
 
-			<%@ include file="/select_folder.jspf" %>
+			<%@ include file="/mail/select_folder.jspf" %>
 		</aui:select>
 	</aui:fieldset>
 
