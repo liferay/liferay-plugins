@@ -14,9 +14,14 @@
 
 package com.liferay.mail.hook.events;
 
-import com.liferay.mail.util.MailManager;
+import com.liferay.mail.mailbox.MailboxFactory;
+import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+
+import java.util.List;
 
 /**
  * @author Scott Lee
@@ -25,10 +30,21 @@ public class StartupAction extends SimpleAction {
 
 	public void run(String[] ids) throws ActionException {
 		try {
-			MailManager.initializeMailboxFactories();
+			initializeMailboxFactories();
 		}
 		catch (Exception e) {
 			throw new ActionException(e);
+		}
+	}
+
+	protected void initializeMailboxFactories()
+		throws PortalException, SystemException {
+
+		List<MailboxFactory> mailboxFactories =
+			MailboxFactoryUtil.getMailboxFactories();
+
+		for (MailboxFactory mailboxFactory : mailboxFactories) {
+			mailboxFactory.initialize();
 		}
 	}
 
