@@ -16,6 +16,12 @@
 
 <%@ include file="/aggregator/init.jsp" %>
 
+<%
+long assetCategoryId = ParamUtil.getLong(request, "categoryId");
+
+String assetTagName = ParamUtil.getString(request, "tag");
+%>
+
 <liferay-portlet:renderURL varImpl="iteratorURL" />
 
 <liferay-ui:search-container
@@ -38,7 +44,7 @@
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 			}
 
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), 0, null);
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), assetCategoryId, assetTagName);
 
 			if (assetEntries != null) {
 				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
@@ -58,7 +64,7 @@
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 			}
 
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), 0, null);
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), assetCategoryId, assetTagName);
 
 			if (assetEntries != null) {
 				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
@@ -75,14 +81,6 @@
 		%>
 
 	</liferay-ui:search-container-results>
-
-	<c:if test="<%= total == 0 %>">
-
-		<%
-		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-		%>
-
-	</c:if>
 
 	<div class="kb-results-body">
 

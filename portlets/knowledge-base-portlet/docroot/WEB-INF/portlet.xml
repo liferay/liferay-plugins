@@ -43,6 +43,8 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
@@ -77,6 +79,8 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
@@ -111,6 +115,8 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
@@ -145,5 +151,15 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
+		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
+	<public-render-parameter>
+		<identifier>categoryId</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:categoryId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>tag</identifier>
+		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:tag</qname>
+	</public-render-parameter>
 </portlet-app>
