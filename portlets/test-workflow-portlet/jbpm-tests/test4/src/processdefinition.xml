@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 
 <process-definition xmlns="urn:jbpm.org:jpdl-3.2" name="test4">
 	<description>Workflow Definition 4</description>
