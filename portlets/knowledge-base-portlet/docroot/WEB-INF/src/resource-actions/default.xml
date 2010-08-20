@@ -6,7 +6,6 @@
 		<permissions>
 			<supports>
 				<action-key>ACCESS_IN_CONTROL_PANEL</action-key>
-				<action-key>ADD_TO_PAGE</action-key>
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>

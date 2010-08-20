@@ -20,19 +20,12 @@ import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.service.permission.TemplatePermission;
-import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
@@ -83,23 +76,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String link = StringPool.BLANK;
 
-		long plid = PortalUtil.getPlidFromPortletId(
-			article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		if (plid != LayoutConstants.DEFAULT_PLID) {
-			if (PortletPermissionUtil.contains(
-					permissionChecker, plid, PortletKeys.KNOWLEDGE_BASE_ADMIN,
-					ActionKeys.VIEW)) {
-
-				String layoutFullURL = PortalUtil.getLayoutFullURL(
-					LayoutLocalServiceUtil.getLayout(plid), themeDisplay);
-
-				link = KnowledgeBaseUtil.getArticleURL(
-					PortletKeys.KNOWLEDGE_BASE_ADMIN,
-					article.getResourcePrimKey(), layoutFullURL, false);
-			}
-		}
-
 		// Title
 
 		String key = StringPool.BLANK;
@@ -140,28 +116,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		// Link
 
 		String link = StringPool.BLANK;
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			template.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		if (plid != LayoutConstants.DEFAULT_PLID) {
-			if (PortletPermissionUtil.contains(
-					permissionChecker, plid, PortletKeys.KNOWLEDGE_BASE_ADMIN,
-					ActionKeys.VIEW)) {
-
-				String layoutFullURL = PortalUtil.getLayoutFullURL(
-					LayoutLocalServiceUtil.getLayout(plid), themeDisplay);
-				String namespace = PortalUtil.getPortletNamespace(
-					PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-				link = HttpUtil.setParameter(
-					layoutFullURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
-				link = HttpUtil.setParameter(
-					link, namespace + "jspPage", "/admin/view_template.jsp");
-				link = HttpUtil.setParameter(
-					link, namespace + "templateId", template.getTemplateId());
-			}
-		}
 
 		// Title
 
