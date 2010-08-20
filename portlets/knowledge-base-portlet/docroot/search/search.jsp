@@ -50,7 +50,13 @@ String keywords = ParamUtil.getString(request, "keywords");
 				if (selectionMethod.equals("articles")) {
 					searchContext.setAttribute("KNOWLEDGE_BASE_RESOURCE_PRIM_KEYS", resourcePrimKeys);
 				}
+				else if (selectionMethod.equals("parent-group")) {
+					searchContext.setAssetCategoryIds(assetCategoryIds);
+					searchContext.setAssetTagNames(assetTagNames);
+				}
 				else if (selectionMethod.equals("scope-groups")) {
+					searchContext.setAssetCategoryIds(assetCategoryIds);
+					searchContext.setAssetTagNames(assetTagNames);
 					searchContext.setAttribute("KNOWLEDGE_BASE_SCOPE_GROUP_IDS", scopeGroupIds);
 				}
 

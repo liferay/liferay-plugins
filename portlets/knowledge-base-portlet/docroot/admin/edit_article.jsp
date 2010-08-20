@@ -112,9 +112,13 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</div>
 		</aui:field-wrapper>
 
-		<aui:input classPK="<%= resourcePrimKey %>" name="categories" type="assetCategories" />
+		<c:if test="<%= enableArticleAssetCategories %>">
+			<aui:input classPK="<%= resourcePrimKey %>" name="categories" type="assetCategories" />
+		</c:if>
 
-		<aui:input classPK="<%= resourcePrimKey %>" name="tags" type="assetTags" />
+		<c:if test="<%= enableArticleAssetTags %>">
+			<aui:input classPK="<%= resourcePrimKey %>" name="tags" type="assetTags" />
+		</c:if>
 
 		<c:if test="<%= article == null %>">
 			<aui:field-wrapper label="permissions">

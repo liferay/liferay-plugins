@@ -25,12 +25,20 @@ if (Validator.isNotNull(portletResource)) {
 
 int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null));
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null));
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 
 String selectionMethod = preferences.getValue("selection-method", "parent-group");
 long[] scopeGroupIds = GetterUtil.getLongValues(preferences.getValues("scope-group-ids", new String[0]));
 long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", new String[0]));
+
+boolean assetEntryQueryContains = GetterUtil.getBoolean(preferences.getValue("asset-entry-query-contains", null), true);
+boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(preferences.getValue("asset-entry-query-and-operator", null));
+String assetEntryQueryName = preferences.getValue("asset-entry-query-name", "asset-categories");
+long[] assetCategoryIds = GetterUtil.getLongValues(preferences.getValues("asset-category-ids", new String[0]));
+String[] assetTagNames = preferences.getValues("asset-tag-names", new String[0]);
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);

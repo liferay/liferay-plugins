@@ -124,6 +124,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			actionRequest, "childArticlesDisplayStyle");
 		boolean enableArticleDescription = ParamUtil.getBoolean(
 			actionRequest, "enableArticleDescription");
+		boolean enableArticleAssetCategories = ParamUtil.getBoolean(
+			actionRequest, "enableArticleAssetCategories");
+		boolean enableArticleAssetTags = ParamUtil.getBoolean(
+			actionRequest, "enableArticleAssetTags");
 		boolean enableArticleComments = ParamUtil.getBoolean(
 			actionRequest, "enableArticleComments");
 		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
@@ -136,6 +140,12 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		preferences.setValue(
 			"enable-article-description",
 			String.valueOf(enableArticleDescription));
+		preferences.setValue(
+			"enable-article-asset-categories",
+			String.valueOf(enableArticleAssetCategories));
+		preferences.setValue(
+			"enable-article-asset-tags",
+			String.valueOf(enableArticleAssetTags));
 		preferences.setValue(
 			"enable-article-comments", String.valueOf(enableArticleComments));
 		preferences.setValue(

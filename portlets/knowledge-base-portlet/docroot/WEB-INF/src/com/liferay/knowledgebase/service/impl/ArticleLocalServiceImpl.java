@@ -406,6 +406,41 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return getArticlesCount(params, allVersions);
 	}
 
+	public long[] getGroupIds(long parentGroupId) throws SystemException {
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Group.class, "group", PortalClassLoaderUtil.getClassLoader());
+
+		Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
+		Property classNameIdProperty = PropertyFactoryUtil.forName(
+			"classNameId");
+		Property parentGroupIdProperty = PropertyFactoryUtil.forName(
+			"parentGroupId");
+
+		long classNameId = PortalUtil.getClassNameId(Layout.class);
+
+		Conjunction conjunction1 = RestrictionsFactoryUtil.conjunction();
+
+		conjunction1.add(groupIdProperty.eq(parentGroupId));
+		conjunction1.add(classNameIdProperty.ne(classNameId));
+
+		Conjunction conjunction2 = RestrictionsFactoryUtil.conjunction();
+
+		conjunction2.add(classNameIdProperty.eq(classNameId));
+		conjunction2.add(parentGroupIdProperty.eq(parentGroupId));
+
+		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+		disjunction.add(conjunction1);
+		disjunction.add(conjunction2);
+
+		dynamicQuery.add(disjunction);
+
+		List<Group> groups = groupPersistence.findWithDynamicQuery(
+			dynamicQuery);
+
+		return StringUtil.split(ListUtil.toString(groups, "groupId"), 0L);
+	}
+
 	public Article getLatestArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -715,7 +750,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			if (key.equals("parentGroupId")) {
 				key = "groupId";
-				value = getGroupIds((Long)value);
+				value = ArrayUtil.toArray(getGroupIds((Long)value));
 			}
 
 			if (value instanceof Object[]) {
@@ -803,42 +838,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (Subscription subscription : subscriptions) {
 			unsubscribeArticle(subscription);
 		}
-	}
-
-	protected Long[] getGroupIds(long parentGroupId) throws SystemException {
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Group.class, "group", PortalClassLoaderUtil.getClassLoader());
-
-		Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
-		Property classNameIdProperty = PropertyFactoryUtil.forName(
-			"classNameId");
-		Property parentGroupIdProperty = PropertyFactoryUtil.forName(
-			"parentGroupId");
-
-		long classNameId = PortalUtil.getClassNameId(Layout.class);
-
-		Conjunction conjunction1 = RestrictionsFactoryUtil.conjunction();
-
-		conjunction1.add(groupIdProperty.eq(parentGroupId));
-		conjunction1.add(classNameIdProperty.ne(classNameId));
-
-		Conjunction conjunction2 = RestrictionsFactoryUtil.conjunction();
-
-		conjunction2.add(classNameIdProperty.eq(classNameId));
-		conjunction2.add(parentGroupIdProperty.eq(parentGroupId));
-
-		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
-
-		disjunction.add(conjunction1);
-		disjunction.add(conjunction2);
-
-		dynamicQuery.add(disjunction);
-
-		List<Group> groups = groupPersistence.findWithDynamicQuery(
-			dynamicQuery);
-
-		return ArrayUtil.toArray(
-			StringUtil.split(ListUtil.toString(groups, "groupId"), 0L));
 	}
 
 	protected void notifySubscribers(

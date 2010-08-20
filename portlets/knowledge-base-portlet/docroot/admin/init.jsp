@@ -27,6 +27,8 @@ int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta",
 String articlesDisplayStyle = preferences.getValue("articles-display-style", "full-content");
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
 boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enable-article-description", null));
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 

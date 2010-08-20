@@ -38,6 +38,14 @@
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 			}
 
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), 0, null);
+
+			if (assetEntries != null) {
+				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
+
+				params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
+			}
+
 			results = ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
 			total = ArticleServiceUtil.getArticlesCount(params, false);
 		}
@@ -48,6 +56,14 @@
 
 			if (!allArticles) {
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+			}
+
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), 0, null);
+
+			if (assetEntries != null) {
+				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
+
+				params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
 			}
 
 			results = ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);

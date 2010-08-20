@@ -53,6 +53,10 @@ public class ConfigurationActionImpl
 			actionRequest, "articleWindowState");
 		String childArticlesDisplayStyle = ParamUtil.getString(
 			actionRequest, "childArticlesDisplayStyle");
+		boolean enableArticleAssetCategories = ParamUtil.getBoolean(
+			actionRequest, "enableArticleAssetCategories");
+		boolean enableArticleAssetTags = ParamUtil.getBoolean(
+			actionRequest, "enableArticleAssetTags");
 		boolean enableArticleComments = ParamUtil.getBoolean(
 			actionRequest, "enableArticleComments");
 		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
@@ -64,6 +68,12 @@ public class ConfigurationActionImpl
 		preferences.setValue("article-window-state", articleWindowState);
 		preferences.setValue(
 			"child-articles-display-style", childArticlesDisplayStyle);
+		preferences.setValue(
+			"enable-article-asset-categories",
+			String.valueOf(enableArticleAssetCategories));
+		preferences.setValue(
+			"enable-article-asset-tags",
+			String.valueOf(enableArticleAssetTags));
 		preferences.setValue(
 			"enable-article-comments", String.valueOf(enableArticleComments));
 		preferences.setValue(
@@ -87,6 +97,16 @@ public class ConfigurationActionImpl
 			actionRequest, "orderByColumn");
 		boolean orderByAscending = ParamUtil.getBoolean(
 			actionRequest, "orderByAscending");
+		boolean assetEntryQueryContains = ParamUtil.getBoolean(
+			actionRequest, "assetEntryQueryContains");
+		boolean assetEntryQueryAndOperator = ParamUtil.getBoolean(
+			actionRequest, "assetEntryQueryAndOperator");
+		String assetEntryQueryName = ParamUtil.getString(
+			actionRequest, "assetEntryQueryName");
+		long[] assetCategoryIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "assetCategoryIds"), 0L);
+		String[] assetTagNames = StringUtil.split(
+			ParamUtil.getString(actionRequest, "assetTagNames"));
 
 		preferences.setValue("selection-method", selectionMethod);
 		preferences.setValues(
@@ -97,6 +117,16 @@ public class ConfigurationActionImpl
 		preferences.setValue("order-by-column", orderByColumn);
 		preferences.setValue(
 			"order-by-ascending", String.valueOf(orderByAscending));
+		preferences.setValue(
+			"asset-entry-query-contains",
+			String.valueOf(assetEntryQueryContains));
+		preferences.setValue(
+			"asset-entry-query-and-operator",
+			String.valueOf(assetEntryQueryAndOperator));
+		preferences.setValue("asset-entry-query-name", assetEntryQueryName);
+		preferences.setValues(
+			"asset-category-ids", ArrayUtil.toStringArray(assetCategoryIds));
+		preferences.setValues("asset-tag-names", assetTagNames);
 	}
 
 }

@@ -20,20 +20,26 @@
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<liferay-util:buffer var="html">
-	<liferay-ui:asset-categories-summary
-		className="<%= Article.class.getName() %>"
-		classPK="<%= article.getResourcePrimKey() %>"
-	/>
+<c:if test="<%= enableArticleAssetCategories || enableArticleAssetTags %>">
+	<liferay-util:buffer var="html">
+		<c:if test="<%= enableArticleAssetCategories %>">
+			<liferay-ui:asset-categories-summary
+				className="<%= Article.class.getName() %>"
+				classPK="<%= article.getResourcePrimKey() %>"
+			/>
+		</c:if>
 
-	<liferay-ui:asset-tags-summary
-		className="<%= Article.class.getName() %>"
-		classPK="<%= article.getResourcePrimKey() %>"
-	/>
-</liferay-util:buffer>
+		<c:if test="<%= enableArticleAssetTags %>">
+			<liferay-ui:asset-tags-summary
+				className="<%= Article.class.getName() %>"
+				classPK="<%= article.getResourcePrimKey() %>"
+			/>
+		</c:if>
+	</liferay-util:buffer>
 
-<c:if test="<%= Validator.isNotNull(html.trim()) %>">
-	<div class="kb-article-assets">
-		<%= html %>
-	</div>
+	<c:if test="<%= Validator.isNotNull(html.trim()) %>">
+		<div class="kb-article-assets">
+			<%= html %>
+		</div>
+	</c:if>
 </c:if>

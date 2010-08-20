@@ -24,16 +24,20 @@
 
 /* ---------- Configuration ---------- */
 
+.portlet-configuration .aui-field-wrapper-content {
+	margin: 0;
+}
+
+.portlet-configuration .kb-asset-selector-wrapper {
+	margin: 5px 0 0;
+}
+
 .portlet-configuration .kb-edit-link {
 	margin-top: 5px;
 }
 
 .portlet-configuration .kb-field-wrapper {
 	margin: 10px 0;
-}
-
-.portlet-configuration .kb-field-wrapper .aui-field-wrapper-content {
-	margin: 0;
 }
 
 .portlet-configuration .kb-selected-entries span {

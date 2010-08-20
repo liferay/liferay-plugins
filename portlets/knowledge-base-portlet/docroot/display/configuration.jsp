@@ -50,6 +50,10 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
+				<aui:input inlineLabel="left" label="show-categories" name="enableArticleAssetCategories" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+
+				<aui:input inlineLabel="left" label="show-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
+
 				<aui:input inlineLabel="left" label="show-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 
 				<aui:input inlineLabel="left" label="show-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
@@ -147,6 +151,43 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 						</aui:select>
 					</aui:field-wrapper>
 				</div>
+
+				<div id="<portlet:namespace />filterOptions">
+					<aui:field-wrapper label="filter">
+						<aui:select inlineField="<%= true %>" label="" name="assetEntryQueryContains">
+							<aui:option label="contains" selected="<%= assetEntryQueryContains %>" value="<%= true %>" />
+							<aui:option label="does-not-contain" selected="<%= !assetEntryQueryContains %>" value="<%= false %>" />
+						</aui:select>
+
+						<aui:select inlineField="<%= true %>" label="" name="assetEntryQueryAndOperator">
+							<aui:option label="all" selected="<%= assetEntryQueryAndOperator %>" value="<%= true %>" />
+							<aui:option label="any" selected="<%= !assetEntryQueryAndOperator %>" value="<%= false %>" />
+						</aui:select>
+
+						<%
+						taglibOnChange = renderResponse.getNamespace() + "updateAssetEntryQueryName(this.value);";
+						%>
+
+						<aui:select inlineField="<%= true %>" inlineLabel="left" label="of-the-following" name="assetEntryQueryName" onChange="<%= taglibOnChange %>">
+							<aui:option label="categories" selected='<%= assetEntryQueryName.equals("asset-categories") %>' value="asset-categories" />
+							<aui:option label="tags" selected='<%= assetEntryQueryName.equals("asset-tags") %>' value="asset-tags" />
+						</aui:select>
+					</aui:field-wrapper>
+
+					<div class="kb-asset-selector-wrapper" id="<portlet:namespace />assetCategoriesSelector">
+						<liferay-ui:asset-categories-selector
+							curCategoryIds="<%= StringUtil.merge(assetCategoryIds) %>"
+							hiddenInput="assetCategoryIds"
+						/>
+					</div>
+
+					<div class="kb-asset-selector-wrapper" id="<portlet:namespace />assetTagsSelector">
+						<liferay-ui:asset-tags-selector
+							curTags="<%= StringUtil.merge(assetTagNames) %>"
+							hiddenInput="assetTagNames"
+						/>
+					</div>
+				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<aui:select label="maximum-items-to-display" name="rssDelta">
@@ -223,24 +264,39 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 			}
 		}
 
+		function <portlet:namespace />updateAssetEntryQueryName(value) {
+			if (value == "asset-categories") {
+				document.getElementById("<portlet:namespace />assetCategoriesSelector").style.display = "";
+				document.getElementById("<portlet:namespace />assetTagsSelector").style.display = "none";
+			}
+			else if (value == "asset-tags") {
+				document.getElementById("<portlet:namespace />assetCategoriesSelector").style.display = "none";
+				document.getElementById("<portlet:namespace />assetTagsSelector").style.display = "";
+			}
+		}
+
 		function <portlet:namespace />updateSelectionMethod(value) {
 			if (value == "articles") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "";
+				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
 			}
 			else if (value == "parent-group") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
+				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
 				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
 			}
 			else if (value == "scope-groups") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
+				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
 				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
 			}
 		}
 
+		<portlet:namespace />updateAssetEntryQueryName("<%= assetEntryQueryName %>");
 		<portlet:namespace />updateSelectionMethod("<%= selectionMethod %>");
 	</aui:script>
 </c:if>
