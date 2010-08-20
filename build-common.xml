@@ -27,7 +27,7 @@
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${project.dir}/lib" includes="jsp-api.jar,servlet-api.jar" />
+		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,servlet-api.jar" />
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
