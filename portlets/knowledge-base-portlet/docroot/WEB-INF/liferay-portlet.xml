@@ -24,6 +24,7 @@
 		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
 		<control-panel-entry-category>content</control-panel-entry-category>
 		<control-panel-entry-weight>7.5</control-panel-entry-weight>
+		<asset-renderer-factory>com.liferay.knowledgebase.admin.asset.ArticleAssetRendererFactory</asset-renderer-factory>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<show-portlet-access-denied>false</show-portlet-access-denied>
 		<scopeable>true</scopeable>
