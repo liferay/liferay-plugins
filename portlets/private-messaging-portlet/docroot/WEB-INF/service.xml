@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.liferay.privatemessaging">
+	<namespace>PrivateMessaging</namespace>
+	<entity name="Users_Threads" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="userId" type="long" primary="true" />
+		<column name="threadId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="read" type="boolean" />
+
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="ThreadId" return-type="Collection">
+			<finder-column name="threadId" />
+		</finder>
+		<finder name="U_R" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="read" />
+		</finder>
+	</entity>
+</service-builder>
