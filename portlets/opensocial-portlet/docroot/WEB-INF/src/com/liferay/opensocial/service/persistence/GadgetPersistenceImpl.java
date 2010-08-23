@@ -217,18 +217,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			if (gadget.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(GadgetImpl.class,
-						gadget.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(gadget);
-
-			session.flush();
+			BatchSessionUtil.delete(session, gadget);
 		}
 		catch (Exception e) {
 			throw processException(e);

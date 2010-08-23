@@ -245,19 +245,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		try {
 			session = openSession();
 
-			if (wsrpConsumerPortlet.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(WSRPConsumerPortletImpl.class,
-						wsrpConsumerPortlet.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(wsrpConsumerPortlet);
-
-			session.flush();
+			BatchSessionUtil.delete(session, wsrpConsumerPortlet);
 		}
 		catch (Exception e) {
 			throw processException(e);

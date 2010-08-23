@@ -222,18 +222,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		try {
 			session = openSession();
 
-			if (wsrpProducer.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(WSRPProducerImpl.class,
-						wsrpProducer.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(wsrpProducer);
-
-			session.flush();
+			BatchSessionUtil.delete(session, wsrpProducer);
 		}
 		catch (Exception e) {
 			throw processException(e);
