@@ -98,24 +98,24 @@ public class KaleoTaskInstanceTokenFinderImpl
 			SQLQuery q = buildKaleoTaskInstanceTokenQuerySQL(
 				kaleoTaskInstanceTokenQuery, false, session);
 
-			List<KaleoTaskInstanceToken> tokens =
+			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				new ArrayList<KaleoTaskInstanceToken>();
 
 			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
 				q, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
 				kaleoTaskInstanceTokenQuery.getEnd());
 
-			while(itr.hasNext()) {
+			while (itr.hasNext()) {
 				long kaleoTaskInstanceTokenId = itr.next();
 
-				KaleoTaskInstanceToken token =
+				KaleoTaskInstanceToken kaleoTaskInstanceToken =
 					KaleoTaskInstanceTokenUtil.findByPrimaryKey(
 						kaleoTaskInstanceTokenId);
 
-				tokens.add(token);
+				kaleoTaskInstanceTokens.add(kaleoTaskInstanceToken);
 			}
 
-			return tokens;
+			return kaleoTaskInstanceTokens;
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
