@@ -25,7 +25,8 @@ html body {
 
 .chat-bar {
 	background: url(<%= request.getContextPath() %>/images/btm-dock_bg.png);
-	border: 1px 1px 1px 0 solid #b5b5b5;
+	border: 1px solid #b5b5b5;
+	border-bottom: none;
 	bottom: 0;
 	height: 24px;
 	left: 15px;
