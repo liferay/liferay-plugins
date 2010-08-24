@@ -262,7 +262,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		return JournalTemplateLocalServiceUtil.addTemplate (
 			userId, groupId, "SINGLE-IMAGE", false, "SINGLE-IMAGE",
 			"Single Image", "A single image, optional URL", xsl, true, "vm",
-			true, false, StringPool.BLANK,	null, serviceContext) ;
+			true, false, StringPool.BLANK, null, serviceContext) ;
 	}
 
 	protected Layout addLayout(
