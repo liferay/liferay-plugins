@@ -7,11 +7,15 @@
 
 		<!-- PK fields -->
 
-		<column name="userId" type="long" primary="true" />
-		<column name="mbThreadId" type="long" primary="true" />
+		<column name="userThreadId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
 
 		<!-- Other fields -->
 
+		<column name="mbThreadId" type="long" />
 		<column name="read" type="boolean" />
 
 		<!-- Finder methods -->
