@@ -1,4 +1,3 @@
-<%
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -12,8 +11,13 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
 
-<%@ include file="/init.jsp" %>
+package com.liferay.privatemessaging.service.impl;
 
-This is the <b>Private Messaging</b> portlet.
+import com.liferay.privatemessaging.service.base.UserThreadLocalServiceBaseImpl;
+
+/**
+ * @author Brian Wing Shun Chan
+ */
+public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
+}
