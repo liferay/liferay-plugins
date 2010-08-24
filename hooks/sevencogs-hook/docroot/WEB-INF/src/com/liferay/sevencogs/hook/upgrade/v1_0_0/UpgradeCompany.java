@@ -259,10 +259,10 @@ public class UpgradeCompany extends UpgradeProcess {
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
-		return JournalTemplateLocalServiceUtil.addTemplate (
+		return JournalTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, "SINGLE-IMAGE", false, "SINGLE-IMAGE",
 			"Single Image", "A single image, optional URL", xsl, true, "vm",
-			true, false, StringPool.BLANK, null, serviceContext) ;
+			true, false, StringPool.BLANK, null, serviceContext);
 	}
 
 	protected Layout addLayout(
@@ -710,7 +710,7 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		long roleId = role.getRoleId();
 		long companyId = role.getCompanyId();
-		int scope =	ResourceConstants.SCOPE_COMPANY;
+		int scope = ResourceConstants.SCOPE_COMPANY;
 		String primKey = String.valueOf(companyId);
 
 		if (_PERMISSIONS_USER_CHECK_ALGORITHM == 6) {
