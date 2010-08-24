@@ -2,24 +2,27 @@
 
 <classpath>
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
-	<classpathentry kind="src" path="/portal" />
+	<classpathentry kind="src" path="/portal-trunk" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
-	<classpathentry kind="lib" path="/portal/lib/development/activation.jar" />
-	<classpathentry kind="lib" path="/portal/lib/development/annotations.jar" />
-	<classpathentry kind="lib" path="/portal/lib/development/jsp-api.jar" />
-	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
-	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
-	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/antlr.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-collections.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-httpclient.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/dom4j.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/hibernate3.jar" />
-	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
-	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
-	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
-	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/development/annotations.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/development/jsp-api.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/development/mail.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/development/servlet-api.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/antlr.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-collections.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-httpclient.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/dom4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/hibernate3.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/saaj-api.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-api.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-log4j12.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
+	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
