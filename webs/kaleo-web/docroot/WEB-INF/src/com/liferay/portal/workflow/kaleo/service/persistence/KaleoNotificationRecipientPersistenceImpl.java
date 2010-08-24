@@ -255,19 +255,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		try {
 			session = openSession();
 
-			if (kaleoNotificationRecipient.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoNotificationRecipientImpl.class,
-						kaleoNotificationRecipient.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoNotificationRecipient);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoNotificationRecipient);
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -270,19 +270,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		try {
 			session = openSession();
 
-			if (kaleoTaskAssignmentInstance.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoTaskAssignmentInstanceImpl.class,
-						kaleoTaskAssignmentInstance.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoTaskAssignmentInstance);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoTaskAssignmentInstance);
 		}
 		catch (Exception e) {
 			throw processException(e);

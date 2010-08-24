@@ -245,18 +245,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		try {
 			session = openSession();
 
-			if (kaleoTask.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoTaskImpl.class,
-						kaleoTask.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoTask);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoTask);
 		}
 		catch (Exception e) {
 			throw processException(e);

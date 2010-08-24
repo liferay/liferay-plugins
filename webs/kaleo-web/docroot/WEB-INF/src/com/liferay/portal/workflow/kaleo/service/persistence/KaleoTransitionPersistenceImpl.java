@@ -290,19 +290,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		try {
 			session = openSession();
 
-			if (kaleoTransition.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoTransitionImpl.class,
-						kaleoTransition.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoTransition);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoTransition);
 		}
 		catch (Exception e) {
 			throw processException(e);

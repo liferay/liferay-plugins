@@ -277,19 +277,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		try {
 			session = openSession();
 
-			if (kaleoInstanceToken.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoInstanceTokenImpl.class,
-						kaleoInstanceToken.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoInstanceToken);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoInstanceToken);
 		}
 		catch (Exception e) {
 			throw processException(e);

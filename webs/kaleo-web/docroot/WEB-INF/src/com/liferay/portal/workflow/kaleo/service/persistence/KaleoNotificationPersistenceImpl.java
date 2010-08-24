@@ -251,19 +251,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		try {
 			session = openSession();
 
-			if (kaleoNotification.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoNotificationImpl.class,
-						kaleoNotification.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoNotification);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoNotification);
 		}
 		catch (Exception e) {
 			throw processException(e);

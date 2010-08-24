@@ -297,19 +297,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		try {
 			session = openSession();
 
-			if (kaleoDefinition.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoDefinitionImpl.class,
-						kaleoDefinition.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoDefinition);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoDefinition);
 		}
 		catch (Exception e) {
 			throw processException(e);

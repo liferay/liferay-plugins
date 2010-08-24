@@ -284,18 +284,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		try {
 			session = openSession();
 
-			if (kaleoLog.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(KaleoLogImpl.class,
-						kaleoLog.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(kaleoLog);
-
-			session.flush();
+			BatchSessionUtil.delete(session, kaleoLog);
 		}
 		catch (Exception e) {
 			throw processException(e);
