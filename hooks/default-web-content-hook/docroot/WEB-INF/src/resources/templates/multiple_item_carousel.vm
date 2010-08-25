@@ -1,0 +1,49 @@
+#set ($contentId = $reserved-article-id.getData())
+#set ($contentClass = "multiple-items-" + $contentId + "-carousel")
+
+<style type="text/css" media="screen">
+	#$contentClass {
+		height: $height.getData()px;
+		position: relative;
+		width: $width.getData()px;
+	}
+
+	#$contentClass .carousel-item {
+		height: $height.getData()px;
+		overflow: hidden;
+		width: $width.getData()px;
+		position: absolute;
+		top: 0;
+	}
+</style>
+
+<div id="$contentClass">
+
+		#foreach ($item in $content.getSiblings())
+
+			<div class="carousel-item">
+				$item.getData()
+			</div>
+
+		#end
+
+</div>
+
+<script type="text/javascript" charset="utf-8">
+
+AUI().ready('aui-carousel', function(A) {
+
+	var component = new A.Carousel(
+		{
+			intervalTime: $duration.getData(),
+			contentBox: '#$contentClass',
+			activeIndex: 'rand',
+			height: $height.getData(),
+			width: $width.getData()
+		}
+	)
+	.render();
+
+});
+
+</script>
