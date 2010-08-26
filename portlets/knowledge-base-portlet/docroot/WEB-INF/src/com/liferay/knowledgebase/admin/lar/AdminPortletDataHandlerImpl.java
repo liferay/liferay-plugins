@@ -158,12 +158,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				Article.class, article.getResourcePrimKey());
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
-			context.addComments(Article.class, article.getResourcePrimKey());
-		}
-
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "tags")) {
 			context.addAssetTags(Article.class, article.getResourcePrimKey());
+		}
+
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
+			context.addComments(Article.class, article.getResourcePrimKey());
 		}
 	}
 
