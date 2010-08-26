@@ -24,13 +24,13 @@
 		<finder name="MBThreadId" return-type="Collection">
 			<finder-column name="mbThreadId" />
 		</finder>
-		<finder name="U_D" return-type="Collection">
-			<finder-column name="userId" />
-			<finder-column name="deleted" />
-		</finder>
 		<finder name="U_M" return-type="UserThread">
 			<finder-column name="userId" />
 			<finder-column name="mbThreadId" />
+		</finder>
+		<finder name="U_D" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="deleted" />
 		</finder>
 		<finder name="U_R_D" return-type="Collection">
 			<finder-column name="userId" />
