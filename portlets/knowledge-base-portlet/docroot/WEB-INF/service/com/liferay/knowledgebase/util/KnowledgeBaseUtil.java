@@ -257,18 +257,18 @@ public class KnowledgeBaseUtil {
 		String[] assetTagNames = jxPreferences.getValues(
 			"asset-tag-names", new String[0]);
 
-		if ((assetCategoryIds.length <= 0) && (assetTagNames.length <= 0) &&
-			(assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
-
-			return null;
-		}
-
 		long[] allAssetCategoryIds = new long[0];
 		long[] anyAssetCategoryIds = new long[0];
 		long[] notAllAssetCategoryIds = new long[0];
 		long[] notAnyAssetCategoryIds = new long[0];
 
 		if (assetEntryQueryName.equals("asset-categories")) {
+			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName) &&
+				(assetCategoryIds.length <= 0)) {
+
+				return null;
+			}
+
 			if (assetEntryQueryContains && assetEntryQueryAndOperator) {
 				allAssetCategoryIds = assetCategoryIds;
 			}
@@ -289,10 +289,18 @@ public class KnowledgeBaseUtil {
 		long[] notAnyAssetTagIds = new long[0];
 
 		if (assetEntryQueryName.equals("asset-tags")) {
+			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName) &&
+				(assetTagNames.length <= 0)) {
+
+				return null;
+			}
+
 			long[] assetTagIds = AssetTagLocalServiceUtil.getTagIds(
 				group.getGroupId(), assetTagNames);
 
-			if ((assetTagIds.length <= 0) && assetEntryQueryContains) {
+			if ((assetTagIds.length <= 0) && assetEntryQueryContains &&
+				(assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
+
 				return new ArrayList<AssetEntry>();
 			}
 
