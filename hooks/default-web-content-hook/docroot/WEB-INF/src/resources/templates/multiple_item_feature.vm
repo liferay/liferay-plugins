@@ -2,7 +2,6 @@
 #set ($contentClass = "multiple-items-" + $contentId)
 
 <style media="screen" type="text/css">
-
 	div.$contentClass h3,
 	div.$contentClass ul,
 	div.$contentClass ul li {
@@ -18,19 +17,14 @@
 	div.$contentClass ul li.featured-item {
 		margin-bottom: 1em;
 	}
-
 </style>
 
 <div class="featured-items $contentClass">
-
-<h3>$item-group-name.getData()</h3>
+	<h3>$item-group-name.getData()</h3>
 
 	<ul class="featured-items-content">
-
-		#foreach ($item in $item-title.getSiblings())		
-
+		#foreach ($item in $item-title.getSiblings())
 			<li class="featured-item">
-
 				<h4 class="featured-item-title">
 
 				#if ($item.item-link.getData().length() != 0)
@@ -45,11 +39,8 @@
 				<div class="featured-item-content">
 					$item.item-body.getData()
 				</div>
-
 			</li>
-
 		#end
-
 	</ul>
 
 </div>

@@ -1,5 +1,4 @@
 <div class="article-wrapper">
-
 	#if ($article-title != "")
 		<h3 class="article-title">$article-title.getData()</h3>
 	#end
@@ -24,11 +23,9 @@
 
 	#if($show-author)
 		<div class="author-info">
-			
 			<span class="article-author">$reserved-article-author-name.getData() </span>
 
 			#foreach ($author-info in $show-author.getChildren())
-
 				#set ($current-node = $author-info.getName())
 
 				#if ($current-node == "title")
@@ -36,10 +33,7 @@
 						, <span class="article-author-title">$reserved-article-author-job-title.getData()</span>
 					#end
 				#end
-
 			#end
-
 		</div>
 	#end
-
 </div>

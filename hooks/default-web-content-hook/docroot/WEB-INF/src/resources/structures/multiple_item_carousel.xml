@@ -1,21 +1,20 @@
 <root>
 	<dynamic-element name='duration' type='list' index-type='' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
 			<entry name="instructions"><![CDATA[Select how long, in seconds, you would prefer to display an item before switching to the next slide]]></entry>
 			<entry name="label"><![CDATA[Item Duration]]></entry>
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
-	
-	<dynamic-element name='1' type='1' index-type='' repeatable='false'>  </dynamic-element>
-	<dynamic-element name='2' type='2' index-type='' repeatable='false'>  </dynamic-element>
-	<dynamic-element name='3' type='3' index-type='' repeatable='false'>  </dynamic-element>
-	<dynamic-element name='4' type='4' index-type='' repeatable='false'>  </dynamic-element>
-	<dynamic-element name='5' type='5' index-type='' repeatable='false'></dynamic-element>
+		<dynamic-element name='1' type='1' index-type='' repeatable='false'></dynamic-element>
+		<dynamic-element name='2' type='2' index-type='' repeatable='false'></dynamic-element>
+		<dynamic-element name='3' type='3' index-type='' repeatable='false'></dynamic-element>
+		<dynamic-element name='4' type='4' index-type='' repeatable='false'></dynamic-element>
+		<dynamic-element name='5' type='5' index-type='' repeatable='false'></dynamic-element>
 	</dynamic-element>
 	<dynamic-element name='height' type='text' index-type='' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[true]]></entry>
 			<entry name="instructions"><![CDATA[This defines the height of the carousel, in pixels(px). Do not add "px" at the end of the value]]></entry>
@@ -24,7 +23,7 @@
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element name='width' type='text' index-type='' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[true]]></entry>
 			<entry name="instructions"><![CDATA[This defines the width of the carousel, in pixels(px). Do not add "px" at the end of the value]]></entry>
@@ -33,7 +32,7 @@
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element name='content' type='text_area' index-type='text' repeatable='true'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[true]]></entry>
 			<entry name="instructions"><![CDATA[This is the content of this slide. To create more slides, click on the " " button]]></entry>

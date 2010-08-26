@@ -25,7 +25,7 @@
 			<entry name="label"><![CDATA[Main Image]]></entry>
 			<entry name="predefinedValue"><![CDATA[]]></entry>
 		</meta-data>
-	
+
 	<dynamic-element name='preview-image' type='image_gallery' index-type='text' repeatable='false'>
 	<meta-data>
 				<entry name="displayAsTooltip"><![CDATA[true]]></entry>

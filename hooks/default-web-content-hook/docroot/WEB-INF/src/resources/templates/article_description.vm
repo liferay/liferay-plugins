@@ -6,11 +6,10 @@
 #end
 
 <div class="article-description-wrapper">
-
 	#if ($article-title != "")
 		<h4 class="article-title"><a href="$article-url"><span>$article-title.getData()</span></a></h4>
 	#end
-	
+
 	#if ($reserved-article-small-image-url.getData() != "")
 		<div class="article-thumbnail">
 			<img alt="$article-title.getData() preview" src="$reserved-article-small-image-url.getData()" />
@@ -28,5 +27,4 @@
 	#end
 
 	<a class="article-description-read-more" href="$article-url" title="Read More">Read more</a>
-
 </div>

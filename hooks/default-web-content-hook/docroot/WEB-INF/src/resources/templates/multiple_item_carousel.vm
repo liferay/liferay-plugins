@@ -18,32 +18,26 @@
 </style>
 
 <div id="$contentClass">
-
-		#foreach ($item in $content.getSiblings())
-
-			<div class="carousel-item">
-				$item.getData()
-			</div>
-
-		#end
-
+	#foreach ($item in $content.getSiblings())
+		<div class="carousel-item">
+			$item.getData()
+		</div>
+	#end
 </div>
 
-<script type="text/javascript" charset="utf-8">
-
-AUI().ready('aui-carousel', function(A) {
-
-	var component = new A.Carousel(
-		{
-			intervalTime: $duration.getData(),
-			contentBox: '#$contentClass',
-			activeIndex: 'rand',
-			height: $height.getData(),
-			width: $width.getData()
-		}
-	)
-	.render();
-
-});
-
+<script type="text/javascript">
+	AUI().ready(
+	'aui-carousel',
+	function(A) {
+		var component = new A.Carousel(
+			{
+				activeIndex: 'rand',
+				contentBox: '#$contentClass',
+				height: $height.getData(),
+				intervalTime: $duration.getData(),
+				width: $width.getData()
+			}
+		)
+		.render();
+	});
 </script>
