@@ -302,7 +302,6 @@
 				<liferay-ui:asset-tags-selector
 					className="<%= User.class.getName() %>"
 					classPK="<%= user.getUserId() %>"
-					hiddenInput="tagsEntries"
 				/>
 			</td>
 		</tr>
