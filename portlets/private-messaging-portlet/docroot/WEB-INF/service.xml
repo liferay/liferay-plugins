@@ -16,6 +16,7 @@
 		<!-- Other fields -->
 
 		<column name="mbThreadId" type="long" />
+		<column name="topMBMessageId" type="long" />
 		<column name="read" type="boolean" />
 		<column name="deleted" type="boolean" />
 
