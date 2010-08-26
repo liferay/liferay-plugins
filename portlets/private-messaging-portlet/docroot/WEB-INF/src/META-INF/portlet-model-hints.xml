@@ -5,6 +5,8 @@
 		<field name="userThreadId" type="long" />
 		<field name="userId" type="long" />
 		<field name="mbThreadId" type="long" />
+		<field name="topMBMessageId" type="long" />
 		<field name="read" type="boolean" />
+		<field name="deleted" type="boolean" />
 	</model>
 </model-hints>

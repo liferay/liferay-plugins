@@ -76,12 +76,26 @@ public class ClpSerializer {
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setRead",
-							new Class[] { Boolean.TYPE });
+					Method method3 = newModelClass.getMethod("setTopMBMessageId",
+							new Class[] { Long.TYPE });
 
-					Boolean value3 = new Boolean(oldCplModel.getRead());
+					Long value3 = new Long(oldCplModel.getTopMBMessageId());
 
 					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setRead",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value4 = new Boolean(oldCplModel.getRead());
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setDeleted",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value5 = new Boolean(oldCplModel.getDeleted());
+
+					method5.invoke(newModel, value5);
 
 					return newModel;
 				}
@@ -155,12 +169,26 @@ public class ClpSerializer {
 
 					newModel.setMbThreadId(value2);
 
-					Method method3 = oldModelClass.getMethod("getRead");
+					Method method3 = oldModelClass.getMethod(
+							"getTopMBMessageId");
 
-					Boolean value3 = (Boolean)method3.invoke(oldModel,
+					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setTopMBMessageId(value3);
+
+					Method method4 = oldModelClass.getMethod("getRead");
+
+					Boolean value4 = (Boolean)method4.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setRead(value3);
+					newModel.setRead(value4);
+
+					Method method5 = oldModelClass.getMethod("getDeleted");
+
+					Boolean value5 = (Boolean)method5.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setDeleted(value5);
 
 					return newModel;
 				}

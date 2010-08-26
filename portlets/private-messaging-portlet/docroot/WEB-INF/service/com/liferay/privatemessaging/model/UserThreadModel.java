@@ -112,6 +112,20 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setMbThreadId(long mbThreadId);
 
 	/**
+	 * Gets the top m b message id of this user thread.
+	 *
+	 * @return the top m b message id of this user thread
+	 */
+	public long getTopMBMessageId();
+
+	/**
+	 * Sets the top m b message id of this user thread.
+	 *
+	 * @param topMBMessageId the top m b message id of this user thread
+	 */
+	public void setTopMBMessageId(long topMBMessageId);
+
+	/**
 	 * Gets the read of this user thread.
 	 *
 	 * @return the read of this user thread
@@ -131,6 +145,27 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	 * @param read the read of this user thread
 	 */
 	public void setRead(boolean read);
+
+	/**
+	 * Gets the deleted of this user thread.
+	 *
+	 * @return the deleted of this user thread
+	 */
+	public boolean getDeleted();
+
+	/**
+	 * Determines whether this user thread is deleted.
+	 *
+	 * @return whether this user thread is deleted
+	 */
+	public boolean isDeleted();
+
+	/**
+	 * Sets whether this {$entity.humanName} is deleted.
+	 *
+	 * @param deleted the deleted of this user thread
+	 */
+	public void setDeleted(boolean deleted);
 
 	/**
 	 * Gets a copy of this user thread as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.

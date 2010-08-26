@@ -69,6 +69,14 @@ public class UserThreadWrapper implements UserThread {
 		_userThread.setMbThreadId(mbThreadId);
 	}
 
+	public long getTopMBMessageId() {
+		return _userThread.getTopMBMessageId();
+	}
+
+	public void setTopMBMessageId(long topMBMessageId) {
+		_userThread.setTopMBMessageId(topMBMessageId);
+	}
+
 	public boolean getRead() {
 		return _userThread.getRead();
 	}
@@ -79,6 +87,18 @@ public class UserThreadWrapper implements UserThread {
 
 	public void setRead(boolean read) {
 		_userThread.setRead(read);
+	}
+
+	public boolean getDeleted() {
+		return _userThread.getDeleted();
+	}
+
+	public boolean isDeleted() {
+		return _userThread.isDeleted();
+	}
+
+	public void setDeleted(boolean deleted) {
+		_userThread.setDeleted(deleted);
 	}
 
 	public com.liferay.privatemessaging.model.UserThread toEscapedModel() {

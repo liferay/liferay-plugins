@@ -12,7 +12,11 @@
 			<id name="userThreadId" />
 			<basic name="userId" />
 			<basic name="mbThreadId" />
-			<basic name="read" />
+			<basic name="topMBMessageId" />
+			<basic name="read">
+				<column name="READ_" />
+			</basic>
+			<basic name="deleted" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>

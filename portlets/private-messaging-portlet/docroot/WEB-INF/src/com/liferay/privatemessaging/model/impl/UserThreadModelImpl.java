@@ -58,9 +58,11 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 			{ "userThreadId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "mbThreadId", new Integer(Types.BIGINT) },
-			{ "read", new Integer(Types.BOOLEAN) }
+			{ "topMBMessageId", new Integer(Types.BIGINT) },
+			{ "read_", new Integer(Types.BOOLEAN) },
+			{ "deleted", new Integer(Types.BOOLEAN) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table PM_UserThread (userThreadId LONG not null primary key,userId LONG,mbThreadId LONG,read BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table PM_UserThread (userThreadId LONG not null primary key,userId LONG,mbThreadId LONG,topMBMessageId LONG,read_ BOOLEAN,deleted BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table PM_UserThread";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -103,6 +105,12 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	public void setUserId(long userId) {
 		_userId = userId;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = userId;
+		}
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -113,12 +121,34 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		_userUuid = userUuid;
 	}
 
+	public long getOriginalUserId() {
+		return _originalUserId;
+	}
+
 	public long getMbThreadId() {
 		return _mbThreadId;
 	}
 
 	public void setMbThreadId(long mbThreadId) {
 		_mbThreadId = mbThreadId;
+
+		if (!_setOriginalMbThreadId) {
+			_setOriginalMbThreadId = true;
+
+			_originalMbThreadId = mbThreadId;
+		}
+	}
+
+	public long getOriginalMbThreadId() {
+		return _originalMbThreadId;
+	}
+
+	public long getTopMBMessageId() {
+		return _topMBMessageId;
+	}
+
+	public void setTopMBMessageId(long topMBMessageId) {
+		_topMBMessageId = topMBMessageId;
 	}
 
 	public boolean getRead() {
@@ -131,6 +161,18 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	public void setRead(boolean read) {
 		_read = read;
+	}
+
+	public boolean getDeleted() {
+		return _deleted;
+	}
+
+	public boolean isDeleted() {
+		return _deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		_deleted = deleted;
 	}
 
 	public UserThread toEscapedModel() {
@@ -163,7 +205,9 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		clone.setUserThreadId(getUserThreadId());
 		clone.setUserId(getUserId());
 		clone.setMbThreadId(getMbThreadId());
+		clone.setTopMBMessageId(getTopMBMessageId());
 		clone.setRead(getRead());
+		clone.setDeleted(getDeleted());
 
 		return clone;
 	}
@@ -211,7 +255,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{userThreadId=");
 		sb.append(getUserThreadId());
@@ -219,15 +263,19 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		sb.append(getUserId());
 		sb.append(", mbThreadId=");
 		sb.append(getMbThreadId());
+		sb.append(", topMBMessageId=");
+		sb.append(getTopMBMessageId());
 		sb.append(", read=");
 		sb.append(getRead());
+		sb.append(", deleted=");
+		sb.append(getDeleted());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.privatemessaging.model.UserThread");
@@ -246,8 +294,16 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		sb.append(getMbThreadId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>topMBMessageId</column-name><column-value><![CDATA[");
+		sb.append(getTopMBMessageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>read</column-name><column-value><![CDATA[");
 		sb.append(getRead());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>deleted</column-name><column-value><![CDATA[");
+		sb.append(getDeleted());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -258,7 +314,13 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	private long _userThreadId;
 	private long _userId;
 	private String _userUuid;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private long _mbThreadId;
+	private long _originalMbThreadId;
+	private boolean _setOriginalMbThreadId;
+	private long _topMBMessageId;
 	private boolean _read;
+	private boolean _deleted;
 	private transient ExpandoBridge _expandoBridge;
 }

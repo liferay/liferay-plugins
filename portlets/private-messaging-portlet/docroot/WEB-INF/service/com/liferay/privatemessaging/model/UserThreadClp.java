@@ -76,6 +76,14 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		_mbThreadId = mbThreadId;
 	}
 
+	public long getTopMBMessageId() {
+		return _topMBMessageId;
+	}
+
+	public void setTopMBMessageId(long topMBMessageId) {
+		_topMBMessageId = topMBMessageId;
+	}
+
 	public boolean getRead() {
 		return _read;
 	}
@@ -86,6 +94,18 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setRead(boolean read) {
 		_read = read;
+	}
+
+	public boolean getDeleted() {
+		return _deleted;
+	}
+
+	public boolean isDeleted() {
+		return _deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		_deleted = deleted;
 	}
 
 	public UserThread toEscapedModel() {
@@ -105,7 +125,9 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		clone.setUserThreadId(getUserThreadId());
 		clone.setUserId(getUserId());
 		clone.setMbThreadId(getMbThreadId());
+		clone.setTopMBMessageId(getTopMBMessageId());
 		clone.setRead(getRead());
+		clone.setDeleted(getDeleted());
 
 		return clone;
 	}
@@ -153,7 +175,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{userThreadId=");
 		sb.append(getUserThreadId());
@@ -161,15 +183,19 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		sb.append(getUserId());
 		sb.append(", mbThreadId=");
 		sb.append(getMbThreadId());
+		sb.append(", topMBMessageId=");
+		sb.append(getTopMBMessageId());
 		sb.append(", read=");
 		sb.append(getRead());
+		sb.append(", deleted=");
+		sb.append(getDeleted());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(16);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.privatemessaging.model.UserThread");
@@ -188,8 +214,16 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		sb.append(getMbThreadId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>topMBMessageId</column-name><column-value><![CDATA[");
+		sb.append(getTopMBMessageId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>read</column-name><column-value><![CDATA[");
 		sb.append(getRead());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>deleted</column-name><column-value><![CDATA[");
+		sb.append(getDeleted());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -201,5 +235,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	private long _userId;
 	private String _userUuid;
 	private long _mbThreadId;
+	private long _topMBMessageId;
 	private boolean _read;
+	private boolean _deleted;
 }
