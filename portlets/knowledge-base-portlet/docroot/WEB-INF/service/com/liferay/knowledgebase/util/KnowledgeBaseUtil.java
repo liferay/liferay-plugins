@@ -52,6 +52,7 @@ import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -332,11 +333,11 @@ public class KnowledgeBaseUtil {
 
 		long[] groupIds = new long[0];
 
-		if (selectionMethod.equals("parent-group")) {
-			groupIds = ArticleLocalServiceUtil.getGroupIds(group.getGroupId());
-		}
-		else if (selectionMethod.equals("scope-groups")) {
+		if (selectionMethod.equals("scope-groups")) {
 			groupIds = scopeGroupIds;
+		}
+		else {
+			groupIds = ArticleLocalServiceUtil.getGroupIds(group.getGroupId());
 		}
 
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
@@ -405,6 +406,24 @@ public class KnowledgeBaseUtil {
 			List<Article> articles = new ArrayList<Article>();
 
 			if (selectionMethod.equals("articles")) {
+				List<AssetEntry> assetEntries = getAssetEntries(
+					plid, portletId, 0, null);
+
+				if (assetEntries != null) {
+					long[] classPKs = StringUtil.split(
+						ListUtil.toString(assetEntries, "classPK"), 0L);
+
+					List<Long> classPKsList = Arrays.asList(
+						ArrayUtil.toArray(classPKs));
+					List<Long> resourcePrimKeysList = Arrays.asList(
+						ArrayUtil.toArray(resourcePrimKeys));
+
+					resourcePrimKeysList.retainAll(classPKsList);
+
+					resourcePrimKeys = StringUtil.split(
+						StringUtil.merge(resourcePrimKeysList), 0L);
+				}
+
 				articles = getArticles(
 					resourcePrimKeys, lastIntervalStart,
 					lastIntervalStart + delta, false);

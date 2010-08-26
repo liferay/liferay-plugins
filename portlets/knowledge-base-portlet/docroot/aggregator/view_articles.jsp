@@ -18,7 +18,6 @@
 
 <%
 long assetCategoryId = ParamUtil.getLong(request, "categoryId");
-
 String assetTagName = ParamUtil.getString(request, "tag");
 %>
 
@@ -32,6 +31,19 @@ String assetTagName = ParamUtil.getString(request, "tag");
 
 		<%
 		if (selectionMethod.equals("articles")) {
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), assetCategoryId, assetTagName);
+
+			if (assetEntries != null) {
+				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
+
+				List<Long> classPKsList = Arrays.asList(ArrayUtil.toArray(classPKs));
+				List<Long> resourcePrimKeysList = Arrays.asList(ArrayUtil.toArray(resourcePrimKeys));
+
+				resourcePrimKeysList.retainAll(classPKsList);
+
+				resourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeysList), 0L);
+			}
+
 			results = KnowledgeBaseUtil.getArticles(resourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), true);
 			total = resourcePrimKeys.length;
 		}
