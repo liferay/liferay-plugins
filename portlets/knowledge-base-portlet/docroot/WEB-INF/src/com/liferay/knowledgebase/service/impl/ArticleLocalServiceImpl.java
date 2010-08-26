@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -596,21 +595,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			String[] assetTagNames)
 		throws PortalException, SystemException {
 
-		String summary = null;
-
-		if (Validator.isNotNull(article.getDescription())) {
-			summary = article.getDescription();
-		}
-		else {
-			summary = StringUtil.shorten(
-				HtmlUtil.extractText(article.getContent()), 500);
-		}
-
 		assetEntryLocalService.updateEntry(
 			userId, article.getGroupId(), Article.class.getName(),
 			article.getResourcePrimKey(), article.getUuid(), assetCategoryIds,
 			assetTagNames, true, null, null, null, null, ContentTypes.TEXT_HTML,
-			article.getTitle(), null, summary, null, 0, 0, null, false);
+			article.getTitle(), article.getDescription(), null, null, 0, 0,
+			null, false);
 	}
 
 	public String updateAttachments(
