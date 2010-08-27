@@ -28,12 +28,10 @@ import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletException;
+import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author Peter Shin
@@ -58,10 +56,7 @@ public class DisplayPortlet extends AdminPortlet {
 		throws PortletException, IOException {
 
 		try {
-			HttpServletRequest request = PortalUtil.getHttpServletRequest(
-				renderRequest);
-
-			HttpSession session = request.getSession();
+			PortletSession portletSession = renderRequest.getPortletSession();
 
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
@@ -70,19 +65,22 @@ public class DisplayPortlet extends AdminPortlet {
 			String tag = ParamUtil.getString(renderRequest, "tag");
 
 			if ((categoryId <= 0) && Validator.isNull(tag)) {
-				session.removeAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
-				session.removeAttribute(WebKeys.KNOWLEDGE_BASE_CATEGORY_ID);
-				session.removeAttribute(WebKeys.KNOWLEDGE_BASE_TAG);
+				portletSession.removeAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+				portletSession.removeAttribute(
+					WebKeys.KNOWLEDGE_BASE_CATEGORY_ID);
+				portletSession.removeAttribute(WebKeys.KNOWLEDGE_BASE_TAG);
 
 				return false;
 			}
 
-			Article oldArticle = (Article)session.getAttribute(
+			Article oldArticle = (Article)portletSession.getAttribute(
 				WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			long oldCategoryId = GetterUtil.getLong(
-				(Long)session.getAttribute(WebKeys.KNOWLEDGE_BASE_CATEGORY_ID));
+				(Long)portletSession.getAttribute(
+					WebKeys.KNOWLEDGE_BASE_CATEGORY_ID));
 			String oldTag = GetterUtil.getString(
-				(String)session.getAttribute(WebKeys.KNOWLEDGE_BASE_TAG));
+				(String)portletSession.getAttribute(
+					WebKeys.KNOWLEDGE_BASE_TAG));
 
 			String portletId = PortalUtil.getPortletId(renderRequest);
 
@@ -90,10 +88,11 @@ public class DisplayPortlet extends AdminPortlet {
 				themeDisplay.getPlid(), portletId, categoryId, tag,
 				themeDisplay.getPermissionChecker());
 
-			session.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
-			session.setAttribute(
+			portletSession.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
+			portletSession.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_CATEGORY_ID, categoryId);
-			session.setAttribute(WebKeys.KNOWLEDGE_BASE_TAG, tag);
+			portletSession.setAttribute(WebKeys.KNOWLEDGE_BASE_TAG, tag);
 
 			if ((article == null) || !article.equals(oldArticle) ||
 				(categoryId != oldCategoryId) || !tag.equals(oldTag)) {

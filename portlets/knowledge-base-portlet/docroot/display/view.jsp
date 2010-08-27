@@ -17,7 +17,7 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-Article article = (Article)session.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+Article article = (Article)portletSession.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 long categoryId = ParamUtil.getLong(request, "categoryId");
 String tag = ParamUtil.getString(request, "tag");
