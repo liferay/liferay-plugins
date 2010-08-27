@@ -17,23 +17,12 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
-
-if (article == null) {
-	article = KnowledgeBaseUtil.getDisplayArticle(plid, portletDisplay.getId(), permissionChecker);
-}
+Article article = (Article)session.getAttribute(WebKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE);
 %>
 
 <c:choose>
 	<c:when test="<%= article == null %>">
-
-		<%
-		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-		%>
-
-		<div class="kb-portlet-configurator-msg portlet-msg-info">
-			<liferay-ui:message key="there-are-no-articles" />
-		</div>
+		<liferay-ui:message key="there-are-no-articles" />
 	</c:when>
 	<c:otherwise>
 

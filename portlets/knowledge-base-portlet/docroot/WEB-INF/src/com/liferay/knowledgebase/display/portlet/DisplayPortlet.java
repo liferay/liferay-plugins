@@ -15,16 +15,86 @@
 package com.liferay.knowledgebase.display.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
+import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+
+import java.io.IOException;
 
 import javax.portlet.ActionRequest;
+import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class DisplayPortlet extends AdminPortlet {
+
+	protected void doDispatch(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws IOException, PortletException {
+
+		if (isPRPRedirect(renderRequest, renderResponse)) {
+			include(jspPath + "view.jsp", renderRequest, renderResponse);
+		}
+		else {
+			super.doDispatch(renderRequest, renderResponse);
+		}
+	}
+
+	protected boolean isPRPRedirect(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws PortletException, IOException {
+
+		try {
+			HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				renderRequest);
+
+			HttpSession session = request.getSession();
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			long assetCategoryId = ParamUtil.getLong(
+				renderRequest, "categoryId");
+			String assetTagName = ParamUtil.getString(renderRequest, "tag");
+
+			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
+				return false;
+			}
+
+			Article displayArticle = (Article)session.getAttribute(
+				WebKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE);
+
+			String portletId = PortalUtil.getPortletId(renderRequest);
+
+			Article article = KnowledgeBaseUtil.getDisplayArticle(
+				themeDisplay.getPlid(), portletId, assetCategoryId,
+				assetTagName, themeDisplay.getPermissionChecker());
+
+			session.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE, article);
+
+			if ((article == null) || !article.equals(displayArticle)) {
+				return true;
+			}
+
+			return false;
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
 
 	protected boolean isProcessActionRequest(ActionRequest actionRequest) {
 		String actionName = ParamUtil.getString(

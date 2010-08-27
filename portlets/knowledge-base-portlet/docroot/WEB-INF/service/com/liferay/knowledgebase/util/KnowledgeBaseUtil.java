@@ -357,7 +357,8 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static Article getDisplayArticle(
-			long plid, String portletId, PermissionChecker permissionChecker)
+			long plid, String portletId, long assetCategoryId,
+			String assetTagName, PermissionChecker permissionChecker)
 		throws Exception {
 
 		String pluginId = PortletConstants.getRootPortletId(portletId);
@@ -407,7 +408,7 @@ public class KnowledgeBaseUtil {
 
 			if (selectionMethod.equals("articles")) {
 				List<AssetEntry> assetEntries = getAssetEntries(
-					plid, portletId, 0, null);
+					plid, portletId, assetCategoryId, assetTagName);
 
 				if (assetEntries != null) {
 					long[] classPKs = StringUtil.split(
@@ -440,7 +441,7 @@ public class KnowledgeBaseUtil {
 				}
 
 				List<AssetEntry> assetEntries = getAssetEntries(
-					plid, portletId, 0, null);
+					plid, portletId, assetCategoryId, assetTagName);
 
 				if (assetEntries != null) {
 					long[] classPKs = StringUtil.split(
@@ -465,7 +466,7 @@ public class KnowledgeBaseUtil {
 				}
 
 				List<AssetEntry> assetEntries = getAssetEntries(
-					plid, portletId, 0, null);
+					plid, portletId, assetCategoryId, assetTagName);
 
 				if (assetEntries != null) {
 					long[] classPKs = StringUtil.split(
