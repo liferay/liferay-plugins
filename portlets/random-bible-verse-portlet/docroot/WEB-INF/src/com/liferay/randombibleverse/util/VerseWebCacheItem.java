@@ -27,14 +27,26 @@ import com.liferay.randombibleverse.model.Verse;
  */
 public class VerseWebCacheItem implements WebCacheItem {
 
-	public VerseWebCacheItem(String location, String versionId) {
+		public VerseWebCacheItem(
+			String location, String versionId, String language) {
 		_location = location;
 		_versionId = versionId;
+		_language = language;
 	}
 
 	public Object convert(String key) throws WebCacheException {
 		Verse verse = null;
 
+		if(_language.equalsIgnoreCase("fi")) {
+			verse = getUskonkirjat(verse);
+		} else {
+			verse = getBiblegateway(verse);
+		}
+
+		return verse;
+	}
+
+	private Verse getBiblegateway(Verse verse) throws WebCacheException {
 		try {
 			String url =
 				"http://www.biblegateway.com/passage/?search=" +
@@ -114,6 +126,61 @@ public class VerseWebCacheItem implements WebCacheItem {
 		return verse;
 	}
 
+	/**
+	 * Metdod for getting Finnish Bible verses from uskonkirjat.net.
+	 * @author Janne Ohtonen
+	 * @throws WebCacheException
+	 */
+	private Verse getUskonkirjat(Verse verse) throws WebCacheException {
+		try {
+			String url =
+				"http://raamattu.uskonkirjat.net/servlet/biblesite.Bible?" +
+				"formname=search&formrnd=1225797093590&search=&rng=0&ref=" +
+				HttpUtil.encodeURL(_location) +
+				"&ctx=0&submit2=Lue&mod1=FinPR&mod2=&mod3=";
+
+			String text = HttpUtil.URLtoString(url);
+
+			int x = text.indexOf("<div class=\"text\">");
+			x = text.indexOf(">", x + 1);
+
+			int y = text.lastIndexOf("</div>");
+
+			text = text.substring(x + 1, y);
+
+			// Strip HTML
+			text = HtmlUtil.stripHtml(text).trim();
+
+			// Strip &nbsp; and other extra characters
+			text = StringUtil.replace(text, "&nbsp;", "");
+			text = StringUtil.replace(text, "(", "");
+			text = StringUtil.replace(text, ")", "");
+			text = StringUtil.replace(text, ":", "");
+			text = text.replaceAll("\\d+", "");
+
+			// Strip carriage returns
+			text = StringUtil.replace(text, "\n", "");
+
+			// Strip double spaces
+			while (text.indexOf("  ") != -1) {
+				text = StringUtil.replace(text, "  ", " ");
+			}
+
+			// Replace " with &quot;
+			text = StringUtil.replace(text, "\"", "&quot;");
+
+			// Trim
+			text = text.trim();
+
+			verse = new Verse(_location, text);
+		}
+		catch (Exception e) {
+			throw new WebCacheException(
+				_location + " " + _versionId + " " + e.toString());
+		}
+		return verse;
+	}
+
 	public long getRefreshTime() {
 		return _REFRESH_TIME;
 	}
@@ -122,5 +189,6 @@ public class VerseWebCacheItem implements WebCacheItem {
 
 	private String _location;
 	private String _versionId;
+	private String _language;
 
 }

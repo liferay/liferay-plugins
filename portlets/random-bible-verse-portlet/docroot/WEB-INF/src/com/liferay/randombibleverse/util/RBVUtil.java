@@ -128,11 +128,13 @@ public class RBVUtil {
 
 		int i = Randomizer.getInstance().nextInt(_verses.size());
 
-		return _getVerse(_verses.get(i), bible.getVersionId());
+		return _getVerse(
+			_verses.get(i), bible.getVersionId(), bible.getLanguage());
 	}
 
-	private Verse _getVerse(String location, String versionId) {
-		WebCacheItem wci = new VerseWebCacheItem(location, versionId);
+	private Verse _getVerse(
+			String location, String versionId, String language) {
+		WebCacheItem wci = new VerseWebCacheItem(location, versionId, language);
 
 		return (Verse)WebCachePoolUtil.get(
 			RBVUtil.class.getName() + StringPool.PERIOD + location +
