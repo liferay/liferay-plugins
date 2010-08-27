@@ -31,6 +31,8 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Summary;
+import com.liferay.portal.kernel.search.TermQuery;
+import com.liferay.portal.kernel.search.TermQueryFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -38,6 +40,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
 import java.util.ArrayList;
@@ -95,6 +98,84 @@ public class AdminIndexer extends BaseIndexer {
 		hits.setQueryTerms(queryTerms);
 
 		return hits;
+	}
+
+	protected void addSearchAssetEntryQuery(
+			BooleanQuery contextQuery, SearchContext searchContext)
+		throws Exception {
+
+		boolean assetEntryQueryContains = (Boolean)searchContext.getAttribute(
+			"KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_CONTAINS");
+		boolean assetEntryQueryAndOperator =
+			(Boolean)searchContext.getAttribute(
+				"KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_AND_OPERATOR");
+		String assetEntryQueryName = (String)searchContext.getAttribute(
+			"KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_NAME");
+		long[] assetCategoryIds = (long[])searchContext.getAttribute(
+			"KNOWLEDGE_BASE_ASSET_CATEGORY_IDS");
+		String[] assetTagNames = (String[])searchContext.getAttribute(
+			"KNOWLEDGE_BASE_ASSET_TAG_NAMES");
+
+		if ((assetEntryQueryName.equals("asset-categories")) &&
+			(assetCategoryIds.length > 0)) {
+
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+
+			for (long assetCategoryId : assetCategoryIds) {
+				if (searchContext.getUserId() > 0) {
+					try {
+						AssetCategoryServiceUtil.getCategory(assetCategoryId);
+					}
+					catch (Exception e) {
+						continue;
+					}
+				}
+
+				if (assetEntryQueryAndOperator) {
+					TermQuery termQuery = TermQueryFactoryUtil.create(
+						Field.ASSET_CATEGORY_IDS, assetCategoryId);
+
+					booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
+				}
+				else {
+					booleanQuery.addExactTerm(
+						Field.ASSET_CATEGORY_IDS, assetCategoryId);
+				}
+			}
+
+			if (assetEntryQueryContains) {
+				contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
+			}
+			else {
+				contextQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
+			}
+		}
+
+		if ((assetEntryQueryName.equals("asset-tags")) &&
+			(assetTagNames.length > 0)) {
+
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+
+			for (String assetTagName : assetTagNames) {
+				if (assetEntryQueryAndOperator) {
+					TermQuery termQuery = TermQueryFactoryUtil.create(
+						Field.ASSET_TAG_NAMES, assetTagName);
+
+					booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
+				}
+				else {
+					booleanQuery.addExactTerm(
+						Field.ASSET_TAG_NAMES, assetTagName);
+				}
+			}
+
+			if (assetEntryQueryContains) {
+				contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
+			}
+			else {
+				contextQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
+			}
+		}
 	}
 
 	protected void addSearchResourcePrimKeys(
@@ -229,6 +310,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		addSearchScopeGroupIds(contextQuery, searchContext);
 		addSearchResourcePrimKeys(contextQuery, searchContext);
+		addSearchAssetEntryQuery(contextQuery, searchContext);
 	}
 
 	protected void postProcessSearchQuery(
