@@ -30,6 +30,9 @@ catch (NoSuchProducerException nsce) {
 }
 
 String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, request, "portletIds"));
+
+String portalServletContextName = PortalUtil.getPathContext();
+ServletContext portalServletContext = ServletContextPool.get(portalServletContextName);
 %>
 
 <liferay-ui:header
@@ -76,7 +79,6 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 	<td>
 
 		<%
-
 		// Left list
 
 		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
@@ -88,7 +90,7 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 				continue;
 			}
 
-			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, application, locale)));
+			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
 		}
 
 		leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
@@ -125,7 +127,7 @@ String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, req
 			String portletId = portlet.getPortletId();
 
 			if (Arrays.binarySearch(portletIds, portletId) < 0) {
-				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, application, locale)));
+				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
 			}
 		}
 
