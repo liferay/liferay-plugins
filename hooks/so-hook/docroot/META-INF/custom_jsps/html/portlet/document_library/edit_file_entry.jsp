@@ -113,6 +113,15 @@ portletURL.setParameter("folderId", String.valueOf(folderId));
 portletURL.setParameter("name", name);
 %>
 
+<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
+
+	<%
+	long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
+	%>
+
+	<script src="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getPathJavaScript() + "/liferay/service.js", javaScriptLastModified)) %>" type="text/javascript"></script>
+</c:if>
+
 <c:if test="<%= !windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
 	<liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
 
@@ -402,5 +411,6 @@ portletURL.setParameter("name", name);
 			PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-file-entry"), currentURL);
 		}
 		%>
+
 	</c:otherwise>
 </c:choose>
