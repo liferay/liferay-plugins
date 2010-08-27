@@ -133,13 +133,15 @@ public class RBVUtil {
 	}
 
 	private Verse _getVerse(
-			String location, String versionId, String language) {
-		WebCacheItem wci = new VerseWebCacheItem(location, versionId, language);
+		String location, String versionId, String language) {
+
+		WebCacheItem webCacheItem = new VerseWebCacheItem(
+			location, versionId, language);
 
 		return (Verse)WebCachePoolUtil.get(
 			RBVUtil.class.getName() + StringPool.PERIOD + location +
 				StringPool.PERIOD + versionId,
-			wci);
+			webCacheItem);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RBVUtil.class);
