@@ -23,8 +23,10 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 	public static final String KNOWLEDGE_BASE_ARTICLE =
 		"KNOWLEDGE_BASE_ARTICLE";
 
-	public static final String KNOWLEDGE_BASE_DISPLAY_ARTICLE =
-		"KNOWLEDGE_BASE_DISPLAY_ARTICLE";
+	public static final String KNOWLEDGE_BASE_CATEGORY_ID =
+		"KNOWLEDGE_BASE_CATEGORY_ID";
+
+	public static final String KNOWLEDGE_BASE_TAG = "KNOWLEDGE_BASE_TAG";
 
 	public static final String KNOWLEDGE_BASE_TEMPLATE =
 		"KNOWLEDGE_BASE_TEMPLATE";

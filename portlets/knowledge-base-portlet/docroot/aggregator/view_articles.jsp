@@ -17,8 +17,8 @@
 <%@ include file="/aggregator/init.jsp" %>
 
 <%
-long assetCategoryId = ParamUtil.getLong(request, "categoryId");
-String assetTagName = ParamUtil.getString(request, "tag");
+long categoryId = ParamUtil.getLong(request, "categoryId");
+String tag = ParamUtil.getString(request, "tag");
 %>
 
 <liferay-portlet:renderURL varImpl="iteratorURL" />
@@ -31,7 +31,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 
 		<%
 		if (selectionMethod.equals("articles")) {
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), assetCategoryId, assetTagName);
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
 
 			if (assetEntries != null) {
 				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
@@ -56,7 +56,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 			}
 
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), assetCategoryId, assetTagName);
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
 
 			if (assetEntries != null) {
 				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
@@ -76,7 +76,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 			}
 
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), assetCategoryId, assetTagName);
+			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
 
 			if (assetEntries != null) {
 				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);

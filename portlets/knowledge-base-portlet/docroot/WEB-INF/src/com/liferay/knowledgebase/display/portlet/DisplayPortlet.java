@@ -18,6 +18,7 @@ import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.WebKeys;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -65,27 +66,38 @@ public class DisplayPortlet extends AdminPortlet {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-			long assetCategoryId = ParamUtil.getLong(
-				renderRequest, "categoryId");
-			String assetTagName = ParamUtil.getString(renderRequest, "tag");
+			long categoryId = ParamUtil.getLong(renderRequest, "categoryId");
+			String tag = ParamUtil.getString(renderRequest, "tag");
 
-			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
+			if ((categoryId <= 0) && Validator.isNull(tag)) {
+				session.removeAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+				session.removeAttribute(WebKeys.KNOWLEDGE_BASE_CATEGORY_ID);
+				session.removeAttribute(WebKeys.KNOWLEDGE_BASE_TAG);
+
 				return false;
 			}
 
-			Article displayArticle = (Article)session.getAttribute(
-				WebKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE);
+			Article oldArticle = (Article)session.getAttribute(
+				WebKeys.KNOWLEDGE_BASE_ARTICLE);
+			long oldCategoryId = GetterUtil.getLong(
+				(Long)session.getAttribute(WebKeys.KNOWLEDGE_BASE_CATEGORY_ID));
+			String oldTag = GetterUtil.getString(
+				(String)session.getAttribute(WebKeys.KNOWLEDGE_BASE_TAG));
 
 			String portletId = PortalUtil.getPortletId(renderRequest);
 
 			Article article = KnowledgeBaseUtil.getDisplayArticle(
-				themeDisplay.getPlid(), portletId, assetCategoryId,
-				assetTagName, themeDisplay.getPermissionChecker());
+				themeDisplay.getPlid(), portletId, categoryId, tag,
+				themeDisplay.getPermissionChecker());
 
+			session.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
 			session.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE, article);
+				WebKeys.KNOWLEDGE_BASE_CATEGORY_ID, categoryId);
+			session.setAttribute(WebKeys.KNOWLEDGE_BASE_TAG, tag);
 
-			if ((article == null) || !article.equals(displayArticle)) {
+			if ((article == null) || !article.equals(oldArticle) ||
+				(categoryId != oldCategoryId) || !tag.equals(oldTag)) {
+
 				return true;
 			}
 

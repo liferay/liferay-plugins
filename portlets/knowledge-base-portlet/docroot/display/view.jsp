@@ -17,7 +17,14 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-Article article = (Article)session.getAttribute(WebKeys.KNOWLEDGE_BASE_DISPLAY_ARTICLE);
+Article article = (Article)session.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+
+long categoryId = ParamUtil.getLong(request, "categoryId");
+String tag = ParamUtil.getString(request, "tag");
+
+if ((categoryId <= 0) && Validator.isNull(tag)) {
+	article = KnowledgeBaseUtil.getDisplayArticle(plid, portletDisplay.getId(), categoryId, tag, permissionChecker);
+}
 %>
 
 <c:choose>
