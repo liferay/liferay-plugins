@@ -1,4 +1,4 @@
-Liferay.Service.register("Liferay.Service.KB", "com.liferay.knowledgebase.service");
+Liferay.Service.register("Liferay.Service.KB", "com.liferay.knowledgebase.service", "knowledge-base-portlet");
 
 Liferay.Service.registerClass(
 	Liferay.Service.KB, "Article",
