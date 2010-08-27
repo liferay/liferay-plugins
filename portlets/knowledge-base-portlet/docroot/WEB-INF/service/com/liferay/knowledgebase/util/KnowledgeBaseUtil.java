@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -52,11 +53,11 @@ import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.PortletPreferences;
 import javax.portlet.WindowState;
@@ -258,6 +259,14 @@ public class KnowledgeBaseUtil {
 		String[] assetTagNames = jxPreferences.getValues(
 			"asset-tag-names", new String[0]);
 
+		if (selectionMethod.equals("articles")) {
+			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
+				return null;
+			}
+
+			assetEntryQueryName = StringPool.BLANK;
+		}
+
 		long[] allAssetCategoryIds = new long[0];
 		long[] anyAssetCategoryIds = new long[0];
 		long[] notAllAssetCategoryIds = new long[0];
@@ -414,15 +423,14 @@ public class KnowledgeBaseUtil {
 					long[] classPKs = StringUtil.split(
 						ListUtil.toString(assetEntries, "classPK"), 0L);
 
-					List<Long> classPKsList = Arrays.asList(
-						ArrayUtil.toArray(classPKs));
-					List<Long> resourcePrimKeysList = Arrays.asList(
-						ArrayUtil.toArray(resourcePrimKeys));
+					Set<Long> classPKsSet = SetUtil.fromArray(classPKs);
+					Set<Long> resourcePrimKeysSet = SetUtil.fromArray(
+						resourcePrimKeys);
 
-					resourcePrimKeysList.retainAll(classPKsList);
+					resourcePrimKeysSet.retainAll(classPKsSet);
 
 					resourcePrimKeys = StringUtil.split(
-						StringUtil.merge(resourcePrimKeysList), 0L);
+						StringUtil.merge(resourcePrimKeysSet), 0L);
 				}
 
 				articles = getArticles(

@@ -79,6 +79,7 @@
 <%@ page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsKeys" %>
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.SetUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
@@ -111,6 +112,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="java.util.Set" %>
 
 <%@ page import="javax.portlet.PortletConfig" %>
 <%@ page import="javax.portlet.PortletPreferences" %>

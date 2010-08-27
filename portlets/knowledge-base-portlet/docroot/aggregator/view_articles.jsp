@@ -36,12 +36,12 @@ String tag = ParamUtil.getString(request, "tag");
 			if (assetEntries != null) {
 				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
 
-				List<Long> classPKsList = Arrays.asList(ArrayUtil.toArray(classPKs));
-				List<Long> resourcePrimKeysList = Arrays.asList(ArrayUtil.toArray(resourcePrimKeys));
+				Set<Long> classPKsSet = SetUtil.fromArray(classPKs);
+				Set<Long> resourcePrimKeysSet = SetUtil.fromArray(resourcePrimKeys);
 
-				resourcePrimKeysList.retainAll(classPKsList);
+				resourcePrimKeysSet.retainAll(classPKsSet);
 
-				resourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeysList), 0L);
+				resourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeysSet), 0L);
 			}
 
 			results = KnowledgeBaseUtil.getArticles(resourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), true);
