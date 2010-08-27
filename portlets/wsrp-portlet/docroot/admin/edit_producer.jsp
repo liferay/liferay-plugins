@@ -32,6 +32,7 @@ catch (NoSuchProducerException nsce) {
 String[] portletIds = StringUtil.split(BeanParamUtil.getString(wsrpProducer, request, "portletIds"));
 
 String portalServletContextName = PortalUtil.getPathContext();
+
 ServletContext portalServletContext = ServletContextPool.get(portalServletContextName);
 %>
 
@@ -79,6 +80,7 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 	<td>
 
 		<%
+
 		// Left list
 
 		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
