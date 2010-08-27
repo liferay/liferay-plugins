@@ -84,19 +84,21 @@ String keywords = ParamUtil.getString(request, "keywords");
 					String content = (String)result[2];
 				%>
 
-					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-					</portlet:renderURL>
+					<div class="kb-title-wrapper">
+						<portlet:renderURL var="viewArticleURL">
+							<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						</portlet:renderURL>
 
-					<liferay-ui:icon
-						cssClass="kb-title"
-						image="../trees/page"
-						label="<%= true %>"
-						message="<%= title %>"
-						method="get"
-						url="<%= viewArticleURL %>"
-					/>
+						<liferay-ui:icon
+							cssClass="kb-title"
+							image="../trees/page"
+							label="<%= true %>"
+							message="<%= title %>"
+							method="get"
+							url="<%= viewArticleURL %>"
+						/>
+					</div>
 
 					<%
 					request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);

@@ -46,7 +46,7 @@
 
 /* ---------- Portlet ---------- */
 
-.knowledge-base-portlet-aggregator .kb-results-body .kb-title-first a {
+.knowledge-base-portlet-aggregator .kb-results-body .kb-title-wrapper-first {
 	margin-top: 0;
 }
 

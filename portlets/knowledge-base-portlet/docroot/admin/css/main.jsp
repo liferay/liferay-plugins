@@ -135,9 +135,12 @@
 }
 
 .knowledge-base-portlet-admin .kb-results-body .kb-title a {
-	display: block;
 	font-weight: bold;
-	margin: 5px 0 0 -20px;
+	margin: 0 0 0 -20px;
+}
+
+.knowledge-base-portlet-admin .kb-results-body .kb-title-wrapper {
+	margin: 5px 0 0 0;
 }
 
 .knowledge-base-portlet-admin .kb-results-header {
