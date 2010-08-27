@@ -177,10 +177,6 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		_kaleoTransition.setDefaultTransition(defaultTransition);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toEscapedModel() {
-		return _kaleoTransition.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoTransition.isNew();
 	}
@@ -229,6 +225,10 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 
 	public int hashCode() {
 		return _kaleoTransition.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toEscapedModel() {
+		return _kaleoTransition.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

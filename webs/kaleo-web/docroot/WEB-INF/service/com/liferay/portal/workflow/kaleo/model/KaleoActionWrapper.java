@@ -173,10 +173,6 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction.setPriority(priority);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoAction toEscapedModel() {
-		return _kaleoAction.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoAction.isNew();
 	}
@@ -225,6 +221,10 @@ public class KaleoActionWrapper implements KaleoAction {
 
 	public int hashCode() {
 		return _kaleoAction.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoAction toEscapedModel() {
+		return _kaleoAction.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

@@ -211,10 +211,6 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken.setWorkflowContext(workflowContext);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken toEscapedModel() {
-		return _kaleoTaskInstanceToken.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoTaskInstanceToken.isNew();
 	}
@@ -263,6 +259,10 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 
 	public int hashCode() {
 		return _kaleoTaskInstanceToken.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken toEscapedModel() {
+		return _kaleoTaskInstanceToken.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

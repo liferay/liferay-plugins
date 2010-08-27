@@ -149,10 +149,6 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask.setDueDateScale(dueDateScale);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTask toEscapedModel() {
-		return _kaleoTask.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoTask.isNew();
 	}
@@ -201,6 +197,10 @@ public class KaleoTaskWrapper implements KaleoTask {
 
 	public int hashCode() {
 		return _kaleoTask.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTask toEscapedModel() {
+		return _kaleoTask.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

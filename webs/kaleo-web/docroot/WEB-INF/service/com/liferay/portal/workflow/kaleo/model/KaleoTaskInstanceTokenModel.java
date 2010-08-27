@@ -364,14 +364,6 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	 */
 	public void setWorkflowContext(String workflowContext);
 
-	/**
-	 * Gets a copy of this kaleo task instance token as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoTaskInstanceToken toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -395,6 +387,8 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken);
 
 	public int hashCode();
+
+	public KaleoTaskInstanceToken toEscapedModel();
 
 	public String toString();
 

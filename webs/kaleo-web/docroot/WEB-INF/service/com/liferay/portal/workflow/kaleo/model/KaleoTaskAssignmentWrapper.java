@@ -141,10 +141,6 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setAssigneeClassPK(assigneeClassPK);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
-		return _kaleoTaskAssignment.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoTaskAssignment.isNew();
 	}
@@ -193,6 +189,10 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 
 	public int hashCode() {
 		return _kaleoTaskAssignment.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
+		return _kaleoTaskAssignment.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

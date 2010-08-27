@@ -258,14 +258,6 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 	 */
 	public void setDueDateScale(String dueDateScale);
 
-	/**
-	 * Gets a copy of this kaleo task as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoTask toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -289,6 +281,8 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 	public int compareTo(KaleoTask kaleoTask);
 
 	public int hashCode();
+
+	public KaleoTask toEscapedModel();
 
 	public String toString();
 

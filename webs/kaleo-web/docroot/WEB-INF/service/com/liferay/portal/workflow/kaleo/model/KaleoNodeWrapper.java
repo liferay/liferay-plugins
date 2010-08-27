@@ -157,10 +157,6 @@ public class KaleoNodeWrapper implements KaleoNode {
 		_kaleoNode.setTerminal(terminal);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNode toEscapedModel() {
-		return _kaleoNode.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoNode.isNew();
 	}
@@ -209,6 +205,10 @@ public class KaleoNodeWrapper implements KaleoNode {
 
 	public int hashCode() {
 		return _kaleoNode.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNode toEscapedModel() {
+		return _kaleoNode.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

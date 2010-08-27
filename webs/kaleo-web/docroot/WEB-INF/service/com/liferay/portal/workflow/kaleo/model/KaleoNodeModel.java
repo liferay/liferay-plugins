@@ -272,14 +272,6 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode> {
 	 */
 	public void setTerminal(boolean terminal);
 
-	/**
-	 * Gets a copy of this kaleo node as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoNode toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -303,6 +295,8 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode> {
 	public int compareTo(KaleoNode kaleoNode);
 
 	public int hashCode();
+
+	public KaleoNode toEscapedModel();
 
 	public String toString();
 

@@ -495,14 +495,6 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	 */
 	public void setWorkflowContext(String workflowContext);
 
-	/**
-	 * Gets a copy of this kaleo log as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoLog toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -526,6 +518,8 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public int compareTo(KaleoLog kaleoLog);
 
 	public int hashCode();
+
+	public KaleoLog toEscapedModel();
 
 	public String toString();
 

@@ -322,14 +322,6 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	 */
 	public void setStartKaleoNodeId(long startKaleoNodeId);
 
-	/**
-	 * Gets a copy of this kaleo definition as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoDefinition toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -353,6 +345,8 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	public int compareTo(KaleoDefinition kaleoDefinition);
 
 	public int hashCode();
+
+	public KaleoDefinition toEscapedModel();
 
 	public String toString();
 

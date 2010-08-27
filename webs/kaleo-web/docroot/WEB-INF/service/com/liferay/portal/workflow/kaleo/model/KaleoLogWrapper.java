@@ -284,10 +284,6 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog.setWorkflowContext(workflowContext);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {
-		return _kaleoLog.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoLog.isNew();
 	}
@@ -336,6 +332,10 @@ public class KaleoLogWrapper implements KaleoLog {
 
 	public int hashCode() {
 		return _kaleoLog.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {
+		return _kaleoLog.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

@@ -303,14 +303,6 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 	 */
 	public void setPriority(int priority);
 
-	/**
-	 * Gets a copy of this kaleo action as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoAction toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -334,6 +326,8 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 	public int compareTo(KaleoAction kaleoAction);
 
 	public int hashCode();
+
+	public KaleoAction toEscapedModel();
 
 	public String toString();
 

@@ -188,10 +188,6 @@ public class KaleoTaskAssignmentInstanceWrapper
 		_kaleoTaskAssignmentInstance.setCompletionDate(completionDate);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance toEscapedModel() {
-		return _kaleoTaskAssignmentInstance.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoTaskAssignmentInstance.isNew();
 	}
@@ -240,6 +236,10 @@ public class KaleoTaskAssignmentInstanceWrapper
 
 	public int hashCode() {
 		return _kaleoTaskAssignmentInstance.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance toEscapedModel() {
+		return _kaleoTaskAssignmentInstance.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

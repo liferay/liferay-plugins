@@ -307,14 +307,6 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 	 */
 	public void setWorkflowContext(String workflowContext);
 
-	/**
-	 * Gets a copy of this kaleo instance as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoInstance toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -338,6 +330,8 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 	public int compareTo(KaleoInstance kaleoInstance);
 
 	public int hashCode();
+
+	public KaleoInstance toEscapedModel();
 
 	public String toString();
 

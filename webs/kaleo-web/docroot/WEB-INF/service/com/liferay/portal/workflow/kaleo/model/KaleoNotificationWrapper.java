@@ -173,10 +173,6 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification.setNotificationTypes(notificationTypes);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toEscapedModel() {
-		return _kaleoNotification.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoNotification.isNew();
 	}
@@ -225,6 +221,10 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 
 	public int hashCode() {
 		return _kaleoNotification.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toEscapedModel() {
+		return _kaleoNotification.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

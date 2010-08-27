@@ -258,14 +258,6 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	 */
 	public void setAddress(String address);
 
-	/**
-	 * Gets a copy of this kaleo notification recipient as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoNotificationRecipient toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -289,6 +281,8 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient);
 
 	public int hashCode();
+
+	public KaleoNotificationRecipient toEscapedModel();
 
 	public String toString();
 

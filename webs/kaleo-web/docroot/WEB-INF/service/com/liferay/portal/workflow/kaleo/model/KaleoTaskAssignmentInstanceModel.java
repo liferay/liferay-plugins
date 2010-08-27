@@ -321,14 +321,6 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	 */
 	public void setCompletionDate(Date completionDate);
 
-	/**
-	 * Gets a copy of this kaleo task assignment instance as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoTaskAssignmentInstance toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -353,6 +345,8 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance);
 
 	public int hashCode();
+
+	public KaleoTaskAssignmentInstance toEscapedModel();
 
 	public String toString();
 

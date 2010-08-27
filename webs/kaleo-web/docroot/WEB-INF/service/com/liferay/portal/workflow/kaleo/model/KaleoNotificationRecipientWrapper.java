@@ -152,10 +152,6 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient.setAddress(address);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toEscapedModel() {
-		return _kaleoNotificationRecipient.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoNotificationRecipient.isNew();
 	}
@@ -204,6 +200,10 @@ public class KaleoNotificationRecipientWrapper
 
 	public int hashCode() {
 		return _kaleoNotificationRecipient.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toEscapedModel() {
+		return _kaleoNotificationRecipient.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

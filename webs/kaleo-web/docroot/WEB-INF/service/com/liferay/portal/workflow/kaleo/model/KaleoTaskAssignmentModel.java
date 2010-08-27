@@ -242,14 +242,6 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 */
 	public void setAssigneeClassPK(long assigneeClassPK);
 
-	/**
-	 * Gets a copy of this kaleo task assignment as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoTaskAssignment toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -273,6 +265,8 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	public int compareTo(KaleoTaskAssignment kaleoTaskAssignment);
 
 	public int hashCode();
+
+	public KaleoTaskAssignment toEscapedModel();
 
 	public String toString();
 

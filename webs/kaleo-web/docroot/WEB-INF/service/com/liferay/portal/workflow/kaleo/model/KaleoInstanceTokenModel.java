@@ -306,14 +306,6 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken> {
 	 */
 	public void setCompletionDate(Date completionDate);
 
-	/**
-	 * Gets a copy of this kaleo instance token as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoInstanceToken toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -337,6 +329,8 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken> {
 	public int compareTo(KaleoInstanceToken kaleoInstanceToken);
 
 	public int hashCode();
+
+	public KaleoInstanceToken toEscapedModel();
 
 	public String toString();
 

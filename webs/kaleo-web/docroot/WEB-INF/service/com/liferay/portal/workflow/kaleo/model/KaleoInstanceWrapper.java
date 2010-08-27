@@ -177,10 +177,6 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		_kaleoInstance.setWorkflowContext(workflowContext);
 	}
 
-	public com.liferay.portal.workflow.kaleo.model.KaleoInstance toEscapedModel() {
-		return _kaleoInstance.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _kaleoInstance.isNew();
 	}
@@ -229,6 +225,10 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 
 	public int hashCode() {
 		return _kaleoInstance.hashCode();
+	}
+
+	public com.liferay.portal.workflow.kaleo.model.KaleoInstance toEscapedModel() {
+		return _kaleoInstance.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

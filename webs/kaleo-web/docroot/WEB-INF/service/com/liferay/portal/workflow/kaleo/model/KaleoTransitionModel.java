@@ -308,14 +308,6 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition> {
 	 */
 	public void setDefaultTransition(boolean defaultTransition);
 
-	/**
-	 * Gets a copy of this kaleo transition as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public KaleoTransition toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -339,6 +331,8 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition> {
 	public int compareTo(KaleoTransition kaleoTransition);
 
 	public int hashCode();
+
+	public KaleoTransition toEscapedModel();
 
 	public String toString();
 
