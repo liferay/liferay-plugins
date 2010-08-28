@@ -22,34 +22,27 @@ import org.apache.mina.core.session.IoSession;
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public class DispatchHandler implements IoHandler {
+public class DispatchIoHandler implements IoHandler {
 
 	public void exceptionCaught(IoSession ioSession, Throwable cause) {
-		System.out.println("## here exceptionCaught");
 	}
 
 	public void messageReceived(IoSession ioSession, Object message) {
-		System.out.println("## here messageReceived");
 	}
 
 	public void messageSent(IoSession ioSession, Object message) {
-		System.out.println("## here messageSent");
 	}
 
 	public void sessionClosed(IoSession ioSession) {
-		System.out.println("## here sessionClosed");
 	}
 
 	public void sessionCreated(IoSession ioSession) {
-		System.out.println("## here sessionCreated");
 	}
 
 	public void sessionIdle(IoSession ioSession, IdleStatus idleStatus) {
-		System.out.println("## here sessionIdle");
 	}
 
 	public void sessionOpened(IoSession ioSession) {
-		System.out.println("## here sessionOpened");
 	}
 
 }

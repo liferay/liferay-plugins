@@ -15,7 +15,7 @@
 package com.liferay.vldap.server;
 
 import com.liferay.vldap.server.codec.LdapCodecFactory;
-import com.liferay.vldap.server.handler.DispatchHandler;
+import com.liferay.vldap.server.handler.DispatchIoHandler;
 
 import java.net.InetSocketAddress;
 
@@ -37,21 +37,19 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 public class VLDAPServer {
 
 	public void destroy() throws Exception {
-		if (_ioAcceptor != null) {
-			_ioAcceptor.unbind();
-			_ioAcceptor.dispose();
-		}
+		destroyIoAcceptor();
 	}
 
 	public void init() throws Exception {
 		initSchemaManager();
+		initIoAcceptor();
+	}
 
-		_ioAcceptor = new NioSocketAcceptor();
-
-		initCodec();
-		initHandler();
-
-		_ioAcceptor.bind(new InetSocketAddress(_PORT));
+	protected void destroyIoAcceptor() {
+		if (_ioAcceptor != null) {
+			_ioAcceptor.unbind();
+			_ioAcceptor.dispose();
+		}
 	}
 
 	protected void initCodec() {
@@ -67,21 +65,25 @@ public class VLDAPServer {
 		defaultIoFilterChainBuilder.addLast("codec", ioFilterAdapter);
 	}
 
-	protected void initHandler() {
-		_ioAcceptor.setHandler(new DispatchHandler());
+	protected void initIoAcceptor() throws Exception {
+		_ioAcceptor = new NioSocketAcceptor();
+
+		initIoHandler();
+		initCodec();
+
+		_ioAcceptor.bind(new InetSocketAddress(_PORT));
+	}
+
+	protected void initIoHandler() {
+		_ioAcceptor.setHandler(new DispatchIoHandler());
 	}
 
 	protected void initSchemaManager() throws Exception {
-		String classPath = System.getProperty( "java.class.path", "." );
-
-		System.out.println("classPath 111 " + classPath);
-
 		SchemaLoader schemaLoader = new DynamicJarLdifSchemaLoader();
 
 		_schemaManager = new DefaultSchemaManager(schemaLoader);
 
 		_schemaManager.loadWithDeps("core");
-		System.out.println("loaded schema manager");
 	}
 
 	private static final int _PORT = 11389;
