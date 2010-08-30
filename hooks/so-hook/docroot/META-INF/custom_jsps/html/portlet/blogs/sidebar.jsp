@@ -81,22 +81,4 @@
 			</li>
 		</ul>
 	</c:if>
-
-	<%
-	String rssURL = PortalUtil.getLayoutURL(layout, themeDisplay) + "/-/blogs/rss";
-
-	if (Validator.isNotNull(rssURLParams)) {
-		rssURL += "?" + rssURLParams;
-	}
-	%>
-
-	<div class="subscribe">
-		<liferay-ui:icon
-			image="rss"
-			label="<%= true %>"
-			message="subscribe-to-this-blog"
-			url="<%= rssURL %>"
-			target="_blank"
-		/>
-	</div>
 </div>
