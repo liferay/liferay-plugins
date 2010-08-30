@@ -25,6 +25,9 @@
 		<finder name="MBThreadId" return-type="Collection">
 			<finder-column name="mbThreadId" />
 		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
 		<finder name="U_M" return-type="UserThread">
 			<finder-column name="userId" />
 			<finder-column name="mbThreadId" />
