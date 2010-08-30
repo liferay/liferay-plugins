@@ -1512,7 +1512,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		"wsrp-resourceCacheability={wsrp-resourceCacheability}/wsrp_rewrite";
 
 	private static Pattern _navigationalValuesPattern = Pattern.compile(
-		"(?:([^&=]+)(?:=([^&=]*))?)&");
+		"(?:([^&=]+)(?:=([^&=]*))?)&?");
 	private static Pattern _parameterPattern = Pattern.compile(
 		"(?:([^&]+)=([^&]*))(?:&amp;|&)?");
 	private static Pattern _rewritePattern = Pattern.compile(
