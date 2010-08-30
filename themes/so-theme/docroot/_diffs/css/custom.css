@@ -380,6 +380,10 @@ a:active {
 
 /* Headings */
 
+.taglib-header {
+	border: none;
+}
+
 .portlet-boundary h1 {
 	border-bottom: 4px solid #7F80A4;
 	color: #8F0920;
