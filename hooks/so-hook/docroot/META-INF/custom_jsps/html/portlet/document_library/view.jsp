@@ -170,14 +170,10 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 									success: function(event, id, obj) {
 										var html = this.get('responseData');
 
-										console.log(arguments);
-
 										if (html.indexOf('no-document-changes') >= 0) {
 											submitForm(document.hrefFm, unlockURL);
 										}
 										else {
-											console.log('starting submit');
-
 											Liferay.SO.DocumentLibrary.displayPopup(html, '<liferay-ui:message key="finish-editing-online" />');
 										}
 									}
