@@ -12,25 +12,28 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
+package com.liferay.vldap.server.handler.util;
 
-import com.liferay.vldap.server.handler.util.LdapHandlerContext;
-
-import java.util.List;
-
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
-import org.apache.mina.core.session.IoSession;
+import org.apache.directory.shared.ldap.name.DN;
+import org.apache.directory.shared.ldap.name.RDN;
 
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public interface LdapHandler {
+public class DNUtil {
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
-			LdapHandlerContext ldapHandlerContext)
-		throws Exception;
+	public static String getValue(DN dn, String normType) {
+		for (RDN rdn : dn) {
+			String rdnNormType = rdn.getNormType();
+			String rdnNormValue = rdn.getNormValue();
+
+			if (rdnNormType.equalsIgnoreCase(normType)) {
+				return rdnNormValue;
+			}
+		}
+
+		return null;
+	}
 
 }

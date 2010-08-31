@@ -12,28 +12,23 @@
  * details.
  */
 
-package com.liferay.vldap.util;
-
-import org.apache.directory.shared.ldap.name.DN;
-import org.apache.directory.shared.ldap.name.RDN;
+package com.liferay.vldap.server.handler.util;
 
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public class DNUtil {
+public class Attribute {
 
-	public static String getValue(DN dn, String normType) {
-		for (RDN rdn : dn) {
-			String rdnNormType = rdn.getNormType();
-			String rdnNormValue = rdn.getNormValue();
-
-			if (rdnNormType.equalsIgnoreCase(normType)) {
-				return rdnNormValue;
-			}
-		}
-
-		return null;
+	public String getAttributeId() {
+		return _attributeId;
 	}
+
+	public String getValue() {
+		return _value;
+	}
+
+	private String _attributeId;
+	private String _value;
 
 }

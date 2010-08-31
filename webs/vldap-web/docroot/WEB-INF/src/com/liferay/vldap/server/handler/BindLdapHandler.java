@@ -25,9 +25,13 @@ import com.liferay.portal.security.auth.Authenticator;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.vldap.util.DNUtil;
+import com.liferay.vldap.server.handler.util.DNUtil;
+import com.liferay.vldap.server.handler.util.LdapHandlerContext;
+import com.liferay.vldap.server.handler.util.SaslCallbackHandler;
+import com.liferay.vldap.util.PortletPropsValues;
 
-import java.util.ArrayList;
+import java.net.InetSocketAddress;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +43,6 @@ import javax.security.sasl.SaslServer;
 import org.apache.directory.shared.ldap.message.ResultCodeEnum;
 import org.apache.directory.shared.ldap.message.internal.InternalBindRequest;
 import org.apache.directory.shared.ldap.message.internal.InternalBindResponse;
-import org.apache.directory.shared.ldap.message.internal.InternalLdapResult;
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
 import org.apache.directory.shared.ldap.message.internal.InternalResponse;
 import org.apache.directory.shared.ldap.name.DN;
@@ -50,20 +53,20 @@ import org.apache.mina.core.session.IoSession;
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public class BindLdapHandler implements LdapHandler {
+public class BindLdapHandler extends BaseLdapHandler {
 
 	public List<InternalResponse> messageReceived(
 			InternalRequest internalRequest, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
 		throws Exception {
 
-		InternalResponse internalResponse = null;
-
 		InternalBindRequest internalBindRequest =
 			(InternalBindRequest)internalRequest;
 
 		String saslMechanism = GetterUtil.getString(
 			internalBindRequest.getSaslMechanism());
+
+		InternalResponse internalResponse = null;
 
 		if (saslMechanism.equals(_DIGEST_MD5)) {
 			internalResponse = getSaslInternalResponse(
@@ -78,26 +81,24 @@ public class BindLdapHandler implements LdapHandler {
 				internalBindRequest);
 		}
 
-		List<InternalResponse> internalResponses =
-			new ArrayList<InternalResponse>();
-
-		internalResponses.add(internalResponse);
-
-		return internalResponses;
+		return toList(internalResponse);
 	}
 
-	protected InternalResponse getInternalResponse(
-		InternalBindRequest internalBindRequest, ResultCodeEnum resultCode) {
+	protected String getSaslHostName(IoSession ioSession) {
+		String saslHostName = PortletPropsValues.BIND_SASL_HOSTNAME;
 
-		InternalBindResponse internalBindResponse =
-			(InternalBindResponse)internalBindRequest.getResultResponse();
+		if (Validator.isNull(saslHostName)) {
+			InetSocketAddress inetSocketAddress =
+				(InetSocketAddress)ioSession.getLocalAddress();
 
-		InternalLdapResult internalLdapResult =
-			internalBindResponse.getLdapResult();
+			saslHostName = inetSocketAddress.getHostName();
+		}
 
-		internalLdapResult.setResultCode(resultCode);
+		if (_log.isDebugEnabled()) {
+			_log.debug("SASL host name " + saslHostName);
+		}
 
-		return internalBindResponse;
+		return saslHostName;
 	}
 
 	protected InternalResponse getSaslInternalResponse(
@@ -124,8 +125,8 @@ public class BindLdapHandler implements LdapHandler {
 							saslCallbackHandler);
 
 						saslServer = Sasl.createSaslServer(
-							_DIGEST_MD5, "ldap", "localhost", null,
-							saslCallbackHandler);
+							_DIGEST_MD5, _LDAP, getSaslHostName(ioSession),
+							null, saslCallbackHandler);
 
 						ldapHandlerContext.setSaslServer(saslServer);
 					}
@@ -198,7 +199,7 @@ public class BindLdapHandler implements LdapHandler {
 
 		if (authResult != Authenticator.SUCCESS) {
 			return getInternalResponse(
-				internalBindRequest, ResultCodeEnum.AUTH_METHOD_NOT_SUPPORTED);
+				internalBindRequest, ResultCodeEnum.INVALID_CREDENTIALS);
 		}
 
 		setUser(ldapHandlerContext, name);
@@ -252,6 +253,8 @@ public class BindLdapHandler implements LdapHandler {
 	}
 
 	private static final String _DIGEST_MD5 = "DIGEST-MD5";
+
+	private static final String _LDAP = "ldap";
 
 	private static Log _log = LogFactoryUtil.getLog(BindLdapHandler.class);
 

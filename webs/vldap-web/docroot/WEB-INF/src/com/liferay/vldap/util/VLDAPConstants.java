@@ -12,25 +12,14 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
-
-import com.liferay.vldap.server.handler.util.LdapHandlerContext;
-
-import java.util.List;
-
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
-import org.apache.mina.core.session.IoSession;
+package com.liferay.vldap.util;
 
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public interface LdapHandler {
+public class VLDAPConstants {
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
-			LdapHandlerContext ldapHandlerContext)
-		throws Exception;
+	public static final String SESSION_ATTRIBUTES = "SESSION_ATTRIBUTES";
 
 }

@@ -12,7 +12,9 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
+package com.liferay.vldap.server.handler.util;
+
+import java.io.IOException;
 
 import javax.security.auth.callback.Callback;
 import javax.security.auth.callback.CallbackHandler;
@@ -39,43 +41,72 @@ public class SaslCallbackHandler implements CallbackHandler {
 	}
 
 	public void handle(Callback[] callbacks)
-		throws UnsupportedCallbackException {
+		throws IOException, UnsupportedCallbackException {
 
 		for (Callback callback : callbacks) {
-			handle(callback);
+			try {
+				handle(callback);
+			}
+			catch (IOException ioe) {
+				throw ioe;
+			}
+			catch (UnsupportedCallbackException uce) {
+				throw uce;
+			}
+			catch (Exception e) {
+				throw new IOException(e.getMessage());
+			}
 		}
 	}
 
-	protected void handle(Callback callback)
-		throws UnsupportedCallbackException {
+	protected void handle(Callback callback) throws Exception {
+		if (callback instanceof AuthorizeCallback) {
+			AuthorizeCallback authorizeCallback =
+				(AuthorizeCallback)callback;
 
-		if (callback instanceof RealmCallback) {
-			RealmCallback realmCallback = (RealmCallback)callback;
-
-			_realm = realmCallback.getDefaultText();
+			handleAuthorizeCallback(authorizeCallback);
 		}
 		else if (callback instanceof NameCallback) {
 			NameCallback nameCallback = (NameCallback)callback;
 
-			//_name = nameCallback.getDefaultName();
+			handleNameCallback(nameCallback);
 		}
 		else if (callback instanceof PasswordCallback) {
 			PasswordCallback passwordCallback =
 				(PasswordCallback)callback;
 
-			String password = "hellojon";
-
-			passwordCallback.setPassword(password.toCharArray());
+			handlePasswordCallback(passwordCallback);
 		}
-		else if (callback instanceof AuthorizeCallback) {
-			AuthorizeCallback authorizeCallback =
-				(AuthorizeCallback)callback;
+		else if (callback instanceof RealmCallback) {
+			RealmCallback realmCallback = (RealmCallback)callback;
 
-			authorizeCallback.setAuthorized(true);
+			handleRealmCallback(realmCallback);
 		}
 		else {
 			throw new UnsupportedCallbackException(callback);
 		}
+	}
+
+	protected void handleAuthorizeCallback(
+		AuthorizeCallback authorizeCallback) {
+
+		authorizeCallback.setAuthorized(true);
+	}
+
+	protected void handleNameCallback(NameCallback nameCallback)
+		throws Exception {
+
+		_name = new DN(nameCallback.getDefaultName());
+	}
+
+	protected void handlePasswordCallback(PasswordCallback passwordCallback) {
+		String password = "hellojon";
+
+		passwordCallback.setPassword(password.toCharArray());
+	}
+
+	protected void handleRealmCallback(RealmCallback realmCallback) {
+		_realm = realmCallback.getDefaultText();
 	}
 
 	private DN _name;

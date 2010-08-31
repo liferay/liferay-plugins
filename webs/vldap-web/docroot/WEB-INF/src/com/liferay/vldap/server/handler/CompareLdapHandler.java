@@ -14,11 +14,15 @@
 
 package com.liferay.vldap.server.handler;
 
+import com.liferay.vldap.server.handler.util.Attribute;
+import com.liferay.vldap.server.handler.util.Directory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 
-import java.util.Collections;
 import java.util.List;
 
+import org.apache.directory.shared.ldap.entry.Value;
+import org.apache.directory.shared.ldap.message.ResultCodeEnum;
+import org.apache.directory.shared.ldap.message.internal.InternalCompareRequest;
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
 import org.apache.directory.shared.ldap.message.internal.InternalResponse;
 import org.apache.mina.core.session.IoSession;
@@ -27,13 +31,35 @@ import org.apache.mina.core.session.IoSession;
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public class UnbindLdapHandler extends BaseLdapHandler {
+public class CompareLdapHandler extends BaseLdapHandler {
 
 	public List<InternalResponse> messageReceived(
 		InternalRequest internalRequest, IoSession ioSession,
 		LdapHandlerContext ldapHandlerContext) {
 
-		return Collections.EMPTY_LIST;
+		InternalCompareRequest internalCompareRequest =
+			(InternalCompareRequest)internalRequest;
+
+		String attributeId = internalCompareRequest.getAttributeId();
+		Value<?> value = internalCompareRequest.getAssertionValue();
+
+		Directory directory = ldapHandlerContext.getDirectory();
+
+		directory.findBase(internalCompareRequest.getName());
+
+		if (directory != null) {
+			Attribute attribute = directory.getAttribute(
+				attributeId, value.getString());
+
+			if (attribute != null) {
+				return toList(
+					getInternalResponse(
+						internalRequest, ResultCodeEnum.COMPARE_TRUE));
+			}
+		}
+
+		return toList(
+			getInternalResponse(internalRequest, ResultCodeEnum.COMPARE_FALSE));
 	}
 
 }

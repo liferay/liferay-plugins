@@ -16,6 +16,7 @@ package com.liferay.vldap.server.handler;
 
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
@@ -26,11 +27,13 @@ import org.apache.mina.core.session.IoSession;
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public interface LdapHandler {
+public class SearchLdapHandler extends BaseLdapHandler {
 
 	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
-			LdapHandlerContext ldapHandlerContext)
-		throws Exception;
+		InternalRequest internalRequest, IoSession ioSession,
+		LdapHandlerContext ldapHandlerContext) {
+
+		return Collections.EMPTY_LIST;
+	}
 
 }

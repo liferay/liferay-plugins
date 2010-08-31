@@ -12,25 +12,34 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
+package com.liferay.vldap.server.handler.util;
 
-import com.liferay.vldap.server.handler.util.LdapHandlerContext;
+import java.security.KeyStore;
 
-import java.util.List;
-
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
-import org.apache.mina.core.session.IoSession;
+import javax.net.ssl.ManagerFactoryParameters;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactorySpi;
 
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public interface LdapHandler {
+class LdapTrustManagerFactory extends TrustManagerFactorySpi {
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
-			LdapHandlerContext ldapHandlerContext)
-		throws Exception;
+	public static TrustManager[] TRUST_MANAGERS = {new LdapTrustManager()};
+
+	public LdapTrustManagerFactory() {
+	}
+
+	protected TrustManager[] engineGetTrustManagers() {
+		return TRUST_MANAGERS;
+	}
+
+	protected void engineInit(KeyStore keyStore) {
+	}
+
+	protected void engineInit(
+		ManagerFactoryParameters managerFactoryParameters) {
+	}
 
 }

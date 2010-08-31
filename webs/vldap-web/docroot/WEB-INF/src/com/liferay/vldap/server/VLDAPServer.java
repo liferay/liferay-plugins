@@ -15,9 +15,11 @@
 package com.liferay.vldap.server;
 
 import com.liferay.vldap.server.codec.LdapCodecFactory;
-import com.liferay.vldap.server.handler.DispatchIoHandler;
+import com.liferay.vldap.server.handler.util.Directory;
+import com.liferay.vldap.util.PortletPropsValues;
 
 import java.net.InetSocketAddress;
+import java.net.SocketAddress;
 
 import org.apache.directory.shared.ldap.schema.SchemaManager;
 import org.apache.directory.shared.ldap.schema.loader.ldif.DynamicJarLdifSchemaLoader;
@@ -66,18 +68,30 @@ public class VLDAPServer {
 		defaultIoFilterChainBuilder.addLast("codec", ioFilterAdapter);
 	}
 
+	protected void initDirectory() {
+		_directory = new Directory();
+	}
+
 	protected void initIoAcceptor() throws Exception {
 		_ioAcceptor = new NioSocketAcceptor();
 
+		initDirectory();
 		initIoHandler();
 		initCodec();
 		initLogging();
 
-		_ioAcceptor.bind(new InetSocketAddress(_PORT));
+		SocketAddress socketAddress = new InetSocketAddress(
+			PortletPropsValues.BIND_PORT);
+
+		_ioAcceptor.bind(socketAddress);
 	}
 
 	protected void initIoHandler() {
-		_ioAcceptor.setHandler(new DispatchIoHandler());
+		DispatchIoHandler dispatchIoHandler = new DispatchIoHandler();
+
+		dispatchIoHandler.setDirectory(_directory);
+
+		_ioAcceptor.setHandler(dispatchIoHandler);
 	}
 
 	protected  void initLogging() {
@@ -95,8 +109,7 @@ public class VLDAPServer {
 		_schemaManager.loadWithDeps("core");
 	}
 
-	private static final int _PORT = 11389;
-
+	private Directory _directory;
 	private IoAcceptor _ioAcceptor;
 	private SchemaManager _schemaManager;
 

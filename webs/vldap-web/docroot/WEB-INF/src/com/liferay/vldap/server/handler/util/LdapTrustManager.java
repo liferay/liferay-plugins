@@ -12,25 +12,28 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler;
+package com.liferay.vldap.server.handler.util;
 
-import com.liferay.vldap.server.handler.util.LdapHandlerContext;
+import java.security.cert.X509Certificate;
 
-import java.util.List;
-
-import org.apache.directory.shared.ldap.message.internal.InternalRequest;
-import org.apache.directory.shared.ldap.message.internal.InternalResponse;
-import org.apache.mina.core.session.IoSession;
+import javax.net.ssl.X509TrustManager;
 
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public interface LdapHandler {
+public class LdapTrustManager implements X509TrustManager {
 
-	public List<InternalResponse> messageReceived(
-			InternalRequest internalRequest, IoSession ioSession,
-			LdapHandlerContext ldapHandlerContext)
-		throws Exception;
+	public void checkClientTrusted(
+		X509Certificate[] x509Certificates, String authType) {
+	}
+
+	public void checkServerTrusted(
+		X509Certificate[] x509Certificates, String authType) {
+	}
+
+	public X509Certificate[] getAcceptedIssuers() {
+		return new X509Certificate[0];
+	}
 
 }
