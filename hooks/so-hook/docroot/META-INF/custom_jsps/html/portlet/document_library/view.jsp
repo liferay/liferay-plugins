@@ -185,7 +185,7 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 				);
 			</aui:script>
 
-			<aui:script use="aui-dialog">
+			<aui:script use="aui-dialog,aui-parse-content">
 				Liferay.namespace('SO');
 
 				Liferay.SO.DocumentLibrary = {
@@ -220,6 +220,8 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 									xy: [15,15]
 								}
 							).render();
+
+							instance._popup.bodyNode.plug(A.Plugin.ParseContent);
 						}
 
 						return instance._popup;
