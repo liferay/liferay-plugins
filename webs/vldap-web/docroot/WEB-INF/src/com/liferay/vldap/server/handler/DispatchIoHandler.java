@@ -14,6 +14,10 @@
 
 package com.liferay.vldap.server.handler;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import org.apache.directory.shared.ldap.message.internal.InternalRequest;
 import org.apache.mina.core.service.IoHandler;
 import org.apache.mina.core.session.IdleStatus;
 import org.apache.mina.core.session.IoSession;
@@ -24,10 +28,39 @@ import org.apache.mina.core.session.IoSession;
  */
 public class DispatchIoHandler implements IoHandler {
 
+	public DispatchIoHandler() {
+		_bindLdapHandler = new UnbindLdapHandler();
+		_compareLdapHandler = new UnbindLdapHandler();
+		_extendedLdapHandler = new UnbindLdapHandler();
+		_searchLdapHandler = new UnbindLdapHandler();
+		_unbindLdapHandler = new UnbindLdapHandler();
+	}
+
 	public void exceptionCaught(IoSession ioSession, Throwable cause) {
 	}
 
 	public void messageReceived(IoSession ioSession, Object message) {
+		InternalRequest internalRequest = (InternalRequest)message;
+
+		LdapHandler ldapHandler = getLdapHandler(internalRequest);
+
+		if (ldapHandler != null) {
+			LdapHandlerContext ldapHandlerContext = getLdapHandlerContext(
+				ioSession);
+
+			try {
+				ldapHandler.messageReceived(
+					internalRequest, ioSession, ldapHandlerContext);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		else {
+			if (_log.isWarnEnabled()) {
+				_log.warn(internalRequest.getType() + " is not supported");
+			}
+		}
 	}
 
 	public void messageSent(IoSession ioSession, Object message) {
@@ -44,5 +77,36 @@ public class DispatchIoHandler implements IoHandler {
 
 	public void sessionOpened(IoSession ioSession) {
 	}
+
+	protected LdapHandler getLdapHandler(InternalRequest internalRequest) {
+		return _bindLdapHandler;
+	}
+
+	protected LdapHandlerContext getLdapHandlerContext(IoSession ioSession) {
+		LdapHandlerContext ldapHandlerContext =
+			(LdapHandlerContext)ioSession.getAttribute(
+				LdapHandlerContext.class.getName());
+
+		if (ldapHandlerContext == null) {
+			synchronized (ioSession) {
+				if (ldapHandlerContext == null) {
+					ldapHandlerContext = new LdapHandlerContext();
+
+					ioSession.setAttribute(
+						LdapHandlerContext.class.getName(), ldapHandlerContext);
+				}
+			}
+		}
+
+		return ldapHandlerContext;
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(DispatchIoHandler.class);
+
+	private LdapHandler _bindLdapHandler;
+	private LdapHandler _compareLdapHandler;
+	private LdapHandler _extendedLdapHandler;
+	private LdapHandler _searchLdapHandler;
+	private LdapHandler _unbindLdapHandler;
 
 }

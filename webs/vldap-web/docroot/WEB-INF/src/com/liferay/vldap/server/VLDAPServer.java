@@ -28,6 +28,7 @@ import org.apache.mina.core.filterchain.IoFilterAdapter;
 import org.apache.mina.core.service.IoAcceptor;
 import org.apache.mina.filter.codec.ProtocolCodecFactory;
 import org.apache.mina.filter.codec.ProtocolCodecFilter;
+import org.apache.mina.filter.logging.LoggingFilter;
 import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 
 /**
@@ -70,12 +71,20 @@ public class VLDAPServer {
 
 		initIoHandler();
 		initCodec();
+		initLogging();
 
 		_ioAcceptor.bind(new InetSocketAddress(_PORT));
 	}
 
 	protected void initIoHandler() {
 		_ioAcceptor.setHandler(new DispatchIoHandler());
+	}
+
+	protected  void initLogging() {
+		DefaultIoFilterChainBuilder defaultIoFilterChainBuilder =
+			_ioAcceptor.getFilterChain();
+
+		defaultIoFilterChainBuilder.addLast("logger", new LoggingFilter());
 	}
 
 	protected void initSchemaManager() throws Exception {
