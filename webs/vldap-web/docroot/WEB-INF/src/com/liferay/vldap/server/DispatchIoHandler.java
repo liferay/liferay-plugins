@@ -23,7 +23,6 @@ import com.liferay.vldap.server.handler.ExtendedLdapHandler;
 import com.liferay.vldap.server.handler.LdapHandler;
 import com.liferay.vldap.server.handler.SearchLdapHandler;
 import com.liferay.vldap.server.handler.UnbindLdapHandler;
-import com.liferay.vldap.server.handler.util.Directory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 import com.liferay.vldap.util.VLDAPConstants;
 
@@ -88,8 +87,8 @@ public class DispatchIoHandler implements IoHandler {
 	public void sessionOpened(IoSession ioSession) {
 	}
 
-	public void setDirectory(Directory directory) {
-		_directory = directory;
+	public void setVLDAPServer(VLDAPServer vldapServer) {
+		_vldapServer = vldapServer;
 	}
 
 	protected LdapHandler getLdapHandler(InternalRequest internalRequest) {
@@ -127,7 +126,10 @@ public class DispatchIoHandler implements IoHandler {
 				if (ldapHandlerContext == null) {
 					ldapHandlerContext = new LdapHandlerContext();
 
-					ldapHandlerContext.setDirectory(_directory);
+					ldapHandlerContext.setDirectory(
+						_vldapServer.getDirectory());
+					ldapHandlerContext.setSchemaManager(
+						_vldapServer.getSchemaManager());
 
 					ioSession.setAttribute(
 						LdapHandlerContext.class.getName(), ldapHandlerContext);
@@ -176,9 +178,9 @@ public class DispatchIoHandler implements IoHandler {
 	private LdapHandler _abandonLdapHandler = new AbandonLdapHandler();
 	private LdapHandler _bindLdapHandler = new BindLdapHandler();
 	private LdapHandler _compareLdapHandler = new CompareLdapHandler();
-	private Directory _directory;
 	private LdapHandler _extendedLdapHandler = new ExtendedLdapHandler();
 	private LdapHandler _searchLdapHandler = new SearchLdapHandler();
 	private LdapHandler _unbindLdapHandler = new UnbindLdapHandler();
+	private VLDAPServer _vldapServer;
 
 }

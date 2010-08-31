@@ -14,8 +14,12 @@
 
 package com.liferay.vldap.server;
 
+import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.vldap.server.codec.LdapCodecFactory;
+import com.liferay.vldap.server.handler.BindLdapHandler;
 import com.liferay.vldap.server.handler.util.Directory;
+import com.liferay.vldap.util.OIDConstants;
 import com.liferay.vldap.util.PortletPropsValues;
 
 import java.net.InetSocketAddress;
@@ -43,6 +47,14 @@ public class VLDAPServer {
 		destroyIoAcceptor();
 	}
 
+	public Directory getDirectory() {
+		return _directory;
+	}
+
+	public SchemaManager getSchemaManager() {
+		return _schemaManager;
+	}
+
 	public void init() throws Exception {
 		initSchemaManager();
 		initIoAcceptor();
@@ -68,8 +80,58 @@ public class VLDAPServer {
 		defaultIoFilterChainBuilder.addLast("codec", ioFilterAdapter);
 	}
 
-	protected void initDirectory() {
-		_directory = new Directory();
+	protected void initDirectory() throws Exception {
+		Directory rootDirectory = new Directory(StringPool.BLANK);
+
+		rootDirectory.addAttribute("namingcontexts", "ou=Liferay,o=Portal");
+		rootDirectory.addAttribute("objectclass", "extensibleObject");
+		rootDirectory.addAttribute("objectclass", "top");
+		//rootDirectory.addAttribute("subschemasubentry", "cn=schema");
+		rootDirectory.addAttribute(
+			"supportedfeatures", OIDConstants.ALL_OPERATIONAL_ATTRIBUTES);
+		rootDirectory.addAttribute("supportedldapversion", "3");
+		rootDirectory.addAttribute(
+			"supportedsaslmechanisms", BindLdapHandler.DIGEST_MD5);
+		rootDirectory.addAttribute("vendorname", "Liferay, Inc.");
+		rootDirectory.addAttribute("vendorversion", ReleaseInfo.getVersion());
+
+		/*Directory schemaDirectory = new Directory("cn=schema");
+
+		schemaDirectory.addAttribute("createtimestamp", "20090818022733Z");
+		schemaDirectory.addAttribute("modifytimestamp", "20090818022733Z");
+		schemaDirectory.addAttribute("objectclass", "subschema");
+		schemaDirectory.addAttribute("objectclass", "subentry");
+		schemaDirectory.addAttribute("objectclass", "top");*/
+
+		Directory topDirectory = new Directory("ou=Liferay,o=Portal");
+
+		topDirectory.addAttribute("objectclass", "organizationalUnit");
+		topDirectory.addAttribute("objectclass", "top");
+		topDirectory.addAttribute("ou", "Liferay");
+
+		Directory communitiesDirectory = new Directory(
+			"ou=Communities,ou=Liferay,o=Portal");
+
+		communitiesDirectory.addAttribute("objectclass", "organizationalUnit");
+		communitiesDirectory.addAttribute("objectclass", "top");
+		communitiesDirectory.addAttribute("ou", "Communities");
+		communitiesDirectory.addAttribute("ou", "Liferay");
+
+		Directory rolesDirectory = new Directory(
+			"ou=Roles,ou=Liferay,o=Portal");
+
+		rolesDirectory.addAttribute("objectclass", "organizationalUnit");
+		rolesDirectory.addAttribute("objectclass", "top");
+		rolesDirectory.addAttribute("ou", "Liferay");
+		rolesDirectory.addAttribute("ou", "Roles");
+
+		//rootDirectory.addDirectory(schemaDirectory);
+		rootDirectory.addDirectory(topDirectory);
+
+		topDirectory.addDirectory(communitiesDirectory);
+		topDirectory.addDirectory(rolesDirectory);
+
+		_directory = rootDirectory;
 	}
 
 	protected void initIoAcceptor() throws Exception {
@@ -89,7 +151,7 @@ public class VLDAPServer {
 	protected void initIoHandler() {
 		DispatchIoHandler dispatchIoHandler = new DispatchIoHandler();
 
-		dispatchIoHandler.setDirectory(_directory);
+		dispatchIoHandler.setVLDAPServer(this);
 
 		_ioAcceptor.setHandler(dispatchIoHandler);
 	}

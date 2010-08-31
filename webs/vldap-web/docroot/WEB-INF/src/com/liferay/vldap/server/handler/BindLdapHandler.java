@@ -55,6 +55,8 @@ import org.apache.mina.core.session.IoSession;
  */
 public class BindLdapHandler extends BaseLdapHandler {
 
+	public static final String DIGEST_MD5 = "DIGEST-MD5";
+
 	public List<InternalResponse> messageReceived(
 			InternalRequest internalRequest, IoSession ioSession,
 			LdapHandlerContext ldapHandlerContext)
@@ -68,7 +70,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 		InternalResponse internalResponse = null;
 
-		if (saslMechanism.equals(_DIGEST_MD5)) {
+		if (saslMechanism.equals(DIGEST_MD5)) {
 			internalResponse = getSaslInternalResponse(
 				internalBindRequest, ioSession, ldapHandlerContext);
 		}
@@ -125,7 +127,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 							saslCallbackHandler);
 
 						saslServer = Sasl.createSaslServer(
-							_DIGEST_MD5, _LDAP, getSaslHostName(ioSession),
+							DIGEST_MD5, _LDAP, getSaslHostName(ioSession),
 							null, saslCallbackHandler);
 
 						ldapHandlerContext.setSaslServer(saslServer);
@@ -178,6 +180,11 @@ public class BindLdapHandler extends BaseLdapHandler {
 		throws Exception {
 
 		DN name = internalBindRequest.getName();
+
+		if (Validator.isNull(name.getName())) {
+			return getInternalResponse(
+				internalBindRequest, ResultCodeEnum.SUCCESS);
+		}
 
 		Company company = setCompany(ldapHandlerContext, name);
 
@@ -251,8 +258,6 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 		return user;
 	}
-
-	private static final String _DIGEST_MD5 = "DIGEST-MD5";
 
 	private static final String _LDAP = "ldap";
 

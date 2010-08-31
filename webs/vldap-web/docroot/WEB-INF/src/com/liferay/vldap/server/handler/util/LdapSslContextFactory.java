@@ -66,6 +66,10 @@ public class LdapSslContextFactory {
 		try {
 			File file = new File(PortletPropsValues.SSL_KEYSTORE_FILE_NAME);
 
+			if (!file.exists()) {
+				throw new IOException(file.toString() + " does not exist");
+			}
+
 			inputStream = new FileInputStream(file);
 
 			keyStore.load(

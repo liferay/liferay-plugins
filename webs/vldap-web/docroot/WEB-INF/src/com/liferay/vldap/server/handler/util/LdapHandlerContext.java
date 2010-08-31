@@ -19,6 +19,8 @@ import com.liferay.portal.model.User;
 
 import javax.security.sasl.SaslServer;
 
+import org.apache.directory.shared.ldap.schema.SchemaManager;
+
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
@@ -39,6 +41,10 @@ public class LdapHandlerContext {
 
 	public SaslServer getSaslServer() {
 		return _saslServer;
+	}
+
+	public SchemaManager getSchemaManager() {
+		return _schemaManager;
 	}
 
 	public User getUser() {
@@ -63,6 +69,10 @@ public class LdapHandlerContext {
 		_saslServer = saslServer;
 	}
 
+	public void setSchemaManager(SchemaManager schemaManager) {
+		_schemaManager = schemaManager;
+	}
+
 	public void setUser(User user) {
 		_user = user;
 	}
@@ -71,6 +81,7 @@ public class LdapHandlerContext {
 	private Directory _directory;
 	private SaslCallbackHandler _saslCallbackHandler;
 	private SaslServer _saslServer;
+	private SchemaManager _schemaManager;
 	private User _user;
 
 }

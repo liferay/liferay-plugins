@@ -14,6 +14,11 @@
 
 package com.liferay.vldap.server.handler.util;
 
+import org.apache.directory.shared.ldap.schema.AttributeType;
+import org.apache.directory.shared.ldap.schema.LdapSyntax;
+import org.apache.directory.shared.ldap.schema.SyntaxChecker;
+import org.apache.directory.shared.ldap.schema.registries.AttributeTypeRegistry;
+
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
@@ -24,11 +29,46 @@ public class Attribute {
 		return _attributeId;
 	}
 
+	public AttributeType getAttributeType(
+			AttributeTypeRegistry attributeTypeRegistry)
+		throws Exception {
+
+		if (!attributeTypeRegistry.contains(_attributeId)) {
+			return null;
+		}
+
+		return attributeTypeRegistry.lookup(_attributeId);
+	}
+
+	public AttributeType getAttributeType(SyntaxChecker syntaxChecker) {
+		AttributeType attributeType = new AttributeType(_oid);
+
+		attributeType.addName(_attributeId);
+
+		LdapSyntax ldapSyntax = new LdapSyntax(_syntaxOid);
+
+		ldapSyntax.setSyntaxChecker(syntaxChecker);
+
+		attributeType.setSyntax(ldapSyntax);
+
+		return attributeType;
+	}
+
 	public String getValue() {
 		return _value;
 	}
 
+	public void setAttributeId(String attributeId) {
+		_attributeId = attributeId;
+	}
+
+	public void setValue(String value) {
+		_value = value;
+	}
+
 	private String _attributeId;
+	private String _oid;
+	private String _syntaxOid;
 	private String _value;
 
 }

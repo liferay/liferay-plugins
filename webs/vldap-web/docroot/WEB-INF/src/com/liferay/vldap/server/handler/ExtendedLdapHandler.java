@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 import com.liferay.vldap.server.handler.util.LdapSslContextFactory;
+import com.liferay.vldap.util.OIDConstants;
 import com.liferay.vldap.util.VLDAPConstants;
 
 import java.util.HashMap;
@@ -50,8 +51,8 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 
 			String oid = internalExtendedRequest.getOid();
 
-			if (oid.equals(_START_TLS)) {
-				handleStartTLS(internalExtendedRequest, ioSession);
+			if (oid.equals(OIDConstants.START_TLS)) {
+				return handleStartTLS(internalExtendedRequest, ioSession);
 			}
 		}
 		catch (Exception e) {
@@ -78,7 +79,7 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 			(InternalExtendedResponse)getInternalResponse(
 				internalExtendedRequest);
 
-		internalExtendedResponse.setResponseName(_START_TLS);
+		internalExtendedResponse.setResponseName(OIDConstants.START_TLS);
 
 		Map<Object, Object> sessionAttributes = new HashMap<Object, Object>();
 
@@ -89,8 +90,6 @@ public class ExtendedLdapHandler extends BaseLdapHandler {
 
 		return toList(internalExtendedResponse);
 	}
-
-	private static final String _START_TLS = "1.3.6.1.4.1.1466.20037";
 
 	private static Log _log = LogFactoryUtil.getLog(ExtendedLdapHandler.class);
 
