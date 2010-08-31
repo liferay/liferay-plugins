@@ -188,8 +188,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 		Company company = setCompany(ldapHandlerContext, name);
 
-		String screenName = GetterUtil.getString(
-			DNUtil.getValue(name, "screenName"));
+		String screenName = GetterUtil.getString(DNUtil.getValue(name, "cn"));
 
 		if (Validator.isNull(screenName)) {
 			return getInternalResponse(
@@ -246,8 +245,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 	protected User setUser(LdapHandlerContext ldapHandlerContext, DN name)
 		throws Exception {
 
-		String screenName = GetterUtil.getString(
-			DNUtil.getValue(name, "screenName"));
+		String screenName = GetterUtil.getString(DNUtil.getValue(name, "cn"));
 
 		Company company = ldapHandlerContext.getCompany();
 

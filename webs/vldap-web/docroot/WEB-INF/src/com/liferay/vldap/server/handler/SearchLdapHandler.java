@@ -17,6 +17,7 @@ package com.liferay.vldap.server.handler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.vldap.server.handler.util.Attribute;
 import com.liferay.vldap.server.handler.util.Directory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 import com.liferay.vldap.util.PortletPropsValues;
@@ -26,7 +27,17 @@ import java.util.List;
 
 import org.apache.commons.lang.time.StopWatch;
 import org.apache.directory.shared.ldap.entry.Entry;
+import org.apache.directory.shared.ldap.filter.AndNode;
+import org.apache.directory.shared.ldap.filter.BranchNode;
+import org.apache.directory.shared.ldap.filter.EqualityNode;
+import org.apache.directory.shared.ldap.filter.ExprNode;
+import org.apache.directory.shared.ldap.filter.GreaterEqNode;
+import org.apache.directory.shared.ldap.filter.LessEqNode;
+import org.apache.directory.shared.ldap.filter.NotNode;
+import org.apache.directory.shared.ldap.filter.OrNode;
+import org.apache.directory.shared.ldap.filter.PresenceNode;
 import org.apache.directory.shared.ldap.filter.SearchScope;
+import org.apache.directory.shared.ldap.filter.SubstringNode;
 import org.apache.directory.shared.ldap.message.ResultCodeEnum;
 import org.apache.directory.shared.ldap.message.SearchResponseEntryImpl;
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
@@ -57,29 +68,9 @@ public class SearchLdapHandler extends BaseLdapHandler {
 			directory = directory.findBase(internalSearchRequest.getBase());
 
 			if (directory != null) {
-				SearchScope searchScope = internalSearchRequest.getScope();
-
-				StopWatch stopWatch = new StopWatch();
-
-				stopWatch.start();
-
-				if (searchScope.equals(SearchScope.OBJECT)) {
-					addObjectEntry(
-						internalSearchRequest, internalResponses,
-						ldapHandlerContext, directory, stopWatch);
-				}
-				else if (searchScope.equals(SearchScope.ONELEVEL)) {
-					for (Directory curDirectory : directory.getDirectories()) {
-						addObjectEntry(
-							internalSearchRequest, internalResponses,
-							ldapHandlerContext, curDirectory, stopWatch);
-					}
-				}
-				else if (searchScope.equals(SearchScope.SUBTREE)) {
-					addSubtreeEntries(
-						internalSearchRequest, internalResponses,
-						ldapHandlerContext, directory, stopWatch);
-				}
+				addEntries(
+					internalSearchRequest, internalResponses,
+					ldapHandlerContext, directory);
 			}
 
 			internalResponses.add(getInternalResponse(internalRequest));
@@ -99,6 +90,37 @@ public class SearchLdapHandler extends BaseLdapHandler {
 		}
 
 		return internalResponses;
+	}
+
+	protected void addEntries(
+			InternalSearchRequest internalSearchRequest,
+			List<InternalResponse> internalResponses,
+			LdapHandlerContext ldapHandlerContext, Directory directory)
+		throws Exception {
+
+		SearchScope searchScope = internalSearchRequest.getScope();
+
+		StopWatch stopWatch = new StopWatch();
+
+		stopWatch.start();
+
+		if (searchScope.equals(SearchScope.OBJECT)) {
+			addObjectEntry(
+				internalSearchRequest, internalResponses, ldapHandlerContext,
+				directory, stopWatch);
+		}
+		else if (searchScope.equals(SearchScope.ONELEVEL)) {
+			for (Directory curDirectory : directory.getDirectories()) {
+				addObjectEntry(
+					internalSearchRequest, internalResponses,
+					ldapHandlerContext, curDirectory, stopWatch);
+			}
+		}
+		else if (searchScope.equals(SearchScope.SUBTREE)) {
+			addSubtreeEntries(
+				internalSearchRequest, internalResponses, ldapHandlerContext,
+				directory, stopWatch);
+		}
 	}
 
 	protected void addObjectEntry(
@@ -128,7 +150,11 @@ public class SearchLdapHandler extends BaseLdapHandler {
 			throw new SearchTimeLimitException();
 		}
 
-		internalResponses.add(internalSearchResponseEntry);
+		ExprNode exprNode = internalSearchRequest.getFilter();
+
+		if (isMatch(exprNode, directory)) {
+			internalResponses.add(internalSearchResponseEntry);
+		}
 	}
 
 	protected void addSubtreeEntries(
@@ -171,6 +197,86 @@ public class SearchLdapHandler extends BaseLdapHandler {
 		}
 
 		return timeLimit;
+	}
+
+	protected boolean isMatch(ExprNode exprNode, Directory directory) {
+		if (exprNode.isLeaf()) {
+			if (exprNode instanceof EqualityNode<?>) {
+				EqualityNode<?> equalityNode = (EqualityNode<?>)exprNode;
+
+				String attributeId = equalityNode.getAttribute();
+				String value = equalityNode.getValue().getString();
+
+				Attribute attribute = directory.getAttribute(
+					attributeId, value);
+
+				if (attribute != null) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if (exprNode instanceof GreaterEqNode<?>) {
+			}
+			else if (exprNode instanceof LessEqNode<?>) {
+			}
+			else if (exprNode instanceof PresenceNode) {
+				PresenceNode specificFilter = (PresenceNode)exprNode;
+
+				String attributeId = specificFilter.getAttribute();
+
+				Attribute attribute = directory.getAttribute(attributeId);
+
+				if (attribute != null) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			else if (exprNode instanceof SubstringNode) {
+			}
+			else {
+				_log.error("Unsupported expression " + exprNode);
+			}
+		}
+		else {
+			BranchNode branchNode = (BranchNode)exprNode;
+
+			if (exprNode instanceof AndNode) {
+				for (ExprNode childBranchNode : branchNode.getChildren()) {
+					if (!isMatch(childBranchNode, directory)) {
+						return false;
+					}
+				}
+
+				return true;
+			}
+			else if (exprNode instanceof NotNode) {
+				for (ExprNode childBranchNode : branchNode.getChildren()) {
+					if (!isMatch(childBranchNode, directory)) {
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+
+				return false;
+			}
+			else if (exprNode instanceof OrNode) {
+				for (ExprNode childBranchNode : branchNode.getChildren()) {
+					if (isMatch(childBranchNode, directory)) {
+						return true;
+					}
+				}
+
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(SearchLdapHandler.class);

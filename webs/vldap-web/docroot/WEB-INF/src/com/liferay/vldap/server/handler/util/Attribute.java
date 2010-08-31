@@ -14,6 +14,9 @@
 
 package com.liferay.vldap.server.handler.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import org.apache.directory.shared.ldap.schema.AttributeType;
 import org.apache.directory.shared.ldap.schema.LdapSyntax;
 import org.apache.directory.shared.ldap.schema.SyntaxChecker;
@@ -34,6 +37,8 @@ public class Attribute {
 		throws Exception {
 
 		if (!attributeTypeRegistry.contains(_attributeId)) {
+			_log.error("Attribute id " + _attributeId + " is not registered");
+
 			return null;
 		}
 
@@ -65,6 +70,8 @@ public class Attribute {
 	public void setValue(String value) {
 		_value = value;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(Attribute.class);
 
 	private String _attributeId;
 	private String _oid;

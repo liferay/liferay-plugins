@@ -14,8 +14,16 @@
 
 package com.liferay.vldap.server;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.vldap.server.codec.LdapCodecFactory;
 import com.liferay.vldap.server.handler.BindLdapHandler;
 import com.liferay.vldap.server.handler.util.Directory;
@@ -24,6 +32,8 @@ import com.liferay.vldap.util.PortletPropsValues;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
+
+import java.util.List;
 
 import org.apache.directory.shared.ldap.schema.SchemaManager;
 import org.apache.directory.shared.ldap.schema.loader.ldif.DynamicJarLdifSchemaLoader;
@@ -83,7 +93,7 @@ public class VLDAPServer {
 	protected void initDirectory() throws Exception {
 		Directory rootDirectory = new Directory(StringPool.BLANK);
 
-		rootDirectory.addAttribute("namingcontexts", "ou=Liferay,o=Portal");
+		rootDirectory.addAttribute("namingcontexts", "o=Liferay");
 		rootDirectory.addAttribute("objectclass", "extensibleObject");
 		rootDirectory.addAttribute("objectclass", "top");
 		//rootDirectory.addAttribute("subschemasubentry", "cn=schema");
@@ -101,35 +111,114 @@ public class VLDAPServer {
 		schemaDirectory.addAttribute("modifytimestamp", "20090818022733Z");
 		schemaDirectory.addAttribute("objectclass", "subschema");
 		schemaDirectory.addAttribute("objectclass", "subentry");
-		schemaDirectory.addAttribute("objectclass", "top");*/
+		schemaDirectory.addAttribute("objectclass", "top");
 
-		Directory topDirectory = new Directory("ou=Liferay,o=Portal");
+		rootDirectory.addDirectory(schemaDirectory);*/
+
+		Directory topDirectory = new Directory("o=Liferay");
 
 		topDirectory.addAttribute("objectclass", "organizationalUnit");
 		topDirectory.addAttribute("objectclass", "top");
-		topDirectory.addAttribute("ou", "Liferay");
+		topDirectory.addAttribute("o", "Liferay");
 
-		Directory communitiesDirectory = new Directory(
-			"ou=Communities,ou=Liferay,o=Portal");
-
-		communitiesDirectory.addAttribute("objectclass", "organizationalUnit");
-		communitiesDirectory.addAttribute("objectclass", "top");
-		communitiesDirectory.addAttribute("ou", "Communities");
-		communitiesDirectory.addAttribute("ou", "Liferay");
-
-		Directory rolesDirectory = new Directory(
-			"ou=Roles,ou=Liferay,o=Portal");
-
-		rolesDirectory.addAttribute("objectclass", "organizationalUnit");
-		rolesDirectory.addAttribute("objectclass", "top");
-		rolesDirectory.addAttribute("ou", "Liferay");
-		rolesDirectory.addAttribute("ou", "Roles");
-
-		//rootDirectory.addDirectory(schemaDirectory);
 		rootDirectory.addDirectory(topDirectory);
 
-		topDirectory.addDirectory(communitiesDirectory);
-		topDirectory.addDirectory(rolesDirectory);
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies(false);
+
+		for (Company company : companies) {
+			Directory companyDirectory = new Directory(
+				"ou=" + company.getWebId() + ",o=Liferay");
+
+			companyDirectory.addAttribute("objectclass", "organizationalUnit");
+			companyDirectory.addAttribute("objectclass", "top");
+			companyDirectory.addAttribute("ou", company.getWebId());
+
+			topDirectory.addDirectory(companyDirectory);
+
+			Directory communitiesDirectory = new Directory(
+				"ou=Communities,ou=" + company.getWebId() + ",o=Liferay");
+
+			communitiesDirectory.addAttribute("objectclass", "organizationalUnit");
+			communitiesDirectory.addAttribute("objectclass", "top");
+			communitiesDirectory.addAttribute("ou", "Communities");
+
+			companyDirectory.addDirectory(communitiesDirectory);
+
+			Directory rolesDirectory = new Directory(
+				"ou=Roles,ou=" + company.getWebId() + ",o=Liferay");
+
+			rolesDirectory.addAttribute("objectclass", "organizationalUnit");
+			rolesDirectory.addAttribute("objectclass", "top");
+			rolesDirectory.addAttribute("ou", "Roles");
+
+			List<Role> roles = RoleLocalServiceUtil.getRoles(company.getCompanyId());
+
+			for (Role role : roles) {
+				Directory roleDirectory = new Directory("ou=" + role.getName() + ",ou=Roles,ou=" + company.getWebId() + ",o=Liferay");
+
+				roleDirectory.addAttribute("objectclass", "organizationalUnit");
+				roleDirectory.addAttribute("objectclass", "top");
+				roleDirectory.addAttribute("ou", role.getName());
+
+				rolesDirectory.addDirectory(roleDirectory);
+
+				if (PortalUtil.isSystemRole(role.getName())) {
+					Directory usersDirectory = new Directory(
+						"ou=Users,ou=" + role.getName() + ",ou=Roles,ou=" + company.getWebId() + ",o=Liferay");
+
+					usersDirectory.addAttribute("objectclass", "organizationalUnit");
+					usersDirectory.addAttribute("objectclass", "top");
+					usersDirectory.addAttribute("ou", "Roles");
+
+					roleDirectory.addDirectory(usersDirectory);
+
+					List<User> users = UserLocalServiceUtil.getRoleUsers(role.getRoleId());
+
+					for (User user : users) {
+						Directory userDirectory = new Directory("cn=" + user.getScreenName() + ",ou=Users,ou=" + role.getName() + ",ou=Roles,ou=" + company.getWebId() + ",o=Liferay");
+
+						userDirectory.addAttribute("cn", user.getScreenName());
+						userDirectory.addAttribute("displayName", user.getFullName());
+						userDirectory.addAttribute("givenName", user.getFirstName());
+						userDirectory.addAttribute("mail", user.getEmailAddress());
+						userDirectory.addAttribute("sn", user.getLastName());
+						userDirectory.addAttribute("objectclass", "inetOrgPerson");
+						userDirectory.addAttribute("objectclass", "top");
+						userDirectory.addAttribute("uid", String.valueOf(user.getUserId()));
+
+						usersDirectory.addDirectory(userDirectory);
+					}
+				}
+			}
+
+			companyDirectory.addDirectory(rolesDirectory);
+
+			Directory usersDirectory = new Directory(
+				"ou=Users,ou=" + company.getWebId() + ",o=Liferay");
+
+			usersDirectory.addAttribute("objectclass", "organizationalUnit");
+			usersDirectory.addAttribute("objectclass", "top");
+			usersDirectory.addAttribute("ou", "Roles");
+
+			List<User> users = UserLocalServiceUtil.getCompanyUsers(company.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+			for (User user : users) {
+				Directory userDirectory = new Directory("cn=" + user.getScreenName() + ",ou=Users,ou=" + company.getWebId() + ",o=Liferay");
+
+				userDirectory.addAttribute("cn", user.getScreenName());
+				userDirectory.addAttribute("displayName", user.getFullName());
+				userDirectory.addAttribute("givenName", user.getFirstName());
+				userDirectory.addAttribute("mail", user.getEmailAddress());
+				userDirectory.addAttribute("sn", user.getLastName());
+				userDirectory.addAttribute("objectclass", "inetOrgPerson");
+				userDirectory.addAttribute("objectclass", "top");
+				userDirectory.addAttribute("uid", String.valueOf(user.getUserId()));
+
+				usersDirectory.addDirectory(userDirectory);
+			}
+
+			companyDirectory.addDirectory(usersDirectory);
+		}
 
 		_directory = rootDirectory;
 	}
@@ -168,7 +257,7 @@ public class VLDAPServer {
 
 		_schemaManager = new DefaultSchemaManager(schemaLoader);
 
-		_schemaManager.loadWithDeps("core");
+		_schemaManager.loadWithDeps("inetorgperson");
 	}
 
 	private Directory _directory;
