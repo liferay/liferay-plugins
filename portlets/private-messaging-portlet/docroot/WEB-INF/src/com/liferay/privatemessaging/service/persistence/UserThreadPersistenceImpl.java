@@ -83,6 +83,26 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public static final FinderPath FINDER_PATH_COUNT_BY_MBTHREADID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByMBThreadId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_USERID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUserId",
+			new String[] {
+				Long.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_USERID = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByUserId", new String[] { Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByU_M",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
+			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByU_M",
+			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_U_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByU_D",
@@ -96,14 +116,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByU_D",
 			new String[] { Long.class.getName(), Boolean.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByU_M",
-			new String[] { Long.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_M = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByU_M",
-			new String[] { Long.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_U_R_D = new FinderPath(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
 			UserThreadModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByU_R_D",
@@ -783,6 +795,472 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	/**
+	 * Finds all the user threads where userId = &#63;.
+	 *
+	 * @param userId the user id to search with
+	 * @return the matching user threads
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<UserThread> findByUserId(long userId) throws SystemException {
+		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the user threads where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param start the lower bound of the range of user threads to return
+	 * @param end the upper bound of the range of user threads to return (not inclusive)
+	 * @return the range of matching user threads
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<UserThread> findByUserId(long userId, int start, int end)
+		throws SystemException {
+		return findByUserId(userId, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the user threads where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param start the lower bound of the range of user threads to return
+	 * @param end the upper bound of the range of user threads to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by
+	 * @return the ordered range of matching user threads
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<UserThread> findByUserId(long userId, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				userId,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<UserThread> list = (List<UserThread>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_USERID,
+				finderArgs, this);
+
+		if (list == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = null;
+
+				if (orderByComparator != null) {
+					query = new StringBundler(3 +
+							(orderByComparator.getOrderByFields().length * 3));
+				}
+				else {
+					query = new StringBundler(2);
+				}
+
+				query.append(_SQL_SELECT_USERTHREAD_WHERE);
+
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+				if (orderByComparator != null) {
+					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+						orderByComparator);
+				}
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				list = (List<UserThread>)QueryUtil.list(q, getDialect(), start,
+						end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					list = new ArrayList<UserThread>();
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_USERID,
+					finderArgs, list);
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first user thread in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the first matching user thread
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread findByUserId_First(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchUserThreadException, SystemException {
+		List<UserThread> list = findByUserId(userId, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchUserThreadException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last user thread in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userId the user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the last matching user thread
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread findByUserId_Last(long userId,
+		OrderByComparator orderByComparator)
+		throws NoSuchUserThreadException, SystemException {
+		int count = countByUserId(userId);
+
+		List<UserThread> list = findByUserId(userId, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchUserThreadException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the user threads before and after the current user thread in the ordered set where userId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param userThreadId the primary key of the current user thread
+	 * @param userId the user id to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next user thread
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread[] findByUserId_PrevAndNext(long userThreadId,
+		long userId, OrderByComparator orderByComparator)
+		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = findByPrimaryKey(userThreadId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			UserThread[] array = new UserThreadImpl[3];
+
+			array[0] = getByUserId_PrevAndNext(session, userThread, userId,
+					orderByComparator, true);
+
+			array[1] = userThread;
+
+			array[2] = getByUserId_PrevAndNext(session, userThread, userId,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected UserThread getByUserId_PrevAndNext(Session session,
+		UserThread userThread, long userId,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_USERTHREAD_WHERE);
+
+		query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(userThread);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<UserThread> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds the user thread where userId = &#63; and mbThreadId = &#63; or throws a {@link com.liferay.privatemessaging.NoSuchUserThreadException} if it could not be found.
+	 *
+	 * @param userId the user id to search with
+	 * @param mbThreadId the mb thread id to search with
+	 * @return the matching user thread
+	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread findByU_M(long userId, long mbThreadId)
+		throws NoSuchUserThreadException, SystemException {
+		UserThread userThread = fetchByU_M(userId, mbThreadId);
+
+		if (userThread == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(", mbThreadId=");
+			msg.append(mbThreadId);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchUserThreadException(msg.toString());
+		}
+
+		return userThread;
+	}
+
+	/**
+	 * Finds the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user id to search with
+	 * @param mbThreadId the mb thread id to search with
+	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByU_M(long userId, long mbThreadId)
+		throws SystemException {
+		return fetchByU_M(userId, mbThreadId, true);
+	}
+
+	/**
+	 * Finds the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user id to search with
+	 * @param mbThreadId the mb thread id to search with
+	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread fetchByU_M(long userId, long mbThreadId,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { userId, mbThreadId };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
+					finderArgs, this);
+		}
+
+		if (result == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_SELECT_USERTHREAD_WHERE);
+
+				query.append(_FINDER_COLUMN_U_M_USERID_2);
+
+				query.append(_FINDER_COLUMN_U_M_MBTHREADID_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(mbThreadId);
+
+				List<UserThread> list = q.list();
+
+				result = list;
+
+				UserThread userThread = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+						finderArgs, list);
+				}
+				else {
+					userThread = list.get(0);
+
+					cacheResult(userThread);
+
+					if ((userThread.getUserId() != userId) ||
+							(userThread.getMbThreadId() != mbThreadId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+							finderArgs, userThread);
+					}
+				}
+
+				return userThread;
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (result == null) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
+						finderArgs, new ArrayList<UserThread>());
+				}
+
+				closeSession(session);
+			}
+		}
+		else {
+			if (result instanceof List<?>) {
+				return null;
+			}
+			else {
+				return (UserThread)result;
+			}
+		}
+	}
+
+	/**
 	 * Finds all the user threads where userId = &#63; and deleted = &#63;.
 	 *
 	 * @param userId the user id to search with
@@ -1130,144 +1608,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		}
 		else {
 			return null;
-		}
-	}
-
-	/**
-	 * Finds the user thread where userId = &#63; and mbThreadId = &#63; or throws a {@link com.liferay.privatemessaging.NoSuchUserThreadException} if it could not be found.
-	 *
-	 * @param userId the user id to search with
-	 * @param mbThreadId the mb thread id to search with
-	 * @return the matching user thread
-	 * @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public UserThread findByU_M(long userId, long mbThreadId)
-		throws NoSuchUserThreadException, SystemException {
-		UserThread userThread = fetchByU_M(userId, mbThreadId);
-
-		if (userThread == null) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("userId=");
-			msg.append(userId);
-
-			msg.append(", mbThreadId=");
-			msg.append(mbThreadId);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			if (_log.isWarnEnabled()) {
-				_log.warn(msg.toString());
-			}
-
-			throw new NoSuchUserThreadException(msg.toString());
-		}
-
-		return userThread;
-	}
-
-	/**
-	 * Finds the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userId the user id to search with
-	 * @param mbThreadId the mb thread id to search with
-	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public UserThread fetchByU_M(long userId, long mbThreadId)
-		throws SystemException {
-		return fetchByU_M(userId, mbThreadId, true);
-	}
-
-	/**
-	 * Finds the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userId the user id to search with
-	 * @param mbThreadId the mb thread id to search with
-	 * @return the matching user thread, or <code>null</code> if a matching user thread could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public UserThread fetchByU_M(long userId, long mbThreadId,
-		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { userId, mbThreadId };
-
-		Object result = null;
-
-		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_M,
-					finderArgs, this);
-		}
-
-		if (result == null) {
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_USERTHREAD_WHERE);
-
-				query.append(_FINDER_COLUMN_U_M_USERID_2);
-
-				query.append(_FINDER_COLUMN_U_M_MBTHREADID_2);
-
-				String sql = query.toString();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(userId);
-
-				qPos.add(mbThreadId);
-
-				List<UserThread> list = q.list();
-
-				result = list;
-
-				UserThread userThread = null;
-
-				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-						finderArgs, list);
-				}
-				else {
-					userThread = list.get(0);
-
-					cacheResult(userThread);
-
-					if ((userThread.getUserId() != userId) ||
-							(userThread.getMbThreadId() != mbThreadId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-							finderArgs, userThread);
-					}
-				}
-
-				return userThread;
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
-						finderArgs, new ArrayList<UserThread>());
-				}
-
-				closeSession(session);
-			}
-		}
-		else {
-			if (result instanceof List<?>) {
-				return null;
-			}
-			else {
-				return (UserThread)result;
-			}
 		}
 	}
 
@@ -1762,15 +2102,13 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	/**
-	 * Removes all the user threads where userId = &#63; and deleted = &#63; from the database.
+	 * Removes all the user threads where userId = &#63; from the database.
 	 *
 	 * @param userId the user id to search with
-	 * @param deleted the deleted to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_D(long userId, boolean deleted)
-		throws SystemException {
-		for (UserThread userThread : findByU_D(userId, deleted)) {
+	public void removeByUserId(long userId) throws SystemException {
+		for (UserThread userThread : findByUserId(userId)) {
 			remove(userThread);
 		}
 	}
@@ -1787,6 +2125,20 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		UserThread userThread = findByU_M(userId, mbThreadId);
 
 		remove(userThread);
+	}
+
+	/**
+	 * Removes all the user threads where userId = &#63; and deleted = &#63; from the database.
+	 *
+	 * @param userId the user id to search with
+	 * @param deleted the deleted to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByU_D(long userId, boolean deleted)
+		throws SystemException {
+		for (UserThread userThread : findByU_D(userId, deleted)) {
+			remove(userThread);
+		}
 	}
 
 	/**
@@ -1869,18 +2221,16 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	}
 
 	/**
-	 * Counts all the user threads where userId = &#63; and deleted = &#63;.
+	 * Counts all the user threads where userId = &#63;.
 	 *
 	 * @param userId the user id to search with
-	 * @param deleted the deleted to search with
 	 * @return the number of matching user threads
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByU_D(long userId, boolean deleted)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { userId, deleted };
+	public int countByUserId(long userId) throws SystemException {
+		Object[] finderArgs = new Object[] { userId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_D,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_USERID,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1889,13 +2239,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			try {
 				session = openSession();
 
-				StringBundler query = new StringBundler(3);
+				StringBundler query = new StringBundler(2);
 
 				query.append(_SQL_COUNT_USERTHREAD_WHERE);
 
-				query.append(_FINDER_COLUMN_U_D_USERID_2);
-
-				query.append(_FINDER_COLUMN_U_D_DELETED_2);
+				query.append(_FINDER_COLUMN_USERID_USERID_2);
 
 				String sql = query.toString();
 
@@ -1904,8 +2252,6 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(userId);
-
-				qPos.add(deleted);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1917,8 +2263,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_D, finderArgs,
-					count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_USERID,
+					finderArgs, count);
 
 				closeSession(session);
 			}
@@ -1977,6 +2323,65 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_M, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the user threads where userId = &#63; and deleted = &#63;.
+	 *
+	 * @param userId the user id to search with
+	 * @param deleted the deleted to search with
+	 * @return the number of matching user threads
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByU_D(long userId, boolean deleted)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { userId, deleted };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_D,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				StringBundler query = new StringBundler(3);
+
+				query.append(_SQL_COUNT_USERTHREAD_WHERE);
+
+				query.append(_FINDER_COLUMN_U_D_USERID_2);
+
+				query.append(_FINDER_COLUMN_U_D_DELETED_2);
+
+				String sql = query.toString();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(deleted);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_D, finderArgs,
 					count);
 
 				closeSession(session);
@@ -2132,10 +2537,11 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	private static final String _SQL_COUNT_USERTHREAD = "SELECT COUNT(userThread) FROM UserThread userThread";
 	private static final String _SQL_COUNT_USERTHREAD_WHERE = "SELECT COUNT(userThread) FROM UserThread userThread WHERE ";
 	private static final String _FINDER_COLUMN_MBTHREADID_MBTHREADID_2 = "userThread.mbThreadId = ?";
-	private static final String _FINDER_COLUMN_U_D_USERID_2 = "userThread.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_D_DELETED_2 = "userThread.deleted = ?";
+	private static final String _FINDER_COLUMN_USERID_USERID_2 = "userThread.userId = ?";
 	private static final String _FINDER_COLUMN_U_M_USERID_2 = "userThread.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_M_MBTHREADID_2 = "userThread.mbThreadId = ?";
+	private static final String _FINDER_COLUMN_U_D_USERID_2 = "userThread.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_D_DELETED_2 = "userThread.deleted = ?";
 	private static final String _FINDER_COLUMN_U_R_D_USERID_2 = "userThread.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_R_D_READ_2 = "userThread.read = ? AND ";
 	private static final String _FINDER_COLUMN_U_R_D_DELETED_2 = "userThread.deleted = ?";
