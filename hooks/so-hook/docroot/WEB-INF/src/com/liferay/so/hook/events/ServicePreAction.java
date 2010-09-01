@@ -71,6 +71,12 @@ public class ServicePreAction extends Action {
 
 		String currentURL = PortalUtil.getCurrentURL(request);
 
+		if (Validator.isNotNull(themeDisplay.getI18nLanguageId())) {
+			int x = currentURL.indexOf(StringPool.SLASH, 1);
+
+			currentURL = currentURL.substring(x);
+		}
+
 		if (isDisplayURL(themeDisplay, currentURL)) {
 
 			// SOS-9
