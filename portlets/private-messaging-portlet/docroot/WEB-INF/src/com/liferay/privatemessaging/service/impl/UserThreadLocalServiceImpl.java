@@ -14,10 +14,211 @@
 
 package com.liferay.privatemessaging.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.model.MBMessageConstants;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
+import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.base.UserThreadLocalServiceBaseImpl;
+import com.liferay.privatemessaging.util.PrivateMessagingConstants;
+
+import java.util.Date;
+import java.util.List;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Scott Lee
  */
 public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
+
+	public MBMessage addPrivateMessage(
+			long userId, long mbThreadId, String to, String subject,
+			String body, List<ObjectValuePair<String, byte[]>> files)
+		throws PortalException, SystemException {
+
+		long parentMessageId = MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
+
+		if (mbThreadId != 0) {
+			List<MBMessage> mbMessages =
+				MBMessageLocalServiceUtil.getThreadMessages(
+					mbThreadId, WorkflowConstants.STATUS_ANY);
+
+			MBMessage lastMessage = mbMessages.get(mbMessages.size() - 1);
+
+			parentMessageId = lastMessage.getMessageId();
+			subject = lastMessage.getSubject();
+		}
+
+		long[] recipientUserIds = GetterUtil.getLongValues(
+			StringUtil.split(to, StringPool.COMMA));
+
+		return addPrivateMessage(
+			userId, mbThreadId, parentMessageId, recipientUserIds, subject,
+			body, files);
+	}
+
+	public MBMessage addPrivateMessageBranch(
+			long userId, long parentMessageId, String body,
+			List<ObjectValuePair<String, byte[]>> files)
+		throws PortalException, SystemException {
+
+		long mbThreadId = 0;
+
+		MBMessage parentMessage = MBMessageLocalServiceUtil.getMBMessage(
+			parentMessageId);
+
+		long[] recipientUserIds = new long[] { parentMessage.getUserId() };
+
+		return addPrivateMessage(
+			userId, mbThreadId, parentMessageId, recipientUserIds,
+			parentMessage.getSubject(), body, files);
+	}
+
+	public void addUserThread(
+			long userId, long mbThreadId, long topMBMessageId, boolean read,
+			boolean deleted)
+		throws PortalException, SystemException {
+
+		long userThreadId = counterLocalService.increment();
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		UserThread userThread = userThreadPersistence.create(userThreadId);
+
+		userThread.setCompanyId(user.getCompanyId());
+		userThread.setUserId(userId);
+		userThread.setCreateDate(new Date());
+		userThread.setModifiedDate(new Date());
+		userThread.setMbThreadId(mbThreadId);
+		userThread.setTopMBMessageId(topMBMessageId);
+		userThread.setRead(read);
+		userThread.setDeleted(deleted);
+
+		userThreadPersistence.update(userThread, false);
+	}
+
+	public void deleteUser(long userId)
+		throws PortalException, SystemException {
+
+		List<UserThread> userThreads = userThreadPersistence.findByUserId(
+			userId);
+
+		for (UserThread userThread : userThreads) {
+			MBThreadLocalServiceUtil.deleteMBThread(userThread.getMbThreadId());
+
+			userThreadPersistence.remove(userThread.getUserThreadId());
+		}
+	}
+
+	public void deleteUserThread(long userId, long mbThreadId)
+		throws PortalException, SystemException {
+
+		UserThread userThread = userThreadPersistence.fetchByU_M(
+			userId, mbThreadId);
+
+		userThread.setDeleted(true);
+
+		userThreadPersistence.update(userThread, false);
+	}
+
+	public void markUserThreadAsRead(long userId, long mbThreadId)
+		throws PortalException, SystemException {
+
+		UserThread userThread = userThreadPersistence.fetchByU_M(
+			userId, mbThreadId);
+
+		userThread.setRead(true);
+
+		userThreadPersistence.update(userThread, false);
+	}
+
+	public void markUserThreadAsUnread(long userId, long mbThreadId)
+		throws PortalException, SystemException {
+
+		UserThread userThread = userThreadPersistence.fetchByU_M(
+			userId, mbThreadId);
+
+		userThread.setRead(false);
+
+		userThreadPersistence.update(userThread, false);
+	}
+
+	protected MBMessage addPrivateMessage(
+			long userId, long mbThreadId, long parentMessageId,
+			long[] recipientUserIds, String subject, String body,
+			List<ObjectValuePair<String, byte[]>> files)
+		throws PortalException, SystemException {
+
+		long groupId = 0;
+		long categoryId =
+			PrivateMessagingConstants.PRIVATE_MESSAGING_CATEGORY_ID;
+
+		if (Validator.isNull(subject)) {
+			subject = StringUtil.shorten(body, 50);
+		}
+
+		boolean anonymous = false;
+		double priority = 0.0;
+		boolean allowPingbacks = false;
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
+			userId, user.getScreenName(), groupId, categoryId, mbThreadId,
+			parentMessageId, subject, body, files, anonymous, priority,
+			allowPingbacks, serviceContext);
+
+		if (mbThreadId == 0) {
+			for (long recipientUserId : recipientUserIds) {
+				if (recipientUserId != userId) {
+					addUserThread(
+						recipientUserId, mbMessage.getThreadId(),
+						mbMessage.getMessageId(), false, false);
+				}
+			}
+
+			addUserThread(
+				userId, mbMessage.getThreadId(), mbMessage.getMessageId(),
+				true, false);
+		}
+		else {
+			List<UserThread> userThreads =
+				userThreadPersistence.findByMBThreadId(mbMessage.getThreadId());
+
+			for (UserThread userThread : userThreads) {
+				if (userThread.isDeleted()) {
+					userThread.setDeleted(false);
+					userThread.setTopMBMessageId(mbMessage.getMessageId());
+				}
+
+				if (userThread.getUserId() == userId) {
+					userThread.setRead(true);
+				}
+				else {
+					userThread.setRead(false);
+				}
+
+				userThread.setModifiedDate(new Date());
+
+				userThreadPersistence.update(userThread, false);
+			}
+		}
+
+		return mbMessage;
+	}
+
 }
