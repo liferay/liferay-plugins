@@ -12,6 +12,7 @@
 		<!-- Audit fields -->
 
 		<column name="userId" type="long" />
+		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -19,6 +20,12 @@
 		<column name="topMBMessageId" type="long" />
 		<column name="read" type="boolean" />
 		<column name="deleted" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
 
 		<!-- Finder methods -->
 
