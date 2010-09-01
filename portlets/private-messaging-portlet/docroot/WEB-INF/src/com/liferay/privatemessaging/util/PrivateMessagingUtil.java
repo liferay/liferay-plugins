@@ -65,14 +65,8 @@ public class PrivateMessagingUtil {
 		List<MBMessage> filteredMBMessages = new ArrayList<MBMessage>();
 
 		for (MBMessage mbMessage : mbMessages) {
-			int compareTo = DateUtil.compareTo(
-				topMBMessage.getCreateDate(), mbMessage.getCreateDate());
-
-			if (compareTo <= 0) {
+			if (mbMessage.getMessageId() >= topMbMessage.getMessageId()) {
 				filteredMBMessages.add(mbMessage);
-			}
-			else {
-				continue;
 			}
 		}
 
