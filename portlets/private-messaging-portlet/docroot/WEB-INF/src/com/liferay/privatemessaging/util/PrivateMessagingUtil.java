@@ -98,6 +98,11 @@ public class PrivateMessagingUtil {
 		return mbMessages.size();
 	}
 
+	/**
+	 * Each thread has a user that represents that thread. This person is either
+	 * the last user to post on that thread (exluding himself), or if he is the
+	 * only person to have posted on the thread, then he will the represenative.
+	 */
 	public static long getThreadRepresentativeUserId(
 			long userId, long mbThreadId)
 		throws SystemException {
