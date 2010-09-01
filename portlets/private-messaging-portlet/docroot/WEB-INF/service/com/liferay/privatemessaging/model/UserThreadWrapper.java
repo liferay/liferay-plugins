@@ -125,10 +125,6 @@ public class UserThreadWrapper implements UserThread {
 		_userThread.setDeleted(deleted);
 	}
 
-	public com.liferay.privatemessaging.model.UserThread toEscapedModel() {
-		return _userThread.toEscapedModel();
-	}
-
 	public boolean isNew() {
 		return _userThread.isNew();
 	}
@@ -177,6 +173,10 @@ public class UserThreadWrapper implements UserThread {
 
 	public int hashCode() {
 		return _userThread.hashCode();
+	}
+
+	public com.liferay.privatemessaging.model.UserThread toEscapedModel() {
+		return _userThread.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

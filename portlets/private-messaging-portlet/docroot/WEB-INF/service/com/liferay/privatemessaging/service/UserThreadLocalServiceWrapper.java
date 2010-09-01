@@ -220,6 +220,57 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService {
 		return _userThreadLocalService.updateUserThread(userThread, merge);
 	}
 
+	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
+		long userId, long mbThreadId, java.lang.String to,
+		java.lang.String subject, java.lang.String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.addPrivateMessage(userId, mbThreadId,
+			to, subject, body, files);
+	}
+
+	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
+		long userId, long parentMBMessageId, java.lang.String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.addPrivateMessageBranch(userId,
+			parentMBMessageId, body, files);
+	}
+
+	public void addUserThread(long userId, long mbThreadId,
+		long topMBMessageId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.addUserThread(userId, mbThreadId,
+			topMBMessageId, read, deleted);
+	}
+
+	public void deleteUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.deleteUser(userId);
+	}
+
+	public void deleteUserThread(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.deleteUserThread(userId, mbThreadId);
+	}
+
+	public void markUserThreadAsRead(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.markUserThreadAsRead(userId, mbThreadId);
+	}
+
+	public void markUserThreadAsUnread(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_userThreadLocalService.markUserThreadAsUnread(userId, mbThreadId);
+	}
+
 	public UserThreadLocalService getWrappedUserThreadLocalService() {
 		return _userThreadLocalService;
 	}

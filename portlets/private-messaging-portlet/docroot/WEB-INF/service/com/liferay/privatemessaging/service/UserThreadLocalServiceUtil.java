@@ -226,6 +226,59 @@ public class UserThreadLocalServiceUtil {
 		return getService().updateUserThread(userThread, merge);
 	}
 
+	public static com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
+		long userId, long mbThreadId, java.lang.String to,
+		java.lang.String subject, java.lang.String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPrivateMessage(userId, mbThreadId, to, subject, body,
+			files);
+	}
+
+	public static com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
+		long userId, long parentMBMessageId, java.lang.String body,
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPrivateMessageBranch(userId, parentMBMessageId, body,
+			files);
+	}
+
+	public static void addUserThread(long userId, long mbThreadId,
+		long topMBMessageId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.addUserThread(userId, mbThreadId, topMBMessageId, read, deleted);
+	}
+
+	public static void deleteUser(long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteUser(userId);
+	}
+
+	public static void deleteUserThread(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteUserThread(userId, mbThreadId);
+	}
+
+	public static void markUserThreadAsRead(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().markUserThreadAsRead(userId, mbThreadId);
+	}
+
+	public static void markUserThreadAsUnread(long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().markUserThreadAsUnread(userId, mbThreadId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
