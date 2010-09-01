@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -46,41 +45,41 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			String body, List<ObjectValuePair<String, byte[]>> files)
 		throws PortalException, SystemException {
 
-		long parentMessageId = MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
+		long parentMBMessageId = MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
 
 		if (mbThreadId != 0) {
 			List<MBMessage> mbMessages =
 				MBMessageLocalServiceUtil.getThreadMessages(
 					mbThreadId, WorkflowConstants.STATUS_ANY);
 
-			MBMessage lastMessage = mbMessages.get(mbMessages.size() - 1);
+			MBMessage lastMBMessage = mbMessages.get(mbMessages.size() - 1);
 
-			parentMessageId = lastMessage.getMessageId();
-			subject = lastMessage.getSubject();
+			parentMBMessageId = lastMBMessage.getMessageId();
+			subject = lastMBMessage.getSubject();
 		}
 
 		long[] recipientUserIds = GetterUtil.getLongValues(
-			StringUtil.split(to, StringPool.COMMA));
+			StringUtil.split(to));
 
 		return addPrivateMessage(
-			userId, mbThreadId, parentMessageId, recipientUserIds, subject,
+			userId, mbThreadId, parentMBMessageId, recipientUserIds, subject,
 			body, files);
 	}
 
 	public MBMessage addPrivateMessageBranch(
-			long userId, long parentMessageId, String body,
+			long userId, long parentMBMessageId, String body,
 			List<ObjectValuePair<String, byte[]>> files)
 		throws PortalException, SystemException {
 
 		long mbThreadId = 0;
 
 		MBMessage parentMessage = MBMessageLocalServiceUtil.getMBMessage(
-			parentMessageId);
+			parentMBMessageId);
 
-		long[] recipientUserIds = new long[] { parentMessage.getUserId() };
+		long[] recipientUserIds = {parentMessage.getUserId()};
 
 		return addPrivateMessage(
-			userId, mbThreadId, parentMessageId, recipientUserIds,
+			userId, mbThreadId, parentMBMessageId, recipientUserIds,
 			parentMessage.getSubject(), body, files);
 	}
 
@@ -123,7 +122,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	public void deleteUserThread(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
-		UserThread userThread = userThreadPersistence.fetchByU_M(
+		UserThread userThread = userThreadPersistence.findByU_M(
 			userId, mbThreadId);
 
 		userThread.setDeleted(true);
@@ -134,7 +133,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	public void markUserThreadAsRead(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
-		UserThread userThread = userThreadPersistence.fetchByU_M(
+		UserThread userThread = userThreadPersistence.findByU_M(
 			userId, mbThreadId);
 
 		userThread.setRead(true);
@@ -145,7 +144,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
-		UserThread userThread = userThreadPersistence.fetchByU_M(
+		UserThread userThread = userThreadPersistence.findByU_M(
 			userId, mbThreadId);
 
 		userThread.setRead(false);
@@ -154,11 +153,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	protected MBMessage addPrivateMessage(
-			long userId, long mbThreadId, long parentMessageId,
+			long userId, long mbThreadId, long parentMBMessageId,
 			long[] recipientUserIds, String subject, String body,
 			List<ObjectValuePair<String, byte[]>> files)
 		throws PortalException, SystemException {
 
+		User user = UserLocalServiceUtil.getUser(userId);
 		long groupId = 0;
 		long categoryId =
 			PrivateMessagingConstants.PRIVATE_MESSAGING_CATEGORY_ID;
@@ -175,11 +175,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
 
-		User user = UserLocalServiceUtil.getUser(userId);
-
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 			userId, user.getScreenName(), groupId, categoryId, mbThreadId,
-			parentMessageId, subject, body, files, anonymous, priority,
+			parentMBMessageId, subject, body, files, anonymous, priority,
 			allowPingbacks, serviceContext);
 
 		if (mbThreadId == 0) {
@@ -200,10 +198,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				userThreadPersistence.findByMBThreadId(mbMessage.getThreadId());
 
 			for (UserThread userThread : userThreads) {
-				if (userThread.isDeleted()) {
-					userThread.setDeleted(false);
-					userThread.setTopMBMessageId(mbMessage.getMessageId());
-				}
+				userThread.setModifiedDate(new Date());
 
 				if (userThread.getUserId() == userId) {
 					userThread.setRead(true);
@@ -212,7 +207,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 					userThread.setRead(false);
 				}
 
-				userThread.setModifiedDate(new Date());
+				if (userThread.isDeleted()) {
+					userThread.setTopMBMessageId(mbMessage.getMessageId());
+					userThread.setDeleted(false);
+				}
 
 				userThreadPersistence.update(userThread, false);
 			}
