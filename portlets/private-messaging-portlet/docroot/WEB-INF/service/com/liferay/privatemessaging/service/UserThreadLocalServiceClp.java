@@ -543,10 +543,209 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		}
 	}
 
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
+		long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getMBThreadUserThreadsMethodKey18,
+				mbThreadId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.privatemessaging.model.UserThread>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.privatemessaging.model.UserThread getUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getUserThreadMethodKey19,
+				userId, mbThreadId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.privatemessaging.model.UserThread)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getUserUserThreadCount(long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadCountMethodKey20,
+				userId, deleted);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public int getUserUserThreadCount(long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadCountMethodKey21,
+				userId, read, deleted);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey22,
+				userId, deleted);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.privatemessaging.model.UserThread>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey23,
+				userId, read, deleted);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.privatemessaging.model.UserThread>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean deleted, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getUserUserThreadsMethodKey24,
+				userId, deleted, start, end);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.privatemessaging.model.UserThread>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public void markUserThreadAsRead(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsReadMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsReadMethodKey25,
 				userId, mbThreadId);
 
 		try {
@@ -574,7 +773,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsUnreadMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_markUserThreadAsUnreadMethodKey26,
 				userId, mbThreadId);
 
 		try {
@@ -652,8 +851,23 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 			"deleteUser", long.class);
 	private MethodKey _deleteUserThreadMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 			"deleteUserThread", long.class, long.class);
-	private MethodKey _markUserThreadAsReadMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+	private MethodKey _getMBThreadUserThreadsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getMBThreadUserThreads", long.class);
+	private MethodKey _getUserThreadMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserThread", long.class, long.class);
+	private MethodKey _getUserUserThreadCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserUserThreadCount", long.class, boolean.class);
+	private MethodKey _getUserUserThreadCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserUserThreadCount", long.class, boolean.class, boolean.class);
+	private MethodKey _getUserUserThreadsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserUserThreads", long.class, boolean.class);
+	private MethodKey _getUserUserThreadsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserUserThreads", long.class, boolean.class, boolean.class);
+	private MethodKey _getUserUserThreadsMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+			"getUserUserThreads", long.class, boolean.class, int.class,
+			int.class);
+	private MethodKey _markUserThreadAsReadMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 			"markUserThreadAsRead", long.class, long.class);
-	private MethodKey _markUserThreadAsUnreadMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+	private MethodKey _markUserThreadAsUnreadMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 			"markUserThreadAsUnread", long.class, long.class);
 }

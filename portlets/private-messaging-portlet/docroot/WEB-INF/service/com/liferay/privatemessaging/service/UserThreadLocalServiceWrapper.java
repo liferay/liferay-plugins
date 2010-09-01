@@ -259,6 +259,49 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService {
 		_userThreadLocalService.deleteUserThread(userId, mbThreadId);
 	}
 
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
+		long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getMBThreadUserThreads(mbThreadId);
+	}
+
+	public com.liferay.privatemessaging.model.UserThread getUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getUserThread(userId, mbThreadId);
+	}
+
+	public int getUserUserThreadCount(long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getUserUserThreadCount(userId, deleted);
+	}
+
+	public int getUserUserThreadCount(long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getUserUserThreadCount(userId, read,
+			deleted);
+	}
+
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getUserUserThreads(userId, deleted);
+	}
+
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getUserUserThreads(userId, read, deleted);
+	}
+
+	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean deleted, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.getUserUserThreads(userId, deleted,
+			start, end);
+	}
+
 	public void markUserThreadAsRead(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

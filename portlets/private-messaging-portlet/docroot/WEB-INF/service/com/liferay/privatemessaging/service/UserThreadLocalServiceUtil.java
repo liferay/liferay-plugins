@@ -267,6 +267,48 @@ public class UserThreadLocalServiceUtil {
 		getService().deleteUserThread(userId, mbThreadId);
 	}
 
+	public static java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
+		long mbThreadId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getMBThreadUserThreads(mbThreadId);
+	}
+
+	public static com.liferay.privatemessaging.model.UserThread getUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserThread(userId, mbThreadId);
+	}
+
+	public static int getUserUserThreadCount(long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserUserThreadCount(userId, deleted);
+	}
+
+	public static int getUserUserThreadCount(long userId, boolean read,
+		boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserUserThreadCount(userId, read, deleted);
+	}
+
+	public static java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserUserThreads(userId, deleted);
+	}
+
+	public static java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean read, boolean deleted)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserUserThreads(userId, read, deleted);
+	}
+
+	public static java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
+		long userId, boolean deleted, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getUserUserThreads(userId, deleted, start, end);
+	}
+
 	public static void markUserThreadAsRead(long userId, long mbThreadId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
