@@ -10,7 +10,14 @@
 	<mapped-superclass class="com.liferay.privatemessaging.model.impl.UserThreadModelImpl">
 		<attributes>
 			<id name="userThreadId" />
+			<basic name="companyId" />
 			<basic name="userId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<basic name="mbThreadId" />
 			<basic name="topMBMessageId" />
 			<basic name="read">

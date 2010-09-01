@@ -22,6 +22,8 @@ import com.liferay.portlet.expando.model.ExpandoBridge;
 
 import java.io.Serializable;
 
+import java.util.Date;
+
 /**
  * The base model interface for the UserThread service. Represents a row in the &quot;PM_UserThread&quot; database table, with each column mapped to a property of this class.
  *
@@ -69,6 +71,20 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setUserThreadId(long userThreadId);
 
 	/**
+	 * Gets the company id of this user thread.
+	 *
+	 * @return the company id of this user thread
+	 */
+	public long getCompanyId();
+
+	/**
+	 * Sets the company id of this user thread.
+	 *
+	 * @param companyId the company id of this user thread
+	 */
+	public void setCompanyId(long companyId);
+
+	/**
 	 * Gets the user id of this user thread.
 	 *
 	 * @return the user id of this user thread
@@ -96,6 +112,34 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	 * @param userUuid the user uuid of this user thread
 	 */
 	public void setUserUuid(String userUuid);
+
+	/**
+	 * Gets the create date of this user thread.
+	 *
+	 * @return the create date of this user thread
+	 */
+	public Date getCreateDate();
+
+	/**
+	 * Sets the create date of this user thread.
+	 *
+	 * @param createDate the create date of this user thread
+	 */
+	public void setCreateDate(Date createDate);
+
+	/**
+	 * Gets the modified date of this user thread.
+	 *
+	 * @return the modified date of this user thread
+	 */
+	public Date getModifiedDate();
+
+	/**
+	 * Sets the modified date of this user thread.
+	 *
+	 * @param modifiedDate the modified date of this user thread
+	 */
+	public void setModifiedDate(Date modifiedDate);
 
 	/**
 	 * Gets the mb thread id of this user thread.

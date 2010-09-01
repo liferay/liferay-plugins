@@ -44,6 +44,14 @@ public class UserThreadWrapper implements UserThread {
 		_userThread.setUserThreadId(userThreadId);
 	}
 
+	public long getCompanyId() {
+		return _userThread.getCompanyId();
+	}
+
+	public void setCompanyId(long companyId) {
+		_userThread.setCompanyId(companyId);
+	}
+
 	public long getUserId() {
 		return _userThread.getUserId();
 	}
@@ -59,6 +67,22 @@ public class UserThreadWrapper implements UserThread {
 
 	public void setUserUuid(java.lang.String userUuid) {
 		_userThread.setUserUuid(userUuid);
+	}
+
+	public java.util.Date getCreateDate() {
+		return _userThread.getCreateDate();
+	}
+
+	public void setCreateDate(java.util.Date createDate) {
+		_userThread.setCreateDate(createDate);
+	}
+
+	public java.util.Date getModifiedDate() {
+		return _userThread.getModifiedDate();
+	}
+
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_userThread.setModifiedDate(modifiedDate);
 	}
 
 	public long getMbThreadId() {

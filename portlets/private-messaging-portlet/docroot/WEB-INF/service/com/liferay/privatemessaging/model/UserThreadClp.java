@@ -16,6 +16,7 @@ package com.liferay.privatemessaging.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.util.PortalUtil;
@@ -23,6 +24,8 @@ import com.liferay.portal.util.PortalUtil;
 import java.io.Serializable;
 
 import java.lang.reflect.Proxy;
+
+import java.util.Date;
 
 /**
  * @author Brian Wing Shun Chan
@@ -52,6 +55,14 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		_userThreadId = userThreadId;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public long getUserId() {
 		return _userId;
 	}
@@ -66,6 +77,22 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 
 	public void setUserUuid(String userUuid) {
 		_userUuid = userUuid;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
 	}
 
 	public long getMbThreadId() {
@@ -123,7 +150,10 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		UserThreadClp clone = new UserThreadClp();
 
 		clone.setUserThreadId(getUserThreadId());
+		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
+		clone.setCreateDate(getCreateDate());
+		clone.setModifiedDate(getModifiedDate());
 		clone.setMbThreadId(getMbThreadId());
 		clone.setTopMBMessageId(getTopMBMessageId());
 		clone.setRead(getRead());
@@ -133,17 +163,18 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	public int compareTo(UserThread userThread) {
-		long pk = userThread.getPrimaryKey();
+		int value = 0;
 
-		if (getPrimaryKey() < pk) {
-			return -1;
+		value = DateUtil.compareTo(getModifiedDate(),
+				userThread.getModifiedDate());
+
+		value = value * -1;
+
+		if (value != 0) {
+			return value;
 		}
-		else if (getPrimaryKey() > pk) {
-			return 1;
-		}
-		else {
-			return 0;
-		}
+
+		return 0;
 	}
 
 	public boolean equals(Object obj) {
@@ -175,12 +206,18 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{userThreadId=");
 		sb.append(getUserThreadId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", userId=");
 		sb.append(getUserId());
+		sb.append(", createDate=");
+		sb.append(getCreateDate());
+		sb.append(", modifiedDate=");
+		sb.append(getModifiedDate());
 		sb.append(", mbThreadId=");
 		sb.append(getMbThreadId());
 		sb.append(", topMBMessageId=");
@@ -195,7 +232,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.privatemessaging.model.UserThread");
@@ -206,8 +243,20 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		sb.append(getUserThreadId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>createDate</column-name><column-value><![CDATA[");
+		sb.append(getCreateDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
+		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>mbThreadId</column-name><column-value><![CDATA[");
@@ -232,8 +281,11 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	private long _userThreadId;
+	private long _companyId;
 	private long _userId;
 	private String _userUuid;
+	private Date _createDate;
+	private Date _modifiedDate;
 	private long _mbThreadId;
 	private long _topMBMessageId;
 	private boolean _read;

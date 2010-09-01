@@ -369,7 +369,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		userThreadImpl.setPrimaryKey(userThread.getPrimaryKey());
 
 		userThreadImpl.setUserThreadId(userThread.getUserThreadId());
+		userThreadImpl.setCompanyId(userThread.getCompanyId());
 		userThreadImpl.setUserId(userThread.getUserId());
+		userThreadImpl.setCreateDate(userThread.getCreateDate());
+		userThreadImpl.setModifiedDate(userThread.getModifiedDate());
 		userThreadImpl.setMbThreadId(userThread.getMbThreadId());
 		userThreadImpl.setTopMBMessageId(userThread.getTopMBMessageId());
 		userThreadImpl.setRead(userThread.isRead());
@@ -533,7 +536,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
-					query = new StringBundler(2);
+					query = new StringBundler(3);
 				}
 
 				query.append(_SQL_SELECT_USERTHREAD_WHERE);
@@ -543,6 +546,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 						orderByComparator);
+				}
+
+				else {
+					query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 				}
 
 				String sql = query.toString();
@@ -765,6 +772,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			}
 		}
 
+		else {
+			query.append(UserThreadModelImpl.ORDER_BY_JPQL);
+		}
+
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
@@ -862,7 +873,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
-					query = new StringBundler(2);
+					query = new StringBundler(3);
 				}
 
 				query.append(_SQL_SELECT_USERTHREAD_WHERE);
@@ -872,6 +883,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 						orderByComparator);
+				}
+
+				else {
+					query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 				}
 
 				String sql = query.toString();
@@ -1093,6 +1108,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			}
 		}
 
+		else {
+			query.append(UserThreadModelImpl.ORDER_BY_JPQL);
+		}
+
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
@@ -1196,13 +1215,15 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			try {
 				session = openSession();
 
-				StringBundler query = new StringBundler(3);
+				StringBundler query = new StringBundler(4);
 
 				query.append(_SQL_SELECT_USERTHREAD_WHERE);
 
 				query.append(_FINDER_COLUMN_U_M_USERID_2);
 
 				query.append(_FINDER_COLUMN_U_M_MBTHREADID_2);
+
+				query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 
 				String sql = query.toString();
 
@@ -1333,7 +1354,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
-					query = new StringBundler(3);
+					query = new StringBundler(4);
 				}
 
 				query.append(_SQL_SELECT_USERTHREAD_WHERE);
@@ -1345,6 +1366,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 						orderByComparator);
+				}
+
+				else {
+					query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 				}
 
 				String sql = query.toString();
@@ -1580,6 +1605,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			}
 		}
 
+		else {
+			query.append(UserThreadModelImpl.ORDER_BY_JPQL);
+		}
+
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
@@ -1688,7 +1717,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 							(orderByComparator.getOrderByFields().length * 3));
 				}
 				else {
-					query = new StringBundler(4);
+					query = new StringBundler(5);
 				}
 
 				query.append(_SQL_SELECT_USERTHREAD_WHERE);
@@ -1702,6 +1731,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				if (orderByComparator != null) {
 					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 						orderByComparator);
+				}
+
+				else {
+					query.append(UserThreadModelImpl.ORDER_BY_JPQL);
 				}
 
 				String sql = query.toString();
@@ -1950,6 +1983,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			}
 		}
 
+		else {
+			query.append(UserThreadModelImpl.ORDER_BY_JPQL);
+		}
+
 		String sql = query.toString();
 
 		Query q = session.createQuery(sql);
@@ -2054,7 +2091,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					sql = query.toString();
 				}
 				else {
-					sql = _SQL_SELECT_USERTHREAD;
+					sql = _SQL_SELECT_USERTHREAD.concat(UserThreadModelImpl.ORDER_BY_JPQL);
 				}
 
 				Query q = session.createQuery(sql);
