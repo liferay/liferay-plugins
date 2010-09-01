@@ -130,6 +130,51 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThreadPersistence.update(userThread, false);
 	}
 
+	public List<UserThread> getMBThreadUserThreads(long mbThreadId)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.findByMBThreadId(mbThreadId);
+	}
+
+	public UserThread getUserThread(long userId, long mbThreadId)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.findByU_M(userId, mbThreadId);
+	}
+
+	public int getUserUserThreadCount(long userId, boolean deleted)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.countByU_D(userId, deleted);
+	}
+
+	public int getUserUserThreadCount(
+			long userId, boolean read, boolean deleted)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.countByU_R_D(userId, read, deleted);
+	}
+
+	public List<UserThread> getUserUserThreads(long userId, boolean deleted)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.findByU_D(userId, deleted);
+	}
+
+	public List<UserThread> getUserUserThreads(
+			long userId, boolean read, boolean deleted)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.findByU_R_D(userId, read, deleted);
+	}
+
+	public List<UserThread> getUserUserThreads(
+			long userId, boolean deleted, int start, int end)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.findByU_D(userId, deleted, start, end);
+	}
+
 	public void markUserThreadAsRead(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
