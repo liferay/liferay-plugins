@@ -65,7 +65,7 @@ public class PrivateMessagingUtil {
 		List<MBMessage> filteredMBMessages = new ArrayList<MBMessage>();
 
 		for (MBMessage mbMessage : mbMessages) {
-			if (mbMessage.getMessageId() >= topMbMessage.getMessageId()) {
+			if (mbMessage.getMessageId() >= topMBMessage.getMessageId()) {
 				filteredMBMessages.add(mbMessage);
 			}
 		}
