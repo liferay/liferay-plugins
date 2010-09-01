@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class PrivateMessagingUtil {
 
-	public static MBMessage getThreadLastMessage(long userId, long mbThreadId)
+	public static MBMessage getLastThreadMessage(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
 		List<MBMessage> mbMessages = getThreadMessages(
@@ -54,7 +54,7 @@ public class PrivateMessagingUtil {
 		UserThread userThread = UserThreadLocalServiceUtil.getUserThread(
 			userId, mbThreadId);
 
-		MBMessage topMbMessage = MBMessageLocalServiceUtil.getMBMessage(
+		MBMessage topMBMessage = MBMessageLocalServiceUtil.getMBMessage(
 			userThread.getTopMBMessageId());
 
 		List<MBMessage> mbMessages =
@@ -65,9 +65,10 @@ public class PrivateMessagingUtil {
 		List<MBMessage> filteredMBMessages = new ArrayList<MBMessage>();
 
 		for (MBMessage mbMessage : mbMessages) {
-			if (DateUtil.compareTo(
-				topMbMessage.getCreateDate(), mbMessage.getCreateDate()) <= 0) {
+			int compareTo = DateUtil.compareTo(
+				topMBMessage.getCreateDate(), mbMessage.getCreateDate());
 
+			if (compareTo <= 0) {
 				filteredMBMessages.add(mbMessage);
 			}
 			else {
@@ -88,8 +89,7 @@ public class PrivateMessagingUtil {
 		return filteredMBMessages.subList(start, end);
 	}
 
-	public static int getThreadMessageCount(
-			long userId, long mbThreadId)
+	public static int getThreadMessagesCount(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
 		List<MBMessage> mbMessages = getThreadMessages(
@@ -98,8 +98,9 @@ public class PrivateMessagingUtil {
 		return mbMessages.size();
 	}
 
-	public static long getThreadRepresentative(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+	public static long getThreadRepresentativeUserId(
+			long userId, long mbThreadId)
+		throws SystemException {
 
 		List<MBMessage> mbMessages =
 			MBMessageLocalServiceUtil.getThreadMessages(
@@ -113,6 +114,16 @@ public class PrivateMessagingUtil {
 		}
 
 		return userId;
+	}
+
+	public static String getThreadSubject(long mbThreadId)
+		throws SystemException {
+
+		List<MBMessage> mbMessages =
+			MBMessageLocalServiceUtil.getThreadMessages(
+				mbThreadId, WorkflowConstants.STATUS_ANY, 0, 1);
+
+		return mbMessages.get(0).getSubject();
 	}
 
 	public static List<User> getThreadUsers(
@@ -165,16 +176,6 @@ public class PrivateMessagingUtil {
 		return users;
 	}
 
-	public static String getThreadSubject(long mbThreadId)
-		throws PortalException, SystemException {
-
-		List<MBMessage> mbMessages =
-			MBMessageLocalServiceUtil.getThreadMessages(
-				mbThreadId, WorkflowConstants.STATUS_ANY, 0, 1);
-
-		return mbMessages.get(0).getSubject();
-	}
-
 	public static boolean isUserPartOfThread(long userId, long mbThreadId)
 		throws PortalException, SystemException {
 
@@ -183,7 +184,7 @@ public class PrivateMessagingUtil {
 
 			return true;
 		}
-		catch (NoSuchUserThreadException msute) {
+		catch (NoSuchUserThreadException nsute) {
 			return false;
 		}
 	}
