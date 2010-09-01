@@ -131,7 +131,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	public List<UserThread> getMBThreadUserThreads(long mbThreadId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return userThreadPersistence.findByMBThreadId(mbThreadId);
 	}
@@ -143,34 +143,34 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	public int getUserUserThreadCount(long userId, boolean deleted)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return userThreadPersistence.countByU_D(userId, deleted);
 	}
 
 	public int getUserUserThreadCount(
 			long userId, boolean read, boolean deleted)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return userThreadPersistence.countByU_R_D(userId, read, deleted);
 	}
 
 	public List<UserThread> getUserUserThreads(long userId, boolean deleted)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return userThreadPersistence.findByU_D(userId, deleted);
 	}
 
 	public List<UserThread> getUserUserThreads(
 			long userId, boolean read, boolean deleted)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return userThreadPersistence.findByU_R_D(userId, read, deleted);
 	}
 
 	public List<UserThread> getUserUserThreads(
 			long userId, boolean deleted, int start, int end)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return userThreadPersistence.findByU_D(userId, deleted, start, end);
 	}
