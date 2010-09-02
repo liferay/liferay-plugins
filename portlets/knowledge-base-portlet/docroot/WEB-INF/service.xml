@@ -33,6 +33,10 @@
 		<column name="content" type="String" />
 		<column name="description" type="String" />
 		<column name="priority" type="int" />
+		<column name="status" type="int" />
+		<column name="statusByUserId" type="long" />
+		<column name="statusByUserName" type="String" />
+		<column name="statusDate" type="Date" />
 
 		<!-- Order -->
 
@@ -49,6 +53,10 @@
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="version" />
 		</finder>
+		<finder name="R_S" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="status" />
+		</finder>
 
 		<!-- References -->
 
@@ -58,6 +66,7 @@
 		<reference package-path="com.liferay.portal" entity="Layout" />
 		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
 		<reference package-path="com.liferay.portal" entity="Subscription" />
+		<reference package-path="com.liferay.portal" entity="WorkflowInstanceLink" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
