@@ -862,6 +862,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			}
 		}
 
+		Integer status = (Integer)params.get("status");
+
+		if ((status != null) && (status == WorkflowConstants.STATUS_ANY)) {
+			params.remove("status");
+		}
+
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, "article1", getClass().getClassLoader());
 
@@ -904,8 +910,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		subselectDynamicQuery.add(
 			resourcePrimKeyProperty1.eqProperty(resourcePrimKeyProperty2));
-
-		Integer status = (Integer)params.get("status");
 
 		if ((status != null) && (status != WorkflowConstants.STATUS_ANY)) {
 			Property property = PropertyFactoryUtil.forName("status");
