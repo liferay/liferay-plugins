@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -44,7 +45,14 @@ public class ArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
 
-		Article article = ArticleLocalServiceUtil.getLatestArticle(classPK);
+		int status = WorkflowConstants.STATUS_ANY;
+
+		if (type == TYPE_LATEST_APPROVED) {
+			status = WorkflowConstants.STATUS_APPROVED;
+		}
+
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			classPK, status);
 
 		return new ArticleAssetRenderer(article);
 	}

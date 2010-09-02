@@ -28,6 +28,7 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -38,6 +39,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
@@ -57,6 +59,7 @@ import java.io.InputStream;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -137,7 +140,8 @@ public class AdminPortlet extends MVCPortlet {
 				renderRequest, "resourcePrimKey");
 
 			if (resourcePrimKey > 0) {
-				article = ArticleServiceUtil.getLatestArticle(resourcePrimKey);
+				article = ArticleServiceUtil.getLatestArticle(
+					resourcePrimKey, getStatus(renderRequest));
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
@@ -152,6 +156,9 @@ public class AdminPortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_TEMPLATE, template);
+
+			renderRequest.setAttribute(
+				WebKeys.KNOWLEDGE_BASE_STATUS, getStatus(renderRequest));
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -210,12 +217,14 @@ public class AdminPortlet extends MVCPortlet {
 
 		if (resourcePrimKey <= 0) {
 			rss = ArticleServiceUtil.getGroupArticlesRSS(
-				portletId, max, type, version, displayStyle,
-				isServeRSSMaximized(resourceRequest), themeDisplay);
+				portletId, getStatus(resourceRequest), max, type, version,
+				displayStyle, isServeRSSMaximized(resourceRequest),
+				themeDisplay);
 		}
 		else {
 			rss = ArticleServiceUtil.getArticlesRSS(
-				portletId, resourcePrimKey, max, type, version, displayStyle,
+				portletId, resourcePrimKey, getStatus(resourceRequest), max,
+				type, version, displayStyle,
 				isServeRSSMaximized(resourceRequest), themeDisplay);
 		}
 
@@ -292,6 +301,9 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
@@ -302,19 +314,42 @@ public class AdminPortlet extends MVCPortlet {
 		String description = ParamUtil.getString(actionRequest, "description");
 		int priority = ParamUtil.getInteger(actionRequest, "priority");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
+		int workflowAction = ParamUtil.getInteger(
+			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
+
+		Article article = null;
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Article.class.getName(), actionRequest);
 
 		if (resourcePrimKey <= 0) {
-			ArticleServiceUtil.addArticle(
+			article = ArticleServiceUtil.addArticle(
 				parentResourcePrimKey, title, content, description, priority,
 				dirName, serviceContext);
 		}
 		else {
-			ArticleServiceUtil.updateArticle(
+			article = ArticleServiceUtil.updateArticle(
 				resourcePrimKey, parentResourcePrimKey, title, content,
 				description, priority, dirName, serviceContext);
+		}
+
+		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
+			String namespace = actionResponse.getNamespace();
+			String redirect = getRedirect(actionRequest, actionResponse);
+
+			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
+
+			editURL = HttpUtil.setParameter(
+				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			editURL = HttpUtil.setParameter(
+				editURL, namespace + "jspPage", "/admin/edit_article.jsp");
+			editURL = HttpUtil.setParameter(
+				editURL, namespace + "redirect", redirect);
+			editURL = HttpUtil.setParameter(
+				editURL, namespace + "resourcePrimKey",
+				article.getResourcePrimKey());
+
+			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
 	}
 
@@ -398,8 +433,12 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	protected int getStatus(PortletRequest portletRequest) {
+		return WorkflowConstants.STATUS_ANY;
+	}
+
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return _SERVE_RSS_MAXIMIZED;
+		return false;
 	}
 
 	protected boolean isSessionErrorException(Throwable cause) {
@@ -419,7 +458,5 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
-
-	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 
 }

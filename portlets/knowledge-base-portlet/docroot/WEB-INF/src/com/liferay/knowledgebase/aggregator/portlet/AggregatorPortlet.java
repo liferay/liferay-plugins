@@ -16,9 +16,11 @@ package com.liferay.knowledgebase.aggregator.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
 import javax.portlet.WindowState;
 
@@ -27,6 +29,10 @@ import javax.portlet.WindowState;
  * @author Brian Wing Shun Chan
  */
 public class AggregatorPortlet extends AdminPortlet {
+
+	protected int getStatus(PortletRequest portletRequest) {
+		return WorkflowConstants.STATUS_APPROVED;
+	}
 
 	protected boolean isProcessActionRequest(ActionRequest actionRequest) {
 		String actionName = ParamUtil.getString(

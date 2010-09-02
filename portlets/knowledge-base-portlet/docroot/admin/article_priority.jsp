@@ -31,7 +31,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 	<c:if test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 
 		<%
-		Article parentArticle = ArticleServiceUtil.getLatestArticle(parentResourcePrimKey);
+		Article parentArticle = ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 		%>
 
 		<%= parentArticle.getTitle() %>
@@ -42,6 +42,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 
 	params.put("groupId", scopeGroupId);
 	params.put("parentResourcePrimKey", parentResourcePrimKey);
+	params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 	int total = ArticleServiceUtil.getArticlesCount(params, false);
 

@@ -19,6 +19,8 @@
 <%
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
+int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
+
 List<Article> articles = (List<Article>)request.getAttribute("article_tree.jsp-articles");
 long firstArticleId = GetterUtil.getLong((String)request.getAttribute("article_tree.jsp-firstArticleId"));
 long lastArticleId = GetterUtil.getLong((String)request.getAttribute("article_tree.jsp-lastArticleId"));
@@ -33,6 +35,7 @@ Article selArticle = (Article)request.getAttribute("article_tree.jsp-selArticle"
 
 		params.put("groupId", scopeGroupId);
 		params.put("parentResourcePrimKey", article.getResourcePrimKey());
+		params.put("status", status);
 
 		List<Article> childArticles = ArticleServiceUtil.getArticles(params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 		%>
@@ -101,6 +104,7 @@ Article selArticle = (Article)request.getAttribute("article_tree.jsp-selArticle"
 
 				params.put("groupId", scopeGroupId);
 				params.put("parentResourcePrimKey", curArticle.getResourcePrimKey());
+				params.put("status", status);
 
 				List<Article> childArticles = ArticleServiceUtil.getArticles(params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 				%>

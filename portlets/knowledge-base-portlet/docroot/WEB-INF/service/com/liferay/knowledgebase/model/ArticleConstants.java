@@ -26,4 +26,6 @@ public class ArticleConstants {
 
 	public static final int DEFAULT_VERSION = 1;
 
+	public static final String DIR_NAME_PREFIX = "knowledgebase/articles/";
+
 }

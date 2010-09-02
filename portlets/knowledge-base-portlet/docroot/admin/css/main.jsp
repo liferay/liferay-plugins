@@ -45,6 +45,15 @@
 	margin: 0 5px 10px;
 }
 
+.knowledge-base-portlet-admin .kb-article-icons .taglib-workflow-status span {
+	margin-right: 0;
+	padding-right: 7px;
+}
+
+.knowledge-base-portlet-admin .kb-article-icons .taglib-workflow-status .taglib-icon-help {
+	display: none;
+}
+
 .knowledge-base-portlet-admin .kb-article-tree {
 	border: 1px solid #CCC;
 	margin: 10px -7px 0;

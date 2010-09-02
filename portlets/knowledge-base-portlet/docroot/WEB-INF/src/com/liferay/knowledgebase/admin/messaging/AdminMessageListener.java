@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
@@ -102,13 +103,14 @@ public class AdminMessageListener implements MessageListener {
 			body, subscriptions, sent, replyToAddress, mailId, htmlFormat);
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		while (article.getParentResourcePrimKey() !=
 					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
 			article = ArticleLocalServiceUtil.getLatestArticle(
-				article.getParentResourcePrimKey());
+				article.getParentResourcePrimKey(),
+				WorkflowConstants.STATUS_APPROVED);
 
 			subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(
 				companyId, Article.class.getName(),
@@ -167,7 +169,7 @@ public class AdminMessageListener implements MessageListener {
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		for (Subscription subscription : subscriptions) {
 			long subscribedUserId = subscription.getUserId();

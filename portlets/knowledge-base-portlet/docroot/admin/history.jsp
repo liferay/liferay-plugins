@@ -19,6 +19,8 @@
 <%
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
+int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
+
 int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", (article.getVersion() != ArticleConstants.DEFAULT_VERSION) ? (article.getVersion() - 1) : article.getVersion());
 int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVersion());
 %>
@@ -42,8 +44,8 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 			rowChecker="<%= new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
-				total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey()) %>"
+				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), status, searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
+				total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey(), status) %>"
 			/>
 
 			<liferay-ui:search-container-row

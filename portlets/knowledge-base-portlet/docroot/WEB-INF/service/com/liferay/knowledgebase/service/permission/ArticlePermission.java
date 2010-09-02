@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -67,7 +68,7 @@ public class ArticlePermission {
 		throws PortalException, SystemException {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		return contains(permissionChecker, article, actionId);
 	}
@@ -91,7 +92,8 @@ public class ArticlePermission {
 				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
 			article = ArticleLocalServiceUtil.getLatestArticle(
-				article.getParentResourcePrimKey());
+				article.getParentResourcePrimKey(),
+				WorkflowConstants.STATUS_ANY);
 
 			return _hasPermission(permissionChecker, article);
 		}
@@ -118,7 +120,8 @@ public class ArticlePermission {
 				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
 			article = ArticleLocalServiceUtil.getLatestArticle(
-				article.getParentResourcePrimKey());
+				article.getParentResourcePrimKey(),
+				WorkflowConstants.STATUS_ANY);
 
 			return _hasPermission(permissionChecker, article, actionId);
 		}

@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -123,7 +124,7 @@ public class KnowledgeBaseUtil {
 
 		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 			Article article = ArticleLocalServiceUtil.getLatestArticle(
-				resourcePrimKey);
+				resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 			String layoutFullURL = PortalUtil.getControlPanelFullURL(
 				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
@@ -212,6 +213,7 @@ public class KnowledgeBaseUtil {
 		params.put(
 			"resourcePrimKey",
 			selResourcePrimKeys.toArray(new Long[selResourcePrimKeys.size()]));
+		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 		List<Article> unsortedArticles = null;
 
@@ -454,6 +456,7 @@ public class KnowledgeBaseUtil {
 				Map<String, Object> params = new HashMap<String, Object>();
 
 				params.put("parentGroupId", group.getGroupId());
+				params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 				if (!allArticles) {
 					params.put(
@@ -479,6 +482,7 @@ public class KnowledgeBaseUtil {
 				Map<String, Object> params = new HashMap<String, Object>();
 
 				params.put("groupId", ArrayUtil.toArray(scopeGroupIds));
+				params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 				if (!allArticles) {
 					params.put(
@@ -546,7 +550,7 @@ public class KnowledgeBaseUtil {
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
 
@@ -582,7 +586,7 @@ public class KnowledgeBaseUtil {
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
 
@@ -610,7 +614,7 @@ public class KnowledgeBaseUtil {
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
 

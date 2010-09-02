@@ -16,8 +16,10 @@ package com.liferay.knowledgebase.search.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import javax.portlet.ActionRequest;
+import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
 
 /**
@@ -25,6 +27,10 @@ import javax.portlet.ResourceRequest;
  * @author Brian Wing Shun Chan
  */
 public class SearchPortlet extends AdminPortlet {
+
+	protected int getStatus(PortletRequest portletRequest) {
+		return WorkflowConstants.STATUS_APPROVED;
+	}
 
 	protected boolean isProcessActionRequest(ActionRequest actionRequest) {
 		String actionName = ParamUtil.getString(
@@ -41,9 +47,7 @@ public class SearchPortlet extends AdminPortlet {
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return _SERVE_RSS_MAXIMIZED;
+		return true;
 	}
-
-	private static final boolean _SERVE_RSS_MAXIMIZED = true;
 
 }

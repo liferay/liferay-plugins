@@ -19,6 +19,8 @@
 <%
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
+int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
+
 Article curArticle = (Article)request.getAttribute("article_breadcrumbs.jsp-curArticle");
 %>
 
@@ -37,7 +39,7 @@ Article curArticle = (Article)request.getAttribute("article_breadcrumbs.jsp-curA
 		<c:if test="<%= curArticle.getParentResourcePrimKey() != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 
 			<%
-			request.setAttribute("article_breadcrumbs.jsp-curArticle", ArticleServiceUtil.getLatestArticle(curArticle.getParentResourcePrimKey()));
+			request.setAttribute("article_breadcrumbs.jsp-curArticle", ArticleServiceUtil.getLatestArticle(curArticle.getParentResourcePrimKey(), status));
 			%>
 
 			<liferay-util:include page="/admin/article_breadcrumbs.jsp" servletContext="<%= application %>" />

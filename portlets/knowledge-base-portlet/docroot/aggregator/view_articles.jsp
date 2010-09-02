@@ -51,6 +51,7 @@ String tag = ParamUtil.getString(request, "tag");
 			Map<String, Object> params = new HashMap<String, Object>();
 
 			params.put("parentGroupId", themeDisplay.getParentGroupId());
+			params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 			if (!allArticles) {
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
@@ -71,6 +72,7 @@ String tag = ParamUtil.getString(request, "tag");
 			Map<String, Object> params = new HashMap<String, Object>();
 
 			params.put("groupId", ArrayUtil.toArray(scopeGroupIds));
+			params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 			if (!allArticles) {
 				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);

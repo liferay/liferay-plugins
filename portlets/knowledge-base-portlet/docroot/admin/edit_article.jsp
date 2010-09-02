@@ -26,8 +26,10 @@ Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLA
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+int version = BeanParamUtil.getInteger(article, request, "version", ArticleConstants.DEFAULT_VERSION);
 String content = BeanParamUtil.getString(article, request, "content", BeanPropertiesUtil.getString(template, "content"));
 int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
+int status = BeanParamUtil.getInteger(article, request, "status", WorkflowConstants.STATUS_DRAFT);
 
 String dirName = ParamUtil.getString(request, "dirName");
 %>
@@ -46,12 +48,30 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
+	<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_SAVE_DRAFT %>" />
 
 	<liferay-ui:error exception="<%= ArticleContentException.class %>" message="please-enter-valid-content" />
 	<liferay-ui:error exception="<%= ArticleTitleException.class %>" message="please-enter-a-valid-title" />
 	<liferay-ui:asset-tags-error />
 
+	<c:choose>
+		<c:when test="<%= status == WorkflowConstants.STATUS_APPROVED %>">
+			<div class="portlet-msg-info">
+				<liferay-ui:message key="a-new-version-will-be-created-automatically-if-this-content-is-modified" />
+			</div>
+		</c:when>
+		<c:when test="<%= status == WorkflowConstants.STATUS_PENDING %>">
+			<div class="portlet-msg-info">
+				<liferay-ui:message key="there-is-a-publication-workflow-in-process" />
+			</div>
+		</c:when>
+	</c:choose>
+
 	<aui:model-context bean="<%= article %>" model="<%= Article.class %>" />
+
+	<c:if test="<%= article != null %>">
+		<aui:workflow-status id="<%= String.valueOf(resourcePrimKey) %>" status="<%= status %>" version="<%= GetterUtil.getDouble(String.valueOf(version)) %>" />
+	</c:if>
 
 	<aui:fieldset>
 		<aui:input name="title" />
@@ -113,11 +133,11 @@ String dirName = ParamUtil.getString(request, "dirName");
 		</aui:field-wrapper>
 
 		<c:if test="<%= enableArticleAssetCategories %>">
-			<aui:input classPK="<%= resourcePrimKey %>" name="categories" type="assetCategories" />
+			<aui:input classPK="<%= (article != null) ? article.getClassPK() : 0 %>" name="categories" type="assetCategories" />
 		</c:if>
 
 		<c:if test="<%= enableArticleAssetTags %>">
-			<aui:input classPK="<%= resourcePrimKey %>" name="tags" type="assetTags" />
+			<aui:input classPK="<%= (article != null) ? article.getClassPK() : 0 %>" name="tags" type="assetTags" />
 		</c:if>
 
 		<c:if test="<%= article == null %>">
@@ -129,7 +149,11 @@ String dirName = ParamUtil.getString(request, "dirName");
 		</c:if>
 
 		<aui:button-row cssClass="kb-submit-buttons">
-			<aui:button type="submit" value="publish" />
+			<aui:button type="submit" value='<%= ((status == WorkflowConstants.STATUS_APPROVED) || (status == WorkflowConstants.STATUS_DRAFT)) ? "save-as-draft" : "save" %>' />
+
+			<c:if test="<%= status != WorkflowConstants.STATUS_PENDING %>">
+				<aui:button onClick='<%= renderResponse.getNamespace() + "publishArticle();" %>' value='<%= WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(themeDisplay.getCompanyId(), scopeGroupId, Article.class.getName()) ? "submit-for-publication" : "publish" %>' />
+			</c:if>
 
 			<aui:button onClick="<%= redirect %>" type="cancel" />
 		</aui:button-row>
@@ -139,6 +163,11 @@ String dirName = ParamUtil.getString(request, "dirName");
 <aui:script>
 	function <portlet:namespace />initEditor() {
 		return "<%= UnicodeFormatter.toString(content) %>";
+	}
+
+	function <portlet:namespace />publishArticle() {
+		document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = "<%= WorkflowConstants.ACTION_PUBLISH %>";
+		<portlet:namespace />updateArticle();
 	}
 
 	function <portlet:namespace />selectArticle(parentResourcePrimKey, html) {

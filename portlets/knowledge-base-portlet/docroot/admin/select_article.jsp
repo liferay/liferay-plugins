@@ -106,7 +106,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectArticle('" + curArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
-					<aui:button disabled="<%= (curArticle.getResourcePrimKey() == resourcePrimKey) || (curArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
+					<aui:button disabled="<%= (curArticle.getResourcePrimKey() == resourcePrimKey) || (curArticle.getResourcePrimKey() == oldParentResourcePrimKey) || ((curArticle.getStatus() != WorkflowConstants.STATUS_APPROVED) && (curArticle.getVersion() == ArticleConstants.DEFAULT_VERSION)) %>" onClick="<%= taglibOnClick %>" value="choose" />
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
@@ -114,7 +114,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				<aui:button-row>
 
 					<%
-					Article oldParentArticle = ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey);
+					Article oldParentArticle = ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 					%>
 
 					<%= oldParentArticle.getTitle() %>
@@ -151,7 +151,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					<%
 					List<Article> articles = new ArrayList<Article>();
 
-					articles.add(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey));
+					articles.add(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY));
 
 					int index = -1;
 
@@ -159,7 +159,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 						Article curArticle = articles.get(index);
 
 						if (curArticle.getParentResourcePrimKey() != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-							articles.add(ArticleServiceUtil.getLatestArticle(curArticle.getParentResourcePrimKey()));
+							articles.add(ArticleServiceUtil.getLatestArticle(curArticle.getParentResourcePrimKey(), WorkflowConstants.STATUS_ANY));
 						}
 					}
 

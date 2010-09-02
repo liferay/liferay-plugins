@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
@@ -289,7 +290,8 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void doReindex(String className, long classPK) throws Exception {
-		Article article = ArticleLocalServiceUtil.getLatestArticle(classPK);
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			classPK, WorkflowConstants.STATUS_APPROVED);
 
 		doReindex(article);
 	}
@@ -325,7 +327,7 @@ public class AdminIndexer extends BaseIndexer {
 
 	protected void reindexArticles(long companyId) throws Exception {
 		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(
-			companyId, false);
+			companyId, WorkflowConstants.STATUS_APPROVED, false);
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 
@@ -341,7 +343,8 @@ public class AdminIndexer extends BaseIndexer {
 		throws Exception {
 
 		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-			companyId, false, start, end, new ArticleModifiedDateComparator());
+			companyId, WorkflowConstants.STATUS_APPROVED, false, start, end,
+			new ArticleModifiedDateComparator());
 
 		if (articles.isEmpty()) {
 			return;

@@ -128,12 +128,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public List<Article> getArticles(
-			long resourcePrimKey, int start, int end,
+			long resourcePrimKey, int status, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
 		List<Article> articles = articleLocalService.getArticles(
-			resourcePrimKey, start, end, orderByComparator);
+			resourcePrimKey, status, start, end, orderByComparator);
 
 		return filterArticles(articles);
 	}
@@ -149,8 +149,10 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return filterArticles(articles);
 	}
 
-	public int getArticlesCount(long resourcePrimKey) throws SystemException {
-		return articleLocalService.getArticlesCount(resourcePrimKey);
+	public int getArticlesCount(long resourcePrimKey, int status)
+		throws SystemException {
+
+		return articleLocalService.getArticlesCount(resourcePrimKey, status);
 	}
 
 	public int getArticlesCount(Map<String, Object> params, boolean allVersions)
@@ -160,12 +162,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String getArticlesRSS(
-			String portletId, long resourcePrimKey, int max, String type,
-			double version, String displayStyle, boolean maximized,
+			String portletId, long resourcePrimKey, int status, int max,
+			String type, double version, String displayStyle, boolean maximized,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		Article article = articleLocalService.getLatestArticle(resourcePrimKey);
+		Article article = articleLocalService.getLatestArticle(
+			resourcePrimKey, status);
 
 		String title = HtmlUtil.escape(article.getTitle());
 
@@ -176,7 +179,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
 			portletId, resourcePrimKey, layoutFullURL, maximized);
 
-		List<Article> articles = filterArticles(article, max);
+		List<Article> articles = filterArticles(article, status, max);
 
 		return exportToRSS(
 			portletId, name, description, type, version, displayStyle,
@@ -184,42 +187,45 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public List<Article> getCompanyArticles(
-			long companyId, boolean allVersions, int start, int end,
+			long companyId, int status, boolean allVersions, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
 		List<Article> articles = articleLocalService.getCompanyArticles(
-			companyId, allVersions, start, end, orderByComparator);
+			companyId, status, allVersions, start, end, orderByComparator);
 
 		return filterArticles(articles);
 	}
 
-	public int getCompanyArticlesCount(long companyId, boolean allVersions)
+	public int getCompanyArticlesCount(
+			long companyId, int status, boolean allVersions)
 		throws SystemException {
 
 		return articleLocalService.getCompanyArticlesCount(
-			companyId, allVersions);
+			companyId, status, allVersions);
 	}
 
 	public List<Article> getGroupArticles(
-			long groupId, boolean allVersions, int start, int end,
+			long groupId, int status, boolean allVersions, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
 
 		List<Article> articles = articleLocalService.getGroupArticles(
-			groupId, allVersions, start, end, orderByComparator);
+			groupId, status, allVersions, start, end, orderByComparator);
 
 		return filterArticles(articles);
 	}
 
-	public int getGroupArticlesCount(long groupId, boolean allVersions)
+	public int getGroupArticlesCount(
+			long groupId, int status, boolean allVersions)
 		throws SystemException {
 
-		return articleLocalService.getGroupArticlesCount(groupId, allVersions);
+		return articleLocalService.getGroupArticlesCount(
+			groupId, status, allVersions);
 	}
 
 	public String getGroupArticlesRSS(
-			String portletId, int max, String type, double version,
+			String portletId, int status, int max, String type, double version,
 			String displayStyle, boolean maximized, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -233,20 +239,20 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
 		String feedURL = layoutFullURL;
 
-		List<Article> articles = filterGroupArticles(group, max);
+		List<Article> articles = filterGroupArticles(group, status, max);
 
 		return exportToRSS(
 			portletId, name, description, type, version, displayStyle,
 			maximized, layoutFullURL, feedURL, articles, themeDisplay);
 	}
 
-	public Article getLatestArticle(long resourcePrimKey)
+	public Article getLatestArticle(long resourcePrimKey, int status)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW);
 
-		return articleLocalService.getLatestArticle(resourcePrimKey);
+		return articleLocalService.getLatestArticle(resourcePrimKey, status);
 	}
 
 	public void subscribe(long groupId)
@@ -406,7 +412,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 	}
 
-	protected List<Article> filterArticles(Article article, int max)
+	protected List<Article> filterArticles(Article article, int status, int max)
 		throws PortalException, SystemException {
 
 		List<Article> articles = new ArrayList<Article>();
@@ -427,6 +433,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			params.put("groupId", curArticle.getGroupId());
 			params.put(
 				"parentResourcePrimKey", curArticle.getResourcePrimKey());
+			params.put("status", status);
 
 			List<Article> childArticles = getArticles(
 				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
@@ -457,7 +464,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articles;
 	}
 
-	protected List<Article> filterGroupArticles(Group group, int max)
+	protected List<Article> filterGroupArticles(
+			Group group, int status, int max)
 		throws PortalException, SystemException {
 
 		List<Article> articles = new ArrayList<Article>();
@@ -467,7 +475,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		while ((articles.size() < max) && listNotExhausted) {
 			List<Article> articleList = articleLocalService.getGroupArticles(
-				group.getGroupId(), false, lastIntervalStart,
+				group.getGroupId(), status, false, lastIntervalStart,
 				lastIntervalStart + max, new ArticleModifiedDateComparator());
 
 			Iterator<Article> itr = articleList.iterator();

@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
@@ -300,6 +301,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		params.put(
 			"parentResourcePrimKey",
 			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 		List<Article> rootArticles = ArticleLocalServiceUtil.getArticles(
 			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -321,6 +323,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			curParams.put("groupId", article.getGroupId());
 			curParams.put(
 				"parentResourcePrimKey", article.getResourcePrimKey());
+			curParams.put("status", WorkflowConstants.STATUS_APPROVED);
 
 			List<Article> childArticles = ArticleLocalServiceUtil.getArticles(
 				curParams, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -353,6 +356,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		params.put("groupId", context.getScopeGroupId());
 		params.put("parentResourcePrimKey", parentResourcePrimKey);
+		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 		int maxPriority = ArticleLocalServiceUtil.getArticlesCount(
 			params, false);

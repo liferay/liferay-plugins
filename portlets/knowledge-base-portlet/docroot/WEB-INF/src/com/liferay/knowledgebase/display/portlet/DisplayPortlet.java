@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
@@ -28,6 +29,7 @@ import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletException;
+import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -49,6 +51,10 @@ public class DisplayPortlet extends AdminPortlet {
 		else {
 			super.doDispatch(renderRequest, renderResponse);
 		}
+	}
+
+	protected int getStatus(PortletRequest portletRequest) {
+		return WorkflowConstants.STATUS_APPROVED;
 	}
 
 	protected boolean isPRPRedirect(
@@ -122,9 +128,7 @@ public class DisplayPortlet extends AdminPortlet {
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return _SERVE_RSS_MAXIMIZED;
+		return false;
 	}
-
-	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 
 }

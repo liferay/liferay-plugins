@@ -29,8 +29,8 @@
 			iteratorURL="<%= iteratorURL %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getGroupArticles(scopeGroupId, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()) %>"
-				total="<%= ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, false) %>"
+				results="<%= ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_ANY, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()) %>"
+				total="<%= ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_ANY, false) %>"
 			/>
 
 			<div class="kb-results-body">
