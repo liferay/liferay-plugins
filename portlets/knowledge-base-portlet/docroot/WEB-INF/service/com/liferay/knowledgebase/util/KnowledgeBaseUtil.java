@@ -115,59 +115,6 @@ public class KnowledgeBaseUtil {
 			portalURL);
 	}
 
-	public static List<Article> getArticles(
-			long[] resourcePrimKeys, int start, int end,
-			boolean checkPermission)
-		throws Exception {
-
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
-			start = 0;
-			end = resourcePrimKeys.length;
-		}
-
-		List<Long> selResourcePrimKeys = new ArrayList<Long>();
-
-		for (int i = start; (i < end) && (i < resourcePrimKeys.length); i++) {
-			selResourcePrimKeys.add(resourcePrimKeys[i]);
-		}
-
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put(
-			"resourcePrimKey",
-			selResourcePrimKeys.toArray(new Long[selResourcePrimKeys.size()]));
-
-		List<Article> unsortedArticles = null;
-
-		if (checkPermission) {
-			unsortedArticles = ArticleServiceUtil.getArticles(
-				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
-		else {
-			unsortedArticles = ArticleLocalServiceUtil.getArticles(
-				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
-
-		unsortedArticles = ListUtil.copy(unsortedArticles);
-
-		List<Article> articles = new ArrayList<Article>();
-
-		for (Long resourcePrimKey : selResourcePrimKeys) {
-			for (int i = 0; i < unsortedArticles.size(); i++) {
-				Article article = unsortedArticles.get(i);
-
-				if (article.getResourcePrimKey() == resourcePrimKey) {
-					articles.add(article);
-					unsortedArticles.remove(article);
-
-					break;
-				}
-			}
-		}
-
-		return articles;
-	}
-
 	public static String getArticleURL(
 			String portletId, long resourcePrimKey, String portalURL)
 		throws Exception {
@@ -242,6 +189,59 @@ public class KnowledgeBaseUtil {
 			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
 
 		return articleURL;
+	}
+
+	public static List<Article> getArticles(
+			long[] resourcePrimKeys, int start, int end,
+			boolean checkPermission)
+		throws Exception {
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
+			start = 0;
+			end = resourcePrimKeys.length;
+		}
+
+		List<Long> selResourcePrimKeys = new ArrayList<Long>();
+
+		for (int i = start; (i < end) && (i < resourcePrimKeys.length); i++) {
+			selResourcePrimKeys.add(resourcePrimKeys[i]);
+		}
+
+		Map<String, Object> params = new HashMap<String, Object>();
+
+		params.put(
+			"resourcePrimKey",
+			selResourcePrimKeys.toArray(new Long[selResourcePrimKeys.size()]));
+
+		List<Article> unsortedArticles = null;
+
+		if (checkPermission) {
+			unsortedArticles = ArticleServiceUtil.getArticles(
+				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		}
+		else {
+			unsortedArticles = ArticleLocalServiceUtil.getArticles(
+				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+		}
+
+		unsortedArticles = ListUtil.copy(unsortedArticles);
+
+		List<Article> articles = new ArrayList<Article>();
+
+		for (Long resourcePrimKey : selResourcePrimKeys) {
+			for (int i = 0; i < unsortedArticles.size(); i++) {
+				Article article = unsortedArticles.get(i);
+
+				if (article.getResourcePrimKey() == resourcePrimKey) {
+					articles.add(article);
+					unsortedArticles.remove(article);
+
+					break;
+				}
+			}
+		}
+
+		return articles;
 	}
 
 	public static List<AssetEntry> getAssetEntries(
