@@ -376,10 +376,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("companyId", companyId);
-
-		if (status != WorkflowConstants.STATUS_ANY) {
-			params.put("status", status);
-		}
+		params.put("status", status);
 
 		return getArticles(params, allVersions, start, end, orderByComparator);
 	}
@@ -391,10 +388,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("companyId", companyId);
-
-		if (status != WorkflowConstants.STATUS_ANY) {
-			params.put("status", status);
-		}
+		params.put("status", status);
 
 		return getArticlesCount(params, allVersions);
 	}
@@ -407,10 +401,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("groupId", groupId);
-
-		if (status != WorkflowConstants.STATUS_ANY) {
-			params.put("status", status);
-		}
+		params.put("status", status);
 
 		return getArticles(params, allVersions, start, end, orderByComparator);
 	}
@@ -422,10 +413,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Map<String, Object> params = new HashMap<String, Object>();
 
 		params.put("groupId", groupId);
-
-		if (status != WorkflowConstants.STATUS_ANY) {
-			params.put("status", status);
-		}
+		params.put("status", status);
 
 		return getArticlesCount(params, allVersions);
 	}
