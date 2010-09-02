@@ -165,6 +165,63 @@ public class ArticleWrapper implements Article {
 		_article.setPriority(priority);
 	}
 
+	public int getStatus() {
+		return _article.getStatus();
+	}
+
+	public void setStatus(int status) {
+		_article.setStatus(status);
+	}
+
+	public long getStatusByUserId() {
+		return _article.getStatusByUserId();
+	}
+
+	public void setStatusByUserId(long statusByUserId) {
+		_article.setStatusByUserId(statusByUserId);
+	}
+
+	public java.lang.String getStatusByUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _article.getStatusByUserUuid();
+	}
+
+	public void setStatusByUserUuid(java.lang.String statusByUserUuid) {
+		_article.setStatusByUserUuid(statusByUserUuid);
+	}
+
+	public java.lang.String getStatusByUserName() {
+		return _article.getStatusByUserName();
+	}
+
+	public void setStatusByUserName(java.lang.String statusByUserName) {
+		_article.setStatusByUserName(statusByUserName);
+	}
+
+	public java.util.Date getStatusDate() {
+		return _article.getStatusDate();
+	}
+
+	public void setStatusDate(java.util.Date statusDate) {
+		_article.setStatusDate(statusDate);
+	}
+
+	public boolean isApproved() {
+		return _article.isApproved();
+	}
+
+	public boolean isDraft() {
+		return _article.isDraft();
+	}
+
+	public boolean isExpired() {
+		return _article.isExpired();
+	}
+
+	public boolean isPending() {
+		return _article.isPending();
+	}
+
 	public com.liferay.knowledgebase.model.Article toEscapedModel() {
 		return _article.toEscapedModel();
 	}
@@ -234,6 +291,10 @@ public class ArticleWrapper implements Article {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _article.getAttachmentsFileNames();
+	}
+
+	public long getClassPK() {
+		return _article.getClassPK();
 	}
 
 	public Article getWrappedArticle() {

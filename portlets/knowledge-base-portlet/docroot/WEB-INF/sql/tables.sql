@@ -13,7 +13,11 @@ create table KB_Article (
 	title VARCHAR(150) null,
 	content TEXT null,
 	description STRING null,
-	priority INTEGER
+	priority INTEGER,
+	status INTEGER,
+	statusByUserId LONG,
+	statusByUserName VARCHAR(75) null,
+	statusDate DATE null
 );
 
 create table KB_Template (

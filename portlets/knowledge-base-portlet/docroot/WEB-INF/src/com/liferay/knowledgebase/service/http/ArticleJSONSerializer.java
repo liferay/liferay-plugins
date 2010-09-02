@@ -65,6 +65,19 @@ public class ArticleJSONSerializer {
 		jsonObj.put("content", model.getContent());
 		jsonObj.put("description", model.getDescription());
 		jsonObj.put("priority", model.getPriority());
+		jsonObj.put("status", model.getStatus());
+		jsonObj.put("statusByUserId", model.getStatusByUserId());
+		jsonObj.put("statusByUserName", model.getStatusByUserName());
+
+		Date statusDate = model.getStatusDate();
+
+		String statusDateJSON = StringPool.BLANK;
+
+		if (statusDate != null) {
+			statusDateJSON = String.valueOf(statusDate.getTime());
+		}
+
+		jsonObj.put("statusDate", statusDateJSON);
 
 		return jsonObj;
 	}

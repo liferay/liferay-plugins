@@ -162,6 +162,34 @@ public class ClpSerializer {
 
 					method14.invoke(newModel, value14);
 
+					Method method15 = newModelClass.getMethod("setStatus",
+							new Class[] { Integer.TYPE });
+
+					Integer value15 = new Integer(oldCplModel.getStatus());
+
+					method15.invoke(newModel, value15);
+
+					Method method16 = newModelClass.getMethod("setStatusByUserId",
+							new Class[] { Long.TYPE });
+
+					Long value16 = new Long(oldCplModel.getStatusByUserId());
+
+					method16.invoke(newModel, value16);
+
+					Method method17 = newModelClass.getMethod("setStatusByUserName",
+							new Class[] { String.class });
+
+					String value17 = oldCplModel.getStatusByUserName();
+
+					method17.invoke(newModel, value17);
+
+					Method method18 = newModelClass.getMethod("setStatusDate",
+							new Class[] { Date.class });
+
+					Date value18 = oldCplModel.getStatusDate();
+
+					method18.invoke(newModel, value18);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -417,6 +445,36 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setPriority(value14);
+
+					Method method15 = oldModelClass.getMethod("getStatus");
+
+					Integer value15 = (Integer)method15.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setStatus(value15);
+
+					Method method16 = oldModelClass.getMethod(
+							"getStatusByUserId");
+
+					Long value16 = (Long)method16.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setStatusByUserId(value16);
+
+					Method method17 = oldModelClass.getMethod(
+							"getStatusByUserName");
+
+					String value17 = (String)method17.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setStatusByUserName(value17);
+
+					Method method18 = oldModelClass.getMethod("getStatusDate");
+
+					Date value18 = (Date)method18.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setStatusDate(value18);
 
 					return newModel;
 				}

@@ -310,11 +310,12 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int start, int end,
+		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getArticles(resourcePrimKey, start, end, orderByComparator);
+				   .getArticles(resourcePrimKey, status, start, end,
+			orderByComparator);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
@@ -327,9 +328,9 @@ public class ArticleLocalServiceUtil {
 			orderByComparator);
 	}
 
-	public static int getArticlesCount(long resourcePrimKey)
+	public static int getArticlesCount(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getArticlesCount(resourcePrimKey);
+		return getService().getArticlesCount(resourcePrimKey, status);
 	}
 
 	public static int getArticlesCount(
@@ -340,32 +341,34 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
-		long companyId, boolean allVersions, int start, int end,
+		long companyId, int status, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getCompanyArticles(companyId, allVersions, start, end,
-			orderByComparator);
+				   .getCompanyArticles(companyId, status, allVersions, start,
+			end, orderByComparator);
 	}
 
-	public static int getCompanyArticlesCount(long companyId,
+	public static int getCompanyArticlesCount(long companyId, int status,
 		boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getCompanyArticlesCount(companyId, allVersions);
+		return getService()
+				   .getCompanyArticlesCount(companyId, status, allVersions);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
-		long groupId, boolean allVersions, int start, int end,
+		long groupId, int status, boolean allVersions, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getGroupArticles(groupId, allVersions, start, end,
+				   .getGroupArticles(groupId, status, allVersions, start, end,
 			orderByComparator);
 	}
 
-	public static int getGroupArticlesCount(long groupId, boolean allVersions)
+	public static int getGroupArticlesCount(long groupId, int status,
+		boolean allVersions)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getGroupArticlesCount(groupId, allVersions);
+		return getService().getGroupArticlesCount(groupId, status, allVersions);
 	}
 
 	public static long[] getGroupIds(long parentGroupId)
@@ -374,10 +377,10 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.Article getLatestArticle(
-		long resourcePrimKey)
+		long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getLatestArticle(resourcePrimKey);
+		return getService().getLatestArticle(resourcePrimKey, status);
 	}
 
 	public static void subscribe(long groupId, long userId)
@@ -457,9 +460,19 @@ public class ArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.Article updateDisplayOrder(
 		com.liferay.knowledgebase.model.Article article,
 		long parentResourcePrimKey, int priority)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateDisplayOrder(article, parentResourcePrimKey, priority);
+	}
+
+	public static com.liferay.knowledgebase.model.Article updateStatus(
+		long userId, long resourcePrimKey, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateStatus(userId, resourcePrimKey, status, serviceContext);
 	}
 
 	public static void clearService() {

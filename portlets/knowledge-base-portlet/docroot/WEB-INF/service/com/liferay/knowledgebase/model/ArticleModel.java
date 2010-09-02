@@ -288,6 +288,106 @@ public interface ArticleModel extends BaseModel<Article> {
 	public void setPriority(int priority);
 
 	/**
+	 * Gets the status of this article.
+	 *
+	 * @return the status of this article
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this article.
+	 *
+	 * @param status the status of this article
+	 */
+	public void setStatus(int status);
+
+	/**
+	 * Gets the status by user id of this article.
+	 *
+	 * @return the status by user id of this article
+	 */
+	public long getStatusByUserId();
+
+	/**
+	 * Sets the status by user id of this article.
+	 *
+	 * @param statusByUserId the status by user id of this article
+	 */
+	public void setStatusByUserId(long statusByUserId);
+
+	/**
+	 * Gets the status by user uuid of this article.
+	 *
+	 * @return the status by user uuid of this article
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getStatusByUserUuid() throws SystemException;
+
+	/**
+	 * Sets the status by user uuid of this article.
+	 *
+	 * @param statusByUserUuid the status by user uuid of this article
+	 */
+	public void setStatusByUserUuid(String statusByUserUuid);
+
+	/**
+	 * Gets the status by user name of this article.
+	 *
+	 * @return the status by user name of this article
+	 */
+	@AutoEscape
+	public String getStatusByUserName();
+
+	/**
+	 * Sets the status by user name of this article.
+	 *
+	 * @param statusByUserName the status by user name of this article
+	 */
+	public void setStatusByUserName(String statusByUserName);
+
+	/**
+	 * Gets the status date of this article.
+	 *
+	 * @return the status date of this article
+	 */
+	public Date getStatusDate();
+
+	/**
+	 * Sets the status date of this article.
+	 *
+	 * @param statusDate the status date of this article
+	 */
+	public void setStatusDate(Date statusDate);
+
+	/**
+	 * Determines whether this article is approved.
+	 *
+	 * @return true if this article is approved; false otherwise
+	 */
+	public boolean isApproved();
+
+	/**
+	 * Determines whether this article is a draft.
+	 *
+	 * @return true if this article is a draft; false otherwise
+	 */
+	public boolean isDraft();
+
+	/**
+	 * Determines whether this article is expired.
+	 *
+	 * @return true if this article is expired; false otherwise
+	 */
+	public boolean isExpired();
+
+	/**
+	 * Determines whether this article is pending.
+	 *
+	 * @return true if this article is pending; false otherwise
+	 */
+	public boolean isPending();
+
+	/**
 	 * Gets a copy of this article as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
 	 *
 	 * @return the escaped model instance

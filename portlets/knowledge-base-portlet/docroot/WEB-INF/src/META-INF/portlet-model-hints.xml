@@ -26,6 +26,10 @@
 			<hint name="display-width">98%</hint>
 		</field>
 		<field name="priority" type="int" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.knowledgebase.model.Template">
 		<field name="uuid" type="String" />
