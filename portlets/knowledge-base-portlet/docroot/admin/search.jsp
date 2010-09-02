@@ -53,7 +53,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 					Article article = null;
 
 					try {
-						article = ArticleServiceUtil.getLatestArticle(GetterUtil.getLong(hits.doc(i).get(Field.ENTRY_CLASS_PK)));
+						article = ArticleServiceUtil.getLatestArticle(GetterUtil.getLong(hits.doc(i).get(Field.ENTRY_CLASS_PK)), WorkflowConstants.STATUS_APPROVED);
 					}
 					catch (NoSuchArticleException nsae) {
 						continue;
