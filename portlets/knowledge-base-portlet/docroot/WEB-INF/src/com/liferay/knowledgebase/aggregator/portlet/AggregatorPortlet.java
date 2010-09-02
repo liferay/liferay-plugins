@@ -38,7 +38,8 @@ public class AggregatorPortlet extends AdminPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("subscribe") ||
+		if (actionName.equals("invokeTaglibDiscussion") ||
+			actionName.equals("subscribe") ||
 			actionName.equals("unsubscribe")) {
 
 			return true;
