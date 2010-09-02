@@ -1,0 +1,102 @@
+.private-messaging-portlet img.avatar {
+	width: 50px;
+}
+
+.private-messaging-portlet .controls {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background-color: #CFCFCF;
+	border: 1px solid #C8C9CA;
+	border-radius: 4px;
+	margin-bottom: 10px;
+	padding: 5px;
+	width: auto;
+}
+
+.private-messaging-portlet .controls .col-1 {
+	text-align: left;
+}
+	
+.private-messaging-portlet .controls .col-2 {
+	text-align: right;
+}
+	
+.private-messaging-portlet .message-body {
+	height: 50px;
+	width: 450px;
+}
+
+.private-messaging-portlet .message-body-container {
+	margin-top: 10px;
+}
+	
+.private-messaging-portlet .profile-link {
+	text-transform: capitalize;	
+}
+
+.private-messaging-portlet .results-header {
+	display: none;
+}
+
+.private-messaging-portlet .taglib-user-display .user-details .user-name {
+	display: none;
+}
+
+/* Messages */
+
+.private-messaging-portlet .messages .taglib-search-iterator .col-1 {
+	width: 25px;
+}
+
+.private-messaging-portlet .messages .taglib-search-iterator .col-2 {
+	width: 50px;
+}
+
+.private-messaging-portlet .messages .taglib-search-iterator .col-3 {
+	width: 130px;
+}
+
+.private-messaging-portlet .messages .unread {
+	font-weight: bold;
+}
+
+/* Thread */
+
+.private-messaging-portlet .thread .body {
+	padding-top: 5px;	
+}
+
+.private-messaging-portlet .thread .thread-info {
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+.private-messaging-portlet .thread .taglib-search-iterator .col-1 {
+	width: 50px;
+}
+
+.private-messaging-portlet .thread .taglib-search-iterator .col-2 {
+	padding-left: 0px;
+}
+
+.private-messaging-portlet .thread .taglib-search-iterator-page-iterator-bottom {
+	display: none;	
+}
+	
+.private-messaging-portlet .thread .results-row {
+	border: 1px solid #CFCFCF;
+}
+
+.private-messaging-portlet .thread .results-row.alt td {
+	background: none repeat scroll 0 0 transparent;
+}
+
+.private-messaging-portlet .thread .date {
+	color: #777777;
+	font-size: 11px;
+	margin-bottom: 4px;
+}
+
+.private-messaging-portlet .thread .name {
+	font-weight: bold;
+}
