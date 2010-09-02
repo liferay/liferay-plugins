@@ -48,7 +48,9 @@ public class SearchPortlet extends AdminPortlet {
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return true;
+		return _SERVE_RSS_MAXIMIZED;
 	}
+
+	private static final boolean _SERVE_RSS_MAXIMIZED = true;
 
 }

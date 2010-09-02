@@ -129,7 +129,9 @@ public class DisplayPortlet extends AdminPortlet {
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return false;
+		return _SERVE_RSS_MAXIMIZED;
 	}
+
+	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 
 }
