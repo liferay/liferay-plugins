@@ -16,4 +16,30 @@
 
 <%@ include file="/init.jsp" %>
 
-This is the <b>Private Messaging</b> portlet.
+<%
+long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
+%>
+
+<c:choose>
+	<c:when test="<%= !themeDisplay.isSignedIn() %>">
+		<liferay-ui:message key="please-log-in-to-use-the-private-messaging-portlet" />
+	</c:when>
+	<c:when test="<%= (mbThreadId != 0) && PrivateMessagingUtil.isUserPartOfThread(user.getUserId(), mbThreadId) %>">
+		<aui:layout cssClass="thread">
+			<%@ include file="/view_thread.jsp" %>
+		</aui:layout>
+	</c:when>
+	<c:otherwise>
+		<aui:layout cssClass="messages">
+			<%@ include file="/view_messages.jsp" %>
+		</aui:layout>
+	</c:otherwise>
+</c:choose>
+
+<aui:script use="liferay-plugin-privatemessaging">
+	Liferay.PrivateMessaging.init(
+		{
+			namespace: '<portlet:namespace />'
+		}
+	);
+</aui:script>
