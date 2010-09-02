@@ -120,9 +120,9 @@ public class KnowledgeBaseUtil {
 			String portletId, long resourcePrimKey, String portalURL)
 		throws Exception {
 
-		String pluginId = PortletConstants.getRootPortletId(portletId);
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
-		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 			Article article = ArticleLocalServiceUtil.getLatestArticle(
 				resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
@@ -134,7 +134,7 @@ public class KnowledgeBaseUtil {
 		}
 
 		Object[] plidAndWindowState = getPlidAndWindowState(
-			portletId, pluginId, resourcePrimKey, portalURL);
+			portletId, rootPortletId, resourcePrimKey, portalURL);
 
 		long plid = (Long)plidAndWindowState[0];
 		WindowState windowState = (WindowState)plidAndWindowState[1];
@@ -158,21 +158,21 @@ public class KnowledgeBaseUtil {
 		String portletId, long resourcePrimKey, String layoutFullURL,
 		boolean maximized) {
 
-		String pluginId = PortletConstants.getRootPortletId(portletId);
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 		String namespace = PortalUtil.getPortletNamespace(portletId);
 
 		String jspPage = null;
 
-		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 			jspPage = "/admin/view_article.jsp";
 		}
-		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
 			jspPage = "/aggregator/view_article.jsp";
 		}
-		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			jspPage = "/display/view_article.jsp";
 		}
-		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
 			jspPage = "/search/view_article.jsp";
 		}
 
@@ -385,9 +385,9 @@ public class KnowledgeBaseUtil {
 			String assetTagName, PermissionChecker permissionChecker)
 		throws Exception {
 
-		String pluginId = PortletConstants.getRootPortletId(portletId);
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
-		if (!pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+		if (!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			return null;
 		}
 
@@ -711,17 +711,17 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static Object[] getPlidAndWindowState(
-			String portletId, String pluginId, long resourcePrimKey,
+			String portletId, String rootPortletId, long resourcePrimKey,
 			String portalURL)
 		throws Exception {
 
-		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
 			return getAggregatorPlidAndWindowState(portletId, resourcePrimKey);
 		}
-		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			return getDisplayPlidAndWindowState(portletId, resourcePrimKey);
 		}
-		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
 			return getSearchPlidAndWindowState(portletId, resourcePrimKey);
 		}
 
