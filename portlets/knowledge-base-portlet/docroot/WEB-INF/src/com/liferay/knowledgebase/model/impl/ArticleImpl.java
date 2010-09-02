@@ -54,8 +54,8 @@ public class ArticleImpl extends ArticleModelImpl implements Article {
 	}
 
 	public long getClassPK() {
-		if ((getStatus() == WorkflowConstants.STATUS_APPROVED) ||
-			(getVersion() == ArticleConstants.DEFAULT_VERSION)) {
+		if ((getVersion() == ArticleConstants.DEFAULT_VERSION) ||
+			(getStatus() == WorkflowConstants.STATUS_APPROVED)) {
 
 			return getResourcePrimKey();
 		}

@@ -949,7 +949,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		assetEntryLocalService.deleteEntry(
 			Article.class.getName(), article.getResourcePrimKey());
 
-		if (article.getStatus() != WorkflowConstants.STATUS_APPROVED) {
+		if ((article.getVersion() != ArticleConstants.DEFAULT_VERSION) &&
+			(article.getStatus() != WorkflowConstants.STATUS_APPROVED)) {
+
 			assetEntryLocalService.deleteEntry(
 				Article.class.getName(), article.getPrimaryKey());
 		}
@@ -960,7 +962,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		deleteAttachments(article, article.getResourcePrimKey());
 
-		if (article.getStatus() != WorkflowConstants.STATUS_APPROVED) {
+		if ((article.getVersion() != ArticleConstants.DEFAULT_VERSION) &&
+			(article.getStatus() != WorkflowConstants.STATUS_APPROVED)) {
+
 			deleteAttachments(article, article.getPrimaryKey());
 		}
 	}
