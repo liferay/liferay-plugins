@@ -22,7 +22,7 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 
 <c:choose>
 	<c:when test="<%= !themeDisplay.isSignedIn() %>">
-		<liferay-ui:message key="please-log-in-to-use-the-private-messaging-portlet" />
+		<liferay-ui:message key="please-sign-in-to-use-the-private-messaging-portlet" />
 	</c:when>
 	<c:when test="<%= (mbThreadId != 0) && PrivateMessagingUtil.isUserPartOfThread(user.getUserId(), mbThreadId) %>">
 		<aui:layout cssClass="thread">

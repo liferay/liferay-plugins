@@ -47,22 +47,22 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), mbThreadId, true);
 
 	for (int i = 0; i < users.size(); i++) {
-		User tempUser = users.get(i);
-		%>
+		User curUser = users.get(i);
+	%>
 
-			<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
-				<portlet:param name="struts_action" value="/my_places/view" />
-				<portlet:param name="groupId" value="<%= String.valueOf(tempUser.getGroup().getGroupId()) %>" />
-				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-			</liferay-portlet:actionURL>
+		<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
+			<portlet:param name="struts_action" value="/my_places/view" />
+			<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
+			<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+		</liferay-portlet:actionURL>
 
-			<a class="profile-link" href="<%= publicPagesURL %>"><%= tempUser.getFullName() %></a>
+		<a class="profile-link" href="<%= publicPagesURL %>"><%= curUser.getFullName() %></a>
 
-			<c:if test="<%= i != (users.size() - 1) %>">
-				,
-			</c:if>
+		<c:if test="<%= i != (users.size() - 1) %>">
+			,
+		</c:if>
 
-		<%
+	<%
 	}
 	%>
 
@@ -73,7 +73,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	</liferay-portlet:actionURL>
 
 	and <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
-
 </aui:layout>
 
 <liferay-ui:search-container delta="25" emptyResultsMessage="no-messages-found">
@@ -103,19 +102,20 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text valign="top">
+
 			<%
-			User tempUser = UserLocalServiceUtil.getUser(mbMessage.getUserId());
+			User curUser = UserLocalServiceUtil.getUser(mbMessage.getUserId());
 			%>
 
 			<aui:layout>
 				<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
 					<portlet:param name="struts_action" value="/my_places/view" />
-					<portlet:param name="groupId" value="<%= String.valueOf(tempUser.getGroup().getGroupId()) %>" />
+					<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
 					<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
 				</liferay-portlet:actionURL>
 
 				<span class="name">
-					<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(tempUser.getFullName()) %></a>
+					<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
 				</span>
 
 				<span class="date">
@@ -139,6 +139,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		<aui:input name="redirect" type="hidden" value="<%= backToThreadURL %>" />
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
+
 		<textarea class="message-body" name="<portlet:namespace />body"></textarea>
 
 		<aui:button-row>

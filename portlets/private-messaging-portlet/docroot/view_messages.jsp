@@ -61,12 +61,12 @@
 				<%
 				long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
 
-				User tempUser = UserLocalServiceUtil.getUser(userId);
+				User curUser = UserLocalServiceUtil.getUser(userId);
 				%>
 
 				<liferay-ui:user-display
-					userId="<%= tempUser.getUserId() %>"
-					userName="<%= tempUser.getFullName() %>"
+					userId="<%= curUser.getUserId() %>"
+					userName="<%= curUser.getFullName() %>"
 					displayStyle="<%= 2 %>"
 				/>
 			</aui:layout>
@@ -75,32 +75,32 @@
 		<liferay-ui:search-container-column-text>
 			<aui:layout cssClass='<%= (!userThread.isRead()) ? "unread" : "" %>'>
 
-			<%
-			List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId(), false);
+				<%
+				List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId(), false);
 
-			if (users.isEmpty()) {
-				users.add(user);
-			}
+				if (users.isEmpty()) {
+					users.add(user);
+				}
 
-			for (int i = 0; i < users.size(); i++) {
-				User tempUser = users.get(i);
+				for (int i = 0; i < users.size(); i++) {
+					User curUser = users.get(i);
 				%>
 
-				<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
-					<portlet:param name="struts_action" value="/my_places/view" />
-					<portlet:param name="groupId" value="<%= String.valueOf(tempUser.getGroup().getGroupId()) %>" />
-					<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-				</liferay-portlet:actionURL>
+					<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
+						<portlet:param name="struts_action" value="/my_places/view" />
+						<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
+						<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+					</liferay-portlet:actionURL>
 
-				<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(tempUser.getFullName()) %></a>
+					<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
 
-				<c:if test="<%= i != users.size() - 1 %>">
-					,
-				</c:if>
+					<c:if test="<%= i != users.size() - 1 %>">
+						,
+					</c:if>
 
-				<%
-			}
-			%>
+					<%
+				}
+				%>
 
 			</aui:layout>
 

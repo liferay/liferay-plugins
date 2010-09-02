@@ -30,6 +30,7 @@
 <%@ page import="com.liferay.portal.kernel.util.DateUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
@@ -37,15 +38,14 @@
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
-
 <%@ page import="com.liferay.portlet.messageboards.model.MBMessage" %>
 <%@ page import="com.liferay.portlet.messageboards.model.MBThread" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil" %>
-
 <%@ page import="com.liferay.privatemessaging.model.UserThread" %>
 <%@ page import="com.liferay.privatemessaging.service.UserThreadLocalServiceUtil" %>
 <%@ page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
+
 <%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.List" %>

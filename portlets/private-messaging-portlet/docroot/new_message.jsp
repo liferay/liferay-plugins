@@ -31,11 +31,8 @@ if (mbThreadId != 0) {
 
 	List<UserThread> userThreads = UserThreadLocalServiceUtil.getMBThreadUserThreads(mbThreadId);
 
-	for (UserThread userThread : userThreads) {
-		to += userThread.getUserId() + ", ";
-	}
+	to = ListUtil.toString(userThreads, "userId", ", ");
 }
-
 %>
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
