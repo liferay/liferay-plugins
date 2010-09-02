@@ -172,8 +172,21 @@ public class KnowledgeBaseUtil {
 			String portletId, long resourcePrimKey, String portalURL)
 		throws Exception {
 
+		String pluginId = PortletConstants.getRootPortletId(portletId);
+
+		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			Article article = ArticleLocalServiceUtil.getLatestArticle(
+				resourcePrimKey);
+
+			String layoutFullURL = PortalUtil.getControlPanelFullURL(
+				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
+
+			return getArticleURL(
+				portletId, resourcePrimKey, layoutFullURL, false);
+		}
+
 		Object[] plidAndWindowState = getPlidAndWindowState(
-			portletId, resourcePrimKey, portalURL);
+			portletId, pluginId, resourcePrimKey, portalURL);
 
 		long plid = (Long)plidAndWindowState[0];
 		WindowState windowState = (WindowState)plidAndWindowState[1];
@@ -528,19 +541,6 @@ public class KnowledgeBaseUtil {
 		return scopeGroups;
 	}
 
-	protected static Object[] getAdminPlidAndWindowState(
-			String portletId, long resourcePrimKey)
-		throws Exception {
-
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey);
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			article.getGroupId(), portletId);
-
-		return new Object[] {plid, WindowState.NORMAL};
-	}
-
 	protected static Object[] getAggregatorPlidAndWindowState(
 			String portletId, long resourcePrimKey)
 		throws Exception {
@@ -707,15 +707,11 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static Object[] getPlidAndWindowState(
-			String portletId, long resourcePrimKey, String portalURL)
+			String portletId, String pluginId, long resourcePrimKey,
+			String portalURL)
 		throws Exception {
 
-		String pluginId = PortletConstants.getRootPortletId(portletId);
-
-		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			return getAdminPlidAndWindowState(portletId, resourcePrimKey);
-		}
-		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+		if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
 			return getAggregatorPlidAndWindowState(portletId, resourcePrimKey);
 		}
 		else if (pluginId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
