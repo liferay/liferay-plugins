@@ -438,7 +438,7 @@ public class AdminPortlet extends MVCPortlet {
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return false;
+		return _SERVE_RSS_MAXIMIZED;
 	}
 
 	protected boolean isSessionErrorException(Throwable cause) {
@@ -458,5 +458,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	private static final boolean _SERVE_RSS_MAXIMIZED = false;
 
 }
