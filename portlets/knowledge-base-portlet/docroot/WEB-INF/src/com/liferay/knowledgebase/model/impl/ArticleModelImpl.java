@@ -400,6 +400,13 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		_statusDate = statusDate;
 	}
 
+	/**
+	 * @deprecated {@link #isApproved}
+	 */
+	public boolean getApproved() {
+		return isApproved();
+	}
+
 	public boolean isApproved() {
 		if (getStatus() == WorkflowConstants.STATUS_APPROVED) {
 			return true;

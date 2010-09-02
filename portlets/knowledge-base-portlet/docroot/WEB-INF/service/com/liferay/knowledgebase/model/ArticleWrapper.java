@@ -206,6 +206,10 @@ public class ArticleWrapper implements Article {
 		_article.setStatusDate(statusDate);
 	}
 
+	public boolean getApproved() {
+		return _article.getApproved();
+	}
+
 	public boolean isApproved() {
 		return _article.isApproved();
 	}
@@ -220,10 +224,6 @@ public class ArticleWrapper implements Article {
 
 	public boolean isPending() {
 		return _article.isPending();
-	}
-
-	public com.liferay.knowledgebase.model.Article toEscapedModel() {
-		return _article.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -267,12 +267,16 @@ public class ArticleWrapper implements Article {
 		return _article.clone();
 	}
 
-	public int compareTo(com.liferay.knowledgebase.model.Article article) {
+	public int compareTo(Article article) {
 		return _article.compareTo(article);
 	}
 
 	public int hashCode() {
 		return _article.hashCode();
+	}
+
+	public Article toEscapedModel() {
+		return _article.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

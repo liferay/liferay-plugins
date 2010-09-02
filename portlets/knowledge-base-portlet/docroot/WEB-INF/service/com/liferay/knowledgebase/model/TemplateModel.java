@@ -231,14 +231,6 @@ public interface TemplateModel extends BaseModel<Template> {
 	 */
 	public void setDescription(String description);
 
-	/**
-	 * Gets a copy of this template as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Template toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -262,6 +254,8 @@ public interface TemplateModel extends BaseModel<Template> {
 	public int compareTo(Template template);
 
 	public int hashCode();
+
+	public Template toEscapedModel();
 
 	public String toString();
 

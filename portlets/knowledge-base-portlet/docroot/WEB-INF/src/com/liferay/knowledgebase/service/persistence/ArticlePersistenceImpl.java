@@ -294,18 +294,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		try {
 			session = openSession();
 
-			if (article.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(ArticleImpl.class,
-						article.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(article);
-
-			session.flush();
+			BatchSessionUtil.delete(session, article);
 		}
 		catch (Exception e) {
 			throw processException(e);

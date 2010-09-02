@@ -255,18 +255,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		try {
 			session = openSession();
 
-			if (template.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(TemplateImpl.class,
-						template.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(template);
-
-			session.flush();
+			BatchSessionUtil.delete(session, template);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -1375,7 +1364,12 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 				query = new StringBundler(3);
 			}
 
-			query.append(_FILTER_SQL_SELECT_TEMPLATE_WHERE);
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(_FILTER_SQL_SELECT_TEMPLATE_WHERE);
+			}
+			else {
+				query.append(_FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE);
+			}
 
 			query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
@@ -1897,6 +1891,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "template.groupId = ?";
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "template.groupId = ?";
 	private static final String _FILTER_SQL_SELECT_TEMPLATE_WHERE = "SELECT DISTINCT {template.*} FROM KB_Template template WHERE ";
+	private static final String _FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE =
+		"SELECT {template.*} FROM (SELECT DISTINCT templateId FROM KB_Template) template2 INNER JOIN KB_Template template ON (template2.templateId = template.templateId) WHERE ";
 	private static final String _FILTER_SQL_COUNT_TEMPLATE_WHERE = "SELECT COUNT(DISTINCT template.templateId) AS COUNT_VALUE FROM KB_Template template WHERE ";
 	private static final String _FILTER_COLUMN_PK = "template.templateId";
 	private static final String _FILTER_COLUMN_USERID = "template.userId";

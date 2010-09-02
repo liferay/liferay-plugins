@@ -360,6 +360,11 @@ public interface ArticleModel extends BaseModel<Article> {
 	public void setStatusDate(Date statusDate);
 
 	/**
+	 * @deprecated {@link #isApproved}
+	 */
+	public boolean getApproved();
+
+	/**
 	 * Determines whether this article is approved.
 	 *
 	 * @return true if this article is approved; false otherwise
@@ -387,14 +392,6 @@ public interface ArticleModel extends BaseModel<Article> {
 	 */
 	public boolean isPending();
 
-	/**
-	 * Gets a copy of this article as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Article toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -418,6 +415,8 @@ public interface ArticleModel extends BaseModel<Article> {
 	public int compareTo(Article article);
 
 	public int hashCode();
+
+	public Article toEscapedModel();
 
 	public String toString();
 
