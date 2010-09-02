@@ -159,3 +159,8 @@
 .knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
 	margin: 0 0 5px;
 }
+
+.knowledge-base-portlet-admin .kb-submit-buttons {
+	margin: 0;
+	padding: 10px 0 0;
+}

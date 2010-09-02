@@ -128,7 +128,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</aui:field-wrapper>
 		</c:if>
 
-		<aui:button-row>
+		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" value="publish" />
 
 			<aui:button onClick="<%= redirect %>" type="cancel" />

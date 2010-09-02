@@ -65,7 +65,7 @@ String content = BeanParamUtil.getString(template, request, "content");
 			</aui:field-wrapper>
 		</c:if>
 
-		<aui:button-row>
+		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" value="publish" />
 
 			<aui:button onClick="<%= redirect %>" type="cancel" />
