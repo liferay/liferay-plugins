@@ -406,7 +406,7 @@ else if (tabs2.equals("article-updated-email")) {
 			</c:when>
 		</c:choose>
 
-		<aui:button-row>
+		<aui:button-row cssClass="kb-submit-buttons">
 			<aui:button type="submit" />
 		</aui:button-row>
 	</aui:fieldset>

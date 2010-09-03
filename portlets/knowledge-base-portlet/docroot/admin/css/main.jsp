@@ -16,6 +16,13 @@
 
 <%@ include file="/css_init.jsp" %>
 
+/* ---------- Configuration ---------- */
+
+.portlet-configuration .kb-submit-buttons {
+	margin: 0;
+	padding: 10px 0 0;
+}
+
 /* ---------- Portal ---------- */
 
 .knowledge-base-portlet-admin .lfr-panel .lfr-panel-titlebar {
