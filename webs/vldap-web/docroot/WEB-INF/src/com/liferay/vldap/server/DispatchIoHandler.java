@@ -16,6 +16,7 @@ package com.liferay.vldap.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.vldap.server.directory.RootDirectory;
 import com.liferay.vldap.server.handler.AbandonLdapHandler;
 import com.liferay.vldap.server.handler.BindLdapHandler;
 import com.liferay.vldap.server.handler.CompareLdapHandler;
@@ -51,10 +52,10 @@ public class DispatchIoHandler implements IoHandler {
 		LdapHandler ldapHandler = getLdapHandler(internalRequest);
 
 		if (ldapHandler != null) {
-			LdapHandlerContext ldapHandlerContext = getLdapHandlerContext(
-				ioSession);
-
 			try {
+				LdapHandlerContext ldapHandlerContext = getLdapHandlerContext(
+					ioSession);
+
 				List<InternalResponse> internalResposes =
 					ldapHandler.messageReceived(
 						internalRequest, ioSession, ldapHandlerContext);
@@ -116,7 +117,9 @@ public class DispatchIoHandler implements IoHandler {
 		return null;
 	}
 
-	protected LdapHandlerContext getLdapHandlerContext(IoSession ioSession) {
+	protected LdapHandlerContext getLdapHandlerContext(IoSession ioSession)
+		throws Exception {
+
 		LdapHandlerContext ldapHandlerContext =
 			(LdapHandlerContext)ioSession.getAttribute(
 				LdapHandlerContext.class.getName());
@@ -126,8 +129,7 @@ public class DispatchIoHandler implements IoHandler {
 				if (ldapHandlerContext == null) {
 					ldapHandlerContext = new LdapHandlerContext();
 
-					ldapHandlerContext.setDirectory(
-						_vldapServer.getDirectory());
+					ldapHandlerContext.setDirectory(new RootDirectory());
 					ldapHandlerContext.setSchemaManager(
 						_vldapServer.getSchemaManager());
 

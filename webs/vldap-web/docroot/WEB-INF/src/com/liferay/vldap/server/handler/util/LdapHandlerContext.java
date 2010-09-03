@@ -16,6 +16,7 @@ package com.liferay.vldap.server.handler.util;
 
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
+import com.liferay.vldap.server.directory.Directory;
 
 import javax.security.sasl.SaslServer;
 

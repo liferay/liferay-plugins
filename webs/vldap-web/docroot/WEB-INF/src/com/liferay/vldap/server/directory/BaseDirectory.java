@@ -12,9 +12,12 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler.util;
+package com.liferay.vldap.server.directory;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,18 +34,32 @@ import org.apache.directory.shared.ldap.schema.registries.AttributeTypeRegistry;
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
  */
-public class Directory {
+public abstract class BaseDirectory implements Directory {
 
-	public Directory(DN name) {
-		_name = name;
+	public BaseDirectory(String name) throws Exception {
+		this(name, null);
 	}
 
-	public Directory(String name) throws Exception {
-		_name = new DN(name);
-	}
+	public BaseDirectory(String name, Directory parentDirectory)
+		throws Exception {
 
-	public Directory findBase(DN name) {
-		return findBase(name, this);
+		name = StringUtil.replace(name, StringPool.COMMA, StringPool.BLANK);
+		name = name.trim();
+
+		if (parentDirectory != null) {
+			_parentDirectory = parentDirectory;
+
+			name += StringPool.COMMA + parentDirectory.getName();
+		}
+
+		try {
+			_name = new DN(name);
+		}
+		catch (Exception e) {
+			_log.error("Invalid name " + name);
+
+			throw e;
+		}
 	}
 
 	public void addAttribute(String attributeId, String value) {
@@ -54,8 +71,18 @@ public class Directory {
 		_attributes.add(attribute);
 	}
 
-	public void addDirectory(Directory directory) {
-		_directories.add(directory);
+	public Directory findBase(DN name) throws Exception {
+		return findBase(name, this);
+	}
+
+	public Attribute getAttribute(String attributeId) {
+		for (Attribute attribute : _attributes) {
+			if (attributeId.equalsIgnoreCase(attribute.getAttributeId())) {
+				return attribute;
+			}
+		}
+
+		return null;
 	}
 
 	public Attribute getAttribute(String attributeId, String value) {
@@ -70,22 +97,20 @@ public class Directory {
 		return null;
 	}
 
-	public Attribute getAttribute(String attributeId) {
-		for (Attribute attribute : _attributes) {
-			if (attributeId.equalsIgnoreCase(attribute.getAttributeId())) {
-				return attribute;
-			}
+	public List<Directory> getDirectories() throws Exception {
+		if (_directories == null) {
+			_directories = initDirectories();
 		}
 
-		return null;
-	}
-
-	public List<Directory> getDirectories() {
 		return _directories;
 	}
 
 	public DN getName() {
 		return _name;
+	}
+
+	public Directory getParentDirectory() {
+		return _parentDirectory;
 	}
 
 	public Entry toEntry(
@@ -132,7 +157,9 @@ public class Directory {
 		return serverEntry;
 	}
 
-	protected Directory findBase(DN name, Directory directory) {
+	protected Directory findBase(DN name, Directory directory)
+		throws Exception {
+
 		if (name.equals(directory.getName())) {
 			return directory;
 		}
@@ -148,8 +175,24 @@ public class Directory {
 		return null;
 	}
 
+	protected boolean isDescendantOf(String name) {
+		if (_name.getName().contains("," + name + ",")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	protected abstract void initAttributes();
+
+	protected abstract List<Directory> initDirectories() throws Exception;
+
+	private static Log _log = LogFactoryUtil.getLog(BaseDirectory.class);
+
 	private List<Attribute> _attributes = new ArrayList<Attribute>();
-	private List<Directory> _directories = new ArrayList<Directory>();
+	private List<Directory> _directories;
+	private Directory _parentDirectory;
 	private DN _name;
 
 }

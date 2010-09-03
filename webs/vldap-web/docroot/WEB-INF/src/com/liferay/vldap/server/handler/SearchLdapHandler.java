@@ -17,8 +17,8 @@ package com.liferay.vldap.server.handler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.vldap.server.handler.util.Attribute;
-import com.liferay.vldap.server.handler.util.Directory;
+import com.liferay.vldap.server.directory.Attribute;
+import com.liferay.vldap.server.directory.Directory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 import com.liferay.vldap.util.PortletPropsValues;
 

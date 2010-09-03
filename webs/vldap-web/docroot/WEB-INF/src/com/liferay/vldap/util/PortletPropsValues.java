@@ -28,7 +28,7 @@ public class PortletPropsValues {
 	public static final String BIND_SASL_HOSTNAME = GetterUtil.getString(
 		PortletProps.get("bind.sasl.hostname"));
 
-	public static final long SEARCH_MAX_SIZE = GetterUtil.getLong(
+	public static final int SEARCH_MAX_SIZE = GetterUtil.getInteger(
 		PortletProps.get("search.max.size"));
 
 	public static final int SEARCH_MAX_TIME = GetterUtil.getInteger(

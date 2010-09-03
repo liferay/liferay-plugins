@@ -14,8 +14,8 @@
 
 package com.liferay.vldap.server.handler;
 
-import com.liferay.vldap.server.handler.util.Attribute;
-import com.liferay.vldap.server.handler.util.Directory;
+import com.liferay.vldap.server.directory.Attribute;
+import com.liferay.vldap.server.directory.Directory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 
 import java.util.List;
@@ -34,8 +34,9 @@ import org.apache.mina.core.session.IoSession;
 public class CompareLdapHandler extends BaseLdapHandler {
 
 	public List<InternalResponse> messageReceived(
-		InternalRequest internalRequest, IoSession ioSession,
-		LdapHandlerContext ldapHandlerContext) {
+			InternalRequest internalRequest, IoSession ioSession,
+			LdapHandlerContext ldapHandlerContext)
+		throws Exception {
 
 		InternalCompareRequest internalCompareRequest =
 			(InternalCompareRequest)internalRequest;

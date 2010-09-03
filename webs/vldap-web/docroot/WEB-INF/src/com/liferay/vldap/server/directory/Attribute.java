@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.vldap.server.handler.util;
+package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
