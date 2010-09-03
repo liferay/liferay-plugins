@@ -334,9 +334,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		long portraitId = sender.getPortraitId();
 		String tokenId = ImageServletTokenUtil.getToken(sender.getPortraitId());
 		String portraitURL =
-			themeDisplay.getPortalURL() + themeDisplay.getPathImage() + "/user_" +
-				(sender.isFemale() ? "female" : "male") + "_portrait?img_id=" +
-					portraitId + "&t=" + tokenId;
+			themeDisplay.getPortalURL() + themeDisplay.getPathImage() +
+				"/user_" + (sender.isFemale() ? "female" : "male") +
+					"_portrait?img_id=" + portraitId + "&t=" + tokenId;
 
 		notificationBody = StringUtil.replace(
 			notificationBody,
