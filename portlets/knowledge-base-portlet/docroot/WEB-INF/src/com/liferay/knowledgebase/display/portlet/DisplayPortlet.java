@@ -54,7 +54,7 @@ public class DisplayPortlet extends AdminPortlet {
 	}
 
 	protected int getStatus(PortletRequest portletRequest) {
-		return WorkflowConstants.STATUS_APPROVED;
+		return _STATUS;
 	}
 
 	protected boolean isPRPRedirect(
@@ -133,5 +133,7 @@ public class DisplayPortlet extends AdminPortlet {
 	}
 
 	private static final boolean _SERVE_RSS_MAXIMIZED = false;
+
+	private static final int _STATUS = WorkflowConstants.STATUS_APPROVED;
 
 }

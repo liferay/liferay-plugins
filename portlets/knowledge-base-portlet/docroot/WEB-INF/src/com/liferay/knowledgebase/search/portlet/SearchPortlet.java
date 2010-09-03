@@ -29,7 +29,7 @@ import javax.portlet.ResourceRequest;
 public class SearchPortlet extends AdminPortlet {
 
 	protected int getStatus(PortletRequest portletRequest) {
-		return WorkflowConstants.STATUS_APPROVED;
+		return _STATUS;
 	}
 
 	protected boolean isProcessActionRequest(ActionRequest actionRequest) {
@@ -52,5 +52,7 @@ public class SearchPortlet extends AdminPortlet {
 	}
 
 	private static final boolean _SERVE_RSS_MAXIMIZED = true;
+
+	private static final int _STATUS = WorkflowConstants.STATUS_APPROVED;
 
 }

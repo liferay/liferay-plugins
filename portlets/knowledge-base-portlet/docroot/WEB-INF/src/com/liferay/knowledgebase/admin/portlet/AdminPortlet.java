@@ -434,7 +434,7 @@ public class AdminPortlet extends MVCPortlet {
 	}
 
 	protected int getStatus(PortletRequest portletRequest) {
-		return WorkflowConstants.STATUS_ANY;
+		return _STATUS;
 	}
 
 	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
@@ -460,5 +460,7 @@ public class AdminPortlet extends MVCPortlet {
 	}
 
 	private static final boolean _SERVE_RSS_MAXIMIZED = false;
+
+	private static final int _STATUS = WorkflowConstants.STATUS_ANY;
 
 }

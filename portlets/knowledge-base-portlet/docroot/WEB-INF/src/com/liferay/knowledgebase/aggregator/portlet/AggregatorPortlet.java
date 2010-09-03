@@ -31,7 +31,7 @@ import javax.portlet.WindowState;
 public class AggregatorPortlet extends AdminPortlet {
 
 	protected int getStatus(PortletRequest portletRequest) {
-		return WorkflowConstants.STATUS_APPROVED;
+		return _STATUS;
 	}
 
 	protected boolean isProcessActionRequest(ActionRequest actionRequest) {
@@ -62,5 +62,7 @@ public class AggregatorPortlet extends AdminPortlet {
 			return false;
 		}
 	}
+
+	private static final int _STATUS = WorkflowConstants.STATUS_APPROVED;
 
 }
