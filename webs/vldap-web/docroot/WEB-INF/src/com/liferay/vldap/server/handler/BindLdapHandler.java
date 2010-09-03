@@ -18,6 +18,7 @@ import com.liferay.portal.NoSuchCompanyException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
@@ -25,7 +26,6 @@ import com.liferay.portal.security.auth.Authenticator;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.vldap.server.handler.util.DNUtil;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 import com.liferay.vldap.server.handler.util.SaslCallbackHandler;
 import com.liferay.vldap.util.PortletPropsValues;
@@ -46,6 +46,7 @@ import org.apache.directory.shared.ldap.message.internal.InternalBindResponse;
 import org.apache.directory.shared.ldap.message.internal.InternalRequest;
 import org.apache.directory.shared.ldap.message.internal.InternalResponse;
 import org.apache.directory.shared.ldap.name.DN;
+import org.apache.directory.shared.ldap.name.RDN;
 import org.apache.directory.shared.ldap.util.StringTools;
 import org.apache.mina.core.session.IoSession;
 
@@ -188,7 +189,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 
 		Company company = setCompany(ldapHandlerContext, name);
 
-		String screenName = GetterUtil.getString(DNUtil.getValue(name, "cn"));
+		String screenName = getValue(name, "cn");
 
 		if (Validator.isNull(screenName)) {
 			return getInternalResponse(
@@ -220,11 +221,24 @@ public class BindLdapHandler extends BaseLdapHandler {
 			internalBindRequest, ResultCodeEnum.AUTH_METHOD_NOT_SUPPORTED);
 	}
 
+	protected String getValue(DN dn, String normType) {
+		for (RDN rdn : dn) {
+			String rdnNormType = rdn.getNormType();
+			String rdnNormValue = rdn.getNormValue();
+
+			if (rdnNormType.equalsIgnoreCase(normType)) {
+				return GetterUtil.getString(rdnNormValue);
+			}
+		}
+
+		return StringPool.BLANK;
+	}
+
 	protected Company setCompany(
 			LdapHandlerContext ldapHandlerContext, DN name)
 		throws Exception {
 
-		String webId = GetterUtil.getString(DNUtil.getValue(name, "webId"));
+		String webId = getValue(name, "webId");
 
 		Company company = null;
 
@@ -245,7 +259,7 @@ public class BindLdapHandler extends BaseLdapHandler {
 	protected User setUser(LdapHandlerContext ldapHandlerContext, DN name)
 		throws Exception {
 
-		String screenName = GetterUtil.getString(DNUtil.getValue(name, "cn"));
+		String screenName = getValue(name, "cn");
 
 		Company company = ldapHandlerContext.getCompany();
 
