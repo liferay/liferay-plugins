@@ -14,26 +14,40 @@
 
 package com.liferay.privatemessaging.service.impl;
 
+import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.mail.MailMessage;
+import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 import com.liferay.privatemessaging.model.UserThread;
+import com.liferay.privatemessaging.portlet.PrivateMessagingPortlet;
+import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.privatemessaging.service.base.UserThreadLocalServiceBaseImpl;
 import com.liferay.privatemessaging.util.PrivateMessagingConstants;
 
+import java.text.Format;
+
 import java.util.Date;
 import java.util.List;
+
+import javax.mail.internet.InternetAddress;
 
 /**
  * @author Scott Lee
@@ -42,7 +56,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 	public MBMessage addPrivateMessage(
 			long userId, long mbThreadId, String to, String subject,
-			String body, List<ObjectValuePair<String, byte[]>> files)
+			String body, List<ObjectValuePair<String, byte[]>> files,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		long parentMBMessageId = MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
@@ -63,12 +78,13 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		return addPrivateMessage(
 			userId, mbThreadId, parentMBMessageId, recipientUserIds, subject,
-			body, files);
+			body, files, themeDisplay);
 	}
 
 	public MBMessage addPrivateMessageBranch(
 			long userId, long parentMBMessageId, String body,
-			List<ObjectValuePair<String, byte[]>> files)
+			List<ObjectValuePair<String, byte[]>> files,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		long mbThreadId = 0;
@@ -80,7 +96,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		return addPrivateMessage(
 			userId, mbThreadId, parentMBMessageId, recipientUserIds,
-			parentMessage.getSubject(), body, files);
+			parentMessage.getSubject(), body, files, themeDisplay);
 	}
 
 	public void addUserThread(
@@ -200,7 +216,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	protected MBMessage addPrivateMessage(
 			long userId, long mbThreadId, long parentMBMessageId,
 			long[] recipientUserIds, String subject, String body,
-			List<ObjectValuePair<String, byte[]>> files)
+			List<ObjectValuePair<String, byte[]>> files,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
@@ -261,7 +278,119 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			}
 		}
 
+		// Email
+
+		try {
+			sendEmail(mbMessage.getMessageId(), themeDisplay);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+
 		return mbMessage;
+	}
+
+	protected void sendEmail(long mbMessageId, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(
+			mbMessageId);
+
+		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
+
+		if (Validator.isNull(layoutFullURL)) {
+			return;
+		}
+
+		User sender = UserLocalServiceUtil.getUser(mbMessage.getUserId());
+
+		Company company = CompanyLocalServiceUtil.getCompany(
+			sender.getCompanyId());
+
+		InternetAddress notificationFrom = new InternetAddress(
+			company.getEmailAddress());
+		String notificationSubject = StringUtil.read(
+			PrivateMessagingPortlet.class.getResourceAsStream(
+				"dependencies/notification_message_subject.tmpl"));
+		String notificationBody = StringUtil.read(
+			PrivateMessagingPortlet.class.getResourceAsStream(
+				"dependencies/notification_message_body.tmpl"));
+
+		notificationSubject = StringUtil.replace(
+			notificationSubject,
+			new String[] {
+				"[$COMPANY_NAME$]",
+				"[$FROM_NAME$]"
+			},
+			new String[] {
+				company.getName(),
+				sender.getFullName()
+			});
+
+		String threadURL =
+			layoutFullURL + "/-/private_messaging/thread/" +
+				mbMessage.getThreadId();
+
+		long portraitId = sender.getPortraitId();
+		String tokenId = ImageServletTokenUtil.getToken(sender.getPortraitId());
+		String portraitURL =
+			themeDisplay.getPortalURL() + themeDisplay.getPathImage() + "/user_" +
+				(sender.isFemale() ? "female" : "male") + "_portrait?img_id=" +
+					portraitId + "&t=" + tokenId;
+
+		notificationBody = StringUtil.replace(
+			notificationBody,
+			new String[] {
+				"[$COMPANY_NAME$]",
+				"[$SUBJECT$]",
+				"[$BODY$]",
+				"[$FROM_NAME$]",
+				"[$FROM_PROFILE_URL$]",
+				"[$FROM_AVATAR$]",
+				"[$THREAD_URL$]"
+			},
+			new String[] {
+				company.getName(),
+				mbMessage.getSubject(),
+				mbMessage.getBody(),
+				sender.getFullName(),
+				sender.getDisplayURL(themeDisplay),
+				portraitURL,
+				threadURL
+			});
+
+		boolean htmlFormat = true;
+
+		List<UserThread> userThreads =
+			UserThreadLocalServiceUtil.getMBThreadUserThreads(
+				mbMessage.getThreadId());
+
+		for (UserThread userThread : userThreads) {
+			if (userThread.getUserId() == mbMessage.getUserId()) {
+				continue;
+			}
+
+			User recipient = UserLocalServiceUtil.getUser(
+				userThread.getUserId());
+
+			Format dateFormatDateTime =
+				FastDateFormatFactoryUtil.getSimpleDateFormat(
+					"MMMMM d 'at' h:mm a", recipient.getLocale(),
+					recipient.getTimeZone());
+
+			notificationBody = StringUtil.replace(
+				notificationBody, "[$SENT_DATE$]",
+				dateFormatDateTime.format(mbMessage.getCreateDate()));
+
+			InternetAddress notificationTo = new InternetAddress(
+				recipient.getEmailAddress());
+
+			MailMessage notificationMessage = new MailMessage(
+				notificationFrom, notificationTo, notificationSubject,
+				notificationBody, htmlFormat);
+
+			MailServiceUtil.sendEmail(notificationMessage);
+		}
 	}
 
 }

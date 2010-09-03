@@ -86,6 +86,9 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortalException, SystemException {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long userId = ParamUtil.getLong(actionRequest, "userId");
 		long mbThreadId = ParamUtil.getLong(actionRequest, "mbThreadId");
 		String to = ParamUtil.getString(actionRequest, "to");
@@ -95,7 +98,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			new ArrayList<ObjectValuePair<String, byte[]>>();
 
 		UserThreadLocalServiceUtil.addPrivateMessage(
-			userId, mbThreadId, to, subject, body, files);
+			userId, mbThreadId, to, subject, body, files, themeDisplay);
 	}
 
 }
