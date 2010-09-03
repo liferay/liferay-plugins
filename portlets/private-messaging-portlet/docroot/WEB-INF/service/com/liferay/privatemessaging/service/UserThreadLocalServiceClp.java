@@ -392,13 +392,14 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
 		long userId, long mbThreadId, java.lang.String to,
 		java.lang.String subject, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files)
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageMethodKey13,
-				userId, mbThreadId, to, subject, body, files);
+				userId, mbThreadId, to, subject, body, files, themeDisplay);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -426,13 +427,14 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 
 	public com.liferay.portlet.messageboards.model.MBMessage addPrivateMessageBranch(
 		long userId, long parentMBMessageId, java.lang.String body,
-		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files)
+		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, byte[]>> files,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageBranchMethodKey14,
-				userId, parentMBMessageId, body, files);
+				userId, parentMBMessageId, body, files, themeDisplay);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -840,10 +842,12 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	private MethodKey _addPrivateMessageMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 			"addPrivateMessage", long.class, long.class,
 			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.util.List.class);
+			java.lang.String.class, java.util.List.class,
+			com.liferay.portal.theme.ThemeDisplay.class);
 	private MethodKey _addPrivateMessageBranchMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 			"addPrivateMessageBranch", long.class, long.class,
-			java.lang.String.class, java.util.List.class);
+			java.lang.String.class, java.util.List.class,
+			com.liferay.portal.theme.ThemeDisplay.class);
 	private MethodKey _addUserThreadMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 			"addUserThread", long.class, long.class, long.class, boolean.class,
 			boolean.class);

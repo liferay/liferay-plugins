@@ -211,6 +211,14 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	 */
 	public void setDeleted(boolean deleted);
 
+	/**
+	 * Gets a copy of this user thread as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
+	 *
+	 * @return the escaped model instance
+	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
+	 */
+	public UserThread toEscapedModel();
+
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -234,8 +242,6 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public int compareTo(UserThread userThread);
 
 	public int hashCode();
-
-	public UserThread toEscapedModel();
 
 	public String toString();
 
