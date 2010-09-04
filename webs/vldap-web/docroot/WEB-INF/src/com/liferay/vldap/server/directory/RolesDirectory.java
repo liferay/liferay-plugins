@@ -14,6 +14,7 @@
 
 package com.liferay.vldap.server.directory;
 
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -83,6 +84,10 @@ public class RolesDirectory extends BaseDirectory {
 				userGroupRoles =
 					UserGroupRoleLocalServiceUtil.getUserGroupRoles(
 						_user.getUserId(), group.getGroupId());
+			}
+
+			if (!userGroupRoles.isEmpty()) {
+				roles = ListUtil.copy(roles);
 			}
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
