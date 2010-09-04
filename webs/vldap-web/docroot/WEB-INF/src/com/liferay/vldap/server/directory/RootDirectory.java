@@ -22,15 +22,23 @@ import com.liferay.vldap.util.OIDConstants;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.directory.shared.ldap.message.internal.InternalRequest;
+
 /**
  * @author Brian Wing Shun Chan
  */
 public class RootDirectory extends BaseDirectory {
 
-	public RootDirectory() throws Exception {
+	public RootDirectory(InternalRequest internalRequest) throws Exception {
 		super(StringPool.BLANK);
 
+		_internalRequest = internalRequest;
+
 		initAttributes();
+	}
+
+	public InternalRequest getInternalRequest() {
+		return _internalRequest;
 	}
 
 	protected void initAttributes() {
@@ -48,11 +56,15 @@ public class RootDirectory extends BaseDirectory {
 
 	protected List<Directory> initDirectories() throws Exception {
 		//_directories.add(new SchemaDirectory());
-		_directories.add(new TopDirectory());
+
+		TopDirectory topDirectory = new TopDirectory(_internalRequest);
+
+		_directories.add(topDirectory);
 
 		return _directories;
 	}
 
 	private List<Directory> _directories = new ArrayList<Directory>();
+	private InternalRequest _internalRequest;
 
 }

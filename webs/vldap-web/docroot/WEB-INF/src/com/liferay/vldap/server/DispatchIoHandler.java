@@ -16,7 +16,6 @@ package com.liferay.vldap.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.vldap.server.directory.RootDirectory;
 import com.liferay.vldap.server.handler.AbandonLdapHandler;
 import com.liferay.vldap.server.handler.BindLdapHandler;
 import com.liferay.vldap.server.handler.CompareLdapHandler;
@@ -129,7 +128,6 @@ public class DispatchIoHandler implements IoHandler {
 				if (ldapHandlerContext == null) {
 					ldapHandlerContext = new LdapHandlerContext();
 
-					ldapHandlerContext.setDirectory(new RootDirectory());
 					ldapHandlerContext.setSchemaManager(
 						_vldapServer.getSchemaManager());
 

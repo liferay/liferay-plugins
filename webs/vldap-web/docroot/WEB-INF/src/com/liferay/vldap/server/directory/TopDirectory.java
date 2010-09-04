@@ -20,15 +20,23 @@ import com.liferay.portal.service.CompanyLocalServiceUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.directory.shared.ldap.message.internal.InternalRequest;
+
 /**
  * @author Brian Wing Shun Chan
  */
 public class TopDirectory extends BaseDirectory {
 
-	public TopDirectory() throws Exception {
+	public TopDirectory(InternalRequest internalRequest) throws Exception {
 		super("o=Liferay");
 
+		_internalRequest = internalRequest;
+
 		initAttributes();
+	}
+
+	public InternalRequest getInternalRequest() {
+		return _internalRequest;
 	}
 
 	protected void initAttributes() {
@@ -50,5 +58,6 @@ public class TopDirectory extends BaseDirectory {
 	}
 
 	private List<Directory> _directories = new ArrayList<Directory>();
+	private InternalRequest _internalRequest;
 
 }

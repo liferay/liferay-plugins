@@ -16,6 +16,7 @@ package com.liferay.vldap.server.handler;
 
 import com.liferay.vldap.server.directory.Attribute;
 import com.liferay.vldap.server.directory.Directory;
+import com.liferay.vldap.server.directory.RootDirectory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 
 import java.util.List;
@@ -44,7 +45,7 @@ public class CompareLdapHandler extends BaseLdapHandler {
 		String attributeId = internalCompareRequest.getAttributeId();
 		Value<?> value = internalCompareRequest.getAssertionValue();
 
-		Directory directory = ldapHandlerContext.getDirectory();
+		Directory directory = new RootDirectory(internalRequest);
 
 		directory.findBase(internalCompareRequest.getName());
 

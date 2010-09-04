@@ -16,7 +16,6 @@ package com.liferay.vldap.server.handler.util;
 
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
-import com.liferay.vldap.server.directory.Directory;
 
 import javax.security.sasl.SaslServer;
 
@@ -30,10 +29,6 @@ public class LdapHandlerContext {
 
 	public Company getCompany() {
 		return _company;
-	}
-
-	public Directory getDirectory() {
-		return _directory;
 	}
 
 	public SaslCallbackHandler getSaslCallbackHandler() {
@@ -56,10 +51,6 @@ public class LdapHandlerContext {
 		_company = company;
 	}
 
-	public void setDirectory(Directory directory) {
-		_directory = directory;
-	}
-
 	public void setSaslCallbackHandler(
 		SaslCallbackHandler saslCallbackHandler) {
 
@@ -79,7 +70,6 @@ public class LdapHandlerContext {
 	}
 
 	private Company _company;
-	private Directory _directory;
 	private SaslCallbackHandler _saslCallbackHandler;
 	private SaslServer _saslServer;
 	private SchemaManager _schemaManager;

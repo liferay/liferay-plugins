@@ -17,6 +17,7 @@ package com.liferay.vldap.server.directory;
 import java.util.List;
 
 import org.apache.directory.shared.ldap.entry.Entry;
+import org.apache.directory.shared.ldap.message.internal.InternalRequest;
 import org.apache.directory.shared.ldap.name.DN;
 import org.apache.directory.shared.ldap.schema.SchemaManager;
 
@@ -35,6 +36,8 @@ public interface Directory {
 	public Attribute getAttribute(String attributeId, String value);
 
 	public List<Directory> getDirectories() throws Exception;
+
+	public InternalRequest getInternalRequest();
 
 	public Directory getParentDirectory();
 

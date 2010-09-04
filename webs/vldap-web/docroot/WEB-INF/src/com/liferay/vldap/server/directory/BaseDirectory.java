@@ -16,8 +16,9 @@ package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.List;
 import org.apache.directory.shared.ldap.entry.DefaultServerEntry;
 import org.apache.directory.shared.ldap.entry.Entry;
 import org.apache.directory.shared.ldap.entry.ServerEntry;
+import org.apache.directory.shared.ldap.message.internal.InternalRequest;
 import org.apache.directory.shared.ldap.name.DN;
 import org.apache.directory.shared.ldap.schema.AttributeType;
 import org.apache.directory.shared.ldap.schema.SchemaManager;
@@ -43,8 +45,7 @@ public abstract class BaseDirectory implements Directory {
 	public BaseDirectory(String name, Directory parentDirectory)
 		throws Exception {
 
-		name = StringUtil.replace(name, StringPool.COMMA, StringPool.BLANK);
-		name = name.trim();
+		name = escape(name.trim());
 
 		if (parentDirectory != null) {
 			_parentDirectory = parentDirectory;
@@ -105,6 +106,22 @@ public abstract class BaseDirectory implements Directory {
 		return _directories;
 	}
 
+	public InternalRequest getInternalRequest() {
+		Directory directory = _parentDirectory;
+
+		while (directory != null) {
+			InternalRequest internalRequest = directory.getInternalRequest();
+
+			if (internalRequest != null) {
+				return internalRequest;
+			}
+
+			directory = directory.getParentDirectory();
+		}
+
+		throw new RuntimeException("InternalRequest should never be null");
+	}
+
 	public DN getName() {
 		return _name;
 	}
@@ -157,6 +174,32 @@ public abstract class BaseDirectory implements Directory {
 		return serverEntry;
 	}
 
+	protected String escape(String name) {
+		int pos = name.indexOf(CharPool.EQUAL);
+
+		String suffix = name.substring(pos + 1);
+
+		char[] charArray = suffix.toCharArray();
+
+		StringBundler sb = new StringBundler();
+
+		for (char c : charArray) {
+			for (char escapeChar : _ESCAPE_CHARS) {
+				if (c == escapeChar) {
+					sb.append(CharPool.BACK_SLASH);
+
+					break;
+				}
+			}
+
+			sb.append(c);
+		}
+
+		String escapedSuffix = sb.toString();
+
+		return name.substring(0, pos + 1) + escapedSuffix;
+	}
+
 	protected Directory findBase(DN name, Directory directory)
 		throws Exception {
 
@@ -189,6 +232,13 @@ public abstract class BaseDirectory implements Directory {
 	protected abstract List<Directory> initDirectories() throws Exception;
 
 	private static Log _log = LogFactoryUtil.getLog(BaseDirectory.class);
+
+	/**
+	 * http://www.rlmueller.net/CharactersEscaped.htm
+	 */
+	private static final char[] _ESCAPE_CHARS = {
+		 ',', '\\', '#', '+', '<', '>', ';','"', '='
+	};
 
 	private List<Attribute> _attributes = new ArrayList<Attribute>();
 	private List<Directory> _directories;

@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.vldap.server.directory.Attribute;
 import com.liferay.vldap.server.directory.Directory;
+import com.liferay.vldap.server.directory.RootDirectory;
 import com.liferay.vldap.server.handler.util.LdapHandlerContext;
 import com.liferay.vldap.util.PortletPropsValues;
 
@@ -63,7 +64,7 @@ public class SearchLdapHandler extends BaseLdapHandler {
 			new ArrayList<InternalResponse>();
 
 		try {
-			Directory directory = ldapHandlerContext.getDirectory();
+			Directory directory = new RootDirectory(internalRequest);
 
 			directory = directory.findBase(internalSearchRequest.getBase());
 
