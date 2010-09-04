@@ -47,9 +47,14 @@ public class CompareLdapHandler extends BaseLdapHandler {
 
 		Directory directory = new RootDirectory(internalRequest);
 
-		directory.findBase(internalCompareRequest.getName());
+		directory = directory.findBase(internalCompareRequest.getName());
 
 		if (directory != null) {
+
+			// Initialize member attributes so they can be compared
+
+			directory.getDirectories();
+
 			Attribute attribute = directory.getAttribute(
 				attributeId, value.getString());
 

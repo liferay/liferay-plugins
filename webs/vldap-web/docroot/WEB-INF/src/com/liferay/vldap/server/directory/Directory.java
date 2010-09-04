@@ -35,6 +35,8 @@ public interface Directory {
 
 	public Attribute getAttribute(String attributeId, String value);
 
+	public List<Attribute> getAttributes();
+
 	public List<Directory> getDirectories() throws Exception;
 
 	public InternalRequest getInternalRequest();

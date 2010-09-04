@@ -142,6 +142,8 @@ public class UsersDirectory extends BaseDirectory {
 
 			Directory userDirectory = new UserDirectory(user, this);
 
+			addAttribute("member", userDirectory.getName().getName());
+
 			_directories.add(userDirectory);
 		}
 

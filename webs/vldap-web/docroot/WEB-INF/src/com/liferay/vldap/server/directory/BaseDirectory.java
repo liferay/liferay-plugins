@@ -98,6 +98,10 @@ public abstract class BaseDirectory implements Directory {
 		return null;
 	}
 
+	public List<Attribute> getAttributes() {
+		return _attributes;
+	}
+
 	public List<Directory> getDirectories() throws Exception {
 		if (_directories == null) {
 			_directories = initDirectories();
@@ -237,7 +241,7 @@ public abstract class BaseDirectory implements Directory {
 	 * http://www.rlmueller.net/CharactersEscaped.htm
 	 */
 	private static final char[] _ESCAPE_CHARS = {
-		 ',', '\\', '#', '+', '<', '>', ';','"', '='
+		 ',', '\\', '#', '+', '<', '>', ';', '"', '='
 	};
 
 	private List<Attribute> _attributes = new ArrayList<Attribute>();
