@@ -141,4 +141,6 @@ if (Validator.isNotNull(portletResource)) {
 
 	jspPath = selPortletConfig.getInitParameter("jsp-path");
 }
+
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

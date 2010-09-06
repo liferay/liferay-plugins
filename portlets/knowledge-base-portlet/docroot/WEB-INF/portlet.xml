@@ -154,6 +154,42 @@
 		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
 		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
+	<portlet>
+		<portlet-name>5</portlet-name>
+		<display-name>Knowledge Base List</display-name>
+		<portlet-class>com.liferay.knowledgebase.list.portlet.ListPortlet</portlet-class>
+		<init-param>
+			<name>jsp-path</name>
+			<value>/list/</value>
+		</init-param>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/list/view.jsp</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>Knowledge Base List</title>
+			<short-title>Knowledge Base List</short-title>
+			<keywords>Knowledge Base List</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
+		<supported-public-render-parameter>tag</supported-public-render-parameter>
+	</portlet>
 	<public-render-parameter>
 		<identifier>categoryId</identifier>
 		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:categoryId</qname>

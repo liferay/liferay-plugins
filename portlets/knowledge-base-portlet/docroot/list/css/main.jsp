@@ -1,3 +1,4 @@
+<%
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -11,25 +12,28 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+%>
 
-package com.liferay.knowledgebase.util;
+<%@ include file="/css_init.jsp" %>
 
-/**
- * @author Brian Wing Shun Chan
- * @author Peter Shin
- */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
+<liferay-util:buffer var="html">
+	<liferay-util:include page="/admin/css/main.jsp" servletContext="<%= application %>" />
+</liferay-util:buffer>
 
-	public static final String KNOWLEDGE_BASE_AGGREGATOR =
-		"2_WAR_knowledgebaseportlet";
+<%= StringUtil.replace(html, "knowledge-base-portlet-admin", "knowledge-base-portlet-list") %>
 
-	public static final String KNOWLEDGE_BASE_DISPLAY =
-		"3_WAR_knowledgebaseportlet";
+/* ---------- Configuration ---------- */
 
-	public static final String KNOWLEDGE_BASE_LIST =
-		"5_WAR_knowledgebaseportlet";
+.portlet-configuration .aui-field-wrapper-content {
+	margin: 0;
+}
 
-	public static final String KNOWLEDGE_BASE_SEARCH =
-		"4_WAR_knowledgebaseportlet";
+.portlet-configuration .kb-field-wrapper {
+	margin: 10px 0;
+}
 
+/* ---------- Portlet ---------- */
+
+.knowledge-base-portlet-list .taglib-search-iterator .opens-new-window-accessible {
+	display: none;
 }

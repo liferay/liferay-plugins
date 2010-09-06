@@ -64,6 +64,16 @@
 		<header-portlet-css>/search/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-search</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>5</portlet-name>
+		<icon>/icons/list.png</icon>
+		<configuration-action-class>com.liferay.knowledgebase.list.action.ConfigurationActionImpl</configuration-action-class>
+		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapping>knowledge_base_list</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/knowledgebase/list/portlet/list-friendly-url-routes.xml</friendly-url-routes>
+		<header-portlet-css>/list/css/main.jsp</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet-list</css-class-wrapper>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

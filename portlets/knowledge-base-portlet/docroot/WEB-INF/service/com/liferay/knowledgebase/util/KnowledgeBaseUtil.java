@@ -170,6 +170,9 @@ public class KnowledgeBaseUtil {
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			jspPage = "/display/view_article.jsp";
 		}
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
+			jspPage = "/list/view_article.jsp";
+		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
 			jspPage = "/search/view_article.jsp";
 		}
@@ -271,7 +274,9 @@ public class KnowledgeBaseUtil {
 		String[] assetTagNames = jxPreferences.getValues(
 			"asset-tag-names", new String[0]);
 
-		if (selectionMethod.equals("articles")) {
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST) ||
+			selectionMethod.equals("articles")) {
+
 			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
 				return null;
 			}
@@ -608,6 +613,9 @@ public class KnowledgeBaseUtil {
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 			return getPlidAndWindowState(portletId, resourcePrimKey, false);
+		}
+		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
+			return getPlidAndWindowState(portletId, resourcePrimKey, true);
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
 			return getPlidAndWindowState(portletId, resourcePrimKey, false);

@@ -23,20 +23,16 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), 5);
-String articlesDisplayStyle = preferences.getValue("articles-display-style", "full-content");
+String articlesTitle = preferences.getValue("articles-title", StringPool.BLANK);
+String orderByColumn = preferences.getValue("order-by-column", "priority");
+boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-ascending", null), true);
+int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String articleWindowState = preferences.getValue("article-window-state", WindowState.MAXIMIZED.toString());
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
-boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enable-article-description", null));
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
 boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
-
-int templatesDelta = GetterUtil.getInteger(preferences.getValue("templates-delta", StringPool.BLANK), 5);
-String templatesDisplayStyle = preferences.getValue("templates-display-style", "full-content");
-boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enable-template-description", null));
-boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enable-template-comments", null), true);
-boolean enableTemplateCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-template-comment-ratings", null));
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
@@ -44,4 +40,27 @@ String rssFormat = preferences.getValue("rss-format", "atom10");
 
 String rssFormatType = RSSUtil.getFormatType(rssFormat);
 double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
+
+OrderByComparator orderByComparator = null;
+
+if (orderByColumn.equals("create-date")) {
+	orderByComparator = new ArticleCreateDateComparator(orderByAscending);
+}
+else if (orderByColumn.equals("modified-date")) {
+	orderByComparator = new ArticleModifiedDateComparator(orderByAscending);
+}
+else if (orderByColumn.equals("priority")) {
+	orderByComparator = new ArticlePriorityComparator(orderByAscending);
+}
+else if (orderByColumn.equals("title")) {
+	orderByComparator = new ArticleTitleComparator(orderByAscending);
+}
+
+if (articleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.equals(WindowState.MAXIMIZED)) {
+	PortletURL portletURL = renderResponse.createRenderURL();
+
+	portletURL.setWindowState(WindowState.NORMAL);
+
+	portletDisplay.setURLBack(portletURL.toString());
+}
 %>
