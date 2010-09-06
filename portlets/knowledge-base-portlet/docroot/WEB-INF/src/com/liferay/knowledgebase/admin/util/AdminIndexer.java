@@ -203,30 +203,6 @@ public class AdminIndexer extends BaseIndexer {
 		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
 	}
 
-	protected void addSearchScopeGroupIds(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		long[] scopeGroupIds = (long[])searchContext.getAttribute(
-			"KNOWLEDGE_BASE_SCOPE_GROUP_IDS");
-
-		if (scopeGroupIds == null) {
-			return;
-		}
-
-		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
-
-		for (long scopeGroupId : scopeGroupIds) {
-			booleanQuery.addExactTerm(Field.SCOPE_GROUP_ID, scopeGroupId);
-		}
-
-		if (scopeGroupIds.length == 0) {
-			booleanQuery.addExactTerm(Field.SCOPE_GROUP_ID, new Long(0));
-		}
-
-		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
-	}
-
 	protected void doDelete(Object obj) throws Exception {
 		Article article = (Article)obj;
 
@@ -314,7 +290,6 @@ public class AdminIndexer extends BaseIndexer {
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
-		addSearchScopeGroupIds(contextQuery, searchContext);
 		addSearchResourcePrimKeys(contextQuery, searchContext);
 		addSearchAssetEntryQuery(contextQuery, searchContext);
 	}

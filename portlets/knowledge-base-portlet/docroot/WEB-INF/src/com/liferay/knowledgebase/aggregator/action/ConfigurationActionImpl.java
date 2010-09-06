@@ -87,8 +87,6 @@ public class ConfigurationActionImpl
 
 		String selectionMethod = ParamUtil.getString(
 			actionRequest, "selectionMethod");
-		long[] scopeGroupIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "scopeGroupIds"), 0L);
 		long[] resourcePrimKeys = StringUtil.split(
 			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
 		boolean allArticles = ParamUtil.getBoolean(
@@ -109,8 +107,6 @@ public class ConfigurationActionImpl
 			ParamUtil.getString(actionRequest, "assetTagNames"));
 
 		preferences.setValue("selection-method", selectionMethod);
-		preferences.setValues(
-			"scope-group-ids", ArrayUtil.toStringArray(scopeGroupIds));
 		preferences.setValues(
 			"resource-prim-keys", ArrayUtil.toStringArray(resourcePrimKeys));
 		preferences.setValue("all-articles", String.valueOf(allArticles));

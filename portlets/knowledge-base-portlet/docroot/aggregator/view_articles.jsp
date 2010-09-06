@@ -68,27 +68,6 @@ String tag = ParamUtil.getString(request, "tag");
 			results = ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
 			total = ArticleServiceUtil.getArticlesCount(params, false);
 		}
-		else if (selectionMethod.equals("scope-groups")) {
-			Map<String, Object> params = new HashMap<String, Object>();
-
-			params.put("groupId", ArrayUtil.toArray(scopeGroupIds));
-			params.put("status", WorkflowConstants.STATUS_APPROVED);
-
-			if (!allArticles) {
-				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-			}
-
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
-
-			if (assetEntries != null) {
-				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
-
-				params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
-			}
-
-			results = ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-			total = ArticleServiceUtil.getArticlesCount(params, false);
-		}
 
 		pageContext.setAttribute("results", results);
 		pageContext.setAttribute("total", total);

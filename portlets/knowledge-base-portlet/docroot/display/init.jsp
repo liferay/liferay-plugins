@@ -30,7 +30,6 @@ boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enab
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 
 String selectionMethod = preferences.getValue("selection-method", "parent-group");
-long[] scopeGroupIds = GetterUtil.getLongValues(preferences.getValues("scope-group-ids", new String[0]));
 long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", new String[0]));
 
 boolean allArticles = GetterUtil.getBoolean(preferences.getValue("all-articles", null), true);

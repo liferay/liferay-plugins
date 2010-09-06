@@ -22,7 +22,6 @@ import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -44,7 +43,6 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
@@ -260,8 +258,6 @@ public class KnowledgeBaseUtil {
 
 		String selectionMethod = jxPreferences.getValue(
 			"selection-method", "parent-group");
-		long[] scopeGroupIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("scope-group-ids", new String[0]));
 
 		boolean assetEntryQueryContains = GetterUtil.getBoolean(
 			jxPreferences.getValue("asset-entry-query-contains", null), true);
@@ -355,14 +351,8 @@ public class KnowledgeBaseUtil {
 			allAssetTagIds = ArrayUtil.append(allAssetTagIds, assetTagIds);
 		}
 
-		long[] groupIds = new long[0];
-
-		if (selectionMethod.equals("scope-groups")) {
-			groupIds = scopeGroupIds;
-		}
-		else {
-			groupIds = ArticleLocalServiceUtil.getGroupIds(group.getGroupId());
-		}
+		long[] groupIds = ArticleLocalServiceUtil.getGroupIds(
+			group.getGroupId());
 
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
@@ -402,8 +392,6 @@ public class KnowledgeBaseUtil {
 			"selection-method", "parent-group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
 			jxPreferences.getValues("resource-prim-keys", new String[0]));
-		long[] scopeGroupIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("scope-group-ids", new String[0]));
 
 		boolean allArticles = GetterUtil.getBoolean(
 			jxPreferences.getValue("all-articles", null), true);
@@ -478,32 +466,6 @@ public class KnowledgeBaseUtil {
 					params, false, lastIntervalStart, lastIntervalStart + delta,
 					orderByComparator);
 			}
-			else if (selectionMethod.equals("scope-groups")) {
-				Map<String, Object> params = new HashMap<String, Object>();
-
-				params.put("groupId", ArrayUtil.toArray(scopeGroupIds));
-				params.put("status", WorkflowConstants.STATUS_APPROVED);
-
-				if (!allArticles) {
-					params.put(
-						"parentResourcePrimKey",
-						ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-				}
-
-				List<AssetEntry> assetEntries = getAssetEntries(
-					plid, portletId, assetCategoryId, assetTagName);
-
-				if (assetEntries != null) {
-					long[] classPKs = StringUtil.split(
-						ListUtil.toString(assetEntries, "classPK"), 0L);
-
-					params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
-				}
-
-				articles = ArticleLocalServiceUtil.getArticles(
-					params, false, lastIntervalStart, lastIntervalStart + delta,
-					orderByComparator);
-			}
 
 			Iterator<Article> itr = articles.iterator();
 
@@ -524,27 +486,6 @@ public class KnowledgeBaseUtil {
 		return null;
 	}
 
-	public static List<Group> getScopeGroups(long[] scopeGroupIds)
-		throws Exception {
-
-		List<Group> scopeGroups = new ArrayList<Group>();
-
-		for (long curScopeGroupId : scopeGroupIds) {
-			Group group = null;
-
-			try {
-				group = GroupLocalServiceUtil.getGroup(curScopeGroupId);
-			}
-			catch (NoSuchGroupException nsge) {
-				continue;
-			}
-
-			scopeGroups.add(group);
-		}
-
-		return scopeGroups;
-	}
-
 	protected static Object[] getAggregatorPlidAndWindowState(
 			String portletId, long resourcePrimKey)
 		throws Exception {
@@ -552,9 +493,9 @@ public class KnowledgeBaseUtil {
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
+		long plid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), portletId);
 
-		long plid = PortalUtil.getPlidFromPortletId(parentGroupId, portletId);
 		WindowState windowState = WindowState.NORMAL;
 
 		if (plid == LayoutConstants.DEFAULT_PLID) {
@@ -588,9 +529,8 @@ public class KnowledgeBaseUtil {
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
-
-		long plid = PortalUtil.getPlidFromPortletId(parentGroupId, portletId);
+		long plid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), portletId);
 
 		if (plid == LayoutConstants.DEFAULT_PLID) {
 			return new Object[] {plid, WindowState.NORMAL};
@@ -616,9 +556,8 @@ public class KnowledgeBaseUtil {
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		long parentGroupId = PortalUtil.getParentGroupId(article.getGroupId());
-
-		long plid = PortalUtil.getPlidFromPortletId(parentGroupId, portletId);
+		long plid = PortalUtil.getPlidFromPortletId(
+			article.getGroupId(), portletId);
 
 		if (plid == LayoutConstants.DEFAULT_PLID) {
 			return new Object[] {plid, WindowState.NORMAL};
@@ -736,17 +675,12 @@ public class KnowledgeBaseUtil {
 			"selection-method", "parent-group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
 			jxPreferences.getValues("resource-prim-keys", new String[0]));
-		long[] scopeGroupIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("scope-group-ids", new String[0]));
 
 		boolean hasResourcePrimKey = ArrayUtil.contains(
 			resourcePrimKeys, article.getResourcePrimKey());
-		boolean hasScopeGroup = ArrayUtil.contains(
-			scopeGroupIds, article.getGroupId());
 
 		if ((selectionMethod.equals("parent-group")) ||
-			(selectionMethod.equals("articles") && hasResourcePrimKey) ||
-			(selectionMethod.equals("scope-groups") && hasScopeGroup)) {
+			(selectionMethod.equals("articles") && hasResourcePrimKey)) {
 
 			return true;
 		}

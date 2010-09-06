@@ -56,9 +56,6 @@ String keywords = ParamUtil.getString(request, "keywords");
 				if (selectionMethod.equals("articles")) {
 					searchContext.setAttribute("KNOWLEDGE_BASE_RESOURCE_PRIM_KEYS", resourcePrimKeys);
 				}
-				else if (selectionMethod.equals("scope-groups")) {
-					searchContext.setAttribute("KNOWLEDGE_BASE_SCOPE_GROUP_IDS", scopeGroupIds);
-				}
 
 				Indexer indexer = portlet.getIndexerInstance();
 

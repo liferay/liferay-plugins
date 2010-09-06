@@ -28,7 +28,6 @@
 		<workflow-handler>com.liferay.knowledgebase.admin.workflow.ArticleWorkflowHandler</workflow-handler>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<show-portlet-access-denied>false</show-portlet-access-denied>
-		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/main.jsp</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>

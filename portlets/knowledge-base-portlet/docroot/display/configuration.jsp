@@ -19,7 +19,6 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Group> scopeGroups = KnowledgeBaseUtil.getScopeGroups(scopeGroupIds);
 List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 %>
 
@@ -38,7 +37,6 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="scopeGroupIds" type="hidden" value='<%= ListUtil.toString(scopeGroups, "groupId") %>' />
 	<aui:input name="resourcePrimKeys" type="hidden" value='<%= ListUtil.toString(articles, "resourcePrimKey") %>' />
 
 	<aui:fieldset>
@@ -69,7 +67,6 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 
 				<aui:select name="selectionMethod" onChange="<%= taglibOnChange %>">
 					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
-					<aui:option label="scopes" selected='<%= selectionMethod.equals("scope-groups") %>' value="scope-groups" />
 					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("parent-group") %>' value="parent-group" />
 				</aui:select>
 
@@ -99,36 +96,6 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 
 						<div class="kb-edit-link">
 							<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-articles" /> &raquo;</aui:a>
-						</div>
-					</aui:field-wrapper>
-				</div>
-
-				<div class="kb-field-wrapper" id="<portlet:namespace />scopeGroupsSelectionOptions">
-					<aui:field-wrapper label="scopes">
-						<div class="kb-selected-entries" id="<portlet:namespace />scopeGroups">
-
-							<%
-							for (Group scopeGroup : scopeGroups) {
-							%>
-
-								<span id="<portlet:namespace />scopeGroup<%= scopeGroup.getGroupId() %>"><%= scopeGroup.getDescriptiveName() %></span>
-
-							<%
-							}
-							%>
-
-						</div>
-
-						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectScopeGroupsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="jspPage" value="/display/select_scope_groups.jsp" />
-						</liferay-portlet:renderURL>
-
-						<%
-						String taglibOnClick = "var selectScopeGroupsWindow = window.open('" + selectScopeGroupsURL + "', 'selectScopeGroups', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectScopeGroupsWindow.focus();";
-						%>
-
-						<div class="kb-edit-link">
-							<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-scopes" /> &raquo;</aui:a>
 						</div>
 					</aui:field-wrapper>
 				</div>
@@ -248,22 +215,6 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 			}
 		}
 
-		function <portlet:namespace />selectScopeGroups(scopeGroupIds, names) {
-			document.<portlet:namespace />fm.<portlet:namespace />scopeGroupIds.value = scopeGroupIds.join();
-			document.getElementById("<portlet:namespace />scopeGroups").innerHTML = "";
-
-			var scopeGroupsElement = document.getElementById("<portlet:namespace />scopeGroups");
-
-			for (var i = 0; i < names.length; i++) {
-				var scopeGroupElement = document.createElement("span");
-
-				scopeGroupElement.id = "<portlet:namespace />scopeGroup" + scopeGroupIds[i];
-				scopeGroupElement.innerHTML = names[i];
-
-				scopeGroupsElement.appendChild(scopeGroupElement);
-			}
-		}
-
 		function <portlet:namespace />updateAssetEntryQueryName(value) {
 			if (value == "asset-categories") {
 				document.getElementById("<portlet:namespace />assetCategoriesSelector").style.display = "";
@@ -279,19 +230,11 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 			if (value == "articles") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "";
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
 			}
 			else if (value == "parent-group") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
-				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
-			}
-			else if (value == "scope-groups") {
-				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
-				document.getElementById("<portlet:namespace />scopeGroupsSelectionOptions").style.display = "";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
 			}
 		}
