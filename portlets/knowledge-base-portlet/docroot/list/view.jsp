@@ -19,7 +19,7 @@
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(articlesTitle) %>">
 		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "ArticlesPanelContainer" %>' persistState="<%= true %>">
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, articlesTitle) %>'>
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' cssClass="kb-articles-panel" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, articlesTitle) %>'>
 				<liferay-util:include page="/list/view_articles.jsp" servletContext="<%= application %>" />
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>

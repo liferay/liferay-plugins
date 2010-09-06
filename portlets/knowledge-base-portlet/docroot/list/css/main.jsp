@@ -34,6 +34,10 @@
 
 /* ---------- Portlet ---------- */
 
+.knowledge-base-portlet-list .kb-articles-panel .lfr-panel-titlebar {
+	margin: 0 0 5px;
+}
+
 .knowledge-base-portlet-list .taglib-search-iterator .opens-new-window-accessible {
 	display: none;
 }
