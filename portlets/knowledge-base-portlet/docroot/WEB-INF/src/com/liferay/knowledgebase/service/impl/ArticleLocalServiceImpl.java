@@ -532,7 +532,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public void subscribeArticle(
-			String portletId, long userId, long resourcePrimKey)
+			long userId, String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		// Subscription

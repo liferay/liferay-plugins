@@ -272,7 +272,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.subscribeArticle(
-			portletId, getUserId(), resourcePrimKey);
+			getUserId(), portletId, resourcePrimKey);
 	}
 
 	public void unsubscribe(long companyId, long groupId, String portletId)

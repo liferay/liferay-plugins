@@ -1013,12 +1013,12 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
-	public void subscribeArticle(java.lang.String portletId, long userId,
+	public void subscribeArticle(long userId, java.lang.String portletId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey34,
-				portletId, userId, resourcePrimKey);
+				userId, portletId, resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -1423,7 +1423,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			"subscribe", long.class, long.class, long.class,
 			java.lang.String.class);
 	private MethodKey _subscribeArticleMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
-			"subscribeArticle", java.lang.String.class, long.class, long.class);
+			"subscribeArticle", long.class, java.lang.String.class, long.class);
 	private MethodKey _unsubscribeMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
 			"unsubscribe", long.class, long.class, long.class,
 			java.lang.String.class);

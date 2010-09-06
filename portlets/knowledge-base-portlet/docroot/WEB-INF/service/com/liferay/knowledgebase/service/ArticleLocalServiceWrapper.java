@@ -380,11 +380,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.subscribe(companyId, userId, groupId, portletId);
 	}
 
-	public void subscribeArticle(java.lang.String portletId, long userId,
+	public void subscribeArticle(long userId, java.lang.String portletId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribeArticle(portletId, userId, resourcePrimKey);
+		_articleLocalService.subscribeArticle(userId, portletId, resourcePrimKey);
 	}
 
 	public void unsubscribe(long companyId, long userId, long groupId,
