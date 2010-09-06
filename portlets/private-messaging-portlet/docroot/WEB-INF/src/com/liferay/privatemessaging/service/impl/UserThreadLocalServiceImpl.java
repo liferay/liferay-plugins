@@ -307,17 +307,15 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		Company company = CompanyLocalServiceUtil.getCompany(
 			sender.getCompanyId());
 
-		InternetAddress notificationFrom = new InternetAddress(
+		InternetAddress from = new InternetAddress(
 			company.getEmailAddress());
-		String notificationSubject = StringUtil.read(
+
+		String subject = StringUtil.read(
 			PrivateMessagingPortlet.class.getResourceAsStream(
 				"dependencies/notification_message_subject.tmpl"));
-		String notificationBody = StringUtil.read(
-			PrivateMessagingPortlet.class.getResourceAsStream(
-				"dependencies/notification_message_body.tmpl"));
 
-		notificationSubject = StringUtil.replace(
-			notificationSubject,
+		subject = StringUtil.replace(
+			subject,
 			new String[] {
 				"[$COMPANY_NAME$]",
 				"[$FROM_NAME$]"
@@ -327,9 +325,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				sender.getFullName()
 			});
 
-		String threadURL =
-			layoutFullURL + "/-/private_messaging/thread/" +
-				mbMessage.getThreadId();
+		String body = StringUtil.read(
+			PrivateMessagingPortlet.class.getResourceAsStream(
+				"dependencies/notification_message_body.tmpl"));
 
 		long portraitId = sender.getPortraitId();
 		String tokenId = ImageServletTokenUtil.getToken(sender.getPortraitId());
@@ -338,28 +336,30 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				"/user_" + (sender.isFemale() ? "female" : "male") +
 					"_portrait?img_id=" + portraitId + "&t=" + tokenId;
 
-		notificationBody = StringUtil.replace(
-			notificationBody,
+		String threadURL =
+			layoutFullURL + "/-/private_messaging/thread/" +
+				mbMessage.getThreadId();
+
+		body = StringUtil.replace(
+			body,
 			new String[] {
-				"[$COMPANY_NAME$]",
-				"[$SUBJECT$]",
 				"[$BODY$]",
+				"[$COMPANY_NAME$]",
+				"[$FROM_AVATAR$]",
 				"[$FROM_NAME$]",
 				"[$FROM_PROFILE_URL$]",
-				"[$FROM_AVATAR$]",
+				"[$SUBJECT$]",
 				"[$THREAD_URL$]"
 			},
 			new String[] {
-				company.getName(),
-				mbMessage.getSubject(),
 				mbMessage.getBody(),
+				company.getName(),
+				portraitURL,
 				sender.getFullName(),
 				sender.getDisplayURL(themeDisplay),
-				portraitURL,
+				mbMessage.getSubject(),
 				threadURL
 			});
-
-		boolean htmlFormat = true;
 
 		List<UserThread> userThreads =
 			UserThreadLocalServiceUtil.getMBThreadUserThreads(
@@ -373,23 +373,22 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			User recipient = UserLocalServiceUtil.getUser(
 				userThread.getUserId());
 
+			InternetAddress to = new InternetAddress(
+				recipient.getEmailAddress());
+
 			Format dateFormatDateTime =
 				FastDateFormatFactoryUtil.getSimpleDateFormat(
 					"MMMMM d 'at' h:mm a", recipient.getLocale(),
 					recipient.getTimeZone());
 
-			notificationBody = StringUtil.replace(
-				notificationBody, "[$SENT_DATE$]",
+			body = StringUtil.replace(
+				body, "[$SENT_DATE$]",
 				dateFormatDateTime.format(mbMessage.getCreateDate()));
 
-			InternetAddress notificationTo = new InternetAddress(
-				recipient.getEmailAddress());
+			MailMessage mailMessage = new MailMessage(
+				from, to, subject, body, true);
 
-			MailMessage notificationMessage = new MailMessage(
-				notificationFrom, notificationTo, notificationSubject,
-				notificationBody, htmlFormat);
-
-			MailServiceUtil.sendEmail(notificationMessage);
+			MailServiceUtil.sendEmail(mailMessage);
 		}
 	}
 
