@@ -159,10 +159,11 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getLatestArticle(resourcePrimKey, status);
 	}
 
-	public void subscribe(long groupId)
+	public void subscribe(long companyId, long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.subscribe(groupId);
+		_articleService.subscribe(companyId, groupId, portletId);
 	}
 
 	public void subscribeArticle(java.lang.String portletId,
@@ -172,10 +173,11 @@ public class ArticleServiceWrapper implements ArticleService {
 		_articleService.subscribeArticle(portletId, resourcePrimKey);
 	}
 
-	public void unsubscribe(long groupId)
+	public void unsubscribe(long companyId, long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.unsubscribe(groupId);
+		_articleService.unsubscribe(companyId, groupId, portletId);
 	}
 
 	public void unsubscribeArticle(long companyId, long resourcePrimKey)

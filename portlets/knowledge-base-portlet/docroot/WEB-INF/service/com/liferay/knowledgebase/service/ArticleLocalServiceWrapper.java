@@ -367,10 +367,17 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getLatestArticle(resourcePrimKey, status);
 	}
 
-	public void subscribe(long groupId, long userId)
+	public java.util.List<com.liferay.portal.model.Subscription> getSubscriptions(
+		long userId, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getSubscriptions(userId, groupId);
+	}
+
+	public void subscribe(long companyId, long userId, long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribe(groupId, userId);
+		_articleLocalService.subscribe(companyId, userId, groupId, portletId);
 	}
 
 	public void subscribeArticle(java.lang.String portletId, long userId,
@@ -380,10 +387,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.subscribeArticle(portletId, userId, resourcePrimKey);
 	}
 
-	public void unsubscribe(long groupId, long userId)
+	public void unsubscribe(long companyId, long userId, long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribe(groupId, userId);
+		_articleLocalService.unsubscribe(companyId, userId, groupId, portletId);
 	}
 
 	public void unsubscribeArticle(long companyId, long userId,

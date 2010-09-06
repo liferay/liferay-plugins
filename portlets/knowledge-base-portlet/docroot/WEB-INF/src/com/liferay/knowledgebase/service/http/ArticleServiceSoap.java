@@ -237,9 +237,10 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void subscribe(long groupId) throws RemoteException {
+	public static void subscribe(long companyId, long groupId,
+		java.lang.String portletId) throws RemoteException {
 		try {
-			ArticleServiceUtil.subscribe(groupId);
+			ArticleServiceUtil.subscribe(companyId, groupId, portletId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -260,9 +261,10 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void unsubscribe(long groupId) throws RemoteException {
+	public static void unsubscribe(long companyId, long groupId,
+		java.lang.String portletId) throws RemoteException {
 		try {
-			ArticleServiceUtil.unsubscribe(groupId);
+			ArticleServiceUtil.unsubscribe(companyId, groupId, portletId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

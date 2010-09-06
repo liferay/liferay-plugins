@@ -173,10 +173,11 @@ public class ArticleServiceUtil {
 		return getService().getLatestArticle(resourcePrimKey, status);
 	}
 
-	public static void subscribe(long groupId)
+	public static void subscribe(long companyId, long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribe(groupId);
+		getService().subscribe(companyId, groupId, portletId);
 	}
 
 	public static void subscribeArticle(java.lang.String portletId,
@@ -186,10 +187,11 @@ public class ArticleServiceUtil {
 		getService().subscribeArticle(portletId, resourcePrimKey);
 	}
 
-	public static void unsubscribe(long groupId)
+	public static void unsubscribe(long companyId, long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribe(groupId);
+		getService().unsubscribe(companyId, groupId, portletId);
 	}
 
 	public static void unsubscribeArticle(long companyId, long resourcePrimKey)
