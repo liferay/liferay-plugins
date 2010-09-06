@@ -34,7 +34,7 @@ boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enab
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 
 String selectionMethod = preferences.getValue("selection-method", "parent-group");
-long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", new String[0]));
+long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", null));
 
 boolean allArticles = GetterUtil.getBoolean(preferences.getValue("all-articles", null), true);
 String orderByColumn = preferences.getValue("order-by-column", "modified-date");
@@ -43,7 +43,7 @@ boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-
 boolean assetEntryQueryContains = GetterUtil.getBoolean(preferences.getValue("asset-entry-query-contains", null), true);
 boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(preferences.getValue("asset-entry-query-and-operator", null));
 String assetEntryQueryName = preferences.getValue("asset-entry-query-name", "asset-categories");
-long[] assetCategoryIds = GetterUtil.getLongValues(preferences.getValues("asset-category-ids", new String[0]));
+long[] assetCategoryIds = GetterUtil.getLongValues(preferences.getValues("asset-category-ids", null));
 String[] assetTagNames = preferences.getValues("asset-tag-names", new String[0]);
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);

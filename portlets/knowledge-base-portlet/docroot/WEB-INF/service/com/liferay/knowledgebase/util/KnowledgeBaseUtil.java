@@ -206,11 +206,12 @@ public class KnowledgeBaseUtil {
 			selResourcePrimKeys.add(resourcePrimKeys[i]);
 		}
 
+		resourcePrimKeys = StringUtil.split(
+			StringUtil.merge(selResourcePrimKeys), 0L);
+
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put(
-			"resourcePrimKey",
-			selResourcePrimKeys.toArray(new Long[selResourcePrimKeys.size()]));
+		params.put("resourcePrimKey", ArrayUtil.toArray(resourcePrimKeys));
 		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 		List<Article> unsortedArticles = null;
@@ -228,7 +229,7 @@ public class KnowledgeBaseUtil {
 
 		List<Article> articles = new ArrayList<Article>();
 
-		for (Long resourcePrimKey : selResourcePrimKeys) {
+		for (long resourcePrimKey : resourcePrimKeys) {
 			for (int i = 0; i < unsortedArticles.size(); i++) {
 				Article article = unsortedArticles.get(i);
 
@@ -266,7 +267,7 @@ public class KnowledgeBaseUtil {
 		String assetEntryQueryName = jxPreferences.getValue(
 			"asset-entry-query-name", "asset-categories");
 		long[] assetCategoryIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("asset-category-ids", new String[0]));
+			jxPreferences.getValues("asset-category-ids", null));
 		String[] assetTagNames = jxPreferences.getValues(
 			"asset-tag-names", new String[0]);
 
@@ -391,7 +392,7 @@ public class KnowledgeBaseUtil {
 		String selectionMethod = jxPreferences.getValue(
 			"selection-method", "parent-group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resource-prim-keys", new String[0]));
+			jxPreferences.getValues("resource-prim-keys", null));
 
 		boolean allArticles = GetterUtil.getBoolean(
 			jxPreferences.getValue("all-articles", null), true);
@@ -486,8 +487,8 @@ public class KnowledgeBaseUtil {
 		return null;
 	}
 
-	protected static Object[] getAggregatorPlidAndWindowState(
-			String portletId, long resourcePrimKey)
+	protected static Object[] getPlidAndWindowState(
+			String portletId, long resourcePrimKey, boolean checkWindowState)
 		throws Exception {
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
@@ -495,82 +496,30 @@ public class KnowledgeBaseUtil {
 
 		long plid = PortalUtil.getPlidFromPortletId(
 			article.getGroupId(), portletId);
+
+		if (plid == LayoutConstants.DEFAULT_PLID) {
+			return new Object[] {plid, WindowState.NORMAL};
+		}
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		PortletPreferences jxPreferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, StringPool.BLANK);
 
 		WindowState windowState = WindowState.NORMAL;
 
-		if (plid == LayoutConstants.DEFAULT_PLID) {
-			return new Object[] {plid, windowState};
-		}
+		if (checkWindowState) {
+			String articleWindowState = jxPreferences.getValue(
+				"article-window-state", WindowState.MAXIMIZED.toString());
 
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		PortletPreferences jxPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
-
-		String articleWindowState = jxPreferences.getValue(
-			"article-window-state", WindowState.MAXIMIZED.toString());
-
-		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
-			windowState = WindowState.MAXIMIZED;
+			if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
+				windowState = WindowState.MAXIMIZED;
+			}
 		}
 
 		if (hasArticle(article, jxPreferences)) {
 			return new Object[] {plid, windowState};
-		}
-
-		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
-	}
-
-	protected static Object[] getDisplayPlidAndWindowState(
-			String portletId, long resourcePrimKey)
-		throws Exception {
-
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			article.getGroupId(), portletId);
-
-		if (plid == LayoutConstants.DEFAULT_PLID) {
-			return new Object[] {plid, WindowState.NORMAL};
-		}
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		PortletPreferences jxPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
-
-		if (hasArticle(article, jxPreferences)) {
-			return new Object[] {plid, WindowState.NORMAL};
-		}
-
-		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
-	}
-
-	protected static Object[] getSearchPlidAndWindowState(
-			String portletId, long resourcePrimKey)
-		throws Exception {
-
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			article.getGroupId(), portletId);
-
-		if (plid == LayoutConstants.DEFAULT_PLID) {
-			return new Object[] {plid, WindowState.NORMAL};
-		}
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		PortletPreferences jxPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
-
-		if (hasArticle(article, jxPreferences)) {
-			return new Object[] {plid, WindowState.MAXIMIZED};
 		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
@@ -655,13 +604,13 @@ public class KnowledgeBaseUtil {
 		throws Exception {
 
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			return getAggregatorPlidAndWindowState(portletId, resourcePrimKey);
+			return getPlidAndWindowState(portletId, resourcePrimKey, true);
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			return getDisplayPlidAndWindowState(portletId, resourcePrimKey);
+			return getPlidAndWindowState(portletId, resourcePrimKey, false);
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
-			return getSearchPlidAndWindowState(portletId, resourcePrimKey);
+			return getPlidAndWindowState(portletId, resourcePrimKey, false);
 		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
@@ -674,13 +623,13 @@ public class KnowledgeBaseUtil {
 		String selectionMethod = jxPreferences.getValue(
 			"selection-method", "parent-group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resource-prim-keys", new String[0]));
+			jxPreferences.getValues("resource-prim-keys", null));
 
-		boolean hasResourcePrimKey = ArrayUtil.contains(
+		boolean hasArticle = ArrayUtil.contains(
 			resourcePrimKeys, article.getResourcePrimKey());
 
 		if ((selectionMethod.equals("parent-group")) ||
-			(selectionMethod.equals("articles") && hasResourcePrimKey)) {
+			(selectionMethod.equals("articles") && hasArticle)) {
 
 			return true;
 		}
