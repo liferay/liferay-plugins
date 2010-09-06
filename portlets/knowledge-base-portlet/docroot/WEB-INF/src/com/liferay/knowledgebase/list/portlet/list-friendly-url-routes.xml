@@ -11,6 +11,16 @@
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 	<route>
+		<pattern>/home</pattern>
+		<implicit-parameter name="jspPage">/list/view.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">home</implicit-parameter>
+	</route>
+	<route>
+		<pattern>/my-subscriptions</pattern>
+		<implicit-parameter name="jspPage">/list/view_subscriptions.jsp</implicit-parameter>
+		<implicit-parameter name="topLink">my-subscriptions</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/article/{resourcePrimKey:\d+}</pattern>
 		<implicit-parameter name="jspPage">/list/view_article.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>

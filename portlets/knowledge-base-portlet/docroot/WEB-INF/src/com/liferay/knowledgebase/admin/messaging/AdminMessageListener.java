@@ -239,23 +239,32 @@ public class AdminMessageListener implements MessageListener {
 				PermissionThreadLocal.setPermissionChecker(null);
 			}
 
-			String portletId = ExpandoValueLocalServiceUtil.getData(
+			String[] portletIds = ExpandoValueLocalServiceUtil.getData(
 				user.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletId", subscription.getSubscriptionId(),
-				PortletKeys.KNOWLEDGE_BASE_ADMIN);
+				"portletIds", subscription.getSubscriptionId(), new String[0]);
 
-			String articleURL = KnowledgeBaseUtil.getArticleURL(
-				portletId, resourcePrimKey, portalURL);
+			String articleURL = null;
 
-			if (Validator.isNull(articleURL)) {
+			for (String portletId : portletIds) {
+				articleURL = KnowledgeBaseUtil.getArticleURL(
+					portletId, resourcePrimKey, portalURL);
+
+				if (Validator.isNotNull(articleURL)) {
+					break;
+				}
+
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Portlet " + portletId + " does not exist or does " +
 							"not contain article " + resourcePrimKey);
 
-					ArticleLocalServiceUtil.unsubscribeArticle(subscription);
+					ArticleLocalServiceUtil.unsubscribe(
+						subscription.getCompanyId(), userId,
+						subscription.getClassPK(), portletId);
 				}
+			}
 
+			if (Validator.isNull(articleURL)) {
 				continue;
 			}
 

@@ -18,7 +18,11 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+
+import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
@@ -27,9 +31,18 @@ public class GroupListener extends BaseModelListener<Group> {
 
 	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
-			SubscriptionLocalServiceUtil.deleteSubscriptions(
-				group.getCompanyId(), Article.class.getName(),
-				group.getGroupId());
+			List<Subscription> subscriptions =
+				SubscriptionLocalServiceUtil.getSubscriptions(
+					group.getCompanyId(), Article.class.getName(),
+					group.getGroupId());
+
+			for (Subscription subscription : subscriptions) {
+				SubscriptionLocalServiceUtil.deleteSubscription(subscription);
+
+				ExpandoValueLocalServiceUtil.deleteValue(
+					group.getCompanyId(), Article.class.getName(), "KB",
+					"portletIds", subscription.getSubscriptionId());
+			}
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);

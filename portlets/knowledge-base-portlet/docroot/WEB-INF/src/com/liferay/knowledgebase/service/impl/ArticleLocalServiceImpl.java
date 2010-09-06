@@ -27,6 +27,7 @@ import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
+import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -67,6 +68,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.util.portlet.PortletProps;
 
 import java.io.IOException;
@@ -466,11 +468,67 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public void subscribe(long groupId, long userId)
+	public List<Subscription> getSubscriptions(long userId, long groupId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Subscription.class, "subscription",
+			PortalClassLoaderUtil.getClassLoader());
+
+		Property userIdProperty = PropertyFactoryUtil.forName("userId");
+
+		dynamicQuery.add(userIdProperty.eq(userId));
+
+		Property classNameIdProperty = PropertyFactoryUtil.forName(
+			"classNameId");
+
+		dynamicQuery.add(
+			classNameIdProperty.eq(PortalUtil.getClassNameId(Article.class)));
+
+		Property classPKProperty = PropertyFactoryUtil.forName("classPK");
+
+		dynamicQuery.add(classPKProperty.ne(groupId));
+
+		return subscriptionPersistence.findWithDynamicQuery(dynamicQuery);
+	}
+
+	public void subscribe(
+			long companyId, long userId, long groupId, String portletId)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.addSubscription(
-			userId, Article.class.getName(), groupId);
+		// Subscription
+
+		Subscription subscription = null;
+
+		try {
+			subscription = subscriptionLocalService.getSubscription(
+				companyId, userId, Article.class.getName(), groupId);
+		}
+		catch (NoSuchSubscriptionException nsse) {
+			subscription = subscriptionLocalService.addSubscription(
+				userId, Article.class.getName(), groupId);
+		}
+
+		// Expando
+
+		ExpandoValue expandoValue = expandoValueLocalService.getValue(
+			subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletIds", subscription.getSubscriptionId());
+
+		String[] portletIds = new String[] {portletId};
+
+		if (expandoValue != null) {
+			portletIds = ArrayUtil.append(
+				portletIds, expandoValue.getStringArray());
+
+			expandoValueLocalService.deleteValue(
+				subscription.getCompanyId(), Subscription.class.getName(), "KB",
+				"portletIds", subscription.getSubscriptionId());
+		}
+
+		expandoValueLocalService.addValue(
+			subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletIds", subscription.getSubscriptionId(), portletIds);
 	}
 
 	public void subscribeArticle(
@@ -486,14 +544,40 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		expandoValueLocalService.addValue(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletId", subscription.getSubscriptionId(), portletId);
+			"portletIds", subscription.getSubscriptionId(),
+			new String[] {portletId});
 	}
 
-	public void unsubscribe(long groupId, long userId)
+	public void unsubscribe(
+			long companyId, long userId, long groupId, String portletId)
 		throws PortalException, SystemException {
 
-		subscriptionLocalService.deleteSubscription(
-			userId, Article.class.getName(), groupId);
+		Subscription subscription = subscriptionLocalService.getSubscription(
+			companyId, userId, Article.class.getName(), groupId);
+
+		String[] portletIds = expandoValueLocalService.getData(
+			companyId, Subscription.class.getName(), "KB", "portletIds",
+			subscription.getSubscriptionId(), new String[0]);
+
+		portletIds = ArrayUtil.remove(portletIds, portletId);
+
+		// Subscription
+
+		if (portletIds.length == 0) {
+			subscriptionLocalService.deleteSubscription(subscription);
+		}
+
+		// Expando
+
+		expandoValueLocalService.deleteValue(
+			subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletIds", subscription.getSubscriptionId());
+
+		if (portletIds.length != 0) {
+			expandoValueLocalService.addValue(
+				subscription.getCompanyId(), Subscription.class.getName(), "KB",
+				"portletIds", subscription.getSubscriptionId(), portletIds);
+		}
 	}
 
 	public void unsubscribeArticle(
@@ -517,7 +601,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		expandoValueLocalService.deleteValue(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletId", subscription.getSubscriptionId());
+			"portletIds", subscription.getSubscriptionId());
 	}
 
 	public Article updateArticle(

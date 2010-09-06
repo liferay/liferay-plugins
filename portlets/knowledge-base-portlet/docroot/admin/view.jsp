@@ -65,8 +65,23 @@
 
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
 				<td>
+
+					<%
+					boolean subscribed = false;
+
+					if (SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId)) {
+						Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId);
+
+						String[] portletIds = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletIds", subscription.getSubscriptionId(), new String[0]);
+
+						if (ArrayUtil.contains(portletIds, portletDisplay.getId())) {
+							subscribed = true;
+						}
+					}
+					%>
+
 					<c:choose>
-						<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
+						<c:when test="<%= subscribed %>">
 							<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 							</portlet:actionURL>

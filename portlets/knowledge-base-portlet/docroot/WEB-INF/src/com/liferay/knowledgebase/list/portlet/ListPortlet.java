@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.list.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -51,8 +52,14 @@ public class ListPortlet extends AdminPortlet {
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		ArticleLocalServiceUtil.subscribeArticle(
-			portletId, themeDisplay.getUserId(), resourcePrimKey);
+		if (resourcePrimKey <= 0) {
+			ArticleLocalServiceUtil.subscribe(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				themeDisplay.getScopeGroupId(), portletId);
+		}
+		else {
+			ArticleServiceUtil.subscribeArticle(portletId, resourcePrimKey);
+		}
 	}
 
 	public void unsubscribe(
@@ -69,9 +76,17 @@ public class ListPortlet extends AdminPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		ArticleLocalServiceUtil.unsubscribeArticle(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-			resourcePrimKey);
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		if (resourcePrimKey <= 0) {
+			ArticleLocalServiceUtil.unsubscribe(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				themeDisplay.getScopeGroupId(), portletId);
+		}
+		else {
+			ArticleServiceUtil.unsubscribeArticle(
+				themeDisplay.getCompanyId(), resourcePrimKey);
+		}
 	}
 
 	protected int getStatus(PortletRequest portletRequest) {

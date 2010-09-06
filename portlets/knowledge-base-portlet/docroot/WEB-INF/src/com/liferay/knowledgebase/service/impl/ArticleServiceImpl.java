@@ -255,13 +255,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articleLocalService.getLatestArticle(resourcePrimKey, status);
 	}
 
-	public void subscribe(long groupId)
+	public void subscribe(long companyId, long groupId, String portletId)
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.subscribe(groupId, getUserId());
+		articleLocalService.subscribe(
+			companyId, getUserId(), groupId, portletId);
 	}
 
 	public void subscribeArticle(String portletId, long resourcePrimKey)
@@ -274,13 +275,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			portletId, getUserId(), resourcePrimKey);
 	}
 
-	public void unsubscribe(long groupId)
+	public void unsubscribe(long companyId, long groupId, String portletId)
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.unsubscribe(groupId, getUserId());
+		articleLocalService.unsubscribe(
+			companyId, getUserId(), groupId, portletId);
 	}
 
 	public void unsubscribeArticle(long companyId, long resourcePrimKey)
