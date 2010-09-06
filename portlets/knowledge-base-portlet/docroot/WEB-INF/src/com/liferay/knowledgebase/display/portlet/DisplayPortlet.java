@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.display.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -28,6 +29,7 @@ import com.liferay.portal.util.PortalUtil;
 import java.io.IOException;
 
 import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletSession;
@@ -40,6 +42,45 @@ import javax.portlet.ResourceRequest;
  * @author Brian Wing Shun Chan
  */
 public class DisplayPortlet extends AdminPortlet {
+
+	public void subscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		ArticleLocalServiceUtil.subscribeArticle(
+			portletId, themeDisplay.getUserId(), resourcePrimKey);
+	}
+
+	public void unsubscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		ArticleLocalServiceUtil.unsubscribeArticle(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+			resourcePrimKey);
+	}
 
 	protected void doDispatch(
 			RenderRequest renderRequest, RenderResponse renderResponse)
