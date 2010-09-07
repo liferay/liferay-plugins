@@ -199,10 +199,11 @@ public class BindLdapHandler extends BaseLdapHandler {
 		String password = new String(internalBindRequest.getCredentials());
 		Map<String, String[]> headerMap = new HashMap<String, String[]>();
 		Map<String, String[]> parameterMap = new HashMap<String, String[]>();
+		Map<String, Object> resultsMap = new HashMap<String, Object>();
 
 		int authResult = UserLocalServiceUtil.authenticateByScreenName(
 			company.getCompanyId(), screenName, password, headerMap,
-			parameterMap);
+			parameterMap, resultsMap);
 
 		if (authResult != Authenticator.SUCCESS) {
 			return getInternalResponse(
