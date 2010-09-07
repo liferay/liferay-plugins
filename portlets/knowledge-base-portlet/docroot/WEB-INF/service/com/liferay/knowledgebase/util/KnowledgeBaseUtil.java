@@ -261,7 +261,7 @@ public class KnowledgeBaseUtil {
 				layout, portletId, StringPool.BLANK);
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "parent-group");
+			"selection-method", "group");
 
 		boolean assetEntryQueryContains = GetterUtil.getBoolean(
 			jxPreferences.getValue("asset-entry-query-contains", null), true);
@@ -357,9 +357,6 @@ public class KnowledgeBaseUtil {
 			allAssetTagIds = ArrayUtil.append(allAssetTagIds, assetTagIds);
 		}
 
-		long[] groupIds = ArticleLocalServiceUtil.getGroupIds(
-			group.getGroupId());
-
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
 		assetEntryQuery.setAllCategoryIds(allAssetCategoryIds);
@@ -367,7 +364,7 @@ public class KnowledgeBaseUtil {
 		assetEntryQuery.setAnyCategoryIds(anyAssetCategoryIds);
 		assetEntryQuery.setAnyTagIds(anyAssetTagIds);
 		assetEntryQuery.setClassName(Article.class.getName());
-		assetEntryQuery.setGroupIds(groupIds);
+		assetEntryQuery.setGroupIds(new long[] {group.getGroupId()});
 		assetEntryQuery.setNotAllCategoryIds(notAllAssetCategoryIds);
 		assetEntryQuery.setNotAllTagIds(notAllAssetTagIds);
 		assetEntryQuery.setNotAnyCategoryIds(notAnyAssetCategoryIds);
@@ -395,7 +392,7 @@ public class KnowledgeBaseUtil {
 				layout, portletId, StringPool.BLANK);
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "parent-group");
+			"selection-method", "group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
 			jxPreferences.getValues("resource-prim-keys", null));
 
@@ -446,10 +443,10 @@ public class KnowledgeBaseUtil {
 					resourcePrimKeys, lastIntervalStart,
 					lastIntervalStart + delta, false);
 			}
-			else if (selectionMethod.equals("parent-group")) {
+			else if (selectionMethod.equals("group")) {
 				Map<String, Object> params = new HashMap<String, Object>();
 
-				params.put("parentGroupId", group.getGroupId());
+				params.put("groupId", group.getGroupId());
 				params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 				if (!allArticles) {
@@ -629,14 +626,14 @@ public class KnowledgeBaseUtil {
 		throws Exception {
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "parent-group");
+			"selection-method", "group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
 			jxPreferences.getValues("resource-prim-keys", null));
 
 		boolean hasArticle = ArrayUtil.contains(
 			resourcePrimKeys, article.getResourcePrimKey());
 
-		if ((selectionMethod.equals("parent-group")) ||
+		if ((selectionMethod.equals("group")) ||
 			(selectionMethod.equals("articles") && hasArticle)) {
 
 			return true;

@@ -98,7 +98,7 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 
 				<aui:select name="selectionMethod" onChange="<%= taglibOnChange %>">
 					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
-					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("parent-group") %>' value="parent-group" />
+					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
 				</aui:select>
 
 				<div class="kb-field-wrapper" id="<portlet:namespace />articlesSelectionOptions">
@@ -265,7 +265,7 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
 			}
-			else if (value == "parent-group") {
+			else if (value == "group") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "";

@@ -36,7 +36,7 @@
 				<%
 				Map<String, Object> params = new HashMap<String, Object>();
 
-				params.put("parentGroupId", themeDisplay.getParentGroupId());
+				params.put("groupId", scopeGroupId);
 				params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 				pageContext.setAttribute("results", ArticleLocalServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticleTitleComparator(true)));

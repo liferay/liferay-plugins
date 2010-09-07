@@ -47,10 +47,10 @@ String tag = ParamUtil.getString(request, "tag");
 			results = KnowledgeBaseUtil.getArticles(resourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), true);
 			total = resourcePrimKeys.length;
 		}
-		else if (selectionMethod.equals("parent-group")) {
+		else if (selectionMethod.equals("group")) {
 			Map<String, Object> params = new HashMap<String, Object>();
 
-			params.put("parentGroupId", themeDisplay.getParentGroupId());
+			params.put("groupId", scopeGroupId);
 			params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 			if (!allArticles) {

@@ -30,7 +30,7 @@ boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("ena
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 
-String selectionMethod = preferences.getValue("selection-method", "parent-group");
+String selectionMethod = preferences.getValue("selection-method", "group");
 long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", null));
 
 boolean assetEntryQueryContains = GetterUtil.getBoolean(preferences.getValue("asset-entry-query-contains", null), true);

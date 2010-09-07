@@ -33,7 +33,7 @@ String tag = ParamUtil.getString(request, "tag");
 		<%
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("parentGroupId", themeDisplay.getParentGroupId());
+		params.put("groupId", scopeGroupId);
 		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
 		List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);

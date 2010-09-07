@@ -28,14 +28,11 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
-import com.liferay.portal.kernel.dao.orm.Conjunction;
-import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -50,7 +47,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -60,7 +56,6 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
@@ -420,41 +415,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return getArticlesCount(params, allVersions);
 	}
 
-	public long[] getGroupIds(long parentGroupId) throws SystemException {
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Group.class, "group", PortalClassLoaderUtil.getClassLoader());
-
-		Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
-		Property classNameIdProperty = PropertyFactoryUtil.forName(
-			"classNameId");
-		Property parentGroupIdProperty = PropertyFactoryUtil.forName(
-			"parentGroupId");
-
-		long classNameId = PortalUtil.getClassNameId(Layout.class);
-
-		Conjunction conjunction1 = RestrictionsFactoryUtil.conjunction();
-
-		conjunction1.add(groupIdProperty.eq(parentGroupId));
-		conjunction1.add(classNameIdProperty.ne(classNameId));
-
-		Conjunction conjunction2 = RestrictionsFactoryUtil.conjunction();
-
-		conjunction2.add(classNameIdProperty.eq(classNameId));
-		conjunction2.add(parentGroupIdProperty.eq(parentGroupId));
-
-		Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
-
-		disjunction.add(conjunction1);
-		disjunction.add(conjunction2);
-
-		dynamicQuery.add(disjunction);
-
-		List<Group> groups = groupPersistence.findWithDynamicQuery(
-			dynamicQuery);
-
-		return StringUtil.split(ListUtil.toString(groups, "groupId"), 0L);
-	}
-
 	public Article getLatestArticle(long resourcePrimKey, int status)
 		throws PortalException, SystemException {
 
@@ -466,30 +426,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return articlePersistence.findByR_S_First(
 				resourcePrimKey, status, new ArticleVersionComparator());
 		}
-	}
-
-	public List<Subscription> getSubscriptions(long userId, long groupId)
-		throws SystemException {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Subscription.class, "subscription",
-			PortalClassLoaderUtil.getClassLoader());
-
-		Property userIdProperty = PropertyFactoryUtil.forName("userId");
-
-		dynamicQuery.add(userIdProperty.eq(userId));
-
-		Property classNameIdProperty = PropertyFactoryUtil.forName(
-			"classNameId");
-
-		dynamicQuery.add(
-			classNameIdProperty.eq(PortalUtil.getClassNameId(Article.class)));
-
-		Property classPKProperty = PropertyFactoryUtil.forName("classPK");
-
-		dynamicQuery.add(classPKProperty.ne(groupId));
-
-		return subscriptionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
 	public void subscribe(
@@ -946,11 +882,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
-
-			if (key.equals("parentGroupId")) {
-				key = "groupId";
-				value = ArrayUtil.toArray(getGroupIds((Long)value));
-			}
 
 			if (value instanceof Object[]) {
 				Property property = PropertyFactoryUtil.forName(key);
