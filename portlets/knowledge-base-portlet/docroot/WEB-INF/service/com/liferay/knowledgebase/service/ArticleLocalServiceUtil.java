@@ -371,22 +371,11 @@ public class ArticleLocalServiceUtil {
 		return getService().getGroupArticlesCount(groupId, status, allVersions);
 	}
 
-	public static long[] getGroupIds(long parentGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getGroupIds(parentGroupId);
-	}
-
 	public static com.liferay.knowledgebase.model.Article getLatestArticle(
 		long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLatestArticle(resourcePrimKey, status);
-	}
-
-	public static java.util.List<com.liferay.portal.model.Subscription> getSubscriptions(
-		long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getSubscriptions(userId, groupId);
 	}
 
 	public static void subscribe(long companyId, long userId, long groupId,

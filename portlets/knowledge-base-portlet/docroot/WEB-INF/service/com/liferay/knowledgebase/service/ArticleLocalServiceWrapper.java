@@ -355,22 +355,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			allVersions);
 	}
 
-	public long[] getGroupIds(long parentGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getGroupIds(parentGroupId);
-	}
-
 	public com.liferay.knowledgebase.model.Article getLatestArticle(
 		long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getLatestArticle(resourcePrimKey, status);
-	}
-
-	public java.util.List<com.liferay.portal.model.Subscription> getSubscriptions(
-		long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getSubscriptions(userId, groupId);
 	}
 
 	public void subscribe(long companyId, long userId, long groupId,
