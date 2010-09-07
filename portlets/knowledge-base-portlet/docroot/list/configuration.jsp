@@ -42,8 +42,13 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 				<aui:input cssClass="lfr-input-text-container" label="title" name="articlesTitle" value="<%= articlesTitle %>" />
 
 				<div class="kb-field-wrapper">
-					<aui:field-wrapper label="order-by">
-						<aui:select inlineField="<%= true %>" label="" name="orderByColumn">
+					<aui:field-wrapper label="options">
+						<aui:select inlineField="<%= true %>" label="" name="allArticles">
+							<aui:option label="all-articles" selected="<%= allArticles %>" value="<%= true %>" />
+							<aui:option label="root-articles" selected="<%= !allArticles %>" value="<%= false %>" />
+						</aui:select>
+
+						<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="orderByColumn">
 							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
 							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
 							<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />

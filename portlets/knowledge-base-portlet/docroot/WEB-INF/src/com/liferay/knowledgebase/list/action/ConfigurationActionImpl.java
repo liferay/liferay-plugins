@@ -32,6 +32,8 @@ public class ConfigurationActionImpl
 
 		String articlesTitle = ParamUtil.getString(
 			actionRequest, "articlesTitle");
+		boolean allArticles = ParamUtil.getBoolean(
+			actionRequest, "allArticles");
 		String orderByColumn = ParamUtil.getString(
 			actionRequest, "orderByColumn");
 		boolean orderByAscending = ParamUtil.getBoolean(
@@ -52,6 +54,7 @@ public class ConfigurationActionImpl
 			actionRequest, "enableArticleCommentRatings");
 
 		preferences.setValue("articles-title", articlesTitle);
+		preferences.setValue("all-articles", String.valueOf(allArticles));
 		preferences.setValue("order-by-column", orderByColumn);
 		preferences.setValue(
 			"order-by-ascending", String.valueOf(orderByAscending));

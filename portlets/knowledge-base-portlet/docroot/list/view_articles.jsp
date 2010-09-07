@@ -36,6 +36,10 @@ String tag = ParamUtil.getString(request, "tag");
 		params.put("groupId", scopeGroupId);
 		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
+		if (!allArticles) {
+			params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+		}
+
 		List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
 
 		if (assetEntries != null) {
