@@ -49,7 +49,7 @@
 		keyProperty="resourcePrimKey"
 		modelVar="article"
 	>
-		<portlet:renderURL var="rowURL">
+		<portlet:renderURL var="rowURL" windowState="<%= articleWindowState %>">
 			<portlet:param name="jspPage" value="/list/view_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 		</portlet:renderURL>
