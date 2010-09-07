@@ -163,6 +163,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			context.addAssetTags(Article.class, article.getResourcePrimKey());
 		}
 
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "ratings")) {
+			context.addRatingsEntries(
+				Article.class, article.getResourcePrimKey());
+		}
+
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
 			context.addComments(Article.class, article.getResourcePrimKey());
 		}
@@ -421,6 +426,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Article.class, article.getResourcePrimKey(),
 			importedArticle.getResourcePrimKey());
 
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "ratings")) {
+			context.importRatingsEntries(
+				Article.class, article.getResourcePrimKey(),
+				importedArticle.getResourcePrimKey());
+		}
+
 		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
 			context.importComments(
 				Article.class, article.getResourcePrimKey(),
@@ -658,6 +669,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "categories"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "tags"),
+			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "ratings"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
 		};
 

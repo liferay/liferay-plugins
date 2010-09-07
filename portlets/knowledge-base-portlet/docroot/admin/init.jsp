@@ -29,6 +29,7 @@ String childArticlesDisplayStyle = preferences.getValue("child-articles-display-
 boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enable-article-description", null));
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
 boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
+boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-ratings", null));
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 

@@ -331,6 +331,8 @@ else if (tabs2.equals("article-updated-email")) {
 
 						<aui:input inlineLabel="left" label="enable-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
+						<aui:input inlineLabel="left" label="enable-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+
 						<aui:input inlineLabel="left" label="enable-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 
 						<aui:input inlineLabel="left" label="enable-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />

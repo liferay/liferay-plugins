@@ -57,6 +57,8 @@ public class ConfigurationActionImpl
 			actionRequest, "enableArticleAssetCategories");
 		boolean enableArticleAssetTags = ParamUtil.getBoolean(
 			actionRequest, "enableArticleAssetTags");
+		boolean enableArticleRatings = ParamUtil.getBoolean(
+			actionRequest, "enableArticleRatings");
 		boolean enableArticleComments = ParamUtil.getBoolean(
 			actionRequest, "enableArticleComments");
 		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
@@ -74,6 +76,8 @@ public class ConfigurationActionImpl
 		preferences.setValue(
 			"enable-article-asset-tags",
 			String.valueOf(enableArticleAssetTags));
+		preferences.setValue(
+			"enable-article-ratings", String.valueOf(enableArticleRatings));
 		preferences.setValue(
 			"enable-article-comments", String.valueOf(enableArticleComments));
 		preferences.setValue(

@@ -30,6 +30,7 @@ String articleWindowState = preferences.getValue("article-window-state", WindowS
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
 boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
+boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-ratings", null));
 boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 boolean enableArticleCommentRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-comment-ratings", null));
 

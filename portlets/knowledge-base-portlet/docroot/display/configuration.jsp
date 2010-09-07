@@ -52,6 +52,8 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUt
 
 				<aui:input inlineLabel="left" label="show-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
+				<aui:input inlineLabel="left" label="show-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+
 				<aui:input inlineLabel="left" label="show-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 
 				<aui:input inlineLabel="left" label="show-comment-ratings" name="enableArticleCommentRatings" type="checkbox" value="<%= enableArticleCommentRatings %>" />
