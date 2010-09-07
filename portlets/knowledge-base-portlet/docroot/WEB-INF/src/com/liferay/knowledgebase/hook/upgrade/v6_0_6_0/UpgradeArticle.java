@@ -12,25 +12,25 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade;
+package com.liferay.knowledgebase.hook.upgrade.v6_0_6_0;
 
-import com.liferay.knowledgebase.hook.upgrade.v6_0_6_0.UpgradeArticle;
-import com.liferay.knowledgebase.hook.upgrade.v6_0_6_0.UpgradeRatings;
-import com.liferay.knowledgebase.util.ReleaseInfo;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin
  */
-public class UpgradeProcess_6_0_6_0 extends UpgradeProcess {
-
-	public int getThreshold() {
-		return ReleaseInfo.RELEASE_6_0_6_0_BUILD_NUMBER;
-	}
+public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeArticle.class);
-		upgrade(UpgradeRatings.class);
+		runSQL("alter table KB_Article add status INTEGER");
+		runSQL("alter table KB_Article add statusByUserId LONG");
+		runSQL("alter table KB_Article add statusByUserName VARCHAR(75)");
+		runSQL("alter table KB_Article add statusDate DATE");
+
+		runSQL("update KB_Article set status = 0");
+		runSQL("update KB_Article set statusByUserId = userId");
+		runSQL("update KB_Article set statusByUserName = userName");
+		runSQL("update KB_Article set statusDate = modifiedDate");
 	}
 
 }
