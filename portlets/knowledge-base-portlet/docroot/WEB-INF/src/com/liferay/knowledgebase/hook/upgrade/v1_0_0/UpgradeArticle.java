@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade.v6_0_6_0;
+package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 

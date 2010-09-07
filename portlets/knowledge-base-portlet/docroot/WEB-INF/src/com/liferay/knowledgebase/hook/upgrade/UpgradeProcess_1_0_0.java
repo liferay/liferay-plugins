@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.hook.upgrade;
 
-import com.liferay.knowledgebase.hook.upgrade.v6_0_6_0.UpgradeArticle;
-import com.liferay.knowledgebase.hook.upgrade.v6_0_6_0.UpgradeRatings;
+import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeArticle;
+import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeRatings;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
