@@ -125,6 +125,52 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 
 			<aui:layout cssClass="body">
 				<%= HtmlUtil.escape(mbMessage.getBody()) %>
+
+				<c:if test="<%= mbMessage.isAttachments() %>">
+
+					<%
+					String[] attachmentsFiles = mbMessage.getAttachmentsFiles();
+
+					for (int j = 0; j < attachmentsFiles.length; j++) {
+						String fileName = FileUtil.getShortFileName(attachmentsFiles[j]);
+
+						if (StringUtil.endsWith(fileName, ".gif") || StringUtil.endsWith(fileName, ".jpg") || StringUtil.endsWith(fileName, ".png")) {
+					%>
+
+							<div>
+								<img alt="<liferay-ui:message key="attachment" />" src="<%= themeDisplay.getPathMain() %>/message_boards/get_message_attachment?messageId=<%= mbMessage.getMessageId() %>&attachment=<%= HttpUtil.encodeURL(fileName) %>" />
+							</div>
+
+							<br />
+
+					<%
+						}
+					}
+					%>
+
+					<table class="lfr-table">
+					<tr>
+						<td class="lfr-top">
+							<strong><liferay-ui:message key="attachments" />:</strong>
+						</td>
+						<td>
+
+							<%
+							for (int j = 0; j < attachmentsFiles.length; j++) {
+								String fileName = FileUtil.getShortFileName(attachmentsFiles[j]);
+								long fileSize = DLServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, attachmentsFiles[j]);
+							%>
+
+								<a href="<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/message_boards/get_message_attachment" /><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></portlet:actionURL>"><%= fileName %></a> (<%= TextFormatter.formatKB(fileSize, locale) %>k)<%= (j < (attachmentsFiles.length - 1)) ? ", " : "" %>
+
+							<%
+							}
+							%>
+
+						</td>
+					</tr>
+					</table>
+				</c:if>
 			</aui:layout>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>

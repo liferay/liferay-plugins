@@ -38,7 +38,7 @@ if (mbThreadId != 0) {
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
 <aui:layout cssClass="message-body-container">
-	<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
+	<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;" >
 		<aui:input name="redirect" type="hidden" value="<%= backURL %>" />
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
@@ -50,6 +50,14 @@ if (mbThreadId != 0) {
 		</label>
 
 		<textarea class="message-body" name="<portlet:namespace />body"></textarea>
+
+		<label class="aui-field-label">
+			<liferay-ui:message key="attachments" />
+		</label>
+
+		<aui:input label="" name="msgFile1" type="file" />
+		<aui:input label="" name="msgFile2" type="file" />
+		<aui:input label="" name="msgFile3" type="file" />
 
 		<aui:button-row>
 			<input type="submit" value="<liferay-ui:message key="send" />" />

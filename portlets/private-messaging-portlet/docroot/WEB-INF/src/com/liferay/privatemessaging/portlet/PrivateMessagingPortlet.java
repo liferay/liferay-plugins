@@ -14,20 +14,27 @@
 
 package com.liferay.privatemessaging.portlet;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.ObjectValuePair;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
-import com.liferay.util.bridges.mvc.MVCPortlet;
-
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 
 /**
  * @author Scott Lee
@@ -89,16 +96,41 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long userId = ParamUtil.getLong(actionRequest, "userId");
-		long mbThreadId = ParamUtil.getLong(actionRequest, "mbThreadId");
-		String to = ParamUtil.getString(actionRequest, "to");
-		String subject = ParamUtil.getString(actionRequest, "subject");
-		String body = ParamUtil.getString(actionRequest, "body");
+		UploadPortletRequest uploadRequest = PortalUtil.getUploadPortletRequest(
+			actionRequest);
+
+		long userId = ParamUtil.getLong(uploadRequest, "userId");
+		long mbThreadId = ParamUtil.getLong(uploadRequest, "mbThreadId");
+		String to = ParamUtil.getString(uploadRequest, "to");
+		String subject = ParamUtil.getString(uploadRequest, "subject");
+		String body = ParamUtil.getString(uploadRequest, "body");
 		List<ObjectValuePair<String, byte[]>> files =
 			new ArrayList<ObjectValuePair<String, byte[]>>();
+
+		for (int i = 1; i <= 3; i++) {
+			File file = uploadRequest.getFile("msgFile" + i);
+			String fileName = uploadRequest.getFileName("msgFile" + i);
+			
+			try {
+				byte[] bytes = FileUtil.getBytes(file);
+
+				if ((bytes != null) && (bytes.length > 0)) {
+					ObjectValuePair<String, byte[]> ovp =
+						new ObjectValuePair<String, byte[]>(fileName, bytes);
+
+					files.add(ovp);
+				}
+			}
+			catch (IOException ioe) {
+				_log.error("unable to attach file " + fileName, ioe);
+			}
+		}
 
 		UserThreadLocalServiceUtil.addPrivateMessage(
 			userId, mbThreadId, to, subject, body, files, themeDisplay);
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		PrivateMessagingPortlet.class);
 
 }
