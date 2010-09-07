@@ -16,16 +16,15 @@ package com.liferay.knowledgebase.hook.upgrade;
 
 import com.liferay.knowledgebase.hook.upgrade.v6_0_6_0.UpgradeArticle;
 import com.liferay.knowledgebase.hook.upgrade.v6_0_6_0.UpgradeRatings;
-import com.liferay.knowledgebase.util.ReleaseInfo;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin
  */
-public class UpgradeProcess_6_0_6_0 extends UpgradeProcess {
+public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
 	public int getThreshold() {
-		return ReleaseInfo.RELEASE_6_0_6_0_BUILD_NUMBER;
+		return 100;
 	}
 
 	protected void doUpgrade() throws Exception {
