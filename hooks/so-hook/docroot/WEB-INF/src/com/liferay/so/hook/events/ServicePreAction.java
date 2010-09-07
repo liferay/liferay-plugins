@@ -17,12 +17,10 @@
 
 package com.liferay.so.hook.events;
 
-import com.liferay.portal.NoSuchLayoutSetException;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -46,6 +44,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Brett Swaim
+ * @author Ryan Park
  */
 public class ServicePreAction extends Action {
 
@@ -77,36 +76,51 @@ public class ServicePreAction extends Action {
 			currentURL = currentURL.substring(x);
 		}
 
-		if (isDisplayURL(themeDisplay, currentURL)) {
+		String redirect = null;
 
-			// SOS-9
+		if (isMyPlacesView(themeDisplay, currentURL)) {
+			redirect = getRedirect(themeDisplay, request);
+		}
+		else if (isDirectoryView(request, currentURL)) {
+			redirect = getUserRedirect(
+				themeDisplay, ParamUtil.getLong(request, "_11_p_u_i_d"));
+		}
+		else if (themeDisplay.isSignedIn() &&
+				 isGuestGroup(themeDisplay, currentURL)) {
 
-			long groupId = ParamUtil.getLong(request, "groupId");
+			redirect = getHomeRedirect(themeDisplay);
+		}
 
-			String redirect = getRedirect(themeDisplay, groupId);
-
-			if (redirect == null) {
-				redirect = ParamUtil.getString(request, "redirect");
-
-				SessionErrors.add(
-					request, NoSuchLayoutSetException.class.getName(),
-					new NoSuchLayoutSetException(
-						"{groupId=" + groupId + ", privateLayout=0}"));
-			}
-
+		if (Validator.isNotNull(redirect)) {
 			response.sendRedirect(redirect);
+		}
+	}
 
-			return;
+	protected boolean isDirectoryView(
+		HttpServletRequest request, String currentURL) throws Exception {
+
+		String action = ParamUtil.getString(request, "_11_struts_action");
+
+		if (!action.equals("/directory/view_user")) {
+			return false;
 		}
 
-		if (!themeDisplay.isSignedIn()) {
-			return;
+		long userId = ParamUtil.getLong(request, "_11_p_u_i_d");
+
+		if (userId <= 0) {
+			return false;
 		}
+
+		return true;
+	}
+
+	protected boolean isGuestGroup(
+		ThemeDisplay themeDisplay, String currentURL) throws Exception {
 
 		Layout layout = themeDisplay.getLayout();
 
 		if ((layout == null) || (layout.getLayoutId() != 1)) {
-			return;
+			return false;
 		}
 
 		Group group = layout.getGroup();
@@ -114,19 +128,13 @@ public class ServicePreAction extends Action {
 		if (!group.getName().equals(GroupConstants.GUEST) ||
 			currentURL.startsWith("/c/")) {
 
-			return;
+			return false;
 		}
 
-		User user = themeDisplay.getUser();
-
-		String redirect =
-			themeDisplay.getPathFriendlyURLPublic() + "/" +
-				user.getScreenName() + "/home";
-
-		response.sendRedirect(redirect);
+		return true;
 	}
 
-	protected boolean isDisplayURL(
+	protected boolean isMyPlacesView(
 		ThemeDisplay themeDisplay, String currentURL) {
 
 		String urlFragment1 =
@@ -150,32 +158,56 @@ public class ServicePreAction extends Action {
 		return Validator.isNumber(s);
 	}
 
-	protected String getRedirect(ThemeDisplay themeDisplay, long groupId)
+	protected String getGroupRedirect(ThemeDisplay themeDisplay, long groupId)
 		throws Exception {
-
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
-
-		if (group.isUser()) {
-			long userId = group.getClassPK();
-
-			User user = UserLocalServiceUtil.getUser(userId);
-
-			return themeDisplay.getPathFriendlyURLPublic() + "/" +
-				user.getScreenName() + "/profile";
-		}
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			groupId, false, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0, 1);
 
-		String redirect = null;
-
 		if (layouts.size() > 0) {
 			Layout layout = layouts.get(0);
 
-			redirect = PortalUtil.getLayoutURL(layout, themeDisplay);
+			return PortalUtil.getLayoutURL(layout, themeDisplay);
 		}
 
-		return redirect;
+		return null;
+	}
+
+	protected String getHomeRedirect(ThemeDisplay themeDisplay)
+		throws Exception {
+
+		User user = themeDisplay.getUser();
+
+		return themeDisplay.getPathFriendlyURLPublic() + "/" +
+			user.getScreenName() + "/home";
+	}
+
+	protected String getRedirect(
+			ThemeDisplay themeDisplay, HttpServletRequest request)
+		throws Exception {
+
+		long groupId = ParamUtil.getLong(request, "groupId");
+
+		if (groupId > 0) {
+			Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+			if (group.isUser()) {
+				return getUserRedirect(themeDisplay, group.getClassPK());
+			}
+
+			return getGroupRedirect(themeDisplay, group.getGroupId());
+		}
+
+		return null;
+	}
+
+	protected String getUserRedirect(ThemeDisplay themeDisplay, long userId)
+		throws Exception {
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		return themeDisplay.getPathFriendlyURLPublic() + "/" +
+			user.getScreenName() + "/profile";
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);
