@@ -14,14 +14,6 @@
 
 package com.liferay.privatemessaging.portlet;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -35,6 +27,15 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+
+import java.io.File;
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.ActionResponse;
 
 /**
  * @author Scott Lee
@@ -110,7 +111,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		for (int i = 1; i <= 3; i++) {
 			File file = uploadRequest.getFile("msgFile" + i);
 			String fileName = uploadRequest.getFileName("msgFile" + i);
-			
+
 			try {
 				byte[] bytes = FileUtil.getBytes(file);
 

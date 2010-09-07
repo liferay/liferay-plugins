@@ -25,13 +25,13 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.documentlibrary.service.DLServiceUtil"%>
+<%@ page import="com.liferay.documentlibrary.service.DLServiceUtil" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
 <%@ page import="com.liferay.portal.kernel.servlet.ImageServletTokenUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.DateUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.FileUtil"%>
+<%@ page import="com.liferay.portal.kernel.util.FileUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ListUtil" %>
@@ -39,7 +39,7 @@
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
-<%@ page import="com.liferay.portal.model.CompanyConstants"%>
+<%@ page import="com.liferay.portal.model.CompanyConstants" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
@@ -50,7 +50,7 @@
 <%@ page import="com.liferay.privatemessaging.model.UserThread" %>
 <%@ page import="com.liferay.privatemessaging.service.UserThreadLocalServiceUtil" %>
 <%@ page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
-<%@ page import="com.liferay.util.TextFormatter"%>
+<%@ page import="com.liferay.util.TextFormatter" %>
 
 <%@ page import="java.text.Format" %>
 
