@@ -60,9 +60,6 @@ import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 import com.liferay.portlet.expando.service.ExpandoValueLocalService;
 import com.liferay.portlet.expando.service.ExpandoValueService;
 import com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence;
-import com.liferay.portlet.messageboards.service.MBMessageLocalService;
-import com.liferay.portlet.messageboards.service.MBMessageService;
-import com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence;
 import com.liferay.portlet.social.service.SocialActivityLocalService;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
@@ -766,62 +763,6 @@ public abstract class ArticleServiceBaseImpl extends PrincipalBean
 	}
 
 	/**
-	 * Gets the message-boards message local service.
-	 *
-	 * @return the message-boards message local service
-	 */
-	public MBMessageLocalService getMBMessageLocalService() {
-		return mbMessageLocalService;
-	}
-
-	/**
-	 * Sets the message-boards message local service.
-	 *
-	 * @param mbMessageLocalService the message-boards message local service
-	 */
-	public void setMBMessageLocalService(
-		MBMessageLocalService mbMessageLocalService) {
-		this.mbMessageLocalService = mbMessageLocalService;
-	}
-
-	/**
-	 * Gets the message-boards message remote service.
-	 *
-	 * @return the message-boards message remote service
-	 */
-	public MBMessageService getMBMessageService() {
-		return mbMessageService;
-	}
-
-	/**
-	 * Sets the message-boards message remote service.
-	 *
-	 * @param mbMessageService the message-boards message remote service
-	 */
-	public void setMBMessageService(MBMessageService mbMessageService) {
-		this.mbMessageService = mbMessageService;
-	}
-
-	/**
-	 * Gets the message-boards message persistence.
-	 *
-	 * @return the message-boards message persistence
-	 */
-	public MBMessagePersistence getMBMessagePersistence() {
-		return mbMessagePersistence;
-	}
-
-	/**
-	 * Sets the message-boards message persistence.
-	 *
-	 * @param mbMessagePersistence the message-boards message persistence
-	 */
-	public void setMBMessagePersistence(
-		MBMessagePersistence mbMessagePersistence) {
-		this.mbMessagePersistence = mbMessagePersistence;
-	}
-
-	/**
 	 * Gets the social activity local service.
 	 *
 	 * @return the social activity local service
@@ -952,12 +893,6 @@ public abstract class ArticleServiceBaseImpl extends PrincipalBean
 	protected ExpandoValueService expandoValueService;
 	@BeanReference(type = ExpandoValuePersistence.class)
 	protected ExpandoValuePersistence expandoValuePersistence;
-	@BeanReference(type = MBMessageLocalService.class)
-	protected MBMessageLocalService mbMessageLocalService;
-	@BeanReference(type = MBMessageService.class)
-	protected MBMessageService mbMessageService;
-	@BeanReference(type = MBMessagePersistence.class)
-	protected MBMessagePersistence mbMessagePersistence;
 	@BeanReference(type = SocialActivityLocalService.class)
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)

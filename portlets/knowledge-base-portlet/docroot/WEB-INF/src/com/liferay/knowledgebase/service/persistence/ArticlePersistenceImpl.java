@@ -54,7 +54,6 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
 import com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence;
-import com.liferay.portlet.messageboards.service.persistence.MBMessagePersistence;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
 import java.io.Serializable;
@@ -2453,8 +2452,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	protected AssetEntryPersistence assetEntryPersistence;
 	@BeanReference(type = ExpandoValuePersistence.class)
 	protected ExpandoValuePersistence expandoValuePersistence;
-	@BeanReference(type = MBMessagePersistence.class)
-	protected MBMessagePersistence mbMessagePersistence;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
 	private static final String _SQL_SELECT_ARTICLE = "SELECT article FROM Article article";
