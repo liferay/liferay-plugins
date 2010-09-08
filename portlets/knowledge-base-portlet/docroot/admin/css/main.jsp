@@ -107,18 +107,9 @@
 	margin: 10px 0 0;
 }
 
-.knowledge-base-portlet-admin .kb-entity-body .kb-article-discussion,
-.knowledge-base-portlet-admin .kb-entity-body .kb-template-discussion {
-	margin: 10px -7px 0;
-}
-
 .knowledge-base-portlet-admin .kb-entity-body .kb-article-icons,
 .knowledge-base-portlet-admin .kb-entity-body .kb-template-icons {
 	padding: 0 0 5px;
-}
-
-.knowledge-base-portlet-admin .kb-entity-body .taglib-discussion {
-	margin: 5px 2px 0;
 }
 
 .knowledge-base-portlet-admin .kb-entity-footer {

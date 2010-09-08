@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -82,12 +81,6 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 				template, serviceContext.getCommunityPermissions(),
 				serviceContext.getGuestPermissions());
 		}
-
-		// Message Boards
-
-		mbMessageLocalService.addDiscussionMessage(
-			userId, template.getUserName(), groupId, Template.class.getName(),
-			templateId, WorkflowConstants.ACTION_PUBLISH);
 
 		// Social
 
@@ -151,11 +144,6 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		resourceLocalService.deleteResource(
 			template.getCompanyId(), Template.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, template.getTemplateId());
-
-		// Message boards
-
-		mbMessageLocalService.deleteDiscussionMessages(
-			Template.class.getName(), template.getTemplateId());
 
 		// Social
 

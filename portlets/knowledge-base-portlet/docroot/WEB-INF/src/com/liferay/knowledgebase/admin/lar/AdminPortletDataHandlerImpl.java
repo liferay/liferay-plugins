@@ -167,10 +167,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			context.addRatingsEntries(
 				Article.class, article.getResourcePrimKey());
 		}
-
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
-			context.addComments(Article.class, article.getResourcePrimKey());
-		}
 	}
 
 	protected void exportArticleAttachments(
@@ -261,10 +257,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.addZipEntry(path, template);
 
 		context.addPermissions(Template.class, template.getTemplateId());
-
-		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
-			context.addComments(Template.class, template.getTemplateId());
-		}
 	}
 
 	protected void exportTemplates(
@@ -430,13 +422,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			context.importRatingsEntries(
 				Article.class, article.getResourcePrimKey(),
 				importedArticle.getResourcePrimKey());
-		}
-
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
-			context.importComments(
-				Article.class, article.getResourcePrimKey(),
-				importedArticle.getResourcePrimKey(),
-				context.getScopeGroupId());
 		}
 	}
 
@@ -633,12 +618,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.importPermissions(
 			Template.class, template.getTemplateId(),
 			importedTemplate.getTemplateId());
-
-		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
-			context.importComments(
-				Template.class, template.getTemplateId(),
-				importedTemplate.getTemplateId(), context.getScopeGroupId());
-		}
 	}
 
 	protected void importTemplates(
@@ -662,28 +641,20 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
 
-	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
-
 	private static PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "attachments"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "categories"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "tags"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "ratings"),
-			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
 		};
 
 	private static PortletDataHandlerBoolean _articles =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "articles", true, true, _articleOptions);
 
-	private static PortletDataHandlerControl[] _templateOptions =
-		new PortletDataHandlerControl[] {
-			new PortletDataHandlerBoolean(_NAMESPACE_TEMPLATE, "comments")
-		};
-
 	private static PortletDataHandlerBoolean _templates =
 		new PortletDataHandlerBoolean(
-			_NAMESPACE, "templates", true, false, _templateOptions);
+			_NAMESPACE, "templates", true, false);
 
 }

@@ -143,12 +143,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			userId, article, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
 
-		// Message Boards
-
-		mbMessageLocalService.addDiscussionMessage(
-			userId, article.getUserName(), groupId, Article.class.getName(),
-			resourcePrimKey, WorkflowConstants.ACTION_PUBLISH);
-
 		// Attachments
 
 		addAttachments(article, dirName);
@@ -222,11 +216,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Asset
 
 		deleteAssets(article);
-
-		// Message boards
-
-		mbMessageLocalService.deleteDiscussionMessages(
-			Article.class.getName(), article.getResourcePrimKey());
 
 		// Social
 

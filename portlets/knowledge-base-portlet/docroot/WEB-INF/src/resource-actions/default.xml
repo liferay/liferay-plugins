@@ -51,17 +51,13 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>DELETE</action-key>
-				<action-key>DELETE_DISCUSSION</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE</action-key>
-				<action-key>UPDATE_DISCUSSION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
 			<community-defaults>
-				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>VIEW</action-key>
 			</community-defaults>
@@ -69,13 +65,10 @@
 				<action-key>VIEW</action-key>
 			</guest-defaults>
 			<guest-unsupported>
-				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>DELETE</action-key>
-				<action-key>DELETE_DISCUSSION</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE</action-key>
-				<action-key>UPDATE_DISCUSSION</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
@@ -86,28 +79,21 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>DELETE</action-key>
-				<action-key>DELETE_DISCUSSION</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
-				<action-key>UPDATE_DISCUSSION</action-key>
 				<action-key>VIEW</action-key>
 			</supports>
 			<community-defaults>
-				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>VIEW</action-key>
 			</community-defaults>
 			<guest-defaults>
 				<action-key>VIEW</action-key>
 			</guest-defaults>
 			<guest-unsupported>
-				<action-key>ADD_DISCUSSION</action-key>
 				<action-key>DELETE</action-key>
-				<action-key>DELETE_DISCUSSION</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
-				<action-key>UPDATE_DISCUSSION</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>

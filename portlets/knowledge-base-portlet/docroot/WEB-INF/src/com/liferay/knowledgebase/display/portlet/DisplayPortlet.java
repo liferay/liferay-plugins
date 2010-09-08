@@ -117,8 +117,7 @@ public class DisplayPortlet extends AdminPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("invokeTaglibDiscussion") ||
-			actionName.equals("subscribe") ||
+		if (actionName.equals("subscribe") ||
 			actionName.equals("unsubscribe")) {
 
 			return true;

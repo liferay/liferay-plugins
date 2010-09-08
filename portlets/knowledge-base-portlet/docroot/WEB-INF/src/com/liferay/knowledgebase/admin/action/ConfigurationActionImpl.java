@@ -130,10 +130,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			actionRequest, "enableArticleAssetTags");
 		boolean enableArticleRatings = ParamUtil.getBoolean(
 			actionRequest, "enableArticleRatings");
-		boolean enableArticleComments = ParamUtil.getBoolean(
-			actionRequest, "enableArticleComments");
-		boolean enableArticleCommentRatings = ParamUtil.getBoolean(
-			actionRequest, "enableArticleCommentRatings");
 
 		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
 		preferences.setValue("articles-display-style", articlesDisplayStyle);
@@ -150,11 +146,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			String.valueOf(enableArticleAssetTags));
 		preferences.setValue(
 			"enable-article-ratings", String.valueOf(enableArticleRatings));
-		preferences.setValue(
-			"enable-article-comments", String.valueOf(enableArticleComments));
-		preferences.setValue(
-			"enable-article-comment-ratings",
-			String.valueOf(enableArticleCommentRatings));
 	}
 
 	protected void updateDisplaySettingsTemplate(
@@ -167,21 +158,12 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			actionRequest, "templatesDisplayStyle");
 		boolean enableTemplateDescription = ParamUtil.getBoolean(
 			actionRequest, "enableTemplateDescription");
-		boolean enableTemplateComments = ParamUtil.getBoolean(
-			actionRequest, "enableTemplateComments");
-		boolean enableTemplateCommentRatings = ParamUtil.getBoolean(
-			actionRequest, "enableTemplateCommentRatings");
 
 		preferences.setValue("templates-delta", String.valueOf(templatesDelta));
 		preferences.setValue("templates-display-style", templatesDisplayStyle);
 		preferences.setValue(
 			"enable-template-description",
 			String.valueOf(enableTemplateDescription));
-		preferences.setValue(
-			"enable-template-comments", String.valueOf(enableTemplateComments));
-		preferences.setValue(
-			"enable-template-comment-ratings",
-			String.valueOf(enableTemplateCommentRatings));
 	}
 
 	protected void updateEmailArticleAdded(
