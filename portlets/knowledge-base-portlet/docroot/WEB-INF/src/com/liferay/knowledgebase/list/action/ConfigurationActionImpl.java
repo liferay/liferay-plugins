@@ -50,6 +50,8 @@ public class ConfigurationActionImpl
 			actionRequest, "enableArticleAssetTags");
 		boolean enableArticleRatings = ParamUtil.getBoolean(
 			actionRequest, "enableArticleRatings");
+		boolean enableArticleComments = ParamUtil.getBoolean(
+			actionRequest, "enableArticleComments");
 
 		preferences.setValue("articles-title", articlesTitle);
 		preferences.setValue("all-articles", String.valueOf(allArticles));
@@ -68,6 +70,8 @@ public class ConfigurationActionImpl
 			String.valueOf(enableArticleAssetTags));
 		preferences.setValue(
 			"enable-article-ratings", String.valueOf(enableArticleRatings));
+		preferences.setValue(
+			"enable-article-comments", String.valueOf(enableArticleComments));
 	}
 
 }

@@ -332,6 +332,8 @@ else if (tabs2.equals("article-updated-email")) {
 						<aui:input inlineLabel="left" label="enable-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
 						<aui:input inlineLabel="left" label="enable-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+
+						<aui:input inlineLabel="left" label="enable-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
 						<aui:select label="maximum-items-to-display" name="templatesDelta">
@@ -362,6 +364,8 @@ else if (tabs2.equals("article-updated-email")) {
 						</aui:select>
 
 						<aui:input inlineLabel="left" label="enable-description" name="enableTemplateDescription" type="checkbox" value="<%= enableTemplateDescription %>" />
+
+						<aui:input inlineLabel="left" label="enable-comments" name="enableTemplateComments" type="checkbox" value="<%= enableTemplateComments %>" />
 					</c:when>
 				</c:choose>
 			</c:when>

@@ -33,6 +33,11 @@
 	border-width: 0;
 }
 
+.knowledge-base-portlet-admin .lfr-textarea-container textarea {
+	height: 100px;
+	width: 500px;
+}
+
 .knowledge-base-portlet-admin .taglib-search-iterator-page-iterator-bottom {
 	margin: 5px 2px 0;
 	padding: 0;
@@ -105,6 +110,46 @@
 
 .knowledge-base-portlet-admin .kb-entity-body .kb-article-attachments {
 	margin: 10px 0 0;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments {
+	margin: 10px -7px 0;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .kb-helpful-inputs,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .kb-helpful-inputs {
+	margin: 4px 0 0;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .kb-helpful-inputs label,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .kb-helpful-inputs label {
+	font-weight: normal;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .kb-helpful-text,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .kb-helpful-text {
+	margin: 0 10px 0 0;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .kb-no,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .kb-no {
+	color: red;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .kb-question,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .kb-question {
+	color: #999;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .kb-yes,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .kb-yes {
+	color: green;
+}
+
+.knowledge-base-portlet-admin .kb-entity-body .kb-article-comments .lfr-panel-content,
+.knowledge-base-portlet-admin .kb-entity-body .kb-template-comments .lfr-panel-content {
+	margin: 5px 0 0;
 }
 
 .knowledge-base-portlet-admin .kb-entity-body .kb-article-icons,

@@ -31,6 +31,22 @@
 		<field name="statusByUserName" type="String" />
 		<field name="statusDate" type="Date" />
 	</model>
+	<model name="com.liferay.knowledgebase.model.Comment">
+		<field name="uuid" type="String" />
+		<field name="commentId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
+		<field name="content" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="helpful" type="boolean" />
+	</model>
 	<model name="com.liferay.knowledgebase.model.Template">
 		<field name="uuid" type="String" />
 		<field name="templateId" type="long" />

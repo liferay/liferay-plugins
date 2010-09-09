@@ -19,10 +19,13 @@ import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
+import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
+import com.liferay.knowledgebase.service.persistence.CommentUtil;
 import com.liferay.knowledgebase.service.persistence.TemplateUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
@@ -44,6 +47,7 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
 
@@ -79,6 +83,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			ArticleLocalServiceUtil.deleteGroupArticles(
 				context.getScopeGroupId());
 
+			CommentUtil.removeByGroupId(context.getScopeGroupId());
+
 			TemplateLocalServiceUtil.deleteGroupTemplates(
 				context.getScopeGroupId());
 		}
@@ -103,8 +109,18 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		exportArticles(context, rootElement);
 
+		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
+			exportComments(
+				context, Article.class, "article-comment", rootElement);
+		}
+
 		if (context.getBooleanParameter(_NAMESPACE, "templates")) {
 			exportTemplates(context, rootElement);
+		}
+
+		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
+			exportComments(
+				context, Template.class, "template-comment", rootElement);
 		}
 
 		return document.formattedString();
@@ -240,6 +256,47 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 
 			exportArticle(context, rootElement, path, article);
+		}
+	}
+
+	protected void exportComment(
+			PortletDataContext context, Element rootElement, String name,
+			String path, Comment comment)
+		throws PortalException, SystemException {
+
+		Element commentElement = rootElement.addElement(name);
+
+		commentElement.addAttribute("path", path);
+
+		comment.setUserUuid(comment.getUserUuid());
+
+		context.addZipEntry(path, comment);
+	}
+
+	protected void exportComments(
+			PortletDataContext context, Class<?> classObj, String name,
+			Element rootElement)
+		throws PortalException, SystemException {
+
+		long classNameId = PortalUtil.getClassNameId(classObj);
+
+		List<Comment> comments = CommentUtil.findByG_C(
+			context.getScopeGroupId(), classNameId);
+
+		for (Comment comment : comments) {
+			if (!context.isWithinDateRange(comment.getModifiedDate())) {
+				return;
+			}
+
+			String path =
+				context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
+					"/comments/" + comment.getCommentId() + ".xml";
+
+			if (!context.isPathNotProcessed(path)) {
+				continue;
+			}
+
+			exportComment(context, rootElement, name, path, comment);
 		}
 	}
 
@@ -563,6 +620,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					context, resourcePrimKeys, dirNames, articleElement,
 					article);
 			}
+
+			importComments(
+				 context, "article-comment", resourcePrimKeys, rootElement);
 		}
 		finally {
 			if (context.getBooleanParameter(
@@ -576,7 +636,68 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected void importTemplate(PortletDataContext context, Template template)
+	protected void importComment(
+			PortletDataContext context, Map<Long, Long> classPKs,
+			Comment comment)
+		throws Exception {
+
+		long userId = context.getUserId(comment.getUserUuid());
+		long classPK = MapUtil.getLong(classPKs, comment.getClassPK());
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setCreateDate(comment.getCreateDate());
+		serviceContext.setModifiedDate(comment.getModifiedDate());
+		serviceContext.setScopeGroupId(context.getScopeGroupId());
+
+		if (context.isDataStrategyMirror()) {
+			Comment existingComment = CommentUtil.fetchByUUID_G(
+				comment.getUuid(), context.getScopeGroupId());
+
+			if (existingComment == null) {
+				serviceContext.setUuid(comment.getUuid());
+
+				CommentLocalServiceUtil.addComment(
+					userId, comment.getClassNameId(), classPK,
+					comment.getContent(), comment.getHelpful(), serviceContext);
+			}
+			else {
+				CommentLocalServiceUtil.updateComment(
+					existingComment.getCommentId(), comment.getClassNameId(),
+					classPK, comment.getContent(), comment.getHelpful(),
+					serviceContext);
+			}
+		}
+		else {
+			CommentLocalServiceUtil.addComment(
+				userId, comment.getClassNameId(), classPK, comment.getContent(),
+				comment.getHelpful(), serviceContext);
+		}
+	}
+
+	protected void importComments(
+			PortletDataContext context, String name, Map<Long, Long> classPKs,
+			Element rootElement)
+		throws Exception {
+
+		List<Element> commentElements = rootElement.elements(name);
+
+		for (Element commentElement : commentElements) {
+			String path = commentElement.attributeValue("path");
+
+			if (!context.isPathNotProcessed(path)) {
+				continue;
+			}
+
+			Comment comment = (Comment)context.getZipEntryAsObject(path);
+
+			importComment(context, classPKs, comment);
+		}
+	}
+
+	protected void importTemplate(
+			PortletDataContext context, Map<Long, Long> templateIds,
+			Template template)
 		throws Exception {
 
 		long userId = context.getUserId(template.getUserUuid());
@@ -615,6 +736,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				template.getDescription(), serviceContext);
 		}
 
+		templateIds.put(
+			template.getTemplateId(), importedTemplate.getTemplateId());
+
 		context.importPermissions(
 			Template.class, template.getTemplateId(),
 			importedTemplate.getTemplateId());
@@ -623,6 +747,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	protected void importTemplates(
 			PortletDataContext context, Element rootElement)
 		throws Exception {
+
+		Map<Long, Long> templateIds = new HashMap<Long, Long>();
 
 		for (Element templateElement : rootElement.elements("template")) {
 			String path = templateElement.attributeValue("path");
@@ -633,13 +759,17 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			Template template = (Template)context.getZipEntryAsObject(path);
 
-			importTemplate(context, template);
+			importTemplate(context, templateIds, template);
 		}
+
+		importComments(context, "template-comment", templateIds, rootElement);
 	}
 
 	private static final String _NAMESPACE = "knowledge_base";
 
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
+
+	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
 
 	private static PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {
@@ -647,14 +777,20 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "categories"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "tags"),
 			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "ratings"),
+			new PortletDataHandlerBoolean(_NAMESPACE_ARTICLE, "comments")
 		};
 
 	private static PortletDataHandlerBoolean _articles =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "articles", true, true, _articleOptions);
 
+	private static PortletDataHandlerControl[] _templateOptions =
+		new PortletDataHandlerControl[] {
+			new PortletDataHandlerBoolean(_NAMESPACE_TEMPLATE, "comments")
+		};
+
 	private static PortletDataHandlerBoolean _templates =
 		new PortletDataHandlerBoolean(
-			_NAMESPACE, "templates", true, false);
+			_NAMESPACE, "templates", true, false, _templateOptions);
 
 }

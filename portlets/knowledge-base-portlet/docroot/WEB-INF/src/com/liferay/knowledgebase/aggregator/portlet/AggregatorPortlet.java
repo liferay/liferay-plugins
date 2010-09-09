@@ -38,8 +38,10 @@ public class AggregatorPortlet extends AdminPortlet {
 		String actionName = ParamUtil.getString(
 			actionRequest, ActionRequest.ACTION_NAME);
 
-		if (actionName.equals("subscribe") ||
-			actionName.equals("unsubscribe")) {
+		if (actionName.equals("deleteComment") ||
+			actionName.equals("subscribe") ||
+			actionName.equals("unsubscribe") ||
+			actionName.equals("updateComment")) {
 
 			return true;
 		}

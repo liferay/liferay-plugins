@@ -99,6 +99,8 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 				<aui:input inlineLabel="left" label="show-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
 				<aui:input inlineLabel="left" label="show-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+
+				<aui:input inlineLabel="left" label="show-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<aui:select label="maximum-items-to-display" name="rssDelta">

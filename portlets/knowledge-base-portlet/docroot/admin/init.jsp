@@ -30,10 +30,12 @@ boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("e
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
 boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
 boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-ratings", null));
+boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 
 int templatesDelta = GetterUtil.getInteger(preferences.getValue("templates-delta", StringPool.BLANK), 5);
 String templatesDisplayStyle = preferences.getValue("templates-display-style", "full-content");
 boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enable-template-description", null));
+boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enable-template-comments", null), true);
 
 int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);

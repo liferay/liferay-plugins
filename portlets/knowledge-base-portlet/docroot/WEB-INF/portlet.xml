@@ -58,6 +58,10 @@
 			<name>view-jsp</name>
 			<value>/aggregator/view.jsp</value>
 		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
@@ -93,6 +97,10 @@
 		<init-param>
 			<name>view-jsp</name>
 			<value>/display/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -130,6 +138,10 @@
 			<name>view-jsp</name>
 			<value>/search/view.jsp</value>
 		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
@@ -165,6 +177,10 @@
 		<init-param>
 			<name>view-jsp</name>
 			<value>/list/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>

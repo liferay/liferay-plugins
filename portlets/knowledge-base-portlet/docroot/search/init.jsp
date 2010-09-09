@@ -28,6 +28,7 @@ String childArticlesDisplayStyle = preferences.getValue("child-articles-display-
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
 boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
 boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-ratings", null));
+boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
 
 String selectionMethod = preferences.getValue("selection-method", "group");
 long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resource-prim-keys", null));

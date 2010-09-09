@@ -71,6 +71,56 @@
 		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />
 	</entity>
+	<entity name="Comment" uuid="true" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="commentId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="content" type="String" />
+		<column name="helpful" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="modifiedDate" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="G_C" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="classNameId" />
+		</finder>
+		<finder name="C_C" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
+		<finder name="U_C_C" return-type="Comment" unique="true">
+			<finder-column name="userId" />
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
+	</entity>
 	<entity name="Template" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -114,6 +164,7 @@
 	<exceptions>
 		<exception>ArticleContent</exception>
 		<exception>ArticleTitle</exception>
+		<exception>CommentContent</exception>
 		<exception>TemplateContent</exception>
 		<exception>TemplateTitle</exception>
 	</exceptions>

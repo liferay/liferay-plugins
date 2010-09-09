@@ -20,13 +20,16 @@ import com.liferay.documentlibrary.NoSuchFileException;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
+import com.liferay.knowledgebase.CommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
+import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.TemplateContentException;
 import com.liferay.knowledgebase.TemplateTitleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
@@ -119,6 +122,22 @@ public class AdminPortlet extends MVCPortlet {
 			resourcePrimKey, fileName);
 	}
 
+	public void deleteComment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long commentId = ParamUtil.getLong(actionRequest, "commentId");
+
+		CommentLocalServiceUtil.deleteComment(commentId);
+	}
+
 	public void deleteTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -161,6 +180,7 @@ public class AdminPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
+				e instanceof NoSuchCommentException ||
 				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 
@@ -382,6 +402,39 @@ public class AdminPortlet extends MVCPortlet {
 		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
+	public void updateComment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long commentId = ParamUtil.getLong(actionRequest, "commentId");
+
+		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		String content = ParamUtil.getString(actionRequest, "content");
+		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Article.class.getName(), actionRequest);
+
+		if (commentId <= 0) {
+			CommentLocalServiceUtil.addComment(
+				themeDisplay.getUserId(), classNameId, classPK, content,
+				helpful, serviceContext);
+		}
+		else {
+			CommentLocalServiceUtil.updateComment(
+				commentId, classNameId, classPK, content, helpful,
+				serviceContext);
+		}
+	}
+
 	public void updateTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -425,6 +478,8 @@ public class AdminPortlet extends MVCPortlet {
 		if (SessionErrors.contains(
 				renderRequest, NoSuchArticleException.class.getName()) ||
 			SessionErrors.contains(
+				renderRequest, NoSuchCommentException.class.getName()) ||
+			SessionErrors.contains(
 				renderRequest, NoSuchTemplateException.class.getName()) ||
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
@@ -447,9 +502,11 @@ public class AdminPortlet extends MVCPortlet {
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof ArticleContentException ||
 			cause instanceof ArticleTitleException ||
+			cause instanceof CommentContentException ||
 			cause instanceof DuplicateFileException ||
 			cause instanceof FileSizeException ||
 			cause instanceof NoSuchArticleException ||
+			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
 			cause instanceof NoSuchTemplateException ||
 			cause instanceof PrincipalException ||
