@@ -29,23 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The implementation of the comment local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.knowledgebase.service.CommentLocalService} interface.
- * </p>
- *
- * <p>
- * Never reference this interface directly. Always use {@link com.liferay.knowledgebase.service.CommentLocalServiceUtil} to access the comment local service.
- * </p>
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
- * @author Brian Wing Shun Chan
- * @see com.liferay.knowledgebase.service.base.CommentLocalServiceBaseImpl
- * @see com.liferay.knowledgebase.service.CommentLocalServiceUtil
+ * @author Peter Shin
  */
 public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 
@@ -53,8 +37,6 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 			long userId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
 		throws PortalException, SystemException {
-
-		// Comment
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
@@ -85,8 +67,6 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 
 	public void deleteComment (long commentId)
 		throws PortalException, SystemException {
-
-		// Comment
 
 		commentPersistence.remove(commentId);
 	}
@@ -122,8 +102,6 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 			long commentId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
 		throws PortalException, SystemException {
-
-		// Comment
 
 		validate(content);
 
