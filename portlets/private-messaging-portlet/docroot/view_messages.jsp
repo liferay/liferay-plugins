@@ -24,13 +24,13 @@
 	</aui:column>
 
 	<aui:column columnWidth="35">
-		<aui:button cssClass="mark-messages-as-unread" value="mark-as-unread" name="markAsUnread" />
+		<aui:button cssClass="mark-messages-as-unread" name="markAsUnread" value="mark-as-unread" />
 
-		<aui:button cssClass="delete-messages" value="delete" name="deleteMessage" />
+		<aui:button cssClass="delete-messages" name="deleteMessage" value="delete" />
 	</aui:column>
 
 	<aui:column columnWidth="50" cssClass="col-2">
-		<aui:button cssClass="new-message" value="new-message" name="newMessage" />
+		<aui:button cssClass="new-message" name="newMessage" value="new-message" />
 	</aui:column>
 </aui:layout>
 
