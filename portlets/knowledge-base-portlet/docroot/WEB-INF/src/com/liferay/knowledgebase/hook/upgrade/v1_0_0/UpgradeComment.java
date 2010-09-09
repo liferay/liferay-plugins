@@ -12,26 +12,18 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade;
+package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeArticle;
-import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeComment;
-import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeRatings;
+import com.liferay.knowledgebase.model.impl.CommentImpl;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin
  */
-public class UpgradeProcess_1_0_0 extends UpgradeProcess {
-
-	public int getThreshold() {
-		return 100;
-	}
+public class UpgradeComment extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeArticle.class);
-		upgrade(UpgradeComment.class);
-		upgrade(UpgradeRatings.class);
+		runSQL(CommentImpl.TABLE_SQL_CREATE);
 	}
 
 }
