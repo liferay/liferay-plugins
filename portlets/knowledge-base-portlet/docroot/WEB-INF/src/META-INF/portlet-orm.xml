@@ -41,6 +41,30 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.knowledgebase.model.impl.CommentModelImpl">
+		<attributes>
+			<id name="commentId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="classNameId" />
+			<basic name="classPK" />
+			<basic name="content" />
+			<basic name="helpful" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.knowledgebase.model.impl.TemplateModelImpl">
 		<attributes>
 			<id name="templateId" />
@@ -66,6 +90,10 @@
 	</mapped-superclass>
 	<entity class="com.liferay.knowledgebase.model.impl.ArticleImpl" name="Article">
 		<table name="KB_Article" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.knowledgebase.model.impl.CommentImpl" name="Comment">
+		<table name="KB_Comment" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.knowledgebase.model.impl.TemplateImpl" name="Template">

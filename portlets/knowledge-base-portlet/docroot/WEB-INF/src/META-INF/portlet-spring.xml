@@ -10,6 +10,11 @@
 		<property name="service" ref="com.liferay.knowledgebase.service.ArticleService" />
 	</bean>
 	<bean id="com.liferay.knowledgebase.service.persistence.ArticlePersistence" class="com.liferay.knowledgebase.service.persistence.ArticlePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.knowledgebase.service.CommentLocalService" class="com.liferay.knowledgebase.service.impl.CommentLocalServiceImpl" />
+	<bean id="com.liferay.knowledgebase.service.CommentLocalServiceUtil" class="com.liferay.knowledgebase.service.CommentLocalServiceUtil">
+		<property name="service" ref="com.liferay.knowledgebase.service.CommentLocalService" />
+	</bean>
+	<bean id="com.liferay.knowledgebase.service.persistence.CommentPersistence" class="com.liferay.knowledgebase.service.persistence.CommentPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.knowledgebase.service.TemplateLocalService" class="com.liferay.knowledgebase.service.impl.TemplateLocalServiceImpl" />
 	<bean id="com.liferay.knowledgebase.service.TemplateLocalServiceUtil" class="com.liferay.knowledgebase.service.TemplateLocalServiceUtil">
 		<property name="service" ref="com.liferay.knowledgebase.service.TemplateLocalService" />

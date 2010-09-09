@@ -2430,6 +2430,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 	@BeanReference(type = ArticlePersistence.class)
 	protected ArticlePersistence articlePersistence;
+	@BeanReference(type = CommentPersistence.class)
+	protected CommentPersistence commentPersistence;
 	@BeanReference(type = TemplatePersistence.class)
 	protected TemplatePersistence templatePersistence;
 	@BeanReference(type = CompanyPersistence.class)

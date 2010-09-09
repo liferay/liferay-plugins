@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.knowledgebase.model.Article" />
+	<import class="com.liferay.knowledgebase.model.Comment" />
 	<import class="com.liferay.knowledgebase.model.Template" />
 	<class name="com.liferay.knowledgebase.model.impl.ArticleImpl" table="KB_Article">
 		<cache usage="read-write" />
@@ -27,6 +28,23 @@
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="statusByUserName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="statusDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.knowledgebase.model.impl.CommentImpl" table="KB_Comment">
+		<cache usage="read-write" />
+		<id name="commentId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" column="uuid_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="classNameId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="classPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="helpful" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.knowledgebase.model.impl.TemplateImpl" table="KB_Template">
 		<cache usage="read-write" />

@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.service.messaging;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.ClpSerializer;
+import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
 
@@ -49,6 +50,8 @@ public class ClpMessageListener implements MessageListener {
 			ArticleLocalServiceUtil.clearService();
 
 			ArticleServiceUtil.clearService();
+			CommentLocalServiceUtil.clearService();
+
 			TemplateLocalServiceUtil.clearService();
 
 			TemplateServiceUtil.clearService();

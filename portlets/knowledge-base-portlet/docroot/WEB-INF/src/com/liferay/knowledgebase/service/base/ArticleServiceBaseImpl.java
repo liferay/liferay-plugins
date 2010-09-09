@@ -21,9 +21,11 @@ import com.liferay.documentlibrary.service.DLService;
 
 import com.liferay.knowledgebase.service.ArticleLocalService;
 import com.liferay.knowledgebase.service.ArticleService;
+import com.liferay.knowledgebase.service.CommentLocalService;
 import com.liferay.knowledgebase.service.TemplateLocalService;
 import com.liferay.knowledgebase.service.TemplateService;
 import com.liferay.knowledgebase.service.persistence.ArticlePersistence;
+import com.liferay.knowledgebase.service.persistence.CommentPersistence;
 import com.liferay.knowledgebase.service.persistence.TemplatePersistence;
 
 import com.liferay.portal.kernel.annotation.BeanReference;
@@ -135,6 +137,42 @@ public abstract class ArticleServiceBaseImpl extends PrincipalBean
 	 */
 	public void setArticlePersistence(ArticlePersistence articlePersistence) {
 		this.articlePersistence = articlePersistence;
+	}
+
+	/**
+	 * Gets the comment local service.
+	 *
+	 * @return the comment local service
+	 */
+	public CommentLocalService getCommentLocalService() {
+		return commentLocalService;
+	}
+
+	/**
+	 * Sets the comment local service.
+	 *
+	 * @param commentLocalService the comment local service
+	 */
+	public void setCommentLocalService(CommentLocalService commentLocalService) {
+		this.commentLocalService = commentLocalService;
+	}
+
+	/**
+	 * Gets the comment persistence.
+	 *
+	 * @return the comment persistence
+	 */
+	public CommentPersistence getCommentPersistence() {
+		return commentPersistence;
+	}
+
+	/**
+	 * Sets the comment persistence.
+	 *
+	 * @param commentPersistence the comment persistence
+	 */
+	public void setCommentPersistence(CommentPersistence commentPersistence) {
+		this.commentPersistence = commentPersistence;
 	}
 
 	/**
@@ -825,6 +863,10 @@ public abstract class ArticleServiceBaseImpl extends PrincipalBean
 	protected ArticleService articleService;
 	@BeanReference(type = ArticlePersistence.class)
 	protected ArticlePersistence articlePersistence;
+	@BeanReference(type = CommentLocalService.class)
+	protected CommentLocalService commentLocalService;
+	@BeanReference(type = CommentPersistence.class)
+	protected CommentPersistence commentPersistence;
 	@BeanReference(type = TemplateLocalService.class)
 	protected TemplateLocalService templateLocalService;
 	@BeanReference(type = TemplateService.class)

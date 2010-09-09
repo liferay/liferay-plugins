@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.service;
 
 import com.liferay.knowledgebase.model.ArticleClp;
+import com.liferay.knowledgebase.model.CommentClp;
 import com.liferay.knowledgebase.model.TemplateClp;
 
 import com.liferay.portal.kernel.log.Log;
@@ -189,6 +190,116 @@ public class ClpSerializer {
 					Date value18 = oldCplModel.getStatusDate();
 
 					method18.invoke(newModel, value18);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(CommentClp.class.getName())) {
+			CommentClp oldCplModel = (CommentClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.knowledgebase.model.impl.CommentImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setUuid",
+							new Class[] { String.class });
+
+					String value0 = oldCplModel.getUuid();
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setCommentId",
+							new Class[] { Long.TYPE });
+
+					Long value1 = new Long(oldCplModel.getCommentId());
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setGroupId",
+							new Class[] { Long.TYPE });
+
+					Long value2 = new Long(oldCplModel.getGroupId());
+
+					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
+
+					Long value3 = new Long(oldCplModel.getCompanyId());
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
+
+					Long value4 = new Long(oldCplModel.getUserId());
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setUserName",
+							new Class[] { String.class });
+
+					String value5 = oldCplModel.getUserName();
+
+					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
+
+					Date value6 = oldCplModel.getCreateDate();
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
+
+					Date value7 = oldCplModel.getModifiedDate();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setClassNameId",
+							new Class[] { Long.TYPE });
+
+					Long value8 = new Long(oldCplModel.getClassNameId());
+
+					method8.invoke(newModel, value8);
+
+					Method method9 = newModelClass.getMethod("setClassPK",
+							new Class[] { Long.TYPE });
+
+					Long value9 = new Long(oldCplModel.getClassPK());
+
+					method9.invoke(newModel, value9);
+
+					Method method10 = newModelClass.getMethod("setContent",
+							new Class[] { String.class });
+
+					String value10 = oldCplModel.getContent();
+
+					method10.invoke(newModel, value10);
+
+					Method method11 = newModelClass.getMethod("setHelpful",
+							new Class[] { Boolean.TYPE });
+
+					Boolean value11 = new Boolean(oldCplModel.getHelpful());
+
+					method11.invoke(newModel, value11);
 
 					return newModel;
 				}
@@ -475,6 +586,104 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setStatusDate(value18);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.knowledgebase.model.impl.CommentImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					CommentClp newModel = new CommentClp();
+
+					Method method0 = oldModelClass.getMethod("getUuid");
+
+					String value0 = (String)method0.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setUuid(value0);
+
+					Method method1 = oldModelClass.getMethod("getCommentId");
+
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+					newModel.setCommentId(value1);
+
+					Method method2 = oldModelClass.getMethod("getGroupId");
+
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setGroupId(value2);
+
+					Method method3 = oldModelClass.getMethod("getCompanyId");
+
+					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setCompanyId(value3);
+
+					Method method4 = oldModelClass.getMethod("getUserId");
+
+					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+					newModel.setUserId(value4);
+
+					Method method5 = oldModelClass.getMethod("getUserName");
+
+					String value5 = (String)method5.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setUserName(value5);
+
+					Method method6 = oldModelClass.getMethod("getCreateDate");
+
+					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+					newModel.setCreateDate(value6);
+
+					Method method7 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value7);
+
+					Method method8 = oldModelClass.getMethod("getClassNameId");
+
+					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+					newModel.setClassNameId(value8);
+
+					Method method9 = oldModelClass.getMethod("getClassPK");
+
+					Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
+
+					newModel.setClassPK(value9);
+
+					Method method10 = oldModelClass.getMethod("getContent");
+
+					String value10 = (String)method10.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setContent(value10);
+
+					Method method11 = oldModelClass.getMethod("getHelpful");
+
+					Boolean value11 = (Boolean)method11.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setHelpful(value11);
 
 					return newModel;
 				}
