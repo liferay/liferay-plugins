@@ -36,4 +36,6 @@ Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLA
 	<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
 
 	<%= template.getContent() %>
+
+	<liferay-util:include page="/admin/template_comments.jsp" servletContext="<%= application %>" />
 </div>
