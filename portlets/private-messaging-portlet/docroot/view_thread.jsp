@@ -127,6 +127,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 				<%= HtmlUtil.escape(mbMessage.getBody()) %>
 
 				<c:if test="<%= mbMessage.isAttachments() %>">
+					<hr />
 
 					<%
 					String[] attachmentsFiles = mbMessage.getAttachmentsFiles();
@@ -181,12 +182,31 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 <aui:layout cssClass="message-body-container">
 	<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
 
-	<form method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
+	<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
 		<aui:input name="redirect" type="hidden" value="<%= backToThreadURL %>" />
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
-		<textarea class="message-body" name="<portlet:namespace />body"></textarea>
+		<table>
+		<tr>
+			<td>
+				<textarea class="message-body" name="<portlet:namespace />body"></textarea>	
+			</td>
+			<td>
+				<aui:layout>
+					<label class="aui-field-label">
+						<liferay-ui:message key="attachments" />
+					</label>
+
+					<aui:input label="" name="msgFile1" type="file" />
+
+					<aui:input label="" name="msgFile2" type="file" />
+
+					<aui:input label="" name="msgFile3" type="file" />
+				</aui:layout>		
+			</td>
+		</tr>
+		</table>
 
 		<aui:button-row>
 			<aui:button name="send" type="submit" value="send" />
