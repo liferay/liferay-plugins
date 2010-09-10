@@ -33,7 +33,7 @@ String content = BeanParamUtil.getString(comment, request, "content");
 boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 %>
 
-<c:if test="<%= enableArticleComments %>">
+<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() %>">
 	<div class="kb-article-comments">
 		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "comments") %>'>
@@ -73,7 +73,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 								<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(comment.getModifiedDate())) %>
 							</div>
 
-							<c:if test="<%= themeDisplay.isSignedIn() && (ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) || (user.getUserId() == comment.getUserId())) %>">
+							<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) || (user.getUserId() == comment.getUserId()) %>">
 								<br />
 
 								<%
@@ -113,7 +113,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 					</aui:button-row>
 				</aui:form>
 
-				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) && themeDisplay.isSignedIn() %>">
+				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 					<liferay-portlet:renderURL varImpl="iteratorURL">
 						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
@@ -174,7 +174,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 										<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(curComment.getModifiedDate())) %>
 									</div>
 
-									<c:if test="<%= themeDisplay.isSignedIn() && (ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) || (user.getUserId() == curComment.getUserId())) %>">
+									<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) || (user.getUserId() == curComment.getUserId()) %>">
 										<br />
 
 										<%
