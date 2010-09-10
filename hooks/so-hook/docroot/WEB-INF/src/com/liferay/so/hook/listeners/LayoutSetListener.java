@@ -93,7 +93,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 	protected void addCommunityLayouts(Group group) throws Exception {
 
-		//	Look and Feel
+		// Look and Feel
 
 		updateLookAndFeel(group);
 
