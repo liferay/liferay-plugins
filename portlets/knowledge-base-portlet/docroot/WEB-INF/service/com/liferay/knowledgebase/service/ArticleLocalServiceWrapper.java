@@ -362,40 +362,24 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getLatestArticle(resourcePrimKey, status);
 	}
 
-	public void subscribe(long companyId, long userId, long groupId,
-		java.lang.String portletId)
+	public void subscribe(long companyId, long userId,
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribe(companyId, userId, groupId, portletId);
+		_articleLocalService.subscribe(companyId, userId, portletId, classPK);
 	}
 
-	public void subscribeArticle(long userId, java.lang.String portletId,
-		long resourcePrimKey)
+	public void unsubscribe(long companyId, long userId,
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribeArticle(userId, portletId, resourcePrimKey);
+		_articleLocalService.unsubscribe(companyId, userId, portletId, classPK);
 	}
 
-	public void unsubscribe(long companyId, long userId, long groupId,
-		java.lang.String portletId)
+	public void unsubscribeAllPortlets(long companyId, long subscriptionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribe(companyId, userId, groupId, portletId);
-	}
-
-	public void unsubscribeArticle(long companyId, long userId,
-		long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribeArticle(companyId, userId,
-			resourcePrimKey);
-	}
-
-	public void unsubscribeArticle(
-		com.liferay.portal.model.Subscription subscription)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribeArticle(subscription);
+		_articleLocalService.unsubscribeAllPortlets(companyId, subscriptionId);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,

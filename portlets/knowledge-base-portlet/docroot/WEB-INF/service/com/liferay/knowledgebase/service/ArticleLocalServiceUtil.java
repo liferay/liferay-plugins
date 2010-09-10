@@ -378,39 +378,25 @@ public class ArticleLocalServiceUtil {
 		return getService().getLatestArticle(resourcePrimKey, status);
 	}
 
-	public static void subscribe(long companyId, long userId, long groupId,
-		java.lang.String portletId)
+	public static void subscribe(long companyId, long userId,
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribe(companyId, userId, groupId, portletId);
+		getService().subscribe(companyId, userId, portletId, classPK);
 	}
 
-	public static void subscribeArticle(long userId,
-		java.lang.String portletId, long resourcePrimKey)
+	public static void unsubscribe(long companyId, long userId,
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribeArticle(userId, portletId, resourcePrimKey);
+		getService().unsubscribe(companyId, userId, portletId, classPK);
 	}
 
-	public static void unsubscribe(long companyId, long userId, long groupId,
-		java.lang.String portletId)
+	public static void unsubscribeAllPortlets(long companyId,
+		long subscriptionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribe(companyId, userId, groupId, portletId);
-	}
-
-	public static void unsubscribeArticle(long companyId, long userId,
-		long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribeArticle(companyId, userId, resourcePrimKey);
-	}
-
-	public static void unsubscribeArticle(
-		com.liferay.portal.model.Subscription subscription)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribeArticle(subscription);
+		getService().unsubscribeAllPortlets(companyId, subscriptionId);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateArticle(

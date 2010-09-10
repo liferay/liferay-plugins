@@ -567,12 +567,12 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void subscribeArticle(java.lang.String portletId,
+	public void subscribeArticle(long companyId, java.lang.String portletId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey17,
-				portletId, resourcePrimKey);
+				companyId, portletId, resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -625,11 +625,12 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeArticle(long companyId, java.lang.String portletId,
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey19,
-				companyId, resourcePrimKey);
+				companyId, portletId, resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -781,11 +782,11 @@ public class ArticleServiceClp implements ArticleService {
 	private MethodKey _subscribeMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 			"subscribe", long.class, long.class, java.lang.String.class);
 	private MethodKey _subscribeArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"subscribeArticle", java.lang.String.class, long.class);
+			"subscribeArticle", long.class, java.lang.String.class, long.class);
 	private MethodKey _unsubscribeMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 			"unsubscribe", long.class, long.class, java.lang.String.class);
 	private MethodKey _unsubscribeArticleMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"unsubscribeArticle", long.class, long.class);
+			"unsubscribeArticle", long.class, java.lang.String.class, long.class);
 	private MethodKey _updateArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 			"updateArticle", long.class, long.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class, int.class,

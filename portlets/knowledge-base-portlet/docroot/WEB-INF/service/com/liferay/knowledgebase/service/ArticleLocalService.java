@@ -315,28 +315,17 @@ public interface ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribe(long companyId, long userId, long groupId,
-		java.lang.String portletId)
+	public void subscribe(long companyId, long userId,
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribeArticle(long userId, java.lang.String portletId,
-		long resourcePrimKey)
+	public void unsubscribe(long companyId, long userId,
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribe(long companyId, long userId, long groupId,
-		java.lang.String portletId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void unsubscribeArticle(long companyId, long userId,
-		long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void unsubscribeArticle(
-		com.liferay.portal.model.Subscription subscription)
+	public void unsubscribeAllPortlets(long companyId, long subscriptionId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

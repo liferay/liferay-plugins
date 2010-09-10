@@ -145,7 +145,7 @@ public interface ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribeArticle(java.lang.String portletId,
+	public void subscribeArticle(long companyId, java.lang.String portletId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -155,7 +155,8 @@ public interface ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeArticle(long companyId, java.lang.String portletId,
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
