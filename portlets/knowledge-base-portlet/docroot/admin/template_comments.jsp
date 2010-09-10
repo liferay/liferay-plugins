@@ -208,14 +208,19 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 		</liferay-ui:panel-container>
 	</div>
 
+	<portlet:renderURL var="viewTemplateURL">
+		<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
+		<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+	</portlet:renderURL>
+
 	<aui:script>
 		function <portlet:namespace />deleteComment(commentId) {
 			document.<portlet:namespace />fm.<portlet:namespace />commentId.value = commentId;
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /><portlet:param name="redirect" value="<%= viewTemplateURL %>" /></portlet:actionURL>");
 		}
 
 		function <portlet:namespace />updateComment() {
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /><portlet:param name="redirect" value="<%= viewTemplateURL %>" /></portlet:actionURL>");
 		}
 	</aui:script>
 </c:if>

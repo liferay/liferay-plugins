@@ -208,14 +208,19 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 		</liferay-ui:panel-container>
 	</div>
 
+	<portlet:renderURL var="viewArticleURL">
+		<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+	</portlet:renderURL>
+
 	<aui:script>
 		function <portlet:namespace />deleteComment(commentId) {
 			document.<portlet:namespace />fm.<portlet:namespace />commentId.value = commentId;
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= viewArticleURL %>" /></portlet:actionURL>");
 		}
 
 		function <portlet:namespace />updateComment() {
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= viewArticleURL %>" /></portlet:actionURL>");
 		}
 	</aui:script>
 </c:if>
