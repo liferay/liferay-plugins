@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.hook.upgrade;
 
 import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeArticle;
-import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeComment;
 import com.liferay.knowledgebase.hook.upgrade.v1_0_0.UpgradeRatings;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
@@ -30,7 +29,6 @@ public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeArticle.class);
-		upgrade(UpgradeComment.class);
 		upgrade(UpgradeRatings.class);
 	}
 
