@@ -58,6 +58,7 @@ import javax.portlet.PortletPreferences;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Ryan Park
  */
 public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
@@ -80,7 +81,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 			if (group.isCommunity()) {
 				addCommunityLayouts(group);
-				updateFriendlyURL(group);
 			}
 			else if (group.isUser()) {
 				addUserLayouts(group);
@@ -359,37 +359,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
 
 		portletSetup.store();
-	}
-
-	protected void updateFriendlyURL(Group group) {
-		String name = group.getName();
-
-		Pattern pattern = Pattern.compile("[^0-9a-zA-Z]");
-
-		Matcher matcher = pattern.matcher(name);
-
-		String friendlyURL = matcher.replaceAll("");
-
-		friendlyURL = "/" + friendlyURL.toLowerCase();
-
-		updateFriendlyURL(group.getGroupId(), friendlyURL, 0);
-	}
-
-	protected void updateFriendlyURL(
-		long groupId, String friendlyURL, int index) {
-
-		try {
-			if (index == 0) {
-				GroupLocalServiceUtil.updateFriendlyURL(groupId, friendlyURL);
-			}
-			else {
-				GroupLocalServiceUtil.updateFriendlyURL(
-					groupId, friendlyURL + index);
-			}
-		}
-		catch (Exception e) {
-			updateFriendlyURL(groupId, friendlyURL, index + 1);
-		}
 	}
 
 	protected void updateLookAndFeel(Group group) throws Exception {
