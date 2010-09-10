@@ -69,7 +69,7 @@
 		for (String portletId : portletIds) {
 			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletId, StringPool.BLANK);
 
-			String portletTitle = (String)PortalClassInvoker.invoke(true, "com.liferay.portlet.portletconfiguration.util.PortletConfigurationUtil", "getPortletTitle", new String[] {PortletPreferences.class.getName(), String.class.getName()}, jxPreferences, themeDisplay.getLanguageId());
+			String portletTitle = PortletConfigurationUtil.getPortletTitle(jxPreferences, themeDisplay.getLanguageId());
 
 			if (Validator.isNull(portletTitle)) {
 				portletTitle = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletId), locale);
