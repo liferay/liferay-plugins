@@ -22,7 +22,7 @@
 
 <liferay-ui:search-container
 	delta="<%= articlesDelta %>"
-	headerNames="title,author,date,version"
+	headerNames="title,portlets,version"
 	iteratorURL="<%= iteratorURL %>"
 >
 	<liferay-ui:search-container-results>
@@ -59,31 +59,49 @@
 			property="title"
 		/>
 
-		<liferay-ui:search-container-column-text
-			href="<%= rowURL %>"
-			name="author"
-			property="userName"
-		/>
+		<%
+		Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
+
+		String[] portletIds = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletIds", subscription.getSubscriptionId(), new String[0]);
+
+		List<String> portletTitles = new ArrayList<String>();
+
+		for (String portletId : portletIds) {
+			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletId, StringPool.BLANK);
+
+			String portletTitle = (String)PortalClassInvoker.invoke(true, "com.liferay.portlet.portletconfiguration.util.PortletConfigurationUtil", "getPortletTitle", new String[] {PortletPreferences.class.getName(), String.class.getName()}, jxPreferences, themeDisplay.getLanguageId());
+
+			if (Validator.isNull(portletTitle)) {
+				portletTitle = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletId), locale);
+			}
+
+			if (!portletTitles.contains(portletTitle)) {
+				portletTitles.add(portletTitle);
+			}
+		}
+
+		Collections.sort(portletTitles);
+		%>
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
-			name="date"
-			value="<%= dateFormatDateTime.format(article.getModifiedDate()) %>"
+			name="portlets"
+			value="<%= StringUtil.merge(portletTitles, StringPool.COMMA_AND_SPACE) %>"
 		/>
 
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<liferay-ui:search-container-column-text
 				align="right"
 			>
-				<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
+				<portlet:actionURL name="unsubscribeAllPortlets" var="unsubscribeAllPortletsURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+					<portlet:param name="subscriptionId" value="<%= String.valueOf(subscription.getSubscriptionId()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon
 					image="unsubscribe"
 					label="<%= true %>"
-					url="<%= unsubscribeURL %>"
+					url="<%= unsubscribeAllPortletsURL %>"
 				/>
 			</liferay-ui:search-container-column-text>
 		</c:if>

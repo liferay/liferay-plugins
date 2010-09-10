@@ -262,17 +262,18 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.subscribe(
-			companyId, getUserId(), groupId, portletId);
+			companyId, getUserId(), portletId, groupId);
 	}
 
-	public void subscribeArticle(String portletId, long resourcePrimKey)
+	public void subscribeArticle(
+			long companyId, String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.subscribeArticle(
-			getUserId(), portletId, resourcePrimKey);
+		articleLocalService.subscribe(
+			companyId, getUserId(), portletId, resourcePrimKey);
 	}
 
 	public void unsubscribe(long companyId, long groupId, String portletId)
@@ -282,17 +283,18 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.unsubscribe(
-			companyId, getUserId(), groupId, portletId);
+			companyId, getUserId(), portletId, groupId);
 	}
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeArticle(
+			long companyId, String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.unsubscribeArticle(
-			companyId, getUserId(), resourcePrimKey);
+		articleLocalService.unsubscribe(
+			companyId, getUserId(), portletId, resourcePrimKey);
 	}
 
 	public Article updateArticle(

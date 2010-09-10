@@ -295,7 +295,8 @@ public class AdminPortlet extends MVCPortlet {
 				portletId);
 		}
 		else {
-			ArticleServiceUtil.subscribeArticle(portletId, resourcePrimKey);
+			ArticleServiceUtil.subscribeArticle(
+				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
 		}
 	}
 
@@ -318,7 +319,7 @@ public class AdminPortlet extends MVCPortlet {
 		}
 		else {
 			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), resourcePrimKey);
+				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
 		}
 	}
 

@@ -205,7 +205,9 @@ public class AdminMessageListener implements MessageListener {
 							" is stale and will be deleted");
 				}
 
-				ArticleLocalServiceUtil.unsubscribeArticle(subscription);
+				ArticleLocalServiceUtil.unsubscribeAllPortlets(
+					subscription.getCompanyId(),
+					subscription.getSubscriptionId());
 
 				continue;
 			}
@@ -259,8 +261,8 @@ public class AdminMessageListener implements MessageListener {
 							"not contain article " + resourcePrimKey);
 
 					ArticleLocalServiceUtil.unsubscribe(
-						subscription.getCompanyId(), userId,
-						subscription.getClassPK(), portletId);
+						subscription.getCompanyId(), userId, portletId,
+						subscription.getClassPK());
 				}
 			}
 

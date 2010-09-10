@@ -418,7 +418,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public void subscribe(
-			long companyId, long userId, long groupId, String portletId)
+			long companyId, long userId, String portletId, long classPK)
 		throws PortalException, SystemException {
 
 		// Subscription
@@ -427,11 +427,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		try {
 			subscription = subscriptionLocalService.getSubscription(
-				companyId, userId, Article.class.getName(), groupId);
+				companyId, userId, Article.class.getName(), classPK);
 		}
 		catch (NoSuchSubscriptionException nsse) {
 			subscription = subscriptionLocalService.addSubscription(
-				userId, Article.class.getName(), groupId);
+				userId, Article.class.getName(), classPK);
 		}
 
 		// Expando
@@ -456,29 +456,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			"portletIds", subscription.getSubscriptionId(), portletIds);
 	}
 
-	public void subscribeArticle(
-			long userId, String portletId, long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		// Subscription
-
-		Subscription subscription = subscriptionLocalService.addSubscription(
-			userId, Article.class.getName(), resourcePrimKey);
-
-		// Expando
-
-		expandoValueLocalService.addValue(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletIds", subscription.getSubscriptionId(),
-			new String[] {portletId});
-	}
-
 	public void unsubscribe(
-			long companyId, long userId, long groupId, String portletId)
+			long companyId, long userId, String portletId, long classPK)
 		throws PortalException, SystemException {
 
 		Subscription subscription = subscriptionLocalService.getSubscription(
-			companyId, userId, Article.class.getName(), groupId);
+			companyId, userId, Article.class.getName(), classPK);
 
 		String[] portletIds = expandoValueLocalService.getData(
 			companyId, Subscription.class.getName(), "KB", "portletIds",
@@ -505,28 +488,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
-	public void unsubscribeArticle(
-			long companyId, long userId, long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		Subscription subscription = subscriptionLocalService.getSubscription(
-			companyId, userId, Article.class.getName(), resourcePrimKey);
-
-		unsubscribeArticle(subscription);
-	}
-
-	public void unsubscribeArticle(Subscription subscription)
+	public void unsubscribeAllPortlets(long companyId, long subscriptionId)
 		throws PortalException, SystemException {
 
 		// Subscription
 
-		subscriptionLocalService.deleteSubscription(subscription);
+		subscriptionLocalService.deleteSubscription(subscriptionId);
 
 		// Expando
 
 		expandoValueLocalService.deleteValue(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletIds", subscription.getSubscriptionId());
+			companyId, Subscription.class.getName(), "KB", "portletIds",
+			subscriptionId);
 	}
 
 	public Article updateArticle(
@@ -988,7 +961,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				article.getResourcePrimKey());
 
 		for (Subscription subscription : subscriptions) {
-			unsubscribeArticle(subscription);
+			unsubscribeAllPortlets(
+				subscription.getCompanyId(), subscription.getSubscriptionId());
 		}
 	}
 

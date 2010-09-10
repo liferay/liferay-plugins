@@ -43,8 +43,23 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 			<td>
+
+				<%
+				boolean subscribed = false;
+
+				if (SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey())) {
+					Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
+
+					String[] portletIds = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletIds", subscription.getSubscriptionId(), new String[0]);
+
+					if (ArrayUtil.contains(portletIds, portletDisplay.getId())) {
+						subscribed = true;
+					}
+				}
+				%>
+
 				<c:choose>
-					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey()) %>">
+					<c:when test="<%= subscribed %>">
 						<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />

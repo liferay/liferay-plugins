@@ -15,12 +15,12 @@
 package com.liferay.knowledgebase.hook.listeners;
 
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.List;
 
@@ -37,11 +37,9 @@ public class GroupListener extends BaseModelListener<Group> {
 					group.getGroupId());
 
 			for (Subscription subscription : subscriptions) {
-				SubscriptionLocalServiceUtil.deleteSubscription(subscription);
-
-				ExpandoValueLocalServiceUtil.deleteValue(
-					group.getCompanyId(), Article.class.getName(), "KB",
-					"portletIds", subscription.getSubscriptionId());
+				ArticleLocalServiceUtil.unsubscribeAllPortlets(
+					subscription.getCompanyId(),
+					subscription.getSubscriptionId());
 			}
 		}
 		catch (Exception e) {

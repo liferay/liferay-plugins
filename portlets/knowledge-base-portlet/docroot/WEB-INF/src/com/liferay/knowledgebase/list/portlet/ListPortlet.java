@@ -55,10 +55,11 @@ public class ListPortlet extends AdminPortlet {
 		if (resourcePrimKey <= 0) {
 			ArticleLocalServiceUtil.subscribe(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				themeDisplay.getScopeGroupId(), portletId);
+				portletId, themeDisplay.getScopeGroupId());
 		}
 		else {
-			ArticleServiceUtil.subscribeArticle(portletId, resourcePrimKey);
+			ArticleServiceUtil.subscribeArticle(
+				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
 		}
 	}
 
@@ -81,12 +82,30 @@ public class ListPortlet extends AdminPortlet {
 		if (resourcePrimKey <= 0) {
 			ArticleLocalServiceUtil.unsubscribe(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				themeDisplay.getScopeGroupId(), portletId);
+				portletId, themeDisplay.getScopeGroupId());
 		}
 		else {
 			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), resourcePrimKey);
+				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
 		}
+	}
+
+	public void unsubscribeAllPortlets(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		long subscriptionId = ParamUtil.getLong(
+			actionRequest, "subscriptionId");
+
+		ArticleLocalServiceUtil.unsubscribeAllPortlets(
+			themeDisplay.getCompanyId(), subscriptionId);
 	}
 
 	protected int getStatus(PortletRequest portletRequest) {
@@ -100,6 +119,7 @@ public class ListPortlet extends AdminPortlet {
 		if (actionName.equals("deleteComment") ||
 			actionName.equals("subscribe") ||
 			actionName.equals("unsubscribe") ||
+			actionName.equals("unsubscribeAllPortlets") ||
 			actionName.equals("updateComment")) {
 
 			return true;
