@@ -35,7 +35,7 @@
 
 .knowledge-base-portlet-admin .lfr-textarea-container textarea {
 	height: 100px;
-	width: 500px;
+	width: 100%;
 }
 
 .knowledge-base-portlet-admin .taglib-search-iterator-page-iterator-bottom {
