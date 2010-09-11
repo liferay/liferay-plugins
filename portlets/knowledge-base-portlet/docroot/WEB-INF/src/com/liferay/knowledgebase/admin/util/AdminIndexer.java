@@ -105,9 +105,9 @@ public class AdminIndexer extends BaseIndexer {
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
-		boolean assetEntryQueryContains = (Boolean)searchContext.getAttribute(
+		Boolean assetEntryQueryContains = (Boolean)searchContext.getAttribute(
 			"KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_CONTAINS");
-		boolean assetEntryQueryAndOperator =
+		Boolean assetEntryQueryAndOperator =
 			(Boolean)searchContext.getAttribute(
 				"KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_AND_OPERATOR");
 		String assetEntryQueryName = (String)searchContext.getAttribute(
@@ -116,6 +116,10 @@ public class AdminIndexer extends BaseIndexer {
 			"KNOWLEDGE_BASE_ASSET_CATEGORY_IDS");
 		String[] assetTagNames = (String[])searchContext.getAttribute(
 			"KNOWLEDGE_BASE_ASSET_TAG_NAMES");
+
+		if (Validator.isNull(assetEntryQueryName)) {
+			return;
+		}
 
 		if ((assetEntryQueryName.equals("asset-categories")) &&
 			(assetCategoryIds.length > 0)) {
