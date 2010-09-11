@@ -25,8 +25,8 @@ if (Validator.isNotNull(portletResource)) {
 
 String articlesTitle = preferences.getValue("articles-title", StringPool.BLANK);
 boolean allArticles = GetterUtil.getBoolean(preferences.getValue("all-articles", null), true);
-String orderByColumn = preferences.getValue("order-by-column", "priority");
-boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-ascending", null), true);
+String orderByColumn = preferences.getValue("order-by-column", "modified-date");
+boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-ascending", null));
 int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String articleWindowState = preferences.getValue("article-window-state", WindowState.MAXIMIZED.toString());
 String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
