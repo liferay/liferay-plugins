@@ -47,11 +47,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 				searchContext.setScopeStrict(false);
 				searchContext.setStart(searchContainer.getStart());
 
-				searchContext.setAttribute("KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_CONTAINS", assetEntryQueryContains);
-				searchContext.setAttribute("KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_AND_OPERATOR", assetEntryQueryAndOperator);
-				searchContext.setAttribute("KNOWLEDGE_BASE_ASSET_ENTRY_QUERY_NAME", assetEntryQueryName);
-				searchContext.setAttribute("KNOWLEDGE_BASE_ASSET_CATEGORY_IDS", assetCategoryIds);
-				searchContext.setAttribute("KNOWLEDGE_BASE_ASSET_TAG_NAMES", assetTagNames);
+				searchContext.setAttribute("assetEntryQueryContains", assetEntryQueryContains);
+				searchContext.setAttribute("assetEntryQueryAndOperator", assetEntryQueryAndOperator);
+				searchContext.setAttribute("assetEntryQueryName", assetEntryQueryName);
+				searchContext.setAttribute("assetCategoryIds", assetCategoryIds);
+				searchContext.setAttribute("assetTagNames", assetTagNames);
 
 				if (selectionMethod.equals("articles")) {
 					searchContext.setAttribute("KNOWLEDGE_BASE_RESOURCE_PRIM_KEYS", resourcePrimKeys);
