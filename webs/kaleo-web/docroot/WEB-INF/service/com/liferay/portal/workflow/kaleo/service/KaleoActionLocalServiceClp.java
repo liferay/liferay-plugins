@@ -24,6 +24,72 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 	public KaleoActionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoActionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoAction",
+				com.liferay.portal.workflow.kaleo.model.KaleoAction.class);
+
+		_createKaleoActionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoAction", long.class);
+
+		_deleteKaleoActionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoAction", long.class);
+
+		_deleteKaleoActionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoAction",
+				com.liferay.portal.workflow.kaleo.model.KaleoAction.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoActionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoAction", long.class);
+
+		_getKaleoActionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoActions", int.class, int.class);
+
+		_getKaleoActionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoActionsCount");
+
+		_updateKaleoActionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoAction",
+				com.liferay.portal.workflow.kaleo.model.KaleoAction.class);
+
+		_updateKaleoActionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoAction",
+				com.liferay.portal.workflow.kaleo.model.KaleoAction.class,
+				boolean.class);
+
+		_addKaleoActionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoAction", long.class, long.class,
+				java.lang.String.class,
+				com.liferay.portal.workflow.kaleo.definition.Action.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCompanyKaleoActionsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoActions", long.class);
+
+		_deleteKaleoDefinitionKaleoActionsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoActions", long.class);
+
+		_getKaleoActionsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoActions", long.class, java.lang.String.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
@@ -506,50 +572,21 @@ public class KaleoActionLocalServiceClp implements KaleoActionLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoActionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoAction",
-			com.liferay.portal.workflow.kaleo.model.KaleoAction.class);
-	private MethodKey _createKaleoActionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoAction", long.class);
-	private MethodKey _deleteKaleoActionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoAction", long.class);
-	private MethodKey _deleteKaleoActionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoAction",
-			com.liferay.portal.workflow.kaleo.model.KaleoAction.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoActionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoAction", long.class);
-	private MethodKey _getKaleoActionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoActions", int.class, int.class);
-	private MethodKey _getKaleoActionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoActionsCount");
-	private MethodKey _updateKaleoActionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoAction",
-			com.liferay.portal.workflow.kaleo.model.KaleoAction.class);
-	private MethodKey _updateKaleoActionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoAction",
-			com.liferay.portal.workflow.kaleo.model.KaleoAction.class,
-			boolean.class);
-	private MethodKey _addKaleoActionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoAction", long.class, long.class, java.lang.String.class,
-			com.liferay.portal.workflow.kaleo.definition.Action.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteCompanyKaleoActionsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoActions", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoActionsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoActions", long.class);
-	private MethodKey _getKaleoActionsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoActions", long.class, java.lang.String.class);
+	private MethodKey _addKaleoActionMethodKey0;
+	private MethodKey _createKaleoActionMethodKey1;
+	private MethodKey _deleteKaleoActionMethodKey2;
+	private MethodKey _deleteKaleoActionMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoActionMethodKey8;
+	private MethodKey _getKaleoActionsMethodKey9;
+	private MethodKey _getKaleoActionsCountMethodKey10;
+	private MethodKey _updateKaleoActionMethodKey11;
+	private MethodKey _updateKaleoActionMethodKey12;
+	private MethodKey _addKaleoActionMethodKey13;
+	private MethodKey _deleteCompanyKaleoActionsMethodKey14;
+	private MethodKey _deleteKaleoDefinitionKaleoActionsMethodKey15;
+	private MethodKey _getKaleoActionsMethodKey16;
 }

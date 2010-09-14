@@ -295,7 +295,7 @@ public class WSRPConsumerLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					WSRPConsumerLocalService.class.getName(), portletClassLoader);
 
 			_service = new WSRPConsumerLocalServiceClp(classLoaderProxy);
 

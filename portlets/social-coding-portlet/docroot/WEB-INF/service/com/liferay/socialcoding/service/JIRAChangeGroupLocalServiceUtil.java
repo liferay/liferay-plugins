@@ -239,6 +239,7 @@ public class JIRAChangeGroupLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					JIRAChangeGroupLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new JIRAChangeGroupLocalServiceClp(classLoaderProxy);

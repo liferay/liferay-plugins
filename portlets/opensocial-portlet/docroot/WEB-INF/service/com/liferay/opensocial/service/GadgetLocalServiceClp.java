@@ -24,6 +24,78 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class GadgetLocalServiceClp implements GadgetLocalService {
 	public GadgetLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addGadgetMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addGadget", com.liferay.opensocial.model.Gadget.class);
+
+		_createGadgetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createGadget", long.class);
+
+		_deleteGadgetMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteGadget", long.class);
+
+		_deleteGadgetMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteGadget", com.liferay.opensocial.model.Gadget.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getGadgetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGadget", long.class);
+
+		_getGadgetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGadgets", int.class, int.class);
+
+		_getGadgetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGadgetsCount");
+
+		_updateGadgetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateGadget", com.liferay.opensocial.model.Gadget.class);
+
+		_updateGadgetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateGadget", com.liferay.opensocial.model.Gadget.class,
+				boolean.class);
+
+		_addGadgetMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addGadget", long.class, java.lang.String.class,
+				java.lang.String.class);
+
+		_destroyGadgetMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"destroyGadget", long.class, long.class, java.lang.String.class);
+
+		_destroyGadgetsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"destroyGadgets");
+
+		_getGadgetsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGadgets", long.class, int.class, int.class);
+
+		_getGadgetsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGadgetsCount", long.class);
+
+		_initGadgetMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"initGadget", long.class, long.class, java.lang.String.class);
+
+		_initGadgetsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"initGadgets");
+
+		_updateGadgetMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateGadget", long.class, long.class, java.lang.String.class);
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(
@@ -628,53 +700,25 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addGadgetMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addGadget", com.liferay.opensocial.model.Gadget.class);
-	private MethodKey _createGadgetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createGadget", long.class);
-	private MethodKey _deleteGadgetMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteGadget", long.class);
-	private MethodKey _deleteGadgetMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteGadget", com.liferay.opensocial.model.Gadget.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getGadgetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGadget", long.class);
-	private MethodKey _getGadgetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGadgets", int.class, int.class);
-	private MethodKey _getGadgetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGadgetsCount");
-	private MethodKey _updateGadgetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateGadget", com.liferay.opensocial.model.Gadget.class);
-	private MethodKey _updateGadgetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateGadget", com.liferay.opensocial.model.Gadget.class,
-			boolean.class);
-	private MethodKey _addGadgetMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addGadget", long.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _destroyGadgetMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"destroyGadget", long.class, long.class, java.lang.String.class);
-	private MethodKey _destroyGadgetsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"destroyGadgets");
-	private MethodKey _getGadgetsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGadgets", long.class, int.class, int.class);
-	private MethodKey _getGadgetsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGadgetsCount", long.class);
-	private MethodKey _initGadgetMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"initGadget", long.class, long.class, java.lang.String.class);
-	private MethodKey _initGadgetsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"initGadgets");
-	private MethodKey _updateGadgetMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateGadget", long.class, long.class, java.lang.String.class);
+	private MethodKey _addGadgetMethodKey0;
+	private MethodKey _createGadgetMethodKey1;
+	private MethodKey _deleteGadgetMethodKey2;
+	private MethodKey _deleteGadgetMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getGadgetMethodKey8;
+	private MethodKey _getGadgetsMethodKey9;
+	private MethodKey _getGadgetsCountMethodKey10;
+	private MethodKey _updateGadgetMethodKey11;
+	private MethodKey _updateGadgetMethodKey12;
+	private MethodKey _addGadgetMethodKey13;
+	private MethodKey _destroyGadgetMethodKey14;
+	private MethodKey _destroyGadgetsMethodKey15;
+	private MethodKey _getGadgetsMethodKey16;
+	private MethodKey _getGadgetsCountMethodKey17;
+	private MethodKey _initGadgetMethodKey18;
+	private MethodKey _initGadgetsMethodKey19;
+	private MethodKey _updateGadgetMethodKey20;
 }

@@ -24,6 +24,107 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	public UserThreadLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addUserThreadMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addUserThread",
+				com.liferay.privatemessaging.model.UserThread.class);
+
+		_createUserThreadMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createUserThread", long.class);
+
+		_deleteUserThreadMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteUserThread", long.class);
+
+		_deleteUserThreadMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteUserThread",
+				com.liferay.privatemessaging.model.UserThread.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getUserThreadMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserThread", long.class);
+
+		_getUserThreadsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserThreads", int.class, int.class);
+
+		_getUserThreadsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserThreadsCount");
+
+		_updateUserThreadMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateUserThread",
+				com.liferay.privatemessaging.model.UserThread.class);
+
+		_updateUserThreadMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateUserThread",
+				com.liferay.privatemessaging.model.UserThread.class,
+				boolean.class);
+
+		_addPrivateMessageMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addPrivateMessage", long.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, java.util.List.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_addPrivateMessageBranchMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addPrivateMessageBranch", long.class, long.class,
+				java.lang.String.class, java.util.List.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_addUserThreadMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addUserThread", long.class, long.class, long.class,
+				boolean.class, boolean.class);
+
+		_deleteUserMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteUser", long.class);
+
+		_deleteUserThreadMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteUserThread", long.class, long.class);
+
+		_getMBThreadUserThreadsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMBThreadUserThreads", long.class);
+
+		_getUserThreadMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserThread", long.class, long.class);
+
+		_getUserUserThreadCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserUserThreadCount", long.class, boolean.class);
+
+		_getUserUserThreadCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserUserThreadCount", long.class, boolean.class,
+				boolean.class);
+
+		_getUserUserThreadsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserUserThreads", long.class, boolean.class);
+
+		_getUserUserThreadsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserUserThreads", long.class, boolean.class, boolean.class);
+
+		_getUserUserThreadsMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserUserThreads", long.class, boolean.class, int.class,
+				int.class);
+
+		_markUserThreadAsReadMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"markUserThreadAsRead", long.class, long.class);
+
+		_markUserThreadAsUnreadMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"markUserThreadAsUnread", long.class, long.class);
 	}
 
 	public com.liferay.privatemessaging.model.UserThread addUserThread(
@@ -805,73 +906,31 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addUserThreadMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addUserThread", com.liferay.privatemessaging.model.UserThread.class);
-	private MethodKey _createUserThreadMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createUserThread", long.class);
-	private MethodKey _deleteUserThreadMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteUserThread", long.class);
-	private MethodKey _deleteUserThreadMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteUserThread",
-			com.liferay.privatemessaging.model.UserThread.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getUserThreadMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserThread", long.class);
-	private MethodKey _getUserThreadsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserThreads", int.class, int.class);
-	private MethodKey _getUserThreadsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserThreadsCount");
-	private MethodKey _updateUserThreadMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateUserThread",
-			com.liferay.privatemessaging.model.UserThread.class);
-	private MethodKey _updateUserThreadMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateUserThread",
-			com.liferay.privatemessaging.model.UserThread.class, boolean.class);
-	private MethodKey _addPrivateMessageMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addPrivateMessage", long.class, long.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.util.List.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _addPrivateMessageBranchMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addPrivateMessageBranch", long.class, long.class,
-			java.lang.String.class, java.util.List.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _addUserThreadMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addUserThread", long.class, long.class, long.class, boolean.class,
-			boolean.class);
-	private MethodKey _deleteUserMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteUser", long.class);
-	private MethodKey _deleteUserThreadMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteUserThread", long.class, long.class);
-	private MethodKey _getMBThreadUserThreadsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMBThreadUserThreads", long.class);
-	private MethodKey _getUserThreadMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserThread", long.class, long.class);
-	private MethodKey _getUserUserThreadCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserUserThreadCount", long.class, boolean.class);
-	private MethodKey _getUserUserThreadCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserUserThreadCount", long.class, boolean.class, boolean.class);
-	private MethodKey _getUserUserThreadsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserUserThreads", long.class, boolean.class);
-	private MethodKey _getUserUserThreadsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserUserThreads", long.class, boolean.class, boolean.class);
-	private MethodKey _getUserUserThreadsMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserUserThreads", long.class, boolean.class, int.class,
-			int.class);
-	private MethodKey _markUserThreadAsReadMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-			"markUserThreadAsRead", long.class, long.class);
-	private MethodKey _markUserThreadAsUnreadMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-			"markUserThreadAsUnread", long.class, long.class);
+	private MethodKey _addUserThreadMethodKey0;
+	private MethodKey _createUserThreadMethodKey1;
+	private MethodKey _deleteUserThreadMethodKey2;
+	private MethodKey _deleteUserThreadMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getUserThreadMethodKey8;
+	private MethodKey _getUserThreadsMethodKey9;
+	private MethodKey _getUserThreadsCountMethodKey10;
+	private MethodKey _updateUserThreadMethodKey11;
+	private MethodKey _updateUserThreadMethodKey12;
+	private MethodKey _addPrivateMessageMethodKey13;
+	private MethodKey _addPrivateMessageBranchMethodKey14;
+	private MethodKey _addUserThreadMethodKey15;
+	private MethodKey _deleteUserMethodKey16;
+	private MethodKey _deleteUserThreadMethodKey17;
+	private MethodKey _getMBThreadUserThreadsMethodKey18;
+	private MethodKey _getUserThreadMethodKey19;
+	private MethodKey _getUserUserThreadCountMethodKey20;
+	private MethodKey _getUserUserThreadCountMethodKey21;
+	private MethodKey _getUserUserThreadsMethodKey22;
+	private MethodKey _getUserUserThreadsMethodKey23;
+	private MethodKey _getUserUserThreadsMethodKey24;
+	private MethodKey _markUserThreadAsReadMethodKey25;
+	private MethodKey _markUserThreadAsUnreadMethodKey26;
 }

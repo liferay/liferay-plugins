@@ -381,7 +381,7 @@ public class KaleoLogLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					KaleoLogLocalService.class.getName(), portletClassLoader);
 
 			_service = new KaleoLogLocalServiceClp(classLoaderProxy);
 

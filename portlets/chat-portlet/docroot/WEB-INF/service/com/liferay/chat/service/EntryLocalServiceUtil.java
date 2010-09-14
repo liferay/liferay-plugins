@@ -264,7 +264,7 @@ public class EntryLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					EntryLocalService.class.getName(), portletClassLoader);
 
 			_service = new EntryLocalServiceClp(classLoaderProxy);
 

@@ -336,7 +336,7 @@ public class MessageLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					MessageLocalService.class.getName(), portletClassLoader);
 
 			_service = new MessageLocalServiceClp(classLoaderProxy);
 

@@ -24,6 +24,63 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public SVNRepositoryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addSVNRepositoryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addSVNRepository",
+				com.liferay.socialcoding.model.SVNRepository.class);
+
+		_createSVNRepositoryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createSVNRepository", long.class);
+
+		_deleteSVNRepositoryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteSVNRepository", long.class);
+
+		_deleteSVNRepositoryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteSVNRepository",
+				com.liferay.socialcoding.model.SVNRepository.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getSVNRepositoryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRepository", long.class);
+
+		_getSVNRepositoriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRepositories", int.class, int.class);
+
+		_getSVNRepositoriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRepositoriesCount");
+
+		_updateSVNRepositoryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateSVNRepository",
+				com.liferay.socialcoding.model.SVNRepository.class);
+
+		_updateSVNRepositoryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateSVNRepository",
+				com.liferay.socialcoding.model.SVNRepository.class,
+				boolean.class);
+
+		_getSVNRepositoryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRepository", java.lang.String.class);
+
+		_updateSVNRepositoryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateSVNRepository", java.lang.String.class);
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository addSVNRepository(
@@ -456,43 +513,19 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addSVNRepositoryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addSVNRepository",
-			com.liferay.socialcoding.model.SVNRepository.class);
-	private MethodKey _createSVNRepositoryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createSVNRepository", long.class);
-	private MethodKey _deleteSVNRepositoryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteSVNRepository", long.class);
-	private MethodKey _deleteSVNRepositoryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteSVNRepository",
-			com.liferay.socialcoding.model.SVNRepository.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getSVNRepositoryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRepository", long.class);
-	private MethodKey _getSVNRepositoriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRepositories", int.class, int.class);
-	private MethodKey _getSVNRepositoriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRepositoriesCount");
-	private MethodKey _updateSVNRepositoryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateSVNRepository",
-			com.liferay.socialcoding.model.SVNRepository.class);
-	private MethodKey _updateSVNRepositoryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateSVNRepository",
-			com.liferay.socialcoding.model.SVNRepository.class, boolean.class);
-	private MethodKey _getSVNRepositoryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRepository", java.lang.String.class);
-	private MethodKey _updateSVNRepositoryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateSVNRepository", java.lang.String.class);
+	private MethodKey _addSVNRepositoryMethodKey0;
+	private MethodKey _createSVNRepositoryMethodKey1;
+	private MethodKey _deleteSVNRepositoryMethodKey2;
+	private MethodKey _deleteSVNRepositoryMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getSVNRepositoryMethodKey8;
+	private MethodKey _getSVNRepositoriesMethodKey9;
+	private MethodKey _getSVNRepositoriesCountMethodKey10;
+	private MethodKey _updateSVNRepositoryMethodKey11;
+	private MethodKey _updateSVNRepositoryMethodKey12;
+	private MethodKey _getSVNRepositoryMethodKey13;
+	private MethodKey _updateSVNRepositoryMethodKey14;
 }

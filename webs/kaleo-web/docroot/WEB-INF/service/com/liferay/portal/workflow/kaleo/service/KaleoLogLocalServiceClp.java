@@ -24,6 +24,133 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	public KaleoLogLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoLogMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoLog.class);
+
+		_createKaleoLogMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoLog", long.class);
+
+		_deleteKaleoLogMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoLog", long.class);
+
+		_deleteKaleoLogMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoLog.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoLogMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoLog", long.class);
+
+		_getKaleoLogsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoLogs", int.class, int.class);
+
+		_getKaleoLogsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoLogsCount");
+
+		_updateKaleoLogMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoLog.class);
+
+		_updateKaleoLogMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoLog.class,
+				boolean.class);
+
+		_addActionExecutionKaleoLogMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addActionExecutionKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoAction.class,
+				long.class, long.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addNodeEntryKaleoLogMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addNodeEntryKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addNodeExitKaleoLogMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addNodeExitKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addTaskAssignmentKaleoLogMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTaskAssignmentKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
+				java.lang.String.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addTaskCompletionKaleoLogMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTaskCompletionKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
+				java.lang.String.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addTaskUpdateKaleoLogMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTaskUpdateKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
+				java.lang.String.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addWorkflowInstanceEndKaleoLogMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWorkflowInstanceEndKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addWorkflowInstanceStartKaleoLogMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWorkflowInstanceStartKaleoLog",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCompanyKaleoLogsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoLogs", long.class);
+
+		_deleteKaleoDefinitionKaleoLogsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoLogs", long.class);
+
+		_deleteKaleoInstanceKaleoLogsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoInstanceKaleoLogs", long.class);
+
+		_getKaleoInstanceKaleoLogsMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceKaleoLogs", long.class, java.util.List.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getKaleoInstanceKaleoLogsCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceKaleoLogsCount", long.class,
+				java.util.List.class);
+
+		_getKaleoTaskInstanceTokenKaleoLogsMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokenKaleoLogs", long.class,
+				java.util.List.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getKaleoTaskInstanceTokenKaleoLogsCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokenKaleoLogsCount", long.class,
+				java.util.List.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addKaleoLog(
@@ -868,100 +995,32 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoLogMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoLog.class);
-	private MethodKey _createKaleoLogMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoLog", long.class);
-	private MethodKey _deleteKaleoLogMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoLog", long.class);
-	private MethodKey _deleteKaleoLogMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoLog.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoLogMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoLog", long.class);
-	private MethodKey _getKaleoLogsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoLogs", int.class, int.class);
-	private MethodKey _getKaleoLogsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoLogsCount");
-	private MethodKey _updateKaleoLogMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoLog.class);
-	private MethodKey _updateKaleoLogMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoLog.class,
-			boolean.class);
-	private MethodKey _addActionExecutionKaleoLogMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addActionExecutionKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoAction.class,
-			long.class, long.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addNodeEntryKaleoLogMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addNodeEntryKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addNodeExitKaleoLogMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addNodeExitKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addTaskAssignmentKaleoLogMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTaskAssignmentKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
-			java.lang.String.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addTaskCompletionKaleoLogMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTaskCompletionKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
-			java.lang.String.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addTaskUpdateKaleoLogMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTaskUpdateKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
-			java.lang.String.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addWorkflowInstanceEndKaleoLogMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWorkflowInstanceEndKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addWorkflowInstanceStartKaleoLogMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWorkflowInstanceStartKaleoLog",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteCompanyKaleoLogsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoLogs", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoLogsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoLogs", long.class);
-	private MethodKey _deleteKaleoInstanceKaleoLogsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoInstanceKaleoLogs", long.class);
-	private MethodKey _getKaleoInstanceKaleoLogsMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceKaleoLogs", long.class, java.util.List.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getKaleoInstanceKaleoLogsCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceKaleoLogsCount", long.class, java.util.List.class);
-	private MethodKey _getKaleoTaskInstanceTokenKaleoLogsMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokenKaleoLogs", long.class,
-			java.util.List.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getKaleoTaskInstanceTokenKaleoLogsCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokenKaleoLogsCount", long.class,
-			java.util.List.class);
+	private MethodKey _addKaleoLogMethodKey0;
+	private MethodKey _createKaleoLogMethodKey1;
+	private MethodKey _deleteKaleoLogMethodKey2;
+	private MethodKey _deleteKaleoLogMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoLogMethodKey8;
+	private MethodKey _getKaleoLogsMethodKey9;
+	private MethodKey _getKaleoLogsCountMethodKey10;
+	private MethodKey _updateKaleoLogMethodKey11;
+	private MethodKey _updateKaleoLogMethodKey12;
+	private MethodKey _addActionExecutionKaleoLogMethodKey13;
+	private MethodKey _addNodeEntryKaleoLogMethodKey14;
+	private MethodKey _addNodeExitKaleoLogMethodKey15;
+	private MethodKey _addTaskAssignmentKaleoLogMethodKey16;
+	private MethodKey _addTaskCompletionKaleoLogMethodKey17;
+	private MethodKey _addTaskUpdateKaleoLogMethodKey18;
+	private MethodKey _addWorkflowInstanceEndKaleoLogMethodKey19;
+	private MethodKey _addWorkflowInstanceStartKaleoLogMethodKey20;
+	private MethodKey _deleteCompanyKaleoLogsMethodKey21;
+	private MethodKey _deleteKaleoDefinitionKaleoLogsMethodKey22;
+	private MethodKey _deleteKaleoInstanceKaleoLogsMethodKey23;
+	private MethodKey _getKaleoInstanceKaleoLogsMethodKey24;
+	private MethodKey _getKaleoInstanceKaleoLogsCountMethodKey25;
+	private MethodKey _getKaleoTaskInstanceTokenKaleoLogsMethodKey26;
+	private MethodKey _getKaleoTaskInstanceTokenKaleoLogsCountMethodKey27;
 }

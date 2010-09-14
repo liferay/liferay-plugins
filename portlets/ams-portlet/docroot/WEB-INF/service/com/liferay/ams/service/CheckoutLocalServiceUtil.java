@@ -235,7 +235,7 @@ public class CheckoutLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					CheckoutLocalService.class.getName(), portletClassLoader);
 
 			_service = new CheckoutLocalServiceClp(classLoaderProxy);
 

@@ -268,6 +268,7 @@ public class KaleoNotificationLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					KaleoNotificationLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new KaleoNotificationLocalServiceClp(classLoaderProxy);

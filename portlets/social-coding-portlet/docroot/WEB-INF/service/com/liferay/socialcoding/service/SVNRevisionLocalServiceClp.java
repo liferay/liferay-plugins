@@ -24,6 +24,85 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	public SVNRevisionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addSVNRevisionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addSVNRevision",
+				com.liferay.socialcoding.model.SVNRevision.class);
+
+		_createSVNRevisionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createSVNRevision", long.class);
+
+		_deleteSVNRevisionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteSVNRevision", long.class);
+
+		_deleteSVNRevisionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteSVNRevision",
+				com.liferay.socialcoding.model.SVNRevision.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getSVNRevisionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevision", long.class);
+
+		_getSVNRevisionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisions", int.class, int.class);
+
+		_getSVNRevisionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisionsCount");
+
+		_updateSVNRevisionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateSVNRevision",
+				com.liferay.socialcoding.model.SVNRevision.class);
+
+		_updateSVNRevisionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateSVNRevision",
+				com.liferay.socialcoding.model.SVNRevision.class, boolean.class);
+
+		_addSVNRevisionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addSVNRevision", java.lang.String.class, java.util.Date.class,
+				long.class, long.class, java.lang.String.class);
+
+		_getFirstSVNRevisionMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFirstSVNRevision", java.lang.String.class);
+
+		_getLastSVNRevisionMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLastSVNRevision", java.lang.String.class);
+
+		_getSVNRevisionsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisions", java.lang.String.class, int.class, int.class);
+
+		_getSVNRevisionsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisions", long.class, int.class, int.class);
+
+		_getSVNRevisionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisions", java.lang.String.class, long.class,
+				int.class, int.class);
+
+		_getSVNRevisionsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisionsCount", java.lang.String.class);
+
+		_getSVNRevisionsCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisionsCount", long.class);
+
+		_getSVNRevisionsCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSVNRevisionsCount", java.lang.String.class, long.class);
 	}
 
 	public com.liferay.socialcoding.model.SVNRevision addSVNRevision(
@@ -660,58 +739,26 @@ public class SVNRevisionLocalServiceClp implements SVNRevisionLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addSVNRevisionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addSVNRevision", com.liferay.socialcoding.model.SVNRevision.class);
-	private MethodKey _createSVNRevisionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createSVNRevision", long.class);
-	private MethodKey _deleteSVNRevisionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteSVNRevision", long.class);
-	private MethodKey _deleteSVNRevisionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteSVNRevision",
-			com.liferay.socialcoding.model.SVNRevision.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getSVNRevisionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevision", long.class);
-	private MethodKey _getSVNRevisionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisions", int.class, int.class);
-	private MethodKey _getSVNRevisionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisionsCount");
-	private MethodKey _updateSVNRevisionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateSVNRevision",
-			com.liferay.socialcoding.model.SVNRevision.class);
-	private MethodKey _updateSVNRevisionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateSVNRevision",
-			com.liferay.socialcoding.model.SVNRevision.class, boolean.class);
-	private MethodKey _addSVNRevisionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addSVNRevision", java.lang.String.class, java.util.Date.class,
-			long.class, long.class, java.lang.String.class);
-	private MethodKey _getFirstSVNRevisionMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFirstSVNRevision", java.lang.String.class);
-	private MethodKey _getLastSVNRevisionMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getLastSVNRevision", java.lang.String.class);
-	private MethodKey _getSVNRevisionsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisions", java.lang.String.class, int.class, int.class);
-	private MethodKey _getSVNRevisionsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisions", long.class, int.class, int.class);
-	private MethodKey _getSVNRevisionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisions", java.lang.String.class, long.class, int.class,
-			int.class);
-	private MethodKey _getSVNRevisionsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisionsCount", java.lang.String.class);
-	private MethodKey _getSVNRevisionsCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisionsCount", long.class);
-	private MethodKey _getSVNRevisionsCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSVNRevisionsCount", java.lang.String.class, long.class);
+	private MethodKey _addSVNRevisionMethodKey0;
+	private MethodKey _createSVNRevisionMethodKey1;
+	private MethodKey _deleteSVNRevisionMethodKey2;
+	private MethodKey _deleteSVNRevisionMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getSVNRevisionMethodKey8;
+	private MethodKey _getSVNRevisionsMethodKey9;
+	private MethodKey _getSVNRevisionsCountMethodKey10;
+	private MethodKey _updateSVNRevisionMethodKey11;
+	private MethodKey _updateSVNRevisionMethodKey12;
+	private MethodKey _addSVNRevisionMethodKey13;
+	private MethodKey _getFirstSVNRevisionMethodKey14;
+	private MethodKey _getLastSVNRevisionMethodKey15;
+	private MethodKey _getSVNRevisionsMethodKey16;
+	private MethodKey _getSVNRevisionsMethodKey17;
+	private MethodKey _getSVNRevisionsMethodKey18;
+	private MethodKey _getSVNRevisionsCountMethodKey19;
+	private MethodKey _getSVNRevisionsCountMethodKey20;
+	private MethodKey _getSVNRevisionsCountMethodKey21;
 }

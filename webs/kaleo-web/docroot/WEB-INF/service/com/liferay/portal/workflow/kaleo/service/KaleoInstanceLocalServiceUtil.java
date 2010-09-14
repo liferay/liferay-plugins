@@ -330,6 +330,7 @@ public class KaleoInstanceLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					KaleoInstanceLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new KaleoInstanceLocalServiceClp(classLoaderProxy);

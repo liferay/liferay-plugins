@@ -24,6 +24,119 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	public JIRAIssueLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addJIRAIssueMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addJIRAIssue", com.liferay.socialcoding.model.JIRAIssue.class);
+
+		_createJIRAIssueMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createJIRAIssue", long.class);
+
+		_deleteJIRAIssueMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteJIRAIssue", long.class);
+
+		_deleteJIRAIssueMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteJIRAIssue",
+				com.liferay.socialcoding.model.JIRAIssue.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getJIRAIssueMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAIssue", long.class);
+
+		_getJIRAIssuesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAIssues", int.class, int.class);
+
+		_getJIRAIssuesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAIssuesCount");
+
+		_updateJIRAIssueMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAIssue",
+				com.liferay.socialcoding.model.JIRAIssue.class);
+
+		_updateJIRAIssueMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAIssue",
+				com.liferay.socialcoding.model.JIRAIssue.class, boolean.class);
+
+		_getAssigneeJIRAIssuesMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
+				int.class, int.class);
+
+		_getAssigneeJIRAIssuesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssues", java.util.Date.class, long.class,
+				java.lang.String.class, int.class, int.class);
+
+		_getAssigneeJIRAIssuesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssues", long.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class);
+
+		_getAssigneeJIRAIssuesCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssuesCount", long.class, java.lang.String.class);
+
+		_getAssigneeJIRAIssuesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssuesCount", java.util.Date.class, long.class,
+				java.lang.String.class);
+
+		_getAssigneeJIRAIssuesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssigneeJIRAIssuesCount", long.class,
+				java.lang.String.class, java.lang.String.class);
+
+		_getFirstAssigneeJIRAIssueMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFirstAssigneeJIRAIssue", long.class, java.lang.String.class);
+
+		_getFirstReporterJIRAIssueMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFirstReporterJIRAIssue", long.class, java.lang.String.class);
+
+		_getJIRAIssueMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAIssue", java.lang.String.class);
+
+		_getLastAssigneeJIRAIssueMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLastAssigneeJIRAIssue", long.class, java.lang.String.class);
+
+		_getLastreporterJIRAIssueMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLastreporterJIRAIssue", long.class, java.lang.String.class);
+
+		_getReporterJIRAIssuesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssues", long.class, java.lang.String.class,
+				int.class, int.class);
+
+		_getReporterJIRAIssuesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssues", java.util.Date.class, long.class,
+				java.lang.String.class, int.class, int.class);
+
+		_getReporterJIRAIssuesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssues", long.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class);
+
+		_getReporterJIRAIssuesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssuesCount", long.class, java.lang.String.class);
+
+		_getReporterJIRAIssuesCountMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssuesCount", java.util.Date.class, long.class,
+				java.lang.String.class);
+
+		_getReporterJIRAIssuesCountMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReporterJIRAIssuesCount", long.class,
+				java.lang.String.class, java.lang.String.class);
+
+		_updateJIRAIssuesMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAIssues", long.class);
 	}
 
 	public com.liferay.socialcoding.model.JIRAIssue addJIRAIssue(
@@ -927,82 +1040,35 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addJIRAIssueMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addJIRAIssue", com.liferay.socialcoding.model.JIRAIssue.class);
-	private MethodKey _createJIRAIssueMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createJIRAIssue", long.class);
-	private MethodKey _deleteJIRAIssueMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteJIRAIssue", long.class);
-	private MethodKey _deleteJIRAIssueMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteJIRAIssue", com.liferay.socialcoding.model.JIRAIssue.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getJIRAIssueMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAIssue", long.class);
-	private MethodKey _getJIRAIssuesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAIssues", int.class, int.class);
-	private MethodKey _getJIRAIssuesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAIssuesCount");
-	private MethodKey _updateJIRAIssueMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAIssue", com.liferay.socialcoding.model.JIRAIssue.class);
-	private MethodKey _updateJIRAIssueMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAIssue", com.liferay.socialcoding.model.JIRAIssue.class,
-			boolean.class);
-	private MethodKey _getAssigneeJIRAIssuesMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssigneeJIRAIssues", long.class, java.lang.String.class,
-			int.class, int.class);
-	private MethodKey _getAssigneeJIRAIssuesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssigneeJIRAIssues", java.util.Date.class, long.class,
-			java.lang.String.class, int.class, int.class);
-	private MethodKey _getAssigneeJIRAIssuesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssigneeJIRAIssues", long.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class);
-	private MethodKey _getAssigneeJIRAIssuesCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssigneeJIRAIssuesCount", long.class, java.lang.String.class);
-	private MethodKey _getAssigneeJIRAIssuesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssigneeJIRAIssuesCount", java.util.Date.class, long.class,
-			java.lang.String.class);
-	private MethodKey _getAssigneeJIRAIssuesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssigneeJIRAIssuesCount", long.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _getFirstAssigneeJIRAIssueMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFirstAssigneeJIRAIssue", long.class, java.lang.String.class);
-	private MethodKey _getFirstReporterJIRAIssueMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFirstReporterJIRAIssue", long.class, java.lang.String.class);
-	private MethodKey _getJIRAIssueMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAIssue", java.lang.String.class);
-	private MethodKey _getLastAssigneeJIRAIssueMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getLastAssigneeJIRAIssue", long.class, java.lang.String.class);
-	private MethodKey _getLastreporterJIRAIssueMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getLastreporterJIRAIssue", long.class, java.lang.String.class);
-	private MethodKey _getReporterJIRAIssuesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReporterJIRAIssues", long.class, java.lang.String.class,
-			int.class, int.class);
-	private MethodKey _getReporterJIRAIssuesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReporterJIRAIssues", java.util.Date.class, long.class,
-			java.lang.String.class, int.class, int.class);
-	private MethodKey _getReporterJIRAIssuesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReporterJIRAIssues", long.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class);
-	private MethodKey _getReporterJIRAIssuesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReporterJIRAIssuesCount", long.class, java.lang.String.class);
-	private MethodKey _getReporterJIRAIssuesCountMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReporterJIRAIssuesCount", java.util.Date.class, long.class,
-			java.lang.String.class);
-	private MethodKey _getReporterJIRAIssuesCountMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReporterJIRAIssuesCount", long.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _updateJIRAIssuesMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAIssues", long.class);
+	private MethodKey _addJIRAIssueMethodKey0;
+	private MethodKey _createJIRAIssueMethodKey1;
+	private MethodKey _deleteJIRAIssueMethodKey2;
+	private MethodKey _deleteJIRAIssueMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getJIRAIssueMethodKey8;
+	private MethodKey _getJIRAIssuesMethodKey9;
+	private MethodKey _getJIRAIssuesCountMethodKey10;
+	private MethodKey _updateJIRAIssueMethodKey11;
+	private MethodKey _updateJIRAIssueMethodKey12;
+	private MethodKey _getAssigneeJIRAIssuesMethodKey13;
+	private MethodKey _getAssigneeJIRAIssuesMethodKey14;
+	private MethodKey _getAssigneeJIRAIssuesMethodKey15;
+	private MethodKey _getAssigneeJIRAIssuesCountMethodKey16;
+	private MethodKey _getAssigneeJIRAIssuesCountMethodKey17;
+	private MethodKey _getAssigneeJIRAIssuesCountMethodKey18;
+	private MethodKey _getFirstAssigneeJIRAIssueMethodKey19;
+	private MethodKey _getFirstReporterJIRAIssueMethodKey20;
+	private MethodKey _getJIRAIssueMethodKey21;
+	private MethodKey _getLastAssigneeJIRAIssueMethodKey22;
+	private MethodKey _getLastreporterJIRAIssueMethodKey23;
+	private MethodKey _getReporterJIRAIssuesMethodKey24;
+	private MethodKey _getReporterJIRAIssuesMethodKey25;
+	private MethodKey _getReporterJIRAIssuesMethodKey26;
+	private MethodKey _getReporterJIRAIssuesCountMethodKey27;
+	private MethodKey _getReporterJIRAIssuesCountMethodKey28;
+	private MethodKey _getReporterJIRAIssuesCountMethodKey29;
+	private MethodKey _updateJIRAIssuesMethodKey30;
 }

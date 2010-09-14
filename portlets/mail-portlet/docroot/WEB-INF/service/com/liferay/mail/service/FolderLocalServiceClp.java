@@ -24,6 +24,79 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class FolderLocalServiceClp implements FolderLocalService {
 	public FolderLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addFolderMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addFolder", com.liferay.mail.model.Folder.class);
+
+		_createFolderMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createFolder", long.class);
+
+		_deleteFolderMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFolder", long.class);
+
+		_deleteFolderMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFolder", com.liferay.mail.model.Folder.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getFolderMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolder", long.class);
+
+		_getFoldersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolders", int.class, int.class);
+
+		_getFoldersCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFoldersCount");
+
+		_updateFolderMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFolder", com.liferay.mail.model.Folder.class);
+
+		_updateFolderMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFolder", com.liferay.mail.model.Folder.class,
+				boolean.class);
+
+		_addFolderMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addFolder", long.class, long.class, java.lang.String.class,
+				java.lang.String.class, int.class);
+
+		_deleteFoldersMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFolders", long.class);
+
+		_getFolderMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolder", long.class, java.lang.String.class);
+
+		_getFoldersMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolders", long.class);
+
+		_getLocalPageCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLocalPageCount", long.class, int.class);
+
+		_getPercentDownloadedMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getPercentDownloaded", long.class);
+
+		_getRemotePageCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getRemotePageCount", long.class, int.class);
+
+		_updateFolderMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFolder", long.class, java.lang.String.class,
+				java.lang.String.class, int.class);
 	}
 
 	public com.liferay.mail.model.Folder addFolder(
@@ -643,53 +716,25 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addFolderMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addFolder", com.liferay.mail.model.Folder.class);
-	private MethodKey _createFolderMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createFolder", long.class);
-	private MethodKey _deleteFolderMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFolder", long.class);
-	private MethodKey _deleteFolderMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFolder", com.liferay.mail.model.Folder.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getFolderMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolder", long.class);
-	private MethodKey _getFoldersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolders", int.class, int.class);
-	private MethodKey _getFoldersCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFoldersCount");
-	private MethodKey _updateFolderMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFolder", com.liferay.mail.model.Folder.class);
-	private MethodKey _updateFolderMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFolder", com.liferay.mail.model.Folder.class, boolean.class);
-	private MethodKey _addFolderMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addFolder", long.class, long.class, java.lang.String.class,
-			java.lang.String.class, int.class);
-	private MethodKey _deleteFoldersMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFolders", long.class);
-	private MethodKey _getFolderMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolder", long.class, java.lang.String.class);
-	private MethodKey _getFoldersMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolders", long.class);
-	private MethodKey _getLocalPageCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getLocalPageCount", long.class, int.class);
-	private MethodKey _getPercentDownloadedMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getPercentDownloaded", long.class);
-	private MethodKey _getRemotePageCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getRemotePageCount", long.class, int.class);
-	private MethodKey _updateFolderMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFolder", long.class, java.lang.String.class,
-			java.lang.String.class, int.class);
+	private MethodKey _addFolderMethodKey0;
+	private MethodKey _createFolderMethodKey1;
+	private MethodKey _deleteFolderMethodKey2;
+	private MethodKey _deleteFolderMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getFolderMethodKey8;
+	private MethodKey _getFoldersMethodKey9;
+	private MethodKey _getFoldersCountMethodKey10;
+	private MethodKey _updateFolderMethodKey11;
+	private MethodKey _updateFolderMethodKey12;
+	private MethodKey _addFolderMethodKey13;
+	private MethodKey _deleteFoldersMethodKey14;
+	private MethodKey _getFolderMethodKey15;
+	private MethodKey _getFoldersMethodKey16;
+	private MethodKey _getLocalPageCountMethodKey17;
+	private MethodKey _getPercentDownloadedMethodKey18;
+	private MethodKey _getRemotePageCountMethodKey19;
+	private MethodKey _updateFolderMethodKey20;
 }

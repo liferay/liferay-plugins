@@ -470,7 +470,7 @@ public class ArticleLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					ArticleLocalService.class.getName(), portletClassLoader);
 
 			_service = new ArticleLocalServiceClp(classLoaderProxy);
 

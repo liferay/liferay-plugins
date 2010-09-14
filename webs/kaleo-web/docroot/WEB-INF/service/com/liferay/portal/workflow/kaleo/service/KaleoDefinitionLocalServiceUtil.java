@@ -382,6 +382,7 @@ public class KaleoDefinitionLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					KaleoDefinitionLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new KaleoDefinitionLocalServiceClp(classLoaderProxy);

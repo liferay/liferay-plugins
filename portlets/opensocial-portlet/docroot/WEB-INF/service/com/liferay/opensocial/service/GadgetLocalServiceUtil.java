@@ -288,7 +288,7 @@ public class GadgetLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					GadgetLocalService.class.getName(), portletClassLoader);
 
 			_service = new GadgetLocalServiceClp(classLoaderProxy);
 

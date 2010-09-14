@@ -288,6 +288,7 @@ public class KaleoTransitionLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					KaleoTransitionLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new KaleoTransitionLocalServiceClp(classLoaderProxy);

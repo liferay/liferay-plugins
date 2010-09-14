@@ -297,7 +297,7 @@ public class CommentLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					CommentLocalService.class.getName(), portletClassLoader);
 
 			_service = new CommentLocalServiceClp(classLoaderProxy);
 

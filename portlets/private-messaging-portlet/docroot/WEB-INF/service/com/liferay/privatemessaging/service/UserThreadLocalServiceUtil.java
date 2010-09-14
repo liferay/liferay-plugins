@@ -335,7 +335,7 @@ public class UserThreadLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					UserThreadLocalService.class.getName(), portletClassLoader);
 
 			_service = new UserThreadLocalServiceClp(classLoaderProxy);
 

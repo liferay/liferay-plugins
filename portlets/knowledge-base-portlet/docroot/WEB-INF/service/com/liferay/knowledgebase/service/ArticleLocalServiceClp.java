@@ -24,6 +24,162 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class ArticleLocalServiceClp implements ArticleLocalService {
 	public ArticleLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addArticleMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addArticle", com.liferay.knowledgebase.model.Article.class);
+
+		_createArticleMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createArticle", long.class);
+
+		_deleteArticleMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteArticle", long.class);
+
+		_deleteArticleMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteArticle", com.liferay.knowledgebase.model.Article.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getArticleMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticle", long.class);
+
+		_getArticleByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticleByUuidAndGroupId", java.lang.String.class, long.class);
+
+		_getArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", int.class, int.class);
+
+		_getArticlesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount");
+
+		_updateArticleMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateArticle", com.liferay.knowledgebase.model.Article.class);
+
+		_updateArticleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateArticle", com.liferay.knowledgebase.model.Article.class,
+				boolean.class);
+
+		_addArticleMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addArticle", long.class, long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class, int.class,
+				java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addArticleResourcesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addArticleResources",
+				com.liferay.knowledgebase.model.Article.class, boolean.class,
+				boolean.class);
+
+		_addArticleResourcesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addArticleResources",
+				com.liferay.knowledgebase.model.Article.class,
+				java.lang.String[].class, java.lang.String[].class);
+
+		_addAttachmentMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAttachment", long.class, java.lang.String.class,
+				java.lang.String.class, java.io.InputStream.class);
+
+		_checkAttachmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"checkAttachments");
+
+		_deleteAttachmentMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAttachment", long.class, java.lang.String.class);
+
+		_deleteGroupArticlesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteGroupArticles", long.class);
+
+		_getArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticle", long.class, int.class);
+
+		_getArticlesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", long.class, int.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getArticlesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", java.util.Map.class, boolean.class, int.class,
+				int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getArticlesCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount", long.class, int.class);
+
+		_getArticlesCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount", java.util.Map.class, boolean.class);
+
+		_getCompanyArticlesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyArticles", long.class, int.class, boolean.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getCompanyArticlesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyArticlesCount", long.class, int.class, boolean.class);
+
+		_getGroupArticlesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupArticles", long.class, int.class, boolean.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getGroupArticlesCountMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupArticlesCount", long.class, int.class, boolean.class);
+
+		_getLatestArticleMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLatestArticle", long.class, int.class);
+
+		_subscribeMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
+				"subscribe", long.class, long.class, java.lang.String.class,
+				long.class);
+
+		_unsubscribeMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribe", long.class, long.class, java.lang.String.class,
+				long.class);
+
+		_unsubscribeAllPortletsMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribeAllPortlets", long.class, long.class);
+
+		_updateArticleMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateArticle", long.class, long.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, int.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateArticleResourcesMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateArticleResources",
+				com.liferay.knowledgebase.model.Article.class,
+				java.lang.String[].class, java.lang.String[].class);
+
+		_updateAssetMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAsset", long.class,
+				com.liferay.knowledgebase.model.Article.class, long[].class,
+				java.lang.String[].class);
+
+		_updateAttachmentsMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAttachments", long.class, long.class,
+				java.lang.String.class);
+
+		_updateDisplayOrderMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateDisplayOrder",
+				com.liferay.knowledgebase.model.Article.class, long.class,
+				int.class);
+
+		_updateStatusMethodKey39 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", long.class, long.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.knowledgebase.model.Article addArticle(
@@ -1219,115 +1375,44 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addArticleMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addArticle", com.liferay.knowledgebase.model.Article.class);
-	private MethodKey _createArticleMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createArticle", long.class);
-	private MethodKey _deleteArticleMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteArticle", long.class);
-	private MethodKey _deleteArticleMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteArticle", com.liferay.knowledgebase.model.Article.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getArticleMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticle", long.class);
-	private MethodKey _getArticleByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticleByUuidAndGroupId", java.lang.String.class, long.class);
-	private MethodKey _getArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticles", int.class, int.class);
-	private MethodKey _getArticlesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticlesCount");
-	private MethodKey _updateArticleMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateArticle", com.liferay.knowledgebase.model.Article.class);
-	private MethodKey _updateArticleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateArticle", com.liferay.knowledgebase.model.Article.class,
-			boolean.class);
-	private MethodKey _addArticleMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addArticle", long.class, long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class, int.class,
-			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addArticleResourcesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addArticleResources",
-			com.liferay.knowledgebase.model.Article.class, boolean.class,
-			boolean.class);
-	private MethodKey _addArticleResourcesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addArticleResources",
-			com.liferay.knowledgebase.model.Article.class,
-			java.lang.String[].class, java.lang.String[].class);
-	private MethodKey _addAttachmentMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAttachment", long.class, java.lang.String.class,
-			java.lang.String.class, java.io.InputStream.class);
-	private MethodKey _checkAttachmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"checkAttachments");
-	private MethodKey _deleteAttachmentMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAttachment", long.class, java.lang.String.class);
-	private MethodKey _deleteGroupArticlesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteGroupArticles", long.class);
-	private MethodKey _getArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticle", long.class, int.class);
-	private MethodKey _getArticlesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticles", long.class, int.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getArticlesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticles", java.util.Map.class, boolean.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getArticlesCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticlesCount", long.class, int.class);
-	private MethodKey _getArticlesCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticlesCount", java.util.Map.class, boolean.class);
-	private MethodKey _getCompanyArticlesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyArticles", long.class, int.class, boolean.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getCompanyArticlesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyArticlesCount", long.class, int.class, boolean.class);
-	private MethodKey _getGroupArticlesMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupArticles", long.class, int.class, boolean.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getGroupArticlesCountMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupArticlesCount", long.class, int.class, boolean.class);
-	private MethodKey _getLatestArticleMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getLatestArticle", long.class, int.class);
-	private MethodKey _subscribeMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
-			"subscribe", long.class, long.class, java.lang.String.class,
-			long.class);
-	private MethodKey _unsubscribeMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
-			"unsubscribe", long.class, long.class, java.lang.String.class,
-			long.class);
-	private MethodKey _unsubscribeAllPortletsMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
-			"unsubscribeAllPortlets", long.class, long.class);
-	private MethodKey _updateArticleMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateArticle", long.class, long.class, long.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, int.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _updateArticleResourcesMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateArticleResources",
-			com.liferay.knowledgebase.model.Article.class,
-			java.lang.String[].class, java.lang.String[].class);
-	private MethodKey _updateAssetMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAsset", long.class,
-			com.liferay.knowledgebase.model.Article.class, long[].class,
-			java.lang.String[].class);
-	private MethodKey _updateAttachmentsMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAttachments", long.class, long.class, java.lang.String.class);
-	private MethodKey _updateDisplayOrderMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateDisplayOrder",
-			com.liferay.knowledgebase.model.Article.class, long.class, int.class);
-	private MethodKey _updateStatusMethodKey39 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateStatus", long.class, long.class, int.class,
-			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _addArticleMethodKey0;
+	private MethodKey _createArticleMethodKey1;
+	private MethodKey _deleteArticleMethodKey2;
+	private MethodKey _deleteArticleMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getArticleMethodKey8;
+	private MethodKey _getArticleByUuidAndGroupIdMethodKey9;
+	private MethodKey _getArticlesMethodKey10;
+	private MethodKey _getArticlesCountMethodKey11;
+	private MethodKey _updateArticleMethodKey12;
+	private MethodKey _updateArticleMethodKey13;
+	private MethodKey _addArticleMethodKey14;
+	private MethodKey _addArticleResourcesMethodKey15;
+	private MethodKey _addArticleResourcesMethodKey16;
+	private MethodKey _addAttachmentMethodKey17;
+	private MethodKey _checkAttachmentsMethodKey18;
+	private MethodKey _deleteAttachmentMethodKey19;
+	private MethodKey _deleteGroupArticlesMethodKey20;
+	private MethodKey _getArticleMethodKey21;
+	private MethodKey _getArticlesMethodKey22;
+	private MethodKey _getArticlesMethodKey23;
+	private MethodKey _getArticlesCountMethodKey24;
+	private MethodKey _getArticlesCountMethodKey25;
+	private MethodKey _getCompanyArticlesMethodKey26;
+	private MethodKey _getCompanyArticlesCountMethodKey27;
+	private MethodKey _getGroupArticlesMethodKey28;
+	private MethodKey _getGroupArticlesCountMethodKey29;
+	private MethodKey _getLatestArticleMethodKey30;
+	private MethodKey _subscribeMethodKey31;
+	private MethodKey _unsubscribeMethodKey32;
+	private MethodKey _unsubscribeAllPortletsMethodKey33;
+	private MethodKey _updateArticleMethodKey34;
+	private MethodKey _updateArticleResourcesMethodKey35;
+	private MethodKey _updateAssetMethodKey36;
+	private MethodKey _updateAttachmentsMethodKey37;
+	private MethodKey _updateDisplayOrderMethodKey38;
+	private MethodKey _updateStatusMethodKey39;
 }

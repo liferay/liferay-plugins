@@ -24,6 +24,52 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class AssetLocalServiceClp implements AssetLocalService {
 	public AssetLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addAssetMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAsset", com.liferay.ams.model.Asset.class);
+
+		_createAssetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createAsset", long.class);
+
+		_deleteAssetMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAsset", long.class);
+
+		_deleteAssetMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAsset", com.liferay.ams.model.Asset.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getAssetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAsset", long.class);
+
+		_getAssetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssets", int.class, int.class);
+
+		_getAssetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAssetsCount");
+
+		_updateAssetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAsset", com.liferay.ams.model.Asset.class);
+
+		_updateAssetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAsset", com.liferay.ams.model.Asset.class, boolean.class);
 	}
 
 	public com.liferay.ams.model.Asset addAsset(
@@ -390,35 +436,17 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addAssetMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAsset", com.liferay.ams.model.Asset.class);
-	private MethodKey _createAssetMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createAsset", long.class);
-	private MethodKey _deleteAssetMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAsset", long.class);
-	private MethodKey _deleteAssetMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAsset", com.liferay.ams.model.Asset.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getAssetMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAsset", long.class);
-	private MethodKey _getAssetsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssets", int.class, int.class);
-	private MethodKey _getAssetsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAssetsCount");
-	private MethodKey _updateAssetMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAsset", com.liferay.ams.model.Asset.class);
-	private MethodKey _updateAssetMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAsset", com.liferay.ams.model.Asset.class, boolean.class);
+	private MethodKey _addAssetMethodKey0;
+	private MethodKey _createAssetMethodKey1;
+	private MethodKey _deleteAssetMethodKey2;
+	private MethodKey _deleteAssetMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getAssetMethodKey8;
+	private MethodKey _getAssetsMethodKey9;
+	private MethodKey _getAssetsCountMethodKey10;
+	private MethodKey _updateAssetMethodKey11;
+	private MethodKey _updateAssetMethodKey12;
 }

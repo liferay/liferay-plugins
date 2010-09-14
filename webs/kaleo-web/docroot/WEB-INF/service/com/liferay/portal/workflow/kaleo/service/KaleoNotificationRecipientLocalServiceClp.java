@@ -26,6 +26,71 @@ public class KaleoNotificationRecipientLocalServiceClp
 	public KaleoNotificationRecipientLocalServiceClp(
 		ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoNotificationRecipientMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoNotificationRecipient",
+				com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class);
+
+		_createKaleoNotificationRecipientMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoNotificationRecipient", long.class);
+
+		_deleteKaleoNotificationRecipientMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoNotificationRecipient", long.class);
+
+		_deleteKaleoNotificationRecipientMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoNotificationRecipient",
+				com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoNotificationRecipientMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoNotificationRecipient", long.class);
+
+		_getKaleoNotificationRecipientsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoNotificationRecipients", int.class, int.class);
+
+		_getKaleoNotificationRecipientsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoNotificationRecipientsCount");
+
+		_updateKaleoNotificationRecipientMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoNotificationRecipient",
+				com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class);
+
+		_updateKaleoNotificationRecipientMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoNotificationRecipient",
+				com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class,
+				boolean.class);
+
+		_addKaleoNotificationRecipientMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoNotificationRecipient", long.class, long.class,
+				com.liferay.portal.workflow.kaleo.definition.Recipient.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCompanyKaleoNotificationRecipientsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoNotificationRecipients", long.class);
+
+		_deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoNotificationRecipients", long.class);
+
+		_getKaleoNotificationRecipientsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoNotificationRecipients", long.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
@@ -509,51 +574,21 @@ public class KaleoNotificationRecipientLocalServiceClp
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoNotificationRecipientMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoNotificationRecipient",
-			com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class);
-	private MethodKey _createKaleoNotificationRecipientMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoNotificationRecipient", long.class);
-	private MethodKey _deleteKaleoNotificationRecipientMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoNotificationRecipient", long.class);
-	private MethodKey _deleteKaleoNotificationRecipientMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoNotificationRecipient",
-			com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoNotificationRecipientMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoNotificationRecipient", long.class);
-	private MethodKey _getKaleoNotificationRecipientsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoNotificationRecipients", int.class, int.class);
-	private MethodKey _getKaleoNotificationRecipientsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoNotificationRecipientsCount");
-	private MethodKey _updateKaleoNotificationRecipientMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoNotificationRecipient",
-			com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class);
-	private MethodKey _updateKaleoNotificationRecipientMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoNotificationRecipient",
-			com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class,
-			boolean.class);
-	private MethodKey _addKaleoNotificationRecipientMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoNotificationRecipient", long.class, long.class,
-			com.liferay.portal.workflow.kaleo.definition.Recipient.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteCompanyKaleoNotificationRecipientsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoNotificationRecipients", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey15 =
-		new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoNotificationRecipients", long.class);
-	private MethodKey _getKaleoNotificationRecipientsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoNotificationRecipients", long.class);
+	private MethodKey _addKaleoNotificationRecipientMethodKey0;
+	private MethodKey _createKaleoNotificationRecipientMethodKey1;
+	private MethodKey _deleteKaleoNotificationRecipientMethodKey2;
+	private MethodKey _deleteKaleoNotificationRecipientMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoNotificationRecipientMethodKey8;
+	private MethodKey _getKaleoNotificationRecipientsMethodKey9;
+	private MethodKey _getKaleoNotificationRecipientsCountMethodKey10;
+	private MethodKey _updateKaleoNotificationRecipientMethodKey11;
+	private MethodKey _updateKaleoNotificationRecipientMethodKey12;
+	private MethodKey _addKaleoNotificationRecipientMethodKey13;
+	private MethodKey _deleteCompanyKaleoNotificationRecipientsMethodKey14;
+	private MethodKey _deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey15;
+	private MethodKey _getKaleoNotificationRecipientsMethodKey16;
 }

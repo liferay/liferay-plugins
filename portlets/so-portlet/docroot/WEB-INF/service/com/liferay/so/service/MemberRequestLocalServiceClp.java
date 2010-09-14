@@ -24,6 +24,93 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	public MemberRequestLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addMemberRequestMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMemberRequest", com.liferay.so.model.MemberRequest.class);
+
+		_createMemberRequestMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createMemberRequest", long.class);
+
+		_deleteMemberRequestMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMemberRequest", long.class);
+
+		_deleteMemberRequestMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMemberRequest", com.liferay.so.model.MemberRequest.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getMemberRequestMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMemberRequest", long.class);
+
+		_getMemberRequestsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMemberRequests", int.class, int.class);
+
+		_getMemberRequestsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMemberRequestsCount");
+
+		_updateMemberRequestMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMemberRequest", com.liferay.so.model.MemberRequest.class);
+
+		_updateMemberRequestMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMemberRequest",
+				com.liferay.so.model.MemberRequest.class, boolean.class);
+
+		_addMemberRequestMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMemberRequest", long.class, long.class, long.class,
+				java.lang.String.class, long.class, long.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_addMemberRequestsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMemberRequests", long.class, long.class, long[].class,
+				long.class, long.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_addMemberRequestsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMemberRequests", long.class, long.class,
+				java.lang.String[].class, long.class, long.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_getMemberRequestMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMemberRequest", long.class, long.class, int.class);
+
+		_getReceiverMemberRequestMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReceiverMemberRequest", long.class, int.class, int.class);
+
+		_getReceiverMemberRequestCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReceiverMemberRequestCount", long.class);
+
+		_getReceiverStatusMemberRequestMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReceiverStatusMemberRequest", long.class, int.class,
+				int.class, int.class);
+
+		_getReceiverStatusMemberRequestCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getReceiverStatusMemberRequestCount", long.class, int.class);
+
+		_hasPendingMemberRequestMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"hasPendingMemberRequest", long.class, long.class);
+
+		_updateMemberRequestMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMemberRequest", long.class, long.class, int.class);
+
+		_updateMemberRequestMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMemberRequest", java.lang.String.class, long.class);
 	}
 
 	public com.liferay.so.model.MemberRequest addMemberRequest(
@@ -722,64 +809,28 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addMemberRequestMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMemberRequest", com.liferay.so.model.MemberRequest.class);
-	private MethodKey _createMemberRequestMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createMemberRequest", long.class);
-	private MethodKey _deleteMemberRequestMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMemberRequest", long.class);
-	private MethodKey _deleteMemberRequestMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMemberRequest", com.liferay.so.model.MemberRequest.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getMemberRequestMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMemberRequest", long.class);
-	private MethodKey _getMemberRequestsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMemberRequests", int.class, int.class);
-	private MethodKey _getMemberRequestsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMemberRequestsCount");
-	private MethodKey _updateMemberRequestMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMemberRequest", com.liferay.so.model.MemberRequest.class);
-	private MethodKey _updateMemberRequestMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMemberRequest", com.liferay.so.model.MemberRequest.class,
-			boolean.class);
-	private MethodKey _addMemberRequestMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMemberRequest", long.class, long.class, long.class,
-			java.lang.String.class, long.class, long.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _addMemberRequestsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMemberRequests", long.class, long.class, long[].class,
-			long.class, long.class, com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _addMemberRequestsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMemberRequests", long.class, long.class,
-			java.lang.String[].class, long.class, long.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _getMemberRequestMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMemberRequest", long.class, long.class, int.class);
-	private MethodKey _getReceiverMemberRequestMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReceiverMemberRequest", long.class, int.class, int.class);
-	private MethodKey _getReceiverMemberRequestCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReceiverMemberRequestCount", long.class);
-	private MethodKey _getReceiverStatusMemberRequestMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReceiverStatusMemberRequest", long.class, int.class, int.class,
-			int.class);
-	private MethodKey _getReceiverStatusMemberRequestCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getReceiverStatusMemberRequestCount", long.class, int.class);
-	private MethodKey _hasPendingMemberRequestMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"hasPendingMemberRequest", long.class, long.class);
-	private MethodKey _updateMemberRequestMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMemberRequest", long.class, long.class, int.class);
-	private MethodKey _updateMemberRequestMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMemberRequest", java.lang.String.class, long.class);
+	private MethodKey _addMemberRequestMethodKey0;
+	private MethodKey _createMemberRequestMethodKey1;
+	private MethodKey _deleteMemberRequestMethodKey2;
+	private MethodKey _deleteMemberRequestMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getMemberRequestMethodKey8;
+	private MethodKey _getMemberRequestsMethodKey9;
+	private MethodKey _getMemberRequestsCountMethodKey10;
+	private MethodKey _updateMemberRequestMethodKey11;
+	private MethodKey _updateMemberRequestMethodKey12;
+	private MethodKey _addMemberRequestMethodKey13;
+	private MethodKey _addMemberRequestsMethodKey14;
+	private MethodKey _addMemberRequestsMethodKey15;
+	private MethodKey _getMemberRequestMethodKey16;
+	private MethodKey _getReceiverMemberRequestMethodKey17;
+	private MethodKey _getReceiverMemberRequestCountMethodKey18;
+	private MethodKey _getReceiverStatusMemberRequestMethodKey19;
+	private MethodKey _getReceiverStatusMemberRequestCountMethodKey20;
+	private MethodKey _hasPendingMemberRequestMethodKey21;
+	private MethodKey _updateMemberRequestMethodKey22;
+	private MethodKey _updateMemberRequestMethodKey23;
 }

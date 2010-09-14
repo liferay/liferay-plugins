@@ -278,7 +278,7 @@ public class StatusLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					StatusLocalService.class.getName(), portletClassLoader);
 
 			_service = new StatusLocalServiceClp(classLoaderProxy);
 

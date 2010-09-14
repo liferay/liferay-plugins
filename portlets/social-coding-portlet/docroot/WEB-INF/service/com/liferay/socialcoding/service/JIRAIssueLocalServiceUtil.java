@@ -381,7 +381,7 @@ public class JIRAIssueLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					JIRAIssueLocalService.class.getName(), portletClassLoader);
 
 			_service = new JIRAIssueLocalServiceClp(classLoaderProxy);
 

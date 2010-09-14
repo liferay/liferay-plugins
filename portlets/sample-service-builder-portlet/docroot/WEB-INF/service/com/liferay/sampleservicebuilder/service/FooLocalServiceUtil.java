@@ -264,7 +264,7 @@ public class FooLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					FooLocalService.class.getName(), portletClassLoader);
 
 			_service = new FooLocalServiceClp(classLoaderProxy);
 

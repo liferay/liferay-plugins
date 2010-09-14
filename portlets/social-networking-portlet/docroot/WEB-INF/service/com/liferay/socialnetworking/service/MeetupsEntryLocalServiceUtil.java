@@ -282,7 +282,7 @@ public class MeetupsEntryLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					MeetupsEntryLocalService.class.getName(), portletClassLoader);
 
 			_service = new MeetupsEntryLocalServiceClp(classLoaderProxy);
 

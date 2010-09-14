@@ -24,6 +24,77 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class CommentLocalServiceClp implements CommentLocalService {
 	public CommentLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addCommentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addComment", com.liferay.knowledgebase.model.Comment.class);
+
+		_createCommentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createComment", long.class);
+
+		_deleteCommentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteComment", long.class);
+
+		_deleteCommentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteComment", com.liferay.knowledgebase.model.Comment.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getCommentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getComment", long.class);
+
+		_getCommentByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCommentByUuidAndGroupId", java.lang.String.class, long.class);
+
+		_getCommentsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getComments", int.class, int.class);
+
+		_getCommentsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCommentsCount");
+
+		_updateCommentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateComment", com.liferay.knowledgebase.model.Comment.class);
+
+		_updateCommentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateComment", com.liferay.knowledgebase.model.Comment.class,
+				boolean.class);
+
+		_addCommentMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addComment", long.class, long.class, long.class,
+				java.lang.String.class, boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getCommentMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getComment", long.class, java.lang.String.class, long.class);
+
+		_getCommentsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getComments", java.lang.String.class, long.class, int.class,
+				int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getCommentsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCommentsCount", java.lang.String.class, long.class);
+
+		_updateCommentMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateComment", long.class, long.class, long.class,
+				java.lang.String.class, boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.knowledgebase.model.Comment addComment(
@@ -584,53 +655,23 @@ public class CommentLocalServiceClp implements CommentLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addCommentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addComment", com.liferay.knowledgebase.model.Comment.class);
-	private MethodKey _createCommentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createComment", long.class);
-	private MethodKey _deleteCommentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteComment", long.class);
-	private MethodKey _deleteCommentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteComment", com.liferay.knowledgebase.model.Comment.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getCommentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getComment", long.class);
-	private MethodKey _getCommentByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCommentByUuidAndGroupId", java.lang.String.class, long.class);
-	private MethodKey _getCommentsMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getComments", int.class, int.class);
-	private MethodKey _getCommentsCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCommentsCount");
-	private MethodKey _updateCommentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateComment", com.liferay.knowledgebase.model.Comment.class);
-	private MethodKey _updateCommentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateComment", com.liferay.knowledgebase.model.Comment.class,
-			boolean.class);
-	private MethodKey _addCommentMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addComment", long.class, long.class, long.class,
-			java.lang.String.class, boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getCommentMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getComment", long.class, java.lang.String.class, long.class);
-	private MethodKey _getCommentsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getComments", java.lang.String.class, long.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getCommentsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCommentsCount", java.lang.String.class, long.class);
-	private MethodKey _updateCommentMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateComment", long.class, long.class, long.class,
-			java.lang.String.class, boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _addCommentMethodKey0;
+	private MethodKey _createCommentMethodKey1;
+	private MethodKey _deleteCommentMethodKey2;
+	private MethodKey _deleteCommentMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getCommentMethodKey8;
+	private MethodKey _getCommentByUuidAndGroupIdMethodKey9;
+	private MethodKey _getCommentsMethodKey10;
+	private MethodKey _getCommentsCountMethodKey11;
+	private MethodKey _updateCommentMethodKey12;
+	private MethodKey _updateCommentMethodKey13;
+	private MethodKey _addCommentMethodKey14;
+	private MethodKey _getCommentMethodKey15;
+	private MethodKey _getCommentsMethodKey16;
+	private MethodKey _getCommentsCountMethodKey17;
+	private MethodKey _updateCommentMethodKey18;
 }

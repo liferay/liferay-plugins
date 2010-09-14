@@ -24,6 +24,53 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public CheckoutLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addCheckoutMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addCheckout", com.liferay.ams.model.Checkout.class);
+
+		_createCheckoutMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createCheckout", long.class);
+
+		_deleteCheckoutMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCheckout", long.class);
+
+		_deleteCheckoutMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCheckout", com.liferay.ams.model.Checkout.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getCheckoutMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCheckout", long.class);
+
+		_getCheckoutsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCheckouts", int.class, int.class);
+
+		_getCheckoutsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCheckoutsCount");
+
+		_updateCheckoutMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCheckout", com.liferay.ams.model.Checkout.class);
+
+		_updateCheckoutMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCheckout", com.liferay.ams.model.Checkout.class,
+				boolean.class);
 	}
 
 	public com.liferay.ams.model.Checkout addCheckout(
@@ -391,36 +438,17 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addCheckoutMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addCheckout", com.liferay.ams.model.Checkout.class);
-	private MethodKey _createCheckoutMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createCheckout", long.class);
-	private MethodKey _deleteCheckoutMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCheckout", long.class);
-	private MethodKey _deleteCheckoutMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCheckout", com.liferay.ams.model.Checkout.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getCheckoutMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCheckout", long.class);
-	private MethodKey _getCheckoutsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCheckouts", int.class, int.class);
-	private MethodKey _getCheckoutsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCheckoutsCount");
-	private MethodKey _updateCheckoutMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateCheckout", com.liferay.ams.model.Checkout.class);
-	private MethodKey _updateCheckoutMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateCheckout", com.liferay.ams.model.Checkout.class,
-			boolean.class);
+	private MethodKey _addCheckoutMethodKey0;
+	private MethodKey _createCheckoutMethodKey1;
+	private MethodKey _deleteCheckoutMethodKey2;
+	private MethodKey _deleteCheckoutMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getCheckoutMethodKey8;
+	private MethodKey _getCheckoutsMethodKey9;
+	private MethodKey _getCheckoutsCountMethodKey10;
+	private MethodKey _updateCheckoutMethodKey11;
+	private MethodKey _updateCheckoutMethodKey12;
 }

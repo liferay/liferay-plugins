@@ -24,6 +24,70 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public AttachmentLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addAttachmentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAttachment", com.liferay.mail.model.Attachment.class);
+
+		_createAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createAttachment", long.class);
+
+		_deleteAttachmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAttachment", long.class);
+
+		_deleteAttachmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAttachment", com.liferay.mail.model.Attachment.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getAttachmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAttachment", long.class);
+
+		_getAttachmentsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAttachments", int.class, int.class);
+
+		_getAttachmentsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAttachmentsCount");
+
+		_updateAttachmentMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAttachment", com.liferay.mail.model.Attachment.class);
+
+		_updateAttachmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAttachment", com.liferay.mail.model.Attachment.class,
+				boolean.class);
+
+		_addAttachmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAttachment", long.class, long.class,
+				java.lang.String.class, java.lang.String.class, long.class,
+				java.io.File.class);
+
+		_deleteAttachmentsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAttachments", long.class, long.class);
+
+		_getAttachmentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAttachments", long.class);
+
+		_getFileMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFile", long.class);
+
+		_getInputStreamMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getInputStream", long.class);
 	}
 
 	public com.liferay.mail.model.Attachment addAttachment(
@@ -545,47 +609,22 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addAttachmentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAttachment", com.liferay.mail.model.Attachment.class);
-	private MethodKey _createAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createAttachment", long.class);
-	private MethodKey _deleteAttachmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAttachment", long.class);
-	private MethodKey _deleteAttachmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAttachment", com.liferay.mail.model.Attachment.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getAttachmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAttachment", long.class);
-	private MethodKey _getAttachmentsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAttachments", int.class, int.class);
-	private MethodKey _getAttachmentsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAttachmentsCount");
-	private MethodKey _updateAttachmentMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAttachment", com.liferay.mail.model.Attachment.class);
-	private MethodKey _updateAttachmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAttachment", com.liferay.mail.model.Attachment.class,
-			boolean.class);
-	private MethodKey _addAttachmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAttachment", long.class, long.class, java.lang.String.class,
-			java.lang.String.class, long.class, java.io.File.class);
-	private MethodKey _deleteAttachmentsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAttachments", long.class, long.class);
-	private MethodKey _getAttachmentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAttachments", long.class);
-	private MethodKey _getFileMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFile", long.class);
-	private MethodKey _getInputStreamMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getInputStream", long.class);
+	private MethodKey _addAttachmentMethodKey0;
+	private MethodKey _createAttachmentMethodKey1;
+	private MethodKey _deleteAttachmentMethodKey2;
+	private MethodKey _deleteAttachmentMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getAttachmentMethodKey8;
+	private MethodKey _getAttachmentsMethodKey9;
+	private MethodKey _getAttachmentsCountMethodKey10;
+	private MethodKey _updateAttachmentMethodKey11;
+	private MethodKey _updateAttachmentMethodKey12;
+	private MethodKey _addAttachmentMethodKey13;
+	private MethodKey _deleteAttachmentsMethodKey14;
+	private MethodKey _getAttachmentsMethodKey15;
+	private MethodKey _getFileMethodKey16;
+	private MethodKey _getInputStreamMethodKey17;
 }

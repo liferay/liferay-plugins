@@ -24,6 +24,55 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	public JIRAActionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addJIRAActionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
+
+		_createJIRAActionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createJIRAAction", long.class);
+
+		_deleteJIRAActionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteJIRAAction", long.class);
+
+		_deleteJIRAActionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteJIRAAction",
+				com.liferay.socialcoding.model.JIRAAction.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getJIRAActionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAAction", long.class);
+
+		_getJIRAActionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAActions", int.class, int.class);
+
+		_getJIRAActionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAActionsCount");
+
+		_updateJIRAActionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAAction",
+				com.liferay.socialcoding.model.JIRAAction.class);
+
+		_updateJIRAActionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAAction",
+				com.liferay.socialcoding.model.JIRAAction.class, boolean.class);
 	}
 
 	public com.liferay.socialcoding.model.JIRAAction addJIRAAction(
@@ -394,36 +443,17 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addJIRAActionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
-	private MethodKey _createJIRAActionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createJIRAAction", long.class);
-	private MethodKey _deleteJIRAActionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteJIRAAction", long.class);
-	private MethodKey _deleteJIRAActionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getJIRAActionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAAction", long.class);
-	private MethodKey _getJIRAActionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAActions", int.class, int.class);
-	private MethodKey _getJIRAActionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAActionsCount");
-	private MethodKey _updateJIRAActionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAAction", com.liferay.socialcoding.model.JIRAAction.class);
-	private MethodKey _updateJIRAActionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAAction",
-			com.liferay.socialcoding.model.JIRAAction.class, boolean.class);
+	private MethodKey _addJIRAActionMethodKey0;
+	private MethodKey _createJIRAActionMethodKey1;
+	private MethodKey _deleteJIRAActionMethodKey2;
+	private MethodKey _deleteJIRAActionMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getJIRAActionMethodKey8;
+	private MethodKey _getJIRAActionsMethodKey9;
+	private MethodKey _getJIRAActionsCountMethodKey10;
+	private MethodKey _updateJIRAActionMethodKey11;
+	private MethodKey _updateJIRAActionMethodKey12;
 }

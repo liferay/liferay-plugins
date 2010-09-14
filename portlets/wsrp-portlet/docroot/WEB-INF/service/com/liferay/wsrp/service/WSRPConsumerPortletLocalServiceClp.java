@@ -25,6 +25,89 @@ public class WSRPConsumerPortletLocalServiceClp
 	implements WSRPConsumerPortletLocalService {
 	public WSRPConsumerPortletLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addWSRPConsumerPortletMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPConsumerPortlet",
+				com.liferay.wsrp.model.WSRPConsumerPortlet.class);
+
+		_createWSRPConsumerPortletMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createWSRPConsumerPortlet", long.class);
+
+		_deleteWSRPConsumerPortletMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPConsumerPortlet", long.class);
+
+		_deleteWSRPConsumerPortletMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPConsumerPortlet",
+				com.liferay.wsrp.model.WSRPConsumerPortlet.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getWSRPConsumerPortletMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumerPortlet", long.class);
+
+		_getWSRPConsumerPortletsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumerPortlets", int.class, int.class);
+
+		_getWSRPConsumerPortletsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumerPortletsCount");
+
+		_updateWSRPConsumerPortletMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPConsumerPortlet",
+				com.liferay.wsrp.model.WSRPConsumerPortlet.class);
+
+		_updateWSRPConsumerPortletMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPConsumerPortlet",
+				com.liferay.wsrp.model.WSRPConsumerPortlet.class, boolean.class);
+
+		_addWSRPConsumerPortletMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPConsumerPortlet", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class);
+
+		_deleteWSRPConsumerPortletsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPConsumerPortlets", long.class);
+
+		_destroyWSRPConsumerPortletMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"destroyWSRPConsumerPortlet", long.class, java.lang.String.class);
+
+		_destroyWSRPConsumerPortletsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"destroyWSRPConsumerPortlets");
+
+		_getWSRPConsumerPortletMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumerPortlet", long.class, java.lang.String.class);
+
+		_getWSRPConsumerPortletsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumerPortlets", long.class, int.class, int.class);
+
+		_getWSRPConsumerPortletsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumerPortletsCount", long.class);
+
+		_initWSRPConsumerPortletMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"initWSRPConsumerPortlet", long.class, long.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class);
+
+		_initWSRPConsumerPortletsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"initWSRPConsumerPortlets");
+
+		_updateWSRPConsumerPortletMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPConsumerPortlet", long.class, java.lang.String.class);
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
@@ -688,62 +771,27 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addWSRPConsumerPortletMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPConsumerPortlet",
-			com.liferay.wsrp.model.WSRPConsumerPortlet.class);
-	private MethodKey _createWSRPConsumerPortletMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createWSRPConsumerPortlet", long.class);
-	private MethodKey _deleteWSRPConsumerPortletMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPConsumerPortlet", long.class);
-	private MethodKey _deleteWSRPConsumerPortletMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPConsumerPortlet",
-			com.liferay.wsrp.model.WSRPConsumerPortlet.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getWSRPConsumerPortletMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumerPortlet", long.class);
-	private MethodKey _getWSRPConsumerPortletsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumerPortlets", int.class, int.class);
-	private MethodKey _getWSRPConsumerPortletsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumerPortletsCount");
-	private MethodKey _updateWSRPConsumerPortletMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPConsumerPortlet",
-			com.liferay.wsrp.model.WSRPConsumerPortlet.class);
-	private MethodKey _updateWSRPConsumerPortletMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPConsumerPortlet",
-			com.liferay.wsrp.model.WSRPConsumerPortlet.class, boolean.class);
-	private MethodKey _addWSRPConsumerPortletMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPConsumerPortlet", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class);
-	private MethodKey _deleteWSRPConsumerPortletsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPConsumerPortlets", long.class);
-	private MethodKey _destroyWSRPConsumerPortletMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"destroyWSRPConsumerPortlet", long.class, java.lang.String.class);
-	private MethodKey _destroyWSRPConsumerPortletsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"destroyWSRPConsumerPortlets");
-	private MethodKey _getWSRPConsumerPortletMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumerPortlet", long.class, java.lang.String.class);
-	private MethodKey _getWSRPConsumerPortletsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumerPortlets", long.class, int.class, int.class);
-	private MethodKey _getWSRPConsumerPortletsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumerPortletsCount", long.class);
-	private MethodKey _initWSRPConsumerPortletMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"initWSRPConsumerPortlet", long.class, long.class, long.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _initWSRPConsumerPortletsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"initWSRPConsumerPortlets");
-	private MethodKey _updateWSRPConsumerPortletMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPConsumerPortlet", long.class, java.lang.String.class);
+	private MethodKey _addWSRPConsumerPortletMethodKey0;
+	private MethodKey _createWSRPConsumerPortletMethodKey1;
+	private MethodKey _deleteWSRPConsumerPortletMethodKey2;
+	private MethodKey _deleteWSRPConsumerPortletMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getWSRPConsumerPortletMethodKey8;
+	private MethodKey _getWSRPConsumerPortletsMethodKey9;
+	private MethodKey _getWSRPConsumerPortletsCountMethodKey10;
+	private MethodKey _updateWSRPConsumerPortletMethodKey11;
+	private MethodKey _updateWSRPConsumerPortletMethodKey12;
+	private MethodKey _addWSRPConsumerPortletMethodKey13;
+	private MethodKey _deleteWSRPConsumerPortletsMethodKey14;
+	private MethodKey _destroyWSRPConsumerPortletMethodKey15;
+	private MethodKey _destroyWSRPConsumerPortletsMethodKey16;
+	private MethodKey _getWSRPConsumerPortletMethodKey17;
+	private MethodKey _getWSRPConsumerPortletsMethodKey18;
+	private MethodKey _getWSRPConsumerPortletsCountMethodKey19;
+	private MethodKey _initWSRPConsumerPortletMethodKey20;
+	private MethodKey _initWSRPConsumerPortletsMethodKey21;
+	private MethodKey _updateWSRPConsumerPortletMethodKey22;
 }

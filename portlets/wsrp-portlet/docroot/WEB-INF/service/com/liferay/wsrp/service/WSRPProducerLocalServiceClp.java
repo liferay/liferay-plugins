@@ -24,6 +24,71 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	public WSRPProducerLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addWSRPProducerMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
+
+		_createWSRPProducerMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createWSRPProducer", long.class);
+
+		_deleteWSRPProducerMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPProducer", long.class);
+
+		_deleteWSRPProducerMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getWSRPProducerMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPProducer", long.class);
+
+		_getWSRPProducersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPProducers", int.class, int.class);
+
+		_getWSRPProducersCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPProducersCount");
+
+		_updateWSRPProducerMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
+
+		_updateWSRPProducerMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPProducer",
+				com.liferay.wsrp.model.WSRPProducer.class, boolean.class);
+
+		_addWSRPProducerMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPProducer", long.class, java.lang.String.class,
+				java.lang.String.class);
+
+		_addWSRPProducerMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPProducer", long.class, long.class,
+				java.lang.String.class, java.lang.String.class);
+
+		_getWSRPProducersMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPProducers", long.class, int.class, int.class);
+
+		_getWSRPProducersCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPProducersCount", long.class);
+
+		_updateWSRPProducerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPProducer", long.class, java.lang.String.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
@@ -553,49 +618,22 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addWSRPProducerMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
-	private MethodKey _createWSRPProducerMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createWSRPProducer", long.class);
-	private MethodKey _deleteWSRPProducerMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPProducer", long.class);
-	private MethodKey _deleteWSRPProducerMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getWSRPProducerMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPProducer", long.class);
-	private MethodKey _getWSRPProducersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPProducers", int.class, int.class);
-	private MethodKey _getWSRPProducersCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPProducersCount");
-	private MethodKey _updateWSRPProducerMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class);
-	private MethodKey _updateWSRPProducerMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPProducer", com.liferay.wsrp.model.WSRPProducer.class,
-			boolean.class);
-	private MethodKey _addWSRPProducerMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPProducer", long.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _addWSRPProducerMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPProducer", long.class, long.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _getWSRPProducersMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPProducers", long.class, int.class, int.class);
-	private MethodKey _getWSRPProducersCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPProducersCount", long.class);
-	private MethodKey _updateWSRPProducerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPProducer", long.class, java.lang.String.class,
-			java.lang.String.class);
+	private MethodKey _addWSRPProducerMethodKey0;
+	private MethodKey _createWSRPProducerMethodKey1;
+	private MethodKey _deleteWSRPProducerMethodKey2;
+	private MethodKey _deleteWSRPProducerMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getWSRPProducerMethodKey8;
+	private MethodKey _getWSRPProducersMethodKey9;
+	private MethodKey _getWSRPProducersCountMethodKey10;
+	private MethodKey _updateWSRPProducerMethodKey11;
+	private MethodKey _updateWSRPProducerMethodKey12;
+	private MethodKey _addWSRPProducerMethodKey13;
+	private MethodKey _addWSRPProducerMethodKey14;
+	private MethodKey _getWSRPProducersMethodKey15;
+	private MethodKey _getWSRPProducersCountMethodKey16;
+	private MethodKey _updateWSRPProducerMethodKey17;
 }

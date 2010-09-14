@@ -24,6 +24,77 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	public MeetupsEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addMeetupsEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMeetupsEntry",
+				com.liferay.socialnetworking.model.MeetupsEntry.class);
+
+		_createMeetupsEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createMeetupsEntry", long.class);
+
+		_deleteMeetupsEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMeetupsEntry", long.class);
+
+		_deleteMeetupsEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMeetupsEntry",
+				com.liferay.socialnetworking.model.MeetupsEntry.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getMeetupsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMeetupsEntry", long.class);
+
+		_getMeetupsEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMeetupsEntries", int.class, int.class);
+
+		_getMeetupsEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMeetupsEntriesCount");
+
+		_updateMeetupsEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMeetupsEntry",
+				com.liferay.socialnetworking.model.MeetupsEntry.class);
+
+		_updateMeetupsEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMeetupsEntry",
+				com.liferay.socialnetworking.model.MeetupsEntry.class,
+				boolean.class);
+
+		_addMeetupsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMeetupsEntry", long.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, double.class,
+				byte[].class);
+
+		_getMeetupsEntriesByCompanyMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMeetupsEntriesByCompany", long.class);
+
+		_getMeetupsEntriesByUserMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMeetupsEntriesByUser", long.class);
+
+		_updateMeetupsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMeetupsEntry", long.class, long.class,
+				java.lang.String.class, java.lang.String.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, double.class, byte[].class);
 	}
 
 	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
@@ -531,54 +602,21 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addMeetupsEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class);
-	private MethodKey _createMeetupsEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createMeetupsEntry", long.class);
-	private MethodKey _deleteMeetupsEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMeetupsEntry", long.class);
-	private MethodKey _deleteMeetupsEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getMeetupsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMeetupsEntry", long.class);
-	private MethodKey _getMeetupsEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMeetupsEntries", int.class, int.class);
-	private MethodKey _getMeetupsEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMeetupsEntriesCount");
-	private MethodKey _updateMeetupsEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class);
-	private MethodKey _updateMeetupsEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMeetupsEntry",
-			com.liferay.socialnetworking.model.MeetupsEntry.class, boolean.class);
-	private MethodKey _addMeetupsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMeetupsEntry", long.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, double.class, byte[].class);
-	private MethodKey _getMeetupsEntriesByCompanyMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMeetupsEntriesByCompany", long.class);
-	private MethodKey _getMeetupsEntriesByUserMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMeetupsEntriesByUser", long.class);
-	private MethodKey _updateMeetupsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMeetupsEntry", long.class, long.class,
-			java.lang.String.class, java.lang.String.class, int.class,
-			int.class, int.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, int.class, int.class, int.class,
-			double.class, byte[].class);
+	private MethodKey _addMeetupsEntryMethodKey0;
+	private MethodKey _createMeetupsEntryMethodKey1;
+	private MethodKey _deleteMeetupsEntryMethodKey2;
+	private MethodKey _deleteMeetupsEntryMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getMeetupsEntryMethodKey8;
+	private MethodKey _getMeetupsEntriesMethodKey9;
+	private MethodKey _getMeetupsEntriesCountMethodKey10;
+	private MethodKey _updateMeetupsEntryMethodKey11;
+	private MethodKey _updateMeetupsEntryMethodKey12;
+	private MethodKey _addMeetupsEntryMethodKey13;
+	private MethodKey _getMeetupsEntriesByCompanyMethodKey14;
+	private MethodKey _getMeetupsEntriesByUserMethodKey15;
+	private MethodKey _updateMeetupsEntryMethodKey16;
 }

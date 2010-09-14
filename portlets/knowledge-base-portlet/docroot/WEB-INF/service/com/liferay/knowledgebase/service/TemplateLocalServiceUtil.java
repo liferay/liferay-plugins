@@ -328,7 +328,7 @@ public class TemplateLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					TemplateLocalService.class.getName(), portletClassLoader);
 
 			_service = new TemplateLocalServiceClp(classLoaderProxy);
 

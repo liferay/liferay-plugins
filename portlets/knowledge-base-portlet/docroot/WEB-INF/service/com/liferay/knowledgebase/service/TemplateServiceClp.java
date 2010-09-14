@@ -24,6 +24,29 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class TemplateServiceClp implements TemplateService {
 	public TemplateServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addTemplateMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTemplate", java.lang.String.class, java.lang.String.class,
+				java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteTemplateMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteTemplate", long.class);
+
+		_getGroupTemplatesMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupTemplates", long.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getGroupTemplatesCountMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupTemplatesCount", long.class);
+
+		_getTemplateMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTemplate", long.class);
+
+		_updateTemplateMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateTemplate", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.knowledgebase.model.Template addTemplate(
@@ -222,21 +245,10 @@ public class TemplateServiceClp implements TemplateService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addTemplateMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTemplate", java.lang.String.class, java.lang.String.class,
-			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteTemplateMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteTemplate", long.class);
-	private MethodKey _getGroupTemplatesMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupTemplates", long.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getGroupTemplatesCountMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupTemplatesCount", long.class);
-	private MethodKey _getTemplateMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTemplate", long.class);
-	private MethodKey _updateTemplateMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateTemplate", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _addTemplateMethodKey0;
+	private MethodKey _deleteTemplateMethodKey1;
+	private MethodKey _getGroupTemplatesMethodKey2;
+	private MethodKey _getGroupTemplatesCountMethodKey3;
+	private MethodKey _getTemplateMethodKey4;
+	private MethodKey _updateTemplateMethodKey5;
 }

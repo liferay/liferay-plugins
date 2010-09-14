@@ -24,6 +24,106 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class MessageLocalServiceClp implements MessageLocalService {
 	public MessageLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addMessageMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMessage", com.liferay.mail.model.Message.class);
+
+		_createMessageMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createMessage", long.class);
+
+		_deleteMessageMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMessage", long.class);
+
+		_deleteMessageMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMessage", com.liferay.mail.model.Message.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getMessageMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMessage", long.class);
+
+		_getMessagesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMessages", int.class, int.class);
+
+		_getMessagesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMessagesCount");
+
+		_updateMessageMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMessage", com.liferay.mail.model.Message.class);
+
+		_updateMessageMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMessage", com.liferay.mail.model.Message.class,
+				boolean.class);
+
+		_addMessageMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addMessage", long.class, long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, java.util.Date.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, long.class);
+
+		_deleteMessagesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteMessages", long.class);
+
+		_getAccountUnreadMessagesCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAccountUnreadMessagesCount", long.class);
+
+		_getCompanyMessagesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyMessages", long.class, int.class, int.class);
+
+		_getCompanyMessagesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyMessagesCount", long.class);
+
+		_getFolderMessagesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolderMessages", long.class);
+
+		_getFolderMessagesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolderMessagesCount", long.class);
+
+		_getFolderUnreadMessagesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFolderUnreadMessagesCount", long.class);
+
+		_getMessageMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMessage", long.class, long.class);
+
+		_getRemoteMessageMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getRemoteMessage", long.class, boolean.class);
+
+		_populateMessagesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"populateMessages", java.util.List.class, long.class,
+				java.lang.String.class, int.class, int.class,
+				java.lang.String.class, java.lang.String.class);
+
+		_updateContentMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateContent", long.class, java.lang.String.class,
+				java.lang.String.class);
+
+		_updateFlagMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFlag", long.class, int.class, boolean.class);
+
+		_updateMessageMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateMessage", long.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				java.util.Date.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class, long.class);
 	}
 
 	public com.liferay.mail.model.Message addMessage(
@@ -825,74 +925,31 @@ public class MessageLocalServiceClp implements MessageLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addMessageMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMessage", com.liferay.mail.model.Message.class);
-	private MethodKey _createMessageMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createMessage", long.class);
-	private MethodKey _deleteMessageMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMessage", long.class);
-	private MethodKey _deleteMessageMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMessage", com.liferay.mail.model.Message.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getMessageMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMessage", long.class);
-	private MethodKey _getMessagesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMessages", int.class, int.class);
-	private MethodKey _getMessagesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMessagesCount");
-	private MethodKey _updateMessageMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMessage", com.liferay.mail.model.Message.class);
-	private MethodKey _updateMessageMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMessage", com.liferay.mail.model.Message.class, boolean.class);
-	private MethodKey _addMessageMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addMessage", long.class, long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.util.Date.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, long.class);
-	private MethodKey _deleteMessagesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteMessages", long.class);
-	private MethodKey _getAccountUnreadMessagesCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAccountUnreadMessagesCount", long.class);
-	private MethodKey _getCompanyMessagesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyMessages", long.class, int.class, int.class);
-	private MethodKey _getCompanyMessagesCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyMessagesCount", long.class);
-	private MethodKey _getFolderMessagesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolderMessages", long.class);
-	private MethodKey _getFolderMessagesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolderMessagesCount", long.class);
-	private MethodKey _getFolderUnreadMessagesCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFolderUnreadMessagesCount", long.class);
-	private MethodKey _getMessageMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getMessage", long.class, long.class);
-	private MethodKey _getRemoteMessageMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getRemoteMessage", long.class, boolean.class);
-	private MethodKey _populateMessagesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"populateMessages", java.util.List.class, long.class,
-			java.lang.String.class, int.class, int.class,
-			java.lang.String.class, java.lang.String.class);
-	private MethodKey _updateContentMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateContent", long.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _updateFlagMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFlag", long.class, int.class, boolean.class);
-	private MethodKey _updateMessageMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateMessage", long.class, long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.util.Date.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, long.class);
+	private MethodKey _addMessageMethodKey0;
+	private MethodKey _createMessageMethodKey1;
+	private MethodKey _deleteMessageMethodKey2;
+	private MethodKey _deleteMessageMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getMessageMethodKey8;
+	private MethodKey _getMessagesMethodKey9;
+	private MethodKey _getMessagesCountMethodKey10;
+	private MethodKey _updateMessageMethodKey11;
+	private MethodKey _updateMessageMethodKey12;
+	private MethodKey _addMessageMethodKey13;
+	private MethodKey _deleteMessagesMethodKey14;
+	private MethodKey _getAccountUnreadMessagesCountMethodKey15;
+	private MethodKey _getCompanyMessagesMethodKey16;
+	private MethodKey _getCompanyMessagesCountMethodKey17;
+	private MethodKey _getFolderMessagesMethodKey18;
+	private MethodKey _getFolderMessagesCountMethodKey19;
+	private MethodKey _getFolderUnreadMessagesCountMethodKey20;
+	private MethodKey _getMessageMethodKey21;
+	private MethodKey _getRemoteMessageMethodKey22;
+	private MethodKey _populateMessagesMethodKey23;
+	private MethodKey _updateContentMethodKey24;
+	private MethodKey _updateFlagMethodKey25;
+	private MethodKey _updateMessageMethodKey26;
 }

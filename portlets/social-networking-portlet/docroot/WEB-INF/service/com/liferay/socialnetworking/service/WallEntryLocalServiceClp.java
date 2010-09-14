@@ -24,6 +24,81 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public WallEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addWallEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWallEntry",
+				com.liferay.socialnetworking.model.WallEntry.class);
+
+		_createWallEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createWallEntry", long.class);
+
+		_deleteWallEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWallEntry", long.class);
+
+		_deleteWallEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWallEntry",
+				com.liferay.socialnetworking.model.WallEntry.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getWallEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallEntry", long.class);
+
+		_getWallEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallEntries", int.class, int.class);
+
+		_getWallEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallEntriesCount");
+
+		_updateWallEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWallEntry",
+				com.liferay.socialnetworking.model.WallEntry.class);
+
+		_updateWallEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWallEntry",
+				com.liferay.socialnetworking.model.WallEntry.class,
+				boolean.class);
+
+		_addWallEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWallEntry", long.class, long.class, java.lang.String.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_deleteWallEntriesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWallEntries", long.class);
+
+		_getWallEntriesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallEntries", long.class, int.class, int.class);
+
+		_getWallEntriesCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallEntriesCount", long.class);
+
+		_getWallToWallEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallToWallEntries", long.class, long.class, long.class,
+				long.class, int.class, int.class);
+
+		_getWallToWallEntriesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWallToWallEntriesCount", long.class, long.class,
+				long.class, long.class);
+
+		_updateWallEntryMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWallEntry", long.class, java.lang.String.class);
 	}
 
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
@@ -595,55 +670,24 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addWallEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWallEntry", com.liferay.socialnetworking.model.WallEntry.class);
-	private MethodKey _createWallEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createWallEntry", long.class);
-	private MethodKey _deleteWallEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWallEntry", long.class);
-	private MethodKey _deleteWallEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWallEntry",
-			com.liferay.socialnetworking.model.WallEntry.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getWallEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallEntry", long.class);
-	private MethodKey _getWallEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallEntries", int.class, int.class);
-	private MethodKey _getWallEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallEntriesCount");
-	private MethodKey _updateWallEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWallEntry",
-			com.liferay.socialnetworking.model.WallEntry.class);
-	private MethodKey _updateWallEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWallEntry",
-			com.liferay.socialnetworking.model.WallEntry.class, boolean.class);
-	private MethodKey _addWallEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWallEntry", long.class, long.class, java.lang.String.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _deleteWallEntriesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWallEntries", long.class);
-	private MethodKey _getWallEntriesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallEntries", long.class, int.class, int.class);
-	private MethodKey _getWallEntriesCountMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallEntriesCount", long.class);
-	private MethodKey _getWallToWallEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallToWallEntries", long.class, long.class, long.class,
-			long.class, int.class, int.class);
-	private MethodKey _getWallToWallEntriesCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWallToWallEntriesCount", long.class, long.class, long.class,
-			long.class);
-	private MethodKey _updateWallEntryMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWallEntry", long.class, java.lang.String.class);
+	private MethodKey _addWallEntryMethodKey0;
+	private MethodKey _createWallEntryMethodKey1;
+	private MethodKey _deleteWallEntryMethodKey2;
+	private MethodKey _deleteWallEntryMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getWallEntryMethodKey8;
+	private MethodKey _getWallEntriesMethodKey9;
+	private MethodKey _getWallEntriesCountMethodKey10;
+	private MethodKey _updateWallEntryMethodKey11;
+	private MethodKey _updateWallEntryMethodKey12;
+	private MethodKey _addWallEntryMethodKey13;
+	private MethodKey _deleteWallEntriesMethodKey14;
+	private MethodKey _getWallEntriesMethodKey15;
+	private MethodKey _getWallEntriesCountMethodKey16;
+	private MethodKey _getWallToWallEntriesMethodKey17;
+	private MethodKey _getWallToWallEntriesCountMethodKey18;
+	private MethodKey _updateWallEntryMethodKey19;
 }

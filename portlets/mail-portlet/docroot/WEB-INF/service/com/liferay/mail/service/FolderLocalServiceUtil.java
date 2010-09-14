@@ -292,7 +292,7 @@ public class FolderLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					FolderLocalService.class.getName(), portletClassLoader);
 
 			_service = new FolderLocalServiceClp(classLoaderProxy);
 

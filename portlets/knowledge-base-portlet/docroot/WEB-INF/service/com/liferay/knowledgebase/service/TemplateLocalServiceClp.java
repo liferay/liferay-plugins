@@ -24,6 +24,92 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class TemplateLocalServiceClp implements TemplateLocalService {
 	public TemplateLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addTemplateMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTemplate", com.liferay.knowledgebase.model.Template.class);
+
+		_createTemplateMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createTemplate", long.class);
+
+		_deleteTemplateMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteTemplate", long.class);
+
+		_deleteTemplateMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteTemplate", com.liferay.knowledgebase.model.Template.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getTemplateMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTemplate", long.class);
+
+		_getTemplateByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTemplateByUuidAndGroupId", java.lang.String.class,
+				long.class);
+
+		_getTemplatesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTemplates", int.class, int.class);
+
+		_getTemplatesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTemplatesCount");
+
+		_updateTemplateMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateTemplate", com.liferay.knowledgebase.model.Template.class);
+
+		_updateTemplateMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateTemplate",
+				com.liferay.knowledgebase.model.Template.class, boolean.class);
+
+		_addTemplateMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTemplate", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addTemplateResourcesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTemplateResources",
+				com.liferay.knowledgebase.model.Template.class, boolean.class,
+				boolean.class);
+
+		_addTemplateResourcesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addTemplateResources",
+				com.liferay.knowledgebase.model.Template.class,
+				java.lang.String[].class, java.lang.String[].class);
+
+		_deleteGroupTemplatesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteGroupTemplates", long.class);
+
+		_getGroupTemplatesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupTemplates", long.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getGroupTemplatesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupTemplatesCount", long.class);
+
+		_updateTemplateMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateTemplate", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateTemplateResourcesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateTemplateResources",
+				com.liferay.knowledgebase.model.Template.class,
+				java.lang.String[].class, java.lang.String[].class);
 	}
 
 	public com.liferay.knowledgebase.model.Template addTemplate(
@@ -677,65 +763,26 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addTemplateMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTemplate", com.liferay.knowledgebase.model.Template.class);
-	private MethodKey _createTemplateMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createTemplate", long.class);
-	private MethodKey _deleteTemplateMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteTemplate", long.class);
-	private MethodKey _deleteTemplateMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteTemplate", com.liferay.knowledgebase.model.Template.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getTemplateMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTemplate", long.class);
-	private MethodKey _getTemplateByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTemplateByUuidAndGroupId", java.lang.String.class, long.class);
-	private MethodKey _getTemplatesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTemplates", int.class, int.class);
-	private MethodKey _getTemplatesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTemplatesCount");
-	private MethodKey _updateTemplateMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateTemplate", com.liferay.knowledgebase.model.Template.class);
-	private MethodKey _updateTemplateMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateTemplate", com.liferay.knowledgebase.model.Template.class,
-			boolean.class);
-	private MethodKey _addTemplateMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTemplate", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addTemplateResourcesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTemplateResources",
-			com.liferay.knowledgebase.model.Template.class, boolean.class,
-			boolean.class);
-	private MethodKey _addTemplateResourcesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addTemplateResources",
-			com.liferay.knowledgebase.model.Template.class,
-			java.lang.String[].class, java.lang.String[].class);
-	private MethodKey _deleteGroupTemplatesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteGroupTemplates", long.class);
-	private MethodKey _getGroupTemplatesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupTemplates", long.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getGroupTemplatesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupTemplatesCount", long.class);
-	private MethodKey _updateTemplateMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateTemplate", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _updateTemplateResourcesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateTemplateResources",
-			com.liferay.knowledgebase.model.Template.class,
-			java.lang.String[].class, java.lang.String[].class);
+	private MethodKey _addTemplateMethodKey0;
+	private MethodKey _createTemplateMethodKey1;
+	private MethodKey _deleteTemplateMethodKey2;
+	private MethodKey _deleteTemplateMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getTemplateMethodKey8;
+	private MethodKey _getTemplateByUuidAndGroupIdMethodKey9;
+	private MethodKey _getTemplatesMethodKey10;
+	private MethodKey _getTemplatesCountMethodKey11;
+	private MethodKey _updateTemplateMethodKey12;
+	private MethodKey _updateTemplateMethodKey13;
+	private MethodKey _addTemplateMethodKey14;
+	private MethodKey _addTemplateResourcesMethodKey15;
+	private MethodKey _addTemplateResourcesMethodKey16;
+	private MethodKey _deleteGroupTemplatesMethodKey17;
+	private MethodKey _getGroupTemplatesMethodKey18;
+	private MethodKey _getGroupTemplatesCountMethodKey19;
+	private MethodKey _updateTemplateMethodKey20;
+	private MethodKey _updateTemplateResourcesMethodKey21;
 }

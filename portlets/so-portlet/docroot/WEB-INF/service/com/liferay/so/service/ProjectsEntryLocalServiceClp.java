@@ -24,6 +24,71 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	public ProjectsEntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addProjectsEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
+
+		_createProjectsEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createProjectsEntry", long.class);
+
+		_deleteProjectsEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteProjectsEntry", long.class);
+
+		_deleteProjectsEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getProjectsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getProjectsEntry", long.class);
+
+		_getProjectsEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getProjectsEntries", int.class, int.class);
+
+		_getProjectsEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getProjectsEntriesCount");
+
+		_updateProjectsEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
+
+		_updateProjectsEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateProjectsEntry",
+				com.liferay.so.model.ProjectsEntry.class, boolean.class);
+
+		_addProjectsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addProjectsEntry", long.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, boolean.class,
+				java.lang.String.class);
+
+		_getUserProjectsEntriesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserProjectsEntries", long.class);
+
+		_getUserProjectsEntriesCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserProjectsEntriesCount", long.class);
+
+		_updateProjectsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateProjectsEntry", long.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, boolean.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(
@@ -524,48 +589,21 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addProjectsEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
-	private MethodKey _createProjectsEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createProjectsEntry", long.class);
-	private MethodKey _deleteProjectsEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteProjectsEntry", long.class);
-	private MethodKey _deleteProjectsEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getProjectsEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getProjectsEntry", long.class);
-	private MethodKey _getProjectsEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getProjectsEntries", int.class, int.class);
-	private MethodKey _getProjectsEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getProjectsEntriesCount");
-	private MethodKey _updateProjectsEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateProjectsEntry", com.liferay.so.model.ProjectsEntry.class);
-	private MethodKey _updateProjectsEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateProjectsEntry", com.liferay.so.model.ProjectsEntry.class,
-			boolean.class);
-	private MethodKey _addProjectsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addProjectsEntry", long.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, boolean.class, java.lang.String.class);
-	private MethodKey _getUserProjectsEntriesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserProjectsEntries", long.class);
-	private MethodKey _getUserProjectsEntriesCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserProjectsEntriesCount", long.class);
-	private MethodKey _updateProjectsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateProjectsEntry", long.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, boolean.class, java.lang.String.class);
+	private MethodKey _addProjectsEntryMethodKey0;
+	private MethodKey _createProjectsEntryMethodKey1;
+	private MethodKey _deleteProjectsEntryMethodKey2;
+	private MethodKey _deleteProjectsEntryMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getProjectsEntryMethodKey8;
+	private MethodKey _getProjectsEntriesMethodKey9;
+	private MethodKey _getProjectsEntriesCountMethodKey10;
+	private MethodKey _updateProjectsEntryMethodKey11;
+	private MethodKey _updateProjectsEntryMethodKey12;
+	private MethodKey _addProjectsEntryMethodKey13;
+	private MethodKey _getUserProjectsEntriesMethodKey14;
+	private MethodKey _getUserProjectsEntriesCountMethodKey15;
+	private MethodKey _updateProjectsEntryMethodKey16;
 }

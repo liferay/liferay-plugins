@@ -24,6 +24,62 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class FeedLocalServiceClp implements FeedLocalService {
 	public FeedLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addFeedMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addFeed", com.liferay.twitter.model.Feed.class);
+
+		_createFeedMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createFeed", long.class);
+
+		_deleteFeedMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFeed", long.class);
+
+		_deleteFeedMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFeed", com.liferay.twitter.model.Feed.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getFeedMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFeed", long.class);
+
+		_getFeedsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFeeds", int.class, int.class);
+
+		_getFeedsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFeedsCount");
+
+		_updateFeedMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFeed", com.liferay.twitter.model.Feed.class);
+
+		_updateFeedMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFeed", com.liferay.twitter.model.Feed.class,
+				boolean.class);
+
+		_updateFeedMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFeed", long.class);
+
+		_updateFeedsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFeeds");
+
+		_updateFeedsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFeeds", long.class);
 	}
 
 	public com.liferay.twitter.model.Feed addFeed(
@@ -472,41 +528,20 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addFeedMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addFeed", com.liferay.twitter.model.Feed.class);
-	private MethodKey _createFeedMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createFeed", long.class);
-	private MethodKey _deleteFeedMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFeed", long.class);
-	private MethodKey _deleteFeedMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFeed", com.liferay.twitter.model.Feed.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getFeedMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFeed", long.class);
-	private MethodKey _getFeedsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFeeds", int.class, int.class);
-	private MethodKey _getFeedsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFeedsCount");
-	private MethodKey _updateFeedMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFeed", com.liferay.twitter.model.Feed.class);
-	private MethodKey _updateFeedMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFeed", com.liferay.twitter.model.Feed.class, boolean.class);
-	private MethodKey _updateFeedMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFeed", long.class);
-	private MethodKey _updateFeedsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFeeds");
-	private MethodKey _updateFeedsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFeeds", long.class);
+	private MethodKey _addFeedMethodKey0;
+	private MethodKey _createFeedMethodKey1;
+	private MethodKey _deleteFeedMethodKey2;
+	private MethodKey _deleteFeedMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getFeedMethodKey8;
+	private MethodKey _getFeedsMethodKey9;
+	private MethodKey _getFeedsCountMethodKey10;
+	private MethodKey _updateFeedMethodKey11;
+	private MethodKey _updateFeedMethodKey12;
+	private MethodKey _updateFeedMethodKey13;
+	private MethodKey _updateFeedsMethodKey14;
+	private MethodKey _updateFeedsMethodKey15;
 }

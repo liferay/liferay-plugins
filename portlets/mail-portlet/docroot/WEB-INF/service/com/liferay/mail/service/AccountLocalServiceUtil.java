@@ -295,7 +295,7 @@ public class AccountLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					AccountLocalService.class.getName(), portletClassLoader);
 
 			_service = new AccountLocalServiceClp(classLoaderProxy);
 

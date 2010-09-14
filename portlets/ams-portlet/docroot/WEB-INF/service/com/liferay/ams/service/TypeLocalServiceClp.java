@@ -24,6 +24,52 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class TypeLocalServiceClp implements TypeLocalService {
 	public TypeLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addTypeMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addType", com.liferay.ams.model.Type.class);
+
+		_createTypeMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createType", long.class);
+
+		_deleteTypeMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteType", long.class);
+
+		_deleteTypeMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteType", com.liferay.ams.model.Type.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getTypeMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getType", long.class);
+
+		_getTypesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTypes", int.class, int.class);
+
+		_getTypesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTypesCount");
+
+		_updateTypeMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateType", com.liferay.ams.model.Type.class);
+
+		_updateTypeMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateType", com.liferay.ams.model.Type.class, boolean.class);
 	}
 
 	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type)
@@ -388,35 +434,17 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addTypeMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addType", com.liferay.ams.model.Type.class);
-	private MethodKey _createTypeMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createType", long.class);
-	private MethodKey _deleteTypeMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteType", long.class);
-	private MethodKey _deleteTypeMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteType", com.liferay.ams.model.Type.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getTypeMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getType", long.class);
-	private MethodKey _getTypesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTypes", int.class, int.class);
-	private MethodKey _getTypesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getTypesCount");
-	private MethodKey _updateTypeMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateType", com.liferay.ams.model.Type.class);
-	private MethodKey _updateTypeMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateType", com.liferay.ams.model.Type.class, boolean.class);
+	private MethodKey _addTypeMethodKey0;
+	private MethodKey _createTypeMethodKey1;
+	private MethodKey _deleteTypeMethodKey2;
+	private MethodKey _deleteTypeMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getTypeMethodKey8;
+	private MethodKey _getTypesMethodKey9;
+	private MethodKey _getTypesCountMethodKey10;
+	private MethodKey _updateTypeMethodKey11;
+	private MethodKey _updateTypeMethodKey12;
 }

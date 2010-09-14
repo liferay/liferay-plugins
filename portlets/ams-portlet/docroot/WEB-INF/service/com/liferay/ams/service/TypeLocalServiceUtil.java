@@ -235,7 +235,7 @@ public class TypeLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					TypeLocalService.class.getName(), portletClassLoader);
 
 			_service = new TypeLocalServiceClp(classLoaderProxy);
 

@@ -24,6 +24,97 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class ArticleServiceClp implements ArticleService {
 	public ArticleServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addArticleMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addArticle", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class, int.class,
+				java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAttachment", long.class, long.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.io.InputStream.class);
+
+		_deleteArticleMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteArticle", long.class);
+
+		_deleteAttachmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAttachment", long.class, long.class, long.class,
+				java.lang.String.class);
+
+		_getArticleMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticle", long.class, int.class);
+
+		_getArticlesMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", long.class, int.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getArticlesMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", java.util.Map.class, boolean.class, int.class,
+				int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getArticlesCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount", long.class, int.class);
+
+		_getArticlesCountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount", java.util.Map.class, boolean.class);
+
+		_getArticlesRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesRSS", java.lang.String.class, long.class,
+				int.class, int.class, java.lang.String.class, double.class,
+				java.lang.String.class, boolean.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_getCompanyArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyArticles", long.class, int.class, boolean.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getCompanyArticlesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyArticlesCount", long.class, int.class, boolean.class);
+
+		_getGroupArticlesMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupArticles", long.class, int.class, boolean.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getGroupArticlesCountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupArticlesCount", long.class, int.class, boolean.class);
+
+		_getGroupArticlesRSSMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupArticlesRSS", java.lang.String.class, int.class,
+				int.class, java.lang.String.class, double.class,
+				java.lang.String.class, boolean.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
+
+		_getLatestArticleMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getLatestArticle", long.class, int.class);
+
+		_subscribeMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"subscribe", long.class, long.class, java.lang.String.class);
+
+		_subscribeArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"subscribeArticle", long.class, java.lang.String.class,
+				long.class);
+
+		_unsubscribeMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribe", long.class, long.class, java.lang.String.class);
+
+		_unsubscribeArticleMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribeArticle", long.class, java.lang.String.class,
+				long.class);
+
+		_updateArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateArticle", long.class, long.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, int.class, java.lang.String.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateAttachmentsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAttachments", long.class, long.class, long.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.knowledgebase.model.Article addArticle(
@@ -729,70 +820,26 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addArticleMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addArticle", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class, int.class,
-			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _addAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAttachment", long.class, long.class, long.class,
-			java.lang.String.class, java.lang.String.class,
-			java.io.InputStream.class);
-	private MethodKey _deleteArticleMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteArticle", long.class);
-	private MethodKey _deleteAttachmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAttachment", long.class, long.class, long.class,
-			java.lang.String.class);
-	private MethodKey _getArticleMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticle", long.class, int.class);
-	private MethodKey _getArticlesMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticles", long.class, int.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getArticlesMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticles", java.util.Map.class, boolean.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getArticlesCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticlesCount", long.class, int.class);
-	private MethodKey _getArticlesCountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticlesCount", java.util.Map.class, boolean.class);
-	private MethodKey _getArticlesRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getArticlesRSS", java.lang.String.class, long.class, int.class,
-			int.class, java.lang.String.class, double.class,
-			java.lang.String.class, boolean.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _getCompanyArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyArticles", long.class, int.class, boolean.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getCompanyArticlesCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyArticlesCount", long.class, int.class, boolean.class);
-	private MethodKey _getGroupArticlesMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupArticles", long.class, int.class, boolean.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getGroupArticlesCountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupArticlesCount", long.class, int.class, boolean.class);
-	private MethodKey _getGroupArticlesRSSMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupArticlesRSS", java.lang.String.class, int.class,
-			int.class, java.lang.String.class, double.class,
-			java.lang.String.class, boolean.class,
-			com.liferay.portal.theme.ThemeDisplay.class);
-	private MethodKey _getLatestArticleMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getLatestArticle", long.class, int.class);
-	private MethodKey _subscribeMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"subscribe", long.class, long.class, java.lang.String.class);
-	private MethodKey _subscribeArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"subscribeArticle", long.class, java.lang.String.class, long.class);
-	private MethodKey _unsubscribeMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"unsubscribe", long.class, long.class, java.lang.String.class);
-	private MethodKey _unsubscribeArticleMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"unsubscribeArticle", long.class, java.lang.String.class, long.class);
-	private MethodKey _updateArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateArticle", long.class, long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class, int.class,
-			java.lang.String.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _updateAttachmentsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAttachments", long.class, long.class, long.class,
-			java.lang.String.class);
+	private MethodKey _addArticleMethodKey0;
+	private MethodKey _addAttachmentMethodKey1;
+	private MethodKey _deleteArticleMethodKey2;
+	private MethodKey _deleteAttachmentMethodKey3;
+	private MethodKey _getArticleMethodKey4;
+	private MethodKey _getArticlesMethodKey5;
+	private MethodKey _getArticlesMethodKey6;
+	private MethodKey _getArticlesCountMethodKey7;
+	private MethodKey _getArticlesCountMethodKey8;
+	private MethodKey _getArticlesRSSMethodKey9;
+	private MethodKey _getCompanyArticlesMethodKey10;
+	private MethodKey _getCompanyArticlesCountMethodKey11;
+	private MethodKey _getGroupArticlesMethodKey12;
+	private MethodKey _getGroupArticlesCountMethodKey13;
+	private MethodKey _getGroupArticlesRSSMethodKey14;
+	private MethodKey _getLatestArticleMethodKey15;
+	private MethodKey _subscribeMethodKey16;
+	private MethodKey _subscribeArticleMethodKey17;
+	private MethodKey _unsubscribeMethodKey18;
+	private MethodKey _unsubscribeArticleMethodKey19;
+	private MethodKey _updateArticleMethodKey20;
+	private MethodKey _updateAttachmentsMethodKey21;
 }

@@ -267,7 +267,7 @@ public class KaleoTaskLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					KaleoTaskLocalService.class.getName(), portletClassLoader);
 
 			_service = new KaleoTaskLocalServiceClp(classLoaderProxy);
 

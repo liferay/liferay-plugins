@@ -285,7 +285,7 @@ public class WallEntryLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					WallEntryLocalService.class.getName(), portletClassLoader);
 
 			_service = new WallEntryLocalServiceClp(classLoaderProxy);
 

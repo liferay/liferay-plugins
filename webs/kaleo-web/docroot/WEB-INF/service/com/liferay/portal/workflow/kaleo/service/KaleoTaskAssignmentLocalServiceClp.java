@@ -25,6 +25,81 @@ public class KaleoTaskAssignmentLocalServiceClp
 	implements KaleoTaskAssignmentLocalService {
 	public KaleoTaskAssignmentLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoTaskAssignmentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoTaskAssignment",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
+
+		_createKaleoTaskAssignmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoTaskAssignment", long.class);
+
+		_deleteKaleoTaskAssignmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTaskAssignment", long.class);
+
+		_deleteKaleoTaskAssignmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTaskAssignment",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoTaskAssignmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignment", long.class);
+
+		_getKaleoTaskAssignmentsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignments", int.class, int.class);
+
+		_getKaleoTaskAssignmentsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignmentsCount");
+
+		_updateKaleoTaskAssignmentMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoTaskAssignment",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
+
+		_updateKaleoTaskAssignmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoTaskAssignment",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class,
+				boolean.class);
+
+		_addKaleoTaskAssignmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoTaskAssignment", long.class, long.class, long.class,
+				com.liferay.portal.workflow.kaleo.definition.Assignment.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCompanyKaleoTaskAssignmentsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoTaskAssignments", long.class);
+
+		_deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoTaskAssignments", long.class);
+
+		_getKaleoTaskAssignmentsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignments", long.class);
+
+		_getKaleoTaskAssignmentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignments", java.lang.String.class, long.class);
+
+		_getKaleoTaskAssignmentsCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignmentsCount", long.class);
+
+		_getKaleoTaskAssignmentsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskAssignmentsCount", java.lang.String.class,
+				long.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
@@ -590,56 +665,24 @@ public class KaleoTaskAssignmentLocalServiceClp
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoTaskAssignmentMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoTaskAssignment",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
-	private MethodKey _createKaleoTaskAssignmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoTaskAssignment", long.class);
-	private MethodKey _deleteKaleoTaskAssignmentMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoTaskAssignment", long.class);
-	private MethodKey _deleteKaleoTaskAssignmentMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoTaskAssignment",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoTaskAssignmentMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignment", long.class);
-	private MethodKey _getKaleoTaskAssignmentsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignments", int.class, int.class);
-	private MethodKey _getKaleoTaskAssignmentsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignmentsCount");
-	private MethodKey _updateKaleoTaskAssignmentMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoTaskAssignment",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class);
-	private MethodKey _updateKaleoTaskAssignmentMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoTaskAssignment",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment.class,
-			boolean.class);
-	private MethodKey _addKaleoTaskAssignmentMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoTaskAssignment", long.class, long.class, long.class,
-			com.liferay.portal.workflow.kaleo.definition.Assignment.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteCompanyKaleoTaskAssignmentsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoTaskAssignments", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoTaskAssignments", long.class);
-	private MethodKey _getKaleoTaskAssignmentsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignments", long.class);
-	private MethodKey _getKaleoTaskAssignmentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignments", java.lang.String.class, long.class);
-	private MethodKey _getKaleoTaskAssignmentsCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignmentsCount", long.class);
-	private MethodKey _getKaleoTaskAssignmentsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskAssignmentsCount", java.lang.String.class, long.class);
+	private MethodKey _addKaleoTaskAssignmentMethodKey0;
+	private MethodKey _createKaleoTaskAssignmentMethodKey1;
+	private MethodKey _deleteKaleoTaskAssignmentMethodKey2;
+	private MethodKey _deleteKaleoTaskAssignmentMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoTaskAssignmentMethodKey8;
+	private MethodKey _getKaleoTaskAssignmentsMethodKey9;
+	private MethodKey _getKaleoTaskAssignmentsCountMethodKey10;
+	private MethodKey _updateKaleoTaskAssignmentMethodKey11;
+	private MethodKey _updateKaleoTaskAssignmentMethodKey12;
+	private MethodKey _addKaleoTaskAssignmentMethodKey13;
+	private MethodKey _deleteCompanyKaleoTaskAssignmentsMethodKey14;
+	private MethodKey _deleteKaleoDefinitionKaleoTaskAssignmentsMethodKey15;
+	private MethodKey _getKaleoTaskAssignmentsMethodKey16;
+	private MethodKey _getKaleoTaskAssignmentsMethodKey17;
+	private MethodKey _getKaleoTaskAssignmentsCountMethodKey18;
+	private MethodKey _getKaleoTaskAssignmentsCountMethodKey19;
 }

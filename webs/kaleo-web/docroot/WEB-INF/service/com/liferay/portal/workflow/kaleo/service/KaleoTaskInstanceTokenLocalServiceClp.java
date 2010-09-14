@@ -26,6 +26,171 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	public KaleoTaskInstanceTokenLocalServiceClp(
 		ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoTaskInstanceTokenMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoTaskInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class);
+
+		_createKaleoTaskInstanceTokenMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoTaskInstanceToken", long.class);
+
+		_deleteKaleoTaskInstanceTokenMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTaskInstanceToken", long.class);
+
+		_deleteKaleoTaskInstanceTokenMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTaskInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoTaskInstanceTokenMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceToken", long.class);
+
+		_getKaleoTaskInstanceTokensMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokens", int.class, int.class);
+
+		_getKaleoTaskInstanceTokensCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokensCount");
+
+		_updateKaleoTaskInstanceTokenMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoTaskInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class);
+
+		_updateKaleoTaskInstanceTokenMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoTaskInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
+				boolean.class);
+
+		_addKaleoTaskInstanceTokenMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoTaskInstanceToken", long.class, long.class,
+				java.lang.String.class, java.util.Collection.class,
+				java.util.Date.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_assignKaleoTaskInstanceTokenMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"assignKaleoTaskInstanceToken", long.class,
+				java.lang.String.class, long.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_completeKaleoTaskInstanceTokenMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"completeKaleoTaskInstanceToken", long.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCompanyKaleoTaskInstanceTokensMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoTaskInstanceTokens", long.class);
+
+		_deleteKaleoDefinitionKaleoTaskInstanceTokensMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoTaskInstanceTokens", long.class);
+
+		_deleteKaleoInstanceKaleoTaskInstanceTokensMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoInstanceKaleoTaskInstanceTokens", long.class);
+
+		_getCompanyKaleoTaskInstanceTokensMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyKaleoTaskInstanceTokens", long.class, int.class,
+				int.class);
+
+		_getCompanyKaleoTaskInstanceTokensCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getCompanyKaleoTaskInstanceTokensCount", long.class);
+
+		_getKaleoTaskInstanceTokensMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokens", java.lang.Boolean.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokens", java.util.List.class,
+				java.lang.Boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokens", long.class,
+				java.lang.Boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokens", java.lang.String.class,
+				long.class, java.lang.Boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokensCount", java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensCountMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokensCount", java.util.List.class,
+				java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokensCount", long.class,
+				java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensCountMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokensCount", java.lang.String.class,
+				long.class, java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getSubmittingUserKaleoTaskInstanceTokensMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSubmittingUserKaleoTaskInstanceTokens", long.class,
+				java.lang.Boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getSubmittingUserKaleoTaskInstanceTokensCountMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSubmittingUserKaleoTaskInstanceTokensCount", long.class,
+				java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_searchMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", java.lang.String.class, java.lang.Boolean.class,
+				java.lang.Boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_searchMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", java.lang.String.class, java.lang.String.class,
+				java.util.Date.class, java.util.Date.class,
+				java.lang.Boolean.class, java.lang.Boolean.class,
+				boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_searchCountMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchCount", java.lang.String.class, java.lang.Boolean.class,
+				java.lang.Boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_searchCountMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
+				"searchCount", java.lang.String.class, java.lang.String.class,
+				java.util.Date.class, java.util.Date.class,
+				java.lang.Boolean.class, java.lang.Boolean.class,
+				boolean.class, com.liferay.portal.service.ServiceContext.class);
+
+		_updateDueDateMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateDueDate", long.class, java.util.Date.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken addKaleoTaskInstanceToken(
@@ -1094,130 +1259,40 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoTaskInstanceTokenMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoTaskInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class);
-	private MethodKey _createKaleoTaskInstanceTokenMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoTaskInstanceToken", long.class);
-	private MethodKey _deleteKaleoTaskInstanceTokenMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoTaskInstanceToken", long.class);
-	private MethodKey _deleteKaleoTaskInstanceTokenMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoTaskInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoTaskInstanceTokenMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceToken", long.class);
-	private MethodKey _getKaleoTaskInstanceTokensMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokens", int.class, int.class);
-	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokensCount");
-	private MethodKey _updateKaleoTaskInstanceTokenMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoTaskInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class);
-	private MethodKey _updateKaleoTaskInstanceTokenMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoTaskInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
-			boolean.class);
-	private MethodKey _addKaleoTaskInstanceTokenMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoTaskInstanceToken", long.class, long.class,
-			java.lang.String.class, java.util.Collection.class,
-			java.util.Date.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _assignKaleoTaskInstanceTokenMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"assignKaleoTaskInstanceToken", long.class, java.lang.String.class,
-			long.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _completeKaleoTaskInstanceTokenMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"completeKaleoTaskInstanceToken", long.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteCompanyKaleoTaskInstanceTokensMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoTaskInstanceTokens", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoTaskInstanceTokensMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoTaskInstanceTokens", long.class);
-	private MethodKey _deleteKaleoInstanceKaleoTaskInstanceTokensMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoInstanceKaleoTaskInstanceTokens", long.class);
-	private MethodKey _getCompanyKaleoTaskInstanceTokensMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyKaleoTaskInstanceTokens", long.class, int.class,
-			int.class);
-	private MethodKey _getCompanyKaleoTaskInstanceTokensCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getCompanyKaleoTaskInstanceTokensCount", long.class);
-	private MethodKey _getKaleoTaskInstanceTokensMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokens", java.lang.Boolean.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokens", java.util.List.class,
-			java.lang.Boolean.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokens", long.class, java.lang.Boolean.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokens", java.lang.String.class, long.class,
-			java.lang.Boolean.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokensCount", java.lang.Boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokensCount", java.util.List.class,
-			java.lang.Boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokensCount", long.class,
-			java.lang.Boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTaskInstanceTokensCount", java.lang.String.class,
-			long.class, java.lang.Boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getSubmittingUserKaleoTaskInstanceTokensMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSubmittingUserKaleoTaskInstanceTokens", long.class,
-			java.lang.Boolean.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getSubmittingUserKaleoTaskInstanceTokensCountMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSubmittingUserKaleoTaskInstanceTokensCount", long.class,
-			java.lang.Boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _searchMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
-			"search", java.lang.String.class, java.lang.Boolean.class,
-			java.lang.Boolean.class, int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _searchMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
-			"search", java.lang.String.class, java.lang.String.class,
-			java.util.Date.class, java.util.Date.class,
-			java.lang.Boolean.class, java.lang.Boolean.class, boolean.class,
-			int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _searchCountMethodKey33 = new MethodKey(_classLoaderProxy.getClassName(),
-			"searchCount", java.lang.String.class, java.lang.Boolean.class,
-			java.lang.Boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _searchCountMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
-			"searchCount", java.lang.String.class, java.lang.String.class,
-			java.util.Date.class, java.util.Date.class,
-			java.lang.Boolean.class, java.lang.Boolean.class, boolean.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _updateDueDateMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateDueDate", long.class, java.util.Date.class,
-			com.liferay.portal.service.ServiceContext.class);
+	private MethodKey _addKaleoTaskInstanceTokenMethodKey0;
+	private MethodKey _createKaleoTaskInstanceTokenMethodKey1;
+	private MethodKey _deleteKaleoTaskInstanceTokenMethodKey2;
+	private MethodKey _deleteKaleoTaskInstanceTokenMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoTaskInstanceTokenMethodKey8;
+	private MethodKey _getKaleoTaskInstanceTokensMethodKey9;
+	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey10;
+	private MethodKey _updateKaleoTaskInstanceTokenMethodKey11;
+	private MethodKey _updateKaleoTaskInstanceTokenMethodKey12;
+	private MethodKey _addKaleoTaskInstanceTokenMethodKey13;
+	private MethodKey _assignKaleoTaskInstanceTokenMethodKey14;
+	private MethodKey _completeKaleoTaskInstanceTokenMethodKey15;
+	private MethodKey _deleteCompanyKaleoTaskInstanceTokensMethodKey16;
+	private MethodKey _deleteKaleoDefinitionKaleoTaskInstanceTokensMethodKey17;
+	private MethodKey _deleteKaleoInstanceKaleoTaskInstanceTokensMethodKey18;
+	private MethodKey _getCompanyKaleoTaskInstanceTokensMethodKey19;
+	private MethodKey _getCompanyKaleoTaskInstanceTokensCountMethodKey20;
+	private MethodKey _getKaleoTaskInstanceTokensMethodKey21;
+	private MethodKey _getKaleoTaskInstanceTokensMethodKey22;
+	private MethodKey _getKaleoTaskInstanceTokensMethodKey23;
+	private MethodKey _getKaleoTaskInstanceTokensMethodKey24;
+	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey25;
+	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey26;
+	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey27;
+	private MethodKey _getKaleoTaskInstanceTokensCountMethodKey28;
+	private MethodKey _getSubmittingUserKaleoTaskInstanceTokensMethodKey29;
+	private MethodKey _getSubmittingUserKaleoTaskInstanceTokensCountMethodKey30;
+	private MethodKey _searchMethodKey31;
+	private MethodKey _searchMethodKey32;
+	private MethodKey _searchCountMethodKey33;
+	private MethodKey _searchCountMethodKey34;
+	private MethodKey _updateDueDateMethodKey35;
 }

@@ -238,7 +238,7 @@ public class DefinitionLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					DefinitionLocalService.class.getName(), portletClassLoader);
 
 			_service = new DefinitionLocalServiceClp(classLoaderProxy);
 

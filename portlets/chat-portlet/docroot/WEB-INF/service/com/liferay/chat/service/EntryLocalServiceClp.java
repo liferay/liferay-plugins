@@ -24,6 +24,68 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class EntryLocalServiceClp implements EntryLocalService {
 	public EntryLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addEntry", com.liferay.chat.model.Entry.class);
+
+		_createEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createEntry", long.class);
+
+		_deleteEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteEntry", long.class);
+
+		_deleteEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteEntry", com.liferay.chat.model.Entry.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getEntry", long.class);
+
+		_getEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getEntries", int.class, int.class);
+
+		_getEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getEntriesCount");
+
+		_updateEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateEntry", com.liferay.chat.model.Entry.class);
+
+		_updateEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateEntry", com.liferay.chat.model.Entry.class, boolean.class);
+
+		_addEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addEntry", long.class, long.class, java.lang.String.class);
+
+		_addEntryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addEntry", long.class, long.class, long.class,
+				java.lang.String.class);
+
+		_deleteEntriesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteEntries", long.class);
+
+		_getNewEntriesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getNewEntries", long.class, long.class, int.class, int.class);
+
+		_getOldEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getOldEntries", long.class, int.class, int.class);
 	}
 
 	public com.liferay.chat.model.Entry addEntry(
@@ -525,46 +587,22 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addEntryMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addEntry", com.liferay.chat.model.Entry.class);
-	private MethodKey _createEntryMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createEntry", long.class);
-	private MethodKey _deleteEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteEntry", long.class);
-	private MethodKey _deleteEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteEntry", com.liferay.chat.model.Entry.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getEntryMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getEntry", long.class);
-	private MethodKey _getEntriesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getEntries", int.class, int.class);
-	private MethodKey _getEntriesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getEntriesCount");
-	private MethodKey _updateEntryMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateEntry", com.liferay.chat.model.Entry.class);
-	private MethodKey _updateEntryMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateEntry", com.liferay.chat.model.Entry.class, boolean.class);
-	private MethodKey _addEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addEntry", long.class, long.class, java.lang.String.class);
-	private MethodKey _addEntryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addEntry", long.class, long.class, long.class,
-			java.lang.String.class);
-	private MethodKey _deleteEntriesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteEntries", long.class);
-	private MethodKey _getNewEntriesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getNewEntries", long.class, long.class, int.class, int.class);
-	private MethodKey _getOldEntriesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getOldEntries", long.class, int.class, int.class);
+	private MethodKey _addEntryMethodKey0;
+	private MethodKey _createEntryMethodKey1;
+	private MethodKey _deleteEntryMethodKey2;
+	private MethodKey _deleteEntryMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getEntryMethodKey8;
+	private MethodKey _getEntriesMethodKey9;
+	private MethodKey _getEntriesCountMethodKey10;
+	private MethodKey _updateEntryMethodKey11;
+	private MethodKey _updateEntryMethodKey12;
+	private MethodKey _addEntryMethodKey13;
+	private MethodKey _addEntryMethodKey14;
+	private MethodKey _deleteEntriesMethodKey15;
+	private MethodKey _getNewEntriesMethodKey16;
+	private MethodKey _getOldEntriesMethodKey17;
 }

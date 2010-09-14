@@ -24,6 +24,60 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService {
 	public JIRAChangeItemLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addJIRAChangeItemMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addJIRAChangeItem",
+				com.liferay.socialcoding.model.JIRAChangeItem.class);
+
+		_createJIRAChangeItemMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createJIRAChangeItem", long.class);
+
+		_deleteJIRAChangeItemMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteJIRAChangeItem", long.class);
+
+		_deleteJIRAChangeItemMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteJIRAChangeItem",
+				com.liferay.socialcoding.model.JIRAChangeItem.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getJIRAChangeItemMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAChangeItem", long.class);
+
+		_getJIRAChangeItemsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAChangeItems", int.class, int.class);
+
+		_getJIRAChangeItemsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAChangeItemsCount");
+
+		_updateJIRAChangeItemMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAChangeItem",
+				com.liferay.socialcoding.model.JIRAChangeItem.class);
+
+		_updateJIRAChangeItemMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateJIRAChangeItem",
+				com.liferay.socialcoding.model.JIRAChangeItem.class,
+				boolean.class);
+
+		_getJIRAChangeItemsMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getJIRAChangeItems", long.class);
 	}
 
 	public com.liferay.socialcoding.model.JIRAChangeItem addJIRAChangeItem(
@@ -423,41 +477,18 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addJIRAChangeItemMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addJIRAChangeItem",
-			com.liferay.socialcoding.model.JIRAChangeItem.class);
-	private MethodKey _createJIRAChangeItemMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createJIRAChangeItem", long.class);
-	private MethodKey _deleteJIRAChangeItemMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteJIRAChangeItem", long.class);
-	private MethodKey _deleteJIRAChangeItemMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteJIRAChangeItem",
-			com.liferay.socialcoding.model.JIRAChangeItem.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getJIRAChangeItemMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAChangeItem", long.class);
-	private MethodKey _getJIRAChangeItemsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAChangeItems", int.class, int.class);
-	private MethodKey _getJIRAChangeItemsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAChangeItemsCount");
-	private MethodKey _updateJIRAChangeItemMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAChangeItem",
-			com.liferay.socialcoding.model.JIRAChangeItem.class);
-	private MethodKey _updateJIRAChangeItemMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateJIRAChangeItem",
-			com.liferay.socialcoding.model.JIRAChangeItem.class, boolean.class);
-	private MethodKey _getJIRAChangeItemsMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getJIRAChangeItems", long.class);
+	private MethodKey _addJIRAChangeItemMethodKey0;
+	private MethodKey _createJIRAChangeItemMethodKey1;
+	private MethodKey _deleteJIRAChangeItemMethodKey2;
+	private MethodKey _deleteJIRAChangeItemMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getJIRAChangeItemMethodKey8;
+	private MethodKey _getJIRAChangeItemsMethodKey9;
+	private MethodKey _getJIRAChangeItemsCountMethodKey10;
+	private MethodKey _updateJIRAChangeItemMethodKey11;
+	private MethodKey _updateJIRAChangeItemMethodKey12;
+	private MethodKey _getJIRAChangeItemsMethodKey13;
 }

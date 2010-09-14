@@ -24,6 +24,80 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	public WSRPConsumerLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addWSRPConsumerMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class);
+
+		_createWSRPConsumerMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createWSRPConsumer", long.class);
+
+		_deleteWSRPConsumerMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPConsumer", long.class);
+
+		_deleteWSRPConsumerMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getWSRPConsumerMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumer", long.class);
+
+		_getWSRPConsumersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumers", int.class, int.class);
+
+		_getWSRPConsumersCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumersCount");
+
+		_updateWSRPConsumerMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class);
+
+		_updateWSRPConsumerMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPConsumer",
+				com.liferay.wsrp.model.WSRPConsumer.class, boolean.class);
+
+		_addWSRPConsumerMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addWSRPConsumer", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class);
+
+		_getWSRPConsumersMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumers", long.class, int.class, int.class);
+
+		_getWSRPConsumersCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getWSRPConsumersCount", long.class);
+
+		_registerWSRPConsumerMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"registerWSRPConsumer", long.class, java.lang.String.class,
+				com.liferay.portal.kernel.util.UnicodeProperties.class,
+				java.lang.String.class, java.lang.String.class);
+
+		_restartConsumerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"restartConsumer", long.class, java.lang.String.class);
+
+		_updateServiceDescriptionMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateServiceDescription", long.class, java.lang.String.class);
+
+		_updateWSRPConsumerMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateWSRPConsumer", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
@@ -615,56 +689,24 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addWSRPConsumerMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class);
-	private MethodKey _createWSRPConsumerMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createWSRPConsumer", long.class);
-	private MethodKey _deleteWSRPConsumerMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPConsumer", long.class);
-	private MethodKey _deleteWSRPConsumerMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getWSRPConsumerMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumer", long.class);
-	private MethodKey _getWSRPConsumersMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumers", int.class, int.class);
-	private MethodKey _getWSRPConsumersCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumersCount");
-	private MethodKey _updateWSRPConsumerMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class);
-	private MethodKey _updateWSRPConsumerMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPConsumer", com.liferay.wsrp.model.WSRPConsumer.class,
-			boolean.class);
-	private MethodKey _addWSRPConsumerMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addWSRPConsumer", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class);
-	private MethodKey _getWSRPConsumersMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumers", long.class, int.class, int.class);
-	private MethodKey _getWSRPConsumersCountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getWSRPConsumersCount", long.class);
-	private MethodKey _registerWSRPConsumerMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"registerWSRPConsumer", long.class, java.lang.String.class,
-			com.liferay.portal.kernel.util.UnicodeProperties.class,
-			java.lang.String.class, java.lang.String.class);
-	private MethodKey _restartConsumerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"restartConsumer", long.class, java.lang.String.class);
-	private MethodKey _updateServiceDescriptionMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateServiceDescription", long.class, java.lang.String.class);
-	private MethodKey _updateWSRPConsumerMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateWSRPConsumer", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class);
+	private MethodKey _addWSRPConsumerMethodKey0;
+	private MethodKey _createWSRPConsumerMethodKey1;
+	private MethodKey _deleteWSRPConsumerMethodKey2;
+	private MethodKey _deleteWSRPConsumerMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getWSRPConsumerMethodKey8;
+	private MethodKey _getWSRPConsumersMethodKey9;
+	private MethodKey _getWSRPConsumersCountMethodKey10;
+	private MethodKey _updateWSRPConsumerMethodKey11;
+	private MethodKey _updateWSRPConsumerMethodKey12;
+	private MethodKey _addWSRPConsumerMethodKey13;
+	private MethodKey _getWSRPConsumersMethodKey14;
+	private MethodKey _getWSRPConsumersCountMethodKey15;
+	private MethodKey _registerWSRPConsumerMethodKey16;
+	private MethodKey _restartConsumerMethodKey17;
+	private MethodKey _updateServiceDescriptionMethodKey18;
+	private MethodKey _updateWSRPConsumerMethodKey19;
 }

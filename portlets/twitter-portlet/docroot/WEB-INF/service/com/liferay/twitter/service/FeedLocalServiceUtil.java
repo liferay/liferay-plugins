@@ -253,7 +253,7 @@ public class FeedLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					FeedLocalService.class.getName(), portletClassLoader);
 
 			_service = new FeedLocalServiceClp(classLoaderProxy);
 

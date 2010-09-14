@@ -25,6 +25,97 @@ public class KaleoInstanceTokenLocalServiceClp
 	implements KaleoInstanceTokenLocalService {
 	public KaleoInstanceTokenLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoInstanceTokenMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
+
+		_createKaleoInstanceTokenMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoInstanceToken", long.class);
+
+		_deleteKaleoInstanceTokenMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoInstanceToken", long.class);
+
+		_deleteKaleoInstanceTokenMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoInstanceTokenMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceToken", long.class);
+
+		_getKaleoInstanceTokensMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceTokens", int.class, int.class);
+
+		_getKaleoInstanceTokensCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceTokensCount");
+
+		_updateKaleoInstanceTokenMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
+
+		_updateKaleoInstanceTokenMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoInstanceToken",
+				com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
+				boolean.class);
+
+		_addKaleoInstanceTokenMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoInstanceToken", long.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_completeKaleoInstanceTokenMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"completeKaleoInstanceToken", long.class);
+
+		_deleteCompanyKaleoInstanceTokensMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoInstanceTokens", long.class);
+
+		_deleteKaleoDefinitionKaleoInstanceTokensMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoInstanceTokens", long.class);
+
+		_deleteKaleoInstanceKaleoInstanceTokensMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoInstanceKaleoInstanceTokens", long.class);
+
+		_getKaleoInstanceTokensMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceTokens", long.class, java.util.Date.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoInstanceTokensMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceTokens", long.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoInstanceTokensCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceTokensCount", long.class,
+				java.util.Date.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoInstanceTokensCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoInstanceTokensCount", long.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_getRootKaleoInstanceTokenMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getRootKaleoInstanceToken", long.class, java.util.Map.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateKaleoInstanceTokenMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoInstanceToken", long.class, long.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken addKaleoInstanceToken(
@@ -716,68 +807,28 @@ public class KaleoInstanceTokenLocalServiceClp
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoInstanceTokenMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
-	private MethodKey _createKaleoInstanceTokenMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoInstanceToken", long.class);
-	private MethodKey _deleteKaleoInstanceTokenMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoInstanceToken", long.class);
-	private MethodKey _deleteKaleoInstanceTokenMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoInstanceTokenMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceToken", long.class);
-	private MethodKey _getKaleoInstanceTokensMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceTokens", int.class, int.class);
-	private MethodKey _getKaleoInstanceTokensCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceTokensCount");
-	private MethodKey _updateKaleoInstanceTokenMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class);
-	private MethodKey _updateKaleoInstanceTokenMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoInstanceToken",
-			com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken.class,
-			boolean.class);
-	private MethodKey _addKaleoInstanceTokenMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoInstanceToken", long.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _completeKaleoInstanceTokenMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"completeKaleoInstanceToken", long.class);
-	private MethodKey _deleteCompanyKaleoInstanceTokensMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoInstanceTokens", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoInstanceTokensMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoInstanceTokens", long.class);
-	private MethodKey _deleteKaleoInstanceKaleoInstanceTokensMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoInstanceKaleoInstanceTokens", long.class);
-	private MethodKey _getKaleoInstanceTokensMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceTokens", long.class, java.util.Date.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoInstanceTokensMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceTokens", long.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoInstanceTokensCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceTokensCount", long.class, java.util.Date.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getKaleoInstanceTokensCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoInstanceTokensCount", long.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _getRootKaleoInstanceTokenMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getRootKaleoInstanceToken", long.class, java.util.Map.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _updateKaleoInstanceTokenMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoInstanceToken", long.class, long.class);
+	private MethodKey _addKaleoInstanceTokenMethodKey0;
+	private MethodKey _createKaleoInstanceTokenMethodKey1;
+	private MethodKey _deleteKaleoInstanceTokenMethodKey2;
+	private MethodKey _deleteKaleoInstanceTokenMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoInstanceTokenMethodKey8;
+	private MethodKey _getKaleoInstanceTokensMethodKey9;
+	private MethodKey _getKaleoInstanceTokensCountMethodKey10;
+	private MethodKey _updateKaleoInstanceTokenMethodKey11;
+	private MethodKey _updateKaleoInstanceTokenMethodKey12;
+	private MethodKey _addKaleoInstanceTokenMethodKey13;
+	private MethodKey _completeKaleoInstanceTokenMethodKey14;
+	private MethodKey _deleteCompanyKaleoInstanceTokensMethodKey15;
+	private MethodKey _deleteKaleoDefinitionKaleoInstanceTokensMethodKey16;
+	private MethodKey _deleteKaleoInstanceKaleoInstanceTokensMethodKey17;
+	private MethodKey _getKaleoInstanceTokensMethodKey18;
+	private MethodKey _getKaleoInstanceTokensMethodKey19;
+	private MethodKey _getKaleoInstanceTokensCountMethodKey20;
+	private MethodKey _getKaleoInstanceTokensCountMethodKey21;
+	private MethodKey _getRootKaleoInstanceTokenMethodKey22;
+	private MethodKey _updateKaleoInstanceTokenMethodKey23;
 }

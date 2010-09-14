@@ -24,6 +24,69 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class FooLocalServiceClp implements FooLocalService {
 	public FooLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addFooMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addFoo", com.liferay.sampleservicebuilder.model.Foo.class);
+
+		_createFooMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createFoo", long.class);
+
+		_deleteFooMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFoo", long.class);
+
+		_deleteFooMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteFoo", com.liferay.sampleservicebuilder.model.Foo.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getFooMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFoo", long.class);
+
+		_getFoosMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFoos", int.class, int.class);
+
+		_getFoosCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFoosCount");
+
+		_updateFooMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class);
+
+		_updateFooMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class,
+				boolean.class);
+
+		_addFooMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addFoo", long.class, java.lang.String.class, boolean.class,
+				int.class, java.util.Date.class, java.lang.String.class);
+
+		_getFoosMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFoos",
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getFoosMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFoos", int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_updateFooMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFoo", long.class, java.lang.String.class, boolean.class,
+				int.class, java.util.Date.class, java.lang.String.class);
 	}
 
 	public com.liferay.sampleservicebuilder.model.Foo addFoo(
@@ -502,47 +565,21 @@ public class FooLocalServiceClp implements FooLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addFooMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addFoo", com.liferay.sampleservicebuilder.model.Foo.class);
-	private MethodKey _createFooMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createFoo", long.class);
-	private MethodKey _deleteFooMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFoo", long.class);
-	private MethodKey _deleteFooMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteFoo", com.liferay.sampleservicebuilder.model.Foo.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getFooMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFoo", long.class);
-	private MethodKey _getFoosMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFoos", int.class, int.class);
-	private MethodKey _getFoosCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFoosCount");
-	private MethodKey _updateFooMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class);
-	private MethodKey _updateFooMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class,
-			boolean.class);
-	private MethodKey _addFooMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addFoo", long.class, java.lang.String.class, boolean.class,
-			int.class, java.util.Date.class, java.lang.String.class);
-	private MethodKey _getFoosMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFoos", com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _getFoosMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getFoos", int.class, int.class,
-			com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _updateFooMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFoo", long.class, java.lang.String.class, boolean.class,
-			int.class, java.util.Date.class, java.lang.String.class);
+	private MethodKey _addFooMethodKey0;
+	private MethodKey _createFooMethodKey1;
+	private MethodKey _deleteFooMethodKey2;
+	private MethodKey _deleteFooMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getFooMethodKey8;
+	private MethodKey _getFoosMethodKey9;
+	private MethodKey _getFoosCountMethodKey10;
+	private MethodKey _updateFooMethodKey11;
+	private MethodKey _updateFooMethodKey12;
+	private MethodKey _addFooMethodKey13;
+	private MethodKey _getFoosMethodKey14;
+	private MethodKey _getFoosMethodKey15;
+	private MethodKey _updateFooMethodKey16;
 }

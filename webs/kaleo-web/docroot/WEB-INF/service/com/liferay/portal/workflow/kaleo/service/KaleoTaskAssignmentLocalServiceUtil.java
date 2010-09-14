@@ -286,6 +286,7 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
+					KaleoTaskAssignmentLocalService.class.getName(),
 					portletClassLoader);
 
 			_service = new KaleoTaskAssignmentLocalServiceClp(classLoaderProxy);

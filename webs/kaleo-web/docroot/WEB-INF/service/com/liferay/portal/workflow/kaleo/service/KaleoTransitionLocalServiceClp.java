@@ -25,6 +25,82 @@ public class KaleoTransitionLocalServiceClp
 	implements KaleoTransitionLocalService {
 	public KaleoTransitionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addKaleoTransitionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoTransition",
+				com.liferay.portal.workflow.kaleo.model.KaleoTransition.class);
+
+		_createKaleoTransitionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createKaleoTransition", long.class);
+
+		_deleteKaleoTransitionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTransition", long.class);
+
+		_deleteKaleoTransitionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoTransition",
+				com.liferay.portal.workflow.kaleo.model.KaleoTransition.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getKaleoTransitionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTransition", long.class);
+
+		_getKaleoTransitionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTransitions", int.class, int.class);
+
+		_getKaleoTransitionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTransitionsCount");
+
+		_updateKaleoTransitionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoTransition",
+				com.liferay.portal.workflow.kaleo.model.KaleoTransition.class);
+
+		_updateKaleoTransitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateKaleoTransition",
+				com.liferay.portal.workflow.kaleo.model.KaleoTransition.class,
+				boolean.class);
+
+		_addKaleoTransitionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addKaleoTransition", long.class, long.class,
+				com.liferay.portal.workflow.kaleo.definition.Transition.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
+				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_deleteCompanyKaleoTransitionsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteCompanyKaleoTransitions", long.class);
+
+		_deleteKaleoDefinitionKaleoTransitionsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteKaleoDefinitionKaleoTransitions", long.class);
+
+		_getDefaultKaleoTransitionMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getDefaultKaleoTransition", long.class);
+
+		_getKaleoTransitionMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTransition", long.class, java.lang.String.class);
+
+		_getKaleoTransitionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTransitions", long.class);
+
+		_getKaleoTransitionsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTransitionsCount", long.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(
@@ -601,58 +677,24 @@ public class KaleoTransitionLocalServiceClp
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addKaleoTransitionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoTransition",
-			com.liferay.portal.workflow.kaleo.model.KaleoTransition.class);
-	private MethodKey _createKaleoTransitionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createKaleoTransition", long.class);
-	private MethodKey _deleteKaleoTransitionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoTransition", long.class);
-	private MethodKey _deleteKaleoTransitionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoTransition",
-			com.liferay.portal.workflow.kaleo.model.KaleoTransition.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getKaleoTransitionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTransition", long.class);
-	private MethodKey _getKaleoTransitionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTransitions", int.class, int.class);
-	private MethodKey _getKaleoTransitionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTransitionsCount");
-	private MethodKey _updateKaleoTransitionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoTransition",
-			com.liferay.portal.workflow.kaleo.model.KaleoTransition.class);
-	private MethodKey _updateKaleoTransitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateKaleoTransition",
-			com.liferay.portal.workflow.kaleo.model.KaleoTransition.class,
-			boolean.class);
-	private MethodKey _addKaleoTransitionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addKaleoTransition", long.class, long.class,
-			com.liferay.portal.workflow.kaleo.definition.Transition.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
-			com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
-			com.liferay.portal.service.ServiceContext.class);
-	private MethodKey _deleteCompanyKaleoTransitionsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteCompanyKaleoTransitions", long.class);
-	private MethodKey _deleteKaleoDefinitionKaleoTransitionsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteKaleoDefinitionKaleoTransitions", long.class);
-	private MethodKey _getDefaultKaleoTransitionMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getDefaultKaleoTransition", long.class);
-	private MethodKey _getKaleoTransitionMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTransition", long.class, java.lang.String.class);
-	private MethodKey _getKaleoTransitionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTransitions", long.class);
-	private MethodKey _getKaleoTransitionsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getKaleoTransitionsCount", long.class);
+	private MethodKey _addKaleoTransitionMethodKey0;
+	private MethodKey _createKaleoTransitionMethodKey1;
+	private MethodKey _deleteKaleoTransitionMethodKey2;
+	private MethodKey _deleteKaleoTransitionMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getKaleoTransitionMethodKey8;
+	private MethodKey _getKaleoTransitionsMethodKey9;
+	private MethodKey _getKaleoTransitionsCountMethodKey10;
+	private MethodKey _updateKaleoTransitionMethodKey11;
+	private MethodKey _updateKaleoTransitionMethodKey12;
+	private MethodKey _addKaleoTransitionMethodKey13;
+	private MethodKey _deleteCompanyKaleoTransitionsMethodKey14;
+	private MethodKey _deleteKaleoDefinitionKaleoTransitionsMethodKey15;
+	private MethodKey _getDefaultKaleoTransitionMethodKey16;
+	private MethodKey _getKaleoTransitionMethodKey17;
+	private MethodKey _getKaleoTransitionsMethodKey18;
+	private MethodKey _getKaleoTransitionsCountMethodKey19;
 }

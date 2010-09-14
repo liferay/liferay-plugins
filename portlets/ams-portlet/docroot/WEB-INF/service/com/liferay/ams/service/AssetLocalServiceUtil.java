@@ -235,7 +235,7 @@ public class AssetLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					AssetLocalService.class.getName(), portletClassLoader);
 
 			_service = new AssetLocalServiceClp(classLoaderProxy);
 

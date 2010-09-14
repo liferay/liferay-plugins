@@ -272,7 +272,7 @@ public class AttachmentLocalServiceUtil {
 					"portletClassLoader");
 
 			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
-					portletClassLoader);
+					AttachmentLocalService.class.getName(), portletClassLoader);
 
 			_service = new AttachmentLocalServiceClp(classLoaderProxy);
 

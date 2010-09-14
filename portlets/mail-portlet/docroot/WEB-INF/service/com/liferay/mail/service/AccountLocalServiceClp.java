@@ -24,6 +24,80 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class AccountLocalServiceClp implements AccountLocalService {
 	public AccountLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addAccountMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAccount", com.liferay.mail.model.Account.class);
+
+		_createAccountMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createAccount", long.class);
+
+		_deleteAccountMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAccount", long.class);
+
+		_deleteAccountMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAccount", com.liferay.mail.model.Account.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getAccountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAccount", long.class);
+
+		_getAccountsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAccounts", int.class, int.class);
+
+		_getAccountsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAccountsCount");
+
+		_updateAccountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAccount", com.liferay.mail.model.Account.class);
+
+		_updateAccountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAccount", com.liferay.mail.model.Account.class,
+				boolean.class);
+
+		_addAccountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addAccount", long.class, java.lang.String.class,
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class, int.class, boolean.class,
+				java.lang.String.class, int.class, boolean.class,
+				java.lang.String.class, java.lang.String.class, boolean.class,
+				java.lang.String.class, boolean.class, java.lang.String.class,
+				long.class, long.class, long.class, long.class, boolean.class);
+
+		_deleteAccountsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteAccounts", long.class);
+
+		_getAccountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAccount", long.class, java.lang.String.class);
+
+		_getAccountsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAccounts", long.class);
+
+		_updateAccountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateAccount", long.class, java.lang.String.class,
+				java.lang.String.class, boolean.class, java.lang.String.class,
+				boolean.class, java.lang.String.class, boolean.class);
+
+		_updateFoldersMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateFolders", long.class, long.class, long.class,
+				long.class, long.class);
 	}
 
 	public com.liferay.mail.model.Account addAccount(
@@ -600,56 +674,23 @@ public class AccountLocalServiceClp implements AccountLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addAccountMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAccount", com.liferay.mail.model.Account.class);
-	private MethodKey _createAccountMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createAccount", long.class);
-	private MethodKey _deleteAccountMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAccount", long.class);
-	private MethodKey _deleteAccountMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAccount", com.liferay.mail.model.Account.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getAccountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAccount", long.class);
-	private MethodKey _getAccountsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAccounts", int.class, int.class);
-	private MethodKey _getAccountsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAccountsCount");
-	private MethodKey _updateAccountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAccount", com.liferay.mail.model.Account.class);
-	private MethodKey _updateAccountMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAccount", com.liferay.mail.model.Account.class, boolean.class);
-	private MethodKey _addAccountMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addAccount", long.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, int.class, boolean.class,
-			java.lang.String.class, int.class, boolean.class,
-			java.lang.String.class, java.lang.String.class, boolean.class,
-			java.lang.String.class, boolean.class, java.lang.String.class,
-			long.class, long.class, long.class, long.class, boolean.class);
-	private MethodKey _deleteAccountsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteAccounts", long.class);
-	private MethodKey _getAccountMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAccount", long.class, java.lang.String.class);
-	private MethodKey _getAccountsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAccounts", long.class);
-	private MethodKey _updateAccountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateAccount", long.class, java.lang.String.class,
-			java.lang.String.class, boolean.class, java.lang.String.class,
-			boolean.class, java.lang.String.class, boolean.class);
-	private MethodKey _updateFoldersMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateFolders", long.class, long.class, long.class, long.class,
-			long.class);
+	private MethodKey _addAccountMethodKey0;
+	private MethodKey _createAccountMethodKey1;
+	private MethodKey _deleteAccountMethodKey2;
+	private MethodKey _deleteAccountMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getAccountMethodKey8;
+	private MethodKey _getAccountsMethodKey9;
+	private MethodKey _getAccountsCountMethodKey10;
+	private MethodKey _updateAccountMethodKey11;
+	private MethodKey _updateAccountMethodKey12;
+	private MethodKey _addAccountMethodKey13;
+	private MethodKey _deleteAccountsMethodKey14;
+	private MethodKey _getAccountMethodKey15;
+	private MethodKey _getAccountsMethodKey16;
+	private MethodKey _updateAccountMethodKey17;
+	private MethodKey _updateFoldersMethodKey18;
 }

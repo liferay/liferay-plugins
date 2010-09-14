@@ -24,6 +24,53 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	public DefinitionLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addDefinitionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addDefinition", com.liferay.ams.model.Definition.class);
+
+		_createDefinitionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createDefinition", long.class);
+
+		_deleteDefinitionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteDefinition", long.class);
+
+		_deleteDefinitionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteDefinition", com.liferay.ams.model.Definition.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getDefinitionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getDefinition", long.class);
+
+		_getDefinitionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getDefinitions", int.class, int.class);
+
+		_getDefinitionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getDefinitionsCount");
+
+		_updateDefinitionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateDefinition", com.liferay.ams.model.Definition.class);
+
+		_updateDefinitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateDefinition", com.liferay.ams.model.Definition.class,
+				boolean.class);
 	}
 
 	public com.liferay.ams.model.Definition addDefinition(
@@ -391,36 +438,17 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addDefinitionMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addDefinition", com.liferay.ams.model.Definition.class);
-	private MethodKey _createDefinitionMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createDefinition", long.class);
-	private MethodKey _deleteDefinitionMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteDefinition", long.class);
-	private MethodKey _deleteDefinitionMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteDefinition", com.liferay.ams.model.Definition.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getDefinitionMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getDefinition", long.class);
-	private MethodKey _getDefinitionsMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getDefinitions", int.class, int.class);
-	private MethodKey _getDefinitionsCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getDefinitionsCount");
-	private MethodKey _updateDefinitionMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateDefinition", com.liferay.ams.model.Definition.class);
-	private MethodKey _updateDefinitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateDefinition", com.liferay.ams.model.Definition.class,
-			boolean.class);
+	private MethodKey _addDefinitionMethodKey0;
+	private MethodKey _createDefinitionMethodKey1;
+	private MethodKey _deleteDefinitionMethodKey2;
+	private MethodKey _deleteDefinitionMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getDefinitionMethodKey8;
+	private MethodKey _getDefinitionsMethodKey9;
+	private MethodKey _getDefinitionsCountMethodKey10;
+	private MethodKey _updateDefinitionMethodKey11;
+	private MethodKey _updateDefinitionMethodKey12;
 }
