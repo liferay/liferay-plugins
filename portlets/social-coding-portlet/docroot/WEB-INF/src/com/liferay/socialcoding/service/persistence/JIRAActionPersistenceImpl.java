@@ -242,18 +242,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		try {
 			session = openSession();
 
-			if (jiraAction.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(JIRAActionImpl.class,
-						jiraAction.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(jiraAction);
-
-			session.flush();
+			BatchSessionUtil.delete(session, jiraAction);
 		}
 		catch (Exception e) {
 			throw processException(e);

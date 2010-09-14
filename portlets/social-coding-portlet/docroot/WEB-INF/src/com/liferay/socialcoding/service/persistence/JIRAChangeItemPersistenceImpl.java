@@ -222,18 +222,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		try {
 			session = openSession();
 
-			if (jiraChangeItem.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(JIRAChangeItemImpl.class,
-						jiraChangeItem.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(jiraChangeItem);
-
-			session.flush();
+			BatchSessionUtil.delete(session, jiraChangeItem);
 		}
 		catch (Exception e) {
 			throw processException(e);

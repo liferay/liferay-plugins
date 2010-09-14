@@ -788,11 +788,11 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	* Determines whether the kaleo notification recipient is associated with the kaleo notification.
+	* Determines if the kaleo notification recipient is associated with the kaleo notification.
 	*
 	* @param pk the primary key of the kaleo notification
 	* @param kaleoNotificationRecipientPK the primary key of the kaleo notification recipient
-	* @return whether the kaleo notification recipient is associated with the kaleo notification
+	* @return <code>true</code> if the kaleo notification recipient is associated with the kaleo notification; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoNotificationRecipient(long pk,
@@ -804,10 +804,10 @@ public class KaleoNotificationUtil {
 	}
 
 	/**
-	* Determines whether the kaleo notification has any kaleo notification recipients associated with it.
+	* Determines if the kaleo notification has any kaleo notification recipients associated with it.
 	*
 	* @param pk the primary key of the kaleo notification to check for associations with kaleo notification recipients
-	* @return whether the kaleo notification has any kaleo notification recipients associated with it
+	* @return <code>true</code> if the kaleo notification has any kaleo notification recipients associated with it; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoNotificationRecipients(long pk)

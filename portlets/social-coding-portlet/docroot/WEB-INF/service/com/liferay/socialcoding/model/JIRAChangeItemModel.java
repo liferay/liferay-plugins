@@ -157,14 +157,6 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	 */
 	public void setNewString(String newString);
 
-	/**
-	 * Gets a copy of this j i r a change item as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public JIRAChangeItem toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -188,6 +180,8 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public int compareTo(JIRAChangeItem jiraChangeItem);
 
 	public int hashCode();
+
+	public JIRAChangeItem toEscapedModel();
 
 	public String toString();
 

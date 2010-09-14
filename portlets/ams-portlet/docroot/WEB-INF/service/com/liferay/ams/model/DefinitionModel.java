@@ -257,14 +257,6 @@ public interface DefinitionModel extends BaseModel<Definition> {
 	 */
 	public void setPrice(double price);
 
-	/**
-	 * Gets a copy of this definition as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Definition toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -288,6 +280,8 @@ public interface DefinitionModel extends BaseModel<Definition> {
 	public int compareTo(Definition definition);
 
 	public int hashCode();
+
+	public Definition toEscapedModel();
 
 	public String toString();
 

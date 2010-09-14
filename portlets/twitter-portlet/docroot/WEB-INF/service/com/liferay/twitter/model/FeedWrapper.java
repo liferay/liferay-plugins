@@ -28,73 +28,150 @@ public class FeedWrapper implements Feed {
 		_feed = feed;
 	}
 
+	/**
+	* Gets the primary key of this feed.
+	*
+	* @return the primary key of this feed
+	*/
 	public long getPrimaryKey() {
 		return _feed.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this feed
+	*
+	* @param pk the primary key of this feed
+	*/
 	public void setPrimaryKey(long pk) {
 		_feed.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the feed id of this feed.
+	*
+	* @return the feed id of this feed
+	*/
 	public long getFeedId() {
 		return _feed.getFeedId();
 	}
 
+	/**
+	* Sets the feed id of this feed.
+	*
+	* @param feedId the feed id of this feed
+	*/
 	public void setFeedId(long feedId) {
 		_feed.setFeedId(feedId);
 	}
 
+	/**
+	* Gets the twitter user id of this feed.
+	*
+	* @return the twitter user id of this feed
+	*/
 	public long getTwitterUserId() {
 		return _feed.getTwitterUserId();
 	}
 
+	/**
+	* Sets the twitter user id of this feed.
+	*
+	* @param twitterUserId the twitter user id of this feed
+	*/
 	public void setTwitterUserId(long twitterUserId) {
 		_feed.setTwitterUserId(twitterUserId);
 	}
 
+	/**
+	* Gets the twitter user uuid of this feed.
+	*
+	* @return the twitter user uuid of this feed
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getTwitterUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _feed.getTwitterUserUuid();
 	}
 
+	/**
+	* Sets the twitter user uuid of this feed.
+	*
+	* @param twitterUserUuid the twitter user uuid of this feed
+	*/
 	public void setTwitterUserUuid(java.lang.String twitterUserUuid) {
 		_feed.setTwitterUserUuid(twitterUserUuid);
 	}
 
+	/**
+	* Gets the twitter screen name of this feed.
+	*
+	* @return the twitter screen name of this feed
+	*/
 	public java.lang.String getTwitterScreenName() {
 		return _feed.getTwitterScreenName();
 	}
 
+	/**
+	* Sets the twitter screen name of this feed.
+	*
+	* @param twitterScreenName the twitter screen name of this feed
+	*/
 	public void setTwitterScreenName(java.lang.String twitterScreenName) {
 		_feed.setTwitterScreenName(twitterScreenName);
 	}
 
+	/**
+	* Gets the create date of this feed.
+	*
+	* @return the create date of this feed
+	*/
 	public java.util.Date getCreateDate() {
 		return _feed.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this feed.
+	*
+	* @param createDate the create date of this feed
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_feed.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this feed.
+	*
+	* @return the modified date of this feed
+	*/
 	public java.util.Date getModifiedDate() {
 		return _feed.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this feed.
+	*
+	* @param modifiedDate the modified date of this feed
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_feed.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the last status id of this feed.
+	*
+	* @return the last status id of this feed
+	*/
 	public long getLastStatusId() {
 		return _feed.getLastStatusId();
 	}
 
+	/**
+	* Sets the last status id of this feed.
+	*
+	* @param lastStatusId the last status id of this feed
+	*/
 	public void setLastStatusId(long lastStatusId) {
 		_feed.setLastStatusId(lastStatusId);
-	}
-
-	public com.liferay.twitter.model.Feed toEscapedModel() {
-		return _feed.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -144,6 +221,10 @@ public class FeedWrapper implements Feed {
 
 	public int hashCode() {
 		return _feed.hashCode();
+	}
+
+	public com.liferay.twitter.model.Feed toEscapedModel() {
+		return _feed.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

@@ -97,14 +97,6 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	 */
 	public void setRevisionNumber(long revisionNumber);
 
-	/**
-	 * Gets a copy of this s v n repository as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public SVNRepository toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -128,6 +120,8 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public int compareTo(SVNRepository svnRepository);
 
 	public int hashCode();
+
+	public SVNRepository toEscapedModel();
 
 	public String toString();
 

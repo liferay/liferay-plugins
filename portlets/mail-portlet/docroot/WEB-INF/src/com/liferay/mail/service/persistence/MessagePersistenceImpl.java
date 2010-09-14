@@ -249,18 +249,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		try {
 			session = openSession();
 
-			if (message.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(MessageImpl.class,
-						message.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(message);
-
-			session.flush();
+			BatchSessionUtil.delete(session, message);
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -198,14 +198,6 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	 */
 	public void setSize(long size);
 
-	/**
-	 * Gets a copy of this attachment as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Attachment toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -229,6 +221,8 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public int compareTo(Attachment attachment);
 
 	public int hashCode();
+
+	public Attachment toEscapedModel();
 
 	public String toString();
 

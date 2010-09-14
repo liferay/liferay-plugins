@@ -28,64 +28,130 @@ public class SVNRevisionWrapper implements SVNRevision {
 		_svnRevision = svnRevision;
 	}
 
+	/**
+	* Gets the primary key of this s v n revision.
+	*
+	* @return the primary key of this s v n revision
+	*/
 	public long getPrimaryKey() {
 		return _svnRevision.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this s v n revision
+	*
+	* @param pk the primary key of this s v n revision
+	*/
 	public void setPrimaryKey(long pk) {
 		_svnRevision.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the svn revision id of this s v n revision.
+	*
+	* @return the svn revision id of this s v n revision
+	*/
 	public long getSvnRevisionId() {
 		return _svnRevision.getSvnRevisionId();
 	}
 
+	/**
+	* Sets the svn revision id of this s v n revision.
+	*
+	* @param svnRevisionId the svn revision id of this s v n revision
+	*/
 	public void setSvnRevisionId(long svnRevisionId) {
 		_svnRevision.setSvnRevisionId(svnRevisionId);
 	}
 
+	/**
+	* Gets the svn user id of this s v n revision.
+	*
+	* @return the svn user id of this s v n revision
+	*/
 	public java.lang.String getSvnUserId() {
 		return _svnRevision.getSvnUserId();
 	}
 
+	/**
+	* Sets the svn user id of this s v n revision.
+	*
+	* @param svnUserId the svn user id of this s v n revision
+	*/
 	public void setSvnUserId(java.lang.String svnUserId) {
 		_svnRevision.setSvnUserId(svnUserId);
 	}
 
+	/**
+	* Gets the create date of this s v n revision.
+	*
+	* @return the create date of this s v n revision
+	*/
 	public java.util.Date getCreateDate() {
 		return _svnRevision.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this s v n revision.
+	*
+	* @param createDate the create date of this s v n revision
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_svnRevision.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the svn repository id of this s v n revision.
+	*
+	* @return the svn repository id of this s v n revision
+	*/
 	public long getSvnRepositoryId() {
 		return _svnRevision.getSvnRepositoryId();
 	}
 
+	/**
+	* Sets the svn repository id of this s v n revision.
+	*
+	* @param svnRepositoryId the svn repository id of this s v n revision
+	*/
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRevision.setSvnRepositoryId(svnRepositoryId);
 	}
 
+	/**
+	* Gets the revision number of this s v n revision.
+	*
+	* @return the revision number of this s v n revision
+	*/
 	public long getRevisionNumber() {
 		return _svnRevision.getRevisionNumber();
 	}
 
+	/**
+	* Sets the revision number of this s v n revision.
+	*
+	* @param revisionNumber the revision number of this s v n revision
+	*/
 	public void setRevisionNumber(long revisionNumber) {
 		_svnRevision.setRevisionNumber(revisionNumber);
 	}
 
+	/**
+	* Gets the comments of this s v n revision.
+	*
+	* @return the comments of this s v n revision
+	*/
 	public java.lang.String getComments() {
 		return _svnRevision.getComments();
 	}
 
+	/**
+	* Sets the comments of this s v n revision.
+	*
+	* @param comments the comments of this s v n revision
+	*/
 	public void setComments(java.lang.String comments) {
 		_svnRevision.setComments(comments);
-	}
-
-	public com.liferay.socialcoding.model.SVNRevision toEscapedModel() {
-		return _svnRevision.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -135,6 +201,10 @@ public class SVNRevisionWrapper implements SVNRevision {
 
 	public int hashCode() {
 		return _svnRevision.hashCode();
+	}
+
+	public com.liferay.socialcoding.model.SVNRevision toEscapedModel() {
+		return _svnRevision.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

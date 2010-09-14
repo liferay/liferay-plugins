@@ -188,14 +188,6 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setRegistrationPropertiesString(
 		String registrationPropertiesString);
 
-	/**
-	 * Gets a copy of this w s r p consumer as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public WSRPConsumer toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -219,6 +211,8 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public int compareTo(WSRPConsumer wsrpConsumer);
 
 	public int hashCode();
+
+	public WSRPConsumer toEscapedModel();
 
 	public String toString();
 

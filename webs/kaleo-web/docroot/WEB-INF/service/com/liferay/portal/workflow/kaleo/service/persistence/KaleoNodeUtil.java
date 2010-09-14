@@ -782,11 +782,11 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	* Determines whether the kaleo action is associated with the kaleo node.
+	* Determines if the kaleo action is associated with the kaleo node.
 	*
 	* @param pk the primary key of the kaleo node
 	* @param kaleoActionPK the primary key of the kaleo action
-	* @return whether the kaleo action is associated with the kaleo node
+	* @return <code>true</code> if the kaleo action is associated with the kaleo node; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoAction(long pk, long kaleoActionPK)
@@ -795,10 +795,10 @@ public class KaleoNodeUtil {
 	}
 
 	/**
-	* Determines whether the kaleo node has any kaleo actions associated with it.
+	* Determines if the kaleo node has any kaleo actions associated with it.
 	*
 	* @param pk the primary key of the kaleo node to check for associations with kaleo actions
-	* @return whether the kaleo node has any kaleo actions associated with it
+	* @return <code>true</code> if the kaleo node has any kaleo actions associated with it; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoActions(long pk)

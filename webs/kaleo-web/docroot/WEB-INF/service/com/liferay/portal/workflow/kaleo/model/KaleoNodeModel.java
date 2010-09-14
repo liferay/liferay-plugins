@@ -238,9 +238,9 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode> {
 	public boolean getInitial();
 
 	/**
-	 * Determines whether this kaleo node is initial.
+	 * Determines if this kaleo node is initial.
 	 *
-	 * @return whether this kaleo node is initial
+	 * @return <code>true</code> if this kaleo node is initial; <code>false</code> otherwise
 	 */
 	public boolean isInitial();
 
@@ -259,9 +259,9 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode> {
 	public boolean getTerminal();
 
 	/**
-	 * Determines whether this kaleo node is terminal.
+	 * Determines if this kaleo node is terminal.
 	 *
-	 * @return whether this kaleo node is terminal
+	 * @return <code>true</code> if this kaleo node is terminal; <code>false</code> otherwise
 	 */
 	public boolean isTerminal();
 

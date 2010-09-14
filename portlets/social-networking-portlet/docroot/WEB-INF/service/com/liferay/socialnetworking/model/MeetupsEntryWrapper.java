@@ -28,137 +28,294 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		_meetupsEntry = meetupsEntry;
 	}
 
+	/**
+	* Gets the primary key of this meetups entry.
+	*
+	* @return the primary key of this meetups entry
+	*/
 	public long getPrimaryKey() {
 		return _meetupsEntry.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this meetups entry
+	*
+	* @param pk the primary key of this meetups entry
+	*/
 	public void setPrimaryKey(long pk) {
 		_meetupsEntry.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the meetups entry id of this meetups entry.
+	*
+	* @return the meetups entry id of this meetups entry
+	*/
 	public long getMeetupsEntryId() {
 		return _meetupsEntry.getMeetupsEntryId();
 	}
 
+	/**
+	* Sets the meetups entry id of this meetups entry.
+	*
+	* @param meetupsEntryId the meetups entry id of this meetups entry
+	*/
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsEntry.setMeetupsEntryId(meetupsEntryId);
 	}
 
+	/**
+	* Gets the company id of this meetups entry.
+	*
+	* @return the company id of this meetups entry
+	*/
 	public long getCompanyId() {
 		return _meetupsEntry.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this meetups entry.
+	*
+	* @param companyId the company id of this meetups entry
+	*/
 	public void setCompanyId(long companyId) {
 		_meetupsEntry.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this meetups entry.
+	*
+	* @return the user id of this meetups entry
+	*/
 	public long getUserId() {
 		return _meetupsEntry.getUserId();
 	}
 
+	/**
+	* Sets the user id of this meetups entry.
+	*
+	* @param userId the user id of this meetups entry
+	*/
 	public void setUserId(long userId) {
 		_meetupsEntry.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this meetups entry.
+	*
+	* @return the user uuid of this meetups entry
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _meetupsEntry.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this meetups entry.
+	*
+	* @param userUuid the user uuid of this meetups entry
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_meetupsEntry.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this meetups entry.
+	*
+	* @return the user name of this meetups entry
+	*/
 	public java.lang.String getUserName() {
 		return _meetupsEntry.getUserName();
 	}
 
+	/**
+	* Sets the user name of this meetups entry.
+	*
+	* @param userName the user name of this meetups entry
+	*/
 	public void setUserName(java.lang.String userName) {
 		_meetupsEntry.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this meetups entry.
+	*
+	* @return the create date of this meetups entry
+	*/
 	public java.util.Date getCreateDate() {
 		return _meetupsEntry.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this meetups entry.
+	*
+	* @param createDate the create date of this meetups entry
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_meetupsEntry.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this meetups entry.
+	*
+	* @return the modified date of this meetups entry
+	*/
 	public java.util.Date getModifiedDate() {
 		return _meetupsEntry.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this meetups entry.
+	*
+	* @param modifiedDate the modified date of this meetups entry
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_meetupsEntry.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the title of this meetups entry.
+	*
+	* @return the title of this meetups entry
+	*/
 	public java.lang.String getTitle() {
 		return _meetupsEntry.getTitle();
 	}
 
+	/**
+	* Sets the title of this meetups entry.
+	*
+	* @param title the title of this meetups entry
+	*/
 	public void setTitle(java.lang.String title) {
 		_meetupsEntry.setTitle(title);
 	}
 
+	/**
+	* Gets the description of this meetups entry.
+	*
+	* @return the description of this meetups entry
+	*/
 	public java.lang.String getDescription() {
 		return _meetupsEntry.getDescription();
 	}
 
+	/**
+	* Sets the description of this meetups entry.
+	*
+	* @param description the description of this meetups entry
+	*/
 	public void setDescription(java.lang.String description) {
 		_meetupsEntry.setDescription(description);
 	}
 
+	/**
+	* Gets the start date of this meetups entry.
+	*
+	* @return the start date of this meetups entry
+	*/
 	public java.util.Date getStartDate() {
 		return _meetupsEntry.getStartDate();
 	}
 
+	/**
+	* Sets the start date of this meetups entry.
+	*
+	* @param startDate the start date of this meetups entry
+	*/
 	public void setStartDate(java.util.Date startDate) {
 		_meetupsEntry.setStartDate(startDate);
 	}
 
+	/**
+	* Gets the end date of this meetups entry.
+	*
+	* @return the end date of this meetups entry
+	*/
 	public java.util.Date getEndDate() {
 		return _meetupsEntry.getEndDate();
 	}
 
+	/**
+	* Sets the end date of this meetups entry.
+	*
+	* @param endDate the end date of this meetups entry
+	*/
 	public void setEndDate(java.util.Date endDate) {
 		_meetupsEntry.setEndDate(endDate);
 	}
 
+	/**
+	* Gets the total attendees of this meetups entry.
+	*
+	* @return the total attendees of this meetups entry
+	*/
 	public int getTotalAttendees() {
 		return _meetupsEntry.getTotalAttendees();
 	}
 
+	/**
+	* Sets the total attendees of this meetups entry.
+	*
+	* @param totalAttendees the total attendees of this meetups entry
+	*/
 	public void setTotalAttendees(int totalAttendees) {
 		_meetupsEntry.setTotalAttendees(totalAttendees);
 	}
 
+	/**
+	* Gets the max attendees of this meetups entry.
+	*
+	* @return the max attendees of this meetups entry
+	*/
 	public int getMaxAttendees() {
 		return _meetupsEntry.getMaxAttendees();
 	}
 
+	/**
+	* Sets the max attendees of this meetups entry.
+	*
+	* @param maxAttendees the max attendees of this meetups entry
+	*/
 	public void setMaxAttendees(int maxAttendees) {
 		_meetupsEntry.setMaxAttendees(maxAttendees);
 	}
 
+	/**
+	* Gets the price of this meetups entry.
+	*
+	* @return the price of this meetups entry
+	*/
 	public double getPrice() {
 		return _meetupsEntry.getPrice();
 	}
 
+	/**
+	* Sets the price of this meetups entry.
+	*
+	* @param price the price of this meetups entry
+	*/
 	public void setPrice(double price) {
 		_meetupsEntry.setPrice(price);
 	}
 
+	/**
+	* Gets the thumbnail id of this meetups entry.
+	*
+	* @return the thumbnail id of this meetups entry
+	*/
 	public long getThumbnailId() {
 		return _meetupsEntry.getThumbnailId();
 	}
 
+	/**
+	* Sets the thumbnail id of this meetups entry.
+	*
+	* @param thumbnailId the thumbnail id of this meetups entry
+	*/
 	public void setThumbnailId(long thumbnailId) {
 		_meetupsEntry.setThumbnailId(thumbnailId);
-	}
-
-	public com.liferay.socialnetworking.model.MeetupsEntry toEscapedModel() {
-		return _meetupsEntry.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -209,6 +366,10 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 
 	public int hashCode() {
 		return _meetupsEntry.hashCode();
+	}
+
+	public com.liferay.socialnetworking.model.MeetupsEntry toEscapedModel() {
+		return _meetupsEntry.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

@@ -97,14 +97,6 @@ public interface TypeModel extends BaseModel<Type> {
 	 */
 	public void setName(String name);
 
-	/**
-	 * Gets a copy of this type as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Type toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -128,6 +120,8 @@ public interface TypeModel extends BaseModel<Type> {
 	public int compareTo(Type type);
 
 	public int hashCode();
+
+	public Type toEscapedModel();
 
 	public String toString();
 

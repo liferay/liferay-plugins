@@ -28,109 +28,231 @@ public class AssetWrapper implements Asset {
 		_asset = asset;
 	}
 
+	/**
+	* Gets the primary key of this asset.
+	*
+	* @return the primary key of this asset
+	*/
 	public long getPrimaryKey() {
 		return _asset.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this asset
+	*
+	* @param pk the primary key of this asset
+	*/
 	public void setPrimaryKey(long pk) {
 		_asset.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the asset id of this asset.
+	*
+	* @return the asset id of this asset
+	*/
 	public long getAssetId() {
 		return _asset.getAssetId();
 	}
 
+	/**
+	* Sets the asset id of this asset.
+	*
+	* @param assetId the asset id of this asset
+	*/
 	public void setAssetId(long assetId) {
 		_asset.setAssetId(assetId);
 	}
 
+	/**
+	* Gets the company id of this asset.
+	*
+	* @return the company id of this asset
+	*/
 	public long getCompanyId() {
 		return _asset.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this asset.
+	*
+	* @param companyId the company id of this asset
+	*/
 	public void setCompanyId(long companyId) {
 		_asset.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this asset.
+	*
+	* @return the user id of this asset
+	*/
 	public long getUserId() {
 		return _asset.getUserId();
 	}
 
+	/**
+	* Sets the user id of this asset.
+	*
+	* @param userId the user id of this asset
+	*/
 	public void setUserId(long userId) {
 		_asset.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this asset.
+	*
+	* @return the user uuid of this asset
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _asset.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this asset.
+	*
+	* @param userUuid the user uuid of this asset
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_asset.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this asset.
+	*
+	* @return the user name of this asset
+	*/
 	public java.lang.String getUserName() {
 		return _asset.getUserName();
 	}
 
+	/**
+	* Sets the user name of this asset.
+	*
+	* @param userName the user name of this asset
+	*/
 	public void setUserName(java.lang.String userName) {
 		_asset.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this asset.
+	*
+	* @return the create date of this asset
+	*/
 	public java.util.Date getCreateDate() {
 		return _asset.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this asset.
+	*
+	* @param createDate the create date of this asset
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_asset.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this asset.
+	*
+	* @return the modified date of this asset
+	*/
 	public java.util.Date getModifiedDate() {
 		return _asset.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this asset.
+	*
+	* @param modifiedDate the modified date of this asset
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_asset.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the definition id of this asset.
+	*
+	* @return the definition id of this asset
+	*/
 	public long getDefinitionId() {
 		return _asset.getDefinitionId();
 	}
 
+	/**
+	* Sets the definition id of this asset.
+	*
+	* @param definitionId the definition id of this asset
+	*/
 	public void setDefinitionId(long definitionId) {
 		_asset.setDefinitionId(definitionId);
 	}
 
+	/**
+	* Gets the serial number of this asset.
+	*
+	* @return the serial number of this asset
+	*/
 	public java.lang.String getSerialNumber() {
 		return _asset.getSerialNumber();
 	}
 
+	/**
+	* Sets the serial number of this asset.
+	*
+	* @param serialNumber the serial number of this asset
+	*/
 	public void setSerialNumber(java.lang.String serialNumber) {
 		_asset.setSerialNumber(serialNumber);
 	}
 
+	/**
+	* Gets the inactive date of this asset.
+	*
+	* @return the inactive date of this asset
+	*/
 	public java.util.Date getInactiveDate() {
 		return _asset.getInactiveDate();
 	}
 
+	/**
+	* Sets the inactive date of this asset.
+	*
+	* @param inactiveDate the inactive date of this asset
+	*/
 	public void setInactiveDate(java.util.Date inactiveDate) {
 		_asset.setInactiveDate(inactiveDate);
 	}
 
+	/**
+	* Gets the active of this asset.
+	*
+	* @return the active of this asset
+	*/
 	public boolean getActive() {
 		return _asset.getActive();
 	}
 
+	/**
+	* Determines if this asset is active.
+	*
+	* @return <code>true</code> if this asset is active; <code>false</code> otherwise
+	*/
 	public boolean isActive() {
 		return _asset.isActive();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is active.
+	*
+	* @param active the active of this asset
+	*/
 	public void setActive(boolean active) {
 		_asset.setActive(active);
-	}
-
-	public com.liferay.ams.model.Asset toEscapedModel() {
-		return _asset.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -180,6 +302,10 @@ public class AssetWrapper implements Asset {
 
 	public int hashCode() {
 		return _asset.hashCode();
+	}
+
+	public com.liferay.ams.model.Asset toEscapedModel() {
+		return _asset.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

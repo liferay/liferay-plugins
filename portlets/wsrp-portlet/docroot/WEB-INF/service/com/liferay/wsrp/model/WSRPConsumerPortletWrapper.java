@@ -28,72 +28,148 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		_wsrpConsumerPortlet = wsrpConsumerPortlet;
 	}
 
+	/**
+	* Gets the primary key of this w s r p consumer portlet.
+	*
+	* @return the primary key of this w s r p consumer portlet
+	*/
 	public long getPrimaryKey() {
 		return _wsrpConsumerPortlet.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this w s r p consumer portlet
+	*
+	* @param pk the primary key of this w s r p consumer portlet
+	*/
 	public void setPrimaryKey(long pk) {
 		_wsrpConsumerPortlet.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the wsrp consumer portlet id of this w s r p consumer portlet.
+	*
+	* @return the wsrp consumer portlet id of this w s r p consumer portlet
+	*/
 	public long getWsrpConsumerPortletId() {
 		return _wsrpConsumerPortlet.getWsrpConsumerPortletId();
 	}
 
+	/**
+	* Sets the wsrp consumer portlet id of this w s r p consumer portlet.
+	*
+	* @param wsrpConsumerPortletId the wsrp consumer portlet id of this w s r p consumer portlet
+	*/
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
 		_wsrpConsumerPortlet.setWsrpConsumerPortletId(wsrpConsumerPortletId);
 	}
 
+	/**
+	* Gets the company id of this w s r p consumer portlet.
+	*
+	* @return the company id of this w s r p consumer portlet
+	*/
 	public long getCompanyId() {
 		return _wsrpConsumerPortlet.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this w s r p consumer portlet.
+	*
+	* @param companyId the company id of this w s r p consumer portlet
+	*/
 	public void setCompanyId(long companyId) {
 		_wsrpConsumerPortlet.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the create date of this w s r p consumer portlet.
+	*
+	* @return the create date of this w s r p consumer portlet
+	*/
 	public java.util.Date getCreateDate() {
 		return _wsrpConsumerPortlet.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this w s r p consumer portlet.
+	*
+	* @param createDate the create date of this w s r p consumer portlet
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_wsrpConsumerPortlet.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this w s r p consumer portlet.
+	*
+	* @return the modified date of this w s r p consumer portlet
+	*/
 	public java.util.Date getModifiedDate() {
 		return _wsrpConsumerPortlet.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this w s r p consumer portlet.
+	*
+	* @param modifiedDate the modified date of this w s r p consumer portlet
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_wsrpConsumerPortlet.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the wsrp consumer id of this w s r p consumer portlet.
+	*
+	* @return the wsrp consumer id of this w s r p consumer portlet
+	*/
 	public long getWsrpConsumerId() {
 		return _wsrpConsumerPortlet.getWsrpConsumerId();
 	}
 
+	/**
+	* Sets the wsrp consumer id of this w s r p consumer portlet.
+	*
+	* @param wsrpConsumerId the wsrp consumer id of this w s r p consumer portlet
+	*/
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumerPortlet.setWsrpConsumerId(wsrpConsumerId);
 	}
 
+	/**
+	* Gets the name of this w s r p consumer portlet.
+	*
+	* @return the name of this w s r p consumer portlet
+	*/
 	public java.lang.String getName() {
 		return _wsrpConsumerPortlet.getName();
 	}
 
+	/**
+	* Sets the name of this w s r p consumer portlet.
+	*
+	* @param name the name of this w s r p consumer portlet
+	*/
 	public void setName(java.lang.String name) {
 		_wsrpConsumerPortlet.setName(name);
 	}
 
+	/**
+	* Gets the portlet handle of this w s r p consumer portlet.
+	*
+	* @return the portlet handle of this w s r p consumer portlet
+	*/
 	public java.lang.String getPortletHandle() {
 		return _wsrpConsumerPortlet.getPortletHandle();
 	}
 
+	/**
+	* Sets the portlet handle of this w s r p consumer portlet.
+	*
+	* @param portletHandle the portlet handle of this w s r p consumer portlet
+	*/
 	public void setPortletHandle(java.lang.String portletHandle) {
 		_wsrpConsumerPortlet.setPortletHandle(portletHandle);
-	}
-
-	public com.liferay.wsrp.model.WSRPConsumerPortlet toEscapedModel() {
-		return _wsrpConsumerPortlet.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -144,6 +220,10 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 
 	public int hashCode() {
 		return _wsrpConsumerPortlet.hashCode();
+	}
+
+	public com.liferay.wsrp.model.WSRPConsumerPortlet toEscapedModel() {
+		return _wsrpConsumerPortlet.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

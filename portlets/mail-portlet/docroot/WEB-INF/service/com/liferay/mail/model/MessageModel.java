@@ -347,14 +347,6 @@ public interface MessageModel extends BaseModel<Message> {
 	 */
 	public void setRemoteMessageId(long remoteMessageId);
 
-	/**
-	 * Gets a copy of this message as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Message toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -378,6 +370,8 @@ public interface MessageModel extends BaseModel<Message> {
 	public int compareTo(Message message);
 
 	public int hashCode();
+
+	public Message toEscapedModel();
 
 	public String toString();
 

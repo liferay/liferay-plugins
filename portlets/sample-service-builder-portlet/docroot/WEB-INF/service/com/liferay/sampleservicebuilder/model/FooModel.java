@@ -180,9 +180,9 @@ public interface FooModel extends BaseModel<Foo> {
 	public boolean getField2();
 
 	/**
-	 * Determines whether this foo is field2.
+	 * Determines if this foo is field2.
 	 *
-	 * @return whether this foo is field2
+	 * @return <code>true</code> if this foo is field2; <code>false</code> otherwise
 	 */
 	public boolean isField2();
 
@@ -236,14 +236,6 @@ public interface FooModel extends BaseModel<Foo> {
 	 */
 	public void setField5(String field5);
 
-	/**
-	 * Gets a copy of this foo as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Foo toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -267,6 +259,8 @@ public interface FooModel extends BaseModel<Foo> {
 	public int compareTo(Foo foo);
 
 	public int hashCode();
+
+	public Foo toEscapedModel();
 
 	public String toString();
 

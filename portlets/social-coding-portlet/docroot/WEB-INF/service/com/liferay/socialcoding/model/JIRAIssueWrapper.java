@@ -28,104 +28,220 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		_jiraIssue = jiraIssue;
 	}
 
+	/**
+	* Gets the primary key of this j i r a issue.
+	*
+	* @return the primary key of this j i r a issue
+	*/
 	public long getPrimaryKey() {
 		return _jiraIssue.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this j i r a issue
+	*
+	* @param pk the primary key of this j i r a issue
+	*/
 	public void setPrimaryKey(long pk) {
 		_jiraIssue.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the jira issue id of this j i r a issue.
+	*
+	* @return the jira issue id of this j i r a issue
+	*/
 	public long getJiraIssueId() {
 		return _jiraIssue.getJiraIssueId();
 	}
 
+	/**
+	* Sets the jira issue id of this j i r a issue.
+	*
+	* @param jiraIssueId the jira issue id of this j i r a issue
+	*/
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssue.setJiraIssueId(jiraIssueId);
 	}
 
+	/**
+	* Gets the create date of this j i r a issue.
+	*
+	* @return the create date of this j i r a issue
+	*/
 	public java.util.Date getCreateDate() {
 		return _jiraIssue.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this j i r a issue.
+	*
+	* @param createDate the create date of this j i r a issue
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_jiraIssue.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this j i r a issue.
+	*
+	* @return the modified date of this j i r a issue
+	*/
 	public java.util.Date getModifiedDate() {
 		return _jiraIssue.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this j i r a issue.
+	*
+	* @param modifiedDate the modified date of this j i r a issue
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_jiraIssue.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the project id of this j i r a issue.
+	*
+	* @return the project id of this j i r a issue
+	*/
 	public long getProjectId() {
 		return _jiraIssue.getProjectId();
 	}
 
+	/**
+	* Sets the project id of this j i r a issue.
+	*
+	* @param projectId the project id of this j i r a issue
+	*/
 	public void setProjectId(long projectId) {
 		_jiraIssue.setProjectId(projectId);
 	}
 
+	/**
+	* Gets the key of this j i r a issue.
+	*
+	* @return the key of this j i r a issue
+	*/
 	public java.lang.String getKey() {
 		return _jiraIssue.getKey();
 	}
 
+	/**
+	* Sets the key of this j i r a issue.
+	*
+	* @param key the key of this j i r a issue
+	*/
 	public void setKey(java.lang.String key) {
 		_jiraIssue.setKey(key);
 	}
 
+	/**
+	* Gets the summary of this j i r a issue.
+	*
+	* @return the summary of this j i r a issue
+	*/
 	public java.lang.String getSummary() {
 		return _jiraIssue.getSummary();
 	}
 
+	/**
+	* Sets the summary of this j i r a issue.
+	*
+	* @param summary the summary of this j i r a issue
+	*/
 	public void setSummary(java.lang.String summary) {
 		_jiraIssue.setSummary(summary);
 	}
 
+	/**
+	* Gets the description of this j i r a issue.
+	*
+	* @return the description of this j i r a issue
+	*/
 	public java.lang.String getDescription() {
 		return _jiraIssue.getDescription();
 	}
 
+	/**
+	* Sets the description of this j i r a issue.
+	*
+	* @param description the description of this j i r a issue
+	*/
 	public void setDescription(java.lang.String description) {
 		_jiraIssue.setDescription(description);
 	}
 
+	/**
+	* Gets the reporter jira user id of this j i r a issue.
+	*
+	* @return the reporter jira user id of this j i r a issue
+	*/
 	public java.lang.String getReporterJiraUserId() {
 		return _jiraIssue.getReporterJiraUserId();
 	}
 
+	/**
+	* Sets the reporter jira user id of this j i r a issue.
+	*
+	* @param reporterJiraUserId the reporter jira user id of this j i r a issue
+	*/
 	public void setReporterJiraUserId(java.lang.String reporterJiraUserId) {
 		_jiraIssue.setReporterJiraUserId(reporterJiraUserId);
 	}
 
+	/**
+	* Gets the assignee jira user id of this j i r a issue.
+	*
+	* @return the assignee jira user id of this j i r a issue
+	*/
 	public java.lang.String getAssigneeJiraUserId() {
 		return _jiraIssue.getAssigneeJiraUserId();
 	}
 
+	/**
+	* Sets the assignee jira user id of this j i r a issue.
+	*
+	* @param assigneeJiraUserId the assignee jira user id of this j i r a issue
+	*/
 	public void setAssigneeJiraUserId(java.lang.String assigneeJiraUserId) {
 		_jiraIssue.setAssigneeJiraUserId(assigneeJiraUserId);
 	}
 
+	/**
+	* Gets the resolution of this j i r a issue.
+	*
+	* @return the resolution of this j i r a issue
+	*/
 	public java.lang.String getResolution() {
 		return _jiraIssue.getResolution();
 	}
 
+	/**
+	* Sets the resolution of this j i r a issue.
+	*
+	* @param resolution the resolution of this j i r a issue
+	*/
 	public void setResolution(java.lang.String resolution) {
 		_jiraIssue.setResolution(resolution);
 	}
 
+	/**
+	* Gets the status of this j i r a issue.
+	*
+	* @return the status of this j i r a issue
+	*/
 	public java.lang.String getStatus() {
 		return _jiraIssue.getStatus();
 	}
 
+	/**
+	* Sets the status of this j i r a issue.
+	*
+	* @param status the status of this j i r a issue
+	*/
 	public void setStatus(java.lang.String status) {
 		_jiraIssue.setStatus(status);
-	}
-
-	public com.liferay.socialcoding.model.JIRAIssue toEscapedModel() {
-		return _jiraIssue.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -175,6 +291,10 @@ public class JIRAIssueWrapper implements JIRAIssue {
 
 	public int hashCode() {
 		return _jiraIssue.hashCode();
+	}
+
+	public com.liferay.socialcoding.model.JIRAIssue toEscapedModel() {
+		return _jiraIssue.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

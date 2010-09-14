@@ -28,48 +28,94 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		_jiraChangeGroup = jiraChangeGroup;
 	}
 
+	/**
+	* Gets the primary key of this j i r a change group.
+	*
+	* @return the primary key of this j i r a change group
+	*/
 	public long getPrimaryKey() {
 		return _jiraChangeGroup.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this j i r a change group
+	*
+	* @param pk the primary key of this j i r a change group
+	*/
 	public void setPrimaryKey(long pk) {
 		_jiraChangeGroup.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the jira change group id of this j i r a change group.
+	*
+	* @return the jira change group id of this j i r a change group
+	*/
 	public long getJiraChangeGroupId() {
 		return _jiraChangeGroup.getJiraChangeGroupId();
 	}
 
+	/**
+	* Sets the jira change group id of this j i r a change group.
+	*
+	* @param jiraChangeGroupId the jira change group id of this j i r a change group
+	*/
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroup.setJiraChangeGroupId(jiraChangeGroupId);
 	}
 
+	/**
+	* Gets the jira user id of this j i r a change group.
+	*
+	* @return the jira user id of this j i r a change group
+	*/
 	public java.lang.String getJiraUserId() {
 		return _jiraChangeGroup.getJiraUserId();
 	}
 
+	/**
+	* Sets the jira user id of this j i r a change group.
+	*
+	* @param jiraUserId the jira user id of this j i r a change group
+	*/
 	public void setJiraUserId(java.lang.String jiraUserId) {
 		_jiraChangeGroup.setJiraUserId(jiraUserId);
 	}
 
+	/**
+	* Gets the create date of this j i r a change group.
+	*
+	* @return the create date of this j i r a change group
+	*/
 	public java.util.Date getCreateDate() {
 		return _jiraChangeGroup.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this j i r a change group.
+	*
+	* @param createDate the create date of this j i r a change group
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_jiraChangeGroup.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the jira issue id of this j i r a change group.
+	*
+	* @return the jira issue id of this j i r a change group
+	*/
 	public long getJiraIssueId() {
 		return _jiraChangeGroup.getJiraIssueId();
 	}
 
+	/**
+	* Sets the jira issue id of this j i r a change group.
+	*
+	* @param jiraIssueId the jira issue id of this j i r a change group
+	*/
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraChangeGroup.setJiraIssueId(jiraIssueId);
-	}
-
-	public com.liferay.socialcoding.model.JIRAChangeGroup toEscapedModel() {
-		return _jiraChangeGroup.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -120,6 +166,10 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 
 	public int hashCode() {
 		return _jiraChangeGroup.hashCode();
+	}
+
+	public com.liferay.socialcoding.model.JIRAChangeGroup toEscapedModel() {
+		return _jiraChangeGroup.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

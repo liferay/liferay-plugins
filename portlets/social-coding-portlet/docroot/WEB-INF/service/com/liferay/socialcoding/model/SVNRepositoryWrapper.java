@@ -28,40 +28,76 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		_svnRepository = svnRepository;
 	}
 
+	/**
+	* Gets the primary key of this s v n repository.
+	*
+	* @return the primary key of this s v n repository
+	*/
 	public long getPrimaryKey() {
 		return _svnRepository.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this s v n repository
+	*
+	* @param pk the primary key of this s v n repository
+	*/
 	public void setPrimaryKey(long pk) {
 		_svnRepository.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the svn repository id of this s v n repository.
+	*
+	* @return the svn repository id of this s v n repository
+	*/
 	public long getSvnRepositoryId() {
 		return _svnRepository.getSvnRepositoryId();
 	}
 
+	/**
+	* Sets the svn repository id of this s v n repository.
+	*
+	* @param svnRepositoryId the svn repository id of this s v n repository
+	*/
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRepository.setSvnRepositoryId(svnRepositoryId);
 	}
 
+	/**
+	* Gets the url of this s v n repository.
+	*
+	* @return the url of this s v n repository
+	*/
 	public java.lang.String getUrl() {
 		return _svnRepository.getUrl();
 	}
 
+	/**
+	* Sets the url of this s v n repository.
+	*
+	* @param url the url of this s v n repository
+	*/
 	public void setUrl(java.lang.String url) {
 		_svnRepository.setUrl(url);
 	}
 
+	/**
+	* Gets the revision number of this s v n repository.
+	*
+	* @return the revision number of this s v n repository
+	*/
 	public long getRevisionNumber() {
 		return _svnRepository.getRevisionNumber();
 	}
 
+	/**
+	* Sets the revision number of this s v n repository.
+	*
+	* @param revisionNumber the revision number of this s v n repository
+	*/
 	public void setRevisionNumber(long revisionNumber) {
 		_svnRepository.setRevisionNumber(revisionNumber);
-	}
-
-	public com.liferay.socialcoding.model.SVNRepository toEscapedModel() {
-		return _svnRepository.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -112,6 +148,10 @@ public class SVNRepositoryWrapper implements SVNRepository {
 
 	public int hashCode() {
 		return _svnRepository.hashCode();
+	}
+
+	public com.liferay.socialcoding.model.SVNRepository toEscapedModel() {
+		return _svnRepository.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

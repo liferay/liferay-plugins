@@ -157,14 +157,6 @@ public interface FeedModel extends BaseModel<Feed> {
 	 */
 	public void setLastStatusId(long lastStatusId);
 
-	/**
-	 * Gets a copy of this feed as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Feed toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -188,6 +180,8 @@ public interface FeedModel extends BaseModel<Feed> {
 	public int compareTo(Feed feed);
 
 	public int hashCode();
+
+	public Feed toEscapedModel();
 
 	public String toString();
 

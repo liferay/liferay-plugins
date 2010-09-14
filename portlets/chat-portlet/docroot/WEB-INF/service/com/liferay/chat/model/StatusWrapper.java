@@ -28,101 +28,213 @@ public class StatusWrapper implements Status {
 		_status = status;
 	}
 
+	/**
+	* Gets the primary key of this status.
+	*
+	* @return the primary key of this status
+	*/
 	public long getPrimaryKey() {
 		return _status.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this status
+	*
+	* @param pk the primary key of this status
+	*/
 	public void setPrimaryKey(long pk) {
 		_status.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the status id of this status.
+	*
+	* @return the status id of this status
+	*/
 	public long getStatusId() {
 		return _status.getStatusId();
 	}
 
+	/**
+	* Sets the status id of this status.
+	*
+	* @param statusId the status id of this status
+	*/
 	public void setStatusId(long statusId) {
 		_status.setStatusId(statusId);
 	}
 
+	/**
+	* Gets the user id of this status.
+	*
+	* @return the user id of this status
+	*/
 	public long getUserId() {
 		return _status.getUserId();
 	}
 
+	/**
+	* Sets the user id of this status.
+	*
+	* @param userId the user id of this status
+	*/
 	public void setUserId(long userId) {
 		_status.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this status.
+	*
+	* @return the user uuid of this status
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _status.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this status.
+	*
+	* @param userUuid the user uuid of this status
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_status.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the modified date of this status.
+	*
+	* @return the modified date of this status
+	*/
 	public long getModifiedDate() {
 		return _status.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this status.
+	*
+	* @param modifiedDate the modified date of this status
+	*/
 	public void setModifiedDate(long modifiedDate) {
 		_status.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the online of this status.
+	*
+	* @return the online of this status
+	*/
 	public boolean getOnline() {
 		return _status.getOnline();
 	}
 
+	/**
+	* Determines if this status is online.
+	*
+	* @return <code>true</code> if this status is online; <code>false</code> otherwise
+	*/
 	public boolean isOnline() {
 		return _status.isOnline();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is online.
+	*
+	* @param online the online of this status
+	*/
 	public void setOnline(boolean online) {
 		_status.setOnline(online);
 	}
 
+	/**
+	* Gets the awake of this status.
+	*
+	* @return the awake of this status
+	*/
 	public boolean getAwake() {
 		return _status.getAwake();
 	}
 
+	/**
+	* Determines if this status is awake.
+	*
+	* @return <code>true</code> if this status is awake; <code>false</code> otherwise
+	*/
 	public boolean isAwake() {
 		return _status.isAwake();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is awake.
+	*
+	* @param awake the awake of this status
+	*/
 	public void setAwake(boolean awake) {
 		_status.setAwake(awake);
 	}
 
+	/**
+	* Gets the active panel id of this status.
+	*
+	* @return the active panel id of this status
+	*/
 	public java.lang.String getActivePanelId() {
 		return _status.getActivePanelId();
 	}
 
+	/**
+	* Sets the active panel id of this status.
+	*
+	* @param activePanelId the active panel id of this status
+	*/
 	public void setActivePanelId(java.lang.String activePanelId) {
 		_status.setActivePanelId(activePanelId);
 	}
 
+	/**
+	* Gets the message of this status.
+	*
+	* @return the message of this status
+	*/
 	public java.lang.String getMessage() {
 		return _status.getMessage();
 	}
 
+	/**
+	* Sets the message of this status.
+	*
+	* @param message the message of this status
+	*/
 	public void setMessage(java.lang.String message) {
 		_status.setMessage(message);
 	}
 
+	/**
+	* Gets the play sound of this status.
+	*
+	* @return the play sound of this status
+	*/
 	public boolean getPlaySound() {
 		return _status.getPlaySound();
 	}
 
+	/**
+	* Determines if this status is play sound.
+	*
+	* @return <code>true</code> if this status is play sound; <code>false</code> otherwise
+	*/
 	public boolean isPlaySound() {
 		return _status.isPlaySound();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is play sound.
+	*
+	* @param playSound the play sound of this status
+	*/
 	public void setPlaySound(boolean playSound) {
 		_status.setPlaySound(playSound);
-	}
-
-	public com.liferay.chat.model.Status toEscapedModel() {
-		return _status.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -172,6 +284,10 @@ public class StatusWrapper implements Status {
 
 	public int hashCode() {
 		return _status.hashCode();
+	}
+
+	public com.liferay.chat.model.Status toEscapedModel() {
+		return _status.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

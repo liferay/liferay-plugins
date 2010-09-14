@@ -28,97 +28,204 @@ public class AttachmentWrapper implements Attachment {
 		_attachment = attachment;
 	}
 
+	/**
+	* Gets the primary key of this attachment.
+	*
+	* @return the primary key of this attachment
+	*/
 	public long getPrimaryKey() {
 		return _attachment.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this attachment
+	*
+	* @param pk the primary key of this attachment
+	*/
 	public void setPrimaryKey(long pk) {
 		_attachment.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the attachment id of this attachment.
+	*
+	* @return the attachment id of this attachment
+	*/
 	public long getAttachmentId() {
 		return _attachment.getAttachmentId();
 	}
 
+	/**
+	* Sets the attachment id of this attachment.
+	*
+	* @param attachmentId the attachment id of this attachment
+	*/
 	public void setAttachmentId(long attachmentId) {
 		_attachment.setAttachmentId(attachmentId);
 	}
 
+	/**
+	* Gets the company id of this attachment.
+	*
+	* @return the company id of this attachment
+	*/
 	public long getCompanyId() {
 		return _attachment.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this attachment.
+	*
+	* @param companyId the company id of this attachment
+	*/
 	public void setCompanyId(long companyId) {
 		_attachment.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this attachment.
+	*
+	* @return the user id of this attachment
+	*/
 	public long getUserId() {
 		return _attachment.getUserId();
 	}
 
+	/**
+	* Sets the user id of this attachment.
+	*
+	* @param userId the user id of this attachment
+	*/
 	public void setUserId(long userId) {
 		_attachment.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this attachment.
+	*
+	* @return the user uuid of this attachment
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _attachment.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this attachment.
+	*
+	* @param userUuid the user uuid of this attachment
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_attachment.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the account id of this attachment.
+	*
+	* @return the account id of this attachment
+	*/
 	public long getAccountId() {
 		return _attachment.getAccountId();
 	}
 
+	/**
+	* Sets the account id of this attachment.
+	*
+	* @param accountId the account id of this attachment
+	*/
 	public void setAccountId(long accountId) {
 		_attachment.setAccountId(accountId);
 	}
 
+	/**
+	* Gets the folder id of this attachment.
+	*
+	* @return the folder id of this attachment
+	*/
 	public long getFolderId() {
 		return _attachment.getFolderId();
 	}
 
+	/**
+	* Sets the folder id of this attachment.
+	*
+	* @param folderId the folder id of this attachment
+	*/
 	public void setFolderId(long folderId) {
 		_attachment.setFolderId(folderId);
 	}
 
+	/**
+	* Gets the message id of this attachment.
+	*
+	* @return the message id of this attachment
+	*/
 	public long getMessageId() {
 		return _attachment.getMessageId();
 	}
 
+	/**
+	* Sets the message id of this attachment.
+	*
+	* @param messageId the message id of this attachment
+	*/
 	public void setMessageId(long messageId) {
 		_attachment.setMessageId(messageId);
 	}
 
+	/**
+	* Gets the content path of this attachment.
+	*
+	* @return the content path of this attachment
+	*/
 	public java.lang.String getContentPath() {
 		return _attachment.getContentPath();
 	}
 
+	/**
+	* Sets the content path of this attachment.
+	*
+	* @param contentPath the content path of this attachment
+	*/
 	public void setContentPath(java.lang.String contentPath) {
 		_attachment.setContentPath(contentPath);
 	}
 
+	/**
+	* Gets the file name of this attachment.
+	*
+	* @return the file name of this attachment
+	*/
 	public java.lang.String getFileName() {
 		return _attachment.getFileName();
 	}
 
+	/**
+	* Sets the file name of this attachment.
+	*
+	* @param fileName the file name of this attachment
+	*/
 	public void setFileName(java.lang.String fileName) {
 		_attachment.setFileName(fileName);
 	}
 
+	/**
+	* Gets the size of this attachment.
+	*
+	* @return the size of this attachment
+	*/
 	public long getSize() {
 		return _attachment.getSize();
 	}
 
+	/**
+	* Sets the size of this attachment.
+	*
+	* @param size the size of this attachment
+	*/
 	public void setSize(long size) {
 		_attachment.setSize(size);
-	}
-
-	public com.liferay.mail.model.Attachment toEscapedModel() {
-		return _attachment.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -168,6 +275,10 @@ public class AttachmentWrapper implements Attachment {
 
 	public int hashCode() {
 		return _attachment.hashCode();
+	}
+
+	public com.liferay.mail.model.Attachment toEscapedModel() {
+		return _attachment.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

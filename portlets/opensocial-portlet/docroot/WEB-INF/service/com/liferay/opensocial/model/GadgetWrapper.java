@@ -28,64 +28,130 @@ public class GadgetWrapper implements Gadget {
 		_gadget = gadget;
 	}
 
+	/**
+	* Gets the primary key of this gadget.
+	*
+	* @return the primary key of this gadget
+	*/
 	public long getPrimaryKey() {
 		return _gadget.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this gadget
+	*
+	* @param pk the primary key of this gadget
+	*/
 	public void setPrimaryKey(long pk) {
 		_gadget.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the gadget id of this gadget.
+	*
+	* @return the gadget id of this gadget
+	*/
 	public long getGadgetId() {
 		return _gadget.getGadgetId();
 	}
 
+	/**
+	* Sets the gadget id of this gadget.
+	*
+	* @param gadgetId the gadget id of this gadget
+	*/
 	public void setGadgetId(long gadgetId) {
 		_gadget.setGadgetId(gadgetId);
 	}
 
+	/**
+	* Gets the company id of this gadget.
+	*
+	* @return the company id of this gadget
+	*/
 	public long getCompanyId() {
 		return _gadget.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this gadget.
+	*
+	* @param companyId the company id of this gadget
+	*/
 	public void setCompanyId(long companyId) {
 		_gadget.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the create date of this gadget.
+	*
+	* @return the create date of this gadget
+	*/
 	public java.util.Date getCreateDate() {
 		return _gadget.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this gadget.
+	*
+	* @param createDate the create date of this gadget
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_gadget.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this gadget.
+	*
+	* @return the modified date of this gadget
+	*/
 	public java.util.Date getModifiedDate() {
 		return _gadget.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this gadget.
+	*
+	* @param modifiedDate the modified date of this gadget
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_gadget.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the name of this gadget.
+	*
+	* @return the name of this gadget
+	*/
 	public java.lang.String getName() {
 		return _gadget.getName();
 	}
 
+	/**
+	* Sets the name of this gadget.
+	*
+	* @param name the name of this gadget
+	*/
 	public void setName(java.lang.String name) {
 		_gadget.setName(name);
 	}
 
+	/**
+	* Gets the url of this gadget.
+	*
+	* @return the url of this gadget
+	*/
 	public java.lang.String getUrl() {
 		return _gadget.getUrl();
 	}
 
+	/**
+	* Sets the url of this gadget.
+	*
+	* @param url the url of this gadget
+	*/
 	public void setUrl(java.lang.String url) {
 		_gadget.setUrl(url);
-	}
-
-	public com.liferay.opensocial.model.Gadget toEscapedModel() {
-		return _gadget.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -135,6 +201,10 @@ public class GadgetWrapper implements Gadget {
 
 	public int hashCode() {
 		return _gadget.hashCode();
+	}
+
+	public com.liferay.opensocial.model.Gadget toEscapedModel() {
+		return _gadget.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

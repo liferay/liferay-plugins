@@ -177,9 +177,9 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public boolean getRead();
 
 	/**
-	 * Determines whether this user thread is read.
+	 * Determines if this user thread is read.
 	 *
-	 * @return whether this user thread is read
+	 * @return <code>true</code> if this user thread is read; <code>false</code> otherwise
 	 */
 	public boolean isRead();
 
@@ -198,9 +198,9 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public boolean getDeleted();
 
 	/**
-	 * Determines whether this user thread is deleted.
+	 * Determines if this user thread is deleted.
 	 *
-	 * @return whether this user thread is deleted
+	 * @return <code>true</code> if this user thread is deleted; <code>false</code> otherwise
 	 */
 	public boolean isDeleted();
 
@@ -210,14 +210,6 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	 * @param deleted the deleted of this user thread
 	 */
 	public void setDeleted(boolean deleted);
-
-	/**
-	 * Gets a copy of this user thread as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public UserThread toEscapedModel();
 
 	public boolean isNew();
 
@@ -242,6 +234,8 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public int compareTo(UserThread userThread);
 
 	public int hashCode();
+
+	public UserThread toEscapedModel();
 
 	public String toString();
 

@@ -28,40 +28,76 @@ public class TypeWrapper implements Type {
 		_type = type;
 	}
 
+	/**
+	* Gets the primary key of this type.
+	*
+	* @return the primary key of this type
+	*/
 	public long getPrimaryKey() {
 		return _type.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this type
+	*
+	* @param pk the primary key of this type
+	*/
 	public void setPrimaryKey(long pk) {
 		_type.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the type id of this type.
+	*
+	* @return the type id of this type
+	*/
 	public long getTypeId() {
 		return _type.getTypeId();
 	}
 
+	/**
+	* Sets the type id of this type.
+	*
+	* @param typeId the type id of this type
+	*/
 	public void setTypeId(long typeId) {
 		_type.setTypeId(typeId);
 	}
 
+	/**
+	* Gets the group id of this type.
+	*
+	* @return the group id of this type
+	*/
 	public long getGroupId() {
 		return _type.getGroupId();
 	}
 
+	/**
+	* Sets the group id of this type.
+	*
+	* @param groupId the group id of this type
+	*/
 	public void setGroupId(long groupId) {
 		_type.setGroupId(groupId);
 	}
 
+	/**
+	* Gets the name of this type.
+	*
+	* @return the name of this type
+	*/
 	public java.lang.String getName() {
 		return _type.getName();
 	}
 
+	/**
+	* Sets the name of this type.
+	*
+	* @param name the name of this type
+	*/
 	public void setName(java.lang.String name) {
 		_type.setName(name);
-	}
-
-	public com.liferay.ams.model.Type toEscapedModel() {
-		return _type.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -111,6 +147,10 @@ public class TypeWrapper implements Type {
 
 	public int hashCode() {
 		return _type.hashCode();
+	}
+
+	public com.liferay.ams.model.Type toEscapedModel() {
+		return _type.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

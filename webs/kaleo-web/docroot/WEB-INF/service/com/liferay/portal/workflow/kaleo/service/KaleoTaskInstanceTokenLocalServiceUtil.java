@@ -456,12 +456,12 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 
 	public static KaleoTaskInstanceTokenLocalService getService() {
 		if (_service == null) {
-			Object obj = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
+			Object object = PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					KaleoTaskInstanceTokenLocalService.class.getName());
 			ClassLoader portletClassLoader = (ClassLoader)PortletBeanLocatorUtil.locate(ClpSerializer.SERVLET_CONTEXT_NAME,
 					"portletClassLoader");
 
-			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(obj,
+			ClassLoaderProxy classLoaderProxy = new ClassLoaderProxy(object,
 					portletClassLoader);
 
 			_service = new KaleoTaskInstanceTokenLocalServiceClp(classLoaderProxy);

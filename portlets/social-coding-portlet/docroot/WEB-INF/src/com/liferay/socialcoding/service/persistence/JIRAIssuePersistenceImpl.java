@@ -364,18 +364,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		try {
 			session = openSession();
 
-			if (jiraIssue.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(JIRAIssueImpl.class,
-						jiraIssue.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(jiraIssue);
-
-			session.flush();
+			BatchSessionUtil.delete(session, jiraIssue);
 		}
 		catch (Exception e) {
 			throw processException(e);

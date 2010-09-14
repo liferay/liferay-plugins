@@ -255,19 +255,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		try {
 			session = openSession();
 
-			if (meetupsRegistration.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(MeetupsRegistrationImpl.class,
-						meetupsRegistration.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(meetupsRegistration);
-
-			session.flush();
+			BatchSessionUtil.delete(session, meetupsRegistration);
 		}
 		catch (Exception e) {
 			throw processException(e);

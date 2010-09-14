@@ -28,74 +28,152 @@ public class EntryWrapper implements Entry {
 		_entry = entry;
 	}
 
+	/**
+	* Gets the primary key of this entry.
+	*
+	* @return the primary key of this entry
+	*/
 	public long getPrimaryKey() {
 		return _entry.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this entry
+	*
+	* @param pk the primary key of this entry
+	*/
 	public void setPrimaryKey(long pk) {
 		_entry.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the entry id of this entry.
+	*
+	* @return the entry id of this entry
+	*/
 	public long getEntryId() {
 		return _entry.getEntryId();
 	}
 
+	/**
+	* Sets the entry id of this entry.
+	*
+	* @param entryId the entry id of this entry
+	*/
 	public void setEntryId(long entryId) {
 		_entry.setEntryId(entryId);
 	}
 
+	/**
+	* Gets the create date of this entry.
+	*
+	* @return the create date of this entry
+	*/
 	public long getCreateDate() {
 		return _entry.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this entry.
+	*
+	* @param createDate the create date of this entry
+	*/
 	public void setCreateDate(long createDate) {
 		_entry.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the from user id of this entry.
+	*
+	* @return the from user id of this entry
+	*/
 	public long getFromUserId() {
 		return _entry.getFromUserId();
 	}
 
+	/**
+	* Sets the from user id of this entry.
+	*
+	* @param fromUserId the from user id of this entry
+	*/
 	public void setFromUserId(long fromUserId) {
 		_entry.setFromUserId(fromUserId);
 	}
 
+	/**
+	* Gets the from user uuid of this entry.
+	*
+	* @return the from user uuid of this entry
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getFromUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entry.getFromUserUuid();
 	}
 
+	/**
+	* Sets the from user uuid of this entry.
+	*
+	* @param fromUserUuid the from user uuid of this entry
+	*/
 	public void setFromUserUuid(java.lang.String fromUserUuid) {
 		_entry.setFromUserUuid(fromUserUuid);
 	}
 
+	/**
+	* Gets the to user id of this entry.
+	*
+	* @return the to user id of this entry
+	*/
 	public long getToUserId() {
 		return _entry.getToUserId();
 	}
 
+	/**
+	* Sets the to user id of this entry.
+	*
+	* @param toUserId the to user id of this entry
+	*/
 	public void setToUserId(long toUserId) {
 		_entry.setToUserId(toUserId);
 	}
 
+	/**
+	* Gets the to user uuid of this entry.
+	*
+	* @return the to user uuid of this entry
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getToUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _entry.getToUserUuid();
 	}
 
+	/**
+	* Sets the to user uuid of this entry.
+	*
+	* @param toUserUuid the to user uuid of this entry
+	*/
 	public void setToUserUuid(java.lang.String toUserUuid) {
 		_entry.setToUserUuid(toUserUuid);
 	}
 
+	/**
+	* Gets the content of this entry.
+	*
+	* @return the content of this entry
+	*/
 	public java.lang.String getContent() {
 		return _entry.getContent();
 	}
 
+	/**
+	* Sets the content of this entry.
+	*
+	* @param content the content of this entry
+	*/
 	public void setContent(java.lang.String content) {
 		_entry.setContent(content);
-	}
-
-	public com.liferay.chat.model.Entry toEscapedModel() {
-		return _entry.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -145,6 +223,10 @@ public class EntryWrapper implements Entry {
 
 	public int hashCode() {
 		return _entry.hashCode();
+	}
+
+	public com.liferay.chat.model.Entry toEscapedModel() {
+		return _entry.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

@@ -218,18 +218,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		try {
 			session = openSession();
 
-			if (attachment.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(AttachmentImpl.class,
-						attachment.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(attachment);
-
-			session.flush();
+			BatchSessionUtil.delete(session, attachment);
 		}
 		catch (Exception e) {
 			throw processException(e);

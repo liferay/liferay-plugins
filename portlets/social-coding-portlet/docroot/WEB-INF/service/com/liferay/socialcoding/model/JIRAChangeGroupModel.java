@@ -113,14 +113,6 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	 */
 	public void setJiraIssueId(long jiraIssueId);
 
-	/**
-	 * Gets a copy of this j i r a change group as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public JIRAChangeGroup toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -144,6 +136,8 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public int compareTo(JIRAChangeGroup jiraChangeGroup);
 
 	public int hashCode();
+
+	public JIRAChangeGroup toEscapedModel();
 
 	public String toString();
 

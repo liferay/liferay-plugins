@@ -308,9 +308,9 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public boolean getCompleted();
 
 	/**
-	 * Determines whether this kaleo task instance token is completed.
+	 * Determines if this kaleo task instance token is completed.
 	 *
-	 * @return whether this kaleo task instance token is completed
+	 * @return <code>true</code> if this kaleo task instance token is completed; <code>false</code> otherwise
 	 */
 	public boolean isCompleted();
 

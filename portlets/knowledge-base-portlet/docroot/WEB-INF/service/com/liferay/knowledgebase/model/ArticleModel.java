@@ -365,30 +365,30 @@ public interface ArticleModel extends BaseModel<Article> {
 	public boolean getApproved();
 
 	/**
-	 * Determines whether this article is approved.
+	 * Determines if this article is approved.
 	 *
-	 * @return true if this article is approved; false otherwise
+	 * @return <code>true</code> if this article is approved; <code>false</code> otherwise
 	 */
 	public boolean isApproved();
 
 	/**
-	 * Determines whether this article is a draft.
+	 * Determines if this article is a draft.
 	 *
-	 * @return true if this article is a draft; false otherwise
+	 * @return <code>true</code> if this article is a draft; <code>false</code> otherwise
 	 */
 	public boolean isDraft();
 
 	/**
-	 * Determines whether this article is expired.
+	 * Determines if this article is expired.
 	 *
-	 * @return true if this article is expired; false otherwise
+	 * @return <code>true</code> if this article is expired; <code>false</code> otherwise
 	 */
 	public boolean isExpired();
 
 	/**
-	 * Determines whether this article is pending.
+	 * Determines if this article is pending.
 	 *
-	 * @return true if this article is pending; false otherwise
+	 * @return <code>true</code> if this article is pending; <code>false</code> otherwise
 	 */
 	public boolean isPending();
 

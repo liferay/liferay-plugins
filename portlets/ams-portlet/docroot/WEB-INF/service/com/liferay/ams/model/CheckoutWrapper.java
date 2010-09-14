@@ -28,105 +28,222 @@ public class CheckoutWrapper implements Checkout {
 		_checkout = checkout;
 	}
 
+	/**
+	* Gets the primary key of this checkout.
+	*
+	* @return the primary key of this checkout
+	*/
 	public long getPrimaryKey() {
 		return _checkout.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this checkout
+	*
+	* @param pk the primary key of this checkout
+	*/
 	public void setPrimaryKey(long pk) {
 		_checkout.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the checkout id of this checkout.
+	*
+	* @return the checkout id of this checkout
+	*/
 	public long getCheckoutId() {
 		return _checkout.getCheckoutId();
 	}
 
+	/**
+	* Sets the checkout id of this checkout.
+	*
+	* @param checkoutId the checkout id of this checkout
+	*/
 	public void setCheckoutId(long checkoutId) {
 		_checkout.setCheckoutId(checkoutId);
 	}
 
+	/**
+	* Gets the company id of this checkout.
+	*
+	* @return the company id of this checkout
+	*/
 	public long getCompanyId() {
 		return _checkout.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this checkout.
+	*
+	* @param companyId the company id of this checkout
+	*/
 	public void setCompanyId(long companyId) {
 		_checkout.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this checkout.
+	*
+	* @return the user id of this checkout
+	*/
 	public long getUserId() {
 		return _checkout.getUserId();
 	}
 
+	/**
+	* Sets the user id of this checkout.
+	*
+	* @param userId the user id of this checkout
+	*/
 	public void setUserId(long userId) {
 		_checkout.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this checkout.
+	*
+	* @return the user uuid of this checkout
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _checkout.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this checkout.
+	*
+	* @param userUuid the user uuid of this checkout
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_checkout.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this checkout.
+	*
+	* @return the user name of this checkout
+	*/
 	public java.lang.String getUserName() {
 		return _checkout.getUserName();
 	}
 
+	/**
+	* Sets the user name of this checkout.
+	*
+	* @param userName the user name of this checkout
+	*/
 	public void setUserName(java.lang.String userName) {
 		_checkout.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this checkout.
+	*
+	* @return the create date of this checkout
+	*/
 	public java.util.Date getCreateDate() {
 		return _checkout.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this checkout.
+	*
+	* @param createDate the create date of this checkout
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_checkout.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this checkout.
+	*
+	* @return the modified date of this checkout
+	*/
 	public java.util.Date getModifiedDate() {
 		return _checkout.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this checkout.
+	*
+	* @param modifiedDate the modified date of this checkout
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_checkout.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the asset id of this checkout.
+	*
+	* @return the asset id of this checkout
+	*/
 	public long getAssetId() {
 		return _checkout.getAssetId();
 	}
 
+	/**
+	* Sets the asset id of this checkout.
+	*
+	* @param assetId the asset id of this checkout
+	*/
 	public void setAssetId(long assetId) {
 		_checkout.setAssetId(assetId);
 	}
 
+	/**
+	* Gets the check out date of this checkout.
+	*
+	* @return the check out date of this checkout
+	*/
 	public java.util.Date getCheckOutDate() {
 		return _checkout.getCheckOutDate();
 	}
 
+	/**
+	* Sets the check out date of this checkout.
+	*
+	* @param checkOutDate the check out date of this checkout
+	*/
 	public void setCheckOutDate(java.util.Date checkOutDate) {
 		_checkout.setCheckOutDate(checkOutDate);
 	}
 
+	/**
+	* Gets the expected check in date of this checkout.
+	*
+	* @return the expected check in date of this checkout
+	*/
 	public java.util.Date getExpectedCheckInDate() {
 		return _checkout.getExpectedCheckInDate();
 	}
 
+	/**
+	* Sets the expected check in date of this checkout.
+	*
+	* @param expectedCheckInDate the expected check in date of this checkout
+	*/
 	public void setExpectedCheckInDate(java.util.Date expectedCheckInDate) {
 		_checkout.setExpectedCheckInDate(expectedCheckInDate);
 	}
 
+	/**
+	* Gets the actual check in date of this checkout.
+	*
+	* @return the actual check in date of this checkout
+	*/
 	public java.util.Date getActualCheckInDate() {
 		return _checkout.getActualCheckInDate();
 	}
 
+	/**
+	* Sets the actual check in date of this checkout.
+	*
+	* @param actualCheckInDate the actual check in date of this checkout
+	*/
 	public void setActualCheckInDate(java.util.Date actualCheckInDate) {
 		_checkout.setActualCheckInDate(actualCheckInDate);
-	}
-
-	public com.liferay.ams.model.Checkout toEscapedModel() {
-		return _checkout.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -176,6 +293,10 @@ public class CheckoutWrapper implements Checkout {
 
 	public int hashCode() {
 		return _checkout.hashCode();
+	}
+
+	public com.liferay.ams.model.Checkout toEscapedModel() {
+		return _checkout.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

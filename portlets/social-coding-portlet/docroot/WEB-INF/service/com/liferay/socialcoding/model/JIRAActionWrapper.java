@@ -28,80 +28,166 @@ public class JIRAActionWrapper implements JIRAAction {
 		_jiraAction = jiraAction;
 	}
 
+	/**
+	* Gets the primary key of this j i r a action.
+	*
+	* @return the primary key of this j i r a action
+	*/
 	public long getPrimaryKey() {
 		return _jiraAction.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this j i r a action
+	*
+	* @param pk the primary key of this j i r a action
+	*/
 	public void setPrimaryKey(long pk) {
 		_jiraAction.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the jira action id of this j i r a action.
+	*
+	* @return the jira action id of this j i r a action
+	*/
 	public long getJiraActionId() {
 		return _jiraAction.getJiraActionId();
 	}
 
+	/**
+	* Sets the jira action id of this j i r a action.
+	*
+	* @param jiraActionId the jira action id of this j i r a action
+	*/
 	public void setJiraActionId(long jiraActionId) {
 		_jiraAction.setJiraActionId(jiraActionId);
 	}
 
+	/**
+	* Gets the jira user id of this j i r a action.
+	*
+	* @return the jira user id of this j i r a action
+	*/
 	public java.lang.String getJiraUserId() {
 		return _jiraAction.getJiraUserId();
 	}
 
+	/**
+	* Sets the jira user id of this j i r a action.
+	*
+	* @param jiraUserId the jira user id of this j i r a action
+	*/
 	public void setJiraUserId(java.lang.String jiraUserId) {
 		_jiraAction.setJiraUserId(jiraUserId);
 	}
 
+	/**
+	* Gets the create date of this j i r a action.
+	*
+	* @return the create date of this j i r a action
+	*/
 	public java.util.Date getCreateDate() {
 		return _jiraAction.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this j i r a action.
+	*
+	* @param createDate the create date of this j i r a action
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_jiraAction.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this j i r a action.
+	*
+	* @return the modified date of this j i r a action
+	*/
 	public java.util.Date getModifiedDate() {
 		return _jiraAction.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this j i r a action.
+	*
+	* @param modifiedDate the modified date of this j i r a action
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_jiraAction.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the jira issue id of this j i r a action.
+	*
+	* @return the jira issue id of this j i r a action
+	*/
 	public long getJiraIssueId() {
 		return _jiraAction.getJiraIssueId();
 	}
 
+	/**
+	* Sets the jira issue id of this j i r a action.
+	*
+	* @param jiraIssueId the jira issue id of this j i r a action
+	*/
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraAction.setJiraIssueId(jiraIssueId);
 	}
 
+	/**
+	* Gets the type of this j i r a action.
+	*
+	* @return the type of this j i r a action
+	*/
 	public java.lang.String getType() {
 		return _jiraAction.getType();
 	}
 
+	/**
+	* Sets the type of this j i r a action.
+	*
+	* @param type the type of this j i r a action
+	*/
 	public void setType(java.lang.String type) {
 		_jiraAction.setType(type);
 	}
 
+	/**
+	* Gets the body of this j i r a action.
+	*
+	* @return the body of this j i r a action
+	*/
 	public java.lang.String getBody() {
 		return _jiraAction.getBody();
 	}
 
+	/**
+	* Sets the body of this j i r a action.
+	*
+	* @param body the body of this j i r a action
+	*/
 	public void setBody(java.lang.String body) {
 		_jiraAction.setBody(body);
 	}
 
+	/**
+	* Gets the jira group name of this j i r a action.
+	*
+	* @return the jira group name of this j i r a action
+	*/
 	public java.lang.String getJiraGroupName() {
 		return _jiraAction.getJiraGroupName();
 	}
 
+	/**
+	* Sets the jira group name of this j i r a action.
+	*
+	* @param jiraGroupName the jira group name of this j i r a action
+	*/
 	public void setJiraGroupName(java.lang.String jiraGroupName) {
 		_jiraAction.setJiraGroupName(jiraGroupName);
-	}
-
-	public com.liferay.socialcoding.model.JIRAAction toEscapedModel() {
-		return _jiraAction.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -151,6 +237,10 @@ public class JIRAActionWrapper implements JIRAAction {
 
 	public int hashCode() {
 		return _jiraAction.hashCode();
+	}
+
+	public com.liferay.socialcoding.model.JIRAAction toEscapedModel() {
+		return _jiraAction.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

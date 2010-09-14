@@ -590,11 +590,11 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines whether the kaleo task assignment instance is associated with the kaleo task instance token.
+	* Determines if the kaleo task assignment instance is associated with the kaleo task instance token.
 	*
 	* @param pk the primary key of the kaleo task instance token
 	* @param kaleoTaskAssignmentInstancePK the primary key of the kaleo task assignment instance
-	* @return whether the kaleo task assignment instance is associated with the kaleo task instance token
+	* @return <code>true</code> if the kaleo task assignment instance is associated with the kaleo task instance token; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public boolean containsKaleoTaskAssignmentInstance(long pk,
@@ -602,10 +602,10 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Determines whether the kaleo task instance token has any kaleo task assignment instances associated with it.
+	* Determines if the kaleo task instance token has any kaleo task assignment instances associated with it.
 	*
 	* @param pk the primary key of the kaleo task instance token to check for associations with kaleo task assignment instances
-	* @return whether the kaleo task instance token has any kaleo task assignment instances associated with it
+	* @return <code>true</code> if the kaleo task instance token has any kaleo task assignment instances associated with it; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public boolean containsKaleoTaskAssignmentInstances(long pk)

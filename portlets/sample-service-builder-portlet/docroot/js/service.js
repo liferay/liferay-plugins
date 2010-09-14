@@ -1,1 +1,1 @@
-Liferay.Service.register("Liferay.Service.SSB", "com.liferay.sampleservicebuilder.service");
+Liferay.Service.register("Liferay.Service.SSB", "com.liferay.sampleservicebuilder.service", "sample-service-builder-portlet");

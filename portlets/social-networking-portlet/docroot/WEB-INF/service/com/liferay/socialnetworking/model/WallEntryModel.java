@@ -186,14 +186,6 @@ public interface WallEntryModel extends BaseModel<WallEntry> {
 	 */
 	public void setComments(String comments);
 
-	/**
-	 * Gets a copy of this wall entry as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public WallEntry toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -217,6 +209,8 @@ public interface WallEntryModel extends BaseModel<WallEntry> {
 	public int compareTo(WallEntry wallEntry);
 
 	public int hashCode();
+
+	public WallEntry toEscapedModel();
 
 	public String toString();
 

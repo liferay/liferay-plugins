@@ -28,130 +28,278 @@ public class MemberRequestWrapper implements MemberRequest {
 		_memberRequest = memberRequest;
 	}
 
+	/**
+	* Gets the primary key of this member request.
+	*
+	* @return the primary key of this member request
+	*/
 	public long getPrimaryKey() {
 		return _memberRequest.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this member request
+	*
+	* @param pk the primary key of this member request
+	*/
 	public void setPrimaryKey(long pk) {
 		_memberRequest.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the member request id of this member request.
+	*
+	* @return the member request id of this member request
+	*/
 	public long getMemberRequestId() {
 		return _memberRequest.getMemberRequestId();
 	}
 
+	/**
+	* Sets the member request id of this member request.
+	*
+	* @param memberRequestId the member request id of this member request
+	*/
 	public void setMemberRequestId(long memberRequestId) {
 		_memberRequest.setMemberRequestId(memberRequestId);
 	}
 
+	/**
+	* Gets the group id of this member request.
+	*
+	* @return the group id of this member request
+	*/
 	public long getGroupId() {
 		return _memberRequest.getGroupId();
 	}
 
+	/**
+	* Sets the group id of this member request.
+	*
+	* @param groupId the group id of this member request
+	*/
 	public void setGroupId(long groupId) {
 		_memberRequest.setGroupId(groupId);
 	}
 
+	/**
+	* Gets the company id of this member request.
+	*
+	* @return the company id of this member request
+	*/
 	public long getCompanyId() {
 		return _memberRequest.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this member request.
+	*
+	* @param companyId the company id of this member request
+	*/
 	public void setCompanyId(long companyId) {
 		_memberRequest.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this member request.
+	*
+	* @return the user id of this member request
+	*/
 	public long getUserId() {
 		return _memberRequest.getUserId();
 	}
 
+	/**
+	* Sets the user id of this member request.
+	*
+	* @param userId the user id of this member request
+	*/
 	public void setUserId(long userId) {
 		_memberRequest.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this member request.
+	*
+	* @return the user uuid of this member request
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequest.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this member request.
+	*
+	* @param userUuid the user uuid of this member request
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_memberRequest.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this member request.
+	*
+	* @return the user name of this member request
+	*/
 	public java.lang.String getUserName() {
 		return _memberRequest.getUserName();
 	}
 
+	/**
+	* Sets the user name of this member request.
+	*
+	* @param userName the user name of this member request
+	*/
 	public void setUserName(java.lang.String userName) {
 		_memberRequest.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this member request.
+	*
+	* @return the create date of this member request
+	*/
 	public java.util.Date getCreateDate() {
 		return _memberRequest.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this member request.
+	*
+	* @param createDate the create date of this member request
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_memberRequest.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this member request.
+	*
+	* @return the modified date of this member request
+	*/
 	public java.util.Date getModifiedDate() {
 		return _memberRequest.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this member request.
+	*
+	* @param modifiedDate the modified date of this member request
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_memberRequest.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the key of this member request.
+	*
+	* @return the key of this member request
+	*/
 	public java.lang.String getKey() {
 		return _memberRequest.getKey();
 	}
 
+	/**
+	* Sets the key of this member request.
+	*
+	* @param key the key of this member request
+	*/
 	public void setKey(java.lang.String key) {
 		_memberRequest.setKey(key);
 	}
 
+	/**
+	* Gets the receiver user id of this member request.
+	*
+	* @return the receiver user id of this member request
+	*/
 	public long getReceiverUserId() {
 		return _memberRequest.getReceiverUserId();
 	}
 
+	/**
+	* Sets the receiver user id of this member request.
+	*
+	* @param receiverUserId the receiver user id of this member request
+	*/
 	public void setReceiverUserId(long receiverUserId) {
 		_memberRequest.setReceiverUserId(receiverUserId);
 	}
 
+	/**
+	* Gets the receiver user uuid of this member request.
+	*
+	* @return the receiver user uuid of this member request
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getReceiverUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _memberRequest.getReceiverUserUuid();
 	}
 
+	/**
+	* Sets the receiver user uuid of this member request.
+	*
+	* @param receiverUserUuid the receiver user uuid of this member request
+	*/
 	public void setReceiverUserUuid(java.lang.String receiverUserUuid) {
 		_memberRequest.setReceiverUserUuid(receiverUserUuid);
 	}
 
+	/**
+	* Gets the invited role id of this member request.
+	*
+	* @return the invited role id of this member request
+	*/
 	public long getInvitedRoleId() {
 		return _memberRequest.getInvitedRoleId();
 	}
 
+	/**
+	* Sets the invited role id of this member request.
+	*
+	* @param invitedRoleId the invited role id of this member request
+	*/
 	public void setInvitedRoleId(long invitedRoleId) {
 		_memberRequest.setInvitedRoleId(invitedRoleId);
 	}
 
+	/**
+	* Gets the invited team id of this member request.
+	*
+	* @return the invited team id of this member request
+	*/
 	public long getInvitedTeamId() {
 		return _memberRequest.getInvitedTeamId();
 	}
 
+	/**
+	* Sets the invited team id of this member request.
+	*
+	* @param invitedTeamId the invited team id of this member request
+	*/
 	public void setInvitedTeamId(long invitedTeamId) {
 		_memberRequest.setInvitedTeamId(invitedTeamId);
 	}
 
+	/**
+	* Gets the status of this member request.
+	*
+	* @return the status of this member request
+	*/
 	public int getStatus() {
 		return _memberRequest.getStatus();
 	}
 
+	/**
+	* Sets the status of this member request.
+	*
+	* @param status the status of this member request
+	*/
 	public void setStatus(int status) {
 		_memberRequest.setStatus(status);
-	}
-
-	public com.liferay.so.model.MemberRequest toEscapedModel() {
-		return _memberRequest.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -201,6 +349,10 @@ public class MemberRequestWrapper implements MemberRequest {
 
 	public int hashCode() {
 		return _memberRequest.hashCode();
+	}
+
+	public com.liferay.so.model.MemberRequest toEscapedModel() {
+		return _memberRequest.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

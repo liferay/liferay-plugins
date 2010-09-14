@@ -200,14 +200,6 @@ public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration>
 	 */
 	public void setComments(String comments);
 
-	/**
-	 * Gets a copy of this meetups registration as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public MeetupsRegistration toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -231,6 +223,8 @@ public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration>
 	public int compareTo(MeetupsRegistration meetupsRegistration);
 
 	public int hashCode();
+
+	public MeetupsRegistration toEscapedModel();
 
 	public String toString();
 

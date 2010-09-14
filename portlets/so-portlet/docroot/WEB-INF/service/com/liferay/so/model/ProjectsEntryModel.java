@@ -230,14 +230,6 @@ public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
 	 */
 	public void setData(String data);
 
-	/**
-	 * Gets a copy of this projects entry as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public ProjectsEntry toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -261,6 +253,8 @@ public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
 	public int compareTo(ProjectsEntry projectsEntry);
 
 	public int hashCode();
+
+	public ProjectsEntry toEscapedModel();
 
 	public String toString();
 

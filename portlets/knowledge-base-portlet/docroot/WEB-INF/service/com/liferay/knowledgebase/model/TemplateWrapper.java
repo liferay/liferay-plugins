@@ -28,107 +28,238 @@ public class TemplateWrapper implements Template {
 		_template = template;
 	}
 
+	/**
+	* Gets the primary key of this template.
+	*
+	* @return the primary key of this template
+	*/
 	public long getPrimaryKey() {
 		return _template.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this template
+	*
+	* @param pk the primary key of this template
+	*/
 	public void setPrimaryKey(long pk) {
 		_template.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the uuid of this template.
+	*
+	* @return the uuid of this template
+	*/
 	public java.lang.String getUuid() {
 		return _template.getUuid();
 	}
 
+	/**
+	* Sets the uuid of this template.
+	*
+	* @param uuid the uuid of this template
+	*/
 	public void setUuid(java.lang.String uuid) {
 		_template.setUuid(uuid);
 	}
 
+	/**
+	* Gets the template id of this template.
+	*
+	* @return the template id of this template
+	*/
 	public long getTemplateId() {
 		return _template.getTemplateId();
 	}
 
+	/**
+	* Sets the template id of this template.
+	*
+	* @param templateId the template id of this template
+	*/
 	public void setTemplateId(long templateId) {
 		_template.setTemplateId(templateId);
 	}
 
+	/**
+	* Gets the group id of this template.
+	*
+	* @return the group id of this template
+	*/
 	public long getGroupId() {
 		return _template.getGroupId();
 	}
 
+	/**
+	* Sets the group id of this template.
+	*
+	* @param groupId the group id of this template
+	*/
 	public void setGroupId(long groupId) {
 		_template.setGroupId(groupId);
 	}
 
+	/**
+	* Gets the company id of this template.
+	*
+	* @return the company id of this template
+	*/
 	public long getCompanyId() {
 		return _template.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this template.
+	*
+	* @param companyId the company id of this template
+	*/
 	public void setCompanyId(long companyId) {
 		_template.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this template.
+	*
+	* @return the user id of this template
+	*/
 	public long getUserId() {
 		return _template.getUserId();
 	}
 
+	/**
+	* Sets the user id of this template.
+	*
+	* @param userId the user id of this template
+	*/
 	public void setUserId(long userId) {
 		_template.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this template.
+	*
+	* @return the user uuid of this template
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _template.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this template.
+	*
+	* @param userUuid the user uuid of this template
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_template.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this template.
+	*
+	* @return the user name of this template
+	*/
 	public java.lang.String getUserName() {
 		return _template.getUserName();
 	}
 
+	/**
+	* Sets the user name of this template.
+	*
+	* @param userName the user name of this template
+	*/
 	public void setUserName(java.lang.String userName) {
 		_template.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this template.
+	*
+	* @return the create date of this template
+	*/
 	public java.util.Date getCreateDate() {
 		return _template.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this template.
+	*
+	* @param createDate the create date of this template
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_template.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this template.
+	*
+	* @return the modified date of this template
+	*/
 	public java.util.Date getModifiedDate() {
 		return _template.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this template.
+	*
+	* @param modifiedDate the modified date of this template
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_template.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the title of this template.
+	*
+	* @return the title of this template
+	*/
 	public java.lang.String getTitle() {
 		return _template.getTitle();
 	}
 
+	/**
+	* Sets the title of this template.
+	*
+	* @param title the title of this template
+	*/
 	public void setTitle(java.lang.String title) {
 		_template.setTitle(title);
 	}
 
+	/**
+	* Gets the content of this template.
+	*
+	* @return the content of this template
+	*/
 	public java.lang.String getContent() {
 		return _template.getContent();
 	}
 
+	/**
+	* Sets the content of this template.
+	*
+	* @param content the content of this template
+	*/
 	public void setContent(java.lang.String content) {
 		_template.setContent(content);
 	}
 
+	/**
+	* Gets the description of this template.
+	*
+	* @return the description of this template
+	*/
 	public java.lang.String getDescription() {
 		return _template.getDescription();
 	}
 
+	/**
+	* Sets the description of this template.
+	*
+	* @param description the description of this template
+	*/
 	public void setDescription(java.lang.String description) {
 		_template.setDescription(description);
 	}

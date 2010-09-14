@@ -201,18 +201,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		try {
 			session = openSession();
 
-			if (asset.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(AssetImpl.class,
-						asset.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(asset);
-
-			session.flush();
+			BatchSessionUtil.delete(session, asset);
 		}
 		catch (Exception e) {
 			throw processException(e);

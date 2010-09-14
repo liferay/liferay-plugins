@@ -224,18 +224,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		try {
 			session = openSession();
 
-			if (svnRepository.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(SVNRepositoryImpl.class,
-						svnRepository.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(svnRepository);
-
-			session.flush();
+			BatchSessionUtil.delete(session, svnRepository);
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -1025,11 +1025,11 @@ public class KaleoDefinitionUtil {
 	}
 
 	/**
-	* Determines whether the kaleo node is associated with the kaleo definition.
+	* Determines if the kaleo node is associated with the kaleo definition.
 	*
 	* @param pk the primary key of the kaleo definition
 	* @param kaleoNodePK the primary key of the kaleo node
-	* @return whether the kaleo node is associated with the kaleo definition
+	* @return <code>true</code> if the kaleo node is associated with the kaleo definition; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoNode(long pk, long kaleoNodePK)
@@ -1038,10 +1038,10 @@ public class KaleoDefinitionUtil {
 	}
 
 	/**
-	* Determines whether the kaleo definition has any kaleo nodes associated with it.
+	* Determines if the kaleo definition has any kaleo nodes associated with it.
 	*
 	* @param pk the primary key of the kaleo definition to check for associations with kaleo nodes
-	* @return whether the kaleo definition has any kaleo nodes associated with it
+	* @return <code>true</code> if the kaleo definition has any kaleo nodes associated with it; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoNodes(long pk)

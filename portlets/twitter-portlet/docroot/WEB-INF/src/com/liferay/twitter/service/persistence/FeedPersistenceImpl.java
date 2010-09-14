@@ -227,18 +227,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		try {
 			session = openSession();
 
-			if (feed.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(FeedImpl.class,
-						feed.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(feed);
-
-			session.flush();
+			BatchSessionUtil.delete(session, feed);
 		}
 		catch (Exception e) {
 			throw processException(e);

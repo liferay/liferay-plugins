@@ -254,18 +254,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		try {
 			session = openSession();
 
-			if (status.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(StatusImpl.class,
-						status.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(status);
-
-			session.flush();
+			BatchSessionUtil.delete(session, status);
 		}
 		catch (Exception e) {
 			throw processException(e);

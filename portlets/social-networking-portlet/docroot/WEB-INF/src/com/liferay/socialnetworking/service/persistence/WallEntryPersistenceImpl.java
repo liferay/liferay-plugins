@@ -243,18 +243,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		try {
 			session = openSession();
 
-			if (wallEntry.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(WallEntryImpl.class,
-						wallEntry.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(wallEntry);
-
-			session.flush();
+			BatchSessionUtil.delete(session, wallEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);

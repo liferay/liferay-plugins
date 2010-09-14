@@ -264,9 +264,9 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public boolean getTerminalKaleoNode();
 
 	/**
-	 * Determines whether this kaleo log is terminal kaleo node.
+	 * Determines if this kaleo log is terminal kaleo node.
 	 *
-	 * @return whether this kaleo log is terminal kaleo node
+	 * @return <code>true</code> if this kaleo log is terminal kaleo node; <code>false</code> otherwise
 	 */
 	public boolean isTerminalKaleoNode();
 

@@ -244,9 +244,9 @@ public interface CommentModel extends BaseModel<Comment> {
 	public boolean getHelpful();
 
 	/**
-	 * Determines whether this comment is helpful.
+	 * Determines if this comment is helpful.
 	 *
-	 * @return whether this comment is helpful
+	 * @return <code>true</code> if this comment is helpful; <code>false</code> otherwise
 	 */
 	public boolean isHelpful();
 

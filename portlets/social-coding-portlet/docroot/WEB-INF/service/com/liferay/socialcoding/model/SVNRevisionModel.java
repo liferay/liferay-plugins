@@ -142,14 +142,6 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	 */
 	public void setComments(String comments);
 
-	/**
-	 * Gets a copy of this s v n revision as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public SVNRevision toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -173,6 +165,8 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public int compareTo(SVNRevision svnRevision);
 
 	public int hashCode();
+
+	public SVNRevision toEscapedModel();
 
 	public String toString();
 

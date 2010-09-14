@@ -691,11 +691,11 @@ public class KaleoTaskUtil {
 	}
 
 	/**
-	* Determines whether the kaleo task assignment is associated with the kaleo task.
+	* Determines if the kaleo task assignment is associated with the kaleo task.
 	*
 	* @param pk the primary key of the kaleo task
 	* @param kaleoTaskAssignmentPK the primary key of the kaleo task assignment
-	* @return whether the kaleo task assignment is associated with the kaleo task
+	* @return <code>true</code> if the kaleo task assignment is associated with the kaleo task; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoTaskAssignment(long pk,
@@ -706,10 +706,10 @@ public class KaleoTaskUtil {
 	}
 
 	/**
-	* Determines whether the kaleo task has any kaleo task assignments associated with it.
+	* Determines if the kaleo task has any kaleo task assignments associated with it.
 	*
 	* @param pk the primary key of the kaleo task to check for associations with kaleo task assignments
-	* @return whether the kaleo task has any kaleo task assignments associated with it
+	* @return <code>true</code> if the kaleo task has any kaleo task assignments associated with it; <code>false</code> otherwise
 	* @throws SystemException if a system exception occurred
 	*/
 	public static boolean containsKaleoTaskAssignments(long pk)

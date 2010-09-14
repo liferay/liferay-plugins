@@ -235,19 +235,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		try {
 			session = openSession();
 
-			if (jiraChangeGroup.isCachedModel() ||
-					BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(JIRAChangeGroupImpl.class,
-						jiraChangeGroup.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(jiraChangeGroup);
-
-			session.flush();
+			BatchSessionUtil.delete(session, jiraChangeGroup);
 		}
 		catch (Exception e) {
 			throw processException(e);

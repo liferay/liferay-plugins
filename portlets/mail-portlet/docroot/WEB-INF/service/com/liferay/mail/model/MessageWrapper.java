@@ -28,177 +28,384 @@ public class MessageWrapper implements Message {
 		_message = message;
 	}
 
+	/**
+	* Gets the primary key of this message.
+	*
+	* @return the primary key of this message
+	*/
 	public long getPrimaryKey() {
 		return _message.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this message
+	*
+	* @param pk the primary key of this message
+	*/
 	public void setPrimaryKey(long pk) {
 		_message.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the message id of this message.
+	*
+	* @return the message id of this message
+	*/
 	public long getMessageId() {
 		return _message.getMessageId();
 	}
 
+	/**
+	* Sets the message id of this message.
+	*
+	* @param messageId the message id of this message
+	*/
 	public void setMessageId(long messageId) {
 		_message.setMessageId(messageId);
 	}
 
+	/**
+	* Gets the company id of this message.
+	*
+	* @return the company id of this message
+	*/
 	public long getCompanyId() {
 		return _message.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this message.
+	*
+	* @param companyId the company id of this message
+	*/
 	public void setCompanyId(long companyId) {
 		_message.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this message.
+	*
+	* @return the user id of this message
+	*/
 	public long getUserId() {
 		return _message.getUserId();
 	}
 
+	/**
+	* Sets the user id of this message.
+	*
+	* @param userId the user id of this message
+	*/
 	public void setUserId(long userId) {
 		_message.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this message.
+	*
+	* @return the user uuid of this message
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _message.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this message.
+	*
+	* @param userUuid the user uuid of this message
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_message.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this message.
+	*
+	* @return the user name of this message
+	*/
 	public java.lang.String getUserName() {
 		return _message.getUserName();
 	}
 
+	/**
+	* Sets the user name of this message.
+	*
+	* @param userName the user name of this message
+	*/
 	public void setUserName(java.lang.String userName) {
 		_message.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this message.
+	*
+	* @return the create date of this message
+	*/
 	public java.util.Date getCreateDate() {
 		return _message.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this message.
+	*
+	* @param createDate the create date of this message
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_message.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this message.
+	*
+	* @return the modified date of this message
+	*/
 	public java.util.Date getModifiedDate() {
 		return _message.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this message.
+	*
+	* @param modifiedDate the modified date of this message
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_message.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the account id of this message.
+	*
+	* @return the account id of this message
+	*/
 	public long getAccountId() {
 		return _message.getAccountId();
 	}
 
+	/**
+	* Sets the account id of this message.
+	*
+	* @param accountId the account id of this message
+	*/
 	public void setAccountId(long accountId) {
 		_message.setAccountId(accountId);
 	}
 
+	/**
+	* Gets the folder id of this message.
+	*
+	* @return the folder id of this message
+	*/
 	public long getFolderId() {
 		return _message.getFolderId();
 	}
 
+	/**
+	* Sets the folder id of this message.
+	*
+	* @param folderId the folder id of this message
+	*/
 	public void setFolderId(long folderId) {
 		_message.setFolderId(folderId);
 	}
 
+	/**
+	* Gets the sender of this message.
+	*
+	* @return the sender of this message
+	*/
 	public java.lang.String getSender() {
 		return _message.getSender();
 	}
 
+	/**
+	* Sets the sender of this message.
+	*
+	* @param sender the sender of this message
+	*/
 	public void setSender(java.lang.String sender) {
 		_message.setSender(sender);
 	}
 
+	/**
+	* Gets the to of this message.
+	*
+	* @return the to of this message
+	*/
 	public java.lang.String getTo() {
 		return _message.getTo();
 	}
 
+	/**
+	* Sets the to of this message.
+	*
+	* @param to the to of this message
+	*/
 	public void setTo(java.lang.String to) {
 		_message.setTo(to);
 	}
 
+	/**
+	* Gets the cc of this message.
+	*
+	* @return the cc of this message
+	*/
 	public java.lang.String getCc() {
 		return _message.getCc();
 	}
 
+	/**
+	* Sets the cc of this message.
+	*
+	* @param cc the cc of this message
+	*/
 	public void setCc(java.lang.String cc) {
 		_message.setCc(cc);
 	}
 
+	/**
+	* Gets the bcc of this message.
+	*
+	* @return the bcc of this message
+	*/
 	public java.lang.String getBcc() {
 		return _message.getBcc();
 	}
 
+	/**
+	* Sets the bcc of this message.
+	*
+	* @param bcc the bcc of this message
+	*/
 	public void setBcc(java.lang.String bcc) {
 		_message.setBcc(bcc);
 	}
 
+	/**
+	* Gets the sent date of this message.
+	*
+	* @return the sent date of this message
+	*/
 	public java.util.Date getSentDate() {
 		return _message.getSentDate();
 	}
 
+	/**
+	* Sets the sent date of this message.
+	*
+	* @param sentDate the sent date of this message
+	*/
 	public void setSentDate(java.util.Date sentDate) {
 		_message.setSentDate(sentDate);
 	}
 
+	/**
+	* Gets the subject of this message.
+	*
+	* @return the subject of this message
+	*/
 	public java.lang.String getSubject() {
 		return _message.getSubject();
 	}
 
+	/**
+	* Sets the subject of this message.
+	*
+	* @param subject the subject of this message
+	*/
 	public void setSubject(java.lang.String subject) {
 		_message.setSubject(subject);
 	}
 
+	/**
+	* Gets the preview of this message.
+	*
+	* @return the preview of this message
+	*/
 	public java.lang.String getPreview() {
 		return _message.getPreview();
 	}
 
+	/**
+	* Sets the preview of this message.
+	*
+	* @param preview the preview of this message
+	*/
 	public void setPreview(java.lang.String preview) {
 		_message.setPreview(preview);
 	}
 
+	/**
+	* Gets the body of this message.
+	*
+	* @return the body of this message
+	*/
 	public java.lang.String getBody() {
 		return _message.getBody();
 	}
 
+	/**
+	* Sets the body of this message.
+	*
+	* @param body the body of this message
+	*/
 	public void setBody(java.lang.String body) {
 		_message.setBody(body);
 	}
 
+	/**
+	* Gets the flags of this message.
+	*
+	* @return the flags of this message
+	*/
 	public java.lang.String getFlags() {
 		return _message.getFlags();
 	}
 
+	/**
+	* Sets the flags of this message.
+	*
+	* @param flags the flags of this message
+	*/
 	public void setFlags(java.lang.String flags) {
 		_message.setFlags(flags);
 	}
 
+	/**
+	* Gets the size of this message.
+	*
+	* @return the size of this message
+	*/
 	public long getSize() {
 		return _message.getSize();
 	}
 
+	/**
+	* Sets the size of this message.
+	*
+	* @param size the size of this message
+	*/
 	public void setSize(long size) {
 		_message.setSize(size);
 	}
 
+	/**
+	* Gets the remote message id of this message.
+	*
+	* @return the remote message id of this message
+	*/
 	public long getRemoteMessageId() {
 		return _message.getRemoteMessageId();
 	}
 
+	/**
+	* Sets the remote message id of this message.
+	*
+	* @param remoteMessageId the remote message id of this message
+	*/
 	public void setRemoteMessageId(long remoteMessageId) {
 		_message.setRemoteMessageId(remoteMessageId);
-	}
-
-	public com.liferay.mail.model.Message toEscapedModel() {
-		return _message.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -248,6 +455,10 @@ public class MessageWrapper implements Message {
 
 	public int hashCode() {
 		return _message.hashCode();
+	}
+
+	public com.liferay.mail.model.Message toEscapedModel() {
+		return _message.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

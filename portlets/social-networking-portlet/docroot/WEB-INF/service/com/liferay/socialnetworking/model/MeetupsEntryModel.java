@@ -271,14 +271,6 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 	 */
 	public void setThumbnailId(long thumbnailId);
 
-	/**
-	 * Gets a copy of this meetups entry as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public MeetupsEntry toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -302,6 +294,8 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 	public int compareTo(MeetupsEntry meetupsEntry);
 
 	public int hashCode();
+
+	public MeetupsEntry toEscapedModel();
 
 	public String toString();
 

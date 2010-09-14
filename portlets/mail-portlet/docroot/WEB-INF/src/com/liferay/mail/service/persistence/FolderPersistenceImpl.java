@@ -233,18 +233,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		try {
 			session = openSession();
 
-			if (folder.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(FolderImpl.class,
-						folder.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(folder);
-
-			session.flush();
+			BatchSessionUtil.delete(session, folder);
 		}
 		catch (Exception e) {
 			throw processException(e);

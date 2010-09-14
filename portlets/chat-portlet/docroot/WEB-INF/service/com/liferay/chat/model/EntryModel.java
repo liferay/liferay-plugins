@@ -156,14 +156,6 @@ public interface EntryModel extends BaseModel<Entry> {
 	 */
 	public void setContent(String content);
 
-	/**
-	 * Gets a copy of this entry as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Entry toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -187,6 +179,8 @@ public interface EntryModel extends BaseModel<Entry> {
 	public int compareTo(Entry entry);
 
 	public int hashCode();
+
+	public Entry toEscapedModel();
 
 	public String toString();
 

@@ -222,18 +222,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		try {
 			session = openSession();
 
-			if (projectsEntry.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(ProjectsEntryImpl.class,
-						projectsEntry.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(projectsEntry);
-
-			session.flush();
+			BatchSessionUtil.delete(session, projectsEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);

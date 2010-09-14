@@ -142,14 +142,6 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	 */
 	public void setUrl(String url);
 
-	/**
-	 * Gets a copy of this gadget as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Gadget toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -173,6 +165,8 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	public int compareTo(Gadget gadget);
 
 	public int hashCode();
+
+	public Gadget toEscapedModel();
 
 	public String toString();
 

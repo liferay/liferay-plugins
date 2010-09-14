@@ -214,18 +214,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		try {
 			session = openSession();
 
-			if (foo.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(FooImpl.class,
-						foo.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(foo);
-
-			session.flush();
+			BatchSessionUtil.delete(session, foo);
 		}
 		catch (Exception e) {
 			throw processException(e);

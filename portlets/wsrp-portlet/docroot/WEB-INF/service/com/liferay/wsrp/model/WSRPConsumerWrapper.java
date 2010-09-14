@@ -28,90 +28,186 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		_wsrpConsumer = wsrpConsumer;
 	}
 
+	/**
+	* Gets the primary key of this w s r p consumer.
+	*
+	* @return the primary key of this w s r p consumer
+	*/
 	public long getPrimaryKey() {
 		return _wsrpConsumer.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this w s r p consumer
+	*
+	* @param pk the primary key of this w s r p consumer
+	*/
 	public void setPrimaryKey(long pk) {
 		_wsrpConsumer.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the wsrp consumer id of this w s r p consumer.
+	*
+	* @return the wsrp consumer id of this w s r p consumer
+	*/
 	public long getWsrpConsumerId() {
 		return _wsrpConsumer.getWsrpConsumerId();
 	}
 
+	/**
+	* Sets the wsrp consumer id of this w s r p consumer.
+	*
+	* @param wsrpConsumerId the wsrp consumer id of this w s r p consumer
+	*/
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumer.setWsrpConsumerId(wsrpConsumerId);
 	}
 
+	/**
+	* Gets the company id of this w s r p consumer.
+	*
+	* @return the company id of this w s r p consumer
+	*/
 	public long getCompanyId() {
 		return _wsrpConsumer.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this w s r p consumer.
+	*
+	* @param companyId the company id of this w s r p consumer
+	*/
 	public void setCompanyId(long companyId) {
 		_wsrpConsumer.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the create date of this w s r p consumer.
+	*
+	* @return the create date of this w s r p consumer
+	*/
 	public java.util.Date getCreateDate() {
 		return _wsrpConsumer.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this w s r p consumer.
+	*
+	* @param createDate the create date of this w s r p consumer
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_wsrpConsumer.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this w s r p consumer.
+	*
+	* @return the modified date of this w s r p consumer
+	*/
 	public java.util.Date getModifiedDate() {
 		return _wsrpConsumer.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this w s r p consumer.
+	*
+	* @param modifiedDate the modified date of this w s r p consumer
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_wsrpConsumer.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the name of this w s r p consumer.
+	*
+	* @return the name of this w s r p consumer
+	*/
 	public java.lang.String getName() {
 		return _wsrpConsumer.getName();
 	}
 
+	/**
+	* Sets the name of this w s r p consumer.
+	*
+	* @param name the name of this w s r p consumer
+	*/
 	public void setName(java.lang.String name) {
 		_wsrpConsumer.setName(name);
 	}
 
+	/**
+	* Gets the url of this w s r p consumer.
+	*
+	* @return the url of this w s r p consumer
+	*/
 	public java.lang.String getUrl() {
 		return _wsrpConsumer.getUrl();
 	}
 
+	/**
+	* Sets the url of this w s r p consumer.
+	*
+	* @param url the url of this w s r p consumer
+	*/
 	public void setUrl(java.lang.String url) {
 		_wsrpConsumer.setUrl(url);
 	}
 
+	/**
+	* Gets the wsdl of this w s r p consumer.
+	*
+	* @return the wsdl of this w s r p consumer
+	*/
 	public java.lang.String getWsdl() {
 		return _wsrpConsumer.getWsdl();
 	}
 
+	/**
+	* Sets the wsdl of this w s r p consumer.
+	*
+	* @param wsdl the wsdl of this w s r p consumer
+	*/
 	public void setWsdl(java.lang.String wsdl) {
 		_wsrpConsumer.setWsdl(wsdl);
 	}
 
+	/**
+	* Gets the registration context string of this w s r p consumer.
+	*
+	* @return the registration context string of this w s r p consumer
+	*/
 	public java.lang.String getRegistrationContextString() {
 		return _wsrpConsumer.getRegistrationContextString();
 	}
 
+	/**
+	* Sets the registration context string of this w s r p consumer.
+	*
+	* @param registrationContextString the registration context string of this w s r p consumer
+	*/
 	public void setRegistrationContextString(
 		java.lang.String registrationContextString) {
 		_wsrpConsumer.setRegistrationContextString(registrationContextString);
 	}
 
+	/**
+	* Gets the registration properties string of this w s r p consumer.
+	*
+	* @return the registration properties string of this w s r p consumer
+	*/
 	public java.lang.String getRegistrationPropertiesString() {
 		return _wsrpConsumer.getRegistrationPropertiesString();
 	}
 
+	/**
+	* Sets the registration properties string of this w s r p consumer.
+	*
+	* @param registrationPropertiesString the registration properties string of this w s r p consumer
+	*/
 	public void setRegistrationPropertiesString(
 		java.lang.String registrationPropertiesString) {
 		_wsrpConsumer.setRegistrationPropertiesString(registrationPropertiesString);
-	}
-
-	public com.liferay.wsrp.model.WSRPConsumer toEscapedModel() {
-		return _wsrpConsumer.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -161,6 +257,10 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 
 	public int hashCode() {
 		return _wsrpConsumer.hashCode();
+	}
+
+	public com.liferay.wsrp.model.WSRPConsumer toEscapedModel() {
+		return _wsrpConsumer.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

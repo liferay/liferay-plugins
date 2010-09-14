@@ -208,9 +208,9 @@ public interface AssetModel extends BaseModel<Asset> {
 	public boolean getActive();
 
 	/**
-	 * Determines whether this asset is active.
+	 * Determines if this asset is active.
 	 *
-	 * @return whether this asset is active
+	 * @return <code>true</code> if this asset is active; <code>false</code> otherwise
 	 */
 	public boolean isActive();
 
@@ -220,14 +220,6 @@ public interface AssetModel extends BaseModel<Asset> {
 	 * @param active the active of this asset
 	 */
 	public void setActive(boolean active);
-
-	/**
-	 * Gets a copy of this asset as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Asset toEscapedModel();
 
 	public boolean isNew();
 
@@ -252,6 +244,8 @@ public interface AssetModel extends BaseModel<Asset> {
 	public int compareTo(Asset asset);
 
 	public int hashCode();
+
+	public Asset toEscapedModel();
 
 	public String toString();
 

@@ -28,115 +28,256 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment = kaleoTaskAssignment;
 	}
 
+	/**
+	* Gets the primary key of this kaleo task assignment.
+	*
+	* @return the primary key of this kaleo task assignment
+	*/
 	public long getPrimaryKey() {
 		return _kaleoTaskAssignment.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this kaleo task assignment
+	*
+	* @param pk the primary key of this kaleo task assignment
+	*/
 	public void setPrimaryKey(long pk) {
 		_kaleoTaskAssignment.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the kaleo task assignment id of this kaleo task assignment.
+	*
+	* @return the kaleo task assignment id of this kaleo task assignment
+	*/
 	public long getKaleoTaskAssignmentId() {
 		return _kaleoTaskAssignment.getKaleoTaskAssignmentId();
 	}
 
+	/**
+	* Sets the kaleo task assignment id of this kaleo task assignment.
+	*
+	* @param kaleoTaskAssignmentId the kaleo task assignment id of this kaleo task assignment
+	*/
 	public void setKaleoTaskAssignmentId(long kaleoTaskAssignmentId) {
 		_kaleoTaskAssignment.setKaleoTaskAssignmentId(kaleoTaskAssignmentId);
 	}
 
+	/**
+	* Gets the group id of this kaleo task assignment.
+	*
+	* @return the group id of this kaleo task assignment
+	*/
 	public long getGroupId() {
 		return _kaleoTaskAssignment.getGroupId();
 	}
 
+	/**
+	* Sets the group id of this kaleo task assignment.
+	*
+	* @param groupId the group id of this kaleo task assignment
+	*/
 	public void setGroupId(long groupId) {
 		_kaleoTaskAssignment.setGroupId(groupId);
 	}
 
+	/**
+	* Gets the company id of this kaleo task assignment.
+	*
+	* @return the company id of this kaleo task assignment
+	*/
 	public long getCompanyId() {
 		return _kaleoTaskAssignment.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this kaleo task assignment.
+	*
+	* @param companyId the company id of this kaleo task assignment
+	*/
 	public void setCompanyId(long companyId) {
 		_kaleoTaskAssignment.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this kaleo task assignment.
+	*
+	* @return the user id of this kaleo task assignment
+	*/
 	public long getUserId() {
 		return _kaleoTaskAssignment.getUserId();
 	}
 
+	/**
+	* Sets the user id of this kaleo task assignment.
+	*
+	* @param userId the user id of this kaleo task assignment
+	*/
 	public void setUserId(long userId) {
 		_kaleoTaskAssignment.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this kaleo task assignment.
+	*
+	* @return the user uuid of this kaleo task assignment
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignment.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this kaleo task assignment.
+	*
+	* @param userUuid the user uuid of this kaleo task assignment
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_kaleoTaskAssignment.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this kaleo task assignment.
+	*
+	* @return the user name of this kaleo task assignment
+	*/
 	public java.lang.String getUserName() {
 		return _kaleoTaskAssignment.getUserName();
 	}
 
+	/**
+	* Sets the user name of this kaleo task assignment.
+	*
+	* @param userName the user name of this kaleo task assignment
+	*/
 	public void setUserName(java.lang.String userName) {
 		_kaleoTaskAssignment.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this kaleo task assignment.
+	*
+	* @return the create date of this kaleo task assignment
+	*/
 	public java.util.Date getCreateDate() {
 		return _kaleoTaskAssignment.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this kaleo task assignment.
+	*
+	* @param createDate the create date of this kaleo task assignment
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_kaleoTaskAssignment.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this kaleo task assignment.
+	*
+	* @return the modified date of this kaleo task assignment
+	*/
 	public java.util.Date getModifiedDate() {
 		return _kaleoTaskAssignment.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this kaleo task assignment.
+	*
+	* @param modifiedDate the modified date of this kaleo task assignment
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_kaleoTaskAssignment.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the kaleo definition id of this kaleo task assignment.
+	*
+	* @return the kaleo definition id of this kaleo task assignment
+	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoTaskAssignment.getKaleoDefinitionId();
 	}
 
+	/**
+	* Sets the kaleo definition id of this kaleo task assignment.
+	*
+	* @param kaleoDefinitionId the kaleo definition id of this kaleo task assignment
+	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoTaskAssignment.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	/**
+	* Gets the kaleo node id of this kaleo task assignment.
+	*
+	* @return the kaleo node id of this kaleo task assignment
+	*/
 	public long getKaleoNodeId() {
 		return _kaleoTaskAssignment.getKaleoNodeId();
 	}
 
+	/**
+	* Sets the kaleo node id of this kaleo task assignment.
+	*
+	* @param kaleoNodeId the kaleo node id of this kaleo task assignment
+	*/
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoTaskAssignment.setKaleoNodeId(kaleoNodeId);
 	}
 
+	/**
+	* Gets the kaleo task id of this kaleo task assignment.
+	*
+	* @return the kaleo task id of this kaleo task assignment
+	*/
 	public long getKaleoTaskId() {
 		return _kaleoTaskAssignment.getKaleoTaskId();
 	}
 
+	/**
+	* Sets the kaleo task id of this kaleo task assignment.
+	*
+	* @param kaleoTaskId the kaleo task id of this kaleo task assignment
+	*/
 	public void setKaleoTaskId(long kaleoTaskId) {
 		_kaleoTaskAssignment.setKaleoTaskId(kaleoTaskId);
 	}
 
+	/**
+	* Gets the assignee class name of this kaleo task assignment.
+	*
+	* @return the assignee class name of this kaleo task assignment
+	*/
 	public java.lang.String getAssigneeClassName() {
 		return _kaleoTaskAssignment.getAssigneeClassName();
 	}
 
+	/**
+	* Sets the assignee class name of this kaleo task assignment.
+	*
+	* @param assigneeClassName the assignee class name of this kaleo task assignment
+	*/
 	public void setAssigneeClassName(java.lang.String assigneeClassName) {
 		_kaleoTaskAssignment.setAssigneeClassName(assigneeClassName);
 	}
 
+	/**
+	* Gets the assignee class p k of this kaleo task assignment.
+	*
+	* @return the assignee class p k of this kaleo task assignment
+	*/
 	public long getAssigneeClassPK() {
 		return _kaleoTaskAssignment.getAssigneeClassPK();
 	}
 
+	/**
+	* Sets the assignee class p k of this kaleo task assignment.
+	*
+	* @param assigneeClassPK the assignee class p k of this kaleo task assignment
+	*/
 	public void setAssigneeClassPK(long assigneeClassPK) {
 		_kaleoTaskAssignment.setAssigneeClassPK(assigneeClassPK);
 	}

@@ -172,14 +172,6 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	 */
 	public void setJiraGroupName(String jiraGroupName);
 
-	/**
-	 * Gets a copy of this j i r a action as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public JIRAAction toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -203,6 +195,8 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public int compareTo(JIRAAction jiraAction);
 
 	public int hashCode();
+
+	public JIRAAction toEscapedModel();
 
 	public String toString();
 

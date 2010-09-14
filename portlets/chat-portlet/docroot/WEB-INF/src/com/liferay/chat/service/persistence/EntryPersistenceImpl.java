@@ -297,18 +297,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			if (entry.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(EntryImpl.class,
-						entry.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(entry);
-
-			session.flush();
+			BatchSessionUtil.delete(session, entry);
 		}
 		catch (Exception e) {
 			throw processException(e);

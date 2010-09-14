@@ -204,18 +204,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		try {
 			session = openSession();
 
-			if (definition.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(DefinitionImpl.class,
-						definition.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(definition);
-
-			session.flush();
+			BatchSessionUtil.delete(session, definition);
 		}
 		catch (Exception e) {
 			throw processException(e);

@@ -243,18 +243,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		try {
 			session = openSession();
 
-			if (svnRevision.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(SVNRevisionImpl.class,
-						svnRevision.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(svnRevision);
-
-			session.flush();
+			BatchSessionUtil.delete(session, svnRevision);
 		}
 		catch (Exception e) {
 			throw processException(e);

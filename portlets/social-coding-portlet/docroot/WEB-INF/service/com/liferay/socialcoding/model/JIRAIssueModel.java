@@ -217,14 +217,6 @@ public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 	 */
 	public void setStatus(String status);
 
-	/**
-	 * Gets a copy of this j i r a issue as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public JIRAIssue toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -248,6 +240,8 @@ public interface JIRAIssueModel extends BaseModel<JIRAIssue> {
 	public int compareTo(JIRAIssue jiraIssue);
 
 	public int hashCode();
+
+	public JIRAIssue toEscapedModel();
 
 	public String toString();
 

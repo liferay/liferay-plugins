@@ -215,14 +215,6 @@ public interface FolderModel extends BaseModel<Folder> {
 	 */
 	public void setRemoteMessageCount(int remoteMessageCount);
 
-	/**
-	 * Gets a copy of this folder as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Folder toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -246,6 +238,8 @@ public interface FolderModel extends BaseModel<Folder> {
 	public int compareTo(Folder folder);
 
 	public int hashCode();
+
+	public Folder toEscapedModel();
 
 	public String toString();
 

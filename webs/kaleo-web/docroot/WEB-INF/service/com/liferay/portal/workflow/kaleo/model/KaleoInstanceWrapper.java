@@ -28,151 +28,337 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		_kaleoInstance = kaleoInstance;
 	}
 
+	/**
+	* Gets the primary key of this kaleo instance.
+	*
+	* @return the primary key of this kaleo instance
+	*/
 	public long getPrimaryKey() {
 		return _kaleoInstance.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this kaleo instance
+	*
+	* @param pk the primary key of this kaleo instance
+	*/
 	public void setPrimaryKey(long pk) {
 		_kaleoInstance.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the kaleo instance id of this kaleo instance.
+	*
+	* @return the kaleo instance id of this kaleo instance
+	*/
 	public long getKaleoInstanceId() {
 		return _kaleoInstance.getKaleoInstanceId();
 	}
 
+	/**
+	* Sets the kaleo instance id of this kaleo instance.
+	*
+	* @param kaleoInstanceId the kaleo instance id of this kaleo instance
+	*/
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoInstance.setKaleoInstanceId(kaleoInstanceId);
 	}
 
+	/**
+	* Gets the group id of this kaleo instance.
+	*
+	* @return the group id of this kaleo instance
+	*/
 	public long getGroupId() {
 		return _kaleoInstance.getGroupId();
 	}
 
+	/**
+	* Sets the group id of this kaleo instance.
+	*
+	* @param groupId the group id of this kaleo instance
+	*/
 	public void setGroupId(long groupId) {
 		_kaleoInstance.setGroupId(groupId);
 	}
 
+	/**
+	* Gets the company id of this kaleo instance.
+	*
+	* @return the company id of this kaleo instance
+	*/
 	public long getCompanyId() {
 		return _kaleoInstance.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this kaleo instance.
+	*
+	* @param companyId the company id of this kaleo instance
+	*/
 	public void setCompanyId(long companyId) {
 		_kaleoInstance.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this kaleo instance.
+	*
+	* @return the user id of this kaleo instance
+	*/
 	public long getUserId() {
 		return _kaleoInstance.getUserId();
 	}
 
+	/**
+	* Sets the user id of this kaleo instance.
+	*
+	* @param userId the user id of this kaleo instance
+	*/
 	public void setUserId(long userId) {
 		_kaleoInstance.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this kaleo instance.
+	*
+	* @return the user uuid of this kaleo instance
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoInstance.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this kaleo instance.
+	*
+	* @param userUuid the user uuid of this kaleo instance
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_kaleoInstance.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this kaleo instance.
+	*
+	* @return the user name of this kaleo instance
+	*/
 	public java.lang.String getUserName() {
 		return _kaleoInstance.getUserName();
 	}
 
+	/**
+	* Sets the user name of this kaleo instance.
+	*
+	* @param userName the user name of this kaleo instance
+	*/
 	public void setUserName(java.lang.String userName) {
 		_kaleoInstance.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this kaleo instance.
+	*
+	* @return the create date of this kaleo instance
+	*/
 	public java.util.Date getCreateDate() {
 		return _kaleoInstance.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this kaleo instance.
+	*
+	* @param createDate the create date of this kaleo instance
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_kaleoInstance.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this kaleo instance.
+	*
+	* @return the modified date of this kaleo instance
+	*/
 	public java.util.Date getModifiedDate() {
 		return _kaleoInstance.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this kaleo instance.
+	*
+	* @param modifiedDate the modified date of this kaleo instance
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_kaleoInstance.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the kaleo definition id of this kaleo instance.
+	*
+	* @return the kaleo definition id of this kaleo instance
+	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoInstance.getKaleoDefinitionId();
 	}
 
+	/**
+	* Sets the kaleo definition id of this kaleo instance.
+	*
+	* @param kaleoDefinitionId the kaleo definition id of this kaleo instance
+	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoInstance.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
+	/**
+	* Gets the kaleo definition name of this kaleo instance.
+	*
+	* @return the kaleo definition name of this kaleo instance
+	*/
 	public java.lang.String getKaleoDefinitionName() {
 		return _kaleoInstance.getKaleoDefinitionName();
 	}
 
+	/**
+	* Sets the kaleo definition name of this kaleo instance.
+	*
+	* @param kaleoDefinitionName the kaleo definition name of this kaleo instance
+	*/
 	public void setKaleoDefinitionName(java.lang.String kaleoDefinitionName) {
 		_kaleoInstance.setKaleoDefinitionName(kaleoDefinitionName);
 	}
 
+	/**
+	* Gets the kaleo definition version of this kaleo instance.
+	*
+	* @return the kaleo definition version of this kaleo instance
+	*/
 	public int getKaleoDefinitionVersion() {
 		return _kaleoInstance.getKaleoDefinitionVersion();
 	}
 
+	/**
+	* Sets the kaleo definition version of this kaleo instance.
+	*
+	* @param kaleoDefinitionVersion the kaleo definition version of this kaleo instance
+	*/
 	public void setKaleoDefinitionVersion(int kaleoDefinitionVersion) {
 		_kaleoInstance.setKaleoDefinitionVersion(kaleoDefinitionVersion);
 	}
 
+	/**
+	* Gets the root kaleo instance token id of this kaleo instance.
+	*
+	* @return the root kaleo instance token id of this kaleo instance
+	*/
 	public long getRootKaleoInstanceTokenId() {
 		return _kaleoInstance.getRootKaleoInstanceTokenId();
 	}
 
+	/**
+	* Sets the root kaleo instance token id of this kaleo instance.
+	*
+	* @param rootKaleoInstanceTokenId the root kaleo instance token id of this kaleo instance
+	*/
 	public void setRootKaleoInstanceTokenId(long rootKaleoInstanceTokenId) {
 		_kaleoInstance.setRootKaleoInstanceTokenId(rootKaleoInstanceTokenId);
 	}
 
+	/**
+	* Gets the class name of this kaleo instance.
+	*
+	* @return the class name of this kaleo instance
+	*/
 	public java.lang.String getClassName() {
 		return _kaleoInstance.getClassName();
 	}
 
+	/**
+	* Sets the class name of this kaleo instance.
+	*
+	* @param className the class name of this kaleo instance
+	*/
 	public void setClassName(java.lang.String className) {
 		_kaleoInstance.setClassName(className);
 	}
 
+	/**
+	* Gets the class p k of this kaleo instance.
+	*
+	* @return the class p k of this kaleo instance
+	*/
 	public long getClassPK() {
 		return _kaleoInstance.getClassPK();
 	}
 
+	/**
+	* Sets the class p k of this kaleo instance.
+	*
+	* @param classPK the class p k of this kaleo instance
+	*/
 	public void setClassPK(long classPK) {
 		_kaleoInstance.setClassPK(classPK);
 	}
 
+	/**
+	* Gets the completed of this kaleo instance.
+	*
+	* @return the completed of this kaleo instance
+	*/
 	public boolean getCompleted() {
 		return _kaleoInstance.getCompleted();
 	}
 
+	/**
+	* Determines if this kaleo instance is completed.
+	*
+	* @return <code>true</code> if this kaleo instance is completed; <code>false</code> otherwise
+	*/
 	public boolean isCompleted() {
 		return _kaleoInstance.isCompleted();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is completed.
+	*
+	* @param completed the completed of this kaleo instance
+	*/
 	public void setCompleted(boolean completed) {
 		_kaleoInstance.setCompleted(completed);
 	}
 
+	/**
+	* Gets the completion date of this kaleo instance.
+	*
+	* @return the completion date of this kaleo instance
+	*/
 	public java.util.Date getCompletionDate() {
 		return _kaleoInstance.getCompletionDate();
 	}
 
+	/**
+	* Sets the completion date of this kaleo instance.
+	*
+	* @param completionDate the completion date of this kaleo instance
+	*/
 	public void setCompletionDate(java.util.Date completionDate) {
 		_kaleoInstance.setCompletionDate(completionDate);
 	}
 
+	/**
+	* Gets the workflow context of this kaleo instance.
+	*
+	* @return the workflow context of this kaleo instance
+	*/
 	public java.lang.String getWorkflowContext() {
 		return _kaleoInstance.getWorkflowContext();
 	}
 
+	/**
+	* Sets the workflow context of this kaleo instance.
+	*
+	* @param workflowContext the workflow context of this kaleo instance
+	*/
 	public void setWorkflowContext(java.lang.String workflowContext) {
 		_kaleoInstance.setWorkflowContext(workflowContext);
 	}

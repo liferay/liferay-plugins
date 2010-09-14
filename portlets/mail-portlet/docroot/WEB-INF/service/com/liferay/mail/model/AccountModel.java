@@ -239,9 +239,9 @@ public interface AccountModel extends BaseModel<Account> {
 	public boolean getIncomingSecure();
 
 	/**
-	 * Determines whether this account is incoming secure.
+	 * Determines if this account is incoming secure.
 	 *
-	 * @return whether this account is incoming secure
+	 * @return <code>true</code> if this account is incoming secure; <code>false</code> otherwise
 	 */
 	public boolean isIncomingSecure();
 
@@ -289,9 +289,9 @@ public interface AccountModel extends BaseModel<Account> {
 	public boolean getOutgoingSecure();
 
 	/**
-	 * Determines whether this account is outgoing secure.
+	 * Determines if this account is outgoing secure.
 	 *
-	 * @return whether this account is outgoing secure
+	 * @return <code>true</code> if this account is outgoing secure; <code>false</code> otherwise
 	 */
 	public boolean isOutgoingSecure();
 
@@ -340,9 +340,9 @@ public interface AccountModel extends BaseModel<Account> {
 	public boolean getSavePassword();
 
 	/**
-	 * Determines whether this account is save password.
+	 * Determines if this account is save password.
 	 *
-	 * @return whether this account is save password
+	 * @return <code>true</code> if this account is save password; <code>false</code> otherwise
 	 */
 	public boolean isSavePassword();
 
@@ -376,9 +376,9 @@ public interface AccountModel extends BaseModel<Account> {
 	public boolean getUseSignature();
 
 	/**
-	 * Determines whether this account is use signature.
+	 * Determines if this account is use signature.
 	 *
-	 * @return whether this account is use signature
+	 * @return <code>true</code> if this account is use signature; <code>false</code> otherwise
 	 */
 	public boolean isUseSignature();
 
@@ -468,9 +468,9 @@ public interface AccountModel extends BaseModel<Account> {
 	public boolean getDefaultSender();
 
 	/**
-	 * Determines whether this account is default sender.
+	 * Determines if this account is default sender.
 	 *
-	 * @return whether this account is default sender
+	 * @return <code>true</code> if this account is default sender; <code>false</code> otherwise
 	 */
 	public boolean isDefaultSender();
 
@@ -480,14 +480,6 @@ public interface AccountModel extends BaseModel<Account> {
 	 * @param defaultSender the default sender of this account
 	 */
 	public void setDefaultSender(boolean defaultSender);
-
-	/**
-	 * Gets a copy of this account as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Account toEscapedModel();
 
 	public boolean isNew();
 
@@ -512,6 +504,8 @@ public interface AccountModel extends BaseModel<Account> {
 	public int compareTo(Account account);
 
 	public int hashCode();
+
+	public Account toEscapedModel();
 
 	public String toString();
 

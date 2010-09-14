@@ -28,129 +28,276 @@ public class DefinitionWrapper implements Definition {
 		_definition = definition;
 	}
 
+	/**
+	* Gets the primary key of this definition.
+	*
+	* @return the primary key of this definition
+	*/
 	public long getPrimaryKey() {
 		return _definition.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this definition
+	*
+	* @param pk the primary key of this definition
+	*/
 	public void setPrimaryKey(long pk) {
 		_definition.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the definition id of this definition.
+	*
+	* @return the definition id of this definition
+	*/
 	public long getDefinitionId() {
 		return _definition.getDefinitionId();
 	}
 
+	/**
+	* Sets the definition id of this definition.
+	*
+	* @param definitionId the definition id of this definition
+	*/
 	public void setDefinitionId(long definitionId) {
 		_definition.setDefinitionId(definitionId);
 	}
 
+	/**
+	* Gets the group id of this definition.
+	*
+	* @return the group id of this definition
+	*/
 	public long getGroupId() {
 		return _definition.getGroupId();
 	}
 
+	/**
+	* Sets the group id of this definition.
+	*
+	* @param groupId the group id of this definition
+	*/
 	public void setGroupId(long groupId) {
 		_definition.setGroupId(groupId);
 	}
 
+	/**
+	* Gets the company id of this definition.
+	*
+	* @return the company id of this definition
+	*/
 	public long getCompanyId() {
 		return _definition.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this definition.
+	*
+	* @param companyId the company id of this definition
+	*/
 	public void setCompanyId(long companyId) {
 		_definition.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this definition.
+	*
+	* @return the user id of this definition
+	*/
 	public long getUserId() {
 		return _definition.getUserId();
 	}
 
+	/**
+	* Sets the user id of this definition.
+	*
+	* @param userId the user id of this definition
+	*/
 	public void setUserId(long userId) {
 		_definition.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this definition.
+	*
+	* @return the user uuid of this definition
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _definition.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this definition.
+	*
+	* @param userUuid the user uuid of this definition
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_definition.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this definition.
+	*
+	* @return the user name of this definition
+	*/
 	public java.lang.String getUserName() {
 		return _definition.getUserName();
 	}
 
+	/**
+	* Sets the user name of this definition.
+	*
+	* @param userName the user name of this definition
+	*/
 	public void setUserName(java.lang.String userName) {
 		_definition.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this definition.
+	*
+	* @return the create date of this definition
+	*/
 	public java.util.Date getCreateDate() {
 		return _definition.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this definition.
+	*
+	* @param createDate the create date of this definition
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_definition.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this definition.
+	*
+	* @return the modified date of this definition
+	*/
 	public java.util.Date getModifiedDate() {
 		return _definition.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this definition.
+	*
+	* @param modifiedDate the modified date of this definition
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_definition.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the type id of this definition.
+	*
+	* @return the type id of this definition
+	*/
 	public long getTypeId() {
 		return _definition.getTypeId();
 	}
 
+	/**
+	* Sets the type id of this definition.
+	*
+	* @param typeId the type id of this definition
+	*/
 	public void setTypeId(long typeId) {
 		_definition.setTypeId(typeId);
 	}
 
+	/**
+	* Gets the manufacturer of this definition.
+	*
+	* @return the manufacturer of this definition
+	*/
 	public java.lang.String getManufacturer() {
 		return _definition.getManufacturer();
 	}
 
+	/**
+	* Sets the manufacturer of this definition.
+	*
+	* @param manufacturer the manufacturer of this definition
+	*/
 	public void setManufacturer(java.lang.String manufacturer) {
 		_definition.setManufacturer(manufacturer);
 	}
 
+	/**
+	* Gets the model of this definition.
+	*
+	* @return the model of this definition
+	*/
 	public java.lang.String getModel() {
 		return _definition.getModel();
 	}
 
+	/**
+	* Sets the model of this definition.
+	*
+	* @param model the model of this definition
+	*/
 	public void setModel(java.lang.String model) {
 		_definition.setModel(model);
 	}
 
+	/**
+	* Gets the order date of this definition.
+	*
+	* @return the order date of this definition
+	*/
 	public java.util.Date getOrderDate() {
 		return _definition.getOrderDate();
 	}
 
+	/**
+	* Sets the order date of this definition.
+	*
+	* @param orderDate the order date of this definition
+	*/
 	public void setOrderDate(java.util.Date orderDate) {
 		_definition.setOrderDate(orderDate);
 	}
 
+	/**
+	* Gets the quantity of this definition.
+	*
+	* @return the quantity of this definition
+	*/
 	public int getQuantity() {
 		return _definition.getQuantity();
 	}
 
+	/**
+	* Sets the quantity of this definition.
+	*
+	* @param quantity the quantity of this definition
+	*/
 	public void setQuantity(int quantity) {
 		_definition.setQuantity(quantity);
 	}
 
+	/**
+	* Gets the price of this definition.
+	*
+	* @return the price of this definition
+	*/
 	public double getPrice() {
 		return _definition.getPrice();
 	}
 
+	/**
+	* Sets the price of this definition.
+	*
+	* @param price the price of this definition
+	*/
 	public void setPrice(double price) {
 		_definition.setPrice(price);
-	}
-
-	public com.liferay.ams.model.Definition toEscapedModel() {
-		return _definition.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -200,6 +347,10 @@ public class DefinitionWrapper implements Definition {
 
 	public int hashCode() {
 		return _definition.hashCode();
+	}
+
+	public com.liferay.ams.model.Definition toEscapedModel() {
+		return _definition.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

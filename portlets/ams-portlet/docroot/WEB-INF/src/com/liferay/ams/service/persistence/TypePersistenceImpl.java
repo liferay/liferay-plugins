@@ -200,18 +200,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		try {
 			session = openSession();
 
-			if (type.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(TypeImpl.class,
-						type.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(type);
-
-			session.flush();
+			BatchSessionUtil.delete(session, type);
 		}
 		catch (Exception e) {
 			throw processException(e);

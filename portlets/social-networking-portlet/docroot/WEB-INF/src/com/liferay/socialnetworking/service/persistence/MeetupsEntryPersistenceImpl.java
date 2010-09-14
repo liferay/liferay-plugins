@@ -232,18 +232,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		try {
 			session = openSession();
 
-			if (meetupsEntry.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(MeetupsEntryImpl.class,
-						meetupsEntry.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(meetupsEntry);
-
-			session.flush();
+			BatchSessionUtil.delete(session, meetupsEntry);
 		}
 		catch (Exception e) {
 			throw processException(e);

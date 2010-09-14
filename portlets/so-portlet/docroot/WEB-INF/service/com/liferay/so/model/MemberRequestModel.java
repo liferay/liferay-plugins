@@ -257,14 +257,6 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 	 */
 	public void setStatus(int status);
 
-	/**
-	 * Gets a copy of this member request as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public MemberRequest toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -288,6 +280,8 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 	public int compareTo(MemberRequest memberRequest);
 
 	public int hashCode();
+
+	public MemberRequest toEscapedModel();
 
 	public String toString();
 

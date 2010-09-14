@@ -213,14 +213,6 @@ public interface CheckoutModel extends BaseModel<Checkout> {
 	 */
 	public void setActualCheckInDate(Date actualCheckInDate);
 
-	/**
-	 * Gets a copy of this checkout as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Checkout toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -244,6 +236,8 @@ public interface CheckoutModel extends BaseModel<Checkout> {
 	public int compareTo(Checkout checkout);
 
 	public int hashCode();
+
+	public Checkout toEscapedModel();
 
 	public String toString();
 

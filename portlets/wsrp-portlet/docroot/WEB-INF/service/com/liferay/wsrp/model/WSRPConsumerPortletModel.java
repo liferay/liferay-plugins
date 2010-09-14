@@ -156,14 +156,6 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	 */
 	public void setPortletHandle(String portletHandle);
 
-	/**
-	 * Gets a copy of this w s r p consumer portlet as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public WSRPConsumerPortlet toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -187,6 +179,8 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public int compareTo(WSRPConsumerPortlet wsrpConsumerPortlet);
 
 	public int hashCode();
+
+	public WSRPConsumerPortlet toEscapedModel();
 
 	public String toString();
 

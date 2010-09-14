@@ -120,9 +120,9 @@ public interface StatusModel extends BaseModel<Status> {
 	public boolean getOnline();
 
 	/**
-	 * Determines whether this status is online.
+	 * Determines if this status is online.
 	 *
-	 * @return whether this status is online
+	 * @return <code>true</code> if this status is online; <code>false</code> otherwise
 	 */
 	public boolean isOnline();
 
@@ -141,9 +141,9 @@ public interface StatusModel extends BaseModel<Status> {
 	public boolean getAwake();
 
 	/**
-	 * Determines whether this status is awake.
+	 * Determines if this status is awake.
 	 *
-	 * @return whether this status is awake
+	 * @return <code>true</code> if this status is awake; <code>false</code> otherwise
 	 */
 	public boolean isAwake();
 
@@ -192,9 +192,9 @@ public interface StatusModel extends BaseModel<Status> {
 	public boolean getPlaySound();
 
 	/**
-	 * Determines whether this status is play sound.
+	 * Determines if this status is play sound.
 	 *
-	 * @return whether this status is play sound
+	 * @return <code>true</code> if this status is play sound; <code>false</code> otherwise
 	 */
 	public boolean isPlaySound();
 
@@ -204,14 +204,6 @@ public interface StatusModel extends BaseModel<Status> {
 	 * @param playSound the play sound of this status
 	 */
 	public void setPlaySound(boolean playSound);
-
-	/**
-	 * Gets a copy of this status as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public Status toEscapedModel();
 
 	public boolean isNew();
 
@@ -236,6 +228,8 @@ public interface StatusModel extends BaseModel<Status> {
 	public int compareTo(Status status);
 
 	public int hashCode();
+
+	public Status toEscapedModel();
 
 	public String toString();
 

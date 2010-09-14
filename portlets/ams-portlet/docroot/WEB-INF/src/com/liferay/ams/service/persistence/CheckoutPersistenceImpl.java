@@ -203,18 +203,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		try {
 			session = openSession();
 
-			if (checkout.isCachedModel() || BatchSessionUtil.isEnabled()) {
-				Object staleObject = session.get(CheckoutImpl.class,
-						checkout.getPrimaryKeyObj());
-
-				if (staleObject != null) {
-					session.evict(staleObject);
-				}
-			}
-
-			session.delete(checkout);
-
-			session.flush();
+			BatchSessionUtil.delete(session, checkout);
 		}
 		catch (Exception e) {
 			throw processException(e);

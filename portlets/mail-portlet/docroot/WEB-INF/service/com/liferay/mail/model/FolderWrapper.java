@@ -28,105 +28,222 @@ public class FolderWrapper implements Folder {
 		_folder = folder;
 	}
 
+	/**
+	* Gets the primary key of this folder.
+	*
+	* @return the primary key of this folder
+	*/
 	public long getPrimaryKey() {
 		return _folder.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this folder
+	*
+	* @param pk the primary key of this folder
+	*/
 	public void setPrimaryKey(long pk) {
 		_folder.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the folder id of this folder.
+	*
+	* @return the folder id of this folder
+	*/
 	public long getFolderId() {
 		return _folder.getFolderId();
 	}
 
+	/**
+	* Sets the folder id of this folder.
+	*
+	* @param folderId the folder id of this folder
+	*/
 	public void setFolderId(long folderId) {
 		_folder.setFolderId(folderId);
 	}
 
+	/**
+	* Gets the company id of this folder.
+	*
+	* @return the company id of this folder
+	*/
 	public long getCompanyId() {
 		return _folder.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this folder.
+	*
+	* @param companyId the company id of this folder
+	*/
 	public void setCompanyId(long companyId) {
 		_folder.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this folder.
+	*
+	* @return the user id of this folder
+	*/
 	public long getUserId() {
 		return _folder.getUserId();
 	}
 
+	/**
+	* Sets the user id of this folder.
+	*
+	* @param userId the user id of this folder
+	*/
 	public void setUserId(long userId) {
 		_folder.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this folder.
+	*
+	* @return the user uuid of this folder
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _folder.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this folder.
+	*
+	* @param userUuid the user uuid of this folder
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_folder.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this folder.
+	*
+	* @return the user name of this folder
+	*/
 	public java.lang.String getUserName() {
 		return _folder.getUserName();
 	}
 
+	/**
+	* Sets the user name of this folder.
+	*
+	* @param userName the user name of this folder
+	*/
 	public void setUserName(java.lang.String userName) {
 		_folder.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this folder.
+	*
+	* @return the create date of this folder
+	*/
 	public java.util.Date getCreateDate() {
 		return _folder.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this folder.
+	*
+	* @param createDate the create date of this folder
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_folder.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this folder.
+	*
+	* @return the modified date of this folder
+	*/
 	public java.util.Date getModifiedDate() {
 		return _folder.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this folder.
+	*
+	* @param modifiedDate the modified date of this folder
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_folder.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the account id of this folder.
+	*
+	* @return the account id of this folder
+	*/
 	public long getAccountId() {
 		return _folder.getAccountId();
 	}
 
+	/**
+	* Sets the account id of this folder.
+	*
+	* @param accountId the account id of this folder
+	*/
 	public void setAccountId(long accountId) {
 		_folder.setAccountId(accountId);
 	}
 
+	/**
+	* Gets the full name of this folder.
+	*
+	* @return the full name of this folder
+	*/
 	public java.lang.String getFullName() {
 		return _folder.getFullName();
 	}
 
+	/**
+	* Sets the full name of this folder.
+	*
+	* @param fullName the full name of this folder
+	*/
 	public void setFullName(java.lang.String fullName) {
 		_folder.setFullName(fullName);
 	}
 
+	/**
+	* Gets the display name of this folder.
+	*
+	* @return the display name of this folder
+	*/
 	public java.lang.String getDisplayName() {
 		return _folder.getDisplayName();
 	}
 
+	/**
+	* Sets the display name of this folder.
+	*
+	* @param displayName the display name of this folder
+	*/
 	public void setDisplayName(java.lang.String displayName) {
 		_folder.setDisplayName(displayName);
 	}
 
+	/**
+	* Gets the remote message count of this folder.
+	*
+	* @return the remote message count of this folder
+	*/
 	public int getRemoteMessageCount() {
 		return _folder.getRemoteMessageCount();
 	}
 
+	/**
+	* Sets the remote message count of this folder.
+	*
+	* @param remoteMessageCount the remote message count of this folder
+	*/
 	public void setRemoteMessageCount(int remoteMessageCount) {
 		_folder.setRemoteMessageCount(remoteMessageCount);
-	}
-
-	public com.liferay.mail.model.Folder toEscapedModel() {
-		return _folder.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -176,6 +293,10 @@ public class FolderWrapper implements Folder {
 
 	public int hashCode() {
 		return _folder.hashCode();
+	}
+
+	public com.liferay.mail.model.Folder toEscapedModel() {
+		return _folder.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

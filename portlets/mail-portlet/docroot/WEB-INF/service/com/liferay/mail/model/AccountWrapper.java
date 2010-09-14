@@ -28,253 +28,555 @@ public class AccountWrapper implements Account {
 		_account = account;
 	}
 
+	/**
+	* Gets the primary key of this account.
+	*
+	* @return the primary key of this account
+	*/
 	public long getPrimaryKey() {
 		return _account.getPrimaryKey();
 	}
 
+	/**
+	* Sets the primary key of this account
+	*
+	* @param pk the primary key of this account
+	*/
 	public void setPrimaryKey(long pk) {
 		_account.setPrimaryKey(pk);
 	}
 
+	/**
+	* Gets the account id of this account.
+	*
+	* @return the account id of this account
+	*/
 	public long getAccountId() {
 		return _account.getAccountId();
 	}
 
+	/**
+	* Sets the account id of this account.
+	*
+	* @param accountId the account id of this account
+	*/
 	public void setAccountId(long accountId) {
 		_account.setAccountId(accountId);
 	}
 
+	/**
+	* Gets the company id of this account.
+	*
+	* @return the company id of this account
+	*/
 	public long getCompanyId() {
 		return _account.getCompanyId();
 	}
 
+	/**
+	* Sets the company id of this account.
+	*
+	* @param companyId the company id of this account
+	*/
 	public void setCompanyId(long companyId) {
 		_account.setCompanyId(companyId);
 	}
 
+	/**
+	* Gets the user id of this account.
+	*
+	* @return the user id of this account
+	*/
 	public long getUserId() {
 		return _account.getUserId();
 	}
 
+	/**
+	* Sets the user id of this account.
+	*
+	* @param userId the user id of this account
+	*/
 	public void setUserId(long userId) {
 		_account.setUserId(userId);
 	}
 
+	/**
+	* Gets the user uuid of this account.
+	*
+	* @return the user uuid of this account
+	* @throws SystemException if a system exception occurred
+	*/
 	public java.lang.String getUserUuid()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _account.getUserUuid();
 	}
 
+	/**
+	* Sets the user uuid of this account.
+	*
+	* @param userUuid the user uuid of this account
+	*/
 	public void setUserUuid(java.lang.String userUuid) {
 		_account.setUserUuid(userUuid);
 	}
 
+	/**
+	* Gets the user name of this account.
+	*
+	* @return the user name of this account
+	*/
 	public java.lang.String getUserName() {
 		return _account.getUserName();
 	}
 
+	/**
+	* Sets the user name of this account.
+	*
+	* @param userName the user name of this account
+	*/
 	public void setUserName(java.lang.String userName) {
 		_account.setUserName(userName);
 	}
 
+	/**
+	* Gets the create date of this account.
+	*
+	* @return the create date of this account
+	*/
 	public java.util.Date getCreateDate() {
 		return _account.getCreateDate();
 	}
 
+	/**
+	* Sets the create date of this account.
+	*
+	* @param createDate the create date of this account
+	*/
 	public void setCreateDate(java.util.Date createDate) {
 		_account.setCreateDate(createDate);
 	}
 
+	/**
+	* Gets the modified date of this account.
+	*
+	* @return the modified date of this account
+	*/
 	public java.util.Date getModifiedDate() {
 		return _account.getModifiedDate();
 	}
 
+	/**
+	* Sets the modified date of this account.
+	*
+	* @param modifiedDate the modified date of this account
+	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_account.setModifiedDate(modifiedDate);
 	}
 
+	/**
+	* Gets the address of this account.
+	*
+	* @return the address of this account
+	*/
 	public java.lang.String getAddress() {
 		return _account.getAddress();
 	}
 
+	/**
+	* Sets the address of this account.
+	*
+	* @param address the address of this account
+	*/
 	public void setAddress(java.lang.String address) {
 		_account.setAddress(address);
 	}
 
+	/**
+	* Gets the personal name of this account.
+	*
+	* @return the personal name of this account
+	*/
 	public java.lang.String getPersonalName() {
 		return _account.getPersonalName();
 	}
 
+	/**
+	* Sets the personal name of this account.
+	*
+	* @param personalName the personal name of this account
+	*/
 	public void setPersonalName(java.lang.String personalName) {
 		_account.setPersonalName(personalName);
 	}
 
+	/**
+	* Gets the protocol of this account.
+	*
+	* @return the protocol of this account
+	*/
 	public java.lang.String getProtocol() {
 		return _account.getProtocol();
 	}
 
+	/**
+	* Sets the protocol of this account.
+	*
+	* @param protocol the protocol of this account
+	*/
 	public void setProtocol(java.lang.String protocol) {
 		_account.setProtocol(protocol);
 	}
 
+	/**
+	* Gets the incoming host name of this account.
+	*
+	* @return the incoming host name of this account
+	*/
 	public java.lang.String getIncomingHostName() {
 		return _account.getIncomingHostName();
 	}
 
+	/**
+	* Sets the incoming host name of this account.
+	*
+	* @param incomingHostName the incoming host name of this account
+	*/
 	public void setIncomingHostName(java.lang.String incomingHostName) {
 		_account.setIncomingHostName(incomingHostName);
 	}
 
+	/**
+	* Gets the incoming port of this account.
+	*
+	* @return the incoming port of this account
+	*/
 	public int getIncomingPort() {
 		return _account.getIncomingPort();
 	}
 
+	/**
+	* Sets the incoming port of this account.
+	*
+	* @param incomingPort the incoming port of this account
+	*/
 	public void setIncomingPort(int incomingPort) {
 		_account.setIncomingPort(incomingPort);
 	}
 
+	/**
+	* Gets the incoming secure of this account.
+	*
+	* @return the incoming secure of this account
+	*/
 	public boolean getIncomingSecure() {
 		return _account.getIncomingSecure();
 	}
 
+	/**
+	* Determines if this account is incoming secure.
+	*
+	* @return <code>true</code> if this account is incoming secure; <code>false</code> otherwise
+	*/
 	public boolean isIncomingSecure() {
 		return _account.isIncomingSecure();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is incoming secure.
+	*
+	* @param incomingSecure the incoming secure of this account
+	*/
 	public void setIncomingSecure(boolean incomingSecure) {
 		_account.setIncomingSecure(incomingSecure);
 	}
 
+	/**
+	* Gets the outgoing host name of this account.
+	*
+	* @return the outgoing host name of this account
+	*/
 	public java.lang.String getOutgoingHostName() {
 		return _account.getOutgoingHostName();
 	}
 
+	/**
+	* Sets the outgoing host name of this account.
+	*
+	* @param outgoingHostName the outgoing host name of this account
+	*/
 	public void setOutgoingHostName(java.lang.String outgoingHostName) {
 		_account.setOutgoingHostName(outgoingHostName);
 	}
 
+	/**
+	* Gets the outgoing port of this account.
+	*
+	* @return the outgoing port of this account
+	*/
 	public int getOutgoingPort() {
 		return _account.getOutgoingPort();
 	}
 
+	/**
+	* Sets the outgoing port of this account.
+	*
+	* @param outgoingPort the outgoing port of this account
+	*/
 	public void setOutgoingPort(int outgoingPort) {
 		_account.setOutgoingPort(outgoingPort);
 	}
 
+	/**
+	* Gets the outgoing secure of this account.
+	*
+	* @return the outgoing secure of this account
+	*/
 	public boolean getOutgoingSecure() {
 		return _account.getOutgoingSecure();
 	}
 
+	/**
+	* Determines if this account is outgoing secure.
+	*
+	* @return <code>true</code> if this account is outgoing secure; <code>false</code> otherwise
+	*/
 	public boolean isOutgoingSecure() {
 		return _account.isOutgoingSecure();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is outgoing secure.
+	*
+	* @param outgoingSecure the outgoing secure of this account
+	*/
 	public void setOutgoingSecure(boolean outgoingSecure) {
 		_account.setOutgoingSecure(outgoingSecure);
 	}
 
+	/**
+	* Gets the login of this account.
+	*
+	* @return the login of this account
+	*/
 	public java.lang.String getLogin() {
 		return _account.getLogin();
 	}
 
+	/**
+	* Sets the login of this account.
+	*
+	* @param login the login of this account
+	*/
 	public void setLogin(java.lang.String login) {
 		_account.setLogin(login);
 	}
 
+	/**
+	* Gets the password of this account.
+	*
+	* @return the password of this account
+	*/
 	public java.lang.String getPassword() {
 		return _account.getPassword();
 	}
 
+	/**
+	* Sets the password of this account.
+	*
+	* @param password the password of this account
+	*/
 	public void setPassword(java.lang.String password) {
 		_account.setPassword(password);
 	}
 
+	/**
+	* Gets the save password of this account.
+	*
+	* @return the save password of this account
+	*/
 	public boolean getSavePassword() {
 		return _account.getSavePassword();
 	}
 
+	/**
+	* Determines if this account is save password.
+	*
+	* @return <code>true</code> if this account is save password; <code>false</code> otherwise
+	*/
 	public boolean isSavePassword() {
 		return _account.isSavePassword();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is save password.
+	*
+	* @param savePassword the save password of this account
+	*/
 	public void setSavePassword(boolean savePassword) {
 		_account.setSavePassword(savePassword);
 	}
 
+	/**
+	* Gets the signature of this account.
+	*
+	* @return the signature of this account
+	*/
 	public java.lang.String getSignature() {
 		return _account.getSignature();
 	}
 
+	/**
+	* Sets the signature of this account.
+	*
+	* @param signature the signature of this account
+	*/
 	public void setSignature(java.lang.String signature) {
 		_account.setSignature(signature);
 	}
 
+	/**
+	* Gets the use signature of this account.
+	*
+	* @return the use signature of this account
+	*/
 	public boolean getUseSignature() {
 		return _account.getUseSignature();
 	}
 
+	/**
+	* Determines if this account is use signature.
+	*
+	* @return <code>true</code> if this account is use signature; <code>false</code> otherwise
+	*/
 	public boolean isUseSignature() {
 		return _account.isUseSignature();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is use signature.
+	*
+	* @param useSignature the use signature of this account
+	*/
 	public void setUseSignature(boolean useSignature) {
 		_account.setUseSignature(useSignature);
 	}
 
+	/**
+	* Gets the folder prefix of this account.
+	*
+	* @return the folder prefix of this account
+	*/
 	public java.lang.String getFolderPrefix() {
 		return _account.getFolderPrefix();
 	}
 
+	/**
+	* Sets the folder prefix of this account.
+	*
+	* @param folderPrefix the folder prefix of this account
+	*/
 	public void setFolderPrefix(java.lang.String folderPrefix) {
 		_account.setFolderPrefix(folderPrefix);
 	}
 
+	/**
+	* Gets the inbox folder id of this account.
+	*
+	* @return the inbox folder id of this account
+	*/
 	public long getInboxFolderId() {
 		return _account.getInboxFolderId();
 	}
 
+	/**
+	* Sets the inbox folder id of this account.
+	*
+	* @param inboxFolderId the inbox folder id of this account
+	*/
 	public void setInboxFolderId(long inboxFolderId) {
 		_account.setInboxFolderId(inboxFolderId);
 	}
 
+	/**
+	* Gets the draft folder id of this account.
+	*
+	* @return the draft folder id of this account
+	*/
 	public long getDraftFolderId() {
 		return _account.getDraftFolderId();
 	}
 
+	/**
+	* Sets the draft folder id of this account.
+	*
+	* @param draftFolderId the draft folder id of this account
+	*/
 	public void setDraftFolderId(long draftFolderId) {
 		_account.setDraftFolderId(draftFolderId);
 	}
 
+	/**
+	* Gets the sent folder id of this account.
+	*
+	* @return the sent folder id of this account
+	*/
 	public long getSentFolderId() {
 		return _account.getSentFolderId();
 	}
 
+	/**
+	* Sets the sent folder id of this account.
+	*
+	* @param sentFolderId the sent folder id of this account
+	*/
 	public void setSentFolderId(long sentFolderId) {
 		_account.setSentFolderId(sentFolderId);
 	}
 
+	/**
+	* Gets the trash folder id of this account.
+	*
+	* @return the trash folder id of this account
+	*/
 	public long getTrashFolderId() {
 		return _account.getTrashFolderId();
 	}
 
+	/**
+	* Sets the trash folder id of this account.
+	*
+	* @param trashFolderId the trash folder id of this account
+	*/
 	public void setTrashFolderId(long trashFolderId) {
 		_account.setTrashFolderId(trashFolderId);
 	}
 
+	/**
+	* Gets the default sender of this account.
+	*
+	* @return the default sender of this account
+	*/
 	public boolean getDefaultSender() {
 		return _account.getDefaultSender();
 	}
 
+	/**
+	* Determines if this account is default sender.
+	*
+	* @return <code>true</code> if this account is default sender; <code>false</code> otherwise
+	*/
 	public boolean isDefaultSender() {
 		return _account.isDefaultSender();
 	}
 
+	/**
+	* Sets whether this {$entity.humanName} is default sender.
+	*
+	* @param defaultSender the default sender of this account
+	*/
 	public void setDefaultSender(boolean defaultSender) {
 		_account.setDefaultSender(defaultSender);
-	}
-
-	public com.liferay.mail.model.Account toEscapedModel() {
-		return _account.toEscapedModel();
 	}
 
 	public boolean isNew() {
@@ -324,6 +626,10 @@ public class AccountWrapper implements Account {
 
 	public int hashCode() {
 		return _account.hashCode();
+	}
+
+	public com.liferay.mail.model.Account toEscapedModel() {
+		return _account.toEscapedModel();
 	}
 
 	public java.lang.String toString() {

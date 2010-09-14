@@ -156,14 +156,6 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 */
 	public void setPortletIds(String portletIds);
 
-	/**
-	 * Gets a copy of this w s r p producer as an escaped model instance by wrapping it with an {@link com.liferay.portal.kernel.bean.AutoEscapeBeanHandler}.
-	 *
-	 * @return the escaped model instance
-	 * @see com.liferay.portal.kernel.bean.AutoEscapeBeanHandler
-	 */
-	public WSRPProducer toEscapedModel();
-
 	public boolean isNew();
 
 	public void setNew(boolean n);
@@ -187,6 +179,8 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public int compareTo(WSRPProducer wsrpProducer);
 
 	public int hashCode();
+
+	public WSRPProducer toEscapedModel();
 
 	public String toString();
 
