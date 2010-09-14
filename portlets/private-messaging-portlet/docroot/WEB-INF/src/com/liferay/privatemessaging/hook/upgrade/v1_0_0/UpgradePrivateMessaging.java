@@ -15,7 +15,6 @@
 package com.liferay.privatemessaging.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Scott Lee
@@ -23,21 +22,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 public class UpgradePrivateMessaging extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		StringBundler sb = new StringBundler(4);
-
-		sb.append("update MBMessage set categoryId = -2 where messageId in (");
-		sb.append("select messageId from (select MBMessage.messageId from ");
-		sb.append("MBMessage inner join PM_UserThread on ");
-		sb.append("MBMessage.threadId = PM_UserThread.mbThreadId) as temp)");
-
-		runSQL(sb.toString());
-
-		sb.setIndex(0);
-
-		sb.append("update MBThread set categoryId = -5 where threadId in ");
-		sb.append("(select mbThreadId from PM_UserThread)");
-
-		runSQL(sb.toString());
 	}
 
 }
