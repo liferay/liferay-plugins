@@ -24,6 +24,74 @@ import com.liferay.portal.kernel.util.MethodKey;
 public class StatusLocalServiceClp implements StatusLocalService {
 	public StatusLocalServiceClp(ClassLoaderProxy classLoaderProxy) {
 		_classLoaderProxy = classLoaderProxy;
+
+		_addStatusMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addStatus", com.liferay.chat.model.Status.class);
+
+		_createStatusMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
+				"createStatus", long.class);
+
+		_deleteStatusMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteStatus", long.class);
+
+		_deleteStatusMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteStatus", com.liferay.chat.model.Status.class);
+
+		_dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class);
+
+		_dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQuery",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class,
+				int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"dynamicQueryCount",
+				com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
+
+		_getStatusMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getStatus", long.class);
+
+		_getStatusesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getStatuses", int.class, int.class);
+
+		_getStatusesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getStatusesCount");
+
+		_updateStatusMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", com.liferay.chat.model.Status.class);
+
+		_updateStatusMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", com.liferay.chat.model.Status.class,
+				boolean.class);
+
+		_getAllStatusesMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getAllStatuses", long.class, long.class, long.class,
+				int.class, int.class);
+
+		_getGroupStatusesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getGroupStatuses", long.class, long.class, int.class, int.class);
+
+		_getSocialStatusesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getSocialStatuses", long.class, int.class, long.class,
+				int.class, int.class);
+
+		_getUserStatusMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getUserStatus", long.class);
+
+		_updateStatusMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", long.class, long.class);
+
+		_updateStatusMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", long.class, long.class, int.class, int.class,
+				java.lang.String.class, java.lang.String.class, int.class);
 	}
 
 	public com.liferay.chat.model.Status addStatus(
@@ -575,50 +643,23 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	private ClassLoaderProxy _classLoaderProxy;
-	private MethodKey _addStatusMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
-			"addStatus", com.liferay.chat.model.Status.class);
-	private MethodKey _createStatusMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
-			"createStatus", long.class);
-	private MethodKey _deleteStatusMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteStatus", long.class);
-	private MethodKey _deleteStatusMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-			"deleteStatus", com.liferay.chat.model.Status.class);
-	private MethodKey _dynamicQueryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery", com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _dynamicQueryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class);
-	private MethodKey _dynamicQueryMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQuery",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class, int.class,
-			int.class, com.liferay.portal.kernel.util.OrderByComparator.class);
-	private MethodKey _dynamicQueryCountMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
-			"dynamicQueryCount",
-			com.liferay.portal.kernel.dao.orm.DynamicQuery.class);
-	private MethodKey _getStatusMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getStatus", long.class);
-	private MethodKey _getStatusesMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getStatuses", int.class, int.class);
-	private MethodKey _getStatusesCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getStatusesCount");
-	private MethodKey _updateStatusMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateStatus", com.liferay.chat.model.Status.class);
-	private MethodKey _updateStatusMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateStatus", com.liferay.chat.model.Status.class, boolean.class);
-	private MethodKey _getAllStatusesMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getAllStatuses", long.class, long.class, long.class, int.class,
-			int.class);
-	private MethodKey _getGroupStatusesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getGroupStatuses", long.class, long.class, int.class, int.class);
-	private MethodKey _getSocialStatusesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getSocialStatuses", long.class, int.class, long.class, int.class,
-			int.class);
-	private MethodKey _getUserStatusMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-			"getUserStatus", long.class);
-	private MethodKey _updateStatusMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateStatus", long.class, long.class);
-	private MethodKey _updateStatusMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-			"updateStatus", long.class, long.class, int.class, int.class,
-			java.lang.String.class, java.lang.String.class, int.class);
+	private MethodKey _addStatusMethodKey0;
+	private MethodKey _createStatusMethodKey1;
+	private MethodKey _deleteStatusMethodKey2;
+	private MethodKey _deleteStatusMethodKey3;
+	private MethodKey _dynamicQueryMethodKey4;
+	private MethodKey _dynamicQueryMethodKey5;
+	private MethodKey _dynamicQueryMethodKey6;
+	private MethodKey _dynamicQueryCountMethodKey7;
+	private MethodKey _getStatusMethodKey8;
+	private MethodKey _getStatusesMethodKey9;
+	private MethodKey _getStatusesCountMethodKey10;
+	private MethodKey _updateStatusMethodKey11;
+	private MethodKey _updateStatusMethodKey12;
+	private MethodKey _getAllStatusesMethodKey13;
+	private MethodKey _getGroupStatusesMethodKey14;
+	private MethodKey _getSocialStatusesMethodKey15;
+	private MethodKey _getUserStatusMethodKey16;
+	private MethodKey _updateStatusMethodKey17;
+	private MethodKey _updateStatusMethodKey18;
 }
