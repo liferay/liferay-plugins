@@ -139,7 +139,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 					%>
 
 							<div>
-								<img alt="<liferay-ui:message key="attachment" />" src="<%= themeDisplay.getPathMain() %>/message_boards/get_message_attachment?messageId=<%= mbMessage.getMessageId() %>&attachment=<%= HttpUtil.encodeURL(fileName) %>" />
+								<img alt="<liferay-ui:message key="attachment" />" src="<liferay-portlet:actionURL name="getMessageAttachment" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></liferay-portlet:actionURL>" />
 							</div>
 
 							<br />
@@ -162,7 +162,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 								long fileSize = DLServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, attachmentsFiles[j]);
 							%>
 
-								<a href="<liferay-portlet:actionURL portletName="<%= PortletKeys.MESSAGE_BOARDS %>" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/message_boards/get_message_attachment" /><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></liferay-portlet:actionURL>"><%= fileName %></a> (<%= TextFormatter.formatKB(fileSize, locale) %>k)<%= (j < (attachmentsFiles.length - 1)) ? ", " : "" %>
+								<a href="<liferay-portlet:actionURL name="getMessageAttachment" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></liferay-portlet:actionURL>"><%= fileName %></a> (<%= TextFormatter.formatKB(fileSize, locale) %>k)<%= (j < (attachmentsFiles.length - 1)) ? ", " : "" %>
 
 							<%
 							}
@@ -190,7 +190,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		<table>
 		<tr>
 			<td>
-				<textarea class="message-body" name="<portlet:namespace />body"></textarea>	
+				<textarea class="message-body" name="<portlet:namespace />body"></textarea>
 			</td>
 			<td>
 				<aui:layout>
@@ -203,7 +203,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 					<aui:input label="" name="msgFile2" type="file" />
 
 					<aui:input label="" name="msgFile3" type="file" />
-				</aui:layout>		
+				</aui:layout>
 			</td>
 		</tr>
 		</table>

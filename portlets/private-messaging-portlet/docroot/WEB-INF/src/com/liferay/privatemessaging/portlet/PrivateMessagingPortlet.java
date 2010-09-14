@@ -14,28 +14,41 @@
 
 package com.liferay.privatemessaging.portlet;
 
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
+import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.privatemessaging.util.PrivateMessagingUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Scott Lee
@@ -55,6 +68,46 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		for (long mbThreadId : mbThreadIds) {
 			UserThreadLocalServiceUtil.deleteUserThread(
 				themeDisplay.getUserId(), mbThreadId);
+		}
+	}
+
+	public void getMessageAttachment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			long messageId = ParamUtil.getLong(actionRequest, "messageId");
+			String fileName = ParamUtil.getString(actionRequest, "attachment");
+
+			MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
+
+			if (!PrivateMessagingUtil.isUserPartOfThread(
+					themeDisplay.getUserId(), message.getThreadId())) {
+
+				throw new PrincipalException();
+			}
+
+			String path = message.getAttachmentsDir() + "/" + fileName;
+
+			InputStream is = DLLocalServiceUtil.getFileAsStream(
+				message.getCompanyId(), CompanyConstants.SYSTEM, path);
+			int contentLength = (int)DLServiceUtil.getFileSize(
+				message.getCompanyId(), CompanyConstants.SYSTEM, path);
+			String contentType = MimeTypesUtil.getContentType(fileName);
+
+			HttpServletRequest request = PortalUtil.getHttpServletRequest(
+				actionRequest);
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				actionResponse);
+
+			ServletResponseUtil.sendFile(
+				request, response, fileName, is, contentLength, contentType);
+		}
+		catch (Exception e) {
+			PortalUtil.sendError(e, actionRequest, actionResponse);
 		}
 	}
 
