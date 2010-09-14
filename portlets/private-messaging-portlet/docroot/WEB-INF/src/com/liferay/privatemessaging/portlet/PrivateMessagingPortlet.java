@@ -92,7 +92,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			String path = message.getAttachmentsDir() + "/" + fileName;
 
-			InputStream is = DLLocalServiceUtil.getFileAsStream(
+			InputStream inputStream = DLLocalServiceUtil.getFileAsStream(
 				message.getCompanyId(), CompanyConstants.SYSTEM, path);
 			int contentLength = (int)DLServiceUtil.getFileSize(
 				message.getCompanyId(), CompanyConstants.SYSTEM, path);
@@ -104,7 +104,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				actionResponse);
 
 			ServletResponseUtil.sendFile(
-				request, response, fileName, is, contentLength, contentType);
+				request, response, fileName, inputStream, contentLength,
+				contentType);
 		}
 		catch (Exception e) {
 			PortalUtil.sendError(e, actionRequest, actionResponse);
