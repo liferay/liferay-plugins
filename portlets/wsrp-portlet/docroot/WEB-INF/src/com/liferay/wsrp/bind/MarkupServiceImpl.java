@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -200,6 +201,10 @@ public class MarkupServiceImpl
 		MessageElement[] clientAttributes =
 			ExtensionUtil.getMessageElements(extensions);
 
+		if (clientAttributes == null) {
+			return;
+		}
+
 		for (MessageElement clientAttribute : clientAttributes) {
 			String name = clientAttribute.getName();
 			String value = clientAttribute.getValue();
@@ -235,6 +240,7 @@ public class MarkupServiceImpl
 		MarkupContext markupContext = new MarkupContext();
 
 		markupContext.setItemString(content);
+		markupContext.setMimeType(ContentTypes.TEXT_HTML_UTF8);
 		markupContext.setRequiresRewriting(true);
 
 		MarkupResponse markupResponse = new MarkupResponse();
