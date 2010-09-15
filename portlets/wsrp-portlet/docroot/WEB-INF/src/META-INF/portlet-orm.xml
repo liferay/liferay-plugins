@@ -38,6 +38,7 @@
 			<basic name="wsrpConsumerId" />
 			<basic name="name" />
 			<basic name="portletHandle" />
+			<basic name="version" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>

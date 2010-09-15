@@ -62,9 +62,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "wsrpConsumerId", new Integer(Types.BIGINT) },
 			{ "name", new Integer(Types.VARCHAR) },
-			{ "portletHandle", new Integer(Types.VARCHAR) }
+			{ "portletHandle", new Integer(Types.VARCHAR) },
+			{ "version", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumerPortlet (wsrpConsumerPortletId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,wsrpConsumerId LONG,name VARCHAR(75) null,portletHandle STRING null,version VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumerPortlet";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpConsumerPortlet.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPConsumerPortlet.name ASC";
@@ -179,6 +180,19 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		return GetterUtil.getString(_originalPortletHandle);
 	}
 
+	public String getVersion() {
+		if (_version == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _version;
+		}
+	}
+
+	public void setVersion(String version) {
+		_version = version;
+	}
+
 	public WSRPConsumerPortlet toEscapedModel() {
 		if (isEscapedModel()) {
 			return (WSRPConsumerPortlet)this;
@@ -213,6 +227,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		clone.setWsrpConsumerId(getWsrpConsumerId());
 		clone.setName(getName());
 		clone.setPortletHandle(getPortletHandle());
+		clone.setVersion(getVersion());
 
 		return clone;
 	}
@@ -258,7 +273,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{wsrpConsumerPortletId=");
 		sb.append(getWsrpConsumerPortletId());
@@ -274,13 +289,15 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		sb.append(getName());
 		sb.append(", portletHandle=");
 		sb.append(getPortletHandle());
+		sb.append(", version=");
+		sb.append(getVersion());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumerPortlet");
@@ -314,6 +331,10 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 			"<column><column-name>portletHandle</column-name><column-value><![CDATA[");
 		sb.append(getPortletHandle());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>version</column-name><column-value><![CDATA[");
+		sb.append(getVersion());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -330,5 +351,6 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	private String _name;
 	private String _portletHandle;
 	private String _originalPortletHandle;
+	private String _version;
 	private transient ExpandoBridge _expandoBridge;
 }

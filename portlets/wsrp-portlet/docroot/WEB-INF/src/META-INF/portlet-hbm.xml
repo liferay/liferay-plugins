@@ -30,6 +30,7 @@
 		<property name="wsrpConsumerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="portletHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.wsrp.model.impl.WSRPProducerImpl" table="WSRP_WSRPProducer">
 		<cache usage="read-write" />
