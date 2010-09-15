@@ -158,7 +158,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			for (String name : names) {
 				Field field = new Field(
-					name, solrDocument.getFieldValue(name).toString(), false);
+					name, solrDocument.getFieldValue(name).toString());
 
 				document.add(field);
 			}
