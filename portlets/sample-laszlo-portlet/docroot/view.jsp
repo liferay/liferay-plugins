@@ -1,4 +1,4 @@
-<%
+<%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -12,7 +12,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
+--%>
 
 <div style="text-align: center;">
 	<object height="15" data="<%= request.getContextPath() %>/hello_laszlo.lzx?lzt=swf" type="application/x-shockwave-flash" width="100%">

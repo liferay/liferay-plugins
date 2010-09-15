@@ -1,4 +1,4 @@
-<%
+<%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -12,7 +12,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
+--%>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
@@ -101,7 +101,7 @@ if (locale.getLanguage().equals("fr")) {
 else if (locale.getLanguage().equals("es")) {
 	expectedResourceBundleValues = new String[] {
 		"first-name",
-		"Recepción 2.0",
+		"Recepciï¿½n 2.0",
 		"playing-basketball-is-fun",
 		"Tome por favor una bebida fresca.",
 		"post",
@@ -116,7 +116,7 @@ else if (locale.getLanguage().equals("es")) {
 
 	expectedTaglibValues = new String[] {
 		"Nombre 2.0",
-		"Recepción 2.0",
+		"Recepciï¿½n 2.0",
 		"Jugar a baloncesto es diversi\u00f3n.",
 		"Tome por favor una bebida fresca.",
 		"Mensaje",

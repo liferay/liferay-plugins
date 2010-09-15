@@ -51,8 +51,6 @@ import com.liferay.util.portlet.PortletProps;
 
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.portlet.PortletPreferences;
 

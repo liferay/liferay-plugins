@@ -1,4 +1,4 @@
-<%
+<%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
@@ -12,7 +12,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
+--%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 

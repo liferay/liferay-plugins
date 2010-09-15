@@ -30,7 +30,6 @@ import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
