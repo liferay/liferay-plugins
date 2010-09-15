@@ -53,7 +53,7 @@ import org.apache.axis.message.MessageElement;
 /**
  * @author Brian Wing Shun Chan
  */
-public class ServiceDescriptionServiceImpl
+public class V2ServiceDescriptionServiceImpl
 	extends BaseServiceImpl implements WSRP_v2_ServiceDescription_PortType {
 
 	public ServiceDescription getServiceDescription(
@@ -315,7 +315,7 @@ public class ServiceDescriptionServiceImpl
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		ServiceDescriptionServiceImpl.class);
+		V2ServiceDescriptionServiceImpl.class);
 
 	private static CookieProtocol _COOKIE_PROTOCOL = CookieProtocol.fromString(
 		CookieProtocol._perGroup);
