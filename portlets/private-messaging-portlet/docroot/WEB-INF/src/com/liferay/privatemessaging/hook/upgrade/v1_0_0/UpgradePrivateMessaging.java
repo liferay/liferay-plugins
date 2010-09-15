@@ -14,7 +14,15 @@
 
 package com.liferay.privatemessaging.hook.upgrade.v1_0_0;
 
+import java.util.List;
+
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.model.GroupConstants;
+import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
+import com.liferay.privatemessaging.model.UserThread;
+import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.privatemessaging.util.PrivateMessagingConstants;
 
 /**
  * @author Scott Lee
@@ -22,6 +30,16 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradePrivateMessaging extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
+		List<UserThread> userThreads =
+			UserThreadLocalServiceUtil.getUserThreads(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (UserThread userThread : userThreads) {
+			MBThreadLocalServiceUtil.moveThread(
+				GroupConstants.DEFAULT_PARENT_GROUP_ID,
+				PrivateMessagingConstants.PRIVATE_MESSAGING_CATEGORY_ID,
+				userThread.getMbThreadId());
+		}
 	}
 
 }
