@@ -309,6 +309,10 @@ a:active {
 	width: 35px;
 }
 
+.lfr-actions img {
+	margin-right: 1em;
+}
+
 /* Autocomplete */
 
 .ui-autocomplete-even {
