@@ -267,7 +267,9 @@ public class BindLdapHandler extends BaseLdapHandler {
 		User user = UserLocalServiceUtil.getUserByScreenName(
 			company.getCompanyId(), screenName);
 
-		ldapHandlerContext.setUser(user);
+		if (!user.isDefaultUser()) {
+			ldapHandlerContext.setUser(user);
+		}
 
 		return user;
 	}
