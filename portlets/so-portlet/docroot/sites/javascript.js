@@ -64,13 +64,15 @@ AUI().use(
 						A.Plugin.IO,
 						{
 							autoLoad: false,
+							cache: false,
+							method: 'get',
 							on: {
 								success: function(event, id, xhr) {
 									event.stopImmediatePropagation();
 
 									var html = A.Node.create(xhr.responseText).one('.so-portlet-sites form').get('innerHTML');
 
-									instance._siteList.set('innerHTML', html);
+									instance._siteList.setContent(html);
 								}
 							},
 							uri: themeDisplay.getLayoutURL()
