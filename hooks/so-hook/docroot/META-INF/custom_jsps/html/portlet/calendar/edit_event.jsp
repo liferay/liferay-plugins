@@ -19,28 +19,6 @@
 
 <%@ include file="/html/portlet/calendar/init.jsp" %>
 
-<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-
-	<%
-	long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
-	%>
-
-	<script src="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getPathJavaScript() + "/liferay/service.js", javaScriptLastModified)) %>" type="text/javascript"></script>
-</c:if>
-
 <liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 
-<liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/calendar/edit_event.portal.jsp" />
-</liferay-util:buffer>
-
-<c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
-
-	<%
-	html = StringUtil.replace(html, "_8_fm", "_8_fm2");
-	html = StringUtil.replace(html, "p_p_state=exclusive", "p_p_state=normal");
-	%>
-
-</c:if>
-
-<%= html %>
+<liferay-util:include page="/html/portlet/calendar/edit_event.portal.jsp" />

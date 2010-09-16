@@ -34,13 +34,13 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 <c:if test="<%= CalEventPermission.contains(permissionChecker, event, ActionKeys.UPDATE) %>">
 	<br />
 
-	<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
+	<portlet:renderURL windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>" var="editURL">
 		<portlet:param name="struts_action" value="/calendar/edit_event" />
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="eventId" value="<%= String.valueOf(event.getEventId()) %>" />
 	</portlet:renderURL>
 
-	<input type="button" value="<liferay-ui:message key="edit" />" onclick="<portlet:namespace />updatePopup('<%= HtmlUtil.escape(editURL) %>');" />
+	<input type="button" value="<liferay-ui:message key="edit" />" onclick="location.href='<%= HtmlUtil.escape(editURL) %>'" />
 </c:if>
 
 <c:if test="<%= CalEventPermission.contains(permissionChecker, event, ActionKeys.DELETE) %>">
@@ -53,16 +53,3 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 
 	<input type="button" value="<liferay-ui:message key="delete" />" onclick="javascript:if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this") %>')) { submitForm(document.hrefFm, '<%= deleteURL %>'); } else { self.focus(); }" />
 </c:if>
-
-<aui:script>
-	function <portlet:namespace />updatePopup(editURL) {
-		if (Liferay.SO) {
-			Liferay.SO.Calendar.displayPopup(editURL, 'Calendar Event');
-		}
-		else {
-			editURL = editURL.replace(/p_p_state=<%= LiferayWindowState.EXCLUSIVE %>/gim, 'p_p_state=<%= LiferayWindowState.MAXIMIZED %>');
-
-			window.location.href = editURL;
-		}
-	};
-</aui:script>

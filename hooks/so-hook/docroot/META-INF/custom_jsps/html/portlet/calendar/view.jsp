@@ -116,7 +116,7 @@ portletURL.setParameter("tabs1", tabs1);
 		function(event) {
 			var href = event.currentTarget.getAttribute('href');
 
-			var expr = /_struts_action(=\%2f|\%3d\%252f)calendar(\%2f|\%252f)(edit_event|view_event)/;
+			var expr = /_struts_action(=\%2f|\%3d\%252f)calendar(\%2f|\%252f)view_event/;
 
 			if (expr.test(href.toLowerCase())) {
 				href = href.replace(/p_p_state=(<%= LiferayWindowState.NORMAL %>|<%= LiferayWindowState.MAXIMIZED %>)/gim, 'p_p_state=<%= LiferayWindowState.EXCLUSIVE %>');
