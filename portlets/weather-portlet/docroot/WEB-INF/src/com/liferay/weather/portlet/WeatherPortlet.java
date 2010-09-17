@@ -14,6 +14,7 @@
 
 package com.liferay.weather.portlet;
 
+import com.liferay.portal.kernel.portlet.LiferayPortletMode;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
@@ -40,9 +41,8 @@ public class WeatherPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		if (actionRequest.getPortletMode().equals(PortletMode.EDIT)) {
-			updatePreferences(actionRequest, actionResponse);
-		}
+		updatePreferences(actionRequest, actionResponse);
+
 	}
 
 	protected void updatePreferences(
@@ -61,9 +61,15 @@ public class WeatherPortlet extends MVCPortlet {
 			ParamUtil.getString(actionRequest, "zips"), "\n");
 
 		boolean fahrenheit = ParamUtil.get(actionRequest, "fahrenheit", true);
-
-		preferences.setValues("zips", zips);
-		preferences.setValue("fahrenheit", String.valueOf(fahrenheit));
+		
+		PortletMode portletMode = actionResponse.getPortletMode();
+		if(portletMode.equals(LiferayPortletMode.EDIT_GUEST)){
+			preferences.setValues("guest-zips", zips);
+			preferences.setValue("guest-fahrenheit", String.valueOf(fahrenheit));
+		}else{
+			preferences.setValues("zips", zips);
+			preferences.setValue("fahrenheit", String.valueOf(fahrenheit));
+		}
 
 		try {
 			preferences.store();
