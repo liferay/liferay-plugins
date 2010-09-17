@@ -19,11 +19,9 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-<%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.portal.kernel.portlet.LiferayPortletMode" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.Randomizer" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
@@ -36,26 +34,16 @@
 <%@ page import="java.util.Enumeration" %>
 
 <%@ page import="javax.portlet.PortletPreferences" %>
-<%@ page import="javax.portlet.PortletMode" %>
 <%@ page import="javax.portlet.ValidatorException" %>
 <%@ page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />
-
-<liferay-theme:defineObjects />
 
 <%
 WindowState windowState = renderRequest.getWindowState();
 
 PortletPreferences preferences = renderRequest.getPreferences();
 
-PortletMode portletMode = renderRequest.getPortletMode();
-
 String[] zips = preferences.getValues("zips", new String[0]);
 boolean fahrenheit = GetterUtil.getBoolean(preferences.getValue("fahrenheit", StringPool.BLANK));
-
-if(portletMode.equals(LiferayPortletMode.EDIT_GUEST) || !themeDisplay.isSignedIn()){
-	zips = preferences.getValues("guest-zips", zips);
-	fahrenheit = GetterUtil.getBoolean(preferences.getValue("guest-fahrenheit", StringPool.BLANK), fahrenheit);
-}
 %>
