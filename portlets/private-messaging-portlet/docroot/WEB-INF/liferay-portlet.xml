@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<friendly-url-mapper-class>com.liferay.privatemessaging.portlet.PrivateMessagingFriendlyURLMapper</friendly-url-mapper-class>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>private-messaging-portlet</css-class-wrapper>
