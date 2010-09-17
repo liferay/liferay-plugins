@@ -3,14 +3,14 @@
 
 <routes>
 	<route>
-		<pattern>/{jspPage}</pattern>
-		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
-	</route>
-	<route>
 		<pattern>/thread/{mbThreadId:\d+}</pattern>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
 		<pattern>/thread/{mbThreadId:\d+}/{p_p_state}</pattern>
+	</route>
+	<route>
+		<pattern>/{jspPage}</pattern>
+		<implicit-parameter name="p_p_state">exclusive</implicit-parameter>
 	</route>
 </routes>
