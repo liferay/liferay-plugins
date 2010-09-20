@@ -476,18 +476,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 
 		if (result == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_SELECT_FEED_WHERE);
+
+			query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_SELECT_FEED_WHERE);
-
-				query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -603,28 +603,28 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 
 		if (result == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_SELECT_FEED_WHERE);
+
+			if (twitterScreenName == null) {
+				query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
+			}
+			else {
+				if (twitterScreenName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_SELECT_FEED_WHERE);
-
-				if (twitterScreenName == null) {
-					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
-				}
-				else {
-					if (twitterScreenName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -731,28 +731,28 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+			String sql = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(2 +
+						(orderByComparator.getOrderByFields().length * 3));
+
+				query.append(_SQL_SELECT_FEED);
+
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+
+				sql = query.toString();
+			}
+			else {
+				sql = _SQL_SELECT_FEED;
+			}
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-				String sql = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
-
-					query.append(_SQL_SELECT_FEED);
-
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-
-					sql = query.toString();
-				}
-				else {
-					sql = _SQL_SELECT_FEED;
-				}
 
 				Query q = session.createQuery(sql);
 
@@ -838,18 +838,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FEED_WHERE);
+
+			query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_FEED_WHERE);
-
-				query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -892,28 +892,28 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FEED_WHERE);
+
+			if (twitterScreenName == null) {
+				query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
+			}
+			else {
+				if (twitterScreenName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_FEED_WHERE);
-
-				if (twitterScreenName == null) {
-					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
-				}
-				else {
-					if (twitterScreenName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 

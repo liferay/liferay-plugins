@@ -601,35 +601,35 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -944,30 +944,30 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 
 		if (result == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			if (key == null) {
+				query.append(_FINDER_COLUMN_KEY_KEY_1);
+			}
+			else {
+				if (key.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KEY_KEY_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KEY_KEY_2);
+				}
+			}
+
+			query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				if (key == null) {
-					query.append(_FINDER_COLUMN_KEY_KEY_1);
-				}
-				else {
-					if (key.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_KEY_KEY_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_KEY_KEY_2);
-					}
-				}
-
-				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1082,45 +1082,45 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1446,45 +1446,45 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1813,42 +1813,42 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(4 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(4);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				if (modifiedDate == null) {
-					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
-				}
-
-				query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -2188,47 +2188,47 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(4 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(4);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -2574,47 +2574,47 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(4 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(4);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -2964,54 +2964,54 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(5);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				if (modifiedDate == null) {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
-				}
-
-				query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -3388,54 +3388,54 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(5);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				if (modifiedDate == null) {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
-				}
-
-				query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -3812,59 +3812,59 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(5);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				if (status == null) {
-					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
-				}
-				else {
-					if (status.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -4245,59 +4245,59 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(5 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(5);
-				}
-
-				query.append(_SQL_SELECT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				if (status == null) {
-					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
-				}
-				else {
-					if (status.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -4662,28 +4662,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+			String sql = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(2 +
+						(orderByComparator.getOrderByFields().length * 3));
+
+				query.append(_SQL_SELECT_JIRAISSUE);
+
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+
+				sql = query.toString();
+			}
+			else {
+				sql = _SQL_SELECT_JIRAISSUE.concat(JIRAIssueModelImpl.ORDER_BY_JPQL);
+			}
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-				String sql = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
-
-					query.append(_SQL_SELECT_JIRAISSUE);
-
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-
-					sql = query.toString();
-				}
-				else {
-					sql = _SQL_SELECT_JIRAISSUE.concat(JIRAIssueModelImpl.ORDER_BY_JPQL);
-				}
 
 				Query q = session.createQuery(sql);
 
@@ -4899,18 +4899,18 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_PROJECTID_PROJECTID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -4952,28 +4952,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			if (key == null) {
+				query.append(_FINDER_COLUMN_KEY_KEY_1);
+			}
+			else {
+				if (key.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_KEY_KEY_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_KEY_KEY_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				if (key == null) {
-					query.append(_FINDER_COLUMN_KEY_KEY_1);
-				}
-				else {
-					if (key.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_KEY_KEY_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_KEY_KEY_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5018,28 +5018,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_REPORTERJIRAUSERID_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5084,28 +5084,28 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_ASSIGNEEJIRAUSERID_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5151,25 +5151,25 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				if (modifiedDate == null) {
-					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_MODIFIEDDATE_2);
-				}
-
-				query.append(_FINDER_COLUMN_MD_P_PROJECTID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5217,30 +5217,30 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_RJUI_PROJECTID_2);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_RJUI_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5288,30 +5288,30 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_AJUI_PROJECTID_2);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_AJUI_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5362,37 +5362,37 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				if (modifiedDate == null) {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_MODIFIEDDATE_2);
-				}
-
-				query.append(_FINDER_COLUMN_MD_P_RJUI_PROJECTID_2);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_MD_P_RJUI_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5447,37 +5447,37 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			if (modifiedDate == null) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
+			}
+			else {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				if (modifiedDate == null) {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_1);
-				}
-				else {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_MODIFIEDDATE_2);
-				}
-
-				query.append(_FINDER_COLUMN_MD_P_AJUI_PROJECTID_2);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_MD_P_AJUI_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5530,42 +5530,42 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
+
+			if (reporterJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
+			}
+			else {
+				if (reporterJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
+				}
+			}
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_RJUI_S_PROJECTID_2);
-
-				if (reporterJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_1);
-				}
-				else {
-					if (reporterJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_RJUI_S_REPORTERJIRAUSERID_2);
-					}
-				}
-
-				if (status == null) {
-					query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_1);
-				}
-				else {
-					if (status.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_RJUI_S_STATUS_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -5618,42 +5618,42 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_JIRAISSUE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
+
+			if (assigneeJiraUserId == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
+			}
+			else {
+				if (assigneeJiraUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
+				}
+			}
+
+			if (status == null) {
+				query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
+			}
+			else {
+				if (status.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_COUNT_JIRAISSUE_WHERE);
-
-				query.append(_FINDER_COLUMN_P_AJUI_S_PROJECTID_2);
-
-				if (assigneeJiraUserId == null) {
-					query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_1);
-				}
-				else {
-					if (assigneeJiraUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_AJUI_S_ASSIGNEEJIRAUSERID_2);
-					}
-				}
-
-				if (status == null) {
-					query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_1);
-				}
-				else {
-					if (status.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_P_AJUI_S_STATUS_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 

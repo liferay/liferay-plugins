@@ -488,18 +488,18 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 
 		if (result == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_USERID_USERID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -610,31 +610,31 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(2);
-				}
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -938,31 +938,31 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(2);
+			}
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(2);
-				}
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1269,33 +1269,33 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(4 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1608,28 +1608,28 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+			String sql = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(2 +
+						(orderByComparator.getOrderByFields().length * 3));
+
+				query.append(_SQL_SELECT_STATUS);
+
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+
+				sql = query.toString();
+			}
+			else {
+				sql = _SQL_SELECT_STATUS;
+			}
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-				String sql = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
-
-					query.append(_SQL_SELECT_STATUS);
-
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-
-					sql = query.toString();
-				}
-				else {
-					sql = _SQL_SELECT_STATUS;
-				}
 
 				Query q = session.createQuery(sql);
 
@@ -1740,18 +1740,18 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_USERID_USERID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_USERID_USERID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1793,18 +1793,18 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_MODIFIEDDATE_MODIFIEDDATE_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1846,18 +1846,18 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_ONLINE_ONLINE_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1901,20 +1901,20 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_STATUS_WHERE);
+
+			query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
+
+			query.append(_FINDER_COLUMN_M_O_ONLINE_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_COUNT_STATUS_WHERE);
-
-				query.append(_FINDER_COLUMN_M_O_MODIFIEDDATE_2);
-
-				query.append(_FINDER_COLUMN_M_O_ONLINE_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 

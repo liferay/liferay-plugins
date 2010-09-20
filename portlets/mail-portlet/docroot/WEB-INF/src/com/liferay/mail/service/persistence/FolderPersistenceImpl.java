@@ -481,35 +481,35 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(FolderModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_FOLDER_WHERE);
-
-				query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(FolderModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -828,32 +828,32 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 
 		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
+
+			if (fullName == null) {
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
+			}
+			else {
+				if (fullName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
+				}
+			}
+
+			query.append(FolderModelImpl.ORDER_BY_JPQL);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(4);
-
-				query.append(_SQL_SELECT_FOLDER_WHERE);
-
-				query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
-
-				if (fullName == null) {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
-				}
-				else {
-					if (fullName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
-					}
-				}
-
-				query.append(FolderModelImpl.ORDER_BY_JPQL);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -962,28 +962,28 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+			String sql = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(2 +
+						(orderByComparator.getOrderByFields().length * 3));
+
+				query.append(_SQL_SELECT_FOLDER);
+
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+
+				sql = query.toString();
+			}
+			else {
+				sql = _SQL_SELECT_FOLDER.concat(FolderModelImpl.ORDER_BY_JPQL);
+			}
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-				String sql = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
-
-					query.append(_SQL_SELECT_FOLDER);
-
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-
-					sql = query.toString();
-				}
-				else {
-					sql = _SQL_SELECT_FOLDER.concat(FolderModelImpl.ORDER_BY_JPQL);
-				}
 
 				Query q = session.createQuery(sql);
 
@@ -1068,18 +1068,18 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_FOLDER_WHERE);
-
-				query.append(_FINDER_COLUMN_ACCOUNTID_ACCOUNTID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1123,30 +1123,30 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_FOLDER_WHERE);
+
+			query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
+
+			if (fullName == null) {
+				query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
+			}
+			else {
+				if (fullName.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_COUNT_FOLDER_WHERE);
-
-				query.append(_FINDER_COLUMN_A_F_ACCOUNTID_2);
-
-				if (fullName == null) {
-					query.append(_FINDER_COLUMN_A_F_FULLNAME_1);
-				}
-				else {
-					if (fullName.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_A_F_FULLNAME_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_A_F_FULLNAME_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 

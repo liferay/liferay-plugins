@@ -452,45 +452,45 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_SVNREVISION_WHERE);
+
+			if (svnUserId == null) {
+				query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
+			}
+			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_SVNREVISION_WHERE);
-
-				if (svnUserId == null) {
-					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
-				}
-				else {
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
-					}
-				}
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -816,35 +816,35 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_SVNREVISION_WHERE);
+
+			query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(3 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(3);
-				}
-
-				query.append(_SQL_SELECT_SVNREVISION_WHERE);
-
-				query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1159,47 +1159,47 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_SVNREVISION_WHERE);
+
+			if (svnUserId == null) {
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
+			}
+			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(4 +
-							(orderByComparator.getOrderByFields().length * 3));
-				}
-				else {
-					query = new StringBundler(4);
-				}
-
-				query.append(_SQL_SELECT_SVNREVISION_WHERE);
-
-				if (svnUserId == null) {
-					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
-				}
-				else {
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
-					}
-				}
-
-				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
-
-				if (orderByComparator != null) {
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-				}
-
-				else {
-					query.append(SVNRevisionModelImpl.ORDER_BY_JPQL);
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1533,28 +1533,28 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (list == null) {
+			StringBundler query = null;
+			String sql = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(2 +
+						(orderByComparator.getOrderByFields().length * 3));
+
+				query.append(_SQL_SELECT_SVNREVISION);
+
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+
+				sql = query.toString();
+			}
+			else {
+				sql = _SQL_SELECT_SVNREVISION.concat(SVNRevisionModelImpl.ORDER_BY_JPQL);
+			}
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = null;
-				String sql = null;
-
-				if (orderByComparator != null) {
-					query = new StringBundler(2 +
-							(orderByComparator.getOrderByFields().length * 3));
-
-					query.append(_SQL_SELECT_SVNREVISION);
-
-					appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-						orderByComparator);
-
-					sql = query.toString();
-				}
-				else {
-					sql = _SQL_SELECT_SVNREVISION.concat(SVNRevisionModelImpl.ORDER_BY_JPQL);
-				}
 
 				Query q = session.createQuery(sql);
 
@@ -1653,28 +1653,28 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_SVNREVISION_WHERE);
+
+			if (svnUserId == null) {
+				query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
+			}
+			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
+				}
+			}
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_SVNREVISION_WHERE);
-
-				if (svnUserId == null) {
-					query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_1);
-				}
-				else {
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_SVNUSERID_SVNUSERID_2);
-					}
-				}
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1719,18 +1719,18 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_SVNREVISION_WHERE);
+
+			query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(2);
-
-				query.append(_SQL_COUNT_SVNREVISION_WHERE);
-
-				query.append(_FINDER_COLUMN_SVNREPOSITORYID_SVNREPOSITORYID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
@@ -1774,30 +1774,30 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 				finderArgs, this);
 
 		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_SVNREVISION_WHERE);
+
+			if (svnUserId == null) {
+				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
+			}
+			else {
+				if (svnUserId.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
+				}
+			}
+
+			query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
+
+			String sql = query.toString();
+
 			Session session = null;
 
 			try {
 				session = openSession();
-
-				StringBundler query = new StringBundler(3);
-
-				query.append(_SQL_COUNT_SVNREVISION_WHERE);
-
-				if (svnUserId == null) {
-					query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_1);
-				}
-				else {
-					if (svnUserId.equals(StringPool.BLANK)) {
-						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3);
-					}
-					else {
-						query.append(_FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2);
-					}
-				}
-
-				query.append(_FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2);
-
-				String sql = query.toString();
 
 				Query q = session.createQuery(sql);
 
