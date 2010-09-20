@@ -127,13 +127,11 @@
 				%>
 
 				<a href="<%= viewThreadURL.toString() %>">
-					<aui:layout cssClass="subject">
-						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %>
-					</aui:layout>
+					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %>
 
-					<aui:layout cssClass="body">
-						<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
-					</aui:layout>
+					<br />
+
+					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
 				</a>
 			</aui:layout>
 		</liferay-ui:search-container-column-text>
