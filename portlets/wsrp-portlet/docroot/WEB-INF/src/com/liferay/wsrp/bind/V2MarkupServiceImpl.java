@@ -743,6 +743,6 @@ public class V2MarkupServiceImpl
 		PortalUtil.getPortletNamespace(PortletKeys.PORTLET_CONFIGURATION) +
 			"struts_action";
 
-	private static Log _log = LogFactoryUtil.getLog(MarkupServiceImpl.class);
+	private static Log _log = LogFactoryUtil.getLog(V2MarkupServiceImpl.class);
 
 }
