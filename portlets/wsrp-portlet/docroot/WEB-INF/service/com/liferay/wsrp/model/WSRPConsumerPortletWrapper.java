@@ -172,24 +172,6 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		_wsrpConsumerPortlet.setPortletHandle(portletHandle);
 	}
 
-	/**
-	* Gets the version of this w s r p consumer portlet.
-	*
-	* @return the version of this w s r p consumer portlet
-	*/
-	public java.lang.String getVersion() {
-		return _wsrpConsumerPortlet.getVersion();
-	}
-
-	/**
-	* Sets the version of this w s r p consumer portlet.
-	*
-	* @param version the version of this w s r p consumer portlet
-	*/
-	public void setVersion(java.lang.String version) {
-		_wsrpConsumerPortlet.setVersion(version);
-	}
-
 	public boolean isNew() {
 		return _wsrpConsumerPortlet.isNew();
 	}

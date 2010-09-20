@@ -156,6 +156,21 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 */
 	public void setPortletIds(String portletIds);
 
+	/**
+	 * Gets the version of this w s r p producer.
+	 *
+	 * @return the version of this w s r p producer
+	 */
+	@AutoEscape
+	public String getVersion();
+
+	/**
+	 * Sets the version of this w s r p producer.
+	 *
+	 * @param version the version of this w s r p producer
+	 */
+	public void setVersion(String version);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

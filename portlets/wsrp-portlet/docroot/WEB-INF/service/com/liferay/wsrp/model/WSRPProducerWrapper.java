@@ -172,6 +172,24 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		_wsrpProducer.setPortletIds(portletIds);
 	}
 
+	/**
+	* Gets the version of this w s r p producer.
+	*
+	* @return the version of this w s r p producer
+	*/
+	public java.lang.String getVersion() {
+		return _wsrpProducer.getVersion();
+	}
+
+	/**
+	* Sets the version of this w s r p producer.
+	*
+	* @param version the version of this w s r p producer
+	*/
+	public void setVersion(java.lang.String version) {
+		_wsrpProducer.setVersion(version);
+	}
+
 	public boolean isNew() {
 		return _wsrpProducer.isNew();
 	}

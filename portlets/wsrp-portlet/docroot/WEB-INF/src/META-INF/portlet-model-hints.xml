@@ -30,7 +30,6 @@
 		<field name="portletHandle" type="String">
 			<hint-collection name="URL" />
 		</field>
-		<field name="version" type="String" />
 	</model>
 	<model name="com.liferay.wsrp.model.WSRPProducer">
 		<field name="wsrpProducerId" type="long" />
@@ -42,5 +41,6 @@
 		<field name="portletIds" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
+		<field name="version" type="String" />
 	</model>
 </model-hints>

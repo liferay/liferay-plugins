@@ -285,6 +285,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		wsrpProducerImpl.setModifiedDate(wsrpProducer.getModifiedDate());
 		wsrpProducerImpl.setName(wsrpProducer.getName());
 		wsrpProducerImpl.setPortletIds(wsrpProducer.getPortletIds());
+		wsrpProducerImpl.setVersion(wsrpProducer.getVersion());
 
 		return wsrpProducerImpl;
 	}

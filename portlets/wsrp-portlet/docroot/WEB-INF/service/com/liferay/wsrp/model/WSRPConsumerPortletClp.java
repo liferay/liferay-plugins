@@ -100,14 +100,6 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		_portletHandle = portletHandle;
 	}
 
-	public String getVersion() {
-		return _version;
-	}
-
-	public void setVersion(String version) {
-		_version = version;
-	}
-
 	public WSRPConsumerPortlet toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -129,7 +121,6 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		clone.setWsrpConsumerId(getWsrpConsumerId());
 		clone.setName(getName());
 		clone.setPortletHandle(getPortletHandle());
-		clone.setVersion(getVersion());
 
 		return clone;
 	}
@@ -175,7 +166,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{wsrpConsumerPortletId=");
 		sb.append(getWsrpConsumerPortletId());
@@ -191,15 +182,13 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		sb.append(getName());
 		sb.append(", portletHandle=");
 		sb.append(getPortletHandle());
-		sb.append(", version=");
-		sb.append(getVersion());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumerPortlet");
@@ -233,10 +222,6 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 			"<column><column-name>portletHandle</column-name><column-value><![CDATA[");
 		sb.append(getPortletHandle());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>version</column-name><column-value><![CDATA[");
-		sb.append(getVersion());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -250,5 +235,4 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	private long _wsrpConsumerId;
 	private String _name;
 	private String _portletHandle;
-	private String _version;
 }

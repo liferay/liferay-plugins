@@ -100,6 +100,14 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		_portletIds = portletIds;
 	}
 
+	public String getVersion() {
+		return _version;
+	}
+
+	public void setVersion(String version) {
+		_version = version;
+	}
+
 	public java.lang.String getURL(java.lang.String portalURL) {
 		throw new UnsupportedOperationException();
 	}
@@ -125,6 +133,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setPortletIds(getPortletIds());
+		clone.setVersion(getVersion());
 
 		return clone;
 	}
@@ -170,7 +179,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{wsrpProducerId=");
 		sb.append(getWsrpProducerId());
@@ -186,13 +195,15 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		sb.append(getName());
 		sb.append(", portletIds=");
 		sb.append(getPortletIds());
+		sb.append(", version=");
+		sb.append(getVersion());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPProducer");
@@ -226,6 +237,10 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
 		sb.append(getPortletIds());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>version</column-name><column-value><![CDATA[");
+		sb.append(getVersion());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -239,4 +254,5 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	private Date _modifiedDate;
 	private String _name;
 	private String _portletIds;
+	private String _version;
 }

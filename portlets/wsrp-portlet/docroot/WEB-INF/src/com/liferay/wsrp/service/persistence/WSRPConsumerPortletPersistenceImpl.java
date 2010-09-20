@@ -347,7 +347,6 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		wsrpConsumerPortletImpl.setWsrpConsumerId(wsrpConsumerPortlet.getWsrpConsumerId());
 		wsrpConsumerPortletImpl.setName(wsrpConsumerPortlet.getName());
 		wsrpConsumerPortletImpl.setPortletHandle(wsrpConsumerPortlet.getPortletHandle());
-		wsrpConsumerPortletImpl.setVersion(wsrpConsumerPortlet.getVersion());
 
 		return wsrpConsumerPortletImpl;
 	}

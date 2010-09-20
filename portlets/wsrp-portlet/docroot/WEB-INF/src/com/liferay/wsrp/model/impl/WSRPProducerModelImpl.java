@@ -62,9 +62,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "name", new Integer(Types.VARCHAR) },
-			{ "portletIds", new Integer(Types.VARCHAR) }
+			{ "portletIds", new Integer(Types.VARCHAR) },
+			{ "version", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletIds STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,portletIds STRING null,version VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPProducer";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpProducer.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPProducer.name ASC";
@@ -161,6 +162,19 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		_portletIds = portletIds;
 	}
 
+	public String getVersion() {
+		if (_version == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _version;
+		}
+	}
+
+	public void setVersion(String version) {
+		_version = version;
+	}
+
 	public WSRPProducer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (WSRPProducer)this;
@@ -195,6 +209,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setPortletIds(getPortletIds());
+		clone.setVersion(getVersion());
 
 		return clone;
 	}
@@ -240,7 +255,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{wsrpProducerId=");
 		sb.append(getWsrpProducerId());
@@ -256,13 +271,15 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		sb.append(getName());
 		sb.append(", portletIds=");
 		sb.append(getPortletIds());
+		sb.append(", version=");
+		sb.append(getVersion());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPProducer");
@@ -296,6 +313,10 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
 		sb.append(getPortletIds());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>version</column-name><column-value><![CDATA[");
+		sb.append(getVersion());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -309,5 +330,6 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	private Date _modifiedDate;
 	private String _name;
 	private String _portletIds;
+	private String _version;
 	private transient ExpandoBridge _expandoBridge;
 }

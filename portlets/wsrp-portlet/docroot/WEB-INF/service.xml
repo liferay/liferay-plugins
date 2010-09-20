@@ -51,7 +51,6 @@
 		<column name="wsrpConsumerId" type="long" />
 		<column name="name" type="String" />
 		<column name="portletHandle" type="String" />
-		<column name="version" type="String" />
 
 		<!-- Order -->
 
@@ -89,6 +88,7 @@
 
 		<column name="name" type="String" />
 		<column name="portletIds" type="String" />
+		<column name="version" type="String" />
 
 		<!-- Order -->
 
