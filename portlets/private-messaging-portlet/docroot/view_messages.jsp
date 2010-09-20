@@ -127,9 +127,7 @@
 				%>
 
 				<a href="<%= viewThreadURL.toString() %>">
-					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %>
-
-					<br />
+					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %><br />
 
 					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
 				</a>
