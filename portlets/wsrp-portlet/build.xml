@@ -3,6 +3,13 @@
 <project name="wsrp-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
+	<target name="build-lang">
+		<antcall target="build-lang-cmd">
+			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
+			<param name="lang.file" value="Language" />
+		</antcall>
+	</target>
+
 	<!--
 	See http://wiki.oasis-open.org/wsrp/WSRP_Producers for a list of demo
 	producers.
@@ -86,12 +93,5 @@
 				</java>
 			</sequential>
 		</for>
-	</target>
-	
-	<target name="build-lang">
-		<antcall target="build-lang-cmd">
-			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
-			<param name="lang.file" value="Language" />
-		</antcall>
 	</target>
 </project>

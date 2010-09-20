@@ -32,4 +32,5 @@ package com.liferay.wsrp.model;
  * @generated
  */
 public interface WSRPProducer extends WSRPProducerModel {
+	public java.lang.String getURL(java.lang.String portalURL);
 }

@@ -100,6 +100,10 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		_portletIds = portletIds;
 	}
 
+	public java.lang.String getURL(java.lang.String portalURL) {
+		throw new UnsupportedOperationException();
+	}
+
 	public WSRPProducer toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;

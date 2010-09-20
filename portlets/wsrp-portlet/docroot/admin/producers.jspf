@@ -42,6 +42,15 @@
 			property="name"
 		/>
 
+		<%
+			String producerURL = producer.getURL(themeDisplay.getPortalURL());
+		%>
+
+		<liferay-ui:search-container-column-text
+			href="<%= producerURL %>"
+			value="<%= producerURL %>"
+		/>
+
 		<liferay-ui:search-container-column-jsp
 			align="right"
 			path="/admin/producer_action.jsp"

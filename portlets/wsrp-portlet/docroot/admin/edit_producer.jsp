@@ -63,7 +63,7 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 			<liferay-ui:message key="url" />
 		</td>
 		<td>
-			<a href="<%= themeDisplay.getPortalURL() %>/wsrp-portlet/wsdl/<%= wsrpProducer.getWsrpProducerId() %>" target="_blank"><%= themeDisplay.getPortalURL() %>/wsrp-portlet/wsdl/<%= wsrpProducer.getWsrpProducerId() %></a>
+			<a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></a>
 		</td>
 	</tr>
 </c:if>

@@ -233,6 +233,10 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer.toXmlString();
 	}
 
+	public java.lang.String getURL(java.lang.String portalURL) {
+		return _wsrpProducer.getURL(portalURL);
+	}
+
 	public WSRPProducer getWrappedWSRPProducer() {
 		return _wsrpProducer;
 	}
