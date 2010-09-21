@@ -398,7 +398,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setPortletName(portletId);
 		portlet.setDisplayName(portletId);
-		portlet.setPortletClass(ConsumerPortlet.class.getName());
 
 		Map<String, String> initParams = portlet.getInitParams();
 
