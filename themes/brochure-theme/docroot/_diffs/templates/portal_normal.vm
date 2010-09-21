@@ -43,7 +43,6 @@ $theme.include($top_messages_include)
 				<a class="update-available" href="$update_available_url">#language ("updates-are-available-for-liferay")</a>
 			</div>
 		#end
-
 	</header>
 
 	#if ($has_navigation)
