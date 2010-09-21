@@ -44,18 +44,18 @@ public class WSRPProducerLocalServiceImpl
 	extends WSRPProducerLocalServiceBaseImpl {
 
 	public WSRPProducer addWSRPProducer(
-			long userId, String name, String portletIds, String version)
+			long userId, String name, String version, String portletIds)
 		throws PortalException, SystemException {
 
 		Group group = addGroup(userId, name);
 
 		return addWSRPProducer(
-			userId, group.getGroupId(), name, portletIds, version);
+			userId, group.getGroupId(), name, version, portletIds);
 	}
 
 	public WSRPProducer addWSRPProducer(
-			long userId, long groupId, String name, String portletIds,
-			String version)
+			long userId, long groupId, String name, String version,
+			String portletIds)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -74,8 +74,8 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setCreateDate(now);
 		wsrpProducer.setModifiedDate(now);
 		wsrpProducer.setName(name);
-		wsrpProducer.setPortletIds(portletIds);
 		wsrpProducer.setVersion(version);
+		wsrpProducer.setPortletIds(portletIds);
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
@@ -115,7 +115,7 @@ public class WSRPProducerLocalServiceImpl
 	}
 
 	public WSRPProducer updateWSRPProducer(
-			long wsrpProducerId, String name, String portletIds, String version)
+			long wsrpProducerId, String name, String version, String portletIds)
 		throws PortalException, SystemException {
 
 		// WSRP producer
@@ -129,8 +129,8 @@ public class WSRPProducerLocalServiceImpl
 
 		wsrpProducer.setModifiedDate(new Date());
 		wsrpProducer.setName(name);
-		wsrpProducer.setPortletIds(portletIds);
 		wsrpProducer.setVersion(version);
+		wsrpProducer.setPortletIds(portletIds);
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
 

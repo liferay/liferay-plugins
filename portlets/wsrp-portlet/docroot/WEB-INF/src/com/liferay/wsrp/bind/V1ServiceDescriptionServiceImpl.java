@@ -63,16 +63,17 @@ public class V1ServiceDescriptionServiceImpl
 			_v2ServiceDescriptionService.getServiceDescription(
 				v2GetServiceDescription);
 
-		ServiceDescription v1ServiceDescription = (ServiceDescription)
-			TypeConvertorUtil.convert(v2ServiceDescription, 2);
+		ServiceDescription v1ServiceDescription =
+			(ServiceDescription)TypeConvertorUtil.convert(
+				v2ServiceDescription, 2);
 
 		return v1ServiceDescription;
 	}
 
-	private static WSRP_v2_ServiceDescription_PortType
-		_v2ServiceDescriptionService = new V2ServiceDescriptionServiceImpl();
-
 	private static Log _log = LogFactoryUtil.getLog(
 		V1ServiceDescriptionServiceImpl.class);
+
+	private static WSRP_v2_ServiceDescription_PortType
+		_v2ServiceDescriptionService = new V2ServiceDescriptionServiceImpl();
 
 }

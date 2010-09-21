@@ -291,16 +291,16 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "wsrpProducerId");
 
 		String name = ParamUtil.getString(actionRequest, "name");
-		String portletIds = ParamUtil.getString(actionRequest, "portletIds");
 		String version = ParamUtil.getString(actionRequest, "version");
+		String portletIds = ParamUtil.getString(actionRequest, "portletIds");
 
 		if (wsrpProducerId <= 0) {
 			WSRPProducerLocalServiceUtil.addWSRPProducer(
-				themeDisplay.getUserId(), name, portletIds, version);
+				themeDisplay.getUserId(), name, version, portletIds);
 		}
 		else {
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(
-				wsrpProducerId, name, portletIds, version);
+				wsrpProducerId, name, version, portletIds);
 		}
 	}
 

@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.wsrp.bind;
 
 import com.liferay.portal.kernel.log.Log;
@@ -73,7 +74,7 @@ public class V1MarkupServiceImpl
 
 	public BlockingInteractionResponse performBlockingInteraction(
 			PerformBlockingInteraction v1PerformBlockingInteraction)
-			throws RemoteException {
+		throws RemoteException {
 
 		try {
 			return doPerformBlockingInteraction(v1PerformBlockingInteraction);
@@ -111,15 +112,15 @@ public class V1MarkupServiceImpl
 	protected MarkupResponse doGetMarkup(GetMarkup v1GetMarkup)
 		throws Exception {
 
-		oasis.names.tc.wsrp.v2.types.GetMarkup
-			v2GetMarkup = (oasis.names.tc.wsrp.v2.types.GetMarkup)
-				TypeConvertorUtil.convert(v1GetMarkup, 1);
+		oasis.names.tc.wsrp.v2.types.GetMarkup v2GetMarkup =
+			(oasis.names.tc.wsrp.v2.types.GetMarkup)TypeConvertorUtil.convert(
+				v1GetMarkup, 1);
 
 		oasis.names.tc.wsrp.v2.types.MarkupResponse v2MarkupResponse =
 			_v2MarkupService.getMarkup(v2GetMarkup);
 
-		MarkupResponse v1MarkupResponse = (MarkupResponse)
-			TypeConvertorUtil.convert(v2MarkupResponse, 2);
+		MarkupResponse v1MarkupResponse =
+			(MarkupResponse)TypeConvertorUtil.convert(v2MarkupResponse, 2);
 
 		return v1MarkupResponse;
 	}
@@ -127,15 +128,15 @@ public class V1MarkupServiceImpl
 	protected Extension[] doInitCookie(InitCookie v1InitCookie)
 		throws Exception {
 
-		oasis.names.tc.wsrp.v2.types.InitCookie
-			v2InitCookie = (oasis.names.tc.wsrp.v2.types.InitCookie)
-				TypeConvertorUtil.convert(v1InitCookie, 1);
+		oasis.names.tc.wsrp.v2.types.InitCookie v2InitCookie =
+			(oasis.names.tc.wsrp.v2.types.InitCookie)TypeConvertorUtil.convert(
+				v1InitCookie, 1);
 
 		oasis.names.tc.wsrp.v2.types.Extension[] v2Extensions =
 			_v2MarkupService.initCookie(v2InitCookie);
 
-		Extension[] v1Extensions = (Extension[])
-			TypeConvertorUtil.convert(v2Extensions, 2);
+		Extension[] v1Extensions = (Extension[])TypeConvertorUtil.convert(
+			v2Extensions, 2);
 
 		return v1Extensions;
 	}
@@ -155,7 +156,7 @@ public class V1MarkupServiceImpl
 					v2PerformBlockingInteraction);
 
 		BlockingInteractionResponse v1BlockingInteractionResponse =
-			(BlockingInteractionResponse) TypeConvertorUtil.convert(
+			(BlockingInteractionResponse)TypeConvertorUtil.convert(
 				v2BlockingInteractionResponse, 2);
 
 		return v1BlockingInteractionResponse;
@@ -164,22 +165,22 @@ public class V1MarkupServiceImpl
 	protected Extension[] doReleaseSessions(ReleaseSessions v1ReleaseSessions)
 		throws Exception {
 
-		oasis.names.tc.wsrp.v2.types.ReleaseSessions
-			v2ReleaseSessions = (oasis.names.tc.wsrp.v2.types.ReleaseSessions)
+		oasis.names.tc.wsrp.v2.types.ReleaseSessions v2ReleaseSessions =
+			(oasis.names.tc.wsrp.v2.types.ReleaseSessions)
 				TypeConvertorUtil.convert(v1ReleaseSessions, 1);
 
 		oasis.names.tc.wsrp.v2.types.Extension[] v2Extensions =
 			_v2MarkupService.releaseSessions(v2ReleaseSessions);
 
-		Extension[] v1Extensions = (Extension[])
-			TypeConvertorUtil.convert(v2Extensions, 2);
+		Extension[] v1Extensions = (Extension[])TypeConvertorUtil.convert(
+			v2Extensions, 2);
 
 		return v1Extensions;
 	}
 
+	private static Log _log = LogFactoryUtil.getLog(V1MarkupServiceImpl.class);
+
 	private static WSRP_v2_Markup_PortType _v2MarkupService =
 		new V2MarkupServiceImpl();
-
-	private static Log _log = LogFactoryUtil.getLog(V1MarkupServiceImpl.class);
 
 }
