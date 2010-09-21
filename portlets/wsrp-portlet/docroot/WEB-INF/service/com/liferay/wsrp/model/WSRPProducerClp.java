@@ -92,20 +92,20 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		_name = name;
 	}
 
-	public String getPortletIds() {
-		return _portletIds;
-	}
-
-	public void setPortletIds(String portletIds) {
-		_portletIds = portletIds;
-	}
-
 	public String getVersion() {
 		return _version;
 	}
 
 	public void setVersion(String version) {
 		_version = version;
+	}
+
+	public String getPortletIds() {
+		return _portletIds;
+	}
+
+	public void setPortletIds(String portletIds) {
+		_portletIds = portletIds;
 	}
 
 	public java.lang.String getURL(java.lang.String portalURL) {
@@ -132,8 +132,8 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
-		clone.setPortletIds(getPortletIds());
 		clone.setVersion(getVersion());
+		clone.setPortletIds(getPortletIds());
 
 		return clone;
 	}
@@ -193,10 +193,10 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		sb.append(getModifiedDate());
 		sb.append(", name=");
 		sb.append(getName());
-		sb.append(", portletIds=");
-		sb.append(getPortletIds());
 		sb.append(", version=");
 		sb.append(getVersion());
+		sb.append(", portletIds=");
+		sb.append(getPortletIds());
 		sb.append("}");
 
 		return sb.toString();
@@ -234,12 +234,12 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		sb.append(getName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
-		sb.append(getPortletIds());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>version</column-name><column-value><![CDATA[");
 		sb.append(getVersion());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>portletIds</column-name><column-value><![CDATA[");
+		sb.append(getPortletIds());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -253,6 +253,6 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
-	private String _portletIds;
 	private String _version;
+	private String _portletIds;
 }

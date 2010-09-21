@@ -53,8 +53,8 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="name" />
-			<basic name="portletIds" />
 			<basic name="version" />
+			<basic name="portletIds" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>

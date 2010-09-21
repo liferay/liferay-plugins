@@ -142,21 +142,6 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setName(String name);
 
 	/**
-	 * Gets the portlet ids of this w s r p producer.
-	 *
-	 * @return the portlet ids of this w s r p producer
-	 */
-	@AutoEscape
-	public String getPortletIds();
-
-	/**
-	 * Sets the portlet ids of this w s r p producer.
-	 *
-	 * @param portletIds the portlet ids of this w s r p producer
-	 */
-	public void setPortletIds(String portletIds);
-
-	/**
 	 * Gets the version of this w s r p producer.
 	 *
 	 * @return the version of this w s r p producer
@@ -170,6 +155,21 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	 * @param version the version of this w s r p producer
 	 */
 	public void setVersion(String version);
+
+	/**
+	 * Gets the portlet ids of this w s r p producer.
+	 *
+	 * @return the portlet ids of this w s r p producer
+	 */
+	@AutoEscape
+	public String getPortletIds();
+
+	/**
+	 * Sets the portlet ids of this w s r p producer.
+	 *
+	 * @param portletIds the portlet ids of this w s r p producer
+	 */
+	public void setPortletIds(String portletIds);
 
 	public boolean isNew();
 

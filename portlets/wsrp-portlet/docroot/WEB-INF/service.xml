@@ -87,8 +87,8 @@
 		<!-- Other fields -->
 
 		<column name="name" type="String" />
-		<column name="portletIds" type="String" />
 		<column name="version" type="String" />
+		<column name="portletIds" type="String" />
 
 		<!-- Order -->
 

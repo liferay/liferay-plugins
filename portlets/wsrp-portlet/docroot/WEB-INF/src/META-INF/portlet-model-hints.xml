@@ -38,9 +38,9 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
+		<field name="version" type="String" />
 		<field name="portletIds" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="version" type="String" />
 	</model>
 </model-hints>

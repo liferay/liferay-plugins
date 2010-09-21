@@ -27,6 +27,6 @@ create table WSRP_WSRPProducer (
 	createDate DATE null,
 	modifiedDate DATE null,
 	name VARCHAR(75) null,
-	portletIds STRING null,
-	version VARCHAR(75) null
+	version VARCHAR(75) null,
+	portletIds STRING null
 );

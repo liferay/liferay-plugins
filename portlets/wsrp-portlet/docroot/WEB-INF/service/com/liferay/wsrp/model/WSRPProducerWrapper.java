@@ -155,24 +155,6 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the portlet ids of this w s r p producer.
-	*
-	* @return the portlet ids of this w s r p producer
-	*/
-	public java.lang.String getPortletIds() {
-		return _wsrpProducer.getPortletIds();
-	}
-
-	/**
-	* Sets the portlet ids of this w s r p producer.
-	*
-	* @param portletIds the portlet ids of this w s r p producer
-	*/
-	public void setPortletIds(java.lang.String portletIds) {
-		_wsrpProducer.setPortletIds(portletIds);
-	}
-
-	/**
 	* Gets the version of this w s r p producer.
 	*
 	* @return the version of this w s r p producer
@@ -188,6 +170,24 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	*/
 	public void setVersion(java.lang.String version) {
 		_wsrpProducer.setVersion(version);
+	}
+
+	/**
+	* Gets the portlet ids of this w s r p producer.
+	*
+	* @return the portlet ids of this w s r p producer
+	*/
+	public java.lang.String getPortletIds() {
+		return _wsrpProducer.getPortletIds();
+	}
+
+	/**
+	* Sets the portlet ids of this w s r p producer.
+	*
+	* @param portletIds the portlet ids of this w s r p producer
+	*/
+	public void setPortletIds(java.lang.String portletIds) {
+		_wsrpProducer.setPortletIds(portletIds);
 	}
 
 	public boolean isNew() {
