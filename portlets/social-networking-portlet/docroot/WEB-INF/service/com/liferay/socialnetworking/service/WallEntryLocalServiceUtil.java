@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the wall entry local service. This utility wraps {@link com.liferay.socialnetworking.service.impl.WallEntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -290,6 +291,9 @@ public class WallEntryLocalServiceUtil {
 			_service = new WallEntryLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(WallEntryLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -297,6 +301,9 @@ public class WallEntryLocalServiceUtil {
 
 	public void setService(WallEntryLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(WallEntryLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static WallEntryLocalService _service;

@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialnetworking.model.WallEntry;
@@ -707,6 +708,9 @@ public class WallEntryUtil {
 		if (_persistence == null) {
 			_persistence = (WallEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					WallEntryPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(WallEntryUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -714,6 +718,8 @@ public class WallEntryUtil {
 
 	public void setPersistence(WallEntryPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(WallEntryUtil.class, "_persistence");
 	}
 
 	private static WallEntryPersistence _persistence;

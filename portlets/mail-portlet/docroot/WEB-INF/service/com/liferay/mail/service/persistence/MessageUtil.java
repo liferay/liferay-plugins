@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -624,6 +625,9 @@ public class MessageUtil {
 		if (_persistence == null) {
 			_persistence = (MessagePersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					MessagePersistence.class.getName());
+
+			ReferenceRegistry.registerReference(MessageUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -631,6 +635,8 @@ public class MessageUtil {
 
 	public void setPersistence(MessagePersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(MessageUtil.class, "_persistence");
 	}
 
 	private static MessagePersistence _persistence;

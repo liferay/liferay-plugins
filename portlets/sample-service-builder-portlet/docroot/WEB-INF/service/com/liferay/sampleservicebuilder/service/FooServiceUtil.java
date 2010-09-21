@@ -16,6 +16,7 @@ package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the foo remote service. This utility wraps {@link com.liferay.sampleservicebuilder.service.impl.FooServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
@@ -52,6 +53,8 @@ public class FooServiceUtil {
 			_service = new FooServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
 		}
 
 		return _service;
@@ -59,6 +62,8 @@ public class FooServiceUtil {
 
 	public void setService(FooService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
 	}
 
 	private static FooService _service;

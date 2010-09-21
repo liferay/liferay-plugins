@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the article local service. This utility wraps {@link com.liferay.knowledgebase.service.impl.ArticleLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -475,6 +476,9 @@ public class ArticleLocalServiceUtil {
 			_service = new ArticleLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(ArticleLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -482,6 +486,9 @@ public class ArticleLocalServiceUtil {
 
 	public void setService(ArticleLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(ArticleLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static ArticleLocalService _service;

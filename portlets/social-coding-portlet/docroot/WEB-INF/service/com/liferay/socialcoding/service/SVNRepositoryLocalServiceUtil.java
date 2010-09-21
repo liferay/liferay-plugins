@@ -16,6 +16,7 @@ package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the s v n repository local service. This utility wraps {@link com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -258,6 +259,9 @@ public class SVNRepositoryLocalServiceUtil {
 			_service = new SVNRepositoryLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(SVNRepositoryLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -265,6 +269,9 @@ public class SVNRepositoryLocalServiceUtil {
 
 	public void setService(SVNRepositoryLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(SVNRepositoryLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static SVNRepositoryLocalService _service;

@@ -16,6 +16,7 @@ package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the j i r a issue local service. This utility wraps {@link com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -386,6 +387,9 @@ public class JIRAIssueLocalServiceUtil {
 			_service = new JIRAIssueLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -393,6 +397,9 @@ public class JIRAIssueLocalServiceUtil {
 
 	public void setService(JIRAIssueLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static JIRAIssueLocalService _service;

@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoLog;
 
@@ -1198,6 +1199,9 @@ public class KaleoLogUtil {
 		if (_persistence == null) {
 			_persistence = (KaleoLogPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					KaleoLogPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(KaleoLogUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -1205,6 +1209,8 @@ public class KaleoLogUtil {
 
 	public void setPersistence(KaleoLogPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(KaleoLogUtil.class, "_persistence");
 	}
 
 	private static KaleoLogPersistence _persistence;

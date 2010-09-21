@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.privatemessaging.model.UserThread;
@@ -941,6 +942,9 @@ public class UserThreadUtil {
 		if (_persistence == null) {
 			_persistence = (UserThreadPersistence)PortletBeanLocatorUtil.locate(com.liferay.privatemessaging.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					UserThreadPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(UserThreadUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -948,6 +952,8 @@ public class UserThreadUtil {
 
 	public void setPersistence(UserThreadPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(UserThreadUtil.class, "_persistence");
 	}
 
 	private static UserThreadPersistence _persistence;

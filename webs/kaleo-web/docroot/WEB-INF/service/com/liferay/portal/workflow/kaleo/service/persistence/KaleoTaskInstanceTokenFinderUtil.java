@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -38,6 +39,9 @@ public class KaleoTaskInstanceTokenFinderUtil {
 		if (_finder == null) {
 			_finder = (KaleoTaskInstanceTokenFinder)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					KaleoTaskInstanceTokenFinder.class.getName());
+
+			ReferenceRegistry.registerReference(KaleoTaskInstanceTokenFinderUtil.class,
+				"_finder");
 		}
 
 		return _finder;
@@ -45,6 +49,9 @@ public class KaleoTaskInstanceTokenFinderUtil {
 
 	public void setFinder(KaleoTaskInstanceTokenFinder finder) {
 		_finder = finder;
+
+		ReferenceRegistry.registerReference(KaleoTaskInstanceTokenFinderUtil.class,
+			"_finder");
 	}
 
 	private static KaleoTaskInstanceTokenFinder _finder;

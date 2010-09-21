@@ -15,6 +15,7 @@
 package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -41,6 +42,9 @@ public class JIRAIssueFinderUtil {
 		if (_finder == null) {
 			_finder = (JIRAIssueFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					JIRAIssueFinder.class.getName());
+
+			ReferenceRegistry.registerReference(JIRAIssueFinderUtil.class,
+				"_finder");
 		}
 
 		return _finder;
@@ -48,6 +52,8 @@ public class JIRAIssueFinderUtil {
 
 	public void setFinder(JIRAIssueFinder finder) {
 		_finder = finder;
+
+		ReferenceRegistry.registerReference(JIRAIssueFinderUtil.class, "_finder");
 	}
 
 	private static JIRAIssueFinder _finder;

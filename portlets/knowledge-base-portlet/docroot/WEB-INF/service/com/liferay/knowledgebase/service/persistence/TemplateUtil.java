@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -688,6 +689,9 @@ public class TemplateUtil {
 		if (_persistence == null) {
 			_persistence = (TemplatePersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					TemplatePersistence.class.getName());
+
+			ReferenceRegistry.registerReference(TemplateUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -695,6 +699,8 @@ public class TemplateUtil {
 
 	public void setPersistence(TemplatePersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(TemplateUtil.class, "_persistence");
 	}
 
 	private static TemplatePersistence _persistence;

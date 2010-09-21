@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialcoding.model.JIRAIssue;
@@ -1961,6 +1962,9 @@ public class JIRAIssueUtil {
 		if (_persistence == null) {
 			_persistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					JIRAIssuePersistence.class.getName());
+
+			ReferenceRegistry.registerReference(JIRAIssueUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -1968,6 +1972,8 @@ public class JIRAIssueUtil {
 
 	public void setPersistence(JIRAIssuePersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(JIRAIssueUtil.class, "_persistence");
 	}
 
 	private static JIRAIssuePersistence _persistence;

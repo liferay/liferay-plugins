@@ -16,6 +16,7 @@ package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the foo local service. This utility wraps {@link com.liferay.sampleservicebuilder.service.impl.FooLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -269,6 +270,9 @@ public class FooLocalServiceUtil {
 			_service = new FooLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -276,6 +280,9 @@ public class FooLocalServiceUtil {
 
 	public void setService(FooLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(FooLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static FooLocalService _service;

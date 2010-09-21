@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the kaleo node local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoNodeLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -263,6 +264,9 @@ public class KaleoNodeLocalServiceUtil {
 			_service = new KaleoNodeLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(KaleoNodeLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -270,6 +274,9 @@ public class KaleoNodeLocalServiceUtil {
 
 	public void setService(KaleoNodeLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(KaleoNodeLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static KaleoNodeLocalService _service;

@@ -16,6 +16,7 @@ package com.liferay.privatemessaging.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the user thread local service. This utility wraps {@link com.liferay.privatemessaging.service.impl.UserThreadLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -340,6 +341,9 @@ public class UserThreadLocalServiceUtil {
 			_service = new UserThreadLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(UserThreadLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -347,6 +351,9 @@ public class UserThreadLocalServiceUtil {
 
 	public void setService(UserThreadLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(UserThreadLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static UserThreadLocalService _service;

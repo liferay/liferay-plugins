@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.twitter.model.Feed;
@@ -397,6 +398,8 @@ public class FeedUtil {
 		if (_persistence == null) {
 			_persistence = (FeedPersistence)PortletBeanLocatorUtil.locate(com.liferay.twitter.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					FeedPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(FeedUtil.class, "_persistence");
 		}
 
 		return _persistence;
@@ -404,6 +407,8 @@ public class FeedUtil {
 
 	public void setPersistence(FeedPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(FeedUtil.class, "_persistence");
 	}
 
 	private static FeedPersistence _persistence;

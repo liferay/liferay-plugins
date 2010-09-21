@@ -16,6 +16,7 @@ package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the j i r a action local service. This utility wraps {@link com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -243,6 +244,9 @@ public class JIRAActionLocalServiceUtil {
 			_service = new JIRAActionLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(JIRAActionLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -250,6 +254,9 @@ public class JIRAActionLocalServiceUtil {
 
 	public void setService(JIRAActionLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(JIRAActionLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static JIRAActionLocalService _service;

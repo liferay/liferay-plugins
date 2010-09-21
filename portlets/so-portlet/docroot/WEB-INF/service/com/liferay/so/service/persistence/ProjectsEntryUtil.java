@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.so.model.ProjectsEntry;
@@ -411,6 +412,9 @@ public class ProjectsEntryUtil {
 		if (_persistence == null) {
 			_persistence = (ProjectsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					ProjectsEntryPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(ProjectsEntryUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -418,6 +422,9 @@ public class ProjectsEntryUtil {
 
 	public void setPersistence(ProjectsEntryPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(ProjectsEntryUtil.class,
+			"_persistence");
 	}
 
 	private static ProjectsEntryPersistence _persistence;

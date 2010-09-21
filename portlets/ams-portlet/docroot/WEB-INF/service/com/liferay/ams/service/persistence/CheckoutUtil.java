@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -265,6 +266,9 @@ public class CheckoutUtil {
 		if (_persistence == null) {
 			_persistence = (CheckoutPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					CheckoutPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(CheckoutUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -272,6 +276,8 @@ public class CheckoutUtil {
 
 	public void setPersistence(CheckoutPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(CheckoutUtil.class, "_persistence");
 	}
 
 	private static CheckoutPersistence _persistence;

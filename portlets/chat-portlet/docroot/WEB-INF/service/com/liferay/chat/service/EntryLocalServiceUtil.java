@@ -16,6 +16,7 @@ package com.liferay.chat.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the entry local service. This utility wraps {@link com.liferay.chat.service.impl.EntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -269,6 +270,9 @@ public class EntryLocalServiceUtil {
 			_service = new EntryLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -276,6 +280,9 @@ public class EntryLocalServiceUtil {
 
 	public void setService(EntryLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static EntryLocalService _service;

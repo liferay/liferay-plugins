@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the type local service. This utility wraps {@link com.liferay.ams.service.impl.TypeLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -240,6 +241,9 @@ public class TypeLocalServiceUtil {
 			_service = new TypeLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(TypeLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -247,6 +251,9 @@ public class TypeLocalServiceUtil {
 
 	public void setService(TypeLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(TypeLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static TypeLocalService _service;

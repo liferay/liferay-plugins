@@ -15,6 +15,7 @@
 package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -39,6 +40,9 @@ public class WallEntryFinderUtil {
 		if (_finder == null) {
 			_finder = (WallEntryFinder)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					WallEntryFinder.class.getName());
+
+			ReferenceRegistry.registerReference(WallEntryFinderUtil.class,
+				"_finder");
 		}
 
 		return _finder;
@@ -46,6 +50,8 @@ public class WallEntryFinderUtil {
 
 	public void setFinder(WallEntryFinder finder) {
 		_finder = finder;
+
+		ReferenceRegistry.registerReference(WallEntryFinderUtil.class, "_finder");
 	}
 
 	private static WallEntryFinder _finder;

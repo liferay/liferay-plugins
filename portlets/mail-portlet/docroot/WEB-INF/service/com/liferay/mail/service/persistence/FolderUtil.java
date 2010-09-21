@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -478,6 +479,8 @@ public class FolderUtil {
 		if (_persistence == null) {
 			_persistence = (FolderPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					FolderPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(FolderUtil.class, "_persistence");
 		}
 
 		return _persistence;
@@ -485,6 +488,8 @@ public class FolderUtil {
 
 	public void setPersistence(FolderPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(FolderUtil.class, "_persistence");
 	}
 
 	private static FolderPersistence _persistence;

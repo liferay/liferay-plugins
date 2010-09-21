@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -767,6 +768,8 @@ public class StatusUtil {
 		if (_persistence == null) {
 			_persistence = (StatusPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					StatusPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(StatusUtil.class, "_persistence");
 		}
 
 		return _persistence;
@@ -774,6 +777,8 @@ public class StatusUtil {
 
 	public void setPersistence(StatusPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(StatusUtil.class, "_persistence");
 	}
 
 	private static StatusPersistence _persistence;

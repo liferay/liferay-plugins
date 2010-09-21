@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the definition local service. This utility wraps {@link com.liferay.ams.service.impl.DefinitionLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -243,6 +244,9 @@ public class DefinitionLocalServiceUtil {
 			_service = new DefinitionLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(DefinitionLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -250,6 +254,9 @@ public class DefinitionLocalServiceUtil {
 
 	public void setService(DefinitionLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(DefinitionLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static DefinitionLocalService _service;

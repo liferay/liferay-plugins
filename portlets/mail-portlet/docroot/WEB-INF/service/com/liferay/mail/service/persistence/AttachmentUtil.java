@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -411,6 +412,9 @@ public class AttachmentUtil {
 		if (_persistence == null) {
 			_persistence = (AttachmentPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					AttachmentPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(AttachmentUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -418,6 +422,8 @@ public class AttachmentUtil {
 
 	public void setPersistence(AttachmentPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(AttachmentUtil.class, "_persistence");
 	}
 
 	private static AttachmentPersistence _persistence;

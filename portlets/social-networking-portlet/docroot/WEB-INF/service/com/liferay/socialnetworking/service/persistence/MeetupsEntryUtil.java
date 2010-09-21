@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialnetworking.model.MeetupsEntry;
@@ -557,6 +558,9 @@ public class MeetupsEntryUtil {
 		if (_persistence == null) {
 			_persistence = (MeetupsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					MeetupsEntryPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(MeetupsEntryUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -564,6 +568,9 @@ public class MeetupsEntryUtil {
 
 	public void setPersistence(MeetupsEntryPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(MeetupsEntryUtil.class,
+			"_persistence");
 	}
 
 	private static MeetupsEntryPersistence _persistence;

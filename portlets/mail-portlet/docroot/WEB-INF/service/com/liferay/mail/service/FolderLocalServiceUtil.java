@@ -16,6 +16,7 @@ package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the folder local service. This utility wraps {@link com.liferay.mail.service.impl.FolderLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -297,6 +298,9 @@ public class FolderLocalServiceUtil {
 			_service = new FolderLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(FolderLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -304,6 +308,9 @@ public class FolderLocalServiceUtil {
 
 	public void setService(FolderLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(FolderLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static FolderLocalService _service;

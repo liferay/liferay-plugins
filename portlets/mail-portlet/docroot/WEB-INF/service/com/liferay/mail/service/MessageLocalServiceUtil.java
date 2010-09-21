@@ -16,6 +16,7 @@ package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the message local service. This utility wraps {@link com.liferay.mail.service.impl.MessageLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -341,6 +342,9 @@ public class MessageLocalServiceUtil {
 			_service = new MessageLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(MessageLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -348,6 +352,9 @@ public class MessageLocalServiceUtil {
 
 	public void setService(MessageLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(MessageLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static MessageLocalService _service;

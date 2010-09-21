@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the kaleo task assignment local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoTaskAssignmentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -292,6 +293,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 			_service = new KaleoTaskAssignmentLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(KaleoTaskAssignmentLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -299,6 +303,9 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 
 	public void setService(KaleoTaskAssignmentLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(KaleoTaskAssignmentLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static KaleoTaskAssignmentLocalService _service;

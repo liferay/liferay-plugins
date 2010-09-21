@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the meetups registration local service. This utility wraps {@link com.liferay.socialnetworking.service.impl.MeetupsRegistrationLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -273,6 +274,9 @@ public class MeetupsRegistrationLocalServiceUtil {
 			_service = new MeetupsRegistrationLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(MeetupsRegistrationLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -280,6 +284,9 @@ public class MeetupsRegistrationLocalServiceUtil {
 
 	public void setService(MeetupsRegistrationLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(MeetupsRegistrationLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static MeetupsRegistrationLocalService _service;

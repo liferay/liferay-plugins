@@ -16,6 +16,7 @@ package com.liferay.twitter.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the feed local service. This utility wraps {@link com.liferay.twitter.service.impl.FeedLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -258,6 +259,9 @@ public class FeedLocalServiceUtil {
 			_service = new FeedLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(FeedLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -265,6 +269,9 @@ public class FeedLocalServiceUtil {
 
 	public void setService(FeedLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(FeedLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static FeedLocalService _service;

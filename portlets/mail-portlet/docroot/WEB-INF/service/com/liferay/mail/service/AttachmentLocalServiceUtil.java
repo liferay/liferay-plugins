@@ -16,6 +16,7 @@ package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the attachment local service. This utility wraps {@link com.liferay.mail.service.impl.AttachmentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -277,6 +278,9 @@ public class AttachmentLocalServiceUtil {
 			_service = new AttachmentLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -284,6 +288,9 @@ public class AttachmentLocalServiceUtil {
 
 	public void setService(AttachmentLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static AttachmentLocalService _service;

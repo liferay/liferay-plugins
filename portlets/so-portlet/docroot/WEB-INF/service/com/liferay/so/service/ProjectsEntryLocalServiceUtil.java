@@ -16,6 +16,7 @@ package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the projects entry local service. This utility wraps {@link com.liferay.so.service.impl.ProjectsEntryLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -280,6 +281,9 @@ public class ProjectsEntryLocalServiceUtil {
 			_service = new ProjectsEntryLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(ProjectsEntryLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -287,6 +291,9 @@ public class ProjectsEntryLocalServiceUtil {
 
 	public void setService(ProjectsEntryLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(ProjectsEntryLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static ProjectsEntryLocalService _service;

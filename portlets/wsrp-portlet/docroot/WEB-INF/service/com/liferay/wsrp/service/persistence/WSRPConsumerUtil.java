@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -414,6 +415,9 @@ public class WSRPConsumerUtil {
 		if (_persistence == null) {
 			_persistence = (WSRPConsumerPersistence)PortletBeanLocatorUtil.locate(com.liferay.wsrp.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					WSRPConsumerPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(WSRPConsumerUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -421,6 +425,9 @@ public class WSRPConsumerUtil {
 
 	public void setPersistence(WSRPConsumerPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(WSRPConsumerUtil.class,
+			"_persistence");
 	}
 
 	private static WSRPConsumerPersistence _persistence;

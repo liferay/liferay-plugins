@@ -16,6 +16,7 @@ package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the member request local service. This utility wraps {@link com.liferay.so.service.impl.MemberRequestLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -326,6 +327,9 @@ public class MemberRequestLocalServiceUtil {
 			_service = new MemberRequestLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(MemberRequestLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -333,6 +337,9 @@ public class MemberRequestLocalServiceUtil {
 
 	public void setService(MemberRequestLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(MemberRequestLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static MemberRequestLocalService _service;

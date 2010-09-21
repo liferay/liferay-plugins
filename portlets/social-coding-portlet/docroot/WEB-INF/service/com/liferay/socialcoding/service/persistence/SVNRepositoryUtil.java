@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.socialcoding.model.SVNRepository;
@@ -335,6 +336,9 @@ public class SVNRepositoryUtil {
 		if (_persistence == null) {
 			_persistence = (SVNRepositoryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					SVNRepositoryPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(SVNRepositoryUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -342,6 +346,9 @@ public class SVNRepositoryUtil {
 
 	public void setPersistence(SVNRepositoryPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(SVNRepositoryUtil.class,
+			"_persistence");
 	}
 
 	private static SVNRepositoryPersistence _persistence;

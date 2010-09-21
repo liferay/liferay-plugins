@@ -16,6 +16,7 @@ package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the j i r a change item local service. This utility wraps {@link com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -251,6 +252,9 @@ public class JIRAChangeItemLocalServiceUtil {
 			_service = new JIRAChangeItemLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(JIRAChangeItemLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -258,6 +262,9 @@ public class JIRAChangeItemLocalServiceUtil {
 
 	public void setService(JIRAChangeItemLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(JIRAChangeItemLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static JIRAChangeItemLocalService _service;

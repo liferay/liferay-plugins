@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
@@ -477,6 +478,9 @@ public class AccountUtil {
 		if (_persistence == null) {
 			_persistence = (AccountPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					AccountPersistence.class.getName());
+
+			ReferenceRegistry.registerReference(AccountUtil.class,
+				"_persistence");
 		}
 
 		return _persistence;
@@ -484,6 +488,8 @@ public class AccountUtil {
 
 	public void setPersistence(AccountPersistence persistence) {
 		_persistence = persistence;
+
+		ReferenceRegistry.registerReference(AccountUtil.class, "_persistence");
 	}
 
 	private static AccountPersistence _persistence;

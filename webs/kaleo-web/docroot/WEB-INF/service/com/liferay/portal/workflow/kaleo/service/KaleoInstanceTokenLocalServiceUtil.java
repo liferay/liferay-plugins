@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the kaleo instance token local service. This utility wraps {@link com.liferay.portal.workflow.kaleo.service.impl.KaleoInstanceTokenLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -336,6 +337,9 @@ public class KaleoInstanceTokenLocalServiceUtil {
 			_service = new KaleoInstanceTokenLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(KaleoInstanceTokenLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -343,6 +347,9 @@ public class KaleoInstanceTokenLocalServiceUtil {
 
 	public void setService(KaleoInstanceTokenLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(KaleoInstanceTokenLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static KaleoInstanceTokenLocalService _service;

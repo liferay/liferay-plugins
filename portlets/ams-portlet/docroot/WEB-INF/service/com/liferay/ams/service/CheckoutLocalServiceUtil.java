@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the checkout local service. This utility wraps {@link com.liferay.ams.service.impl.CheckoutLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -240,6 +241,9 @@ public class CheckoutLocalServiceUtil {
 			_service = new CheckoutLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -247,6 +251,9 @@ public class CheckoutLocalServiceUtil {
 
 	public void setService(CheckoutLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static CheckoutLocalService _service;

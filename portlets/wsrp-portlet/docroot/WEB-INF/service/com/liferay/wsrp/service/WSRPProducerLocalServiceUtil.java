@@ -16,6 +16,7 @@ package com.liferay.wsrp.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the w s r p producer local service. This utility wraps {@link com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -277,6 +278,9 @@ public class WSRPProducerLocalServiceUtil {
 			_service = new WSRPProducerLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(WSRPProducerLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -284,6 +288,9 @@ public class WSRPProducerLocalServiceUtil {
 
 	public void setService(WSRPProducerLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(WSRPProducerLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static WSRPProducerLocalService _service;

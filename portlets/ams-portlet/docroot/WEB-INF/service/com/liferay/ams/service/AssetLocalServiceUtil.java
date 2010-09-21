@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the asset local service. This utility wraps {@link com.liferay.ams.service.impl.AssetLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -240,6 +241,9 @@ public class AssetLocalServiceUtil {
 			_service = new AssetLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -247,6 +251,9 @@ public class AssetLocalServiceUtil {
 
 	public void setService(AssetLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static AssetLocalService _service;

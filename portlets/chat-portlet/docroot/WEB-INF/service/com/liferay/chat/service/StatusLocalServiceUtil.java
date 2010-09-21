@@ -16,6 +16,7 @@ package com.liferay.chat.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the status local service. This utility wraps {@link com.liferay.chat.service.impl.StatusLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -283,6 +284,9 @@ public class StatusLocalServiceUtil {
 			_service = new StatusLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(StatusLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -290,6 +294,9 @@ public class StatusLocalServiceUtil {
 
 	public void setService(StatusLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(StatusLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static StatusLocalService _service;

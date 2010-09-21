@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the comment local service. This utility wraps {@link com.liferay.knowledgebase.service.impl.CommentLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -302,6 +303,9 @@ public class CommentLocalServiceUtil {
 			_service = new CommentLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(CommentLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -309,6 +313,9 @@ public class CommentLocalServiceUtil {
 
 	public void setService(CommentLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(CommentLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static CommentLocalService _service;

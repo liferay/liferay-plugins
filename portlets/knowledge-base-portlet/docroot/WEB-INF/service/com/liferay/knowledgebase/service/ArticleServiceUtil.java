@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the article remote service. This utility wraps {@link com.liferay.knowledgebase.service.impl.ArticleServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
@@ -239,6 +240,9 @@ public class ArticleServiceUtil {
 			_service = new ArticleServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(ArticleServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -246,6 +250,8 @@ public class ArticleServiceUtil {
 
 	public void setService(ArticleService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(ArticleServiceUtil.class, "_service");
 	}
 
 	private static ArticleService _service;

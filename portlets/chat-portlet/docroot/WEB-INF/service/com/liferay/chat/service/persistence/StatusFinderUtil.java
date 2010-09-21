@@ -15,6 +15,7 @@
 package com.liferay.chat.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * @author Brian Wing Shun Chan
@@ -46,6 +47,9 @@ public class StatusFinderUtil {
 		if (_finder == null) {
 			_finder = (StatusFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
 					StatusFinder.class.getName());
+
+			ReferenceRegistry.registerReference(StatusFinderUtil.class,
+				"_finder");
 		}
 
 		return _finder;
@@ -53,6 +57,8 @@ public class StatusFinderUtil {
 
 	public void setFinder(StatusFinder finder) {
 		_finder = finder;
+
+		ReferenceRegistry.registerReference(StatusFinderUtil.class, "_finder");
 	}
 
 	private static StatusFinder _finder;
