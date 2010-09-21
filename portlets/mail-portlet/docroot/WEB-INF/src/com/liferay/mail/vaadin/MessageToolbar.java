@@ -266,7 +266,7 @@ public class MessageToolbar extends HorizontalLayout {
 					catch (MailException me) {
 						if (me.getType() == MailException.FOLDER_INVALID_DESTINATION) {
 							controller.showError(Lang
-									.get("cant-move-messages-to-this-folder"));
+									.get("cannot-move-messages-to-this-folder"));
 						}
 					}
 					catch (PortalException e) {

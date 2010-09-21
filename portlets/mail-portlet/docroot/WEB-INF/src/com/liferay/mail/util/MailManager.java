@@ -544,7 +544,7 @@ public class MailManager {
 		catch (MailException me) {
 			if (me.getType() == MailException.FOLDER_INVALID_DESTINATION) {
 				return createJSONResult(
-					"failure", "cant-move-messages-to-this-folder");
+					"failure", "cannot-move-messages-to-this-folder");
 			}
 
 			_log.error(me, me);
@@ -570,7 +570,7 @@ public class MailManager {
 		catch (MailException me) {
 			if (me.getType() == MailException.FOLDER_RENAME_FAILED) {
 				return createJSONResult(
-					"failure", "cant-move-messages-to-this-folder");
+					"failure", "cannot-move-messages-to-this-folder");
 			}
 			else if (me.getType() == MailException.FOLDER_ALREADY_EXISTS) {
 				return createJSONResult(
