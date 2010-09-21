@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -356,21 +355,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
-	protected Class<ConsumerPortlet> getConsumerPortletImpl(Portlet portlet)
-		throws ClassNotFoundException {
-
-		if (_consumerPortletImpl == null) {
-			ClassLoader portletClassLoader =
-				PortletClassLoaderUtil.getClassLoader();
-
-			_consumerPortletImpl =
-				(Class<ConsumerPortlet>)portletClassLoader.loadClass(
-					portlet.getPortletClass());
-		}
-
-		return _consumerPortletImpl;
-	}
-
 	protected Portlet getPortlet(
 			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
 			String name, String portletHandle, String userToken)
@@ -407,9 +391,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		portlet.setPortletId(portletId);
 		portlet.setTimestamp(System.currentTimeMillis());
 
-		Class<ConsumerPortlet> consumerPortletImpl = getConsumerPortletImpl(
-			portlet);
-
 		PortletApp portletApp = PortletLocalServiceUtil.getPortletApp(
 			ClpSerializer.SERVLET_CONTEXT_NAME);
 
@@ -417,7 +398,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setPortletName(portletId);
 		portlet.setDisplayName(portletId);
-		portlet.setPortletClass(consumerPortletImpl.getName());
+		portlet.setPortletClass(ConsumerPortlet.class.getName());
 
 		Map<String, String> initParams = portlet.getInitParams();
 
@@ -435,7 +416,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		portletBag = (PortletBag)portletBag.clone();
 
 		portletBag.setPortletName(portletId);
-		portletBag.setPortletInstance(consumerPortletImpl.newInstance());
+		portletBag.setPortletInstance(new ConsumerPortlet());
 
 		PortletBagPool.put(portletId, portletBag);
 
@@ -513,8 +494,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 	private static final String _CONSUMER_PORTLET_NAME = "2";
 
 	private static final String _WSRP_CATEGORY = "category.wsrp";
-
-	private static Class<ConsumerPortlet> _consumerPortletImpl;
 
 	private static Map<Long, Portlet> _portletsPool =
 		new ConcurrentHashMap<Long, Portlet>();
