@@ -43,6 +43,7 @@ import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.base.WSRPConsumerPortletLocalServiceBaseImpl;
 import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.LocalizedStringUtil;
+import com.liferay.wsrp.util.PortletPropsValues;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
@@ -398,7 +399,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setPortletName(portletId);
 		portlet.setDisplayName(portletId);
-		portlet.setPortletClass(ConsumerPortlet.class.getName());
+		portlet.setPortletClass(PortletPropsValues.CONSUMER_PORTLET_IMPL);
 
 		Map<String, String> initParams = portlet.getInitParams();
 
