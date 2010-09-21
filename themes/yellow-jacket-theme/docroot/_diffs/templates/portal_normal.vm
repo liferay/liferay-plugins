@@ -37,7 +37,7 @@
 				<span>$the_title</span>
 			</h3>
 		</hgroup>
-		
+
 		#if ($update_available_url)
 			<div class="popup-alert-notice">
 				<a class="update-available" href="$update_available_url">#language("updates-are-available-for-liferay")</a>

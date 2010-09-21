@@ -30,6 +30,7 @@
 			</li>
 		#end
 	</ul>
+
 	#if(!$is_signed_in)
 			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 	#end
