@@ -43,7 +43,7 @@
 		/>
 
 		<%
-			String producerURL = producer.getURL(themeDisplay.getPortalURL());
+		String producerURL = producer.getURL(themeDisplay.getPortalURL());
 		%>
 
 		<liferay-ui:search-container-column-text
