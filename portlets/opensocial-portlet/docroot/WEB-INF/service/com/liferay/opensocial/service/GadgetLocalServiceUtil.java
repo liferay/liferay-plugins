@@ -16,6 +16,7 @@ package com.liferay.opensocial.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the gadget local service. This utility wraps {@link com.liferay.opensocial.service.impl.GadgetLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -293,6 +294,9 @@ public class GadgetLocalServiceUtil {
 			_service = new GadgetLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(GadgetLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -300,6 +304,9 @@ public class GadgetLocalServiceUtil {
 
 	public void setService(GadgetLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(GadgetLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static GadgetLocalService _service;
