@@ -16,6 +16,7 @@ package com.liferay.wsrp.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
  * The utility for the w s r p producer local service. This utility wraps {@link com.liferay.wsrp.service.impl.WSRPProducerLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
@@ -228,20 +229,20 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
-		long userId, java.lang.String name, java.lang.String portletIds,
-		java.lang.String version)
+		long userId, java.lang.String name, java.lang.String version,
+		java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addWSRPProducer(userId, name, portletIds, version);
+		return getService().addWSRPProducer(userId, name, version, portletIds);
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
 		long userId, long groupId, java.lang.String name,
-		java.lang.String portletIds, java.lang.String version)
+		java.lang.String version, java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addWSRPProducer(userId, groupId, name, portletIds, version);
+				   .addWSRPProducer(userId, groupId, name, version, portletIds);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
@@ -256,12 +257,12 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name,
-		java.lang.String portletIds, java.lang.String version)
+		long wsrpProducerId, java.lang.String name, java.lang.String version,
+		java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateWSRPProducer(wsrpProducerId, name, portletIds, version);
+				   .updateWSRPProducer(wsrpProducerId, name, version, portletIds);
 	}
 
 	public static void clearService() {
@@ -281,6 +282,9 @@ public class WSRPProducerLocalServiceUtil {
 			_service = new WSRPProducerLocalServiceClp(classLoaderProxy);
 
 			ClpSerializer.setClassLoader(portletClassLoader);
+
+			ReferenceRegistry.registerReference(WSRPProducerLocalServiceUtil.class,
+				"_service");
 		}
 
 		return _service;
@@ -288,6 +292,9 @@ public class WSRPProducerLocalServiceUtil {
 
 	public void setService(WSRPProducerLocalService service) {
 		_service = service;
+
+		ReferenceRegistry.registerReference(WSRPProducerLocalServiceUtil.class,
+			"_service");
 	}
 
 	private static WSRPProducerLocalService _service;

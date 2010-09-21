@@ -461,14 +461,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, java.lang.String portletIds,
-		java.lang.String version)
+		java.lang.String name, java.lang.String version,
+		java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey13,
-				userId, name, portletIds, version);
+				userId, name, version, portletIds);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -495,14 +495,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		long groupId, java.lang.String name, java.lang.String portletIds,
-		java.lang.String version)
+		long groupId, java.lang.String name, java.lang.String version,
+		java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey14,
-				userId, groupId, name, portletIds, version);
+				userId, groupId, name, version, portletIds);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -584,14 +584,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name,
-		java.lang.String portletIds, java.lang.String version)
+		long wsrpProducerId, java.lang.String name, java.lang.String version,
+		java.lang.String portletIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey17,
-				wsrpProducerId, name, portletIds, version);
+				wsrpProducerId, name, version, portletIds);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
