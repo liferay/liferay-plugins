@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html class="#language ("lang.dir")" dir="#language ("lang.dir")">
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
@@ -21,11 +21,15 @@ $theme.include($top_messages_include)
 <div id="wrapper">
 	<a href="#main-content" id="skip-to-content">#language("skip-to-content")</a>
 
-	<div id="banner">
-		<h1 class="logo">
-			<a class="png" href="$company_url">$company_name</a>
-		</h1>
+	<header id="banner" role="banner">
+		<hgroup id="heading">
+			<h1 class="company-title">
+				<a class="logo" href="$company_url" title="#language("go-to") $company_name">
+					<span>$company_name</span>
+				</a>
+			</h1>
 
+		</hgroup>
 		#if(!$is_signed_in)
 			<a href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
 		#end
@@ -40,7 +44,7 @@ $theme.include($top_messages_include)
 			</div>
 		#end
 
-	</div>
+	</header>
 
 	#if ($has_navigation)
 		#parse ("$full_templates_path/navigation.vm")
