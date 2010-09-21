@@ -209,12 +209,14 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, java.lang.String portletIds)
+		java.lang.String name, java.lang.String portletIds,
+		java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		long groupId, java.lang.String name, java.lang.String portletIds)
+		long groupId, java.lang.String name, java.lang.String portletIds,
+		java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -228,7 +230,8 @@ public interface WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name, java.lang.String portletIds)
+		long wsrpProducerId, java.lang.String name,
+		java.lang.String portletIds, java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

@@ -222,19 +222,21 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, java.lang.String portletIds)
+		java.lang.String name, java.lang.String portletIds,
+		java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, name,
-			portletIds);
+			portletIds, version);
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		long groupId, java.lang.String name, java.lang.String portletIds)
+		long groupId, java.lang.String name, java.lang.String portletIds,
+		java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpProducerLocalService.addWSRPProducer(userId, groupId, name,
-			portletIds);
+			portletIds, version);
 	}
 
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
@@ -249,11 +251,12 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name, java.lang.String portletIds)
+		long wsrpProducerId, java.lang.String name,
+		java.lang.String portletIds, java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpProducerLocalService.updateWSRPProducer(wsrpProducerId,
-			name, portletIds);
+			name, portletIds, version);
 	}
 
 	public WSRPProducerLocalService getWrappedWSRPProducerLocalService() {

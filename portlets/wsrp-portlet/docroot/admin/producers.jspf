@@ -48,7 +48,13 @@
 
 		<liferay-ui:search-container-column-text
 			href="<%= producerURL %>"
+			name="url"
 			value="<%= producerURL %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			name="version"
+			property="version"
 		/>
 
 		<liferay-ui:search-container-column-jsp

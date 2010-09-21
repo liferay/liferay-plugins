@@ -22,9 +22,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 long wsrpProducerId = ParamUtil.getLong(request, "wsrpProducerId");
 
 WSRPProducer wsrpProducer = null;
+String version = Constants.WSRP_V2;
 
 try {
 	wsrpProducer = WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerId);
+	version = GetterUtil.getString(wsrpProducer.getVersion(), Constants.WSRP_V2);
 }
 catch (NoSuchProducerException nsce) {
 }
@@ -56,7 +58,17 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 		<liferay-ui:input-field model="<%= WSRPProducer.class %>" bean="<%= wsrpProducer %>" field="name" />
 	</td>
 </tr>
-
+<tr>
+	<td>
+		<liferay-ui:message key="version" />
+	</td>
+	<td>
+		<select id="<portlet:namespace />version" name="<portlet:namespace />version">
+			<option <%= version.equals(Constants.WSRP_V2) ? "selected" : "" %> value="<%= Constants.WSRP_V2 %>"><%= Constants.WSRP_V2 %></option>
+			<option <%= version.equals(Constants.WSRP_V1) ? "selected" : "" %> value="<%= Constants.WSRP_V1 %>"><%= Constants.WSRP_V1 %></option>
+		</select>
+	</td>
+</tr>
 <c:if test="<%= wsrpProducer != null %>">
 	<tr>
 		<td>

@@ -18,10 +18,12 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
+import com.liferay.wsrp.model.WSRPProducer;
+import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
+import com.liferay.wsrp.util.Constants;
 
 import java.io.IOException;
 
@@ -68,20 +70,23 @@ public class WSDLServlet extends HttpServlet {
 			}
 		}
 
-		double version = ParamUtil.getDouble(
-			request, "version", _DEFAULT_VERSION);
+		String url = request.getRequestURL().toString();
+
+		int pos = url.lastIndexOf(StringPool.SLASH);
+
+		long wsrpProducerId = GetterUtil.getLong(url.substring(pos));
+
+		WSRPProducer wsrpProducer =
+			WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerId);
+
+		String version = GetterUtil.getString(
+			wsrpProducer.getVersion(), Constants.WSRP_V2);
 
 		String content = StringUtil.read(
 			servletContext.getResourceAsStream(
 				"/WEB-INF/wsdl/wsrp-" + version + "-service.wsdl"));
 
 		content = replaceLocations(request, content);
-
-		String url = request.getRequestURL().toString();
-
-		int pos = url.lastIndexOf(StringPool.SLASH);
-
-		long wsrpProducerId = GetterUtil.getLong(url.substring(pos));
 
 		return StringUtil.replace(
 			content,
@@ -119,8 +124,6 @@ public class WSDLServlet extends HttpServlet {
 				"schemaLocation=\"" + url + "/wsrp-"
 			});
 	}
-
-	private static final double _DEFAULT_VERSION = 2.0;
 
 	private static final String[] _PATHS = {
 		"/wsrp-1.0-bindings.wsdl", "/wsrp-1.0-interfaces.wsdl",

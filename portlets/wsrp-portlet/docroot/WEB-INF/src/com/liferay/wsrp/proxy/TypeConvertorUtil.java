@@ -42,6 +42,10 @@ public class TypeConvertorUtil {
 	public static Object convert(Object source, int sourceVersion)
 		throws Exception {
 
+		if (source == null) {
+			return null;
+		}
+
 		String sourcePackage = _V1_PACKAGE;
 		String destinationPackage = _V2_PACKAGE;
 

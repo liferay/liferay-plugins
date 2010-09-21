@@ -290,7 +290,7 @@
 		<parameter name="wsdlServiceElement" value="WSRPService" />
 		<parameter name="schemaQualified" value="urn:oasis:names:tc:wsrp:v1:types,urn:oasis:names:tc:wsrp:v1:intf" />
 		<parameter name="wsdlServicePort" value="WSRPBaseService" />
-		<parameter name="className" value="oasis.names.tc.wsrp.v1.bind.WSRP_v1_Markup_Binding_SOAPImpl" />
+		<parameter name="className" value="com.liferay.wsrp.bind.V1MarkupServiceImpl" />
 		<parameter name="wsdlPortType" value="WSRP_v1_Markup_PortType" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<operation xmlns:retNS="urn:oasis:names:tc:wsrp:v1:types" xmlns:rtns="urn:oasis:names:tc:wsrp:v1:types" name="getMarkup" qname="getMarkup" returnQName="retNS:getMarkupResponse" returnType="rtns:MarkupResponse" soapAction="urn:oasis:names:tc:wsrp:v1:getMarkup">
@@ -426,7 +426,7 @@
 		<parameter name="wsdlServiceElement" value="WSRPService" />
 		<parameter name="schemaQualified" value="urn:oasis:names:tc:wsrp:v1:types,urn:oasis:names:tc:wsrp:v1:intf" />
 		<parameter name="wsdlServicePort" value="WSRPServiceDescriptionService" />
-		<parameter name="className" value="oasis.names.tc.wsrp.v1.bind.WSRP_v1_ServiceDescription_Binding_SOAPImpl" />
+		<parameter name="className" value="com.liferay.wsrp.bind.V1ServiceDescriptionServiceImpl" />
 		<parameter name="wsdlPortType" value="WSRP_v1_ServiceDescription_PortType" />
 		<parameter name="typeMappingVersion" value="1.2" />
 		<operation xmlns:retNS="urn:oasis:names:tc:wsrp:v1:types" xmlns:rtns="urn:oasis:names:tc:wsrp:v1:types" name="getServiceDescription" qname="getServiceDescription" returnQName="retNS:getServiceDescriptionResponse" returnType="rtns:ServiceDescription" soapAction="urn:oasis:names:tc:wsrp:v1:getServiceDescription">

@@ -74,11 +74,12 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 
 		_addWSRPProducerMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPProducer", long.class, java.lang.String.class,
-				java.lang.String.class);
+				java.lang.String.class, java.lang.String.class);
 
 		_addWSRPProducerMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPProducer", long.class, long.class,
-				java.lang.String.class, java.lang.String.class);
+				java.lang.String.class, java.lang.String.class,
+				java.lang.String.class);
 
 		_getWSRPProducersMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPProducers", long.class, int.class, int.class);
@@ -88,7 +89,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 
 		_updateWSRPProducerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWSRPProducer", long.class, java.lang.String.class,
-				java.lang.String.class);
+				java.lang.String.class, java.lang.String.class);
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
@@ -460,13 +461,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		java.lang.String name, java.lang.String portletIds)
+		java.lang.String name, java.lang.String portletIds,
+		java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey13,
-				userId, name, portletIds);
+				userId, name, portletIds, version);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -493,13 +495,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
-		long groupId, java.lang.String name, java.lang.String portletIds)
+		long groupId, java.lang.String name, java.lang.String portletIds,
+		java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey14,
-				userId, groupId, name, portletIds);
+				userId, groupId, name, portletIds, version);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -581,13 +584,14 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer updateWSRPProducer(
-		long wsrpProducerId, java.lang.String name, java.lang.String portletIds)
+		long wsrpProducerId, java.lang.String name,
+		java.lang.String portletIds, java.lang.String version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey17,
-				wsrpProducerId, name, portletIds);
+				wsrpProducerId, name, portletIds, version);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
