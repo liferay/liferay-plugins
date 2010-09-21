@@ -86,13 +86,20 @@
 					User curUser = users.get(i);
 				%>
 
-					<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
-						<portlet:param name="struts_action" value="/my_places/view" />
-						<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
-						<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-					</liferay-portlet:actionURL>
+					<c:choose>
+						<c:when test="<%= userPublicLayoutsEnabled %>">
+							<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
+								<portlet:param name="struts_action" value="/my_places/view" />
+								<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
+								<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+							</liferay-portlet:actionURL>
 
-					<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
+							<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
+						</c:when>
+						<c:otherwise>
+							<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+						</c:otherwise>
+					</c:choose>
 
 					<c:if test="<%= i != users.size() - 1 %>">
 						,

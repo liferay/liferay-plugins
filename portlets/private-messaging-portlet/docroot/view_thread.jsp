@@ -50,13 +50,20 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 		User curUser = users.get(i);
 	%>
 
-		<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
-			<portlet:param name="struts_action" value="/my_places/view" />
-			<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
-			<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-		</liferay-portlet:actionURL>
+		<c:choose>
+			<c:when test="<%= userPublicLayoutsEnabled %>">
+				<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_PLACES %>" var="publicPagesURL">
+					<portlet:param name="struts_action" value="/my_places/view" />
+					<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
+					<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+				</liferay-portlet:actionURL>
 
-		<a class="profile-link" href="<%= publicPagesURL %>"><%= curUser.getFullName() %></a>
+				<a class="profile-link" href="<%= publicPagesURL %>"><%= curUser.getFullName() %></a>
+			</c:when>
+			<c:otherwise>
+				<span class="profile-link"><%= curUser.getFullName() %></span>
+			</c:otherwise>
+		</c:choose>
 
 		<c:if test="<%= i != (users.size() - 1) %>">
 			,
@@ -66,13 +73,20 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 	}
 	%>
 
-	<liferay-portlet:actionURL var="selfPublicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
-		<portlet:param name="struts_action" value="/my_places/view" />
-		<portlet:param name="groupId" value="<%= String.valueOf(user.getGroup().getGroupId()) %>" />
-		<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-	</liferay-portlet:actionURL>
+	<c:choose>
+		<c:when test="<%= userPublicLayoutsEnabled %>">
+			<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_PLACES %>" var="selfPublicPagesURL">
+				<portlet:param name="struts_action" value="/my_places/view" />
+				<portlet:param name="groupId" value="<%= String.valueOf(user.getGroup().getGroupId()) %>" />
+				<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+			</liferay-portlet:actionURL>
 
-	and <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
+			and <a class="profile-link" href="<%= selfPublicPagesURL %>"><liferay-ui:message key="you" /></a>
+		</c:when>
+		<c:otherwise>
+			and <span class="profile-link"><liferay-ui:message key="you" /></span>
+		</c:otherwise>
+	</c:choose>
 </aui:layout>
 
 <liferay-ui:search-container delta="25" emptyResultsMessage="no-messages-found">
@@ -108,15 +122,24 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 			%>
 
 			<aui:layout>
-				<liferay-portlet:actionURL var="publicPagesURL" portletName="<%= PortletKeys.MY_PLACES %>">
-					<portlet:param name="struts_action" value="/my_places/view" />
-					<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
-					<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-				</liferay-portlet:actionURL>
+				<c:choose>
+					<c:when test="<%= userPublicLayoutsEnabled %>">
+						<liferay-portlet:actionURL portletName="<%= PortletKeys.MY_PLACES %>" var="publicPagesURL">
+							<portlet:param name="struts_action" value="/my_places/view" />
+							<portlet:param name="groupId" value="<%= String.valueOf(curUser.getGroup().getGroupId()) %>" />
+							<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
+						</liferay-portlet:actionURL>
 
-				<span class="name">
-					<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
-				</span>
+						<span class="name">
+							<a class="profile-link" href="<%= publicPagesURL %>"><%= HtmlUtil.escape(curUser.getFullName()) %></a>
+						</span>
+					</c:when>
+					<c:otherwise>
+						<span class="name">
+							<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+						</span>
+					</c:otherwise>
+				</c:choose>
 
 				<span class="date">
 					<%= dateFormatDateTime.format(mbMessage.getCreateDate()) %>
