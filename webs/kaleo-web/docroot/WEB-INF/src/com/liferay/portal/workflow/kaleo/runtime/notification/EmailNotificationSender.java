@@ -31,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -66,8 +67,7 @@ public class EmailNotificationSender implements NotificationSender {
 				fromName = _fromName;
 			}
 
-			InternetAddress from = new InternetAddress(
-				fromAddress, fromName);
+			InternetAddress from = new InternetAddress(fromAddress, fromName);
 
 			InternetAddress[] recipients = getRecipients(
 				kaleoNotificationRecipients, executionContext);
