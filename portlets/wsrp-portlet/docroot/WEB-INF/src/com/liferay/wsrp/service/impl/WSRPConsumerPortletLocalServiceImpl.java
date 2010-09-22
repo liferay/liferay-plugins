@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
-import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -357,19 +356,17 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	protected ConsumerPortlet getConsumerPortletInstance(Portlet portlet)
-		throws ClassNotFoundException, InstantiationException,
-			IllegalAccessException {
+		throws Exception {
 
-		if (_consumerPortletImpl == null) {
-			ClassLoader portletClassLoader =
-				PortletClassLoaderUtil.getClassLoader();
+		if (_consumerPortletClass == null) {
+			ClassLoader classLoader = getClass().getClassLoader();
 
-			_consumerPortletImpl =
-				(Class<ConsumerPortlet>)portletClassLoader.loadClass(
+			_consumerPortletClass =
+				(Class<ConsumerPortlet>)classLoader.loadClass(
 					portlet.getPortletClass());
 		}
 
-		return _consumerPortletImpl.newInstance();
+		return _consumerPortletClass.newInstance();
 	}
 
 	protected Portlet getPortlet(
@@ -433,9 +430,10 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portletBag.setPortletName(portletId);
 
-		ConsumerPortlet portletInstance = getConsumerPortletInstance(portlet);
+		ConsumerPortlet consumerPortletInstance = getConsumerPortletInstance(
+			portlet);
 
-		portletBag.setPortletInstance(portletInstance);
+		portletBag.setPortletInstance(consumerPortletInstance);
 
 		PortletBagPool.put(portletId, portletBag);
 
@@ -514,9 +512,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 	private static final String _WSRP_CATEGORY = "category.wsrp";
 
-	private static Class<ConsumerPortlet> _consumerPortletImpl;
-
 	private static Map<Long, Portlet> _portletsPool =
 		new ConcurrentHashMap<Long, Portlet>();
+
+	private Class<ConsumerPortlet> _consumerPortletClass;
 
 }
