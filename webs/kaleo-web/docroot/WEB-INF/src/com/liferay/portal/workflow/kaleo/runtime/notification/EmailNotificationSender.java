@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -29,8 +30,10 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.mail.internet.InternetAddress;
 
@@ -41,19 +44,43 @@ public class EmailNotificationSender implements NotificationSender {
 
 	public void sendNotification(
 			List<KaleoNotificationRecipient> kaleoNotificationRecipients,
-			String subject, String notificationMessage,
+			String defaultSubject, String notificationMessage,
 			ExecutionContext executionContext)
 		throws NotificationMessageSenderException {
 
 		try {
+			Map<String, Serializable> workflowContext =
+				executionContext.getWorkflowContext();
+
+			String fromAddress = (String)workflowContext.get(
+				WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_ADDRESS);
+
+			if (Validator.isNull(fromAddress)) {
+				fromAddress = _fromAddress;
+			}
+
+			String fromName = (String)workflowContext.get(
+				WorkflowConstants.CONTEXT_NOTIFICATION_SENDER_NAME);
+
+			if (Validator.isNull(fromName)) {
+				fromName = _fromName;
+			}
+
 			InternetAddress from = new InternetAddress(
-				_fromAddress, _fromName);
+				fromAddress, fromName);
 
 			InternetAddress[] recipients = getRecipients(
 				kaleoNotificationRecipients, executionContext);
 
 			if (recipients.length == 0) {
 				return;
+			}
+
+			String subject = (String)workflowContext.get(
+				WorkflowConstants.CONTEXT_NOTIFICATION_SUBJECT);
+
+			if (Validator.isNull(subject)) {
+				subject = defaultSubject;
 			}
 
 			MailMessage mailMessage = new MailMessage(
