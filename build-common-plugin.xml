@@ -252,6 +252,8 @@
 
 	<target name="clean" description="clean">
 		<delete dir="docroot/WEB-INF/classes" />
+		<delete dir="test-classes" />
+		<delete dir="test-results" />
 		<delete dir="tmp" />
 		<delete file="${plugin.file}" />
 
@@ -354,6 +356,40 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 
 		<antcall target="merge" />
+	</target>
+
+	<target name="compile-test">
+		<mkdir dir="test-classes" />
+		<mkdir dir="test-results" />
+
+		<copy todir="test-classes">
+			<fileset dir="test" includes="**/*.png,**/*.properties,**/*.xml" />
+		</copy>
+
+		<if>
+			<available file="tmp" />
+			<then>
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
+					<pathelement location="tmp/WEB-INF/classes" />
+				</path>
+			</then>
+			<else>
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
+				</path>
+			</else>
+		</if>
+
+		<antcall target="compile-java">
+			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.destdir" value="test-classes" />
+			<param name="javac.srcdir" value="test" />
+			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
+		</antcall>
 	</target>
 
 	<target name="deploy" depends="war">
@@ -544,6 +580,89 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="merge-unzip">
 		<unzip dest="tmp" src="${original.war.file}" />
+	</target>
+
+	<target name="test">
+		<delete dir="test-classes" />
+		<delete dir="test-results" />
+
+		<antcall target="compile" />
+		<antcall target="compile-test" />
+
+		<fileset dir="test-classes" id="test.suite.classes">
+			<include name="**/*TestSuite.class" />
+		</fileset>
+
+		<pathconvert
+			property="test.suite.classes.available"
+			refid="test.suite.classes"
+			setonempty="false"
+		/>
+
+		<if>
+			<available file="tmp" />
+			<then>
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<fileset dir="tmp/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
+					<pathelement location="tmp/WEB-INF/classes" />
+				</path>
+			</then>
+			<else>
+				<path id="plugin-lib.classpath">
+					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
+					<pathelement location="docroot/WEB-INF/classes" />
+				</path>
+			</else>
+		</if>
+
+		<if>
+			<not>
+				<isset property="test.suite.classes.available" />
+			</not>
+			<then>
+				<junit dir="${project.dir}" fork="on" forkmode="once" printsummary="on">
+					<jvmarg value="-Xmx256m" />
+					<jvmarg value="-Duser.timezone=GMT" />
+					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<classpath refid="plugin.classpath" />
+					<formatter type="brief" usefile="false" />
+					<formatter type="xml" />
+					<batchtest todir="test-results">
+						<fileset dir="test-classes" includes="**/*Test.class" />
+					</batchtest>
+				</junit>
+			</then>
+			<else>
+				<junit dir="${project.dir}" fork="on" forkmode="once" printsummary="on">
+					<jvmarg value="-Xmx256m" />
+					<jvmarg value="-Duser.timezone=GMT" />
+					<jvmarg value="-Dexternal-properties=${test.properties}" />
+					<classpath refid="plugin.classpath" />
+					<formatter type="brief" usefile="false" />
+					<formatter type="xml" />
+					<batchtest todir="test-results">
+						<fileset dir="test-classes" includes="**/*TestSuite.class" />
+					</batchtest>
+				</junit>
+			</else>
+		</if>
+	</target>
+
+	<target name="test-class" depends="compile,compile-test" if="class">
+		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+			<jvmarg value="-Xmx512m" />
+			<jvmarg value="-XX:MaxPermSize=128m" />
+			<jvmarg value="-Duser.timezone=GMT" />
+			<jvmarg value="-Dexternal-properties=${test.properties}" />
+			<classpath refid="plugin.classpath" />
+			<formatter type="brief" usefile="false" />
+			<formatter type="xml" />
+			<batchtest todir="test-results">
+				<fileset dir="test-classes" includes="**/${class}.class" />
+			</batchtest>
+		</junit>
 	</target>
 
 	<target name="war" depends="compile">
