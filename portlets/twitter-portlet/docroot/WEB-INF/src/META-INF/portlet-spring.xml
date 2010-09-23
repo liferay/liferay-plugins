@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.twitter.service.FeedLocalService" class="com.liferay.twitter.service.impl.FeedLocalServiceImpl" />
 	<bean id="com.liferay.twitter.service.FeedLocalServiceUtil" class="com.liferay.twitter.service.FeedLocalServiceUtil">
 		<property name="service" ref="com.liferay.twitter.service.FeedLocalService" />
