@@ -42,14 +42,18 @@ if (mbThreadId != 0) {
 		<aui:input name="redirect" type="hidden" value="<%= backURL %>" />
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
-		<aui:input name="to" value="<%= to %>" />
+
+		<div id="<portlet:namespace />autoCompleteContainer">
+			<aui:input name="to" value="<%= to %>" />
+		</div>
+
 		<aui:input name="subject" value="<%= subject %>" />
 
 		<label class="aui-field-label">
 			<liferay-ui:message key="message" />
 		</label>
 
-		<textarea class="message-body" name="<portlet:namespace />body"></textarea>
+		<textarea class="message-body" id="<portlet:namespace />body" name="<portlet:namespace />body"></textarea>
 
 		<label class="aui-field-label">
 			<liferay-ui:message key="attachments" />
@@ -69,6 +73,40 @@ if (mbThreadId != 0) {
 
 <aui:script>
 	function <portlet:namespace />sendPrivateMessage() {
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage" />');
+		var A = AUI();
+
+		if (A.one('#<portlet:namespace />to').val() == '') {
+			A.one('#<portlet:namespace />to').focus();
+
+			return false;
+		}
+
+		if (A.one('#<portlet:namespace />subject').val() == '') {
+			A.one('#<portlet:namespace />subject').focus();
+
+			return false;
+		}
+
+		if (A.one('#<portlet:namespace />body').val() == '') {
+			A.one('#<portlet:namespace />body').focus();
+
+			return false;
+		}
+
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage" windowState="<%= WindowState.NORMAL.toString() %>" />');
 	}
+</aui:script>
+
+<aui:script use="aui-autocomplete">
+	var autocomplete = new A.AutoComplete(
+		{
+			dataSource: <%= PrivateMessagingUtil.getJSONRecipients(user.getUserId()) %>,
+			delimChar: ',',
+			typeAhead: true,
+			contentBox: '#<portlet:namespace/>autoCompleteContainer',
+			input: '#<portlet:namespace/>to'
+		}
+	).render();
+
+	autocomplete.overlay.set('zIndex', 1002);
 </aui:script>

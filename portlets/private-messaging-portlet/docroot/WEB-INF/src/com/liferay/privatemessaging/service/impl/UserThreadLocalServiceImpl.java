@@ -15,12 +15,13 @@
 package com.liferay.privatemessaging.service.impl;
 
 import com.liferay.mail.service.MailServiceUtil;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.servlet.ImageServletTokenUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -45,6 +46,7 @@ import com.liferay.privatemessaging.util.PrivateMessagingConstants;
 
 import java.text.Format;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -74,11 +76,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			subject = lastMBMessage.getSubject();
 		}
 
-		long[] recipientUserIds = GetterUtil.getLongValues(
-			StringUtil.split(to));
+		List<User> recipients = parseRecipients(userId, to);
 
 		return addPrivateMessage(
-			userId, mbThreadId, parentMBMessageId, recipientUserIds, subject,
+			userId, mbThreadId, parentMBMessageId, recipients, subject,
 			body, files, themeDisplay);
 	}
 
@@ -93,10 +94,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		MBMessage parentMessage = MBMessageLocalServiceUtil.getMBMessage(
 			parentMBMessageId);
 
-		long[] recipientUserIds = {parentMessage.getUserId()};
+		List<User> recipients = new ArrayList<User>();
+
+		recipients.add(UserLocalServiceUtil.getUser(parentMessage.getUserId()));
 
 		return addPrivateMessage(
-			userId, mbThreadId, parentMBMessageId, recipientUserIds,
+			userId, mbThreadId, parentMBMessageId, recipients,
 			parentMessage.getSubject(), body, files, themeDisplay);
 	}
 
@@ -216,7 +219,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 	protected MBMessage addPrivateMessage(
 			long userId, long mbThreadId, long parentMBMessageId,
-			long[] recipientUserIds, String subject, String body,
+			List<User> recipients, String subject, String body,
 			List<ObjectValuePair<String, byte[]>> files,
 			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
@@ -244,10 +247,10 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			allowPingbacks, serviceContext);
 
 		if (mbThreadId == 0) {
-			for (long recipientUserId : recipientUserIds) {
-				if (recipientUserId != userId) {
+			for (User recipient : recipients) {
+				if (recipient.getUserId() != userId) {
 					addUserThread(
-						recipientUserId, mbMessage.getThreadId(),
+						recipient.getUserId(), mbMessage.getThreadId(),
 						mbMessage.getMessageId(), false, false);
 				}
 			}
@@ -289,6 +292,40 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		}
 
 		return mbMessage;
+	}
+
+	protected List<User> parseRecipients(long userId, String to)
+		throws PortalException, SystemException {
+
+		User user = UserLocalServiceUtil.getUser(userId);
+
+		String[] recipients = StringUtil.split(to);
+
+		List<User> users = new ArrayList<User>();
+
+		for (String recipient : recipients) {
+			int x = recipient.indexOf(CharPool.LESS_THAN);
+			int y = recipient.indexOf(CharPool.GREATER_THAN);
+
+			try {
+				if ((x != -1) && (y != -1)) {
+					String screenName = recipient.substring(x + 1, y);
+
+					users.add(
+						UserLocalServiceUtil.getUserByScreenName(
+							user.getCompanyId(), screenName));
+				}
+				else {
+					users.add(
+						UserLocalServiceUtil.getUserByScreenName(
+							user.getCompanyId(), recipient));
+				}
+			}
+			catch (NoSuchUserException nsue) {
+			}
+		}
+
+		return users;
 	}
 
 	protected void sendEmail(long mbMessageId, ThemeDisplay themeDisplay)

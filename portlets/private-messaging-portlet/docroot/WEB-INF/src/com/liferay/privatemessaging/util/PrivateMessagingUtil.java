@@ -17,23 +17,84 @@ package com.liferay.privatemessaging.util;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.util.comparator.UserFirstNameComparator;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
+import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.util.portlet.PortletProps;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Scott Lee
  */
 public class PrivateMessagingUtil {
+
+	public static JSONArray getJSONRecipients(long userId)
+		throws PortalException, SystemException {
+
+		Set<User> users = new HashSet<User>();
+
+		String autocompleteRecipientType = PortletProps.get(
+			"autocomplete.recipient.type");
+
+		if (autocompleteRecipientType.equals("all")) {
+			users.addAll(
+				UserLocalServiceUtil.getUsers(
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS));
+		}
+		else if (autocompleteRecipientType.equals("community")) {
+			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
+				userId, true);
+
+			for (Group group : groups) {
+				users.addAll(
+					UserLocalServiceUtil.getGroupUsers(group.getGroupId()));
+			}
+		}
+		else {
+			users.addAll(
+				UserLocalServiceUtil.getSocialUsers(
+					userId, SocialRelationConstants.TYPE_BI_FRIEND,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					new UserFirstNameComparator(true)));
+		}
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (User user : users) {
+			if (user.isDefaultUser() || (userId == user.getUserId())) {
+				continue;
+			}
+
+			StringBuilder sb = new StringBuilder();
+
+			sb.append(user.getFullName());
+			sb.append(CharPool.SPACE);
+			sb.append(CharPool.LESS_THAN);
+			sb.append(user.getScreenName());
+			sb.append(CharPool.GREATER_THAN);
+
+			jsonArray.put(sb.toString());
+		}
+
+		return jsonArray;
+	}
 
 	public static MBMessage getLastThreadMessage(long userId, long mbThreadId)
 		throws PortalException, SystemException {
