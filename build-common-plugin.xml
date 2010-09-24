@@ -385,7 +385,7 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 
 		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
+			<param name="javac.classpathref" value="test.classpath" />
 			<param name="javac.destdir" value="test-classes" />
 			<param name="javac.srcdir" value="test" />
 			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
@@ -626,7 +626,7 @@ Please find a solution that does not require portal-impl.jar.
 					<jvmarg value="-Xmx256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<classpath refid="plugin.classpath" />
+					<classpath refid="test.classpath" />
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
 					<batchtest todir="test-results">
@@ -639,7 +639,7 @@ Please find a solution that does not require portal-impl.jar.
 					<jvmarg value="-Xmx256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<classpath refid="plugin.classpath" />
+					<classpath refid="test.classpath" />
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
 					<batchtest todir="test-results">
@@ -656,7 +656,7 @@ Please find a solution that does not require portal-impl.jar.
 			<jvmarg value="-XX:MaxPermSize=128m" />
 			<jvmarg value="-Duser.timezone=GMT" />
 			<jvmarg value="-Dexternal-properties=${test.properties}" />
-			<classpath refid="plugin.classpath" />
+			<classpath refid="test.classpath" />
 			<formatter type="brief" usefile="false" />
 			<formatter type="xml" />
 			<batchtest todir="test-results">

@@ -20,8 +20,7 @@
 		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="annotations.jar,commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
-		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,junit.jar,mail.jar,servlet-api.jar" />
-		<pathelement location="test-classes" />
+		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,mail.jar,servlet-api.jar" />
 	</path>
 
 	<path id="portal.classpath">
@@ -29,6 +28,13 @@
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,servlet-api.jar" />
+	</path>
+
+	<path id="test.classpath">
+		<path refid="plugin.classpath" />
+		<fileset dir="${app.server.lib.portal.dir}" includes="commons-io.jar" />
+		<fileset dir="${project.dir}/lib" includes="junit.jar" />
+		<pathelement location="test-classes" />
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
