@@ -3,9 +3,7 @@
 <project name="opensocial-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<!-- Revision 966261 -->
-
-	<property name="original.war.file" value="shindig-server-2.0.0-SNAPSHOT.war" />
+	<property name="original.war.file" value="shindig-server-2.0.0.war" />
 
 	<target name="merge">
 
@@ -36,6 +34,16 @@
 			/>
 		</replace>
 
+		<!-- Remove system.properties context param -->
+
+		<replaceregexp
+			flags="gs"
+			file="tmp/WEB-INF/web.xml"
+			match="&lt;context-param&gt;(\s*?)&lt;param-name&gt;system.properties(.*?)context-param&gt;"
+			replace=""
+		/>
+		
+		
 		<!-- Remove Shiro Filter -->
 
 		<replaceregexp
@@ -144,11 +152,7 @@
 		/>
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
-			<replacefilter token=":${SERVER_PORT}" value="" />
-			<replacefilter token=":8080" value="" />
-			<replacefilter token="-a.example.com" value="%host%" />
-			<replacefilter token="www.example.com" value="%host%" />
-			<replacefilter token="localhost" value="%host%" />
+			<replacefilter token="${SERVER_HOST}:${SERVER_PORT}" value="%host%" />
 			<replacefilter token="/gadgets/" value="/opensocial-portlet/gadgets/" />
 			<replacefilter token="/rpc" value="/opensocial-portlet/rpc" />
 		</replace>
@@ -165,7 +169,7 @@
 		</replace>
 	
 		<!--
-		Configure shindig.js
+		Configure shindig.properties
 		-->
 
 		<if>
@@ -174,7 +178,7 @@
 			</not>
 			<then>
 				<unzip
-					src="tmp/WEB-INF/lib/shindig-common-2.0.0-SNAPSHOT.jar"
+					src="tmp/WEB-INF/lib/shindig-common-2.0.0.jar"
 					dest="tmp/WEB-INF/classes"
 				>
 					<patternset

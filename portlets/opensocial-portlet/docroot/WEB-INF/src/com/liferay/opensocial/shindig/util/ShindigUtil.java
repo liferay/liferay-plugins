@@ -37,7 +37,7 @@ import java.io.File;
 import javax.portlet.PortletRequest;
 
 import org.apache.shindig.auth.BasicSecurityToken;
-import org.apache.shindig.auth.BasicSecurityTokenDecoder;
+import org.apache.shindig.auth.BasicSecurityTokenCodec;
 import org.apache.shindig.auth.BlobCrypterSecurityToken;
 import org.apache.shindig.common.crypto.BasicBlobCrypter;
 import org.apache.shindig.common.crypto.BlobCrypter;
@@ -91,7 +91,7 @@ public class ShindigUtil {
 				String.valueOf(moduleId), ContainerConfig.DEFAULT_CONTAINER,
 				activeUrl, null);
 
-			securityToken = _basicSecurityTokenDecoder.encodeToken(
+			securityToken = _basicSecurityTokenCodec.encodeToken(
 				basicSecurityToken);
 		}
 
@@ -186,7 +186,7 @@ public class ShindigUtil {
 	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
 
 	@Inject
-	private static BasicSecurityTokenDecoder _basicSecurityTokenDecoder;
+	private static BasicSecurityTokenCodec _basicSecurityTokenCodec;
 
 	@Inject
 	private static ContainerConfig _containerConfig;

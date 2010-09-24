@@ -22,8 +22,6 @@ import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
-import javax.annotation.Nullable;
-
 import org.apache.shindig.config.ContainerConfigException;
 import org.apache.shindig.config.JsonContainerConfig;
 import org.apache.shindig.expressions.Expressions;
@@ -37,11 +35,10 @@ public class LiferayJsonContainerConfig extends JsonContainerConfig {
 	@Inject
 	public LiferayJsonContainerConfig(
 			@Named("shindig.containers.default") String containers,
-			@Nullable @Named("shindig.port") String port,
 			Expressions expressions)
 		throws ContainerConfigException {
 
-		super(containers, port, expressions);
+		super(containers, null, null, expressions);
 	}
 
 	public String getString(String container, String property) {
