@@ -53,11 +53,33 @@
 }
 
 .private-messaging-portlet .messages .taglib-search-iterator .col-3 {
-	width: 130px;
+	width: 150px;
 }
 
-.private-messaging-portlet .messages .unread {
+/* Results */
+
+.private-messaging-portlet .results-grid {
+	border: 0px;
+}
+
+.private-messaging-portlet .results-grid table.taglib-search-iterator {
+	border: 1px solid #CFCFCF;
+}
+
+.private-messaging-portlet .results-grid .results-row td,
+.private-messaging-portlet .results-grid .results-row.alt td {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-bottom: 1px solid #CFCFCF;
+	padding: 5px 10px;
+}
+
+.private-messaging-portlet .results-grid .results-row.unread td {
+	background: none repeat scroll 0 0 #F0F5F7;
 	font-weight: bold;
+}
+
+.private-messaging-portlet .results-grid .results-row.hover .subject {
+	text-decoration: underline;
 }
 
 /* Thread */
@@ -85,10 +107,6 @@
 	
 .private-messaging-portlet .thread .results-row {
 	border: 1px solid #CFCFCF;
-}
-
-.private-messaging-portlet .thread .results-row.alt td {
-	background: none repeat scroll 0 0 transparent;
 }
 
 .private-messaging-portlet .thread .date {

@@ -51,29 +51,33 @@
 		className="com.liferay.privatemessaging.model.UserThread"
 		modelVar="userThread"
 	>
+
+		<%
+		if (!userThread.isRead()) {
+			row.setClassName("unread");
+		}
+		%>
+
 		<liferay-ui:search-container-column-text align="center">
 			<aui:input label="" name="mbThread" type="checkbox" data-mbThreadId="<%= userThread.getMbThreadId() %>" />
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text align="center">
-			<aui:layout cssClass='<%= (!userThread.isRead()) ? "unread" : "" %>'>
+			<%
+			long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
 
-				<%
-				long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
+			User curUser = UserLocalServiceUtil.getUser(userId);
+			%>
 
-				User curUser = UserLocalServiceUtil.getUser(userId);
-				%>
-
-				<liferay-ui:user-display
-					userId="<%= curUser.getUserId() %>"
-					userName="<%= curUser.getFullName() %>"
-					displayStyle="<%= 2 %>"
-				/>
-			</aui:layout>
+			<liferay-ui:user-display
+				userId="<%= curUser.getUserId() %>"
+				userName="<%= curUser.getFullName() %>"
+				displayStyle="<%= 2 %>"
+			/>
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text>
-			<aui:layout cssClass='<%= (!userThread.isRead()) ? "unread" : "" %>'>
+			<aui:layout>
 
 				<%
 				List<User> users = PrivateMessagingUtil.getThreadUsers(user.getUserId(), userThread.getMbThreadId(), false);
@@ -111,7 +115,7 @@
 
 			</aui:layout>
 
-			<aui:layout cssClass='<%= (!userThread.isRead()) ? "unread" : "" %>'>
+			<aui:layout>
 
 				<%
 				MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
@@ -123,22 +127,20 @@
 		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text>
-			<aui:layout cssClass='<%= (!userThread.isRead()) ? "unread" : "" %>'>
 
-				<%
-				MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
+			<%
+			MBMessage lastMBMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
 
-				PortletURL viewThreadURL = renderResponse.createRenderURL();
+			PortletURL viewThreadURL = renderResponse.createRenderURL();
 
-				viewThreadURL.setParameter("mbThreadId", String.valueOf(userThread.getMbThreadId()));
-				%>
+			viewThreadURL.setParameter("mbThreadId", String.valueOf(userThread.getMbThreadId()));
+			%>
 
-				<a href="<%= viewThreadURL.toString() %>">
-					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %><br />
+			<a href="<%= viewThreadURL.toString() %>">
+				<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getSubject(), 50)) %><br />
 
-					<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
-				</a>
-			</aui:layout>
+				<%= HtmlUtil.escape(StringUtil.shorten(lastMBMessage.getBody(), 100)) %>
+			</a>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 
