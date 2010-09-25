@@ -46,10 +46,10 @@ public class LiferayModule extends AbstractModule {
 				"sampledata/canonicaldb.json");
 
 		bind(ActivityService.class).to(LiferayActivityService.class);
-	    bind(AlbumService.class).to(JsonDbOpensocialService.class);
+		bind(AlbumService.class).to(JsonDbOpensocialService.class);
 		bind(AppDataService.class).to(LiferayAppDataService.class);
 		bind(ContainerConfig.class).to(LiferayJsonContainerConfig.class);
-	    bind(MediaItemService.class).to(JsonDbOpensocialService.class);
+		bind(MediaItemService.class).to(JsonDbOpensocialService.class);
 		bind(MessageService.class).to(NotImplementedMessageService.class);
 		bind(OAuthDataStore.class).to(SampleOAuthDataStore.class);
 		bind(PersonService.class).to(LiferayPersonService.class);

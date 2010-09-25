@@ -34,7 +34,7 @@
 			/>
 		</replace>
 
-		<!-- Remove system.properties context param -->
+		<!-- Remove system.properties -->
 
 		<replaceregexp
 			flags="gs"
@@ -42,8 +42,7 @@
 			match="&lt;context-param&gt;(\s*?)&lt;param-name&gt;system.properties(.*?)context-param&gt;"
 			replace=""
 		/>
-		
-		
+
 		<!-- Remove Shiro Filter -->
 
 		<replaceregexp
@@ -167,7 +166,7 @@
 				"profile" : {]]>
 			</replacevalue>
 		</replace>
-	
+
 		<!--
 		Configure shindig.properties
 		-->
