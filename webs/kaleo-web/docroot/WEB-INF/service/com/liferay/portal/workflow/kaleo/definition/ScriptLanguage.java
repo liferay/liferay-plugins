@@ -42,6 +42,10 @@ public enum ScriptLanguage {
 		return _value;
 	}
 
+	public String toString() {
+		return _value;
+	}
+
 	private ScriptLanguage(String value) {
 		_value = value;
 	}

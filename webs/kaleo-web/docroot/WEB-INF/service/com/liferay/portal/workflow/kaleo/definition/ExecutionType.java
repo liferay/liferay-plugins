@@ -40,6 +40,10 @@ public enum ExecutionType {
 		return _value;
 	}
 
+	public String toString() {
+		return _value;
+	}
+
 	private ExecutionType(String value) {
 		_value = value;
 	}

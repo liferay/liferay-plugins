@@ -39,6 +39,10 @@ public enum TemplateLanguage {
 		return _value;
 	}
 
+	public String toString() {
+		return _value;
+	}
+
 	private TemplateLanguage(String value) {
 		_value = value;
 	}

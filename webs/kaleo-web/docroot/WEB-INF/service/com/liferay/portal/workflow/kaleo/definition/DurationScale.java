@@ -49,6 +49,10 @@ public enum DurationScale {
 		return _value;
 	}
 
+	public String toString() {
+		return _value;
+	}
+
 	private DurationScale(String value) {
 		_value = value;
 	}
