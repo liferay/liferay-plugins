@@ -107,8 +107,11 @@ body.signed-out #navigation {
 
 #navigation ul:after {
 	clear: both;
-	content: "";
+	content: ".";
 	display: block;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
 }
 
 #navigation li {
