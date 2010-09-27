@@ -150,7 +150,8 @@ public abstract class BaseDirectory implements Directory {
 
 		for (Attribute attribute : _attributes) {
 			if (!wildcardAttributes &&
-				!requestAttributes.contains(attribute.getAttributeId())) {
+				!requestAttributes.contains(
+					attribute.getAttributeId().toLowerCase())) {
 
 				continue;
 			}
