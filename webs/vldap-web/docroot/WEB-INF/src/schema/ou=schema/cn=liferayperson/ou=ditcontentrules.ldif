@@ -1,0 +1,5 @@
+version: 1
+dn: ou=ditContentRules, cn=liferayperson, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: ditcontentrules

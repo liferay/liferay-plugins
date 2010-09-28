@@ -109,6 +109,7 @@ public class VLDAPServer {
 		_schemaManager = new DefaultSchemaManager(schemaLoader);
 
 		_schemaManager.loadWithDeps("inetorgperson");
+		_schemaManager.loadWithDeps("liferayperson");
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(VLDAPServer.class);

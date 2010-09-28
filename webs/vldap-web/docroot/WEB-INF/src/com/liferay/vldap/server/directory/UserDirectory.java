@@ -43,6 +43,7 @@ public class UserDirectory extends BaseDirectory {
 		addAttribute("objectclass", "inetOrgPerson");
 		addAttribute("objectclass", "top");
 		addAttribute("uid", String.valueOf(_user.getUserId()));
+		addAttribute("uuid", _user.getUuid());
 	}
 
 	protected List<Directory> initDirectories() throws Exception {

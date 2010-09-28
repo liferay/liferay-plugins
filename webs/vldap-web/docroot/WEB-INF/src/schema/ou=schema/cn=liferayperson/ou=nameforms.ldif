@@ -1,0 +1,5 @@
+version: 1
+dn: ou=nameForms, cn=liferayperson, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: nameforms

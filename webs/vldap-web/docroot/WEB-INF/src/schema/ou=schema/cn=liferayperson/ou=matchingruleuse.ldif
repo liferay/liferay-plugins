@@ -1,0 +1,5 @@
+version: 1
+dn: ou=matchingRuleUse, cn=liferayperson, ou=schema
+objectclass: organizationalUnit
+objectclass: top
+ou: matchingruleuse

@@ -50,9 +50,9 @@
 					<replacetoken><![CDATA[String classPath = System.getProperty( "java.class.path", "." );]]></replacetoken>
 					<replacevalue>
 						<![CDATA[
-							String classPath = com.liferay.portal.kernel.servlet.WebDirDetector.getLibDir(ResourceMap.class.getClassLoader());
+							String classPath = com.liferay.portal.kernel.servlet.WebDirDetector.getLibDir(ResourceMap.class.getClassLoader()).concat("/shared-ldap-schema-0.9.19.jar").concat(File.pathSeparator);
 
-							classPath += "/shared-ldap-schema-0.9.19.jar";
+							classPath += com.liferay.portal.kernel.servlet.WebDirDetector.getRootDir(ResourceMap.class.getClassLoader()).concat("/WEB-INF/classes");
 						]]>
 					</replacevalue>
 				</replace>
