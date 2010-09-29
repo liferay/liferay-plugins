@@ -137,7 +137,7 @@ if (WebFormUtil.VALIDATION_SCRIPT_ENABLED) {
 						</aui:column>
 						<aui:column columnWidth="50">
 							<div class="syntax-help">
-								<liferay-util:include page="/script_help.jsp" servletContext="<%= application %>"/>
+								<liferay-util:include page="/script_help.jsp" servletContext="<%= application %>" />
 							</div>
 						</aui:column>
 					</div>
