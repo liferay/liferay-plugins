@@ -27,7 +27,6 @@
 			<value>oxf:/config/error.xpl</value>
 		</init-param>
 		<supports>
-			<mime-type>text/html</mime-type>
 			<mime-type>application/xml</mime-type>
 		</supports>
 		<supports>
