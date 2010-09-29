@@ -161,7 +161,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 					<div class="lfr-form-row" id="<portlet:namespace/>fieldset<%= formFieldsIndex %>">
 						<div class="row-fields">
-							<jsp:include page="edit_field.jsp" />
+							<liferay-util:include page="/edit_field.jsp" servletContext="<%= application %>"/>
 						</div>
 					</div>
 
