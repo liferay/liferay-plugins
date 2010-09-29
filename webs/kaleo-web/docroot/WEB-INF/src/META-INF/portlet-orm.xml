@@ -33,6 +33,28 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionModelImpl">
+		<attributes>
+			<id name="kaleoConditionId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoClassName" />
+			<basic name="kaleoClassPK" />
+			<basic name="description" />
+			<basic name="script" />
+			<basic name="scriptLanguage" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl">
 		<attributes>
 			<id name="kaleoDefinitionId" />
@@ -374,6 +396,10 @@
 	</mapped-superclass>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl" name="KaleoAction">
 		<table name="KaleoAction" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionImpl" name="KaleoCondition">
+		<table name="KaleoCondition" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl" name="KaleoDefinition">

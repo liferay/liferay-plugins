@@ -20,12 +20,17 @@ package com.liferay.portal.workflow.kaleo.definition;
 public class Transition {
 
 	public Transition(
-		String name, Node sourceNode, Node targetNode, boolean defaultValue) {
+		String name, Node sourceNode, Node targetNode,
+		boolean defaultValue) {
 
 		_name = name;
 		_sourceNode = sourceNode;
 		_targetNode = targetNode;
 		_default = defaultValue;
+	}
+
+	public Condition getCondition() {
+		return _condition;
 	}
 
 	public String getName() {
@@ -40,13 +45,17 @@ public class Transition {
 		return _targetNode;
 	}
 
+	public void setCondition(Condition condition) {
+		_condition = condition;
+	}
+
 	public boolean isDefault() {
 		return _default;
 	}
 
+	private Condition _condition;
 	private boolean _default;
 	private String _name;
 	private Node _sourceNode;
 	private Node _targetNode;
-
 }

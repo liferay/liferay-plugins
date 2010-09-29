@@ -44,7 +44,8 @@ public class ForkNodeExecutor extends BaseNodeExecutor {
 		ServiceContext serviceContext = executionContext.getServiceContext();
 
 		List<KaleoTransition> kaleoTransitions =
-			currentKaleoNode.getKaleoTransitions();
+			_transitionSelector.selectTransitions(
+				currentKaleoNode, executionContext);
 
 		Map<String, KaleoInstanceToken> childKaleoInstanceTokens =
 			new HashMap<String, KaleoInstanceToken>();

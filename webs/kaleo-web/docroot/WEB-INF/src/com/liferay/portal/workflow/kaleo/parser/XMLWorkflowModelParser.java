@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.workflow.kaleo.definition.Action;
 import com.liferay.portal.workflow.kaleo.definition.AddressRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
+import com.liferay.portal.workflow.kaleo.definition.Condition;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
 import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
@@ -415,7 +416,28 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			Transition transition = new Transition(
 				transitionName, sourceNode, targetNode, defaultValue);
 
+			processTransitionCondition(transition, transitionElement);
+
 			sourceNode.addTransition(transition);
+		}
+	}
+
+	protected void processTransitionCondition(
+		Transition transition, Element transitionElement) {
+
+		Element conditionElement = transitionElement.element("condition");
+
+		if (conditionElement != null) {
+			String conditionScript = conditionElement.elementText("script");
+			String conditionLanguage = conditionElement.elementText(
+				"script-language");
+			String conditionDescription = conditionElement.elementText(
+				"description");
+
+			Condition condition = new Condition(
+				conditionDescription, conditionLanguage, conditionScript);
+			
+			transition.setCondition(condition);
 		}
 	}
 

@@ -15,20 +15,10 @@
 package com.liferay.portal.workflow.kaleo.runtime.action;
 
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
-import com.liferay.portal.kernel.workflow.WorkflowTaskAssignee;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTask;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
-import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
-import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
+import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilder;
 
-import java.io.Serializable;
-
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -52,46 +42,8 @@ public class ScriptActionExecutor implements ActionExecutor {
 			KaleoAction kaleoAction, ExecutionContext executionContext)
 		throws Exception {
 
-		Map<String, Serializable> workflowContext =
-			executionContext.getWorkflowContext();
-
-		if (workflowContext == null) {
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
-
-			workflowContext = WorkflowContextUtil.convert(
-				kaleoInstance.getWorkflowContext());
-		}
-
-		Map<String, Object> inputObjects = new HashMap<String, Object>(
-			workflowContext);
-
-		inputObjects.put("workflowContext", workflowContext);
-
-		KaleoTaskInstanceToken kaleoTaskInstanceToken =
-			executionContext.getKaleoTaskInstanceToken();
-
-		if (kaleoTaskInstanceToken != null) {
-			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
-
-			inputObjects.put("taskName", kaleoTask.getName());
-
-			inputObjects.put("userId", kaleoTaskInstanceToken.getUserId());
-
-			List<WorkflowTaskAssignee> workflowTaskAssignees =
-				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
-					kaleoTaskInstanceToken);
-
-			inputObjects.put("workflowTaskAssignees", workflowTaskAssignees);
-		}
-		else {
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			inputObjects.put("userId", kaleoInstanceToken.getUserId());
-		}
+		Map<String, Object> inputObjects =
+			ScriptingContextBuilder.buildScriptingContext(executionContext);		
 
 		ScriptingUtil.exec(
 			null, inputObjects, kaleoAction.getScriptLanguage(),

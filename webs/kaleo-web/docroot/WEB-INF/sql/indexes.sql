@@ -2,6 +2,9 @@ create index IX_50E9112C on KaleoAction (companyId);
 create index IX_F95A622 on KaleoAction (kaleoDefinitionId);
 create index IX_B88DF9B1 on KaleoAction (kaleoNodeId, executionType);
 
+create index IX_FEE46067 on KaleoCondition (companyId);
+create index IX_CCA7B65F on KaleoCondition (kaleoClassName, kaleoClassPK);
+
 create index IX_40B9112F on KaleoDefinition (companyId);
 create index IX_408542BA on KaleoDefinition (companyId, active_);
 create index IX_76C781AE on KaleoDefinition (companyId, name);
@@ -61,3 +64,6 @@ create index IX_479F3063 on KaleoTransition (kaleoDefinitionId);
 create index IX_A392DFD2 on KaleoTransition (kaleoNodeId);
 create index IX_A38E2194 on KaleoTransition (kaleoNodeId, defaultTransition);
 create index IX_85268A11 on KaleoTransition (kaleoNodeId, name);
+
+create index IX_E99B5C1C on KaleoTransitionCondition (companyId);
+create index IX_60786814 on KaleoTransitionCondition (kaleoTransitionId);

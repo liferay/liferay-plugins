@@ -31,6 +31,24 @@
 		<field name="scriptLanguage" type="String" />
 		<field name="priority" type="int" />
 	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoCondition">
+		<field name="kaleoConditionId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoClassName" type="String" />
+		<field name="kaleoClassPK" type="long" />
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="script" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="scriptLanguage" type="String" />
+	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoDefinition">
 		<field name="kaleoDefinitionId" type="long" />
 		<field name="groupId" type="long" />

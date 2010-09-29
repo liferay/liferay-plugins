@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoAction" />
+	<import class="com.liferay.portal.workflow.kaleo.model.KaleoCondition" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoDefinition" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoInstance" />
 	<import class="com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken" />
@@ -35,6 +36,23 @@
 		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="scriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionImpl" table="KaleoCondition">
+		<cache usage="read-write" />
+		<id name="kaleoConditionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="kaleoClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kaleoClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="script" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="scriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionImpl" table="KaleoDefinition">
 		<cache usage="read-write" />

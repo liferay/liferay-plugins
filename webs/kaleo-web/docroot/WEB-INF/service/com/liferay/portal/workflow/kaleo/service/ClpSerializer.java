@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.workflow.kaleo.model.KaleoActionClp;
+import com.liferay.portal.workflow.kaleo.model.KaleoConditionClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceTokenClp;
@@ -178,6 +179,116 @@ public class ClpSerializer {
 					Integer value15 = new Integer(oldCplModel.getPriority());
 
 					method15.invoke(newModel, value15);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(KaleoConditionClp.class.getName())) {
+			KaleoConditionClp oldCplModel = (KaleoConditionClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setKaleoConditionId",
+							new Class[] { Long.TYPE });
+
+					Long value0 = new Long(oldCplModel.getKaleoConditionId());
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setGroupId",
+							new Class[] { Long.TYPE });
+
+					Long value1 = new Long(oldCplModel.getGroupId());
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
+
+					Long value2 = new Long(oldCplModel.getCompanyId());
+
+					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
+
+					Long value3 = new Long(oldCplModel.getUserId());
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setUserName",
+							new Class[] { String.class });
+
+					String value4 = oldCplModel.getUserName();
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
+
+					Date value5 = oldCplModel.getCreateDate();
+
+					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
+
+					Date value6 = oldCplModel.getModifiedDate();
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setKaleoClassName",
+							new Class[] { String.class });
+
+					String value7 = oldCplModel.getKaleoClassName();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setKaleoClassPK",
+							new Class[] { Long.TYPE });
+
+					Long value8 = new Long(oldCplModel.getKaleoClassPK());
+
+					method8.invoke(newModel, value8);
+
+					Method method9 = newModelClass.getMethod("setDescription",
+							new Class[] { String.class });
+
+					String value9 = oldCplModel.getDescription();
+
+					method9.invoke(newModel, value9);
+
+					Method method10 = newModelClass.getMethod("setScript",
+							new Class[] { String.class });
+
+					String value10 = oldCplModel.getScript();
+
+					method10.invoke(newModel, value10);
+
+					Method method11 = newModelClass.getMethod("setScriptLanguage",
+							new Class[] { String.class });
+
+					String value11 = oldCplModel.getScriptLanguage();
+
+					method11.invoke(newModel, value11);
 
 					return newModel;
 				}
@@ -2004,6 +2115,108 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setPriority(value15);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.portal.workflow.kaleo.model.impl.KaleoConditionImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					KaleoConditionClp newModel = new KaleoConditionClp();
+
+					Method method0 = oldModelClass.getMethod(
+							"getKaleoConditionId");
+
+					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+					newModel.setKaleoConditionId(value0);
+
+					Method method1 = oldModelClass.getMethod("getGroupId");
+
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+					newModel.setGroupId(value1);
+
+					Method method2 = oldModelClass.getMethod("getCompanyId");
+
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setCompanyId(value2);
+
+					Method method3 = oldModelClass.getMethod("getUserId");
+
+					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setUserId(value3);
+
+					Method method4 = oldModelClass.getMethod("getUserName");
+
+					String value4 = (String)method4.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setUserName(value4);
+
+					Method method5 = oldModelClass.getMethod("getCreateDate");
+
+					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+					newModel.setCreateDate(value5);
+
+					Method method6 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value6);
+
+					Method method7 = oldModelClass.getMethod(
+							"getKaleoClassName");
+
+					String value7 = (String)method7.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setKaleoClassName(value7);
+
+					Method method8 = oldModelClass.getMethod("getKaleoClassPK");
+
+					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+					newModel.setKaleoClassPK(value8);
+
+					Method method9 = oldModelClass.getMethod("getDescription");
+
+					String value9 = (String)method9.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setDescription(value9);
+
+					Method method10 = oldModelClass.getMethod("getScript");
+
+					String value10 = (String)method10.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setScript(value10);
+
+					Method method11 = oldModelClass.getMethod(
+							"getScriptLanguage");
+
+					String value11 = (String)method11.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setScriptLanguage(value11);
 
 					return newModel;
 				}

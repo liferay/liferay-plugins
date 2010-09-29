@@ -31,6 +31,7 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalService;
@@ -44,6 +45,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServ
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistence;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoConditionPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoDefinitionPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstancePersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoInstanceTokenPersistence;
@@ -299,6 +301,44 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	public void setKaleoActionPersistence(
 		KaleoActionPersistence kaleoActionPersistence) {
 		this.kaleoActionPersistence = kaleoActionPersistence;
+	}
+
+	/**
+	 * Gets the kaleo condition local service.
+	 *
+	 * @return the kaleo condition local service
+	 */
+	public KaleoConditionLocalService getKaleoConditionLocalService() {
+		return kaleoConditionLocalService;
+	}
+
+	/**
+	 * Sets the kaleo condition local service.
+	 *
+	 * @param kaleoConditionLocalService the kaleo condition local service
+	 */
+	public void setKaleoConditionLocalService(
+		KaleoConditionLocalService kaleoConditionLocalService) {
+		this.kaleoConditionLocalService = kaleoConditionLocalService;
+	}
+
+	/**
+	 * Gets the kaleo condition persistence.
+	 *
+	 * @return the kaleo condition persistence
+	 */
+	public KaleoConditionPersistence getKaleoConditionPersistence() {
+		return kaleoConditionPersistence;
+	}
+
+	/**
+	 * Sets the kaleo condition persistence.
+	 *
+	 * @param kaleoConditionPersistence the kaleo condition persistence
+	 */
+	public void setKaleoConditionPersistence(
+		KaleoConditionPersistence kaleoConditionPersistence) {
+		this.kaleoConditionPersistence = kaleoConditionPersistence;
 	}
 
 	/**
@@ -925,6 +965,10 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	protected KaleoActionLocalService kaleoActionLocalService;
 	@BeanReference(type = KaleoActionPersistence.class)
 	protected KaleoActionPersistence kaleoActionPersistence;
+	@BeanReference(type = KaleoConditionLocalService.class)
+	protected KaleoConditionLocalService kaleoConditionLocalService;
+	@BeanReference(type = KaleoConditionPersistence.class)
+	protected KaleoConditionPersistence kaleoConditionPersistence;
 	@BeanReference(type = KaleoDefinitionLocalService.class)
 	protected KaleoDefinitionLocalService kaleoDefinitionLocalService;
 	@BeanReference(type = KaleoDefinitionPersistence.class)

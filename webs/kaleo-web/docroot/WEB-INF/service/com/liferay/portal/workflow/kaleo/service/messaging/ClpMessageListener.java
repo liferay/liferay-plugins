@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.workflow.kaleo.service.ClpSerializer;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoInstanceTokenLocalServiceUtil;
@@ -55,6 +56,8 @@ public class ClpMessageListener implements MessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(SERVLET_CONTEXT_NAME)) {
 			KaleoActionLocalServiceUtil.clearService();
+
+			KaleoConditionLocalServiceUtil.clearService();
 
 			KaleoDefinitionLocalServiceUtil.clearService();
 

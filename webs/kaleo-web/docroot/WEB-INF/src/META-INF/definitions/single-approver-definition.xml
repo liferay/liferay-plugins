@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 
 <workflow-definition
-	xmlns="urn:liferay.com:liferay-workflow_6.0.0"
+	xmlns="urn:liferay.com:liferay-workflow_6.1.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.0.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_0_0.xsd"
+	xsi:schemaLocation="urn:liferay.com:liferay-workflow_6.1.0 http://www.liferay.com/dtd/liferay-workflow-definition_6_1_0.xsd"
 >
 	<name>Single Approver</name>
 	<description>A single approver can approve a workflow content.</description>

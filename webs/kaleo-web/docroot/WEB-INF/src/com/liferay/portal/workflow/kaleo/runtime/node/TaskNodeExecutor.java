@@ -120,7 +120,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		KaleoTransition kaleoTransition = null;
 
 		if (Validator.isNull(transitionName)) {
-			kaleoTransition = currentKaleoNode.getDefaultKaleoTransition();
+			kaleoTransition = _transitionSelector.selectTransition(
+					currentKaleoNode, executionContext);
 		}
 		else {
 			kaleoTransition = currentKaleoNode.getKaleoTransition(

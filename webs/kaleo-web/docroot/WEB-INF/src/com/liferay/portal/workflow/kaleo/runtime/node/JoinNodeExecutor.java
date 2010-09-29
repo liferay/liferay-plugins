@@ -63,8 +63,8 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 				parentKaleoInstanceToken.getKaleoInstanceTokenId(),
 				currentKaleoNode.getKaleoNodeId());
 
-		KaleoTransition kaleoTransition =
-			currentKaleoNode.getDefaultKaleoTransition();
+		KaleoTransition kaleoTransition = _transitionSelector.selectTransition(
+				currentKaleoNode, executionContext);
 
 		ExecutionContext newExecutionContext = new ExecutionContext(
 			parentKaleoInstanceToken, workflowContext, serviceContext);

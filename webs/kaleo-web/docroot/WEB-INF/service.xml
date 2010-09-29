@@ -52,6 +52,48 @@
 			<finder-column name="executionType" />
 		</finder>
 	</entity>
+	<entity name="KaleoCondition" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="kaleoConditionId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="kaleoClassName" type="String" />
+		<column name="kaleoClassPK" type="long" />
+		<column name="description" type="String" />
+		<column name="script" type="String" />
+		<column name="scriptLanguage" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="kaleoConditionId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="KaleoCN_PK" return-type="KaleoTransitionCondition">
+			<finder-column name="kaleoClassName" />
+			<finder-column name="kaleoClassPK" />
+		</finder>
+	</entity>
 	<entity name="KaleoDefinition" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
