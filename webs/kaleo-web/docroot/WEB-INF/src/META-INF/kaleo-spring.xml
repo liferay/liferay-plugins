@@ -63,6 +63,9 @@
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory">
 		<property name="actionExecutors">
 			<map>
+				<entry key="drl">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.action.DRLActionExecutor" />
+				</entry>
 				<entry key="groovy">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.action.ScriptActionExecutor" />
 				</entry>
@@ -81,6 +84,9 @@
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" class="com.liferay.portal.workflow.kaleo.runtime.condition.MultiLanguageConditionEvaluator">
 		<property name="conditionEvaluators">
 			<map>
+				<entry key="drl">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.condition.DRLConditionEvaluator" />
+				</entry>
 				<entry key="groovy">
 					<bean class="com.liferay.portal.workflow.kaleo.runtime.condition.ScriptingConditionEvaluator" />
 				</entry>
