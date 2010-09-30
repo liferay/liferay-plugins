@@ -14,7 +14,10 @@
 
 package com.liferay.vldap.server.directory;
 
+import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.model.User;
+
+import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +42,10 @@ public class UserDirectory extends BaseDirectory {
 		addAttribute("displayName", _user.getFullName());
 		addAttribute("givenName", _user.getFirstName());
 		addAttribute("mail", _user.getEmailAddress());
+		addAttribute(
+			"createTimestamp", _dateFormat.format(_user.getCreateDate()));
+		addAttribute(
+			"modifyTimestamp", _dateFormat.format(_user.getModifiedDate()));
 		addAttribute("sn", _user.getLastName());
 		addAttribute("objectclass", "inetOrgPerson");
 		addAttribute("objectclass", "top");
@@ -76,6 +83,8 @@ public class UserDirectory extends BaseDirectory {
 		return _directories;
 	}
 
+	private DateFormat _dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
+		"yyyyMMddHHmmss.SZ");
 	private List<Directory> _directories = new ArrayList<Directory>();
 	private User _user;
 
