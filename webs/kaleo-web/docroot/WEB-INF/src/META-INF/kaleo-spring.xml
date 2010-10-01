@@ -126,10 +126,10 @@
 						<property name="dueDateCalculator">
 							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator" />
 						</property>
-						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
 						<property name="taskAssignmentSelector">
 							<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.GroupAwareTaskAssignmentSelector" />
 						</property>
+						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
 					</bean>
 				</entry>
 			</map>

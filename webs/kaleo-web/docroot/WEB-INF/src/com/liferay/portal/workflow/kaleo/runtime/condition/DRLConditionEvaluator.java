@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -32,16 +32,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="DRLConditionEvaluator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DRLConditionEvaluator implements ConditionEvaluator {
 
 	public boolean evaluate(
-		KaleoCondition kaleoCondition, ExecutionContext executionContext)
-		
-		throws SystemException, PortalException {
+			KaleoCondition kaleoCondition, ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
 		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
 			executionContext);
 
@@ -49,32 +47,30 @@ public class DRLConditionEvaluator implements ConditionEvaluator {
 			new RulesResourceRetriever(
 				new StringResourceRetriever(kaleoCondition.getScript()));
 
-		//add return values
-		Query resultsQuery = Query.createStandardQuery();
+		Query query = Query.createStandardQuery();
 
-		Map<String, ?> ruleResults = RulesEngineUtil.execute(
-			rulesResourceRetriever, facts, resultsQuery, 
+		Map<String, ?> results = RulesEngineUtil.execute(
+			rulesResourceRetriever, facts, query,
 			PortalClassLoaderUtil.getClassLoader());
 
-		Boolean conditionValue = (Boolean)ruleResults.get(
-			RETURN_PARAMETER_NAME);
+		Boolean returnValue = (Boolean)results.get(_RETURN_VALUE);
 
-		if (conditionValue == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Conditional script did not return value: " +
-					conditionValue + ": " + kaleoCondition.getScript());
-			}
-
-			return false;
+		if (returnValue != null) {
+			return returnValue;
 		}
 
-		return conditionValue;
-		
+		if (_log.isWarnEnabled()) {
+			_log.warn(
+				"Conditional did not return value for script " +
+					kaleoCondition.getScript());
+		}
+
+		return false;
 	}
 
-	private static final String RETURN_PARAMETER_NAME = "returnValue";
-	private static final Log _log = LogFactoryUtil.getLog(
+	private static final String _RETURN_VALUE = "returnValue";
+
+	private static Log _log = LogFactoryUtil.getLog(
 		DRLConditionEvaluator.class);
 
 }

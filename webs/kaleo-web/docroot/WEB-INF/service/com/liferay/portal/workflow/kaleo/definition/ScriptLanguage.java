@@ -19,8 +19,8 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum ScriptLanguage {
 
-	DRL("drl"), GROOVY("groovy"), JAVASCRIPT("javascript"),
-	PYTHON("python"), RUBY("ruby");
+	DRL("drl"), GROOVY("groovy"), JAVASCRIPT("javascript"), PYTHON("python"),
+	RUBY("ruby");
 
 	public static ScriptLanguage parse(String value) {
 		if (DRL.getValue().equals(value)) {

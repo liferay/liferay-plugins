@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -27,20 +27,19 @@ import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="RulesContextBuilder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class RulesContextBuilder {
 
 	public static List<Fact<?>> buildRulesContext(
-		ExecutionContext executionContext)
-		throws SystemException, PortalException {
+			ExecutionContext executionContext)
+		throws PortalException, SystemException {
 
 		Map<String, Serializable> workflowContext =
 			executionContext.getWorkflowContext();
@@ -55,12 +54,12 @@ public class RulesContextBuilder {
 				kaleoInstance.getWorkflowContext());
 		}
 
-		int factInitializeSize = workflowContext.size() + 4;
-		
-		List<Fact<?>> facts = new ArrayList<Fact<?>>(factInitializeSize);
+		List<Fact<?>> facts = new ArrayList<Fact<?>>(
+			workflowContext.size() + 4);
 
-		facts.add(new Fact<Map<String, Serializable>>(
-			"workflowContext", workflowContext));
+		facts.add(
+			new Fact<Map<String, Serializable>>(
+				"workflowContext", workflowContext));
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			executionContext.getKaleoTaskInstanceToken();
@@ -70,24 +69,25 @@ public class RulesContextBuilder {
 
 			facts.add(new Fact<String>("taskName", kaleoTask.getName()));
 
-			facts.add(new Fact<Long>(
-				"userId", kaleoTaskInstanceToken.getUserId()));
+			facts.add(
+				new Fact<Long>("userId", kaleoTaskInstanceToken.getUserId()));
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
 					kaleoTaskInstanceToken);
 
-			facts.add(new Fact<List<WorkflowTaskAssignee>>(
-				"workflowTaskAssignees", workflowTaskAssignees));
+			facts.add(
+				new Fact<List<WorkflowTaskAssignee>>(
+					"workflowTaskAssignees", workflowTaskAssignees));
 		}
 		else {
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
-			facts.add(new Fact<Long>(
-				"userId", kaleoTaskInstanceToken.getUserId()));
+			facts.add(new Fact<Long>("userId", kaleoInstanceToken.getUserId()));
 		}
 
 		return facts;
 	}
+
 }

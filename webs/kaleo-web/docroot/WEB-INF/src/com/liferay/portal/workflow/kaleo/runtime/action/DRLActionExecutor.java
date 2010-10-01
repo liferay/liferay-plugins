@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -26,29 +26,36 @@ import com.liferay.portal.workflow.kaleo.runtime.util.RulesContextBuilder;
 import java.util.List;
 
 /**
- * <a href="DRLActionExecutor.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DRLActionExecutor implements ActionExecutor {
-	
+
 	public void execute(
 			KaleoAction kaleoAction, ExecutionContext executionContext)
 		throws ActionExecutorException {
 
 		try {
-			List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
-				executionContext);
-
-			RulesResourceRetriever rulesResourceRetriever =
-				new RulesResourceRetriever(
-					new StringResourceRetriever(kaleoAction.getScript()));
-			
-			RulesEngineUtil.execute(rulesResourceRetriever, facts,
-				 PortalClassLoaderUtil.getClassLoader());
+			doExecute(kaleoAction, executionContext);
 		}
 		catch (Exception e) {
-			throw new ActionExecutorException(e);			
+			throw new ActionExecutorException(e);
 		}
 	}
+
+	protected void doExecute(
+			KaleoAction kaleoAction, ExecutionContext executionContext)
+		throws Exception {
+
+		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
+			executionContext);
+
+		RulesResourceRetriever rulesResourceRetriever =
+			new RulesResourceRetriever(
+				new StringResourceRetriever(kaleoAction.getScript()));
+
+		RulesEngineUtil.execute(
+			rulesResourceRetriever, facts,
+			PortalClassLoaderUtil.getClassLoader());
+	}
+
 }
