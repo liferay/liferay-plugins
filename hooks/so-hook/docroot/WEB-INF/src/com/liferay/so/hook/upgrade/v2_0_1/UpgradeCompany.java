@@ -15,28 +15,33 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.hook.upgrade;
+package com.liferay.so.hook.upgrade.v2_0_1;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.so.hook.upgrade.v2_0_1.UpgradeCompany;
-import com.liferay.so.hook.upgrade.v2_0_1.UpgradeLayout;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+
+import java.io.InputStream;
+
+import java.util.List;
 
 /**
  * @author Ryan Park
  */
-public class UpgradeProcess_2_0_1 extends UpgradeProcess {
-
-	public int getThreshold() {
-		return 201;
-	}
+public class UpgradeCompany extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (UpgradeUtil.isFirstRun()) {
-			return;
-		}
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
-		upgrade(UpgradeCompany.class);
-		upgrade(UpgradeLayout.class);
+		ClassLoader classLoader = getClass().getClassLoader();
+
+		InputStream inputStream =
+			classLoader.getResourceAsStream("/resources/logo.png");
+
+		for (Company company : companies) {
+			CompanyLocalServiceUtil.updateLogo(
+				company.getCompanyId(), inputStream);
+		}
 	}
 
 }
