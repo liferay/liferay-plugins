@@ -39,9 +39,11 @@ public class UpgradeLayout extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
+			String name = group.getName();
+
 			if (!group.isCommunity() ||
-				group.getName().equals(GroupConstants.CONTROL_PANEL) ||
-				group.getName().equals(GroupConstants.GUEST)) {
+				name.equals(GroupConstants.CONTROL_PANEL) ||
+				name.equals(GroupConstants.GUEST)) {
 
 				continue;
 			}

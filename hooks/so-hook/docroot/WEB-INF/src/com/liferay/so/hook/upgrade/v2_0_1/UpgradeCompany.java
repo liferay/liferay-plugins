@@ -35,8 +35,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		ClassLoader classLoader = getClass().getClassLoader();
 
-		InputStream inputStream =
-			classLoader.getResourceAsStream("/resources/logo.png");
+		InputStream inputStream = classLoader.getResourceAsStream(
+			"/resources/logo.png");
 
 		for (Company company : companies) {
 			CompanyLocalServiceUtil.updateLogo(
