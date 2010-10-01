@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -340,16 +341,20 @@ public class KaleoInstanceTokenLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(KaleoInstanceTokenLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(KaleoInstanceTokenLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(KaleoInstanceTokenLocalService service) {
+		MethodCache.remove(KaleoInstanceTokenLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(KaleoInstanceTokenLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(KaleoInstanceTokenLocalService.class);
 	}
 
 	private static KaleoInstanceTokenLocalService _service;

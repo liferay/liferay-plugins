@@ -76,7 +76,8 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addTypeMethodKey0, type);
+		MethodHandler methodHandler = new MethodHandler(_addTypeMethodKey0,
+				ClpSerializer.translateInput(type));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -151,7 +152,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 	public void deleteType(com.liferay.ams.model.Type type)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteTypeMethodKey3,
-				type);
+				ClpSerializer.translateInput(type));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -178,7 +179,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -207,7 +208,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -238,7 +239,8 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -266,7 +268,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -379,7 +381,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey11,
-				type);
+				ClpSerializer.translateInput(type));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -407,7 +409,7 @@ public class TypeLocalServiceClp implements TypeLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTypeMethodKey12,
-				type, merge);
+				ClpSerializer.translateInput(type), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

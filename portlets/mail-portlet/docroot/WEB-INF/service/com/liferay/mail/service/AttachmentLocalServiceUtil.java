@@ -16,6 +16,7 @@ package com.liferay.mail.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -281,16 +282,20 @@ public class AttachmentLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(AttachmentLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(AttachmentLocalService service) {
+		MethodCache.remove(AttachmentLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(AttachmentLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(AttachmentLocalService.class);
 	}
 
 	private static AttachmentLocalService _service;

@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -244,16 +245,20 @@ public class CheckoutLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(CheckoutLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(CheckoutLocalService service) {
+		MethodCache.remove(CheckoutLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(CheckoutLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(CheckoutLocalService.class);
 	}
 
 	private static CheckoutLocalService _service;

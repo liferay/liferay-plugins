@@ -99,7 +99,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoNotificationMethodKey0,
-				kaleoNotification);
+				ClpSerializer.translateInput(kaleoNotification));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -176,7 +176,7 @@ public class KaleoNotificationLocalServiceClp
 		com.liferay.portal.workflow.kaleo.model.KaleoNotification kaleoNotification)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoNotificationMethodKey3,
-				kaleoNotification);
+				ClpSerializer.translateInput(kaleoNotification));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -203,7 +203,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -232,7 +232,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -263,7 +263,8 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -291,7 +292,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -406,7 +407,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoNotificationMethodKey11,
-				kaleoNotification);
+				ClpSerializer.translateInput(kaleoNotification));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -435,7 +436,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoNotificationMethodKey12,
-				kaleoNotification, merge);
+				ClpSerializer.translateInput(kaleoNotification), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -467,8 +468,10 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoNotificationMethodKey13,
-				kaleoDefinitionId, kaleoNodeId, kaleoNodeName, notification,
-				serviceContext);
+				kaleoDefinitionId, kaleoNodeId,
+				ClpSerializer.translateInput(kaleoNodeName),
+				ClpSerializer.translateInput(notification),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -546,7 +549,7 @@ public class KaleoNotificationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoNotificationsMethodKey16,
-				kaleoNodeId, executionType);
+				kaleoNodeId, ClpSerializer.translateInput(executionType));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

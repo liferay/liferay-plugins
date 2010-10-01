@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -267,16 +268,20 @@ public class KaleoConditionLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(KaleoConditionLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(KaleoConditionLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(KaleoConditionLocalService service) {
+		MethodCache.remove(KaleoConditionLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(KaleoConditionLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(KaleoConditionLocalService.class);
 	}
 
 	private static KaleoConditionLocalService _service;

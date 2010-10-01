@@ -79,7 +79,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addCheckoutMethodKey0,
-				checkout);
+				ClpSerializer.translateInput(checkout));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -154,7 +154,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	public void deleteCheckout(com.liferay.ams.model.Checkout checkout)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteCheckoutMethodKey3,
-				checkout);
+				ClpSerializer.translateInput(checkout));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -181,7 +181,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -210,7 +210,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -241,7 +241,8 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -269,7 +270,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -383,7 +384,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey11,
-				checkout);
+				ClpSerializer.translateInput(checkout));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -411,7 +412,7 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCheckoutMethodKey12,
-				checkout, merge);
+				ClpSerializer.translateInput(checkout), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

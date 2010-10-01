@@ -16,6 +16,7 @@ package com.liferay.ams.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -244,16 +245,20 @@ public class AssetLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(AssetLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(AssetLocalService service) {
+		MethodCache.remove(AssetLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(AssetLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(AssetLocalService.class);
 	}
 
 	private static AssetLocalService _service;

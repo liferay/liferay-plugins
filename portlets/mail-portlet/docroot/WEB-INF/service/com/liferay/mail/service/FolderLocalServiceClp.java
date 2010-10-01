@@ -105,7 +105,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addFolderMethodKey0,
-				folder);
+				ClpSerializer.translateInput(folder));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -181,7 +181,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteFolderMethodKey3,
-				folder);
+				ClpSerializer.translateInput(folder));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -212,7 +212,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -241,7 +241,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -272,7 +272,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -300,7 +301,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -413,7 +414,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFolderMethodKey11,
-				folder);
+				ClpSerializer.translateInput(folder));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -441,7 +442,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFolderMethodKey12,
-				folder, merge);
+				ClpSerializer.translateInput(folder), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -471,7 +472,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addFolderMethodKey13,
-				userId, accountId, fullName, displayName, remoteMessageCount);
+				userId, accountId, ClpSerializer.translateInput(fullName),
+				ClpSerializer.translateInput(displayName), remoteMessageCount);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -532,7 +534,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getFolderMethodKey15,
-				accountId, fullName);
+				accountId, ClpSerializer.translateInput(fullName));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -685,7 +687,8 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFolderMethodKey20,
-				folderId, fullName, displayName, remoteMessageCount);
+				folderId, ClpSerializer.translateInput(fullName),
+				ClpSerializer.translateInput(displayName), remoteMessageCount);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

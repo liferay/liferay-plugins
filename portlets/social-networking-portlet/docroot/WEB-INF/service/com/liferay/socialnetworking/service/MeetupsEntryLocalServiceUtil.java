@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -291,16 +292,20 @@ public class MeetupsEntryLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(MeetupsEntryLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(MeetupsEntryLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(MeetupsEntryLocalService service) {
+		MethodCache.remove(MeetupsEntryLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(MeetupsEntryLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(MeetupsEntryLocalService.class);
 	}
 
 	private static MeetupsEntryLocalService _service;

@@ -104,7 +104,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey0,
-				gadget);
+				ClpSerializer.translateInput(gadget));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -180,7 +180,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteGadgetMethodKey3,
-				gadget);
+				ClpSerializer.translateInput(gadget));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -211,7 +211,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -240,7 +240,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -271,7 +271,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -299,7 +300,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -413,7 +414,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey11,
-				gadget);
+				ClpSerializer.translateInput(gadget));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -441,7 +442,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey12,
-				gadget, merge);
+				ClpSerializer.translateInput(gadget), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -470,7 +471,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey13,
-				companyId, name, url);
+				companyId, ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(url));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -501,7 +503,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_destroyGadgetMethodKey14,
-				companyId, gadgetId, name);
+				companyId, gadgetId, ClpSerializer.translateInput(name));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -611,7 +613,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_initGadgetMethodKey18,
-				companyId, gadgetId, name);
+				companyId, gadgetId, ClpSerializer.translateInput(name));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -669,7 +671,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey20,
-				companyId, gadgetId, name);
+				companyId, gadgetId, ClpSerializer.translateInput(name));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

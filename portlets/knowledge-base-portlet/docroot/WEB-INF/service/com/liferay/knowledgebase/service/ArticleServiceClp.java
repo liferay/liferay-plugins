@@ -127,8 +127,11 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addArticleMethodKey0,
-				parentResourcePrimKey, title, content, description, priority,
-				dirName, serviceContext);
+				parentResourcePrimKey, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(description), priority,
+				ClpSerializer.translateInput(dirName),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -160,8 +163,10 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey1,
-				companyId, groupId, resourcePrimKey, dirName, shortFileName,
-				inputStream);
+				companyId, groupId, resourcePrimKey,
+				ClpSerializer.translateInput(dirName),
+				ClpSerializer.translateInput(shortFileName),
+				ClpSerializer.translateInput(inputStream));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -218,7 +223,8 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey3,
-				companyId, groupId, resourcePrimKey, fileName);
+				companyId, groupId, resourcePrimKey,
+				ClpSerializer.translateInput(fileName));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -283,7 +289,8 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey5,
-				resourcePrimKey, status, start, end, orderByComparator);
+				resourcePrimKey, status, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -318,7 +325,8 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey6,
-				params, allVersions, start, end, orderByComparator);
+				ClpSerializer.translateInput(params), allVersions, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -378,7 +386,7 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getArticlesCountMethodKey8,
-				params, allVersions);
+				ClpSerializer.translateInput(params), allVersions);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -409,8 +417,10 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getArticlesRSSMethodKey9,
-				portletId, resourcePrimKey, status, max, type, version,
-				displayStyle, maximized, themeDisplay);
+				ClpSerializer.translateInput(portletId), resourcePrimKey,
+				status, max, ClpSerializer.translateInput(type), version,
+				ClpSerializer.translateInput(displayStyle), maximized,
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -444,7 +454,8 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getCompanyArticlesMethodKey10,
-				companyId, status, allVersions, start, end, orderByComparator);
+				companyId, status, allVersions, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -506,7 +517,8 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesMethodKey12,
-				groupId, status, allVersions, start, end, orderByComparator);
+				groupId, status, allVersions, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -569,8 +581,10 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesRSSMethodKey14,
-				portletId, status, max, type, version, displayStyle, maximized,
-				themeDisplay);
+				ClpSerializer.translateInput(portletId), status, max,
+				ClpSerializer.translateInput(type), version,
+				ClpSerializer.translateInput(displayStyle), maximized,
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -634,7 +648,7 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeMethodKey16,
-				companyId, groupId, portletId);
+				companyId, groupId, ClpSerializer.translateInput(portletId));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -663,7 +677,8 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey17,
-				companyId, portletId, resourcePrimKey);
+				companyId, ClpSerializer.translateInput(portletId),
+				resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -692,7 +707,7 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_unsubscribeMethodKey18,
-				companyId, groupId, portletId);
+				companyId, groupId, ClpSerializer.translateInput(portletId));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -721,7 +736,8 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey19,
-				companyId, portletId, resourcePrimKey);
+				companyId, ClpSerializer.translateInput(portletId),
+				resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -755,8 +771,12 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateArticleMethodKey20,
-				resourcePrimKey, parentResourcePrimKey, title, content,
-				description, priority, dirName, serviceContext);
+				resourcePrimKey, parentResourcePrimKey,
+				ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(description), priority,
+				ClpSerializer.translateInput(dirName),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -789,7 +809,8 @@ public class ArticleServiceClp implements ArticleService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey21,
-				companyId, groupId, resourcePrimKey, dirName);
+				companyId, groupId, resourcePrimKey,
+				ClpSerializer.translateInput(dirName));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

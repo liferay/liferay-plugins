@@ -78,7 +78,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addAssetMethodKey0,
-				asset);
+				ClpSerializer.translateInput(asset));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -153,7 +153,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 	public void deleteAsset(com.liferay.ams.model.Asset asset)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteAssetMethodKey3,
-				asset);
+				ClpSerializer.translateInput(asset));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -180,7 +180,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -209,7 +209,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -240,7 +240,8 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -268,7 +269,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -381,7 +382,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey11,
-				asset);
+				ClpSerializer.translateInput(asset));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -409,7 +410,7 @@ public class AssetLocalServiceClp implements AssetLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey12,
-				asset, merge);
+				ClpSerializer.translateInput(asset), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

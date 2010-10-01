@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -243,15 +244,19 @@ public class ArticleServiceUtil {
 
 			ReferenceRegistry.registerReference(ArticleServiceUtil.class,
 				"_service");
+			MethodCache.remove(ArticleService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(ArticleService service) {
+		MethodCache.remove(ArticleService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(ArticleServiceUtil.class, "_service");
+		MethodCache.remove(ArticleService.class);
 	}
 
 	private static ArticleService _service;

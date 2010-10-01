@@ -103,7 +103,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addCommentMethodKey0,
-				comment);
+				ClpSerializer.translateInput(comment));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -178,7 +178,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 	public void deleteComment(com.liferay.knowledgebase.model.Comment comment)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteCommentMethodKey3,
-				comment);
+				ClpSerializer.translateInput(comment));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -205,7 +205,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -234,7 +234,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -265,7 +265,8 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -293,7 +294,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -354,7 +355,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getCommentByUuidAndGroupIdMethodKey9,
-				uuid, groupId);
+				ClpSerializer.translateInput(uuid), groupId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -440,7 +441,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey12,
-				comment);
+				ClpSerializer.translateInput(comment));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -468,7 +469,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey13,
-				comment, merge);
+				ClpSerializer.translateInput(comment), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -499,7 +500,9 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addCommentMethodKey14,
-				userId, classNameId, classPK, content, helpful, serviceContext);
+				userId, classNameId, classPK,
+				ClpSerializer.translateInput(content), helpful,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -532,7 +535,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getCommentMethodKey15,
-				userId, className, classPK);
+				userId, ClpSerializer.translateInput(className), classPK);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -565,7 +568,8 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getCommentsMethodKey16,
-				className, classPK, start, end, orderByComparator);
+				ClpSerializer.translateInput(className), classPK, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -592,7 +596,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getCommentsCountMethodKey17,
-				className, classPK);
+				ClpSerializer.translateInput(className), classPK);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -623,8 +627,9 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey18,
-				commentId, classNameId, classPK, content, helpful,
-				serviceContext);
+				commentId, classNameId, classPK,
+				ClpSerializer.translateInput(content), helpful,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

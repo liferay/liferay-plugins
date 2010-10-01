@@ -81,7 +81,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addJIRAActionMethodKey0,
-				jiraAction);
+				ClpSerializer.translateInput(jiraAction));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -158,7 +158,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		com.liferay.socialcoding.model.JIRAAction jiraAction)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAActionMethodKey3,
-				jiraAction);
+				ClpSerializer.translateInput(jiraAction));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -185,7 +185,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -214,7 +214,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -245,7 +245,8 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -273,7 +274,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -388,7 +389,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey11,
-				jiraAction);
+				ClpSerializer.translateInput(jiraAction));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -416,7 +417,7 @@ public class JIRAActionLocalServiceClp implements JIRAActionLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateJIRAActionMethodKey12,
-				jiraAction, merge);
+				ClpSerializer.translateInput(jiraAction), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

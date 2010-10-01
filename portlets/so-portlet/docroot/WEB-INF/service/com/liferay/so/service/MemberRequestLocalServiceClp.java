@@ -119,7 +119,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMemberRequestMethodKey0,
-				memberRequest);
+				ClpSerializer.translateInput(memberRequest));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -196,7 +196,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		com.liferay.so.model.MemberRequest memberRequest)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteMemberRequestMethodKey3,
-				memberRequest);
+				ClpSerializer.translateInput(memberRequest));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -223,7 +223,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -252,7 +252,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -283,7 +283,8 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -311,7 +312,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -426,7 +427,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey11,
-				memberRequest);
+				ClpSerializer.translateInput(memberRequest));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -454,7 +455,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey12,
-				memberRequest, merge);
+				ClpSerializer.translateInput(memberRequest), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -485,8 +486,10 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMemberRequestMethodKey13,
-				userId, groupId, receiverUserId, receiverEmailAddress,
-				invitedRoleId, invitedTeamId, themeDisplay);
+				userId, groupId, receiverUserId,
+				ClpSerializer.translateInput(receiverEmailAddress),
+				invitedRoleId, invitedTeamId,
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -518,8 +521,9 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addMemberRequestsMethodKey14,
-				userId, groupId, receiverUserIds, invitedRoleId, invitedTeamId,
-				themeDisplay);
+				userId, groupId, ClpSerializer.translateInput(receiverUserIds),
+				invitedRoleId, invitedTeamId,
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -549,8 +553,9 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addMemberRequestsMethodKey15,
-				userId, groupId, emailAddresses, invitedRoleId, invitedTeamId,
-				themeDisplay);
+				userId, groupId, ClpSerializer.translateInput(emailAddresses),
+				invitedRoleId, invitedTeamId,
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -778,7 +783,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMemberRequestMethodKey23,
-				key, receiverUserId);
+				ClpSerializer.translateInput(key), receiverUserId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

@@ -16,6 +16,7 @@ package com.liferay.chat.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -273,16 +274,20 @@ public class EntryLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(EntryLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(EntryLocalService service) {
+		MethodCache.remove(EntryLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(EntryLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(EntryLocalService.class);
 	}
 
 	private static EntryLocalService _service;

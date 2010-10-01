@@ -16,6 +16,7 @@ package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -306,16 +307,20 @@ public class SVNRevisionLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(SVNRevisionLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(SVNRevisionLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(SVNRevisionLocalService service) {
+		MethodCache.remove(SVNRevisionLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(SVNRevisionLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(SVNRevisionLocalService.class);
 	}
 
 	private static SVNRevisionLocalService _service;

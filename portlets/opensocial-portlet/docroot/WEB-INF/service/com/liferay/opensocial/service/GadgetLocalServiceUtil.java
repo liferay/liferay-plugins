@@ -16,6 +16,7 @@ package com.liferay.opensocial.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -297,16 +298,20 @@ public class GadgetLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(GadgetLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(GadgetLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(GadgetLocalService service) {
+		MethodCache.remove(GadgetLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(GadgetLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(GadgetLocalService.class);
 	}
 
 	private static GadgetLocalService _service;

@@ -16,6 +16,7 @@ package com.liferay.so.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -284,16 +285,20 @@ public class ProjectsEntryLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(ProjectsEntryLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(ProjectsEntryLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(ProjectsEntryLocalService service) {
+		MethodCache.remove(ProjectsEntryLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(ProjectsEntryLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(ProjectsEntryLocalService.class);
 	}
 
 	private static ProjectsEntryLocalService _service;

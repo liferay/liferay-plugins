@@ -96,7 +96,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey0,
-				attachment);
+				ClpSerializer.translateInput(attachment));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -171,7 +171,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 	public void deleteAttachment(com.liferay.mail.model.Attachment attachment)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteAttachmentMethodKey3,
-				attachment);
+				ClpSerializer.translateInput(attachment));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -198,7 +198,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -227,7 +227,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -258,7 +258,8 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -286,7 +287,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -400,7 +401,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey11,
-				attachment);
+				ClpSerializer.translateInput(attachment));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -428,7 +429,7 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAttachmentMethodKey12,
-				attachment, merge);
+				ClpSerializer.translateInput(attachment), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -458,7 +459,9 @@ public class AttachmentLocalServiceClp implements AttachmentLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey13,
-				userId, messageId, contentPath, fileName, size, file);
+				userId, messageId, ClpSerializer.translateInput(contentPath),
+				ClpSerializer.translateInput(fileName), size,
+				ClpSerializer.translateInput(file));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

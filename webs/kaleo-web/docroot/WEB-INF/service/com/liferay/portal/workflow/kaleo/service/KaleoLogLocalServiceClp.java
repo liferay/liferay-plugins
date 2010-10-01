@@ -159,7 +159,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoLogMethodKey0,
-				kaleoLog);
+				ClpSerializer.translateInput(kaleoLog));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -236,7 +236,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoLogMethodKey3,
-				kaleoLog);
+				ClpSerializer.translateInput(kaleoLog));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -263,7 +263,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -292,7 +292,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -323,7 +323,8 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -351,7 +352,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -466,7 +467,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoLogMethodKey11,
-				kaleoLog);
+				ClpSerializer.translateInput(kaleoLog));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -494,7 +495,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoLogMethodKey12,
-				kaleoLog, merge);
+				ClpSerializer.translateInput(kaleoLog), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -526,8 +527,10 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addActionExecutionKaleoLogMethodKey13,
-				kaleoInstanceToken, kaleoAction, startTime, endTime, comment,
-				serviceContext);
+				ClpSerializer.translateInput(kaleoInstanceToken),
+				ClpSerializer.translateInput(kaleoAction), startTime, endTime,
+				ClpSerializer.translateInput(comment),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -563,8 +566,10 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addNodeEntryKaleoLogMethodKey14,
-				kaleoInstanceToken, sourceKaleoNode, targetKaleoNode,
-				serviceContext);
+				ClpSerializer.translateInput(kaleoInstanceToken),
+				ClpSerializer.translateInput(sourceKaleoNode),
+				ClpSerializer.translateInput(targetKaleoNode),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -599,7 +604,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addNodeExitKaleoLogMethodKey15,
-				kaleoInstanceToken, departingKaleoNode, serviceContext);
+				ClpSerializer.translateInput(kaleoInstanceToken),
+				ClpSerializer.translateInput(departingKaleoNode),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -636,8 +643,11 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTaskAssignmentKaleoLogMethodKey16,
-				previousKaleoTaskInstanceToken, newKaleoTaskInstanceToken,
-				comment, workflowContext, serviceContext);
+				ClpSerializer.translateInput(previousKaleoTaskInstanceToken),
+				ClpSerializer.translateInput(newKaleoTaskInstanceToken),
+				ClpSerializer.translateInput(comment),
+				ClpSerializer.translateInput(workflowContext),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -673,7 +683,10 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTaskCompletionKaleoLogMethodKey17,
-				kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
+				ClpSerializer.translateInput(kaleoTaskInstanceToken),
+				ClpSerializer.translateInput(comment),
+				ClpSerializer.translateInput(workflowContext),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -709,7 +722,10 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTaskUpdateKaleoLogMethodKey18,
-				kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
+				ClpSerializer.translateInput(kaleoTaskInstanceToken),
+				ClpSerializer.translateInput(comment),
+				ClpSerializer.translateInput(workflowContext),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -743,7 +759,8 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWorkflowInstanceEndKaleoLogMethodKey19,
-				kaleoInstanceToken, serviceContext);
+				ClpSerializer.translateInput(kaleoInstanceToken),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -777,7 +794,8 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWorkflowInstanceStartKaleoLogMethodKey20,
-				kaleoInstanceToken, serviceContext);
+				ClpSerializer.translateInput(kaleoInstanceToken),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -880,7 +898,8 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceKaleoLogsMethodKey24,
-				kaleoInstanceId, logTypes, start, end, orderByComparator);
+				kaleoInstanceId, ClpSerializer.translateInput(logTypes), start,
+				end, ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -908,7 +927,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceKaleoLogsCountMethodKey25,
-				kaleoInstanceId, logTypes);
+				kaleoInstanceId, ClpSerializer.translateInput(logTypes));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -938,8 +957,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskInstanceTokenKaleoLogsMethodKey26,
-				kaleoTaskInstanceTokenId, logTypes, start, end,
-				orderByComparator);
+				kaleoTaskInstanceTokenId,
+				ClpSerializer.translateInput(logTypes), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -968,7 +988,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskInstanceTokenKaleoLogsCountMethodKey27,
-				kaleoTaskInstanceTokenId, logTypes);
+				kaleoTaskInstanceTokenId, ClpSerializer.translateInput(logTypes));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

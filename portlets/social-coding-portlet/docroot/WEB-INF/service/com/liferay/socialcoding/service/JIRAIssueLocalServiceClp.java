@@ -145,7 +145,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addJIRAIssueMethodKey0,
-				jiraIssue);
+				ClpSerializer.translateInput(jiraIssue));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -222,7 +222,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAIssueMethodKey3,
-				jiraIssue);
+				ClpSerializer.translateInput(jiraIssue));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -249,7 +249,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -278,7 +278,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -309,7 +309,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -337,7 +338,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -452,7 +453,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssueMethodKey11,
-				jiraIssue);
+				ClpSerializer.translateInput(jiraIssue));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -480,7 +481,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateJIRAIssueMethodKey12,
-				jiraIssue, merge);
+				ClpSerializer.translateInput(jiraIssue), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -508,7 +509,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey13,
-				projectId, assigneeJiraUserId, start, end);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
+				start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -537,7 +539,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey14,
-				modifiedDate, projectId, assigneeJiraUserId, start, end);
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(assigneeJiraUserId), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -566,7 +569,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesMethodKey15,
-				projectId, assigneeJiraUserId, status, start, end);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
+				ClpSerializer.translateInput(status), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -594,7 +598,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey16,
-				projectId, assigneeJiraUserId);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -622,7 +626,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey17,
-				modifiedDate, projectId, assigneeJiraUserId);
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -650,7 +655,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAssigneeJIRAIssuesCountMethodKey18,
-				projectId, assigneeJiraUserId, status);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId),
+				ClpSerializer.translateInput(status));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -679,7 +685,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getFirstAssigneeJIRAIssueMethodKey19,
-				projectId, assigneeJiraUserId);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -712,7 +718,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getFirstReporterJIRAIssueMethodKey20,
-				projectId, reporterJiraUserId);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -745,7 +751,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getJIRAIssueMethodKey21,
-				key);
+				ClpSerializer.translateInput(key));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -778,7 +784,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getLastAssigneeJIRAIssueMethodKey22,
-				projectId, assigneeJiraUserId);
+				projectId, ClpSerializer.translateInput(assigneeJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -811,7 +817,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getLastreporterJIRAIssueMethodKey23,
-				projectId, reporterJiraUserId);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -843,7 +849,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey24,
-				projectId, reporterJiraUserId, start, end);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId),
+				start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -872,7 +879,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey25,
-				modifiedDate, projectId, reporterJiraUserId, start, end);
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(reporterJiraUserId), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -901,7 +909,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesMethodKey26,
-				projectId, reporterJiraUserId, status, start, end);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId),
+				ClpSerializer.translateInput(status), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -929,7 +938,7 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey27,
-				projectId, reporterJiraUserId);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -957,7 +966,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey28,
-				modifiedDate, projectId, reporterJiraUserId);
+				ClpSerializer.translateInput(modifiedDate), projectId,
+				ClpSerializer.translateInput(reporterJiraUserId));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -985,7 +995,8 @@ public class JIRAIssueLocalServiceClp implements JIRAIssueLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getReporterJIRAIssuesCountMethodKey29,
-				projectId, reporterJiraUserId, status);
+				projectId, ClpSerializer.translateInput(reporterJiraUserId),
+				ClpSerializer.translateInput(status));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

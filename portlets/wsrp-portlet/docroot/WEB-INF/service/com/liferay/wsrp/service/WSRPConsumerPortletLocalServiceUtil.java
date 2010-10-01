@@ -16,6 +16,7 @@ package com.liferay.wsrp.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -319,16 +320,20 @@ public class WSRPConsumerPortletLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(WSRPConsumerPortletLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(WSRPConsumerPortletLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(WSRPConsumerPortletLocalService service) {
+		MethodCache.remove(WSRPConsumerPortletLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(WSRPConsumerPortletLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(WSRPConsumerPortletLocalService.class);
 	}
 
 	private static WSRPConsumerPortletLocalService _service;

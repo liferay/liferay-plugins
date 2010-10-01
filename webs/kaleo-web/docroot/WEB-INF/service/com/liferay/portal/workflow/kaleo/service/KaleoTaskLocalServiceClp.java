@@ -97,7 +97,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoTaskMethodKey0,
-				kaleoTask);
+				ClpSerializer.translateInput(kaleoTask));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -174,7 +174,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoTaskMethodKey3,
-				kaleoTask);
+				ClpSerializer.translateInput(kaleoTask));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -201,7 +201,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -230,7 +230,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -261,7 +261,8 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -289,7 +290,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -404,7 +405,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoTaskMethodKey11,
-				kaleoTask);
+				ClpSerializer.translateInput(kaleoTask));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -433,7 +434,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoTaskMethodKey12,
-				kaleoTask, merge);
+				ClpSerializer.translateInput(kaleoTask), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -464,7 +465,9 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoTaskMethodKey13,
-				kaleoDefinitionId, kaleoNodeId, task, serviceContext);
+				kaleoDefinitionId, kaleoNodeId,
+				ClpSerializer.translateInput(task),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

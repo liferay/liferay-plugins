@@ -98,7 +98,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey0,
-				wsrpProducer);
+				ClpSerializer.translateInput(wsrpProducer));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -176,7 +176,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteWSRPProducerMethodKey3,
-				wsrpProducer);
+				ClpSerializer.translateInput(wsrpProducer));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -207,7 +207,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -236,7 +236,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -267,7 +267,8 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -295,7 +296,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -410,7 +411,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey11,
-				wsrpProducer);
+				ClpSerializer.translateInput(wsrpProducer));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -438,7 +439,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey12,
-				wsrpProducer, merge);
+				ClpSerializer.translateInput(wsrpProducer), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -468,7 +469,9 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey13,
-				userId, name, version, portletIds);
+				userId, ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(version),
+				ClpSerializer.translateInput(portletIds));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -502,7 +505,9 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey14,
-				userId, groupId, name, version, portletIds);
+				userId, groupId, ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(version),
+				ClpSerializer.translateInput(portletIds));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -591,7 +596,9 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey17,
-				wsrpProducerId, name, version, portletIds);
+				wsrpProducerId, ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(version),
+				ClpSerializer.translateInput(portletIds));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

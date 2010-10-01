@@ -94,7 +94,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey0, foo);
+		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey0,
+				ClpSerializer.translateInput(foo));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -169,7 +170,7 @@ public class FooLocalServiceClp implements FooLocalService {
 	public void deleteFoo(com.liferay.sampleservicebuilder.model.Foo foo)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteFooMethodKey3,
-				foo);
+				ClpSerializer.translateInput(foo));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -196,7 +197,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -225,7 +226,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -256,7 +257,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -284,7 +286,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -397,7 +399,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey11,
-				foo);
+				ClpSerializer.translateInput(foo));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +427,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey12,
-				foo, merge);
+				ClpSerializer.translateInput(foo), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -452,7 +454,9 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey13,
-				userId, field1, field2, field3, field4, field5);
+				userId, ClpSerializer.translateInput(field1), field2, field3,
+				ClpSerializer.translateInput(field4),
+				ClpSerializer.translateInput(field5));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -481,7 +485,8 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey14, obc);
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey14,
+				ClpSerializer.translateInput(obc));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -509,7 +514,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey15,
-				start, end, obc);
+				start, end, ClpSerializer.translateInput(obc));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -536,7 +541,9 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey16,
-				fooId, field1, field2, field3, field4, field5);
+				fooId, ClpSerializer.translateInput(field1), field2, field3,
+				ClpSerializer.translateInput(field4),
+				ClpSerializer.translateInput(field5));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

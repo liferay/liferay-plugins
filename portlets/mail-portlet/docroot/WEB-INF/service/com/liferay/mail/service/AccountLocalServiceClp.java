@@ -106,7 +106,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addAccountMethodKey0,
-				account);
+				ClpSerializer.translateInput(account));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -182,7 +182,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteAccountMethodKey3,
-				account);
+				ClpSerializer.translateInput(account));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -213,7 +213,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -242,7 +242,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -273,7 +273,8 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -301,7 +302,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -415,7 +416,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey11,
-				account);
+				ClpSerializer.translateInput(account));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -443,7 +444,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey12,
-				account, merge);
+				ClpSerializer.translateInput(account), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -480,11 +481,17 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addAccountMethodKey13,
-				userId, address, personalName, protocol, incomingHostName,
-				incomingPort, incomingSecure, outgoingHostName, outgoingPort,
-				outgoingSecure, login, password, savePassword, signature,
-				useSignature, folderPrefix, inboxFolderId, draftFolderId,
-				sentFolderId, trashFolderId, defaultSender);
+				userId, ClpSerializer.translateInput(address),
+				ClpSerializer.translateInput(personalName),
+				ClpSerializer.translateInput(protocol),
+				ClpSerializer.translateInput(incomingHostName), incomingPort,
+				incomingSecure, ClpSerializer.translateInput(outgoingHostName),
+				outgoingPort, outgoingSecure,
+				ClpSerializer.translateInput(login),
+				ClpSerializer.translateInput(password), savePassword,
+				ClpSerializer.translateInput(signature), useSignature,
+				ClpSerializer.translateInput(folderPrefix), inboxFolderId,
+				draftFolderId, sentFolderId, trashFolderId, defaultSender);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -545,7 +552,7 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getAccountMethodKey15,
-				userId, address);
+				userId, ClpSerializer.translateInput(address));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -607,8 +614,10 @@ public class AccountLocalServiceClp implements AccountLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateAccountMethodKey17,
-				accountId, personalName, password, savePassword, signature,
-				useSignature, folderPrefix, defaultSender);
+				accountId, ClpSerializer.translateInput(personalName),
+				ClpSerializer.translateInput(password), savePassword,
+				ClpSerializer.translateInput(signature), useSignature,
+				ClpSerializer.translateInput(folderPrefix), defaultSender);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

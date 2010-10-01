@@ -106,7 +106,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerMethodKey0,
-				wsrpConsumer);
+				ClpSerializer.translateInput(wsrpConsumer));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -184,7 +184,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteWSRPConsumerMethodKey3,
-				wsrpConsumer);
+				ClpSerializer.translateInput(wsrpConsumer));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -215,7 +215,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -244,7 +244,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -275,7 +275,8 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -303,7 +304,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -418,7 +419,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerMethodKey11,
-				wsrpConsumer);
+				ClpSerializer.translateInput(wsrpConsumer));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -446,7 +447,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerMethodKey12,
-				wsrpConsumer, merge);
+				ClpSerializer.translateInput(wsrpConsumer), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -476,7 +477,10 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerMethodKey13,
-				companyId, adminPortletId, name, url, userToken);
+				companyId, ClpSerializer.translateInput(adminPortletId),
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(url),
+				ClpSerializer.translateInput(userToken));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -566,8 +570,10 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_registerWSRPConsumerMethodKey16,
-				wsrpConsumerId, adminPortletId, registrationProperties,
-				registrationHandle, userToken);
+				wsrpConsumerId, ClpSerializer.translateInput(adminPortletId),
+				ClpSerializer.translateInput(registrationProperties),
+				ClpSerializer.translateInput(registrationHandle),
+				ClpSerializer.translateInput(userToken));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -597,7 +603,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_restartConsumerMethodKey17,
-				wsrpConsumerId, userToken);
+				wsrpConsumerId, ClpSerializer.translateInput(userToken));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -626,7 +632,7 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_updateServiceDescriptionMethodKey18,
-				wsrpConsumerId, userToken);
+				wsrpConsumerId, ClpSerializer.translateInput(userToken));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -658,7 +664,10 @@ public class WSRPConsumerLocalServiceClp implements WSRPConsumerLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerMethodKey19,
-				wsrpConsumerId, adminPortletId, name, url, userToken);
+				wsrpConsumerId, ClpSerializer.translateInput(adminPortletId),
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(url),
+				ClpSerializer.translateInput(userToken));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

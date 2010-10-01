@@ -124,7 +124,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoInstanceTokenMethodKey0,
-				kaleoInstanceToken);
+				ClpSerializer.translateInput(kaleoInstanceToken));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -201,7 +201,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoInstanceTokenMethodKey3,
-				kaleoInstanceToken);
+				ClpSerializer.translateInput(kaleoInstanceToken));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -228,7 +228,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -257,7 +257,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -288,7 +288,8 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -316,7 +317,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -431,7 +432,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceTokenMethodKey11,
-				kaleoInstanceToken);
+				ClpSerializer.translateInput(kaleoInstanceToken));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -460,7 +461,7 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoInstanceTokenMethodKey12,
-				kaleoInstanceToken, merge);
+				ClpSerializer.translateInput(kaleoInstanceToken), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -491,7 +492,9 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoInstanceTokenMethodKey13,
-				parentKaleoInstanceTokenId, workflowContext, serviceContext);
+				parentKaleoInstanceTokenId,
+				ClpSerializer.translateInput(workflowContext),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -626,7 +629,9 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensMethodKey18,
-				parentKaleoInstanceTokenId, completionDate, serviceContext);
+				parentKaleoInstanceTokenId,
+				ClpSerializer.translateInput(completionDate),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -655,7 +660,8 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensMethodKey19,
-				parentKaleoInstanceTokenId, serviceContext);
+				parentKaleoInstanceTokenId,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -684,7 +690,9 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensCountMethodKey20,
-				parentKaleoInstanceTokenId, completionDate, serviceContext);
+				parentKaleoInstanceTokenId,
+				ClpSerializer.translateInput(completionDate),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -712,7 +720,8 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoInstanceTokensCountMethodKey21,
-				parentKaleoInstanceTokenId, serviceContext);
+				parentKaleoInstanceTokenId,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -743,7 +752,8 @@ public class KaleoInstanceTokenLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getRootKaleoInstanceTokenMethodKey22,
-				kaleoInstanceId, workflowContext, serviceContext);
+				kaleoInstanceId, ClpSerializer.translateInput(workflowContext),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

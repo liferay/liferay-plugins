@@ -132,7 +132,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMessageMethodKey0,
-				message);
+				ClpSerializer.translateInput(message));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -208,7 +208,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteMessageMethodKey3,
-				message);
+				ClpSerializer.translateInput(message));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -239,7 +239,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -268,7 +268,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -299,7 +299,8 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -327,7 +328,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -441,7 +442,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey11,
-				message);
+				ClpSerializer.translateInput(message));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -469,7 +470,7 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey12,
-				message, merge);
+				ClpSerializer.translateInput(message), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -501,8 +502,14 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMessageMethodKey13,
-				userId, folderId, sender, to, cc, bcc, sentDate, subject, body,
-				flags, remoteMessageId);
+				userId, folderId, ClpSerializer.translateInput(sender),
+				ClpSerializer.translateInput(to),
+				ClpSerializer.translateInput(cc),
+				ClpSerializer.translateInput(bcc),
+				ClpSerializer.translateInput(sentDate),
+				ClpSerializer.translateInput(subject),
+				ClpSerializer.translateInput(body),
+				ClpSerializer.translateInput(flags), remoteMessageId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -794,8 +801,10 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_populateMessagesMethodKey23,
-				messages, folderId, keywords, pageNumber, messagesPerPage,
-				orderByField, orderByType);
+				ClpSerializer.translateInput(messages), folderId,
+				ClpSerializer.translateInput(keywords), pageNumber,
+				messagesPerPage, ClpSerializer.translateInput(orderByField),
+				ClpSerializer.translateInput(orderByType));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -824,7 +833,8 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateContentMethodKey24,
-				messageId, body, flags);
+				messageId, ClpSerializer.translateInput(body),
+				ClpSerializer.translateInput(flags));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -893,8 +903,14 @@ public class MessageLocalServiceClp implements MessageLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMessageMethodKey26,
-				messageId, folderId, sender, to, cc, bcc, sentDate, subject,
-				body, flags, remoteMessageId);
+				messageId, folderId, ClpSerializer.translateInput(sender),
+				ClpSerializer.translateInput(to),
+				ClpSerializer.translateInput(cc),
+				ClpSerializer.translateInput(bcc),
+				ClpSerializer.translateInput(sentDate),
+				ClpSerializer.translateInput(subject),
+				ClpSerializer.translateInput(body),
+				ClpSerializer.translateInput(flags), remoteMessageId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

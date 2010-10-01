@@ -133,7 +133,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addUserThreadMethodKey0,
-				userThread);
+				ClpSerializer.translateInput(userThread));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -210,7 +210,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		com.liferay.privatemessaging.model.UserThread userThread)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteUserThreadMethodKey3,
-				userThread);
+				ClpSerializer.translateInput(userThread));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -237,7 +237,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -266,7 +266,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -297,7 +297,8 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -325,7 +326,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -440,7 +441,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateUserThreadMethodKey11,
-				userThread);
+				ClpSerializer.translateInput(userThread));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -468,7 +469,7 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateUserThreadMethodKey12,
-				userThread, merge);
+				ClpSerializer.translateInput(userThread), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -500,7 +501,11 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageMethodKey13,
-				userId, mbThreadId, to, subject, body, files, themeDisplay);
+				userId, mbThreadId, ClpSerializer.translateInput(to),
+				ClpSerializer.translateInput(subject),
+				ClpSerializer.translateInput(body),
+				ClpSerializer.translateInput(files),
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -535,7 +540,9 @@ public class UserThreadLocalServiceClp implements UserThreadLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addPrivateMessageBranchMethodKey14,
-				userId, parentMBMessageId, body, files, themeDisplay);
+				userId, parentMBMessageId, ClpSerializer.translateInput(body),
+				ClpSerializer.translateInput(files),
+				ClpSerializer.translateInput(themeDisplay));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

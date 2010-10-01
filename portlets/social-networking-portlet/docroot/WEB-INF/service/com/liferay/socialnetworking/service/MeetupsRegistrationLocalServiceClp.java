@@ -98,7 +98,7 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMeetupsRegistrationMethodKey0,
-				meetupsRegistration);
+				ClpSerializer.translateInput(meetupsRegistration));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -175,7 +175,7 @@ public class MeetupsRegistrationLocalServiceClp
 		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteMeetupsRegistrationMethodKey3,
-				meetupsRegistration);
+				ClpSerializer.translateInput(meetupsRegistration));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -202,7 +202,7 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -231,7 +231,7 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -262,7 +262,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -290,7 +291,7 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -405,7 +406,7 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey11,
-				meetupsRegistration);
+				ClpSerializer.translateInput(meetupsRegistration));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -434,7 +435,7 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey12,
-				meetupsRegistration, merge);
+				ClpSerializer.translateInput(meetupsRegistration), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -551,7 +552,8 @@ public class MeetupsRegistrationLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMeetupsRegistrationMethodKey16,
-				userId, meetupsEntryId, status, comments);
+				userId, meetupsEntryId, status,
+				ClpSerializer.translateInput(comments));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

@@ -89,7 +89,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addSVNRepositoryMethodKey0,
-				svnRepository);
+				ClpSerializer.translateInput(svnRepository));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -166,7 +166,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		com.liferay.socialcoding.model.SVNRepository svnRepository)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteSVNRepositoryMethodKey3,
-				svnRepository);
+				ClpSerializer.translateInput(svnRepository));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -193,7 +193,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -222,7 +222,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -253,7 +253,8 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -281,7 +282,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -396,7 +397,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey11,
-				svnRepository);
+				ClpSerializer.translateInput(svnRepository));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +426,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey12,
-				svnRepository, merge);
+				ClpSerializer.translateInput(svnRepository), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -454,7 +455,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoryMethodKey13,
-				url);
+				ClpSerializer.translateInput(url));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -484,7 +485,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey14,
-				url);
+				ClpSerializer.translateInput(url));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

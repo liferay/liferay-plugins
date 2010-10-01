@@ -94,7 +94,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey0,
-				entry);
+				ClpSerializer.translateInput(entry));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -169,7 +169,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 	public void deleteEntry(com.liferay.chat.model.Entry entry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteEntryMethodKey3,
-				entry);
+				ClpSerializer.translateInput(entry));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -196,7 +196,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -225,7 +225,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -256,7 +256,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -284,7 +285,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -397,7 +398,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateEntryMethodKey11,
-				entry);
+				ClpSerializer.translateInput(entry));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -425,7 +426,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateEntryMethodKey12,
-				entry, merge);
+				ClpSerializer.translateInput(entry), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -453,7 +454,7 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey13,
-				fromUserId, toUserId, content);
+				fromUserId, toUserId, ClpSerializer.translateInput(content));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -481,7 +482,8 @@ public class EntryLocalServiceClp implements EntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addEntryMethodKey14,
-				createDate, fromUserId, toUserId, content);
+				createDate, fromUserId, toUserId,
+				ClpSerializer.translateInput(content));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

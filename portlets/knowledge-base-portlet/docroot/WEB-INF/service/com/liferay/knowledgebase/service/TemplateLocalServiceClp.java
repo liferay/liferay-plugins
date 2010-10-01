@@ -118,7 +118,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTemplateMethodKey0,
-				template);
+				ClpSerializer.translateInput(template));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -196,7 +196,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteTemplateMethodKey3,
-				template);
+				ClpSerializer.translateInput(template));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -227,7 +227,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -256,7 +256,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -287,7 +287,8 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -315,7 +316,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -376,7 +377,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getTemplateByUuidAndGroupIdMethodKey9,
-				uuid, groupId);
+				ClpSerializer.translateInput(uuid), groupId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -462,7 +463,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey12,
-				template);
+				ClpSerializer.translateInput(template));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -490,7 +491,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey13,
-				template, merge);
+				ClpSerializer.translateInput(template), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -521,7 +522,10 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTemplateMethodKey14,
-				userId, title, content, description, serviceContext);
+				userId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -553,7 +557,8 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addTemplateResourcesMethodKey15,
-				template, addCommunityPermissions, addGuestPermissions);
+				ClpSerializer.translateInput(template),
+				addCommunityPermissions, addGuestPermissions);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -584,7 +589,9 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addTemplateResourcesMethodKey16,
-				template, communityPermissions, guestPermissions);
+				ClpSerializer.translateInput(template),
+				ClpSerializer.translateInput(communityPermissions),
+				ClpSerializer.translateInput(guestPermissions));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -643,7 +650,8 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesMethodKey18,
-				groupId, start, end, orderByComparator);
+				groupId, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -701,7 +709,10 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey20,
-				templateId, title, content, description, serviceContext);
+				templateId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -734,7 +745,9 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_updateTemplateResourcesMethodKey21,
-				template, communityPermissions, guestPermissions);
+				ClpSerializer.translateInput(template),
+				ClpSerializer.translateInput(communityPermissions),
+				ClpSerializer.translateInput(guestPermissions));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

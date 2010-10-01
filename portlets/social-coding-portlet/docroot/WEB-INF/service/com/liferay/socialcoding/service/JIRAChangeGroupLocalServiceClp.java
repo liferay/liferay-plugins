@@ -84,7 +84,7 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addJIRAChangeGroupMethodKey0,
-				jiraChangeGroup);
+				ClpSerializer.translateInput(jiraChangeGroup));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -161,7 +161,7 @@ public class JIRAChangeGroupLocalServiceClp
 		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteJIRAChangeGroupMethodKey3,
-				jiraChangeGroup);
+				ClpSerializer.translateInput(jiraChangeGroup));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -188,7 +188,7 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -217,7 +217,7 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -248,7 +248,8 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -276,7 +277,7 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -391,7 +392,7 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeGroupMethodKey11,
-				jiraChangeGroup);
+				ClpSerializer.translateInput(jiraChangeGroup));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -420,7 +421,7 @@ public class JIRAChangeGroupLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateJIRAChangeGroupMethodKey12,
-				jiraChangeGroup, merge);
+				ClpSerializer.translateInput(jiraChangeGroup), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

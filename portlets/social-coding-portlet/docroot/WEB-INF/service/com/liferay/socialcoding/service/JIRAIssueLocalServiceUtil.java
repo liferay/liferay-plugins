@@ -16,6 +16,7 @@ package com.liferay.socialcoding.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -390,16 +391,20 @@ public class JIRAIssueLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(JIRAIssueLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(JIRAIssueLocalService service) {
+		MethodCache.remove(JIRAIssueLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(JIRAIssueLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(JIRAIssueLocalService.class);
 	}
 
 	private static JIRAIssueLocalService _service;

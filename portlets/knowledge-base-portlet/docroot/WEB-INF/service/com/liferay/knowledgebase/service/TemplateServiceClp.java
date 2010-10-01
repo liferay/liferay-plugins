@@ -58,7 +58,10 @@ public class TemplateServiceClp implements TemplateService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTemplateMethodKey0,
-				title, content, description, serviceContext);
+				ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -120,7 +123,8 @@ public class TemplateServiceClp implements TemplateService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesMethodKey2,
-				groupId, start, end, orderByComparator);
+				groupId, start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -214,7 +218,10 @@ public class TemplateServiceClp implements TemplateService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey5,
-				templateId, title, content, description, serviceContext);
+				templateId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(description),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

@@ -97,7 +97,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addProjectsEntryMethodKey0,
-				projectsEntry);
+				ClpSerializer.translateInput(projectsEntry));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -174,7 +174,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		com.liferay.so.model.ProjectsEntry projectsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteProjectsEntryMethodKey3,
-				projectsEntry);
+				ClpSerializer.translateInput(projectsEntry));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -201,7 +201,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -230,7 +230,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -261,7 +261,8 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -289,7 +290,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -404,7 +405,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey11,
-				projectsEntry);
+				ClpSerializer.translateInput(projectsEntry));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -432,7 +433,7 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey12,
-				projectsEntry, merge);
+				ClpSerializer.translateInput(projectsEntry), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -464,9 +465,10 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addProjectsEntryMethodKey13,
-				userId, title, description, startDateMonth, startDateDay,
-				startDateYear, endDateMonth, endDateDay, endDateYear, current,
-				data);
+				userId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(description), startDateMonth,
+				startDateDay, startDateYear, endDateMonth, endDateDay,
+				endDateYear, current, ClpSerializer.translateInput(data));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -556,9 +558,10 @@ public class ProjectsEntryLocalServiceClp implements ProjectsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateProjectsEntryMethodKey16,
-				projectsEntryId, title, description, startDateMonth,
+				projectsEntryId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(description), startDateMonth,
 				startDateDay, startDateYear, endDateMonth, endDateDay,
-				endDateYear, current, data);
+				endDateYear, current, ClpSerializer.translateInput(data));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

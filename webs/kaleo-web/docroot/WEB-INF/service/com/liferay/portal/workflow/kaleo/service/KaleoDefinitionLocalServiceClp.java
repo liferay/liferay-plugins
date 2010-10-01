@@ -164,7 +164,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoDefinitionMethodKey0,
-				kaleoDefinition);
+				ClpSerializer.translateInput(kaleoDefinition));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -241,7 +241,7 @@ public class KaleoDefinitionLocalServiceClp
 		com.liferay.portal.workflow.kaleo.model.KaleoDefinition kaleoDefinition)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionMethodKey3,
-				kaleoDefinition);
+				ClpSerializer.translateInput(kaleoDefinition));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -268,7 +268,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -297,7 +297,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -328,7 +328,8 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -356,7 +357,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -471,7 +472,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoDefinitionMethodKey11,
-				kaleoDefinition);
+				ClpSerializer.translateInput(kaleoDefinition));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -500,7 +501,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateKaleoDefinitionMethodKey12,
-				kaleoDefinition, merge);
+				ClpSerializer.translateInput(kaleoDefinition), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -528,7 +529,8 @@ public class KaleoDefinitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_activateKaleoDefinitionMethodKey13,
-				kaleoDefinitionId, startKaleoNodeId, serviceContext);
+				kaleoDefinitionId, startKaleoNodeId,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -557,7 +559,7 @@ public class KaleoDefinitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_activateKaleoDefinitionMethodKey14,
-				kaleoDefinitionId, serviceContext);
+				kaleoDefinitionId, ClpSerializer.translateInput(serviceContext));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -586,7 +588,8 @@ public class KaleoDefinitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_activateKaleoDefinitionMethodKey15,
-				name, version, serviceContext);
+				ClpSerializer.translateInput(name), version,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -619,7 +622,10 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addKaleoDefinitionMethodKey16,
-				name, title, description, version, serviceContext);
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(description), version,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -650,7 +656,8 @@ public class KaleoDefinitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deactivateKaleoDefinitionMethodKey17,
-				name, version, serviceContext);
+				ClpSerializer.translateInput(name), version,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -702,7 +709,8 @@ public class KaleoDefinitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionMethodKey19,
-				name, version, serviceContext);
+				ClpSerializer.translateInput(name), version,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -734,7 +742,8 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionMethodKey20,
-				name, version, serviceContext);
+				ClpSerializer.translateInput(name), version,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -768,7 +777,9 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsMethodKey21,
-				active, start, end, orderByComparator, serviceContext);
+				active, start, end,
+				ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -798,7 +809,8 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsMethodKey22,
-				start, end, orderByComparator, serviceContext);
+				start, end, ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -828,7 +840,9 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsMethodKey23,
-				name, active, start, end, orderByComparator, serviceContext);
+				ClpSerializer.translateInput(name), active, start, end,
+				ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -858,7 +872,9 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsMethodKey24,
-				name, start, end, orderByComparator, serviceContext);
+				ClpSerializer.translateInput(name), start, end,
+				ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -886,7 +902,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsCountMethodKey25,
-				active, serviceContext);
+				active, ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -914,7 +930,7 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsCountMethodKey26,
-				serviceContext);
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -942,7 +958,8 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsCountMethodKey27,
-				name, active, serviceContext);
+				ClpSerializer.translateInput(name), active,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -970,7 +987,8 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoDefinitionsCountMethodKey28,
-				name, serviceContext);
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -1000,7 +1018,9 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_incrementKaleoDefinitionMethodKey29,
-				name, title, serviceContext);
+				ClpSerializer.translateInput(name),
+				ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -1034,7 +1054,9 @@ public class KaleoDefinitionLocalServiceClp
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateTitleMethodKey30,
-				name, version, title, serviceContext);
+				ClpSerializer.translateInput(name), version,
+				ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

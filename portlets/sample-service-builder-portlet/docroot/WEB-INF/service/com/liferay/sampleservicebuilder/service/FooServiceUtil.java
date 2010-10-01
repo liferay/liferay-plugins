@@ -16,6 +16,7 @@ package com.liferay.sampleservicebuilder.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -55,15 +56,19 @@ public class FooServiceUtil {
 			ClpSerializer.setClassLoader(portletClassLoader);
 
 			ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
+			MethodCache.remove(FooService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(FooService service) {
+		MethodCache.remove(FooService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(FooServiceUtil.class, "_service");
+		MethodCache.remove(FooService.class);
 	}
 
 	private static FooService _service;

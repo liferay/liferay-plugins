@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -296,16 +297,20 @@ public class KaleoTaskAssignmentLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(KaleoTaskAssignmentLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(KaleoTaskAssignmentLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(KaleoTaskAssignmentLocalService service) {
+		MethodCache.remove(KaleoTaskAssignmentLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(KaleoTaskAssignmentLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(KaleoTaskAssignmentLocalService.class);
 	}
 
 	private static KaleoTaskAssignmentLocalService _service;

@@ -87,7 +87,8 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addFeedMethodKey0, feed);
+		MethodHandler methodHandler = new MethodHandler(_addFeedMethodKey0,
+				ClpSerializer.translateInput(feed));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -162,7 +163,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public void deleteFeed(com.liferay.twitter.model.Feed feed)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteFeedMethodKey3,
-				feed);
+				ClpSerializer.translateInput(feed));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -189,7 +190,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -218,7 +219,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -249,7 +250,8 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -277,7 +279,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -390,7 +392,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey11,
-				feed);
+				ClpSerializer.translateInput(feed));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -418,7 +420,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey12,
-				feed, merge);
+				ClpSerializer.translateInput(feed), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

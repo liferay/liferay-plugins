@@ -103,7 +103,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMeetupsEntryMethodKey0,
-				meetupsEntry);
+				ClpSerializer.translateInput(meetupsEntry));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -180,7 +180,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteMeetupsEntryMethodKey3,
-				meetupsEntry);
+				ClpSerializer.translateInput(meetupsEntry));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -207,7 +207,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey4,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -236,7 +236,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey5,
-				dynamicQuery, start, end);
+				ClpSerializer.translateInput(dynamicQuery), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -267,7 +267,8 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryMethodKey6,
-				dynamicQuery, start, end, orderByComparator);
+				ClpSerializer.translateInput(dynamicQuery), start, end,
+				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -295,7 +296,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_dynamicQueryCountMethodKey7,
-				dynamicQuery);
+				ClpSerializer.translateInput(dynamicQuery));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -410,7 +411,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey11,
-				meetupsEntry);
+				ClpSerializer.translateInput(meetupsEntry));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -439,7 +440,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey12,
-				meetupsEntry, merge);
+				ClpSerializer.translateInput(meetupsEntry), merge);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -472,10 +473,12 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addMeetupsEntryMethodKey13,
-				userId, title, description, startDateMonth, startDateDay,
-				startDateYear, startDateHour, startDateMinute, endDateMonth,
-				endDateDay, endDateYear, endDateHour, endDateMinute,
-				totalAttendees, maxAttendees, price, thumbnail);
+				userId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(description), startDateMonth,
+				startDateDay, startDateYear, startDateHour, startDateMinute,
+				endDateMonth, endDateDay, endDateYear, endDateHour,
+				endDateMinute, totalAttendees, maxAttendees, price,
+				ClpSerializer.translateInput(thumbnail));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -568,10 +571,12 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey16,
-				userId, meetupsEntryId, title, description, startDateMonth,
+				userId, meetupsEntryId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(description), startDateMonth,
 				startDateDay, startDateYear, startDateHour, startDateMinute,
 				endDateMonth, endDateDay, endDateYear, endDateHour,
-				endDateMinute, totalAttendees, maxAttendees, price, thumbnail);
+				endDateMinute, totalAttendees, maxAttendees, price,
+				ClpSerializer.translateInput(thumbnail));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

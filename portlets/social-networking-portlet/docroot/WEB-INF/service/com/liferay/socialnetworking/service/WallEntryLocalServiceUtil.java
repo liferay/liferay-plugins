@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -294,16 +295,20 @@ public class WallEntryLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(WallEntryLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(WallEntryLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(WallEntryLocalService service) {
+		MethodCache.remove(WallEntryLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(WallEntryLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(WallEntryLocalService.class);
 	}
 
 	private static WallEntryLocalService _service;

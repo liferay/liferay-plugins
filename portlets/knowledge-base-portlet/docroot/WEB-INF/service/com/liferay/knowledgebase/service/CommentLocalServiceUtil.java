@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.util.ClassLoaderProxy;
+import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -306,16 +307,20 @@ public class CommentLocalServiceUtil {
 
 			ReferenceRegistry.registerReference(CommentLocalServiceUtil.class,
 				"_service");
+			MethodCache.remove(CommentLocalService.class);
 		}
 
 		return _service;
 	}
 
 	public void setService(CommentLocalService service) {
+		MethodCache.remove(CommentLocalService.class);
+
 		_service = service;
 
 		ReferenceRegistry.registerReference(CommentLocalServiceUtil.class,
 			"_service");
+		MethodCache.remove(CommentLocalService.class);
 	}
 
 	private static CommentLocalService _service;
