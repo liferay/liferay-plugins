@@ -43,7 +43,7 @@ public class ScriptActionExecutor implements ActionExecutor {
 		throws Exception {
 
 		Map<String, Object> inputObjects =
-			ScriptingContextBuilder.buildScriptingContext(executionContext);		
+			ScriptingContextBuilder.buildScriptingContext(executionContext);
 
 		ScriptingUtil.exec(
 			null, inputObjects, kaleoAction.getScriptLanguage(),

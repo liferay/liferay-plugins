@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -28,48 +28,45 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * <a href="ScriptingConditionEvaluator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class ScriptingConditionEvaluator implements ConditionEvaluator {
-	
+
 	public boolean evaluate(
 			KaleoCondition kaleoCondition, ExecutionContext executionContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		Map<String, Object> inputObjects =
 			ScriptingContextBuilder.buildScriptingContext(executionContext);
 
-		Map<String, Object> returnResults = ScriptingUtil.eval(
-			null, inputObjects, CONDITION_RETURN_PARAMTERS,
+		Map<String, Object> results = ScriptingUtil.eval(
+			null, inputObjects, _outputNames,
 			kaleoCondition.getScriptLanguage(), kaleoCondition.getScript());
 
-		Boolean conditionValue = (Boolean)returnResults.get(
-			RETURN_PARAMETER_NAME);
+		Boolean returnValue = (Boolean)results.get(_RETURN_VALUE);
 
-		if (conditionValue == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Conditional script did not return value: " +
-					conditionValue + ": " + kaleoCondition.getScript());
-			}
-			
-			return false;
+		if (returnValue != null) {
+			return returnValue;
 		}
-		
-		return conditionValue;
+
+		if (_log.isWarnEnabled()) {
+			_log.warn(
+				"Conditional did not return value for script " +
+					kaleoCondition.getScript());
+		}
+
+		return false;
 	}
 
-	private static final String RETURN_PARAMETER_NAME = "returnValue";
-	
-	private static final Set<String> CONDITION_RETURN_PARAMTERS =
-		new HashSet<String>();
+	private static final String _RETURN_VALUE = "returnValue";
+
+	private static Set<String> _outputNames = new HashSet<String>();
+
+	private static Log _log = LogFactoryUtil.getLog(
+		ScriptingConditionEvaluator.class);
 
 	static {
-		CONDITION_RETURN_PARAMTERS.add(RETURN_PARAMETER_NAME);
+		_outputNames.add(_RETURN_VALUE);
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
-		ScriptingConditionEvaluator.class);
 }

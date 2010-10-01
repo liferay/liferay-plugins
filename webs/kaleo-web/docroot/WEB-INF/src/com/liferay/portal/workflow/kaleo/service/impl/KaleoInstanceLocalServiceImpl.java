@@ -123,7 +123,6 @@ public class KaleoInstanceLocalServiceImpl
 
 		kaleoTaskInstanceTokenLocalService.
 			deleteKaleoDefinitionKaleoTaskInstanceTokens(companyId);
-
 	}
 
 	public void deleteKaleoDefinitionKaleoInstances(long kaleoDefinitionId)
@@ -149,7 +148,7 @@ public class KaleoInstanceLocalServiceImpl
 	}
 
 	public void deleteKaleoInstance(long kaleoInstanceId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		try {
 			kaleoInstancePersistence.remove(kaleoInstanceId);

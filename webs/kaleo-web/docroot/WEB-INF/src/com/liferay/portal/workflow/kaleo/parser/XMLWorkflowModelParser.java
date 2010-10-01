@@ -107,7 +107,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			definition.addNode(task);
 		}
 
-		processTransitions(
+		parseTransitions(
 			definition, forkElements, joinElements, stateElements,
 			taskElements);
 
@@ -232,6 +232,24 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		}
 
 		return assignments;
+	}
+
+	protected void parseCondition(
+		Transition transition, Element transitionElement) {
+
+		Element conditionElement = transitionElement.element("condition");
+
+		if (conditionElement != null) {
+			String description = conditionElement.elementText("description");
+			String script = conditionElement.elementText("script");
+			String scriptLanguage = conditionElement.elementText(
+				"script-language");
+
+			Condition condition = new Condition(
+				description, script, scriptLanguage);
+
+			transition.setCondition(condition);
+		}
 	}
 
 	protected Fork parseFork(Element forkElement) {
@@ -416,32 +434,13 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			Transition transition = new Transition(
 				transitionName, sourceNode, targetNode, defaultValue);
 
-			processTransitionCondition(transition, transitionElement);
+			parseCondition(transition, transitionElement);
 
 			sourceNode.addTransition(transition);
 		}
 	}
 
-	protected void processTransitionCondition(
-		Transition transition, Element transitionElement) {
-
-		Element conditionElement = transitionElement.element("condition");
-
-		if (conditionElement != null) {
-			String conditionScript = conditionElement.elementText("script");
-			String conditionLanguage = conditionElement.elementText(
-				"script-language");
-			String conditionDescription = conditionElement.elementText(
-				"description");
-
-			Condition condition = new Condition(
-				conditionDescription, conditionLanguage, conditionScript);
-			
-			transition.setCondition(condition);
-		}
-	}
-
-	protected void processTransitions(
+	protected void parseTransitions(
 			Definition definition, List<Element> forkElements,
 			List<Element> joinElements, List<Element> stateElements,
 			List<Element> taskElements)

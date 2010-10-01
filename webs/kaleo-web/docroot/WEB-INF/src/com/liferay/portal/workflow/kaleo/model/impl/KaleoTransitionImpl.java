@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.kaleo.model.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.workflow.kaleo.NoSuchConditionException;
 import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
@@ -32,7 +31,7 @@ public class KaleoTransitionImpl
 	public KaleoTransitionImpl() {
 	}
 
-	public KaleoCondition getCondition()
+	public KaleoCondition getKaleoCondition()
 		throws PortalException, SystemException {
 
 		return KaleoConditionLocalServiceUtil.getKaleoCondition(

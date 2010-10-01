@@ -319,50 +319,47 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Finds the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
+	* Finds the kaleo condition where className = &#63; and classPK = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
 	*
-	* @param kaleoClassName the kaleo class name to search with
-	* @param kaleoClassPK the kaleo class p k to search with
+	* @param className the class name to search with
+	* @param classPK the class p k to search with
 	* @return the matching kaleo condition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition findByKaleoCN_PK(
-		java.lang.String kaleoClassName, long kaleoClassPK)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition findByC_C(
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException {
-		return getPersistence().findByKaleoCN_PK(kaleoClassName, kaleoClassPK);
+		return getPersistence().findByC_C(className, classPK);
 	}
 
 	/**
-	* Finds the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Finds the kaleo condition where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param kaleoClassName the kaleo class name to search with
-	* @param kaleoClassPK the kaleo class p k to search with
+	* @param className the class name to search with
+	* @param classPK the class p k to search with
 	* @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoCN_PK(
-		java.lang.String kaleoClassName, long kaleoClassPK)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByC_C(
+		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByKaleoCN_PK(kaleoClassName, kaleoClassPK);
+		return getPersistence().fetchByC_C(className, classPK);
 	}
 
 	/**
-	* Finds the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Finds the kaleo condition where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param kaleoClassName the kaleo class name to search with
-	* @param kaleoClassPK the kaleo class p k to search with
+	* @param className the class name to search with
+	* @param classPK the class p k to search with
 	* @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByKaleoCN_PK(
-		java.lang.String kaleoClassName, long kaleoClassPK,
-		boolean retrieveFromCache)
+	public static com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByC_C(
+		java.lang.String className, long classPK, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .fetchByKaleoCN_PK(kaleoClassName, kaleoClassPK,
-			retrieveFromCache);
+		return getPersistence().fetchByC_C(className, classPK, retrieveFromCache);
 	}
 
 	/**
@@ -426,17 +423,16 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Removes the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; from the database.
+	* Removes the kaleo condition where className = &#63; and classPK = &#63; from the database.
 	*
-	* @param kaleoClassName the kaleo class name to search with
-	* @param kaleoClassPK the kaleo class p k to search with
+	* @param className the class name to search with
+	* @param classPK the class p k to search with
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByKaleoCN_PK(java.lang.String kaleoClassName,
-		long kaleoClassPK)
+	public static void removeByC_C(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portal.workflow.kaleo.NoSuchConditionException {
-		getPersistence().removeByKaleoCN_PK(kaleoClassName, kaleoClassPK);
+		getPersistence().removeByC_C(className, classPK);
 	}
 
 	/**
@@ -462,17 +458,16 @@ public class KaleoConditionUtil {
 	}
 
 	/**
-	* Counts all the kaleo conditions where kaleoClassName = &#63; and kaleoClassPK = &#63;.
+	* Counts all the kaleo conditions where className = &#63; and classPK = &#63;.
 	*
-	* @param kaleoClassName the kaleo class name to search with
-	* @param kaleoClassPK the kaleo class p k to search with
+	* @param className the class name to search with
+	* @param classPK the class p k to search with
 	* @return the number of matching kaleo conditions
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByKaleoCN_PK(java.lang.String kaleoClassName,
-		long kaleoClassPK)
+	public static int countByC_C(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByKaleoCN_PK(kaleoClassName, kaleoClassPK);
+		return getPersistence().countByC_C(className, classPK);
 	}
 
 	/**

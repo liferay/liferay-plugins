@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -23,18 +23,16 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import java.util.List;
 
 /**
- * <a href="TransitionSelector.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface TransitionSelector {
 
-	public KaleoTransition selectTransition(
+	public KaleoTransition selectKaleoTransition(
 			KaleoNode kaleoNode, ExecutionContext executionContext)
-		throws SystemException, PortalException;
+		throws PortalException, SystemException;
 
-	public List<KaleoTransition> selectTransitions(
+	public List<KaleoTransition> selectKaleoTransitions(
 			KaleoNode kaleoNode, ExecutionContext executionContext)
-		throws SystemException, PortalException;
+		throws PortalException, SystemException;
 
 }

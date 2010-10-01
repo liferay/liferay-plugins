@@ -25,8 +25,8 @@ create table KaleoCondition (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	kaleoClassName VARCHAR(75) null,
-	kaleoClassPK LONG,
+	className VARCHAR(75) null,
+	classPK LONG,
 	description STRING null,
 	script TEXT null,
 	scriptLanguage VARCHAR(75) null
@@ -259,18 +259,4 @@ create table KaleoTransition (
 	targetKaleoNodeId LONG,
 	targetKaleoNodeName VARCHAR(200) null,
 	defaultTransition BOOLEAN
-);
-
-create table KaleoTransitionCondition (
-	kaleoTransitionConditionId LONG not null primary key,
-	groupId LONG,
-	companyId LONG,
-	userId LONG,
-	userName VARCHAR(75) null,
-	createDate DATE null,
-	modifiedDate DATE null,
-	kaleoTransitionId LONG,
-	description VARCHAR(75) null,
-	script VARCHAR(75) null,
-	scriptLanguage VARCHAR(75) null
 );

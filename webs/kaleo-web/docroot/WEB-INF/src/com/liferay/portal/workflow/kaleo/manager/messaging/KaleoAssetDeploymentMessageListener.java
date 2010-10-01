@@ -44,7 +44,7 @@ public class KaleoAssetDeploymentMessageListener implements MessageListener {
 		_portalKaleoManager.deployDefaultDefinitionLink(assetClassName);
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
+	private static Log _log = LogFactoryUtil.getLog(
 		KaleoAssetDeploymentMessageListener.class);
 
 	private PortalKaleoManager _portalKaleoManager;

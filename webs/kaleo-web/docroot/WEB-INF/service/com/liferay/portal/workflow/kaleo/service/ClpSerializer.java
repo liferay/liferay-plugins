@@ -255,17 +255,17 @@ public class ClpSerializer {
 
 					method6.invoke(newModel, value6);
 
-					Method method7 = newModelClass.getMethod("setKaleoClassName",
+					Method method7 = newModelClass.getMethod("setClassName",
 							new Class[] { String.class });
 
-					String value7 = oldCplModel.getKaleoClassName();
+					String value7 = oldCplModel.getClassName();
 
 					method7.invoke(newModel, value7);
 
-					Method method8 = newModelClass.getMethod("setKaleoClassPK",
+					Method method8 = newModelClass.getMethod("setClassPK",
 							new Class[] { Long.TYPE });
 
-					Long value8 = new Long(oldCplModel.getKaleoClassPK());
+					Long value8 = new Long(oldCplModel.getClassPK());
 
 					method8.invoke(newModel, value8);
 
@@ -2182,19 +2182,18 @@ public class ClpSerializer {
 
 					newModel.setModifiedDate(value6);
 
-					Method method7 = oldModelClass.getMethod(
-							"getKaleoClassName");
+					Method method7 = oldModelClass.getMethod("getClassName");
 
 					String value7 = (String)method7.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setKaleoClassName(value7);
+					newModel.setClassName(value7);
 
-					Method method8 = oldModelClass.getMethod("getKaleoClassPK");
+					Method method8 = oldModelClass.getMethod("getClassPK");
 
 					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setKaleoClassPK(value8);
+					newModel.setClassPK(value8);
 
 					Method method9 = oldModelClass.getMethod("getDescription");
 

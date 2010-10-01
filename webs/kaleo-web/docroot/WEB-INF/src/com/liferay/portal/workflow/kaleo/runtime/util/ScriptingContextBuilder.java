@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -26,19 +26,19 @@ import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * <a href="ScriptingContextBuilder.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class ScriptingContextBuilder {
+
 	public static Map<String, Object> buildScriptingContext(
 			ExecutionContext executionContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		Map<String, Serializable> workflowContext =
 			executionContext.getWorkflowContext();
@@ -83,4 +83,5 @@ public class ScriptingContextBuilder {
 
 		return inputObjects;
 	}
+
 }

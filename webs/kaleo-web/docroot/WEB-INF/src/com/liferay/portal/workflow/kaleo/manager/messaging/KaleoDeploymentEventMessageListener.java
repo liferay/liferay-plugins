@@ -55,7 +55,7 @@ public class KaleoDeploymentEventMessageListener implements MessageListener {
 		_portalKaleoManager.deployKaleoDefaults();
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
+	private static Log _log = LogFactoryUtil.getLog(
 		KaleoDeploymentEventMessageListener.class);
 
 	private PortalKaleoManager _portalKaleoManager;

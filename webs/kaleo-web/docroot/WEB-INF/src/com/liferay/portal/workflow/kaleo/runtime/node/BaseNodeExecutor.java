@@ -53,11 +53,11 @@ public abstract class BaseNodeExecutor
 	}
 
 	public TransitionSelector getTransitionSelector() {
-		return _transitionSelector;
+		return transitionSelector;
 	}
 
 	public void setTransitionSelector(TransitionSelector transitionSelector) {
-		_transitionSelector = transitionSelector;
+		this.transitionSelector = transitionSelector;
 	}
 
 	protected abstract void doEnter(
@@ -70,5 +70,6 @@ public abstract class BaseNodeExecutor
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException;
 
-	protected TransitionSelector _transitionSelector;
+	protected TransitionSelector transitionSelector;
+
 }

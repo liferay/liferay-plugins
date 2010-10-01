@@ -172,33 +172,33 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo class name of this kaleo condition.
+	 * Gets the class name of this kaleo condition.
 	 *
-	 * @return the kaleo class name of this kaleo condition
+	 * @return the class name of this kaleo condition
 	 */
 	@AutoEscape
-	public String getKaleoClassName();
+	public String getClassName();
 
 	/**
-	 * Sets the kaleo class name of this kaleo condition.
+	 * Sets the class name of this kaleo condition.
 	 *
-	 * @param kaleoClassName the kaleo class name of this kaleo condition
+	 * @param className the class name of this kaleo condition
 	 */
-	public void setKaleoClassName(String kaleoClassName);
+	public void setClassName(String className);
 
 	/**
-	 * Gets the kaleo class p k of this kaleo condition.
+	 * Gets the class p k of this kaleo condition.
 	 *
-	 * @return the kaleo class p k of this kaleo condition
+	 * @return the class p k of this kaleo condition
 	 */
-	public long getKaleoClassPK();
+	public long getClassPK();
 
 	/**
-	 * Sets the kaleo class p k of this kaleo condition.
+	 * Sets the class p k of this kaleo condition.
 	 *
-	 * @param kaleoClassPK the kaleo class p k of this kaleo condition
+	 * @param classPK the class p k of this kaleo condition
 	 */
-	public void setKaleoClassPK(long kaleoClassPK);
+	public void setClassPK(long classPK);
 
 	/**
 	 * Gets the description of this kaleo condition.

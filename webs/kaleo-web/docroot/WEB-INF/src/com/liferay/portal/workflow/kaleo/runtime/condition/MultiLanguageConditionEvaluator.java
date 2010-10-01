@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -24,25 +24,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <a href="MultiLanguageConditionEvaluator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class MultiLanguageConditionEvaluator implements ConditionEvaluator {
 
 	public boolean evaluate(
-		KaleoCondition kaleoCondition, ExecutionContext executionContext)
-		throws SystemException, PortalException {
-		String scriptLanguage = kaleoCondition.getScriptLanguage();
+			KaleoCondition kaleoCondition, ExecutionContext executionContext)
+		throws PortalException, SystemException {
 
-		ScriptLanguage language = ScriptLanguage.parse(scriptLanguage);
+		ScriptLanguage scriptLanguage = ScriptLanguage.parse(
+			kaleoCondition.getScriptLanguage());
 
 		ConditionEvaluator conditionEvaluator = _conditionEvaluators.get(
-			language);
+			scriptLanguage);
 
 		if (conditionEvaluator == null) {
 			throw new IllegalArgumentException(
-				"Language not supported for condition: " + scriptLanguage);
+				"No condition evaluator found for script language " +
+					scriptLanguage);
 		}
 
 		return conditionEvaluator.evaluate(kaleoCondition, executionContext);
@@ -51,17 +50,17 @@ public class MultiLanguageConditionEvaluator implements ConditionEvaluator {
 	public void setConditionEvaluators(
 		Map<String, ConditionEvaluator> conditionEvaluators) {
 
-		for (Map.Entry<String, ConditionEvaluator> conditionEvaluatorEntry :
-			conditionEvaluators.entrySet()) {
+		for (Map.Entry<String, ConditionEvaluator> entry :
+				conditionEvaluators.entrySet()) {
 
 			ScriptLanguage scriptLanguage = ScriptLanguage.parse(
-				conditionEvaluatorEntry.getKey());
+				entry.getKey());
 
-			_conditionEvaluators.put(
-				scriptLanguage, conditionEvaluatorEntry.getValue());
+			_conditionEvaluators.put(scriptLanguage, entry.getValue());
 		}
 	}
 
 	private Map<ScriptLanguage, ConditionEvaluator> _conditionEvaluators =
 		new HashMap<ScriptLanguage, ConditionEvaluator>();
+
 }

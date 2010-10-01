@@ -64,13 +64,13 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 			{ "userName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "kaleoClassName", new Integer(Types.VARCHAR) },
-			{ "kaleoClassPK", new Integer(Types.BIGINT) },
+			{ "className", new Integer(Types.VARCHAR) },
+			{ "classPK", new Integer(Types.BIGINT) },
 			{ "description", new Integer(Types.VARCHAR) },
 			{ "script", new Integer(Types.CLOB) },
 			{ "scriptLanguage", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(75) null,kaleoClassPK LONG,description STRING null,script TEXT null,scriptLanguage VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,className VARCHAR(75) null,classPK LONG,description STRING null,script TEXT null,scriptLanguage VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoCondition";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoCondition.kaleoConditionId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoCondition.kaleoConditionId ASC";
@@ -170,43 +170,43 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getKaleoClassName() {
-		if (_kaleoClassName == null) {
+	public String getClassName() {
+		if (_className == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _kaleoClassName;
+			return _className;
 		}
 	}
 
-	public void setKaleoClassName(String kaleoClassName) {
-		_kaleoClassName = kaleoClassName;
+	public void setClassName(String className) {
+		_className = className;
 
-		if (_originalKaleoClassName == null) {
-			_originalKaleoClassName = kaleoClassName;
+		if (_originalClassName == null) {
+			_originalClassName = className;
 		}
 	}
 
-	public String getOriginalKaleoClassName() {
-		return GetterUtil.getString(_originalKaleoClassName);
+	public String getOriginalClassName() {
+		return GetterUtil.getString(_originalClassName);
 	}
 
-	public long getKaleoClassPK() {
-		return _kaleoClassPK;
+	public long getClassPK() {
+		return _classPK;
 	}
 
-	public void setKaleoClassPK(long kaleoClassPK) {
-		_kaleoClassPK = kaleoClassPK;
+	public void setClassPK(long classPK) {
+		_classPK = classPK;
 
-		if (!_setOriginalKaleoClassPK) {
-			_setOriginalKaleoClassPK = true;
+		if (!_setOriginalClassPK) {
+			_setOriginalClassPK = true;
 
-			_originalKaleoClassPK = kaleoClassPK;
+			_originalClassPK = classPK;
 		}
 	}
 
-	public long getOriginalKaleoClassPK() {
-		return _originalKaleoClassPK;
+	public long getOriginalClassPK() {
+		return _originalClassPK;
 	}
 
 	public String getDescription() {
@@ -282,8 +282,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoClassName(getKaleoClassName());
-		clone.setKaleoClassPK(getKaleoClassPK());
+		clone.setClassName(getClassName());
+		clone.setClassPK(getClassPK());
 		clone.setDescription(getDescription());
 		clone.setScript(getScript());
 		clone.setScriptLanguage(getScriptLanguage());
@@ -356,10 +356,10 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", kaleoClassName=");
-		sb.append(getKaleoClassName());
-		sb.append(", kaleoClassPK=");
-		sb.append(getKaleoClassPK());
+		sb.append(", className=");
+		sb.append(getClassName());
+		sb.append(", classPK=");
+		sb.append(getClassPK());
 		sb.append(", description=");
 		sb.append(getDescription());
 		sb.append(", script=");
@@ -407,12 +407,12 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>kaleoClassName</column-name><column-value><![CDATA[");
-		sb.append(getKaleoClassName());
+			"<column><column-name>className</column-name><column-value><![CDATA[");
+		sb.append(getClassName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>kaleoClassPK</column-name><column-value><![CDATA[");
-		sb.append(getKaleoClassPK());
+			"<column><column-name>classPK</column-name><column-value><![CDATA[");
+		sb.append(getClassPK());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>description</column-name><column-value><![CDATA[");
@@ -440,11 +440,11 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _kaleoClassName;
-	private String _originalKaleoClassName;
-	private long _kaleoClassPK;
-	private long _originalKaleoClassPK;
-	private boolean _setOriginalKaleoClassPK;
+	private String _className;
+	private String _originalClassName;
+	private long _classPK;
+	private long _originalClassPK;
+	private boolean _setOriginalClassPK;
 	private String _description;
 	private String _script;
 	private String _scriptLanguage;

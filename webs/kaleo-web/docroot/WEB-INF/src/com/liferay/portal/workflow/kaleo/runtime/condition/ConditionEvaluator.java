@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -20,12 +20,12 @@ import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 /**
- * <a href="ConditionEvaluator.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public interface ConditionEvaluator {
+
 	public boolean evaluate(
-		KaleoCondition kaleoCondition, ExecutionContext executionContext)
-		throws SystemException, PortalException;
+			KaleoCondition kaleoCondition, ExecutionContext executionContext)
+		throws PortalException, SystemException;
+
 }

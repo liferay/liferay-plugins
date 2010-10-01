@@ -46,8 +46,8 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="kaleoClassName" />
-			<basic name="kaleoClassPK" />
+			<basic name="className" />
+			<basic name="classPK" />
 			<basic name="description" />
 			<basic name="script" />
 			<basic name="scriptLanguage" />

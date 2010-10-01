@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -15,35 +15,34 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * <a href="Condition.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class Condition {
 
-	public Condition(String language, String script) {
-		this(null, language, script);
+	public Condition(String script, String scriptLanguage) {
+		this(null, script, scriptLanguage);
 	}
 
-	public Condition(String description, String language, String script) {
+	public Condition(String description, String script, String scriptLanguage) {
 		_description = description;
-		_scriptLanguage = ScriptLanguage.parse(language);
 		_script = script;
+		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
 	}
 
 	public String getDescription() {
 		return _description;
 	}
 
-	public ScriptLanguage getScriptLanguage() {
-		return _scriptLanguage;
-	}
-
 	public String getScript() {
 		return _script;
+	}
+
+	public ScriptLanguage getScriptLanguage() {
+		return _scriptLanguage;
 	}
 
 	private String _description;
 	private String _script;
 	private ScriptLanguage _scriptLanguage;
+
 }

@@ -25,23 +25,8 @@ import com.liferay.portal.workflow.kaleo.service.base.KaleoConditionLocalService
 import java.util.Date;
 
 /**
- * The implementation of the kaleo condition local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalService} interface.
- * </p>
- *
- * <p>
- * Never reference this interface directly. Always use {@link com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil} to access the kaleo condition local service.
- * </p>
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
+ * @author Michael C. Han
  * @author Brian Wing Shun Chan
- * @see com.liferay.portal.workflow.kaleo.service.base.KaleoConditionLocalServiceBaseImpl
- * @see com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil
  */
 public class KaleoConditionLocalServiceImpl
 	extends KaleoConditionLocalServiceBaseImpl {
@@ -65,14 +50,12 @@ public class KaleoConditionLocalServiceImpl
 		kaleoCondition.setUserName(user.getFullName());
 		kaleoCondition.setCreateDate(now);
 		kaleoCondition.setModifiedDate(now);
-
-		kaleoCondition.setKaleoClassName(className);
-		kaleoCondition.setKaleoClassPK(classPK);
+		kaleoCondition.setClassName(className);
+		kaleoCondition.setClassPK(classPK);
 		kaleoCondition.setDescription(condition.getDescription());
 		kaleoCondition.setScript(condition.getScript());
 		kaleoCondition.setScriptLanguage(
 			condition.getScriptLanguage().getValue());
-
 
 		kaleoConditionPersistence.update(kaleoCondition, false);
 
@@ -82,6 +65,7 @@ public class KaleoConditionLocalServiceImpl
 	public KaleoCondition getKaleoCondition(String className, long classPK)
 		throws PortalException, SystemException {
 
-		return kaleoConditionPersistence.fetchByKaleoCN_PK(className, classPK);
+		return kaleoConditionPersistence.findByC_C(className, classPK);
 	}
+
 }

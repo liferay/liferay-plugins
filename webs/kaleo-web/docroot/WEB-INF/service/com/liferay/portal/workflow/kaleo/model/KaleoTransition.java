@@ -32,7 +32,7 @@ package com.liferay.portal.workflow.kaleo.model;
  * @generated
  */
 public interface KaleoTransition extends KaleoTransitionModel {
-	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getCondition()
+	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoCondition()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

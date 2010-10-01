@@ -84,13 +84,13 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
 			FINDER_CLASS_NAME_LIST, "countByCompanyId",
 			new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_KALEOCN_PK = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_C_C = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_ENTITY, "fetchByKaleoCN_PK",
+			FINDER_CLASS_NAME_ENTITY, "fetchByC_C",
 			new String[] { String.class.getName(), Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_KALEOCN_PK = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_C = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
-			FINDER_CLASS_NAME_LIST, "countByKaleoCN_PK",
+			FINDER_CLASS_NAME_LIST, "countByC_C",
 			new String[] { String.class.getName(), Long.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionModelImpl.FINDER_CACHE_ENABLED,
@@ -109,10 +109,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey(),
 			kaleoCondition);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				kaleoCondition.getKaleoClassName(),
-				new Long(kaleoCondition.getKaleoClassPK())
+				kaleoCondition.getClassName(),
+				new Long(kaleoCondition.getClassPK())
 			}, kaleoCondition);
 	}
 
@@ -157,10 +157,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoConditionImpl.class, kaleoCondition.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				kaleoCondition.getKaleoClassName(),
-				new Long(kaleoCondition.getKaleoClassPK())
+				kaleoCondition.getClassName(),
+				new Long(kaleoCondition.getClassPK())
 			});
 	}
 
@@ -255,10 +255,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoCondition;
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				kaleoConditionModelImpl.getOriginalKaleoClassName(),
-				new Long(kaleoConditionModelImpl.getOriginalKaleoClassPK())
+				kaleoConditionModelImpl.getOriginalClassName(),
+				new Long(kaleoConditionModelImpl.getOriginalClassPK())
 			});
 
 		EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
@@ -299,24 +299,24 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			kaleoCondition);
 
 		if (!isNew &&
-				(!Validator.equals(kaleoCondition.getKaleoClassName(),
-					kaleoConditionModelImpl.getOriginalKaleoClassName()) ||
-				(kaleoCondition.getKaleoClassPK() != kaleoConditionModelImpl.getOriginalKaleoClassPK()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+				(!Validator.equals(kaleoCondition.getClassName(),
+					kaleoConditionModelImpl.getOriginalClassName()) ||
+				(kaleoCondition.getClassPK() != kaleoConditionModelImpl.getOriginalClassPK()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
-					kaleoConditionModelImpl.getOriginalKaleoClassName(),
-					new Long(kaleoConditionModelImpl.getOriginalKaleoClassPK())
+					kaleoConditionModelImpl.getOriginalClassName(),
+					new Long(kaleoConditionModelImpl.getOriginalClassPK())
 				});
 		}
 
 		if (isNew ||
-				(!Validator.equals(kaleoCondition.getKaleoClassName(),
-					kaleoConditionModelImpl.getOriginalKaleoClassName()) ||
-				(kaleoCondition.getKaleoClassPK() != kaleoConditionModelImpl.getOriginalKaleoClassPK()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+				(!Validator.equals(kaleoCondition.getClassName(),
+					kaleoConditionModelImpl.getOriginalClassName()) ||
+				(kaleoCondition.getClassPK() != kaleoConditionModelImpl.getOriginalClassPK()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
-					kaleoCondition.getKaleoClassName(),
-					new Long(kaleoCondition.getKaleoClassPK())
+					kaleoCondition.getClassName(),
+					new Long(kaleoCondition.getClassPK())
 				}, kaleoCondition);
 		}
 
@@ -340,8 +340,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		kaleoConditionImpl.setUserName(kaleoCondition.getUserName());
 		kaleoConditionImpl.setCreateDate(kaleoCondition.getCreateDate());
 		kaleoConditionImpl.setModifiedDate(kaleoCondition.getModifiedDate());
-		kaleoConditionImpl.setKaleoClassName(kaleoCondition.getKaleoClassName());
-		kaleoConditionImpl.setKaleoClassPK(kaleoCondition.getKaleoClassPK());
+		kaleoConditionImpl.setClassName(kaleoCondition.getClassName());
+		kaleoConditionImpl.setClassPK(kaleoCondition.getClassPK());
 		kaleoConditionImpl.setDescription(kaleoCondition.getDescription());
 		kaleoConditionImpl.setScript(kaleoCondition.getScript());
 		kaleoConditionImpl.setScriptLanguage(kaleoCondition.getScriptLanguage());
@@ -774,29 +774,28 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	}
 
 	/**
-	 * Finds the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
+	 * Finds the kaleo condition where className = &#63; and classPK = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchConditionException} if it could not be found.
 	 *
-	 * @param kaleoClassName the kaleo class name to search with
-	 * @param kaleoClassPK the kaleo class p k to search with
+	 * @param className the class name to search with
+	 * @param classPK the class p k to search with
 	 * @return the matching kaleo condition
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoCondition findByKaleoCN_PK(String kaleoClassName,
-		long kaleoClassPK) throws NoSuchConditionException, SystemException {
-		KaleoCondition kaleoCondition = fetchByKaleoCN_PK(kaleoClassName,
-				kaleoClassPK);
+	public KaleoCondition findByC_C(String className, long classPK)
+		throws NoSuchConditionException, SystemException {
+		KaleoCondition kaleoCondition = fetchByC_C(className, classPK);
 
 		if (kaleoCondition == null) {
 			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("kaleoClassName=");
-			msg.append(kaleoClassName);
+			msg.append("className=");
+			msg.append(className);
 
-			msg.append(", kaleoClassPK=");
-			msg.append(kaleoClassPK);
+			msg.append(", classPK=");
+			msg.append(classPK);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -811,34 +810,34 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	}
 
 	/**
-	 * Finds the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Finds the kaleo condition where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param kaleoClassName the kaleo class name to search with
-	 * @param kaleoClassPK the kaleo class p k to search with
+	 * @param className the class name to search with
+	 * @param classPK the class p k to search with
 	 * @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoCondition fetchByKaleoCN_PK(String kaleoClassName,
-		long kaleoClassPK) throws SystemException {
-		return fetchByKaleoCN_PK(kaleoClassName, kaleoClassPK, true);
+	public KaleoCondition fetchByC_C(String className, long classPK)
+		throws SystemException {
+		return fetchByC_C(className, classPK, true);
 	}
 
 	/**
-	 * Finds the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Finds the kaleo condition where className = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param kaleoClassName the kaleo class name to search with
-	 * @param kaleoClassPK the kaleo class p k to search with
+	 * @param className the class name to search with
+	 * @param classPK the class p k to search with
 	 * @return the matching kaleo condition, or <code>null</code> if a matching kaleo condition could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public KaleoCondition fetchByKaleoCN_PK(String kaleoClassName,
-		long kaleoClassPK, boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoClassName, kaleoClassPK };
+	public KaleoCondition fetchByC_C(String className, long classPK,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { className, classPK };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_C,
 					finderArgs, this);
 		}
 
@@ -847,19 +846,19 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			query.append(_SQL_SELECT_KALEOCONDITION_WHERE);
 
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_1);
+			if (className == null) {
+				query.append(_FINDER_COLUMN_C_C_CLASSNAME_1);
 			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_3);
+				if (className.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_2);
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_2);
 				}
 			}
 
-			query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSPK_2);
+			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
 			query.append(KaleoConditionModelImpl.ORDER_BY_JPQL);
 
@@ -874,11 +873,11 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
-					qPos.add(kaleoClassName);
+				if (className != null) {
+					qPos.add(className);
 				}
 
-				qPos.add(kaleoClassPK);
+				qPos.add(classPK);
 
 				List<KaleoCondition> list = q.list();
 
@@ -887,7 +886,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				KaleoCondition kaleoCondition = null;
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 						finderArgs, list);
 				}
 				else {
@@ -895,11 +894,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 					cacheResult(kaleoCondition);
 
-					if ((kaleoCondition.getKaleoClassName() == null) ||
-							!kaleoCondition.getKaleoClassName()
-											   .equals(kaleoClassName) ||
-							(kaleoCondition.getKaleoClassPK() != kaleoClassPK)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+					if ((kaleoCondition.getClassName() == null) ||
+							!kaleoCondition.getClassName().equals(className) ||
+							(kaleoCondition.getClassPK() != classPK)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 							finderArgs, kaleoCondition);
 					}
 				}
@@ -911,7 +909,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEOCN_PK,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 						finderArgs, new ArrayList<KaleoCondition>());
 				}
 
@@ -1047,16 +1045,15 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	}
 
 	/**
-	 * Removes the kaleo condition where kaleoClassName = &#63; and kaleoClassPK = &#63; from the database.
+	 * Removes the kaleo condition where className = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param kaleoClassName the kaleo class name to search with
-	 * @param kaleoClassPK the kaleo class p k to search with
+	 * @param className the class name to search with
+	 * @param classPK the class p k to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByKaleoCN_PK(String kaleoClassName, long kaleoClassPK)
+	public void removeByC_C(String className, long classPK)
 		throws NoSuchConditionException, SystemException {
-		KaleoCondition kaleoCondition = findByKaleoCN_PK(kaleoClassName,
-				kaleoClassPK);
+		KaleoCondition kaleoCondition = findByC_C(className, classPK);
 
 		remove(kaleoCondition);
 	}
@@ -1126,18 +1123,18 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	}
 
 	/**
-	 * Counts all the kaleo conditions where kaleoClassName = &#63; and kaleoClassPK = &#63;.
+	 * Counts all the kaleo conditions where className = &#63; and classPK = &#63;.
 	 *
-	 * @param kaleoClassName the kaleo class name to search with
-	 * @param kaleoClassPK the kaleo class p k to search with
+	 * @param className the class name to search with
+	 * @param classPK the class p k to search with
 	 * @return the number of matching kaleo conditions
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByKaleoCN_PK(String kaleoClassName, long kaleoClassPK)
+	public int countByC_C(String className, long classPK)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { kaleoClassName, kaleoClassPK };
+		Object[] finderArgs = new Object[] { className, classPK };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_KALEOCN_PK,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_C,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1145,19 +1142,19 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 			query.append(_SQL_COUNT_KALEOCONDITION_WHERE);
 
-			if (kaleoClassName == null) {
-				query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_1);
+			if (className == null) {
+				query.append(_FINDER_COLUMN_C_C_CLASSNAME_1);
 			}
 			else {
-				if (kaleoClassName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_3);
+				if (className.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_2);
+					query.append(_FINDER_COLUMN_C_C_CLASSNAME_2);
 				}
 			}
 
-			query.append(_FINDER_COLUMN_KALEOCN_PK_KALEOCLASSPK_2);
+			query.append(_FINDER_COLUMN_C_C_CLASSPK_2);
 
 			String sql = query.toString();
 
@@ -1170,11 +1167,11 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				if (kaleoClassName != null) {
-					qPos.add(kaleoClassName);
+				if (className != null) {
+					qPos.add(className);
 				}
 
-				qPos.add(kaleoClassPK);
+				qPos.add(classPK);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -1186,8 +1183,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_KALEOCN_PK,
-					finderArgs, count);
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_C, finderArgs,
+					count);
 
 				closeSession(session);
 			}
@@ -1304,10 +1301,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	private static final String _SQL_COUNT_KALEOCONDITION = "SELECT COUNT(kaleoCondition) FROM KaleoCondition kaleoCondition";
 	private static final String _SQL_COUNT_KALEOCONDITION_WHERE = "SELECT COUNT(kaleoCondition) FROM KaleoCondition kaleoCondition WHERE ";
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "kaleoCondition.companyId = ?";
-	private static final String _FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_1 = "kaleoCondition.kaleoClassName IS NULL AND ";
-	private static final String _FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_2 = "kaleoCondition.kaleoClassName = ? AND ";
-	private static final String _FINDER_COLUMN_KALEOCN_PK_KALEOCLASSNAME_3 = "(kaleoCondition.kaleoClassName IS NULL OR kaleoCondition.kaleoClassName = ?) AND ";
-	private static final String _FINDER_COLUMN_KALEOCN_PK_KALEOCLASSPK_2 = "kaleoCondition.kaleoClassPK = ?";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAME_1 = "kaleoCondition.className IS NULL AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAME_2 = "kaleoCondition.className = ? AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSNAME_3 = "(kaleoCondition.className IS NULL OR kaleoCondition.className = ?) AND ";
+	private static final String _FINDER_COLUMN_C_C_CLASSPK_2 = "kaleoCondition.classPK = ?";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "kaleoCondition.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No KaleoCondition exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No KaleoCondition exists with the key {";

@@ -72,8 +72,8 @@
 
 		<!-- Other fields -->
 
-		<column name="kaleoClassName" type="String" />
-		<column name="kaleoClassPK" type="long" />
+		<column name="className" type="String" />
+		<column name="classPK" type="long" />
 		<column name="description" type="String" />
 		<column name="script" type="String" />
 		<column name="scriptLanguage" type="String" />
@@ -89,9 +89,9 @@
 		<finder name="CompanyId" return-type="Collection">
 			<finder-column name="companyId" />
 		</finder>
-		<finder name="KaleoCN_PK" return-type="KaleoTransitionCondition">
-			<finder-column name="kaleoClassName" />
-			<finder-column name="kaleoClassPK" />
+		<finder name="C_C" return-type="KaleoCondition">
+			<finder-column name="className" />
+			<finder-column name="classPK" />
 		</finder>
 	</entity>
 	<entity name="KaleoDefinition" local-service="true" remote-service="false">

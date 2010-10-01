@@ -193,39 +193,39 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	/**
-	* Gets the kaleo class name of this kaleo condition.
+	* Gets the class name of this kaleo condition.
 	*
-	* @return the kaleo class name of this kaleo condition
+	* @return the class name of this kaleo condition
 	*/
-	public java.lang.String getKaleoClassName() {
-		return _kaleoCondition.getKaleoClassName();
+	public java.lang.String getClassName() {
+		return _kaleoCondition.getClassName();
 	}
 
 	/**
-	* Sets the kaleo class name of this kaleo condition.
+	* Sets the class name of this kaleo condition.
 	*
-	* @param kaleoClassName the kaleo class name of this kaleo condition
+	* @param className the class name of this kaleo condition
 	*/
-	public void setKaleoClassName(java.lang.String kaleoClassName) {
-		_kaleoCondition.setKaleoClassName(kaleoClassName);
+	public void setClassName(java.lang.String className) {
+		_kaleoCondition.setClassName(className);
 	}
 
 	/**
-	* Gets the kaleo class p k of this kaleo condition.
+	* Gets the class p k of this kaleo condition.
 	*
-	* @return the kaleo class p k of this kaleo condition
+	* @return the class p k of this kaleo condition
 	*/
-	public long getKaleoClassPK() {
-		return _kaleoCondition.getKaleoClassPK();
+	public long getClassPK() {
+		return _kaleoCondition.getClassPK();
 	}
 
 	/**
-	* Sets the kaleo class p k of this kaleo condition.
+	* Sets the class p k of this kaleo condition.
 	*
-	* @param kaleoClassPK the kaleo class p k of this kaleo condition
+	* @param classPK the class p k of this kaleo condition
 	*/
-	public void setKaleoClassPK(long kaleoClassPK) {
-		_kaleoCondition.setKaleoClassPK(kaleoClassPK);
+	public void setClassPK(long classPK) {
+		_kaleoCondition.setClassPK(classPK);
 	}
 
 	/**

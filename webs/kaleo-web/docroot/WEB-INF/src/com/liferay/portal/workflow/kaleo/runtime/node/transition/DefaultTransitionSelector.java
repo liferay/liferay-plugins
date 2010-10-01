@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -26,23 +26,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <a href="DefaultTransitionSelector.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class DefaultTransitionSelector implements TransitionSelector {
 
-	public KaleoTransition selectTransition(
+	public KaleoTransition selectKaleoTransition(
 			KaleoNode kaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		List<KaleoTransition> availableTransitions =
+		List<KaleoTransition> kaleoTransitions =
 			kaleoNode.getKaleoTransitions();
 
-		KaleoTransition selectedTransition = null;
-
-		for (KaleoTransition kaleoTransition : availableTransitions) {
-			KaleoCondition kaleoCondition = kaleoTransition.getCondition();
+		for (KaleoTransition kaleoTransition : kaleoTransitions) {
+			KaleoCondition kaleoCondition = kaleoTransition.getKaleoCondition();
 
 			if (kaleoCondition == null) {
 				continue;
@@ -52,33 +48,28 @@ public class DefaultTransitionSelector implements TransitionSelector {
 				kaleoCondition, executionContext);
 
 			if (conditionalValue) {
-				selectedTransition = kaleoTransition;
-				break;
+				return kaleoTransition;
 			}
 		}
 
-		if (selectedTransition == null) {
-			selectedTransition = kaleoNode.getDefaultKaleoTransition();
-		}
-		
-		return selectedTransition;
+		return kaleoNode.getDefaultKaleoTransition();
 	}
 
-	public List<KaleoTransition> selectTransitions(
+	public List<KaleoTransition> selectKaleoTransitions(
 			KaleoNode kaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		List<KaleoTransition> availableTransitions =
+		List<KaleoTransition> kaleoTransitions =
 			kaleoNode.getKaleoTransitions();
 
-		List<KaleoTransition> selectedTransitions =
-			new ArrayList<KaleoTransition>(availableTransitions.size());
+		List<KaleoTransition> selectedKaleoTransitions =
+			new ArrayList<KaleoTransition>(kaleoTransitions.size());
 
-		for (KaleoTransition kaleoTransition : availableTransitions) {
-			KaleoCondition kaleoCondition = kaleoTransition.getCondition();
+		for (KaleoTransition kaleoTransition : kaleoTransitions) {
+			KaleoCondition kaleoCondition = kaleoTransition.getKaleoCondition();
 
 			if (kaleoCondition == null) {
-				selectedTransitions.add(kaleoTransition);
+				selectedKaleoTransitions.add(kaleoTransition);
 
 				continue;
 			}
@@ -87,16 +78,15 @@ public class DefaultTransitionSelector implements TransitionSelector {
 				kaleoCondition, executionContext);
 
 			if (conditionalValue) {
-				selectedTransitions.add(kaleoTransition);
+				selectedKaleoTransitions.add(kaleoTransition);
 			}
 		}
 
-		if (selectedTransitions.isEmpty()) {
-			selectedTransitions.add(kaleoNode.getDefaultKaleoTransition());
+		if (selectedKaleoTransitions.isEmpty()) {
+			selectedKaleoTransitions.add(kaleoNode.getDefaultKaleoTransition());
 		}
 
-		return selectedTransitions;
-
+		return selectedKaleoTransitions;
 	}
 
 	public void setConditionEvaluator(ConditionEvaluator conditionEvaluator) {
@@ -104,4 +94,5 @@ public class DefaultTransitionSelector implements TransitionSelector {
 	}
 
 	private ConditionEvaluator _conditionEvaluator;
+
 }

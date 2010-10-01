@@ -39,6 +39,8 @@ public class KaleoTransitionLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Kaleo transition
+
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getUserId());
 		Date now = new Date();
@@ -63,6 +65,8 @@ public class KaleoTransitionLocalServiceImpl
 		kaleoTransition.setDefaultTransition(transition.isDefault());
 
 		kaleoTransitionPersistence.update(kaleoTransition, false);
+
+		// Kaleo condition
 
 		Condition condition = transition.getCondition();
 

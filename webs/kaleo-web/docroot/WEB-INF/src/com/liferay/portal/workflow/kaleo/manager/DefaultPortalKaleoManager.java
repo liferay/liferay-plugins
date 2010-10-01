@@ -260,7 +260,7 @@ public class DefaultPortalKaleoManager
 			workflowDefinition.getName(), workflowDefinition.getVersion());
 	}
 
-	private static final Log _log = LogFactoryUtil.getLog(
+	private static Log _log = LogFactoryUtil.getLog(
 		DefaultPortalKaleoManager.class);
 
 	private String _defaultDefinitionName;
