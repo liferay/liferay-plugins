@@ -200,10 +200,13 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 					displayPopup: function(html, title) {
 						var instance = this;
 
+						var viewportRegion = A.getBody().get('viewportRegion');
+
 						var popup = instance._getPopup();
 
 						popup.set('bodyContent', html);
 						popup.set('title', title);
+						popup.set('xy', [viewportRegion.left + 20, viewportRegion.top + 20]);
 
 						popup.show();
 					},
@@ -216,8 +219,7 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 								{
 									cssClass: 'document-library-dialog',
 									resizable: false,
-									width: 600,
-									xy: [15,15]
+									width: 600
 								}
 							).render();
 

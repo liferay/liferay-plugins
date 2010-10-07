@@ -675,11 +675,14 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		displayPopup: function(url, title) {
 			var instance = this;
 
+			var viewportRegion = A.getBody().get('viewportRegion');
+
 			var popup = instance._getPopup();
 
 			popup.show();
 
 			popup.set('title', title);
+			popup.set('xy', [viewportRegion.left + 20, viewportRegion.top + 20]);
 
 			popup.io.set('uri', url);
 			popup.io.start();
@@ -693,8 +696,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					{
 						cssClass: 'document-library-dialog',
 						resizable: false,
-						width: 600,
-						xy: [15,15]
+						width: 600
 					}
 				).plug(
 					A.Plugin.IO,

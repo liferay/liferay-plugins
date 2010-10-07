@@ -18,6 +18,8 @@ AUI().use(
 					return;
 				}
 
+				var viewportRegion = A.getBody().get('viewportRegion');
+
 				addContent.on(
 					'click',
 					function() {
@@ -26,7 +28,7 @@ AUI().use(
 								{
 									title: Liferay.Language.get('add-content'),
 									width: 250,
-									xy: [15,15]
+									xy: [viewportRegion.left + 20, viewportRegion.top + 20]
 								}
 							).plug(
 								A.Plugin.IO,

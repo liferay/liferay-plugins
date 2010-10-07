@@ -23,11 +23,14 @@ AUI().use(
 			displayPopup: function(url, title) {
 				var instance = this;
 
+				var viewportRegion = A.getBody().get('viewportRegion');
+
 				var popup = instance.getPopup();
 
 				popup.show();
 
 				popup.set('title', title);
+				popup.set('xy', [viewportRegion.left + 20, viewportRegion.top + 20]);
 
 				popup.io.set('uri', url);
 				popup.io.start();
@@ -40,8 +43,7 @@ AUI().use(
 					instance._popup = new A.Dialog(
 						{
 							resizable: false,
-							width: 600,
-							xy: [15,15]
+							width: 600
 						}
 					).plug(
 						A.Plugin.IO,
