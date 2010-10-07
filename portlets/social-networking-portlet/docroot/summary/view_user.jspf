@@ -148,7 +148,7 @@
 										image="view"
 										label="<%= true %>"
 										message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
-										url='<%= blogsFriendlyURL %>'
+										url="<%= blogsFriendlyURL %>"
 									/>
 								</td>
 								<td>
