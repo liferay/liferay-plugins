@@ -145,7 +145,7 @@
 .
 
 This task only works when the property "app.server.type" is "tomcat". However,
-the outputted files will work in any application server.</fail>
+the outputted files will work in any supported application server.</fail>
 			</then>
 		</if>
 
