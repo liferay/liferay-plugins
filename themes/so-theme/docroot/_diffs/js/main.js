@@ -18,12 +18,12 @@ AUI().use(
 					return;
 				}
 
-				var viewportRegion = A.getBody().get('viewportRegion');
-
 				addContent.on(
 					'click',
 					function() {
 						if (!instance._addContentDialog) {
+							var viewportRegion = A.getBody().get('viewportRegion');
+
 							instance._addContentDialog = new A.Dialog(
 								{
 									title: Liferay.Language.get('add-content'),
