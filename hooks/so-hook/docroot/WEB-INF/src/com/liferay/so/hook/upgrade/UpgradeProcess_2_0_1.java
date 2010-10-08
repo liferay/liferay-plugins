@@ -36,7 +36,6 @@ public class UpgradeProcess_2_0_1 extends UpgradeProcess {
 		}
 
 		upgrade(UpgradeCompany.class);
-		upgrade(UpgradeLayout.class);
 	}
 
 }

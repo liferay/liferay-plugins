@@ -118,7 +118,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Documents
 
-		layout = addLayout(group, "Documents", "/document", "2_columns_iii");
+		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
 
 		addResources(layout, PortletKeys.DOCUMENT_LIBRARY);
 		addResources(layout, "101_INSTANCE_abcd");
