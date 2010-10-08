@@ -18,6 +18,8 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -150,6 +152,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 		PortletLocalServiceUtil.destroyRemotePortlet(portlet);
 
 		PortletInstanceFactoryUtil.destroy(portlet);
+
+		_failedConsumerPortlets.remove(wsrpConsumerPortletId);
+
 	}
 
 	public void destroyWSRPConsumerPortlets()
@@ -198,6 +203,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			String name, String portletHandle, String userToken)
 		throws PortalException, SystemException {
 
+		boolean initializationFailed = false;
+
 		try {
 			Portlet portlet = getPortlet(
 				companyId, wsrpConsumerId, wsrpConsumerPortletId, name,
@@ -207,13 +214,30 @@ public class WSRPConsumerPortletLocalServiceImpl
 				portlet, _WSRP_CATEGORY);
 		}
 		catch (PortalException pe) {
+			initializationFailed = true;
+
 			throw pe;
 		}
 		catch (SystemException se) {
+			initializationFailed = true;
+
 			throw se;
 		}
 		catch (Exception e) {
+			initializationFailed = true;
+
 			throw new SystemException(e);
+		}
+		finally {
+			if (initializationFailed) {
+				_WSRPConsumerInitParameters consumerInitParameters =
+					new _WSRPConsumerInitParameters(
+						companyId, wsrpConsumerId, wsrpConsumerPortletId,
+						name, portletHandle, userToken);
+
+				_failedConsumerPortlets.put(
+					wsrpConsumerPortletId, consumerInitParameters);
+			}
 		}
 	}
 
@@ -229,6 +253,35 @@ public class WSRPConsumerPortletLocalServiceImpl
 				wsrpConsumerPortlet.getWsrpConsumerPortletId(),
 				wsrpConsumerPortlet.getName(),
 				wsrpConsumerPortlet.getPortletHandle(), null);
+		}
+	}
+
+	@Clusterable
+	public void reInitFailedConsumerPortlets()
+		throws PortalException, SystemException {
+
+		for (_WSRPConsumerInitParameters wsrpInitParamters :
+			_failedConsumerPortlets.values()) {
+
+			try {
+				initWSRPConsumerPortlet(
+					wsrpInitParamters.getCompanyId(),
+					wsrpInitParamters.getWsrpConsumerId(),
+					wsrpInitParamters.getWsrpConsumerPortletId(),
+					wsrpInitParamters.getName(),
+					wsrpInitParamters.getPortletHandle(),
+					wsrpInitParamters.getUserToken());
+
+				_failedConsumerPortlets.remove(
+					wsrpInitParamters.getWsrpConsumerPortletId());
+			}
+			catch (Exception e) {
+				if (_log.isErrorEnabled()) {
+					_log.error(
+						"Unable to initialize portlet with id: " +
+						wsrpInitParamters.getWsrpConsumerPortletId(), e);
+				}
+			}
 		}
 	}
 
@@ -506,15 +559,64 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
+	private class _WSRPConsumerInitParameters {
+		private long _companyId;
+		private long _wsrpConsumerId;
+		private long _wsrpConsumerPortletId;
+		private String _name;
+		private String _portletHandle;
+		private String _userToken;
+
+		private _WSRPConsumerInitParameters(
+			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
+			String name, String portletHandle, String userToken) {
+			_companyId = companyId;
+			_wsrpConsumerId = wsrpConsumerId;
+			_wsrpConsumerPortletId = wsrpConsumerPortletId;
+			_name = name;
+			_portletHandle = portletHandle;
+			_userToken = userToken;
+		}
+
+		public long getCompanyId() {
+			return _companyId;
+		}
+
+		public long getWsrpConsumerId() {
+			return _wsrpConsumerId;
+		}
+
+		public long getWsrpConsumerPortletId() {
+			return _wsrpConsumerPortletId;
+		}
+
+		public String getName() {
+			return _name;
+		}
+
+		public String getPortletHandle() {
+			return _portletHandle;
+		}
+
+		public String getUserToken() {
+			return _userToken;
+		}
+	}
+
 	private static final String _CONSUMER_PORTLET_ID = "2_WAR_wsrpportlet";
 
 	private static final String _CONSUMER_PORTLET_NAME = "2";
 
 	private static final String _WSRP_CATEGORY = "category.wsrp";
 
+	private static Log _log = LogFactoryUtil.getLog(
+		WSRPConsumerPortletLocalServiceImpl.class);
+
 	private static Map<Long, Portlet> _portletsPool =
 		new ConcurrentHashMap<Long, Portlet>();
 
 	private Class<ConsumerPortlet> _consumerPortletClass;
 
+	private Map<Long, _WSRPConsumerInitParameters> _failedConsumerPortlets =
+		new ConcurrentHashMap<Long, _WSRPConsumerInitParameters>();
 }

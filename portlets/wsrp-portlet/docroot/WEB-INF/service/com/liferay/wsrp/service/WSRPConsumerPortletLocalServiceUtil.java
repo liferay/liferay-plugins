@@ -291,6 +291,12 @@ public class WSRPConsumerPortletLocalServiceUtil {
 		getService().initWSRPConsumerPortlets();
 	}
 
+	public static void reInitFailedConsumerPortlets()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().reInitFailedConsumerPortlets();
+	}
+
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		long wsrpConsumerPortletId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,

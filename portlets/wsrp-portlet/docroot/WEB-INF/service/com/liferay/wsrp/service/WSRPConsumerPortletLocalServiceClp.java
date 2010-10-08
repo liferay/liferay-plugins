@@ -106,7 +106,10 @@ public class WSRPConsumerPortletLocalServiceClp
 		_initWSRPConsumerPortletsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initWSRPConsumerPortlets");
 
-		_updateWSRPConsumerPortletMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_reInitFailedConsumerPortletsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"reInitFailedConsumerPortlets");
+
+		_updateWSRPConsumerPortletMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWSRPConsumerPortlet", long.class, java.lang.String.class);
 	}
 
@@ -738,13 +741,40 @@ public class WSRPConsumerPortletLocalServiceClp
 		}
 	}
 
+	public void reInitFailedConsumerPortlets()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_reInitFailedConsumerPortletsMethodKey22);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.wsrp.model.WSRPConsumerPortlet updateWSRPConsumerPortlet(
 		long wsrpConsumerPortletId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerPortletMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerPortletMethodKey23,
 				wsrpConsumerPortletId, ClpSerializer.translateInput(name));
 
 		try {
@@ -798,5 +828,6 @@ public class WSRPConsumerPortletLocalServiceClp
 	private MethodKey _getWSRPConsumerPortletsCountMethodKey19;
 	private MethodKey _initWSRPConsumerPortletMethodKey20;
 	private MethodKey _initWSRPConsumerPortletsMethodKey21;
-	private MethodKey _updateWSRPConsumerPortletMethodKey22;
+	private MethodKey _reInitFailedConsumerPortletsMethodKey22;
+	private MethodKey _updateWSRPConsumerPortletMethodKey23;
 }
