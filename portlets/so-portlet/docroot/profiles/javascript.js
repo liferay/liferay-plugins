@@ -84,7 +84,7 @@ AUI.add(
 
 							var profile = instance._getProfileIO();
 
-							Liferay.fire('submitForm', {form: form});
+							Liferay.fire('saveAutoFields');
 
 							profile.io.set('form', {id: form.getDOM()});
 							profile.io.set('uri', form.getAttribute('action'));
