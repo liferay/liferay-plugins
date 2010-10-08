@@ -241,6 +241,8 @@ public interface WSRPConsumerPortletLocalService {
 	public int getWSRPConsumerPortletsCount(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void initFailedWSRPConsumerPortlets();
+
 	public void initWSRPConsumerPortlet(long companyId, long wsrpConsumerId,
 		long wsrpConsumerPortletId, java.lang.String name,
 		java.lang.String portletHandle, java.lang.String userToken)
@@ -248,10 +250,6 @@ public interface WSRPConsumerPortletLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void initWSRPConsumerPortlets()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void reInitFailedConsumerPortlets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

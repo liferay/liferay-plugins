@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
@@ -153,8 +154,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		PortletInstanceFactoryUtil.destroy(portlet);
 
-		_failedConsumerPortlets.remove(wsrpConsumerPortletId);
-
+		_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
 	}
 
 	public void destroyWSRPConsumerPortlets()
@@ -198,6 +198,37 @@ public class WSRPConsumerPortletLocalServiceImpl
 	}
 
 	@Clusterable
+	public void initFailedWSRPConsumerPortlets() {
+		for (Map.Entry<Long, Tuple> entry :
+				_failedWSRPConsumerPortlets.entrySet()) {
+
+			long wsrpConsumerPortletId = entry.getKey();
+			Tuple tuple = entry.getValue();
+
+			try {
+				long companyId = (Long)tuple.getObject(0);
+				long wsrpConsumerId = (Long)tuple.getObject(1);
+				String name = (String)tuple.getObject(3);
+				String portletHandle = (String)tuple.getObject(4);
+				String userToken = (String)tuple.getObject(5);
+
+				initWSRPConsumerPortlet(
+					companyId, wsrpConsumerId, wsrpConsumerPortletId,
+					name, portletHandle, userToken);
+
+				_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
+			}
+			catch (Exception e) {
+				if (_log.isErrorEnabled()) {
+					_log.error(
+						"Unable to reinitialize WSRP consumer portlet " +
+							wsrpConsumerPortletId, e);
+				}
+			}
+		}
+	}
+
+	@Clusterable
 	public void initWSRPConsumerPortlet(
 			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
 			String name, String portletHandle, String userToken)
@@ -230,13 +261,10 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 		finally {
 			if (initializationFailed) {
-				_WSRPConsumerInitParameters consumerInitParameters =
-					new _WSRPConsumerInitParameters(
-						companyId, wsrpConsumerId, wsrpConsumerPortletId,
-						name, portletHandle, userToken);
+				Tuple tuple = new Tuple(
+					companyId, wsrpConsumerId, name, portletHandle, userToken);
 
-				_failedConsumerPortlets.put(
-					wsrpConsumerPortletId, consumerInitParameters);
+				_failedWSRPConsumerPortlets.put(wsrpConsumerPortletId, tuple);
 			}
 		}
 	}
@@ -253,35 +281,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 				wsrpConsumerPortlet.getWsrpConsumerPortletId(),
 				wsrpConsumerPortlet.getName(),
 				wsrpConsumerPortlet.getPortletHandle(), null);
-		}
-	}
-
-	@Clusterable
-	public void reInitFailedConsumerPortlets()
-		throws PortalException, SystemException {
-
-		for (_WSRPConsumerInitParameters wsrpInitParamters :
-			_failedConsumerPortlets.values()) {
-
-			try {
-				initWSRPConsumerPortlet(
-					wsrpInitParamters.getCompanyId(),
-					wsrpInitParamters.getWsrpConsumerId(),
-					wsrpInitParamters.getWsrpConsumerPortletId(),
-					wsrpInitParamters.getName(),
-					wsrpInitParamters.getPortletHandle(),
-					wsrpInitParamters.getUserToken());
-
-				_failedConsumerPortlets.remove(
-					wsrpInitParamters.getWsrpConsumerPortletId());
-			}
-			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error(
-						"Unable to initialize portlet with id: " +
-						wsrpInitParamters.getWsrpConsumerPortletId(), e);
-				}
-			}
 		}
 	}
 
@@ -559,50 +558,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		}
 	}
 
-	private class _WSRPConsumerInitParameters {
-		private long _companyId;
-		private long _wsrpConsumerId;
-		private long _wsrpConsumerPortletId;
-		private String _name;
-		private String _portletHandle;
-		private String _userToken;
-
-		private _WSRPConsumerInitParameters(
-			long companyId, long wsrpConsumerId, long wsrpConsumerPortletId,
-			String name, String portletHandle, String userToken) {
-			_companyId = companyId;
-			_wsrpConsumerId = wsrpConsumerId;
-			_wsrpConsumerPortletId = wsrpConsumerPortletId;
-			_name = name;
-			_portletHandle = portletHandle;
-			_userToken = userToken;
-		}
-
-		public long getCompanyId() {
-			return _companyId;
-		}
-
-		public long getWsrpConsumerId() {
-			return _wsrpConsumerId;
-		}
-
-		public long getWsrpConsumerPortletId() {
-			return _wsrpConsumerPortletId;
-		}
-
-		public String getName() {
-			return _name;
-		}
-
-		public String getPortletHandle() {
-			return _portletHandle;
-		}
-
-		public String getUserToken() {
-			return _userToken;
-		}
-	}
-
 	private static final String _CONSUMER_PORTLET_ID = "2_WAR_wsrpportlet";
 
 	private static final String _CONSUMER_PORTLET_NAME = "2";
@@ -616,7 +571,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		new ConcurrentHashMap<Long, Portlet>();
 
 	private Class<ConsumerPortlet> _consumerPortletClass;
+	private Map<Long, Tuple> _failedWSRPConsumerPortlets =
+		new ConcurrentHashMap<Long, Tuple>();
 
-	private Map<Long, _WSRPConsumerInitParameters> _failedConsumerPortlets =
-		new ConcurrentHashMap<Long, _WSRPConsumerInitParameters>();
 }

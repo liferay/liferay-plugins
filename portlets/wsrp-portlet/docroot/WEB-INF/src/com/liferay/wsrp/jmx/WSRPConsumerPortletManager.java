@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -16,23 +16,14 @@ package com.liferay.wsrp.jmx;
 
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
-import javax.management.MBeanException;
-
 /**
- * <a href="WSRPConsumerPortletManager.java.html"><b><i>View Source</i></b></a>
- *
  * @author Michael C. Han
  */
 public class WSRPConsumerPortletManager
 	implements WSRPConsumerPortletManagerMBean {
 
-	public void reInitFailedConsumerPortlets() throws MBeanException {
-		try {
-			WSRPConsumerPortletLocalServiceUtil.reInitFailedConsumerPortlets();
-		}
-		catch (Exception e) {
-			throw new MBeanException(e, "Unable to re-initialize portlets");
-		}
-
+	public void initFailedWSRPConsumerPortlets() {
+		WSRPConsumerPortletLocalServiceUtil.initFailedWSRPConsumerPortlets();
 	}
+
 }

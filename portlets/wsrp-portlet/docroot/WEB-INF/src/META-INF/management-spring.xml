@@ -15,8 +15,9 @@
 			</map>
 		</property>
 		<property name="server">
-			<bean class="com.liferay.portal.kernel.jmx.RegistryAwareMBeanServerUtil" factory-method="getmBeanServer" />
+			<bean class="com.liferay.portal.kernel.bean.PortalBeanLocatorUtil" factory-method="locate">
+				<constructor-arg value="mBeanServer" />
+			</bean>
 		</property>
 	</bean>
 </beans>
-
