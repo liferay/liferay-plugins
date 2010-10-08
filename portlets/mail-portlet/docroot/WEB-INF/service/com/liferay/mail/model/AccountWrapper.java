@@ -283,7 +283,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is incoming secure.
+	* Sets whether this account is incoming secure.
 	*
 	* @param incomingSecure the incoming secure of this account
 	*/
@@ -346,7 +346,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is outgoing secure.
+	* Sets whether this account is outgoing secure.
 	*
 	* @param outgoingSecure the outgoing secure of this account
 	*/
@@ -409,7 +409,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is save password.
+	* Sets whether this account is save password.
 	*
 	* @param savePassword the save password of this account
 	*/
@@ -454,7 +454,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is use signature.
+	* Sets whether this account is use signature.
 	*
 	* @param useSignature the use signature of this account
 	*/
@@ -571,7 +571,7 @@ public class AccountWrapper implements Account {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is default sender.
+	* Sets whether this account is default sender.
 	*
 	* @param defaultSender the default sender of this account
 	*/

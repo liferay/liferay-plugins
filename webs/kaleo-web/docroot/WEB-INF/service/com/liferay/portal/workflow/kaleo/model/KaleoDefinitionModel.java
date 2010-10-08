@@ -302,7 +302,7 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	public boolean isActive();
 
 	/**
-	 * Sets whether this {$entity.humanName} is active.
+	 * Sets whether this kaleo definition is active.
 	 *
 	 * @param active the active of this kaleo definition
 	 */

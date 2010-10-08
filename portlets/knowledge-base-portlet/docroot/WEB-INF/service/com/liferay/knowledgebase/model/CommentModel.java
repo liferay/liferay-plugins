@@ -251,7 +251,7 @@ public interface CommentModel extends BaseModel<Comment> {
 	public boolean isHelpful();
 
 	/**
-	 * Sets whether this {$entity.humanName} is helpful.
+	 * Sets whether this comment is helpful.
 	 *
 	 * @param helpful the helpful of this comment
 	 */

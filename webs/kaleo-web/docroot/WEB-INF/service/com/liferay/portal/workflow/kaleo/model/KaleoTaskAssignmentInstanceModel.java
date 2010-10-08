@@ -301,7 +301,7 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public boolean isCompleted();
 
 	/**
-	 * Sets whether this {$entity.humanName} is completed.
+	 * Sets whether this kaleo task assignment instance is completed.
 	 *
 	 * @param completed the completed of this kaleo task assignment instance
 	 */

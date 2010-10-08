@@ -247,7 +247,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is active.
+	* Sets whether this asset is active.
 	*
 	* @param active the active of this asset
 	*/

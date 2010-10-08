@@ -355,7 +355,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is active.
+	* Sets whether this kaleo definition is active.
 	*
 	* @param active the active of this kaleo definition
 	*/

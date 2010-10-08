@@ -215,7 +215,7 @@ public interface AssetModel extends BaseModel<Asset> {
 	public boolean isActive();
 
 	/**
-	 * Sets whether this {$entity.humanName} is active.
+	 * Sets whether this asset is active.
 	 *
 	 * @param active the active of this asset
 	 */

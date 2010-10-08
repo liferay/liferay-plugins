@@ -271,7 +271,7 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public boolean isTerminalKaleoNode();
 
 	/**
-	 * Sets whether this {$entity.humanName} is terminal kaleo node.
+	 * Sets whether this kaleo log is terminal kaleo node.
 	 *
 	 * @param terminalKaleoNode the terminal kaleo node of this kaleo log
 	 */

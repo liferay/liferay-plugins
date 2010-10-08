@@ -245,7 +245,7 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode> {
 	public boolean isInitial();
 
 	/**
-	 * Sets whether this {$entity.humanName} is initial.
+	 * Sets whether this kaleo node is initial.
 	 *
 	 * @param initial the initial of this kaleo node
 	 */
@@ -266,7 +266,7 @@ public interface KaleoNodeModel extends BaseModel<KaleoNode> {
 	public boolean isTerminal();
 
 	/**
-	 * Sets whether this {$entity.humanName} is terminal.
+	 * Sets whether this kaleo node is terminal.
 	 *
 	 * @param terminal the terminal of this kaleo node
 	 */

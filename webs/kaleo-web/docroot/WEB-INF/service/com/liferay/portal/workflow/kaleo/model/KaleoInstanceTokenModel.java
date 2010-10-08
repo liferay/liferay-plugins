@@ -286,7 +286,7 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken> {
 	public boolean isCompleted();
 
 	/**
-	 * Sets whether this {$entity.humanName} is completed.
+	 * Sets whether this kaleo instance token is completed.
 	 *
 	 * @param completed the completed of this kaleo instance token
 	 */

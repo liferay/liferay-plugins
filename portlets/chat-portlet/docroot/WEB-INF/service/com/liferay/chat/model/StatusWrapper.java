@@ -139,7 +139,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is online.
+	* Sets whether this status is online.
 	*
 	* @param online the online of this status
 	*/
@@ -166,7 +166,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is awake.
+	* Sets whether this status is awake.
 	*
 	* @param awake the awake of this status
 	*/
@@ -229,7 +229,7 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is play sound.
+	* Sets whether this status is play sound.
 	*
 	* @param playSound the play sound of this status
 	*/

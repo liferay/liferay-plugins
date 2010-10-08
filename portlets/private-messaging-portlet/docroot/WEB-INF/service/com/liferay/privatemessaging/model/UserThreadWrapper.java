@@ -211,7 +211,7 @@ public class UserThreadWrapper implements UserThread {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is read.
+	* Sets whether this user thread is read.
 	*
 	* @param read the read of this user thread
 	*/
@@ -238,7 +238,7 @@ public class UserThreadWrapper implements UserThread {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is deleted.
+	* Sets whether this user thread is deleted.
 	*
 	* @param deleted the deleted of this user thread
 	*/

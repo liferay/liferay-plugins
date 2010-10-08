@@ -211,7 +211,7 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is field2.
+	* Sets whether this foo is field2.
 	*
 	* @param field2 the field2 of this foo
 	*/

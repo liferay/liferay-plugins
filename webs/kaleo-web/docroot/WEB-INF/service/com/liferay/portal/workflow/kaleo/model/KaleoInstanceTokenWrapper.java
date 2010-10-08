@@ -337,7 +337,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is completed.
+	* Sets whether this kaleo instance token is completed.
 	*
 	* @param completed the completed of this kaleo instance token
 	*/

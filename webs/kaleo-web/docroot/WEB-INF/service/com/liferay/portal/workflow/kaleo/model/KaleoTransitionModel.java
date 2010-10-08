@@ -302,7 +302,7 @@ public interface KaleoTransitionModel extends BaseModel<KaleoTransition> {
 	public boolean isDefaultTransition();
 
 	/**
-	 * Sets whether this {$entity.humanName} is default transition.
+	 * Sets whether this kaleo transition is default transition.
 	 *
 	 * @param defaultTransition the default transition of this kaleo transition
 	 */

@@ -292,7 +292,7 @@ public class CommentWrapper implements Comment {
 	}
 
 	/**
-	* Sets whether this {$entity.humanName} is helpful.
+	* Sets whether this comment is helpful.
 	*
 	* @param helpful the helpful of this comment
 	*/

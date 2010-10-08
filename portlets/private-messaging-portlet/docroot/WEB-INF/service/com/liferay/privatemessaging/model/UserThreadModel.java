@@ -184,7 +184,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public boolean isRead();
 
 	/**
-	 * Sets whether this {$entity.humanName} is read.
+	 * Sets whether this user thread is read.
 	 *
 	 * @param read the read of this user thread
 	 */
@@ -205,7 +205,7 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public boolean isDeleted();
 
 	/**
-	 * Sets whether this {$entity.humanName} is deleted.
+	 * Sets whether this user thread is deleted.
 	 *
 	 * @param deleted the deleted of this user thread
 	 */
