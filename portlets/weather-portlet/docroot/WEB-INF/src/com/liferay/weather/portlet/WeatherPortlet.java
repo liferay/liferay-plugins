@@ -40,9 +40,7 @@ public class WeatherPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		if (actionRequest.getPortletMode().equals(PortletMode.EDIT)) {
 			updatePreferences(actionRequest, actionResponse);
-		}
 	}
 
 	protected void updatePreferences(
