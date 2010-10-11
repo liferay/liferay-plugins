@@ -19,7 +19,6 @@ package com.liferay.so.hook.upgrade;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.so.hook.upgrade.v2_0_1.UpgradeCompany;
-import com.liferay.so.hook.upgrade.v2_0_1.UpgradeLayout;
 
 /**
  * @author Ryan Park
