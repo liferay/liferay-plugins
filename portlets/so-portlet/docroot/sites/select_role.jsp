@@ -25,7 +25,7 @@ long groupId = ParamUtil.getLong(request, "groupId");
 %>
 
 <liferay-ui:header
-	names="community-roles"
+	title="community-roles"
 />
 
 <%
