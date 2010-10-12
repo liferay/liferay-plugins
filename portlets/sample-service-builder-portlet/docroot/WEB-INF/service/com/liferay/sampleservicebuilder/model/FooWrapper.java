@@ -47,6 +47,24 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
+	* Gets the uuid of this foo.
+	*
+	* @return the uuid of this foo
+	*/
+	public java.lang.String getUuid() {
+		return _foo.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this foo.
+	*
+	* @param uuid the uuid of this foo
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_foo.setUuid(uuid);
+	}
+
+	/**
 	* Gets the foo id of this foo.
 	*
 	* @return the foo id of this foo

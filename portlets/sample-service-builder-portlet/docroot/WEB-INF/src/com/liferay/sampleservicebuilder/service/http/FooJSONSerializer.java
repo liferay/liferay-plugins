@@ -32,6 +32,7 @@ public class FooJSONSerializer {
 	public static JSONObject toJSONObject(Foo model) {
 		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
 
+		jsonObj.put("uuid", model.getUuid());
 		jsonObj.put("fooId", model.getFooId());
 		jsonObj.put("groupId", model.getGroupId());
 		jsonObj.put("companyId", model.getCompanyId());

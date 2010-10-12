@@ -49,7 +49,7 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
-				addFoo(actionRequest);
+				updateFoo(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
 				deleteFoo(actionRequest);
@@ -71,7 +71,7 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void addFoo(ActionRequest actionRequest) throws Exception {
+	protected void updateFoo(ActionRequest actionRequest) throws Exception {
 		long fooId = ParamUtil.getLong(actionRequest, "fooId");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(

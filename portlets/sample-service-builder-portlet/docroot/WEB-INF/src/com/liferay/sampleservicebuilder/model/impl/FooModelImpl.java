@@ -60,6 +60,7 @@ import java.util.List;
 public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static final String TABLE_NAME = "SSB_Foo";
 	public static final Object[][] TABLE_COLUMNS = {
+			{ "uuid_", new Integer(Types.VARCHAR) },
 			{ "fooId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
@@ -73,7 +74,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 			{ "field4", new Integer(Types.TIMESTAMP) },
 			{ "field5", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (fooId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (uuid_ VARCHAR(75) null,fooId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SSB_Foo";
 	public static final String ORDER_BY_JPQL = " ORDER BY foo.field1 ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SSB_Foo.field1 ASC";
@@ -96,6 +97,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static Foo toModel(FooSoap soapModel) {
 		Foo model = new FooImpl();
 
+		model.setUuid(soapModel.getUuid());
 		model.setFooId(soapModel.getFooId());
 		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
@@ -146,6 +148,27 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return new Long(_fooId);
 	}
 
+	public String getUuid() {
+		if (_uuid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _uuid;
+		}
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+
+		if (_originalUuid == null) {
+			_originalUuid = uuid;
+		}
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
+	}
+
 	public long getFooId() {
 		return _fooId;
 	}
@@ -160,6 +183,16 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = groupId;
+		}
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	public long getCompanyId() {
@@ -295,6 +328,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public Object clone() {
 		FooImpl clone = new FooImpl();
 
+		clone.setUuid(getUuid());
 		clone.setFooId(getFooId());
 		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
@@ -352,9 +386,11 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
-		sb.append("{fooId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", fooId=");
 		sb.append(getFooId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
@@ -384,12 +420,16 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sampleservicebuilder.model.Foo");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>fooId</column-name><column-value><![CDATA[");
 		sb.append(getFooId());
@@ -444,8 +484,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		return sb.toString();
 	}
 
+	private String _uuid;
+	private String _originalUuid;
 	private long _fooId;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

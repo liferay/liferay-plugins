@@ -66,6 +66,27 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 			serviceContext.getAssetTagNames());
 	}
 
+	public void deleteFoo(Foo foo) throws SystemException {
+		try {
+			assetEntryLocalService.deleteEntry(
+				Foo.class.getName(), foo.getFooId());
+		}
+		catch (PortalException e) {
+		}
+
+		fooPersistence.remove(foo);
+	}
+
+	public void deleteFoo(long fooId)
+		throws SystemException {
+
+		Foo foo = fooPersistence.fetchByPrimaryKey(fooId);
+
+		if (foo != null) {
+			deleteFoo(foo);
+		}
+	}
+
 	public List<Foo> getFoos(OrderByComparator obc) throws SystemException {
 		return getFoos(QueryUtil.ALL_POS, QueryUtil.ALL_POS, obc);
 	}

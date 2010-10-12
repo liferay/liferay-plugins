@@ -10,6 +10,9 @@
 	<mapped-superclass class="com.liferay.sampleservicebuilder.model.impl.FooModelImpl">
 		<attributes>
 			<id name="fooId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
 			<basic name="groupId" />
 			<basic name="companyId" />
 			<basic name="userId" />

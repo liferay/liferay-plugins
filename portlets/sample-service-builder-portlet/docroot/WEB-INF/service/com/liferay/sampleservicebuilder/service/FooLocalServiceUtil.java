@@ -171,6 +171,22 @@ public class FooLocalServiceUtil {
 	}
 
 	/**
+	* Gets the foo with the UUID and group id.
+	*
+	* @param uuid the UUID of foo to get
+	* @param groupId the group id of the foo to get
+	* @return the foo
+	* @throws PortalException if a foo with the UUID and group id could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getFooByUuidAndGroupId(uuid, groupId);
+	}
+
+	/**
 	* Gets a range of all the foos.
 	*
 	* <p>

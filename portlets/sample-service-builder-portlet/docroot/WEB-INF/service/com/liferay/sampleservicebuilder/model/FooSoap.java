@@ -34,6 +34,7 @@ public class FooSoap implements Serializable {
 	public static FooSoap toSoapModel(Foo model) {
 		FooSoap soapModel = new FooSoap();
 
+		soapModel.setUuid(model.getUuid());
 		soapModel.setFooId(model.getFooId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
@@ -96,6 +97,14 @@ public class FooSoap implements Serializable {
 
 	public void setPrimaryKey(long pk) {
 		setFooId(pk);
+	}
+
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
 	}
 
 	public long getFooId() {
@@ -198,6 +207,7 @@ public class FooSoap implements Serializable {
 		_field5 = field5;
 	}
 
+	private String _uuid;
 	private long _fooId;
 	private long _groupId;
 	private long _companyId;

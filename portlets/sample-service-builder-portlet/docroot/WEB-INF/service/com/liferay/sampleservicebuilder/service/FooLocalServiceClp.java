@@ -59,38 +59,41 @@ public class FooLocalServiceClp implements FooLocalService {
 		_getFooMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFoo", long.class);
 
-		_getFoosMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFooByUuidAndGroupIdMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getFooByUuidAndGroupId", java.lang.String.class, long.class);
+
+		_getFoosMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFoos", int.class, int.class);
 
-		_getFoosCountMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFoosCountMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFoosCount");
 
-		_updateFooMethodKey11 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFooMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class);
 
-		_updateFooMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFooMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFoo", com.liferay.sampleservicebuilder.model.Foo.class,
 				boolean.class);
 
-		_addFooMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addFooMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addFoo", java.lang.String.class, boolean.class, int.class,
 				java.util.Date.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getFoosMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFoosMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFoos",
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getFoosMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFoosMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFoos", int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_updateAssetMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAssetMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAsset", long.class,
 				com.liferay.sampleservicebuilder.model.Foo.class, long[].class,
 				java.lang.String[].class);
 
-		_updateFooMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFooMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFoo", long.class, java.lang.String.class, boolean.class,
 				int.class, java.util.Date.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -346,12 +349,45 @@ public class FooLocalServiceClp implements FooLocalService {
 		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getFooByUuidAndGroupIdMethodKey9,
+				ClpSerializer.translateInput(uuid), groupId);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.sampleservicebuilder.model.Foo)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey10,
 				start, end);
 
 		try {
@@ -378,7 +414,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFoosCountMethodKey10);
+		MethodHandler methodHandler = new MethodHandler(_getFoosCountMethodKey11);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -405,7 +441,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey11,
+		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey12,
 				ClpSerializer.translateInput(foo));
 
 		try {
@@ -433,7 +469,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey12,
+		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey13,
 				ClpSerializer.translateInput(foo), merge);
 
 		try {
@@ -461,7 +497,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addFooMethodKey14,
 				ClpSerializer.translateInput(field1), field2, field3,
 				ClpSerializer.translateInput(field4),
 				ClpSerializer.translateInput(field5),
@@ -494,7 +530,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey15,
 				ClpSerializer.translateInput(obc));
 
 		try {
@@ -522,7 +558,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_getFoosMethodKey16,
 				start, end, ClpSerializer.translateInput(obc));
 
 		try {
@@ -550,7 +586,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey17,
 				userId, ClpSerializer.translateInput(foo),
 				ClpSerializer.translateInput(assetCategoryIds),
 				ClpSerializer.translateInput(assetTagNames));
@@ -582,7 +618,7 @@ public class FooLocalServiceClp implements FooLocalService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_updateFooMethodKey18,
 				fooId, ClpSerializer.translateInput(field1), field2, field3,
 				ClpSerializer.translateInput(field4),
 				ClpSerializer.translateInput(field5),
@@ -624,13 +660,14 @@ public class FooLocalServiceClp implements FooLocalService {
 	private MethodKey _dynamicQueryMethodKey6;
 	private MethodKey _dynamicQueryCountMethodKey7;
 	private MethodKey _getFooMethodKey8;
-	private MethodKey _getFoosMethodKey9;
-	private MethodKey _getFoosCountMethodKey10;
-	private MethodKey _updateFooMethodKey11;
+	private MethodKey _getFooByUuidAndGroupIdMethodKey9;
+	private MethodKey _getFoosMethodKey10;
+	private MethodKey _getFoosCountMethodKey11;
 	private MethodKey _updateFooMethodKey12;
-	private MethodKey _addFooMethodKey13;
-	private MethodKey _getFoosMethodKey14;
+	private MethodKey _updateFooMethodKey13;
+	private MethodKey _addFooMethodKey14;
 	private MethodKey _getFoosMethodKey15;
-	private MethodKey _updateAssetMethodKey16;
-	private MethodKey _updateFooMethodKey17;
+	private MethodKey _getFoosMethodKey16;
+	private MethodKey _updateAssetMethodKey17;
+	private MethodKey _updateFooMethodKey18;
 }

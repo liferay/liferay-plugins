@@ -56,89 +56,96 @@ public class ClpSerializer {
 
 					Object newModel = newModelClass.newInstance();
 
-					Method method0 = newModelClass.getMethod("setFooId",
-							new Class[] { Long.TYPE });
+					Method method0 = newModelClass.getMethod("setUuid",
+							new Class[] { String.class });
 
-					Long value0 = new Long(oldCplModel.getFooId());
+					String value0 = oldCplModel.getUuid();
 
 					method0.invoke(newModel, value0);
 
-					Method method1 = newModelClass.getMethod("setGroupId",
+					Method method1 = newModelClass.getMethod("setFooId",
 							new Class[] { Long.TYPE });
 
-					Long value1 = new Long(oldCplModel.getGroupId());
+					Long value1 = new Long(oldCplModel.getFooId());
 
 					method1.invoke(newModel, value1);
 
-					Method method2 = newModelClass.getMethod("setCompanyId",
+					Method method2 = newModelClass.getMethod("setGroupId",
 							new Class[] { Long.TYPE });
 
-					Long value2 = new Long(oldCplModel.getCompanyId());
+					Long value2 = new Long(oldCplModel.getGroupId());
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setUserId",
+					Method method3 = newModelClass.getMethod("setCompanyId",
 							new Class[] { Long.TYPE });
 
-					Long value3 = new Long(oldCplModel.getUserId());
+					Long value3 = new Long(oldCplModel.getCompanyId());
 
 					method3.invoke(newModel, value3);
 
-					Method method4 = newModelClass.getMethod("setUserName",
-							new Class[] { String.class });
+					Method method4 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
 
-					String value4 = oldCplModel.getUserName();
+					Long value4 = new Long(oldCplModel.getUserId());
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
+					Method method5 = newModelClass.getMethod("setUserName",
+							new Class[] { String.class });
 
-					Date value5 = oldCplModel.getCreateDate();
+					String value5 = oldCplModel.getUserName();
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setModifiedDate",
+					Method method6 = newModelClass.getMethod("setCreateDate",
 							new Class[] { Date.class });
 
-					Date value6 = oldCplModel.getModifiedDate();
+					Date value6 = oldCplModel.getCreateDate();
 
 					method6.invoke(newModel, value6);
 
-					Method method7 = newModelClass.getMethod("setField1",
-							new Class[] { String.class });
+					Method method7 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
 
-					String value7 = oldCplModel.getField1();
+					Date value7 = oldCplModel.getModifiedDate();
 
 					method7.invoke(newModel, value7);
 
-					Method method8 = newModelClass.getMethod("setField2",
-							new Class[] { Boolean.TYPE });
+					Method method8 = newModelClass.getMethod("setField1",
+							new Class[] { String.class });
 
-					Boolean value8 = new Boolean(oldCplModel.getField2());
+					String value8 = oldCplModel.getField1();
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setField3",
-							new Class[] { Integer.TYPE });
+					Method method9 = newModelClass.getMethod("setField2",
+							new Class[] { Boolean.TYPE });
 
-					Integer value9 = new Integer(oldCplModel.getField3());
+					Boolean value9 = new Boolean(oldCplModel.getField2());
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setField4",
-							new Class[] { Date.class });
+					Method method10 = newModelClass.getMethod("setField3",
+							new Class[] { Integer.TYPE });
 
-					Date value10 = oldCplModel.getField4();
+					Integer value10 = new Integer(oldCplModel.getField3());
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setField5",
-							new Class[] { String.class });
+					Method method11 = newModelClass.getMethod("setField4",
+							new Class[] { Date.class });
 
-					String value11 = oldCplModel.getField5();
+					Date value11 = oldCplModel.getField4();
 
 					method11.invoke(newModel, value11);
+
+					Method method12 = newModelClass.getMethod("setField5",
+							new Class[] { String.class });
+
+					String value12 = oldCplModel.getField5();
+
+					method12.invoke(newModel, value12);
 
 					return newModel;
 				}
@@ -194,83 +201,90 @@ public class ClpSerializer {
 				try {
 					FooClp newModel = new FooClp();
 
-					Method method0 = oldModelClass.getMethod("getFooId");
+					Method method0 = oldModelClass.getMethod("getUuid");
 
-					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+					String value0 = (String)method0.invoke(oldModel,
+							(Object[])null);
 
-					newModel.setFooId(value0);
+					newModel.setUuid(value0);
 
-					Method method1 = oldModelClass.getMethod("getGroupId");
+					Method method1 = oldModelClass.getMethod("getFooId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setGroupId(value1);
+					newModel.setFooId(value1);
 
-					Method method2 = oldModelClass.getMethod("getCompanyId");
+					Method method2 = oldModelClass.getMethod("getGroupId");
 
 					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setCompanyId(value2);
+					newModel.setGroupId(value2);
 
-					Method method3 = oldModelClass.getMethod("getUserId");
+					Method method3 = oldModelClass.getMethod("getCompanyId");
 
 					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value3);
+					newModel.setCompanyId(value3);
 
-					Method method4 = oldModelClass.getMethod("getUserName");
+					Method method4 = oldModelClass.getMethod("getUserId");
 
-					String value4 = (String)method4.invoke(oldModel,
+					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+					newModel.setUserId(value4);
+
+					Method method5 = oldModelClass.getMethod("getUserName");
+
+					String value5 = (String)method5.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setUserName(value4);
+					newModel.setUserName(value5);
 
-					Method method5 = oldModelClass.getMethod("getCreateDate");
-
-					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value5);
-
-					Method method6 = oldModelClass.getMethod("getModifiedDate");
+					Method method6 = oldModelClass.getMethod("getCreateDate");
 
 					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setModifiedDate(value6);
+					newModel.setCreateDate(value6);
 
-					Method method7 = oldModelClass.getMethod("getField1");
+					Method method7 = oldModelClass.getMethod("getModifiedDate");
 
-					String value7 = (String)method7.invoke(oldModel,
+					Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value7);
+
+					Method method8 = oldModelClass.getMethod("getField1");
+
+					String value8 = (String)method8.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setField1(value7);
+					newModel.setField1(value8);
 
-					Method method8 = oldModelClass.getMethod("getField2");
+					Method method9 = oldModelClass.getMethod("getField2");
 
-					Boolean value8 = (Boolean)method8.invoke(oldModel,
+					Boolean value9 = (Boolean)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setField2(value8);
+					newModel.setField2(value9);
 
-					Method method9 = oldModelClass.getMethod("getField3");
+					Method method10 = oldModelClass.getMethod("getField3");
 
-					Integer value9 = (Integer)method9.invoke(oldModel,
+					Integer value10 = (Integer)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setField3(value9);
+					newModel.setField3(value10);
 
-					Method method10 = oldModelClass.getMethod("getField4");
+					Method method11 = oldModelClass.getMethod("getField4");
 
-					Date value10 = (Date)method10.invoke(oldModel,
+					Date value11 = (Date)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setField4(value10);
+					newModel.setField4(value11);
 
-					Method method11 = oldModelClass.getMethod("getField5");
+					Method method12 = oldModelClass.getMethod("getField5");
 
-					String value11 = (String)method11.invoke(oldModel,
+					String value12 = (String)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setField5(value11);
+					newModel.setField5(value12);
 
 					return newModel;
 				}

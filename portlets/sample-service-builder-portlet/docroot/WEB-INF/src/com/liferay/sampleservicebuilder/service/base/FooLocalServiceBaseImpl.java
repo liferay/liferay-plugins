@@ -185,6 +185,20 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 	}
 
 	/**
+	 * Gets the foo with the UUID and group id.
+	 *
+	 * @param uuid the UUID of foo to get
+	 * @param groupId the group id of the foo to get
+	 * @return the foo
+	 * @throws PortalException if a foo with the UUID and group id could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Foo getFooByUuidAndGroupId(String uuid, long groupId)
+		throws PortalException, SystemException {
+		return fooPersistence.findByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Gets a range of all the foos.
 	 *
 	 * <p>

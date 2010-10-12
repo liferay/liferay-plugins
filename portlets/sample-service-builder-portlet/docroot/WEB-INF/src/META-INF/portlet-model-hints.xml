@@ -2,6 +2,7 @@
 
 <model-hints>
 	<model name="com.liferay.sampleservicebuilder.model.Foo">
+		<field name="uuid" type="String" />
 		<field name="fooId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />

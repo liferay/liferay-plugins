@@ -161,6 +161,22 @@ public class FooLocalServiceWrapper implements FooLocalService {
 	}
 
 	/**
+	* Gets the foo with the UUID and group id.
+	*
+	* @param uuid the UUID of foo to get
+	* @param groupId the group id of the foo to get
+	* @return the foo
+	* @throws PortalException if a foo with the UUID and group id could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.sampleservicebuilder.model.Foo getFooByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _fooLocalService.getFooByUuidAndGroupId(uuid, groupId);
+	}
+
+	/**
 	* Gets a range of all the foos.
 	*
 	* <p>

@@ -58,6 +58,21 @@ public interface FooModel extends BaseModel<Foo> {
 	public void setPrimaryKey(long pk);
 
 	/**
+	 * Gets the uuid of this foo.
+	 *
+	 * @return the uuid of this foo
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this foo.
+	 *
+	 * @param uuid the uuid of this foo
+	 */
+	public void setUuid(String uuid);
+
+	/**
 	 * Gets the foo id of this foo.
 	 *
 	 * @return the foo id of this foo
