@@ -22,7 +22,7 @@
 <%
 MBMessage message = (MBMessage)request.getAttribute(WebKeys.MESSAGE_BOARDS_MESSAGE);
 
-long categoryId = BeanParamUtil.getLong(message, request, "mbCategoryId");
+long categoryId = ParamUtil.getLong(request, "mbCategoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 
 if (message != null) {
 	categoryId = message.getCategoryId();
