@@ -204,8 +204,9 @@ public interface FooLocalService {
 		com.liferay.sampleservicebuilder.model.Foo foo, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void addFoo(long userId, java.lang.String field1, boolean field2,
-		int field3, java.util.Date field4, java.lang.String field5)
+	public void addFoo(java.lang.String field1, boolean field2, int field3,
+		java.util.Date field4, java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -219,8 +220,15 @@ public interface FooLocalService {
 		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public void updateAsset(long userId,
+		com.liferay.sampleservicebuilder.model.Foo foo,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
-		int field3, java.util.Date field4, java.lang.String field5)
+		int field3, java.util.Date field4, java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

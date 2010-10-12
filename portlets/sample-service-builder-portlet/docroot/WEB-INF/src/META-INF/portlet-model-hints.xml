@@ -3,6 +3,7 @@
 <model-hints>
 	<model name="com.liferay.sampleservicebuilder.model.Foo">
 		<field name="fooId" type="long" />
+		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />

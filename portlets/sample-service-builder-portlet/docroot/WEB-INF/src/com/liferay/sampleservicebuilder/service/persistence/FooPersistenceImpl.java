@@ -39,6 +39,9 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
+import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
+import com.liferay.portlet.asset.service.persistence.AssetTagPersistence;
+
 import com.liferay.sampleservicebuilder.NoSuchFooException;
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.model.impl.FooImpl;
@@ -270,6 +273,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		fooImpl.setPrimaryKey(foo.getPrimaryKey());
 
 		fooImpl.setFooId(foo.getFooId());
+		fooImpl.setGroupId(foo.getGroupId());
 		fooImpl.setCompanyId(foo.getCompanyId());
 		fooImpl.setUserId(foo.getUserId());
 		fooImpl.setUserName(foo.getUserName());
@@ -958,6 +962,10 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = AssetEntryPersistence.class)
+	protected AssetEntryPersistence assetEntryPersistence;
+	@BeanReference(type = AssetTagPersistence.class)
+	protected AssetTagPersistence assetTagPersistence;
 	private static final String _SQL_SELECT_FOO = "SELECT foo FROM Foo foo";
 	private static final String _SQL_SELECT_FOO_WHERE = "SELECT foo FROM Foo foo WHERE ";
 	private static final String _SQL_COUNT_FOO = "SELECT COUNT(foo) FROM Foo foo";

@@ -226,12 +226,13 @@ public class FooLocalServiceUtil {
 		return getService().updateFoo(foo, merge);
 	}
 
-	public static void addFoo(long userId, java.lang.String field1,
-		boolean field2, int field3, java.util.Date field4,
-		java.lang.String field5)
+	public static void addFoo(java.lang.String field1, boolean field2,
+		int field3, java.util.Date field4, java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().addFoo(userId, field1, field2, field3, field4, field5);
+		getService()
+			.addFoo(field1, field2, field3, field4, field5, serviceContext);
 	}
 
 	public static java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
@@ -246,12 +247,23 @@ public class FooLocalServiceUtil {
 		return getService().getFoos(start, end, obc);
 	}
 
-	public static void updateFoo(long fooId, java.lang.String field1,
-		boolean field2, int field3, java.util.Date field4,
-		java.lang.String field5)
+	public static void updateAsset(long userId,
+		com.liferay.sampleservicebuilder.model.Foo foo,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().updateFoo(fooId, field1, field2, field3, field4, field5);
+		getService().updateAsset(userId, foo, assetCategoryIds, assetTagNames);
+	}
+
+	public static void updateFoo(long fooId, java.lang.String field1,
+		boolean field2, int field3, java.util.Date field4,
+		java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.updateFoo(fooId, field1, field2, field3, field4, field5,
+			serviceContext);
 	}
 
 	public static void clearService() {

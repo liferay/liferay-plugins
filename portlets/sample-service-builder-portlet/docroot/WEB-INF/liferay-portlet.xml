@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<custom-attributes-display>com.liferay.sampleservicebuilder.FooCustomAttributesDisplay</custom-attributes-display>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

@@ -22,6 +22,8 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<supported-locale>en</supported-locale>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Sample Service Builder</title>
 			<short-title>Sample Service Builder</short-title>

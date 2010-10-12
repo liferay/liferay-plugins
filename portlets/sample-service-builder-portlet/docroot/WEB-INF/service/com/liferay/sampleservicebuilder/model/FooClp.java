@@ -53,6 +53,14 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		_fooId = fooId;
 	}
 
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
+	}
+
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -159,6 +167,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		FooClp clone = new FooClp();
 
 		clone.setFooId(getFooId());
+		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -214,10 +223,12 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{fooId=");
 		sb.append(getFooId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -244,7 +255,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sampleservicebuilder.model.Foo");
@@ -253,6 +264,10 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		sb.append(
 			"<column><column-name>fooId</column-name><column-value><![CDATA[");
 		sb.append(getFooId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -301,6 +316,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	private long _fooId;
+	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

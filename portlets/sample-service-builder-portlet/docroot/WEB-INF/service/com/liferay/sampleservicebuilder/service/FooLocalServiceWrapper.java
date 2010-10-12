@@ -216,11 +216,13 @@ public class FooLocalServiceWrapper implements FooLocalService {
 		return _fooLocalService.updateFoo(foo, merge);
 	}
 
-	public void addFoo(long userId, java.lang.String field1, boolean field2,
-		int field3, java.util.Date field4, java.lang.String field5)
+	public void addFoo(java.lang.String field1, boolean field2, int field3,
+		java.util.Date field4, java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_fooLocalService.addFoo(userId, field1, field2, field3, field4, field5);
+		_fooLocalService.addFoo(field1, field2, field3, field4, field5,
+			serviceContext);
 	}
 
 	public java.util.List<com.liferay.sampleservicebuilder.model.Foo> getFoos(
@@ -235,11 +237,22 @@ public class FooLocalServiceWrapper implements FooLocalService {
 		return _fooLocalService.getFoos(start, end, obc);
 	}
 
-	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
-		int field3, java.util.Date field4, java.lang.String field5)
+	public void updateAsset(long userId,
+		com.liferay.sampleservicebuilder.model.Foo foo,
+		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_fooLocalService.updateFoo(fooId, field1, field2, field3, field4, field5);
+		_fooLocalService.updateAsset(userId, foo, assetCategoryIds,
+			assetTagNames);
+	}
+
+	public void updateFoo(long fooId, java.lang.String field1, boolean field2,
+		int field3, java.util.Date field4, java.lang.String field5,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_fooLocalService.updateFoo(fooId, field1, field2, field3, field4,
+			field5, serviceContext);
 	}
 
 	public FooLocalService getWrappedFooLocalService() {

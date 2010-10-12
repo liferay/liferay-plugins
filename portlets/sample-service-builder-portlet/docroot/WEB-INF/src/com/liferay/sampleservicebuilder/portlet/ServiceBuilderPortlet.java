@@ -20,9 +20,10 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -47,7 +48,7 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 		try {
 			String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
-			if (cmd.equals(Constants.ADD)) {
+			if (cmd.equals(Constants.ADD) || cmd.equals(Constants.UPDATE)) {
 				addFoo(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
@@ -71,8 +72,10 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 	}
 
 	protected void addFoo(ActionRequest actionRequest) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		long fooId = ParamUtil.getLong(actionRequest, "fooId");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Foo.class.getName(), actionRequest);
 
 		String field1 = ParamUtil.getString(actionRequest, "field1");
 		boolean field2 = ParamUtil.getBoolean(actionRequest, "field2");
@@ -94,8 +97,15 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 			dateMonth, dateDay, dateYear, dateHour, dateMinute,
 			new PortalException());
 
-		FooLocalServiceUtil.addFoo(
-			themeDisplay.getUserId(), field1, field2, field3, field4, field5);
+		if (fooId <= 0) {
+			FooLocalServiceUtil.addFoo(
+				field1, field2, field3, field4, field5, serviceContext);
+		}
+		else {
+			FooLocalServiceUtil.updateFoo(
+				fooId, field1, field2, field3, field4, field5,
+				serviceContext);
+		}
 	}
 
 	protected void deleteFoo(ActionRequest actionRequest) throws Exception {

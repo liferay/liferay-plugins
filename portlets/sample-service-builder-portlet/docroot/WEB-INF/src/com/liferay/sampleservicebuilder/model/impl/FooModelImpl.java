@@ -61,6 +61,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public static final String TABLE_NAME = "SSB_Foo";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "fooId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "userId", new Integer(Types.BIGINT) },
 			{ "userName", new Integer(Types.VARCHAR) },
@@ -72,7 +73,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 			{ "field4", new Integer(Types.TIMESTAMP) },
 			{ "field5", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (fooId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (fooId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SSB_Foo";
 	public static final String ORDER_BY_JPQL = " ORDER BY foo.field1 ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY SSB_Foo.field1 ASC";
@@ -96,6 +97,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		Foo model = new FooImpl();
 
 		model.setFooId(soapModel.getFooId());
+		model.setGroupId(soapModel.getGroupId());
 		model.setCompanyId(soapModel.getCompanyId());
 		model.setUserId(soapModel.getUserId());
 		model.setUserName(soapModel.getUserName());
@@ -150,6 +152,14 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	public void setFooId(long fooId) {
 		_fooId = fooId;
+	}
+
+	public long getGroupId() {
+		return _groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		_groupId = groupId;
 	}
 
 	public long getCompanyId() {
@@ -286,6 +296,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		FooImpl clone = new FooImpl();
 
 		clone.setFooId(getFooId());
+		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -341,10 +352,12 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("{fooId=");
 		sb.append(getFooId());
+		sb.append(", groupId=");
+		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -371,7 +384,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(40);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.sampleservicebuilder.model.Foo");
@@ -380,6 +393,10 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		sb.append(
 			"<column><column-name>fooId</column-name><column-value><![CDATA[");
 		sb.append(getFooId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>groupId</column-name><column-value><![CDATA[");
+		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -428,6 +445,7 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	private long _fooId;
+	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

@@ -9,6 +9,10 @@
 
 		<column name="fooId" type="long" primary="true" />
 
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
 		<!-- Audit fields -->
 
 		<column name="companyId" type="long" />
@@ -36,5 +40,10 @@
 		<finder name="Field2" return-type="Collection">
 			<finder-column name="field2" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
+		<reference package-path="com.liferay.portlet.asset" entity="AssetTag" />
 	</entity>
 </service-builder>

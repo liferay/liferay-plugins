@@ -72,6 +72,20 @@ public interface FooModel extends BaseModel<Foo> {
 	public void setFooId(long fooId);
 
 	/**
+	 * Gets the group id of this foo.
+	 *
+	 * @return the group id of this foo
+	 */
+	public long getGroupId();
+
+	/**
+	 * Sets the group id of this foo.
+	 *
+	 * @param groupId the group id of this foo
+	 */
+	public void setGroupId(long groupId);
+
+	/**
 	 * Gets the company id of this foo.
 	 *
 	 * @return the company id of this foo

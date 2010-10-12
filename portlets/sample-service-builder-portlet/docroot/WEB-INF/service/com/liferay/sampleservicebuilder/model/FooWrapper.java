@@ -65,6 +65,24 @@ public class FooWrapper implements Foo {
 	}
 
 	/**
+	* Gets the group id of this foo.
+	*
+	* @return the group id of this foo
+	*/
+	public long getGroupId() {
+		return _foo.getGroupId();
+	}
+
+	/**
+	* Sets the group id of this foo.
+	*
+	* @param groupId the group id of this foo
+	*/
+	public void setGroupId(long groupId) {
+		_foo.setGroupId(groupId);
+	}
+
+	/**
 	* Gets the company id of this foo.
 	*
 	* @return the company id of this foo
