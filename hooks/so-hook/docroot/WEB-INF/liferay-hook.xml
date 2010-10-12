@@ -42,4 +42,8 @@
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
 		<service-impl>com.liferay.so.hook.service.CompanyLocalServiceImpl</service-impl>
 	</service>
+	<service>
+		<service-type>com.liferay.portlet.announcements.service.AnnouncementsEntryService</service-type>
+		<service-impl>com.liferay.so.hook.service.AnnouncementsEntryServiceImpl</service-impl>
+	</service>
 </hook>
