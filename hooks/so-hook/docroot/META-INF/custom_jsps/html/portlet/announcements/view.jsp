@@ -39,24 +39,25 @@ Group group = themeDisplay.getScopeGroup();
 		int y = html.indexOf("</select>", x);
 		%>
 
-		<%= html.substring(0, x) %>
+		<c:choose>
+			<c:when test="<%= x > 0 %>">
+				<%= html.substring(0, x) %>
 
-		<span class="aui-field aui-field-select aui-field-menu">
-			<span class="aui-field-content">
-				<label class="aui-field-label" for="<portlet:namespace />distributionScope">To</label>
-				<span class="aui-field-element">
-					<%= html.substring(x, y + 9) %>
+				<span class="aui-field aui-field-select aui-field-menu">
+					<span class="aui-field-content">
+						<label class="aui-field-label" for="<portlet:namespace />distributionScope">To</label>
+						<span class="aui-field-element">
+							<%= html.substring(x, y + 9) %>
+						</span>
+					</span>
 				</span>
-			</span>
-		</span>
 
-		<%= html.substring(y + 9) %>
-
-		<c:if test="<%= Validator.isNull(distributionScope) && group.isCommunity() %>">
-			<script type="text/javascript">
-				<portlet:namespace />selectDistributionScope('<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + group.getGroupId() %>');
-			</script>
-		</c:if>
+				<%= html.substring(y + 9) %>
+			</c:when>
+			<c:otherwise>
+				<%= html %>
+			</c:otherwise>
+		</c:choose>
 	</c:when>
 	<c:otherwise>
 		<%= html %>
