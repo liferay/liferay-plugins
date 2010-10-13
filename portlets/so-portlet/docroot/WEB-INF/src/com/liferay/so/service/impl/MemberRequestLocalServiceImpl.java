@@ -247,8 +247,8 @@ public class MemberRequestLocalServiceImpl
 
 		Layout layout = layoutLocalService.getLayout(plid);
 
-		return PortalUtil.getLayoutFriendlyURL(layout, themeDisplay) + "?key=" +
-			key;
+		return PortalUtil.getLayoutFullURL(layout, themeDisplay, false) +
+			"?key=" + key;
 	}
 
 	protected void sendEmail(
