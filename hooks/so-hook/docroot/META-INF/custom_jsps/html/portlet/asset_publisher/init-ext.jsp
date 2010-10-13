@@ -18,13 +18,11 @@
 --%>
 
 <%
-/*showPortletWithNoResults = true;
-groupByClass = true;
-allowEmptyResults = true;*/
+if (!themeDisplay.getLayout().getFriendlyURL().equals("/home")) {
+	assetEntryQuery = new AssetEntryQuery();
 
-assetEntryQuery = new AssetEntryQuery();
+	long[] layoutAssetTagNames = AssetTagLocalServiceUtil.getTagIds(scopeGroupId, AssetUtil.getLayoutTagNames(request).toArray(new String[0]));
 
-long[] layoutAssetTagNames = AssetTagLocalServiceUtil.getTagIds(scopeGroupId, AssetUtil.getLayoutTagNames(request).toArray(new String[0]));
-
-assetEntryQuery.setAnyTagIds(layoutAssetTagNames);
+	assetEntryQuery.setAnyTagIds(layoutAssetTagNames);
+}
 %>
