@@ -38,9 +38,12 @@ public class DefaultTransitionSelector implements TransitionSelector {
 			kaleoNode.getKaleoTransitions();
 
 		for (KaleoTransition kaleoTransition : kaleoTransitions) {
-			KaleoCondition kaleoCondition = kaleoTransition.getKaleoCondition();
+			KaleoCondition kaleoCondition = null;
 
-			if (kaleoCondition == null) {
+			try {
+				kaleoCondition = kaleoTransition.getKaleoCondition();
+			}
+			catch (NoSuchConditionException nsce) {
 				continue;
 			}
 
@@ -66,9 +69,12 @@ public class DefaultTransitionSelector implements TransitionSelector {
 			new ArrayList<KaleoTransition>(kaleoTransitions.size());
 
 		for (KaleoTransition kaleoTransition : kaleoTransitions) {
-			KaleoCondition kaleoCondition = kaleoTransition.getKaleoCondition();
+			KaleoCondition kaleoCondition = null;
 
-			if (kaleoCondition == null) {
+			try {
+				kaleoCondition = kaleoTransition.getKaleoCondition();
+			}
+			catch (NoSuchConditionException nsce) {
 				selectedKaleoTransitions.add(kaleoTransition);
 
 				continue;
