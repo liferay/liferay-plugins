@@ -665,7 +665,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			namedStrings[i] = new NamedString();
 
 			namedStrings[i].setName(payloadKvps[i].getKey());
-			namedStrings[i].setName(payloadKvps[i].getValue());
+			namedStrings[i].setValue(payloadKvps[i].getValue());
 		}
 
 		EventPayload eventPayload = new EventPayload();
