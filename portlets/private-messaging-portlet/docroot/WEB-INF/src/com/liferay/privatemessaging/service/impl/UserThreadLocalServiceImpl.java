@@ -243,7 +243,8 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.addMessage(
 			userId, user.getScreenName(), groupId, categoryId, mbThreadId,
-			parentMBMessageId, subject, body, files, anonymous, priority,
+			parentMBMessageId, subject, body, MBMessageConstants.DEFAULT_FORMAT,
+			files, anonymous, priority,
 			allowPingbacks, serviceContext);
 
 		if (mbThreadId == 0) {
