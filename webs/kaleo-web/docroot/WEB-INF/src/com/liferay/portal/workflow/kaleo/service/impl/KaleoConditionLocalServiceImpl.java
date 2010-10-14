@@ -65,7 +65,7 @@ public class KaleoConditionLocalServiceImpl
 	public KaleoCondition getKaleoCondition(String className, long classPK)
 		throws PortalException, SystemException {
 
-		return kaleoConditionPersistence.findByC_C(className, classPK);
+		return kaleoConditionPersistence.fetchByC_C(className, classPK);
 	}
 
 }
