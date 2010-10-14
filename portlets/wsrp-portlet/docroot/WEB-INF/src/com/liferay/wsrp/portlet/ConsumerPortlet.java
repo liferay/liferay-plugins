@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
@@ -83,6 +84,7 @@ import oasis.names.tc.wsrp.v2.types.ClientData;
 import oasis.names.tc.wsrp.v2.types.CookieProtocol;
 import oasis.names.tc.wsrp.v2.types.Event;
 import oasis.names.tc.wsrp.v2.types.EventParams;
+import oasis.names.tc.wsrp.v2.types.EventPayload;
 import oasis.names.tc.wsrp.v2.types.GetMarkup;
 import oasis.names.tc.wsrp.v2.types.GetResource;
 import oasis.names.tc.wsrp.v2.types.HandleEvents;
@@ -655,7 +657,24 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		javax.portlet.Event jxEvent = eventRequest.getEvent();
 
-		Event event = (Event)jxEvent.getValue();
+		KeyValuePair[] payloadKvps = (KeyValuePair[])jxEvent.getValue();
+
+		NamedString[] namedStrings = new NamedString[payloadKvps.length];
+
+		for (int i = 0; i < namedStrings.length; i++) {
+			namedStrings[i] = new NamedString();
+
+			namedStrings[i].setName(payloadKvps[i].getKey());
+			namedStrings[i].setName(payloadKvps[i].getValue());
+		}
+
+		EventPayload eventPayload = new EventPayload();
+
+		eventPayload.setNamedStringArray(namedStrings);
+
+		Event event = new Event();
+
+		event.setPayload(eventPayload);
 
 		eventParams.setEvents(new Event[] {event});
 	}
@@ -1262,7 +1281,27 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				event.setName(qName);
 
-				stateAwareResponse.setEvent(qName, event);
+				EventPayload payload = event.getPayload();
+
+				NamedString[] namedStrings =
+					payload.getNamedStringArray();
+
+				if (namedStrings == null) {
+					continue;
+				}
+
+				KeyValuePair[] payloadKvps =
+					new KeyValuePair[namedStrings.length];
+
+				for (int i = 0; i < namedStrings.length; i++) {
+					payloadKvps[i] = new KeyValuePair();
+
+					payloadKvps[i].setKey(namedStrings[i].getName());
+					payloadKvps[i].setValue(namedStrings[i].getValue());
+				}
+
+				stateAwareResponse.setEvent(qName, payloadKvps);
+
 			}
 		}
 	}
