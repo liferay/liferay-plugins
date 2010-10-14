@@ -30,15 +30,7 @@ String themeId = ParamUtil.getString(request, "themeId");
 
 Theme theme = ThemeLocalServiceUtil.getTheme(companyId, themeId, false);
 
-String themeContextPath = PortalUtil.getPathContext();
-
-if (theme.isWARFile()) {
-	themeContextPath = theme.getContextPath();
-}
-
-String cdnHost = PortalUtil.getCDNHost(request.isSecure());
-
-String themeImagesPath = cdnHost + themeContextPath + theme.getImagesPath();
+String themeImagesPath = PortalUtil.getCDNHost(request.isSecure()) + theme.getStaticResourcePath() + theme.getImagesPath();
 
 response.addHeader(HttpHeaders.CONTENT_TYPE, ContentTypes.TEXT_CSS);
 %>
