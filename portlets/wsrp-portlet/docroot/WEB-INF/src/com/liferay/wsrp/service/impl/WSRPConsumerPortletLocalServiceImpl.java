@@ -163,7 +163,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		wsrpConsumerPortletLocalService.destroyWSRPConsumerPortlet(
 			wsrpConsumerPortlet.getWsrpConsumerPortletId(),
-			wsrpConsumer.getUuid(), wsrpConsumer.getUrl());
+			wsrpConsumerPortlet.getUuid(), wsrpConsumer.getUrl());
 	}
 
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)
