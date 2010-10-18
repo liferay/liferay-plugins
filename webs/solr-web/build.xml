@@ -2,4 +2,40 @@
 
 <project name="solr-web" basedir="." default="deploy">
 	<import file="../build-common-web.xml" />
+
+	<property name="original.war.file" value="apache-solr-1.4.1.zip" />
+
+	<target name="merge-unzip">
+		<unzip
+			dest="tmp/WEB-INF/lib"
+			src="${original.war.file}"
+		>
+			<patternset
+				includes="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar"
+			/>
+			<mapper type="flatten" />
+		</unzip>
+	</target>
+
+	<target name="shrink-zip">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<unzip
+			dest="${tstamp.value}"
+			src="${original.war.file}"
+		>
+			<patternset
+				includes="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar"
+			/>
+		</unzip>
+
+		<zip
+			basedir="${tstamp.value}"
+			destfile="${original.war.file}"
+		/>
+
+		<delete dir="${tstamp.value}" />
+	</target>
 </project>
