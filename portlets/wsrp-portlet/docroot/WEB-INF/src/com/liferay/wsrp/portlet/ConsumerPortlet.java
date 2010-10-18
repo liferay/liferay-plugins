@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.portlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -29,6 +31,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Address;
 import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.ListType;
@@ -653,12 +656,12 @@ public class ConsumerPortlet extends GenericPortlet {
 		int pos = portletName.indexOf(
 			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
 
-		long wsrpConsumerPortletId = GetterUtil.getLong(
-			portletName.substring(pos + 1));
+		String safeUUID = portletName.substring(pos + 1);
+
+		String uuid = PortalUUIDUtil.fromSafeUuid(safeUUID);
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
-			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
-				wsrpConsumerPortletId);
+			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(uuid);
 
 		return wsrpConsumerPortlet;
 	}
@@ -944,15 +947,25 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		com.liferay.portal.model.Contact liferayContact = user.getContact();
 
-		ListType listType = ListTypeServiceUtil.getListType(
-			liferayContact.getPrefixId());
+		ListType listType = null;
+
+		try {
+			listType = ListTypeServiceUtil.getListType(
+				liferayContact.getPrefixId());
+		}
+		catch (PortalException e) {
+		}
 
 		if (listType != null) {
 			personName.setPrefix(listType.getName());
 		}
 
-		listType = ListTypeServiceUtil.getListType(
-			liferayContact.getSuffixId());
+		try {
+			listType = ListTypeServiceUtil.getListType(
+				liferayContact.getSuffixId());
+		}
+		catch (PortalException e) {
+		}
 
 		if (listType != null) {
 			personName.setSuffix(listType.getName());

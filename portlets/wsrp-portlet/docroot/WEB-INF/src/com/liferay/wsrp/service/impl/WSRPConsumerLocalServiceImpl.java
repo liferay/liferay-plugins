@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.wsrp.NoSuchConsumerException;
 import com.liferay.wsrp.WSRPConsumerNameException;
 import com.liferay.wsrp.WSRPConsumerWSDLException;
 import com.liferay.wsrp.model.WSRPConsumer;
@@ -56,7 +58,7 @@ public class WSRPConsumerLocalServiceImpl
 
 	public WSRPConsumer addWSRPConsumer(
 			long companyId, String adminPortletId, String name, String url,
-			String userToken)
+			String userToken, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		String wsdl = getWSDL(url, userToken);
@@ -69,6 +71,14 @@ public class WSRPConsumerLocalServiceImpl
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.create(
 			wsrpConsumerId);
+
+		if (serviceContext != null) {
+			String uuid = serviceContext.getUuid();
+
+			if (Validator.isNotNull(uuid)) {
+				wsrpConsumer.setUuid(uuid);
+			}
+		}
 
 		wsrpConsumer.setCompanyId(companyId);
 		wsrpConsumer.setCreateDate(now);
@@ -98,6 +108,21 @@ public class WSRPConsumerLocalServiceImpl
 			wsrpConsumer.getWsrpConsumerId());
 
 		wsrpConsumerPersistence.remove(wsrpConsumer);
+	}
+
+	public WSRPConsumer getWSRPConsumer(String uuid)
+		throws PortalException, SystemException {
+
+		List<WSRPConsumer> wsrpConsumers = wsrpConsumerPersistence.findByUuid(
+			uuid);
+
+		if (wsrpConsumers.isEmpty()) {
+			throw new NoSuchConsumerException();
+		}
+		else {
+			return wsrpConsumers.get(0);
+		}
+
 	}
 
 	public List<WSRPConsumer> getWSRPConsumers(
@@ -179,12 +204,13 @@ public class WSRPConsumerLocalServiceImpl
 				long companyId = wsrpConsumerPortlet.getCompanyId();
 				long wsrpConsumerPortletId =
 					wsrpConsumerPortlet.getWsrpConsumerPortletId();
+				String uuid = wsrpConsumerPortlet.getUuid();
 				String name = wsrpConsumerPortlet.getName();
 				String portletHandle = wsrpConsumerPortlet.getPortletHandle();
 
 				wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(
-					companyId, wsrpConsumerId, wsrpConsumerPortletId, name,
-					portletHandle, userToken);
+					companyId, wsrpConsumerId, wsrpConsumerPortletId, uuid,
+					name, portletHandle, userToken);
 			}
 		}
 		catch (PortalException pe) {

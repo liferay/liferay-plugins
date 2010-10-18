@@ -223,11 +223,19 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
 		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String userToken)
+		java.lang.String url, java.lang.String userToken,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wsrpConsumerLocalService.addWSRPConsumer(companyId,
-			adminPortletId, name, url, userToken);
+			adminPortletId, name, url, userToken, serviceContext);
+	}
+
+	public com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wsrpConsumerLocalService.getWSRPConsumer(uuid);
 	}
 
 	public java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(

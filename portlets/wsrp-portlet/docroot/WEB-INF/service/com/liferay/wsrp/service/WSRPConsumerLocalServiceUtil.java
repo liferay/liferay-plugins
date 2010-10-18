@@ -231,12 +231,20 @@ public class WSRPConsumerLocalServiceUtil {
 
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
 		long companyId, java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String userToken)
+		java.lang.String url, java.lang.String userToken,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addWSRPConsumer(companyId, adminPortletId, name, url,
-			userToken);
+			userToken, serviceContext);
+	}
+
+	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getWSRPConsumer(uuid);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(

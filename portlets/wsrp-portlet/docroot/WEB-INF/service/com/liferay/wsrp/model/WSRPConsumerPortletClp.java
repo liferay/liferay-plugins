@@ -44,6 +44,14 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		return new Long(_wsrpConsumerPortletId);
 	}
 
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
 	public long getWsrpConsumerPortletId() {
 		return _wsrpConsumerPortletId;
 	}
@@ -114,6 +122,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	public Object clone() {
 		WSRPConsumerPortletClp clone = new WSRPConsumerPortletClp();
 
+		clone.setUuid(getUuid());
 		clone.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
@@ -166,9 +175,11 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
-		sb.append("{wsrpConsumerPortletId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", wsrpConsumerPortletId=");
 		sb.append(getWsrpConsumerPortletId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
@@ -188,12 +199,16 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumerPortlet");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>wsrpConsumerPortletId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpConsumerPortletId());
@@ -228,6 +243,7 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 		return sb.toString();
 	}
 
+	private String _uuid;
 	private long _wsrpConsumerPortletId;
 	private long _companyId;
 	private Date _createDate;

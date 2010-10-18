@@ -47,6 +47,24 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
+	* Gets the uuid of this w s r p consumer portlet.
+	*
+	* @return the uuid of this w s r p consumer portlet
+	*/
+	public java.lang.String getUuid() {
+		return _wsrpConsumerPortlet.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this w s r p consumer portlet.
+	*
+	* @param uuid the uuid of this w s r p consumer portlet
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_wsrpConsumerPortlet.setUuid(uuid);
+	}
+
+	/**
 	* Gets the wsrp consumer portlet id of this w s r p consumer portlet.
 	*
 	* @return the wsrp consumer portlet id of this w s r p consumer portlet

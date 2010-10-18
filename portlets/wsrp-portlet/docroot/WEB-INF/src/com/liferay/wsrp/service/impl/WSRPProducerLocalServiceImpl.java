@@ -29,6 +29,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.util.PwdGenerator;
+import com.liferay.wsrp.NoSuchProducerException;
 import com.liferay.wsrp.WSRPProducerNameException;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.base.WSRPProducerLocalServiceBaseImpl;
@@ -44,18 +45,20 @@ public class WSRPProducerLocalServiceImpl
 	extends WSRPProducerLocalServiceBaseImpl {
 
 	public WSRPProducer addWSRPProducer(
-			long userId, String name, String version, String portletIds)
+			long userId, String name, String version, String portletIds,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Group group = addGroup(userId, name);
 
 		return addWSRPProducer(
-			userId, group.getGroupId(), name, version, portletIds);
+			userId, group.getGroupId(), name, version, portletIds,
+			serviceContext);
 	}
 
 	public WSRPProducer addWSRPProducer(
 			long userId, long groupId, String name, String version,
-			String portletIds)
+			String portletIds, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
@@ -76,6 +79,14 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setName(name);
 		wsrpProducer.setVersion(version);
 		wsrpProducer.setPortletIds(portletIds);
+
+		if (serviceContext != null) {
+			String uuid = serviceContext.getUuid();
+
+			if (Validator.isNotNull(uuid)) {
+				wsrpProducer.setUuid(uuid);
+			}
+		}
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
@@ -101,6 +112,20 @@ public class WSRPProducerLocalServiceImpl
 		// Group
 
 		groupLocalService.deleteGroup(wsrpProducer.getGroupId());
+	}
+
+	public WSRPProducer getWSRPProducer(String uuid)
+		throws PortalException, SystemException {
+
+		List<WSRPProducer> wsrpProducers =
+			wsrpProducerPersistence.findByUuid(uuid);
+
+		if (wsrpProducers.isEmpty()) {
+			throw new NoSuchProducerException(
+				"No producer with uuid: " + uuid);
+		}
+
+		return wsrpProducers.get(0);
 	}
 
 	public List<WSRPProducer> getWSRPProducers(

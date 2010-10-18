@@ -26,7 +26,7 @@ public class WSRPProducerImpl
 	}
 
 	public String getURL(String portalURL) {
-		return portalURL + "/wsrp-portlet/wsdl/" + getWsrpProducerId();
+		return portalURL + "/wsrp-portlet/wsdl/" + getUuid();
 	}
 
 }

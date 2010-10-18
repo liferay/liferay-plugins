@@ -47,9 +47,10 @@ public class BaseServiceImpl {
 	protected WSRPProducer getWSRPProducer() throws Exception {
 		HttpServletRequest request = ServletUtil.getRequest();
 
-		long wsrpProducerId = ParamUtil.getLong(request, "wsrpProducerId");
+		String wsrpProducerUuid = ParamUtil.getString(
+			request, "wsrpProducerUuid");
 
-		return WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerId);
+		return WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerUuid);
 	}
 
 }

@@ -193,6 +193,20 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the w s r p producer with the UUID and group id.
+	 *
+	 * @param uuid the UUID of w s r p producer to get
+	 * @param groupId the group id of the w s r p producer to get
+	 * @return the w s r p producer
+	 * @throws PortalException if a w s r p producer with the UUID and group id could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPProducer getWSRPProducerByUuidAndGroupId(String uuid,
+		long groupId) throws PortalException, SystemException {
+		return wsrpProducerPersistence.findByUUID_G(uuid, groupId);
+	}
+
+	/**
 	 * Gets a range of all the w s r p producers.
 	 *
 	 * <p>

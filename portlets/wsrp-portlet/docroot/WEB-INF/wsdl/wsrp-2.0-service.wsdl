@@ -4,16 +4,16 @@
 	<import namespace="urn:oasis:names:tc:wsrp:v2:bind" location="wsrp-2.0-bindings.wsdl" />
 	<wsdl:service name="WSRP_v2_Service">
 		<wsdl:port binding="v2bind:WSRP_v2_Markup_Binding_SOAP" name="WSRP_v2_Markup_Service">
-			<soap:address location="http://my.service:8080/services/WSRP_v2_Markup_Service?wsrpProducerId=${wsrpProducerId}" />
+			<soap:address location="http://my.service:8080/services/WSRP_v2_Markup_Service?wsrpProducerUuid=${wsrpProducerUuid}" />
 		</wsdl:port>
 		<wsdl:port binding="v2bind:WSRP_v2_ServiceDescription_Binding_SOAP" name="WSRP_v2_ServiceDescription_Service">
-			<soap:address location="http://my.service:8080/services/WSRP_v2_ServiceDescription_Service?wsrpProducerId=${wsrpProducerId}" />
+			<soap:address location="http://my.service:8080/services/WSRP_v2_ServiceDescription_Service?wsrpProducerUuid=${wsrpProducerUuid}" />
 		</wsdl:port>
 		<wsdl:port binding="v2bind:WSRP_v2_Registration_Binding_SOAP" name="WSRP_v2_Registration_Service">
-			<soap:address location="http://my.service:8080/services/WSRP_v2_Registration_Service?wsrpProducerId=${wsrpProducerId}" />
+			<soap:address location="http://my.service:8080/services/WSRP_v2_Registration_Service?wsrpProducerUuid=${wsrpProducerUuid}" />
 		</wsdl:port>
 		<wsdl:port binding="v2bind:WSRP_v2_PortletManagement_Binding_SOAP" name="WSRP_v2_PortletManagement_Service">
-			<soap:address location="http://my.service:8080/services/WSRP_v2_PortletManagement_Service?wsrpProducerId=${wsrpProducerId}" />
+			<soap:address location="http://my.service:8080/services/WSRP_v2_PortletManagement_Service?wsrpProducerUuid=${wsrpProducerUuid}" />
 		</wsdl:port>
 	</wsdl:service>
 </wsdl:definitions>

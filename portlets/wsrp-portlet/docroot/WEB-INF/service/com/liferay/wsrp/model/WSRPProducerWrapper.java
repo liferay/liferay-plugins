@@ -47,6 +47,24 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
+	* Gets the uuid of this w s r p producer.
+	*
+	* @return the uuid of this w s r p producer
+	*/
+	public java.lang.String getUuid() {
+		return _wsrpProducer.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this w s r p producer.
+	*
+	* @param uuid the uuid of this w s r p producer
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_wsrpProducer.setUuid(uuid);
+	}
+
+	/**
 	* Gets the wsrp producer id of this w s r p producer.
 	*
 	* @return the wsrp producer id of this w s r p producer

@@ -74,10 +74,11 @@ public class WSDLServlet extends HttpServlet {
 
 		int pos = url.lastIndexOf(StringPool.SLASH);
 
-		long wsrpProducerId = GetterUtil.getLong(url.substring(pos));
+		//long wsrpProducerId = GetterUtil.getLong(url.substring(pos));
+		String wsrpProducerUuid = url.substring(pos + 1);
 
 		WSRPProducer wsrpProducer =
-			WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerId);
+			WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerUuid);
 
 		String version = GetterUtil.getString(
 			wsrpProducer.getVersion(), Constants.WSRP_V2);
@@ -92,11 +93,11 @@ public class WSDLServlet extends HttpServlet {
 			content,
 			new String[] {
 				"http://my.service:8080",
-				"${wsrpProducerId}"
+				"${wsrpProducerUuid}"
 			},
 			new String[] {
 				getURL(request),
-				String.valueOf(wsrpProducerId)
+				wsrpProducerUuid
 			});
 	}
 

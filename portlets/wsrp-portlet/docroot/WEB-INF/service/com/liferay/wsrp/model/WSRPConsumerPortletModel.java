@@ -57,6 +57,21 @@ public interface WSRPConsumerPortletModel extends BaseModel<WSRPConsumerPortlet>
 	public void setPrimaryKey(long pk);
 
 	/**
+	 * Gets the uuid of this w s r p consumer portlet.
+	 *
+	 * @return the uuid of this w s r p consumer portlet
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this w s r p consumer portlet.
+	 *
+	 * @param uuid the uuid of this w s r p consumer portlet
+	 */
+	public void setUuid(String uuid);
+
+	/**
 	 * Gets the wsrp consumer portlet id of this w s r p consumer portlet.
 	 *
 	 * @return the wsrp consumer portlet id of this w s r p consumer portlet

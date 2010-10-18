@@ -2,7 +2,7 @@
 
 <service-builder package-path="com.liferay.wsrp">
 	<namespace>WSRP</namespace>
-	<entity name="WSRPConsumer" local-service="true" remote-service="false">
+	<entity name="WSRPConsumer" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -34,7 +34,7 @@
 			<finder-column name="companyId" />
 		</finder>
 	</entity>
-	<entity name="WSRPConsumerPortlet" local-service="true" remote-service="false">
+	<entity name="WSRPConsumerPortlet" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
@@ -68,7 +68,7 @@
 			<finder-column name="portletHandle" />
 		</finder>
 	</entity>
-	<entity name="WSRPProducer" local-service="true" remote-service="false">
+	<entity name="WSRPProducer" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 

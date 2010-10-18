@@ -174,6 +174,22 @@ public class WSRPProducerLocalServiceUtil {
 	}
 
 	/**
+	* Gets the w s r p producer with the UUID and group id.
+	*
+	* @param uuid the UUID of w s r p producer to get
+	* @param groupId the group id of the w s r p producer to get
+	* @return the w s r p producer
+	* @throws PortalException if a w s r p producer with the UUID and group id could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.wsrp.model.WSRPProducer getWSRPProducerByUuidAndGroupId(
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getWSRPProducerByUuidAndGroupId(uuid, groupId);
+	}
+
+	/**
 	* Gets a range of all the w s r p producers.
 	*
 	* <p>
@@ -231,19 +247,31 @@ public class WSRPProducerLocalServiceUtil {
 
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
 		long userId, java.lang.String name, java.lang.String version,
-		java.lang.String portletIds)
+		java.lang.String portletIds,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addWSRPProducer(userId, name, version, portletIds);
+		return getService()
+				   .addWSRPProducer(userId, name, version, portletIds,
+			serviceContext);
 	}
 
 	public static com.liferay.wsrp.model.WSRPProducer addWSRPProducer(
 		long userId, long groupId, java.lang.String name,
-		java.lang.String version, java.lang.String portletIds)
+		java.lang.String version, java.lang.String portletIds,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addWSRPProducer(userId, groupId, name, version, portletIds);
+				   .addWSRPProducer(userId, groupId, name, version, portletIds,
+			serviceContext);
+	}
+
+	public static com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getWSRPProducer(uuid);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(

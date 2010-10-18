@@ -57,6 +57,21 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setPrimaryKey(long pk);
 
 	/**
+	 * Gets the uuid of this w s r p producer.
+	 *
+	 * @return the uuid of this w s r p producer
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this w s r p producer.
+	 *
+	 * @param uuid the uuid of this w s r p producer
+	 */
+	public void setUuid(String uuid);
+
+	/**
 	 * Gets the wsrp producer id of this w s r p producer.
 	 *
 	 * @return the wsrp producer id of this w s r p producer

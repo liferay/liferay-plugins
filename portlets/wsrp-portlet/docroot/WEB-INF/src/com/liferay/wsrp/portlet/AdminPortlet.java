@@ -21,9 +21,14 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.wsrp.model.WSRPConsumer;
+import com.liferay.wsrp.model.WSRPConsumerPortlet;
+import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
@@ -202,9 +207,12 @@ public class AdminPortlet extends MVCPortlet {
 		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
 
 		if (wsrpConsumerId <= 0) {
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				WSRPConsumer.class.getName(), actionRequest);
+
 			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
 				themeDisplay.getCompanyId(), adminPortletId, name, url,
-				userToken);
+				userToken, serviceContext);
 		}
 		else {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
@@ -228,8 +236,11 @@ public class AdminPortlet extends MVCPortlet {
 		String userToken = WSRPConsumerManager.getUserToken(actionRequest);
 
 		if (wsrpConsumerPortletId <= 0) {
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				WSRPConsumerPortlet.class.getName(), actionRequest);
+
 			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-				wsrpConsumerId, name, portletHandle, userToken);
+				wsrpConsumerId, name, portletHandle, userToken, serviceContext);
 		}
 		else {
 			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
@@ -295,8 +306,12 @@ public class AdminPortlet extends MVCPortlet {
 		String portletIds = ParamUtil.getString(actionRequest, "portletIds");
 
 		if (wsrpProducerId <= 0) {
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				WSRPProducer.class.getName(), actionRequest);
+
 			WSRPProducerLocalServiceUtil.addWSRPProducer(
-				themeDisplay.getUserId(), name, version, portletIds);
+				themeDisplay.getUserId(), name, version, portletIds,
+				serviceContext);
 		}
 		else {
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(

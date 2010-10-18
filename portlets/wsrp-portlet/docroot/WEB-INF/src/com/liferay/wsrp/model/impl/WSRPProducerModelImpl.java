@@ -56,6 +56,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	implements WSRPProducerModel {
 	public static final String TABLE_NAME = "WSRP_WSRPProducer";
 	public static final Object[][] TABLE_COLUMNS = {
+			{ "uuid_", new Integer(Types.VARCHAR) },
 			{ "wsrpProducerId", new Integer(Types.BIGINT) },
 			{ "groupId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
@@ -65,7 +66,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 			{ "version", new Integer(Types.VARCHAR) },
 			{ "portletIds", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (wsrpProducerId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,version VARCHAR(75) null,portletIds STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (uuid_ VARCHAR(75) null,wsrpProducerId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,version VARCHAR(75) null,portletIds STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPProducer";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpProducer.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPProducer.name ASC";
@@ -96,6 +97,27 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		return new Long(_wsrpProducerId);
 	}
 
+	public String getUuid() {
+		if (_uuid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _uuid;
+		}
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+
+		if (_originalUuid == null) {
+			_originalUuid = uuid;
+		}
+	}
+
+	public String getOriginalUuid() {
+		return GetterUtil.getString(_originalUuid);
+	}
+
 	public long getWsrpProducerId() {
 		return _wsrpProducerId;
 	}
@@ -110,6 +132,16 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
+
+		if (!_setOriginalGroupId) {
+			_setOriginalGroupId = true;
+
+			_originalGroupId = groupId;
+		}
+	}
+
+	public long getOriginalGroupId() {
+		return _originalGroupId;
 	}
 
 	public long getCompanyId() {
@@ -202,6 +234,7 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	public Object clone() {
 		WSRPProducerImpl clone = new WSRPProducerImpl();
 
+		clone.setUuid(getUuid());
 		clone.setWsrpProducerId(getWsrpProducerId());
 		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
@@ -255,9 +288,11 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
-		sb.append("{wsrpProducerId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", wsrpProducerId=");
 		sb.append(getWsrpProducerId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
@@ -279,12 +314,16 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPProducer");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>wsrpProducerId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpProducerId());
@@ -323,8 +362,12 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		return sb.toString();
 	}
 
+	private String _uuid;
+	private String _originalUuid;
 	private long _wsrpProducerId;
 	private long _groupId;
+	private long _originalGroupId;
+	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;

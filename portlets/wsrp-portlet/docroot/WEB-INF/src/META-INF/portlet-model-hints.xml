@@ -2,6 +2,7 @@
 
 <model-hints>
 	<model name="com.liferay.wsrp.model.WSRPConsumer">
+		<field name="uuid" type="String" />
 		<field name="wsrpConsumerId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="createDate" type="Date" />
@@ -21,6 +22,7 @@
 		</field>
 	</model>
 	<model name="com.liferay.wsrp.model.WSRPConsumerPortlet">
+		<field name="uuid" type="String" />
 		<field name="wsrpConsumerPortletId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="createDate" type="Date" />
@@ -32,6 +34,7 @@
 		</field>
 	</model>
 	<model name="com.liferay.wsrp.model.WSRPProducer">
+		<field name="uuid" type="String" />
 		<field name="wsrpProducerId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />

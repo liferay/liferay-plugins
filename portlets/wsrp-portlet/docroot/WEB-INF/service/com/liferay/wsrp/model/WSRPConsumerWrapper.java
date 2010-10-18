@@ -47,6 +47,24 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 	}
 
 	/**
+	* Gets the uuid of this w s r p consumer.
+	*
+	* @return the uuid of this w s r p consumer
+	*/
+	public java.lang.String getUuid() {
+		return _wsrpConsumer.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this w s r p consumer.
+	*
+	* @param uuid the uuid of this w s r p consumer
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_wsrpConsumer.setUuid(uuid);
+	}
+
+	/**
 	* Gets the wsrp consumer id of this w s r p consumer.
 	*
 	* @return the wsrp consumer id of this w s r p consumer

@@ -44,6 +44,14 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return new Long(_wsrpProducerId);
 	}
 
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
 	public long getWsrpProducerId() {
 		return _wsrpProducerId;
 	}
@@ -126,6 +134,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	public Object clone() {
 		WSRPProducerClp clone = new WSRPProducerClp();
 
+		clone.setUuid(getUuid());
 		clone.setWsrpProducerId(getWsrpProducerId());
 		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
@@ -179,9 +188,11 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
-		sb.append("{wsrpProducerId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", wsrpProducerId=");
 		sb.append(getWsrpProducerId());
 		sb.append(", groupId=");
 		sb.append(getGroupId());
@@ -203,12 +214,16 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPProducer");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>wsrpProducerId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpProducerId());
@@ -247,6 +262,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		return sb.toString();
 	}
 
+	private String _uuid;
 	private long _wsrpProducerId;
 	private long _groupId;
 	private long _companyId;

@@ -56,6 +56,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	implements WSRPConsumerModel {
 	public static final String TABLE_NAME = "WSRP_WSRPConsumer";
 	public static final Object[][] TABLE_COLUMNS = {
+			{ "uuid_", new Integer(Types.VARCHAR) },
 			{ "wsrpConsumerId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -66,7 +67,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			{ "registrationContextString", new Integer(Types.CLOB) },
 			{ "registrationPropertiesString", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (uuid_ VARCHAR(75) null,wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumer";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpConsumer.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPConsumer.name ASC";
@@ -95,6 +96,19 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wsrpConsumerId);
+	}
+
+	public String getUuid() {
+		if (_uuid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _uuid;
+		}
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
 	}
 
 	public long getWsrpConsumerId() {
@@ -222,6 +236,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	public Object clone() {
 		WSRPConsumerImpl clone = new WSRPConsumerImpl();
 
+		clone.setUuid(getUuid());
 		clone.setWsrpConsumerId(getWsrpConsumerId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
@@ -276,9 +291,11 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(21);
 
-		sb.append("{wsrpConsumerId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", wsrpConsumerId=");
 		sb.append(getWsrpConsumerId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
@@ -302,12 +319,16 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumer");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>wsrpConsumerId</column-name><column-value><![CDATA[");
 		sb.append(getWsrpConsumerId());
@@ -350,6 +371,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		return sb.toString();
 	}
 
+	private String _uuid;
 	private long _wsrpConsumerId;
 	private long _companyId;
 	private Date _createDate;
