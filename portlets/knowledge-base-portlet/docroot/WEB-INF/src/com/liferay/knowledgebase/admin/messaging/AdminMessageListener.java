@@ -43,6 +43,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -99,8 +100,9 @@ public class AdminMessageListener implements MessageListener {
 				companyId, Article.class.getName(), resourcePrimKey);
 
 		sendEmail(
-			userId, resourcePrimKey, portalURL, fromName, fromAddress, subject,
-			body, subscriptions, sent, replyToAddress, mailId, htmlFormat);
+			userId, groupId, resourcePrimKey, portalURL, fromName, fromAddress,
+			subject, body, subscriptions, sent, replyToAddress, mailId,
+			htmlFormat);
 
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
@@ -117,9 +119,9 @@ public class AdminMessageListener implements MessageListener {
 				article.getResourcePrimKey());
 
 			sendEmail(
-				userId, resourcePrimKey, portalURL, fromName, fromAddress,
-				subject, body, subscriptions, sent, replyToAddress, mailId,
-				htmlFormat);
+				userId, groupId, resourcePrimKey, portalURL, fromName,
+				fromAddress, subject, body, subscriptions, sent, replyToAddress,
+				mailId, htmlFormat);
 		}
 
 		// Articles
@@ -128,8 +130,9 @@ public class AdminMessageListener implements MessageListener {
 			companyId, Article.class.getName(), groupId);
 
 		sendEmail(
-			userId, resourcePrimKey, portalURL, fromName, fromAddress, subject,
-			body, subscriptions, sent, replyToAddress, mailId, htmlFormat);
+			userId, groupId, resourcePrimKey, portalURL, fromName, fromAddress,
+			subject, body, subscriptions, sent, replyToAddress, mailId,
+			htmlFormat);
 
 		if (_log.isInfoEnabled()) {
 			_log.info("Finished sending notifications");
@@ -162,7 +165,7 @@ public class AdminMessageListener implements MessageListener {
 	}
 
 	protected void sendEmail(
-			long userId, long resourcePrimKey, String portalURL,
+			long userId, long groupId, long resourcePrimKey, String portalURL,
 			String fromName, String fromAddress, String subject, String body,
 			List<Subscription> subscriptions, Set<Long> sent,
 			String replyToAddress, String mailId, boolean htmlFormat)
@@ -213,6 +216,20 @@ public class AdminMessageListener implements MessageListener {
 			}
 
 			if (!user.isActive()) {
+				continue;
+			}
+
+			if (!GroupLocalServiceUtil.hasUserGroup(userId, groupId)) {
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Subscription " + subscription.getSubscriptionId() +
+							" is stale and will be deleted");
+				}
+
+				ArticleLocalServiceUtil.unsubscribeAllPortlets(
+					subscription.getCompanyId(),
+					subscription.getSubscriptionId());
+
 				continue;
 			}
 
