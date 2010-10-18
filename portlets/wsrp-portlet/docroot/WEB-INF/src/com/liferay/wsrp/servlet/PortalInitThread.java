@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.PortletServlet;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
+import com.liferay.wsrp.portlet.ConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 
 import java.util.List;
@@ -38,15 +39,38 @@ public class PortalInitThread extends Thread {
 
 			Thread.sleep(4000);
 
-			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
-
 			PortletApp portletApp = (PortletApp)_servletContext.getAttribute(
 				PortletServlet.PORTLET_APP);
 
 			List<Portlet> portlets = portletApp.getPortlets();
 
 			for (Portlet portlet : portlets) {
-				portlet.setReady(true);
+				if (!portlet.getPortletName().startsWith(
+					ConsumerPortlet.PORTLET_NAME_PREFIX)) {
+
+					portlet.setReady(true);
+				}
+			}
+
+			try {
+				WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+			}
+			catch (Exception e) {
+				if (_log.isErrorEnabled()) {
+					_log.error(
+						"Errors encountered while initializing portlets", e);
+				}
+			}
+
+			portlets = portletApp.getPortlets();
+
+			for (Portlet portlet : portlets) {
+				if (portlet.getPortletName().startsWith(
+					ConsumerPortlet.PORTLET_NAME_PREFIX)) {
+
+					portlet.setReady(true);
+				}
+
 			}
 		}
 		catch (InterruptedException ie) {

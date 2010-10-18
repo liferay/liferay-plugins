@@ -340,13 +340,22 @@ public class WSRPConsumerPortletLocalServiceImpl
 		for (WSRPConsumerPortlet wsrpConsumerPortlet :
 				wsrpConsumerPortletPersistence.findAll()) {
 
-			initWSRPConsumerPortlet(
-				wsrpConsumerPortlet.getCompanyId(),
-				wsrpConsumerPortlet.getWsrpConsumerId(),
-				wsrpConsumerPortlet.getWsrpConsumerPortletId(),
-				wsrpConsumerPortlet.getUuid(),
-				wsrpConsumerPortlet.getName(),
-				wsrpConsumerPortlet.getPortletHandle(), null);
+			try {
+				initWSRPConsumerPortlet(
+					wsrpConsumerPortlet.getCompanyId(),
+					wsrpConsumerPortlet.getWsrpConsumerId(),
+					wsrpConsumerPortlet.getWsrpConsumerPortletId(),
+					wsrpConsumerPortlet.getUuid(),
+					wsrpConsumerPortlet.getName(),
+					wsrpConsumerPortlet.getPortletHandle(), null);
+			}
+			catch (Exception e) {
+				if (_log.isErrorEnabled()) {
+					_log.error(
+						"Unable to initialize portlet: " +
+						wsrpConsumerPortlet.getUuid(), e);
+				}
+			}
 		}
 	}
 
