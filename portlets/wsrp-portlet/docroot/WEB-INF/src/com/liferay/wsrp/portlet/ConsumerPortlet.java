@@ -29,8 +29,17 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.Address;
+import com.liferay.portal.model.EmailAddress;
+import com.liferay.portal.model.ListType;
+import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.Website;
+import com.liferay.portal.service.AddressLocalServiceUtil;
+import com.liferay.portal.service.EmailAddressLocalServiceUtil;
+import com.liferay.portal.service.ListTypeServiceUtil;
+import com.liferay.portal.service.PhoneLocalServiceUtil;
+import com.liferay.portal.service.WebsiteLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.axis.SimpleHTTPSender;
@@ -48,6 +57,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -81,6 +91,7 @@ import javax.xml.namespace.QName;
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
 import oasis.names.tc.wsrp.v2.types.ClientData;
+import oasis.names.tc.wsrp.v2.types.Contact;
 import oasis.names.tc.wsrp.v2.types.CookieProtocol;
 import oasis.names.tc.wsrp.v2.types.Event;
 import oasis.names.tc.wsrp.v2.types.EventParams;
@@ -98,9 +109,12 @@ import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.MimeRequest;
 import oasis.names.tc.wsrp.v2.types.NamedString;
 import oasis.names.tc.wsrp.v2.types.NavigationalContext;
+import oasis.names.tc.wsrp.v2.types.Online;
 import oasis.names.tc.wsrp.v2.types.PerformBlockingInteraction;
+import oasis.names.tc.wsrp.v2.types.PersonName;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
+import oasis.names.tc.wsrp.v2.types.Postal;
 import oasis.names.tc.wsrp.v2.types.ResourceContext;
 import oasis.names.tc.wsrp.v2.types.ResourceParams;
 import oasis.names.tc.wsrp.v2.types.RuntimeContext;
@@ -108,10 +122,13 @@ import oasis.names.tc.wsrp.v2.types.ServiceDescription;
 import oasis.names.tc.wsrp.v2.types.SessionContext;
 import oasis.names.tc.wsrp.v2.types.SessionParams;
 import oasis.names.tc.wsrp.v2.types.StateChange;
+import oasis.names.tc.wsrp.v2.types.Telecom;
+import oasis.names.tc.wsrp.v2.types.TelephoneNum;
 import oasis.names.tc.wsrp.v2.types.Templates;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 import oasis.names.tc.wsrp.v2.types.UploadContext;
 import oasis.names.tc.wsrp.v2.types.UserContext;
+import oasis.names.tc.wsrp.v2.types.UserProfile;
 
 import org.apache.axis.message.MessageElement;
 
@@ -312,9 +329,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		PortletSession portletSession = renderRequest.getPortletSession();
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
 		MarkupContext markupContext =
 			(MarkupContext)portletSession.getAttribute(WebKeys.MARKUP_CONTEXT);
 
@@ -334,6 +348,66 @@ public class ConsumerPortlet extends GenericPortlet {
 			renderResponse, markupContext.getItemString());
 
 		PortletResponseUtil.write(renderResponse, content);
+	}
+
+	protected Contact getContact(
+		Address address, Phone phone, Phone faxPhone, String emailAddress,
+		Website website) {
+
+		Contact contact = new Contact();
+
+		String street = null;
+
+		if (address != null) {
+			Postal postal = new Postal();
+
+			street = GetterUtil.getString(address.getStreet1()) +
+				GetterUtil.getString(address.getStreet2()) +
+				GetterUtil.getString(address.getStreet3());
+
+			postal.setName(address.getUserName());
+			postal.setStreet(street);
+			postal.setCity(address.getCity());
+			postal.setCountry(address.getCountry().getName());
+			postal.setPostalcode(address.getZip());
+			postal.setStateprov(address.getRegion().getName());
+
+			contact.setPostal(postal);
+		}
+
+		Telecom telecom = new Telecom();
+
+		if (phone != null) {
+			TelephoneNum telephone = new TelephoneNum();
+
+			telephone.setExt(phone.getExtension());
+			telephone.setNumber(phone.getNumber());
+
+			telecom.setTelephone(telephone);
+		}
+
+		if (faxPhone != null) {
+			TelephoneNum faxTelephone = new TelephoneNum();
+
+			faxTelephone.setExt(faxPhone.getExtension());
+			faxTelephone.setNumber(faxPhone.getNumber());
+
+			telecom.setFax(faxTelephone);
+		}
+
+		contact.setTelecom(telecom);
+
+		Online online = new Online();
+
+		online.setEmail(emailAddress);
+
+		if (website != null) {
+			online.setUri(website.getUrl());
+		}
+
+		contact.setOnline(online);
+
+		return contact;
 	}
 
 	protected void doServeResource(
@@ -844,8 +918,148 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		// User context
 
-		userContext.setUserCategories(new String[] {RoleConstants.USER});
-		userContext.setUserContextKey(String.valueOf(themeDisplay.getUserId()));
+		userContext.setUserContextKey(String.valueOf(user.getUserId()));
+
+		UserProfile userProfile = new UserProfile();
+
+		Calendar birthday = Calendar.getInstance();
+
+		birthday.setTime(user.getBirthday());
+
+		userProfile.setBdate(birthday);
+
+		if (user.getMale()) {
+			userProfile.setGender("M");
+		}
+		else {
+			userProfile.setGender("F");
+		}
+
+		PersonName personName = new PersonName();
+
+		personName.setFamily(user.getLastName());
+		personName.setGiven(user.getFirstName());
+		personName.setMiddle(user.getMiddleName());
+		personName.setNickname(user.getScreenName());
+
+		com.liferay.portal.model.Contact liferayContact = user.getContact();
+
+		ListType listType = ListTypeServiceUtil.getListType(
+			liferayContact.getPrefixId());
+
+		if (listType != null) {
+			personName.setPrefix(listType.getName());
+		}
+
+		listType = ListTypeServiceUtil.getListType(
+			liferayContact.getSuffixId());
+
+		if (listType != null) {
+			personName.setSuffix(listType.getName());
+		}
+
+		userProfile.setName(personName);
+
+		long companyId = liferayContact.getCompanyId();
+		String className =
+			com.liferay.portal.model.Contact.class.getName();
+		long classPK = liferayContact.getContactId();
+
+		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
+			companyId, className, classPK);
+
+		Address businessAddress = null;
+		Address homeAddress = null;
+
+		for (Address address : addresses) {
+			listType = address.getType();
+
+			String listTypeName = listType.getName();
+
+			if (listTypeName.equals("Business")) {
+				businessAddress = address;
+			}
+			else if (listTypeName.equals("Personal")){
+				homeAddress = address;
+			}
+		}
+
+		List<EmailAddress> emailAddresses =
+			EmailAddressLocalServiceUtil.getEmailAddresses(
+				companyId, className, classPK);
+
+		String businessEmailAddress = user.getEmailAddress();
+		String homeEmailAddress = user.getEmailAddress();
+
+		for (EmailAddress emailAddress : emailAddresses) {
+			listType = emailAddress.getType();
+
+			String listTypeName = listType.getName();
+
+			if (listTypeName.equals("E-mail")) {
+				homeEmailAddress = emailAddress.getAddress();
+			}
+		}
+
+		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
+			companyId, className, classPK);
+
+		Phone businessPhone = null;
+		Phone businessFax= null;
+		Phone homePhone = null;
+		Phone homeFax= null;
+
+		for (Phone phone : phones) {
+			listType = phone.getType();
+
+			String listTypeName = listType.getName();
+
+			if (listTypeName.equals("Business")) {
+				businessPhone = phone;
+			}
+			else if (listTypeName.equals("Business Fax")){
+				businessFax = phone;
+			}
+			else if (listTypeName.equals("Personal")){
+				homePhone = phone;
+			}
+			else if (listTypeName.equals("Personal Fax")){
+				homeFax = phone;
+			}
+
+		}
+
+		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
+			companyId, className, classPK);
+
+		Website businessWebsite = null;
+		Website homeWebsite = null;
+
+		for (Website website : websites) {
+			listType = website.getType();
+
+			String listTypeName = listType.getName();
+
+			if (listTypeName.equals("Business")) {
+				businessWebsite = website;
+			}
+			else if (listTypeName.equals("Personal")){
+				homeWebsite = website;
+			}
+		}
+
+		Contact contact = getContact(
+			businessAddress, businessPhone, businessFax, businessEmailAddress,
+			businessWebsite);
+
+		userProfile.setBusinessInfo(contact);
+
+		contact = getContact(
+			homeAddress, homePhone, homeFax, homeEmailAddress, homeWebsite);
+
+		userProfile.setHomeInfo(contact);
+
+		userContext.setProfile(userProfile);
 	}
 
 	protected void initContexts(
