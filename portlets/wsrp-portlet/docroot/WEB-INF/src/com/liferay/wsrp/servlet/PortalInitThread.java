@@ -45,8 +45,10 @@ public class PortalInitThread extends Thread {
 			List<Portlet> portlets = portletApp.getPortlets();
 
 			for (Portlet portlet : portlets) {
-				if (!portlet.getPortletName().startsWith(
-					ConsumerPortlet.PORTLET_NAME_PREFIX)) {
+				String portletName = portlet.getPortletName();
+
+				if (!portletName.startsWith(
+						ConsumerPortlet.PORTLET_NAME_PREFIX)) {
 
 					portlet.setReady(true);
 				}
@@ -56,21 +58,19 @@ public class PortalInitThread extends Thread {
 				WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
 			}
 			catch (Exception e) {
-				if (_log.isErrorEnabled()) {
-					_log.error(
-						"Errors encountered while initializing portlets", e);
-				}
+				_log.error("Unable to initializing WSRP consumer portlets", e);
 			}
 
 			portlets = portletApp.getPortlets();
 
 			for (Portlet portlet : portlets) {
-				if (portlet.getPortletName().startsWith(
-					ConsumerPortlet.PORTLET_NAME_PREFIX)) {
+				String portletName = portlet.getPortletName();
+
+				if (portletName.startsWith(
+						ConsumerPortlet.PORTLET_NAME_PREFIX)) {
 
 					portlet.setReady(true);
 				}
-
 			}
 		}
 		catch (InterruptedException ie) {
