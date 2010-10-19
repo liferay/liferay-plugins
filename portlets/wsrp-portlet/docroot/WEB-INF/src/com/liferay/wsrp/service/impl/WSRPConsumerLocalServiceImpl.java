@@ -72,14 +72,7 @@ public class WSRPConsumerLocalServiceImpl
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.create(
 			wsrpConsumerId);
 
-		if (serviceContext != null) {
-			String uuid = serviceContext.getUuid();
-
-			if (Validator.isNotNull(uuid)) {
-				wsrpConsumer.setUuid(uuid);
-			}
-		}
-
+		wsrpConsumer.setUuid(serviceContext.getUuid());
 		wsrpConsumer.setCompanyId(companyId);
 		wsrpConsumer.setCreateDate(now);
 		wsrpConsumer.setModifiedDate(now);
@@ -110,19 +103,19 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
-	public WSRPConsumer getWSRPConsumer(String uuid)
+	public WSRPConsumer getWSRPConsumer(String wsrpConsumerUuid)
 		throws PortalException, SystemException {
 
 		List<WSRPConsumer> wsrpConsumers = wsrpConsumerPersistence.findByUuid(
-			uuid);
+			wsrpConsumerUuid);
 
 		if (wsrpConsumers.isEmpty()) {
-			throw new NoSuchConsumerException();
+			throw new NoSuchConsumerException(
+				"No WSRP consumer exists with uuid " + wsrpConsumerUuid);
 		}
 		else {
 			return wsrpConsumers.get(0);
 		}
-
 	}
 
 	public List<WSRPConsumer> getWSRPConsumers(
@@ -204,13 +197,13 @@ public class WSRPConsumerLocalServiceImpl
 				long companyId = wsrpConsumerPortlet.getCompanyId();
 				long wsrpConsumerPortletId =
 					wsrpConsumerPortlet.getWsrpConsumerPortletId();
-				String uuid = wsrpConsumerPortlet.getUuid();
+				String wsrpConsumerPortletUuid = wsrpConsumerPortlet.getUuid();
 				String name = wsrpConsumerPortlet.getName();
 				String portletHandle = wsrpConsumerPortlet.getPortletHandle();
 
 				wsrpConsumerPortletLocalService.initWSRPConsumerPortlet(
-					companyId, wsrpConsumerId, wsrpConsumerPortletId, uuid,
-					name, portletHandle, userToken);
+					companyId, wsrpConsumerId, wsrpConsumerPortletId,
+					wsrpConsumerPortletUuid, name, portletHandle, userToken);
 			}
 		}
 		catch (PortalException pe) {

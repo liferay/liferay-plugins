@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.servlet.ServletResponseUtil;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
@@ -74,11 +75,22 @@ public class WSDLServlet extends HttpServlet {
 
 		int pos = url.lastIndexOf(StringPool.SLASH);
 
-		//long wsrpProducerId = GetterUtil.getLong(url.substring(pos));
 		String wsrpProducerUuid = url.substring(pos + 1);
 
-		WSRPProducer wsrpProducer =
-			WSRPProducerLocalServiceUtil.getWSRPProducer(wsrpProducerUuid);
+		WSRPProducer wsrpProducer = null;
+
+		if (Validator.isNumber(wsrpProducerUuid)) {
+			long wsrpProducerId = GetterUtil.getLong(wsrpProducerUuid);
+
+			wsrpProducer = WSRPProducerLocalServiceUtil.getWSRPProducer(
+				wsrpProducerId);
+
+			wsrpProducerUuid = wsrpProducer.getUuid();
+		}
+		else {
+			wsrpProducer = WSRPProducerLocalServiceUtil.getWSRPProducer(
+				wsrpProducerUuid);
+		}
 
 		String version = GetterUtil.getString(
 			wsrpProducer.getVersion(), Constants.WSRP_V2);

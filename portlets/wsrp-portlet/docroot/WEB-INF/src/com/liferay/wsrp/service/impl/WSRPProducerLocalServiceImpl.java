@@ -72,6 +72,7 @@ public class WSRPProducerLocalServiceImpl
 		WSRPProducer wsrpProducer = wsrpProducerPersistence.create(
 			wsrpProducerId);
 
+		wsrpProducer.setUuid(serviceContext.getUuid());
 		wsrpProducer.setGroupId(groupId);
 		wsrpProducer.setCompanyId(user.getCompanyId());
 		wsrpProducer.setCreateDate(now);
@@ -79,14 +80,6 @@ public class WSRPProducerLocalServiceImpl
 		wsrpProducer.setName(name);
 		wsrpProducer.setVersion(version);
 		wsrpProducer.setPortletIds(portletIds);
-
-		if (serviceContext != null) {
-			String uuid = serviceContext.getUuid();
-
-			if (Validator.isNotNull(uuid)) {
-				wsrpProducer.setUuid(uuid);
-			}
-		}
 
 		wsrpProducerPersistence.update(wsrpProducer, false);
 
@@ -114,15 +107,15 @@ public class WSRPProducerLocalServiceImpl
 		groupLocalService.deleteGroup(wsrpProducer.getGroupId());
 	}
 
-	public WSRPProducer getWSRPProducer(String uuid)
+	public WSRPProducer getWSRPProducer(String wsrpProducerUuid)
 		throws PortalException, SystemException {
 
-		List<WSRPProducer> wsrpProducers =
-			wsrpProducerPersistence.findByUuid(uuid);
+		List<WSRPProducer> wsrpProducers = wsrpProducerPersistence.findByUuid(
+			wsrpProducerUuid);
 
 		if (wsrpProducers.isEmpty()) {
 			throw new NoSuchProducerException(
-				"No producer with uuid: " + uuid);
+				"No WSRP producer exists with uuid " + wsrpProducerUuid);
 		}
 
 		return wsrpProducers.get(0);

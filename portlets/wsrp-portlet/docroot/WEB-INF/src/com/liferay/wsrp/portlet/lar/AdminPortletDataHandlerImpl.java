@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -19,11 +19,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -44,16 +41,13 @@ import javax.portlet.PortletPreferences;
  * @author Michael C. Han
  */
 public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
-	public PortletDataHandlerControl[] getExportControls()
-		throws PortletDataException {
 
-		return new PortletDataHandlerControl[] {_producers, _consumers};
+	public PortletDataHandlerControl[] getExportControls() {
+		return new PortletDataHandlerControl[] {_wsrpProducers, _wsrpConsumers};
 	}
 
-	public PortletDataHandlerControl[] getImportControls()
-		throws PortletDataException {
-
-		return new PortletDataHandlerControl[] {_producers, _consumers};
+	public PortletDataHandlerControl[] getImportControls() {
+		return new PortletDataHandlerControl[] {_wsrpProducers, _wsrpConsumers};
 	}
 
 	public boolean isPublishToLiveByDefault() {
@@ -88,7 +82,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		return null;
-
 	}
 
 	protected String doExportData(
@@ -101,28 +94,30 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Element rootElement = document.addElement("wsrp-data");
 
 		if (context.getBooleanParameter(_NAMESPACE, "wsrp-producers")) {
-			Element producersElement = rootElement.addElement("wsrp-producers");
+			Element wsrpProducersElement = rootElement.addElement(
+				"wsrp-producers");
 
-			List<WSRPProducer> producers =
+			List<WSRPProducer> wsrpProducers =
 				WSRPProducerLocalServiceUtil.getWSRPProducers(
-					context.getCompanyId(),
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+					context.getCompanyId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
 
-			for (WSRPProducer producer : producers) {
-				exportWSRPProducer(context, producersElement, producer);
+			for (WSRPProducer wsrpProducer : wsrpProducers) {
+				exportWSRPProducer(context, wsrpProducersElement, wsrpProducer);
 			}
 		}
 
 		if (context.getBooleanParameter(_NAMESPACE, "wsrp-consumers")) {
-			Element consumersElement = rootElement.addElement("wsrp-consumers");
+			Element wsrpConsumersElement = rootElement.addElement(
+				"wsrp-consumers");
 
-			List<WSRPConsumer> consumers =
+			List<WSRPConsumer> wsrpConsumers =
 				WSRPConsumerLocalServiceUtil.getWSRPConsumers(
-					context.getCompanyId(),
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+					context.getCompanyId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
 
-			for (WSRPConsumer consumer : consumers) {
-				exportWSRPConsumer(context, consumersElement, consumer);
+			for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+				exportWSRPConsumer(context, wsrpConsumersElement, wsrpConsumer);
 			}
 		}
 
@@ -166,7 +161,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			for (Element wsrpConsumerElement :
 					wsrpConsumersElement.elements("wsrp-consumer")) {
 
-				String wsrpConsumerPath = wsrpConsumerElement.attributeValue("path");
+				String wsrpConsumerPath = wsrpConsumerElement.attributeValue(
+					"path");
 
 				if (!context.isPathNotProcessed(wsrpConsumerPath)) {
 					continue;
@@ -185,14 +181,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 						wsrpConsumerElement.element("wsrp-consumer-portlets");
 
 					for (Element wsrpConsumerPortletElement :
-						wsrpConsumerPortletsElement.elements(
-							"wsrp-consumer-portlet")) {
+							wsrpConsumerPortletsElement.elements(
+								"wsrp-consumer-portlet")) {
 
 						String wsrpConsumerPortletPath =
 							wsrpConsumerPortletElement.attributeValue("path");
 
 						if (!context.isPathNotProcessed(
 								wsrpConsumerPortletPath)) {
+
 							continue;
 						}
 
@@ -211,7 +208,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void exportWSRPConsumer(
-			PortletDataContext context, Element consumersElement,
+			PortletDataContext context, Element wsrpConsumersElement,
 			WSRPConsumer wsrpConsumer)
 		throws SystemException {
 
@@ -221,31 +218,33 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			return;
 		}
 
-		Element consumerElement = consumersElement.addElement("wsrp-consumer");
+		Element wsrpConsumerElement = wsrpConsumersElement.addElement(
+			"wsrp-consumer");
 
-		consumerElement.addAttribute("path", path);
+		wsrpConsumerElement.addAttribute("path", path);
 
 		context.addZipEntry(path, wsrpConsumer);
 
 		if (context.getBooleanParameter(_NAMESPACE, "wsrp-consumer-portlets")) {
-			List<WSRPConsumerPortlet> consumerPortlets =
+			List<WSRPConsumerPortlet> wsrpConsumerPortlets =
 				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlets(
-					wsrpConsumer.getWsrpConsumerId(),
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+					wsrpConsumer.getWsrpConsumerId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
 
-			Element consumerPortletsElement = consumerElement.addElement(
-				"wsrp-consumer-portlets");
+			Element wsrpConsumerPortletsElement =
+				wsrpConsumerElement.addElement("wsrp-consumer-portlets");
 
-			for (WSRPConsumerPortlet consumerPortlet : consumerPortlets) {
+			for (WSRPConsumerPortlet wsrpConsumerPortlet :
+					wsrpConsumerPortlets) {
+
 				exportWSRPConsumerPortlet(
-					context, consumerPortletsElement, consumerPortlet);
+					context, wsrpConsumerPortletsElement, wsrpConsumerPortlet);
 			}
 		}
-
 	}
 
-	private void exportWSRPConsumerPortlet(
-			PortletDataContext context, Element consumerPortletsElement,
+	protected void exportWSRPConsumerPortlet(
+			PortletDataContext context, Element wsrpConsumerPortletsElement,
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws SystemException {
 
@@ -255,30 +254,31 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			return;
 		}
 
-		Element consumerPortletElement = consumerPortletsElement.addElement(
-			"wsrp-consumer-portlet");
+		Element wsrpConsumerPortletElement =
+			wsrpConsumerPortletsElement.addElement("wsrp-consumer-portlet");
 
-		consumerPortletElement.addAttribute("path", path);
+		wsrpConsumerPortletElement.addAttribute("path", path);
 
 		context.addZipEntry(path, wsrpConsumerPortlet);
 	}
 
 	protected void exportWSRPProducer(
-			PortletDataContext context, Element producersElement,
-			WSRPProducer producer)
+			PortletDataContext context, Element wsrpProducersElement,
+			WSRPProducer wsrpProducer)
 		throws SystemException {
 
-		String path = getWSRPProducerPath(context, producer);
+		String path = getWSRPProducerPath(context, wsrpProducer);
 
 		if (!context.isPathNotProcessed(path)) {
 			return;
 		}
 
-		Element producerElement = producersElement.addElement("wsrp-producer");
+		Element wsrpProducerElement = wsrpProducersElement.addElement(
+			"wsrp-producer");
 
-		producerElement.addAttribute("path", path);
+		wsrpProducerElement.addAttribute("path", path);
 
-		context.addZipEntry(path, producer);
+		context.addZipEntry(path, wsrpProducer);
 	}
 
 	protected String getWSRPConsumerPath(
@@ -287,7 +287,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(context.getPortletPath(_PORTLET_KEY));
-		sb.append("/wsrpConsumers/");
+		sb.append("/wsrp-consumers/");
 		sb.append(wsrpConsumer.getUuid());
 		sb.append(".xml");
 
@@ -300,7 +300,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(context.getPortletPath(_PORTLET_KEY));
-		sb.append("/wsrpConsumerPortlets/");
+		sb.append("/wsrp-consumer-portlets/");
 		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
 		sb.append(".xml");
 
@@ -313,7 +313,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(context.getPortletPath(_PORTLET_KEY));
-		sb.append("/wsrpProducers/");
+		sb.append("/wsrp-producers/");
 		sb.append(wsrpProducer.getWsrpProducerId());
 		sb.append(".xml");
 
@@ -322,51 +322,41 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected WSRPConsumer importWSRPConsumer(
 			PortletDataContext context, WSRPConsumer wsrpConsumer)
-		throws SystemException, PortalException {
-
-		long companyId = context.getCompanyId();
-		String name = wsrpConsumer.getName();
-		String url = wsrpConsumer.getUrl();
+		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setUuid(wsrpConsumer.getUuid());
 
-		WSRPConsumer createdWSRPConsumer =
-			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-				companyId, null, name, url, null, serviceContext);
-
-		return createdWSRPConsumer;
+		return WSRPConsumerLocalServiceUtil.addWSRPConsumer(
+			context.getCompanyId(), null, wsrpConsumer.getName(),
+			wsrpConsumer.getUrl(), null, serviceContext);
 	}
 
 	protected void importWSRPConsumerPortlet(
 			WSRPConsumer wsrpConsumer, WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws SystemException, PortalException {
-
-		String wsrpConsumerUUID = wsrpConsumer.getUuid();
-		String name = wsrpConsumerPortlet.getName();
-		String portletHandle = wsrpConsumerPortlet.getPortletHandle();
+		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
 
 		WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-			wsrpConsumerUUID, name, portletHandle, null, serviceContext);
+			wsrpConsumer.getUuid(), wsrpConsumerPortlet.getName(),
+			wsrpConsumerPortlet.getPortletHandle(), null, serviceContext);
 	}
 
 	protected void importWSRPProducer(
 			PortletDataContext context, WSRPProducer wsrpProducer)
-		throws SystemException, PortalException {
-
-		long userId = context.getUserId(null);
-		String name = wsrpProducer.getName();
-		String version = wsrpProducer.getVersion();
-		String portletIds = wsrpProducer.getPortletIds();
+		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = new ServiceContext();
 		serviceContext.setUuid(wsrpProducer.getUuid());
 
 		WSRPProducerLocalServiceUtil.addWSRPProducer(
-			userId, name, version, portletIds, serviceContext);
+			context.getUserId(null), wsrpProducer.getName(),
+			wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
+			serviceContext);
 	}
 
 	private static final String _NAMESPACE = "wsrp";
@@ -375,17 +365,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	private static final boolean _PUBLISH_TO_LIVE_BY_DEFAULT = true;
 
-	private static Log _log = LogFactoryUtil.getLog(
-		AdminPortletDataHandlerImpl.class);
-
-	private static PortletDataHandlerBoolean _producers =
-		new PortletDataHandlerBoolean(_NAMESPACE, "wsrp-producers");
-
-	private static PortletDataHandlerBoolean _consumerPortlets =
+	private static PortletDataHandlerBoolean _wsrpConsumerPortlets =
 		new PortletDataHandlerBoolean(_NAMESPACE, "wsrp-consumer-portlets");
 
-	private static PortletDataHandlerBoolean _consumers =
+	private static PortletDataHandlerBoolean _wsrpProducers =
+		new PortletDataHandlerBoolean(_NAMESPACE, "wsrp-producers");
+
+	private static PortletDataHandlerBoolean _wsrpConsumers =
 		new PortletDataHandlerBoolean(
 			_NAMESPACE, "wsrp-consumers", true,
-			new PortletDataHandlerControl[] {_consumerPortlets});
+			new PortletDataHandlerControl[] {_wsrpConsumerPortlets});
+
 }
