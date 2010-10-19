@@ -239,7 +239,7 @@ public interface WSRPProducerLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
-		java.lang.String uuid)
+		java.lang.String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

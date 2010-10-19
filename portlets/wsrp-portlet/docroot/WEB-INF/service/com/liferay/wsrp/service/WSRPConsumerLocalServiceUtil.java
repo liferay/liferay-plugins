@@ -241,10 +241,10 @@ public class WSRPConsumerLocalServiceUtil {
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
-		java.lang.String uuid)
+		java.lang.String wsrpConsumerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getWSRPConsumer(uuid);
+		return getService().getWSRPConsumer(wsrpConsumerUuid);
 	}
 
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(

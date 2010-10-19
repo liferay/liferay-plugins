@@ -580,13 +580,13 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
-		java.lang.String uuid)
+		java.lang.String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getWSRPProducerMethodKey16,
-				ClpSerializer.translateInput(uuid));
+				ClpSerializer.translateInput(wsrpProducerUuid));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

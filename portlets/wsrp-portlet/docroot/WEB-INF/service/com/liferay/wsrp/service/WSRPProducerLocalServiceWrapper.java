@@ -259,10 +259,10 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
-		java.lang.String uuid)
+		java.lang.String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _wsrpProducerLocalService.getWSRPProducer(uuid);
+		return _wsrpProducerLocalService.getWSRPProducer(wsrpProducerUuid);
 	}
 
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> getWSRPProducers(
