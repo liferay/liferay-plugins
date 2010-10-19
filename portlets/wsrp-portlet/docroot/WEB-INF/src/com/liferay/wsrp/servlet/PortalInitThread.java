@@ -14,13 +14,20 @@
 
 package com.liferay.wsrp.servlet;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.PortletServlet;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
+import com.liferay.wsrp.model.WSRPConsumer;
+import com.liferay.wsrp.model.WSRPConsumerPortlet;
+import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.portlet.ConsumerPortlet;
+import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 import java.util.List;
 
@@ -38,6 +45,8 @@ public class PortalInitThread extends Thread {
 			// consumer and producer are the same machine
 
 			Thread.sleep(4000);
+
+			verifyUuid();
 
 			PortletApp portletApp = (PortletApp)_servletContext.getAttribute(
 				PortletServlet.PORTLET_APP);
@@ -82,6 +91,39 @@ public class PortalInitThread extends Thread {
 
 	public void setServletContext(ServletContext servletContext) {
 		_servletContext = servletContext;
+	}
+
+	protected void verifyUuid() throws Exception {
+		List<WSRPConsumer> wsrpConsumers =
+			WSRPConsumerLocalServiceUtil.getWSRPConsumers(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+			if (Validator.isNull(wsrpConsumer.getUuid())) {
+				WSRPConsumerLocalServiceUtil.updateWSRPConsumer(wsrpConsumer);
+			}
+		}
+
+		List<WSRPConsumerPortlet> wsrpConsumerPortlets =
+			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlets(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (WSRPConsumerPortlet wsrpConsumerPortlet : wsrpConsumerPortlets) {
+			if (Validator.isNull(wsrpConsumerPortlet.getUuid())) {
+				WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
+					wsrpConsumerPortlet);
+			}
+		}
+
+		List<WSRPProducer> wsrpProducers =
+			WSRPProducerLocalServiceUtil.getWSRPProducers(
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (WSRPProducer wsrpProducer : wsrpProducers) {
+			if (Validator.isNull(wsrpProducer.getUuid())) {
+				WSRPProducerLocalServiceUtil.updateWSRPProducer(wsrpProducer);
+			}
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(PortalInitThread.class);
