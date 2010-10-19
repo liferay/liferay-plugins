@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wsrp.portlet.lar;
+package com.liferay.wsrp.lar;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
