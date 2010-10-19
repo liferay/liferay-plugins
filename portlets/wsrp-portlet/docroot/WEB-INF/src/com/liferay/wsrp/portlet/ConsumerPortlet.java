@@ -48,6 +48,7 @@ import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.ExtensionUtil;
+import com.liferay.wsrp.util.UUIDUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 import com.liferay.wsrp.util.WebKeys;
@@ -834,6 +835,9 @@ public class ConsumerPortlet extends GenericPortlet {
 			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
 
 		String wsrpConsumerPortletUuid = portletName.substring(pos + 1);
+
+		wsrpConsumerPortletUuid = UUIDUtil.fromSafeUuid(
+			wsrpConsumerPortletUuid);
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
 			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(

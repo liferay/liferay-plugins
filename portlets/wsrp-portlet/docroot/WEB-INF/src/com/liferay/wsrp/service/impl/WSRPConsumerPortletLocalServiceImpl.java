@@ -48,6 +48,7 @@ import com.liferay.wsrp.service.ClpSerializer;
 import com.liferay.wsrp.service.base.WSRPConsumerPortletLocalServiceBaseImpl;
 import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.LocalizedStringUtil;
+import com.liferay.wsrp.util.UUIDUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 
@@ -509,7 +510,9 @@ public class WSRPConsumerPortletLocalServiceImpl
 		sb.append(StringPool.UNDERLINE);
 		sb.append(wsrpConsumerPortletUuid);
 
-		String portletId = PortalUtil.getJsSafePortletId(sb.toString());
+
+		String portletId = PortalUtil.getJsSafePortletId(
+			UUIDUtil.toSafeUuid(sb.toString()));
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
 			companyId, _CONSUMER_PORTLET_ID);
