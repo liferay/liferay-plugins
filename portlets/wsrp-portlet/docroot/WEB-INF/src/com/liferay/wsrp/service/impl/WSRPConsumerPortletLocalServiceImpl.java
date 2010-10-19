@@ -510,7 +510,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 		sb.append(StringPool.UNDERLINE);
 		sb.append(wsrpConsumerPortletUuid);
 
-
 		String portletId = PortalUtil.getJsSafePortletId(
 			UUIDUtil.toSafeUuid(sb.toString()));
 
