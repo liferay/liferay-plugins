@@ -14,7 +14,6 @@
 
 package com.liferay.wsrp.portlet;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -22,7 +21,6 @@ import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
@@ -30,7 +28,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Address;
 import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.ListType;
@@ -162,7 +159,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	public void processEvent(
 			EventRequest eventRequest, EventResponse eventResponse)
-		throws PortletException, IOException {
+		throws IOException, PortletException {
 
 		try {
 			doProcessEvent(eventRequest, eventResponse);
@@ -352,66 +349,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		PortletResponseUtil.write(renderResponse, content);
 	}
 
-	protected Contact getContact(
-		Address address, Phone phone, Phone faxPhone, String emailAddress,
-		Website website) {
-
-		Contact contact = new Contact();
-
-		String street = null;
-
-		if (address != null) {
-			Postal postal = new Postal();
-
-			street = GetterUtil.getString(address.getStreet1()) +
-				GetterUtil.getString(address.getStreet2()) +
-				GetterUtil.getString(address.getStreet3());
-
-			postal.setName(address.getUserName());
-			postal.setStreet(street);
-			postal.setCity(address.getCity());
-			postal.setCountry(address.getCountry().getName());
-			postal.setPostalcode(address.getZip());
-			postal.setStateprov(address.getRegion().getName());
-
-			contact.setPostal(postal);
-		}
-
-		Telecom telecom = new Telecom();
-
-		if (phone != null) {
-			TelephoneNum telephone = new TelephoneNum();
-
-			telephone.setExt(phone.getExtension());
-			telephone.setNumber(phone.getNumber());
-
-			telecom.setTelephone(telephone);
-		}
-
-		if (faxPhone != null) {
-			TelephoneNum faxTelephone = new TelephoneNum();
-
-			faxTelephone.setExt(faxPhone.getExtension());
-			faxTelephone.setNumber(faxPhone.getNumber());
-
-			telecom.setFax(faxTelephone);
-		}
-
-		contact.setTelecom(telecom);
-
-		Online online = new Online();
-
-		online.setEmail(emailAddress);
-
-		if (website != null) {
-			online.setUri(website.getUrl());
-		}
-
-		contact.setOnline(online);
-
-		return contact;
-	}
-
 	protected void doServeResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -432,6 +369,45 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 		else if (Validator.isNotNull(resourceID)) {
 			getResource(resourceRequest, resourceResponse);
+		}
+	}
+
+	protected Calendar getBdate(User user) throws Exception {
+		Calendar birthday = Calendar.getInstance();
+
+		birthday.setTime(user.getBirthday());
+
+		return birthday;
+	}
+
+	protected Contact getContact(User user, String listTypeName)
+		throws Exception {
+
+		Contact contact = new Contact();
+
+		Postal postal = getPostal(user, listTypeName);
+
+		if (postal != null) {
+			contact.setPostal(postal);
+		}
+
+		Online online = getOnline(user, listTypeName);
+
+		contact.setOnline(online);
+
+		Telecom telecom = getTelecom(user, listTypeName);
+
+		contact.setTelecom(telecom);
+
+		return contact;
+	}
+
+	protected String getGender(User user) throws Exception {
+		if (user.isMale()) {
+			return "M";
+		}
+		else {
+			return "F";
 		}
 	}
 
@@ -571,8 +547,137 @@ public class ConsumerPortlet extends GenericPortlet {
 		return markupServiceTransientValue.getValue();
 	}
 
+	protected Online getOnline(User user, String listTypeName)
+		throws Exception {
+
+		Online online = new Online();
+
+		String email = getOnlineEmail(user, "E-mail");
+
+		if (email != null) {
+			online.setEmail(email);
+		}
+
+		String uri = getOnlineUri(user, listTypeName);
+
+		if (uri != null) {
+			online.setUri(uri);
+		}
+
+		return online;
+	}
+
+	protected String getOnlineEmail(User user, String listTypeName)
+		throws Exception {
+
+		List<EmailAddress> emailAddresses =
+			EmailAddressLocalServiceUtil.getEmailAddresses(
+				user.getCompanyId(),
+				com.liferay.portal.model.Contact.class.getName(),
+				user.getContactId());
+
+		for (EmailAddress emailAddress : emailAddresses) {
+			ListType listType = emailAddress.getType();
+
+			if (!listTypeName.equals(listType.getName())) {
+				continue;
+			}
+
+			return emailAddress.getAddress();
+		}
+
+		return user.getEmailAddress();
+	}
+
+	protected String getOnlineUri(User user, String listTypeName)
+		throws Exception {
+
+		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
+			user.getCompanyId(),
+			com.liferay.portal.model.Contact.class.getName(),
+			user.getContactId());
+
+		for (Website website : websites) {
+			ListType listType = website.getType();
+
+			if (!listTypeName.equals(listType.getName())) {
+				continue;
+			}
+
+			return website.getUrl();
+		}
+
+		return null;
+	}
+
+	protected PersonName getPersonName(User user) throws Exception {
+		PersonName personName = new PersonName();
+
+		personName.setFamily(user.getLastName());
+		personName.setGiven(user.getFirstName());
+		personName.setMiddle(user.getMiddleName());
+		personName.setNickname(user.getScreenName());
+
+		com.liferay.portal.model.Contact contact = user.getContact();
+
+		try {
+			ListType listType = ListTypeServiceUtil.getListType(
+				contact.getPrefixId());
+
+			personName.setPrefix(listType.getName());
+		}
+		catch (Exception e) {
+		}
+
+		try {
+			ListType listType = ListTypeServiceUtil.getListType(
+				contact.getSuffixId());
+
+			personName.setSuffix(listType.getName());
+		}
+		catch (Exception e) {
+		}
+
+		return personName;
+	}
+
 	protected PortletMode getPortletMode(String portletMode) {
 		return new PortletMode(portletMode.substring(5));
+	}
+
+	protected Postal getPostal(User user, String listTypeName)
+		throws Exception {
+
+		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
+			user.getCompanyId(),
+			com.liferay.portal.model.Contact.class.getName(),
+			user.getContactId());
+
+		for (Address address : addresses) {
+			ListType listType = address.getType();
+
+			if (!listTypeName.equals(listType.getName())) {
+				continue;
+			}
+
+			Postal postal = new Postal();
+
+			postal.setCity(address.getCity());
+			postal.setCountry(address.getCountry().getName());
+			postal.setName(address.getUserName());
+			postal.setPostalcode(address.getZip());
+			postal.setStateprov(address.getRegion().getName());
+
+			String street =
+				address.getStreet1() + address.getStreet2() +
+					address.getStreet3();
+
+			postal.setStreet(street);
+
+			return postal;
+		}
+
+		return null;
 	}
 
 	protected void getResource(
@@ -645,6 +750,79 @@ public class ConsumerPortlet extends GenericPortlet {
 			wsrpConsumer.getWsrpConsumerId();
 	}
 
+	protected Telecom getTelecom(User user, String listTypeName)
+		throws Exception {
+
+		Telecom telecom = new Telecom();
+
+		TelephoneNum faxTelephoneNum = getTelephoneNum(
+			user, listTypeName + " Fax");
+
+		if (faxTelephoneNum != null) {
+			telecom.setFax(faxTelephoneNum);
+		}
+
+		TelephoneNum phoneTelephoneNum = getTelephoneNum(user, listTypeName);
+
+		if (phoneTelephoneNum != null) {
+			telecom.setTelephone(phoneTelephoneNum);
+		}
+
+		return telecom;
+	}
+
+	protected TelephoneNum getTelephoneNum(User user, String listTypeName)
+		throws Exception {
+
+		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
+			user.getCompanyId(),
+			com.liferay.portal.model.Contact.class.getName(),
+			user.getContactId());
+
+		for (Phone phone : phones) {
+			ListType listType = phone.getType();
+
+			if (!listTypeName.equals(listType.getName())) {
+				continue;
+			}
+
+			TelephoneNum telephoneNum = new TelephoneNum();
+
+			telephoneNum.setExt(phone.getExtension());
+			telephoneNum.setNumber(phone.getNumber());
+
+			return telephoneNum;
+		}
+
+		return null;
+	}
+
+	protected UserProfile getUserProfile(User user) throws Exception {
+		UserProfile userProfile = new UserProfile();
+
+		Calendar bdate = getBdate(user);
+
+		userProfile.setBdate(bdate);
+
+		Contact businessInfoContact = getContact(user, "Business");
+
+		userProfile.setBusinessInfo(businessInfoContact);
+
+		String gender = getGender(user);
+
+		userProfile.setGender(gender);
+
+		Contact homeInfoContact = getContact(user, "Personal");
+
+		userProfile.setHomeInfo(homeInfoContact);
+
+		PersonName personName = getPersonName(user);
+
+		userProfile.setName(personName);
+
+		return userProfile;
+	}
+
 	protected WindowState getWindowState(String windowState) {
 		return new WindowState(windowState.substring(5));
 	}
@@ -655,12 +833,11 @@ public class ConsumerPortlet extends GenericPortlet {
 		int pos = portletName.indexOf(
 			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
 
-		String safeUUID = portletName.substring(pos + 1);
-
-		String uuid = PortalUUIDUtil.fromSafeUuid(safeUUID);
+		String wsrpConsumerPortletUuid = portletName.substring(pos + 1);
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
-			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(uuid);
+			WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
+				wsrpConsumerPortletUuid);
 
 		return wsrpConsumerPortlet;
 	}
@@ -920,158 +1097,11 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		// User context
 
-		userContext.setUserContextKey(String.valueOf(user.getUserId()));
-
-		UserProfile userProfile = new UserProfile();
-
-		Calendar birthday = Calendar.getInstance();
-
-		birthday.setTime(user.getBirthday());
-
-		userProfile.setBdate(birthday);
-
-		if (user.getMale()) {
-			userProfile.setGender("M");
-		}
-		else {
-			userProfile.setGender("F");
-		}
-
-		PersonName personName = new PersonName();
-
-		personName.setFamily(user.getLastName());
-		personName.setGiven(user.getFirstName());
-		personName.setMiddle(user.getMiddleName());
-		personName.setNickname(user.getScreenName());
-
-		com.liferay.portal.model.Contact liferayContact = user.getContact();
-
-		ListType listType = null;
-
-		try {
-			listType = ListTypeServiceUtil.getListType(
-				liferayContact.getPrefixId());
-		}
-		catch (PortalException e) {
-		}
-
-		if (listType != null) {
-			personName.setPrefix(listType.getName());
-		}
-
-		try {
-			listType = ListTypeServiceUtil.getListType(
-				liferayContact.getSuffixId());
-		}
-		catch (PortalException e) {
-		}
-
-		if (listType != null) {
-			personName.setSuffix(listType.getName());
-		}
-
-		userProfile.setName(personName);
-
-		long companyId = liferayContact.getCompanyId();
-		String className =
-			com.liferay.portal.model.Contact.class.getName();
-		long classPK = liferayContact.getContactId();
-
-		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
-			companyId, className, classPK);
-
-		Address businessAddress = null;
-		Address homeAddress = null;
-
-		for (Address address : addresses) {
-			listType = address.getType();
-
-			String listTypeName = listType.getName();
-
-			if (listTypeName.equals("Business")) {
-				businessAddress = address;
-			}
-			else if (listTypeName.equals("Personal")){
-				homeAddress = address;
-			}
-		}
-
-		List<EmailAddress> emailAddresses =
-			EmailAddressLocalServiceUtil.getEmailAddresses(
-				companyId, className, classPK);
-
-		String businessEmailAddress = user.getEmailAddress();
-		String homeEmailAddress = user.getEmailAddress();
-
-		for (EmailAddress emailAddress : emailAddresses) {
-			listType = emailAddress.getType();
-
-			String listTypeName = listType.getName();
-
-			if (listTypeName.equals("E-mail")) {
-				homeEmailAddress = emailAddress.getAddress();
-			}
-		}
-
-		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
-			companyId, className, classPK);
-
-		Phone businessPhone = null;
-		Phone businessFax= null;
-		Phone homePhone = null;
-		Phone homeFax= null;
-
-		for (Phone phone : phones) {
-			listType = phone.getType();
-
-			String listTypeName = listType.getName();
-
-			if (listTypeName.equals("Business")) {
-				businessPhone = phone;
-			}
-			else if (listTypeName.equals("Business Fax")){
-				businessFax = phone;
-			}
-			else if (listTypeName.equals("Personal")){
-				homePhone = phone;
-			}
-			else if (listTypeName.equals("Personal Fax")){
-				homeFax = phone;
-			}
-
-		}
-
-		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
-			companyId, className, classPK);
-
-		Website businessWebsite = null;
-		Website homeWebsite = null;
-
-		for (Website website : websites) {
-			listType = website.getType();
-
-			String listTypeName = listType.getName();
-
-			if (listTypeName.equals("Business")) {
-				businessWebsite = website;
-			}
-			else if (listTypeName.equals("Personal")){
-				homeWebsite = website;
-			}
-		}
-
-		Contact contact = getContact(
-			businessAddress, businessPhone, businessFax, businessEmailAddress,
-			businessWebsite);
-
-		userProfile.setBusinessInfo(contact);
-
-		contact = getContact(
-			homeAddress, homePhone, homeFax, homeEmailAddress, homeWebsite);
-
-		userProfile.setHomeInfo(contact);
+		UserProfile userProfile = getUserProfile(user);
 
 		userContext.setProfile(userProfile);
+
+		userContext.setUserContextKey(String.valueOf(user.getUserId()));
 	}
 
 	protected void initContexts(
