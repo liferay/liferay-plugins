@@ -351,6 +351,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setUuid(wsrpProducer.getUuid());
 
 		WSRPProducerLocalServiceUtil.addWSRPProducer(
