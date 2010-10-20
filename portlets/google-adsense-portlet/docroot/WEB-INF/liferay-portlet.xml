@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.googleadsense.action.ConfigurationActionImpl</configuration-action-class>
 		<instanceable>true</instanceable>
+		<ajaxable>false</ajaxable>
 		<css-class-wrapper>google-adsense-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
