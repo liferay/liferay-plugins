@@ -58,13 +58,14 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public static final String TABLE_NAME = "Twitter_Feed";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "feedId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
 			{ "twitterUserId", new Integer(Types.BIGINT) },
 			{ "twitterScreenName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
 			{ "lastStatusId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,twitterUserId LONG,twitterScreenName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,lastStatusId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,twitterUserId LONG,twitterScreenName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,lastStatusId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Twitter_Feed";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -99,6 +100,24 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	public void setFeedId(long feedId) {
 		_feedId = feedId;
+	}
+
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = companyId;
+		}
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public long getTwitterUserId() {
@@ -185,7 +204,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	public ExpandoBridge getExpandoBridge() {
 		if (_expandoBridge == null) {
-			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(0,
+			_expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
 					Feed.class.getName(), getPrimaryKey());
 		}
 
@@ -200,6 +219,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		FeedImpl clone = new FeedImpl();
 
 		clone.setFeedId(getFeedId());
+		clone.setCompanyId(getCompanyId());
 		clone.setTwitterUserId(getTwitterUserId());
 		clone.setTwitterScreenName(getTwitterScreenName());
 		clone.setCreateDate(getCreateDate());
@@ -252,10 +272,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", twitterUserId=");
 		sb.append(getTwitterUserId());
 		sb.append(", twitterScreenName=");
@@ -272,7 +294,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.twitter.model.Feed");
@@ -281,6 +303,10 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		sb.append(
 			"<column><column-name>feedId</column-name><column-value><![CDATA[");
 		sb.append(getFeedId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
@@ -309,6 +335,9 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	private long _feedId;
+	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private long _twitterUserId;
 	private String _twitterUserUuid;
 	private long _originalTwitterUserId;

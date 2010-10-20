@@ -72,18 +72,22 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	public static final String FINDER_CLASS_NAME_ENTITY = FeedImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";
-	public static final FinderPath FINDER_PATH_FETCH_BY_TWITTERUSERID = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByTwitterUserId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_TWITTERUSERID = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			"fetchByC_TWUI",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_TWUI = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByTwitterUserId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_TWITTERSCREENNAME = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			"countByC_TWUI",
+			new String[] { Long.class.getName(), Long.class.getName() });
+	public static final FinderPath FINDER_PATH_FETCH_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByTwitterScreenName", new String[] { String.class.getName() });
-	public static final FinderPath FINDER_PATH_COUNT_BY_TWITTERSCREENNAME = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
+			"fetchByC_TSN",
+			new String[] { Long.class.getName(), String.class.getName() });
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_TSN = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByTwitterScreenName", new String[] { String.class.getName() });
+			"countByC_TSN",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findAll", new String[0]);
@@ -100,11 +104,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		EntityCacheUtil.putResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
-			new Object[] { new Long(feed.getTwitterUserId()) }, feed);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
+			new Object[] {
+				new Long(feed.getCompanyId()), new Long(feed.getTwitterUserId())
+			}, feed);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
-			new Object[] { feed.getTwitterScreenName() }, feed);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
+			new Object[] {
+				new Long(feed.getCompanyId()),
+				
+			feed.getTwitterScreenName()
+			}, feed);
 	}
 
 	/**
@@ -146,11 +156,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
-			new Object[] { new Long(feed.getTwitterUserId()) });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
+			new Object[] {
+				new Long(feed.getCompanyId()), new Long(feed.getTwitterUserId())
+			});
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
-			new Object[] { feed.getTwitterScreenName() });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
+			new Object[] {
+				new Long(feed.getCompanyId()),
+				
+			feed.getTwitterScreenName()
+			});
 	}
 
 	/**
@@ -240,11 +256,18 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FeedModelImpl feedModelImpl = (FeedModelImpl)feed;
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
-			new Object[] { new Long(feedModelImpl.getOriginalTwitterUserId()) });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
+			new Object[] {
+				new Long(feedModelImpl.getOriginalCompanyId()),
+				new Long(feedModelImpl.getOriginalTwitterUserId())
+			});
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
-			new Object[] { feedModelImpl.getOriginalTwitterScreenName() });
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
+			new Object[] {
+				new Long(feedModelImpl.getOriginalCompanyId()),
+				
+			feedModelImpl.getOriginalTwitterScreenName()
+			});
 
 		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,
 			FeedImpl.class, feed.getPrimaryKey());
@@ -282,29 +305,47 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			FeedImpl.class, feed.getPrimaryKey(), feed);
 
 		if (!isNew &&
-				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId())) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
-				new Object[] { new Long(feedModelImpl.getOriginalTwitterUserId()) });
+				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
+				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
+				new Object[] {
+					new Long(feedModelImpl.getOriginalCompanyId()),
+					new Long(feedModelImpl.getOriginalTwitterUserId())
+				});
 		}
 
 		if (isNew ||
-				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId())) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
-				new Object[] { new Long(feed.getTwitterUserId()) }, feed);
+				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
+				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
+				new Object[] {
+					new Long(feed.getCompanyId()),
+					new Long(feed.getTwitterUserId())
+				}, feed);
 		}
 
 		if (!isNew &&
-				(!Validator.equals(feed.getTwitterScreenName(),
+				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
+				!Validator.equals(feed.getTwitterScreenName(),
 					feedModelImpl.getOriginalTwitterScreenName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
-				new Object[] { feedModelImpl.getOriginalTwitterScreenName() });
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
+				new Object[] {
+					new Long(feedModelImpl.getOriginalCompanyId()),
+					
+				feedModelImpl.getOriginalTwitterScreenName()
+				});
 		}
 
 		if (isNew ||
-				(!Validator.equals(feed.getTwitterScreenName(),
+				((feed.getCompanyId() != feedModelImpl.getOriginalCompanyId()) ||
+				!Validator.equals(feed.getTwitterScreenName(),
 					feedModelImpl.getOriginalTwitterScreenName()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
-				new Object[] { feed.getTwitterScreenName() }, feed);
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
+				new Object[] {
+					new Long(feed.getCompanyId()),
+					
+				feed.getTwitterScreenName()
+				}, feed);
 		}
 
 		return feed;
@@ -321,6 +362,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		feedImpl.setPrimaryKey(feed.getPrimaryKey());
 
 		feedImpl.setFeedId(feed.getFeedId());
+		feedImpl.setCompanyId(feed.getCompanyId());
 		feedImpl.setTwitterUserId(feed.getTwitterUserId());
 		feedImpl.setTwitterScreenName(feed.getTwitterScreenName());
 		feedImpl.setCreateDate(feed.getCreateDate());
@@ -414,23 +456,27 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Finds the feed where twitterUserId = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
+	 * Finds the feed where companyId = &#63; and twitterUserId = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterUserId the twitter user id to search with
 	 * @return the matching feed
 	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Feed findByTwitterUserId(long twitterUserId)
+	public Feed findByC_TWUI(long companyId, long twitterUserId)
 		throws NoSuchFeedException, SystemException {
-		Feed feed = fetchByTwitterUserId(twitterUserId);
+		Feed feed = fetchByC_TWUI(companyId, twitterUserId);
 
 		if (feed == null) {
-			StringBundler msg = new StringBundler(4);
+			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("twitterUserId=");
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", twitterUserId=");
 			msg.append(twitterUserId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
@@ -446,41 +492,45 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Finds the feed where twitterUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Finds the feed where companyId = &#63; and twitterUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterUserId the twitter user id to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Feed fetchByTwitterUserId(long twitterUserId)
+	public Feed fetchByC_TWUI(long companyId, long twitterUserId)
 		throws SystemException {
-		return fetchByTwitterUserId(twitterUserId, true);
+		return fetchByC_TWUI(companyId, twitterUserId, true);
 	}
 
 	/**
-	 * Finds the feed where twitterUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Finds the feed where companyId = &#63; and twitterUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterUserId the twitter user id to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Feed fetchByTwitterUserId(long twitterUserId,
+	public Feed fetchByC_TWUI(long companyId, long twitterUserId,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { twitterUserId };
+		Object[] finderArgs = new Object[] { companyId, twitterUserId };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_TWUI,
 					finderArgs, this);
 		}
 
 		if (result == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_SELECT_FEED_WHERE);
 
-			query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
+			query.append(_FINDER_COLUMN_C_TWUI_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_TWUI_TWITTERUSERID_2);
 
 			String sql = query.toString();
 
@@ -493,6 +543,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
+				qPos.add(companyId);
+
 				qPos.add(twitterUserId);
 
 				List<Feed> list = q.list();
@@ -502,7 +554,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				Feed feed = null;
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
 						finderArgs, list);
 				}
 				else {
@@ -510,8 +562,9 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 					cacheResult(feed);
 
-					if ((feed.getTwitterUserId() != twitterUserId)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+					if ((feed.getCompanyId() != companyId) ||
+							(feed.getTwitterUserId() != twitterUserId)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
 							finderArgs, feed);
 					}
 				}
@@ -523,7 +576,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERUSERID,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
 						finderArgs, new ArrayList<Feed>());
 				}
 
@@ -541,23 +594,27 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Finds the feed where twitterScreenName = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
+	 * Finds the feed where companyId = &#63; and twitterScreenName = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the matching feed
 	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Feed findByTwitterScreenName(String twitterScreenName)
+	public Feed findByC_TSN(long companyId, String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
-		Feed feed = fetchByTwitterScreenName(twitterScreenName);
+		Feed feed = fetchByC_TSN(companyId, twitterScreenName);
 
 		if (feed == null) {
-			StringBundler msg = new StringBundler(4);
+			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("twitterScreenName=");
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", twitterScreenName=");
 			msg.append(twitterScreenName);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
@@ -573,49 +630,53 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Finds the feed where twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Finds the feed where companyId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Feed fetchByTwitterScreenName(String twitterScreenName)
+	public Feed fetchByC_TSN(long companyId, String twitterScreenName)
 		throws SystemException {
-		return fetchByTwitterScreenName(twitterScreenName, true);
+		return fetchByC_TSN(companyId, twitterScreenName, true);
 	}
 
 	/**
-	 * Finds the feed where twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Finds the feed where companyId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Feed fetchByTwitterScreenName(String twitterScreenName,
+	public Feed fetchByC_TSN(long companyId, String twitterScreenName,
 		boolean retrieveFromCache) throws SystemException {
-		Object[] finderArgs = new Object[] { twitterScreenName };
+		Object[] finderArgs = new Object[] { companyId, twitterScreenName };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_TSN,
 					finderArgs, this);
 		}
 
 		if (result == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_SELECT_FEED_WHERE);
 
+			query.append(_FINDER_COLUMN_C_TSN_COMPANYID_2);
+
 			if (twitterScreenName == null) {
-				query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
+				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_1);
 			}
 			else {
 				if (twitterScreenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
+					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
+					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2);
 				}
 			}
 
@@ -630,6 +691,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
+				qPos.add(companyId);
+
 				if (twitterScreenName != null) {
 					qPos.add(twitterScreenName);
 				}
@@ -641,7 +704,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				Feed feed = null;
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
 						finderArgs, list);
 				}
 				else {
@@ -649,10 +712,11 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 					cacheResult(feed);
 
-					if ((feed.getTwitterScreenName() == null) ||
+					if ((feed.getCompanyId() != companyId) ||
+							(feed.getTwitterScreenName() == null) ||
 							!feed.getTwitterScreenName()
 									 .equals(twitterScreenName)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
 							finderArgs, feed);
 					}
 				}
@@ -664,7 +728,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TWITTERSCREENNAME,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
 						finderArgs, new ArrayList<Feed>());
 				}
 
@@ -787,27 +851,29 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Removes the feed where twitterUserId = &#63; from the database.
+	 * Removes the feed where companyId = &#63; and twitterUserId = &#63; from the database.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterUserId the twitter user id to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByTwitterUserId(long twitterUserId)
+	public void removeByC_TWUI(long companyId, long twitterUserId)
 		throws NoSuchFeedException, SystemException {
-		Feed feed = findByTwitterUserId(twitterUserId);
+		Feed feed = findByC_TWUI(companyId, twitterUserId);
 
 		remove(feed);
 	}
 
 	/**
-	 * Removes the feed where twitterScreenName = &#63; from the database.
+	 * Removes the feed where companyId = &#63; and twitterScreenName = &#63; from the database.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByTwitterScreenName(String twitterScreenName)
+	public void removeByC_TSN(long companyId, String twitterScreenName)
 		throws NoSuchFeedException, SystemException {
-		Feed feed = findByTwitterScreenName(twitterScreenName);
+		Feed feed = findByC_TSN(companyId, twitterScreenName);
 
 		remove(feed);
 	}
@@ -824,25 +890,28 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Counts all the feeds where twitterUserId = &#63;.
+	 * Counts all the feeds where companyId = &#63; and twitterUserId = &#63;.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterUserId the twitter user id to search with
 	 * @return the number of matching feeds
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByTwitterUserId(long twitterUserId)
+	public int countByC_TWUI(long companyId, long twitterUserId)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { twitterUserId };
+		Object[] finderArgs = new Object[] { companyId, twitterUserId };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TWITTERUSERID,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_TWUI,
 				finderArgs, this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_COUNT_FEED_WHERE);
 
-			query.append(_FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2);
+			query.append(_FINDER_COLUMN_C_TWUI_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_TWUI_TWITTERUSERID_2);
 
 			String sql = query.toString();
 
@@ -854,6 +923,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
 
 				qPos.add(twitterUserId);
 
@@ -867,7 +938,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TWITTERUSERID,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TWUI,
 					finderArgs, count);
 
 				closeSession(session);
@@ -878,33 +949,36 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	}
 
 	/**
-	 * Counts all the feeds where twitterScreenName = &#63;.
+	 * Counts all the feeds where companyId = &#63; and twitterScreenName = &#63;.
 	 *
+	 * @param companyId the company id to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the number of matching feeds
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByTwitterScreenName(String twitterScreenName)
+	public int countByC_TSN(long companyId, String twitterScreenName)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { twitterScreenName };
+		Object[] finderArgs = new Object[] { companyId, twitterScreenName };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TWITTERSCREENNAME,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_TSN,
 				finderArgs, this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_COUNT_FEED_WHERE);
 
+			query.append(_FINDER_COLUMN_C_TSN_COMPANYID_2);
+
 			if (twitterScreenName == null) {
-				query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1);
+				query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_1);
 			}
 			else {
 				if (twitterScreenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3);
+					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2);
+					query.append(_FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2);
 				}
 			}
 
@@ -918,6 +992,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
 
 				if (twitterScreenName != null) {
 					qPos.add(twitterScreenName);
@@ -933,7 +1009,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TWITTERSCREENNAME,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_TSN,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1024,13 +1100,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	private static final String _SQL_SELECT_FEED_WHERE = "SELECT feed FROM Feed feed WHERE ";
 	private static final String _SQL_COUNT_FEED = "SELECT COUNT(feed) FROM Feed feed";
 	private static final String _SQL_COUNT_FEED_WHERE = "SELECT COUNT(feed) FROM Feed feed WHERE ";
-	private static final String _FINDER_COLUMN_TWITTERUSERID_TWITTERUSERID_2 = "feed.twitterUserId = ?";
-	private static final String _FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_1 =
-		"feed.twitterScreenName IS NULL";
-	private static final String _FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_2 =
-		"feed.twitterScreenName = ?";
-	private static final String _FINDER_COLUMN_TWITTERSCREENNAME_TWITTERSCREENNAME_3 =
-		"(feed.twitterScreenName IS NULL OR feed.twitterScreenName = ?)";
+	private static final String _FINDER_COLUMN_C_TWUI_COMPANYID_2 = "feed.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_TWUI_TWITTERUSERID_2 = "feed.twitterUserId = ?";
+	private static final String _FINDER_COLUMN_C_TSN_COMPANYID_2 = "feed.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_1 = "feed.twitterScreenName IS NULL";
+	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_2 = "feed.twitterScreenName = ?";
+	private static final String _FINDER_COLUMN_C_TSN_TWITTERSCREENNAME_3 = "(feed.twitterScreenName IS NULL OR feed.twitterScreenName = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "feed.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Feed exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Feed exists with the key {";

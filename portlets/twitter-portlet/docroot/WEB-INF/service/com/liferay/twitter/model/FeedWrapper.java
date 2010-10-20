@@ -65,6 +65,24 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
+	* Gets the company id of this feed.
+	*
+	* @return the company id of this feed
+	*/
+	public long getCompanyId() {
+		return _feed.getCompanyId();
+	}
+
+	/**
+	* Sets the company id of this feed.
+	*
+	* @param companyId the company id of this feed
+	*/
+	public void setCompanyId(long companyId) {
+		_feed.setCompanyId(companyId);
+	}
+
+	/**
 	* Gets the twitter user id of this feed.
 	*
 	* @return the twitter user id of this feed

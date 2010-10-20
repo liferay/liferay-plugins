@@ -3,6 +3,7 @@
 <model-hints>
 	<model name="com.liferay.twitter.model.Feed">
 		<field name="feedId" type="long" />
+		<field name="companyId" type="long" />
 		<field name="twitterUserId" type="long" />
 		<field name="twitterScreenName" type="String" />
 		<field name="createDate" type="Date" />

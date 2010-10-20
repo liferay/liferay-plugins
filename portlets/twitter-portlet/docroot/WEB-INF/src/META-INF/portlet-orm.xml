@@ -10,6 +10,7 @@
 	<mapped-superclass class="com.liferay.twitter.model.impl.FeedModelImpl">
 		<attributes>
 			<id name="feedId" />
+			<basic name="companyId" />
 			<basic name="twitterUserId" />
 			<basic name="twitterScreenName" />
 			<basic name="createDate">

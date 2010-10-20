@@ -114,6 +114,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	protected void updateFeed(User user)
 		throws PortalException, SystemException {
 
+		long companyId = user.getCompanyId();
 		String twitterScreenName = user.getContact().getTwitterSn();
 		Date now = new Date();
 
@@ -121,7 +122,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			throw new FeedTwitterScreenNameException();
 		}
 
-		Feed feed = feedPersistence.fetchByTwitterScreenName(twitterScreenName);
+		Feed feed = feedPersistence.fetchByC_TSN(companyId, twitterScreenName);
 
 		JSONArray jsonArray = null;
 

@@ -53,6 +53,14 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		_feedId = feedId;
 	}
 
+	public long getCompanyId() {
+		return _companyId;
+	}
+
+	public void setCompanyId(long companyId) {
+		_companyId = companyId;
+	}
+
 	public long getTwitterUserId() {
 		return _twitterUserId;
 	}
@@ -116,6 +124,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		FeedClp clone = new FeedClp();
 
 		clone.setFeedId(getFeedId());
+		clone.setCompanyId(getCompanyId());
 		clone.setTwitterUserId(getTwitterUserId());
 		clone.setTwitterScreenName(getTwitterScreenName());
 		clone.setCreateDate(getCreateDate());
@@ -168,10 +177,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
+		sb.append(", companyId=");
+		sb.append(getCompanyId());
 		sb.append(", twitterUserId=");
 		sb.append(getTwitterUserId());
 		sb.append(", twitterScreenName=");
@@ -188,7 +199,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.twitter.model.Feed");
@@ -197,6 +208,10 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		sb.append(
 			"<column><column-name>feedId</column-name><column-value><![CDATA[");
 		sb.append(getFeedId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>companyId</column-name><column-value><![CDATA[");
+		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
@@ -225,6 +240,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	private long _feedId;
+	private long _companyId;
 	private long _twitterUserId;
 	private String _twitterUserUuid;
 	private String _twitterScreenName;
