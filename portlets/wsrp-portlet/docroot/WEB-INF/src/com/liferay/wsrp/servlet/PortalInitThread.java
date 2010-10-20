@@ -67,7 +67,7 @@ public class PortalInitThread extends Thread {
 				WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
 			}
 			catch (Exception e) {
-				_log.error("Unable to initializing WSRP consumer portlets", e);
+				_log.error("Unable to initialize WSRP consumer portlets", e);
 			}
 
 			portlets = portletApp.getPortlets();
