@@ -1577,25 +1577,6 @@ table.calendar {
 
 /* TMS: Tasks */
 
-.tms-portlet-tasks .control-wrapper {
-	margin: 0;
-	position: relative;
-}
-
-.ie6 .tms-portlet-tasks .control-wrapper {
-	height: 22px;
-	margin-bottom: 1em;
-}
-
-.tms-portlet-tasks .control-wrapper .add-task {
-	display: block;
-	font-size: 11px;
-	padding: 0 16px 0 0;
-	position: absolute;
-	right: 5px;
-	top: 9px;
-}
-
 .tms-portlet-tasks .progress {
 	background-color: #FFD8B2;
 }
