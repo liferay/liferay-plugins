@@ -582,6 +582,28 @@ Please find a solution that does not require portal-impl.jar.
 		<unzip dest="tmp" src="${original.war.file}" />
 	</target>
 
+	<target name="shrink-zip-cmd">
+		<tstamp>
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
+		</tstamp>
+
+		<unzip
+			dest="${tstamp.value}"
+			src="${zip.file.name}"
+		>
+			<patternset
+				includes="${zip.includes}"
+			/>
+		</unzip>
+
+		<zip
+			basedir="${tstamp.value}"
+			destfile="${zip.file.name}"
+		/>
+
+		<delete dir="${tstamp.value}" />
+	</target>
+
 	<target name="test">
 		<delete dir="test-classes" />
 		<delete dir="test-results" />

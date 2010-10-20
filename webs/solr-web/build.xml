@@ -18,24 +18,9 @@
 	</target>
 
 	<target name="shrink-zip">
-		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-		</tstamp>
-
-		<unzip
-			dest="${tstamp.value}"
-			src="${original.war.file}"
-		>
-			<patternset
-				includes="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar"
-			/>
-		</unzip>
-
-		<zip
-			basedir="${tstamp.value}"
-			destfile="${original.war.file}"
-		/>
-
-		<delete dir="${tstamp.value}" />
+		<antcall target="shrink-zip-cmd">
+			<param name="zip.file.name" value="${original.war.file}" />
+			<param name="zip.includes" value="apache-solr-1.4.1/dist/apache-solr-core-*.jar,apache-solr-1.4.1/dist/apache-solr-solrj-*.jar" />
+		</antcall>
 	</target>
 </project>
