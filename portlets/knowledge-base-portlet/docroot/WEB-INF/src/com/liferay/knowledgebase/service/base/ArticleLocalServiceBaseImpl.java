@@ -17,7 +17,6 @@ package com.liferay.knowledgebase.service.base;
 import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.documentlibrary.service.DLLocalService;
-import com.liferay.documentlibrary.service.DLService;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalService;
@@ -461,24 +460,6 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 	 */
 	public void setDLLocalService(DLLocalService dlLocalService) {
 		this.dlLocalService = dlLocalService;
-	}
-
-	/**
-	 * Gets the d l remote service.
-	 *
-	 * @return the d l remote service
-	 */
-	public DLService getDLService() {
-		return dlService;
-	}
-
-	/**
-	 * Sets the d l remote service.
-	 *
-	 * @param dlService the d l remote service
-	 */
-	public void setDLService(DLService dlService) {
-		this.dlService = dlService;
 	}
 
 	/**
@@ -1074,8 +1055,6 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = DLLocalService.class)
 	protected DLLocalService dlLocalService;
-	@BeanReference(type = DLService.class)
-	protected DLService dlService;
 	@BeanReference(type = CompanyLocalService.class)
 	protected CompanyLocalService companyLocalService;
 	@BeanReference(type = CompanyService.class)
