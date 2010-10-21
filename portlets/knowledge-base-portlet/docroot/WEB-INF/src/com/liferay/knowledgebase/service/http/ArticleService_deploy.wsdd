@@ -78,6 +78,7 @@
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="portletId" type="tns:string"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="subscribeArticle" qname="operNS:subscribeArticle" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="portletId" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 		</operation>
@@ -88,6 +89,7 @@
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" name="unsubscribeArticle" qname="operNS:unsubscribeArticle" soapAction="">
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="companyId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="portletId" type="tns:string"></parameter>
 			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="resourcePrimKey" type="tns:long"></parameter>
 		</operation>
 		<operation xmlns:operNS="urn:http.service.knowledgebase.liferay.com" xmlns:rtns="http://model.knowledgebase.liferay.com" name="updateArticle" qname="operNS:updateArticle" returnQName="updateArticleReturn" returnType="rtns:ArticleSoap" soapAction="">
