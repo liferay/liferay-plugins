@@ -25,7 +25,7 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 
 String dirName = ParamUtil.getString(request, "dirName");
 
-String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+String[] fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 %>
 
 <liferay-ui:header
@@ -79,7 +79,7 @@ String[] fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyC
 					<liferay-ui:icon
 						image="clip"
 						label="<%= true %>"
-						message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
+						message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
 						method="get"
 						url="<%= rowURL %>"
 					/>

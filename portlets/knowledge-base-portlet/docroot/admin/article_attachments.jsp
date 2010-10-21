@@ -28,7 +28,7 @@ if (article != null) {
 }
 
 if (Validator.isNotNull(dirName)) {
-	fileNames = DLServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+	fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 }
 %>
 
@@ -48,7 +48,7 @@ if (Validator.isNotNull(dirName)) {
 				<liferay-ui:icon
 					image="clip"
 					label="<%= true %>"
-					message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
+					message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
 					method="get"
 					url="<%= clipURL %>"
 				/>

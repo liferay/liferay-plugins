@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.admin.messaging;
 
-import com.liferay.documentlibrary.service.DLServiceUtil;
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
@@ -151,7 +151,7 @@ public class AdminMessageListener implements MessageListener {
 		StringBundler sb = new StringBundler(fileNames.length * 5);
 
 		for (String fileName : fileNames) {
-			long kb = DLServiceUtil.getFileSize(
+			long kb = DLLocalServiceUtil.getFileSize(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			sb.append(FileUtil.getShortFileName(fileName));

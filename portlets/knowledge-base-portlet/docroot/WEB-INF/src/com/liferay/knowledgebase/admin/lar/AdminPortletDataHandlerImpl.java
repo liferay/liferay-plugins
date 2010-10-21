@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.model.Comment;
@@ -498,7 +497,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				"knowledgebase/temp/import/" + importId + StringPool.SLASH +
 					resourcePrimKey;
 
-			DLServiceUtil.addDirectory(
+			DLLocalServiceUtil.addDirectory(
 				context.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 			List<Element> fileElements = articleAttachmentsElement.elements(
@@ -599,7 +598,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			if (context.getBooleanParameter(
 					_NAMESPACE_ARTICLE, "attachments")) {
 
-				DLServiceUtil.addDirectory(
+				DLLocalServiceUtil.addDirectory(
 					context.getCompanyId(), CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
 
@@ -628,7 +627,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			if (context.getBooleanParameter(
 					_NAMESPACE_ARTICLE, "attachments")) {
 
-				DLServiceUtil.deleteDirectory(
+				DLLocalServiceUtil.deleteDirectory(
 					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 					CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);

@@ -15,7 +15,7 @@
 package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.documentlibrary.NoSuchDirectoryException;
-import com.liferay.documentlibrary.service.DLServiceUtil;
+import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -42,7 +42,7 @@ public class ArticleImpl extends ArticleModelImpl implements Article {
 		throws PortalException, SystemException {
 
 		try {
-			return DLServiceUtil.getFileNames(
+			return DLLocalServiceUtil.getFileNames(
 				getCompanyId(), CompanyConstants.SYSTEM,
 				getAttachmentsDirName());
 		}

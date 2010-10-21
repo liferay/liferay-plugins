@@ -272,7 +272,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
-		dlService.deleteFile(
+		dlLocalService.deleteFile(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			fileName);
 	}
@@ -612,7 +612,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+		dlLocalService.addDirectory(
+			companyId, CompanyConstants.SYSTEM, dirName);
 
 		if (resourcePrimKey <= 0) {
 			return dirName;
@@ -788,7 +789,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			dlService.addDirectory(
+			dlLocalService.addDirectory(
 				article.getCompanyId(), CompanyConstants.SYSTEM,
 				article.getAttachmentsDirName());
 		}
@@ -800,7 +801,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		String[] fileNames = dlService.getFileNames(
+		String[] fileNames = dlLocalService.getFileNames(
 			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
@@ -893,21 +894,22 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String dirName =
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
-		dlService.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+		dlLocalService.addDirectory(
+			companyId, CompanyConstants.SYSTEM, dirName);
 
-		String[] fileNames = dlService.getFileNames(
+		String[] fileNames = dlLocalService.getFileNames(
 			companyId, CompanyConstants.SYSTEM,
 			"knowledgebase/temp/attachments");
 
 		Arrays.sort(fileNames);
 
 		for (int i = 0; i < fileNames.length - 50; i++) {
-			dlService.deleteDirectory(
+			dlLocalService.deleteDirectory(
 				companyId, CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM, fileNames[i]);
 		}
 
-		dlService.deleteDirectory(
+		dlLocalService.deleteDirectory(
 			companyId, CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 			dirName);
 	}
@@ -942,7 +944,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		try {
-			dlService.deleteDirectory(
+			dlLocalService.deleteDirectory(
 				article.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 				CompanyConstants.SYSTEM,
 				ArticleConstants.DIR_NAME_PREFIX + folderId);
