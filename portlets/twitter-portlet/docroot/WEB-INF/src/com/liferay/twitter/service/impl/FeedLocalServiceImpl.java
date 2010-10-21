@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
@@ -114,15 +115,18 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 	protected void updateFeed(User user)
 		throws PortalException, SystemException {
 
-		long companyId = user.getCompanyId();
-		String twitterScreenName = user.getContact().getTwitterSn();
-		Date now = new Date();
+		Contact contact = user.getContact();
+
+		String twitterScreenName = contact.getTwitterSn();
 
 		if (Validator.isNull(twitterScreenName)) {
 			throw new FeedTwitterScreenNameException();
 		}
 
-		Feed feed = feedPersistence.fetchByC_TSN(companyId, twitterScreenName);
+		Date now = new Date();
+
+		Feed feed = feedPersistence.fetchByC_TSN(
+			user.getCompanyId(), twitterScreenName);
 
 		JSONArray jsonArray = null;
 
@@ -133,9 +137,12 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 
 			feed = feedPersistence.create(feedId);
 
-			feed.setTwitterScreenName(twitterScreenName);
+			feed.setCompanyId(user.getCompanyId());
+			feed.setUserId(user.getUserId());
+			feed.setUserName(user.getFullName());
 			feed.setCreateDate(now);
 			feed.setModifiedDate(now);
+			feed.setTwitterScreenName(twitterScreenName);
 
 			feedPersistence.update(feed, false);
 
