@@ -43,7 +43,6 @@ if (fooId > 0) {
 	<aui:model-context bean="<%= foo %>" model="<%= Foo.class %>" />
 
 	<aui:fieldset>
-
 		<aui:input name="field1" />
 
 		<aui:input name="field2" />
@@ -66,7 +65,6 @@ if (fooId > 0) {
 		<aui:input name="categories" type="assetCategories" />
 
 		<aui:input name="tags" type="assetTags" />
-
 	</aui:fieldset>
 
 	<aui:button-row>

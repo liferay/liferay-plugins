@@ -38,12 +38,12 @@
 		escapedModel="true"
 		modelVar="foo"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="id"
 			property="fooId"
 			valign="top"
 		/>
+
 		<liferay-ui:search-container-column-text
 			name="field1"
 			valign="top"
@@ -67,28 +67,32 @@
 				/>
 			</div>
 		</liferay-ui:search-container-column-text>
+
 		<liferay-ui:search-container-column-text
 			property="field2"
 			valign="top"
 		/>
+
 		<liferay-ui:search-container-column-text
 			property="field3"
 			valign="top"
 		/>
+
 		<liferay-ui:search-container-column-text
 			name="field4"
 			valign="top"
 			value="<%= dateFormatDateTime.format(foo.getField4()) %>"
 		/>
+
 		<liferay-ui:search-container-column-text
 			property="field5"
 			valign="top"
 		/>
+
 		<liferay-ui:search-container-column-jsp
 			path="/foo_action.jsp"
 			valign="top"
 		/>
-
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />

@@ -20,8 +20,7 @@ import com.liferay.sampleservicebuilder.model.Foo;
 /**
  * @author Raymond Augé
  */
-public class FooCustomAttributesDisplay
-	extends BaseCustomAttributesDisplay {
+public class FooCustomAttributesDisplay extends BaseCustomAttributesDisplay {
 
 	public String getClassName() {
 		return Foo.class.getName();

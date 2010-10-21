@@ -34,7 +34,6 @@ else {
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= view %>" showWhenSingleIcon="<%= view %>">
-
 	<c:if test="<%= !view %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value="/edit_foo.jsp" />
@@ -59,5 +58,4 @@ else {
 	</portlet:actionURL>
 
 	<liferay-ui:icon-delete url="<%= deleteURL %>" />
-
 </liferay-ui:icon-menu>

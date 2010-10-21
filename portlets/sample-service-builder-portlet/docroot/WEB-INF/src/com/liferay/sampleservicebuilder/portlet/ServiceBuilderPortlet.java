@@ -71,11 +71,14 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void updateFoo(ActionRequest actionRequest) throws Exception {
+	protected void deleteFoo(ActionRequest actionRequest) throws Exception {
 		long fooId = ParamUtil.getLong(actionRequest, "fooId");
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Foo.class.getName(), actionRequest);
+		FooLocalServiceUtil.deleteFoo(fooId);
+	}
+
+	protected void updateFoo(ActionRequest actionRequest) throws Exception {
+		long fooId = ParamUtil.getLong(actionRequest, "fooId");
 
 		String field1 = ParamUtil.getString(actionRequest, "field1");
 		boolean field2 = ParamUtil.getBoolean(actionRequest, "field2");
@@ -97,21 +100,17 @@ public class ServiceBuilderPortlet extends MVCPortlet {
 			dateMonth, dateDay, dateYear, dateHour, dateMinute,
 			new PortalException());
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Foo.class.getName(), actionRequest);
+
 		if (fooId <= 0) {
 			FooLocalServiceUtil.addFoo(
 				field1, field2, field3, field4, field5, serviceContext);
 		}
 		else {
 			FooLocalServiceUtil.updateFoo(
-				fooId, field1, field2, field3, field4, field5,
-				serviceContext);
+				fooId, field1, field2, field3, field4, field5, serviceContext);
 		}
-	}
-
-	protected void deleteFoo(ActionRequest actionRequest) throws Exception {
-		long fooId = ParamUtil.getLong(actionRequest, "fooId");
-
-		FooLocalServiceUtil.deleteFoo(fooId);
 	}
 
 }

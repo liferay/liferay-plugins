@@ -37,9 +37,10 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 			String field5, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Foo
+
 		User user = userLocalService.getUserById(serviceContext.getUserId());
 		long groupId = serviceContext.getScopeGroupId();
-
 		Date now = new Date();
 
 		long fooId = counterLocalService.increment();
@@ -61,6 +62,8 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 
 		fooPersistence.update(foo, false);
 
+		// Asset
+
 		updateAsset(
 			user.getUserId(), foo, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames());
@@ -71,15 +74,13 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 			assetEntryLocalService.deleteEntry(
 				Foo.class.getName(), foo.getFooId());
 		}
-		catch (PortalException e) {
+		catch (PortalException pe) {
 		}
 
 		fooPersistence.remove(foo);
 	}
 
-	public void deleteFoo(long fooId)
-		throws SystemException {
-
+	public void deleteFoo(long fooId) throws SystemException {
 		Foo foo = fooPersistence.fetchByPrimaryKey(fooId);
 
 		if (foo != null) {
@@ -103,10 +104,10 @@ public class FooLocalServiceImpl extends FooLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		assetEntryLocalService.updateEntry(
-			userId, foo.getGroupId(), Foo.class.getName(),
-			foo.getFooId(), foo.getUuid(), assetCategoryIds, assetTagNames,
-			true, null, null, null, null, ContentTypes.TEXT_PLAIN_UTF8,
-			foo.getField1(), null, foo.getField1(), null, 0, 0, null, false);
+			userId, foo.getGroupId(), Foo.class.getName(), foo.getFooId(),
+			foo.getUuid(), assetCategoryIds, assetTagNames, true, null, null,
+			null, null, ContentTypes.TEXT_PLAIN_UTF8, foo.getField1(), null,
+			foo.getField1(), null, 0, 0, null, false);
 	}
 
 	public void updateFoo(
