@@ -61,6 +61,46 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		_companyId = companyId;
 	}
 
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	public String getUserName() {
+		return _userName;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
 	public long getTwitterUserId() {
 		return _twitterUserId;
 	}
@@ -86,22 +126,6 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		_twitterScreenName = twitterScreenName;
 	}
 
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	public long getLastStatusId() {
 		return _lastStatusId;
 	}
@@ -125,10 +149,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 		clone.setFeedId(getFeedId());
 		clone.setCompanyId(getCompanyId());
-		clone.setTwitterUserId(getTwitterUserId());
-		clone.setTwitterScreenName(getTwitterScreenName());
+		clone.setUserId(getUserId());
+		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setTwitterUserId(getTwitterUserId());
+		clone.setTwitterScreenName(getTwitterScreenName());
 		clone.setLastStatusId(getLastStatusId());
 
 		return clone;
@@ -177,20 +203,24 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
-		sb.append(", twitterUserId=");
-		sb.append(getTwitterUserId());
-		sb.append(", twitterScreenName=");
-		sb.append(getTwitterScreenName());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", twitterUserId=");
+		sb.append(getTwitterUserId());
+		sb.append(", twitterScreenName=");
+		sb.append(getTwitterScreenName());
 		sb.append(", lastStatusId=");
 		sb.append(getLastStatusId());
 		sb.append("}");
@@ -199,7 +229,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.twitter.model.Feed");
@@ -214,12 +244,12 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
-		sb.append(getTwitterUserId());
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
-		sb.append(getTwitterScreenName());
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -228,6 +258,14 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
+		sb.append(getTwitterUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
+		sb.append(getTwitterScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>lastStatusId</column-name><column-value><![CDATA[");
@@ -241,10 +279,13 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 
 	private long _feedId;
 	private long _companyId;
+	private long _userId;
+	private String _userUuid;
+	private String _userName;
+	private Date _createDate;
+	private Date _modifiedDate;
 	private long _twitterUserId;
 	private String _twitterUserUuid;
 	private String _twitterScreenName;
-	private Date _createDate;
-	private Date _modifiedDate;
 	private long _lastStatusId;
 }

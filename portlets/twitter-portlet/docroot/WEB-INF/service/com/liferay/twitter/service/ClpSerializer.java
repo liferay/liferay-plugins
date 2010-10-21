@@ -63,40 +63,61 @@ public class ClpSerializer {
 
 					method0.invoke(newModel, value0);
 
-					Method method1 = newModelClass.getMethod("setTwitterUserId",
+					Method method1 = newModelClass.getMethod("setCompanyId",
 							new Class[] { Long.TYPE });
 
-					Long value1 = new Long(oldCplModel.getTwitterUserId());
+					Long value1 = new Long(oldCplModel.getCompanyId());
 
 					method1.invoke(newModel, value1);
 
-					Method method2 = newModelClass.getMethod("setTwitterScreenName",
-							new Class[] { String.class });
+					Method method2 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
 
-					String value2 = oldCplModel.getTwitterScreenName();
+					Long value2 = new Long(oldCplModel.getUserId());
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
+					Method method3 = newModelClass.getMethod("setUserName",
+							new Class[] { String.class });
 
-					Date value3 = oldCplModel.getCreateDate();
+					String value3 = oldCplModel.getUserName();
 
 					method3.invoke(newModel, value3);
 
-					Method method4 = newModelClass.getMethod("setModifiedDate",
+					Method method4 = newModelClass.getMethod("setCreateDate",
 							new Class[] { Date.class });
 
-					Date value4 = oldCplModel.getModifiedDate();
+					Date value4 = oldCplModel.getCreateDate();
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setLastStatusId",
-							new Class[] { Long.TYPE });
+					Method method5 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
 
-					Long value5 = new Long(oldCplModel.getLastStatusId());
+					Date value5 = oldCplModel.getModifiedDate();
 
 					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setTwitterUserId",
+							new Class[] { Long.TYPE });
+
+					Long value6 = new Long(oldCplModel.getTwitterUserId());
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setTwitterScreenName",
+							new Class[] { String.class });
+
+					String value7 = oldCplModel.getTwitterScreenName();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setLastStatusId",
+							new Class[] { Long.TYPE });
+
+					Long value8 = new Long(oldCplModel.getLastStatusId());
+
+					method8.invoke(newModel, value8);
 
 					return newModel;
 				}
@@ -157,37 +178,56 @@ public class ClpSerializer {
 
 					newModel.setFeedId(value0);
 
-					Method method1 = oldModelClass.getMethod("getTwitterUserId");
+					Method method1 = oldModelClass.getMethod("getCompanyId");
 
 					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
 
-					newModel.setTwitterUserId(value1);
+					newModel.setCompanyId(value1);
 
-					Method method2 = oldModelClass.getMethod(
-							"getTwitterScreenName");
+					Method method2 = oldModelClass.getMethod("getUserId");
 
-					String value2 = (String)method2.invoke(oldModel,
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setUserId(value2);
+
+					Method method3 = oldModelClass.getMethod("getUserName");
+
+					String value3 = (String)method3.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTwitterScreenName(value2);
+					newModel.setUserName(value3);
 
-					Method method3 = oldModelClass.getMethod("getCreateDate");
-
-					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value3);
-
-					Method method4 = oldModelClass.getMethod("getModifiedDate");
+					Method method4 = oldModelClass.getMethod("getCreateDate");
 
 					Date value4 = (Date)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setModifiedDate(value4);
+					newModel.setCreateDate(value4);
 
-					Method method5 = oldModelClass.getMethod("getLastStatusId");
+					Method method5 = oldModelClass.getMethod("getModifiedDate");
 
-					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
+					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
 
-					newModel.setLastStatusId(value5);
+					newModel.setModifiedDate(value5);
+
+					Method method6 = oldModelClass.getMethod("getTwitterUserId");
+
+					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
+
+					newModel.setTwitterUserId(value6);
+
+					Method method7 = oldModelClass.getMethod(
+							"getTwitterScreenName");
+
+					String value7 = (String)method7.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setTwitterScreenName(value7);
+
+					Method method8 = oldModelClass.getMethod("getLastStatusId");
+
+					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+					newModel.setLastStatusId(value8);
 
 					return newModel;
 				}

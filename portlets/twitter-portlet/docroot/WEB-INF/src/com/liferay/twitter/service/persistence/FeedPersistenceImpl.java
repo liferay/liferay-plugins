@@ -363,10 +363,12 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		feedImpl.setFeedId(feed.getFeedId());
 		feedImpl.setCompanyId(feed.getCompanyId());
-		feedImpl.setTwitterUserId(feed.getTwitterUserId());
-		feedImpl.setTwitterScreenName(feed.getTwitterScreenName());
+		feedImpl.setUserId(feed.getUserId());
+		feedImpl.setUserName(feed.getUserName());
 		feedImpl.setCreateDate(feed.getCreateDate());
 		feedImpl.setModifiedDate(feed.getModifiedDate());
+		feedImpl.setTwitterUserId(feed.getTwitterUserId());
+		feedImpl.setTwitterScreenName(feed.getTwitterScreenName());
 		feedImpl.setLastStatusId(feed.getLastStatusId());
 
 		return feedImpl;

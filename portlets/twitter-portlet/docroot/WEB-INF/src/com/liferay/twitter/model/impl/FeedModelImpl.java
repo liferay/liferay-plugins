@@ -59,13 +59,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "feedId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
-			{ "twitterUserId", new Integer(Types.BIGINT) },
-			{ "twitterScreenName", new Integer(Types.VARCHAR) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "twitterUserId", new Integer(Types.BIGINT) },
+			{ "twitterScreenName", new Integer(Types.VARCHAR) },
 			{ "lastStatusId", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,twitterUserId LONG,twitterScreenName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,lastStatusId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,twitterUserId LONG,twitterScreenName VARCHAR(75) null,lastStatusId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Twitter_Feed";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -120,6 +122,51 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return _originalCompanyId;
 	}
 
+	public long getUserId() {
+		return _userId;
+	}
+
+	public void setUserId(long userId) {
+		_userId = userId;
+	}
+
+	public String getUserUuid() throws SystemException {
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+	}
+
+	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
+	}
+
+	public String getUserName() {
+		if (_userName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _userName;
+		}
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
 	public long getTwitterUserId() {
 		return _twitterUserId;
 	}
@@ -168,22 +215,6 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		return GetterUtil.getString(_originalTwitterScreenName);
 	}
 
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	public long getLastStatusId() {
 		return _lastStatusId;
 	}
@@ -220,10 +251,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 		clone.setFeedId(getFeedId());
 		clone.setCompanyId(getCompanyId());
-		clone.setTwitterUserId(getTwitterUserId());
-		clone.setTwitterScreenName(getTwitterScreenName());
+		clone.setUserId(getUserId());
+		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setTwitterUserId(getTwitterUserId());
+		clone.setTwitterScreenName(getTwitterScreenName());
 		clone.setLastStatusId(getLastStatusId());
 
 		return clone;
@@ -272,20 +305,24 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{feedId=");
 		sb.append(getFeedId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
-		sb.append(", twitterUserId=");
-		sb.append(getTwitterUserId());
-		sb.append(", twitterScreenName=");
-		sb.append(getTwitterScreenName());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", twitterUserId=");
+		sb.append(getTwitterUserId());
+		sb.append(", twitterScreenName=");
+		sb.append(getTwitterScreenName());
 		sb.append(", lastStatusId=");
 		sb.append(getLastStatusId());
 		sb.append("}");
@@ -294,7 +331,7 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.twitter.model.Feed");
@@ -309,12 +346,12 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
-		sb.append(getTwitterUserId());
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
-		sb.append(getTwitterScreenName());
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append(getUserName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
@@ -323,6 +360,14 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterUserId</column-name><column-value><![CDATA[");
+		sb.append(getTwitterUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>twitterScreenName</column-name><column-value><![CDATA[");
+		sb.append(getTwitterScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>lastStatusId</column-name><column-value><![CDATA[");
@@ -338,14 +383,17 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	private long _companyId;
 	private long _originalCompanyId;
 	private boolean _setOriginalCompanyId;
+	private long _userId;
+	private String _userUuid;
+	private String _userName;
+	private Date _createDate;
+	private Date _modifiedDate;
 	private long _twitterUserId;
 	private String _twitterUserUuid;
 	private long _originalTwitterUserId;
 	private boolean _setOriginalTwitterUserId;
 	private String _twitterScreenName;
 	private String _originalTwitterScreenName;
-	private Date _createDate;
-	private Date _modifiedDate;
 	private long _lastStatusId;
 	private transient ExpandoBridge _expandoBridge;
 }

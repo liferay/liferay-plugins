@@ -86,6 +86,78 @@ public interface FeedModel extends BaseModel<Feed> {
 	public void setCompanyId(long companyId);
 
 	/**
+	 * Gets the user id of this feed.
+	 *
+	 * @return the user id of this feed
+	 */
+	public long getUserId();
+
+	/**
+	 * Sets the user id of this feed.
+	 *
+	 * @param userId the user id of this feed
+	 */
+	public void setUserId(long userId);
+
+	/**
+	 * Gets the user uuid of this feed.
+	 *
+	 * @return the user uuid of this feed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getUserUuid() throws SystemException;
+
+	/**
+	 * Sets the user uuid of this feed.
+	 *
+	 * @param userUuid the user uuid of this feed
+	 */
+	public void setUserUuid(String userUuid);
+
+	/**
+	 * Gets the user name of this feed.
+	 *
+	 * @return the user name of this feed
+	 */
+	@AutoEscape
+	public String getUserName();
+
+	/**
+	 * Sets the user name of this feed.
+	 *
+	 * @param userName the user name of this feed
+	 */
+	public void setUserName(String userName);
+
+	/**
+	 * Gets the create date of this feed.
+	 *
+	 * @return the create date of this feed
+	 */
+	public Date getCreateDate();
+
+	/**
+	 * Sets the create date of this feed.
+	 *
+	 * @param createDate the create date of this feed
+	 */
+	public void setCreateDate(Date createDate);
+
+	/**
+	 * Gets the modified date of this feed.
+	 *
+	 * @return the modified date of this feed
+	 */
+	public Date getModifiedDate();
+
+	/**
+	 * Sets the modified date of this feed.
+	 *
+	 * @param modifiedDate the modified date of this feed
+	 */
+	public void setModifiedDate(Date modifiedDate);
+
+	/**
 	 * Gets the twitter user id of this feed.
 	 *
 	 * @return the twitter user id of this feed
@@ -128,34 +200,6 @@ public interface FeedModel extends BaseModel<Feed> {
 	 * @param twitterScreenName the twitter screen name of this feed
 	 */
 	public void setTwitterScreenName(String twitterScreenName);
-
-	/**
-	 * Gets the create date of this feed.
-	 *
-	 * @return the create date of this feed
-	 */
-	public Date getCreateDate();
-
-	/**
-	 * Sets the create date of this feed.
-	 *
-	 * @param createDate the create date of this feed
-	 */
-	public void setCreateDate(Date createDate);
-
-	/**
-	 * Gets the modified date of this feed.
-	 *
-	 * @return the modified date of this feed
-	 */
-	public Date getModifiedDate();
-
-	/**
-	 * Sets the modified date of this feed.
-	 *
-	 * @param modifiedDate the modified date of this feed
-	 */
-	public void setModifiedDate(Date modifiedDate);
 
 	/**
 	 * Gets the last status id of this feed.

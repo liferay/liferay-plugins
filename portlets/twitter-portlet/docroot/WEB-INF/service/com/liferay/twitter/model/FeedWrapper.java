@@ -83,6 +83,98 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
+	* Gets the user id of this feed.
+	*
+	* @return the user id of this feed
+	*/
+	public long getUserId() {
+		return _feed.getUserId();
+	}
+
+	/**
+	* Sets the user id of this feed.
+	*
+	* @param userId the user id of this feed
+	*/
+	public void setUserId(long userId) {
+		_feed.setUserId(userId);
+	}
+
+	/**
+	* Gets the user uuid of this feed.
+	*
+	* @return the user uuid of this feed
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _feed.getUserUuid();
+	}
+
+	/**
+	* Sets the user uuid of this feed.
+	*
+	* @param userUuid the user uuid of this feed
+	*/
+	public void setUserUuid(java.lang.String userUuid) {
+		_feed.setUserUuid(userUuid);
+	}
+
+	/**
+	* Gets the user name of this feed.
+	*
+	* @return the user name of this feed
+	*/
+	public java.lang.String getUserName() {
+		return _feed.getUserName();
+	}
+
+	/**
+	* Sets the user name of this feed.
+	*
+	* @param userName the user name of this feed
+	*/
+	public void setUserName(java.lang.String userName) {
+		_feed.setUserName(userName);
+	}
+
+	/**
+	* Gets the create date of this feed.
+	*
+	* @return the create date of this feed
+	*/
+	public java.util.Date getCreateDate() {
+		return _feed.getCreateDate();
+	}
+
+	/**
+	* Sets the create date of this feed.
+	*
+	* @param createDate the create date of this feed
+	*/
+	public void setCreateDate(java.util.Date createDate) {
+		_feed.setCreateDate(createDate);
+	}
+
+	/**
+	* Gets the modified date of this feed.
+	*
+	* @return the modified date of this feed
+	*/
+	public java.util.Date getModifiedDate() {
+		return _feed.getModifiedDate();
+	}
+
+	/**
+	* Sets the modified date of this feed.
+	*
+	* @param modifiedDate the modified date of this feed
+	*/
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_feed.setModifiedDate(modifiedDate);
+	}
+
+	/**
 	* Gets the twitter user id of this feed.
 	*
 	* @return the twitter user id of this feed
@@ -136,42 +228,6 @@ public class FeedWrapper implements Feed {
 	*/
 	public void setTwitterScreenName(java.lang.String twitterScreenName) {
 		_feed.setTwitterScreenName(twitterScreenName);
-	}
-
-	/**
-	* Gets the create date of this feed.
-	*
-	* @return the create date of this feed
-	*/
-	public java.util.Date getCreateDate() {
-		return _feed.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this feed.
-	*
-	* @param createDate the create date of this feed
-	*/
-	public void setCreateDate(java.util.Date createDate) {
-		_feed.setCreateDate(createDate);
-	}
-
-	/**
-	* Gets the modified date of this feed.
-	*
-	* @return the modified date of this feed
-	*/
-	public java.util.Date getModifiedDate() {
-		return _feed.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this feed.
-	*
-	* @param modifiedDate the modified date of this feed
-	*/
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_feed.setModifiedDate(modifiedDate);
 	}
 
 	/**

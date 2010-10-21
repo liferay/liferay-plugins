@@ -11,17 +11,20 @@
 		<attributes>
 			<id name="feedId" />
 			<basic name="companyId" />
-			<basic name="twitterUserId" />
-			<basic name="twitterScreenName" />
+			<basic name="userId" />
+			<basic name="userName" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="twitterUserId" />
+			<basic name="twitterScreenName" />
 			<basic name="lastStatusId" />
 			<transient name="primaryKey" />
 			<transient name="twitterUserUuid" />
+			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.twitter.model.impl.FeedImpl" name="Feed">
