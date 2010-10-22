@@ -15,7 +15,6 @@
 package com.liferay.privatemessaging.portlet;
 
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -94,7 +93,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 			InputStream inputStream = DLLocalServiceUtil.getFileAsStream(
 				message.getCompanyId(), CompanyConstants.SYSTEM, path);
-			int contentLength = (int)DLServiceUtil.getFileSize(
+			int contentLength = (int)DLLocalServiceUtil.getFileSize(
 				message.getCompanyId(), CompanyConstants.SYSTEM, path);
 			String contentType = MimeTypesUtil.getContentType(fileName);
 
