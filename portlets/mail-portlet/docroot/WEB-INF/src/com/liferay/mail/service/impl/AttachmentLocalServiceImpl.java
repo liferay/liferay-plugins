@@ -19,7 +19,6 @@ import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.documentlibrary.NoSuchFileException;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.documentlibrary.service.DLServiceUtil;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Message;
 import com.liferay.mail.service.base.AttachmentLocalServiceBaseImpl;
@@ -77,7 +76,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 			String directoryPath = getDirectoryPath(attachment.getMessageId());
 
 			try {
-				DLServiceUtil.addDirectory(
+				DLLocalServiceUtil.addDirectory(
 					attachment.getCompanyId(), _REPOSITORY_ID, directoryPath);
 			}
 			catch (DuplicateDirectoryException dde) {
@@ -87,7 +86,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 				attachment.getMessageId(), fileName);
 
 			try {
-				DLServiceUtil.addFile(
+				DLLocalServiceUtil.addFile(
 					attachment.getCompanyId(), _PORTLET_ID, _GROUP_ID,
 					_REPOSITORY_ID, filePath, 0, StringPool.BLANK, new Date(),
 					new ServiceContext(), file);
@@ -118,7 +117,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 			attachment.getMessageId(), attachment.getFileName());
 
 		try {
-			DLServiceUtil.deleteFile(
+			DLLocalServiceUtil.deleteFile(
 				attachment.getCompanyId(), _PORTLET_ID, _REPOSITORY_ID,
 				filePath);
 		}
@@ -151,7 +150,7 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		String directoryPath = getDirectoryPath(messageId);
 
 		try {
-			DLServiceUtil.deleteDirectory(
+			DLLocalServiceUtil.deleteDirectory(
 				companyId, _PORTLET_ID, _REPOSITORY_ID, directoryPath);
 		}
 		catch (NoSuchDirectoryException nsde) {
