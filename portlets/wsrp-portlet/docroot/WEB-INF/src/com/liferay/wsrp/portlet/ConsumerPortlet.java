@@ -914,24 +914,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		javax.portlet.Event jxEvent = eventRequest.getEvent();
 
-		KeyValuePair[] payloadKvps = (KeyValuePair[])jxEvent.getValue();
-
-		NamedString[] namedStrings = new NamedString[payloadKvps.length];
-
-		for (int i = 0; i < namedStrings.length; i++) {
-			namedStrings[i] = new NamedString();
-
-			namedStrings[i].setName(payloadKvps[i].getKey());
-			namedStrings[i].setValue(payloadKvps[i].getValue());
-		}
-
-		EventPayload eventPayload = new EventPayload();
-
-		eventPayload.setNamedStringArray(namedStrings);
-
-		Event event = new Event();
-
-		event.setPayload(eventPayload);
+		Event event = (Event)jxEvent.getValue();
 
 		eventParams.setEvents(new Event[] {event});
 	}
@@ -1541,26 +1524,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 				event.setName(qName);
 
-				EventPayload payload = event.getPayload();
-
-				NamedString[] namedStrings =
-					payload.getNamedStringArray();
-
-				if (namedStrings == null) {
-					continue;
-				}
-
-				KeyValuePair[] payloadKvps =
-					new KeyValuePair[namedStrings.length];
-
-				for (int i = 0; i < namedStrings.length; i++) {
-					payloadKvps[i] = new KeyValuePair();
-
-					payloadKvps[i].setKey(namedStrings[i].getName());
-					payloadKvps[i].setValue(namedStrings[i].getValue());
-				}
-
-				stateAwareResponse.setEvent(qName, payloadKvps);
+				stateAwareResponse.setEvent(qName, event);
 
 			}
 		}
