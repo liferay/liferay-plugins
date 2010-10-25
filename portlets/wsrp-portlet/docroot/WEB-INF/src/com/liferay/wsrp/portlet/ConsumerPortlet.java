@@ -1525,7 +1525,6 @@ public class ConsumerPortlet extends GenericPortlet {
 				event.setName(qName);
 
 				stateAwareResponse.setEvent(qName, event);
-
 			}
 		}
 	}
