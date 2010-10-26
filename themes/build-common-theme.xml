@@ -125,7 +125,6 @@
 							classname="com.liferay.portal.tools.ThumbnailBuilder"
 							classpathref="portal.classpath"
 							fork="false"
-							newenvironment="true"
 						>
 							<arg value="thumbnail.original.file=@{file}" />
 							<arg value="thumbnail.thumbnail.file=${thumbnail.file}" />
