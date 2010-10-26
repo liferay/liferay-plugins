@@ -124,15 +124,14 @@
 						<java
 							classname="com.liferay.portal.tools.ThumbnailBuilder"
 							classpathref="portal.classpath"
-							fork="true"
+							fork="false"
 							newenvironment="true"
 						>
-							<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-							<jvmarg value="-Dthumbnail.original.file=@{file}" />
-							<jvmarg value="-Dthumbnail.thumbnail.file=${thumbnail.file}" />
-							<jvmarg value="-Dthumbnail.height=120" />
-							<jvmarg value="-Dthumbnail.width=160" />
-							<jvmarg value="-Dthumbnail.overwrite=false" />
+							<arg value="thumbnail.original.file=@{file}" />
+							<arg value="thumbnail.thumbnail.file=${thumbnail.file}" />
+							<arg value="thumbnail.height=120" />
+							<arg value="thumbnail.width=160" />
+							<arg value="thumbnail.overwrite=false" />
 						</java>
 					</sequential>
 				</for>
