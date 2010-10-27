@@ -1416,29 +1416,40 @@ public class ConsumerPortlet extends GenericPortlet {
 		ResourceContext resourceContext =
 			wsrpResourceResponse.getResourceContext();
 
-		NamedString[] clientAttributes = resourceContext.getClientAttributes();
+		String charSet = StringPool.UTF8;
+		String contentType = resourceContext.getMimeType();
 
-		if (clientAttributes != null) {
-			for (NamedString clientAttribute : clientAttributes) {
-				String name = clientAttribute.getName();
-				String value = clientAttribute.getValue();
+		if (Validator.isNotNull(contentType)) {
+			resourceResponse.setContentType(contentType);
 
-				if (name.equalsIgnoreCase(HttpHeaders.CONTENT_LENGTH)) {
-					resourceResponse.setContentLength(Integer.parseInt(value));
-				}
-				else if (name.equalsIgnoreCase(HttpHeaders.CONTENT_TYPE)) {
-					resourceResponse.setContentType(value);
-				}
+			int x = contentType.indexOf("charset=");
+
+			if (x >= 0) {
+				charSet = contentType.substring(x + 8).trim();
 			}
 		}
 
 		String itemString = resourceContext.getItemString();
 		byte[] itemBinary = resourceContext.getItemBinary();
 
+		if (ParamUtil.getBoolean(resourceRequest, "wsrp-requiresRewrite") ||
+			resourceContext.getRequiresRewriting()) {
+
+			if (itemBinary != null) {
+				itemString = new String(itemBinary, charSet);
+			}
+
+			itemString = rewriteURLs(resourceResponse, itemString);
+		}
+
 		if (Validator.isNotNull(itemString)) {
+			resourceResponse.setContentLength(itemString.length());
+
 			PortletResponseUtil.write(resourceResponse, itemString);
 		}
 		else if (itemBinary != null) {
+			resourceResponse.setContentLength(itemBinary.length);
+
 			PortletResponseUtil.write(resourceResponse, itemBinary);
 		}
 	}
@@ -1570,8 +1581,23 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		String contentType = response.getContentType();
 
+		String charSet = StringPool.UTF8;
+
 		if (Validator.isNotNull(contentType)) {
 			resourceResponse.setContentType(contentType);
+
+			int x = contentType.indexOf("charset=");
+
+			if (x >= 0) {
+				charSet = contentType.substring(x + 8).trim();
+			}
+		}
+
+		if (ParamUtil.getBoolean(resourceRequest, "wsrp-requiresRewrite")) {
+			String content = rewriteURLs(
+				resourceResponse, new String(bytes, charSet));
+
+			PortletResponseUtil.write(resourceResponse, content);
 		}
 
 		PortletResponseUtil.write(resourceResponse, bytes);

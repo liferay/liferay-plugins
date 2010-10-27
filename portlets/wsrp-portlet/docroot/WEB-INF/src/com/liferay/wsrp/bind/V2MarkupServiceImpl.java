@@ -312,6 +312,8 @@ public class V2MarkupServiceImpl
 		List<NamedString> clientAttributes = new ArrayList<NamedString>();
 
 		if (Validator.isNotNull(contentType)) {
+			resourceContext.setMimeType(contentType);
+
 			NamedString clientAttribute = new NamedString();
 
 			clientAttribute.setName(HttpHeaders.CONTENT_TYPE);
