@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -684,6 +685,13 @@ public class V2MarkupServiceImpl
 		}
 
 		if (Validator.isNotNull(opaqueValue)) {
+			opaqueValue = opaqueValue.replace('-', '+');
+			opaqueValue = opaqueValue.replace('*', '=');
+			opaqueValue = opaqueValue.replace('_', '/');
+
+			opaqueValue =
+				new String(Base64.decode(opaqueValue), StringPool.UTF8);
+
 			sb.append(StringPool.AMPERSAND);
 			sb.append(opaqueValue);
 		}

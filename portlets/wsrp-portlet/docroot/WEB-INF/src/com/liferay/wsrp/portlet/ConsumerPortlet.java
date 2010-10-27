@@ -1627,16 +1627,11 @@ public class ConsumerPortlet extends GenericPortlet {
 				(LiferayPortletURL)liferayPortletResponse.createResourceURL();
 		}
 
-		boolean encodeURL = false;
-
 		for (Map.Entry<String, String> parameter : parameterMap.entrySet()) {
 			String name = parameter.getKey();
 			String value = parameter.getValue();
 
-			if (name.equals("wsrp-extensions") && value.equals("encodeURL")) {
-				encodeURL = true;
-			}
-			else if (name.equals("wsrp-mode")) {
+			if (name.equals("wsrp-mode")) {
 				try {
 					liferayPortletURL.setPortletMode(getPortletMode(value));
 				}
@@ -1684,10 +1679,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		String url = liferayPortletURL.toString();
-
-		if (encodeURL) {
-			url = HttpUtil.encodeURL(url);
-		}
 
 		return url;
 	}
