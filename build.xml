@@ -78,6 +78,7 @@
 		<delete file="ext/ext.zip" />
 		<delete file="layouttpl/layouttpl.zip" />
 		<delete file="portlets/portlet.zip" />
+		<delete file="portlets/portlet-vaadin.zip" />
 		<delete file="hooks/hook.zip" />
 		<delete file="themes/theme.zip" />
 
@@ -94,6 +95,11 @@
 		<zip
 			basedir="tools/portlet_tmpl"
 			destfile="portlets/portlet.zip"
+		/>
+		
+		<zip
+			basedir="tools/portlet_vaadin_tmpl"
+			destfile="portlets/portlet-vaadin.zip"
 		/>
 
 		<zip
