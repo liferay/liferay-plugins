@@ -15,7 +15,7 @@ if [ -z "$1" ]; then
 	exit 127
 fi
 
-ant -Dportlet.name=$1 -Dportlet.display.name=\"$2\" create
+ant -Dportlet.name=$1 -Dportlet.display.name=\"$2\" -Dframework=$3 create
 
 #ant deploy
 

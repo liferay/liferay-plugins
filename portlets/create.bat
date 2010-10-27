@@ -3,7 +3,7 @@
 if "" == "%1" goto errorCreate
 if "" == "%2" goto errorCreate
 
-call ant -Dportlet.name=%1 -Dportlet.display.name=%2 create
+call ant -Dportlet.name=%1 -Dportlet.display.name=%2 -Dframework=%3 create
 
 rem call ant deploy
 
