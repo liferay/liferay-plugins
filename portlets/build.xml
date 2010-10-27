@@ -28,17 +28,65 @@
 					</then>
 				</if>
 
+				<property name="portlet.dir" value="${portlet.parent.dir}/${portlet.name}-portlet" />
+
 				<if>
-					<available file="${portlet.parent.dir}/${portlet.name}-portlet" />
+					<available file="${portlet.dir}" />
 					<then>
-						<echo message="${portlet.name}-portlet already exists." />
+						<echo message="${portlet.dir} already exists." />
 					</then>
 					<else>
-						<unzip src="portlet.zip" dest="${portlet.parent.dir}/${portlet.name}-portlet" />
+						<unzip src="portlet.zip" dest="${portlet.dir}" />
+					
+						<antelope:stringutil string="${portlet.display.name}" property="portlet.display.java.name">
+							<antelope:replace regex="\s+" replacement="" />
+							<antelope:trim />
+						</antelope:stringutil>
+						
+						<if>
+							<not>
+								<equals arg1="${framework}" arg2="" />
+							</not>
+							<then>
+								<unzip src="portlet-${framework}.zip" dest="${portlet.dir}" />
+							</then>						
+						</if>
+						
+						<if>
+							<equals arg1="${framework}" arg2="vaadin" />
+							<then>
+								<mkdir dir="${portlet.dir}/docroot/WEB-INF/src/${portlet.name}" />
+								<move file="${portlet.dir}/docroot/WEB-INF/src/Application.java" tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.name}/${portlet.display.java.name}Application.java" />
+																								
+								<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+
+portal-dependency-jars=\
+	vaadin.jar
+</echo>
+
+								<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+									<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+									<replacevalue><![CDATA[<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>]]></replacevalue>
+								</replace>
+																
+								<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+									<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
+									<replacevalue><![CDATA[<name>application</name>]]></replacevalue>
+								</replace>
+								
+								<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+									<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
+									<replacevalue><![CDATA[<value>@portlet.name@.@portlet.display.java.name@Application</value>]]></replacevalue>
+								</replace>
+								
+								<delete file="${portlet.dir}/docroot/view.jsp" />
+							</then>
+						</if>
 
 						<replace dir="${portlet.parent.dir}/${portlet.name}-portlet">
 							<replacefilter token="@portlet.name@" value="${portlet.name}" />
 							<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
+							<replacefilter token="@portlet.display.java.name@" value="${portlet.display.java.name}" />
 						</replace>
 
 						<mkdir dir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld" />
