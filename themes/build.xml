@@ -7,9 +7,14 @@
 
 	<target name="create">
 		<if>
-			<not>
-				<isset property="theme.name" />
-			</not>
+			<or>
+				<not>
+					<isset property="theme.name" />
+				</not>
+				<not>
+					<isset property="theme.display.name" />
+				</not>
+			</or>
 			<then>
 				<echo message="This task must be called by create.bat." />
 			</then>
@@ -22,6 +27,7 @@
 						<property name="theme.parent.dir" value="${basedir}" />
 					</then>
 				</if>
+
 				<if>
 					<available file="${theme.parent.dir}/${theme.name}-theme" />
 					<then>

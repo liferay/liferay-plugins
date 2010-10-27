@@ -7,9 +7,14 @@
 
 	<target name="create">
 		<if>
-			<not>
-				<isset property="layouttpl.name" />
-			</not>
+			<or>
+				<not>
+					<isset property="layouttpl.name" />
+				</not>
+				<not>
+					<isset property="layouttpl.display.name" />
+				</not>
+			</or>
 			<then>
 				<echo message="This task must be called by the create script." />
 			</then>
@@ -22,6 +27,7 @@
 						<property name="layouttpl.parent.dir" value="${basedir}" />
 					</then>
 				</if>
+
 				<if>
 					<available file="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl" />
 					<then>

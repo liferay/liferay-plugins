@@ -7,9 +7,14 @@
 
 	<target name="create">
 		<if>
-			<not>
-				<isset property="portlet.name" />
-			</not>
+			<or>
+				<not>
+					<isset property="portlet.name" />
+				</not>
+				<not>
+					<isset property="portlet.display.name" />
+				</not>
+			</or>
 			<then>
 				<echo message="This task must be called by create.bat." />
 			</then>
@@ -22,6 +27,7 @@
 						<property name="portlet.parent.dir" value="${basedir}" />
 					</then>
 				</if>
+
 				<if>
 					<available file="${portlet.parent.dir}/${portlet.name}-portlet" />
 					<then>
