@@ -26,6 +26,9 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.wsrp.NoSuchConsumerException;
+import com.liferay.wsrp.NoSuchConsumerPortletException;
+import com.liferay.wsrp.NoSuchProducerException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.model.WSRPProducer;
@@ -324,40 +327,102 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext context, WSRPConsumer wsrpConsumer)
 		throws PortalException, SystemException {
 
-		ServiceContext serviceContext = new ServiceContext();
+		String wsrpConsumerUuid = wsrpConsumer.getUuid();
 
-		serviceContext.setUuid(wsrpConsumer.getUuid());
+		WSRPConsumer wsrpConsumerToMerge = null;
+		
+		try {
+			wsrpConsumerToMerge = WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+				wsrpConsumerUuid);
 
-		return WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-			context.getCompanyId(), null, wsrpConsumer.getName(),
-			wsrpConsumer.getUrl(), null, serviceContext);
+			wsrpConsumerToMerge.setName(wsrpConsumer.getName());
+			wsrpConsumerToMerge.setUrl(wsrpConsumer.getUrl());
+			wsrpConsumerToMerge.setWsdl(wsrpConsumer.getWsdl());
+
+			wsrpConsumerToMerge =
+				WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
+					wsrpConsumerToMerge, false);
+		}
+		catch (NoSuchConsumerException e) {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setUuid(wsrpConsumer.getUuid());
+
+			wsrpConsumerToMerge = WSRPConsumerLocalServiceUtil.addWSRPConsumer(
+				context.getCompanyId(), null, wsrpConsumer.getName(),
+				wsrpConsumer.getUrl(), null, serviceContext);
+
+		}
+
+		return wsrpConsumerToMerge;
 	}
 
 	protected void importWSRPConsumerPortlet(
-			WSRPConsumer wsrpConsumer, WSRPConsumerPortlet wsrpConsumerPortlet)
+			WSRPConsumer wsrpConsumer,
+			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {
 
-		ServiceContext serviceContext = new ServiceContext();
+		String wsrpConsumerPortletUuid = wsrpConsumerPortlet.getUuid();
 
-		serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
+		WSRPConsumerPortlet wsrpConsumerPortletToMerge = null;
 
-		WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-			wsrpConsumer.getUuid(), wsrpConsumerPortlet.getName(),
-			wsrpConsumerPortlet.getPortletHandle(), null, serviceContext);
+		try {
+			wsrpConsumerPortletToMerge =
+				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
+					wsrpConsumerPortletUuid);
+
+			wsrpConsumerPortletToMerge.setWsrpConsumerId(
+				wsrpConsumer.getWsrpConsumerId());
+			wsrpConsumerPortletToMerge.setName(wsrpConsumerPortlet.getName());
+			wsrpConsumerPortletToMerge.setPortletHandle(
+				wsrpConsumerPortlet.getPortletHandle());
+	
+			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
+				wsrpConsumerPortletToMerge, false);
+		}
+		catch (NoSuchConsumerPortletException e) {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
+
+			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
+				wsrpConsumer.getUuid(),
+				wsrpConsumerPortlet.getName(),
+				wsrpConsumerPortlet.getPortletHandle(),
+				null, serviceContext);
+		}
 	}
 
 	protected void importWSRPProducer(
 			PortletDataContext context, WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
 
-		ServiceContext serviceContext = new ServiceContext();
+		String wsrpProducerUuid = wsrpProducer.getUuid();
 
-		serviceContext.setUuid(wsrpProducer.getUuid());
+		WSRPProducer wsrpProducerToMerge = null;
 
-		WSRPProducerLocalServiceUtil.addWSRPProducer(
-			context.getUserId(null), wsrpProducer.getName(),
-			wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
-			serviceContext);
+		try {
+			wsrpProducerToMerge = WSRPProducerLocalServiceUtil.getWSRPProducer(
+				wsrpProducerUuid);
+
+			wsrpProducerToMerge.setName(wsrpProducer.getName());
+			wsrpProducerToMerge.setPortletIds(wsrpProducer.getPortletIds());
+			wsrpProducerToMerge.setVersion(wsrpProducer.getVersion());
+
+			WSRPProducerLocalServiceUtil.updateWSRPProducer(
+				wsrpProducerToMerge, false);
+		}
+		catch (NoSuchProducerException e) {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setUuid(wsrpProducerUuid);
+			
+			WSRPProducerLocalServiceUtil.addWSRPProducer(
+				context.getUserId(null), wsrpProducer.getName(),
+				wsrpProducer.getVersion(),
+				wsrpProducer.getPortletIds(),
+				serviceContext);
+		}
 	}
 
 	private static final String _NAMESPACE = "wsrp";
