@@ -327,34 +327,30 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext context, WSRPConsumer wsrpConsumer)
 		throws PortalException, SystemException {
 
-		String wsrpConsumerUuid = wsrpConsumer.getUuid();
+		WSRPConsumer importedWSRPConsumer = null;
 
-		WSRPConsumer wsrpConsumerToMerge = null;
-		
 		try {
-			wsrpConsumerToMerge = WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-				wsrpConsumerUuid);
+			importedWSRPConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(
+				wsrpConsumer.getUuid());
 
-			wsrpConsumerToMerge.setName(wsrpConsumer.getName());
-			wsrpConsumerToMerge.setUrl(wsrpConsumer.getUrl());
-			wsrpConsumerToMerge.setWsdl(wsrpConsumer.getWsdl());
+			importedWSRPConsumer.setName(wsrpConsumer.getName());
+			importedWSRPConsumer.setUrl(wsrpConsumer.getUrl());
+			importedWSRPConsumer.setWsdl(wsrpConsumer.getWsdl());
 
-			wsrpConsumerToMerge =
-				WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-					wsrpConsumerToMerge, false);
+			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
+				importedWSRPConsumer, false);
 		}
-		catch (NoSuchConsumerException e) {
+		catch (NoSuchConsumerException nsce) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setUuid(wsrpConsumer.getUuid());
 
-			wsrpConsumerToMerge = WSRPConsumerLocalServiceUtil.addWSRPConsumer(
+			importedWSRPConsumer = WSRPConsumerLocalServiceUtil.addWSRPConsumer(
 				context.getCompanyId(), null, wsrpConsumer.getName(),
 				wsrpConsumer.getUrl(), null, serviceContext);
-
 		}
 
-		return wsrpConsumerToMerge;
+		return importedWSRPConsumer;
 	}
 
 	protected void importWSRPConsumerPortlet(
@@ -362,34 +358,28 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {
 
-		String wsrpConsumerPortletUuid = wsrpConsumerPortlet.getUuid();
-
-		WSRPConsumerPortlet wsrpConsumerPortletToMerge = null;
-
 		try {
-			wsrpConsumerPortletToMerge =
+			WSRPConsumerPortlet importedWSRPConsumerPortlet =
 				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
-					wsrpConsumerPortletUuid);
+					wsrpConsumerPortlet.getUuid());
 
-			wsrpConsumerPortletToMerge.setWsrpConsumerId(
+			importedWSRPConsumerPortlet.setWsrpConsumerId(
 				wsrpConsumer.getWsrpConsumerId());
-			wsrpConsumerPortletToMerge.setName(wsrpConsumerPortlet.getName());
-			wsrpConsumerPortletToMerge.setPortletHandle(
+			importedWSRPConsumerPortlet.setName(wsrpConsumerPortlet.getName());
+			importedWSRPConsumerPortlet.setPortletHandle(
 				wsrpConsumerPortlet.getPortletHandle());
-	
+
 			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
-				wsrpConsumerPortletToMerge, false);
+				importedWSRPConsumerPortlet, false);
 		}
-		catch (NoSuchConsumerPortletException e) {
+		catch (NoSuchConsumerPortletException nscpe) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
 
 			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-				wsrpConsumer.getUuid(),
-				wsrpConsumerPortlet.getName(),
-				wsrpConsumerPortlet.getPortletHandle(),
-				null, serviceContext);
+				wsrpConsumer.getUuid(), wsrpConsumerPortlet.getName(),
+				wsrpConsumerPortlet.getPortletHandle(), null, serviceContext);
 		}
 	}
 
@@ -397,30 +387,26 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext context, WSRPProducer wsrpProducer)
 		throws PortalException, SystemException {
 
-		String wsrpProducerUuid = wsrpProducer.getUuid();
-
-		WSRPProducer wsrpProducerToMerge = null;
-
 		try {
-			wsrpProducerToMerge = WSRPProducerLocalServiceUtil.getWSRPProducer(
-				wsrpProducerUuid);
+			WSRPProducer importedWSRPProducer =
+				WSRPProducerLocalServiceUtil.getWSRPProducer(
+					wsrpProducer.getUuid());
 
-			wsrpProducerToMerge.setName(wsrpProducer.getName());
-			wsrpProducerToMerge.setPortletIds(wsrpProducer.getPortletIds());
-			wsrpProducerToMerge.setVersion(wsrpProducer.getVersion());
+			importedWSRPProducer.setName(wsrpProducer.getName());
+			importedWSRPProducer.setVersion(wsrpProducer.getVersion());
+			importedWSRPProducer.setPortletIds(wsrpProducer.getPortletIds());
 
 			WSRPProducerLocalServiceUtil.updateWSRPProducer(
-				wsrpProducerToMerge, false);
+				importedWSRPProducer, false);
 		}
 		catch (NoSuchProducerException e) {
 			ServiceContext serviceContext = new ServiceContext();
 
-			serviceContext.setUuid(wsrpProducerUuid);
-			
+			serviceContext.setUuid(wsrpProducer.getUuid());
+
 			WSRPProducerLocalServiceUtil.addWSRPProducer(
 				context.getUserId(null), wsrpProducer.getName(),
-				wsrpProducer.getVersion(),
-				wsrpProducer.getPortletIds(),
+				wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
 				serviceContext);
 		}
 	}
