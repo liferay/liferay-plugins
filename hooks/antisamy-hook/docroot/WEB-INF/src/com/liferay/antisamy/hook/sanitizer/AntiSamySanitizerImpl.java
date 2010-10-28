@@ -42,14 +42,14 @@ public class AntiSamySanitizerImpl implements Sanitizer {
 
 	public byte[] sanitize(
 		long companyId, long groupId, long userId, String className,
-		long classPK, String contentType, String[] modes, byte[] byteArray,
+		long classPK, String contentType, String[] modes, byte[] bytes,
 		Map<String, Object> options) {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Sanitizing " + className + "#" + classPK);
 		}
 
-		return byteArray;
+		return bytes;
 	}
 
 	public void sanitize(
