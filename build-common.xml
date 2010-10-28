@@ -80,37 +80,17 @@ ECJ was automatically installed. Please rerun your task.
 	</if>
 
 	<target name="compile-java">
-		<if>
-			<equals arg1="${javac.compiler}" arg2="modern" />
-			<then>
-				<javac
-					classpathref="${javac.classpathref}"
-					compiler="${javac.compiler}"
-					debug="${javac.debug}"
-					deprecation="${javac.deprecation}"
-					destdir="${javac.destdir}"
-					encoding="${javac.encoding}"
-					fork="${javac.fork}"
-					includeAntRuntime="false"
-					memoryMaximumSize="${javac.memoryMaximumSize}"
-					nowarn="${javac.nowarn}"
-					srcdir="${javac.srcdir}"
-				/>
-			</then>
-			<else>
-				<javac
-					classpathref="${javac.classpathref}"
-					compiler="${javac.compiler}"
-					debug="${javac.debug}"
-					deprecation="${javac.deprecation}"
-					destdir="${javac.destdir}"
-					encoding="${javac.encoding}"
-					includeAntRuntime="false"
-					nowarn="${javac.nowarn}"
-					srcdir="${javac.srcdir}"
-				/>
-			</else>
-		</if>
+		<javac
+			classpathref="${javac.classpathref}"
+			compiler="${javac.compiler}"
+			debug="${javac.debug}"
+			deprecation="${javac.deprecation}"
+			destdir="${javac.destdir}"
+			encoding="${javac.encoding}"
+			includeAntRuntime="false"
+			nowarn="${javac.nowarn}"
+			srcdir="${javac.srcdir}"
+		/>
 
 		<copy todir="${javac.destdir}">
 			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
