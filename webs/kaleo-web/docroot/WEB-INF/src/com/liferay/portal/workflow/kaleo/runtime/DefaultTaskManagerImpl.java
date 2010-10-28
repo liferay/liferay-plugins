@@ -252,9 +252,19 @@ public class DefaultTaskManagerImpl
 				kaleoInstance.getWorkflowContext());
 		}
 		else {
-			workflowContext.putAll(
-				WorkflowContextUtil.convert(
-					kaleoInstance.getWorkflowContext()));
+			Map<String, Serializable> storedWorkflowContext =
+				WorkflowContextUtil.convert(kaleoInstance.getWorkflowContext());
+
+			for (Map.Entry<String, Serializable> entry :
+					storedWorkflowContext.entrySet()) {
+
+				String key = entry.getKey();
+				
+				if (!workflowContext.containsKey(key)) {
+					workflowContext.put(key, entry.getValue());
+				}
+			}
+			
 		}
 
 		return workflowContext;
