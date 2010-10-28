@@ -170,35 +170,32 @@
 		<java
 			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
 			classpathref="service.classpath"
-			fork="true"
-			maxmemory="256m"
-			newenvironment="true"
 		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<jvmarg value="-Dservice.input.file=${service.input.file}" />
-			<jvmarg value="-Dservice.hbm.file=docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
-			<jvmarg value="-Dservice.orm.file=docroot/WEB-INF/src/META-INF/portlet-orm.xml" />
-			<jvmarg value="-Dservice.model.hints.file=docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
-			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
-			<jvmarg value="-Dservice.spring.base.file=docroot/WEB-INF/src/META-INF/base-spring.xml" />
-			<jvmarg value="-Dservice.spring.cluster.file=docroot/WEB-INF/src/META-INF/cluster-spring.xml" />
-			<jvmarg value="-Dservice.spring.dynamic.data.source.file=docroot/WEB-INF/src/META-INF/dynamic-data-source-spring.xml" />
-			<jvmarg value="-Dservice.spring.hibernate.file=docroot/WEB-INF/src/META-INF/hibernate-spring.xml" />
-			<jvmarg value="-Dservice.spring.infrastructure.file=docroot/WEB-INF/src/META-INF/infrastructure-spring.xml" />
-			<jvmarg value="-Dservice.spring.shard.data.source.file=docroot/WEB-INF/src/META-INF/shard-data-source-spring.xml" />
-			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/service" />
-			<jvmarg value="-Dservice.impl.dir=docroot/WEB-INF/src" />
-			<jvmarg value="-Dservice.json.file=docroot/js/service.js" />
-			<jvmarg value="-Dservice.sql.dir=docroot/WEB-INF/sql" />
-			<jvmarg value="-Dservice.sql.file=tables.sql" />
-			<jvmarg value="-Dservice.sql.indexes.file=indexes.sql" />
-			<jvmarg value="-Dservice.sql.indexes.properties.file=indexes.properties" />
-			<jvmarg value="-Dservice.sql.sequences.file=sequences.sql" />
-			<jvmarg value="-Dservice.auto.namespace.tables=true" />
-			<jvmarg value="-Dservice.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
-			<jvmarg value="-Dservice.props.util=com.liferay.util.service.ServiceProps" />
-			<jvmarg value="-Dservice.plugin.name=${plugin.name}" />
+			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+			<arg value="service.input.file=${service.input.file}" />
+			<arg value="service.hbm.file=docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
+			<arg value="service.orm.file=docroot/WEB-INF/src/META-INF/portlet-orm.xml" />
+			<arg value="service.model.hints.file=docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
+			<arg value="service.spring.file=docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
+			<arg value="service.spring.base.file=docroot/WEB-INF/src/META-INF/base-spring.xml" />
+			<arg value="service.spring.cluster.file=docroot/WEB-INF/src/META-INF/cluster-spring.xml" />
+			<arg value="service.spring.dynamic.data.source.file=docroot/WEB-INF/src/META-INF/dynamic-data-source-spring.xml" />
+			<arg value="service.spring.hibernate.file=docroot/WEB-INF/src/META-INF/hibernate-spring.xml" />
+			<arg value="service.spring.infrastructure.file=docroot/WEB-INF/src/META-INF/infrastructure-spring.xml" />
+			<arg value="service.spring.shard.data.source.file=docroot/WEB-INF/src/META-INF/shard-data-source-spring.xml" />
+			<arg value="service.api.dir=docroot/WEB-INF/service" />
+			<arg value="service.impl.dir=docroot/WEB-INF/src" />
+			<arg value="service.json.file=docroot/js/service.js" />
+			<arg value="service.sql.dir=docroot/WEB-INF/sql" />
+			<arg value="service.sql.file=tables.sql" />
+			<arg value="service.sql.indexes.file=indexes.sql" />
+			<arg value="service.sql.indexes.properties.file=indexes.properties" />
+			<arg value="service.sql.sequences.file=sequences.sql" />
+			<arg value="service.auto.namespace.tables=true" />
+			<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
+			<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
+			<arg value="service.plugin.name=${plugin.name}" />
 		</java>
 
 		<delete file="ServiceBuilder.temp" />

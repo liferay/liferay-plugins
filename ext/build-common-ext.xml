@@ -40,28 +40,25 @@ a portlet plugin.
 		<java
 			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
 			classpathref="service.classpath"
-			fork="true"
-			maxmemory="256m"
-			newenvironment="true"
 		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<jvmarg value="-Dservice.input.file=${service.file}" />
-			<jvmarg value="-Dservice.hbm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-hbm.xml" />
-			<jvmarg value="-Dservice.orm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-orm.xml" />
-			<jvmarg value="-Dservice.model.hints.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-model-hints.xml" />
-			<jvmarg value="-Dservice.spring.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
-			<jvmarg value="-Dservice.api.dir=docroot/WEB-INF/ext-service/src" />
-			<jvmarg value="-Dservice.impl.dir=docroot/WEB-INF/ext-impl/src" />
-			<jvmarg value="-Dservice.json.file=docroot/WEB-INF/ext-web/docroot/html/js/liferay/service.js" />
-			<jvmarg value="-Dservice.remoting.file=docroot/WEB-INF/ext-web/docroot/WEB-INF/remoting-servlet-ext.xml" />
-			<jvmarg value="-Dservice.sql.dir=docroot/WEB-INF/sql" />
-			<jvmarg value="-Dservice.sql.file=portal-tables.sql" />
-			<jvmarg value="-Dservice.sql.indexes.file=indexes.sql" />
-			<jvmarg value="-Dservice.sql.indexes.properties.file=indexes.properties" />
-			<jvmarg value="-Dservice.sql.sequences.file=sequences.sql" />
-			<jvmarg value="-Dservice.bean.locator.util=com.liferay.portal.kernel.bean.PortalBeanLocatorUtil" />
-			<jvmarg value="-Dservice.props.util=com.liferay.portal.util.PropsUtil" />
+			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
+			<arg value="service.input.file=${service.file}" />
+			<arg value="service.hbm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-hbm.xml" />
+			<arg value="service.orm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-orm.xml" />
+			<arg value="service.model.hints.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-model-hints.xml" />
+			<arg value="service.spring.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
+			<arg value="service.api.dir=docroot/WEB-INF/ext-service/src" />
+			<arg value="service.impl.dir=docroot/WEB-INF/ext-impl/src" />
+			<arg value="service.json.file=docroot/WEB-INF/ext-web/docroot/html/js/liferay/service.js" />
+			<arg value="service.remoting.file=docroot/WEB-INF/ext-web/docroot/WEB-INF/remoting-servlet-ext.xml" />
+			<arg value="service.sql.dir=docroot/WEB-INF/sql" />
+			<arg value="service.sql.file=portal-tables.sql" />
+			<arg value="service.sql.indexes.file=indexes.sql" />
+			<arg value="service.sql.indexes.properties.file=indexes.properties" />
+			<arg value="service.sql.sequences.file=sequences.sql" />
+			<arg value="service.bean.locator.util=com.liferay.portal.kernel.bean.PortalBeanLocatorUtil" />
+			<arg value="service.props.util=com.liferay.portal.util.PropsUtil" />
 		</java>
 
 		<delete file="ServiceBuilder.temp" />
