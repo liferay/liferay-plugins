@@ -184,11 +184,11 @@ public abstract class BaseDirectory implements Directory {
 
 		String suffix = name.substring(pos + 1);
 
-		char[] charArray = suffix.toCharArray();
+		char[] chars = suffix.toCharArray();
 
 		StringBundler sb = new StringBundler();
 
-		for (char c : charArray) {
+		for (char c : chars) {
 			for (char escapeChar : _ESCAPE_CHARS) {
 				if (c == escapeChar) {
 					sb.append(CharPool.BACK_SLASH);
