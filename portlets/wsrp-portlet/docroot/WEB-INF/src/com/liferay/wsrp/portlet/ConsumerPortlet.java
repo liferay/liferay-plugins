@@ -1416,18 +1416,13 @@ public class ConsumerPortlet extends GenericPortlet {
 		ResourceContext resourceContext =
 			wsrpResourceResponse.getResourceContext();
 
-		String charSet = StringPool.UTF8;
 		String contentType = resourceContext.getMimeType();
 
 		if (Validator.isNotNull(contentType)) {
 			resourceResponse.setContentType(contentType);
-
-			int x = contentType.indexOf("charset=");
-
-			if (x >= 0) {
-				charSet = contentType.substring(x + 8).trim();
-			}
 		}
+
+		String charSet = getCharSet(contentType);
 
 		String itemString = resourceContext.getItemString();
 		byte[] itemBinary = resourceContext.getItemBinary();
@@ -1581,17 +1576,11 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		String contentType = response.getContentType();
 
-		String charSet = StringPool.UTF8;
-
 		if (Validator.isNotNull(contentType)) {
 			resourceResponse.setContentType(contentType);
-
-			int x = contentType.indexOf("charset=");
-
-			if (x >= 0) {
-				charSet = contentType.substring(x + 8).trim();
-			}
 		}
+
+		String charSet = getCharSet(contentType);
 
 		if (ParamUtil.getBoolean(resourceRequest, "wsrp-requiresRewrite")) {
 			String content = rewriteURLs(
@@ -1601,6 +1590,18 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		PortletResponseUtil.write(resourceResponse, bytes);
+	}
+
+	protected String getCharSet(String contentType) {
+		if (Validator.isNotNull(contentType)) {
+			int x = contentType.indexOf("charset=");
+
+			if (x >= 0) {
+				return contentType.substring(x + 8).trim();
+			}
+		}
+
+		return StringPool.UTF8;
 	}
 
 	protected String rewriteURL(

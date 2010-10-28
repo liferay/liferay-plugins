@@ -685,14 +685,12 @@ public class V2MarkupServiceImpl
 		}
 
 		if (Validator.isNotNull(opaqueValue)) {
-			opaqueValue = opaqueValue.replace('-', '+');
-			opaqueValue = opaqueValue.replace('*', '=');
-			opaqueValue = opaqueValue.replace('_', '/');
-
-			opaqueValue =
-				new String(Base64.decode(opaqueValue), StringPool.UTF8);
-
 			sb.append(StringPool.AMPERSAND);
+
+			opaqueValue = new String(
+				Base64.decode(Base64.fromURLSafe(opaqueValue)),
+				StringPool.UTF8);
+
 			sb.append(opaqueValue);
 		}
 
