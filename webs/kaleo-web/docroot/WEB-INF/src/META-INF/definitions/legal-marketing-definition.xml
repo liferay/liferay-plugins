@@ -9,7 +9,7 @@
 	<description>Workflow assets must be approved first by Marketing and then by Legal.</description>
 	<version>1</version>
 	<state>
-		<name>created</name>
+		<name>CREATED</name>
 		<initial>true</initial>
 		<transitions>
 			<transition>
@@ -20,7 +20,7 @@
 		</transitions>
 	</state>
 	<task>
-		<name>update</name>
+		<name>CREATOR_MODIFY</name>
 		<actions>
 			<notification>
 				<name>Creator Modification Notification</name>
@@ -54,37 +54,13 @@
 		</actions>
 		<assignments>
 			<roles>
-                <role>
-                    <role-type>community</role-type>
-                    <name>Community Administrator</name>
-                </role>
-				<role>
-					<role-type>community</role-type>
-					<name>Community Marketing Content Reviewer</name>
-				</role>
 				<role>
 					<role-type>community</role-type>
 					<name>Community Owner</name>
 				</role>
 				<role>
-                    <role-type>organization</role-type>
-                    <name>Organization Administrator</name>
-                </role>
-                <role>
 					<role-type>organization</role-type>
 					<name>Organization Marketing Content Reviewer</name>
-				</role>
-				<role>
-					<role-type>organization</role-type>
-					<name>Organization Owner</name>
-				</role>
-				<role>
-					<role-type>regular</role-type>
-					<name>Portal Marketing Content Reviewer</name>
-				</role>
-				<role>
-					<role-type>regular</role-type>
-					<name>Administrator</name>
 				</role>
 			</roles>
 		</assignments>
@@ -96,7 +72,7 @@
 			</transition>
 			<transition>
 				<name>Marketing Denied</name>
-				<target>update</target>
+				<target>CREATOR_MODIFY</target>
 				<default>false</default>
 			</transition>
 		</transitions>
@@ -114,55 +90,31 @@
 		</actions>
 		<assignments>
 			<roles>
-                <role>
-                    <role-type>community</role-type>
-                    <name>Community Administrator</name>
-                </role>
 				<role>
 					<role-type>community</role-type>
 					<name>Community Legal Content Reviewer</name>
 				</role>
 				<role>
-					<role-type>community</role-type>
-					<name>Community Owner</name>
-				</role>
-				<role>
-                    <role-type>organization</role-type>
-                    <name>Organization Administrator</name>
-                </role>
-                <role>
 					<role-type>organization</role-type>
 					<name>Organization Legal Content Reviewer</name>
-				</role>
-				<role>
-					<role-type>organization</role-type>
-					<name>Organization Owner</name>
-				</role>
-				<role>
-					<role-type>regular</role-type>
-					<name>Portal Legal Content Reviewer</name>
-				</role>
-				<role>
-					<role-type>regular</role-type>
-					<name>Administrator</name>
 				</role>
 			</roles>
 		</assignments>
 		<transitions>
 			<transition>
 				<name>Legal Approval</name>
-				<target>approve</target>
+				<target>APPROVED</target>
 				<default>true</default>
 			</transition>
 			<transition>
 				<name>Legal Denied</name>
-				<target>update</target>
+				<target>CREATOR_MODIFY</target>
 				<default>false</default>
 			</transition>
 		</transitions>
 	</task>
 	<state>
-		<name>approve</name>
+		<name>APPROVED</name>
 		<actions>
 			<action>
 				<name>Approve Asset</name>

@@ -1,0 +1,64 @@
+##
+## Velocity Transform Template
+##
+## All dynamic elements in a structure can be accessed as a Velocity variable.
+##
+## The given structure:
+##
+## <root>
+##   <dynamic-element name="main-text" type="text_area">
+##     <dynamic-element name="sub-image" type="image"></dynamic-element>
+##     <dynamic-element name="sub-text" type="text"></dynamic-element>
+##   </dynamic-element>
+##   <dynamic-element name="more-text" type="text_area"></dynamic-element>
+##   <dynamic-element name="ms-list" type="multi-list">
+##     <dynamic-element name="chocolate" type="Chocolate"></dynamic-element>
+##     <dynamic-element name="strawberry" type="Strawberry"></dynamic-element>
+##     <dynamic-element name="vanilla" type="Vanilla"></dynamic-element>
+##   </dynamic-element>
+## </root>
+##
+## The dynamic element "main-text" can be accessed in the following ways:
+##
+## $main-text.getName()     - The name "main-text"
+## $main-text.getData()     - The data in the article for main-text
+## $main-text.getType()     - The type "text-area"
+## $main-text.getChildren() - A collection with two nodes (sub-image and
+##                            sub-text) that can be used in the #foreach clause
+## $main-text.getSiblings() - A collection of elements with the name
+##                            "main-text". This will only return more than one
+##                            element if this element is repeatable.
+##
+## One special accessor exists for elements of type "multi-list":
+##
+## $ms-list.getOptions() - A collection with up to three string entries
+##                         (chocolate, strawberry, or vanilla) that can be used
+##                         in the #foreach clause
+##
+## Another special accessor exists for elements of type "link_to_layout":
+##
+## $linkToPage.getUrl() - The URL that links to the selected page in the current
+##                        community, organization, etc.
+##
+## The variable $journalTemplatesPath can be used to include
+## another Journal template, e.g. #parse ("$journalTemplatesPath/LAYOUT-PARENT")
+##
+## The variable $viewMode specifies which mode the article is being viewed in.
+## For example, if $viewMode evaluates to "print", that means the user clicked
+## the print icon to view this article.
+##
+
+
+
+<p>
+	<span style="font-size:16px;"><span style="color:#696969;"><b>$title.getData()</b></span></span>
+</p>
+#foreach( $availableLocation in $location.getSiblings() )
+<p>
+	<span style="font-size:12px;"><span style="color:#696969;"><b>$availableLocation.getData()</b><br />
+	#foreach( $availablePhone in $availableLocation.getChildren() )
+		$availablePhone.getData()<br />
+	#end
+	</span></span>
+</p>
+#end
