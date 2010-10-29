@@ -15,9 +15,7 @@
 --%>
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 
 <portlet:defineObjects />
-<liferay-portlet:runtime portletName="160"/>
 
 This is the <strong>Sample JSP Portlet</strong>. Use this as a quick way to include JSPs.
