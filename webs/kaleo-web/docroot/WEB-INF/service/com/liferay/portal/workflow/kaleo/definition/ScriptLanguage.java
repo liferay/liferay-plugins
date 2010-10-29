@@ -19,14 +19,11 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum ScriptLanguage {
 
-	BEANSHELL("beanshell"), DRL("drl"), GROOVY("groovy"), JAVASCRIPT("javascript"), PYTHON("python"),
+	DRL("drl"), GROOVY("groovy"), JAVASCRIPT("javascript"), PYTHON("python"),
 	RUBY("ruby");
 
 	public static ScriptLanguage parse(String value) {
-		if (BEANSHELL.getValue().equals(value)) {
-			return BEANSHELL;
-		}
-		else if (DRL.getValue().equals(value)) {
+		if (DRL.getValue().equals(value)) {
 			return DRL;
 		}
 		else if (GROOVY.getValue().equals(value)) {
