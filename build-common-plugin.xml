@@ -154,6 +154,7 @@
 		<path id="service.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
+			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
 			<pathelement location="docroot/WEB-INF/classes" />
 		</path>
@@ -163,7 +164,7 @@
 				<isset property="service.input.file" />
 			</not>
 		    	<then>
-		    		<property name="service.input.file" value="docroot/WEB-INF/service.xml"/>
+		    		<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml"/>
 			</then>
 		</if>
 
@@ -174,20 +175,20 @@
 			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
 			<arg value="service.input.file=${service.input.file}" />
-			<arg value="service.hbm.file=docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
-			<arg value="service.orm.file=docroot/WEB-INF/src/META-INF/portlet-orm.xml" />
-			<arg value="service.model.hints.file=docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
-			<arg value="service.spring.file=docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
-			<arg value="service.spring.base.file=docroot/WEB-INF/src/META-INF/base-spring.xml" />
-			<arg value="service.spring.cluster.file=docroot/WEB-INF/src/META-INF/cluster-spring.xml" />
-			<arg value="service.spring.dynamic.data.source.file=docroot/WEB-INF/src/META-INF/dynamic-data-source-spring.xml" />
-			<arg value="service.spring.hibernate.file=docroot/WEB-INF/src/META-INF/hibernate-spring.xml" />
-			<arg value="service.spring.infrastructure.file=docroot/WEB-INF/src/META-INF/infrastructure-spring.xml" />
-			<arg value="service.spring.shard.data.source.file=docroot/WEB-INF/src/META-INF/shard-data-source-spring.xml" />
-			<arg value="service.api.dir=docroot/WEB-INF/service" />
-			<arg value="service.impl.dir=docroot/WEB-INF/src" />
-			<arg value="service.json.file=docroot/js/service.js" />
-			<arg value="service.sql.dir=docroot/WEB-INF/sql" />
+			<arg value="service.hbm.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
+			<arg value="service.orm.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-orm.xml" />
+			<arg value="service.model.hints.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
+			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
+			<arg value="service.spring.base.file=${basedir}/docroot/WEB-INF/src/META-INF/base-spring.xml" />
+			<arg value="service.spring.cluster.file=${basedir}/docroot/WEB-INF/src/META-INF/cluster-spring.xml" />
+			<arg value="service.spring.dynamic.data.source.file=${basedir}/docroot/WEB-INF/src/META-INF/dynamic-data-source-spring.xml" />
+			<arg value="service.spring.hibernate.file=${basedir}/docroot/WEB-INF/src/META-INF/hibernate-spring.xml" />
+			<arg value="service.spring.infrastructure.file=${basedir}/docroot/WEB-INF/src/META-INF/infrastructure-spring.xml" />
+			<arg value="service.spring.shard.data.source.file=${basedir}/docroot/WEB-INF/src/META-INF/shard-data-source-spring.xml" />
+			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/service" />
+			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/src" />
+			<arg value="service.json.file=${basedir}/docroot/js/service.js" />
+			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
 			<arg value="service.sql.indexes.properties.file=indexes.properties" />

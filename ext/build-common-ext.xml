@@ -23,6 +23,7 @@ a portlet plugin.
 		<path id="service.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
+			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
 			<!--<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
 			<pathelement location="docroot/WEB-INF/classes" />-->
 		</path>
@@ -44,15 +45,15 @@ a portlet plugin.
 			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
 			<arg value="service.input.file=${service.file}" />
-			<arg value="service.hbm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-hbm.xml" />
-			<arg value="service.orm.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-orm.xml" />
-			<arg value="service.model.hints.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-model-hints.xml" />
-			<arg value="service.spring.file=docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
-			<arg value="service.api.dir=docroot/WEB-INF/ext-service/src" />
-			<arg value="service.impl.dir=docroot/WEB-INF/ext-impl/src" />
-			<arg value="service.json.file=docroot/WEB-INF/ext-web/docroot/html/js/liferay/service.js" />
-			<arg value="service.remoting.file=docroot/WEB-INF/ext-web/docroot/WEB-INF/remoting-servlet-ext.xml" />
-			<arg value="service.sql.dir=docroot/WEB-INF/sql" />
+			<arg value="service.hbm.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-hbm.xml" />
+			<arg value="service.orm.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-orm.xml" />
+			<arg value="service.model.hints.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-model-hints.xml" />
+			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/ext-impl/src/META-INF/ext-spring.xml" />
+			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/ext-service/src" />
+			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/ext-impl/src" />
+			<arg value="service.json.file=${basedir}/docroot/WEB-INF/ext-web/docroot/html/js/liferay/service.js" />
+			<arg value="service.remoting.file=${basedir}/docroot/WEB-INF/ext-web/docroot/WEB-INF/remoting-servlet-ext.xml" />
+			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=portal-tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
 			<arg value="service.sql.indexes.properties.file=indexes.properties" />
