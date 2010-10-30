@@ -14,7 +14,7 @@
 		<transitions>
 			<transition>
 				<name>Market Review</name>
-				<target>MARKETING_REVIEW</target>
+				<target>marketing-review</target>
 				<default>true</default>
 			</transition>
 		</transitions>
@@ -36,13 +36,13 @@
 		<transitions>
 			<transition>
 				<name>Resubmit</name>
-				<target>MARKETING_REVIEW</target>
+				<target>marketing-review</target>
 				<default>true</default>
 			</transition>
 		</transitions>
 	</task>
 	<task>
-		<name>MARKETING_REVIEW</name>
+		<name>marketing-review</name>
 		<actions>
 			<notification>
 				<name>Market Content Review Notification</name>
@@ -80,18 +80,18 @@
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Portal Marketing Content Reviewer</name>
+					<name>Administrator</name>
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Administrator</name>
+					<name>Portal Marketing Content Reviewer</name>
 				</role>
 			</roles>
 		</assignments>
 		<transitions>
 			<transition>
 				<name>Marketing Approved</name>
-				<target>LEGAL_REVIEW</target>
+				<target>legal-review</target>
 				<default>true</default>
 			</transition>
 			<transition>
@@ -102,7 +102,7 @@
 		</transitions>
 	</task>
 	<task>
-		<name>LEGAL_REVIEW</name>
+		<name>legal-review</name>
 		<actions>
 			<notification>
 				<name>Legal Content Review Notification</name>
@@ -140,11 +140,11 @@
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Portal Legal Content Reviewer</name>
+					<name>Administrator</name>
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Administrator</name>
+					<name>Portal Legal Content Reviewer</name>
 				</role>
 			</roles>
 		</assignments>

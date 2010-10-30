@@ -80,11 +80,11 @@
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Portal Content Reviewer</name>
+					<name>Administrator</name>
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Administrator</name>
+					<name>Portal Content Reviewer</name>
 				</role>
 			</roles>
 		</assignments>
