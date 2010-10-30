@@ -535,8 +535,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-						finderArgs, new ArrayList<Status>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -649,13 +649,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Status>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MODIFIEDDATE,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -977,13 +979,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Status>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_ONLINE,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ONLINE,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ONLINE,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1312,13 +1316,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Status>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_M_O,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_M_O, finderArgs,
-					list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_M_O,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1649,12 +1655,15 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Status>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}

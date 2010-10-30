@@ -617,8 +617,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-						finderArgs, new ArrayList<MemberRequest>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -737,13 +737,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<MemberRequest>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_RECEIVERUSERID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1085,13 +1087,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<MemberRequest>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_S,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_S, finderArgs,
-					list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_S,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1470,8 +1474,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S,
-						finderArgs, new ArrayList<MemberRequest>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -1579,12 +1583,15 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<MemberRequest>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}

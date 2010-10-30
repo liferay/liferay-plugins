@@ -526,13 +526,15 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTaskInstanceToken>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_COMPANYID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -867,13 +869,15 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTaskInstanceToken>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1211,13 +1215,15 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTaskInstanceToken>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEOINSTANCEID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEOINSTANCEID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEOINSTANCEID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1544,12 +1550,15 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTaskInstanceToken>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}
@@ -1910,13 +1919,15 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance>();
+					FinderCacheUtil.removeResult(FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES,
+						finderArgs);
 				}
+				else {
+					kaleoTaskAssignmentInstancePersistence.cacheResult(list);
 
-				kaleoTaskAssignmentInstancePersistence.cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_GET_KALEOTASKASSIGNMENTINSTANCES,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}

@@ -520,8 +520,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
-						finderArgs, new ArrayList<SVNRepository>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -629,12 +629,15 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<SVNRepository>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}

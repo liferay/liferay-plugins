@@ -578,8 +578,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
-						finderArgs, new ArrayList<Feed>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -730,8 +730,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
-						finderArgs, new ArrayList<Feed>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -838,12 +838,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Feed>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}

@@ -619,13 +619,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTransition>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_COMPANYID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_COMPANYID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -960,13 +962,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTransition>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEODEFINITIONID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1301,13 +1305,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTransition>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_KALEONODEID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEONODEID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_KALEONODEID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1675,8 +1681,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_N,
-						finderArgs, new ArrayList<KaleoTransition>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -1818,8 +1824,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
-						finderArgs, new ArrayList<KaleoTransition>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -1927,12 +1933,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<KaleoTransition>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}

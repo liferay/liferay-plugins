@@ -645,13 +645,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_PROJECTID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_PROJECTID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_PROJECTID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1006,8 +1008,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
-						finderArgs, new ArrayList<JIRAIssue>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -1138,13 +1140,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_REPORTERJIRAUSERID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_REPORTERJIRAUSERID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_REPORTERJIRAUSERID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1502,13 +1506,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_ASSIGNEEJIRAUSERID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ASSIGNEEJIRAUSERID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_ASSIGNEEJIRAUSERID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -1868,13 +1874,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_MD_P,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P, finderArgs,
-					list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -2248,13 +2256,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_RJUI,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_RJUI,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_RJUI,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -2634,13 +2644,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_AJUI,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_AJUI,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_AJUI,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -3035,13 +3047,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_MD_P_RJUI,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P_RJUI,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P_RJUI,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -3459,13 +3473,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_MD_P_AJUI,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P_AJUI,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_MD_P_AJUI,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -3888,13 +3904,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_RJUI_S,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_RJUI_S,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_RJUI_S,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -4321,13 +4339,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_AJUI_S,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_AJUI_S,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_AJUI_S,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -4703,12 +4723,15 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<JIRAIssue>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}

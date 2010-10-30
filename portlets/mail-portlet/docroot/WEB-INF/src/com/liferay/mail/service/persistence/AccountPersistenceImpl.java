@@ -535,13 +535,15 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Account>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_USERID,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_USERID,
-					finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_USERID,
+						finderArgs, list);
+				}
 
 				closeSession(session);
 			}
@@ -906,8 +908,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
-						finderArgs, new ArrayList<Account>());
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
+						finderArgs);
 				}
 
 				closeSession(session);
@@ -1014,12 +1016,15 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			}
 			finally {
 				if (list == null) {
-					list = new ArrayList<Account>();
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
 				}
+				else {
+					cacheResult(list);
 
-				cacheResult(list);
-
-				FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs, list);
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
 
 				closeSession(session);
 			}
