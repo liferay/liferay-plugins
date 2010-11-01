@@ -33,7 +33,7 @@
 				<if>
 					<available file="${portlet.dir}" />
 					<then>
-						<echo message="${portlet.dir} already exists." />
+						<fail message="${portlet.dir} already exists." />
 					</then>
 				</if>
 
