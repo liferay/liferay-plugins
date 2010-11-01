@@ -35,100 +35,99 @@
 					<then>
 						<echo message="${portlet.dir} already exists." />
 					</then>
-					<else>
+				</if>
+
+				<copy todir="${portlet.dir}">
+					<fileset
+						dir="${project.dir}/tools/portlet_tmpl"
+					/>
+				</copy>
+
+				<antelope:stringutil string="${portlet.display.name}" property="portlet.java.class.name">
+					<antelope:replace regex="\s+" replacement="" />
+					<antelope:trim />
+				</antelope:stringutil>
+
+				<antelope:stringutil string="${portlet.name}" property="portlet.java.package.name">
+					<antelope:replace regex="-" replacement="" />
+					<antelope:trim />
+				</antelope:stringutil>
+
+				<if>
+					<not>
+						<equals arg1="${portlet.framework}" arg2="" />
+					</not>
+					<then>
 						<copy todir="${portlet.dir}">
-						    <fileset
-								dir="${project.dir}/tools/portlet_tmpl"
+							<fileset
+								dir="${project.dir}/tools/portlet_vaadin_tmpl"
 							/>
 						</copy>
+					</then>
+				</if>
 
-						<antelope:stringutil string="${portlet.display.name}" property="portlet.java.class.name">
-							<antelope:replace regex="\s+" replacement="" />
-							<antelope:trim />
-						</antelope:stringutil>
+				<if>
+					<equals arg1="${portlet.framework}" arg2="vaadin" />
+					<then>
+						<move
+							file="${portlet.dir}/docroot/WEB-INF/src/Application.java"
+							tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}Application.java"
+						/>
 
-						<antelope:stringutil string="${portlet.name}" property="portlet.java.package.name">
-							<antelope:replace regex="-" replacement="" />
-							<antelope:trim />
-						</antelope:stringutil>
-
-						<if>
-							<not>
-								<equals arg1="${portlet.framework}" arg2="" />
-							</not>
-							<then>
-								<copy todir="${portlet.dir}">
-									<fileset
-										dir="${project.dir}/tools/portlet_vaadin_tmpl"
-									/>
-								</copy>
-							</then>
-						</if>
-
-						<if>
-							<equals arg1="${portlet.framework}" arg2="vaadin" />
-							<then>
-								<move
-									file="${portlet.dir}/docroot/WEB-INF/src/Application.java"
-									tofile="${portlet.dir}/docroot/WEB-INF/src/${portlet.java.package.name}/${portlet.java.class.name}Application.java"
-								/>
-
-								<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
 
 portal-dependency-jars=vaadin.jar</echo>
 
-								<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-									<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
-									<replacevalue><![CDATA[<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>]]></replacevalue>
-								</replace>
-
-								<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-									<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
-									<replacevalue><![CDATA[<name>application</name>]]></replacevalue>
-								</replace>
-
-								<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-									<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
-									<replacevalue><![CDATA[<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>]]></replacevalue>
-								</replace>
-
-								<replaceregexp match="&lt;/instanceable&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/instanceable&gt;" flags="s">
-									<fileset
-										dir="${portlet.dir}/docroot/WEB-INF"
-										includes="liferay-portlet.xml"
-									/>
-								</replaceregexp>
-
-								<delete includeemptydirs="true">
-									<fileset
-										dir="${portlet.dir}/docroot"
-										includes="css/**,js/**,view.jsp"
-									/>
-								</delete>
-							</then>
-						</if>
-
-						<replace dir="${portlet.parent.dir}/${portlet.name}-portlet">
-							<replacefilter token="@portlet.name@" value="${portlet.name}" />
-							<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
-							<replacefilter token="@portlet.java.class.name@" value="${portlet.java.class.name}" />
-							<replacefilter token="@portlet.java.package.name@" value="${portlet.java.package.name}" />
+						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+							<replacevalue><![CDATA[<portlet-class>com.vaadin.terminal.gwt.server.ApplicationPortlet2</portlet-class>]]></replacevalue>
 						</replace>
 
-						<mkdir dir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld" />
+						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+							<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
+							<replacevalue><![CDATA[<name>application</name>]]></replacevalue>
+						</replace>
 
-						<copy todir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld">
-						    <fileset dir="${app.server.portal.dir}/WEB-INF/tld">
-								<include name="liferay-portlet.tld" />
-								<include name="liferay-portlet-ext.tld" />
-								<include name="liferay-security.tld" />
-								<include name="liferay-theme.tld" />
-								<include name="liferay-ui.tld" />
-								<include name="liferay-util.tld" />
-						    </fileset>
-						</copy>
-					</else>
+						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+							<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
+							<replacevalue><![CDATA[<value>@portlet.java.package.name@.@portlet.java.class.name@Application</value>]]></replacevalue>
+						</replace>
+
+						<replaceregexp match="&lt;/instanceable&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/instanceable&gt;" flags="s">
+							<fileset
+								dir="${portlet.dir}/docroot/WEB-INF"
+								includes="liferay-portlet.xml"
+							/>
+						</replaceregexp>
+
+						<delete includeemptydirs="true">
+							<fileset
+								dir="${portlet.dir}/docroot"
+								includes="css/**,js/**,view.jsp"
+							/>
+						</delete>
+					</then>
 				</if>
+
+				<replace dir="${portlet.parent.dir}/${portlet.name}-portlet">
+					<replacefilter token="@portlet.name@" value="${portlet.name}" />
+					<replacefilter token="@portlet.display.name@" value="${portlet.display.name}" />
+					<replacefilter token="@portlet.java.class.name@" value="${portlet.java.class.name}" />
+					<replacefilter token="@portlet.java.package.name@" value="${portlet.java.package.name}" />
+				</replace>
+
+				<mkdir dir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld" />
+
+				<copy todir="${portlet.parent.dir}/${portlet.name}-portlet/docroot/WEB-INF/tld">
+					<fileset dir="${app.server.portal.dir}/WEB-INF/tld">
+						<include name="liferay-portlet.tld" />
+						<include name="liferay-portlet-ext.tld" />
+						<include name="liferay-security.tld" />
+						<include name="liferay-theme.tld" />
+						<include name="liferay-ui.tld" />
+						<include name="liferay-util.tld" />
+					</fileset>
+				</copy>
 			</else>
 		</if>
 	</target>
