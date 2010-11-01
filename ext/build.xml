@@ -22,16 +22,23 @@
 						<property name="ext.parent.dir" value="${basedir}" />
 					</then>
 				</if>
+
+				<property name="ext.dir" value="${ext.parent.dir}/${ext.name}-ext" />
+
 				<if>
-					<available file="${ext.parent.dir}/${ext.name}-ext" />
+					<available file="${ext.dir}" />
 					<then>
 						<fail message="${ext.name}-ext already exists." />
 					</then>
 				</if>
 
-				<unzip src="ext.zip" dest="${ext.parent.dir}/${ext.name}-ext" />
+				<copy todir="${ext.dir}">
+					<fileset
+						dir="${project.dir}/tools/ext_tmpl"
+					/>
+				</copy>
 
-				<replace dir="${ext.parent.dir}/${ext.name}-ext">
+				<replace dir="${ext.dir}">
 					<replacefilter token="@ext.name@" value="${ext.name}" />
 					<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
 				</replace>

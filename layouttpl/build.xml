@@ -28,42 +28,47 @@
 					</then>
 				</if>
 
+				<property name="layouttpl.dir" value="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl" />
+
 				<if>
-					<available file="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl" />
+					<available file="${layouttpl.dir}" />
 					<then>
-						<echo message="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl already exists." />
+						<fail message="${layouttpl.name}-layouttpl already exists." />
 					</then>
-					<else>
-						<antelope:stringutil string="${layouttpl.name}" property="layouttpl.template.name">
-							<replace regex="-" replacement="_" />
-						</antelope:stringutil>
-
-						<unzip src="layouttpl.zip" dest="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl" />
-
-						<replace dir="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl">
-							<replacefilter token="@layouttpl.name@" value="${layouttpl.name}" />
-							<replacefilter token="@layouttpl.display.name@" value="${layouttpl.display.name}" />
-							<replacefilter token="@layouttpl.template.name@" value="${layouttpl.template.name}" />
-						</replace>
-
-						<move
-							file="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/blank_columns.png"
-							tofile="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/${layouttpl.template.name}.png"
-						/>
-
-						<move
-							file="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/blank_columns.tpl"
-							tofile="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/${layouttpl.template.name}.tpl"
-						/>
-
-						<move
-							file="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/blank_columns.wap.tpl"
-							tofile="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/${layouttpl.template.name}.wap.tpl"
-						/>
-
-						<touch file="${layouttpl.parent.dir}/${layouttpl.name}-layouttpl/docroot/${layouttpl.template.name}.wap.tpl" />
-					</else>
 				</if>
+
+				<copy todir="${layouttpl.dir}">
+					<fileset
+						dir="${project.dir}/tools/layouttpl_tmpl"
+					/>
+				</copy>
+
+				<antelope:stringutil string="${layouttpl.name}" property="layouttpl.template.name">
+					<replace regex="-" replacement="_" />
+				</antelope:stringutil>
+
+				<replace dir="${layouttpl.dir}">
+					<replacefilter token="@layouttpl.name@" value="${layouttpl.name}" />
+					<replacefilter token="@layouttpl.display.name@" value="${layouttpl.display.name}" />
+					<replacefilter token="@layouttpl.template.name@" value="${layouttpl.template.name}" />
+				</replace>
+
+				<move
+					file="${layouttpl.dir}/docroot/blank_columns.png"
+					tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.png"
+				/>
+
+				<move
+					file="${layouttpl.dir}/docroot/blank_columns.tpl"
+					tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.tpl"
+				/>
+
+				<move
+					file="${layouttpl.dir}/docroot/blank_columns.wap.tpl"
+					tofile="${layouttpl.dir}/docroot/${layouttpl.template.name}.wap.tpl"
+				/>
+
+				<touch file="${layouttpl.dir}/docroot/${layouttpl.template.name}.wap.tpl" />
 			</else>
 		</if>
 	</target>

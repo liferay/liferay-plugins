@@ -28,22 +28,27 @@
 					</then>
 				</if>
 
+				<property name="theme.dir" value="${theme.parent.dir}/${theme.name}-theme" />
+
 				<if>
-					<available file="${theme.parent.dir}/${theme.name}-theme" />
+					<available file="${theme.dir}" />
 					<then>
-						<echo message="${theme.name}-theme already exists." />
+						<fail message="${theme.name}-theme already exists." />
 					</then>
-					<else>
-						<mkdir dir="${theme.parent.dir}/${theme.name}-theme/docroot/_diffs" />
-
-						<unzip src="theme.zip" dest="${theme.parent.dir}/${theme.name}-theme" />
-
-						<replace dir="${theme.parent.dir}/${theme.name}-theme">
-							<replacefilter token="@theme.name@" value="${theme.name}" />
-							<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
-						</replace>
-					</else>
 				</if>
+
+				<copy todir="${theme.dir}">
+					<fileset
+						dir="${project.dir}/tools/theme_tmpl"
+					/>
+				</copy>
+
+				<mkdir dir="${theme.dir}/docroot/_diffs" />
+
+				<replace dir="${theme.dir}">
+					<replacefilter token="@theme.name@" value="${theme.name}" />
+					<replacefilter token="@theme.display.name@" value="${theme.display.name}" />
+				</replace>
 			</else>
 		</if>
 	</target>

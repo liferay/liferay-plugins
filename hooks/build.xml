@@ -28,20 +28,25 @@
 					</then>
 				</if>
 
-				<if>
-					<available file="${hook.parent.dir}/${hook.name}-hook" />
-					<then>
-						<echo message="${hook.name}-hook already exists." />
-					</then>
-					<else>
-						<unzip src="hook.zip" dest="${hook.parent.dir}/${hook.name}-hook" />
+				<property name="hook.dir" value="${hook.parent.dir}/${hook.name}-hook" />
 
-						<replace dir="${hook.parent.dir}/${hook.name}-hook">
-							<replacefilter token="@hook.name@" value="${hook.name}" />
-							<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
-						</replace>
-					</else>
+				<if>
+					<available file="${hook.dir}" />
+					<then>
+						<fail message="${hook.name}-hook already exists." />
+					</then>
 				</if>
+
+				<copy todir="${hook.dir}">
+					<fileset
+						dir="${project.dir}/tools/hook_tmpl"
+					/>
+				</copy>
+
+				<replace dir="${hook.dir}">
+					<replacefilter token="@hook.name@" value="${hook.name}" />
+					<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
+				</replace>
 			</else>
 		</if>
 	</target>
