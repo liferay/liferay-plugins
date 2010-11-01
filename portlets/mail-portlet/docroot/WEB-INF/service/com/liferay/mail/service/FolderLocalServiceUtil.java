@@ -77,6 +77,7 @@ public class FolderLocalServiceUtil {
 	* Deletes the folder from the database. Also notifies the appropriate model listeners.
 	*
 	* @param folder the folder to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteFolder(com.liferay.mail.model.Folder folder)

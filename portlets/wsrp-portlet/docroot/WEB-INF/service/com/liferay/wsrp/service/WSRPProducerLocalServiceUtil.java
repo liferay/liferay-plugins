@@ -78,6 +78,7 @@ public class WSRPProducerLocalServiceUtil {
 	* Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducer the w s r p producer to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteWSRPProducer(

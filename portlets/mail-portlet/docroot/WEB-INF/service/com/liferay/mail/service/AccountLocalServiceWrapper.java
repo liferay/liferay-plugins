@@ -68,6 +68,7 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 	* Deletes the account from the database. Also notifies the appropriate model listeners.
 	*
 	* @param account the account to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteAccount(com.liferay.mail.model.Account account)

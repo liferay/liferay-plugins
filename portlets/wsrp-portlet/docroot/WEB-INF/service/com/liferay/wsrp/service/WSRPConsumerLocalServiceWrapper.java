@@ -70,6 +70,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	* Deletes the w s r p consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumer the w s r p consumer to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteWSRPConsumer(

@@ -74,6 +74,7 @@ public interface GadgetLocalService {
 	* Deletes the gadget from the database. Also notifies the appropriate model listeners.
 	*
 	* @param gadget the gadget to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteGadget(com.liferay.opensocial.model.Gadget gadget)

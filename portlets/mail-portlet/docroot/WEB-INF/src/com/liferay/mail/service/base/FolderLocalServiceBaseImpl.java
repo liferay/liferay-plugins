@@ -100,6 +100,7 @@ public abstract class FolderLocalServiceBaseImpl implements FolderLocalService {
 	 * Deletes the folder from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param folder the folder to delete
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteFolder(Folder folder)

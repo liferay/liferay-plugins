@@ -78,6 +78,7 @@ public class TemplateLocalServiceUtil {
 	* Deletes the template from the database. Also notifies the appropriate model listeners.
 	*
 	* @param template the template to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteTemplate(

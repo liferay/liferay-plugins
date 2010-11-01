@@ -74,6 +74,7 @@ public interface ArticleLocalService {
 	* Deletes the article from the database. Also notifies the appropriate model listeners.
 	*
 	* @param article the article to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteArticle(com.liferay.knowledgebase.model.Article article)

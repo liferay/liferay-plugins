@@ -70,6 +70,7 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	* Deletes the w s r p producer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpProducer the w s r p producer to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteWSRPProducer(

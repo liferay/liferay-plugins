@@ -75,6 +75,7 @@ public interface WSRPConsumerPortletLocalService {
 	* Deletes the w s r p consumer portlet from the database. Also notifies the appropriate model listeners.
 	*
 	* @param wsrpConsumerPortlet the w s r p consumer portlet to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteWSRPConsumerPortlet(

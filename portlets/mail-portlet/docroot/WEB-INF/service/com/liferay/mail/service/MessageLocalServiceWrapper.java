@@ -68,6 +68,7 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 	* Deletes the message from the database. Also notifies the appropriate model listeners.
 	*
 	* @param message the message to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteMessage(com.liferay.mail.model.Message message)
