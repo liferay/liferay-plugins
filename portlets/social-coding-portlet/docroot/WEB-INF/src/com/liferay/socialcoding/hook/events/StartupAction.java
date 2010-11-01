@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.DuplicateTableNameException;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -40,7 +41,9 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		setupExpando(companyId);
+		if (companyId == PortalUtil.getDefaultCompanyId()) {
+			setupExpando(companyId);
+		}
 	}
 
 	protected void setupExpando(long companyId) throws Exception {

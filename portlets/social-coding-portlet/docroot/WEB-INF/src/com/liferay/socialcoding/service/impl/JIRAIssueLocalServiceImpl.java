@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
@@ -333,7 +334,8 @@ public class JIRAIssueLocalServiceImpl extends JIRAIssueLocalServiceBaseImpl {
 	protected long getUserId(String jiraUserId) throws SystemException {
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
-				User.class.getName(), "SC", "jiraUserId", jiraUserId, 0, 1);
+				PortalUtil.getDefaultCompanyId(), User.class.getName(), "SC",
+				"jiraUserId", jiraUserId, 0, 1);
 
 		if (expandoValues.size() == 0) {
 			return 0;
