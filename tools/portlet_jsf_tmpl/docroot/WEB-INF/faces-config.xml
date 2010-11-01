@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
+
 <faces-config
+    version="2.0"
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
-    version="2.0">
-
+>
 	<application>
 		<message-bundle>i18nFaces</message-bundle>
 		<resource-bundle>
@@ -12,5 +13,4 @@
 			<var>i18n</var>
 		</resource-bundle>
 	</application>
-
 </faces-config>

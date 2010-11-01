@@ -67,6 +67,43 @@
 				</if>
 
 				<if>
+					<equals arg1="${portlet.framework}" arg2="jsf" />
+					<then>
+						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
+
+portal-dependency-jars=log4j.jar,slf4j-api.jar,slf4j-log4j12.jar</echo>
+
+						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
+							<replacevalue><![CDATA[<portlet-class>org.portletfaces.bridge.GenericFacesPortlet</portlet-class>]]></replacevalue>
+						</replace>
+
+						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+							<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
+							<replacevalue><![CDATA[<name>javax.portlet.faces.defaultViewId.view</name>]]></replacevalue>
+						</replace>
+
+						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
+							<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
+							<replacevalue><![CDATA[<value>/xhtml/portletViewMode.xhtml</value>]]></replacevalue>
+						</replace>
+
+						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
+							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
+							<replacevalue><![CDATA[</instanceable>
+		<ajaxable>false</ajaxable>]]></replacevalue>
+						</replace>
+
+						<delete includeemptydirs="true">
+							<fileset
+								dir="${portlet.dir}/docroot"
+								includes="js/**,view.jsp"
+							/>
+						</delete>
+					</then>
+				</if>
+
+				<if>
 					<equals arg1="${portlet.framework}" arg2="vaadin" />
 					<then>
 						<move
@@ -108,44 +145,6 @@ portal-dependency-jars=vaadin.jar</echo>
 						</delete>
 					</then>
 				</if>
-				
-				<if>
-					<equals arg1="${portlet.framework}" arg2="jsf" />
-					<then>
-						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
-
-portal-dependency-jars=\
-	log4j.jar,\
-	slf4j-api.jar,\
-	slf4j-log4j12.jar
-</echo>
-
-						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>
-							<replacevalue><![CDATA[<portlet-class>org.portletfaces.bridge.GenericFacesPortlet</portlet-class>]]></replacevalue>
-						</replace>
-														
-						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-							<replacetoken><![CDATA[<name>view-jsp</name>]]></replacetoken>
-							<replacevalue><![CDATA[<name>javax.portlet.faces.defaultViewId.view</name>]]></replacevalue>
-						</replace>
-						
-						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
-							<replacetoken><![CDATA[<value>/view.jsp</value>]]></replacetoken>
-							<replacevalue><![CDATA[<value>/xhtml/portletViewMode.xhtml</value>]]></replacevalue>
-						</replace>
-						
-						<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
-							<replacetoken><![CDATA[</instanceable>]]></replacetoken>
-							<replacevalue><![CDATA[</instanceable>
-		<ajaxable>false</ajaxable>]]></replacevalue>
-						</replace>
-						
-						<delete file="${portlet.dir}/docroot/view.jsp" />
-						<delete file="${portlet.dir}/docroot/css/main.css" />
-						<delete dir="${portlet.dir}/docroot/js" />
-					</then>
-				</if>						
 
 				<replace dir="${portlet.dir}">
 					<replacefilter token="@portlet.name@" value="${portlet.name}" />
