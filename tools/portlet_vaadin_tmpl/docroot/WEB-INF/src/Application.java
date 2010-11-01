@@ -1,16 +1,17 @@
-package @portlet.name@;
+package @portlet.java.package.name@;
 
 import com.vaadin.Application;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Window;
 
-public class @portlet.display.java.name@Application extends Application {
+public class @portlet.java.class.name@Application extends Application {
 
 	public void init() {
-		Window w = new Window();
-		setMainWindow(w);
-		w.addComponent(new Label("Hello @portlet.display.java.name@!"));		
+		Window window = new Window();
+
+		setMainWindow(window);
+
+		window.addComponent(new Label("Hello @portlet.java.class.name@!"));
 	}
 
 }
-

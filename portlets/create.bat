@@ -1,9 +1,13 @@
 @echo off
 
 if "" == "%1" goto errorCreate
+
 if "" == "%2" goto errorCreate
 
-call ant -Dportlet.name=%1 -Dportlet.display.name=%2 -Dframework=%3 create
+if "" == "%3" set PORTLET_FRAMEWORK=mvc
+if not "" == "%3" set PORTLET_FRAMEWORK=%3
+
+call ant -Dportlet.name=%1 -Dportlet.display.name=%2 -Dportlet.framework=%PORTLET_FRAMEWORK% create
 
 rem call ant deploy
 
@@ -18,6 +22,10 @@ goto end
 	echo.
 	echo The second "Hello World" is the portlet's display name. The quotation marks are
 	echo only needed because there is a space in the display name.
+	echo.
+	echo A third value can be passed to specify the portlet framework to use. Valid
+	echo values are "mvc", "jsf", or "vaadin". The default value is "mvc". The quotation
+	echo marks are not needed.
 
 	goto end
 

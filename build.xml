@@ -75,42 +75,6 @@
 		<mkdir dir="dist" />
 
 		<delete file="dist/liferay-plugins-sdk-${lp.version}.zip" />
-		<delete file="ext/ext.zip" />
-		<delete file="layouttpl/layouttpl.zip" />
-		<delete file="portlets/portlet.zip" />
-		<delete file="portlets/portlet-vaadin.zip" />
-		<delete file="hooks/hook.zip" />
-		<delete file="themes/theme.zip" />
-
-		<zip
-			basedir="tools/ext_tmpl"
-			destfile="ext/ext.zip"
-		/>
-
-		<zip
-			basedir="tools/layouttpl_tmpl"
-			destfile="layouttpl/layouttpl.zip"
-		/>
-
-		<zip
-			basedir="tools/portlet_tmpl"
-			destfile="portlets/portlet.zip"
-		/>
-		
-		<zip
-			basedir="tools/portlet_vaadin_tmpl"
-			destfile="portlets/portlet-vaadin.zip"
-		/>
-
-		<zip
-			basedir="tools/hook_tmpl"
-			destfile="hooks/hook.zip"
-		/>
-
-		<zip
-			basedir="tools/theme_tmpl"
-			destfile="themes/theme.zip"
-		/>
 
 		<zip
 			basedir="."
