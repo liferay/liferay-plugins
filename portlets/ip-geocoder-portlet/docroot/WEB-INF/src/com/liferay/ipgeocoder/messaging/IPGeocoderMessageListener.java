@@ -17,26 +17,15 @@ package com.liferay.ipgeocoder.messaging;
 import com.liferay.ipgeocoder.model.IPInfo;
 import com.liferay.ipgeocoder.util.IPGeocoderUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class IPGeocoderMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class IPGeocoderMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		String ipAddress = (String)message.getPayload();
@@ -55,8 +44,5 @@ public class IPGeocoderMessageListener implements MessageListener {
 		MessageBusUtil.sendMessage(
 			message.getResponseDestinationName(), message);
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		IPGeocoderMessageListener.class);
 
 }

@@ -15,31 +15,17 @@
 package com.liferay.knowledgebase.admin.messaging;
 
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class CheckAttachmentsMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class CheckAttachmentsMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		ArticleLocalServiceUtil.checkAttachments();
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		CheckAttachmentsMessageListener.class);
 
 }

@@ -14,25 +14,14 @@
 
 package com.liferay.portal.workflow.kaleo.manager.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager;
 
 /**
  * @author Michael C. Han
  */
-public class KaleoAssetDeploymentMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class KaleoAssetDeploymentMessageListener extends BaseMessageListener {
 
 	public void setPortalKaleoManager(PortalKaleoManager portalKaleoManager) {
 		_portalKaleoManager = portalKaleoManager;
@@ -43,9 +32,6 @@ public class KaleoAssetDeploymentMessageListener implements MessageListener {
 
 		_portalKaleoManager.deployDefaultDefinitionLink(assetClassName);
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		KaleoAssetDeploymentMessageListener.class);
 
 	private PortalKaleoManager _portalKaleoManager;
 

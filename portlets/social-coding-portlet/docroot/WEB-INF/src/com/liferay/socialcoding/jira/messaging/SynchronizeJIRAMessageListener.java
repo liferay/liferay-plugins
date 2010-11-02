@@ -14,33 +14,19 @@
 
 package com.liferay.socialcoding.jira.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.socialcoding.jira.util.JIRAConstants;
 import com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class SynchronizeJIRAMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class SynchronizeJIRAMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		JIRAIssueLocalServiceUtil.updateJIRAIssues(JIRAConstants.PROJECT_LEP);
 		JIRAIssueLocalServiceUtil.updateJIRAIssues(JIRAConstants.PROJECT_LPS);
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		SynchronizeJIRAMessageListener.class);
 
 }

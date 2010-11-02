@@ -14,31 +14,17 @@
 
 package com.liferay.twitter.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.twitter.service.FeedLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class SynchronizeTwitterMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class SynchronizeTwitterMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		FeedLocalServiceUtil.updateFeeds();
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		SynchronizeTwitterMessageListener.class);
 
 }

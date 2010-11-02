@@ -14,34 +14,20 @@
 
 package com.liferay.socialcoding.svn.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 import com.liferay.socialcoding.svn.util.SVNConstants;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public class SynchronizeSVNMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class SynchronizeSVNMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		for (String url : SVNConstants.SVN_URLS) {
 			SVNRepositoryLocalServiceUtil.updateSVNRepository(url);
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		SynchronizeSVNMessageListener.class);
 
 }

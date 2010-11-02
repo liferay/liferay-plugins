@@ -19,8 +19,8 @@ import com.liferay.mail.mailbox.Mailbox;
 import com.liferay.mail.mailbox.MailboxFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -28,16 +28,7 @@ import com.liferay.portal.kernel.util.Validator;
  * @author Scott Lee
  * @author Ryan Park
  */
-public class MailSynchronizationMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class MailSynchronizationMessageListener extends BaseMessageListener {
 
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
@@ -127,6 +118,6 @@ public class MailSynchronizationMessageListener implements MessageListener {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-			MailSynchronizationMessageListener.class);
+		MailSynchronizationMessageListener.class);
 
 }

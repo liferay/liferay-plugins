@@ -14,11 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.graph.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.sender.DefaultSingleDestinationMessageSender;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
 import com.liferay.portal.workflow.kaleo.runtime.graph.GraphWalker;
@@ -30,16 +28,7 @@ import java.util.List;
 /**
  * @author Michael C. Han
  */
-public class PathElementMessageListener implements MessageListener {
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
+public class PathElementMessageListener extends BaseMessageListener {
 
 	public void setGraphWalker(GraphWalker graphWalker) {
 		_graphWalker = graphWalker;
@@ -69,9 +58,6 @@ public class PathElementMessageListener implements MessageListener {
 			_singleDestinationMessageSender.send(remainingPathElement);
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		PathElementMessageListener.class);
 
 	private GraphWalker _graphWalker;
 	private SingleDestinationMessageSender _singleDestinationMessageSender;
