@@ -14,15 +14,11 @@
 
 package com.liferay.chat.util;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.util.portlet.PortletProps;
-
 /**
  * @author Brian Wing Shun Chan
  */
-public class PortletPropsValues {
+public interface PortletPropsKeys {
 
-	public static final String BUDDY_LIST_STRATEGY = GetterUtil.getString(
-		PortletProps.get(PortletPropsKeys.BUDDY_LIST_STRATEGY));
+	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
 
 }
