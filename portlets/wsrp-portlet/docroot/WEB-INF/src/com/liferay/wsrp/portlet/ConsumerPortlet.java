@@ -46,6 +46,7 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.util.ConsumerRequestExtensionsHelper;
 import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.UUIDUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
@@ -964,8 +965,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			clientAttributes, HttpHeaders.LIFERAY_USER_ID,
 			String.valueOf(user.getUserId()));
 
-		ConsumerRequestExtensionsHolder.addClientAttributes(clientAttributes);
-		
+		ConsumerRequestExtensionsHelper.addClientAttributes(clientAttributes);
+
 		clientData.setExtensions(ExtensionUtil.getExtensions(clientAttributes));
 
 		mimeRequest.setClientData(clientData);
@@ -1086,7 +1087,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		UserProfile userProfile = getUserProfile(user);
 
-		ConsumerRequestExtensionsHolder.addUserProfileAttributes(
+		ConsumerRequestExtensionsHelper.addUserProfileAttributes(
 			userProfile, user);
 
 		userContext.setProfile(userProfile);
