@@ -11,7 +11,9 @@ public class @portlet.java.class.name@Application extends Application {
 
 		setMainWindow(window);
 
-		window.addComponent(new Label("Hello @portlet.java.class.name@!"));
+		Label label = new Label("Hello @portlet.java.class.name@!");
+
+		window.addComponent(label);
 	}
 
 }
