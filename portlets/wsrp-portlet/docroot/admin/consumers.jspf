@@ -64,3 +64,7 @@
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
+
+<%
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "consumers"), currentURL);
+%>

@@ -964,6 +964,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			clientAttributes, HttpHeaders.LIFERAY_USER_ID,
 			String.valueOf(user.getUserId()));
 
+		ConsumerRequestExtensionsHolder.addClientAttributes(clientAttributes);
+		
 		clientData.setExtensions(ExtensionUtil.getExtensions(clientAttributes));
 
 		mimeRequest.setClientData(clientData);
@@ -1083,6 +1085,9 @@ public class ConsumerPortlet extends GenericPortlet {
 		// User context
 
 		UserProfile userProfile = getUserProfile(user);
+
+		ConsumerRequestExtensionsHolder.addUserProfileAttributes(
+			userProfile, user);
 
 		userContext.setProfile(userProfile);
 
