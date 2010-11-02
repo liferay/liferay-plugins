@@ -259,12 +259,11 @@ public class DefaultTaskManagerImpl
 					storedWorkflowContext.entrySet()) {
 
 				String key = entry.getKey();
-				
+
 				if (!workflowContext.containsKey(key)) {
 					workflowContext.put(key, entry.getValue());
 				}
 			}
-			
 		}
 
 		return workflowContext;
