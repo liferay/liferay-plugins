@@ -14,10 +14,8 @@
 
 package com.liferay.socialcoding.service.messaging;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageListener;
 
 import com.liferay.socialcoding.service.ClpSerializer;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
@@ -30,17 +28,8 @@ import com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil;
 /**
  * @author Brian Wing Shun Chan
  */
-public class ClpMessageListener implements MessageListener {
+public class ClpMessageListener extends BaseMessageListener {
 	public static final String SERVLET_CONTEXT_NAME = ClpSerializer.SERVLET_CONTEXT_NAME;
-
-	public void receive(Message message) {
-		try {
-			doReceive(message);
-		}
-		catch (Exception e) {
-			_log.error("Unable to process message " + message, e);
-		}
-	}
 
 	protected void doReceive(Message message) throws Exception {
 		String command = message.getString("command");
@@ -61,6 +50,4 @@ public class ClpMessageListener implements MessageListener {
 			SVNRevisionLocalServiceUtil.clearService();
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(ClpMessageListener.class);
 }
