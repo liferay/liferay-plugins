@@ -463,53 +463,68 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 			}
 			%>
 
-			<c:if test="<%= Validator.isNotNull(officeDoc) %>">
-				<aui:script>
-					function <portlet:namespace />openDocument() {
-						var fileUrl = "<%= fileUrl %>";
-						var webDavUrl = "<%= webDavUrl %>";
+			<c:choose>
+				<c:when test="<%= Validator.isNotNull(officeDoc) %>">
+					<aui:script>
+						function <portlet:namespace />openDocument() {
+							var fileUrl = "<%= fileUrl %>";
+							var webDavUrl = "<%= webDavUrl %>";
 
-						var officeDoc = new ActiveXObject("<%= officeDoc %>");
+							var officeDoc = new ActiveXObject("<%= officeDoc %>");
 
-						if (officeDoc) {
-							officeDoc.EditDocument(webDavUrl);
+							if (officeDoc) {
+								officeDoc.EditDocument(webDavUrl);
 
-							<c:if test="<%= !isLocked %>">
-								<portlet:namespace />lock();
-							</c:if>
+								<c:if test="<%= !isLocked %>">
+									<portlet:namespace />lock();
+								</c:if>
+							}
+							else {
+								window.location.href = fileUrl;
+							}
 						}
-						else {
-							window.location.href = fileUrl;
-						}
-					}
-				</aui:script>
+					</aui:script>
 
-				<ul class="document-action-list">
-					<c:choose>
-						<c:when test="<%= (isLocked && hasLock) %>">
-							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
+					<ul class="document-action-list">
+						<c:choose>
+							<c:when test="<%= (isLocked && hasLock) %>">
+								<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
 
-							<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="onlineEditURL">
-								<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-								<portlet:param name="display_section" value="online" />
-								<portlet:param name="redirect" value="<%= currentURL %>" />
-								<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-								<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
-							</portlet:renderURL>
+								<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="onlineEditURL">
+									<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+									<portlet:param name="display_section" value="online" />
+									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+									<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+								</portlet:renderURL>
 
-							<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing-online" /></a></li>
-						</c:when>
-						<c:when test="<%= isLocked %>">
-							<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
-							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
-						</c:when>
-						<c:otherwise>
-							<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
-							<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</c:if>
+								<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing-online" /></a></li>
+							</c:when>
+							<c:when test="<%= isLocked %>">
+								<li class="action-edit-office"><liferay-ui:message key="edit-document-online" /></li>
+								<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
+							</c:when>
+							<c:otherwise>
+								<li class="action-edit-office"><a href="javascript:;" onClick="<portlet:namespace />openDocument();"><liferay-ui:message key="edit-document-online" /></a></li>
+								<li class="action-save-office"><liferay-ui:message key="finish-editing-online" /></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</c:when>
+				<c:when test="<%= fileEntry.getLatestFileVersion().isDraft() %>">
+					<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="onlineEditURL">
+						<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
+						<portlet:param name="display_section" value="online" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
+						<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+					</portlet:renderURL>
+
+					<ul class="document-action-list">
+						<li class="action-save-office"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= onlineEditURL %>', '<liferay-ui:message key="finish-editing-online" />');"><liferay-ui:message key="finish-editing" /></a></li>
+					</ul>
+				</c:when>
+			</c:choose>
 		</c:if>
 
 		<ul class="document-action-list">
