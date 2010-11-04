@@ -93,7 +93,7 @@ portal-dependency-jars=log4j.jar,slf4j-api.jar,slf4j-log4j12.jar</echo>
 							<replacevalue><![CDATA[</instanceable>
 		<ajaxable>false</ajaxable>]]></replacevalue>
 						</replace>
-						
+
 						<replaceregexp match="&lt;/header-portlet-css&gt;(.*)&lt;/footer-portlet-javascript&gt;" replace="&lt;/header-portlet-css&gt;" flags="s">
 							<fileset
 								dir="${portlet.dir}/docroot/WEB-INF"
