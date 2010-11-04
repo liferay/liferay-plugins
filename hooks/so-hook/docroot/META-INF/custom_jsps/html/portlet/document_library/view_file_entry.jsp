@@ -420,8 +420,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 						<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-							<portlet:param name="display_section" value="upload" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="displaySection" value="upload" />
 							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:renderURL>
@@ -492,8 +492,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 								<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="onlineEditURL">
 									<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-									<portlet:param name="display_section" value="online" />
 									<portlet:param name="redirect" value="<%= currentURL %>" />
+									<portlet:param name="displaySection" value="online" />
 									<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 									<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 								</portlet:renderURL>
@@ -514,8 +514,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 				<c:when test="<%= fileEntry.getLatestFileVersion().isDraft() %>">
 					<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="onlineEditURL">
 						<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-						<portlet:param name="display_section" value="online" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="displaySection" value="online" />
 						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 						<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 					</portlet:renderURL>
@@ -536,8 +536,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 						<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-							<portlet:param name="display_section" value="properties" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="displaySection" value="properties" />
 							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
 							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
 						</portlet:renderURL>

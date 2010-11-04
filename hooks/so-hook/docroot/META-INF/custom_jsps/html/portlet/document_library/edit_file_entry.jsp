@@ -22,8 +22,6 @@
 <%
 String strutsAction = ParamUtil.getString(request, "struts_action");
 
-String displaySection = ParamUtil.getString(request, "display_section", StringPool.BLANK);
-
 String tabs2 = ParamUtil.getString(request, "tabs2", "version-history");
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -31,6 +29,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
 
 String uploadProgressId = "dlFileEntryUploadProgress";
+
+String displaySection = ParamUtil.getString(request, "displaySection");
 
 DLFileEntry fileEntry = (DLFileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
 
