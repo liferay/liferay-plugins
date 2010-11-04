@@ -41,13 +41,17 @@ a:active {
 	padding-top: 15px;
 }
 
-#banner .group {
-	color: #7F80A4;
+#banner .community-title {
 	font-size: 18px;
 	line-height: 1.3em;
+	margin: 0;
 	position: absolute;
 	right: 3%;
 	top: 41px;
+}
+
+#banner .community-title a {
+	color: #7F80A4;
 }
 
 /* ---------- Top Navigation ---------- */
@@ -258,10 +262,6 @@ a:active {
 	display: none;
 }
 
-.ie6 .portlet-msg-success, .ie6 .portlet-msg-error {
-	height: 1px;
-}
-
 /* ---------- Layout ---------- */
 
 .portlet-column-content {
@@ -393,7 +393,6 @@ a:active {
 	color: #8F0920;
 	font-size: 18px;
 	font-weight: bold;
-	margin: 0 0 1em;
 	padding-bottom: 5px;
 }
 
@@ -416,6 +415,11 @@ a:active {
 
 .portlet-msg-info {
 	margin-top: 0;
+}
+
+.ie6 .portlet-msg-success,
+.ie6 .portlet-msg-error {
+	height: 1px;
 }
 
 /* Panel */
@@ -591,24 +595,6 @@ a:active {
 
 /* ---------- Portlet ---------- */
 
-/* Announcements */
-
-.portlet-announcements .entry-title {
-	border-bottom: none;
-	padding: 0 10px 0 20px;
-}
-
-.portlet-announcements .entry-actions {
-	float: right;
-	position: static;
-}
-
-.portlet-announcements .entry-content {
-	border-top: 1px solid #CCC;
-	clear: both;
-	padding-top: 2px;
-}
-
 /* Activities */
 
 .so-portlet-activities .taglib-page-iterator {
@@ -671,37 +657,11 @@ a:active {
 
 /* Asset Publisher */
 
-.portlet-asset-publisher .contact {
-	background-image: url(../images/custom/user.png);
-}
-
-.portlet-asset-publisher .contact-name a {
-	float: none;
-	margin-right: 10px;
-}
-
-.portlet-asset-publisher .contact-name img {
-	vertical-align: middle;
-}
-
-.portlet-asset-publisher .document-folder {
-	margin: 0.1em 0 0.5em;
-}
-
-.portlet-asset-publisher .document-folder a {
-	float: none;
-	font-size: 10px;
-}
-
-.portlet-asset-publisher .title-list .asset-actions {
-	float: left;
+.ie6 .portlet-asset-publisher .asset-metadata {
+	display: none;
 }
 
 /* Blogs */
-
-.portlet-blogs .entry-content {
-	margin-top: 1em;
-}
 
 .portlet-blogs .entry-footer {
 	background: #E8EFF4;
@@ -710,7 +670,6 @@ a:active {
 }
 
 .portlet-blogs .entry-title {
-	color: #7F80A4;
 	font-size: 2.1em;
 	line-height: 1.1em;
 }
@@ -725,20 +684,10 @@ a:active {
 	font-size: 1.1em;
 }
 
-.portlet-blogs .taglib-tags-summary {
-	margin-bottom: 1em;
-}
-
 .portlet-blogs .entry-body {
-	color: #555;
 	font-family: "Times New Roman", Times, serif;
 	font-size: 1.2em;
-	line-height: 26px;
-}
-
-.portlet-blogs .entry-tags {
-	color: #555;
-	margin: 2.5em 0 0;
+	margin: 1em 0;
 }
 
 .portlet-blogs .edit-actions {
@@ -747,26 +696,8 @@ a:active {
 	padding: 0.5em;
 }
 
-.portlet-blogs .portlet-topper-toolbar {
-	float: right;
-}
-
 .portlet-blogs .sidebar .recent-entries-list span {
 	display: block;
-}
-
-.portlet-blogs .tabs {
-	position: relative;
-}
-
-.portlet-blogs .taglib-social-bookmarks {
-	margin: 0;
-}
-
-.portlet-blogs .entry-author,
-.portlet-blogs .stats,
-.portlet-blogs .taglib-flags {
-	position: relative;
 }
 
 /* Bookmarks */
@@ -800,6 +731,8 @@ a:active {
 }
 
 .portlet-calendar .calendar-tabs a {
+	border-right: 2px solid #8F0920;
+	padding: 0 7px 0 4px;
 	font-weight: bold;
 }
 
@@ -807,18 +740,8 @@ a:active {
 	color: #8F0920;
 }
 
-.portlet-calendar .calendar-tabs .month {
-	border-right: 2px solid #8F0920;
-	padding: 0 7px 0 4px;
-}
-
-.portlet-calendar .calendar-tabs .week {
-	border-right: 2px solid #8F0920;
-	padding: 0 7px 0 5px;
-}
-
 .portlet-calendar .calendar-tabs .day {
-	padding-left: 5px;
+	border: none;
 }
 
 .portlet-calendar .mini-calendar {
@@ -828,8 +751,6 @@ a:active {
 
 .portlet-calendar .calendar-container {
 	background: #FFF;
-	border-color: #DDD;
-	color: #413739;
 	font-weight: bold;
 	margin-bottom: 15px;
 	padding-top: 4px;
@@ -844,8 +765,7 @@ a:active {
 
 .portlet-calendar .calendar-day .day-text {
 	background: #7F80A4;
-	border-top: 1px solid #DDD;
-	padding: 6px 0;
+	padding: 5px;
 }
 
 .portlet-calendar .taglib-calendar {
@@ -1048,7 +968,8 @@ table.calendar {
 	font-weight: normal;
 }
 
-.contacts-portlet .edit-entry-table .label {
+.contacts-portlet .edit-entry-table .label
+.contacts-portlet .send-email-table .label, {
 	color: #999;
 }
 
@@ -1061,7 +982,8 @@ table.calendar {
 	font-size: 9px;
 }
 
-.contacts-portlet .lfr-panel {
+.contacts-portlet .lfr-panel,
+.contacts-portlet .ui-dialog-content {
 	font-size: 1.2em;
 }
 
@@ -1075,14 +997,6 @@ table.calendar {
 
 .contacts-portlet .search-entries {
 	margin-bottom: 9px;
-}
-
-.contacts-portlet .send-email-table .label {
-	color: #999;
-}
-
-.contacts-portlet .ui-dialog-content {
-	font-size: 1.2em;
 }
 
 .contacts-portlet td .col-1 a {
@@ -1286,22 +1200,11 @@ table.calendar {
 	width: 390px;
 }
 
-.portlet-login .portlet-topper {
-	padding: 10px 0;
-}
-
-.portlet-login .portlet-title img {
-	display: none;
-}
-
 .portlet-login .portlet-content {
 	background: #F0F5F7;
 	border: 1px solid #B0BAFF;
+	margin-top: 10px;
 	padding: 10px;
-}
-
-.portlet-login .lfr-input-text {
-	width: 220px;
 }
 
 .portlet-login .navigation {
@@ -1311,8 +1214,8 @@ table.calendar {
 }
 
 .portlet-login .navigation li {
-	padding: 6px 6px;
-	width: 200px;
+	float: none;
+	padding: .5em;
 }
 
 /* Message Boards */
@@ -1321,7 +1224,7 @@ table.calendar {
 	font-weight: bold;
 }
 
-.portlet-message-boards .title {
+.portlet-message-boards .taglib-header {
 	display: none;
 }
 
@@ -1367,7 +1270,7 @@ table.calendar {
 /* Search */
 
 .portlet-search .entry-title {
-	font-size: 100%;
+	font-size: 1em;
 }
 
 /* SO: Members */
@@ -1575,13 +1478,6 @@ table.calendar {
 	top: 1px;
 }
 
-/* RSS */
-
-.portlet-rss .configure {
-	font-size: 11px;
-	text-align: right;
-}
-
 /* TMS: Tasks */
 
 .tms-portlet-tasks .progress {
@@ -1600,7 +1496,7 @@ table.calendar {
 
 /* Wikis */
 
-.portlet-wiki h1.page-title {
+.portlet-wiki h1.header-title {
 	border-bottom: none;
 	font-size: 2.5em;
 	line-height: 1em;

@@ -2,7 +2,7 @@
 
 #parse ($init)
 
-<html class="#language ("lang.dir")" dir="#language ("lang.dir")">
+<html class="#language("lang.dir")" dir="#language("lang.dir")" lang="$w3c_language_id">
 
 <head>
 	<title>$the_title - $company_name</title>
@@ -12,45 +12,42 @@
 
 <body class="$css_class">
 
-$theme.include($top_messages_include)
-
 <div id="wrapper">
-	<div id="banner">
-		<div id="heading">
+	<header id="banner" role="banner">
+		<hgroup id="heading">
 			<h1 class="company-title">
 				<a class="logo" href="$company_url" title="#language("go-to") $company_name">
 					<span>$company_name</span>
 				</a>
 			</h1>
-		</div>
 
-		#set ($groupLocalService = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
-		#set ($guestGroup = $groupLocalService.getGroup($company_id, "Guest"))
+			<h2 class="community-title">
+				<a href="$community_default_url" title="#language("go-to") $community_name">
+					<span>$community_name</span>
+				</a>
+			</h2>
 
-		#if (($community_name != "") && ($group_id != $guestGroup.getGroupId()))
-			<div class="group">
-				<span>$community_name</span>
-			</div>
-		#end
-
-		#parse ("$full_templates_path/navigation_top.vm")
-	</div>
+			#parse ("$full_templates_path/navigation_top.vm")
+		</hgroup>
+	</header>
 
 	#if ($has_navigation)
 		#parse ("$full_templates_path/navigation.vm")
 	#end
 
-	#if ($selectable)
-		$theme.include($content_include)
-	#else
-		$portletDisplay.recycle()
+	<div id="content">
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
 
-		$portletDisplay.setTitle($the_title)
+			$portletDisplay.setTitle($the_title)
 
-		$theme.wrapPortlet("portlet.vm", $content_include)
-	#end
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+	</div>
 
-	<div id="footer"></div>
+	<footer id="footer" role="contentinfo"></footer>
 </div>
 
 #if ($is_signed_in && !$layout.getFriendlyURL().equals("/home"))

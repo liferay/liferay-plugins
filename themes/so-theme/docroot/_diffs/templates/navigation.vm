@@ -1,15 +1,13 @@
-<div id="navigation">
+<nav id="navigation">
 	<ul>
 		#foreach ($nav_item in $nav_items)
 			#if ($nav_item.isSelected())
 				<li class="selected">
-					<a href="$nav_item.getURL()">$nav_item.getName()</a>
-				</li>
 			#else
 				<li>
-					<a href="$nav_item.getURL()">$nav_item.getName()</a>
-				</li>
 			#end
+				<a href="$nav_item.getURL()"><span>$nav_item.icon() $nav_item.getName()</span></a>
+			</li>
 		#end
 	</ul>
-</div>
+</nav>

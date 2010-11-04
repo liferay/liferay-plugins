@@ -1,7 +1,7 @@
 #set ($show_add_content = ($show_add_content && ($layout.getFriendlyURL().equals("/home"))))
 #set ($show_control_panel = $permissionChecker.isOmniadmin())
 
-<div id="navigation-top">
+<nav id="navigation-top">
 	#if ($is_signed_in)
 		<div class="my-search">$theme.search()</div>
 	#end
@@ -86,4 +86,4 @@
 		</ul>
 	</div>
 	<div class="right-side"></div>
-</div>
+</nav>
