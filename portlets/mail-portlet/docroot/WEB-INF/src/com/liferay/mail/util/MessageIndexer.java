@@ -146,13 +146,14 @@ public class MessageIndexer extends BaseIndexer {
 
 		document.addText(Field.TITLE, subject);
 		document.addText(Field.CONTENT, body);
-		document.addKeyword("remoteMessageId", remoteMessageId);
 
-		document.addKeyword("accountId", accountId);
-		document.addKeyword("folderId", folderId);
 		document.addKeyword(
 			Field.ENTRY_CLASS_NAME, Message.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, messageId);
+
+		document.addKeyword("accountId", accountId);
+		document.addKeyword("folderId", folderId);
+		document.addKeyword("remoteMessageId", remoteMessageId);
 
 		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
 
