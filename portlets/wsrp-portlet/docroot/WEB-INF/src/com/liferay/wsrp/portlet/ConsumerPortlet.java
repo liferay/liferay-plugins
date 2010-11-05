@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Address;
 import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.ListType;
@@ -48,7 +49,6 @@ import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.ConsumerRequestExtensionsHelper;
 import com.liferay.wsrp.util.ExtensionUtil;
-import com.liferay.wsrp.util.UUIDUtil;
 import com.liferay.wsrp.util.WSRPConsumerManager;
 import com.liferay.wsrp.util.WSRPConsumerManagerFactory;
 import com.liferay.wsrp.util.WebKeys;
@@ -835,7 +835,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		String wsrpConsumerPortletUuid = portletName.substring(pos + 1);
 
-		wsrpConsumerPortletUuid = UUIDUtil.fromSafeUuid(
+		wsrpConsumerPortletUuid = PortalUUIDUtil.fromSafeUuid(
 			wsrpConsumerPortletUuid);
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
