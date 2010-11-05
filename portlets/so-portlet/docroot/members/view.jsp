@@ -44,13 +44,7 @@
 			buffer.append("\"><img alt=\"");
 			buffer.append(curUser.getFullName());
 			buffer.append("\" src=\"");
-			buffer.append(themeDisplay.getPathImage());
-			buffer.append("/user_");
-			buffer.append((curUser.isFemale() ? "female" : "male"));
-			buffer.append("_portrait?img_id=");
-			buffer.append(curUser.getPortraitId());
-			buffer.append("&t=");
-			buffer.append(ImageServletTokenUtil.getToken(curUser.getPortraitId()));
+			buffer.append(curUser.getPortraitURL(themeDisplay));
 			buffer.append("\" width=\"35\" /></a>");
 			%>
 

@@ -69,6 +69,7 @@
 <%@ page import="com.liferay.portal.model.RoleConstants" %>
 <%@ page import="com.liferay.portal.model.Team" %>
 <%@ page import="com.liferay.portal.model.User" %>
+<%@ page import="com.liferay.portal.model.UserConstants" %>
 <%@ page import="com.liferay.portal.model.UserGroupRole" %>
 <%@ page import="com.liferay.portal.model.Website" %>
 <%@ page import="com.liferay.portal.security.permission.ActionKeys" %>

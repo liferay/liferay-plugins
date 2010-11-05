@@ -38,7 +38,7 @@
 			<liferay-portlet:param name="portrait_id" value="<%= String.valueOf(user.getPortraitId()) %>" />
 		</liferay-portlet:renderURL>
 
-		<a class="change-avatar" href="javascript:<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><img alt="<liferay-ui:message key="avatar" />" class="avatar" id="<portlet:namespace />avatar" src='<%= themeDisplay.getPathImage() %>/user_<%= user.isFemale() ? "female" : "male" %>_portrait?img_id=<%= user.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user.getPortraitId()) %>' /></a>
+		<a class="change-avatar" href="javascript:<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><img alt="<liferay-ui:message key="avatar" />" class="avatar" id="<portlet:namespace />avatar" src="<%= user.getPortraitURL(themeDisplay) %>" /></a>
 
 		<div class="profile-controls">
 			<a href="javascript:;" onClick="<portlet:namespace />editUserPortrait('<%= editUserPortraitURL %>');"><liferay-ui:message key="change-picture" /></a>
@@ -344,7 +344,7 @@
 						method: 'POST',
 						on: {
 							success: function(event) {
-								A.one('#<portlet:namespace />avatar').attr('src', '<%= themeDisplay.getPathImage() + "/user_" + (user.isFemale() ? "female" : "male") + "_portrait?img_id=0" %>');
+								A.one('#<portlet:namespace />avatar').attr('src', '<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), user.isMale(), 0) %>');
 							}
 						}
 					}

@@ -158,7 +158,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 							function() {
 								<c:choose>
 									<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-										var html = '<center><img alt="<liferay-ui:message key="user-portrait" />" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= mapUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(mapUser.getPortraitId()) %>" width="65" /><br /><%= mapUser.getFullName() %></center>';
+										var html = '<center><img alt="<liferay-ui:message key="user-portrait" />" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= mapUser.getFullName() %></center>';
 
 										marker<%= i %>.openInfoWindowHtml(html);
 									</c:when>

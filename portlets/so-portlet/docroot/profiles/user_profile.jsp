@@ -61,7 +61,7 @@ else {
 		<tr>
 			<td valign="top">
 				<div>
-					<img alt="<%= curUser.getFullName() %>" src="<%= themeDisplay.getPathImage() %>/user_<%= (curUser.isFemale() ? "female" : "male") %>_portrait?img_id=<%= curUser.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(curUser.getPortraitId()) %>" />
+					<img alt="<%= curUser.getFullName() %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" />
 
 					<c:if test="<%= curUser.getUserId() == user.getUserId() %>">
 						<div class="profile-controls">

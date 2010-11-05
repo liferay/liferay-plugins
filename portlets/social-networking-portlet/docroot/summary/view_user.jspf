@@ -21,7 +21,7 @@
 				<%= HtmlUtil.escape(user2.getFullName()) %>
 			</h2>
 
-			<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= user2.getPortraitId() %>&t=<%= ImageServletTokenUtil.getToken(user2.getPortraitId()) %>" />
+			<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
 
 			<c:choose>
 				<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
