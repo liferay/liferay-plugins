@@ -21,10 +21,6 @@ package com.liferay.ams.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.DefinitionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a definition model instance should use the {@link Definition} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see DefinitionModel
  * @see com.liferay.ams.model.impl.DefinitionImpl
@@ -32,4 +28,9 @@ package com.liferay.ams.model;
  * @generated
  */
 public interface Definition extends DefinitionModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a definition model instance should use the {@link Definition} interface instead.
+	 */
 }

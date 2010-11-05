@@ -22,10 +22,6 @@ import com.liferay.so.model.MemberRequest;
  * The persistence interface for the member request service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link MemberRequestUtil} to access the member request persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.so.model.MemberRequest;
  * @generated
  */
 public interface MemberRequestPersistence extends BasePersistence<MemberRequest> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link MemberRequestUtil} to access the member request persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the member request in the entity cache if it is enabled.
 	*

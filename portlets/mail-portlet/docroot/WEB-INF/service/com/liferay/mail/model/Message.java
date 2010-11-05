@@ -21,10 +21,6 @@ package com.liferay.mail.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.MessageImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a message model instance should use the {@link Message} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see MessageModel
  * @see com.liferay.mail.model.impl.MessageImpl
@@ -32,6 +28,11 @@ package com.liferay.mail.model;
  * @generated
  */
 public interface Message extends MessageModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a message model instance should use the {@link Message} interface instead.
+	 */
 	public long getGroupId()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

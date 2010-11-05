@@ -22,10 +22,6 @@ import com.liferay.wsrp.model.WSRPConsumerPortlet;
  * The persistence interface for the w s r p consumer portlet service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link WSRPConsumerPortletUtil} to access the w s r p consumer portlet persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.wsrp.model.WSRPConsumerPortlet;
  * @generated
  */
 public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPConsumerPortlet> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link WSRPConsumerPortletUtil} to access the w s r p consumer portlet persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the w s r p consumer portlet in the entity cache if it is enabled.
 	*

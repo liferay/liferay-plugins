@@ -21,10 +21,6 @@ package com.liferay.wsrp.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a w s r p consumer portlet model instance should use the {@link WSRPConsumerPortlet} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see WSRPConsumerPortletModel
  * @see com.liferay.wsrp.model.impl.WSRPConsumerPortletImpl
@@ -32,4 +28,9 @@ package com.liferay.wsrp.model;
  * @generated
  */
 public interface WSRPConsumerPortlet extends WSRPConsumerPortletModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a w s r p consumer portlet model instance should use the {@link WSRPConsumerPortlet} interface instead.
+	 */
 }

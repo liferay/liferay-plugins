@@ -21,10 +21,6 @@ package com.liferay.chat.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.chat.model.impl.StatusImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a status model instance should use the {@link Status} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see StatusModel
  * @see com.liferay.chat.model.impl.StatusImpl
@@ -32,4 +28,9 @@ package com.liferay.chat.model;
  * @generated
  */
 public interface Status extends StatusModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a status model instance should use the {@link Status} interface instead.
+	 */
 }

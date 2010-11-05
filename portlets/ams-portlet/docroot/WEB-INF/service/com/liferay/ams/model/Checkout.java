@@ -21,10 +21,6 @@ package com.liferay.ams.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.CheckoutImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a checkout model instance should use the {@link Checkout} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see CheckoutModel
  * @see com.liferay.ams.model.impl.CheckoutImpl
@@ -32,4 +28,9 @@ package com.liferay.ams.model;
  * @generated
  */
 public interface Checkout extends CheckoutModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a checkout model instance should use the {@link Checkout} interface instead.
+	 */
 }

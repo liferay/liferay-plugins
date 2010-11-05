@@ -21,10 +21,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
  * The persistence interface for the kaleo notification service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link KaleoNotificationUtil} to access the kaleo notification persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -34,6 +30,12 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
  * @generated
  */
 public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotification> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link KaleoNotificationUtil} to access the kaleo notification persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the kaleo notification in the entity cache if it is enabled.
 	*

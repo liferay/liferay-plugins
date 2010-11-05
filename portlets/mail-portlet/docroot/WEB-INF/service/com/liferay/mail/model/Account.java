@@ -21,10 +21,6 @@ package com.liferay.mail.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.AccountImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a account model instance should use the {@link Account} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see AccountModel
  * @see com.liferay.mail.model.impl.AccountImpl
@@ -32,6 +28,11 @@ package com.liferay.mail.model;
  * @generated
  */
 public interface Account extends AccountModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a account model instance should use the {@link Account} interface instead.
+	 */
 	public java.lang.String getPasswordDecrypted();
 
 	public void setPasswordDecrypted(java.lang.String unencryptedPassword);

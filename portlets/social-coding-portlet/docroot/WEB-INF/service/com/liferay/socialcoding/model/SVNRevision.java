@@ -21,10 +21,6 @@ package com.liferay.socialcoding.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRevisionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a s v n revision model instance should use the {@link SVNRevision} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see SVNRevisionModel
  * @see com.liferay.socialcoding.model.impl.SVNRevisionImpl
@@ -32,6 +28,11 @@ package com.liferay.socialcoding.model;
  * @generated
  */
 public interface SVNRevision extends SVNRevisionModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a s v n revision model instance should use the {@link SVNRevision} interface instead.
+	 */
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository();
 
 	public java.lang.String getWebRevisionNumberURL();

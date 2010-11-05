@@ -21,10 +21,6 @@ package com.liferay.wsrp.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPConsumerImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a w s r p consumer model instance should use the {@link WSRPConsumer} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see WSRPConsumerModel
  * @see com.liferay.wsrp.model.impl.WSRPConsumerImpl
@@ -32,6 +28,11 @@ package com.liferay.wsrp.model;
  * @generated
  */
 public interface WSRPConsumer extends WSRPConsumerModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a w s r p consumer model instance should use the {@link WSRPConsumer} interface instead.
+	 */
 	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext();
 
 	public com.liferay.portal.kernel.util.UnicodeProperties getRegistrationProperties();

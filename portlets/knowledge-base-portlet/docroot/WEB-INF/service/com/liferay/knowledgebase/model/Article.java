@@ -21,10 +21,6 @@ package com.liferay.knowledgebase.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.ArticleImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a article model instance should use the {@link Article} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see ArticleModel
  * @see com.liferay.knowledgebase.model.impl.ArticleImpl
@@ -32,6 +28,11 @@ package com.liferay.knowledgebase.model;
  * @generated
  */
 public interface Article extends ArticleModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a article model instance should use the {@link Article} interface instead.
+	 */
 	public java.lang.String getAttachmentsDirName();
 
 	public java.lang.String[] getAttachmentsFileNames()

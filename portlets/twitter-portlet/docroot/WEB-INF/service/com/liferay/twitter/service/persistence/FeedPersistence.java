@@ -22,10 +22,6 @@ import com.liferay.twitter.model.Feed;
  * The persistence interface for the feed service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link FeedUtil} to access the feed persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.twitter.model.Feed;
  * @generated
  */
 public interface FeedPersistence extends BasePersistence<Feed> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link FeedUtil} to access the feed persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the feed in the entity cache if it is enabled.
 	*

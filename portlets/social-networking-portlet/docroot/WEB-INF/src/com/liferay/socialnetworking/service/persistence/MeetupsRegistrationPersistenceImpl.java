@@ -54,10 +54,6 @@ import java.util.List;
  * The persistence implementation for the meetups registration service.
  *
  * <p>
- * Never modify or reference this class directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -68,6 +64,11 @@ import java.util.List;
  */
 public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<MeetupsRegistration>
 	implements MeetupsRegistrationPersistence {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = MeetupsRegistrationImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";

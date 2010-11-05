@@ -21,10 +21,6 @@ package com.liferay.socialnetworking.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a meetups registration model instance should use the {@link MeetupsRegistration} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see MeetupsRegistrationModel
  * @see com.liferay.socialnetworking.model.impl.MeetupsRegistrationImpl
@@ -32,4 +28,9 @@ package com.liferay.socialnetworking.model;
  * @generated
  */
 public interface MeetupsRegistration extends MeetupsRegistrationModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a meetups registration model instance should use the {@link MeetupsRegistration} interface instead.
+	 */
 }

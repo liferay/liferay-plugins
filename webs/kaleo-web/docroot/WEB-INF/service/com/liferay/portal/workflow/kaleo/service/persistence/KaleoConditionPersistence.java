@@ -21,10 +21,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
  * The persistence interface for the kaleo condition service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link KaleoConditionUtil} to access the kaleo condition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -34,6 +30,12 @@ import com.liferay.portal.workflow.kaleo.model.KaleoCondition;
  * @generated
  */
 public interface KaleoConditionPersistence extends BasePersistence<KaleoCondition> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link KaleoConditionUtil} to access the kaleo condition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the kaleo condition in the entity cache if it is enabled.
 	*

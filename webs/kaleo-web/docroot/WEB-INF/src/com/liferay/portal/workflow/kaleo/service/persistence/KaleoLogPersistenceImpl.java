@@ -53,10 +53,6 @@ import java.util.List;
  * The persistence implementation for the kaleo log service.
  *
  * <p>
- * Never modify or reference this class directly. Always use {@link KaleoLogUtil} to access the kaleo log persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -67,6 +63,11 @@ import java.util.List;
  */
 public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	implements KaleoLogPersistence {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. Always use {@link KaleoLogUtil} to access the kaleo log persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = KaleoLogImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";

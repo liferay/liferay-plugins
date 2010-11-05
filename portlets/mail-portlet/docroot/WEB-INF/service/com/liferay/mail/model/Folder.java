@@ -21,10 +21,6 @@ package com.liferay.mail.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.mail.model.impl.FolderImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a folder model instance should use the {@link Folder} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see FolderModel
  * @see com.liferay.mail.model.impl.FolderImpl
@@ -32,4 +28,9 @@ package com.liferay.mail.model;
  * @generated
  */
 public interface Folder extends FolderModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a folder model instance should use the {@link Folder} interface instead.
+	 */
 }

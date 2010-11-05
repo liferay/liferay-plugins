@@ -22,10 +22,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the attachment service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link AttachmentUtil} to access the attachment persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @generated
  */
 public interface AttachmentPersistence extends BasePersistence<Attachment> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link AttachmentUtil} to access the attachment persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the attachment in the entity cache if it is enabled.
 	*

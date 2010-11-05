@@ -21,10 +21,6 @@ package com.liferay.wsrp.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.wsrp.model.impl.WSRPProducerImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a w s r p producer model instance should use the {@link WSRPProducer} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see WSRPProducerModel
  * @see com.liferay.wsrp.model.impl.WSRPProducerImpl
@@ -32,5 +28,10 @@ package com.liferay.wsrp.model;
  * @generated
  */
 public interface WSRPProducer extends WSRPProducerModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a w s r p producer model instance should use the {@link WSRPProducer} interface instead.
+	 */
 	public java.lang.String getURL(java.lang.String portalURL);
 }

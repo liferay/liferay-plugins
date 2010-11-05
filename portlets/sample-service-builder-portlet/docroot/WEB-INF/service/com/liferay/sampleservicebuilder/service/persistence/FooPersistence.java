@@ -22,10 +22,6 @@ import com.liferay.sampleservicebuilder.model.Foo;
  * The persistence interface for the foo service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link FooUtil} to access the foo persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.sampleservicebuilder.model.Foo;
  * @generated
  */
 public interface FooPersistence extends BasePersistence<Foo> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link FooUtil} to access the foo persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the foo in the entity cache if it is enabled.
 	*

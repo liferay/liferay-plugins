@@ -22,10 +22,6 @@ import com.liferay.so.model.ProjectsEntry;
  * The persistence interface for the projects entry service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link ProjectsEntryUtil} to access the projects entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.so.model.ProjectsEntry;
  * @generated
  */
 public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link ProjectsEntryUtil} to access the projects entry persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the projects entry in the entity cache if it is enabled.
 	*

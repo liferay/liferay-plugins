@@ -21,10 +21,6 @@ package com.liferay.ams.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.TypeImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a type model instance should use the {@link Type} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see TypeModel
  * @see com.liferay.ams.model.impl.TypeImpl
@@ -32,4 +28,9 @@ package com.liferay.ams.model;
  * @generated
  */
 public interface Type extends TypeModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a type model instance should use the {@link Type} interface instead.
+	 */
 }

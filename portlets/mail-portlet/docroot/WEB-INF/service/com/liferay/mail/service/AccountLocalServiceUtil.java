@@ -23,10 +23,6 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * The utility for the account local service. This utility wraps {@link com.liferay.mail.service.impl.AccountLocalServiceImpl} and is the primary access point for service operations in application layer code running on the local server.
  *
  * <p>
- * Never modify this class directly. Add custom service methods to {@link com.liferay.mail.service.impl.AccountLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
- * </p>
- *
- * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
@@ -37,6 +33,12 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @generated
  */
 public class AccountLocalServiceUtil {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify this class directly. Add custom service methods to {@link com.liferay.mail.service.impl.AccountLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 */
+
 	/**
 	* Adds the account to the database. Also notifies the appropriate model listeners.
 	*

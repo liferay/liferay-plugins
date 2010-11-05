@@ -22,10 +22,6 @@ import com.liferay.wsrp.model.WSRPProducer;
  * The persistence interface for the w s r p producer service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link WSRPProducerUtil} to access the w s r p producer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.wsrp.model.WSRPProducer;
  * @generated
  */
 public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link WSRPProducerUtil} to access the w s r p producer persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the w s r p producer in the entity cache if it is enabled.
 	*

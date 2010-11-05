@@ -21,10 +21,6 @@ package com.liferay.ams.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.AssetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a asset model instance should use the {@link Asset} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see AssetModel
  * @see com.liferay.ams.model.impl.AssetImpl
@@ -32,4 +28,9 @@ package com.liferay.ams.model;
  * @generated
  */
 public interface Asset extends AssetModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a asset model instance should use the {@link Asset} interface instead.
+	 */
 }

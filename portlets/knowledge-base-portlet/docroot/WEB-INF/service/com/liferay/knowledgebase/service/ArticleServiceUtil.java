@@ -23,10 +23,6 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * The utility for the article remote service. This utility wraps {@link com.liferay.knowledgebase.service.impl.ArticleServiceImpl} and is the primary access point for service operations in application layer code running on a remote server.
  *
  * <p>
- * Never modify this class directly. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.ArticleServiceImpl} and rerun ServiceBuilder to regenerate this class.
- * </p>
- *
- * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
@@ -37,6 +33,11 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @generated
  */
 public class ArticleServiceUtil {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify this class directly. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.ArticleServiceImpl} and rerun ServiceBuilder to regenerate this class.
+	 */
 	public static com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description, int priority,

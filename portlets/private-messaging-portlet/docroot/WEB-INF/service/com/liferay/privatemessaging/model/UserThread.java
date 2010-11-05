@@ -21,10 +21,6 @@ package com.liferay.privatemessaging.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.privatemessaging.model.impl.UserThreadImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a user thread model instance should use the {@link UserThread} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see UserThreadModel
  * @see com.liferay.privatemessaging.model.impl.UserThreadImpl
@@ -32,4 +28,9 @@ package com.liferay.privatemessaging.model;
  * @generated
  */
 public interface UserThread extends UserThreadModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a user thread model instance should use the {@link UserThread} interface instead.
+	 */
 }

@@ -21,10 +21,6 @@ package com.liferay.portal.workflow.kaleo.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a kaleo transition model instance should use the {@link KaleoTransition} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see KaleoTransitionModel
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl
@@ -32,6 +28,11 @@ package com.liferay.portal.workflow.kaleo.model;
  * @generated
  */
 public interface KaleoTransition extends KaleoTransitionModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a kaleo transition model instance should use the {@link KaleoTransition} interface instead.
+	 */
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition getKaleoCondition()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

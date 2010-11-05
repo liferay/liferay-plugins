@@ -21,10 +21,6 @@ package com.liferay.opensocial.model;
  * Never modify this interface directly. Add methods to {@link com.liferay.opensocial.model.impl.GadgetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
  * </p>
  *
- * <p>
- * Never reference this interface directly. All methods that expect a gadget model instance should use the {@link Gadget} interface instead.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see GadgetModel
  * @see com.liferay.opensocial.model.impl.GadgetImpl
@@ -32,4 +28,9 @@ package com.liferay.opensocial.model;
  * @generated
  */
 public interface Gadget extends GadgetModel {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never reference this interface directly. All methods that expect a gadget model instance should use the {@link Gadget} interface instead.
+	 */
 }

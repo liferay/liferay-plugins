@@ -22,10 +22,6 @@ import com.liferay.socialcoding.model.JIRAIssue;
  * The persistence interface for the j i r a issue service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link JIRAIssueUtil} to access the j i r a issue persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.socialcoding.model.JIRAIssue;
  * @generated
  */
 public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link JIRAIssueUtil} to access the j i r a issue persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the j i r a issue in the entity cache if it is enabled.
 	*

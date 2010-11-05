@@ -21,10 +21,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
  * The persistence interface for the kaleo node service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link KaleoNodeUtil} to access the kaleo node persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -34,6 +30,12 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
  * @generated
  */
 public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link KaleoNodeUtil} to access the kaleo node persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the kaleo node in the entity cache if it is enabled.
 	*

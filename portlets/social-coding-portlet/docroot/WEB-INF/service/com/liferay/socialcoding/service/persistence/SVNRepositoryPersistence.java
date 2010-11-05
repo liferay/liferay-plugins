@@ -22,10 +22,6 @@ import com.liferay.socialcoding.model.SVNRepository;
  * The persistence interface for the s v n repository service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link SVNRepositoryUtil} to access the s v n repository persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.socialcoding.model.SVNRepository;
  * @generated
  */
 public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link SVNRepositoryUtil} to access the s v n repository persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the s v n repository in the entity cache if it is enabled.
 	*

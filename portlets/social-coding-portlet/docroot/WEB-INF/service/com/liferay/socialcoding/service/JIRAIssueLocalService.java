@@ -24,10 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
  * The interface for the j i r a issue local service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link JIRAIssueLocalServiceUtil} to access the j i r a issue local service. Add custom service methods to {@link com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
- * <p>
  * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
  * </p>
  *
@@ -40,6 +36,12 @@ import com.liferay.portal.kernel.exception.SystemException;
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface JIRAIssueLocalService {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link JIRAIssueLocalServiceUtil} to access the j i r a issue local service. Add custom service methods to {@link com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 */
+
 	/**
 	* Adds the j i r a issue to the database. Also notifies the appropriate model listeners.
 	*

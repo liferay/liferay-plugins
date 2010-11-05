@@ -58,10 +58,6 @@ import java.util.List;
  * The persistence implementation for the kaleo definition service.
  *
  * <p>
- * Never modify or reference this class directly. Always use {@link KaleoDefinitionUtil} to access the kaleo definition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -72,6 +68,11 @@ import java.util.List;
  */
 public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDefinition>
 	implements KaleoDefinitionPersistence {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. Always use {@link KaleoDefinitionUtil} to access the kaleo definition persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 */
 	public static final String FINDER_CLASS_NAME_ENTITY = KaleoDefinitionImpl.class.getName();
 	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
 		".List";

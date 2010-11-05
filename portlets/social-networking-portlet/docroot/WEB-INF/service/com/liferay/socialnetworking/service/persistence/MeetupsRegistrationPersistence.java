@@ -22,10 +22,6 @@ import com.liferay.socialnetworking.model.MeetupsRegistration;
  * The persistence interface for the meetups registration service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.socialnetworking.model.MeetupsRegistration;
  * @generated
  */
 public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsRegistration> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link MeetupsRegistrationUtil} to access the meetups registration persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the meetups registration in the entity cache if it is enabled.
 	*

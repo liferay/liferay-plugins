@@ -22,10 +22,6 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * The persistence interface for the status service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link StatusUtil} to access the status persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.portal.service.persistence.BasePersistence;
  * @generated
  */
 public interface StatusPersistence extends BasePersistence<Status> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link StatusUtil} to access the status persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the status in the entity cache if it is enabled.
 	*

@@ -22,10 +22,6 @@ import com.liferay.privatemessaging.model.UserThread;
  * The persistence interface for the user thread service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link UserThreadUtil} to access the user thread persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.privatemessaging.model.UserThread;
  * @generated
  */
 public interface UserThreadPersistence extends BasePersistence<UserThread> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link UserThreadUtil} to access the user thread persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the user thread in the entity cache if it is enabled.
 	*

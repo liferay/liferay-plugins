@@ -21,10 +21,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTask;
  * The persistence interface for the kaleo task service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link KaleoTaskUtil} to access the kaleo task persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -34,6 +30,12 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTask;
  * @generated
  */
 public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link KaleoTaskUtil} to access the kaleo task persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the kaleo task in the entity cache if it is enabled.
 	*

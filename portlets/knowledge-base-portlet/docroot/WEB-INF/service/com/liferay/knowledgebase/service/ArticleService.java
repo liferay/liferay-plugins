@@ -24,10 +24,6 @@ import com.liferay.portal.kernel.exception.SystemException;
  * The interface for the article remote service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link ArticleServiceUtil} to access the article remote service. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.ArticleServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
- * <p>
  * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
  * </p>
  *
@@ -40,6 +36,11 @@ import com.liferay.portal.kernel.exception.SystemException;
 @Transactional(isolation = Isolation.PORTAL, rollbackFor =  {
 	PortalException.class, SystemException.class})
 public interface ArticleService {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link ArticleServiceUtil} to access the article remote service. Add custom service methods to {@link com.liferay.knowledgebase.service.impl.ArticleServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 */
 	public com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description, int priority,

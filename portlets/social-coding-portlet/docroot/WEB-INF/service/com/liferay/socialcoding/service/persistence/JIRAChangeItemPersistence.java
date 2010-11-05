@@ -22,10 +22,6 @@ import com.liferay.socialcoding.model.JIRAChangeItem;
  * The persistence interface for the j i r a change item service.
  *
  * <p>
- * Never modify or reference this interface directly. Always use {@link JIRAChangeItemUtil} to access the j i r a change item persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
- * </p>
- *
- * <p>
  * Caching information and settings can be found in <code>portal.properties</code>
  * </p>
  *
@@ -35,6 +31,12 @@ import com.liferay.socialcoding.model.JIRAChangeItem;
  * @generated
  */
 public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeItem> {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this interface directly. Always use {@link JIRAChangeItemUtil} to access the j i r a change item persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this interface.
+	 */
+
 	/**
 	* Caches the j i r a change item in the entity cache if it is enabled.
 	*
