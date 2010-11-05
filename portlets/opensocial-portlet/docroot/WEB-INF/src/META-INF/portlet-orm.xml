@@ -10,6 +10,9 @@
 	<mapped-superclass class="com.liferay.opensocial.model.impl.GadgetModelImpl">
 		<attributes>
 			<id name="gadgetId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
 			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>

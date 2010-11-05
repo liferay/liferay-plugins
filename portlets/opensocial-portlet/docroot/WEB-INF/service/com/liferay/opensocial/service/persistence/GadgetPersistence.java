@@ -99,6 +99,111 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Finds all the gadgets where uuid = &#63;.
+	*
+	* @param uuid the uuid to search with
+	* @return the matching gadgets
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid(
+		java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds a range of all the gadgets where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param start the lower bound of the range of gadgets to return
+	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @return the range of matching gadgets
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid(
+		java.lang.String uuid, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds an ordered range of all the gadgets where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param start the lower bound of the range of gadgets to return
+	* @param end the upper bound of the range of gadgets to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching gadgets
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid(
+		java.lang.String uuid, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the first gadget in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching gadget
+	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.opensocial.model.Gadget findByUuid_First(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.opensocial.NoSuchGadgetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the last gadget in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param uuid the uuid to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching gadget
+	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.opensocial.model.Gadget findByUuid_Last(
+		java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.opensocial.NoSuchGadgetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the gadgets before and after the current gadget in the ordered set where uuid = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param gadgetId the primary key of the current gadget
+	* @param uuid the uuid to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next gadget
+	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.opensocial.model.Gadget[] findByUuid_PrevAndNext(
+		long gadgetId, java.lang.String uuid,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.opensocial.NoSuchGadgetException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Finds all the gadgets where companyId = &#63;.
 	*
 	* @param companyId the company id to search with
@@ -247,6 +352,15 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes all the gadgets where uuid = &#63; from the database.
+	*
+	* @param uuid the uuid to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByUuid(java.lang.String uuid)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Removes all the gadgets where companyId = &#63; from the database.
 	*
 	* @param companyId the company id to search with
@@ -261,6 +375,16 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeAll()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Counts all the gadgets where uuid = &#63;.
+	*
+	* @param uuid the uuid to search with
+	* @return the number of matching gadgets
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByUuid(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

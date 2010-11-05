@@ -2,7 +2,7 @@
 
 <service-builder package-path="com.liferay.opensocial">
 	<namespace>OpenSocial</namespace>
-	<entity name="Gadget" local-service="true" remote-service="false">
+	<entity name="Gadget" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 

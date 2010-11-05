@@ -43,6 +43,14 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		return new Long(_gadgetId);
 	}
 
+	public String getUuid() {
+		return _uuid;
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
+	}
+
 	public long getGadgetId() {
 		return _gadgetId;
 	}
@@ -104,6 +112,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	public Object clone() {
 		GadgetClp clone = new GadgetClp();
 
+		clone.setUuid(getUuid());
 		clone.setGadgetId(getGadgetId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
@@ -155,9 +164,11 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
-		sb.append("{gadgetId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", gadgetId=");
 		sb.append(getGadgetId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
@@ -175,12 +186,16 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.Gadget");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>gadgetId</column-name><column-value><![CDATA[");
 		sb.append(getGadgetId());
@@ -211,6 +226,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		return sb.toString();
 	}
 
+	private String _uuid;
 	private long _gadgetId;
 	private long _companyId;
 	private Date _createDate;

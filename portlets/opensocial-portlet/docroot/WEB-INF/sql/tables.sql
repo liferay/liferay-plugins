@@ -1,4 +1,5 @@
 create table OpenSocial_Gadget (
+	uuid_ VARCHAR(75) null,
 	gadgetId LONG not null primary key,
 	companyId LONG,
 	createDate DATE null,

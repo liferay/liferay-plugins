@@ -2,6 +2,7 @@
 
 <model-hints>
 	<model name="com.liferay.opensocial.model.Gadget">
+		<field name="uuid" type="String" />
 		<field name="gadgetId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="createDate" type="Date" />

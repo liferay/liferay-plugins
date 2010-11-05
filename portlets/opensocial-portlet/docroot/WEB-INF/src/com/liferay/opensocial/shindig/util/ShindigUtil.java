@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Portlet;
@@ -111,14 +112,16 @@ public class ShindigUtil {
 		int pos = portletName.indexOf(
 			StringPool.UNDERLINE, GadgetPortlet.PORTLET_NAME_PREFIX.length());
 
-		long gadgetId = GetterUtil.getLong(portletName.substring(pos + 1));
+		String gadgetUuid = GetterUtil.getString(
+			portletName.substring(pos + 1));
+
+		gadgetUuid = PortalUUIDUtil.fromSafeUuid(gadgetUuid);
 
 		com.liferay.opensocial.model.Gadget gadget =
-			GadgetLocalServiceUtil.getGadget(gadgetId);
+			GadgetLocalServiceUtil.getGadget(gadgetUuid);
 
 		return gadget;
 	}
-
 	public static GadgetSpec getGadgetSpec(
 			com.liferay.opensocial.model.Gadget liferayGadget)
 		throws Exception {

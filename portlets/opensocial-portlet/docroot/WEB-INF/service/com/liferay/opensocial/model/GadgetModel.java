@@ -59,6 +59,21 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	public void setPrimaryKey(long pk);
 
 	/**
+	 * Gets the uuid of this gadget.
+	 *
+	 * @return the uuid of this gadget
+	 */
+	@AutoEscape
+	public String getUuid();
+
+	/**
+	 * Sets the uuid of this gadget.
+	 *
+	 * @param uuid the uuid of this gadget
+	 */
+	public void setUuid(String uuid);
+
+	/**
 	 * Gets the gadget id of this gadget.
 	 *
 	 * @return the gadget id of this gadget

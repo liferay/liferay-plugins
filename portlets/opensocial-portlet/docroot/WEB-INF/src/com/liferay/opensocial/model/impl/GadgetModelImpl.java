@@ -57,6 +57,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_Gadget";
 	public static final Object[][] TABLE_COLUMNS = {
+			{ "uuid_", new Integer(Types.VARCHAR) },
 			{ "gadgetId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
@@ -64,7 +65,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			{ "name", new Integer(Types.VARCHAR) },
 			{ "url", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_Gadget.name ASC";
@@ -93,6 +94,19 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_gadgetId);
+	}
+
+	public String getUuid() {
+		if (_uuid == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _uuid;
+		}
+	}
+
+	public void setUuid(String uuid) {
+		_uuid = uuid;
 	}
 
 	public long getGadgetId() {
@@ -179,6 +193,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public Object clone() {
 		GadgetImpl clone = new GadgetImpl();
 
+		clone.setUuid(getUuid());
 		clone.setGadgetId(getGadgetId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
@@ -230,9 +245,11 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
-		sb.append("{gadgetId=");
+		sb.append("{uuid=");
+		sb.append(getUuid());
+		sb.append(", gadgetId=");
 		sb.append(getGadgetId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
@@ -250,12 +267,16 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.Gadget");
 		sb.append("</model-name>");
 
+		sb.append(
+			"<column><column-name>uuid</column-name><column-value><![CDATA[");
+		sb.append(getUuid());
+		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>gadgetId</column-name><column-value><![CDATA[");
 		sb.append(getGadgetId());
@@ -286,6 +307,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return sb.toString();
 	}
 
+	private String _uuid;
 	private long _gadgetId;
 	private long _companyId;
 	private Date _createDate;

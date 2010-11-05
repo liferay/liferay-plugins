@@ -47,6 +47,24 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
+	* Gets the uuid of this gadget.
+	*
+	* @return the uuid of this gadget
+	*/
+	public java.lang.String getUuid() {
+		return _gadget.getUuid();
+	}
+
+	/**
+	* Sets the uuid of this gadget.
+	*
+	* @param uuid the uuid of this gadget
+	*/
+	public void setUuid(java.lang.String uuid) {
+		_gadget.setUuid(uuid);
+	}
+
+	/**
 	* Gets the gadget id of this gadget.
 	*
 	* @return the gadget id of this gadget

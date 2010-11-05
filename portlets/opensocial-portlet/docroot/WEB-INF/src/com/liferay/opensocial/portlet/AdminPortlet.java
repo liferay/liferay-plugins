@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.portlet;
 
+import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -21,6 +22,8 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -85,8 +88,10 @@ public class AdminPortlet extends MVCPortlet {
 		String url = ParamUtil.getString(actionRequest, "url");
 
 		if (gadgetId <= 0) {
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				Gadget.class.getName(), actionRequest);
 			GadgetLocalServiceUtil.addGadget(
-				themeDisplay.getCompanyId(), name, url);
+				themeDisplay.getCompanyId(), name, url, serviceContext);
 		}
 		else {
 			GadgetLocalServiceUtil.updateGadget(
