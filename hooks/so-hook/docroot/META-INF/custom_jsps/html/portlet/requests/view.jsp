@@ -39,24 +39,9 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 		SocialRequest socialRequest = requests.get(i);
 
 		SocialRequestFeedEntry requestFeedEntry = SocialRequestInterpreterLocalServiceUtil.interpret(socialRequest, themeDisplay);
-
-		User curUser = UserLocalServiceUtil.getUser(socialRequest.getUserId());
-
-		String src = themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=";
-
-		if (curUser != null) {
-			src = themeDisplay.getPathImage() + "/user_" + (curUser.isFemale() ? "female" : "male") + "_portrait?img_id=" + curUser.getPortraitId() + "&t=" + ImageServletTokenUtil.getToken(curUser.getPortraitId());
-		}
 	%>
 
 		<tr class="request">
-			<td valign="top">
-				<div class="thumbnail">
-					<a href="<%= curUser.getDisplayURL(themeDisplay) %>">
-						<img alt="<%= curUser.getFullName() %>" src="<%= src %>" />
-					</a>
-				</div>
-			</td>
 			<td valign="top" width="99%">
 				<c:choose>
 					<c:when test="<%= requestFeedEntry == null %>">

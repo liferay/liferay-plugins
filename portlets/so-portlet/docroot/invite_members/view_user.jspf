@@ -38,31 +38,11 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 
 			continue;
 		}
-
-		User curUser = UserLocalServiceUtil.getUser(memberRequest.getUserId());
-
-		String src = themeDisplay.getPathImage() + "/user_male_portrait?img_id=0&t=";
-
-		if (curUser != null) {
-			src = themeDisplay.getPathImage() + "/user_" + (curUser.isFemale() ? "female" : "male") + "_portrait?img_id=" + curUser.getPortraitId() + "&t=" + ImageServletTokenUtil.getToken(curUser.getPortraitId());
-		}
 	%>
 
 		<tr>
-			<td valign="top">
-				<div class="thumbnail">
-					<a href="<%= curUser.getDisplayURL(themeDisplay) %>">
-						<img alt="<%= memberRequest.getUserName() %>" src="<%= src %>" />
-					</a>
-				</div>
-			</td>
 			<td valign="top" width="99%">
-
-				<%
-				String curUserName = "<a herf=\"" + curUser.getDisplayURL(themeDisplay) + "\">" + memberRequest.getUserName() + "</a>";
-				%>
-
-				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {curUserName, curGroup.getDescriptiveName()}) %>
+				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {memberRequest.getUserName(), curGroup.getDescriptiveName()}) %>
 
 				<div class="controls">
 					<portlet:actionURL name="updateInvite" var="confirmURL">

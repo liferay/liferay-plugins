@@ -1245,13 +1245,6 @@ table.calendar {
 	padding-left: 10px;
 }
 
-.portlet-activities .request .thumbnail img,
-.so-portlet-invite-members .thumbnail img {
-	border :1px solid #CCC;
-	padding: 1px;
-	width: 40px;
-}
-
 /* RSS */
 
 .portlet-rss .feed-entry-title {

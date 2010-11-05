@@ -166,11 +166,6 @@
 	border-color: #AFA;
 }
 
-.so-portlet-invite-members .controls a {
-	background: url("<%= themeImagesPath %>/custom/bullet.png") no-repeat 3px 50%;
-	padding-left: 10px;
-}
-
 .so-portlet-invite-members .invite-to select {
 	margin-top: 1em;
 	min-width: 300px;
