@@ -161,6 +161,11 @@
 	width: 40%;
 }
 
+.so-portlet-invite-members .controls a {
+	background: url("<%= themeImagesPath %>/custom/bullet.png") no-repeat 3px 50%;
+	padding-left: 10px;
+}
+
 .so-portlet-invite-members .invited {
 	background: #DFD url(<%= themeImagesPath %>/arrows/01_minus.png) no-repeat 0 50%;
 	border-color: #AFA;

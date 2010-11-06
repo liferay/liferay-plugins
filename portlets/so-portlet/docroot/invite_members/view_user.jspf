@@ -38,11 +38,39 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 
 			continue;
 		}
+
+		String userPortaitURL = StringPool.BLANK;
+		String userDisplayURL = StringPool.BLANK;
+
+		try {
+			User curUser = UserLocalServiceUtil.getUser(memberRequest.getUserId());
+
+			userPortaitURL = curUser.getPortraitURL(themeDisplay);
+			userDisplayURL = curUser.getDisplayURL(themeDisplay);
+		}
+		catch (NoSuchUserException nsue) {
+		}
 	%>
 
 		<tr>
+			<td valign="top">
+				<div class="thumbnail">
+					<a href="<%= userDisplayURL %>">
+						<img alt="<%= memberRequest.getUserName() %>" src="<%= userPortaitURL %>" />
+					</a>
+				</div>
+			</td>
 			<td valign="top" width="99%">
-				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {memberRequest.getUserName(), curGroup.getDescriptiveName()}) %>
+
+				<%
+				String userName = memberRequest.getUserName();
+
+				if (Validator.isNotNull(userDisplayURL)) {
+					userName = "<a href=\"" + userDisplayURL + "\">" + userName + "</a>";
+				}
+				%>
+
+				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {userName, curGroup.getDescriptiveName()}) %>
 
 				<div class="controls">
 					<portlet:actionURL name="updateInvite" var="confirmURL">

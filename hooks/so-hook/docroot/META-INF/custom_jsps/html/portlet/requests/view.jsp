@@ -42,19 +42,46 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 	%>
 
 		<tr class="request">
-			<td valign="top" width="99%">
-				<c:choose>
-					<c:when test="<%= requestFeedEntry == null %>">
+			<c:choose>
+				<c:when test="<%= requestFeedEntry == null %>">
+					<td></td>
+					<td valign="top" width="99%">
 						<div class="portlet-msg-error">
 							<liferay-ui:message key="request-cannot-be-interpreted-because-it-does-not-have-an-associated-interpreter" />
 						</div>
-					</c:when>
-					<c:otherwise>
+					</td>
+				</c:when>
+				<c:otherwise>
 
-						<%
-						portletURL.setParameter("requestId", String.valueOf(socialRequest.getRequestId()));
-						%>
+					<%
+					String userPortaitURL = StringPool.BLANK;
+					String userDisplayURL = StringPool.BLANK;
+					String userFullName = StringPool.BLANK;
 
+					try {
+						User curUser = UserLocalServiceUtil.getUserById(socialRequest.getUserId());
+
+						userPortaitURL = curUser.getPortraitURL(themeDisplay);
+						userDisplayURL = curUser.getDisplayURL(themeDisplay);
+						userFullName = curUser.getFullName();
+					}
+					catch (NoSuchUserException nsue) {
+						SocialRequestLocalServiceUtil.deleteRequest(socialRequest.getRequestId());
+
+						continue;
+					}
+
+					portletURL.setParameter("requestId", String.valueOf(socialRequest.getRequestId()));
+					%>
+
+					<td valign="top">
+						<div class="thumbnail">
+							<a href="<%= userDisplayURL %>">
+								<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
+							</a>
+						</div>
+					</td>
+					<td valign="top" width="99%">
 						<div>
 							<%= requestFeedEntry.getTitle() %>
 						</div>
@@ -73,9 +100,9 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 
 							<a href="<%= portletURL.toString() %>" onClick="Liferay.Util.forcePost(this); return false;"><liferay-ui:message key="ignore" /></a>
 						</div>
-					</c:otherwise>
-				</c:choose>
-			</td>
+					</td>
+				</c:otherwise>
+			</c:choose>
 		</tr>
 
 	<%
