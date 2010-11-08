@@ -511,7 +511,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 		sb.append(wsrpConsumerPortletUuid);
 
 		String portletId = PortalUtil.getJsSafePortletId(
-			PortalUUIDUtil.toSafeUuid(sb.toString()));
+			PortalUUIDUtil.toJsSafeUuid(sb.toString()));
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
 			companyId, _CONSUMER_PORTLET_ID);

@@ -835,7 +835,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		String wsrpConsumerPortletUuid = portletName.substring(pos + 1);
 
-		wsrpConsumerPortletUuid = PortalUUIDUtil.fromSafeUuid(
+		wsrpConsumerPortletUuid = PortalUUIDUtil.fromJsSafeUuid(
 			wsrpConsumerPortletUuid);
 
 		WSRPConsumerPortlet wsrpConsumerPortlet =
