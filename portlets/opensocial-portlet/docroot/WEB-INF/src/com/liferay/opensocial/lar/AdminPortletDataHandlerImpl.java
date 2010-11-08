@@ -42,12 +42,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected PortletPreferences doDeleteData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences)
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences)
 		throws Exception {
 
 		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
-			context.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
 
 		for (Gadget gadget : gadgets) {
 			GadgetLocalServiceUtil.deleteGadget(gadget);
@@ -57,8 +58,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected String doExportData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences)
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences)
 		throws Exception {
 
 		Document document = SAXReaderUtil.createDocument();
@@ -68,18 +69,19 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Element gadgetsElement = rootElement.addElement("gadgets");
 
 		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
-			context.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
 
 		for (Gadget gadget : gadgets) {
-			exportGadget(context, gadgetsElement, gadget);
+			exportGadget(portletDataContext, gadgetsElement, gadget);
 		}
 
 		return document.formattedString();
 	}
 
 	protected PortletPreferences doImportData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences, String data)
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
 		Document document = SAXReaderUtil.read(data);
@@ -91,25 +93,27 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		for (Element gadgetElement : gadgetsElement.elements("gadget")) {
 			String gadgetPath = gadgetElement.attributeValue("path");
 
-			if (!context.isPathNotProcessed(gadgetPath)) {
+			if (!portletDataContext.isPathNotProcessed(gadgetPath)) {
 				continue;
 			}
 
-			Gadget gadget = (Gadget)context.getZipEntryAsObject(gadgetPath);
+			Gadget gadget = (Gadget)portletDataContext.getZipEntryAsObject(
+				gadgetPath);
 
-			importGadget(context, gadget);
+			importGadget(portletDataContext, gadget);
 		}
 
 		return null;
 	}
 
 	protected void exportGadget(
-			PortletDataContext context, Element gadgetsElement, Gadget gadget)
+			PortletDataContext portletDataContext, Element gadgetsElement,
+			Gadget gadget)
 		throws SystemException {
 
-		String path = getGadgetPath(context, gadget);
+		String path = getGadgetPath(portletDataContext, gadget);
 
-		if (!context.isPathNotProcessed(path)) {
+		if (!portletDataContext.isPathNotProcessed(path)) {
 			return;
 		}
 
@@ -117,13 +121,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		gadgetElement.addAttribute("path",path);
 
-		context.addZipEntry(path, gadget);
+		portletDataContext.addZipEntry(path, gadget);
 	}
 
-	protected String getGadgetPath(PortletDataContext context, Gadget gadget) {
+	protected String getGadgetPath(
+		PortletDataContext portletDataContext, Gadget gadget) {
+
 		StringBundler sb = new StringBundler(4);
 
-		sb.append(context.getPortletPath(_PORTLET_KEY));
+		sb.append(portletDataContext.getPortletPath(_PORTLET_KEY));
 		sb.append("/gadgets/");
 		sb.append(gadget.getUuid());
 		sb.append(".xml");
@@ -131,7 +137,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return sb.toString();
 	}
 
-	protected void importGadget(PortletDataContext context, Gadget gadget)
+	protected void importGadget(
+			PortletDataContext portletDataContext, Gadget gadget)
 		throws PortalException, SystemException {
 
 		Gadget importedGadget = null;
@@ -150,8 +157,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setUuid(gadget.getUuid());
 
 			GadgetLocalServiceUtil.addGadget(
-				context.getCompanyId(), gadget.getName(), gadget.getUrl(),
-				serviceContext);
+				portletDataContext.getCompanyId(), gadget.getName(),
+				gadget.getUrl(), serviceContext);
 		}
 	}
 

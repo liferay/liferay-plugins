@@ -72,84 +72,92 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected PortletPreferences doDeleteData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences)
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences)
 		throws Exception {
 
-		if (!context.addPrimaryKey(
+		if (!portletDataContext.addPrimaryKey(
 				AdminPortletDataHandlerImpl.class, "deleteData")) {
 
 			ArticleLocalServiceUtil.deleteGroupArticles(
-				context.getScopeGroupId());
+				portletDataContext.getScopeGroupId());
 
-			CommentUtil.removeByGroupId(context.getScopeGroupId());
+			CommentUtil.removeByGroupId(portletDataContext.getScopeGroupId());
 
 			TemplateLocalServiceUtil.deleteGroupTemplates(
-				context.getScopeGroupId());
+				portletDataContext.getScopeGroupId());
 		}
 
 		return null;
 	}
 
 	protected String doExportData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences)
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences)
 		throws Exception {
 
-		context.addPermissions(
-			"com.liferay.knowledgebase.admin", context.getScopeGroupId());
+		portletDataContext.addPermissions(
+			"com.liferay.knowledgebase.admin",
+			portletDataContext.getScopeGroupId());
 
 		Document document = SAXReaderUtil.createDocument();
 
 		Element rootElement = document.addElement("knowledge-base-admin-data");
 
 		rootElement.addAttribute(
-			"group-id", String.valueOf(context.getScopeGroupId()));
+			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
-		exportArticles(context, rootElement);
+		exportArticles(portletDataContext, rootElement);
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "comments")) {
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "comments")) {
+
 			exportComments(
-				context, Article.class, "article-comment", rootElement);
+				portletDataContext, Article.class, "article-comment",
+				rootElement);
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE, "templates")) {
-			exportTemplates(context, rootElement);
+		if (portletDataContext.getBooleanParameter(_NAMESPACE, "templates")) {
+			exportTemplates(portletDataContext, rootElement);
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE_TEMPLATE, "comments")) {
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_TEMPLATE, "comments")) {
+
 			exportComments(
-				context, Template.class, "template-comment", rootElement);
+				portletDataContext, Template.class, "template-comment",
+				rootElement);
 		}
 
 		return document.formattedString();
 	}
 
 	protected PortletPreferences doImportData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences, String data)
+			PortletDataContext portletDataContext, String portletId,
+			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
-		context.importPermissions(
-			"com.liferay.knowledgebase.admin", context.getSourceGroupId(),
-			context.getScopeGroupId());
+		portletDataContext.importPermissions(
+			"com.liferay.knowledgebase.admin",
+			portletDataContext.getSourceGroupId(),
+			portletDataContext.getScopeGroupId());
 
 		Document document = SAXReaderUtil.read(data);
 
 		Element rootElement = document.getRootElement();
 
-		importArticles(context, rootElement);
+		importArticles(portletDataContext, rootElement);
 
-		if (context.getBooleanParameter(_NAMESPACE, "templates")) {
-			importTemplates(context, rootElement);
+		if (portletDataContext.getBooleanParameter(_NAMESPACE, "templates")) {
+			importTemplates(portletDataContext, rootElement);
 		}
 
 		return null;
 	}
 
 	protected void exportArticle(
-			PortletDataContext context, Element rootElement, String path,
-			Article article)
+			PortletDataContext portletDataContext, Element rootElement,
+			String path, Article article)
 		throws PortalException, SystemException {
 
 		Element articleElement = rootElement.addElement("article");
@@ -158,34 +166,45 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		article.setUserUuid(article.getUserUuid());
 
-		context.addZipEntry(path, article);
+		portletDataContext.addZipEntry(path, article);
 
-		context.addPermissions(Article.class, article.getResourcePrimKey());
+		portletDataContext.addPermissions(
+			Article.class, article.getResourcePrimKey());
 
 		exportArticleVersions(
-			context, articleElement, article.getResourcePrimKey());
+			portletDataContext, articleElement, article.getResourcePrimKey());
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "attachments")) {
-			exportArticleAttachments(context, rootElement, article);
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "attachments")) {
+
+			exportArticleAttachments(portletDataContext, rootElement, article);
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "categories")) {
-			context.addAssetCategories(
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "categories")) {
+
+			portletDataContext.addAssetCategories(
 				Article.class, article.getResourcePrimKey());
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "tags")) {
-			context.addAssetTags(Article.class, article.getResourcePrimKey());
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "tags")) {
+
+			portletDataContext.addAssetTags(
+				Article.class, article.getResourcePrimKey());
 		}
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "ratings")) {
-			context.addRatingsEntries(
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "ratings")) {
+
+			portletDataContext.addRatingsEntries(
 				Article.class, article.getResourcePrimKey());
 		}
 	}
 
 	protected void exportArticleAttachments(
-			PortletDataContext context, Element rootElement, Article article)
+			PortletDataContext portletDataContext, Element rootElement,
+			Article article)
 		throws PortalException, SystemException {
 
 		Element articleAttachmentsElement = rootElement.addElement(
@@ -195,8 +214,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			"resource-prim-key", String.valueOf(article.getResourcePrimKey()));
 
 		String rootPath =
-			context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
-				"/articles/attachments/" + article.getResourcePrimKey();
+			getPortletPath(portletDataContext) + "/articles/attachments/" +
+				article.getResourcePrimKey();
 
 		for (String fileName : article.getAttachmentsFileNames()) {
 			String shortFileName = FileUtil.getShortFileName(fileName);
@@ -210,20 +229,20 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			fileElement.addAttribute("path", path);
 			fileElement.addAttribute("short-file-name", shortFileName);
 
-			context.addZipEntry(path, inputStream);
+			portletDataContext.addZipEntry(path, inputStream);
 		}
 	}
 
 	protected void exportArticleVersions(
-			PortletDataContext context, Element articleElement,
+			PortletDataContext portletDataContext, Element articleElement,
 			long resourcePrimKey)
 		throws SystemException {
 
 		Element versionsElement = articleElement.addElement("versions");
 
 		String rootPath =
-			context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
-				"/articles/versions/" + resourcePrimKey;
+			getPortletPath(portletDataContext) + "/articles/versions/" +
+				resourcePrimKey;
 
 		List<Article> articles = ArticleUtil.findByResourcePrimKey(
 			resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -237,30 +256,30 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			curArticleElement.addAttribute("path", path);
 
-			context.addZipEntry(path, article);
+			portletDataContext.addZipEntry(path, article);
 		}
 	}
 
 	protected void exportArticles(
-			PortletDataContext context, Element rootElement)
+			PortletDataContext portletDataContext, Element rootElement)
 		throws PortalException, SystemException {
 
-		for (Article article : filterArticles(context)) {
+		for (Article article : filterArticles(portletDataContext)) {
 			String path =
-				context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
-					"/articles/" + article.getResourcePrimKey() + ".xml";
+				getPortletPath(portletDataContext) + "/articles/" +
+					article.getResourcePrimKey() + ".xml";
 
-			if (!context.isPathNotProcessed(path)) {
+			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			exportArticle(context, rootElement, path, article);
+			exportArticle(portletDataContext, rootElement, path, article);
 		}
 	}
 
 	protected void exportComment(
-			PortletDataContext context, Element rootElement, String name,
-			String path, Comment comment)
+			PortletDataContext portletDataContext, Element rootElement,
+			String name, String path, Comment comment)
 		throws PortalException, SystemException {
 
 		Element commentElement = rootElement.addElement(name);
@@ -269,39 +288,41 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		comment.setUserUuid(comment.getUserUuid());
 
-		context.addZipEntry(path, comment);
+		portletDataContext.addZipEntry(path, comment);
 	}
 
 	protected void exportComments(
-			PortletDataContext context, Class<?> classObj, String name,
-			Element rootElement)
+			PortletDataContext portletDataContext, Class<?> classObj,
+			String name, Element rootElement)
 		throws PortalException, SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(classObj);
 
 		List<Comment> comments = CommentUtil.findByG_C(
-			context.getScopeGroupId(), classNameId);
+			portletDataContext.getScopeGroupId(), classNameId);
 
 		for (Comment comment : comments) {
-			if (!context.isWithinDateRange(comment.getModifiedDate())) {
+			if (!portletDataContext.isWithinDateRange(
+					comment.getModifiedDate())) {
+
 				return;
 			}
 
 			String path =
-				context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
-					"/comments/" + comment.getCommentId() + ".xml";
+				getPortletPath(portletDataContext) + "/comments/" +
+					comment.getCommentId() + ".xml";
 
-			if (!context.isPathNotProcessed(path)) {
+			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			exportComment(context, rootElement, name, path, comment);
+			exportComment(portletDataContext, rootElement, name, path, comment);
 		}
 	}
 
 	protected void exportTemplate(
-			PortletDataContext context, Element rootElement, String path,
-			Template template)
+			PortletDataContext portletDataContext, Element rootElement,
+			String path, Template template)
 		throws PortalException, SystemException {
 
 		Element templateElement = rootElement.addElement("template");
@@ -310,36 +331,40 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		template.setUserUuid(template.getUserUuid());
 
-		context.addZipEntry(path, template);
+		portletDataContext.addZipEntry(path, template);
 
-		context.addPermissions(Template.class, template.getTemplateId());
+		portletDataContext.addPermissions(
+			Template.class, template.getTemplateId());
 	}
 
 	protected void exportTemplates(
-			PortletDataContext context, Element rootElement)
+			PortletDataContext portletDataContext, Element rootElement)
 		throws PortalException, SystemException {
 
 		List<Template> templates = TemplateUtil.findByGroupId(
-			context.getScopeGroupId());
+			portletDataContext.getScopeGroupId());
 
 		for (Template template : templates) {
-			if (!context.isWithinDateRange(template.getModifiedDate())) {
+			if (!portletDataContext.isWithinDateRange(
+					template.getModifiedDate())) {
+
 				continue;
 			}
 
 			String path =
-				context.getPortletPath(PortletKeys.KNOWLEDGE_BASE_ADMIN) +
-					"/templates/" + template.getTemplateId() + ".xml";
+				getPortletPath(portletDataContext) + "/templates/" +
+					template.getTemplateId() + ".xml";
 
-			if (!context.isPathNotProcessed(path)) {
+			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			exportTemplate(context, rootElement, path, template);
+			exportTemplate(portletDataContext, rootElement, path, template);
 		}
 	}
 
-	protected List<Article> filterArticles(PortletDataContext context)
+	protected List<Article> filterArticles(
+			PortletDataContext portletDataContext)
 		throws SystemException {
 
 		// Sort articles to simplify import code. Order articles by depth and
@@ -350,7 +375,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", context.getScopeGroupId());
+		params.put("groupId", portletDataContext.getScopeGroupId());
 		params.put(
 			"parentResourcePrimKey",
 			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
@@ -361,7 +386,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			new ArticlePriorityComparator(true));
 
 		for (Article rootArticle : rootArticles) {
-			if (context.isWithinDateRange(rootArticle.getModifiedDate())) {
+			if (portletDataContext.isWithinDateRange(
+					rootArticle.getModifiedDate())) {
+
 				articles.add(rootArticle);
 			}
 		}
@@ -383,7 +410,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				new ArticlePriorityComparator(true));
 
 			for (Article childArticle : childArticles) {
-				if (context.isWithinDateRange(childArticle.getModifiedDate())) {
+				if (portletDataContext.isWithinDateRange(
+						childArticle.getModifiedDate())) {
+
 					articles.add(childArticle);
 				}
 			}
@@ -392,13 +421,18 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return articles;
 	}
 
+	protected String getPortletPath(PortletDataContext portletDataContext) {
+		return portletDataContext.getPortletPath(
+			PortletKeys.KNOWLEDGE_BASE_ADMIN);
+	}
+
 	protected void importArticle(
-			PortletDataContext context, Map<Long, Long> resourcePrimKeys,
-			Map<String, String> dirNames, Element articleElement,
-			Article article)
+			PortletDataContext portletDataContext,
+			Map<Long, Long> resourcePrimKeys, Map<String, String> dirNames,
+			Element articleElement, Article article)
 		throws Exception {
 
-		long userId = context.getUserId(article.getUserUuid());
+		long userId = portletDataContext.getUserId(article.getUserUuid());
 		long parentResourcePrimKey = MapUtil.getLong(
 			resourcePrimKeys, article.getParentResourcePrimKey());
 		int priority = article.getPriority();
@@ -407,7 +441,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Map<String, Object> params = new HashMap<String, Object>();
 
-		params.put("groupId", context.getScopeGroupId());
+		params.put("groupId", portletDataContext.getScopeGroupId());
 		params.put("parentResourcePrimKey", parentResourcePrimKey);
 		params.put("status", WorkflowConstants.STATUS_APPROVED);
 
@@ -420,15 +454,19 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		long[] assetCategoryIds = null;
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "categories")) {
-			assetCategoryIds = context.getAssetCategoryIds(
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "categories")) {
+
+			assetCategoryIds = portletDataContext.getAssetCategoryIds(
 				Article.class, article.getResourcePrimKey());
 		}
 
 		String[] assetTagNames = null;
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "tags")) {
-			assetTagNames = context.getAssetTagNames(
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "tags")) {
+
+			assetTagNames = portletDataContext.getAssetTagNames(
 				Article.class, article.getResourcePrimKey());
 		}
 
@@ -440,18 +478,19 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setAssetTagNames(assetTagNames);
 		serviceContext.setCreateDate(article.getCreateDate());
 		serviceContext.setModifiedDate(article.getModifiedDate());
-		serviceContext.setScopeGroupId(context.getScopeGroupId());
+		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
 		Article importedArticle = null;
 
-		if (context.isDataStrategyMirror()) {
+		if (portletDataContext.isDataStrategyMirror()) {
 			Article existingArticle = ArticleUtil.fetchByUUID_G(
-				article.getUuid(), context.getScopeGroupId());
+				article.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingArticle == null) {
 				importedArticle = importArticleVersions(
-					context, article.getUuid(), parentResourcePrimKey, priority,
-					dirName, assetCategoryIds, assetTagNames, articleElement);
+					portletDataContext, article.getUuid(),
+					parentResourcePrimKey, priority, dirName, assetCategoryIds,
+					assetTagNames, articleElement);
 			}
 			else {
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
@@ -463,26 +502,28 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 		else {
 			importedArticle = importArticleVersions(
-				context, null, parentResourcePrimKey, priority, dirName,
-				assetCategoryIds, assetTagNames, articleElement);
+				portletDataContext, null, parentResourcePrimKey, priority,
+				dirName, assetCategoryIds, assetTagNames, articleElement);
 		}
 
 		resourcePrimKeys.put(
 			article.getResourcePrimKey(), importedArticle.getResourcePrimKey());
 
-		context.importPermissions(
+		portletDataContext.importPermissions(
 			Article.class, article.getResourcePrimKey(),
 			importedArticle.getResourcePrimKey());
 
-		if (context.getBooleanParameter(_NAMESPACE_ARTICLE, "ratings")) {
-			context.importRatingsEntries(
+		if (portletDataContext.getBooleanParameter(
+				_NAMESPACE_ARTICLE, "ratings")) {
+
+			portletDataContext.importRatingsEntries(
 				Article.class, article.getResourcePrimKey(),
 				importedArticle.getResourcePrimKey());
 		}
 	}
 
 	protected void importArticleAttachments(
-			PortletDataContext context, long importId,
+			PortletDataContext portletDataContext, long importId,
 			Map<String, String> dirNames, Element rootElement)
 		throws Exception {
 
@@ -498,7 +539,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					resourcePrimKey;
 
 			DLLocalServiceUtil.addDirectory(
-				context.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+				portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
+				dirName);
 
 			List<Element> fileElements = articleAttachmentsElement.elements(
 				"file");
@@ -508,13 +550,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					"short-file-name");
 
 				String fileName = dirName + StringPool.SLASH + shortFileName;
-				InputStream inputStream = context.getZipEntryAsInputStream(
-					fileElement.attributeValue("path"));
+				InputStream inputStream =
+					portletDataContext.getZipEntryAsInputStream(
+						fileElement.attributeValue("path"));
 
 				ServiceContext serviceContext = new ServiceContext();
 
 				DLLocalServiceUtil.addFile(
-					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
+					portletDataContext.getCompanyId(),
+					CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
 					CompanyConstants.SYSTEM, fileName, true, 0,
 					StringPool.BLANK, serviceContext.getCreateDate(null),
@@ -526,9 +570,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected Article importArticleVersions(
-			PortletDataContext context, String uuid, long parentResourcePrimKey,
-			int priority, String dirName, long[] assetCategoryIds,
-			String[] assetTagNames, Element articleElement)
+			PortletDataContext portletDataContext, String uuid,
+			long parentResourcePrimKey, int priority, String dirName,
+			long[] assetCategoryIds, String[] assetTagNames,
+			Element articleElement)
 		throws Exception {
 
 		Element versionsElement = articleElement.element("versions");
@@ -538,10 +583,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Article importedArticle = null;
 
 		for (Element curArticleElement : articleElements) {
-			Article curArticle = (Article)context.getZipEntryAsObject(
-				curArticleElement.attributeValue("path"));
+			Article curArticle =
+				(Article)portletDataContext.getZipEntryAsObject(
+					curArticleElement.attributeValue("path"));
 
-			long userId = context.getUserId(curArticle.getUserUuid());
+			long userId = portletDataContext.getUserId(
+				curArticle.getUserUuid());
 
 			String curDirName = StringPool.BLANK;
 			long[] curAssetCategoryIds = null;
@@ -563,7 +610,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setAssetTagNames(curAssetTagNames);
 			serviceContext.setCreateDate(curArticle.getCreateDate());
 			serviceContext.setModifiedDate(curArticle.getModifiedDate());
-			serviceContext.setScopeGroupId(context.getScopeGroupId());
+			serviceContext.setScopeGroupId(
+				portletDataContext.getScopeGroupId());
 
 			if (importedArticle == null) {
 				serviceContext.setUuid(uuid);
@@ -586,7 +634,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void importArticles(
-			PortletDataContext context, Element rootElement)
+			PortletDataContext portletDataContext, Element rootElement)
 		throws Exception {
 
 		long importId = CounterLocalServiceUtil.increment();
@@ -595,63 +643,65 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		Map<String, String> dirNames = new HashMap<String, String>();
 
 		try {
-			if (context.getBooleanParameter(
+			if (portletDataContext.getBooleanParameter(
 					_NAMESPACE_ARTICLE, "attachments")) {
 
 				DLLocalServiceUtil.addDirectory(
-					context.getCompanyId(), CompanyConstants.SYSTEM,
+					portletDataContext.getCompanyId(), CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
 
 				importArticleAttachments(
-					context, importId, dirNames, rootElement);
+					portletDataContext, importId, dirNames, rootElement);
 			}
 
 			for (Element articleElement : rootElement.elements("article")) {
 				String path = articleElement.attributeValue("path");
 
-				if (!context.isPathNotProcessed(path)) {
+				if (!portletDataContext.isPathNotProcessed(path)) {
 					continue;
 				}
 
-				Article article = (Article)context.getZipEntryAsObject(path);
+				Article article =
+					(Article)portletDataContext.getZipEntryAsObject(path);
 
 				importArticle(
-					context, resourcePrimKeys, dirNames, articleElement,
-					article);
+					portletDataContext, resourcePrimKeys, dirNames,
+					articleElement, article);
 			}
 
 			importComments(
-				 context, "article-comment", resourcePrimKeys, rootElement);
+				portletDataContext, "article-comment", resourcePrimKeys,
+				rootElement);
 		}
 		finally {
-			if (context.getBooleanParameter(
+			if (portletDataContext.getBooleanParameter(
 					_NAMESPACE_ARTICLE, "attachments")) {
 
 				DLLocalServiceUtil.deleteDirectory(
-					context.getCompanyId(), CompanyConstants.SYSTEM_STRING,
-					CompanyConstants.SYSTEM,
+					portletDataContext.getCompanyId(),
+					CompanyConstants.SYSTEM_STRING, CompanyConstants.SYSTEM,
 					"knowledgebase/temp/import/" + importId);
 			}
 		}
 	}
 
 	protected void importComment(
-			PortletDataContext context, Map<Long, Long> classPKs,
+			PortletDataContext portletDataContext, Map<Long, Long> classPKs,
 			Comment comment)
 		throws Exception {
 
-		long userId = context.getUserId(comment.getUserUuid());
+		long userId = portletDataContext.getUserId(comment.getUserUuid());
 		long classPK = MapUtil.getLong(classPKs, comment.getClassPK());
 
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setCreateDate(comment.getCreateDate());
 		serviceContext.setModifiedDate(comment.getModifiedDate());
-		serviceContext.setScopeGroupId(context.getScopeGroupId());
+		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
-		if (context.isDataStrategyMirror()) {
+		if (portletDataContext.isDataStrategyMirror()) {
 			Comment existingComment = CommentUtil.fetchByUUID_G(
-				comment.getUuid(), context.getScopeGroupId());
+				comment.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingComment == null) {
 				serviceContext.setUuid(comment.getUuid());
@@ -675,8 +725,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void importComments(
-			PortletDataContext context, String name, Map<Long, Long> classPKs,
-			Element rootElement)
+			PortletDataContext portletDataContext, String name,
+			Map<Long, Long> classPKs, Element rootElement)
 		throws Exception {
 
 		List<Element> commentElements = rootElement.elements(name);
@@ -684,22 +734,23 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		for (Element commentElement : commentElements) {
 			String path = commentElement.attributeValue("path");
 
-			if (!context.isPathNotProcessed(path)) {
+			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			Comment comment = (Comment)context.getZipEntryAsObject(path);
+			Comment comment =
+				(Comment)portletDataContext.getZipEntryAsObject(path);
 
-			importComment(context, classPKs, comment);
+			importComment(portletDataContext, classPKs, comment);
 		}
 	}
 
 	protected void importTemplate(
-			PortletDataContext context, Map<Long, Long> templateIds,
+			PortletDataContext portletDataContext, Map<Long, Long> templateIds,
 			Template template)
 		throws Exception {
 
-		long userId = context.getUserId(template.getUserUuid());
+		long userId = portletDataContext.getUserId(template.getUserUuid());
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -707,13 +758,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setCreateDate(template.getCreateDate());
 		serviceContext.setModifiedDate(template.getModifiedDate());
-		serviceContext.setScopeGroupId(context.getScopeGroupId());
+		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
 
 		Template importedTemplate = null;
 
-		if (context.isDataStrategyMirror()) {
+		if (portletDataContext.isDataStrategyMirror()) {
 			Template existingTemplate = TemplateUtil.fetchByUUID_G(
-				template.getUuid(), context.getScopeGroupId());
+				template.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingTemplate == null) {
 				serviceContext.setUuid(template.getUuid());
@@ -738,13 +789,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		templateIds.put(
 			template.getTemplateId(), importedTemplate.getTemplateId());
 
-		context.importPermissions(
+		portletDataContext.importPermissions(
 			Template.class, template.getTemplateId(),
 			importedTemplate.getTemplateId());
 	}
 
 	protected void importTemplates(
-			PortletDataContext context, Element rootElement)
+			PortletDataContext portletDataContext, Element rootElement)
 		throws Exception {
 
 		Map<Long, Long> templateIds = new HashMap<Long, Long>();
@@ -752,16 +803,18 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		for (Element templateElement : rootElement.elements("template")) {
 			String path = templateElement.attributeValue("path");
 
-			if (!context.isPathNotProcessed(path)) {
+			if (!portletDataContext.isPathNotProcessed(path)) {
 				continue;
 			}
 
-			Template template = (Template)context.getZipEntryAsObject(path);
+			Template template =
+				(Template)portletDataContext.getZipEntryAsObject(path);
 
-			importTemplate(context, templateIds, template);
+			importTemplate(portletDataContext, templateIds, template);
 		}
 
-		importComments(context, "template-comment", templateIds, rootElement);
+		importComments(
+			portletDataContext, "template-comment", templateIds, rootElement);
 	}
 
 	private static final String _NAMESPACE = "knowledge_base";
