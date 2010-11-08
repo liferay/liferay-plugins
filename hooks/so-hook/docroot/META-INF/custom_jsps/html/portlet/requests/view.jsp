@@ -54,16 +54,16 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 				<c:otherwise>
 
 					<%
-					String userPortaitURL = StringPool.BLANK;
 					String userDisplayURL = StringPool.BLANK;
 					String userFullName = StringPool.BLANK;
+					String userPortaitURL = StringPool.BLANK;
 
 					try {
 						User curUser = UserLocalServiceUtil.getUserById(socialRequest.getUserId());
 
-						userPortaitURL = curUser.getPortraitURL(themeDisplay);
 						userDisplayURL = curUser.getDisplayURL(themeDisplay);
 						userFullName = curUser.getFullName();
+						userPortaitURL = curUser.getPortraitURL(themeDisplay);
 					}
 					catch (NoSuchUserException nsue) {
 						SocialRequestLocalServiceUtil.deleteRequest(socialRequest.getRequestId());

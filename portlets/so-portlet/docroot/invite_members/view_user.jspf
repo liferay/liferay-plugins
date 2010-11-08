@@ -39,14 +39,14 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 			continue;
 		}
 
-		String userPortaitURL = StringPool.BLANK;
 		String userDisplayURL = StringPool.BLANK;
+		String userPortaitURL = StringPool.BLANK;
 
 		try {
 			User curUser = UserLocalServiceUtil.getUser(memberRequest.getUserId());
 
-			userPortaitURL = curUser.getPortraitURL(themeDisplay);
 			userDisplayURL = curUser.getDisplayURL(themeDisplay);
+			userPortaitURL = curUser.getPortraitURL(themeDisplay);
 		}
 		catch (NoSuchUserException nsue) {
 		}
