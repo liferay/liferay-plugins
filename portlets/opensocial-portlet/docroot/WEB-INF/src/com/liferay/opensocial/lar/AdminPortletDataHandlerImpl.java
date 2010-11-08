@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
-import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -37,14 +36,6 @@ import javax.portlet.PortletPreferences;
  * @author Michael C. Han
  */
 public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
-
-	public PortletDataHandlerControl[] getExportControls() {
-		return new PortletDataHandlerControl[] {};
-	}
-
-	public PortletDataHandlerControl[] getImportControls() {
-		return new PortletDataHandlerControl[] {};
-	}
 
 	public boolean isPublishToLiveByDefault() {
 		return _PUBLISH_TO_LIVE_BY_DEFAULT;
@@ -74,17 +65,45 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element rootElement = document.addElement("opensocial-data");
 
+		Element gadgetsElement = rootElement.addElement("gadgets");
+
 		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
 			context.getCompanyId(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Gadget gadget : gadgets) {
-			exportGadget(context, rootElement, gadget);
+			exportGadget(context, gadgetsElement, gadget);
 		}
 
 		return document.formattedString();
 	}
 
-	private void exportGadget(
+	protected PortletPreferences doImportData(
+			PortletDataContext context, String portletId,
+			PortletPreferences preferences, String data)
+		throws Exception {
+
+		Document document = SAXReaderUtil.read(data);
+
+		Element rootElement = document.getRootElement();
+
+		Element gadgetsElement = rootElement.element("gadgets");
+
+		for (Element gadgetElement : gadgetsElement.elements("gadget")) {
+			String gadgetPath = gadgetElement.attributeValue("path");
+
+			if (!context.isPathNotProcessed(gadgetPath)) {
+				continue;
+			}
+
+			Gadget gadget = (Gadget)context.getZipEntryAsObject(gadgetPath);
+
+			importGadget(context, gadget);
+		}
+
+		return null;
+	}
+
+	protected void exportGadget(
 			PortletDataContext context, Element gadgetsElement, Gadget gadget)
 		throws SystemException {
 
@@ -101,7 +120,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		context.addZipEntry(path, gadget);
 	}
 
-	private String getGadgetPath(PortletDataContext context, Gadget gadget) {
+	protected String getGadgetPath(PortletDataContext context, Gadget gadget) {
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(context.getPortletPath(_PORTLET_KEY));
@@ -112,35 +131,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		return sb.toString();
 	}
 
-	protected PortletPreferences doImportData(
-			PortletDataContext context, String portletId,
-			PortletPreferences preferences, String data)
-		throws Exception {
-
-		Document document = SAXReaderUtil.read(data);
-
-		Element gadgetsElement = document.getRootElement();
-
-		for (Element gadgetElement : gadgetsElement.elements("gadget")) {
-
-			String gadgetPath = gadgetElement.attributeValue("path");
-
-			if (!context.isPathNotProcessed(gadgetPath)) {
-				continue;
-			}
-
-			Gadget gadget = (Gadget)context.getZipEntryAsObject(gadgetPath);
-
-			importGadget(context, gadget);
-		}
-
-		return null;
-	}
-
-	private void importGadget(PortletDataContext context, Gadget gadget)
+	protected void importGadget(PortletDataContext context, Gadget gadget)
 		throws PortalException, SystemException {
 
-		Gadget importedGadget;
+		Gadget importedGadget = null;
 
 		try {
 			importedGadget = GadgetLocalServiceUtil.getGadget(gadget.getUuid());

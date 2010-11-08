@@ -90,6 +90,7 @@ public class AdminPortlet extends MVCPortlet {
 		if (gadgetId <= 0) {
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				Gadget.class.getName(), actionRequest);
+
 			GadgetLocalServiceUtil.addGadget(
 				themeDisplay.getCompanyId(), name, url, serviceContext);
 		}

@@ -214,11 +214,7 @@ public interface GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteGadget(java.lang.String gadgetUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public void destroyGadget(long companyId, java.lang.String gadgetUuid,
+	public void destroyGadget(java.lang.String uuid, long companyId,
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -228,8 +224,7 @@ public interface GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.opensocial.model.Gadget getGadget(
-		java.lang.String gadgetUuid)
+	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -242,8 +237,8 @@ public interface GadgetLocalService {
 	public int getGadgetsCount(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void initGadget(long companyId, long gadgetId,
-		java.lang.String gadgetUuid, java.lang.String name)
+	public void initGadget(java.lang.String uuid, long companyId,
+		long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

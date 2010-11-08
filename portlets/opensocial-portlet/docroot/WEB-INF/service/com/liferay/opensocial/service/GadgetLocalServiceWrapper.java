@@ -227,17 +227,11 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 			serviceContext);
 	}
 
-	public void deleteGadget(java.lang.String gadgetUuid)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetLocalService.deleteGadget(gadgetUuid);
-	}
-
-	public void destroyGadget(long companyId, java.lang.String gadgetUuid,
+	public void destroyGadget(java.lang.String uuid, long companyId,
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetLocalService.destroyGadget(companyId, gadgetUuid, name);
+		_gadgetLocalService.destroyGadget(uuid, companyId, name);
 	}
 
 	public void destroyGadgets()
@@ -246,11 +240,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 		_gadgetLocalService.destroyGadgets();
 	}
 
-	public com.liferay.opensocial.model.Gadget getGadget(
-		java.lang.String gadgetUuid)
+	public com.liferay.opensocial.model.Gadget getGadget(java.lang.String uuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _gadgetLocalService.getGadget(gadgetUuid);
+		return _gadgetLocalService.getGadget(uuid);
 	}
 
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
@@ -264,11 +257,11 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 		return _gadgetLocalService.getGadgetsCount(companyId);
 	}
 
-	public void initGadget(long companyId, long gadgetId,
-		java.lang.String gadgetUuid, java.lang.String name)
+	public void initGadget(java.lang.String uuid, long companyId,
+		long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_gadgetLocalService.initGadget(companyId, gadgetId, gadgetUuid, name);
+		_gadgetLocalService.initGadget(uuid, companyId, gadgetId, name);
 	}
 
 	public void initGadgets()

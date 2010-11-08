@@ -14,9 +14,12 @@
 
 package com.liferay.opensocial.servlet;
 
+import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -64,9 +67,22 @@ public class OpenSocialServletContextListener
 	}
 
 	protected void doPortalInit() throws Exception {
+		verifyUuid();
+
 		GadgetLocalServiceUtil.initGadgets();
 
 		checkExpando();
+	}
+
+	protected void verifyUuid() throws Exception {
+		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		for (Gadget gadget : gadgets) {
+			if (Validator.isNull(gadget.getUuid())) {
+				GadgetLocalServiceUtil.updateGadget(gadget);
+			}
+		}
 	}
 
 }

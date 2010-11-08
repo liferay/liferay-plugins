@@ -112,13 +112,12 @@ public class ShindigUtil {
 		int pos = portletName.indexOf(
 			StringPool.UNDERLINE, GadgetPortlet.PORTLET_NAME_PREFIX.length());
 
-		String gadgetUuid = GetterUtil.getString(
-			portletName.substring(pos + 1));
+		String uuid = GetterUtil.getString(portletName.substring(pos + 1));
 
-		gadgetUuid = PortalUUIDUtil.fromSafeUuid(gadgetUuid);
+		uuid = PortalUUIDUtil.fromJsSafeUuid(uuid);
 
 		com.liferay.opensocial.model.Gadget gadget =
-			GadgetLocalServiceUtil.getGadget(gadgetUuid);
+			GadgetLocalServiceUtil.getGadget(uuid);
 
 		return gadget;
 	}
