@@ -27,7 +27,7 @@ a:active {
 
 .portlet-content,
 .portlet-minimized .portlet-content-container {
-	padding: 12px 0 10px;
+	padding: 0 0 10px;
 }
 
 .portlet-boundary h1 {
@@ -35,7 +35,7 @@ a:active {
 	color: #8F0920;
 	font-size: 18px;
 	font-weight: bold;
-	padding-bottom: 5px;
+	margin: 0 0 .5em;
 }
 
 .portlet-boundary h3 {
@@ -239,7 +239,7 @@ a:active {
 .site-breadcrumbs li span {
 	background: url("../images/common/breadcrumbs.png") no-repeat 100% 50%;
 	display: block;
-	padding: 0.5em 15px 0.5em 0;
+	padding: .5em 15px .5em 0;
 }
 
 .site-breadcrumbs .last span {
@@ -720,7 +720,7 @@ a:active {
 .portlet-blogs .edit-actions {
 	float: right;
 	margin: 0;
-	padding: 0.5em;
+	padding: .5em;
 }
 
 .portlet-blogs .sidebar .recent-entries-list span {
