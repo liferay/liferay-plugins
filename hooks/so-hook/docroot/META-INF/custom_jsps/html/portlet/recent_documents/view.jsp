@@ -20,7 +20,7 @@
 <%@ include file="/html/portlet/recent_documents/init.jsp" %>
 
 <%
-List<DLFileEntry> fileEntries = DLFileEntryLocalServiceUtil.getGroupFileEntries(themeDisplay.getScopeGroupId(), 0, SearchContainer.DEFAULT_DELTA);
+List<DLFileEntry> fileEntries = DLAppLocalServiceUtil.getGroupFileEntries(themeDisplay.getScopeGroupId(), 0, SearchContainer.DEFAULT_DELTA);
 %>
 
 <c:choose>
