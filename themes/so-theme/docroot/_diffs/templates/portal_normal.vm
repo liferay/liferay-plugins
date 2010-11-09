@@ -21,21 +21,25 @@
 				</a>
 			</h1>
 
-			<h2 class="community-title">
-				<a href="$community_default_url" title="#language("go-to") $community_name">
-					<span>$community_name</span>
-				</a>
-			</h2>
-
 			#parse ("$full_templates_path/navigation_top.vm")
+
+			#if ($has_navigation)
+				#parse ("$full_templates_path/navigation.vm")
+			#end
 		</hgroup>
 	</header>
 
-	#if ($has_navigation)
-		#parse ("$full_templates_path/navigation.vm")
-	#end
-
 	<div id="content">
+		#if ($is_signed_in)
+			<nav class="site-breadcrumbs" id="breadcrumbs">
+				<h1>
+					<span>#language("breadcrumbs")</span>
+				</h1>
+
+				#breadcrumbs()
+			</nav>
+		#end
+
 		#if ($selectable)
 			$theme.include($content_include)
 		#else

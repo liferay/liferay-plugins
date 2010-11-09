@@ -120,11 +120,15 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
 
-<div class="breadcrumbs">
-	<%= getFolderBreadcrumbs(folderId, pageContext, renderResponse) %>
+<%
+String versionText = LanguageUtil.format(pageContext, "version-x", fileEntry.getVersion());
 
-	<h6 class="file-entry-title"><%= fileEntry.getTitle() + " <span>" + versionText + "</span>" %></h6>
-</div>
+if (Validator.isNull(fileEntry.getVersion())) {
+	versionText = LanguageUtil.get(pageContext, "draft");
+}
+%>
+
+<liferay-ui:header title='<%= fileEntry.getTitle() + "(" + versionText + ")" %>' />
 
 <c:if test="<%= isLocked %>">
 	<c:choose>

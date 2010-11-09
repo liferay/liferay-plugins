@@ -19,6 +19,6 @@
 
 <%@ include file="/html/portlet/blogs/init.jsp" %>
 
-<h6><liferay-ui:message key="blogs" /></h6>
+<liferay-ui:header title="blogs" />
 
 <liferay-util:include page="/html/portlet/blogs/view.portal.jsp" />

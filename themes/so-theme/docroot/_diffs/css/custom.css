@@ -30,10 +30,26 @@ a:active {
 	padding: 12px 0 10px;
 }
 
+.portlet-boundary h1 {
+	border-bottom: 4px solid #7F80A4;
+	color: #8F0920;
+	font-size: 18px;
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+.portlet-boundary h3 {
+	border-bottom: 1px solid #C0C0C0;
+	color: #3E3639;
+	font-size: 1.1em;
+}
+
 /* ---------- Banner ---------- */
 
 #banner {
 	border-bottom: 3px solid #3E3639;
+	margin-bottom: 1.5em;
+	position: relative;
 }
 
 #banner h1.company-title {
@@ -41,26 +57,13 @@ a:active {
 	padding-top: 15px;
 }
 
-#banner .community-title {
-	font-size: 18px;
-	line-height: 1.3em;
-	margin: 0;
-	position: absolute;
-	right: 3%;
-	top: 41px;
-}
-
-#banner .community-title a {
-	color: #7F80A4;
-}
-
 /* ---------- Top Navigation ---------- */
 
 #navigation-top {
 	position: absolute;
-	right: 2.5%;
+	right: 0;
 	top: 0;
-	z-index: 1;
+	z-index: 2;
 }
 
 #navigation-top div {
@@ -152,7 +155,9 @@ a:active {
 
 #navigation {
 	height: 23px;
-	margin-bottom: 2em;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 
 #navigation ul {
@@ -175,7 +180,7 @@ a:active {
 }
 
 #navigation a {
-	border-top: 3px solid #FFF;
+	border-bottom: 3px solid #FFF;
 	color: #8D1E31;
 	display: block;
 	font: bold 14px Arial, Helvetica, sans-serif;
@@ -184,7 +189,7 @@ a:active {
 
 #navigation li.selected a,
 #navigation li a:hover {
-	border-top: 3px solid #7F80A4;
+	border-bottom: 3px solid #7F80A4;
 	color: #3E3639;
 }
 
@@ -200,6 +205,59 @@ a:active {
 
 #navigation .child-menu {
 	display: none;
+}
+
+/* ---------- Breadcrumbs ---------- */
+
+.site-breadcrumbs {
+	margin-bottom: 1.5em;
+}
+
+.site-breadcrumbs h1 {
+	display: none;
+}
+
+.site-breadcrumbs ul {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	background-color: #F4F4F4;
+	border: 1px solid #C0C2C5;
+	margin: 0 0 1.5em;
+}
+
+.site-breadcrumbs li {
+	background-image: none;
+	display: inline-block;
+	margin-right: 0;
+	max-width: 50%;
+	padding-left: 0.75em;
+	padding-right: 0;
+	vertical-align: middle;
+}
+
+.site-breadcrumbs li span {
+	background: url("../images/common/breadcrumbs.png") no-repeat 100% 50%;
+	display: block;
+	padding: 0.5em 15px 0.5em 0;
+}
+
+.site-breadcrumbs .last span {
+	background-image: none;
+}
+
+.ie7 .breadcrumbs li {
+	display: inline;
+	zoom: 1;
+}
+
+.ie6 .breadcrumbs li {
+	display: inline;
+	zoom: 1;
+}
+
+.ie6 .breadcrumbs {
+	zoom: 1;
 }
 
 /* ---------- Portal tool tips ---------- */
@@ -336,25 +394,6 @@ a:active {
 	padding: 5px;
 }
 
-/* Breadcrumbs */
-
-.breadcrumbs {
-	margin-bottom: 1.5em;
-}
-
-.breadcrumbs li {
-	background: url(../images/custom/arrow_right.png) no-repeat 100% 50%;
-	display: inline;
-	margin-right: 5px;
-	padding-right: 15px;
-}
-
-.breadcrumbs .last {
-	background-image: none;
-	font-weight: bold;
-	margin-top: 0.2em;
-}
-
 /* Detail column */
 
 .detail-column {
@@ -386,29 +425,17 @@ a:active {
 
 .taglib-header {
 	border: none;
+	margin: 0;
 }
 
-.portlet-boundary h1 {
-	border-bottom: 4px solid #7F80A4;
-	color: #8F0920;
-	font-size: 18px;
-	font-weight: bold;
-	padding-bottom: 5px;
-}
-
-.portlet-boundary h3 {
-	border-bottom: 1px solid #C0C0C0;
-	color: #3E3639;
-	font-size: 1.1em;
-}
-
-.portlet-boundary h6 {
+.taglib-header h1.header-title {
+	border: none;
 	color: #8F0920;
 	font-size: 2.5em;
 	font-weight: bold;
 	line-height: 1em;
-	margin-bottom: .5em;
-	text-decoration: none;
+	margin: 0 0 .5em;
+	padding: 0;
 }
 
 /* Messages */
@@ -1222,10 +1249,6 @@ table.calendar {
 
 .portlet-message-boards .category-current {
 	font-weight: bold;
-}
-
-.portlet-message-boards .taglib-header {
-	display: none;
 }
 
 /* Recent Documents */

@@ -84,18 +84,7 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 <c:choose>
 	<c:when test='<%= tabs1.equals("document-home") %>'>
 		<aui:layout>
-			<div class="breadcrumb">
-				<c:choose>
-					<c:when test="<%= folder != null %>">
-						<%= getFolderBreadcrumbs(folder.getParentFolderId(), pageContext, renderResponse) %>
-
-						<h6 class="folder-title"><%= folder.getName() %></h6>
-					</c:when>
-					<c:otherwise>
-						<h6 class="no-folder-title"><liferay-ui:message key="documents-home" /></h6>
-					</c:otherwise>
-				</c:choose>
-			</div>
+			<liferay-ui:header title='<%= (folder != null) ? folder.getName() : "documents-home" %>' />
 
 			<aui:column columnWidth="100" cssClass="lfr-asset-column lfr-asset-column-details" first="<%= true %>">
 				<liferay-ui:panel-container extended="<%= false %>" id="documentLibraryPanelContainer" persistState="<%= true %>">
@@ -246,7 +235,7 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 	</c:when>
 	<c:when test='<%= tabs1.equals("my-documents") || tabs1.equals("recent-documents") %>'>
 		<aui:layout>
-			<h6><liferay-ui:message key="<%= tabs1 %>" /></h6>
+			<liferay-ui:header title="<%= tabs1 %>" />
 
 			<%
 			long groupFileEntriesUserId = 0;

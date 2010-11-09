@@ -21,6 +21,6 @@
 
 <liferay-util:include page="/html/portlet/wiki/sidebar.jsp" />
 
-<h6><liferay-ui:message key="manage-wikis" /></h6>
+<liferay-ui:header title="manage-wikis" />
 
 <liferay-util:include page="/html/portlet/wiki/view_nodes.portal.jsp" />

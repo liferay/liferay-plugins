@@ -27,41 +27,6 @@ Format longDateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("E
 %>
 
 <%!
-public String getFolderBreadcrumbs(long folderId, PageContext pageContext, RenderResponse renderResponse) throws Exception {
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setWindowState(WindowState.NORMAL);
-
-	portletURL.setParameter("struts_action", "/document_library/view");
-	portletURL.setParameter("folderId", String.valueOf(DLFolderConstants.DEFAULT_PARENT_FOLDER_ID));
-
-	String head = "<span><a href=\"" + portletURL.toString() + "\">" + LanguageUtil.get(pageContext, "documents-home") + "</a></span> &raquo; ";
-
-	if (folderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-		return head;
-	}
-
-	String breadcrumb = StringPool.BLANK;
-
-	DLFolder folder = DLAppLocalServiceUtil.getFolder(folderId);
-
-	while (true) {
-		portletURL.setParameter("folderId", String.valueOf(folder.getFolderId()));
-
-		breadcrumb = "<span><a href=\"" + portletURL.toString() + "\">" + folder.getName() + "</a></span> &raquo; " + breadcrumb;
-
-		if (folder.isRoot()) {
-			break;
-		}
-
-		folder = DLAppLocalServiceUtil.getFolder(folder.getParentFolderId());
-	};
-
-	breadcrumb = head + breadcrumb;
-
-	return breadcrumb;
-}
-
 public String getOfficeDocumentType(String title) {
 	if (Validator.isNotNull(title)) {
 		String extension = FileUtil.getExtension(title);

@@ -19,18 +19,6 @@
 
 <%@ include file="/html/portlet/message_boards/init.jsp" %>
 
-<%
-MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CATEGORY);
-
-long parentCategoryId = BeanParamUtil.getLong(category, request, "parentCategoryId", MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
-%>
-
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
-
-<div class="breadcrumbs">
-	<%= getCategoryBreadcrumbs(parentCategoryId, pageContext, renderResponse) %>
-
-	<h6><liferay-ui:message key='<%= category == null ? "add-category" : "edit-category" %>' /></h6>
-</div>
 
 <liferay-util:include page="/html/portlet/message_boards/edit_category.portal.jsp" />

@@ -19,18 +19,6 @@
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
-<%
-DLFolder folder = (DLFolder)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FOLDER);
-
-long parentFolderId = BeanParamUtil.getLong(folder, request, "parentFolderId", DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
-%>
-
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
-
-<div class="breadcrumbs">
-	<%= getFolderBreadcrumbs(parentFolderId, pageContext, renderResponse) %>
-
-	<h6><liferay-ui:message key='<%= ((folder == null) ? Constants.ADD : Constants.UPDATE) + "-folder" %>' /></h6>
-</div>
 
 <liferay-util:include page="/html/portlet/document_library/edit_folder.portal.jsp" />

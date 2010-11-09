@@ -20,8 +20,7 @@
 <%@ include file="/html/portlet/message_boards/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "categories");
-String tabs2 = ParamUtil.getString(request, "tabs2", "general");
+String topLink = ParamUtil.getString(request, "topLink", "message-boards-home");
 
 String redirect = ParamUtil.getString(request, "redirect");
 
@@ -65,24 +64,17 @@ if (themeDisplay.isSignedIn()) {
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("struts_action", "/message_boards/view");
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("tabs2", tabs2);
+portletURL.setParameter("topLink", topLink);
 portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 %>
 
-<liferay-util:include page="/html/portlet/message_boards/tabs1.jsp" />
+<liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
 
 <liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="struts_action" value="/message_boards/search" /></liferay-portlet:renderURL>
 
 <c:choose>
-	<c:when test='<%= tabs1.equals("categories") %>'>
-		<c:if test="<%= category != null %>">
-			<div class="breadcrumbs">
-				<%= getCategoryBreadcrumbs(category.getParentCategoryId(), pageContext, renderResponse) %>
-
-				<h6><%= category.getName() %></h6>
-			</div>
-		</c:if>
+	<c:when test='<%= topLink.equals("message-boards-home") %>'>
+		<liferay-ui:header title='<%= (category != null) ? category.getName() : "forums" %>' />
 
 		<c:if test="<%= showCategories || categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID %>">
 			<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm1" onSubmit="submitForm(this); return false;">
@@ -473,16 +465,19 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 			<%
 			PortalUtil.setPageSubtitle(category.getName(), request);
 			PortalUtil.setPageDescription(category.getDescription(), request);
+
+			MBUtil.addPortletBreadcrumbEntries(category, request, renderResponse);
 			%>
 
 		</c:if>
 	</c:when>
-	<c:when test='<%= tabs1.equals("my_posts") || tabs1.equals("my_subscriptions") || tabs1.equals("recent_posts") %>'>
+	<c:when test='<%= topLink.equals("my-posts") || topLink.equals("my-subscriptions") || topLink.equals("recent-posts") %>'>
+		<liferay-ui:header title="<%= topLink %>" />
 
 		<%
 		long groupThreadsUserId = ParamUtil.getLong(request, "groupThreadsUserId");
 
-		if ((tabs1.equals("my_posts") || tabs1.equals("my_subscriptions")) && themeDisplay.isSignedIn()) {
+		if ((topLink.equals("my-posts") || topLink.equals("my-subscriptions")) && themeDisplay.isSignedIn()) {
 			groupThreadsUserId = user.getUserId();
 		}
 
@@ -491,7 +486,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 		}
 		%>
 
-		<c:if test='<%= tabs1.equals("recent_posts") && (groupThreadsUserId > 0) %>'>
+		<c:if test='<%= topLink.equals("recent-posts") && (groupThreadsUserId > 0) %>'>
 			<div class="portlet-msg-info">
 				<liferay-ui:message key="filter-by-user" />: <%= PortalUtil.getUserName(groupThreadsUserId, StringPool.BLANK) %>
 			</div>
@@ -501,7 +496,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 		int totalCategories = 0;
 		%>
 
-		<c:if test='<%= tabs1.equals("my_subscriptions") %>'>
+		<c:if test='<%= topLink.equals("my-subscriptions") %>'>
 
 			<%
 			List<String> headerNames = new ArrayList<String>();
@@ -603,13 +598,13 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 		String emptyResultsMessage = null;
 
-		if (tabs1.equals("my_posts")) {
+		if (topLink.equals("my-posts")) {
 			emptyResultsMessage = "you-do-not-have-any-posts";
 		}
-		else if (tabs1.equals("my_subscriptions")) {
+		else if (topLink.equals("my-subscriptions")) {
 			emptyResultsMessage = "you-are-not-subscribed-to-any-threads";
 		}
-		else if (tabs1.equals("recent_posts")) {
+		else if (topLink.equals("recent-posts")) {
 			emptyResultsMessage = "there-are-no-recent-posts";
 		}
 
@@ -617,7 +612,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 		List results = null;
 
-		if (tabs1.equals("my_posts")) {
+		if (topLink.equals("my-posts")) {
 			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED);
 
 			searchContainer.setTotal(total);
@@ -626,7 +621,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 			searchContainer.setResults(results);
 		}
-		else if (tabs1.equals("my_subscriptions")) {
+		else if (topLink.equals("my-subscriptions")) {
 			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, true);
 
 			searchContainer.setTotal(total);
@@ -635,7 +630,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 			searchContainer.setResults(results);
 		}
-		else if (tabs1.equals("recent_posts")) {
+		else if (topLink.equals("recent-posts")) {
 			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, false, false);
 
 			searchContainer.setTotal(total);
@@ -736,13 +731,13 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 		}
 		%>
 
-		<c:if test='<%= tabs1.equals("my_subscriptions") %>'>
+		<c:if test='<%= topLink.equals("my-subscriptions") %>'>
 			<br />
 		</c:if>
 
 		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 
-		<c:if test='<%= tabs1.equals("recent_posts") %>'>
+		<c:if test='<%= topLink.equals("recent-posts") %>'>
 
 			<%
 			String rssURL = themeDisplay.getPortalURL() + themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + plid + "&groupId=" + scopeGroupId;
@@ -773,126 +768,117 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 		</c:if>
 
 		<%
-		PortalUtil.setPageSubtitle(LanguageUtil.get(pageContext, StringUtil.replace(tabs1, StringPool.UNDERLINE, StringPool.DASH)), request);
+		PortalUtil.setPageSubtitle(LanguageUtil.get(pageContext, StringUtil.replace(topLink, StringPool.UNDERLINE, StringPool.DASH)), request);
+		PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, TextFormatter.format(topLink, TextFormatter.O)), portletURL.toString());
 		%>
 
 	</c:when>
-	<c:when test='<%= tabs1.equals("statistics") %>'>
-		<liferay-ui:tabs
-			names="general,top-posters"
-			param="tabs2"
-			url="<%= portletURL.toString() %>"
-		/>
+	<c:when test='<%= topLink.equals("statistics") %>'>
+		<liferay-ui:panel-container cssClass="statistics-panel" extended="<%= false %>" id="messageBoardsStatisticsPanelContainer" persistState="<%= true %>">
+			<liferay-ui:panel collapsible="<%= true %>" cssClass="statistics-panel-content" extended="<%= true %>" id="messageBoardsGeneralStatisticsPanel" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "general") %>'>
+				<dl>
+					<dt>
+						<liferay-ui:message key="num-of-categories" />:
+					</dt>
+					<dd>
+						<%= numberFormat.format(categoryDisplay.getAllCategoriesCount()) %>
+					</dd>
+					<dt>
+						<liferay-ui:message key="num-of-posts" />:
+					</dt>
+					<dd>
+						<%= numberFormat.format(MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED)) %>
+					</dd>
+					<dt>
+						<liferay-ui:message key="num-of-participants" />:
+					</dt>
+					<dd>
+						<%= numberFormat.format(MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId)) %>
+					</dd>
+				</dl>
+			</liferay-ui:panel>
 
-		<c:choose>
-			<c:when test='<%= tabs2.equals("general") %>'>
-				<liferay-ui:message key="num-of-categories" />: <%= numberFormat.format(categoryDisplay.getAllCategoriesCount()) %><br />
-				<liferay-ui:message key="num-of-posts" />: <%= numberFormat.format(MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED)) %><br />
-				<liferay-ui:message key="num-of-participants" />: <%= numberFormat.format(MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId)) %>
-			</c:when>
-			<c:when test='<%= tabs2.equals("top-posters") %>'>
+			<liferay-ui:panel collapsible="<%= true %>" cssClass="statistics-panel-content" extended="<%= true %>" id="messageBoardsTopPostersPanel" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "top-posters") %>'>
+				<liferay-ui:search-container
+					emptyResultsMessage="there-are-no-top-posters"
+					iteratorURL="<%= portletURL %>"
+				>
+					<liferay-ui:search-container-results
+						results="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+						total="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId) %>"
+					/>
 
-				<%
-				SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-top-posters");
+					<liferay-ui:search-container-row
+						className="com.liferay.portlet.messageboards.model.MBStatsUser"
+						keyProperty="statsUserId"
+						modelVar="statsUser"
+					>
+						<liferay-ui:search-container-column-jsp
+							path="/html/portlet/message_boards/top_posters_user_display.jsp"
+						/>
+					</liferay-ui:search-container-row>
 
-				int total = MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId);
-
-				searchContainer.setTotal(total);
-
-				List results = MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
-
-				searchContainer.setResults(results);
-
-				List resultRows = searchContainer.getResultRows();
-
-				for (int i = 0; i < results.size(); i++) {
-					MBStatsUser statsUser = (MBStatsUser)results.get(i);
-
-					ResultRow row = new ResultRow(statsUser, statsUser.getStatsUserId(), i);
-
-					// User display
-
-					row.addJSP("/html/portlet/message_boards/top_posters_user_display.jsp");
-
-					// Add result row
-
-					resultRows.add(row);
-				}
-				%>
-
-				<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-			</c:when>
-		</c:choose>
+					<liferay-ui:search-iterator />
+				</liferay-ui:search-container>
+			</liferay-ui:panel>
+		</liferay-ui:panel-container>
 
 		<%
-		PortalUtil.setPageSubtitle(LanguageUtil.get(pageContext, StringUtil.replace(tabs1, StringPool.UNDERLINE, StringPool.DASH)), request);
+		PortalUtil.setPageSubtitle(LanguageUtil.get(pageContext, StringUtil.replace(topLink, StringPool.UNDERLINE, StringPool.DASH)), request);
+		PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, TextFormatter.format(topLink, TextFormatter.O)), portletURL.toString());
 		%>
 
 	</c:when>
-	<c:when test='<%= tabs1.equals("banned_users") %>'>
+	<c:when test='<%= topLink.equals("banned-users") %>'>
+		<liferay-ui:search-container
+			emptyResultsMessage="there-are-no-banned-users"
+			headerNames="banned-user,banned-by,ban-date"
+			iteratorURL="<%= portletURL %>"
+		>
+			<liferay-ui:search-container-results
+				results="<%= MBBanLocalServiceUtil.getBans(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+				total="<%= MBBanLocalServiceUtil.getBansCount(scopeGroupId) %>"
+			/>
+
+			<liferay-ui:search-container-row
+				className="com.liferay.portlet.messageboards.model.MBBan"
+				keyProperty="banId"
+				modelVar="ban"
+			>
+				<liferay-ui:search-container-column-text
+					name="banned-user"
+					value="<%= HtmlUtil.escape(PortalUtil.getUserName(ban.getBanUserId(), StringPool.BLANK)) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="banned-by"
+					value="<%= HtmlUtil.escape(PortalUtil.getUserName(ban.getUserId(), StringPool.BLANK)) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="ban-date"
+					value="<%= dateFormatDateTime.format(ban.getCreateDate()) %>"
+				/>
+
+				<c:if test="<%= PropsValues.MESSAGE_BOARDS_EXPIRE_BAN_INTERVAL > 0 %>">
+					<liferay-ui:search-container-column-text
+						name="unban-date"
+						value="<%= dateFormatDateTime.format(MBUtil.getUnbanDate(ban, PropsValues.MESSAGE_BOARDS_EXPIRE_BAN_INTERVAL)) %>"
+					/>
+				</c:if>
+
+				<liferay-ui:search-container-column-jsp
+					align="right"
+					path="/html/portlet/message_boards/ban_user_action.jsp"
+				/>
+			</liferay-ui:search-container-row>
+
+			<liferay-ui:search-iterator />
+		</liferay-ui:search-container>
 
 		<%
-		List<String> headerNames = new ArrayList<String>();
-
-		headerNames.add("banned-user");
-		headerNames.add("banned-by");
-		headerNames.add("ban-date");
-
-		if (PropsValues.MESSAGE_BOARDS_EXPIRE_BAN_INTERVAL > 0) {
-			headerNames.add("unban-date");
-		}
-
-		headerNames.add(StringPool.BLANK);
-
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "there-are-no-banned-users");
-
-		int total = MBBanLocalServiceUtil.getBansCount(scopeGroupId);
-
-		searchContainer.setTotal(total);
-
-		List results = MBBanLocalServiceUtil.getBans(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd());
-
-		searchContainer.setResults(results);
-
-		List resultRows = searchContainer.getResultRows();
-
-		for (int i = 0; i < results.size(); i++) {
-			MBBan ban = (MBBan)results.get(i);
-
-			ResultRow row = new ResultRow(ban, ban.getBanId(), i);
-
-			// Banned user
-
-			row.addText(PortalUtil.getUserName(ban.getBanUserId(), StringPool.BLANK));
-
-			// Banned by
-
-			row.addText(PortalUtil.getUserName(ban.getUserId(), StringPool.BLANK));
-
-			// Ban date
-
-			row.addText(dateFormatDateTime.format(ban.getCreateDate()));
-
-			// Unban date
-
-			if (PropsValues.MESSAGE_BOARDS_EXPIRE_BAN_INTERVAL > 0) {
-				row.addText(dateFormatDateTime.format(MBUtil.getUnbanDate(ban, PropsValues.MESSAGE_BOARDS_EXPIRE_BAN_INTERVAL)));
-			}
-
-			// Action
-
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/message_boards/ban_user_action.jsp");
-
-			// Add result row
-
-			resultRows.add(row);
-		}
-		%>
-
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-
-		<%
-		PortalUtil.setPageSubtitle(LanguageUtil.get(pageContext, StringUtil.replace(tabs1, StringPool.UNDERLINE, StringPool.DASH)), request);
+		PortalUtil.setPageSubtitle(LanguageUtil.get(pageContext, StringUtil.replace(topLink, StringPool.UNDERLINE, StringPool.DASH)), request);
+		PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, TextFormatter.format(topLink, TextFormatter.O)), portletURL.toString());
 		%>
 
 	</c:when>

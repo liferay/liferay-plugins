@@ -32,7 +32,7 @@ if (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
 
 boolean showCategories = ParamUtil.getBoolean(request, "showCategories", defaultShowCategories);
 
-PortletURL tabs1URL = renderResponse.createRenderURL();
+PortletURL portletURL = renderResponse.createRenderURL();
 %>
 
 <div class="sidebar">
@@ -152,56 +152,56 @@ PortletURL tabs1URL = renderResponse.createRenderURL();
 		<li>
 
 			<%
-			tabs1URL.setParameter("tabs1", "categories");
+			portletURL.setParameter("topLink", "message-boards-home");
 			%>
 
-			<a href="<%= tabs1URL %>"><liferay-ui:message key="categories" /></a>
+			<a href="<%= portletURL %>"><liferay-ui:message key="message-boards-home" /></a>
 		</li>
 
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<li>
 
 				<%
-				tabs1URL.setParameter("tabs1", "my_posts");
+				portletURL.setParameter("topLink", "my-posts");
 				%>
 
-				<a href="<%= tabs1URL %>"><liferay-ui:message key="my-posts" /></a>
+				<a href="<%= portletURL %>"><liferay-ui:message key="my-posts" /></a>
 			</li>
 			<li>
 
 				<%
-				tabs1URL.setParameter("tabs1", "my_subscriptions");
+				portletURL.setParameter("topLink", "my-subscriptions");
 				%>
 
-				<a href="<%= tabs1URL %>"><liferay-ui:message key="my-subscriptions" /></a>
+				<a href="<%= portletURL %>"><liferay-ui:message key="my-subscriptions" /></a>
 			</li>
 		</c:if>
 
 		<li>
 
 			<%
-			tabs1URL.setParameter("tabs1", "recent_posts");
+			portletURL.setParameter("topLink", "recent-posts");
 			%>
 
-			<a href="<%= tabs1URL %>"><liferay-ui:message key="recent-posts" /></a>
+			<a href="<%= portletURL %>"><liferay-ui:message key="recent-posts" /></a>
 		</li>
 		<li>
 
 			<%
-			tabs1URL.setParameter("tabs1", "statistics");
+			portletURL.setParameter("topLink", "statistics");
 			%>
 
-			<a href="<%= tabs1URL %>"><liferay-ui:message key="statistics" /></a>
+			<a href="<%= portletURL %>"><liferay-ui:message key="statistics" /></a>
 		</li>
 
 		<c:if test="<%= MBPermission.contains(permissionChecker, scopeGroupId, ActionKeys.BAN_USER) %>">
 			<li>
 
 				<%
-				tabs1URL.setParameter("tabs1", "banned_users");
+				portletURL.setParameter("topLink", "banned-users");
 				%>
 
-				<a href="<%= tabs1URL %>"><liferay-ui:message key="banned-users" /></a>
+				<a href="<%= portletURL %>"><liferay-ui:message key="banned-users" /></a>
 			</li>
 		</c:if>
 

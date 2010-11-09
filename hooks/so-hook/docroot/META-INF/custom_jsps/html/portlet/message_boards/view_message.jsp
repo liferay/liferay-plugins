@@ -19,20 +19,6 @@
 
 <%@ include file="/html/portlet/message_boards/init.jsp" %>
 
-<%
-MBMessageDisplay messageDisplay = (MBMessageDisplay)request.getAttribute(WebKeys.MESSAGE_BOARDS_MESSAGE);
-
-MBMessage message = messageDisplay.getMessage();
-
-MBCategory category = messageDisplay.getCategory();
-%>
-
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
-
-<div class="breadcrumbs">
-	<%= getCategoryBreadcrumbs(message.getCategoryId(), pageContext, renderResponse) %>
-
-	<h6><%= message.getSubject() %></h6>
-</div>
 
 <liferay-util:include page="/html/portlet/message_boards/view_message.portal.jsp" />
