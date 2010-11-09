@@ -43,7 +43,7 @@ public String getFolderBreadcrumbs(long folderId, PageContext pageContext, Rende
 
 	String breadcrumb = StringPool.BLANK;
 
-	DLFolder folder = DLFolderLocalServiceUtil.getFolder(folderId);
+	DLFolder folder = DLAppLocalServiceUtil.getFolder(folderId);
 
 	while (true) {
 		portletURL.setParameter("folderId", String.valueOf(folder.getFolderId()));
@@ -54,7 +54,7 @@ public String getFolderBreadcrumbs(long folderId, PageContext pageContext, Rende
 			break;
 		}
 
-		folder = DLFolderLocalServiceUtil.getFolder(folder.getParentFolderId());
+		folder = DLAppLocalServiceUtil.getFolder(folder.getParentFolderId());
 	};
 
 	breadcrumb = head + breadcrumb;
@@ -92,7 +92,7 @@ public String getWebDavUrl(DLFileEntry fileEntry, PortletDisplay portletDisplay,
 	StringBuilder sb = new StringBuilder();
 
 	if (fileEntry.getFolderId() != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-		DLFolder folder = DLFolderLocalServiceUtil.getFolder(fileEntry.getFolderId());
+		DLFolder folder = DLAppLocalServiceUtil.getFolder(fileEntry.getFolderId());
 
 		while (true) {
 			sb.insert(0, HttpUtil.encodeURL(folder.getName(), true));
@@ -102,7 +102,7 @@ public String getWebDavUrl(DLFileEntry fileEntry, PortletDisplay portletDisplay,
 				break;
 			}
 			else {
-				folder = DLFolderLocalServiceUtil.getFolder(folder.getParentFolderId());
+				folder = DLAppLocalServiceUtil.getFolder(folder.getParentFolderId());
 			}
 		}
 	}

@@ -76,7 +76,7 @@ if (portletDisplay.isWebDAVEnabled()) {
 	StringBuilder sb = new StringBuilder();
 
 	if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-		DLFolder curFolder = DLFolderLocalServiceUtil.getFolder(folderId);
+		DLFolder curFolder = DLAppLocalServiceUtil.getFolder(folderId);
 
 		while (true) {
 			sb.insert(0, HttpUtil.encodeURL(curFolder.getName(), true));
@@ -86,7 +86,7 @@ if (portletDisplay.isWebDAVEnabled()) {
 				break;
 			}
 			else {
-				curFolder = DLFolderLocalServiceUtil.getFolder(curFolder.getParentFolderId());
+				curFolder = DLAppLocalServiceUtil.getFolder(curFolder.getParentFolderId());
 			}
 		}
 	}
@@ -323,7 +323,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					searchContainer.setRowChecker(new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS));
 				}
 
-				List results = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_ANY);
+				List results = DLAppLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_ANY);
 				List resultRows = searchContainer.getResultRows();
 
 				for (int i = 0; i < results.size(); i++) {
@@ -348,7 +348,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 					</portlet:actionURL>
 
 					<%
-					List<DLFileVersion> fileVersions = DLFileVersionLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_APPROVED);
+					List<DLFileVersion> fileVersions = DLAppLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_APPROVED);
 
 					for (DLFileVersion fileVersion : fileVersions) {
 					%>

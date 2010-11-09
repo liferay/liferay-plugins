@@ -94,7 +94,7 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 								break;
 							}
 							else {
-								curFolder = DLFolderLocalServiceUtil.getFolder(curFolder.getParentFolderId());
+								curFolder = DLAppLocalServiceUtil.getFolder(curFolder.getParentFolderId());
 							}
 						}
 					}

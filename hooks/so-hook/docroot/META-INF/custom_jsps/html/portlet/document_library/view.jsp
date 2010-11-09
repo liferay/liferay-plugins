@@ -30,7 +30,7 @@ long folderId = BeanParamUtil.getLong(folder, request, "folderId", defaultFolder
 
 if ((folder == null) && (defaultFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)) {
 	try {
-		folder = DLFolderLocalServiceUtil.getFolder(folderId);
+		folder = DLAppLocalServiceUtil.getFolder(folderId);
 	}
 	catch (NoSuchFolderException nsfe) {
 		folderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
@@ -43,8 +43,8 @@ if (permissionChecker.isCompanyAdmin() || permissionChecker.isCommunityAdmin(sco
 	status = WorkflowConstants.STATUS_ANY;
 }
 
-int foldersCount = DLFolderLocalServiceUtil.getFoldersCount(scopeGroupId, folderId);
-int fileEntriesCount = DLFolderLocalServiceUtil.getFileEntriesAndFileShortcutsCount(scopeGroupId, folderId, status);
+int foldersCount = DLAppLocalServiceUtil.getFoldersCount(scopeGroupId, folderId);
+int fileEntriesCount = DLAppLocalServiceUtil.getFileEntriesAndFileShortcutsCount(scopeGroupId, folderId, status);
 
 long categoryId = ParamUtil.getLong(request, "categoryId");
 String tagName = ParamUtil.getString(request, "tag");
@@ -262,8 +262,8 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 				iteratorURL="<%= portletURL %>"
 			>
 				<liferay-ui:search-container-results
-					results="<%= DLFileEntryLocalServiceUtil.getGroupFileEntries(scopeGroupId, groupFileEntriesUserId, searchContainer.getStart(), searchContainer.getEnd()) %>"
-					total="<%= DLFileEntryLocalServiceUtil.getGroupFileEntriesCount(scopeGroupId, groupFileEntriesUserId) %>"
+					results="<%= DLAppLocalServiceUtil.getGroupFileEntries(scopeGroupId, groupFileEntriesUserId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+					total="<%= DLAppLocalServiceUtil.getGroupFileEntriesCount(scopeGroupId, groupFileEntriesUserId) %>"
 				/>
 
 				<liferay-ui:search-container-row

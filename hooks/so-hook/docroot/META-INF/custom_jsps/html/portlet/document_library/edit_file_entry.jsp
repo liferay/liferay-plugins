@@ -97,7 +97,7 @@ if (fileEntry != null) {
 boolean hideEdit = false;
 
 if (displaySection.equals("online") && (fileEntry != null)) {
-	DLFileVersion fileVersion = DLFileVersionLocalServiceUtil.getLatestFileVersion(fileEntry.getGroupId(), fileEntry.getFolderId(), fileEntry.getName());
+	DLFileVersion fileVersion = DLAppLocalServiceUtil.getLatestFileVersion(fileEntry.getGroupId(), fileEntry.getFolderId(), fileEntry.getName());
 
 	if (fileVersion.getStatus() == WorkflowConstants.STATUS_APPROVED) {
 		hideEdit = true;

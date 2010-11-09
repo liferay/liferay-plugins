@@ -49,7 +49,7 @@ for (int j = 0; j < folderColumns.length; j++) {
 					</div>
 
 					<%
-					List subfolders = DLFolderLocalServiceUtil.getFolders(scopeGroupId, curFolder.getFolderId(), 0, 5);
+					List subfolders = DLAppLocalServiceUtil.getFolders(scopeGroupId, curFolder.getFolderId(), 0, 5);
 					%>
 
 					<c:if test="<%= !subfolders.isEmpty() %>">
@@ -57,7 +57,7 @@ for (int j = 0; j < folderColumns.length; j++) {
 							<span><liferay-ui:message key="subfolders" />:</span>
 
 							<%
-							int subfoldersCount = DLFolderLocalServiceUtil.getFoldersCount(scopeGroupId, curFolder.getFolderId());
+							int subfoldersCount = DLAppLocalServiceUtil.getFoldersCount(scopeGroupId, curFolder.getFolderId());
 
 							for (int k = 0; k < subfolders.size(); k++) {
 								DLFolder subfolder = (DLFolder)subfolders.get(k);
