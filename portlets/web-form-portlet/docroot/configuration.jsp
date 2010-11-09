@@ -193,7 +193,6 @@ if (!fieldsEditingDisabled) {
 
 		var formRow = select.ancestor('.lfr-form-row');
 		var value = select.val();
-		var formFieldsIndex = select.attr('id').match(/\d+$/);
 
 		var optionsDiv = formRow.one('.options');
 
@@ -218,6 +217,8 @@ if (!fieldsEditingDisabled) {
 
 		if (value == 'paragraph') {
 			var inputName = labelName.one('input');
+
+			var formFieldsIndex = select.attr('id').match(/\d+$/);
 
 			inputName.val('<liferay-ui:message key="paragraph" />' + formFieldsIndex);
 			inputName.fire('change');
