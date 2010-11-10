@@ -412,7 +412,7 @@ Please find a solution that does not require portal-impl.jar.
 					<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
 					<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 					<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-					<jvmarg value="-Ddeployer.unpack.war=true" />
+					<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 					<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
 
 					<!-- Optional Arguments -->
@@ -441,7 +441,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
 
 						<!-- Optional Arguments -->
@@ -471,7 +471,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.base.dir=${project.dir}/dist" />
 						<jvmarg value="-Ddeployer.dest.dir=${app.server.deploy.dir}" />
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
 					</java>
 				</then>
@@ -500,7 +500,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
 						<jvmarg value="-Ddeployer.ui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-ui.tld" />
 						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
 
 						<!-- Optional Arguments -->
@@ -534,7 +534,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
 						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
-						<jvmarg value="-Ddeployer.unpack.war=true" />
+						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
 
 						<!-- Optional Arguments -->
