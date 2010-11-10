@@ -63,8 +63,7 @@ import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.imagegallery.model.IGFolder;
 import com.liferay.portlet.imagegallery.model.IGImage;
 import com.liferay.portlet.imagegallery.service.IGFolderLocalServiceUtil;
@@ -156,12 +155,12 @@ public class UpgradeCompany extends UpgradeProcess {
 		serviceContext.setAddGuestPermissions(false);
 
 		try {
-			return DLFileEntryLocalServiceUtil.addFileEntry(
+			return DLAppLocalServiceUtil.addFileEntry(
 				userId, groupId, folderId, name, title, description,
 				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
-			return DLFileEntryLocalServiceUtil.updateFileEntry(
+			return DLAppLocalServiceUtil.updateFileEntry(
 				userId, groupId, folderId, name, null, title, description,
 				StringPool.BLANK, true, StringPool.BLANK, bytes,
 				serviceContext);
@@ -177,7 +176,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(false);
 
-		return DLFolderLocalServiceUtil.addFolder(
+		return DLAppLocalServiceUtil.addFolder(
 			userId, groupId, 0, name, description, serviceContext);
 	}
 

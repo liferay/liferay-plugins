@@ -31,8 +31,7 @@ import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 
 import java.util.List;
 
@@ -86,13 +85,13 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		boolean deleteFolder = true;
 
 		List<DLFileEntry> fileEntries =
-			DLFileEntryLocalServiceUtil.getFileEntries(groupId, rootFolderId);
+			DLAppLocalServiceUtil.getFileEntries(groupId, rootFolderId);
 
 		for (DLFileEntry fileEntry : fileEntries) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
-				DLFileEntryLocalServiceUtil.moveFileEntry(
+				DLAppLocalServiceUtil.moveFileEntry(
 					fileEntry.getUserId(), fileEntry.getGroupId(),
 					fileEntry.getFolderId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
@@ -103,14 +102,14 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			}
 		}
 
-		List<DLFolder> folders = DLFolderLocalServiceUtil.getFolders(
+		List<DLFolder> folders = DLAppLocalServiceUtil.getFolders(
 			groupId, rootFolderId);
 
 		for (DLFolder folder : folders) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
-				DLFolderLocalServiceUtil.updateFolder(
+				DLAppLocalServiceUtil.updateFolder(
 					folder.getFolderId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 					folder.getName(), folder.getDescription(), serviceContext);
@@ -121,7 +120,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		}
 
 		if (deleteFolder) {
-			DLFolderLocalServiceUtil.deleteFolder(rootFolderId);
+			DLAppLocalServiceUtil.deleteFolder(rootFolderId);
 		}
 	}
 
