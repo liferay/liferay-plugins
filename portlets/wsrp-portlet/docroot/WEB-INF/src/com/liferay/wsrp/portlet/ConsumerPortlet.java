@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -1009,7 +1010,13 @@ public class ConsumerPortlet extends GenericPortlet {
 		String navigationalState = portletRequest.getParameter(
 			"wsrp-navigationalState");
 
-		navigationalContext.setOpaqueValue(navigationalState);
+		if (Validator.isNotNull(navigationalState)) {
+			navigationalState = new String(
+				Base64.decode(Base64.fromURLSafe(navigationalState)),
+				StringPool.UTF8);
+
+			navigationalContext.setOpaqueValue(navigationalState);
+		}
 
 		Map<String, String[]> publicParameterMap =
 			portletRequest.getPublicParameterMap();
@@ -1477,7 +1484,11 @@ public class ConsumerPortlet extends GenericPortlet {
 		if (navigationalContext != null) {
 			String opaqueValue = navigationalContext.getOpaqueValue();
 
-			if (opaqueValue != null) {
+			if (Validator.isNotNull(opaqueValue)) {
+				byte[] opaqueValueBytes = opaqueValue.getBytes(StringPool.UTF8);
+
+				opaqueValue = Base64.toURLSafe(Base64.encode(opaqueValueBytes));
+
 				stateAwareResponse.setRenderParameter(
 					"wsrp-navigationalState", opaqueValue);
 			}
@@ -1644,6 +1655,15 @@ public class ConsumerPortlet extends GenericPortlet {
 				}
 				catch (Exception e) {
 					liferayPortletURL.setPortletMode(PortletMode.VIEW);
+				}
+			}
+			else if (name.equals("wsrp-navigationalState")) {
+				if (Validator.isNotNull(value)) {
+					byte[] valueBytes = value.getBytes(StringPool.UTF8);
+
+					value = Base64.toURLSafe(Base64.encode(valueBytes));
+
+					liferayPortletURL.setParameter(name, value);
 				}
 			}
 			else if (name.equals("wsrp-navigationalValues")) {
