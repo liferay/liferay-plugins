@@ -233,20 +233,20 @@
 	</c:when>
 	<c:when test="<%= user.getUserId() != user2.getUserId() %>">
 		<div class="portlet-msg-info">
-			<%= LanguageUtil.format(pageContext, (user2.isMale() ? "you-have-to-be-x's-friend-to-access-his-wall" : "you-have-to-be-x's-friend-to-access-her-wall"), user2.getFirstName()) %>
+			<%= LanguageUtil.format(pageContext, (user2.isMale() ? "you-have-to-be-x's-friend-to-access-his-wall" : "you-have-to-be-x's-friend-to-access-her-wall"), HtmlUtil.escape(user2.getFirstName())) %>
 
 			<c:choose>
 				<c:when test="<%= themeDisplay.isSignedIn() %>">
 					<c:choose>
 						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), user2.getFirstName()) %>
+							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), HtmlUtil.escape(user2.getFirstName())) %>
 						</c:when>
 						<c:otherwise>
 							<liferay-portlet:actionURL var="addAsFriendURL" name="addFriend" portletName="1_WAR_socialnetworkingportlet">
 								<liferay-portlet:param name="redirect" value='<%= currentURL %>' />
 							</liferay-portlet:actionURL>
 
-							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", user2.getFirstName()) %></a>
+							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>
 						</c:otherwise>
 					</c:choose>
 				</c:when>

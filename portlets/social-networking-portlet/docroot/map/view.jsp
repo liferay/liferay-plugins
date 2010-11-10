@@ -149,7 +149,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 
 						var marker<%= i %> = new GMarker(
 							new GLatLng(<%= latitude %>, <%= longitude %>),
-							{title: '<%= mapUser.getFullName() %>'}
+							{title: '<%= HtmlUtil.escapeJS(mapUser.getFullName()) %>'}
 						);
 
 						GEvent.addListener(
@@ -158,7 +158,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 							function() {
 								<c:choose>
 									<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-										var html = '<center><img alt="<liferay-ui:message key="user-portrait" />" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= mapUser.getFullName() %></center>';
+										var html = '<center><img alt="<liferay-ui:message key="user-portrait" />" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= HtmlUtil.escapeJS(mapUser.getFullName()) %></center>';
 
 										marker<%= i %>.openInfoWindowHtml(html);
 									</c:when>

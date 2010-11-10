@@ -42,7 +42,7 @@
 			title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL);
 		}
 		else {
-			title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFullName(), svnURL});
+			title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFullName()), svnURL});
 		}
 
 		SyndFeed syndFeed = new SyndFeedImpl();
@@ -61,7 +61,7 @@
 
 			SyndEntry syndEntry = new SyndEntryImpl();
 
-			syndEntry.setAuthor(user2.getFullName());
+			syndEntry.setAuthor(HtmlUtil.escape(user2.getFullName()));
 			syndEntry.setTitle(LanguageUtil.get(pageContext, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
 			syndEntry.setLink(link);
 			syndEntry.setPublishedDate(svnRevision.getCreateDate());
@@ -184,7 +184,7 @@
 													<liferay-ui:message key="my-commits" />
 												</c:when>
 												<c:otherwise>
-													<%= LanguageUtil.format(pageContext, "x's-commits", user2.getFirstName()) %>
+													<%= LanguageUtil.format(pageContext, "x's-commits", HtmlUtil.escape(user2.getFirstName())) %>
 												</c:otherwise>
 											</c:choose>
 
@@ -339,7 +339,7 @@
 									String fishEyeURL = "http://svn.liferay.com/browse/~author=" + svnUserId + "/" + svnRepository.getName();
 									%>
 
-									<%= LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {user2.getFirstName(), "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + url + "</a>"}) %>
+									<%= LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFirstName()), "<a href=\"" + fishEyeURL + "\" target=\"_blank\">" + url + "</a>"}) %>
 								</c:otherwise>
 							</c:choose>
 						</h4>
@@ -351,7 +351,7 @@
 				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<%= LanguageUtil.format(pageContext, "x-does-not-have-any-commits-to-the-svn-repository", user2.getFullName()) %>
+				<%= LanguageUtil.format(pageContext, "x-does-not-have-any-commits-to-the-svn-repository", HtmlUtil.escape(user2.getFullName())) %>
 			</c:otherwise>
 		</c:choose>
 	</c:otherwise>

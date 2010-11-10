@@ -50,7 +50,7 @@ for (int i = 0; i < results.size(); i++) {
 			<%= LanguageUtil.format(pageContext, "you-have-x-friends", String.valueOf(total)) %>
 		</c:when>
 		<c:otherwise>
-			<%= LanguageUtil.format(pageContext, "x-has-x-friends", new Object[] {user2.getFullName(), String.valueOf(total)}) %>
+			<%= LanguageUtil.format(pageContext, "x-has-x-friends", new Object[] {HtmlUtil.escape(user2.getFullName()), String.valueOf(total)}) %>
 		</c:otherwise>
 	</c:choose>
 </div>
