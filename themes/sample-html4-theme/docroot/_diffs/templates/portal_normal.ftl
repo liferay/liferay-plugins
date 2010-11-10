@@ -13,7 +13,7 @@
 <body class="${css_class}">
 
 <#if is_signed_in>
-	<@liferay.dockbar/>
+	<@liferay.dockbar />
 </#if>
 
 <div id="wrapper">

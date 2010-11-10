@@ -1,4 +1,4 @@
-<#assign portlet_display = portletDisplay/>
+<#assign portlet_display = portletDisplay />
 
 <#assign portlet_id = htmlUtil.escapeAttribute(portlet_display.getId()) />
 <#assign portlet_title = portlet_display.getTitle() />
