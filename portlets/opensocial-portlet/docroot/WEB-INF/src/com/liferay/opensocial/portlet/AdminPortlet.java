@@ -82,22 +82,13 @@ public class AdminPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
-
-		String name = ParamUtil.getString(actionRequest, "name");
 		String url = ParamUtil.getString(actionRequest, "url");
 
-		if (gadgetId <= 0) {
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				Gadget.class.getName(), actionRequest);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Gadget.class.getName(), actionRequest);
 
-			GadgetLocalServiceUtil.addGadget(
-				themeDisplay.getCompanyId(), name, url, serviceContext);
-		}
-		else {
-			GadgetLocalServiceUtil.updateGadget(
-				themeDisplay.getCompanyId(), gadgetId, name);
-		}
+		GadgetLocalServiceUtil.addGadget(
+			themeDisplay.getCompanyId(), url, serviceContext);
 	}
 
 }

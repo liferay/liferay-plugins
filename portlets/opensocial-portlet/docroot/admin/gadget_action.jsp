@@ -23,17 +23,6 @@ Gadget gadget = (Gadget)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
-	<portlet:renderURL var="editURL">
-		<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
-		<portlet:param name="redirect" value="<%= currentURL %>" />
-		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
-	</portlet:renderURL>
-
-	<liferay-ui:icon
-		image="edit"
-		url="<%= editURL %>"
-	/>
-
 	<portlet:actionURL name="deleteGadget" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />

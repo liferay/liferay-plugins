@@ -36,16 +36,20 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		keyProperty="gadgetId"
 		modelVar="gadget"
 	>
-		<portlet:renderURL var="rowURL">
-			<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
-		</portlet:renderURL>
 
 		<liferay-ui:search-container-column-text
-			href="<%= rowURL %>"
 			name="gadget"
 			property="name"
+		/>
+
+		<%
+		String gadgetURL = gadget.getUrl();
+		%>
+
+		<liferay-ui:search-container-column-text
+			href="<%= gadgetURL %>"
+			name="url"
+			value="<%= gadgetURL %>"
 		/>
 
 		<liferay-ui:search-container-column-jsp

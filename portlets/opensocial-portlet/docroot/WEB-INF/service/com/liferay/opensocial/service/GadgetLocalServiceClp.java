@@ -74,7 +74,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 		_addGadgetMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addGadget", long.class, java.lang.String.class,
-				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_destroyGadgetMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -99,9 +98,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 		_initGadgetsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initGadgets");
-
-		_updateGadgetMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateGadget", long.class, long.class, java.lang.String.class);
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(
@@ -471,15 +467,14 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
-		java.lang.String name, java.lang.String url,
+		java.lang.String url,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey13,
-				companyId, ClpSerializer.translateInput(name),
-				ClpSerializer.translateInput(url),
+				companyId, ClpSerializer.translateInput(url),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -707,39 +702,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		}
 	}
 
-	public com.liferay.opensocial.model.Gadget updateGadget(long companyId,
-		long gadgetId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey21,
-				companyId, gadgetId, ClpSerializer.translateInput(name));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -766,5 +728,4 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	private MethodKey _getGadgetsCountMethodKey18;
 	private MethodKey _initGadgetMethodKey19;
 	private MethodKey _initGadgetsMethodKey20;
-	private MethodKey _updateGadgetMethodKey21;
 }

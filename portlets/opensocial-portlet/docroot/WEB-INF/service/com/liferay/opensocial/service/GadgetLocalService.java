@@ -209,7 +209,7 @@ public interface GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
-		java.lang.String name, java.lang.String url,
+		java.lang.String url,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -243,11 +243,6 @@ public interface GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void initGadgets()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.opensocial.model.Gadget updateGadget(long companyId,
-		long gadgetId, java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

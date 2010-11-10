@@ -22,6 +22,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>OpenSocial</title>
 			<short-title>OpenSocial</short-title>

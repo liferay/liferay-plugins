@@ -19,21 +19,21 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class GadgetNameException extends PortalException {
+public class DuplicateURLException extends PortalException {
 
-	public GadgetNameException() {
+	public DuplicateURLException() {
 		super();
 	}
 
-	public GadgetNameException(String msg) {
+	public DuplicateURLException(String msg) {
 		super(msg);
 	}
 
-	public GadgetNameException(String msg, Throwable cause) {
+	public DuplicateURLException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public GadgetNameException(Throwable cause) {
+	public DuplicateURLException(Throwable cause) {
 		super(cause);
 	}
 

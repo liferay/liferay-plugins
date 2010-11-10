@@ -14,12 +14,14 @@
 
 package com.liferay.opensocial.service.impl;
 
-import com.liferay.opensocial.GadgetNameException;
+import com.liferay.opensocial.DuplicateURLException;
+import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.portlet.GadgetPortlet;
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.base.GadgetLocalServiceBaseImpl;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.cluster.Clusterable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -27,7 +29,6 @@ import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
@@ -36,7 +37,6 @@ import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.InvokerPortlet;
-import com.liferay.portlet.PortletConfigFactoryUtil;
 import com.liferay.portlet.PortletInstanceFactoryUtil;
 
 import java.util.Date;
@@ -49,6 +49,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
+import org.apache.shindig.gadgets.process.ProcessingException;
+import org.apache.shindig.gadgets.spec.GadgetSpec;
+import org.apache.shindig.gadgets.spec.ModulePrefs;
+
 /**
  * @author Michael Young
  * @author Brian Wing Shun Chan
@@ -56,13 +60,12 @@ import javax.portlet.WindowState;
 public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	public Gadget addGadget(
-			long companyId, String name, String url,
-			ServiceContext serviceContext)
+			long companyId, String url, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
 
-		validate(name);
+		validate(companyId, url);
 
 		long gadgetId = counterLocalService.increment();
 
@@ -72,8 +75,25 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		gadget.setCompanyId(companyId);
 		gadget.setCreateDate(now);
 		gadget.setModifiedDate(now);
-		gadget.setName(name);
 		gadget.setUrl(url);
+
+		GadgetSpec gadgetSpec = null;
+
+		try {
+			gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
+		}
+		catch (ProcessingException pe) {
+			throw new GadgetURLException(pe);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+
+		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
+
+		String name = modulePrefs.getTitle();
+
+		gadget.setName(name);
 
 		gadgetPersistence.update(gadget, false);
 
@@ -188,40 +208,6 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 	}
 
-	public Gadget updateGadget(long companyId, long gadgetId, String name)
-		throws PortalException, SystemException {
-
-		Date now = new Date();
-
-		validate(name);
-
-		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
-
-		gadget.setModifiedDate(now);
-		gadget.setName(name);
-
-		gadgetPersistence.update(gadget, false);
-
-		try {
-			Portlet portlet = getPortlet(gadget.getUuid(), companyId, name);
-
-			portlet.setPortletInfo(new PortletInfo(name, name, name, name));
-
-			PortletConfigFactoryUtil.update(portlet);
-		}
-		catch (PortalException pe) {
-			throw pe;
-		}
-		catch (SystemException se) {
-			throw se;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-
-		return gadget;
-	}
-
 	protected void addPortletExtraInfo(
 		Portlet portlet, PortletApp portletApp, String title) {
 
@@ -301,9 +287,13 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return portlet;
 	}
 
-	protected void validate(String name) throws PortalException {
-		if (Validator.isNull(name)) {
-			throw new GadgetNameException();
+	protected void validate(long companyId, String url)
+		throws PortalException, SystemException {
+
+		List<Gadget> gadgets = gadgetPersistence.findByC_U(companyId, url);
+
+		if (!gadgets.isEmpty()) {
+			throw new DuplicateURLException();
 		}
 	}
 

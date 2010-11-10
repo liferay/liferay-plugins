@@ -38,33 +38,16 @@ catch (NoSuchGadgetException nsge) {
 <form action="<portlet:actionURL name="updateGadget"><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveGadget(); return false;">
 <input name="<portlet:namespace />gadgetId" type="hidden" value="<%= gadgetId %>" />
 
-<liferay-ui:error exception="<%= GadgetNameException.class %>" message="please-enter-a-valid-name" />
+<liferay-ui:error exception="<%= DuplicateURLException.class %>" message="url-already-points-to-an-existing-gadget" />
 <liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
 <table class="lfr-table">
 <tr>
 	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field model="<%= Gadget.class %>" bean="<%= gadget %>" field="name" />
-	</td>
-</tr>
-<tr>
-	<td>
 		<liferay-ui:message key="url" />
 	</td>
 	<td>
-		<c:choose>
-			<c:when test="<%= gadget == null %>">
-				<liferay-ui:input-field model="<%= Gadget.class %>" bean="<%= gadget %>" field="url" />
-			</c:when>
-			<c:otherwise>
-				<a href="<%= gadget.getUrl() %>" target="_blank"><%= gadget.getUrl() %></a>
-
-				<input name="<portlet:namespace />url" type="hidden" value="<%= gadget.getUrl() %>" />
-			</c:otherwise>
-		</c:choose>
+		<liferay-ui:input-field model="<%= Gadget.class %>" bean="<%= gadget %>" field="url" />
 	</td>
 </tr>
 </table>
@@ -86,10 +69,5 @@ catch (NoSuchGadgetException nsge) {
 </aui:script>
 
 <%
-if (gadget != null) {
-	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
-}
-else {
 	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
-}
 %>

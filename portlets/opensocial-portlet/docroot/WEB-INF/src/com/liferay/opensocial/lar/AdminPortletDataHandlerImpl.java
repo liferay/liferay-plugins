@@ -157,8 +157,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setUuid(gadget.getUuid());
 
 			GadgetLocalServiceUtil.addGadget(
-				portletDataContext.getCompanyId(), gadget.getName(),
-				gadget.getUrl(), serviceContext);
+				portletDataContext.getCompanyId(), gadget.getUrl(),
+				serviceContext);
 		}
 	}
 
