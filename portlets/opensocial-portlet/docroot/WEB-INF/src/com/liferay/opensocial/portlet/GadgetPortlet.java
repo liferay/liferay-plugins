@@ -129,7 +129,7 @@ public class GadgetPortlet extends MVCPortlet {
 
 		Gadget gadget = getGadget();
 
-		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
+		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
 
 		String urlConfiguration = portletDisplay.getURLConfiguration();
 

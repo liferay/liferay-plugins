@@ -78,7 +78,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		GadgetSpec gadgetSpec = null;
 
 		try {
-			gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
+			gadgetSpec = ShindigUtil.getGadgetSpec(url);
 		}
 		catch (Exception e) {
 			throw new GadgetURLException(e);

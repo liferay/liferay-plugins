@@ -104,7 +104,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		Gadget gadget = ShindigUtil.getGadget(portlet.getPortletName());
 
-		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
+		GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
 
 		return gadgetSpec.getUserPrefs();
 	}

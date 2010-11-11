@@ -121,10 +121,8 @@ public class ShindigUtil {
 
 		return gadget;
 	}
-	public static GadgetSpec getGadgetSpec(
-			com.liferay.opensocial.model.Gadget liferayGadget)
-		throws Exception {
 
+	public static GadgetSpec getGadgetSpec(String url) throws Exception {
 		JSONObject gadgetContext = new JSONObject();
 
 		gadgetContext.put(
@@ -136,7 +134,7 @@ public class ShindigUtil {
 
 		JSONObject gadgetRequest = new JSONObject();
 
-		gadgetRequest.put("url", liferayGadget.getUrl());
+		gadgetRequest.put("url", url);
 
 		JsonRpcGadgetContext context = new JsonRpcGadgetContext(
 			gadgetContext, gadgetRequest);
