@@ -84,8 +84,8 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 		boolean deleteFolder = true;
 
-		List<DLFileEntry> fileEntries =
-			DLAppLocalServiceUtil.getFileEntries(groupId, rootFolderId);
+		List<DLFileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
+			groupId, rootFolderId);
 
 		for (DLFileEntry fileEntry : fileEntries) {
 			ServiceContext serviceContext = new ServiceContext();
