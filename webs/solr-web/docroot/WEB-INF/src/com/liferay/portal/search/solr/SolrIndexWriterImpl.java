@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -105,8 +106,22 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		throws SearchException {
 
 		try {
-			_solrServer.deleteByQuery(
-				Field.PORTLET_ID + StringPool.COLON + portletId);
+			StringBundler sb = new StringBundler();
+
+			if (companyId > 0) {
+				sb.append(StringPool.PLUS);
+				sb.append(Field.COMPANY_ID);
+				sb.append(StringPool.COLON);
+				sb.append(companyId);
+				sb.append(StringPool.SPACE);
+			}
+
+			sb.append(StringPool.PLUS);
+			sb.append(Field.PORTLET_ID);
+			sb.append(StringPool.COLON);
+			sb.append(portletId);
+
+			_solrServer.deleteByQuery(sb.toString());
 
 			if (_commit) {
 				_solrServer.commit();
