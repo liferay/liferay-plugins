@@ -4,6 +4,7 @@
 #heading .community-title,
 #heading .page-title,
 #navigation h1,
+#navigation .child-menu,
 #breadcrumbs h1 {
 	clip: rect(0 0 0 0);
 	position: absolute;

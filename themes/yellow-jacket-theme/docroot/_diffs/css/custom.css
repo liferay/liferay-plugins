@@ -3,7 +3,8 @@
 #skip-to-content,
 #heading .community-title,
 #heading .page-title,
-#navigation h1 {
+#navigation h1,
+#navigation .child-menu {
 	clip: rect(0 0 0 0);
 	position: absolute;
 }
@@ -152,10 +153,6 @@ body.signed-out #navigation {
 	color: #2F2F2F;
 	text-decoration: none;
 	text-shadow: 0 0 1em #FFF;
-}
-
-.child-menu {
-	display: none;
 }
 
 /* -------- Content -------- */
