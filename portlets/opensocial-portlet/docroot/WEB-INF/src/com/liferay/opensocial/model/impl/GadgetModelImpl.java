@@ -123,6 +123,16 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	public void setCompanyId(long companyId) {
 		_companyId = companyId;
+
+		if (!_setOriginalCompanyId) {
+			_setOriginalCompanyId = true;
+
+			_originalCompanyId = companyId;
+		}
+	}
+
+	public long getOriginalCompanyId() {
+		return _originalCompanyId;
 	}
 
 	public Date getCreateDate() {
@@ -165,6 +175,14 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	public void setUrl(String url) {
 		_url = url;
+
+		if (_originalUrl == null) {
+			_originalUrl = url;
+		}
+	}
+
+	public String getOriginalUrl() {
+		return GetterUtil.getString(_originalUrl);
 	}
 
 	public Gadget toEscapedModel() {
@@ -310,9 +328,12 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _uuid;
 	private long _gadgetId;
 	private long _companyId;
+	private long _originalCompanyId;
+	private boolean _setOriginalCompanyId;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _name;
 	private String _url;
+	private String _originalUrl;
 	private transient ExpandoBridge _expandoBridge;
 }

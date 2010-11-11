@@ -213,7 +213,7 @@ public class GadgetWrapper implements Gadget {
 		return _gadget.clone();
 	}
 
-	public int compareTo(com.liferay.opensocial.model.Gadget gadget) {
+	public int compareTo(Gadget gadget) {
 		return _gadget.compareTo(gadget);
 	}
 
@@ -221,7 +221,7 @@ public class GadgetWrapper implements Gadget {
 		return _gadget.hashCode();
 	}
 
-	public com.liferay.opensocial.model.Gadget toEscapedModel() {
+	public Gadget toEscapedModel() {
 		return _gadget.toEscapedModel();
 	}
 

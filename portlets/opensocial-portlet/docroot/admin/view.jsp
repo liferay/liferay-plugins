@@ -36,7 +36,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		keyProperty="gadgetId"
 		modelVar="gadget"
 	>
-
 		<liferay-ui:search-container-column-text
 			name="gadget"
 			property="name"

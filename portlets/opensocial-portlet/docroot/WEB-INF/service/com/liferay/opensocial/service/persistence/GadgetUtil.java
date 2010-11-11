@@ -434,130 +434,47 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Finds all the gadgets where companyId = &#63; and url = &#63;.
+	* Finds the gadget where companyId = &#63; and url = &#63; or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
 	*
 	* @param companyId the company id to search with
 	* @param url the url to search with
-	* @return the matching gadgets
+	* @return the matching gadget
+	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.opensocial.model.Gadget> findByC_U(
+	public static com.liferay.opensocial.model.Gadget findByC_U(
 		long companyId, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchGadgetException,
+			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().findByC_U(companyId, url);
 	}
 
 	/**
-	* Finds a range of all the gadgets where companyId = &#63; and url = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param companyId the company id to search with
 	* @param url the url to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
-	* @return the range of matching gadgets
+	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.opensocial.model.Gadget> findByC_U(
-		long companyId, java.lang.String url, int start, int end)
+	public static com.liferay.opensocial.model.Gadget fetchByC_U(
+		long companyId, java.lang.String url)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_U(companyId, url, start, end);
+		return getPersistence().fetchByC_U(companyId, url);
 	}
 
 	/**
-	* Finds an ordered range of all the gadgets where companyId = &#63; and url = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
+	* Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param companyId the company id to search with
 	* @param url the url to search with
-	* @param start the lower bound of the range of gadgets to return
-	* @param end the upper bound of the range of gadgets to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
-	* @return the ordered range of matching gadgets
+	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.opensocial.model.Gadget> findByC_U(
-		long companyId, java.lang.String url, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+	public static com.liferay.opensocial.model.Gadget fetchByC_U(
+		long companyId, java.lang.String url, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByC_U(companyId, url, start, end, orderByComparator);
-	}
-
-	/**
-	* Finds the first gadget in the ordered set where companyId = &#63; and url = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param companyId the company id to search with
-	* @param url the url to search with
-	* @param orderByComparator the comparator to order the set by
-	* @return the first matching gadget
-	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.Gadget findByC_U_First(
-		long companyId, java.lang.String url,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByC_U_First(companyId, url, orderByComparator);
-	}
-
-	/**
-	* Finds the last gadget in the ordered set where companyId = &#63; and url = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param companyId the company id to search with
-	* @param url the url to search with
-	* @param orderByComparator the comparator to order the set by
-	* @return the last matching gadget
-	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.Gadget findByC_U_Last(
-		long companyId, java.lang.String url,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByC_U_Last(companyId, url, orderByComparator);
-	}
-
-	/**
-	* Finds the gadgets before and after the current gadget in the ordered set where companyId = &#63; and url = &#63;.
-	*
-	* <p>
-	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	* </p>
-	*
-	* @param gadgetId the primary key of the current gadget
-	* @param companyId the company id to search with
-	* @param url the url to search with
-	* @param orderByComparator the comparator to order the set by
-	* @return the previous, current, and next gadget
-	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
-	*/
-	public static com.liferay.opensocial.model.Gadget[] findByC_U_PrevAndNext(
-		long gadgetId, long companyId, java.lang.String url,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence()
-				   .findByC_U_PrevAndNext(gadgetId, companyId, url,
-			orderByComparator);
+		return getPersistence().fetchByC_U(companyId, url, retrieveFromCache);
 	}
 
 	/**
@@ -632,14 +549,15 @@ public class GadgetUtil {
 	}
 
 	/**
-	* Removes all the gadgets where companyId = &#63; and url = &#63; from the database.
+	* Removes the gadget where companyId = &#63; and url = &#63; from the database.
 	*
 	* @param companyId the company id to search with
 	* @param url the url to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_U(long companyId, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchGadgetException,
+			com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByC_U(companyId, url);
 	}
 

@@ -38,7 +38,7 @@ catch (NoSuchGadgetException nsge) {
 <form action="<portlet:actionURL name="updateGadget"><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveGadget(); return false;">
 <input name="<portlet:namespace />gadgetId" type="hidden" value="<%= gadgetId %>" />
 
-<liferay-ui:error exception="<%= DuplicateURLException.class %>" message="url-already-points-to-an-existing-gadget" />
+<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
 <liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
 <table class="lfr-table">
@@ -69,5 +69,5 @@ catch (NoSuchGadgetException nsge) {
 </aui:script>
 
 <%
-	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
 %>

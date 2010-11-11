@@ -98,15 +98,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public static final FinderPath FINDER_PATH_COUNT_BY_COMPANYID = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByCompanyId", new String[] { Long.class.getName() });
-	public static final FinderPath FINDER_PATH_FIND_BY_C_U = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByC_U",
-			new String[] {
-				Long.class.getName(), String.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
+	public static final FinderPath FINDER_PATH_FETCH_BY_C_U = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
+			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
+			"fetchByC_U",
+			new String[] { Long.class.getName(), String.class.getName() });
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_U = new FinderPath(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByC_U",
@@ -126,6 +121,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public void cacheResult(Gadget gadget) {
 		EntityCacheUtil.putResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
+			new Object[] { new Long(gadget.getCompanyId()), gadget.getUrl() },
+			gadget);
 	}
 
 	/**
@@ -167,6 +166,9 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public void clearCache(Gadget gadget) {
 		EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey());
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
+			new Object[] { new Long(gadget.getCompanyId()), gadget.getUrl() });
 	}
 
 	/**
@@ -260,6 +262,15 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
 
+		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
+
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
+			new Object[] {
+				new Long(gadgetModelImpl.getOriginalCompanyId()),
+				
+			gadgetModelImpl.getOriginalUrl()
+			});
+
 		EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey());
 
@@ -269,6 +280,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public Gadget updateImpl(com.liferay.opensocial.model.Gadget gadget,
 		boolean merge) throws SystemException {
 		gadget = toUnwrappedModel(gadget);
+
+		boolean isNew = gadget.isNew();
+
+		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadget;
 
 		if (Validator.isNull(gadget.getUuid())) {
 			String uuid = PortalUUIDUtil.generate();
@@ -296,6 +311,27 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		EntityCacheUtil.putResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
+
+		if (!isNew &&
+				((gadget.getCompanyId() != gadgetModelImpl.getOriginalCompanyId()) ||
+				!Validator.equals(gadget.getUrl(),
+					gadgetModelImpl.getOriginalUrl()))) {
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
+				new Object[] {
+					new Long(gadgetModelImpl.getOriginalCompanyId()),
+					
+				gadgetModelImpl.getOriginalUrl()
+				});
+		}
+
+		if (isNew ||
+				((gadget.getCompanyId() != gadgetModelImpl.getOriginalCompanyId()) ||
+				!Validator.equals(gadget.getUrl(),
+					gadgetModelImpl.getOriginalUrl()))) {
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
+				new Object[] { new Long(gadget.getCompanyId()), gadget.getUrl() },
+				gadget);
+		}
 
 		return gadget;
 	}
@@ -1103,75 +1139,75 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	}
 
 	/**
-	 * Finds all the gadgets where companyId = &#63; and url = &#63;.
+	 * Finds the gadget where companyId = &#63; and url = &#63; or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
 	 *
 	 * @param companyId the company id to search with
 	 * @param url the url to search with
-	 * @return the matching gadgets
+	 * @return the matching gadget
+	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Gadget> findByC_U(long companyId, String url)
-		throws SystemException {
-		return findByC_U(companyId, url, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			null);
+	public Gadget findByC_U(long companyId, String url)
+		throws NoSuchGadgetException, SystemException {
+		Gadget gadget = fetchByC_U(companyId, url);
+
+		if (gadget == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", url=");
+			msg.append(url);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchGadgetException(msg.toString());
+		}
+
+		return gadget;
 	}
 
 	/**
-	 * Finds a range of all the gadgets where companyId = &#63; and url = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
 	 * @param companyId the company id to search with
 	 * @param url the url to search with
-	 * @param start the lower bound of the range of gadgets to return
-	 * @param end the upper bound of the range of gadgets to return (not inclusive)
-	 * @return the range of matching gadgets
+	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Gadget> findByC_U(long companyId, String url, int start, int end)
+	public Gadget fetchByC_U(long companyId, String url)
 		throws SystemException {
-		return findByC_U(companyId, url, start, end, null);
+		return fetchByC_U(companyId, url, true);
 	}
 
 	/**
-	 * Finds an ordered range of all the gadgets where companyId = &#63; and url = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param companyId the company id to search with
 	 * @param url the url to search with
-	 * @param start the lower bound of the range of gadgets to return
-	 * @param end the upper bound of the range of gadgets to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
-	 * @return the ordered range of matching gadgets
+	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Gadget> findByC_U(long companyId, String url, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				companyId, url,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+	public Gadget fetchByC_U(long companyId, String url,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { companyId, url };
 
-		List<Gadget> list = (List<Gadget>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_U,
-				finderArgs, this);
+		Object result = null;
 
-		if (list == null) {
-			StringBundler query = null;
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_C_U,
+					finderArgs, this);
+		}
 
-			if (orderByComparator != null) {
-				query = new StringBundler(4 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(4);
-			}
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
 
 			query.append(_SQL_SELECT_GADGET_WHERE);
 
@@ -1189,14 +1225,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				}
 			}
 
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(GadgetModelImpl.ORDER_BY_JPQL);
-			}
+			query.append(GadgetModelImpl.ORDER_BY_JPQL);
 
 			String sql = query.toString();
 
@@ -1215,273 +1244,50 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 					qPos.add(url);
 				}
 
-				list = (List<Gadget>)QueryUtil.list(q, getDialect(), start, end);
+				List<Gadget> list = q.list();
+
+				result = list;
+
+				Gadget gadget = null;
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
+						finderArgs, list);
+				}
+				else {
+					gadget = list.get(0);
+
+					cacheResult(gadget);
+
+					if ((gadget.getCompanyId() != companyId) ||
+							(gadget.getUrl() == null) ||
+							!gadget.getUrl().equals(url)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
+							finderArgs, gadget);
+					}
+				}
+
+				return gadget;
 			}
 			catch (Exception e) {
 				throw processException(e);
 			}
 			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_C_U,
+				if (result == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
 						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_U,
-						finderArgs, list);
 				}
 
 				closeSession(session);
 			}
 		}
-
-		return list;
-	}
-
-	/**
-	 * Finds the first gadget in the ordered set where companyId = &#63; and url = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company id to search with
-	 * @param url the url to search with
-	 * @param orderByComparator the comparator to order the set by
-	 * @return the first matching gadget
-	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Gadget findByC_U_First(long companyId, String url,
-		OrderByComparator orderByComparator)
-		throws NoSuchGadgetException, SystemException {
-		List<Gadget> list = findByC_U(companyId, url, 0, 1, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", url=");
-			msg.append(url);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchGadgetException(msg.toString());
-		}
 		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the last gadget in the ordered set where companyId = &#63; and url = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company id to search with
-	 * @param url the url to search with
-	 * @param orderByComparator the comparator to order the set by
-	 * @return the last matching gadget
-	 * @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Gadget findByC_U_Last(long companyId, String url,
-		OrderByComparator orderByComparator)
-		throws NoSuchGadgetException, SystemException {
-		int count = countByC_U(companyId, url);
-
-		List<Gadget> list = findByC_U(companyId, url, count - 1, count,
-				orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(6);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", url=");
-			msg.append(url);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchGadgetException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the gadgets before and after the current gadget in the ordered set where companyId = &#63; and url = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param gadgetId the primary key of the current gadget
-	 * @param companyId the company id to search with
-	 * @param url the url to search with
-	 * @param orderByComparator the comparator to order the set by
-	 * @return the previous, current, and next gadget
-	 * @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Gadget[] findByC_U_PrevAndNext(long gadgetId, long companyId,
-		String url, OrderByComparator orderByComparator)
-		throws NoSuchGadgetException, SystemException {
-		Gadget gadget = findByPrimaryKey(gadgetId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Gadget[] array = new GadgetImpl[3];
-
-			array[0] = getByC_U_PrevAndNext(session, gadget, companyId, url,
-					orderByComparator, true);
-
-			array[1] = gadget;
-
-			array[2] = getByC_U_PrevAndNext(session, gadget, companyId, url,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Gadget getByC_U_PrevAndNext(Session session, Gadget gadget,
-		long companyId, String url, OrderByComparator orderByComparator,
-		boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_GADGET_WHERE);
-
-		query.append(_FINDER_COLUMN_C_U_COMPANYID_2);
-
-		if (url == null) {
-			query.append(_FINDER_COLUMN_C_U_URL_1);
-		}
-		else {
-			if (url.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_C_U_URL_3);
+			if (result instanceof List<?>) {
+				return null;
 			}
 			else {
-				query.append(_FINDER_COLUMN_C_U_URL_2);
+				return (Gadget)result;
 			}
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(GadgetModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(companyId);
-
-		if (url != null) {
-			qPos.add(url);
-		}
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(gadget);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Gadget> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
 		}
 	}
 
@@ -1618,17 +1424,17 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	}
 
 	/**
-	 * Removes all the gadgets where companyId = &#63; and url = &#63; from the database.
+	 * Removes the gadget where companyId = &#63; and url = &#63; from the database.
 	 *
 	 * @param companyId the company id to search with
 	 * @param url the url to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_U(long companyId, String url)
-		throws SystemException {
-		for (Gadget gadget : findByC_U(companyId, url)) {
-			remove(gadget);
-		}
+		throws NoSuchGadgetException, SystemException {
+		Gadget gadget = findByC_U(companyId, url);
+
+		remove(gadget);
 	}
 
 	/**

@@ -14,7 +14,7 @@
 
 package com.liferay.opensocial.service.impl;
 
-import com.liferay.opensocial.DuplicateURLException;
+import com.liferay.opensocial.DuplicateGadgetURLException;
 import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.model.Gadget;
@@ -49,7 +49,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.portlet.PortletMode;
 import javax.portlet.WindowState;
 
-import org.apache.shindig.gadgets.process.ProcessingException;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.ModulePrefs;
 
@@ -75,30 +74,25 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		gadget.setCompanyId(companyId);
 		gadget.setCreateDate(now);
 		gadget.setModifiedDate(now);
-		gadget.setUrl(url);
 
 		GadgetSpec gadgetSpec = null;
 
 		try {
 			gadgetSpec = ShindigUtil.getGadgetSpec(gadget);
 		}
-		catch (ProcessingException pe) {
-			throw new GadgetURLException(pe);
-		}
 		catch (Exception e) {
-			throw new SystemException(e);
+			throw new GadgetURLException(e);
 		}
 
 		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
 
-		String name = modulePrefs.getTitle();
-
-		gadget.setName(name);
+		gadget.setName(modulePrefs.getTitle());
+		gadget.setUrl(url);
 
 		gadgetPersistence.update(gadget, false);
 
 		gadgetLocalService.initGadget(
-			gadget.getUuid(), companyId, gadgetId, name);
+			gadget.getUuid(), companyId, gadgetId, gadget.getName());
 
 		return gadget;
 	}
@@ -290,10 +284,10 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	protected void validate(long companyId, String url)
 		throws PortalException, SystemException {
 
-		List<Gadget> gadgets = gadgetPersistence.findByC_U(companyId, url);
+		Gadget gadget = gadgetPersistence.fetchByC_U(companyId, url);
 
-		if (!gadgets.isEmpty()) {
-			throw new DuplicateURLException();
+		if (gadget != null) {
+			throw new DuplicateGadgetURLException();
 		}
 	}
 
