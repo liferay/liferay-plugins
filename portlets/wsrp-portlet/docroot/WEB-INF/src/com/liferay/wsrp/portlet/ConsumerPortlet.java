@@ -847,7 +847,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected String getWSRPKey(String key) {
-		return "wsrp:" + key;
+		return "wsrp:".concat(key);
 	}
 
 	protected String getWSRPMode(PortletMode portletMode) {

@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
@@ -35,7 +34,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -201,15 +199,10 @@ public class V2ServiceDescriptionServiceImpl
 	protected String[] getWSRPKeys(Set<String> keys) {
 		String[] wsrpKeys = new String[keys.size()];
 
-		Iterator<String> itr = keys.iterator();
+		int i = 0;
 
-		for (int i = 0; i < wsrpKeys.length; i++) {
-			StringBundler sb = new StringBundler(2);
-
-			sb.append("wsrp:");
-			sb.append(itr.next());
-
-			wsrpKeys[i] = sb.toString();
+		for (String key : keys) {
+			wsrpKeys[i++] = "wsrp:".concat(key);
 		}
 
 		return wsrpKeys;
