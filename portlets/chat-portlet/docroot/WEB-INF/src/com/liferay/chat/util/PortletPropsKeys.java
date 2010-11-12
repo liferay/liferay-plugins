@@ -21,4 +21,6 @@ public interface PortletPropsKeys {
 
 	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
 
+	public static final String BUDDY_LIST_MAXBUDDIES = "buddy.list.maxbuddies";
+
 }

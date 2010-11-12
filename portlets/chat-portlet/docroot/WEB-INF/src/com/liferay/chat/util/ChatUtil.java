@@ -16,7 +16,6 @@ package com.liferay.chat.util;
 
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.comparator.BuddyComparator;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portlet.social.model.SocialRelationConstants;
@@ -29,8 +28,6 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class ChatUtil {
-
-	public static final int MAX_ENTRIES = 50;
 
 	public static final long MAX_POLL_LATENCY = Time.SECOND * 15;
 
@@ -46,27 +43,27 @@ public class ChatUtil {
 		if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("all")) {
 			buddies = StatusLocalServiceUtil.getAllStatuses(
 				companyId, userId, modifiedDate, 0,
-				SearchContainer.DEFAULT_DELTA);
+				PortletPropsValues.MAX_ENTRIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("communities")) {
 			buddies = StatusLocalServiceUtil.getGroupStatuses(
-				userId, modifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+				userId, modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
 			buddies = StatusLocalServiceUtil.getSocialStatuses(
 				userId, SocialRelationConstants.TYPE_BI_FRIEND,
-				modifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+				modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends")) {
 
 			List<Object[]> groupBuddies =
 				StatusLocalServiceUtil.getGroupStatuses(
-					userId, modifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+					userId, modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
 			List<Object[]> socialBuddies =
 				StatusLocalServiceUtil.getSocialStatuses(
 					userId, SocialRelationConstants.TYPE_BI_FRIEND,
-					modifiedDate, 0, SearchContainer.DEFAULT_DELTA);
+					modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
 
 			buddies = new ArrayList<Object[]>(
 				groupBuddies.size() + socialBuddies.size());

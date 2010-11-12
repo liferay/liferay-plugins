@@ -27,7 +27,7 @@
 	</liferay-util:html-top>
 
 	<liferay-util:html-bottom>
-		<script src="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/js/main.js", portlet.getTimestamp()) %>" type="text/javascript"></script>
+		<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/js/main.js", portlet.getTimestamp()) %>" type="text/javascript"></script>
 	</liferay-util:html-bottom>
 
 	<%
@@ -67,7 +67,7 @@
 								<div class="panel-button minimize"></div>
 
 								<div class="panel-title"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></div>
-
+								<div><input type="text" class="search-buddies"/></div>
 								<div class="panel-content">
 									<ul class="lfr-component online-users">
 

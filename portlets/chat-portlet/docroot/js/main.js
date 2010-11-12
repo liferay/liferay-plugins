@@ -201,6 +201,7 @@ AUI().use(
 							'<div class="panel-window">' +
 								'<div class="panel-button minimize"></div>' +
 								'<div class="panel-title"></div>' +
+                                '<div><input type="text" class="search-buddies"/></div>' +
 								'<div class="panel-content"></div>' +
 							'</div>' +
 						'</div>' +
@@ -657,6 +658,10 @@ AUI().use(
 
 				instance._onlineBuddies = buddylist.getPanel().one('.online-users');
 
+                instance._searchBuddiesNode = buddylist.getPanel().one('.search-buddies');
+
+                instance._searchBuddiesNode.on('keyup', instance._searchBuddies, instance);                
+
 				if (instance._onlineBuddies) {
 
 					var buddyList = instance._onlineBuddies;
@@ -906,9 +911,28 @@ AUI().use(
 				instance._sendTask.delay(instance._saveSettingsDelay, null, null, [instance._getSettings()]);
 			},
 
+            _searchBuddies: function(){
+                var instance = this;
+                var search = instance._searchBuddiesNode.val().toLowerCase();
+                var items = instance._chatContainer.all(".online-users > li");
+                if( search == "" ){
+                    items.each(function(node){
+                        node.show();
+                    });
+                } else if(search.length > 2) {
+                    items.each(function(node){
+                        if( node.text().toLowerCase().indexOf(search) < 0 ){
+                            node.hide();
+                        } else {
+                            node.show();
+                        }
+                    });
+                }
+            },
+
 			_updateBuddies: function(buddies) {
 				var instance = this;
-
+                var search = instance._searchBuddiesNode.val().toLowerCase();
 				var buddyList = buddies || [];
 				var numBuddies = buddyList.length;
 
@@ -917,10 +941,14 @@ AUI().use(
 
 				instance._onlineBuddiesCount = numBuddies;
 
-				var buffer = [];
+				var buffer = [''];
 
 				for (var i = 0; i < numBuddies; i++) {
 					var buddy = buddyList[i];
+                    var display = "";
+                    if( search.length > 2 && buddy.fullName.toLowerCase().indexOf(search) < 0 ){
+                        display = "display:none;"
+                    }
 					var currentBuddy = currentBuddies[buddy.userId];
 					var currentChat = currentChats[buddy.userId];
 
@@ -933,9 +961,8 @@ AUI().use(
 					currentBuddies[buddy.userId] = buddy;
 
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
-
 					buffer.push(
-						'<li class="active" userId="' + buddy.userId + '">' +
+						'<li class="active" userId="' + buddy.userId + '" style="'+display+'">' +
 							'<img alt="" src="' + userImagePath + '" />' +
 							'<div class="name">' + buddy.fullName + '</div>' +
 						'</li>');

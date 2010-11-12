@@ -169,10 +169,17 @@ html body {
 
 /* ---------- Online Users ---------- */
 
+.buddy-list .search-buddies {
+    min-width: 226px;
+}
+
 .buddy-list .panel-content {
 	list-style-type: none;
 	margin: 0;
 	padding: 2px 0;
+    max-height: 400px;
+    overflow-y: scroll;
+    overflow-x: display;
 }
 
 .buddy-list .panel-content .online-users li {
@@ -268,7 +275,7 @@ html body {
 	border: 1px solid #262626;
 	font: 11px Tahoma, Geneva, sans-serif;
 	position: relative;
-	width: 226px;
+	min-width: 226px;
 }
 
 .panel-icon {

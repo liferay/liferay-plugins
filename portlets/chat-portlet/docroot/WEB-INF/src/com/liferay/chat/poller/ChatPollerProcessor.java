@@ -20,6 +20,7 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.ChatUtil;
+import com.liferay.chat.util.PortletPropsValues;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -116,7 +117,8 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 		}
 
 		List<Entry> entries = EntryLocalServiceUtil.getNewEntries(
-			pollerRequest.getUserId(), createDate, 0, ChatUtil.MAX_ENTRIES);
+			pollerRequest.getUserId(), createDate, 0,
+			PortletPropsValues.MAX_ENTRIES);
 
 		entries = ListUtil.copy(entries);
 
