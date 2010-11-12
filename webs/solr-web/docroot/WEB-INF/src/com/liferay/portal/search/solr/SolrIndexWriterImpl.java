@@ -106,14 +106,20 @@ public class SolrIndexWriterImpl implements IndexWriter {
 		throws SearchException {
 
 		try {
-			StringBundler sb = new StringBundler();
+			StringBundler sb = null;
 
 			if (companyId > 0) {
+				sb = new StringBundler(9);
+
 				sb.append(StringPool.PLUS);
 				sb.append(Field.COMPANY_ID);
 				sb.append(StringPool.COLON);
 				sb.append(companyId);
 				sb.append(StringPool.SPACE);
+			}
+
+			if (sb == null) {
+				sb = new StringBundler(4);
 			}
 
 			sb.append(StringPool.PLUS);
