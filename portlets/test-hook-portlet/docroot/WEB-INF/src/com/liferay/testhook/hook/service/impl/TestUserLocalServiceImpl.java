@@ -33,6 +33,9 @@ public class TestUserLocalServiceImpl extends UserLocalServiceWrapper {
 	public User getUserById(long userId)
 		throws PortalException, SystemException {
 
+		System.out.println(
+			"Called TestUserLocalServiceImpl.getUserById(" + userId + ")");
+
 		User user = super.getUserById(userId);
 
 		return new TestUserImpl(user);
