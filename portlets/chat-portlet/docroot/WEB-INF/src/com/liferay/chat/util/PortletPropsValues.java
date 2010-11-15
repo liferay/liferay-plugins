@@ -22,9 +22,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final int BUDDY_LIST_MAX_BUDDIES = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.BUDDY_LIST_MAX_BUDDIES));
+
 	public static final String BUDDY_LIST_STRATEGY = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.BUDDY_LIST_STRATEGY));
 
-	public static final int MAX_ENTRIES = GetterUtil.getInteger(
-		PortletProps.get(PortletPropsKeys.BUDDY_LIST_MAXBUDDIES));	
 }

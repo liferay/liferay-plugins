@@ -19,8 +19,9 @@ package com.liferay.chat.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
+	public static final String BUDDY_LIST_MAX_BUDDIES =
+		"buddy.list.max.buddies";
 
-	public static final String BUDDY_LIST_MAXBUDDIES = "buddy.list.maxbuddies";
+	public static final String BUDDY_LIST_STRATEGY = "buddy.list.strategy";
 
 }

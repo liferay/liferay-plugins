@@ -118,7 +118,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 		List<Entry> entries = EntryLocalServiceUtil.getNewEntries(
 			pollerRequest.getUserId(), createDate, 0,
-			PortletPropsValues.MAX_ENTRIES);
+			PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 
 		entries = ListUtil.copy(entries);
 

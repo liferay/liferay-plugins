@@ -43,27 +43,29 @@ public class ChatUtil {
 		if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("all")) {
 			buddies = StatusLocalServiceUtil.getAllStatuses(
 				companyId, userId, modifiedDate, 0,
-				PortletPropsValues.MAX_ENTRIES);
+				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("communities")) {
 			buddies = StatusLocalServiceUtil.getGroupStatuses(
-				userId, modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
+				userId, modifiedDate, 0,
+				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
 			buddies = StatusLocalServiceUtil.getSocialStatuses(
 				userId, SocialRelationConstants.TYPE_BI_FRIEND,
-				modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
+				modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends")) {
 
 			List<Object[]> groupBuddies =
 				StatusLocalServiceUtil.getGroupStatuses(
-					userId, modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
+					userId, modifiedDate, 0,
+				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 			List<Object[]> socialBuddies =
 				StatusLocalServiceUtil.getSocialStatuses(
 					userId, SocialRelationConstants.TYPE_BI_FRIEND,
-					modifiedDate, 0, PortletPropsValues.MAX_ENTRIES);
+					modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 
 			buddies = new ArrayList<Object[]>(
 				groupBuddies.size() + socialBuddies.size());

@@ -66,8 +66,14 @@
 							<div class="panel-window">
 								<div class="panel-button minimize"></div>
 
-								<div class="panel-title"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></div>
-								<div><input type="text" class="search-buddies"/></div>
+								<div class="panel-title">
+									<%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %>
+								</div>
+
+								<div>
+									<input class="search-buddies" type="text" />
+								</div>
+
 								<div class="panel-content">
 									<ul class="lfr-component online-users">
 
