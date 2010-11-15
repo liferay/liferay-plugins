@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<context-param>
+		<param-name>deployment-files</param-name>
+		<param-value>/WEB-INF/license.xml</param-value>
+		<description>
+			A comma delimited list of files in the WAR that should be deployed
+			to the deployment-path. The paths must be absolute within the war.
+		</description>
+	</context-param>
+	<context-param>
+		<param-name>deployment-path</param-name>
+		<param-value>/home/liferay/deploy</param-value>
+		<description>
+			The absolute path to the Liferay deploy folder on the target system.
+		</description>
+	</context-param>
+	<listener>
+		<listener-class>com.liferay.portal.DeploymentHelperContextListener</listener-class>
+	</listener>
+</web-app>
