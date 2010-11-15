@@ -18,9 +18,6 @@
 	</bean>
 
 	<!-- Listeners -->
-	<bean id="messageListener.model.events" class="com.liferay.portal.workflow.kaleo.manager.messaging.CompanyModelEventMessageListener">
-		<property name="portalKaleoManager" ref="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" />
-	</bean>
 
 	<bean id="messageListener.kaleo_graph_walker" class="com.liferay.portal.workflow.kaleo.runtime.graph.messaging.PathElementMessageListener">
 		<property name="destinationName" value="liferay/kaleo_graph_walker" />
@@ -67,11 +64,6 @@
 				<entry key="liferay/kaleo_graph_walker">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.kaleo_graph_walker" />
-					</list>
-				</entry>
-				<entry key="liferay/model_events">
-					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
-						<ref bean="messageListener.model.events" />
 					</list>
 				</entry>
 				<entry key="liferay/workflow_definition">
