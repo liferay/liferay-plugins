@@ -4,6 +4,6 @@
 <hook>
 	<service>
 		<service-type>com.liferay.portal.service.UserLocalService</service-type>
-		<service-impl>com.liferay.samplewrapper.hook.service.SampleUserLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.samplewrapper.hook.service.impl.SampleUserLocalServiceImpl</service-impl>
 	</service>
 </hook>

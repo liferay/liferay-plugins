@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.samplewrapper.hook.model;
+package com.liferay.samplewrapper.hook.model.impl;
 
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserWrapper;

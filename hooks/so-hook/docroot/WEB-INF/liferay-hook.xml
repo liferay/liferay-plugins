@@ -40,10 +40,10 @@
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<service>
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
-		<service-impl>com.liferay.so.hook.service.CompanyLocalServiceImpl</service-impl>
+		<service-impl>com.liferay.so.hook.service.impl.CompanyLocalServiceImpl</service-impl>
 	</service>
 	<service>
 		<service-type>com.liferay.portlet.announcements.service.AnnouncementsEntryService</service-type>
-		<service-impl>com.liferay.so.hook.service.AnnouncementsEntryServiceImpl</service-impl>
+		<service-impl>com.liferay.so.hook.service.impl.AnnouncementsEntryServiceImpl</service-impl>
 	</service>
 </hook>
