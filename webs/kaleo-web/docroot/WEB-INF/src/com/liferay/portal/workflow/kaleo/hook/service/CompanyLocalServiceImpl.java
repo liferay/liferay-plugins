@@ -40,7 +40,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 			PortalKaleoManager portalKaleoManager =
 				PortalKaleoManagerUtil.getPortalKaleoManager();
 
-			portalKaleoManager.deployKaleoDefaults();
+			portalKaleoManager.deployKaleoDefaults(company);
 		}
 		catch (PortalException pe) {
 			throw pe;
