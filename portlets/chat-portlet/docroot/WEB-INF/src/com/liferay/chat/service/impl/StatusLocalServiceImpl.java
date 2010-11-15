@@ -67,7 +67,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	}
 
 	public Status updateStatus(long userId, long modifiedDate)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return updateStatus(userId, modifiedDate, -1, -1, null, null, -1);
 	}
@@ -75,7 +75,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 	public Status updateStatus(
 			long userId, long modifiedDate, int online, int awake,
 			String activePanelId, String message, int playSound)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Status status = statusPersistence.fetchByUserId(userId);
 

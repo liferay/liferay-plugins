@@ -14,6 +14,7 @@
 
 package com.liferay.chat.service.persistence;
 
+import com.liferay.chat.model.Status;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -29,7 +30,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class StatusFinderImpl
-	extends BasePersistenceImpl implements StatusFinder {
+	extends BasePersistenceImpl<Status> implements StatusFinder {
 
 	public static String FIND_BY_MODIFIED_DATE =
 		StatusFinder.class.getName() + ".findByModifiedDate";

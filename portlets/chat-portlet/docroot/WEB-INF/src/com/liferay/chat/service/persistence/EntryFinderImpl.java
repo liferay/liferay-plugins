@@ -30,7 +30,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class EntryFinderImpl
-	extends BasePersistenceImpl implements EntryFinder {
+	extends BasePersistenceImpl<Entry> implements EntryFinder {
 
 	public static String FIND_BY_EMPTY_CONTENT =
 		EntryFinder.class.getName() + ".findByEmptyContent";
