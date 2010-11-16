@@ -245,22 +245,25 @@ public class StatusLocalServiceWrapper implements StatusLocalService {
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.updateStatus(userId, modifiedDate);
 	}
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
 		java.lang.String activePanelId, java.lang.String message, int playSound)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.updateStatus(userId, modifiedDate, online,
 			awake, activePanelId, message, playSound);
 	}
 
 	public StatusLocalService getWrappedStatusLocalService() {
 		return _statusLocalService;
+	}
+
+	public void setWrappedStatusLocalService(
+		StatusLocalService statusLocalService) {
+		_statusLocalService = statusLocalService;
 	}
 
 	private StatusLocalService _statusLocalService;

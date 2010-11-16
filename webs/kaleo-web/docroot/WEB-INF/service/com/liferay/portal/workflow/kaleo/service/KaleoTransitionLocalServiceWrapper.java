@@ -276,5 +276,10 @@ public class KaleoTransitionLocalServiceWrapper
 		return _kaleoTransitionLocalService;
 	}
 
+	public void setWrappedKaleoTransitionLocalService(
+		KaleoTransitionLocalService kaleoTransitionLocalService) {
+		_kaleoTransitionLocalService = kaleoTransitionLocalService;
+	}
+
 	private KaleoTransitionLocalService _kaleoTransitionLocalService;
 }

@@ -288,5 +288,10 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 		return _wsrpConsumerLocalService;
 	}
 
+	public void setWrappedWSRPConsumerLocalService(
+		WSRPConsumerLocalService wsrpConsumerLocalService) {
+		_wsrpConsumerLocalService = wsrpConsumerLocalService;
+	}
+
 	private WSRPConsumerLocalService _wsrpConsumerLocalService;
 }

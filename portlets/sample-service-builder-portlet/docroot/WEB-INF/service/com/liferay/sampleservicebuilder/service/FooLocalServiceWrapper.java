@@ -275,5 +275,9 @@ public class FooLocalServiceWrapper implements FooLocalService {
 		return _fooLocalService;
 	}
 
+	public void setWrappedFooLocalService(FooLocalService fooLocalService) {
+		_fooLocalService = fooLocalService;
+	}
+
 	private FooLocalService _fooLocalService;
 }

@@ -284,5 +284,10 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService {
 		return _svnRevisionLocalService;
 	}
 
+	public void setWrappedSVNRevisionLocalService(
+		SVNRevisionLocalService svnRevisionLocalService) {
+		_svnRevisionLocalService = svnRevisionLocalService;
+	}
+
 	private SVNRevisionLocalService _svnRevisionLocalService;
 }

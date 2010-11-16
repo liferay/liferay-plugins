@@ -237,5 +237,9 @@ public class FeedLocalServiceWrapper implements FeedLocalService {
 		return _feedLocalService;
 	}
 
+	public void setWrappedFeedLocalService(FeedLocalService feedLocalService) {
+		_feedLocalService = feedLocalService;
+	}
+
 	private FeedLocalService _feedLocalService;
 }

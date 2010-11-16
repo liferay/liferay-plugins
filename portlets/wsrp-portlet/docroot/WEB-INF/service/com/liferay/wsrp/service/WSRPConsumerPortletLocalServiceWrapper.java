@@ -331,5 +331,10 @@ public class WSRPConsumerPortletLocalServiceWrapper
 		return _wsrpConsumerPortletLocalService;
 	}
 
+	public void setWrappedWSRPConsumerPortletLocalService(
+		WSRPConsumerPortletLocalService wsrpConsumerPortletLocalService) {
+		_wsrpConsumerPortletLocalService = wsrpConsumerPortletLocalService;
+	}
+
 	private WSRPConsumerPortletLocalService _wsrpConsumerPortletLocalService;
 }

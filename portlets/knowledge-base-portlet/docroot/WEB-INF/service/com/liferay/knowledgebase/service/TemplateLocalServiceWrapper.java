@@ -309,5 +309,10 @@ public class TemplateLocalServiceWrapper implements TemplateLocalService {
 		return _templateLocalService;
 	}
 
+	public void setWrappedTemplateLocalService(
+		TemplateLocalService templateLocalService) {
+		_templateLocalService = templateLocalService;
+	}
+
 	private TemplateLocalService _templateLocalService;
 }

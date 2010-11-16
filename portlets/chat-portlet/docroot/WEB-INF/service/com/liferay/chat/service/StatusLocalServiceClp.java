@@ -573,8 +573,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey17,
@@ -584,10 +583,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -607,8 +602,7 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	public com.liferay.chat.model.Status updateStatus(long userId,
 		long modifiedDate, int online, int awake,
 		java.lang.String activePanelId, java.lang.String message, int playSound)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey18,
@@ -620,10 +614,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}

@@ -26,7 +26,7 @@ import com.liferay.ams.service.persistence.TypePersistence;
 
 import com.liferay.counter.service.CounterLocalService;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

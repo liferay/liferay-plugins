@@ -312,5 +312,10 @@ public class KaleoInstanceLocalServiceWrapper
 		return _kaleoInstanceLocalService;
 	}
 
+	public void setWrappedKaleoInstanceLocalService(
+		KaleoInstanceLocalService kaleoInstanceLocalService) {
+		_kaleoInstanceLocalService = kaleoInstanceLocalService;
+	}
+
 	private KaleoInstanceLocalService _kaleoInstanceLocalService;
 }

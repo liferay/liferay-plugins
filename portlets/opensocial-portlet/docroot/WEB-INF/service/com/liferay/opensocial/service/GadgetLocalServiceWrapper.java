@@ -273,5 +273,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService {
 		return _gadgetLocalService;
 	}
 
+	public void setWrappedGadgetLocalService(
+		GadgetLocalService gadgetLocalService) {
+		_gadgetLocalService = gadgetLocalService;
+	}
+
 	private GadgetLocalService _gadgetLocalService;
 }

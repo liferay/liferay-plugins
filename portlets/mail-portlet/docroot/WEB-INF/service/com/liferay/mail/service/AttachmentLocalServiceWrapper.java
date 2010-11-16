@@ -254,5 +254,10 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService {
 		return _attachmentLocalService;
 	}
 
+	public void setWrappedAttachmentLocalService(
+		AttachmentLocalService attachmentLocalService) {
+		_attachmentLocalService = attachmentLocalService;
+	}
+
 	private AttachmentLocalService _attachmentLocalService;
 }

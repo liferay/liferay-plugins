@@ -356,5 +356,10 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 		return _kaleoLogLocalService;
 	}
 
+	public void setWrappedKaleoLogLocalService(
+		KaleoLogLocalService kaleoLogLocalService) {
+		_kaleoLogLocalService = kaleoLogLocalService;
+	}
+
 	private KaleoLogLocalService _kaleoLogLocalService;
 }

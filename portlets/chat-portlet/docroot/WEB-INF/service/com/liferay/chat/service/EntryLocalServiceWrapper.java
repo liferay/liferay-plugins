@@ -249,5 +249,9 @@ public class EntryLocalServiceWrapper implements EntryLocalService {
 		return _entryLocalService;
 	}
 
+	public void setWrappedEntryLocalService(EntryLocalService entryLocalService) {
+		_entryLocalService = entryLocalService;
+	}
+
 	private EntryLocalService _entryLocalService;
 }

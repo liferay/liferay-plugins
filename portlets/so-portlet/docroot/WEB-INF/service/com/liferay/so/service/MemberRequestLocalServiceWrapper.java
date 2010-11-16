@@ -308,5 +308,10 @@ public class MemberRequestLocalServiceWrapper
 		return _memberRequestLocalService;
 	}
 
+	public void setWrappedMemberRequestLocalService(
+		MemberRequestLocalService memberRequestLocalService) {
+		_memberRequestLocalService = memberRequestLocalService;
+	}
+
 	private MemberRequestLocalService _memberRequestLocalService;
 }

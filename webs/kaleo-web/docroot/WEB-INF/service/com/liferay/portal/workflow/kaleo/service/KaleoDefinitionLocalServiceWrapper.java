@@ -374,5 +374,10 @@ public class KaleoDefinitionLocalServiceWrapper
 		return _kaleoDefinitionLocalService;
 	}
 
+	public void setWrappedKaleoDefinitionLocalService(
+		KaleoDefinitionLocalService kaleoDefinitionLocalService) {
+		_kaleoDefinitionLocalService = kaleoDefinitionLocalService;
+	}
+
 	private KaleoDefinitionLocalService _kaleoDefinitionLocalService;
 }

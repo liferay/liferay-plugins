@@ -218,5 +218,9 @@ public class TypeLocalServiceWrapper implements TypeLocalService {
 		return _typeLocalService;
 	}
 
+	public void setWrappedTypeLocalService(TypeLocalService typeLocalService) {
+		_typeLocalService = typeLocalService;
+	}
+
 	private TypeLocalService _typeLocalService;
 }

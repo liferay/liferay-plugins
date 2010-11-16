@@ -244,5 +244,10 @@ public class KaleoConditionLocalServiceWrapper
 		return _kaleoConditionLocalService;
 	}
 
+	public void setWrappedKaleoConditionLocalService(
+		KaleoConditionLocalService kaleoConditionLocalService) {
+		_kaleoConditionLocalService = kaleoConditionLocalService;
+	}
+
 	private KaleoConditionLocalService _kaleoConditionLocalService;
 }

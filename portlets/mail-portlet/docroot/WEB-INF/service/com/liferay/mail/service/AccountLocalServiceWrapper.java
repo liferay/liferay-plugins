@@ -279,5 +279,10 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 		return _accountLocalService;
 	}
 
+	public void setWrappedAccountLocalService(
+		AccountLocalService accountLocalService) {
+		_accountLocalService = accountLocalService;
+	}
+
 	private AccountLocalService _accountLocalService;
 }

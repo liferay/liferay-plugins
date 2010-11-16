@@ -275,5 +275,10 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 		return _folderLocalService;
 	}
 
+	public void setWrappedFolderLocalService(
+		FolderLocalService folderLocalService) {
+		_folderLocalService = folderLocalService;
+	}
+
 	private FolderLocalService _folderLocalService;
 }

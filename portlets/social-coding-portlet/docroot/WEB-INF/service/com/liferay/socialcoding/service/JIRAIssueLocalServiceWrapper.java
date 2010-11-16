@@ -357,5 +357,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService {
 		return _jiraIssueLocalService;
 	}
 
+	public void setWrappedJIRAIssueLocalService(
+		JIRAIssueLocalService jiraIssueLocalService) {
+		_jiraIssueLocalService = jiraIssueLocalService;
+	}
+
 	private JIRAIssueLocalService _jiraIssueLocalService;
 }

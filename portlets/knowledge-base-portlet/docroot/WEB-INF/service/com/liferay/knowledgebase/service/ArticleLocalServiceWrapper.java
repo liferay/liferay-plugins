@@ -444,5 +444,10 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService;
 	}
 
+	public void setWrappedArticleLocalService(
+		ArticleLocalService articleLocalService) {
+		_articleLocalService = articleLocalService;
+	}
+
 	private ArticleLocalService _articleLocalService;
 }

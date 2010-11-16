@@ -221,5 +221,10 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService {
 		return _definitionLocalService;
 	}
 
+	public void setWrappedDefinitionLocalService(
+		DefinitionLocalService definitionLocalService) {
+		_definitionLocalService = definitionLocalService;
+	}
+
 	private DefinitionLocalService _definitionLocalService;
 }

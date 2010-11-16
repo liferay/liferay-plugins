@@ -20,7 +20,7 @@ import com.liferay.opensocial.model.impl.GadgetImpl;
 import com.liferay.opensocial.model.impl.GadgetModelImpl;
 
 import com.liferay.portal.NoSuchModelException;
-import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;

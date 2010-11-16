@@ -233,5 +233,10 @@ public class JIRAChangeItemLocalServiceWrapper
 		return _jiraChangeItemLocalService;
 	}
 
+	public void setWrappedJIRAChangeItemLocalService(
+		JIRAChangeItemLocalService jiraChangeItemLocalService) {
+		_jiraChangeItemLocalService = jiraChangeItemLocalService;
+	}
+
 	private JIRAChangeItemLocalService _jiraChangeItemLocalService;
 }

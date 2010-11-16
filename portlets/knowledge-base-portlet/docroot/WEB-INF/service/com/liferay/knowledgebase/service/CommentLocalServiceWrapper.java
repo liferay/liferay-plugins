@@ -276,5 +276,10 @@ public class CommentLocalServiceWrapper implements CommentLocalService {
 		return _commentLocalService;
 	}
 
+	public void setWrappedCommentLocalService(
+		CommentLocalService commentLocalService) {
+		_commentLocalService = commentLocalService;
+	}
+
 	private CommentLocalService _commentLocalService;
 }

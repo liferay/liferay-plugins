@@ -319,5 +319,10 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		return _messageLocalService;
 	}
 
+	public void setWrappedMessageLocalService(
+		MessageLocalService messageLocalService) {
+		_messageLocalService = messageLocalService;
+	}
+
 	private MessageLocalService _messageLocalService;
 }

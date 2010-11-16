@@ -224,5 +224,10 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
 		return _jiraActionLocalService;
 	}
 
+	public void setWrappedJIRAActionLocalService(
+		JIRAActionLocalService jiraActionLocalService) {
+		_jiraActionLocalService = jiraActionLocalService;
+	}
+
 	private JIRAActionLocalService _jiraActionLocalService;
 }

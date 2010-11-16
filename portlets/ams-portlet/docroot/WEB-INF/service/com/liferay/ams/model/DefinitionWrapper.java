@@ -341,7 +341,7 @@ public class DefinitionWrapper implements Definition {
 		return _definition.clone();
 	}
 
-	public int compareTo(com.liferay.ams.model.Definition definition) {
+	public int compareTo(Definition definition) {
 		return _definition.compareTo(definition);
 	}
 
@@ -349,7 +349,7 @@ public class DefinitionWrapper implements Definition {
 		return _definition.hashCode();
 	}
 
-	public com.liferay.ams.model.Definition toEscapedModel() {
+	public Definition toEscapedModel() {
 		return _definition.toEscapedModel();
 	}
 

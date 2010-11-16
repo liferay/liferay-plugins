@@ -221,5 +221,10 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService {
 		return _checkoutLocalService;
 	}
 
+	public void setWrappedCheckoutLocalService(
+		CheckoutLocalService checkoutLocalService) {
+		_checkoutLocalService = checkoutLocalService;
+	}
+
 	private CheckoutLocalService _checkoutLocalService;
 }

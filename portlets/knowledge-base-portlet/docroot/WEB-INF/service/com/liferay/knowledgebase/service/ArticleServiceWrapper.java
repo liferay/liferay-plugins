@@ -211,5 +211,9 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService;
 	}
 
+	public void setWrappedArticleService(ArticleService articleService) {
+		_articleService = articleService;
+	}
+
 	private ArticleService _articleService;
 }

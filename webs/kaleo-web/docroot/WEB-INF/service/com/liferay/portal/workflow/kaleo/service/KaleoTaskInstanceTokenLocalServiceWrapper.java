@@ -430,5 +430,10 @@ public class KaleoTaskInstanceTokenLocalServiceWrapper
 		return _kaleoTaskInstanceTokenLocalService;
 	}
 
+	public void setWrappedKaleoTaskInstanceTokenLocalService(
+		KaleoTaskInstanceTokenLocalService kaleoTaskInstanceTokenLocalService) {
+		_kaleoTaskInstanceTokenLocalService = kaleoTaskInstanceTokenLocalService;
+	}
+
 	private KaleoTaskInstanceTokenLocalService _kaleoTaskInstanceTokenLocalService;
 }

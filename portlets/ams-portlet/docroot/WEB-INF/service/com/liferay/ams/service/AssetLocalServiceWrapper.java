@@ -219,5 +219,9 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 		return _assetLocalService;
 	}
 
+	public void setWrappedAssetLocalService(AssetLocalService assetLocalService) {
+		_assetLocalService = assetLocalService;
+	}
+
 	private AssetLocalService _assetLocalService;
 }

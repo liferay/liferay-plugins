@@ -245,5 +245,10 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService {
 		return _kaleoNodeLocalService;
 	}
 
+	public void setWrappedKaleoNodeLocalService(
+		KaleoNodeLocalService kaleoNodeLocalService) {
+		_kaleoNodeLocalService = kaleoNodeLocalService;
+	}
+
 	private KaleoNodeLocalService _kaleoNodeLocalService;
 }

@@ -257,5 +257,10 @@ public class KaleoNotificationRecipientLocalServiceWrapper
 		return _kaleoNotificationRecipientLocalService;
 	}
 
+	public void setWrappedKaleoNotificationRecipientLocalService(
+		KaleoNotificationRecipientLocalService kaleoNotificationRecipientLocalService) {
+		_kaleoNotificationRecipientLocalService = kaleoNotificationRecipientLocalService;
+	}
+
 	private KaleoNotificationRecipientLocalService _kaleoNotificationRecipientLocalService;
 }

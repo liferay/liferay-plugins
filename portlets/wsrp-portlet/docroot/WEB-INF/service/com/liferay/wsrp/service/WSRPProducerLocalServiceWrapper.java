@@ -290,5 +290,10 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 		return _wsrpProducerLocalService;
 	}
 
+	public void setWrappedWSRPProducerLocalService(
+		WSRPProducerLocalService wsrpProducerLocalService) {
+		_wsrpProducerLocalService = wsrpProducerLocalService;
+	}
+
 	private WSRPProducerLocalService _wsrpProducerLocalService;
 }

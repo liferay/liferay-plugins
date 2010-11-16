@@ -20,7 +20,7 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalService;
 import com.liferay.opensocial.service.persistence.GadgetPersistence;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

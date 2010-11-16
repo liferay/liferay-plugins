@@ -26,7 +26,7 @@ import com.liferay.mail.service.persistence.AttachmentPersistence;
 import com.liferay.mail.service.persistence.FolderPersistence;
 import com.liferay.mail.service.persistence.MessagePersistence;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

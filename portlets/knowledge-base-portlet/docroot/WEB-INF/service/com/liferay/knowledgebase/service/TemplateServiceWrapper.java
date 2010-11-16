@@ -78,5 +78,9 @@ public class TemplateServiceWrapper implements TemplateService {
 		return _templateService;
 	}
 
+	public void setWrappedTemplateService(TemplateService templateService) {
+		_templateService = templateService;
+	}
+
 	private TemplateService _templateService;
 }

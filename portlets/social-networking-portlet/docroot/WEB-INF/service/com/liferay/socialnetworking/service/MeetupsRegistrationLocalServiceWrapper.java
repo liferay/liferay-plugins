@@ -258,5 +258,10 @@ public class MeetupsRegistrationLocalServiceWrapper
 		return _meetupsRegistrationLocalService;
 	}
 
+	public void setWrappedMeetupsRegistrationLocalService(
+		MeetupsRegistrationLocalService meetupsRegistrationLocalService) {
+		_meetupsRegistrationLocalService = meetupsRegistrationLocalService;
+	}
+
 	private MeetupsRegistrationLocalService _meetupsRegistrationLocalService;
 }

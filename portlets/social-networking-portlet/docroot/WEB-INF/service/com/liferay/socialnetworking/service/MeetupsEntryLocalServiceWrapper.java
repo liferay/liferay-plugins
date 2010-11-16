@@ -267,5 +267,10 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService;
 	}
 
+	public void setWrappedMeetupsEntryLocalService(
+		MeetupsEntryLocalService meetupsEntryLocalService) {
+		_meetupsEntryLocalService = meetupsEntryLocalService;
+	}
+
 	private MeetupsEntryLocalService _meetupsEntryLocalService;
 }

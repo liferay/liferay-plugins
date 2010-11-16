@@ -228,5 +228,10 @@ public class JIRAChangeGroupLocalServiceWrapper
 		return _jiraChangeGroupLocalService;
 	}
 
+	public void setWrappedJIRAChangeGroupLocalService(
+		JIRAChangeGroupLocalService jiraChangeGroupLocalService) {
+		_jiraChangeGroupLocalService = jiraChangeGroupLocalService;
+	}
+
 	private JIRAChangeGroupLocalService _jiraChangeGroupLocalService;
 }

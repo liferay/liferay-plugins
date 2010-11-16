@@ -320,5 +320,10 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService {
 		return _userThreadLocalService;
 	}
 
+	public void setWrappedUserThreadLocalService(
+		UserThreadLocalService userThreadLocalService) {
+		_userThreadLocalService = userThreadLocalService;
+	}
+
 	private UserThreadLocalService _userThreadLocalService;
 }

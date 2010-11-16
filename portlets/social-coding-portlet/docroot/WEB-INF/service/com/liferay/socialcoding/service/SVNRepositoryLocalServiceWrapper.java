@@ -240,5 +240,10 @@ public class SVNRepositoryLocalServiceWrapper
 		return _svnRepositoryLocalService;
 	}
 
+	public void setWrappedSVNRepositoryLocalService(
+		SVNRepositoryLocalService svnRepositoryLocalService) {
+		_svnRepositoryLocalService = svnRepositoryLocalService;
+	}
+
 	private SVNRepositoryLocalService _svnRepositoryLocalService;
 }

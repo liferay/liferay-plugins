@@ -270,5 +270,10 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService {
 		return _wallEntryLocalService;
 	}
 
+	public void setWrappedWallEntryLocalService(
+		WallEntryLocalService wallEntryLocalService) {
+		_wallEntryLocalService = wallEntryLocalService;
+	}
+
 	private WallEntryLocalService _wallEntryLocalService;
 }

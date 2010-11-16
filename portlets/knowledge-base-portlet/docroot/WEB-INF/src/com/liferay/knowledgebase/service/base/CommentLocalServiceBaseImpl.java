@@ -26,7 +26,7 @@ import com.liferay.knowledgebase.service.persistence.ArticlePersistence;
 import com.liferay.knowledgebase.service.persistence.CommentPersistence;
 import com.liferay.knowledgebase.service.persistence.TemplatePersistence;
 
-import com.liferay.portal.kernel.annotation.BeanReference;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;

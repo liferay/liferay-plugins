@@ -275,5 +275,10 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 		return _kaleoTaskAssignmentLocalService;
 	}
 
+	public void setWrappedKaleoTaskAssignmentLocalService(
+		KaleoTaskAssignmentLocalService kaleoTaskAssignmentLocalService) {
+		_kaleoTaskAssignmentLocalService = kaleoTaskAssignmentLocalService;
+	}
+
 	private KaleoTaskAssignmentLocalService _kaleoTaskAssignmentLocalService;
 }

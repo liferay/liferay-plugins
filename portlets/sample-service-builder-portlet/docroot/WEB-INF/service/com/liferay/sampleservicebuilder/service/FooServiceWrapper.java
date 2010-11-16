@@ -32,5 +32,9 @@ public class FooServiceWrapper implements FooService {
 		return _fooService;
 	}
 
+	public void setWrappedFooService(FooService fooService) {
+		_fooService = fooService;
+	}
+
 	private FooService _fooService;
 }

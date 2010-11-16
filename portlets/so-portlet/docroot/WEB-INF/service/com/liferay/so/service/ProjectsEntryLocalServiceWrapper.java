@@ -260,5 +260,10 @@ public class ProjectsEntryLocalServiceWrapper
 		return _projectsEntryLocalService;
 	}
 
+	public void setWrappedProjectsEntryLocalService(
+		ProjectsEntryLocalService projectsEntryLocalService) {
+		_projectsEntryLocalService = projectsEntryLocalService;
+	}
+
 	private ProjectsEntryLocalService _projectsEntryLocalService;
 }
