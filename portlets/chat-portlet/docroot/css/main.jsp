@@ -169,8 +169,26 @@ html body {
 
 /* ---------- Online Users ---------- */
 
-.buddy-list .search-buddies {
-	min-width: 226px;
+.buddy-list .search-buddies .aui-field-content {
+	padding: 2px;
+}
+
+.buddy-list .search-buddies-field {
+	background-image: url(<%= themeImagesPath %>/common/search.png);
+	background-repeat: no-repeat;
+	background-position: 5px 50%;
+	padding-left: 25px;
+	width: 100%;
+}
+
+.buddy-list .search-buddies-field {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.ie6 .buddy-list .search-buddies-field, .ie7 .buddy-list .search-buddies-field {
+	width: 88%;
 }
 
 .buddy-list .panel-content {
@@ -178,7 +196,7 @@ html body {
 	margin: 0;
 	max-height: 400px;
 	overflow-y: scroll;
-	overflow-x: display;
+	overflow-x: hidden;
 	padding: 2px 0;
 }
 

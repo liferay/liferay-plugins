@@ -70,9 +70,7 @@
 									<%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %>
 								</div>
 
-								<div>
-									<input class="search-buddies" type="text" />
-								</div>
+								<aui:input cssClass="search-buddies" inputCssClass="search-buddies-field" label="" name="searchBuddies" />
 
 								<div class="panel-content">
 									<ul class="lfr-component online-users">

@@ -1,6 +1,6 @@
 AUI().use(
 	'aui-base',
-	'delayed-task',
+	'aui-live-search',
 	'liferay-poller',
 	'swfobject',
 	function(A) {
@@ -55,7 +55,7 @@ AUI().use(
 			var instance = this;
 
 			if (!options.container) {
-				instance._tabsContainer = Liferay.Chat.Manager.getContainer()
+				instance._tabsContainer = Liferay.Chat.Manager.getContainer();
 			}
 			else {
 				instance._tabsContainer = A.one(options.container);
@@ -201,7 +201,7 @@ AUI().use(
 							'<div class="panel-window">' +
 								'<div class="panel-button minimize"></div>' +
 								'<div class="panel-title"></div>' +
-                                '<div><input class="search-buddies" type="text" /></div>' +
+                                '<div class="search-buddies"><input class="search-buddies-field" type="text" /></div>' +
 								'<div class="panel-content"></div>' +
 							'</div>' +
 						'</div>' +
@@ -403,11 +403,11 @@ AUI().use(
 				_keystroke: function(event) {
 					var instance = this;
 
-					var chatInputEl = instance._chatInput;
+					var chatInput = instance._chatInput;
 					var outputEl = instance._chatOutput;
 					var userId = instance._panelId;
 
-					var chatInputEl = instance._chatInput.getDOM();
+					var chatInputEl = chatInput.getDOM();
 					var content = chatInputEl.value.replace(/\n|\r/gim, '');
 
 					if (event.type == 'keyup') {
@@ -509,7 +509,7 @@ AUI().use(
 					var message = '<p class="blurb ' + cssClass + '">' +
 									'<b class="name">' + userName + '</b>' +
 									'<i class="date">' + Liferay.Chat.Util.formatTime(entry.createDate) + '</i>' +
-									'<span class="text">' + content + '</span>'
+									'<span class="text">' + content + '</span>' +
 								'</p>';
 
 					var outputEl = output.getDOM();
@@ -623,9 +623,9 @@ AUI().use(
 			triggerSound: function() {
 				var instance = this;
 
-			 	if (instance._playSound) {
-			 		instance._sound.write(instance._soundContainer.getDOM());
-			 	}
+				if (instance._playSound) {
+					instance._sound.write(instance._soundContainer.getDOM());
+				}
 			},
 
 			_addChat: function(chatName, chat) {
@@ -647,35 +647,56 @@ AUI().use(
 			_createBuddyListPanel: function() {
 				var instance = this;
 
-				var buddylist = new Liferay.Chat.Panel(
+				var buddyListPanel = new Liferay.Chat.Panel(
 					{
 						fromMarkup: '.chat-tabs > .buddy-list',
 						panelId: 'buddylist'
 					}
 				);
 
-				instance._addPanel('buddylist', buddylist);
+				instance._addPanel('buddylist', buddyListPanel);
 
-				instance._onlineBuddies = buddylist.getPanel().one('.online-users');
+				var buddyListNode = buddyListPanel.getPanel();
 
-                instance._searchBuddiesNode = buddylist.getPanel().one('.search-buddies');
+				var buddyList = buddyListNode.one('.online-users');
 
-                instance._searchBuddiesNode.on('keyup', instance._searchBuddies, instance);                
+                var searchBuddiesField = buddyListNode.one('.search-buddies-field');
 
-				if (instance._onlineBuddies) {
-
-					var buddyList = instance._onlineBuddies;
-
-					if (buddyList) {
-						buddyList.delegate(
-							'click',
-							function(event) {
-								instance._createChatFromUser(event.currentTarget);
-							},
-							'li'
-						);
+				var liveSearch = new A.LiveSearch(
+					{
+						input: searchBuddiesField,
+						nodes: '#chatBar .buddy-list .online-users li',
+						data: function(node) {
+							return node.one('.name').text();
+						}
 					}
+				);
+
+				searchBuddiesField.on('focus', liveSearch.refreshIndex, liveSearch);
+
+				buddyListPanel.on(
+					'show',
+					function(event) {
+						if (searchBuddiesField.val()) {
+							searchBuddiesField.selectText();
+						}
+					}
+				);
+
+				if (buddyList) {
+					buddyList.delegate(
+						'click',
+						function(event) {
+							instance._createChatFromUser(event.currentTarget);
+						},
+						'li'
+					);
 				}
+
+				instance._searchBuddiesField = searchBuddiesField;
+				instance._liveSearch = liveSearch;
+
+				instance._onlineBuddies = buddyList;
 			},
 
 			_createChatFromUser: function(user) {
@@ -911,37 +932,11 @@ AUI().use(
 				instance._sendTask.delay(instance._saveSettingsDelay, null, null, [instance._getSettings()]);
 			},
 
-            _searchBuddies: function(){
-                var instance = this;
-
-				var search = instance._searchBuddiesNode.val().toLowerCase();
-                var items = instance._chatContainer.all(".online-users > li");
-
-				if (search == "") {
-                    items.each(
-						function(node) {
-							node.show();
-						}
-					);
-                }
-				else if (search.length > 2) {
-                    items.each(
-						function(node) {
-							if (node.text().toLowerCase().indexOf(search) < 0 ) {
-								node.hide();
-							}
-							else {
-								node.show();
-							}
-						}
-					);
-                }
-            },
-
 			_updateBuddies: function(buddies) {
 				var instance = this;
 
-				var search = instance._searchBuddiesNode.val().toLowerCase();
+				var searchBuddiesField = instance._searchBuddiesField;
+				var search = searchBuddiesField.val().toLowerCase();
 
 				var buddyList = buddies || [];
 				var numBuddies = buddyList.length;
@@ -956,12 +951,6 @@ AUI().use(
 				for (var i = 0; i < numBuddies; i++) {
 					var buddy = buddyList[i];
 
-					var display = "";
-
-					if ((search.length > 2) && (buddy.fullName.toLowerCase().indexOf(search) < 0)) {
-                        display = "display:none;"
-                    }
-
 					var currentBuddy = currentBuddies[buddy.userId];
 					var currentChat = currentChats[buddy.userId];
 
@@ -974,14 +963,23 @@ AUI().use(
 					currentBuddies[buddy.userId] = buddy;
 
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
+
 					buffer.push(
-						'<li class="active" userId="' + buddy.userId + '" style="' + display + '">' +
+						'<li class="active" userId="' + buddy.userId + '">' +
 							'<img alt="" src="' + userImagePath + '" />' +
 							'<div class="name">' + buddy.fullName + '</div>' +
 						'</li>');
 				}
 
 				instance._onlineBuddies.html(buffer.join(''));
+
+				if (
+					searchBuddiesField.test(':visible') &&
+					(search.length > 2 || searchBuddiesField.compareTo(document.activeElement))) {
+
+					instance._liveSearch.refreshIndex();
+					instance._liveSearch.fire('search', {liveSearch: {}});
+				}
 
 				instance._updateBuddyList();
 
