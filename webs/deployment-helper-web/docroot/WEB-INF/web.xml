@@ -6,8 +6,7 @@
 		<param-name>deployment-files</param-name>
 		<param-value>/WEB-INF/license.xml</param-value>
 		<description>
-			A comma delimited list of files in the WAR that should be deployed
-			to the deployment-path. The paths must be absolute within the war.
+			A comma delimited list of files in the WAR that should be deployed to the deployment-path. The paths must be absolute paths within the WAR.
 		</description>
 	</context-param>
 	<context-param>
@@ -18,6 +17,6 @@
 		</description>
 	</context-param>
 	<listener>
-		<listener-class>com.liferay.portal.DeploymentHelperContextListener</listener-class>
+		<listener-class>com.liferay.deploymenthelper.servlet.DeploymentHelperContextListener</listener-class>
 	</listener>
 </web-app>
