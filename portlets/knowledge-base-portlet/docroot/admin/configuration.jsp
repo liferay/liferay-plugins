@@ -62,10 +62,6 @@ else if (tabs2.equals("article-updated-email")) {
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
 
-	<!--
-	SessionErrors are not propagated for plugins. See portlet_configuration\edit_configuration.jsp.
-	-->
-
 	<liferay-ui:error key="emailArticleAddedBody" message="please-enter-a-valid-body" />
 	<liferay-ui:error key="emailArticleAddedSubject" message="please-enter-a-valid-subject" />
 	<liferay-ui:error key="emailArticleUpdatedBody" message="please-enter-a-valid-body" />
