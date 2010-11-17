@@ -1367,18 +1367,33 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 			query.append(_FILTER_SQL_SELECT_TEMPLATE_WHERE);
 		}
 		else {
-			query.append(_FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE);
+			query.append(_FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
 		query.append(_FINDER_COLUMN_GROUPID_GROUPID_2);
 
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
 		if (orderByComparator != null) {
-			appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-				orderByComparator);
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
 		}
 
 		else {
-			query.append(TemplateModelImpl.ORDER_BY_JPQL);
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(TemplateModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(TemplateModelImpl.ORDER_BY_SQL);
+			}
 		}
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
@@ -1392,7 +1407,12 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 
 			SQLQuery q = session.createSQLQuery(sql);
 
-			q.addEntity(_FILTER_ENTITY_ALIAS, TemplateImpl.class);
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, TemplateImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, TemplateImpl.class);
+			}
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
@@ -1898,13 +1918,17 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	private static final String _FINDER_COLUMN_UUID_G_GROUPID_2 = "template.groupId = ?";
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "template.groupId = ?";
 	private static final String _FILTER_SQL_SELECT_TEMPLATE_WHERE = "SELECT DISTINCT {template.*} FROM KB_Template template WHERE ";
-	private static final String _FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE =
-		"SELECT {template.*} FROM (SELECT DISTINCT templateId FROM KB_Template) template2 INNER JOIN KB_Template template ON (template2.templateId = template.templateId) WHERE ";
+	private static final String _FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {KB_Template.*} FROM (SELECT DISTINCT template.templateId FROM KB_Template template WHERE ";
+	private static final String _FILTER_SQL_SELECT_TEMPLATE_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN KB_Template ON TEMP_TABLE.templateId = KB_Template.templateId";
 	private static final String _FILTER_SQL_COUNT_TEMPLATE_WHERE = "SELECT COUNT(DISTINCT template.templateId) AS COUNT_VALUE FROM KB_Template template WHERE ";
 	private static final String _FILTER_COLUMN_PK = "template.templateId";
 	private static final String _FILTER_COLUMN_USERID = "template.userId";
 	private static final String _FILTER_ENTITY_ALIAS = "template";
+	private static final String _FILTER_ENTITY_TABLE = "KB_Template";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "template.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "KB_Template.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Template exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Template exists with the key {";
 	private static Log _log = LogFactoryUtil.getLog(TemplatePersistenceImpl.class);

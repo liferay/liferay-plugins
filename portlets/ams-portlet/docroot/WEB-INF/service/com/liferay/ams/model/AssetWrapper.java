@@ -296,7 +296,7 @@ public class AssetWrapper implements Asset {
 		return _asset.clone();
 	}
 
-	public int compareTo(Asset asset) {
+	public int compareTo(com.liferay.ams.model.Asset asset) {
 		return _asset.compareTo(asset);
 	}
 
@@ -304,7 +304,7 @@ public class AssetWrapper implements Asset {
 		return _asset.hashCode();
 	}
 
-	public Asset toEscapedModel() {
+	public com.liferay.ams.model.Asset toEscapedModel() {
 		return _asset.toEscapedModel();
 	}
 
