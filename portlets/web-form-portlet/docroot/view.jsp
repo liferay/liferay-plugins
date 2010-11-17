@@ -64,13 +64,13 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
 
 			<c:if test='<%= Validator.isNotNull(fieldValidationScript) %>'>
-				<div class="aui-helper-hidden" id="<portlet:namespace/>validationError<%= fieldLabel %>">
+				<div class="aui-helper-hidden" id="<portlet:namespace/>validationError<%= fieldName %>">
 					<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
 				</div>
 			</c:if>
 
 			<c:if test="<%= !fieldOptional %>">
-				<div class="aui-helper-hidden" id="<portlet:namespace/>fieldOptionalError<%= fieldLabel %>">
+				<div class="aui-helper-hidden" id="<portlet:namespace/>fieldOptionalError<%= fieldName %>">
 					<span class="portlet-msg-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
 				</div>
 			</c:if>
@@ -167,6 +167,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 				<%
 				int fieldIndex = 1;
+				String fieldName = "field" + fieldIndex;
 				String fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, StringPool.BLANK);
 
 				while ((fieldIndex == 1) || Validator.isNotNull(fieldLabel)) {
@@ -176,7 +177,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 					String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + fieldIndex, StringPool.BLANK);
 				%>
 
-					var key = "<%= HtmlUtil.escape(fieldLabel) %>";
+					var key = "<%= fieldName %>";
 
 					keys[<%= fieldIndex %>] = key;
 
@@ -216,6 +217,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 				<%
 					fieldIndex++;
+					fieldName = "field" + fieldIndex;
 					fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, "");
 				}
 				%>
@@ -227,8 +229,8 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
 					var currentFieldValue = fieldsMap[key];
 
-					var optionalFieldError = A.one('#<portlet:namespace />fieldOptionalError' + fieldLabels[key]);
-					var validationError = A.one('#<portlet:namespace />validationError' + fieldLabels[key]);
+					var optionalFieldError = A.one('#<portlet:namespace />fieldOptionalError' + key);
+					var validationError = A.one('#<portlet:namespace />validationError' + key);
 
 					if (!fieldOptional[key] && currentFieldValue.match(/^\s*$/)) {
 						validationErrors = true;
