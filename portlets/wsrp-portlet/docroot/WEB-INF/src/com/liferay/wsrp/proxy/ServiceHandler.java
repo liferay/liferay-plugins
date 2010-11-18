@@ -82,7 +82,7 @@ public class ServiceHandler implements InvocationHandler {
 			new WSRP_v1_Markup_Binding_SOAPStub(url, service);
 
 		markupService.setPortName(
-			_v1ServiceLocator.getWSRPBaseServiceWSDDServiceName());
+			_v1ServiceLocator.getWSRP_v1_Markup_ServiceWSDDServiceName());
 
 		return markupService;
 	}
@@ -145,7 +145,7 @@ public class ServiceHandler implements InvocationHandler {
 			proxyInterface = WSRP_v2_PortletManagement_PortType.class;
 
 			WSRP_v1_PortletManagement_PortType portletManagementService =
-				_v1ServiceLocator.getWSRPPortletManagementService(
+				_v1ServiceLocator.getWSRP_v1_PortletManagement_Service(
 					bindingURL);
 
 			invocationHandler = new PortletManagementServiceHandler(
@@ -157,7 +157,7 @@ public class ServiceHandler implements InvocationHandler {
 			proxyInterface = WSRP_v2_Registration_PortType.class;
 
 			WSRP_v1_Registration_PortType registrationService =
-				_v1ServiceLocator.getWSRPRegistrationService(bindingURL);
+				_v1ServiceLocator.getWSRP_v1_Registration_Service(bindingURL);
 
 			invocationHandler = new RegistrationServiceHandler(
 				registrationService);
@@ -168,7 +168,7 @@ public class ServiceHandler implements InvocationHandler {
 			proxyInterface = WSRP_v2_ServiceDescription_PortType.class;
 
 			WSRP_v1_ServiceDescription_PortType serviceDescriptionService =
-				_v1ServiceLocator.getWSRPServiceDescriptionService(
+				_v1ServiceLocator.getWSRP_v1_ServiceDescription_Service(
 					bindingURL);
 
 			invocationHandler = new ServiceDescriptionServiceHandler(

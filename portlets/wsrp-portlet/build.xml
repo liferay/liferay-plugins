@@ -16,6 +16,14 @@
 	-->
 
 	<target name="build-oasis-wsrp">
+		<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
+
+		<mkdir dir="docroot/WEB-INF/lib" />
+
+		<copy todir="docroot/WEB-INF/lib">
+			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
+		</copy>
+
 		<tstamp>
 			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 		</tstamp>
@@ -49,6 +57,14 @@
 		>
 			<fileset dir="${tstamp.value}/oasis/names/tc/wsrp/v2/types" includes="MarkupContext.java,ResourceContext.java" />
 		</replaceregexp>
+		
+		<replace
+			dir="${tstamp.value}/oasis/names/tc/wsrp"
+			includes="v1/types/LocalizedString.java,v1/types/ResourceValue.java,v1/types/Property.java,v2/types/LocalizedString.java,v2/types/ResourceValue.java,v2/types/Property.java"
+			summary="true"
+		>
+			<replacefilter token="attrField.setXmlName(new javax.xml.namespace.QName(&quot;&quot;, &quot;lang&quot;))" value="attrField.setXmlName(new javax.xml.namespace.QName(&quot;http://www.w3.org/XML/1998/namespace&quot;, &quot;lang&quot;));" />
+		</replace>
 
 		<path id="plugin-lib.classpath">
 			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
@@ -71,8 +87,6 @@
 	</target>
 
 	<target name="format-xml">
-		<taskdef classpathref="portal.classpath" resource="axis-tasks.properties" />
-
 		<for param="xml.file">
 			<path>
 				<fileset

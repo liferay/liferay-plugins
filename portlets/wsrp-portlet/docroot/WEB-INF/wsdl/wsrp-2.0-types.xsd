@@ -55,7 +55,8 @@
 		<sequence>
 			<element name="value" type="xsd:string" />
 		</sequence>
-		<attribute ref="xml:lang" use="required" />
+		<!--<attribute ref="xml:lang" use="required" />-->
+		<attribute name="lang" type="xsd:string" use="required" />
 		<attribute name="resourceName" type="xsd:string" use="optional" />
 	</complexType>
 	<complexType name="ResourceList">
@@ -76,7 +77,9 @@
 			<element name="value" type="xsd:string" />
 			<element name="extensions" type="types:Extension" minOccurs="0" maxOccurs="unbounded" />
 		</sequence>
-		<attribute ref="xml:lang" use="required" />
+		<!--<attribute ref="xml:lang" use="required" />-->
+		<attribute name="lang" type="xsd:string" use="required" />
+
 	</complexType>
 	<complexType name="NamedString">
 		<sequence>
@@ -684,7 +687,8 @@
 		</sequence>
 		<attribute name="name" type="xsd:QName" use="required" />
 		<attribute name="type" type="xsd:QName" use="optional" />
-		<attribute ref="xml:lang" use="optional" />
+		<!--<attribute ref="xml:lang" use="optional" />-->
+		<attribute name="lang" type="xsd:string" use="optional" />
 	</complexType>
 	<complexType name="ResetProperty">
 		<sequence/>

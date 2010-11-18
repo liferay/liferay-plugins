@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -73,6 +74,7 @@ import oasis.names.tc.wsrp.v2.types.ReleaseSessions;
 import oasis.names.tc.wsrp.v2.types.ResourceContext;
 import oasis.names.tc.wsrp.v2.types.ResourceParams;
 import oasis.names.tc.wsrp.v2.types.ResourceResponse;
+import oasis.names.tc.wsrp.v2.types.RuntimeContext;
 import oasis.names.tc.wsrp.v2.types.UpdateResponse;
 
 import org.apache.axis.message.MessageElement;
@@ -374,25 +376,33 @@ public class V2MarkupServiceImpl
 		PortletContext portletContext =
 			performBlockingInteraction.getPortletContext();
 
+		RuntimeContext runtimeContext = 
+			performBlockingInteraction.getRuntimeContext();
+		
+		String remoteNamespace = runtimeContext.getNamespacePrefix();
+		
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
+
+		MarkupParams markupParams =
+			performBlockingInteraction.getMarkupParams();
+
+		NavigationalContext navigationalContext =
+			markupParams.getNavigationalContext();
+
+		String liferayNamespace = PortalUtil.getPortletNamespace(
+				getPortletId(portletContext, navigationalContext));
 
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		if (formParameters != null) {
-			MarkupParams markupParams =
-				performBlockingInteraction.getMarkupParams();
-
-			NavigationalContext navigationalContext =
-				markupParams.getNavigationalContext();
-
-			String namespace = PortalUtil.getPortletNamespace(
-				getPortletId(portletContext, navigationalContext));
 
 			for (NamedString formParameter : formParameters) {
+				String name = formParameter.getName().replace(
+					remoteNamespace, StringPool.BLANK);
+				
 				httpOptions.addPart(
-					namespace + formParameter.getName(),
-					formParameter.getValue());
+					liferayNamespace + name, formParameter.getValue());
 			}
 		}
 
@@ -439,6 +449,7 @@ public class V2MarkupServiceImpl
 			MarkupContext markupContext = new MarkupContext();
 
 			markupContext.setItemString(content);
+			markupContext.setMimeType(ContentTypes.TEXT_HTML_UTF8);
 			markupContext.setRequiresRewriting(true);
 
 			UpdateResponse updateResponse = new UpdateResponse();

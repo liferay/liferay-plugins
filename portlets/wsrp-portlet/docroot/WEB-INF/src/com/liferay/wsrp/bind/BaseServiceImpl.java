@@ -29,7 +29,7 @@ import oasis.names.tc.wsrp.v2.types.LocalizedString;
 public class BaseServiceImpl {
 
 	protected LocalizedString getLocalizedString(String value) {
-		return new LocalizedString(value, null);
+		return new LocalizedString(value, "en", null);
 	}
 
 	protected LocalizedString[] getLocalizedStrings(String[] values) {
