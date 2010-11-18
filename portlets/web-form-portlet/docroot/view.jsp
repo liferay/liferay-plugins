@@ -52,7 +52,6 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 		String fieldLabel = LocalizationUtil.getPreferencesValue(preferences, "fieldLabel" + i, themeDisplay.getLanguageId());
 		boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
 		String fieldValue = ParamUtil.getString(request, fieldName);
-		String[] options = null;
 
 		while ((i == 1) || Validator.isNotNull(fieldLabel)) {
 			String fieldType = preferences.getValue("fieldType" + i, "text");
@@ -91,14 +90,11 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				<c:when test='<%= fieldType.equals("radio") %>'>
 					<aui:field-wrapper cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
 
-						 <%
-						options = WebFormUtil.split(fieldOptions);
-
-						for (int j = 0; j < options.length; j++) {
-							String optionValue = options[j];
+						<%
+						for (String fieldOptionValue : WebFormUtil.split(fieldOptions)) {
 						%>
 
-							<aui:input checked="<%= fieldValue.equals(optionValue) %>" inlineLabel="left" label="<%= HtmlUtil.escape(optionValue) %>" name="<%= fieldName %>" type="radio" value="<%= HtmlUtil.escape(optionValue) %>" />
+							<aui:input checked="<%= fieldValue.equals(fieldOptionValue) %>" inlineLabel="left" label="<%= HtmlUtil.escape(fieldOptionValue) %>" name="<%= fieldName %>" type="radio" value="<%= HtmlUtil.escape(fieldOptionValue) %>" />
 
 						<%
 						}
@@ -109,17 +105,16 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				<c:when test='<%= fieldType.equals("options") %>'>
 
 					<%
-					options = WebFormUtil.split(fieldOptions);
+					String[] options = WebFormUtil.split(fieldOptions);
 					%>
 
 					<aui:select cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
 
 						<%
-						for (int j = 0; j < options.length; j++) {
-							String optionValue = options[j];
+						for (String fieldOptionValue : WebFormUtil.split(fieldOptions)) {
 						%>
 
-							<aui:option selected="<%= fieldValue.equals(optionValue) %>" value="<%= HtmlUtil.escape(optionValue) %>"><%= HtmlUtil.escape(optionValue) %></aui:option>
+							<aui:option selected="<%= fieldValue.equals(fieldOptionValue) %>" value="<%= HtmlUtil.escape(fieldOptionValue) %>"><%= HtmlUtil.escape(fieldOptionValue) %></aui:option>
 
 						<%
 						}
@@ -166,25 +161,26 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 				var fieldsMap = {};
 
 				<%
-				int fieldIndex = 1;
-				String fieldName = "field" + fieldIndex;
-				String fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, StringPool.BLANK);
+				int i = 1;
 
-				while ((fieldIndex == 1) || Validator.isNotNull(fieldLabel)) {
-					boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + fieldIndex, false);
-					String fieldType = preferences.getValue("fieldType" + fieldIndex, "text");
-					String fieldValidationScript = preferences.getValue("fieldValidationScript" + fieldIndex, StringPool.BLANK);
-					String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + fieldIndex, StringPool.BLANK);
+				String fieldName = "field" + i;
+				String fieldLabel = preferences.getValue("fieldLabel" + i, StringPool.BLANK);
+
+				while ((i == 1) || Validator.isNotNull(fieldLabel)) {
+					boolean fieldOptional = PrefsParamUtil.getBoolean(preferences, request, "fieldOptional" + i, false);
+					String fieldType = preferences.getValue("fieldType" + i, "text");
+					String fieldValidationScript = preferences.getValue("fieldValidationScript" + i, StringPool.BLANK);
+					String fieldValidationErrorMessage = preferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 				%>
 
 					var key = "<%= fieldName %>";
 
-					keys[<%= fieldIndex %>] = key;
+					keys[<%= i %>] = key;
 
 					fieldLabels[key] = "<%= HtmlUtil.escape(fieldLabel) %>";
 					fieldValidationErrorMessages[key] = "<%= fieldValidationErrorMessage %>";
 
-					function fieldValidationFunction<%= fieldIndex %>(currentFieldValue, fieldsMap) {
+					function fieldValidationFunction<%= i %>(currentFieldValue, fieldsMap) {
 						<c:choose>
 							<c:when test='<%= Validator.isNotNull(fieldValidationScript) %>'>
 								<%= fieldValidationScript %>
@@ -196,11 +192,11 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 					};
 
 					fieldOptional[key] = <%= fieldOptional %>;
-					fieldValidationFunctions[key] = fieldValidationFunction<%= fieldIndex %>;
+					fieldValidationFunctions[key] = fieldValidationFunction<%= i %>;
 
 					<c:choose>
 						<c:when test='<%= fieldType.equals("radio") %>'>
-							var radioButton = A.one('input[name=<portlet:namespace />field<%= fieldIndex %>]:checked');
+							var radioButton = A.one('input[name=<portlet:namespace />field<%= i %>]:checked');
 
 							fieldsMap[key] = '';
 
@@ -209,16 +205,17 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 							}
 						</c:when>
 						<c:otherwise>
-							var inputField = A.one('#<portlet:namespace />field<%= fieldIndex %>');
+							var inputField = A.one('#<portlet:namespace />field<%= i %>');
 
 							fieldsMap[key] = (inputField && inputField.val()) || '';
 						</c:otherwise>
 					</c:choose>
 
 				<%
-					fieldIndex++;
-					fieldName = "field" + fieldIndex;
-					fieldLabel = preferences.getValue("fieldLabel" + fieldIndex, "");
+					i++;
+
+					fieldName = "field" + i;
+					fieldLabel = preferences.getValue("fieldLabel" + i, "");
 				}
 				%>
 
