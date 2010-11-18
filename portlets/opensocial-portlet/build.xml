@@ -3,7 +3,7 @@
 <project name="opensocial-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<property name="original.war.file" value="shindig-server-2.0.0.war" />
+	<property name="original.war.file" value="shindig-server-2.0.2.war" />
 
 	<target name="build-lang">
 		<antcall target="build-lang-cmd">
@@ -184,7 +184,7 @@
 			</not>
 			<then>
 				<unzip
-					src="tmp/WEB-INF/lib/shindig-common-2.0.0.jar"
+					src="tmp/WEB-INF/lib/shindig-common-2.0.2.jar"
 					dest="tmp/WEB-INF/classes"
 				>
 					<patternset
