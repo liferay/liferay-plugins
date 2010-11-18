@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -114,11 +116,28 @@ public class WSDLServlet extends HttpServlet {
 	}
 
 	protected String getURL(HttpServletRequest request) {
-		String url = request.getRequestURL().toString();
+		ServletContext servletContext = 
+			request.getSession().getServletContext();
+		
+		String hostname = ParamUtil.getString(
+			request, "hostname", request.getServerName());
+		
+		String port = ParamUtil.getString(
+			request, "port", Integer.toString(request.getServerPort()));
 
-		int pos = url.lastIndexOf("/wsdl");
+		String protocol = ParamUtil.getString(
+			request, "protocol", request.getScheme());
+		
+		StringBundler sb = new StringBundler();
 
-		return url.substring(0, pos);
+		sb.append(protocol);
+		sb.append("://");
+		sb.append(hostname);
+		sb.append(StringPool.COLON);
+		sb.append(port);
+		sb.append(servletContext.getContextPath());
+		
+		return sb.toString();
 	}
 
 	protected String replaceLocations(
