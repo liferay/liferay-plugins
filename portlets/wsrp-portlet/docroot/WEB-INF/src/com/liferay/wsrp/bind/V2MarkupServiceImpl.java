@@ -571,6 +571,12 @@ public class V2MarkupServiceImpl
 		if (navigationalContext != null) {
 			String opaqueValue = navigationalContext.getOpaqueValue();
 
+			if (Validator.isNotNull(opaqueValue)) {
+				opaqueValue = new String(
+					Base64.decode(Base64.fromURLSafe(opaqueValue)),
+					StringPool.UTF8);
+			}
+
 			Map<String, String[]> parameterMap =
 				HttpUtil.parameterMapFromString(opaqueValue);
 
