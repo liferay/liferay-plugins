@@ -154,6 +154,7 @@ String successURL = preferences.getValue("successURL", StringPool.BLANK);
 			'submit',
 			function(event) {
 				var keys = [];
+
 				var fieldLabels = {};
 				var fieldOptional = {};
 				var fieldValidationErrorMessages = {};
