@@ -373,14 +373,12 @@ public class V2MarkupServiceImpl
 		httpOptions.setLocation(
 			getURL(performBlockingInteraction, wsrpProducer));
 
+		RuntimeContext runtimeContext =
+			performBlockingInteraction.getRuntimeContext();
+
 		PortletContext portletContext =
 			performBlockingInteraction.getPortletContext();
 
-		RuntimeContext runtimeContext = 
-			performBlockingInteraction.getRuntimeContext();
-		
-		String remoteNamespace = runtimeContext.getNamespacePrefix();
-		
 		InteractionParams interactionParams =
 			performBlockingInteraction.getInteractionParams();
 
@@ -390,19 +388,18 @@ public class V2MarkupServiceImpl
 		NavigationalContext navigationalContext =
 			markupParams.getNavigationalContext();
 
-		String liferayNamespace = PortalUtil.getPortletNamespace(
-				getPortletId(portletContext, navigationalContext));
+		String namespace = PortalUtil.getPortletNamespace(
+			getPortletId(portletContext, navigationalContext));
 
 		NamedString[] formParameters  = interactionParams.getFormParameters();
 
 		if (formParameters != null) {
-
 			for (NamedString formParameter : formParameters) {
-				String name = formParameter.getName().replace(
-					remoteNamespace, StringPool.BLANK);
-				
-				httpOptions.addPart(
-					liferayNamespace + name, formParameter.getValue());
+				String name = StringUtil.replace(
+					formParameter.getName(),
+					runtimeContext.getNamespacePrefix(), StringPool.BLANK);
+
+				httpOptions.addPart(namespace + name, formParameter.getValue());
 			}
 		}
 
