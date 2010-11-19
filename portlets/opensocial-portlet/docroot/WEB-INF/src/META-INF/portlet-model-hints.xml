@@ -12,4 +12,15 @@
 			<hint name="max-length">4000</hint>
 		</field>
 	</model>
+	<model name="com.liferay.opensocial.model.OAuthConsumer">
+		<field name="oauthConsumerId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="gadgetId" type="long" />
+		<field name="serviceName" type="String" />
+		<field name="consumerKey" type="String" />
+		<field name="consumerSecret" type="String" />
+		<field name="keyType" type="String" />
+	</model>
 </model-hints>

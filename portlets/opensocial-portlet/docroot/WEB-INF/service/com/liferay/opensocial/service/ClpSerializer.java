@@ -15,6 +15,7 @@
 package com.liferay.opensocial.service;
 
 import com.liferay.opensocial.model.GadgetClp;
+import com.liferay.opensocial.model.OAuthConsumerClp;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -116,6 +117,95 @@ public class ClpSerializer {
 			}
 		}
 
+		if (oldModelClassName.equals(OAuthConsumerClp.class.getName())) {
+			OAuthConsumerClp oldCplModel = (OAuthConsumerClp)oldModel;
+
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					Class<?> newModelClass = Class.forName("com.liferay.opensocial.model.impl.OAuthConsumerImpl",
+							true, _classLoader);
+
+					Object newModel = newModelClass.newInstance();
+
+					Method method0 = newModelClass.getMethod("setOauthConsumerId",
+							new Class[] { Long.TYPE });
+
+					Long value0 = new Long(oldCplModel.getOauthConsumerId());
+
+					method0.invoke(newModel, value0);
+
+					Method method1 = newModelClass.getMethod("setCompanyId",
+							new Class[] { Long.TYPE });
+
+					Long value1 = new Long(oldCplModel.getCompanyId());
+
+					method1.invoke(newModel, value1);
+
+					Method method2 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
+
+					Date value2 = oldCplModel.getCreateDate();
+
+					method2.invoke(newModel, value2);
+
+					Method method3 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
+
+					Date value3 = oldCplModel.getModifiedDate();
+
+					method3.invoke(newModel, value3);
+
+					Method method4 = newModelClass.getMethod("setGadgetId",
+							new Class[] { Long.TYPE });
+
+					Long value4 = new Long(oldCplModel.getGadgetId());
+
+					method4.invoke(newModel, value4);
+
+					Method method5 = newModelClass.getMethod("setServiceName",
+							new Class[] { String.class });
+
+					String value5 = oldCplModel.getServiceName();
+
+					method5.invoke(newModel, value5);
+
+					Method method6 = newModelClass.getMethod("setConsumerKey",
+							new Class[] { String.class });
+
+					String value6 = oldCplModel.getConsumerKey();
+
+					method6.invoke(newModel, value6);
+
+					Method method7 = newModelClass.getMethod("setConsumerSecret",
+							new Class[] { String.class });
+
+					String value7 = oldCplModel.getConsumerSecret();
+
+					method7.invoke(newModel, value7);
+
+					Method method8 = newModelClass.getMethod("setKeyType",
+							new Class[] { String.class });
+
+					String value8 = oldCplModel.getKeyType();
+
+					method8.invoke(newModel, value8);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
 		return oldModel;
 	}
 
@@ -203,6 +293,88 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setUrl(value6);
+
+					return newModel;
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+			finally {
+				Thread.currentThread().setContextClassLoader(contextClassLoader);
+			}
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.opensocial.model.impl.OAuthConsumerImpl")) {
+			ClassLoader contextClassLoader = Thread.currentThread()
+												   .getContextClassLoader();
+
+			try {
+				Thread.currentThread().setContextClassLoader(_classLoader);
+
+				try {
+					OAuthConsumerClp newModel = new OAuthConsumerClp();
+
+					Method method0 = oldModelClass.getMethod(
+							"getOauthConsumerId");
+
+					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+					newModel.setOauthConsumerId(value0);
+
+					Method method1 = oldModelClass.getMethod("getCompanyId");
+
+					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+					newModel.setCompanyId(value1);
+
+					Method method2 = oldModelClass.getMethod("getCreateDate");
+
+					Date value2 = (Date)method2.invoke(oldModel, (Object[])null);
+
+					newModel.setCreateDate(value2);
+
+					Method method3 = oldModelClass.getMethod("getModifiedDate");
+
+					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
+
+					newModel.setModifiedDate(value3);
+
+					Method method4 = oldModelClass.getMethod("getGadgetId");
+
+					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+					newModel.setGadgetId(value4);
+
+					Method method5 = oldModelClass.getMethod("getServiceName");
+
+					String value5 = (String)method5.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setServiceName(value5);
+
+					Method method6 = oldModelClass.getMethod("getConsumerKey");
+
+					String value6 = (String)method6.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setConsumerKey(value6);
+
+					Method method7 = oldModelClass.getMethod(
+							"getConsumerSecret");
+
+					String value7 = (String)method7.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setConsumerSecret(value7);
+
+					Method method8 = oldModelClass.getMethod("getKeyType");
+
+					String value8 = (String)method8.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setKeyType(value8);
 
 					return newModel;
 				}

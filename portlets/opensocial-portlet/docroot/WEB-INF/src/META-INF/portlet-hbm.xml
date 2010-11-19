@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.opensocial.model.Gadget" />
+	<import class="com.liferay.opensocial.model.OAuthConsumer" />
 	<class name="com.liferay.opensocial.model.impl.GadgetImpl" table="OpenSocial_Gadget">
 		<cache usage="read-write" />
 		<id name="gadgetId" type="long">
@@ -14,5 +15,19 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.opensocial.model.impl.OAuthConsumerImpl" table="OpenSocial_OAuthConsumer">
+		<cache usage="read-write" />
+		<id name="oauthConsumerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="gadgetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="serviceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="keyType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

@@ -25,8 +25,30 @@
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.opensocial.model.impl.OAuthConsumerModelImpl">
+		<attributes>
+			<id name="oauthConsumerId" />
+			<basic name="companyId" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="gadgetId" />
+			<basic name="serviceName" />
+			<basic name="consumerKey" />
+			<basic name="consumerSecret" />
+			<basic name="keyType" />
+			<transient name="primaryKey" />
+		</attributes>
+	</mapped-superclass>
 	<entity class="com.liferay.opensocial.model.impl.GadgetImpl" name="Gadget">
 		<table name="OpenSocial_Gadget" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.opensocial.model.impl.OAuthConsumerImpl" name="OAuthConsumer">
+		<table name="OpenSocial_OAuthConsumer" />
 		<attributes />
 	</entity>
 </entity-mappings>

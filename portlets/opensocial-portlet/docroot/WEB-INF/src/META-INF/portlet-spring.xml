@@ -6,4 +6,9 @@
 		<property name="service" ref="com.liferay.opensocial.service.GadgetLocalService" />
 	</bean>
 	<bean id="com.liferay.opensocial.service.persistence.GadgetPersistence" class="com.liferay.opensocial.service.persistence.GadgetPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.opensocial.service.OAuthConsumerLocalService" class="com.liferay.opensocial.service.impl.OAuthConsumerLocalServiceImpl" />
+	<bean id="com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil" class="com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil">
+		<property name="service" ref="com.liferay.opensocial.service.OAuthConsumerLocalService" />
+	</bean>
+	<bean id="com.liferay.opensocial.service.persistence.OAuthConsumerPersistence" class="com.liferay.opensocial.service.persistence.OAuthConsumerPersistenceImpl" parent="basePersistence" />
 </beans>
