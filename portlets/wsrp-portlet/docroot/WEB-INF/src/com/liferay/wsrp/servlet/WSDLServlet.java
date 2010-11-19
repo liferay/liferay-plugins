@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -34,6 +35,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Brian Wing Shun Chan
@@ -116,27 +118,26 @@ public class WSDLServlet extends HttpServlet {
 	}
 
 	protected String getURL(HttpServletRequest request) {
-		ServletContext servletContext = 
-			request.getSession().getServletContext();
-		
+		HttpSession session = request.getSession();
+
+		ServletContext servletContext = session.getServletContext();
+
 		String hostname = ParamUtil.getString(
 			request, "hostname", request.getServerName());
-		
 		String port = ParamUtil.getString(
 			request, "port", Integer.toString(request.getServerPort()));
-
 		String protocol = ParamUtil.getString(
 			request, "protocol", request.getScheme());
-		
-		StringBundler sb = new StringBundler();
+
+		StringBundler sb = new StringBundler(5);
 
 		sb.append(protocol);
-		sb.append("://");
+		sb.append(Http.PROTOCOL_DELIMITER);
 		sb.append(hostname);
 		sb.append(StringPool.COLON);
 		sb.append(port);
 		sb.append(servletContext.getContextPath());
-		
+
 		return sb.toString();
 	}
 
