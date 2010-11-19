@@ -35,6 +35,8 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.File;
 
+import java.util.Map;
+
 import javax.portlet.PortletRequest;
 
 import org.apache.shindig.auth.BasicSecurityToken;
@@ -47,6 +49,9 @@ import org.apache.shindig.gadgets.Gadget;
 import org.apache.shindig.gadgets.process.Processor;
 import org.apache.shindig.gadgets.servlet.JsonRpcGadgetContext;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
+import org.apache.shindig.gadgets.spec.ModulePrefs;
+import org.apache.shindig.gadgets.spec.OAuthService;
+import org.apache.shindig.gadgets.spec.OAuthSpec;
 
 import org.json.JSONObject;
 
@@ -146,6 +151,24 @@ public class ShindigUtil {
 
 	public static long getModuleId(String namespace) {
 		return namespace.hashCode();
+	}
+
+	public static Map<String, OAuthService> getOAuthServices(
+		GadgetSpec gadgetSpec) {
+
+		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
+
+		if (modulePrefs == null) {
+			return null;
+		}
+
+		OAuthSpec oauthSpec = modulePrefs.getOAuthSpec();
+
+		if (oauthSpec == null) {
+			return null;
+		}
+
+		return oauthSpec.getServices();
 	}
 
 	public static String getOwnerId(Layout layout)

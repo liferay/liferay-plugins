@@ -35,6 +35,42 @@
 			<finder-column name="url" />
 		</finder>
 	</entity>
+	<entity name="OAuthConsumer" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="oauthConsumerId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="gadgetId" type="long" />
+		<column name="serviceName" type="String" />
+		<column name="consumerKey" type="String" />
+		<column name="consumerSecret" type="String" />
+		<column name="keyType" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="serviceName" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="GadgetId" return-type="Collection">
+			<finder-column name="gadgetId" />
+		</finder>
+		<finder name="G_S" return-type="OAuthConsumer">
+			<finder-column name="gadgetId" />
+			<finder-column name="serviceName" />
+		</finder>
+	</entity>
 	<exceptions>
 		<exception>DuplicateGadgetURL</exception>
 		<exception>GadgetURL</exception>

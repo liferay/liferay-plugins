@@ -137,6 +137,36 @@
 			<arg value="tmp/WEB-INF/web.xml" />
 		</java>
 
+		<!-- Configure canonicaldb.json -->
+
+		<if>
+			<not>
+				<available file="tmp/sampledata/canonicaldb.json.original" />
+			</not>
+			<then>
+				<copy
+					file="tmp/sampledata/canonicaldb.json"
+					tofile="tmp/sampledata/canonicaldb.json.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/sampledata/canonicaldb.json.original"
+			tofile="tmp/sampledata/canonicaldb.json"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/sampledata/canonicaldb.json">
+			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
+		</replace>
+
+		<copy
+			file="tmp/sampledata/canonicaldb.json"
+			tofile="tmp/WEB-INF/classes/sampledata/canonicaldb.json"
+			overwrite="true"
+		/>
+		
 		<!-- Configure container.js -->
 
 		<if>
@@ -174,9 +204,55 @@
 			</replacevalue>
 		</replace>
 
-		<!--
-		Configure shindig.properties
-		-->
+		<!-- Configure oauth.json -->
+
+		<if>
+			<not>
+				<available file="tmp/WEB-INF/classes/config/oauth.json.original" />
+			</not>
+			<then>
+				<copy
+					file="tmp/WEB-INF/classes/config/oauth.json"
+					tofile="tmp/WEB-INF/classes/config/oauth.json.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/WEB-INF/classes/config/oauth.json.original"
+			tofile="tmp/WEB-INF/classes/config/oauth.json"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/WEB-INF/classes/config/oauth.json">
+			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
+		</replace>
+
+		<!-- Configure shindigoauth.xml -->
+
+		<if>
+			<not>
+				<available file="tmp/samplecontainer/examples/shindigoauth.xml.original" />
+			</not>
+			<then>
+				<copy
+					file="tmp/samplecontainer/examples/shindigoauth.xml"
+					tofile="tmp/samplecontainer/examples/shindigoauth.xml.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="tmp/samplecontainer/examples/shindigoauth.xml.original"
+			tofile="tmp/samplecontainer/examples/shindigoauth.xml"
+			overwrite="true"
+		/>
+
+		<replace file="tmp/samplecontainer/examples/shindigoauth.xml">
+			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
+		</replace>
+		
+		<!-- Configure shindig.properties -->
 
 		<if>
 			<not>
