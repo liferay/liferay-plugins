@@ -249,7 +249,8 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return _oAuthConsumer.clone();
 	}
 
-	public int compareTo(OAuthConsumer oAuthConsumer) {
+	public int compareTo(
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
 		return _oAuthConsumer.compareTo(oAuthConsumer);
 	}
 
@@ -257,7 +258,7 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return _oAuthConsumer.hashCode();
 	}
 
-	public OAuthConsumer toEscapedModel() {
+	public com.liferay.opensocial.model.OAuthConsumer toEscapedModel() {
 		return _oAuthConsumer.toEscapedModel();
 	}
 
