@@ -23,11 +23,11 @@ Gadget gadget = (Gadget)row.getObject();
 
 GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
 
-Map<String, OAuthService> oauthServices = ShindigUtil.getOAuthServices(gadgetSpec);
+Map<String, OAuthService> oAuthServices = ShindigUtil.getOAuthServices(gadgetSpec);
 %>
 
 <liferay-ui:icon-menu>
-	<c:if test="<%= (oauthServices != null) && (oauthServices.size() > 0) %>">
+	<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
 		<portlet:renderURL var="configureOAuthURL">
 			<portlet:param name="jspPage" value="/admin/configure_oauth.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -36,6 +36,7 @@ Map<String, OAuthService> oauthServices = ShindigUtil.getOAuthServices(gadgetSpe
 
 		<liferay-ui:icon image="portlet" message="configure-oauth" url="<%= configureOAuthURL %>" />
 	</c:if>
+
 	<portlet:actionURL name="deleteGadget" var="deleteURL">
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />

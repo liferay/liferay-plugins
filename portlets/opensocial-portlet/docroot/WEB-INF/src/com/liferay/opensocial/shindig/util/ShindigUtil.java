@@ -162,13 +162,13 @@ public class ShindigUtil {
 			return null;
 		}
 
-		OAuthSpec oauthSpec = modulePrefs.getOAuthSpec();
+		OAuthSpec oAuthSpec = modulePrefs.getOAuthSpec();
 
-		if (oauthSpec == null) {
+		if (oAuthSpec == null) {
 			return null;
 		}
 
-		return oauthSpec.getServices();
+		return oAuthSpec.getServices();
 	}
 
 	public static String getOwnerId(Layout layout)

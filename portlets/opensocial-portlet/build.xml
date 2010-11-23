@@ -139,23 +139,9 @@
 
 		<!-- Configure canonicaldb.json -->
 
-		<if>
-			<not>
-				<available file="tmp/sampledata/canonicaldb.json.original" />
-			</not>
-			<then>
-				<copy
-					file="tmp/sampledata/canonicaldb.json"
-					tofile="tmp/sampledata/canonicaldb.json.original"
-				/>
-			</then>
-		</if>
-
-		<copy
-			file="tmp/sampledata/canonicaldb.json.original"
-			tofile="tmp/sampledata/canonicaldb.json"
-			overwrite="true"
-		/>
+		<antcall target="merge-backup-file">
+			<param name="backup.file.name" value="tmp/sampledata/canonicaldb.json" />
+		</antcall>
 
 		<replace file="tmp/sampledata/canonicaldb.json">
 			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
@@ -166,26 +152,12 @@
 			tofile="tmp/WEB-INF/classes/sampledata/canonicaldb.json"
 			overwrite="true"
 		/>
-		
+
 		<!-- Configure container.js -->
 
-		<if>
-			<not>
-				<available file="tmp/WEB-INF/classes/containers/default/container.js.original" />
-			</not>
-			<then>
-				<copy
-					file="tmp/WEB-INF/classes/containers/default/container.js"
-					tofile="tmp/WEB-INF/classes/containers/default/container.js.original"
-				/>
-			</then>
-		</if>
-
-		<copy
-			file="tmp/WEB-INF/classes/containers/default/container.js.original"
-			tofile="tmp/WEB-INF/classes/containers/default/container.js"
-			overwrite="true"
-		/>
+		<antcall target="merge-backup-file">
+			<param name="backup.file.name" value="tmp/WEB-INF/classes/containers/default/container.js" />
+		</antcall>
 
 		<replace file="tmp/WEB-INF/classes/containers/default/container.js">
 			<replacefilter token="${SERVER_HOST}:${SERVER_PORT}" value="%host%" />
@@ -206,23 +178,9 @@
 
 		<!-- Configure oauth.json -->
 
-		<if>
-			<not>
-				<available file="tmp/WEB-INF/classes/config/oauth.json.original" />
-			</not>
-			<then>
-				<copy
-					file="tmp/WEB-INF/classes/config/oauth.json"
-					tofile="tmp/WEB-INF/classes/config/oauth.json.original"
-				/>
-			</then>
-		</if>
-
-		<copy
-			file="tmp/WEB-INF/classes/config/oauth.json.original"
-			tofile="tmp/WEB-INF/classes/config/oauth.json"
-			overwrite="true"
-		/>
+		<antcall target="merge-backup-file">
+			<param name="backup.file.name" value="tmp/WEB-INF/classes/config/oauth.json" />
+		</antcall>
 
 		<replace file="tmp/WEB-INF/classes/config/oauth.json">
 			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
@@ -230,28 +188,14 @@
 
 		<!-- Configure shindigoauth.xml -->
 
-		<if>
-			<not>
-				<available file="tmp/samplecontainer/examples/shindigoauth.xml.original" />
-			</not>
-			<then>
-				<copy
-					file="tmp/samplecontainer/examples/shindigoauth.xml"
-					tofile="tmp/samplecontainer/examples/shindigoauth.xml.original"
-				/>
-			</then>
-		</if>
-
-		<copy
-			file="tmp/samplecontainer/examples/shindigoauth.xml.original"
-			tofile="tmp/samplecontainer/examples/shindigoauth.xml"
-			overwrite="true"
-		/>
+		<antcall target="merge-backup-file">
+			<param name="backup.file.name" value="tmp/samplecontainer/examples/shindigoauth.xml" />
+		</antcall>
 
 		<replace file="tmp/samplecontainer/examples/shindigoauth.xml">
 			<replacefilter token="http://localhost:8080/" value="http://localhost:8080/opensocial-portlet/" />
 		</replace>
-		
+
 		<!-- Configure shindig.properties -->
 
 		<if>
@@ -310,6 +254,26 @@
 		/>
 
 		<delete dir="${tstamp.value}" />
+	</target>
+
+	<target name="merge-backup-file">
+		<if>
+			<not>
+				<available file="${backup.file.name}.original" />
+			</not>
+			<then>
+				<copy
+					file="${backup.file.name}"
+					tofile="${backup.file.name}.original"
+				/>
+			</then>
+		</if>
+
+		<copy
+			file="${backup.file.name}.original"
+			tofile="${backup.file.name}"
+			overwrite="true"
+		/>
 	</target>
 
 	<target name="merge-unzip">
