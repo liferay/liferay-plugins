@@ -193,8 +193,11 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 		throws SearchException {
 
 		try {
-			StringBundler sb = new StringBundler(
-				query.toString().replaceAll(":\\*", ":"));
+			String queryString = query.toString().replaceAll(":\\*", ":");
+
+			queryString = queryString.replaceAll(":\\w+:", ":");
+
+			StringBundler sb = new StringBundler(queryString);
 
 			sb.append(StringPool.SPACE);
 			sb.append(StringPool.PLUS);
