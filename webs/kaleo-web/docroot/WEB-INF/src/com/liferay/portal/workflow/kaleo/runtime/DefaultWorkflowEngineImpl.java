@@ -14,8 +14,8 @@
 
 package com.liferay.portal.workflow.kaleo.runtime;
 
-import com.liferay.portal.kernel.annotation.Isolation;
-import com.liferay.portal.kernel.annotation.Transactional;
+import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
