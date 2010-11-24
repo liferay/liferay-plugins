@@ -107,7 +107,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					String taglibExport = "submitForm(document.hrefFm, '" + exportURL + "');";
 					%>
 
-					<aui:button onclick="<%= taglibExport %>" value="export-data" />
+					<aui:button onClick="<%= taglibExport %>" value="export-data" />
 
 					<liferay-portlet:actionURL var="deleteURL" portletName="<%= portletResource %>">
 						<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteData" />
@@ -118,7 +118,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					String taglibDelete = "submitForm(document." + renderResponse.getNamespace() + "fm, '" + deleteURL + "');";
 					%>
 
-					<aui:button onclick="<%= taglibDelete %>" value="delete-data" />
+					<aui:button onClick="<%= taglibDelete %>" value="delete-data" />
 
 					<br /><br />
 				</c:if>
