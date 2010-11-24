@@ -214,7 +214,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	public java.lang.Object clone() {
-		return _entry.clone();
+		return new EntryWrapper((Entry)_entry.clone());
 	}
 
 	public int compareTo(com.liferay.chat.model.Entry entry) {
@@ -226,7 +226,7 @@ public class EntryWrapper implements Entry {
 	}
 
 	public com.liferay.chat.model.Entry toEscapedModel() {
-		return _entry.toEscapedModel();
+		return new EntryWrapper(_entry.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

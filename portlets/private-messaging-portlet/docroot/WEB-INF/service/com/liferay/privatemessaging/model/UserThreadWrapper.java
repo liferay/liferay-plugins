@@ -284,7 +284,7 @@ public class UserThreadWrapper implements UserThread {
 	}
 
 	public java.lang.Object clone() {
-		return _userThread.clone();
+		return new UserThreadWrapper((UserThread)_userThread.clone());
 	}
 
 	public int compareTo(
@@ -297,7 +297,7 @@ public class UserThreadWrapper implements UserThread {
 	}
 
 	public com.liferay.privatemessaging.model.UserThread toEscapedModel() {
-		return _userThread.toEscapedModel();
+		return new UserThreadWrapper(_userThread.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

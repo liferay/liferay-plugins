@@ -282,7 +282,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	public java.lang.Object clone() {
-		return _jiraIssue.clone();
+		return new JIRAIssueWrapper((JIRAIssue)_jiraIssue.clone());
 	}
 
 	public int compareTo(com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
@@ -294,7 +294,7 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	public com.liferay.socialcoding.model.JIRAIssue toEscapedModel() {
-		return _jiraIssue.toEscapedModel();
+		return new JIRAIssueWrapper(_jiraIssue.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

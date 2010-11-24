@@ -302,7 +302,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	public java.lang.Object clone() {
-		return _projectsEntry.clone();
+		return new ProjectsEntryWrapper((ProjectsEntry)_projectsEntry.clone());
 	}
 
 	public int compareTo(com.liferay.so.model.ProjectsEntry projectsEntry) {
@@ -314,7 +314,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	public com.liferay.so.model.ProjectsEntry toEscapedModel() {
-		return _projectsEntry.toEscapedModel();
+		return new ProjectsEntryWrapper(_projectsEntry.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

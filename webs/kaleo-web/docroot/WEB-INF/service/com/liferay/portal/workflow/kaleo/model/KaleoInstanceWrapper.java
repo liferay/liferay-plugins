@@ -401,7 +401,7 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoInstance.clone();
+		return new KaleoInstanceWrapper((KaleoInstance)_kaleoInstance.clone());
 	}
 
 	public int compareTo(
@@ -414,7 +414,7 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstance toEscapedModel() {
-		return _kaleoInstance.toEscapedModel();
+		return new KaleoInstanceWrapper(_kaleoInstance.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

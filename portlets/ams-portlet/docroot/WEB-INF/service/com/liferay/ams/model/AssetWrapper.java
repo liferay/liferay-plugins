@@ -293,7 +293,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	public java.lang.Object clone() {
-		return _asset.clone();
+		return new AssetWrapper((Asset)_asset.clone());
 	}
 
 	public int compareTo(com.liferay.ams.model.Asset asset) {
@@ -305,7 +305,7 @@ public class AssetWrapper implements Asset {
 	}
 
 	public com.liferay.ams.model.Asset toEscapedModel() {
-		return _asset.toEscapedModel();
+		return new AssetWrapper(_asset.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

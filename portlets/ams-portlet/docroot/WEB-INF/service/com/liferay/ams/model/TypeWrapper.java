@@ -138,7 +138,7 @@ public class TypeWrapper implements Type {
 	}
 
 	public java.lang.Object clone() {
-		return _type.clone();
+		return new TypeWrapper((Type)_type.clone());
 	}
 
 	public int compareTo(com.liferay.ams.model.Type type) {
@@ -150,7 +150,7 @@ public class TypeWrapper implements Type {
 	}
 
 	public com.liferay.ams.model.Type toEscapedModel() {
-		return _type.toEscapedModel();
+		return new TypeWrapper(_type.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

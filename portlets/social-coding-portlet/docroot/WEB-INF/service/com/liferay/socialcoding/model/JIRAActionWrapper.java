@@ -228,7 +228,7 @@ public class JIRAActionWrapper implements JIRAAction {
 	}
 
 	public java.lang.Object clone() {
-		return _jiraAction.clone();
+		return new JIRAActionWrapper((JIRAAction)_jiraAction.clone());
 	}
 
 	public int compareTo(com.liferay.socialcoding.model.JIRAAction jiraAction) {
@@ -240,7 +240,7 @@ public class JIRAActionWrapper implements JIRAAction {
 	}
 
 	public com.liferay.socialcoding.model.JIRAAction toEscapedModel() {
-		return _jiraAction.toEscapedModel();
+		return new JIRAActionWrapper(_jiraAction.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

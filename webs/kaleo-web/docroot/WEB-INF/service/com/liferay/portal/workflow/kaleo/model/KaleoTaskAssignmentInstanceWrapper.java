@@ -422,7 +422,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoTaskAssignmentInstance.clone();
+		return new KaleoTaskAssignmentInstanceWrapper((KaleoTaskAssignmentInstance)_kaleoTaskAssignmentInstance.clone());
 	}
 
 	public int compareTo(
@@ -435,7 +435,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance toEscapedModel() {
-		return _kaleoTaskAssignmentInstance.toEscapedModel();
+		return new KaleoTaskAssignmentInstanceWrapper(_kaleoTaskAssignmentInstance.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

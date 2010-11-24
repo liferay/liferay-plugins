@@ -138,7 +138,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	public java.lang.Object clone() {
-		return _svnRepository.clone();
+		return new SVNRepositoryWrapper((SVNRepository)_svnRepository.clone());
 	}
 
 	public int compareTo(
@@ -151,7 +151,7 @@ public class SVNRepositoryWrapper implements SVNRepository {
 	}
 
 	public com.liferay.socialcoding.model.SVNRepository toEscapedModel() {
-		return _svnRepository.toEscapedModel();
+		return new SVNRepositoryWrapper(_svnRepository.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

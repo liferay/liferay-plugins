@@ -338,7 +338,7 @@ public class DefinitionWrapper implements Definition {
 	}
 
 	public java.lang.Object clone() {
-		return _definition.clone();
+		return new DefinitionWrapper((Definition)_definition.clone());
 	}
 
 	public int compareTo(com.liferay.ams.model.Definition definition) {
@@ -350,7 +350,7 @@ public class DefinitionWrapper implements Definition {
 	}
 
 	public com.liferay.ams.model.Definition toEscapedModel() {
-		return _definition.toEscapedModel();
+		return new DefinitionWrapper(_definition.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

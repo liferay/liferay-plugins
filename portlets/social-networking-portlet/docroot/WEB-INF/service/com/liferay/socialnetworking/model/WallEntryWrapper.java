@@ -248,7 +248,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	public java.lang.Object clone() {
-		return _wallEntry.clone();
+		return new WallEntryWrapper((WallEntry)_wallEntry.clone());
 	}
 
 	public int compareTo(com.liferay.socialnetworking.model.WallEntry wallEntry) {
@@ -260,7 +260,7 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	public com.liferay.socialnetworking.model.WallEntry toEscapedModel() {
-		return _wallEntry.toEscapedModel();
+		return new WallEntryWrapper(_wallEntry.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

@@ -302,7 +302,7 @@ public class TemplateWrapper implements Template {
 	}
 
 	public java.lang.Object clone() {
-		return _template.clone();
+		return new TemplateWrapper((Template)_template.clone());
 	}
 
 	public int compareTo(com.liferay.knowledgebase.model.Template template) {
@@ -314,7 +314,7 @@ public class TemplateWrapper implements Template {
 	}
 
 	public com.liferay.knowledgebase.model.Template toEscapedModel() {
-		return _template.toEscapedModel();
+		return new TemplateWrapper(_template.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

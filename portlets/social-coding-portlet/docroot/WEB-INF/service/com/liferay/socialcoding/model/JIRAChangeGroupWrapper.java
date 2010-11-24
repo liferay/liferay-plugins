@@ -156,7 +156,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	public java.lang.Object clone() {
-		return _jiraChangeGroup.clone();
+		return new JIRAChangeGroupWrapper((JIRAChangeGroup)_jiraChangeGroup.clone());
 	}
 
 	public int compareTo(
@@ -169,7 +169,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	public com.liferay.socialcoding.model.JIRAChangeGroup toEscapedModel() {
-		return _jiraChangeGroup.toEscapedModel();
+		return new JIRAChangeGroupWrapper(_jiraChangeGroup.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

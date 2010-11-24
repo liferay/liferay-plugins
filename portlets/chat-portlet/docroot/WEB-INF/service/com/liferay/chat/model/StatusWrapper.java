@@ -275,7 +275,7 @@ public class StatusWrapper implements Status {
 	}
 
 	public java.lang.Object clone() {
-		return _status.clone();
+		return new StatusWrapper((Status)_status.clone());
 	}
 
 	public int compareTo(com.liferay.chat.model.Status status) {
@@ -287,7 +287,7 @@ public class StatusWrapper implements Status {
 	}
 
 	public com.liferay.chat.model.Status toEscapedModel() {
-		return _status.toEscapedModel();
+		return new StatusWrapper(_status.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

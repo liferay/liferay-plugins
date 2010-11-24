@@ -638,7 +638,7 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoLog.clone();
+		return new KaleoLogWrapper((KaleoLog)_kaleoLog.clone());
 	}
 
 	public int compareTo(
@@ -651,7 +651,7 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog toEscapedModel() {
-		return _kaleoLog.toEscapedModel();
+		return new KaleoLogWrapper(_kaleoLog.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

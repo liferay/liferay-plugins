@@ -338,7 +338,7 @@ public class CommentWrapper implements Comment {
 	}
 
 	public java.lang.Object clone() {
-		return _comment.clone();
+		return new CommentWrapper((Comment)_comment.clone());
 	}
 
 	public int compareTo(com.liferay.knowledgebase.model.Comment comment) {
@@ -350,7 +350,7 @@ public class CommentWrapper implements Comment {
 	}
 
 	public com.liferay.knowledgebase.model.Comment toEscapedModel() {
-		return _comment.toEscapedModel();
+		return new CommentWrapper(_comment.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

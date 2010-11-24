@@ -266,7 +266,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	public java.lang.Object clone() {
-		return _attachment.clone();
+		return new AttachmentWrapper((Attachment)_attachment.clone());
 	}
 
 	public int compareTo(com.liferay.mail.model.Attachment attachment) {
@@ -278,7 +278,7 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	public com.liferay.mail.model.Attachment toEscapedModel() {
-		return _attachment.toEscapedModel();
+		return new AttachmentWrapper(_attachment.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

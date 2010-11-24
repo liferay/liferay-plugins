@@ -320,7 +320,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoTaskAssignment.clone();
+		return new KaleoTaskAssignmentWrapper((KaleoTaskAssignment)_kaleoTaskAssignment.clone());
 	}
 
 	public int compareTo(
@@ -333,7 +333,7 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment toEscapedModel() {
-		return _kaleoTaskAssignment.toEscapedModel();
+		return new KaleoTaskAssignmentWrapper(_kaleoTaskAssignment.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

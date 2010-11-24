@@ -356,7 +356,7 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 	}
 
 	public java.lang.Object clone() {
-		return _meetupsEntry.clone();
+		return new MeetupsEntryWrapper((MeetupsEntry)_meetupsEntry.clone());
 	}
 
 	public int compareTo(
@@ -369,7 +369,7 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 	}
 
 	public com.liferay.socialnetworking.model.MeetupsEntry toEscapedModel() {
-		return _meetupsEntry.toEscapedModel();
+		return new MeetupsEntryWrapper(_meetupsEntry.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

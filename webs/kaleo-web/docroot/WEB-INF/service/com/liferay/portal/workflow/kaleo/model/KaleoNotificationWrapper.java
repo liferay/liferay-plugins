@@ -392,7 +392,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoNotification.clone();
+		return new KaleoNotificationWrapper((KaleoNotification)_kaleoNotification.clone());
 	}
 
 	public int compareTo(
@@ -405,7 +405,7 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotification toEscapedModel() {
-		return _kaleoNotification.toEscapedModel();
+		return new KaleoNotificationWrapper(_kaleoNotification.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

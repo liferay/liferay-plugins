@@ -320,7 +320,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoCondition.clone();
+		return new KaleoConditionWrapper((KaleoCondition)_kaleoCondition.clone());
 	}
 
 	public int compareTo(
@@ -333,7 +333,7 @@ public class KaleoConditionWrapper implements KaleoCondition {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition toEscapedModel() {
-		return _kaleoCondition.toEscapedModel();
+		return new KaleoConditionWrapper(_kaleoCondition.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

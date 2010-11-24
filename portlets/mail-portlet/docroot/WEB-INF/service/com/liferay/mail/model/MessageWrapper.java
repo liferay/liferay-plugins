@@ -446,7 +446,7 @@ public class MessageWrapper implements Message {
 	}
 
 	public java.lang.Object clone() {
-		return _message.clone();
+		return new MessageWrapper((Message)_message.clone());
 	}
 
 	public int compareTo(com.liferay.mail.model.Message message) {
@@ -458,7 +458,7 @@ public class MessageWrapper implements Message {
 	}
 
 	public com.liferay.mail.model.Message toEscapedModel() {
-		return _message.toEscapedModel();
+		return new MessageWrapper(_message.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

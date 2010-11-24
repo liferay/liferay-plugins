@@ -392,7 +392,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoAction.clone();
+		return new KaleoActionWrapper((KaleoAction)_kaleoAction.clone());
 	}
 
 	public int compareTo(
@@ -405,7 +405,7 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction toEscapedModel() {
-		return _kaleoAction.toEscapedModel();
+		return new KaleoActionWrapper(_kaleoAction.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

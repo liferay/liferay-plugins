@@ -509,7 +509,7 @@ public class ArticleWrapper implements Article {
 	}
 
 	public java.lang.Object clone() {
-		return _article.clone();
+		return new ArticleWrapper((Article)_article.clone());
 	}
 
 	public int compareTo(com.liferay.knowledgebase.model.Article article) {
@@ -521,7 +521,7 @@ public class ArticleWrapper implements Article {
 	}
 
 	public com.liferay.knowledgebase.model.Article toEscapedModel() {
-		return _article.toEscapedModel();
+		return new ArticleWrapper(_article.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

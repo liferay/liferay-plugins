@@ -341,7 +341,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoNotificationRecipient.clone();
+		return new KaleoNotificationRecipientWrapper((KaleoNotificationRecipient)_kaleoNotificationRecipient.clone());
 	}
 
 	public int compareTo(
@@ -354,7 +354,7 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient toEscapedModel() {
-		return _kaleoNotificationRecipient.toEscapedModel();
+		return new KaleoNotificationRecipientWrapper(_kaleoNotificationRecipient.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

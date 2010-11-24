@@ -401,7 +401,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoTransition.clone();
+		return new KaleoTransitionWrapper((KaleoTransition)_kaleoTransition.clone());
 	}
 
 	public int compareTo(
@@ -414,7 +414,7 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition toEscapedModel() {
-		return _kaleoTransition.toEscapedModel();
+		return new KaleoTransitionWrapper(_kaleoTransition.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

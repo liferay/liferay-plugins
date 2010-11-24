@@ -210,7 +210,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	public java.lang.Object clone() {
-		return _gadget.clone();
+		return new GadgetWrapper((Gadget)_gadget.clone());
 	}
 
 	public int compareTo(com.liferay.opensocial.model.Gadget gadget) {
@@ -222,7 +222,7 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	public com.liferay.opensocial.model.Gadget toEscapedModel() {
-		return _gadget.toEscapedModel();
+		return new GadgetWrapper(_gadget.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

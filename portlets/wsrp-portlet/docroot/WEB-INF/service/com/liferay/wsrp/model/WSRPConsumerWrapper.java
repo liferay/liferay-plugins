@@ -266,7 +266,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 	}
 
 	public java.lang.Object clone() {
-		return _wsrpConsumer.clone();
+		return new WSRPConsumerWrapper((WSRPConsumer)_wsrpConsumer.clone());
 	}
 
 	public int compareTo(com.liferay.wsrp.model.WSRPConsumer wsrpConsumer) {
@@ -278,7 +278,7 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumer toEscapedModel() {
-		return _wsrpConsumer.toEscapedModel();
+		return new WSRPConsumerWrapper(_wsrpConsumer.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

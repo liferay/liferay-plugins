@@ -192,7 +192,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	public java.lang.Object clone() {
-		return _svnRevision.clone();
+		return new SVNRevisionWrapper((SVNRevision)_svnRevision.clone());
 	}
 
 	public int compareTo(com.liferay.socialcoding.model.SVNRevision svnRevision) {
@@ -204,7 +204,7 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	public com.liferay.socialcoding.model.SVNRevision toEscapedModel() {
-		return _svnRevision.toEscapedModel();
+		return new SVNRevisionWrapper(_svnRevision.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

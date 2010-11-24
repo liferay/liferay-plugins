@@ -286,7 +286,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	public java.lang.Object clone() {
-		return _feed.clone();
+		return new FeedWrapper((Feed)_feed.clone());
 	}
 
 	public int compareTo(com.liferay.twitter.model.Feed feed) {
@@ -298,7 +298,7 @@ public class FeedWrapper implements Feed {
 	}
 
 	public com.liferay.twitter.model.Feed toEscapedModel() {
-		return _feed.toEscapedModel();
+		return new FeedWrapper(_feed.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

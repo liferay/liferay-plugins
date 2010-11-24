@@ -338,7 +338,7 @@ public class KaleoTaskWrapper implements KaleoTask {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoTask.clone();
+		return new KaleoTaskWrapper((KaleoTask)_kaleoTask.clone());
 	}
 
 	public int compareTo(
@@ -351,7 +351,7 @@ public class KaleoTaskWrapper implements KaleoTask {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask toEscapedModel() {
-		return _kaleoTask.toEscapedModel();
+		return new KaleoTaskWrapper(_kaleoTask.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

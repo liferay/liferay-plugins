@@ -246,7 +246,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	public java.lang.Object clone() {
-		return _wsrpProducer.clone();
+		return new WSRPProducerWrapper((WSRPProducer)_wsrpProducer.clone());
 	}
 
 	public int compareTo(com.liferay.wsrp.model.WSRPProducer wsrpProducer) {
@@ -258,7 +258,7 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	public com.liferay.wsrp.model.WSRPProducer toEscapedModel() {
-		return _wsrpProducer.toEscapedModel();
+		return new WSRPProducerWrapper(_wsrpProducer.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

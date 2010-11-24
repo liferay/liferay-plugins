@@ -266,7 +266,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	public java.lang.Object clone() {
-		return _meetupsRegistration.clone();
+		return new MeetupsRegistrationWrapper((MeetupsRegistration)_meetupsRegistration.clone());
 	}
 
 	public int compareTo(
@@ -279,7 +279,7 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	public com.liferay.socialnetworking.model.MeetupsRegistration toEscapedModel() {
-		return _meetupsRegistration.toEscapedModel();
+		return new MeetupsRegistrationWrapper(_meetupsRegistration.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

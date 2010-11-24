@@ -401,7 +401,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoInstanceToken.clone();
+		return new KaleoInstanceTokenWrapper((KaleoInstanceToken)_kaleoInstanceToken.clone());
 	}
 
 	public int compareTo(
@@ -414,7 +414,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken toEscapedModel() {
-		return _kaleoInstanceToken.toEscapedModel();
+		return new KaleoInstanceTokenWrapper(_kaleoInstanceToken.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

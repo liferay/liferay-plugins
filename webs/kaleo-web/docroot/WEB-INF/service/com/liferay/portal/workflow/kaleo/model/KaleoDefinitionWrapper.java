@@ -419,7 +419,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoDefinition.clone();
+		return new KaleoDefinitionWrapper((KaleoDefinition)_kaleoDefinition.clone());
 	}
 
 	public int compareTo(
@@ -432,7 +432,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition toEscapedModel() {
-		return _kaleoDefinition.toEscapedModel();
+		return new KaleoDefinitionWrapper(_kaleoDefinition.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

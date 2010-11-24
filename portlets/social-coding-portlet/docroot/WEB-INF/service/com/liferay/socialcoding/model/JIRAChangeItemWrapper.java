@@ -210,7 +210,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 	}
 
 	public java.lang.Object clone() {
-		return _jiraChangeItem.clone();
+		return new JIRAChangeItemWrapper((JIRAChangeItem)_jiraChangeItem.clone());
 	}
 
 	public int compareTo(
@@ -223,7 +223,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 	}
 
 	public com.liferay.socialcoding.model.JIRAChangeItem toEscapedModel() {
-		return _jiraChangeItem.toEscapedModel();
+		return new JIRAChangeItemWrapper(_jiraChangeItem.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

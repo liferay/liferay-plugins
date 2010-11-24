@@ -284,7 +284,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	public java.lang.Object clone() {
-		return _folder.clone();
+		return new FolderWrapper((Folder)_folder.clone());
 	}
 
 	public int compareTo(com.liferay.mail.model.Folder folder) {
@@ -296,7 +296,7 @@ public class FolderWrapper implements Folder {
 	}
 
 	public com.liferay.mail.model.Folder toEscapedModel() {
-		return _folder.toEscapedModel();
+		return new FolderWrapper(_folder.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

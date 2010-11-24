@@ -228,7 +228,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	public java.lang.Object clone() {
-		return _wsrpConsumerPortlet.clone();
+		return new WSRPConsumerPortletWrapper((WSRPConsumerPortlet)_wsrpConsumerPortlet.clone());
 	}
 
 	public int compareTo(
@@ -241,7 +241,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	public com.liferay.wsrp.model.WSRPConsumerPortlet toEscapedModel() {
-		return _wsrpConsumerPortlet.toEscapedModel();
+		return new WSRPConsumerPortletWrapper(_wsrpConsumerPortlet.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

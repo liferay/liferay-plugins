@@ -356,7 +356,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	public java.lang.Object clone() {
-		return _kaleoNode.clone();
+		return new KaleoNodeWrapper((KaleoNode)_kaleoNode.clone());
 	}
 
 	public int compareTo(
@@ -369,7 +369,7 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode toEscapedModel() {
-		return _kaleoNode.toEscapedModel();
+		return new KaleoNodeWrapper(_kaleoNode.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

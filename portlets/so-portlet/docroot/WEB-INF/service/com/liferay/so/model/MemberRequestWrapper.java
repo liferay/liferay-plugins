@@ -340,7 +340,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	public java.lang.Object clone() {
-		return _memberRequest.clone();
+		return new MemberRequestWrapper((MemberRequest)_memberRequest.clone());
 	}
 
 	public int compareTo(com.liferay.so.model.MemberRequest memberRequest) {
@@ -352,7 +352,7 @@ public class MemberRequestWrapper implements MemberRequest {
 	}
 
 	public com.liferay.so.model.MemberRequest toEscapedModel() {
-		return _memberRequest.toEscapedModel();
+		return new MemberRequestWrapper(_memberRequest.toEscapedModel());
 	}
 
 	public java.lang.String toString() {

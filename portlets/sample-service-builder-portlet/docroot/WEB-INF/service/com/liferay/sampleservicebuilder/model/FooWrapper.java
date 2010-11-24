@@ -347,7 +347,7 @@ public class FooWrapper implements Foo {
 	}
 
 	public java.lang.Object clone() {
-		return _foo.clone();
+		return new FooWrapper((Foo)_foo.clone());
 	}
 
 	public int compareTo(com.liferay.sampleservicebuilder.model.Foo foo) {
@@ -359,7 +359,7 @@ public class FooWrapper implements Foo {
 	}
 
 	public com.liferay.sampleservicebuilder.model.Foo toEscapedModel() {
-		return _foo.toEscapedModel();
+		return new FooWrapper(_foo.toEscapedModel());
 	}
 
 	public java.lang.String toString() {
