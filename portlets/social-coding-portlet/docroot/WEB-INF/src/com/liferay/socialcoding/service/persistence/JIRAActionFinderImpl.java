@@ -36,7 +36,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class JIRAActionFinderImpl
-	extends BasePersistenceImpl implements JIRAActionFinder {
+	extends BasePersistenceImpl<JIRAAction> implements JIRAActionFinder {
 
 	public static String COUNT_BY_CD_P =
 		JIRAActionFinder.class.getName() + ".countByCD_P";

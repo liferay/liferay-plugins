@@ -36,7 +36,7 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class JIRAIssueFinderImpl
-	extends BasePersistenceImpl implements JIRAIssueFinder {
+	extends BasePersistenceImpl<JIRAIssue> implements JIRAIssueFinder {
 
 	public static String COUNT_BY_CD_P =
 		JIRAIssueFinder.class.getName() + ".countByCD_P";
