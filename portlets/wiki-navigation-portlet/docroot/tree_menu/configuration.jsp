@@ -31,7 +31,7 @@ List<WikiNode> wikiNodes = WikiNodeLocalServiceUtil.getNodes(scopeGroupId);
 		<liferay-ui:message key="node" />
 	</td>
 	<td>
-		<select name="<portlet:namespace />selTitle">
+		<select name="<portlet:namespace />selNodeId">
 			<option value=""></option>
 
 			<%
