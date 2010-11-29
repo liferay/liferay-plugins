@@ -92,10 +92,8 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 			try {
 				DLAppLocalServiceUtil.moveFileEntry(
-					fileEntry.getUserId(), fileEntry.getGroupId(),
-					fileEntry.getFolderId(),
-					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-					fileEntry.getName(), serviceContext);
+					fileEntry.getUserId(), fileEntry.getFileEntryId(),
+					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, serviceContext);
 			}
 			catch (Exception e) {
 				deleteFolder = false;
