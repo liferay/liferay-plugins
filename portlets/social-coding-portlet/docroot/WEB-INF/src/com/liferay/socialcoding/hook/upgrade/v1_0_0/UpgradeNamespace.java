@@ -39,12 +39,13 @@ public class UpgradeNamespace extends UpgradeProcess {
 			StringUtil.replaceFirst(
 				SVNRepositoryTable.TABLE_NAME, "SC_", "WOL_"),
 			SVNRepositoryTable.TABLE_NAME, SVNRepositoryTable.TABLE_COLUMNS,
-			SVNRepositoryTable.TABLE_SQL_CREATE);
+			SVNRepositoryTable.TABLE_SQL_CREATE,
+			SVNRepositoryTable.TABLE_SQL_DROP);
 
 		renameTable(
 			StringUtil.replaceFirst(SVNRevisionTable.TABLE_NAME, "SC_", "WOL_"),
 			SVNRevisionTable.TABLE_NAME, SVNRevisionTable.TABLE_COLUMNS,
-			SVNRevisionTable.TABLE_SQL_CREATE);
+			SVNRevisionTable.TABLE_SQL_CREATE, SVNRevisionTable.TABLE_SQL_DROP);
 	}
 
 	protected boolean hasData(String tableName) {
@@ -81,7 +82,7 @@ public class UpgradeNamespace extends UpgradeProcess {
 
 	protected void renameTable(
 			String oldTableName, String newTableName, Object[][] tableColumns,
-			String tableSqlCreate)
+			String tableSqlCreate, String tableSqlDrop)
 		throws Exception {
 
 		if (hasData(newTableName)) {
@@ -103,6 +104,8 @@ public class UpgradeNamespace extends UpgradeProcess {
 
 			return;
 		}
+
+		runSQL(tableSqlDrop);
 
 		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
 			oldTableName, tableColumns);

@@ -38,21 +38,23 @@ public class UpgradeNamespace extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		renameTable(
 			StringUtil.replaceFirst(
-				MeetupsEntryTable.TABLE_NAME, "SC_", "WOL_"),
+				MeetupsEntryTable.TABLE_NAME, "SN_", "WOL_"),
 			MeetupsEntryTable.TABLE_NAME, MeetupsEntryTable.TABLE_COLUMNS,
-			MeetupsEntryTable.TABLE_SQL_CREATE);
+			MeetupsEntryTable.TABLE_SQL_CREATE,
+			MeetupsEntryTable.TABLE_SQL_DROP);
 
 		renameTable(
 			StringUtil.replaceFirst(
-				MeetupsRegistrationTable.TABLE_NAME, "SC_", "WOL_"),
+				MeetupsRegistrationTable.TABLE_NAME, "SN_", "WOL_"),
 			MeetupsRegistrationTable.TABLE_NAME,
 			MeetupsRegistrationTable.TABLE_COLUMNS,
-			MeetupsRegistrationTable.TABLE_SQL_CREATE);
+			MeetupsRegistrationTable.TABLE_SQL_CREATE,
+			MeetupsRegistrationTable.TABLE_SQL_DROP);
 
 		renameTable(
-			StringUtil.replaceFirst(WallEntryTable.TABLE_NAME, "SC_", "WOL_"),
+			StringUtil.replaceFirst(WallEntryTable.TABLE_NAME, "SN_", "WOL_"),
 			WallEntryTable.TABLE_NAME, WallEntryTable.TABLE_COLUMNS,
-			WallEntryTable.TABLE_SQL_CREATE);
+			WallEntryTable.TABLE_SQL_CREATE, WallEntryTable.TABLE_SQL_DROP);
 	}
 
 	protected boolean hasData(String tableName) {
@@ -89,7 +91,7 @@ public class UpgradeNamespace extends UpgradeProcess {
 
 	protected void renameTable(
 			String oldTableName, String newTableName, Object[][] tableColumns,
-			String tableSqlCreate)
+			String tableSqlCreate, String tableSqlDrop)
 		throws Exception {
 
 		if (hasData(newTableName)) {
@@ -111,6 +113,8 @@ public class UpgradeNamespace extends UpgradeProcess {
 
 			return;
 		}
+
+		runSQL(tableSqlDrop);
 
 		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
 			oldTableName, tableColumns);
