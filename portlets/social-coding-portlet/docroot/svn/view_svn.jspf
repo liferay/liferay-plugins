@@ -297,10 +297,10 @@
 							rowTextEntry = (TextSearchEntry)rowTextEntry.clone();
 
 							if (jiraIssue == null) {
-								rowTextEntry.setName(comments);
+								rowTextEntry.setName(HtmlUtil.escape(comments));
 							}
 							else {
-								rowTextEntry.setName(comments + "<br />" + jiraIssue.getSummary());
+								rowTextEntry.setName(HtmlUtil.escape(comments) + "<br />" + HtmlUtil.escape(jiraIssue.getSummary()));
 							}
 
 							row.addText(rowTextEntry);
