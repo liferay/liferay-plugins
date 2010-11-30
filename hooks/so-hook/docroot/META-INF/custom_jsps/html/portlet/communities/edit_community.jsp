@@ -28,12 +28,22 @@ long groupId = BeanParamUtil.getLong(group, request, "groupId");
 
 int type = BeanParamUtil.getInteger(group, request, "type");
 String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
+
+long layoutSetPrototypeId = 0;
+
+List<LayoutSetPrototype> layoutSetPrototypes = LayoutSetPrototypeLocalServiceUtil.getLayoutSetPrototypes(0, 1);
+
+if (!layoutSetPrototypes.isEmpty()) {
+	layoutSetPrototypeId = layoutSetPrototypes.get(0).getPrimaryKey();
+}
 %>
 
 <form action="<portlet:actionURL windowState="<%= windowState.toString() %>"><portlet:param name="struts_action" value="/communities/edit_community" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm">
 <input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= (group == null) ? Constants.ADD : Constants.UPDATE %>" />
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) ? StringPool.BLANK : HtmlUtil.escape(redirect) %>" />
 <input name="<portlet:namespace />groupId" type="hidden" value="<%= groupId %>" />
+<input name="<portlet:namespace />publicLayoutSetPrototypeId" type="hidden" value="0" />
+<input name="<portlet:namespace />privateLayoutSetPrototypeId" type="hidden" value="0" />
 <input name="<portlet:namespace />friendlyURL" type="hidden" value="<%= HtmlUtil.escapeAttribute(friendlyURL) %>" />
 <input name="<portlet:namespace />active" type="hidden" value="1" />
 
@@ -97,7 +107,15 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 
 <aui:script>
 	function <portlet:namespace />saveGroup() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (group == null) ? Constants.ADD : Constants.UPDATE %>";
+		var isOpen = (document.<portlet:namespace />fm.<portlet:namespace />type.value  == <%= GroupConstants.TYPE_COMMUNITY_OPEN %>);
+
+		if (isOpen) {
+			document.<portlet:namespace />fm.<portlet:namespace />publicLayoutSetPrototypeId.value = <%= layoutSetPrototypeId %>;
+		}
+		else {
+			document.<portlet:namespace />fm.<portlet:namespace />privateLayoutSetPrototypeId.value = <%= layoutSetPrototypeId %>;
+		}
+
 		submitForm(document.<portlet:namespace />fm);
 	}
 
@@ -110,6 +128,16 @@ String friendlyURL = BeanParamUtil.getString(group, request, "friendlyURL");
 			'submit',
 			function(event) {
 				event.preventDefault();
+
+				var isOpen = (document.<portlet:namespace />fm.<portlet:namespace />type.value  == <%= GroupConstants.TYPE_COMMUNITY_OPEN %>);
+
+				if (isOpen) {
+					document.<portlet:namespace />fm.<portlet:namespace />publicLayoutSetPrototypeId.value = <%= layoutSetPrototypeId %>;
+				}
+				else {
+					document.<portlet:namespace />fm.<portlet:namespace />privateLayoutSetPrototypeId.value = <%= layoutSetPrototypeId %>;
+
+				}
 
 				var popupNode = Liferay.SO.Sites.getPopup().bodyNode;
 
