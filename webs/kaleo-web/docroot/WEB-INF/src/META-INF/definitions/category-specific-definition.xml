@@ -13,7 +13,7 @@
 		<initial>true</initial>
 		<transitions>
 			<transition>
-				<name>determine.branch</name>
+				<name>Determine Branch</name>
 				<target>determine-branch</target>
 				<default>true</default>
 			</transition>
@@ -23,7 +23,7 @@
 		<name>determine-branch</name>
 		<transitions>
 			<transition>
-				<name>legal.review</name>
+				<name>Legal Review</name>
 				<target>legal-review</target>
 				<default>false</default>
 				<condition>
@@ -36,20 +36,22 @@
 							import com.liferay.portlet.asset.model.AssetEntry;
 							import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 
-							String expectedCategory = "legal";
-							
-							String className = (String)workflowContext.get(
-								WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+							import java.util.List;
+
+							String className = (String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
 							long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
-							AssetEntry entry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
-							Iterator categoriesIter = entry.getCategories().iterator();
+							AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
 
-							while (categoriesIter.hasNext()) {
-								AssetCategory category = (AssetCategory)categoriesIter.next();
-								if (category.getName().equals(expectedCategory)) {
+							List<AssetCategory> assetCategories = assetEntry.getCategories();
+
+							for (AssetCategory assetCategory : assetCategories) {
+								String categoryName = assetCategory.getName();
+
+								if (categoryName.equals("legal")) {
 									returnValue = true;
-									return;
+
+									break;
 								}
 							}
 
@@ -60,7 +62,7 @@
 				</condition>
 			</transition>
 			<transition>
-				<name>content.review</name>
+				<name>Content Review</name>
 				<target>content-review</target>
 				<default>false</default>
 				<condition>
@@ -73,20 +75,22 @@
 							import com.liferay.portlet.asset.model.AssetEntry;
 							import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 
-							String expectedCategory = "content";
+							import java.util.List;
 
-							String className = (String)workflowContext.get(
-								WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+							String className = (String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
 							long classPK = GetterUtil.getLong((String)workflowContext.get(WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
-							AssetEntry entry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
-							Iterator categoriesIter = entry.getCategories().iterator();
+							AssetEntry assetEntry = AssetEntryLocalServiceUtil.getEntry(className, classPK);
 
-							while (categoriesIter.hasNext()) {
-								AssetCategory category = (AssetCategory)categoriesIter.next();
-								if (category.getName().equals(expectedCategory)) {
+							List<AssetCategory> assetCategories = assetEntry.getCategories();
+
+							for (AssetCategory assetCategory : assetCategories) {
+								String categoryName = assetCategory.getName();
+
+								if (categoryName.equals("content")) {
 									returnValue = true;
-									return;
+
+									break;
 								}
 							}
 
