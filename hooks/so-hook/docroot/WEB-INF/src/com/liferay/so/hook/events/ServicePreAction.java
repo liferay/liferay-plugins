@@ -179,7 +179,7 @@ public class ServicePreAction extends Action {
 		User user = themeDisplay.getUser();
 
 		return themeDisplay.getPathFriendlyURLPublic() + "/" +
-			user.getScreenName() + "/home";
+			user.getScreenName();
 	}
 
 	protected String getRedirect(
