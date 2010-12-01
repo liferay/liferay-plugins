@@ -113,10 +113,10 @@
 			maxmemory="384m"
 			newenvironment="true"
 		>
-			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
-			<jvmarg value="-Dsql.dir=docroot/WEB-INF/sql" />
-			<arg value="${database.name}" />
-			<arg value="${database.types}" />
+			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="db.database.name=${database.name}" />
+			<arg value="db.database.types=${database.types}" />
+			<arg value="db.sql.dir=docroot/WEB-INF/sql" />
 		</java>
 
 		<delete file="velocity.log" quiet="true" />
