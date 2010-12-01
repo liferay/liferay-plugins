@@ -98,7 +98,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 			<td>
 				<aui:model-context bean="<%= article %>" model="<%= Article.class %>" />
 
-				<aui:workflow-status status="<%= article.getStatus() %>" version="<%= GetterUtil.getDouble(String.valueOf(article.getVersion())) %>" />
+				<aui:workflow-status status="<%= article.getStatus() %>" version="<%= String.valueOf(article.getVersion()) %>" />
 			</td>
 		</tr>
 		</table>
