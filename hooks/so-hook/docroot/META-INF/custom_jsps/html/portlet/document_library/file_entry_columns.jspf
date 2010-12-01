@@ -23,12 +23,9 @@ boolean isLocked = false;
 boolean hasLock = false;
 
 if (fileEntry != null) {
-	isLocked = LockLocalServiceUtil.isLocked(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), HtmlUtil.unescape(fileEntry.getName())));
-	hasLock = LockLocalServiceUtil.hasLock(user.getUserId(), DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), HtmlUtil.unescape(fileEntry.getName())));
-
-	if (isLocked) {
-		lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), HtmlUtil.unescape(fileEntry.getName())));
-	}
+	lock = DLAppServiceUtil.getFileEntryLock(fileEntry.getFileEntryId());
+	isLocked = DLAppServiceUtil.isFileEntryLocked(fileEntry.getFileEntryId());
+	hasLock = DLAppServiceUtil.hasFileEntryLock(fileEntry.getFileEntryId());
 }
 
 UnicodeProperties extraSettingsProperties = fileEntry.getExtraSettingsProperties();
@@ -62,9 +59,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="lockURL">
 						<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 						<portlet:param name="<%= Constants.CMD %>" value="<%= isLocked ? Constants.UNLOCK : Constants.LOCK %>" />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-						<portlet:param name="name" value="<%= fileEntry.getName() %>" />
+						<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
 					</portlet:actionURL>
 
 					<div class="file-lock">
@@ -81,8 +76,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 											<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 											<portlet:param name="redirect" value="<%= currentURL %>" />
 											<portlet:param name="displaySection" value="online" />
-											<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-											<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+											<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
 										</portlet:renderURL>
 
 
@@ -113,8 +107,7 @@ for (int j = 0; j < fileEntryColumns.length; j++) {
 					<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="viewURL">
 						<portlet:param name="struts_action" value="/document_library/view_file_entry" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-						<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+						<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
 					</portlet:renderURL>
 
 					<div class="result-title">

@@ -109,8 +109,7 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 					lockURL.setParameter("struts_action", "/document_library/edit_file_entry");
 					lockURL.setParameter(Constants.CMD, Constants.LOCK);
 					lockURL.setParameter("redirect", currentURL);
-					lockURL.setParameter("folderId", String.valueOf(fileEntry.getFolderId()));
-					lockURL.setParameter("name", fileEntry.getName());
+					lockURL.setParameter("fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 				}
 
 				String taglibOnlineEditUrl = "javascript:" + renderResponse.getNamespace() + "openDocument('" + officeDoc + "','" + webDavUrl+ "','" + (lockURL == null ? StringPool.BLANK : lockURL.toString()) + "');";
@@ -146,8 +145,7 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 					<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 					<portlet:param name="redirect" value="<%= viewFolderURL.toString() %>" />
-					<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-					<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+					<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon-delete url="<%= deleteURL %>" />
@@ -156,7 +154,7 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 		<c:otherwise>
 
 			<%
-			fileEntry = DLAppLocalServiceUtil.getFileEntry(fileShortcut.getGroupId(), fileShortcut.getToFolderId(), HtmlUtil.unescape(fileShortcut.getToName()));
+			fileEntry = DLAppLocalServiceUtil.getFileEntry(fileShortcut.getToFileEntryId());
 			%>
 
 			<c:if test="<%= DLFileShortcutPermission.contains(permissionChecker, fileShortcut, ActionKeys.VIEW) %>">
@@ -171,8 +169,7 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 				<portlet:renderURL var="viewOriginalFileURL">
 					<portlet:param name="struts_action" value="/document_library/view_file_entry" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="folderId" value="<%= String.valueOf(fileShortcut.getToFolderId()) %>" />
-					<portlet:param name="name" value="<%= HtmlUtil.unescape(fileShortcut.getToName()) %>" />
+					<portlet:param name="fileEntryId" value="<%= String.valueOf(fileShortcut.getToFileEntryId()) %>" />
 				</portlet:renderURL>
 
 				<liferay-ui:icon

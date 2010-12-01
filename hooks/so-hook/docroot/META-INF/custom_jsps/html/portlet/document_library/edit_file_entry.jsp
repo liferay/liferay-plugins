@@ -62,19 +62,9 @@ Boolean isLocked = Boolean.FALSE;
 Boolean hasLock = Boolean.FALSE;
 
 if (fileEntry != null) {
-	folder = fileEntry.getFolder();
-
-	try {
-		lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), fileEntry.getName()));
-
-		isLocked = Boolean.TRUE;
-
-		if (lock.getUserId() == user.getUserId()) {
-			hasLock = Boolean.TRUE;
-		}
-	}
-	catch (Exception e) {
-	}
+	lock = DLAppServiceUtil.getFileEntryLock(fileEntry.getFileEntryId());
+	isLocked = DLAppServiceUtil.isFileEntryLocked(fileEntry.getFileEntryId());
+	hasLock = DLAppServiceUtil.hasFileEntryLock(fileEntry.getFileEntryId());
 }
 
 int status = WorkflowConstants.STATUS_APPROVED;
@@ -97,7 +87,7 @@ if (fileEntry != null) {
 boolean hideEdit = false;
 
 if (displaySection.equals("online") && (fileEntry != null)) {
-	DLFileVersion fileVersion = DLAppLocalServiceUtil.getLatestFileVersion(fileEntry.getGroupId(), fileEntry.getFolderId(), fileEntry.getName());
+	DLFileVersion fileVersion = DLAppLocalServiceUtil.getLatestFileVersion(fileEntry.getFileEntryId());
 
 	if (fileVersion.getStatus() == WorkflowConstants.STATUS_APPROVED) {
 		hideEdit = true;
@@ -109,8 +99,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("struts_action", strutsAction);
 portletURL.setParameter("tabs2", tabs2);
 portletURL.setParameter("redirect", redirect);
-portletURL.setParameter("folderId", String.valueOf(folderId));
-portletURL.setParameter("name", name);
+portletURL.setParameter("fileEntryId", String.valueOf(fileEntryId));
 %>
 
 <c:if test="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) %>">
@@ -174,7 +163,7 @@ portletURL.setParameter("name", name);
 						fallbackContainer: '#<portlet:namespace />fallback',
 						maxFileSize: <%= PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE) %> / 1024,
 						namespace: '<portlet:namespace />',
-						uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /></liferay-portlet:actionURL><liferay-ui:input-permissions-params modelName="<%= DLFileEntry.class.getName() %>" />'
+						uploadFile: '<liferay-portlet:actionURL windowState="<%= LiferayWindowState.POP_UP.toString() %>" doAsUserId="<%= user.getUserId() %>"><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /><portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" /></liferay-portlet:actionURL><liferay-ui:input-permissions-params modelName="<%= DLFileEntry.class.getName() %>" />'
 					}
 				);
 			</aui:script>
@@ -190,8 +179,7 @@ portletURL.setParameter("name", name);
 			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 			<aui:input name="referringPortletResource" type="hidden" value="<%= referringPortletResource %>" />
 			<aui:input name="uploadProgressId" type="hidden" value="<%= uploadProgressId %>" />
-			<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
-			<aui:input name="name" type="hidden" value="<%= name %>" />
+			<aui:input name="fileEntryId" type="hidden" value="<%= fileEntryId %>" />
 
 			<liferay-ui:error exception="<%= DuplicateFileException.class %>" message="please-enter-a-unique-document-name" />
 			<liferay-ui:error exception="<%= DuplicateFolderNameException.class %>" message="please-enter-a-unique-document-name" />

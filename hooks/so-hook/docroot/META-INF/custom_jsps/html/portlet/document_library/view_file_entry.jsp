@@ -53,21 +53,9 @@ if (PrefsPropsUtil.getBoolean(PropsKeys.OPENOFFICE_SERVER_ENABLED, PropsValues.O
 
 DLFolder folder = fileEntry.getFolder();
 
-Lock lock = null;
-Boolean isLocked = Boolean.FALSE;
-Boolean hasLock = Boolean.FALSE;
-
-try {
-	lock = LockLocalServiceUtil.getLock(DLFileEntry.class.getName(), DLUtil.getLockId(fileEntry.getGroupId(), fileEntry.getFolderId(), fileEntry.getName()));
-
-	isLocked = Boolean.TRUE;
-
-	if (lock.getUserId() == user.getUserId()) {
-		hasLock = Boolean.TRUE;
-	}
-}
-catch (Exception e) {
-}
+Lock lock = DLAppServiceUtil.getFileEntryLock(fileEntry.getFileEntryId());;
+Boolean isLocked = DLAppServiceUtil.isFileEntryLocked(fileEntry.getFileEntryId());
+Boolean hasLock = DLAppServiceUtil.hasFileEntryLock(fileEntry.getFileEntryId());
 
 String fileUrl = themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/documents/" + themeDisplay.getScopeGroupId() + StringPool.SLASH + folderId + StringPool.SLASH + HttpUtil.encodeURL(HtmlUtil.unescape(title));
 String webDavUrl = StringPool.BLANK;
@@ -104,7 +92,7 @@ UnicodeProperties extraSettingsProperties = fileEntry.getExtraSettingsProperties
 String versionText = LanguageUtil.format(pageContext, "version-x", fileEntry.getVersion());
 
 if (Validator.isNull(fileEntry.getVersion())) {
-	versionText = LanguageUtil.get(pageContext, "not-approved");
+	versionText = LanguageUtil.get(pageContext, "draft");
 }
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -119,14 +107,6 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 %>
 
 <liferay-util:include page="/html/portlet/document_library/sidebar.jsp" />
-
-<%
-String versionText = LanguageUtil.format(pageContext, "version-x", fileEntry.getVersion());
-
-if (Validator.isNull(fileEntry.getVersion())) {
-	versionText = LanguageUtil.get(pageContext, "draft");
-}
-%>
 
 <liferay-ui:header title='<%= fileEntry.getTitle() + "(" + versionText + ")" %>' />
 
@@ -327,7 +307,7 @@ if (Validator.isNull(fileEntry.getVersion())) {
 					searchContainer.setRowChecker(new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS));
 				}
 
-				List results = DLAppLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_ANY);
+				List results = DLAppLocalServiceUtil.getFileVersions(fileEntryId, WorkflowConstants.STATUS_ANY);
 				List resultRows = searchContainer.getResultRows();
 
 				for (int i = 0; i < results.size(); i++) {
@@ -352,7 +332,7 @@ if (Validator.isNull(fileEntry.getVersion())) {
 					</portlet:actionURL>
 
 					<%
-					List<DLFileVersion> fileVersions = DLAppLocalServiceUtil.getFileVersions(scopeGroupId, folderId, name, WorkflowConstants.STATUS_APPROVED);
+					List<DLFileVersion> fileVersions = DLAppLocalServiceUtil.getFileVersions(fileEntryId, WorkflowConstants.STATUS_APPROVED);
 
 					for (DLFileVersion fileVersion : fileVersions) {
 					%>
@@ -426,8 +406,7 @@ if (Validator.isNull(fileEntry.getVersion())) {
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="displaySection" value="upload" />
-							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+							<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" />
 						</portlet:renderURL>
 
 						<li class="action-upload"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="upload-new-revision" />');"><liferay-ui:message key="upload-new-revision" /></a></li>
@@ -539,11 +518,9 @@ if (Validator.isNull(fileEntry.getVersion())) {
 
 						<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="editURL">
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
-							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="displaySection" value="properties" />
-							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+							<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" />
 						</portlet:renderURL>
 
 						<li class="action-edit"><a href="javascript:;" onClick="Liferay.SO.DocumentLibrary.displayPopup('<%= editURL %>', '<liferay-ui:message key="edit-properties" />');"><liferay-ui:message key="edit-properties" /></a></li>
@@ -565,8 +542,7 @@ if (Validator.isNull(fileEntry.getVersion())) {
 							<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 							<portlet:param name="redirect" value="<%= redirect %>" />
-							<portlet:param name="folderId" value="<%= String.valueOf(fileEntry.getFolderId()) %>" />
-							<portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" />
+							<portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" />
 						</portlet:actionURL>
 
 						<li class="action-delete"><a href="javascript:;" onClick="return (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />') && submitForm(document.hrefFm, '<%= deleteURL %>'));"><liferay-ui:message key="delete-document-and-all-revisions" /></a></li>
@@ -584,15 +560,15 @@ if (Validator.isNull(fileEntry.getVersion())) {
 
 <aui:script>
 	function <portlet:namespace />lock() {
-		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.LOCK %>" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.LOCK %>" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" /></portlet:actionURL>");
 	}
 
 	function <portlet:namespace />selectFolder(folderId, folderName) {
-		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.MOVE %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= HtmlUtil.unescape(fileEntry.getName()) %>" /></portlet:actionURL>&<portlet:namespace />newFolderId=" + folderId);
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.MOVE %>" /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" /></portlet:actionURL>&<portlet:namespace />newFolderId=" + folderId);
 	}
 
 	function <portlet:namespace />unlock() {
-		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNLOCK %>" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="folderId" value="<%= String.valueOf(folderId) %>" /><portlet:param name="name" value="<%= name %>" /></portlet:actionURL>");
+		submitForm(document.hrefFm, "<portlet:actionURL><portlet:param name="struts_action" value="/document_library/edit_file_entry" /><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UNLOCK %>" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="fileEntryId" value="<%= String.valueOf(fileEntryId) %>" /></portlet:actionURL>");
 	}
 
 	Liferay.provide(
