@@ -19,7 +19,9 @@ import com.google.inject.name.Names;
 
 import com.liferay.opensocial.shindig.config.LiferayJsonContainerConfig;
 import com.liferay.opensocial.shindig.service.LiferayActivityService;
+import com.liferay.opensocial.shindig.service.LiferayAlbumService;
 import com.liferay.opensocial.shindig.service.LiferayAppDataService;
+import com.liferay.opensocial.shindig.service.LiferayMediaItemService;
 import com.liferay.opensocial.shindig.service.LiferayPersonService;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 
@@ -33,7 +35,6 @@ import org.apache.shindig.social.opensocial.spi.MessageService.NotImplementedMes
 import org.apache.shindig.social.opensocial.spi.MessageService;
 import org.apache.shindig.social.opensocial.spi.PersonService;
 import org.apache.shindig.social.sample.oauth.SampleOAuthDataStore;
-import org.apache.shindig.social.sample.spi.JsonDbOpensocialService;
 
 /**
  * @author Michael Young
@@ -46,10 +47,10 @@ public class LiferayModule extends AbstractModule {
 				"sampledata/canonicaldb.json");
 
 		bind(ActivityService.class).to(LiferayActivityService.class);
-		bind(AlbumService.class).to(JsonDbOpensocialService.class);
+		bind(AlbumService.class).to(LiferayAlbumService.class);
 		bind(AppDataService.class).to(LiferayAppDataService.class);
 		bind(ContainerConfig.class).to(LiferayJsonContainerConfig.class);
-		bind(MediaItemService.class).to(JsonDbOpensocialService.class);
+		bind(MediaItemService.class).to(LiferayMediaItemService.class);
 		bind(MessageService.class).to(NotImplementedMessageService.class);
 		bind(OAuthDataStore.class).to(SampleOAuthDataStore.class);
 		bind(PersonService.class).to(LiferayPersonService.class);
