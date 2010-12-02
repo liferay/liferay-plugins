@@ -55,7 +55,10 @@
 
 				<if>
 					<not>
-						<equals arg1="${portlet.framework}" arg2="mvc" />
+						<or>
+							<equals arg1="${portlet.framework}" arg2="" />
+							<equals arg1="${portlet.framework}" arg2="mvc" />														
+						</or>
 					</not>
 					<then>
 						<copy todir="${portlet.dir}">
