@@ -56,8 +56,11 @@
 				<if>
 					<not>
 						<or>
+							<not>
+								<isset property="portlet.framework" />
+							</not>
 							<equals arg1="${portlet.framework}" arg2="" />
-							<equals arg1="${portlet.framework}" arg2="mvc" />														
+							<equals arg1="${portlet.framework}" arg2="mvc" />
 						</or>
 					</not>
 					<then>
