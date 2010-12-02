@@ -30,7 +30,7 @@
   			}
 		</style>
 
-		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= license %>&amp;sensor=false" type="text/javascript"></script>
+		<script src="https://www.google.com/jsapi?key=<%= license %>" type="text/javascript"></script>
 
 		<form name="<portlet:namespace />fm">
 
@@ -71,7 +71,7 @@
 				}
 			}
 
-			<portlet:namespace />load();
+			google.load("maps", "2", {"callback" : <portlet:namespace />load});
 
 			function <portlet:namespace />getAddress(address) {
 				<portlet:namespace />geocoder.getLatLng(
