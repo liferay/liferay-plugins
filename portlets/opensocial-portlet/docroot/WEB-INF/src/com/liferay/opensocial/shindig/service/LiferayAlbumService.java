@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -187,21 +188,7 @@ public class LiferayAlbumService implements AlbumService {
 			SecurityToken securityToken)
 		throws Exception {
 
-		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
-
-		User owner = UserLocalServiceUtil.getUserById(userIdLong);
-
-		long groupIdLong = owner.getGroup().getGroupId();
-
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddCommunityPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupIdLong);
-
-		DLAppLocalServiceUtil.addFolder(
-			userIdLong, groupIdLong, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			album.getTitle(), album.getDescription(), serviceContext);
+		doUpdateAlbum(userId, appId, album, null, securityToken);
 	}
 
 	protected void doDeleteAlbum(
@@ -266,7 +253,7 @@ public class LiferayAlbumService implements AlbumService {
 
 			long userIdLong = GetterUtil.getLong(userIdString);
 
-			User owner = UserLocalServiceUtil.getUserById(userIdLong);
+			User user = UserLocalServiceUtil.getUserById(userIdLong);
 
 			List<DLFolder> dlFolders = new ArrayList<DLFolder>();
 
@@ -276,22 +263,26 @@ public class LiferayAlbumService implements AlbumService {
 				groupIdType.equals(GroupId.Type.friends) ||
 				groupIdType.equals(GroupId.Type.groupId)) {
 
-				List<User> friends = UserLocalServiceUtil.getSocialUsers(
-					owner.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
+				List<User> socialUsers = UserLocalServiceUtil.getSocialUsers(
+					user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-				for (User friend : friends) {
+				for (User socialUser : socialUsers) {
+					Group group = socialUser.getGroup();
+
 					List<DLFolder> friendDLFolders =
 						DLAppLocalServiceUtil.getFolders(
-							friend.getGroup().getGroupId(),
+							group.getGroupId(),
 							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 					dlFolders.addAll(friendDLFolders);
 				}
 			}
 			else if (groupIdType.equals(GroupId.Type.self)) {
+				Group group = user.getGroup();
+
 				dlFolders = DLAppLocalServiceUtil.getFolders(
-					owner.getGroup().getGroupId(),
+					group.getGroupId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 			}
 
@@ -319,9 +310,11 @@ public class LiferayAlbumService implements AlbumService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		User owner = UserLocalServiceUtil.getUserById(userIdLong);
+		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
-		long groupIdLong = owner.getGroup().getGroupId();
+		Group group = user.getGroup();
+
+		long groupIdLong = group.getGroupId();
 
 		DLFolder dlFolder = DLAppLocalServiceUtil.getFolder(
 			GetterUtil.getLong(albumId));
@@ -335,9 +328,17 @@ public class LiferayAlbumService implements AlbumService {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupIdLong);
 
-		DLAppLocalServiceUtil.updateFolder(
-			dlFolder.getFolderId(), dlFolder.getParentFolderId(),
-			dlFolder.getName(), dlFolder.getDescription(), serviceContext);
+		if (albumId == null) {
+			DLAppLocalServiceUtil.addFolder(
+				userIdLong, groupIdLong,
+				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				album.getTitle(), album.getDescription(), serviceContext);
+		}
+		else {
+			DLAppLocalServiceUtil.updateFolder(
+				dlFolder.getFolderId(), dlFolder.getParentFolderId(),
+				dlFolder.getName(), dlFolder.getDescription(), serviceContext);
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(LiferayAlbumService.class);

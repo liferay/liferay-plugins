@@ -14,18 +14,21 @@
 
 package com.liferay.opensocial.shindig.service;
 
+import com.liferay.opensocial.util.SerializerUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -112,8 +115,8 @@ public class LiferayMediaItemService implements MediaItemService {
 		throws ProtocolException {
 
 		try {
-			MediaItem mediaItem = doGetMediaItem(userId, appId, albumId,
-				mediaItemId, fields, securityToken);
+			MediaItem mediaItem = doGetMediaItem(
+				userId, appId, albumId, mediaItemId, fields, securityToken);
 
 			return ImmediateFuture.newInstance(mediaItem);
 		}
@@ -158,8 +161,9 @@ public class LiferayMediaItemService implements MediaItemService {
 		throws ProtocolException {
 
 		try {
-			RestfulCollection<MediaItem> mediaItems = doGetMediaItems(userId,
-				appId, albumId, fields, collectionOptions, securityToken);
+			RestfulCollection<MediaItem> mediaItems = doGetMediaItems(
+				userId, appId, albumId, fields, collectionOptions,
+				securityToken);
 
 			return ImmediateFuture.newInstance(mediaItems);
 		}
@@ -264,7 +268,7 @@ public class LiferayMediaItemService implements MediaItemService {
 			long userIdLong = GetterUtil.getLong(
 				userId.getUserId(securityToken));
 
-			User owner = UserLocalServiceUtil.getUserById(userIdLong);
+			User user = UserLocalServiceUtil.getUserById(userIdLong);
 
 			List<DLFileEntry> dlFileEntries = new ArrayList<DLFileEntry>();
 
@@ -274,33 +278,40 @@ public class LiferayMediaItemService implements MediaItemService {
 				groupIdType.equals(GroupId.Type.friends) ||
 				groupIdType.equals(GroupId.Type.groupId)) {
 
-				List<User> friends = UserLocalServiceUtil.getSocialUsers(
-					owner.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
+				List<User> socialUsers = UserLocalServiceUtil.getSocialUsers(
+					user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-				for (User friend : friends) {
+				for (User socialUser : socialUsers) {
+					Group group = socialUser.getGroup();
+
 					List<DLFileEntry> friendDLFileEntries =
 						DLAppLocalServiceUtil.getGroupFileEntries(
-							friend.getGroup().getGroupId(),
-							collectionOptions.getFirst(),
+							group.getGroupId(), collectionOptions.getFirst(),
 							collectionOptions.getMax());
 
 					dlFileEntries.addAll(friendDLFileEntries);
 				}
 			}
 			else if (groupIdType.equals(GroupId.Type.self)) {
+				Group group = user.getGroup();
+
 				dlFileEntries = DLAppLocalServiceUtil.getGroupFileEntries(
-					owner.getGroup().getGroupId(), collectionOptions.getFirst(),
+					group.getGroupId(), collectionOptions.getFirst(),
 					collectionOptions.getMax());
 			}
 
 			for (DLFileEntry dlFileEntry : dlFileEntries) {
 				MediaItem.Type mediaItemType = getMediaItemType(dlFileEntry);
 
-				if (mediaItemType != null) {
-					mediaItems.add(
-						getMediaItem(dlFileEntry, fields, securityToken));
+				if (mediaItemType == null) {
+					continue;
 				}
+
+				MediaItem mediaItem = getMediaItem(
+					dlFileEntry, fields, securityToken);
+
+				mediaItems.add(mediaItem);
 			}
 		}
 
@@ -314,26 +325,32 @@ public class LiferayMediaItemService implements MediaItemService {
 			CollectionOptions collectionOptions, SecurityToken securityToken)
 		throws Exception {
 
-		long albumIdLong = GetterUtil.getLong(albumId);
-
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		User owner = UserLocalServiceUtil.getUserById(userIdLong);
+		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
-		long groupIdLong = owner.getGroup().getGroupId();
+		Group group = user.getGroup();
 
-		List<DLFileEntry> dLFileEntries =
-			DLAppLocalServiceUtil.getFileEntries(groupIdLong, albumIdLong);
+		long groupIdLong = group.getGroupId();
+
+		long albumIdLong = GetterUtil.getLong(albumId);
+
+		List<DLFileEntry> dLFileEntries = DLAppLocalServiceUtil.getFileEntries(
+			groupIdLong, albumIdLong);
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
 		for (DLFileEntry dlFileEntry : dLFileEntries) {
 			MediaItem.Type mediaItemType = getMediaItemType(dlFileEntry);
 
-			if (mediaItemType != null) {
-				mediaItems.add(
-					getMediaItem(dlFileEntry, fields, securityToken));
+			if (mediaItemType == null) {
+				continue;
 			}
+
+			MediaItem mediaItem = getMediaItem(
+				dlFileEntry, fields, securityToken);
+
+			mediaItems.add(mediaItem);
 		}
 
 		return new RestfulCollection<MediaItem>(
@@ -347,35 +364,38 @@ public class LiferayMediaItemService implements MediaItemService {
 			CollectionOptions collectionOptions, SecurityToken securityToken)
 		throws Exception {
 
-		long albumIdLong = GetterUtil.getLong(albumId);
-
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		User owner = UserLocalServiceUtil.getUserById(userIdLong);
+		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
-		long groupIdLong = owner.getGroup().getGroupId();
+		Group group = user.getGroup();
 
-		List<DLFileEntry> dLFileEntries =
-			DLAppLocalServiceUtil.getFileEntries(groupIdLong, albumIdLong);
+		long groupIdLong = group.getGroupId();
+
+		long albumIdLong = GetterUtil.getLong(albumId);
+
+		List<DLFileEntry> dLFileEntries = DLAppLocalServiceUtil.getFileEntries(
+			groupIdLong, albumIdLong);
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
 		for (DLFileEntry dlFileEntry : dLFileEntries) {
 			MediaItem.Type mediaItemType = getMediaItemType(dlFileEntry);
 
-			if (mediaItemType != null) {
-				MediaItem mediaItem = new MediaItemImpl();
+			if (mediaItemType == null) {
+				continue;
+			}
 
-				mediaItem = getMediaItem(dlFileEntry, fields, securityToken);
+			MediaItem mediaItem = getMediaItem(
+				dlFileEntry, fields, securityToken);
 
-				if (mediaItemIds.contains(mediaItem.getId())) {
-					mediaItems.add(mediaItem);
-				}
+			if (mediaItemIds.contains(mediaItem.getId())) {
+				mediaItems.add(mediaItem);
 			}
 		}
 
-		return new RestfulCollection<MediaItem>(mediaItems,
-			collectionOptions.getFirst(), mediaItems.size(),
+		return new RestfulCollection<MediaItem>(
+			mediaItems, collectionOptions.getFirst(), mediaItems.size(),
 			collectionOptions.getMax());
 	}
 
@@ -384,15 +404,13 @@ public class LiferayMediaItemService implements MediaItemService {
 			MediaItem mediaItem, SecurityToken securityToken)
 		throws Exception {
 
-		long albumIdLong = GetterUtil.getLong(albumId);
-
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		User owner = UserLocalServiceUtil.getUserById(userIdLong);
+		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
-		long groupIdLong = owner.getGroup().getGroupId();
+		Group group = user.getGroup();
 
-		String fileName;
+		long groupIdLong = group.getGroupId();
 
 		Http.Options options = new Http.Options();
 
@@ -400,39 +418,18 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		byte[] byteArray = HttpUtil.URLtoByteArray(options);
 
-		String contentDisposition = options.getResponse().getHeader(
-			"Content-Disposition");
+		String fileName = getFileName(mediaItem, options);
 
-		if (contentDisposition != null) {
-			Matcher filenameMatcher = _filenamePattern.matcher(
-				contentDisposition);
+		JSONObject extraSettingsJSONObject = JSONFactoryUtil.createJSONObject();
 
-			if (filenameMatcher.find()) {
-				fileName = filenameMatcher.group(1);
-			}
-			else {
-				fileName = mediaItem.getTitle();
-			}
-		}
-		else {
-			fileName = FileUtil.getShortFileName(mediaItem.getUrl());
-		}
+		extraSettingsJSONObject.put("DURATION", mediaItem.getDuration());
 
-		JSONObject extraDataJSON = JSONFactoryUtil.createJSONObject();
-
-		extraDataJSON.put("DURATION", mediaItem.getDuration());
-		extraDataJSON.put("fileSize", mediaItem.getFileSize());
-		extraDataJSON.put("language", mediaItem.getLanguage());
-		extraDataJSON.put("location", getLocation(mediaItem.getLocation()));
-		extraDataJSON.put("numCommments", mediaItem.getNumComments());
-		extraDataJSON.put("numVotes", mediaItem.getNumVotes());
-		extraDataJSON.put("rating", mediaItem.getRating());
-		extraDataJSON.put("startTime", mediaItem.getStartTime());
-		extraDataJSON.put("taggedPeople", mediaItem.getTaggedPeople());
-		extraDataJSON.put("tags", mediaItem.getTags());
-		extraDataJSON.put("thumbnailUrl", mediaItem.getThumbnailUrl());
+		SerializerUtil.copyProperties(
+			mediaItem, extraSettingsJSONObject, _MEDIA_ITEM_FIELDS);
 
 		if (mediaItemId == null) {
+			long albumIdLong = GetterUtil.getLong(albumId);
+
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAddCommunityPermissions(true);
@@ -442,7 +439,7 @@ public class LiferayMediaItemService implements MediaItemService {
 			DLAppLocalServiceUtil.addFileEntry(
 				userIdLong, groupIdLong, albumIdLong, fileName,
 				mediaItem.getDescription(), StringPool.BLANK,
-				extraDataJSON.toString(), byteArray, serviceContext);
+				extraSettingsJSONObject.toString(), byteArray, serviceContext);
 		}
 		else {
 			long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
@@ -460,61 +457,24 @@ public class LiferayMediaItemService implements MediaItemService {
 
 			DLAppLocalServiceUtil.updateFileEntry(
 				userIdLong, dlFileEntry.getFileEntryId(), fileName,
-				mediaItem.getTitle(), mediaItem.getDescription(), "", false,
-				extraDataJSON.toString(), byteArray, serviceContext);
+				mediaItem.getTitle(), mediaItem.getDescription(),
+				StringPool.BLANK, false, extraSettingsJSONObject.toString(),
+				byteArray, serviceContext);
 		}
 	}
 
-	protected Address getAddress (JSONObject addressJSON) {
+	protected Address getAddress(JSONObject jsonObject) {
 		Address address = new AddressImpl();
 
-		if (addressJSON.has(Address.Field.COUNTRY.toString())) {
-			address.setCountry(addressJSON.getString("country"));
-		}
-
-		if (addressJSON.has(Address.Field.FORMATTED.toString())) {
-			address.setFormatted(addressJSON.getString("formatted"));
-		}
-
-		if (addressJSON.has(Address.Field.LATITUDE.toString())) {
-			address.setLatitude((float) addressJSON.getDouble("latitude"));
-		}
-
-		if (addressJSON.has(Address.Field.LOCALITY.toString())) {
-			address.setLocality(addressJSON.getString("locality"));
-		}
-
-		if (addressJSON.has(Address.Field.LONGITUDE.toString())) {
-			address.setLongitude((float) addressJSON.getDouble("longitude"));
-		}
-
-		if (addressJSON.has(Address.Field.POSTAL_CODE.toString())) {
-			address.setPostalCode(addressJSON.getString("postalCode"));
-		}
-
-		if (addressJSON.has(Address.Field.PRIMARY.toString())) {
-			address.setPrimary(addressJSON.getBoolean("primary"));
-		}
-
-		if (addressJSON.has(Address.Field.REGION.toString())) {
-			address.setRegion(addressJSON.getString("region"));
-		}
-
-		if (addressJSON.has(Address.Field.STREET_ADDRESS.toString())) {
-			address.setStreetAddress(addressJSON.getString("streetAddress"));
-		}
-
-		if (addressJSON.has(Address.Field.TYPE.toString())) {
-			address.setType(addressJSON.getString("type"));
-		}
+		SerializerUtil.copyProperties(jsonObject, address, _ADDRESS_FIELDS);
 
 		return address;
 	}
 
 	protected String getDLFileEntryURL(
-			DLFileEntry dlFileEntry, SecurityToken securityToken) {
+		DLFileEntry dlFileEntry, SecurityToken securityToken) {
 
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(6);
 
 		sb.append(securityToken.getDomain());
 		sb.append(PortalUtil.getPathContext());
@@ -526,25 +486,36 @@ public class LiferayMediaItemService implements MediaItemService {
 		return sb.toString();
 	}
 
+	protected String getFileName(MediaItem mediaItem, Http.Options options) {
+		Http.Response response = options.getResponse();
+
+		String contentDisposition = response.getHeader(
+			HttpHeaders.CONTENT_DISPOSITION);
+
+		if (contentDisposition == null) {
+			return FileUtil.getShortFileName(mediaItem.getUrl());
+		}
+
+		Matcher fileNameMatcher = _fileNamePattern.matcher(contentDisposition);
+
+		if (fileNameMatcher.find()) {
+			return fileNameMatcher.group(1);
+		}
+		else {
+			return mediaItem.getTitle();
+		}
+	}
+
 	protected JSONObject getLocation(Address address) {
 		if (address == null) {
 			return null;
 		}
 
-		JSONObject addressJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		addressJSON.put("country", address.getCountry());
-		addressJSON.put("formatted", address.getFormatted());
-		addressJSON.put("latitude", address.getLatitude());
-		addressJSON.put("locality", address.getLocality());
-		addressJSON.put("longitude", address.getLongitude());
-		addressJSON.put("postalCode", address.getPostalCode());
-		addressJSON.put("primary", address.getPrimary());
-		addressJSON.put("region", address.getRegion());
-		addressJSON.put("streetAddress", address.getStreetAddress());
-		addressJSON.put("type", address.getType());
+		SerializerUtil.copyProperties(address, jsonObject, _ADDRESS_FIELDS);
 
-		return addressJSON;
+		return jsonObject;
 	}
 
 	protected MediaItem getMediaItem(
@@ -554,76 +525,39 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		MediaItem mediaItem = new MediaItemImpl();
 
-		mediaItem.setAlbumId(Long.toString(dlFileEntry.getFolderId()));
-		mediaItem.setCreated(dlFileEntry.getCreateDate().toString());
+		mediaItem.setAlbumId(String.valueOf(dlFileEntry.getFolderId()));
+		mediaItem.setCreated(String.valueOf(dlFileEntry.getCreateDate()));
 		mediaItem.setDescription(dlFileEntry.getDescription());
-		mediaItem.setId(Long.toString(dlFileEntry.getFileEntryId()));
+		mediaItem.setId(String.valueOf(dlFileEntry.getFileEntryId()));
 		mediaItem.setLastUpdated(
-			dlFileEntry.getModifiedDate().toString());
-		mediaItem.setMimeType(MimeTypesUtil.getContentType(
-			dlFileEntry.getExtension()));
-		mediaItem.setNumViews(Long.toString(
-			dlFileEntry.getReadCount()));
+			String.valueOf(dlFileEntry.getModifiedDate()));
+		mediaItem.setMimeType(
+			MimeTypesUtil.getContentType(dlFileEntry.getExtension()));
+		mediaItem.setNumViews(
+			String.valueOf(dlFileEntry.getReadCount()));
 		mediaItem.setTitle(dlFileEntry.getTitle());
 		mediaItem.setType(getMediaItemType(dlFileEntry));
 		mediaItem.setUrl(getDLFileEntryURL(dlFileEntry, securityToken));
 
-		JSONObject extraDataJSON = null;
+		JSONObject extraSettingsJSONObject = null;
 
 		try {
-			extraDataJSON = JSONFactoryUtil.createJSONObject(
+			extraSettingsJSONObject = JSONFactoryUtil.createJSONObject(
 				dlFileEntry.getExtraSettings());
 		}
-		catch (JSONException e) {}
+		catch (JSONException jsone) {
+		}
 
-		if (extraDataJSON != null) {
-			if (extraDataJSON.has(MediaItem.Field.DURATION.toString())) {
-				mediaItem.setDuration(extraDataJSON.getString("DURATION"));
+		if (extraSettingsJSONObject != null) {
+			if (extraSettingsJSONObject.has(
+					MediaItem.Field.DURATION.toString())) {
+
+				mediaItem.setDuration(
+					extraSettingsJSONObject.getString("DURATION"));
 			}
 
-			if (extraDataJSON.has(MediaItem.Field.FILE_SIZE.toString())) {
-				mediaItem.setFileSize(extraDataJSON.getString("fileSize"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.LANGUAGE.toString())) {
-				mediaItem.setLanguage(extraDataJSON.getString("language"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.LOCATION.toString())) {
-				mediaItem.setLocation(
-					getAddress(extraDataJSON.getJSONObject("location")));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.NUM_COMMENTS.toString())) {
-				mediaItem.setNumComments(
-					extraDataJSON.getString("numComments"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.NUM_VOTES.toString())) {
-				mediaItem.setNumVotes(extraDataJSON.getString("numVotes"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.RATING.toString())) {
-				mediaItem.setRating(extraDataJSON.getString("rating"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.START_TIME.toString())) {
-				mediaItem.setStartTime(extraDataJSON.getString("startTime"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.TAGGED_PEOPLE.toString())) {
-				mediaItem.setTaggedPeople(
-					extraDataJSON.getString("taggedPeople"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.TAGS.toString())) {
-				mediaItem.setTags(extraDataJSON.getString("tags"));
-			}
-
-			if (extraDataJSON.has(MediaItem.Field.THUMBNAIL_URL.toString())) {
-				mediaItem.setThumbnailUrl(
-					extraDataJSON.getString("thumbnailUrl"));
-			}
+			SerializerUtil.copyProperties(
+				extraSettingsJSONObject, mediaItem, _MEDIA_ITEM_FIELDS);
 		}
 
 		return mediaItem;
@@ -647,10 +581,26 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 	}
 
+	private static final Address.Field[] _ADDRESS_FIELDS = {
+		Address.Field.COUNTRY, Address.Field.FORMATTED,
+		Address.Field.LATITUDE, Address.Field.LOCALITY,
+		Address.Field.LONGITUDE, Address.Field.POSTAL_CODE,
+		Address.Field.PRIMARY, Address.Field.REGION,
+		Address.Field.STREET_ADDRESS, Address.Field.TYPE
+	};
+
+	private static final MediaItem.Field[] _MEDIA_ITEM_FIELDS = {
+		MediaItem.Field.FILE_SIZE, MediaItem.Field.LANGUAGE,
+		MediaItem.Field.LOCATION, MediaItem.Field.NUM_COMMENTS,
+		MediaItem.Field.NUM_VOTES, MediaItem.Field.RATING,
+		MediaItem.Field.START_TIME, MediaItem.Field.TAGGED_PEOPLE,
+		MediaItem.Field.TAGS, MediaItem.Field.THUMBNAIL_URL
+	};
+
 	private static Log _log = LogFactoryUtil.getLog(
 		LiferayMediaItemService.class);
 
-	private static Pattern _filenamePattern = Pattern.compile(
+	private static Pattern _fileNamePattern = Pattern.compile(
 		".*?filename=\"?([^\";]+)");
 
 }

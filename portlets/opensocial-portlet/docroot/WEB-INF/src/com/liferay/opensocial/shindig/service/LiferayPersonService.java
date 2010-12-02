@@ -128,10 +128,10 @@ public class LiferayPersonService implements PersonService {
 
 				long userIdLong = GetterUtil.getLong(userIdString);
 
-				User owner = UserLocalServiceUtil.getUserById(userIdLong);
+				User user = UserLocalServiceUtil.getUserById(userIdLong);
 
 				List<User> friends = UserLocalServiceUtil.getSocialUsers(
-					owner.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
+					user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 				for (User friend : friends) {

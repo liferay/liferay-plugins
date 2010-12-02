@@ -110,30 +110,32 @@ public class LiferayActivityService implements ActivityService {
 
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
-		JSONObject extraDataJSON = JSONFactoryUtil.createJSONObject();
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		extraDataJSON.put("appId", activity.getAppId());
-		extraDataJSON.put("body", activity.getBody());
-		extraDataJSON.put("bodyId", activity.getBodyId());
-		extraDataJSON.put("externalId", activity.getExternalId());
-		extraDataJSON.put(
+		extraDataJSONObject.put("appId", activity.getAppId());
+		extraDataJSONObject.put("body", activity.getBody());
+		extraDataJSONObject.put("bodyId", activity.getBodyId());
+		extraDataJSONObject.put("externalId", activity.getExternalId());
+		extraDataJSONObject.put(
 			"mediaItems", getMediaItems(activity.getMediaItems()));
-		extraDataJSON.put("postedTime", activity.getPostedTime());
-		extraDataJSON.put("priority", activity.getPriority());
-		extraDataJSON.put("streamFaviconUrl", activity.getStreamFaviconUrl());
-		extraDataJSON.put("streamSourceUrl", activity.getStreamSourceUrl());
-		extraDataJSON.put("streamTitle", activity.getStreamTitle());
-		extraDataJSON.put("streamUrl", activity.getStreamUrl());
-		extraDataJSON.put(
+		extraDataJSONObject.put("postedTime", activity.getPostedTime());
+		extraDataJSONObject.put("priority", activity.getPriority());
+		extraDataJSONObject.put(
+			"streamFaviconUrl", activity.getStreamFaviconUrl());
+		extraDataJSONObject.put(
+			"streamSourceUrl", activity.getStreamSourceUrl());
+		extraDataJSONObject.put("streamTitle", activity.getStreamTitle());
+		extraDataJSONObject.put("streamUrl", activity.getStreamUrl());
+		extraDataJSONObject.put(
 			"templateParams", getTemplateParams(activity.getTemplateParams()));
-		extraDataJSON.put("title", activity.getTitle());
-		extraDataJSON.put("titleId", activity.getTitleId());
-		extraDataJSON.put("url", activity.getUrl());
+		extraDataJSONObject.put("title", activity.getTitle());
+		extraDataJSONObject.put("titleId", activity.getTitleId());
+		extraDataJSONObject.put("url", activity.getUrl());
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userIdLong, 0L, Activity.class.getName(),
 			activity.getPostedTime().longValue(),
-			activity.getAppId().hashCode(), extraDataJSON.toString(), 0L);
+			activity.getAppId().hashCode(), extraDataJSONObject.toString(), 0L);
 	}
 
 	public void doDeleteActivities(
@@ -328,91 +330,99 @@ public class LiferayActivityService implements ActivityService {
 			String.valueOf(socialActivity.getClassPK()),
 			String.valueOf(socialActivity.getUserId()));
 
-		JSONObject extraDataJSON = JSONFactoryUtil.createJSONObject(
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 			socialActivity.getExtraData());
 
-		if (extraDataJSON.has(Activity.Field.APP_ID.toString())) {
-			activity.setAppId(extraDataJSON.getString("appId"));
+		if (extraDataJSONObject.has(Activity.Field.APP_ID.toString())) {
+			activity.setAppId(extraDataJSONObject.getString("appId"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.BODY.toString())) {
-			activity.setBody(extraDataJSON.getString("body"));
+		if (extraDataJSONObject.has(Activity.Field.BODY.toString())) {
+			activity.setBody(extraDataJSONObject.getString("body"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.BODY_ID.toString())) {
-			activity.setBodyId(extraDataJSON.getString("bodyId"));
+		if (extraDataJSONObject.has(Activity.Field.BODY_ID.toString())) {
+			activity.setBodyId(extraDataJSONObject.getString("bodyId"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.EXTERNAL_ID.toString())) {
-			activity.setExternalId(extraDataJSON.getString("externalId"));
+		if (extraDataJSONObject.has(Activity.Field.EXTERNAL_ID.toString())) {
+			activity.setExternalId(extraDataJSONObject.getString("externalId"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.MEDIA_ITEMS.toString())) {
+		if (extraDataJSONObject.has(Activity.Field.MEDIA_ITEMS.toString())) {
 			activity.setMediaItems(
-				getMediaItems(extraDataJSON.getJSONArray("mediaItems")));
+				getMediaItems(extraDataJSONObject.getJSONArray("mediaItems")));
 		}
 
-		if (extraDataJSON.has(Activity.Field.POSTED_TIME.toString())) {
-			activity.setPostedTime(extraDataJSON.getLong("postedTime"));
+		if (extraDataJSONObject.has(Activity.Field.POSTED_TIME.toString())) {
+			activity.setPostedTime(extraDataJSONObject.getLong("postedTime"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.PRIORITY.toString())) {
+		if (extraDataJSONObject.has(Activity.Field.PRIORITY.toString())) {
 			activity.setPriority(
-				Float.parseFloat(extraDataJSON.getString("priority")));
+				Float.parseFloat(extraDataJSONObject.getString("priority")));
 		}
 
-		if (extraDataJSON.has(Activity.Field.STREAM_FAVICON_URL.toString())) {
+		if (extraDataJSONObject.has(
+			Activity.Field.STREAM_FAVICON_URL.toString())) {
+
 			activity.setStreamFaviconUrl(
-				extraDataJSON.getString("streamFaviconUrl"));
+				extraDataJSONObject.getString("streamFaviconUrl"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.STREAM_SOURCE_URL.toString())) {
+		if (extraDataJSONObject.has(
+			Activity.Field.STREAM_SOURCE_URL.toString())) {
+
 			activity.setStreamSourceUrl(
-				extraDataJSON.getString("streamSourceUrl"));
+				extraDataJSONObject.getString("streamSourceUrl"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.STREAM_TITLE.toString())) {
-			activity.setStreamTitle(extraDataJSON.getString("streamTitle"));
+		if (extraDataJSONObject.has(Activity.Field.STREAM_TITLE.toString())) {
+			activity.setStreamTitle(
+				extraDataJSONObject.getString("streamTitle"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.STREAM_URL.toString())) {
-			activity.setStreamUrl(extraDataJSON.getString("streamUrl"));
+		if (extraDataJSONObject.has(Activity.Field.STREAM_URL.toString())) {
+			activity.setStreamUrl(extraDataJSONObject.getString("streamUrl"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.TEMPLATE_PARAMS.toString())) {
+		if (extraDataJSONObject.has(
+			Activity.Field.TEMPLATE_PARAMS.toString())) {
+
 			activity.setTemplateParams(getTemplateParams(
-				extraDataJSON.getJSONArray("templateParams")));
+				extraDataJSONObject.getJSONArray("templateParams")));
 		}
 
-		if (extraDataJSON.has(Activity.Field.TITLE.toString())) {
-			activity.setTitle(extraDataJSON.getString("title"));
+		if (extraDataJSONObject.has(Activity.Field.TITLE.toString())) {
+			activity.setTitle(extraDataJSONObject.getString("title"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.TITLE_ID.toString())) {
-			activity.setTitleId(extraDataJSON.getString("titleId"));
+		if (extraDataJSONObject.has(Activity.Field.TITLE_ID.toString())) {
+			activity.setTitleId(extraDataJSONObject.getString("titleId"));
 		}
 
-		if (extraDataJSON.has(Activity.Field.URL.toString())) {
-			activity.setUrl(extraDataJSON.getString("url"));
+		if (extraDataJSONObject.has(Activity.Field.URL.toString())) {
+			activity.setUrl(extraDataJSONObject.getString("url"));
 		}
 
 		return activity;
 	}
 
-	protected List<MediaItem> getMediaItems(JSONArray jsonArray) {
-		if (jsonArray == null) {
+	protected List<MediaItem> getMediaItems(JSONArray mediaItemsJSONArray) {
+		if (mediaItemsJSONArray == null) {
 			return null;
 		}
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
+		for (int i = 0; i < mediaItemsJSONArray.length(); i++) {
+			JSONObject mediaItemsJsonObject = mediaItemsJSONArray.getJSONObject(
+				i);
 
 			MediaItem mediaItem = new MediaItemImpl(
-				jsonObject.getString("mimeType"),
-				Type.valueOf(jsonObject.getString("type")),
-				jsonObject.getString("url"));
+				mediaItemsJsonObject.getString("mimeType"),
+				Type.valueOf(mediaItemsJsonObject.getString("type")),
+				mediaItemsJsonObject.getString("url"));
 
 			mediaItems.add(mediaItem);
 		}
@@ -428,34 +438,40 @@ public class LiferayActivityService implements ActivityService {
 		JSONArray mediaItemsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (MediaItem mediaItem : mediaItems) {
-			JSONObject mediaItemJSON = JSONFactoryUtil.createJSONObject();
+			JSONObject mediaItemsJsonObject =
+				JSONFactoryUtil.createJSONObject();
 
-			mediaItemJSON.put("mimeType", mediaItem.getMimeType());
-			mediaItemJSON.put("type", mediaItem.getType().toString());
-			mediaItemJSON.put("url", mediaItem.getUrl());
+			mediaItemsJsonObject.put("mimeType", mediaItem.getMimeType());
+			mediaItemsJsonObject.put("type", mediaItem.getType().toString());
+			mediaItemsJsonObject.put("url", mediaItem.getUrl());
 
-			mediaItemsJSONArray.put(mediaItemJSON);
+			mediaItemsJSONArray.put(mediaItemsJsonObject);
 		}
 
 		return mediaItemsJSONArray;
 	}
 
-	protected Map<String, String> getTemplateParams(JSONArray jsonArray) {
-		if (jsonArray == null) {
+	protected Map<String, String> getTemplateParams(
+		JSONArray templateParamsJSONArray) {
+
+		if (templateParamsJSONArray == null) {
 			return null;
 		}
 
 		Map<String, String> templateParams = new HashMap<String, String>();
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
+		for (int i = 0; i < templateParamsJSONArray.length(); i++) {
+			JSONObject templateParamJSONObject =
+				templateParamsJSONArray.getJSONObject(i);
 
-			JSONArray names = jsonObject.names();
+			JSONArray namesJSONArray = templateParamJSONObject.names();
 
-			for (int j = 0; j < names.length(); j++) {
-				String name = names.getString(j);
+			for (int j = 0; j < namesJSONArray.length(); j++) {
+				String name = namesJSONArray.getString(j);
 
-				templateParams.put(name, jsonObject.getString(name));
+				String value = templateParamJSONObject.getString(name);
+
+				templateParams.put(name, value);
 			}
 		}
 
@@ -470,11 +486,15 @@ public class LiferayActivityService implements ActivityService {
 		JSONArray templateParamsJSONArray = JSONFactoryUtil.createJSONArray();
 
 		for (Entry<String, String> entry : map.entrySet()) {
-			JSONObject entryJSONObject = JSONFactoryUtil.createJSONObject();
+			JSONObject templateParamJSONObject =
+				JSONFactoryUtil.createJSONObject();
 
-			entryJSONObject.put(entry.getKey(), entry.getValue());
+			String name = entry.getKey();
+			String value = entry.getValue();
 
-			templateParamsJSONArray.put(entryJSONObject);
+			templateParamJSONObject.put(name, value);
+
+			templateParamsJSONArray.put(templateParamJSONObject);
 		}
 
 		return templateParamsJSONArray;

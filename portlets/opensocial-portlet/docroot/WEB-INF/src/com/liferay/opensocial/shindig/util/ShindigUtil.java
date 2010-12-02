@@ -128,23 +128,23 @@ public class ShindigUtil {
 	}
 
 	public static GadgetSpec getGadgetSpec(String url) throws Exception {
-		JSONObject gadgetContext = new JSONObject();
+		JSONObject gadgetContextJSONObject = new JSONObject();
 
-		gadgetContext.put(
+		gadgetContextJSONObject.put(
 			"debug",
 			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_JS_DEBUG));
-		gadgetContext.put(
+		gadgetContextJSONObject.put(
 			"ignoreCache",
 			GetterUtil.getBoolean(PortletPropsValues.SHINDIG_NO_CACHE));
 
-		JSONObject gadgetRequest = new JSONObject();
+		JSONObject gadgetRequestJSONObject = new JSONObject();
 
-		gadgetRequest.put("url", url);
+		gadgetRequestJSONObject.put("url", url);
 
-		JsonRpcGadgetContext context = new JsonRpcGadgetContext(
-			gadgetContext, gadgetRequest);
+		JsonRpcGadgetContext jsonRpcGadgetContext = new JsonRpcGadgetContext(
+			gadgetContextJSONObject, gadgetRequestJSONObject);
 
-		Gadget gadget = _processor.process(context);
+		Gadget gadget = _processor.process(jsonRpcGadgetContext);
 
 		return gadget.getSpec();
 	}

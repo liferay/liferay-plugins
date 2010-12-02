@@ -53,7 +53,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		JSONObject userPrefsJsonObject = JSONFactoryUtil.createJSONObject();
+		JSONObject userPrefsJSONObject = JSONFactoryUtil.createJSONObject();
 
 		Map<String, UserPref> userPrefs = getUserPrefs(actionRequest);
 
@@ -62,7 +62,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 			String value = ParamUtil.getString(actionRequest, name);
 
-			userPrefsJsonObject.put(name, value);
+			userPrefsJSONObject.put(name, value);
 		}
 
 		String namespace = ShindigUtil.getPortletResourceNamespace(
@@ -73,7 +73,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		ExpandoValueServiceUtil.addValue(
 			themeDisplay.getCompanyId(), User.class.getName(),
 			ShindigUtil.getTableOpenSocial(), columnName,
-			themeDisplay.getUserId(), userPrefsJsonObject.toString());
+			themeDisplay.getUserId(), userPrefsJSONObject.toString());
 
 		SessionMessages.add(
 			actionRequest, portletConfig.getPortletName() + ".doConfigure");
