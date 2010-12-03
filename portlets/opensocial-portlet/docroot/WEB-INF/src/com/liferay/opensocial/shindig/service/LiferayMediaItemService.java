@@ -422,9 +422,10 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		JSONObject extraSettingsJSONObject = JSONFactoryUtil.createJSONObject();
 
+		extraSettingsJSONObject.put("DURATION", mediaItem.getDuration());
+
 		JSONObject locationJSONObject = getLocation(mediaItem.getLocation());
 
-		extraSettingsJSONObject.put("DURATION", mediaItem.getDuration());		
 		extraSettingsJSONObject.put("location", locationJSONObject);
 
 		SerializerUtil.copyProperties(
@@ -560,7 +561,7 @@ public class LiferayMediaItemService implements MediaItemService {
 			}
 
 			if (extraSettingsJSONObject.has(
-				MediaItem.Field.LOCATION.toString())) {
+					MediaItem.Field.LOCATION.toString())) {
 
 				Address address = getAddress(
 					extraSettingsJSONObject.getJSONObject("location"));

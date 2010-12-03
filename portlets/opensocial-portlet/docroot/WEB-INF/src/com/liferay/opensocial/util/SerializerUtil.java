@@ -16,6 +16,7 @@ package com.liferay.opensocial.util;
 
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Brian Wing Shun Chan
@@ -57,7 +58,7 @@ public class SerializerUtil {
 
 		String value = BeanPropertiesUtil.getString(bean, fieldName);
 
-		if (!value.isEmpty()) {
+		if (Validator.isNotNull(value)) {
 			jsonObject.put(fieldName, value);
 		}
 	}
