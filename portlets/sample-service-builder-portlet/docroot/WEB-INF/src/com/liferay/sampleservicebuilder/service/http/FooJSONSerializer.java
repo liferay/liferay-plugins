@@ -30,14 +30,14 @@ import java.util.List;
  */
 public class FooJSONSerializer {
 	public static JSONObject toJSONObject(Foo model) {
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObj.put("uuid", model.getUuid());
-		jsonObj.put("fooId", model.getFooId());
-		jsonObj.put("groupId", model.getGroupId());
-		jsonObj.put("companyId", model.getCompanyId());
-		jsonObj.put("userId", model.getUserId());
-		jsonObj.put("userName", model.getUserName());
+		jsonObject.put("uuid", model.getUuid());
+		jsonObject.put("fooId", model.getFooId());
+		jsonObject.put("groupId", model.getGroupId());
+		jsonObject.put("companyId", model.getCompanyId());
+		jsonObject.put("userId", model.getUserId());
+		jsonObject.put("userName", model.getUserName());
 
 		Date createDate = model.getCreateDate();
 
@@ -47,7 +47,7 @@ public class FooJSONSerializer {
 			createDateJSON = String.valueOf(createDate.getTime());
 		}
 
-		jsonObj.put("createDate", createDateJSON);
+		jsonObject.put("createDate", createDateJSON);
 
 		Date modifiedDate = model.getModifiedDate();
 
@@ -57,10 +57,10 @@ public class FooJSONSerializer {
 			modifiedDateJSON = String.valueOf(modifiedDate.getTime());
 		}
 
-		jsonObj.put("modifiedDate", modifiedDateJSON);
-		jsonObj.put("field1", model.getField1());
-		jsonObj.put("field2", model.getField2());
-		jsonObj.put("field3", model.getField3());
+		jsonObject.put("modifiedDate", modifiedDateJSON);
+		jsonObject.put("field1", model.getField1());
+		jsonObject.put("field2", model.getField2());
+		jsonObject.put("field3", model.getField3());
 
 		Date field4 = model.getField4();
 
@@ -70,10 +70,10 @@ public class FooJSONSerializer {
 			field4JSON = String.valueOf(field4.getTime());
 		}
 
-		jsonObj.put("field4", field4JSON);
-		jsonObj.put("field5", model.getField5());
+		jsonObject.put("field4", field4JSON);
+		jsonObject.put("field5", model.getField5());
 
-		return jsonObj;
+		return jsonObject;
 	}
 
 	public static JSONArray toJSONArray(

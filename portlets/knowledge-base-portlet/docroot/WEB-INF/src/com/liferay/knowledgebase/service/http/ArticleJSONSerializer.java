@@ -30,15 +30,15 @@ import java.util.List;
  */
 public class ArticleJSONSerializer {
 	public static JSONObject toJSONObject(Article model) {
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObj.put("uuid", model.getUuid());
-		jsonObj.put("articleId", model.getArticleId());
-		jsonObj.put("resourcePrimKey", model.getResourcePrimKey());
-		jsonObj.put("groupId", model.getGroupId());
-		jsonObj.put("companyId", model.getCompanyId());
-		jsonObj.put("userId", model.getUserId());
-		jsonObj.put("userName", model.getUserName());
+		jsonObject.put("uuid", model.getUuid());
+		jsonObject.put("articleId", model.getArticleId());
+		jsonObject.put("resourcePrimKey", model.getResourcePrimKey());
+		jsonObject.put("groupId", model.getGroupId());
+		jsonObject.put("companyId", model.getCompanyId());
+		jsonObject.put("userId", model.getUserId());
+		jsonObject.put("userName", model.getUserName());
 
 		Date createDate = model.getCreateDate();
 
@@ -48,7 +48,7 @@ public class ArticleJSONSerializer {
 			createDateJSON = String.valueOf(createDate.getTime());
 		}
 
-		jsonObj.put("createDate", createDateJSON);
+		jsonObject.put("createDate", createDateJSON);
 
 		Date modifiedDate = model.getModifiedDate();
 
@@ -58,16 +58,16 @@ public class ArticleJSONSerializer {
 			modifiedDateJSON = String.valueOf(modifiedDate.getTime());
 		}
 
-		jsonObj.put("modifiedDate", modifiedDateJSON);
-		jsonObj.put("parentResourcePrimKey", model.getParentResourcePrimKey());
-		jsonObj.put("version", model.getVersion());
-		jsonObj.put("title", model.getTitle());
-		jsonObj.put("content", model.getContent());
-		jsonObj.put("description", model.getDescription());
-		jsonObj.put("priority", model.getPriority());
-		jsonObj.put("status", model.getStatus());
-		jsonObj.put("statusByUserId", model.getStatusByUserId());
-		jsonObj.put("statusByUserName", model.getStatusByUserName());
+		jsonObject.put("modifiedDate", modifiedDateJSON);
+		jsonObject.put("parentResourcePrimKey", model.getParentResourcePrimKey());
+		jsonObject.put("version", model.getVersion());
+		jsonObject.put("title", model.getTitle());
+		jsonObject.put("content", model.getContent());
+		jsonObject.put("description", model.getDescription());
+		jsonObject.put("priority", model.getPriority());
+		jsonObject.put("status", model.getStatus());
+		jsonObject.put("statusByUserId", model.getStatusByUserId());
+		jsonObject.put("statusByUserName", model.getStatusByUserName());
 
 		Date statusDate = model.getStatusDate();
 
@@ -77,9 +77,9 @@ public class ArticleJSONSerializer {
 			statusDateJSON = String.valueOf(statusDate.getTime());
 		}
 
-		jsonObj.put("statusDate", statusDateJSON);
+		jsonObject.put("statusDate", statusDateJSON);
 
-		return jsonObj;
+		return jsonObject;
 	}
 
 	public static JSONArray toJSONArray(
