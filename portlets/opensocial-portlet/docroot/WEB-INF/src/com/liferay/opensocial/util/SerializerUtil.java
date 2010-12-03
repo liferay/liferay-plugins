@@ -57,7 +57,9 @@ public class SerializerUtil {
 
 		String value = BeanPropertiesUtil.getString(bean, fieldName);
 
-		jsonObject.put(fieldName, value);
+		if (!value.isEmpty()) {
+			jsonObject.put(fieldName, value);
+		}
 	}
 
 }

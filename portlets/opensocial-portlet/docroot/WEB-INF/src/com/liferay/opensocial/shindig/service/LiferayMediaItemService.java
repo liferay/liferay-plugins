@@ -422,7 +422,10 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		JSONObject extraSettingsJSONObject = JSONFactoryUtil.createJSONObject();
 
-		extraSettingsJSONObject.put("DURATION", mediaItem.getDuration());
+		JSONObject locationJSONObject = getLocation(mediaItem.getLocation());
+
+		extraSettingsJSONObject.put("DURATION", mediaItem.getDuration());		
+		extraSettingsJSONObject.put("location", locationJSONObject);
 
 		SerializerUtil.copyProperties(
 			mediaItem, extraSettingsJSONObject, _MEDIA_ITEM_FIELDS);
@@ -556,6 +559,15 @@ public class LiferayMediaItemService implements MediaItemService {
 					extraSettingsJSONObject.getString("DURATION"));
 			}
 
+			if (extraSettingsJSONObject.has(
+				MediaItem.Field.LOCATION.toString())) {
+
+				Address address = getAddress(
+					extraSettingsJSONObject.getJSONObject("location"));
+
+				mediaItem.setLocation(address);
+			}
+
 			SerializerUtil.copyProperties(
 				extraSettingsJSONObject, mediaItem, _MEDIA_ITEM_FIELDS);
 		}
@@ -591,10 +603,10 @@ public class LiferayMediaItemService implements MediaItemService {
 
 	private static final MediaItem.Field[] _MEDIA_ITEM_FIELDS = {
 		MediaItem.Field.FILE_SIZE, MediaItem.Field.LANGUAGE,
-		MediaItem.Field.LOCATION, MediaItem.Field.NUM_COMMENTS,
-		MediaItem.Field.NUM_VOTES, MediaItem.Field.RATING,
-		MediaItem.Field.START_TIME, MediaItem.Field.TAGGED_PEOPLE,
-		MediaItem.Field.TAGS, MediaItem.Field.THUMBNAIL_URL
+		MediaItem.Field.NUM_COMMENTS, MediaItem.Field.NUM_VOTES,
+		MediaItem.Field.RATING, MediaItem.Field.START_TIME,
+		MediaItem.Field.TAGGED_PEOPLE, MediaItem.Field.TAGS,
+		MediaItem.Field.THUMBNAIL_URL
 	};
 
 	private static Log _log = LogFactoryUtil.getLog(

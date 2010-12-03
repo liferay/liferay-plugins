@@ -316,12 +316,6 @@ public class LiferayAlbumService implements AlbumService {
 
 		long groupIdLong = group.getGroupId();
 
-		DLFolder dlFolder = DLAppLocalServiceUtil.getFolder(
-			GetterUtil.getLong(albumId));
-
-		dlFolder.setDescription(album.getDescription());
-		dlFolder.setName(album.getTitle());
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
@@ -335,6 +329,12 @@ public class LiferayAlbumService implements AlbumService {
 				album.getTitle(), album.getDescription(), serviceContext);
 		}
 		else {
+			DLFolder dlFolder = DLAppLocalServiceUtil.getFolder(
+				GetterUtil.getLong(albumId));
+
+			dlFolder.setDescription(album.getDescription());
+			dlFolder.setName(album.getTitle());
+
 			DLAppLocalServiceUtil.updateFolder(
 				dlFolder.getFolderId(), dlFolder.getParentFolderId(),
 				dlFolder.getName(), dlFolder.getDescription(), serviceContext);

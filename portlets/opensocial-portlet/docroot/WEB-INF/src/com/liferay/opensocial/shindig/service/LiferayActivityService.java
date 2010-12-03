@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.shindig.service;
 
+import com.liferay.opensocial.util.SerializerUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -112,25 +113,8 @@ public class LiferayActivityService implements ActivityService {
 
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		extraDataJSONObject.put("appId", activity.getAppId());
-		extraDataJSONObject.put("body", activity.getBody());
-		extraDataJSONObject.put("bodyId", activity.getBodyId());
-		extraDataJSONObject.put("externalId", activity.getExternalId());
-		extraDataJSONObject.put(
-			"mediaItems", getMediaItems(activity.getMediaItems()));
-		extraDataJSONObject.put("postedTime", activity.getPostedTime());
-		extraDataJSONObject.put("priority", activity.getPriority());
-		extraDataJSONObject.put(
-			"streamFaviconUrl", activity.getStreamFaviconUrl());
-		extraDataJSONObject.put(
-			"streamSourceUrl", activity.getStreamSourceUrl());
-		extraDataJSONObject.put("streamTitle", activity.getStreamTitle());
-		extraDataJSONObject.put("streamUrl", activity.getStreamUrl());
-		extraDataJSONObject.put(
-			"templateParams", getTemplateParams(activity.getTemplateParams()));
-		extraDataJSONObject.put("title", activity.getTitle());
-		extraDataJSONObject.put("titleId", activity.getTitleId());
-		extraDataJSONObject.put("url", activity.getUrl());
+		SerializerUtil.copyProperties(
+			activity, extraDataJSONObject, _ACTIVITY_FIELDS);
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userIdLong, 0L, Activity.class.getName(),
@@ -333,77 +317,8 @@ public class LiferayActivityService implements ActivityService {
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 			socialActivity.getExtraData());
 
-		if (extraDataJSONObject.has(Activity.Field.APP_ID.toString())) {
-			activity.setAppId(extraDataJSONObject.getString("appId"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.BODY.toString())) {
-			activity.setBody(extraDataJSONObject.getString("body"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.BODY_ID.toString())) {
-			activity.setBodyId(extraDataJSONObject.getString("bodyId"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.EXTERNAL_ID.toString())) {
-			activity.setExternalId(extraDataJSONObject.getString("externalId"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.MEDIA_ITEMS.toString())) {
-			activity.setMediaItems(
-				getMediaItems(extraDataJSONObject.getJSONArray("mediaItems")));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.POSTED_TIME.toString())) {
-			activity.setPostedTime(extraDataJSONObject.getLong("postedTime"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.PRIORITY.toString())) {
-			activity.setPriority(
-				Float.parseFloat(extraDataJSONObject.getString("priority")));
-		}
-
-		if (extraDataJSONObject.has(
-			Activity.Field.STREAM_FAVICON_URL.toString())) {
-
-			activity.setStreamFaviconUrl(
-				extraDataJSONObject.getString("streamFaviconUrl"));
-		}
-
-		if (extraDataJSONObject.has(
-			Activity.Field.STREAM_SOURCE_URL.toString())) {
-
-			activity.setStreamSourceUrl(
-				extraDataJSONObject.getString("streamSourceUrl"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.STREAM_TITLE.toString())) {
-			activity.setStreamTitle(
-				extraDataJSONObject.getString("streamTitle"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.STREAM_URL.toString())) {
-			activity.setStreamUrl(extraDataJSONObject.getString("streamUrl"));
-		}
-
-		if (extraDataJSONObject.has(
-			Activity.Field.TEMPLATE_PARAMS.toString())) {
-
-			activity.setTemplateParams(getTemplateParams(
-				extraDataJSONObject.getJSONArray("templateParams")));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.TITLE.toString())) {
-			activity.setTitle(extraDataJSONObject.getString("title"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.TITLE_ID.toString())) {
-			activity.setTitleId(extraDataJSONObject.getString("titleId"));
-		}
-
-		if (extraDataJSONObject.has(Activity.Field.URL.toString())) {
-			activity.setUrl(extraDataJSONObject.getString("url"));
-		}
+		SerializerUtil.copyProperties(
+			extraDataJSONObject, activity, _ACTIVITY_FIELDS);
 
 		return activity;
 	}
@@ -517,6 +432,16 @@ public class LiferayActivityService implements ActivityService {
 
 		return themeDisplay;
 	}
+
+	private static final Activity.Field[] _ACTIVITY_FIELDS = {
+		Activity.Field.APP_ID, Activity.Field.BODY, Activity.Field.BODY_ID,
+		Activity.Field.EXTERNAL_ID, Activity.Field.MEDIA_ITEMS,
+		Activity.Field.POSTED_TIME, Activity.Field.PRIORITY,
+		Activity.Field.STREAM_FAVICON_URL, Activity.Field.STREAM_SOURCE_URL,
+		Activity.Field.STREAM_TITLE, Activity.Field.STREAM_URL,
+		Activity.Field.TEMPLATE_PARAMS, Activity.Field.TITLE,
+		Activity.Field.TITLE_ID, Activity.Field.URL
+	};
 
 	private static Log _log = LogFactoryUtil.getLog(
 		LiferayActivityService.class);
