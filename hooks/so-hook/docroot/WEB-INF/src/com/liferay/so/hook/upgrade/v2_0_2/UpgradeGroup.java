@@ -15,7 +15,7 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.hook.upgrade.v1_5_1;
+package com.liferay.so.hook.upgrade.v2_0_2;
 
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -45,7 +45,7 @@ import java.util.List;
 import javax.portlet.PortletPreferences;
 
 /**
- * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class UpgradeGroup extends UpgradeProcess {
 
@@ -54,22 +54,24 @@ public class UpgradeGroup extends UpgradeProcess {
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Group group : groups) {
-			Layout layout = null;
+			List<Layout> layouts = null;
 
 			try {
-				layout = LayoutLocalServiceUtil.getLayout(
-					group.getGroupId(), group.hasPrivateLayouts(), 1);
+				layouts = LayoutLocalServiceUtil.getLayouts(
+					group.getGroupId(), group.hasPrivateLayouts());
 			}
 			catch (Exception e) {
 				continue;
 			}
 
-			if (!layout.getFriendlyURL().equals("/home")) {
-				continue;
-			}
+			for (Layout layout : layouts) {
+				if (layout.getFriendlyURL().equals("/home")) {
+					continue;
+				}
 
-			updatePortlets(group, layout);
-			updateLayouts(group);
+				updatePortlets(group, layout);
+				updateLayouts(group);
+			}
 		}
 	}
 
@@ -171,6 +173,10 @@ public class UpgradeGroup extends UpgradeProcess {
 
 			layoutTypePortlet.setPortletIds(column, portlets);
 		}
+
+		LayoutLocalServiceUtil.updateLayout(
+			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
+			layout.getTypeSettings());
 
 		if (!layoutTypePortlet.hasPortletId("1_WAR_soportlet")) {
 			return;

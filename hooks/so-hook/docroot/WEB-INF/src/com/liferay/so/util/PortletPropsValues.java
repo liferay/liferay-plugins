@@ -34,8 +34,9 @@ import com.liferay.util.portlet.PortletProps;
 	public static final String[] SITE_AUTO_CREATE_TEAM_NAMES =
 		PortletProps.getArray(PortletPropsKeys.SITE_AUTO_CREATE_TEAM_NAMES);
 
-	public static final String SITE_LAYOUT_TEMPLATE = GetterUtil.getString(
-		PortletProps.get(PortletPropsKeys.SITE_LAYOUT_TEMPLATE));
+	public static final String SITE_TEMPLATE_LAYOUT_TEMPLATE =
+		GetterUtil.getString(PortletProps.get(
+			PortletPropsKeys.SITE_TEMPLATE_LAYOUT_TEMPLATE));
 
 	public static final String USER_LAYOUT_TEMPLATE = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.USER_LAYOUT_TEMPLATE));

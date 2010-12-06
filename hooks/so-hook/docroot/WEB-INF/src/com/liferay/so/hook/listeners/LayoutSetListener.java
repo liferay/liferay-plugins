@@ -18,9 +18,11 @@
 package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
@@ -43,7 +45,6 @@ import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.so.util.PortletPropsValues;
@@ -57,6 +58,7 @@ import javax.portlet.PortletPreferences;
 /**
  * @author Brian Wing Shun Chan
  * @author Ryan Park
+ * @author Jonathan Lee
  */
 public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
@@ -73,14 +75,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 			String name = group.getName();
 
-			if (name.equals(GroupConstants.GUEST)) {
-				return;
-			}
-
-			if (group.isCommunity()) {
-				addCommunityLayouts(group);
-			}
-			else if (group.isUser()) {
+			if (group.isUser()) {
 				addUserLayouts(group);
 			}
 		}
@@ -89,113 +84,19 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		}
 	}
 
-	protected void addCommunityLayouts(Group group) throws Exception {
-
-		// Look and Feel
-
-		updateLookAndFeel(group);
-
-		// Home
-
-		Layout layout = addLayout(
-			group, "Home", "/home", PortletPropsValues.SITE_LAYOUT_TEMPLATE);
-
-		addPortlets(group, layout);
-
-		configureRSS(layout);
-
-		updatePermissions(layout, true);
-
-		// Calendar
-
-		layout = addLayout(group, "Calendar", "/calendar", "1_column");
-
-		addResources(layout, PortletKeys.CALENDAR);
-
-		removePortletBorder(layout, PortletKeys.CALENDAR);
-
-		updatePermissions(layout, true);
-
-		// Documents
-
-		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
-
-		addResources(layout, PortletKeys.DOCUMENT_LIBRARY);
-		addResources(layout, "101_INSTANCE_abcd");
-
-		removePortletBorder(layout, PortletKeys.DOCUMENT_LIBRARY);
-
-		configureAssetPublisher(layout);
-
-		updatePermissions(layout, true);
-
-		// Forums
-
-		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
-
-		addResources(layout, PortletKeys.MESSAGE_BOARDS);
-		addResources(layout, "101_INSTANCE_abcd");
-
-		removePortletBorder(layout, PortletKeys.MESSAGE_BOARDS);
-
-		configureAssetPublisher(layout);
-		configureMessageBoards(layout);
-
-		updatePermissions(layout, true);
-
-		// Blog
-
-		layout = addLayout(group, "Blog", "/blog", "2_columns_iii");
-
-		addResources(layout, PortletKeys.BLOGS);
-		addResources(layout, "101_INSTANCE_abcd");
-
-		removePortletBorder(layout, PortletKeys.BLOGS);
-
-		configureAssetPublisher(layout);
-
-		updatePermissions(layout, true);
-
-		// Wiki
-
-		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
-
-		addResources(layout, PortletKeys.WIKI);
-		addResources(layout, "101_INSTANCE_abcd");
-
-		removePortletBorder(layout, PortletKeys.WIKI);
-
-		configureAssetPublisher(layout);
-
-		updatePermissions(layout, true);
-
-		// Members
-
-		layout = addLayout(group, "Members", "/members", "2_columns_ii");
-
-		addResources(layout, "2_WAR_soportlet");
-		addResources(layout, "3_WAR_soportlet");
-		addResources(layout, "4_WAR_soportlet");
-
-		removePortletBorder(layout, "2_WAR_soportlet");
-		removePortletBorder(layout, "3_WAR_soportlet");
-		removePortletBorder(layout, "4_WAR_soportlet");
-
-		updatePermissions(layout, true);
-	}
-
 	protected void addUserLayouts(Group group) throws Exception {
 
 		// Look and Feel
 
-		updateLookAndFeel(group);
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 
 		// Home
 
 		Layout layout = addLayout(
 			group, "Home", "/home", PortletPropsValues.USER_LAYOUT_TEMPLATE);
 
-		addPortlets(group, layout);
+		addPortlets(group, layout, "/home");
 
 		updatePermissions(layout, false);
 
@@ -248,8 +149,12 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			layout.getTypeSettings());
 	}
 
-	protected void addPortlets(Group group, Layout layout) throws Exception {
-		String prefix = PortletPropsKeys.SITE_LAYOUT_PORTLETS;
+	protected void addPortlets(Group group, Layout layout, String name)
+		throws Exception {
+
+		Filter filter = new Filter(name);
+
+		String prefix = PortletPropsKeys.SITE_TEMPLATE_PORTLETS;
 
 		if (group.isUser()) {
 			prefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
@@ -263,8 +168,16 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		List<String> columns = layoutTemplate.getColumns();
 
 		for (String column : columns) {
-			layoutTypePortlet.setPortletIds(
-				column, PortletProps.get(prefix + column));
+			String[] portletIds = PortletProps.getArray(
+				prefix + column, filter);
+
+			String portlets = StringPool.BLANK;
+
+			for (String portletId : portletIds) {
+				portlets = StringUtil.add(portlets, portletId);
+			}
+
+			layoutTypePortlet.setPortletIds(column, portlets);
 		}
 
 		LayoutLocalServiceUtil.updateLayout(
@@ -295,57 +208,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			portletPrimaryKey, true, true, true);
 	}
 
-	protected void configureAssetPublisher(Layout layout) throws Exception {
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, "101_INSTANCE_abcd");
-
-		portletSetup.setValue("display-style", "title-list");
-		portletSetup.setValue("asset-link-behaviour", "viewInPortlet");
-
-		portletSetup.store();
-	}
-
-	protected void configureMessageBoards(Layout layout) throws Exception {
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, PortletKeys.MESSAGE_BOARDS);
-
-		String[] ranks = {
-			"Bronze=0",
-			"Silver=25",
-			"Gold=100",
-			"Platinum=250",
-			"Moderator=community-role:Message Boards Administrator",
-			"Moderator=organization:Message Boards Administrator",
-			"Moderator=organization-role:Message Boards Administrator",
-			"Moderator=regular-role:Message Boards Administrator",
-			"Moderator=user-group:Message Boards Administrator"
-		};
-
-		portletSetup.setValues("ranks", ranks);
-
-		portletSetup.store();
-	}
-
-	protected void configureRSS(Layout layout) throws Exception {
-		PortletPreferences portletSetup =
-			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-				layout, "39_INSTANCE_abcd");
-
-		portletSetup.setValue("items-per-channel", "3");
-		portletSetup.setValue("show-feed-title", "false");
-		portletSetup.setValue("show-feed-published-date", "false");
-		portletSetup.setValue("show-feed-description", "false");
-		portletSetup.setValue("show-feed-image", "false");
-		portletSetup.setValue("show-feed-item-author", "false");
-		portletSetup.setValue(
-			"urls",
-			"http://www.economist.com/rss/daily_news_and_views_rss.xml");
-
-		portletSetup.store();
-	}
-
 	protected void removePortletBorder(Layout layout, String portletId)
 		throws Exception {
 
@@ -357,11 +219,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			"portlet-setup-show-borders", String.valueOf(Boolean.FALSE));
 
 		portletSetup.store();
-	}
-
-	protected void updateLookAndFeel(Group group) throws Exception {
-		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 	}
 
 	protected void updatePermissions(Layout layout, boolean addDefaultActionIds)

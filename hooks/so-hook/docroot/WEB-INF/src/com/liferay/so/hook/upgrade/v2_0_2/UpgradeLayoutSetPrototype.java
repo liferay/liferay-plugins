@@ -15,28 +15,26 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.util;
+package com.liferay.so.hook.upgrade.v2_0_2;
+
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.so.util.InstanceUtil;
+
+import java.util.List;
 
 /**
- * @author Ryan Park
+ * @author Jonathan Lee
  */
-public interface PortletPropsKeys {
+public class UpgradeLayoutSetPrototype extends UpgradeProcess {
 
-	public static final String APPLICATIONS_ALLOWED = "applications.allowed";
+	protected void doUpgrade() throws Exception {
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
-	public static final String CONTROL_PANEL_ITEMS = "control.panel.items";
-
-	public static final String SITE_AUTO_CREATE_TEAM_NAMES =
-		"site.auto.create.team.names";
-
-	public static final String SITE_TEMPLATE_PORTLETS =
-		"site.template.portlets.";
-
-	public static final String SITE_TEMPLATE_LAYOUT_TEMPLATE =
-		"site.template.layout.template";
-
-	public static final String USER_LAYOUT_PORTLETS = "user.layout.portlets.";
-
-	public static final String USER_LAYOUT_TEMPLATE = "user.layout.template";
+		for (Company company : companies) {
+			InstanceUtil.initCommunityTemplate(company.getCompanyId());
+		}
+	}
 
 }
