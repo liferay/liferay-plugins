@@ -29,11 +29,11 @@ public interface PortletPropsKeys {
 	public static final String SITE_AUTO_CREATE_TEAM_NAMES =
 		"site.auto.create.team.names";
 
-	public static final String SITE_TEMPLATE_PORTLETS =
-		"site.template.portlets.";
+	public static final String SITE_PROTOTYPE_LAYOUT_TEMPLATE =
+		"site.prototype.layout.template";
 
-	public static final String SITE_TEMPLATE_LAYOUT_TEMPLATE =
-		"site.template.layout.template";
+	public static final String SITE_PROTOTYPE_PORTLETS =
+		"site.prototype.portlets.";
 
 	public static final String USER_LAYOUT_PORTLETS = "user.layout.portlets.";
 

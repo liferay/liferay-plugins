@@ -17,6 +17,7 @@
 
 package com.liferay.so.hook.upgrade.v1_5_1;
 
+import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -60,11 +61,13 @@ public class UpgradeGroup extends UpgradeProcess {
 				layout = LayoutLocalServiceUtil.getLayout(
 					group.getGroupId(), group.hasPrivateLayouts(), 1);
 			}
-			catch (Exception e) {
+			catch (NoSuchLayoutException nsle) {
 				continue;
 			}
 
-			if (!layout.getFriendlyURL().equals("/home")) {
+			String friendlyURL = layout.getFriendlyURL();
+
+			if (!friendlyURL.equals("/home")) {
 				continue;
 			}
 
@@ -144,7 +147,7 @@ public class UpgradeGroup extends UpgradeProcess {
 	}
 
 	protected void updatePortlets(Group group, Layout layout) throws Exception {
-		String prefix = PortletPropsKeys.SITE_TEMPLATE_PORTLETS;
+		String prefix = PortletPropsKeys.SITE_PROTOTYPE_PORTLETS;
 
 		Filter filter = new Filter(layout.getFriendlyURL());
 

@@ -35,6 +35,7 @@ List<LayoutSetPrototype> layoutSetPrototypes = LayoutSetPrototypeLocalServiceUti
 
 if (!layoutSetPrototypes.isEmpty()) {
 	LayoutSetPrototype layoutsetPrototype = layoutSetPrototypes.get(0);
+
 	layoutSetPrototypeId = layoutsetPrototype.getLayoutSetPrototypeId();
 }
 %>
@@ -108,7 +109,7 @@ if (!layoutSetPrototypes.isEmpty()) {
 
 <aui:script>
 	function <portlet:namespace />saveGroup() {
-		var open = (document.<portlet:namespace />fm.<portlet:namespace />type.value  == <%= GroupConstants.TYPE_COMMUNITY_OPEN %>);
+		var open = (document.<portlet:namespace />fm.<portlet:namespace />type.value == <%= GroupConstants.TYPE_COMMUNITY_OPEN %>);
 
 		if (open) {
 			document.<portlet:namespace />fm.<portlet:namespace />publicLayoutSetPrototypeId.value = <%= layoutSetPrototypeId %>;
@@ -130,7 +131,7 @@ if (!layoutSetPrototypes.isEmpty()) {
 			function(event) {
 				event.preventDefault();
 
-				var open = (document.<portlet:namespace />fm.<portlet:namespace />type.value  == <%= GroupConstants.TYPE_COMMUNITY_OPEN %>);
+				var open = (document.<portlet:namespace />fm.<portlet:namespace />type.value == <%= GroupConstants.TYPE_COMMUNITY_OPEN %>);
 
 				if (open) {
 					document.<portlet:namespace />fm.<portlet:namespace />publicLayoutSetPrototypeId.value = <%= layoutSetPrototypeId %>;

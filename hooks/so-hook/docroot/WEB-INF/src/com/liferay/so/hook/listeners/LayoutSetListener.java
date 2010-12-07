@@ -73,8 +73,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			Group group = GroupLocalServiceUtil.getGroup (
 				layoutSet.getGroupId());
 
-			String name = group.getName();
-
 			if (group.isUser()) {
 				addUserLayouts(group);
 			}
@@ -152,14 +150,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 	protected void addPortlets(Group group, Layout layout, String name)
 		throws Exception {
 
-		Filter filter = new Filter(name);
-
-		String prefix = PortletPropsKeys.SITE_TEMPLATE_PORTLETS;
-
-		if (group.isUser()) {
-			prefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
-		}
-
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
@@ -168,8 +158,16 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		List<String> columns = layoutTemplate.getColumns();
 
 		for (String column : columns) {
+			String keyPrefix = PortletPropsKeys.SITE_PROTOTYPE_PORTLETS;
+
+			if (group.isUser()) {
+				keyPrefix = PortletPropsKeys.USER_LAYOUT_PORTLETS;
+			}
+
+			Filter filter = new Filter(name);
+
 			String[] portletIds = PortletProps.getArray(
-				prefix + column, filter);
+				keyPrefix + column, filter);
 
 			String portlets = StringPool.BLANK;
 

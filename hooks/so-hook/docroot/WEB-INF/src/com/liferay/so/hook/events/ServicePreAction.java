@@ -18,7 +18,6 @@
 package com.liferay.so.hook.events;
 
 import com.liferay.portal.kernel.events.Action;
-import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -48,9 +47,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServicePreAction extends Action {
 
-	public void run(HttpServletRequest request, HttpServletResponse response)
-		throws ActionException {
-
+	public void run(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			doRun(request, response);
 		}

@@ -19,8 +19,6 @@ package com.liferay.so.util;
 
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -86,16 +84,18 @@ import javax.portlet.PortletPreferences;
  */
 public class InstanceUtil {
 
-	public static void initInstance(long companyId)
-		throws PortalException, SystemException {
+	public static void initCommunity(long companyId) throws Exception {
+		setupCommunity(companyId);
+	}
 
+	public static void initInstance(long companyId) {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
 			setupCompany(companyId);
 			setupPermissions(companyId);
 			setupLoginLayout(companyId);
-			setupCommunityTemplate(companyId);
+			setupCommunity(companyId);
 			setupUsers(companyId);
 		}
 		catch (Exception e) {
@@ -153,109 +153,6 @@ public class InstanceUtil {
 		PortletLocalServiceUtil.clearCache();
 	}
 
-	public static void initCommunityTemplate(long companyId)
-		throws Exception {
-
-		setupCommunityTemplate(companyId);
-	}
-
-	protected static void setupCommunityTemplate(long companyId)
-		throws Exception {
-
-		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
-			companyId, "Social Office Community");
-
-		Group group = layoutSetPrototype.getGroup();
-
-		LayoutLocalServiceUtil.deleteLayouts(group.getGroupId(), true);
-
-		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
-
-		// Home
-
-		Layout layout = addLayout(
-			group, "Home", "/home",
-			PortletPropsValues.SITE_TEMPLATE_LAYOUT_TEMPLATE);
-
-		addPortlets(group, layout, "/home");
-
-		configureRSS(layout);
-
-		updatePermissions(layout, true);
-
-		// Calendar
-
-		layout = addLayout(group, "Calendar", "/calendar", "1_column");
-
-		addPortlets(group, layout, "/calendar");
-
-		removePortletBorder(layout, PortletKeys.CALENDAR);
-
-		updatePermissions(layout, true);
-
-		// Documents
-
-		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
-
-		addPortlets(group, layout, "/documents");
-
-		removePortletBorder(layout, PortletKeys.DOCUMENT_LIBRARY);
-
-		configureAssetPublisher(layout);
-
-		updatePermissions(layout, true);
-
-		// Forums
-
-		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
-
-		addPortlets(group, layout, "/forums");
-
-		removePortletBorder(layout, PortletKeys.MESSAGE_BOARDS);
-
-		configureAssetPublisher(layout);
-		configureMessageBoards(layout);
-
-		updatePermissions(layout, true);
-
-		// Blog
-
-		layout = addLayout(group, "Blog", "/blog", "2_columns_iii");
-
-		addPortlets(group, layout, "/blog");
-
-		removePortletBorder(layout, PortletKeys.BLOGS);
-
-		configureAssetPublisher(layout);
-
-		updatePermissions(layout, true);
-
-		// Wiki
-
-		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
-
-		addPortlets(group, layout, "/wiki");
-
-		removePortletBorder(layout, PortletKeys.WIKI);
-
-		configureAssetPublisher(layout);
-
-		updatePermissions(layout, true);
-
-		// Members
-
-		layout = addLayout(group, "Members", "/members", "2_columns_ii");
-
-		addPortlets(group, layout, "/members");
-
-		removePortletBorder(layout, "2_WAR_soportlet");
-		removePortletBorder(layout, "3_WAR_soportlet");
-		removePortletBorder(layout, "4_WAR_soportlet");
-
-		updatePermissions(layout, true);
-	}
-
 	protected static Layout addLayout(
 			Group group, String name, String friendlyURL,
 			String layouteTemplateId)
@@ -302,52 +199,8 @@ public class InstanceUtil {
 		return layoutSetPrototype;
 	}
 
-	protected static void setupLoginLayout(long companyId)
-		throws PortalException, SystemException {
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(
-			group.getGroupId(), false, 1);
-
-		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
-			layout.getCompanyId());
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		layoutTypePortlet.setLayoutTemplateId(0, "1_column", false);
-
-		if (layoutTypePortlet.hasPortletId("47")) {
-			layoutTypePortlet.removePortletId(defaultUserId, "47");
-		}
-
-		if (!layoutTypePortlet.hasPortletId(PortletKeys.LOGIN)) {
-			LayoutTemplate layoutTemplate =
-				layoutTypePortlet.getLayoutTemplate();
-
-			List<String> columns = layoutTemplate.getColumns();
-
-			layoutTypePortlet.setPortletIds(columns.get(0), PortletKeys.LOGIN);
-		}
-
-		LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-
-		LayoutLocalServiceUtil.updateFriendlyURL(layout.getPlid(), "/login");
-
-		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			layout.getGroupId(), false, "so_WAR_sotheme", "01", "", false);
-	}
-
 	protected static void addPortlets(Group group, Layout layout, String name)
 		throws Exception {
-
-		String prefix = PortletPropsKeys.SITE_TEMPLATE_PORTLETS;
-
-		Filter filter = new Filter(name);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
@@ -357,8 +210,11 @@ public class InstanceUtil {
 		List<String> columns = layoutTemplate.getColumns();
 
 		for (String column : columns) {
+			String keyPrefix = PortletPropsKeys.SITE_PROTOTYPE_PORTLETS;
+			Filter filter = new Filter(name);
+
 			String[] portletIds = PortletProps.getArray(
-				prefix + column, filter);
+				keyPrefix + column, filter);
 
 			String portlets = StringPool.BLANK;
 
@@ -385,7 +241,7 @@ public class InstanceUtil {
 	}
 
 	protected static void addResources(Layout layout, String portletId)
-		throws Exception{
+		throws Exception {
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
@@ -465,8 +321,104 @@ public class InstanceUtil {
 		portletSetup.store();
 	}
 
-	protected static void setupCompany(long companyId)
-		throws PortalException, SystemException {
+	protected static void setupCommunity(long companyId)
+		throws Exception {
+
+		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
+			companyId, "Social Office Community");
+
+		Group group = layoutSetPrototype.getGroup();
+
+		LayoutLocalServiceUtil.deleteLayouts(group.getGroupId(), true);
+
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
+
+		// Home
+
+		Layout layout = addLayout(
+			group, "Home", "/home",
+			PortletPropsValues.SITE_PROTOTYPE_LAYOUT_TEMPLATE);
+
+		addPortlets(group, layout, "/home");
+
+		configureRSS(layout);
+
+		updatePermissions(layout, true);
+
+		// Calendar
+
+		layout = addLayout(group, "Calendar", "/calendar", "1_column");
+
+		addPortlets(group, layout, "/calendar");
+
+		removePortletBorder(layout, PortletKeys.CALENDAR);
+
+		updatePermissions(layout, true);
+
+		// Documents
+
+		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
+
+		addPortlets(group, layout, "/documents");
+
+		removePortletBorder(layout, PortletKeys.DOCUMENT_LIBRARY);
+
+		configureAssetPublisher(layout);
+
+		updatePermissions(layout, true);
+
+		// Forums
+
+		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
+
+		addPortlets(group, layout, "/forums");
+
+		removePortletBorder(layout, PortletKeys.MESSAGE_BOARDS);
+
+		configureAssetPublisher(layout);
+		configureMessageBoards(layout);
+
+		updatePermissions(layout, true);
+
+		// Blog
+
+		layout = addLayout(group, "Blog", "/blog", "2_columns_iii");
+
+		addPortlets(group, layout, "/blog");
+
+		removePortletBorder(layout, PortletKeys.BLOGS);
+
+		configureAssetPublisher(layout);
+
+		updatePermissions(layout, true);
+
+		// Wiki
+
+		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
+
+		addPortlets(group, layout, "/wiki");
+
+		removePortletBorder(layout, PortletKeys.WIKI);
+
+		configureAssetPublisher(layout);
+
+		updatePermissions(layout, true);
+
+		// Members
+
+		layout = addLayout(group, "Members", "/members", "2_columns_ii");
+
+		addPortlets(group, layout, "/members");
+
+		removePortletBorder(layout, "2_WAR_soportlet");
+		removePortletBorder(layout, "3_WAR_soportlet");
+		removePortletBorder(layout, "4_WAR_soportlet");
+
+		updatePermissions(layout, true);
+	}
+
+	protected static void setupCompany(long companyId) throws Exception {
 
 		// Security settings
 
@@ -492,8 +444,47 @@ public class InstanceUtil {
 		CompanyLocalServiceUtil.updateLogo(companyId, inputStream);
 	}
 
-	protected static void setupPermissions(long companyId)
-		throws PortalException, SystemException {
+	protected static void setupLoginLayout(long companyId)
+		throws Exception {
+
+		Group group = GroupLocalServiceUtil.getGroup(
+			companyId, GroupConstants.GUEST);
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(
+			group.getGroupId(), false, 1);
+
+		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
+			layout.getCompanyId());
+
+		LayoutTypePortlet layoutTypePortlet =
+			(LayoutTypePortlet)layout.getLayoutType();
+
+		layoutTypePortlet.setLayoutTemplateId(0, "1_column", false);
+
+		if (layoutTypePortlet.hasPortletId("47")) {
+			layoutTypePortlet.removePortletId(defaultUserId, "47");
+		}
+
+		if (!layoutTypePortlet.hasPortletId(PortletKeys.LOGIN)) {
+			LayoutTemplate layoutTemplate =
+				layoutTypePortlet.getLayoutTemplate();
+
+			List<String> columns = layoutTemplate.getColumns();
+
+			layoutTypePortlet.setPortletIds(columns.get(0), PortletKeys.LOGIN);
+		}
+
+		LayoutLocalServiceUtil.updateLayout(
+			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
+			layout.getTypeSettings());
+
+		LayoutLocalServiceUtil.updateFriendlyURL(layout.getPlid(), "/login");
+
+		LayoutSetLocalServiceUtil.updateLookAndFeel(
+			layout.getGroupId(), false, "so_WAR_sotheme", "01", "", false);
+	}
+
+	protected static void setupPermissions(long companyId) throws Exception {
 
 		// Community Member - Blogs
 
@@ -665,9 +656,7 @@ public class InstanceUtil {
 			companyId, name, scope, primKey, roleId, actionIds);
 	}
 
-	protected static void setupUsers(long companyId)
-		throws PortalException, SystemException {
-
+	protected static void setupUsers(long companyId) throws Exception {
 		List<User> users = UserLocalServiceUtil.search(
 			companyId, null, null, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			(OrderByComparator)null);

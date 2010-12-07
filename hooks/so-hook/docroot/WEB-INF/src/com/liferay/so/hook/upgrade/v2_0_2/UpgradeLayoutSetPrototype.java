@@ -33,7 +33,7 @@ public class UpgradeLayoutSetPrototype extends UpgradeProcess {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
-			InstanceUtil.initCommunityTemplate(company.getCompanyId());
+			InstanceUtil.initCommunity(company.getCompanyId());
 		}
 	}
 
