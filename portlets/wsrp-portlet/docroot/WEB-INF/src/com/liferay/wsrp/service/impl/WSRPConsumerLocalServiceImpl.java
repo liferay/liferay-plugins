@@ -326,7 +326,7 @@ public class WSRPConsumerLocalServiceImpl
 		RegistrationData registrationData = new RegistrationData();
 
 		registrationData.setConsumerAgent(ReleaseInfo.getServerInfo());
-		registrationData.setConsumerName(company.getVirtualHost());
+		registrationData.setConsumerName(company.getVirtualHostname());
 		registrationData.setMethodGetSupported(true);
 		registrationData.setRegistrationProperties(properties);
 
