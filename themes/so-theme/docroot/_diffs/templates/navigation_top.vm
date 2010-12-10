@@ -68,7 +68,7 @@
 
 							#if ($place.isCommunity())
 								<li>
-									<a href="$my_places_url.toString()">$place.getName()</a>
+									<a href="$my_places_url.toString()">$htmlUtil.escape($place.getName())</a>
 								</li>
 							#end
 						#end

@@ -118,13 +118,13 @@ pageContext.setAttribute("portletURL", portletURL);
 			</liferay-portlet:actionURL>
 
 			<div>
-				<a href="<%= rowURL %>"><%= group.getName() %></a>
+				<a href="<%= rowURL %>"><%= HtmlUtil.escape(group.getName()) %></a>
 
 				<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 					<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
 
 					<div class="aui-helper-hidden description">
-						<%= StringUtil.shorten(group.getDescription(), 200) %>
+						<%= StringUtil.shorten(HtmlUtil.escape(group.getDescription()), 200) %>
 					</div>
 				</c:if>
 			</div>

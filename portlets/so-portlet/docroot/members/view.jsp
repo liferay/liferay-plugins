@@ -34,6 +34,11 @@
 		keyProperty="userId"
 		modelVar="curUser"
 	>
+
+		<%
+		curUser = curUser.toEscapedModel();
+		%>
+
 		<liferay-ui:search-container-column-text
 			buffer="buffer"
 		>
@@ -61,7 +66,7 @@
 			buffer.append("</a><br />");
 
 			if(!curUser.getContact().getJobTitle().equals(StringPool.BLANK)) {
-				buffer.append(curUser.getContact().getJobTitle());
+				buffer.append(HtmlUtil.escape(curUser.getContact().getJobTitle()));
 				buffer.append("<br />");
 			}
 			%>

@@ -46,6 +46,10 @@ else {
 		}
 	}
 }
+
+if (curUser != null) {
+	curUser = curUser.toEscapedModel();
+}
 %>
 
 <c:choose>
@@ -53,6 +57,8 @@ else {
 
 		<%
 		Contact curContact = curUser.getContact();
+
+		curContact = curContact.toEscapedModel();
 		%>
 
 		<h1><%= curUser.getFullName() %> : <liferay-ui:message key="profile" /></h1>
@@ -157,6 +163,8 @@ else {
 
 										<%
 										for (Address address : addresses) {
+											address = address.toEscapedModel();
+
 											String region = StringPool.BLANK;
 
 											if (address.getRegionId() != 0) {
@@ -203,6 +211,8 @@ else {
 
 								<%
 								for (Phone phone : phones) {
+									phone = phone.toEscapedModel();
+
 									String extension = phone.getExtension();
 
 									if (!extension.equals(StringPool.BLANK)) {
@@ -473,6 +483,8 @@ else {
 							List<Group> groups = curUser.getGroups();
 
 							for (Group curGroup : groups) {
+								curGroup.toEscapedModel();
+
 								myPlacesURL.setParameter("groupId", String.valueOf(curGroup.getGroupId()));
 							%>
 
@@ -534,6 +546,7 @@ else {
 							List<ProjectsEntry> projectsEntries = ProjectsEntryLocalServiceUtil.getUserProjectsEntries(curUser.getUserId());
 
 							for (ProjectsEntry projectsEntry : projectsEntries) {
+								projectsEntry = projectsEntry.toEscapedModel();
 							%>
 
 								<div class="project">

@@ -364,7 +364,9 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 					sb.append(LanguageUtil.get(pageContext, "anonymous"));
 				}
 				else {
-					sb.append(PortalUtil.getUserName(message.getUserId(), message.getUserName()));
+					String userName = PortalUtil.getUserName(message.getUserId(), message.getUserName());
+
+					sb.append(HtmlUtil.escape(userName));
 				}
 
 				sb.append("</span><span class=\"posts\">");
@@ -402,7 +404,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 					sb.append("<div class=\"result-title\">");
 
 					if (Validator.isNotNull(lastPostByUserName)) {
-						sb.append(lastPostByUserName);
+						sb.append(HtmlUtil.escape(lastPostByUserName));
 					}
 					else {
 						sb.append(LanguageUtil.get(pageContext, "anonymous"));
@@ -686,7 +688,9 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 				row.addText(LanguageUtil.get(pageContext, "anonymous"), rowURL);
 			}
 			else {
-				row.addText(PortalUtil.getUserName(message.getUserId(), message.getUserName()), rowURL);
+				String userName = PortalUtil.getUserName(message.getUserId(), message.getUserName());
+
+				row.addText(HtmlUtil.escape(userName), rowURL);
 			}
 
 			// Number of posts
@@ -715,7 +719,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 					sb.append("<br />");
 					sb.append(LanguageUtil.get(pageContext, "by"));
 					sb.append(": ");
-					sb.append(lastPostByUserName);
+					sb.append(HtmlUtil.escape(lastPostByUserName));
 				}
 
 				row.addText(sb.toString(), rowURL);

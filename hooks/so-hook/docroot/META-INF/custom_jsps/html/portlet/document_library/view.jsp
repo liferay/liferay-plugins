@@ -84,7 +84,7 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 <c:choose>
 	<c:when test='<%= tabs1.equals("document-home") %>'>
 		<aui:layout>
-			<liferay-ui:header title='<%= (folder != null) ? folder.getName() : "documents-home" %>' />
+			<liferay-ui:header title='<%= (folder != null) ? HtmlUtil.escape(folder.getName()) : "documents-home" %>' />
 
 			<aui:column columnWidth="100" cssClass="lfr-asset-column lfr-asset-column-details" first="<%= true %>">
 				<liferay-ui:panel-container extended="<%= false %>" id="documentLibraryPanelContainer" persistState="<%= true %>">
@@ -92,7 +92,7 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 						<c:if test="<%= folder != null %>">
 							<c:if test="<%= Validator.isNotNull(folder.getDescription()) %>">
 								<div class="lfr-asset-description">
-									<%= folder.getDescription() %>
+									<%= HtmlUtil.escape(folder.getDescription()) %>
 								</div>
 							</c:if>
 

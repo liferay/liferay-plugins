@@ -77,7 +77,7 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 					<td valign="top">
 						<div class="thumbnail">
 							<a href="<%= userDisplayURL %>">
-								<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
+								<img alt="<%= HtmlUtil.escape(userFullName) %>" src="<%= userPortaitURL %>" />
 							</a>
 						</div>
 					</td>

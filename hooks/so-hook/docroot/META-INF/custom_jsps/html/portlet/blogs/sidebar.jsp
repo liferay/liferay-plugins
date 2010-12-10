@@ -50,7 +50,7 @@
 						</portlet:renderURL>
 
 						<li>
-							<a href="<%= viewEntryURL %>"><%= title %></a> <span class="author"><%= author %></span>
+							<a href="<%= viewEntryURL %>"><%= HtmlUtil.escape(title) %></a> <span class="author"><%= HtmlUtil.escape(author) %></span>
 						</li>
 
 					<%

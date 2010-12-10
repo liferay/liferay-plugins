@@ -16,4 +16,4 @@
 
 <%@ include file="/init.jsp" %>
 
-<%= message %>
+<%= HtmlUtil.escape(message) %>

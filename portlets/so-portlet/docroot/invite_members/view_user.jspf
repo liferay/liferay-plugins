@@ -56,7 +56,7 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 			<td valign="top">
 				<div class="thumbnail">
 					<a href="<%= userDisplayURL %>">
-						<img alt="<%= memberRequest.getUserName() %>" src="<%= userPortaitURL %>" />
+						<img alt="<%= HtmlUtil.escape(memberRequest.getUserName()) %>" src="<%= userPortaitURL %>" />
 					</a>
 				</div>
 			</td>
@@ -66,11 +66,11 @@ List<MemberRequest> memberRequests = MemberRequestLocalServiceUtil.getReceiverSt
 				String userName = memberRequest.getUserName();
 
 				if (Validator.isNotNull(userDisplayURL)) {
-					userName = "<a href=\"" + userDisplayURL + "\">" + userName + "</a>";
+					userName = "<a href=\"" + userDisplayURL + "\">" + HtmlUtil.escape(userName) + "</a>";
 				}
 				%>
 
-				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {userName, curGroup.getDescriptiveName()}) %>
+				<%= themeDisplay.translate("x-has-invited-you-to-join-x", new Object[] {userName, HtmlUtil.escape(curGroup.getDescriptiveName())}) %>
 
 				<div class="controls">
 					<portlet:actionURL name="updateInvite" var="confirmURL">

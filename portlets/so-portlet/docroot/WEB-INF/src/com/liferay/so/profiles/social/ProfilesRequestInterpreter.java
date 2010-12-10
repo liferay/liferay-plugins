@@ -46,9 +46,6 @@ public class ProfilesRequestInterpreter extends BaseSocialRequestInterpreter {
 		String creatorUserName = getUserName(
 			request.getUserId(), themeDisplay);
 
-		User creatorUser = UserLocalServiceUtil.getUserById(
-			request.getUserId());
-
 		int requestType = request.getType();
 
 		// Title
@@ -56,22 +53,9 @@ public class ProfilesRequestInterpreter extends BaseSocialRequestInterpreter {
 		String title = StringPool.BLANK;
 
 		if (requestType == ProfilesRequestKeys.ADD_FRIEND) {
-			StringBuilder sb = new StringBuilder();
-
-			sb.append("<a href=\"");
-			sb.append(themeDisplay.getPortalURL());
-			sb.append(themeDisplay.getPathFriendlyURLPublic());
-			sb.append(StringPool.SLASH);
-			sb.append(creatorUser.getScreenName());
-			sb.append("/profile\">");
-			sb.append(creatorUserName);
-			sb.append("</a>");
-
-			String creatorUserNameURL = sb.toString();
-
 			title = themeDisplay.translate(
 				"request-social-networking-summary-add-friend",
-				new Object[] {creatorUserNameURL});
+				new Object[] {creatorUserName});
 		}
 
 		// Body

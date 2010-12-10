@@ -43,7 +43,7 @@ long folderId = BeanParamUtil.getLong(entry, request, "folderId");
 	<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
 
 	<c:if test="<%= entry != null %>">
-		<h3 class="entry-title"><%= entry.getName() %></h3>
+		<h3 class="entry-title"><%= HtmlUtil.escape(entry.getName()) %></h3>
 	</c:if>
 
 	<liferay-ui:error exception="<%= EntryURLException.class %>" message="please-enter-a-valid-url" />

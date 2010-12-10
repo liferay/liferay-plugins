@@ -166,7 +166,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 					for (Team team : teams) {
 					%>
 
-						<option value="<%= team.getTeamId() %>"><%= team.getName() %></option>
+						<option value="<%= team.getTeamId() %>"><%= HtmlUtil.escape(team.getName()) %></option>
 
 					<%
 					}
