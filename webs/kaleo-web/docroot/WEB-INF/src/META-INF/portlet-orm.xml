@@ -301,6 +301,7 @@
 			<basic name="kaleoTaskId" />
 			<basic name="assigneeClassName" />
 			<basic name="assigneeClassPK" />
+			<basic name="assigneeActionId" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>

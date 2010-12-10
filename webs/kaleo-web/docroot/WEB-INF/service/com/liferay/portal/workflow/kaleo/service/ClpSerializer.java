@@ -1512,6 +1512,13 @@ public class ClpSerializer {
 
 					method11.invoke(newModel, value11);
 
+					Method method12 = newModelClass.getMethod("setAssigneeActionId",
+							new Class[] { String.class });
+
+					String value12 = oldCplModel.getAssigneeActionId();
+
+					method12.invoke(newModel, value12);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -3380,6 +3387,14 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setAssigneeClassPK(value11);
+
+					Method method12 = oldModelClass.getMethod(
+							"getAssigneeActionId");
+
+					String value12 = (String)method12.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAssigneeActionId(value12);
 
 					return newModel;
 				}

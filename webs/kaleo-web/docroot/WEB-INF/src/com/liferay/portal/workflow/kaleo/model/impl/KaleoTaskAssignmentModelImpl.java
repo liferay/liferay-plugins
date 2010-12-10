@@ -69,9 +69,10 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			{ "kaleoNodeId", new Integer(Types.BIGINT) },
 			{ "kaleoTaskId", new Integer(Types.BIGINT) },
 			{ "assigneeClassName", new Integer(Types.VARCHAR) },
-			{ "assigneeClassPK", new Integer(Types.BIGINT) }
+			{ "assigneeClassPK", new Integer(Types.BIGINT) },
+			{ "assigneeActionId", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG)";
+	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,assigneeActionId VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoTaskAssignment";
 	public static final String ORDER_BY_JPQL = " ORDER BY kaleoTaskAssignment.kaleoTaskAssignmentId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY KaleoTaskAssignment.kaleoTaskAssignmentId ASC";
@@ -216,6 +217,19 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		_assigneeClassPK = assigneeClassPK;
 	}
 
+	public String getAssigneeActionId() {
+		if (_assigneeActionId == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _assigneeActionId;
+		}
+	}
+
+	public void setAssigneeActionId(String assigneeActionId) {
+		_assigneeActionId = assigneeActionId;
+	}
+
 	public KaleoTaskAssignment toEscapedModel() {
 		if (isEscapedModel()) {
 			return (KaleoTaskAssignment)this;
@@ -255,6 +269,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setAssigneeClassName(getAssigneeClassName());
 		clone.setAssigneeClassPK(getAssigneeClassPK());
+		clone.setAssigneeActionId(getAssigneeActionId());
 
 		return clone;
 	}
@@ -308,7 +323,7 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(getKaleoTaskAssignmentId());
@@ -334,13 +349,15 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		sb.append(getAssigneeClassName());
 		sb.append(", assigneeClassPK=");
 		sb.append(getAssigneeClassPK());
+		sb.append(", assigneeActionId=");
+		sb.append(getAssigneeActionId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
@@ -394,6 +411,10 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeClassPK());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeActionId</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeActionId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -413,5 +434,6 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	private long _kaleoTaskId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
+	private String _assigneeActionId;
 	private transient ExpandoBridge _expandoBridge;
 }

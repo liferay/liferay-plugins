@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime.assignment;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceAction;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -70,7 +71,9 @@ public class GroupAwareTaskAssignmentSelector
 
 		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
 
-		if (assigneeClassName.equals(User.class.getName())) {
+		if (assigneeClassName.equals(User.class.getName()) ||
+				assigneeClassName.equals(ResourceAction.class.getName())) {
+
 			return true;
 		}
 

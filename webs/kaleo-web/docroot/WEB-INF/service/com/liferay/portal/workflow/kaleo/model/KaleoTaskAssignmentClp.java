@@ -150,6 +150,14 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		_assigneeClassPK = assigneeClassPK;
 	}
 
+	public String getAssigneeActionId() {
+		return _assigneeActionId;
+	}
+
+	public void setAssigneeActionId(String assigneeActionId) {
+		_assigneeActionId = assigneeActionId;
+	}
+
 	public KaleoTaskAssignment toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -176,6 +184,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		clone.setKaleoTaskId(getKaleoTaskId());
 		clone.setAssigneeClassName(getAssigneeClassName());
 		clone.setAssigneeClassPK(getAssigneeClassPK());
+		clone.setAssigneeActionId(getAssigneeActionId());
 
 		return clone;
 	}
@@ -229,7 +238,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(getKaleoTaskAssignmentId());
@@ -255,13 +264,15 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		sb.append(getAssigneeClassName());
 		sb.append(", assigneeClassPK=");
 		sb.append(getAssigneeClassPK());
+		sb.append(", assigneeActionId=");
+		sb.append(getAssigneeActionId());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
@@ -315,6 +326,10 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 			"<column><column-name>assigneeClassPK</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeClassPK());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeActionId</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeActionId());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -334,4 +349,5 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	private long _kaleoTaskId;
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
+	private String _assigneeActionId;
 }

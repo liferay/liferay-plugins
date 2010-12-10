@@ -275,6 +275,7 @@
 			<hint name="max-length">200</hint>
 		</field>
 		<field name="assigneeClassPK" type="long" />
+		<field name="assigneeActionId" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance">
 		<field name="kaleoTaskAssignmentInstanceId" type="long" />

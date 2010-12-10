@@ -17,11 +17,13 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.ResourceAction;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.AssignmentType;
+import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
@@ -115,7 +117,18 @@ public class KaleoTaskAssignmentLocalServiceImpl
 
 		AssignmentType assignmentType = assignment.getAssignmentType();
 
-		if (assignmentType.equals(AssignmentType.ROLE)) {
+		if (assignmentType.equals(AssignmentType.RESOURCE_ACTION)) {
+			kaleoTaskAssignment.setAssigneeClassName(
+				ResourceAction.class.getName());
+
+			ResourceActionAssignment resourceActionAssignment =
+				(ResourceActionAssignment)assignment;
+
+			String actionId = resourceActionAssignment.getActionId();
+
+			kaleoTaskAssignment.setAssigneeActionId(actionId);
+		}
+		else if (assignmentType.equals(AssignmentType.ROLE)) {
 			kaleoTaskAssignment.setAssigneeClassName(Role.class.getName());
 
 			RoleAssignment roleAssignment = (RoleAssignment)assignment;

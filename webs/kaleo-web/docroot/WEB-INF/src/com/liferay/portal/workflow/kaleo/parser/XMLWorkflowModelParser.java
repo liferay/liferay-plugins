@@ -31,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.definition.Fork;
 import com.liferay.portal.workflow.kaleo.definition.Join;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
+import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.State;
@@ -182,6 +183,25 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		}
 
 		Set<Assignment> assignments = new HashSet<Assignment>();
+
+		Element resourceActionsElement = assignmentsElement.element(
+			"resource-actions");
+
+		if (resourceActionsElement != null) {
+			List<Element> resourceActionElements =
+				resourceActionsElement.elements("resource-action");
+
+			for (Element resourceActionElement : resourceActionElements) {
+				String actionId = resourceActionElement.getTextTrim();
+
+				if (Validator.isNotNull(actionId)) {
+					ResourceActionAssignment resourceActionAssignment =
+						new ResourceActionAssignment(actionId);
+
+					assignments.add(resourceActionAssignment);
+				}
+			}
+		}
 
 		Element rolesElement = assignmentsElement.element("roles");
 

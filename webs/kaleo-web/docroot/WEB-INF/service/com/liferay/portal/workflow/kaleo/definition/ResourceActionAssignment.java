@@ -15,10 +15,24 @@
 package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * @author Michael C. Han
+ * @author Marcellus Tavares
  */
-public enum AssignmentType {
+public class ResourceActionAssignment extends Assignment {
 
-	RESOURCE_ACTION, ROLE, USER
+	public ResourceActionAssignment(String actionId) {
+		super(AssignmentType.RESOURCE_ACTION);
+
+		_actionId = actionId;
+	}
+
+	public String getActionId() {
+		return _actionId;
+	}
+
+	public void setActionId(String actionId) {
+		_actionId = actionId;
+	}
+
+	private String _actionId;
 
 }

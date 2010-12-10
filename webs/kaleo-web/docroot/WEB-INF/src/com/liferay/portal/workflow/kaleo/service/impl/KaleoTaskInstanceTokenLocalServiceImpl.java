@@ -120,7 +120,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstanceToken, false);
 
 		kaleoTaskAssignmentInstanceLocalService.addTaskAssignmentInstances(
-			kaleoTaskInstanceToken, kaleoTaskAssignments, serviceContext);
+			kaleoTaskInstanceToken, kaleoTaskAssignments,
+			workflowContext, serviceContext);
 
 		return kaleoTaskInstanceToken;
 	}

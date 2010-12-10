@@ -16,8 +16,13 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
+import com.liferay.portal.model.ResourceAction;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
@@ -25,13 +30,17 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskAssignmentInstanceLocalServiceBaseImpl;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Marcellus Tavares
  */
 public class KaleoTaskAssignmentInstanceLocalServiceImpl
 	extends KaleoTaskAssignmentInstanceLocalServiceBaseImpl {
@@ -82,6 +91,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 	public List<KaleoTaskAssignmentInstance> addTaskAssignmentInstances(
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
 			Collection<KaleoTaskAssignment> kaleoTaskAssignments,
+			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -90,6 +100,25 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 				kaleoTaskAssignments.size());
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
+			String assigneeClassName =
+				kaleoTaskAssignment.getAssigneeClassName();
+
+			if (assigneeClassName.equals(ResourceAction.class.getName())) {
+				String entryClassName = (String)workflowContext.get(
+					WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
+				String entryClassPK = (String)workflowContext.get(
+					WorkflowConstants.CONTEXT_ENTRY_CLASS_PK);
+
+				String assigneeActionId =
+					kaleoTaskAssignment.getAssigneeActionId();
+
+				setResourceAssignees(
+					entryClassName, entryClassPK, assigneeActionId,
+					kaleoTaskInstanceToken, serviceContext);
+
+				continue;
+			}
+
 			User user = userPersistence.findByPrimaryKey(
 				serviceContext.getUserId());
 			Date now = new Date();
@@ -118,9 +147,6 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 				kaleoTaskInstanceToken.getKaleoTaskId());
 			kaleoTaskAssignmentInstance.setKaleoTaskName(
 				kaleoTaskInstanceToken.getKaleoTaskName());
-
-			String assigneeClassName =
-				kaleoTaskAssignment.getAssigneeClassName();
 
 			kaleoTaskAssignmentInstance.setAssigneeClassName(assigneeClassName);
 
@@ -236,6 +262,23 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 		return kaleoTaskAssignmentInstancePersistence.
 			findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
+	}
+
+	protected void setResourceAssignees(
+			String name, String primKey, String actionId,
+			KaleoTaskInstanceToken kaleoTaskInstanceToken,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		List<Role> roles = RoleLocalServiceUtil.getResourceRoles(
+			serviceContext.getCompanyId(), name,
+			ResourceConstants.SCOPE_INDIVIDUAL, primKey, actionId);
+
+		for (Role role : roles) {
+			addKaleoTaskAssignmentInstance(
+				kaleoTaskInstanceToken, Role.class.getName(),
+				role.getClassPK(), serviceContext);
+		}
 	}
 
 }

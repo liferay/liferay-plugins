@@ -282,6 +282,24 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setAssigneeClassPK(assigneeClassPK);
 	}
 
+	/**
+	* Gets the assignee action id of this kaleo task assignment.
+	*
+	* @return the assignee action id of this kaleo task assignment
+	*/
+	public java.lang.String getAssigneeActionId() {
+		return _kaleoTaskAssignment.getAssigneeActionId();
+	}
+
+	/**
+	* Sets the assignee action id of this kaleo task assignment.
+	*
+	* @param assigneeActionId the assignee action id of this kaleo task assignment
+	*/
+	public void setAssigneeActionId(java.lang.String assigneeActionId) {
+		_kaleoTaskAssignment.setAssigneeActionId(assigneeActionId);
+	}
+
 	public boolean isNew() {
 		return _kaleoTaskAssignment.isNew();
 	}

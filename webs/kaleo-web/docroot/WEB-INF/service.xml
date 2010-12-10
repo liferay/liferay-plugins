@@ -566,6 +566,7 @@
 		<column name="kaleoTaskId" type="long" />
 		<column name="assigneeClassName" type="String" />
 		<column name="assigneeClassPK" type="long" />
+		<column name="assigneeActionId" type="String" />
 
 		<!-- Order -->
 
@@ -683,7 +684,7 @@
 		<column name="kaleoTaskAssignmentInstances" type="Collection" entity="KaleoTaskAssignmentInstance" mapping-key="kaleoTaskInstanceTokenId" />
 
 		<!-- Order -->
-		                                                                                    	
+
 		<order by="asc">
 			<order-column name="kaleoTaskInstanceTokenId" />
 		</order>

@@ -244,6 +244,21 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 */
 	public void setAssigneeClassPK(long assigneeClassPK);
 
+	/**
+	 * Gets the assignee action id of this kaleo task assignment.
+	 *
+	 * @return the assignee action id of this kaleo task assignment
+	 */
+	@AutoEscape
+	public String getAssigneeActionId();
+
+	/**
+	 * Sets the assignee action id of this kaleo task assignment.
+	 *
+	 * @param assigneeActionId the assignee action id of this kaleo task assignment
+	 */
+	public void setAssigneeActionId(String assigneeActionId);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);
