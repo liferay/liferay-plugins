@@ -71,8 +71,8 @@ public class GroupAwareTaskAssignmentSelector
 
 		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
 
-		if (assigneeClassName.equals(User.class.getName()) ||
-				assigneeClassName.equals(ResourceAction.class.getName())) {
+		if (assigneeClassName.equals(ResourceAction.class.getName()) ||
+			assigneeClassName.equals(User.class.getName())) {
 
 			return true;
 		}

@@ -104,17 +104,17 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 				kaleoTaskAssignment.getAssigneeClassName();
 
 			if (assigneeClassName.equals(ResourceAction.class.getName())) {
-				String entryClassName = (String)workflowContext.get(
+				String className = (String)workflowContext.get(
 					WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-				String entryClassPK = (String)workflowContext.get(
+				String classPK = (String)workflowContext.get(
 					WorkflowConstants.CONTEXT_ENTRY_CLASS_PK);
 
 				String assigneeActionId =
 					kaleoTaskAssignment.getAssigneeActionId();
 
 				setResourceAssignees(
-					entryClassName, entryClassPK, assigneeActionId,
-					kaleoTaskInstanceToken, serviceContext);
+					kaleoTaskInstanceToken, className, classPK,
+					assigneeActionId, serviceContext);
 
 				continue;
 			}
@@ -265,8 +265,8 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 	}
 
 	protected void setResourceAssignees(
-			String name, String primKey, String actionId,
 			KaleoTaskInstanceToken kaleoTaskInstanceToken,
+			String name, String primKey, String actionId,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 

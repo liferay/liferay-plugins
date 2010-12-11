@@ -192,7 +192,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 				resourceActionsElement.elements("resource-action");
 
 			for (Element resourceActionElement : resourceActionElements) {
-				String actionId = resourceActionElement.getTextTrim();
+				String actionId = resourceActionElement.getText();
 
 				if (Validator.isNotNull(actionId)) {
 					ResourceActionAssignment resourceActionAssignment =
