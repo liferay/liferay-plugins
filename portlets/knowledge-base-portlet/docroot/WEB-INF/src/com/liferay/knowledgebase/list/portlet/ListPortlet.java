@@ -54,12 +54,14 @@ public class ListPortlet extends AdminPortlet {
 
 		if (resourcePrimKey <= 0) {
 			ArticleLocalServiceUtil.subscribe(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				portletId, themeDisplay.getScopeGroupId());
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				themeDisplay.getUserId(), portletId,
+				themeDisplay.getScopeGroupId());
 		}
 		else {
 			ArticleServiceUtil.subscribeArticle(
-				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				portletId, resourcePrimKey);
 		}
 	}
 

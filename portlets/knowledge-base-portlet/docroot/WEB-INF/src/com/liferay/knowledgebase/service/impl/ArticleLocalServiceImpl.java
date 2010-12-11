@@ -418,7 +418,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public void subscribe(
-			long companyId, long userId, String portletId, long classPK)
+			long companyId, long groupId, long userId, String portletId,
+			long classPK)
 		throws PortalException, SystemException {
 
 		// Subscription
@@ -431,7 +432,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 		catch (NoSuchSubscriptionException nsse) {
 			subscription = subscriptionLocalService.addSubscription(
-				userId, Article.class.getName(), classPK);
+				userId, groupId, Article.class.getName(), classPK);
 		}
 
 		// Expando

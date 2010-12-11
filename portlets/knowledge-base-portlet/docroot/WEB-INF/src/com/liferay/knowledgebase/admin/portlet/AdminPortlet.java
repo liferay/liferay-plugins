@@ -296,7 +296,8 @@ public class AdminPortlet extends MVCPortlet {
 		}
 		else {
 			ArticleServiceUtil.subscribeArticle(
-				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				portletId, resourcePrimKey);
 		}
 	}
 
