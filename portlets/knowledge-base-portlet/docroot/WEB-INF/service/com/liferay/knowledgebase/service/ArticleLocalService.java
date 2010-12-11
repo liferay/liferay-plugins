@@ -318,7 +318,7 @@ public interface ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribe(long companyId, long userId,
+	public void subscribe(long companyId, long groupId, long userId,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

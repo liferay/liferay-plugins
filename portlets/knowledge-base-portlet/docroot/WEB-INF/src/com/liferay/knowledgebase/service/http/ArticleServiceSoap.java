@@ -249,11 +249,11 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void subscribeArticle(long companyId,
+	public static void subscribeArticle(long companyId, long groupId,
 		java.lang.String portletId, long resourcePrimKey)
 		throws RemoteException {
 		try {
-			ArticleServiceUtil.subscribeArticle(companyId, portletId,
+			ArticleServiceUtil.subscribeArticle(companyId, groupId, portletId,
 				resourcePrimKey);
 		}
 		catch (Exception e) {

@@ -96,8 +96,8 @@ public class ArticleServiceClp implements ArticleService {
 				"subscribe", long.class, long.class, java.lang.String.class);
 
 		_subscribeArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"subscribeArticle", long.class, java.lang.String.class,
-				long.class);
+				"subscribeArticle", long.class, long.class,
+				java.lang.String.class, long.class);
 
 		_unsubscribeMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribe", long.class, long.class, java.lang.String.class);
@@ -672,12 +672,12 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void subscribeArticle(long companyId, java.lang.String portletId,
-		long resourcePrimKey)
+	public void subscribeArticle(long companyId, long groupId,
+		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey17,
-				companyId, ClpSerializer.translateInput(portletId),
+				companyId, groupId, ClpSerializer.translateInput(portletId),
 				resourcePrimKey);
 
 		try {

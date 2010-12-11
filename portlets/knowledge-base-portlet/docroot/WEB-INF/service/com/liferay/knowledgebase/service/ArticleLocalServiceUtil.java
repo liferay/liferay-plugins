@@ -383,11 +383,11 @@ public class ArticleLocalServiceUtil {
 		return getService().getLatestArticle(resourcePrimKey, status);
 	}
 
-	public static void subscribe(long companyId, long userId,
+	public static void subscribe(long companyId, long groupId, long userId,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribe(companyId, userId, portletId, classPK);
+		getService().subscribe(companyId, groupId, userId, portletId, classPK);
 	}
 
 	public static void unsubscribe(long companyId, long userId,

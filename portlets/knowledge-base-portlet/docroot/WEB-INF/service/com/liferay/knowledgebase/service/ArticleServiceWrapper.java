@@ -166,11 +166,12 @@ public class ArticleServiceWrapper implements ArticleService {
 		_articleService.subscribe(companyId, groupId, portletId);
 	}
 
-	public void subscribeArticle(long companyId, java.lang.String portletId,
-		long resourcePrimKey)
+	public void subscribeArticle(long companyId, long groupId,
+		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.subscribeArticle(companyId, portletId, resourcePrimKey);
+		_articleService.subscribeArticle(companyId, groupId, portletId,
+			resourcePrimKey);
 	}
 
 	public void unsubscribe(long companyId, long groupId,

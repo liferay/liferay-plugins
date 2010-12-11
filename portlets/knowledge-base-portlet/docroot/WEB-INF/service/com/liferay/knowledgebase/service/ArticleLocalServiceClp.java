@@ -142,8 +142,8 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 				"getLatestArticle", long.class, int.class);
 
 		_subscribeMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
-				"subscribe", long.class, long.class, java.lang.String.class,
-				long.class);
+				"subscribe", long.class, long.class, long.class,
+				java.lang.String.class, long.class);
 
 		_unsubscribeMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribe", long.class, long.class, java.lang.String.class,
@@ -1099,13 +1099,13 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void subscribe(long companyId, long userId,
+	public void subscribe(long companyId, long groupId, long userId,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeMethodKey31,
-				companyId, userId, ClpSerializer.translateInput(portletId),
-				classPK);
+				companyId, groupId, userId,
+				ClpSerializer.translateInput(portletId), classPK);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

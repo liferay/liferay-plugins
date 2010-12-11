@@ -183,11 +183,12 @@ public class ArticleServiceUtil {
 		getService().subscribe(companyId, groupId, portletId);
 	}
 
-	public static void subscribeArticle(long companyId,
+	public static void subscribeArticle(long companyId, long groupId,
 		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribeArticle(companyId, portletId, resourcePrimKey);
+		getService()
+			.subscribeArticle(companyId, groupId, portletId, resourcePrimKey);
 	}
 
 	public static void unsubscribe(long companyId, long groupId,

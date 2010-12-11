@@ -363,11 +363,12 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getLatestArticle(resourcePrimKey, status);
 	}
 
-	public void subscribe(long companyId, long userId,
+	public void subscribe(long companyId, long groupId, long userId,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribe(companyId, userId, portletId, classPK);
+		_articleLocalService.subscribe(companyId, groupId, userId, portletId,
+			classPK);
 	}
 
 	public void unsubscribe(long companyId, long userId,
