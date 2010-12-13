@@ -23,7 +23,7 @@
 	for (DLFileEntry fileEntry : results) {
 		fileEntry = fileEntry.toEscapedModel();
 
-		String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&name=" + HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getName()));
+		String rowHREF = themeDisplay.getPathMain() + "/document_library/get_file?p_l_id=" + themeDisplay.getPlid() + "&folderId=" + fileEntry.getFolderId() + "&title=" + HttpUtil.encodeURL(HtmlUtil.unescape(fileEntry.getTitle()));
 		String fileEntryImage = _getFileEntryImage(fileEntry, themeDisplay);
 	%>
 

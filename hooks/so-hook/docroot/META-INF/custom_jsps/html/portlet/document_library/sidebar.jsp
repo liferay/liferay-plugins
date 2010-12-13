@@ -40,7 +40,7 @@
 
 			folderIds.add(new Long(searchFolderIds));
 
-			DLAppLocalServiceUtil.getSubfolderIds(folderIds, scopeGroupId, searchFolderIds);
+			DLAppServiceUtil.getSubfolderIds(folderIds, scopeGroupId, searchFolderIds);
 
 			folderIdsArray = StringUtil.split(StringUtil.merge(folderIds), 0L);
 		}
@@ -116,10 +116,10 @@
 	</ul>
 
 	<%
-	int total = DLAppLocalServiceUtil.getGroupFileEntriesCount(portletGroupId, 0);
+	int total = DLAppServiceUtil.getGroupFileEntriesCount(portletGroupId, 0);
 
 	if (total > 0) {
-		List<DLFileEntry> results = DLAppLocalServiceUtil.getGroupFileEntries(portletGroupId, 0, 0, 5);
+		List<DLFileEntry> results = DLAppServiceUtil.getGroupFileEntries(portletGroupId, 0, 0, 5);
 	%>
 
 		<h2>
@@ -131,10 +131,10 @@
 	<%
 	}
 
-	total = DLAppLocalServiceUtil.getGroupFileEntriesCount(portletGroupId, user.getUserId());
+	total = DLAppServiceUtil.getGroupFileEntriesCount(portletGroupId, user.getUserId());
 
 	if (total > 0) {
-		List<DLFileEntry> results = DLAppLocalServiceUtil.getGroupFileEntries(portletGroupId, user.getUserId(), 0, 5);
+		List<DLFileEntry> results = DLAppServiceUtil.getGroupFileEntries(portletGroupId, user.getUserId(), 0, 5);
 	%>
 
 		<h2>

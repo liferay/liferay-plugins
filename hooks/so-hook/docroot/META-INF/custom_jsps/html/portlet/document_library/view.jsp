@@ -251,8 +251,8 @@ request.setAttribute("view.jsp-useAssetEntryQuery", String.valueOf(useAssetEntry
 				iteratorURL="<%= portletURL %>"
 			>
 				<liferay-ui:search-container-results
-					results="<%= DLAppLocalServiceUtil.getGroupFileEntries(scopeGroupId, groupFileEntriesUserId, searchContainer.getStart(), searchContainer.getEnd()) %>"
-					total="<%= DLAppLocalServiceUtil.getGroupFileEntriesCount(scopeGroupId, groupFileEntriesUserId) %>"
+					results="<%= DLAppServiceUtil.getGroupFileEntries(scopeGroupId, groupFileEntriesUserId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+					total="<%= DLAppServiceUtil.getGroupFileEntriesCount(scopeGroupId, groupFileEntriesUserId) %>"
 				/>
 
 				<liferay-ui:search-container-row
