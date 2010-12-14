@@ -60,6 +60,10 @@ import org.json.JSONObject;
  */
 public class ShindigUtil {
 
+	public static String convertFromOpenSsl(String key) {
+		return key.replaceAll("-----[A-Z ]*-----", "").replace("\n", "");
+	}
+
 	public static String createSecurityToken(
 			String ownerId, long viewerId, String appId, String domain,
 			String appUrl, long moduleId, String activeUrl)
@@ -162,13 +166,13 @@ public class ShindigUtil {
 			return null;
 		}
 
-		OAuthSpec oAuthSpec = modulePrefs.getOAuthSpec();
+		OAuthSpec oauthSpec = modulePrefs.getOAuthSpec();
 
-		if (oAuthSpec == null) {
+		if (oauthSpec == null) {
 			return null;
 		}
 
-		return oAuthSpec.getServices();
+		return oauthSpec.getServices();
 	}
 
 	public static String getOwnerId(Layout layout)

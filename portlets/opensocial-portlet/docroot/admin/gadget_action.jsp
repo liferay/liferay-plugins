@@ -21,20 +21,29 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 Gadget gadget = (Gadget)row.getObject();
 
-GadgetSpec gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
+GadgetSpec gadgetSpec = null;
 
-Map<String, OAuthService> oAuthServices = ShindigUtil.getOAuthServices(gadgetSpec);
+Map<String, OAuthService> oAuthServices = null;
+
+try {
+	gadgetSpec = ShindigUtil.getGadgetSpec(gadget.getUrl());
+
+	oAuthServices = ShindigUtil.getOAuthServices(gadgetSpec);
+}
+catch (Exception e) {
+	row.setRestricted(true);
+}
 %>
 
 <liferay-ui:icon-menu>
 	<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
 		<portlet:renderURL var="configureOAuthURL">
-			<portlet:param name="jspPage" value="/admin/configure_oauth.jsp" />
+			<portlet:param name="jspPage" value="/admin/view_oauth_consumers.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
 		</portlet:renderURL>
 
-		<liferay-ui:icon image="portlet" message="configure-oauth" url="<%= configureOAuthURL %>" />
+		<liferay-ui:icon image="portlet" message="manage-oauth" url="<%= configureOAuthURL %>" />
 	</c:if>
 
 	<portlet:actionURL name="deleteGadget" var="deleteURL">

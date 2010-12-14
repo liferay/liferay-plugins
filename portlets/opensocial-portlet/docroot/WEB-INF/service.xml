@@ -54,6 +54,8 @@
 		<column name="consumerKey" type="String" />
 		<column name="consumerSecret" type="String" />
 		<column name="keyType" type="String" />
+		<column name="callbackUrl" type="String" />
+		<column name="keyName" type="String" />
 
 		<!-- Order -->
 
@@ -69,6 +71,44 @@
 		<finder name="G_S" return-type="OAuthConsumer">
 			<finder-column name="gadgetId" />
 			<finder-column name="serviceName" />
+		</finder>
+	</entity>
+	<entity name="OAuthToken" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="oauthTokenId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+		<column name="userId" type="long" />
+		
+		<!-- Other fields -->
+
+		<column name="gadgetId" type="long" />
+		<column name="moduleId" type="long" />
+		<column name="serviceName" type="String" />
+		<column name="tokenName" type="String" />
+		<column name="accessToken" type="String" />
+		<column name="tokenSecret" type="String" />
+		<column name="sessionHandle" type="String" />
+		<column name="tokenExpireMillis" type="long" />
+
+		<!-- Finder methods -->
+
+		<finder name="G_S" return-type="Collection">
+			<finder-column name="gadgetId" />
+			<finder-column name="serviceName" />
+		</finder>
+		<finder name="U_G_M_S_T" return-type="OAuthToken">
+			<finder-column name="userId" />
+			<finder-column name="gadgetId" />
+			<finder-column name="moduleId" />
+			<finder-column name="serviceName" />
+			<finder-column name="tokenName" />
 		</finder>
 	</entity>
 	<exceptions>

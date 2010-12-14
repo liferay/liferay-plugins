@@ -100,6 +100,10 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	public void deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
+		long gadgetId = gadget.getGadgetId();
+
+		oAuthConsumerLocalService.deleteOAuthConsumers(gadgetId);
+
 		gadgetLocalService.destroyGadget(
 			gadget.getUuid(), gadget.getCompanyId(), gadget.getName());
 
@@ -156,6 +160,12 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		}
 
 		return gadgets.get(0);
+	}
+
+	public Gadget getGadget(long companyId, String url)
+		throws PortalException, SystemException {
+
+		return gadgetPersistence.findByC_U(companyId, url);
 	}
 
 	public List<Gadget> getGadgets(long companyId, int start, int end)

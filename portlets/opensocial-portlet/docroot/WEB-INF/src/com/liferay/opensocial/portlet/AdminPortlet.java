@@ -16,9 +16,11 @@ package com.liferay.opensocial.portlet;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -47,6 +49,18 @@ public class AdminPortlet extends MVCPortlet {
 		GadgetLocalServiceUtil.deleteGadget(gadgetId);
 	}
 
+	public void deleteOAuthConsumer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		long oAuthConsumerId = ParamUtil.getLong(
+			actionRequest, "oAuthConsumerId");
+
+		OAuthConsumerLocalServiceUtil.deleteOAuthConsumer(oAuthConsumerId);
+	}
+
 	public void updateGadget(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -55,6 +69,20 @@ public class AdminPortlet extends MVCPortlet {
 
 		try {
 			doUpdateGadget(actionRequest, actionResponse);
+		}
+		catch (PortalException pe) {
+			SessionErrors.add(actionRequest, pe.getClass().getName());
+		}
+	}
+
+	public void updateOAuthConsumer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		checkPermissions(actionRequest);
+
+		try {
+			doUpdateOAuthConsumer(actionRequest, actionResponse);
 		}
 		catch (PortalException pe) {
 			SessionErrors.add(actionRequest, pe.getClass().getName());
@@ -89,6 +117,37 @@ public class AdminPortlet extends MVCPortlet {
 
 		GadgetLocalServiceUtil.addGadget(
 			themeDisplay.getCompanyId(), url, serviceContext);
+	}
+
+	protected void doUpdateOAuthConsumer(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
+		String serviceName = ParamUtil.getString(actionRequest, "serviceName");
+		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
+		String consumerSecret = ParamUtil.getString(
+			actionRequest, "consumerSecret");
+
+		String keyType = ParamUtil.getString(actionRequest, "keyType");
+		long oAuthConsumerId = ParamUtil.getLong(
+				actionRequest, "oAuthConsumerId");
+
+		if (oAuthConsumerId <= 0) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			OAuthConsumerLocalServiceUtil.addOAuthConsumer(
+				themeDisplay.getCompanyId(), gadgetId, serviceName,
+				consumerKey, consumerSecret, keyType, StringPool.BLANK,
+				StringPool.BLANK);
+		}
+		else {
+			OAuthConsumerLocalServiceUtil.updateOAuthConsumer(
+				oAuthConsumerId, consumerKey, consumerSecret, keyType,
+				StringPool.BLANK, StringPool.BLANK);
+		}
 	}
 
 }
