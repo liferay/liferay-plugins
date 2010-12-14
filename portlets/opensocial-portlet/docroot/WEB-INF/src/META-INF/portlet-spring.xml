@@ -11,4 +11,9 @@
 		<property name="service" ref="com.liferay.opensocial.service.OAuthConsumerLocalService" />
 	</bean>
 	<bean id="com.liferay.opensocial.service.persistence.OAuthConsumerPersistence" class="com.liferay.opensocial.service.persistence.OAuthConsumerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.opensocial.service.OAuthTokenLocalService" class="com.liferay.opensocial.service.impl.OAuthTokenLocalServiceImpl" />
+	<bean id="com.liferay.opensocial.service.OAuthTokenLocalServiceUtil" class="com.liferay.opensocial.service.OAuthTokenLocalServiceUtil">
+		<property name="service" ref="com.liferay.opensocial.service.OAuthTokenLocalService" />
+	</bean>
+	<bean id="com.liferay.opensocial.service.persistence.OAuthTokenPersistence" class="com.liferay.opensocial.service.persistence.OAuthTokenPersistenceImpl" parent="basePersistence" />
 </beans>

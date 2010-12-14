@@ -19,8 +19,10 @@ import com.liferay.counter.service.CounterLocalService;
 import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.opensocial.service.GadgetLocalService;
 import com.liferay.opensocial.service.OAuthConsumerLocalService;
+import com.liferay.opensocial.service.OAuthTokenLocalService;
 import com.liferay.opensocial.service.persistence.GadgetPersistence;
 import com.liferay.opensocial.service.persistence.OAuthConsumerPersistence;
+import com.liferay.opensocial.service.persistence.OAuthTokenPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
@@ -100,10 +102,11 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param oAuthConsumer the o auth consumer to delete
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws SystemException {
+		throws PortalException, SystemException {
 		oAuthConsumerPersistence.remove(oAuthConsumer);
 	}
 
@@ -317,6 +320,44 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the o auth token local service.
+	 *
+	 * @return the o auth token local service
+	 */
+	public OAuthTokenLocalService getOAuthTokenLocalService() {
+		return oAuthTokenLocalService;
+	}
+
+	/**
+	 * Sets the o auth token local service.
+	 *
+	 * @param oAuthTokenLocalService the o auth token local service
+	 */
+	public void setOAuthTokenLocalService(
+		OAuthTokenLocalService oAuthTokenLocalService) {
+		this.oAuthTokenLocalService = oAuthTokenLocalService;
+	}
+
+	/**
+	 * Gets the o auth token persistence.
+	 *
+	 * @return the o auth token persistence
+	 */
+	public OAuthTokenPersistence getOAuthTokenPersistence() {
+		return oAuthTokenPersistence;
+	}
+
+	/**
+	 * Sets the o auth token persistence.
+	 *
+	 * @param oAuthTokenPersistence the o auth token persistence
+	 */
+	public void setOAuthTokenPersistence(
+		OAuthTokenPersistence oAuthTokenPersistence) {
+		this.oAuthTokenPersistence = oAuthTokenPersistence;
+	}
+
+	/**
 	 * Gets the counter local service.
 	 *
 	 * @return the counter local service
@@ -470,6 +511,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	protected OAuthConsumerLocalService oAuthConsumerLocalService;
 	@BeanReference(type = OAuthConsumerPersistence.class)
 	protected OAuthConsumerPersistence oAuthConsumerPersistence;
+	@BeanReference(type = OAuthTokenLocalService.class)
+	protected OAuthTokenLocalService oAuthTokenLocalService;
+	@BeanReference(type = OAuthTokenPersistence.class)
+	protected OAuthTokenPersistence oAuthTokenPersistence;
 	@BeanReference(type = CounterLocalService.class)
 	protected CounterLocalService counterLocalService;
 	@BeanReference(type = ResourceLocalService.class)

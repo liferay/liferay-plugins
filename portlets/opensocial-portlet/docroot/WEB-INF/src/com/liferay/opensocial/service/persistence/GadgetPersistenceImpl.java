@@ -1711,6 +1711,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	protected GadgetPersistence gadgetPersistence;
 	@BeanReference(type = OAuthConsumerPersistence.class)
 	protected OAuthConsumerPersistence oAuthConsumerPersistence;
+	@BeanReference(type = OAuthTokenPersistence.class)
+	protected OAuthTokenPersistence oAuthTokenPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

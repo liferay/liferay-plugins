@@ -64,10 +64,12 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			{ "gadgetId", new Integer(Types.BIGINT) },
 			{ "serviceName", new Integer(Types.VARCHAR) },
 			{ "consumerKey", new Integer(Types.VARCHAR) },
-			{ "consumerSecret", new Integer(Types.VARCHAR) },
-			{ "keyType", new Integer(Types.VARCHAR) }
+			{ "consumerSecret", new Integer(Types.CLOB) },
+			{ "keyType", new Integer(Types.VARCHAR) },
+			{ "callbackUrl", new Integer(Types.VARCHAR) },
+			{ "keyName", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oauthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret VARCHAR(75) null,keyType VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oauthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null,callbackUrl VARCHAR(75) null,keyName VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthConsumer";
 	public static final String ORDER_BY_JPQL = " ORDER BY oAuthConsumer.serviceName ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_OAuthConsumer.serviceName ASC";
@@ -208,6 +210,32 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		_keyType = keyType;
 	}
 
+	public String getCallbackUrl() {
+		if (_callbackUrl == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _callbackUrl;
+		}
+	}
+
+	public void setCallbackUrl(String callbackUrl) {
+		_callbackUrl = callbackUrl;
+	}
+
+	public String getKeyName() {
+		if (_keyName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _keyName;
+		}
+	}
+
+	public void setKeyName(String keyName) {
+		_keyName = keyName;
+	}
+
 	public OAuthConsumer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (OAuthConsumer)this;
@@ -244,6 +272,8 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		clone.setConsumerKey(getConsumerKey());
 		clone.setConsumerSecret(getConsumerSecret());
 		clone.setKeyType(getKeyType());
+		clone.setCallbackUrl(getCallbackUrl());
+		clone.setKeyName(getKeyName());
 
 		return clone;
 	}
@@ -289,7 +319,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{oauthConsumerId=");
 		sb.append(getOauthConsumerId());
@@ -309,13 +339,17 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		sb.append(getConsumerSecret());
 		sb.append(", keyType=");
 		sb.append(getKeyType());
+		sb.append(", callbackUrl=");
+		sb.append(getCallbackUrl());
+		sb.append(", keyName=");
+		sb.append(getKeyName());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.OAuthConsumer");
@@ -357,6 +391,14 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			"<column><column-name>keyType</column-name><column-value><![CDATA[");
 		sb.append(getKeyType());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>callbackUrl</column-name><column-value><![CDATA[");
+		sb.append(getCallbackUrl());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>keyName</column-name><column-value><![CDATA[");
+		sb.append(getKeyName());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -375,5 +417,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
+	private String _callbackUrl;
+	private String _keyName;
 	private transient ExpandoBridge _expandoBridge;
 }

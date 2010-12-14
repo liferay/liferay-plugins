@@ -349,6 +349,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		oAuthConsumerImpl.setConsumerKey(oAuthConsumer.getConsumerKey());
 		oAuthConsumerImpl.setConsumerSecret(oAuthConsumer.getConsumerSecret());
 		oAuthConsumerImpl.setKeyType(oAuthConsumer.getKeyType());
+		oAuthConsumerImpl.setCallbackUrl(oAuthConsumer.getCallbackUrl());
+		oAuthConsumerImpl.setKeyName(oAuthConsumer.getKeyName());
 
 		return oAuthConsumerImpl;
 	}
@@ -1277,6 +1279,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	protected GadgetPersistence gadgetPersistence;
 	@BeanReference(type = OAuthConsumerPersistence.class)
 	protected OAuthConsumerPersistence oAuthConsumerPersistence;
+	@BeanReference(type = OAuthTokenPersistence.class)
+	protected OAuthTokenPersistence oAuthTokenPersistence;
 	@BeanReference(type = ResourcePersistence.class)
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)

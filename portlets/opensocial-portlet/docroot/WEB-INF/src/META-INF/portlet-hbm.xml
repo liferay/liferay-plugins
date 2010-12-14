@@ -4,6 +4,7 @@
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.opensocial.model.Gadget" />
 	<import class="com.liferay.opensocial.model.OAuthConsumer" />
+	<import class="com.liferay.opensocial.model.OAuthToken" />
 	<class name="com.liferay.opensocial.model.impl.GadgetImpl" table="OpenSocial_Gadget">
 		<cache usage="read-write" />
 		<id name="gadgetId" type="long">
@@ -29,5 +30,25 @@
 		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="keyType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="callbackUrl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="keyName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.opensocial.model.impl.OAuthTokenImpl" table="OpenSocial_OAuthToken">
+		<cache usage="read-write" />
+		<id name="oauthTokenId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="gadgetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="moduleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="serviceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tokenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="accessToken" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tokenSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sessionHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tokenExpireMillis" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>
