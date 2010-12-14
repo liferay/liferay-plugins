@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceAction;
 import com.liferay.portal.model.Role;
@@ -45,12 +46,17 @@ public class GroupAwareTaskAssignmentSelector
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
+		Group group = null;
+
 		long groupId = kaleoInstanceToken.getGroupId();
 
-		Group group = GroupLocalServiceUtil.getGroup(groupId);
+		if (groupId != WorkflowConstants.DEFAULT_GROUP_ID) {
+			group = GroupLocalServiceUtil.getGroup(groupId);
 
-		if (group.isLayout()) {
-			group = GroupLocalServiceUtil.getGroup(group.getParentGroupId());
+			if (group.isLayout()) {
+				group = GroupLocalServiceUtil.getGroup(
+					group.getParentGroupId());
+			}
 		}
 
 		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
@@ -84,12 +90,12 @@ public class GroupAwareTaskAssignmentSelector
 		if (role.getType() == RoleConstants.TYPE_REGULAR) {
 			return true;
 		}
-		else if (group.isCommunity() &&
+		else if ((group != null) && group.isCommunity() &&
 				 (role.getType() == RoleConstants.TYPE_COMMUNITY)) {
 
 			return true;
 		}
-		else if (group.isOrganization() &&
+		else if ((group != null) && group.isOrganization() &&
 				 (role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
 
 			return true;

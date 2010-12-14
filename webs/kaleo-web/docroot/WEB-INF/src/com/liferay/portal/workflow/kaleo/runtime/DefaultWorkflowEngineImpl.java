@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowInstance;
@@ -272,14 +273,17 @@ public class DefaultWorkflowEngineImpl
 							workflowDefinitionVersion);
 			}
 
-			Group group = GroupLocalServiceUtil.getGroup(
-				serviceContext.getScopeGroupId());
+			long scopeGroupId = serviceContext.getScopeGroupId();
 
-			if (group.isLayout()) {
-				group = GroupLocalServiceUtil.getGroup(
-					group.getParentGroupId());
+			if (scopeGroupId != WorkflowConstants.DEFAULT_GROUP_ID) {
+				Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
-				serviceContext.setScopeGroupId(group.getGroupId());
+				if (group.isLayout()) {
+					group = GroupLocalServiceUtil.getGroup(
+						group.getParentGroupId());
+
+					serviceContext.setScopeGroupId(group.getGroupId());
+				}
 			}
 
 			KaleoInstance kaleoInstance =
