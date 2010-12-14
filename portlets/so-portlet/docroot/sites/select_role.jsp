@@ -55,7 +55,6 @@ String taglibRemoveRole = "javascript:opener." + renderResponse.getNamespace() +
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.model.Role"
-		escapedModel="<%= false %>"
 		keyProperty="roleId"
 		modelVar="role"
 	>

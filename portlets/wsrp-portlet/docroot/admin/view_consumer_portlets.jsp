@@ -43,7 +43,6 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 
 	<liferay-ui:search-container-row
 		className="com.liferay.wsrp.model.WSRPConsumerPortlet"
-		escapedModel="<%= false %>"
 		keyProperty="wsrpConsumerPortletId"
 		modelVar="wsrpConsumerPortlet"
 	>
