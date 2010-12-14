@@ -172,11 +172,14 @@ public class IMAPConnection {
 	public void testConnection() throws MailException {
 		boolean failedIncomingConnection = false;
 
+		MailException mailException = null;
+
 		try {
 			testIncomingConnection();
 		}
 		catch (MailException me) {
 			failedIncomingConnection = true;
+			mailException = me;
 		}
 
 		boolean failedOutgoingConnection = false;
@@ -186,19 +189,22 @@ public class IMAPConnection {
 		}
 		catch (MailException me) {
 			failedOutgoingConnection = true;
+			mailException = me;
 		}
 
 		if (failedIncomingConnection && failedOutgoingConnection) {
 			throw new MailException(
-				MailException.ACCOUNT_CONNECTIONS_FAILED);
+				MailException.ACCOUNT_CONNECTIONS_FAILED, mailException);
 		}
 		else if (failedIncomingConnection) {
 			throw new MailException(
-				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED);
+				MailException.ACCOUNT_INCOMING_CONNECTION_FAILED,
+					mailException);
 		}
 		else if (failedOutgoingConnection) {
 			throw new MailException(
-				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED);
+				MailException.ACCOUNT_OUTGOING_CONNECTION_FAILED,
+					mailException);
 		}
 	}
 
