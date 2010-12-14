@@ -47,7 +47,6 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 		modelVar="wsrpConsumerPortlet"
 	>
 		<liferay-ui:search-container-column-text
-			name="name"
 			property="name"
 		/>
 

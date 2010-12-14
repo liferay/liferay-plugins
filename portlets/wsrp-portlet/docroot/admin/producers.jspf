@@ -52,7 +52,6 @@
 		/>
 
 		<liferay-ui:search-container-column-text
-			name="version"
 			property="version"
 		/>
 
