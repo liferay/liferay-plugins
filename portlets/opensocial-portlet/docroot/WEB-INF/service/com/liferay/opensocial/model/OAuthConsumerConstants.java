@@ -12,17 +12,17 @@
  * details.
  */
 
-package com.liferay.opensocial.util;
+package com.liferay.opensocial.model;
 
 /**
- * @author Dennis Ju
+ * @author Brian Wing Shun Chan
  */
-public interface Constants extends com.liferay.portal.kernel.util.Constants {
+public class OAuthConsumerConstants {
 
-	public static final String HMAC_SYMMETRIC = "HMAC_SYMMETRIC";
+	public static final String KEY_TYPE_HMAC_SYMMETRIC = "HMAC_SYMMETRIC";
 
-	public static final String PLAINTEXT = "PLAINTEXT";
+	public static final String KEY_TYPE_PLAINTEXT = "PLAINTEXT";
 
-	public static final String RSA_PRIVATE = "RSA_PRIVATE";
+	public static final String KEY_TYPE_RSA_PRIVATE = "RSA_PRIVATE";
 
 }

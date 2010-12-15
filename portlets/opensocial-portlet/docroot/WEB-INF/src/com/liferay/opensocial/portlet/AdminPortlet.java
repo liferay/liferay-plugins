@@ -35,6 +35,7 @@ import javax.portlet.PortletRequest;
 
 /**
  * @author Michael Young
+ * @author Dennis Ju
  */
 public class AdminPortlet extends MVCPortlet {
 
@@ -123,25 +124,23 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long oAuthConsumerId = ParamUtil.getLong(
+			actionRequest, "oAuthConsumerId");
+
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 		String serviceName = ParamUtil.getString(actionRequest, "serviceName");
 		String consumerKey = ParamUtil.getString(actionRequest, "consumerKey");
 		String consumerSecret = ParamUtil.getString(
 			actionRequest, "consumerSecret");
-
 		String keyType = ParamUtil.getString(actionRequest, "keyType");
-		long oAuthConsumerId = ParamUtil.getLong(
-				actionRequest, "oAuthConsumerId");
 
 		if (oAuthConsumerId <= 0) {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
-
 			OAuthConsumerLocalServiceUtil.addOAuthConsumer(
-				themeDisplay.getCompanyId(), gadgetId, serviceName,
-				consumerKey, consumerSecret, keyType, StringPool.BLANK,
-				StringPool.BLANK);
+				themeDisplay.getCompanyId(), gadgetId, serviceName, consumerKey,
+				consumerSecret, keyType, StringPool.BLANK, StringPool.BLANK);
 		}
 		else {
 			OAuthConsumerLocalServiceUtil.updateOAuthConsumer(

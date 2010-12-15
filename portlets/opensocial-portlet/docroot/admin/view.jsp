@@ -32,7 +32,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 	<liferay-ui:search-container-row
 		className="com.liferay.opensocial.model.Gadget"
-		escapedModel="<%= false %>"
 		keyProperty="gadgetId"
 		modelVar="gadget"
 	>

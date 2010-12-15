@@ -55,6 +55,7 @@ import org.apache.shindig.gadgets.spec.ModulePrefs;
 /**
  * @author Michael Young
  * @author Brian Wing Shun Chan
+ * @author Dennis Ju
  */
 public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
@@ -100,14 +101,16 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	public void deleteGadget(Gadget gadget)
 		throws PortalException, SystemException {
 
-		long gadgetId = gadget.getGadgetId();
-
-		oAuthConsumerLocalService.deleteOAuthConsumers(gadgetId);
+		// Gadget
 
 		gadgetLocalService.destroyGadget(
 			gadget.getUuid(), gadget.getCompanyId(), gadget.getName());
 
 		gadgetPersistence.remove(gadget);
+
+		// OAuth consumer
+
+		oAuthConsumerLocalService.deleteOAuthConsumers(gadget.getGadgetId());
 	}
 
 	public void deleteGadget(long gadgetId)

@@ -18,6 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 long gadgetId = ParamUtil.getLong(request, "gadgetId");
 
 Gadget gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
@@ -37,44 +38,41 @@ catch (Exception e) {
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= gadget.getName() %>'
+	title="<%= gadget.getName() %>"
 />
 
 <liferay-ui:search-container>
 	<liferay-ui:search-container-results>
+
 		<%
 		List<OAuthService> oAuthServices = new ArrayList<OAuthService>();
 
-		for (Map.Entry<String, OAuthService> oAuthServiceEntry : oAuthServicesMap.entrySet()) {
-			oAuthServices.add(oAuthServiceEntry.getValue());
+		for (Map.Entry<String, OAuthService> entry : oAuthServicesMap.entrySet()) {
+			OAuthService oAuthService = entry.getValue();
+
+			oAuthServices.add(oAuthService);
 		}
 
 		pageContext.setAttribute("results", oAuthServices);
 		pageContext.setAttribute("total", oAuthServices.size());
 		%>
+
 	</liferay-ui:search-container-results>
 
 	<liferay-ui:search-container-row
 		className="org.apache.shindig.gadgets.spec.OAuthService"
-		escapedModel="<%= false %>"
 		keyProperty="name"
 		modelVar="oAuthService"
 	>
-
-		<%
-		String serviceName = oAuthService.getName();
-		%>
-
 		<portlet:renderURL var="rowURL">
 			<portlet:param name="jspPage" value="/admin/edit_oauth_consumer.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
-			<portlet:param name="serviceName" value= "<%= serviceName %>" />
+			<portlet:param name="serviceName" value="<%= oAuthService.getName() %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
-			name="name"
 			property="name"
 		/>
 
@@ -84,8 +82,6 @@ catch (Exception e) {
 			valign="top"
 		/>
 	</liferay-ui:search-container-row>
-
-	<br />
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>

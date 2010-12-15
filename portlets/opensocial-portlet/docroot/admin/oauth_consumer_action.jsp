@@ -17,18 +17,16 @@
 <%@ include file="/init.jsp" %>
 
 <%
-long gadgetId = ParamUtil.getLong(request, "gadgetId");
-
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
 OAuthService oAuthService = (OAuthService)row.getObject();
 
-String serviceName = oAuthService.getName();
+long gadgetId = ParamUtil.getLong(request, "gadgetId");
 
 OAuthConsumer oAuthConsumer = null;
 
 try {
-	oAuthConsumer = OAuthConsumerLocalServiceUtil.getOAuthConsumer(gadgetId, serviceName);
+	oAuthConsumer = OAuthConsumerLocalServiceUtil.getOAuthConsumer(gadgetId, oAuthService.getName());
 }
 catch (NoSuchOAuthConsumerException nsoce) {
 }
@@ -39,7 +37,7 @@ catch (NoSuchOAuthConsumerException nsoce) {
 		<portlet:param name="jspPage" value="/admin/edit_oauth_consumer.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="gadgetId" value="<%= String.valueOf(gadgetId) %>" />
-		<portlet:param name="serviceName" value="<%= serviceName %>" />
+		<portlet:param name="serviceName" value="<%= oAuthService.getName() %>" />
 	</portlet:renderURL>
 
 	<c:choose>

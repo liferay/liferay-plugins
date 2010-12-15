@@ -15,10 +15,9 @@
 package com.liferay.opensocial.service.impl;
 
 import com.liferay.opensocial.model.OAuthConsumer;
-import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
+import com.liferay.opensocial.model.OAuthConsumerConstants;
 import com.liferay.opensocial.service.base.OAuthConsumerLocalServiceBaseImpl;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
-import com.liferay.opensocial.util.Constants;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 
@@ -26,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author Michael Young
+ * @author Dennis Ju
  */
 public class OAuthConsumerLocalServiceImpl
 	extends OAuthConsumerLocalServiceBaseImpl {
@@ -34,8 +33,8 @@ public class OAuthConsumerLocalServiceImpl
 	public OAuthConsumer addOAuthConsumer(
 			long companyId, long gadgetId, String serviceName,
 			String consumerKey, String consumerSecret, String keyType,
-			String callbackUrl, String keyName)
-		throws PortalException, SystemException {
+			String keyName, String callbackURL)
+		throws SystemException {
 
 		Date now = new Date();
 
@@ -52,8 +51,8 @@ public class OAuthConsumerLocalServiceImpl
 		oAuthConsumer.setConsumerKey(consumerKey);
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(keyType);
-		oAuthConsumer.setCallbackUrl(callbackUrl);
 		oAuthConsumer.setKeyName(keyName);
+		oAuthConsumer.setCallbackURL(callbackURL);
 
 		oAuthConsumerPersistence.update(oAuthConsumer, false);
 
@@ -63,36 +62,40 @@ public class OAuthConsumerLocalServiceImpl
 	public void deleteOAuthConsumer(long oAuthConsumerId)
 		throws PortalException, SystemException {
 
-		OAuthConsumer oAuthConsumer =
-			oAuthConsumerPersistence.findByPrimaryKey(oAuthConsumerId);
+		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.findByPrimaryKey(
+			oAuthConsumerId);
 
 		deleteOAuthConsumer(oAuthConsumer);
 	}
 
 	public void deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws PortalException, SystemException {
+		throws SystemException {
 
-		long gadgetId = oAuthConsumer.getGadgetId();
-		String serviceName = oAuthConsumer.getServiceName();
-
-		OAuthTokenLocalServiceUtil.deleteOAuthTokens(gadgetId, serviceName);
+		// OAuth consumer
 
 		oAuthConsumerPersistence.remove(oAuthConsumer);
+
+		// OAuth tokens
+
+		oAuthTokenLocalService.deleteOAuthTokens(
+			oAuthConsumer.getGadgetId(), oAuthConsumer.getServiceName());
 	}
 
 	public void deleteOAuthConsumers(long gadgetId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
-		oAuthConsumerPersistence.removeByGadgetId(gadgetId);
+		List<OAuthConsumer> oAuthConsumers =
+			oAuthConsumerPersistence.findByGadgetId(gadgetId);
+
+		for (OAuthConsumer oAuthConsumer : oAuthConsumers) {
+			deleteOAuthConsumer(oAuthConsumer);
+		}
 	}
 
 	public OAuthConsumer getOAuthConsumer(long gadgetId, String serviceName)
 		throws PortalException, SystemException {
 
-		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.findByG_S(
-			gadgetId, serviceName);
-
-		return oAuthConsumer;
+		return oAuthConsumerPersistence.findByG_S(gadgetId, serviceName);
 	}
 
 	public List<OAuthConsumer> getOAuthConsumers(long gadgetId)
@@ -115,21 +118,21 @@ public class OAuthConsumerLocalServiceImpl
 
 	public OAuthConsumer updateOAuthConsumer(
 			long oAuthConsumerId, String consumerKey, String consumerSecret,
-			String keyType, String callbackUrl, String keyName)
+			String keyType, String keyName, String callbackURL)
 		throws PortalException, SystemException {
 
-		OAuthConsumer oAuthConsumer =
-			oAuthConsumerPersistence.findByPrimaryKey(oAuthConsumerId);
-
-		if (keyType.equals(Constants.RSA_PRIVATE)) {
+		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
 			consumerSecret = ShindigUtil.convertFromOpenSsl(consumerSecret);
 		}
+
+		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.findByPrimaryKey(
+			oAuthConsumerId);
 
 		oAuthConsumer.setConsumerKey(consumerKey);
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(keyType);
-		oAuthConsumer.setCallbackUrl(callbackUrl);
 		oAuthConsumer.setKeyName(keyName);
+		oAuthConsumer.setCallbackURL(callbackURL);
 
 		oAuthConsumerPersistence.update(oAuthConsumer, false);
 

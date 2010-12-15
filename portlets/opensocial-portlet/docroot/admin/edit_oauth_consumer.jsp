@@ -18,27 +18,29 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
+
 long gadgetId = ParamUtil.getLong(request, "gadgetId");
-String serviceName = ParamUtil.getString(request, "serviceName");
 
 Gadget gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
 
-OAuthConsumer oAuthConsumer = null;
+String serviceName = ParamUtil.getString(request, "serviceName");
 
-long oAuthConsumerId = 0;
+OAuthConsumer oAuthConsumer = null;
 
 try {
 	oAuthConsumer = OAuthConsumerLocalServiceUtil.getOAuthConsumer(gadgetId, serviceName);
-
-	oAuthConsumerId = oAuthConsumer.getOauthConsumerId();
 }
 catch (NoSuchOAuthConsumerException nsce) {
 }
+
+long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oAuthConsumerId");
+
+String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 %>
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= gadget.getName() %>'
+	title="<%= gadget.getName() %>"
 />
 
 <form action="<portlet:actionURL name="updateOAuthConsumer"><portlet:param name="jspPage" value="/admin/edit_oauth_consumer.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveOAuthConsumer(); return false;">
@@ -77,18 +79,10 @@ catch (NoSuchOAuthConsumerException nsce) {
 		<liferay-ui:message key="key-type" />
 	</td>
 	<td>
-		<%
-		String keyType = StringPool.BLANK;
-
-		if (oAuthConsumer != null) {
-			keyType = oAuthConsumer.getKeyType();
-		}
-		%>
-
 		<select name="<portlet:namespace />keyType">
-			<option <%= keyType.equals(Constants.RSA_PRIVATE) ? "selected" : StringPool.BLANK %> value="<%= Constants.RSA_PRIVATE %>">RSA PRIVATE</option>
-			<option <%= keyType.equals(Constants.HMAC_SYMMETRIC) ? "selected" : StringPool.BLANK %> value="<%= Constants.HMAC_SYMMETRIC %>">HMAC SYMMETRIC</option>
-			<option <%= keyType.equals(Constants.PLAINTEXT) ? "selected" : StringPool.BLANK %> value="<%= Constants.PLAINTEXT %>">PLAINTEXT</option>
+			<option <%= keyType.equals(OAuthConsumerConstants.HMAC_SYMMETRIC) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.HMAC_SYMMETRIC %>"><%= OAuthConsumerConstants.HMAC_SYMMETRIC.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.PLAINTEXT) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.PLAINTEXT %>"><%= OAuthConsumerConstants.PLAINTEXT.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.RSA_PRIVATE) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.RSA_PRIVATE %>"><%= OAuthConsumerConstants.RSA_PRIVATE.toString() %></option>
 		</select>
 	</td>
 </tr>

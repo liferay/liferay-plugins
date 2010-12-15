@@ -25,30 +25,18 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * The implementation of the o auth token local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.opensocial.service.OAuthTokenLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
- * @author Brian Wing Shun Chan
- * @see com.liferay.opensocial.service.base.OAuthTokenLocalServiceBaseImpl
- * @see com.liferay.opensocial.service.OAuthTokenLocalServiceUtil
+ * @author Dennis Ju
  */
 public class OAuthTokenLocalServiceImpl
 	extends OAuthTokenLocalServiceBaseImpl {
 
 	public OAuthToken addOAuthToken(
-			long userId, long gadgetId, long moduleId, String serviceName,
-			String tokenName, String accessToken, String tokenSecret,
-			String sessionHandle, long tokenExpireMillis)
+			long userId, long gadgetId, String serviceName, long moduleId,
+			String accessToken, String tokenName, String tokenSecret,
+			String sessionHandle, int expiration)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
-
 		Date now = new Date();
 
 		long oAuthTokenId = counterLocalService.increment();
@@ -56,17 +44,18 @@ public class OAuthTokenLocalServiceImpl
 		OAuthToken oAuthToken = oAuthTokenPersistence.create(oAuthTokenId);
 
 		oAuthToken.setCompanyId(user.getCompanyId());
+		oAuthToken.setUserId(user.getUserId());
+		oAuthToken.setUserName(user.getFullName());
 		oAuthToken.setCreateDate(now);
 		oAuthToken.setModifiedDate(now);
-		oAuthToken.setUserId(userId);
 		oAuthToken.setGadgetId(gadgetId);
-		oAuthToken.setModuleId(moduleId);
 		oAuthToken.setServiceName(serviceName);
-		oAuthToken.setTokenName(tokenName);
+		oAuthToken.setModuleId(moduleId);
 		oAuthToken.setAccessToken(accessToken);
+		oAuthToken.setTokenName(tokenName);
 		oAuthToken.setTokenSecret(tokenSecret);
 		oAuthToken.setSessionHandle(sessionHandle);
-		oAuthToken.setTokenExpireMillis(tokenExpireMillis);
+		oAuthToken.setExpiration(expiration);
 
 		oAuthTokenPersistence.update(oAuthToken, false);
 
@@ -74,30 +63,27 @@ public class OAuthTokenLocalServiceImpl
 	}
 
 	public void deleteOAuthToken(
-			long userId, long gadgetId, long moduleId, String serviceName,
+			long userId, long gadgetId, String serviceName, long moduleId,
 			String tokenName)
 		throws PortalException, SystemException {
 
-		OAuthToken oAuthToken = oAuthTokenPersistence.findByU_G_M_S_T(
-				userId, gadgetId, moduleId, serviceName, tokenName);
-
-		oAuthTokenPersistence.remove(oAuthToken);
+		oAuthTokenPersistence.removeByU_G_S_M_T(
+			userId, gadgetId, serviceName, moduleId, tokenName);
 	}
 
-	public void deleteOAuthTokens(
-			long gadgetId, String serviceName)
+	public void deleteOAuthTokens(long gadgetId, String serviceName)
 		throws SystemException {
 
 		oAuthTokenPersistence.removeByG_S(gadgetId, serviceName);
 	}
 
 	public OAuthToken getOAuthToken(
-			long userId, long gadgetId, long moduleId, String serviceName,
+			long userId, long gadgetId, String serviceName, long moduleId,
 			String tokenName)
 		throws PortalException, SystemException {
 
-		return oAuthTokenPersistence.findByU_G_M_S_T(
-			userId, gadgetId, moduleId, serviceName, tokenName);
+		return oAuthTokenPersistence.findByU_G_S_M_T(
+			userId, gadgetId, serviceName, moduleId, tokenName);
 	}
 
 	public List<OAuthToken> getOAuthTokens(long gadgetId, String serviceName)

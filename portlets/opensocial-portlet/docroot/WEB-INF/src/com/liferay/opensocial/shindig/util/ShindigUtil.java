@@ -57,11 +57,15 @@ import org.json.JSONObject;
 
 /**
  * @author Michael Young
+ * @author Dennis Ju
  */
 public class ShindigUtil {
 
 	public static String convertFromOpenSsl(String key) {
-		return key.replaceAll("-----[A-Z ]*-----", "").replace("\n", "");
+		key = key.replaceAll(_OPEN_SSL_A_Z, StringPool.BLANK);
+		key = key.replace(StringPool.NEW_LINE, StringPool.BLANK);
+
+		return key;
 	}
 
 	public static String createSecurityToken(
@@ -209,6 +213,8 @@ public class ShindigUtil {
 	}
 
 	private static final String _COLUMN_USER_PREFS = "USER_PREFS_";
+
+	private static final String _OPEN_SSL_A_Z = "-----[A-Z ]*-----";
 
 	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
 
