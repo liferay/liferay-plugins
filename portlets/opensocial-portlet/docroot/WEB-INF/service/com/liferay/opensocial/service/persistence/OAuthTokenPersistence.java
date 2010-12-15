@@ -212,54 +212,53 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
+	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	*
 	* @param userId the user id to search with
 	* @param gadgetId the gadget id to search with
-	* @param moduleId the module id to search with
 	* @param serviceName the service name to search with
+	* @param moduleId the module id to search with
 	* @param tokenName the token name to search with
 	* @return the matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthToken findByU_G_M_S_T(
-		long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public com.liferay.opensocial.model.OAuthToken findByU_G_S_M_T(
+		long userId, long gadgetId, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param userId the user id to search with
 	* @param gadgetId the gadget id to search with
-	* @param moduleId the module id to search with
 	* @param serviceName the service name to search with
+	* @param moduleId the module id to search with
 	* @param tokenName the token name to search with
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthToken fetchByU_G_M_S_T(
-		long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public com.liferay.opensocial.model.OAuthToken fetchByU_G_S_M_T(
+		long userId, long gadgetId, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param userId the user id to search with
 	* @param gadgetId the gadget id to search with
-	* @param moduleId the module id to search with
 	* @param serviceName the service name to search with
+	* @param moduleId the module id to search with
 	* @param tokenName the token name to search with
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthToken fetchByU_G_M_S_T(
-		long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName,
-		boolean retrieveFromCache)
+	public com.liferay.opensocial.model.OAuthToken fetchByU_G_S_M_T(
+		long userId, long gadgetId, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -316,17 +315,17 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; from the database.
+	* Removes the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; from the database.
 	*
 	* @param userId the user id to search with
 	* @param gadgetId the gadget id to search with
-	* @param moduleId the module id to search with
 	* @param serviceName the service name to search with
+	* @param moduleId the module id to search with
 	* @param tokenName the token name to search with
 	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByU_G_M_S_T(long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public void removeByU_G_S_M_T(long userId, long gadgetId,
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -350,18 +349,18 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Counts all the o auth tokens where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63;.
+	* Counts all the o auth tokens where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
 	*
 	* @param userId the user id to search with
 	* @param gadgetId the gadget id to search with
-	* @param moduleId the module id to search with
 	* @param serviceName the service name to search with
+	* @param moduleId the module id to search with
 	* @param tokenName the token name to search with
 	* @return the number of matching o auth tokens
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_G_M_S_T(long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public int countByU_G_S_M_T(long userId, long gadgetId,
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -77,13 +77,11 @@ public interface OAuthConsumerLocalService {
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumer the o auth consumer to delete
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -214,14 +212,12 @@ public interface OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType, java.lang.String callbackUrl,
-		java.lang.String keyName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String keyType, java.lang.String keyName,
+		java.lang.String callbackURL)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteOAuthConsumers(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
@@ -246,7 +242,7 @@ public interface OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer updateOAuthConsumer(
 		long oAuthConsumerId, java.lang.String consumerKey,
 		java.lang.String consumerSecret, java.lang.String keyType,
-		java.lang.String callbackUrl, java.lang.String keyName)
+		java.lang.String keyName, java.lang.String callbackURL)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

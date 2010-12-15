@@ -209,24 +209,6 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the callback url of this o auth consumer.
-	*
-	* @return the callback url of this o auth consumer
-	*/
-	public java.lang.String getCallbackUrl() {
-		return _oAuthConsumer.getCallbackUrl();
-	}
-
-	/**
-	* Sets the callback url of this o auth consumer.
-	*
-	* @param callbackUrl the callback url of this o auth consumer
-	*/
-	public void setCallbackUrl(java.lang.String callbackUrl) {
-		_oAuthConsumer.setCallbackUrl(callbackUrl);
-	}
-
-	/**
 	* Gets the key name of this o auth consumer.
 	*
 	* @return the key name of this o auth consumer
@@ -242,6 +224,24 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	*/
 	public void setKeyName(java.lang.String keyName) {
 		_oAuthConsumer.setKeyName(keyName);
+	}
+
+	/**
+	* Gets the callback u r l of this o auth consumer.
+	*
+	* @return the callback u r l of this o auth consumer
+	*/
+	public java.lang.String getCallbackURL() {
+		return _oAuthConsumer.getCallbackURL();
+	}
+
+	/**
+	* Sets the callback u r l of this o auth consumer.
+	*
+	* @param callbackURL the callback u r l of this o auth consumer
+	*/
+	public void setCallbackURL(java.lang.String callbackURL) {
+		_oAuthConsumer.setCallbackURL(callbackURL);
 	}
 
 	public boolean isNew() {

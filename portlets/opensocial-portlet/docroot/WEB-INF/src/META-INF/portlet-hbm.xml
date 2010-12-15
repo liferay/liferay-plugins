@@ -30,8 +30,8 @@
 		<property name="consumerKey" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="consumerSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="keyType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="callbackUrl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="keyName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="callbackURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthTokenImpl" table="OpenSocial_OAuthToken">
 		<cache usage="read-write" />
@@ -39,16 +39,17 @@
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="createDate" type="org.hibernate.type.TimestampType" />
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
-		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="gadgetId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="moduleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="serviceName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="tokenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="moduleId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="accessToken" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tokenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="tokenSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="sessionHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="tokenExpireMillis" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="expiration" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 </hibernate-mapping>

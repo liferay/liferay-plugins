@@ -24,22 +24,23 @@
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="keyType" type="String" />
-		<field name="callbackUrl" type="String" />
 		<field name="keyName" type="String" />
+		<field name="callbackURL" type="String" />
 	</model>
 	<model name="com.liferay.opensocial.model.OAuthToken">
 		<field name="oauthTokenId" type="long" />
 		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="userId" type="long" />
 		<field name="gadgetId" type="long" />
-		<field name="moduleId" type="long" />
 		<field name="serviceName" type="String" />
-		<field name="tokenName" type="String" />
+		<field name="moduleId" type="long" />
 		<field name="accessToken" type="String" />
+		<field name="tokenName" type="String" />
 		<field name="tokenSecret" type="String" />
 		<field name="sessionHandle" type="String" />
-		<field name="tokenExpireMillis" type="long" />
+		<field name="expiration" type="int" />
 	</model>
 </model-hints>

@@ -210,15 +210,15 @@ public interface OAuthTokenLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.opensocial.model.OAuthToken addOAuthToken(long userId,
-		long gadgetId, long moduleId, java.lang.String serviceName,
-		java.lang.String tokenName, java.lang.String accessToken,
+		long gadgetId, java.lang.String serviceName, long moduleId,
+		java.lang.String accessToken, java.lang.String tokenName,
 		java.lang.String tokenSecret, java.lang.String sessionHandle,
-		long tokenExpireMillis)
+		int expiration)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void deleteOAuthToken(long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public void deleteOAuthToken(long userId, long gadgetId,
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -227,7 +227,7 @@ public interface OAuthTokenLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(long userId,
-		long gadgetId, long moduleId, java.lang.String serviceName,
+		long gadgetId, java.lang.String serviceName, long moduleId,
 		java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

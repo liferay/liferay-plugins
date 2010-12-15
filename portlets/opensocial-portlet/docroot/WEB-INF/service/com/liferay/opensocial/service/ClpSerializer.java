@@ -196,17 +196,17 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setCallbackUrl",
+					Method method9 = newModelClass.getMethod("setKeyName",
 							new Class[] { String.class });
 
-					String value9 = oldCplModel.getCallbackUrl();
+					String value9 = oldCplModel.getKeyName();
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setKeyName",
+					Method method10 = newModelClass.getMethod("setCallbackURL",
 							new Class[] { String.class });
 
-					String value10 = oldCplModel.getKeyName();
+					String value10 = oldCplModel.getCallbackURL();
 
 					method10.invoke(newModel, value10);
 
@@ -250,38 +250,38 @@ public class ClpSerializer {
 
 					method1.invoke(newModel, value1);
 
-					Method method2 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
+					Method method2 = newModelClass.getMethod("setUserId",
+							new Class[] { Long.TYPE });
 
-					Date value2 = oldCplModel.getCreateDate();
+					Long value2 = new Long(oldCplModel.getUserId());
 
 					method2.invoke(newModel, value2);
 
-					Method method3 = newModelClass.getMethod("setModifiedDate",
-							new Class[] { Date.class });
+					Method method3 = newModelClass.getMethod("setUserName",
+							new Class[] { String.class });
 
-					Date value3 = oldCplModel.getModifiedDate();
+					String value3 = oldCplModel.getUserName();
 
 					method3.invoke(newModel, value3);
 
-					Method method4 = newModelClass.getMethod("setUserId",
-							new Class[] { Long.TYPE });
+					Method method4 = newModelClass.getMethod("setCreateDate",
+							new Class[] { Date.class });
 
-					Long value4 = new Long(oldCplModel.getUserId());
+					Date value4 = oldCplModel.getCreateDate();
 
 					method4.invoke(newModel, value4);
 
-					Method method5 = newModelClass.getMethod("setGadgetId",
-							new Class[] { Long.TYPE });
+					Method method5 = newModelClass.getMethod("setModifiedDate",
+							new Class[] { Date.class });
 
-					Long value5 = new Long(oldCplModel.getGadgetId());
+					Date value5 = oldCplModel.getModifiedDate();
 
 					method5.invoke(newModel, value5);
 
-					Method method6 = newModelClass.getMethod("setModuleId",
+					Method method6 = newModelClass.getMethod("setGadgetId",
 							new Class[] { Long.TYPE });
 
-					Long value6 = new Long(oldCplModel.getModuleId());
+					Long value6 = new Long(oldCplModel.getGadgetId());
 
 					method6.invoke(newModel, value6);
 
@@ -292,10 +292,10 @@ public class ClpSerializer {
 
 					method7.invoke(newModel, value7);
 
-					Method method8 = newModelClass.getMethod("setTokenName",
-							new Class[] { String.class });
+					Method method8 = newModelClass.getMethod("setModuleId",
+							new Class[] { Long.TYPE });
 
-					String value8 = oldCplModel.getTokenName();
+					Long value8 = new Long(oldCplModel.getModuleId());
 
 					method8.invoke(newModel, value8);
 
@@ -306,26 +306,33 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
-					Method method10 = newModelClass.getMethod("setTokenSecret",
+					Method method10 = newModelClass.getMethod("setTokenName",
 							new Class[] { String.class });
 
-					String value10 = oldCplModel.getTokenSecret();
+					String value10 = oldCplModel.getTokenName();
 
 					method10.invoke(newModel, value10);
 
-					Method method11 = newModelClass.getMethod("setSessionHandle",
+					Method method11 = newModelClass.getMethod("setTokenSecret",
 							new Class[] { String.class });
 
-					String value11 = oldCplModel.getSessionHandle();
+					String value11 = oldCplModel.getTokenSecret();
 
 					method11.invoke(newModel, value11);
 
-					Method method12 = newModelClass.getMethod("setTokenExpireMillis",
-							new Class[] { Long.TYPE });
+					Method method12 = newModelClass.getMethod("setSessionHandle",
+							new Class[] { String.class });
 
-					Long value12 = new Long(oldCplModel.getTokenExpireMillis());
+					String value12 = oldCplModel.getSessionHandle();
 
 					method12.invoke(newModel, value12);
+
+					Method method13 = newModelClass.getMethod("setExpiration",
+							new Class[] { Integer.TYPE });
+
+					Integer value13 = new Integer(oldCplModel.getExpiration());
+
+					method13.invoke(newModel, value13);
 
 					return newModel;
 				}
@@ -508,19 +515,19 @@ public class ClpSerializer {
 
 					newModel.setKeyType(value8);
 
-					Method method9 = oldModelClass.getMethod("getCallbackUrl");
+					Method method9 = oldModelClass.getMethod("getKeyName");
 
 					String value9 = (String)method9.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setCallbackUrl(value9);
+					newModel.setKeyName(value9);
 
-					Method method10 = oldModelClass.getMethod("getKeyName");
+					Method method10 = oldModelClass.getMethod("getCallbackURL");
 
 					String value10 = (String)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setKeyName(value10);
+					newModel.setCallbackURL(value10);
 
 					return newModel;
 				}
@@ -556,35 +563,36 @@ public class ClpSerializer {
 
 					newModel.setCompanyId(value1);
 
-					Method method2 = oldModelClass.getMethod("getCreateDate");
+					Method method2 = oldModelClass.getMethod("getUserId");
 
-					Date value2 = (Date)method2.invoke(oldModel, (Object[])null);
+					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
 
-					newModel.setCreateDate(value2);
+					newModel.setUserId(value2);
 
-					Method method3 = oldModelClass.getMethod("getModifiedDate");
+					Method method3 = oldModelClass.getMethod("getUserName");
 
-					Date value3 = (Date)method3.invoke(oldModel, (Object[])null);
+					String value3 = (String)method3.invoke(oldModel,
+							(Object[])null);
 
-					newModel.setModifiedDate(value3);
+					newModel.setUserName(value3);
 
-					Method method4 = oldModelClass.getMethod("getUserId");
+					Method method4 = oldModelClass.getMethod("getCreateDate");
 
-					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+					Date value4 = (Date)method4.invoke(oldModel, (Object[])null);
 
-					newModel.setUserId(value4);
+					newModel.setCreateDate(value4);
 
-					Method method5 = oldModelClass.getMethod("getGadgetId");
+					Method method5 = oldModelClass.getMethod("getModifiedDate");
 
-					Long value5 = (Long)method5.invoke(oldModel, (Object[])null);
+					Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
 
-					newModel.setGadgetId(value5);
+					newModel.setModifiedDate(value5);
 
-					Method method6 = oldModelClass.getMethod("getModuleId");
+					Method method6 = oldModelClass.getMethod("getGadgetId");
 
 					Long value6 = (Long)method6.invoke(oldModel, (Object[])null);
 
-					newModel.setModuleId(value6);
+					newModel.setGadgetId(value6);
 
 					Method method7 = oldModelClass.getMethod("getServiceName");
 
@@ -593,12 +601,11 @@ public class ClpSerializer {
 
 					newModel.setServiceName(value7);
 
-					Method method8 = oldModelClass.getMethod("getTokenName");
+					Method method8 = oldModelClass.getMethod("getModuleId");
 
-					String value8 = (String)method8.invoke(oldModel,
-							(Object[])null);
+					Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
 
-					newModel.setTokenName(value8);
+					newModel.setModuleId(value8);
 
 					Method method9 = oldModelClass.getMethod("getAccessToken");
 
@@ -607,28 +614,34 @@ public class ClpSerializer {
 
 					newModel.setAccessToken(value9);
 
-					Method method10 = oldModelClass.getMethod("getTokenSecret");
+					Method method10 = oldModelClass.getMethod("getTokenName");
 
 					String value10 = (String)method10.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTokenSecret(value10);
+					newModel.setTokenName(value10);
 
-					Method method11 = oldModelClass.getMethod(
-							"getSessionHandle");
+					Method method11 = oldModelClass.getMethod("getTokenSecret");
 
 					String value11 = (String)method11.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setSessionHandle(value11);
+					newModel.setTokenSecret(value11);
 
 					Method method12 = oldModelClass.getMethod(
-							"getTokenExpireMillis");
+							"getSessionHandle");
 
-					Long value12 = (Long)method12.invoke(oldModel,
+					String value12 = (String)method12.invoke(oldModel,
 							(Object[])null);
 
-					newModel.setTokenExpireMillis(value12);
+					newModel.setSessionHandle(value12);
+
+					Method method13 = oldModelClass.getMethod("getExpiration");
+
+					Integer value13 = (Integer)method13.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setExpiration(value13);
 
 					return newModel;
 				}

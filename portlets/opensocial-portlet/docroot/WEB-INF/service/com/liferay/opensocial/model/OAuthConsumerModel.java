@@ -189,21 +189,6 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setKeyType(String keyType);
 
 	/**
-	 * Gets the callback url of this o auth consumer.
-	 *
-	 * @return the callback url of this o auth consumer
-	 */
-	@AutoEscape
-	public String getCallbackUrl();
-
-	/**
-	 * Sets the callback url of this o auth consumer.
-	 *
-	 * @param callbackUrl the callback url of this o auth consumer
-	 */
-	public void setCallbackUrl(String callbackUrl);
-
-	/**
 	 * Gets the key name of this o auth consumer.
 	 *
 	 * @return the key name of this o auth consumer
@@ -217,6 +202,21 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	 * @param keyName the key name of this o auth consumer
 	 */
 	public void setKeyName(String keyName);
+
+	/**
+	 * Gets the callback u r l of this o auth consumer.
+	 *
+	 * @return the callback u r l of this o auth consumer
+	 */
+	@AutoEscape
+	public String getCallbackURL();
+
+	/**
+	 * Sets the callback u r l of this o auth consumer.
+	 *
+	 * @param callbackURL the callback u r l of this o auth consumer
+	 */
+	public void setCallbackURL(String callbackURL);
 
 	public boolean isNew();
 

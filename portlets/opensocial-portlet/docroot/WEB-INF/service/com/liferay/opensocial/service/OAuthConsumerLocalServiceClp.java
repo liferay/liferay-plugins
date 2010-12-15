@@ -183,8 +183,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 
 	public void deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteOAuthConsumerMethodKey3,
 				ClpSerializer.translateInput(oAuthConsumer));
 
@@ -192,10 +191,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -474,10 +469,9 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType, java.lang.String callbackUrl,
-		java.lang.String keyName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String keyType, java.lang.String keyName,
+		java.lang.String callbackURL)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addOAuthConsumerMethodKey13,
@@ -485,17 +479,13 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 				ClpSerializer.translateInput(consumerKey),
 				ClpSerializer.translateInput(consumerSecret),
 				ClpSerializer.translateInput(keyType),
-				ClpSerializer.translateInput(callbackUrl),
-				ClpSerializer.translateInput(keyName));
+				ClpSerializer.translateInput(keyName),
+				ClpSerializer.translateInput(callbackURL));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -513,8 +503,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	}
 
 	public void deleteOAuthConsumers(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteOAuthConsumersMethodKey14,
 				gadgetId);
 
@@ -522,10 +511,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -659,7 +644,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer updateOAuthConsumer(
 		long oAuthConsumerId, java.lang.String consumerKey,
 		java.lang.String consumerSecret, java.lang.String keyType,
-		java.lang.String callbackUrl, java.lang.String keyName)
+		java.lang.String keyName, java.lang.String callbackURL)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -668,8 +653,8 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 				oAuthConsumerId, ClpSerializer.translateInput(consumerKey),
 				ClpSerializer.translateInput(consumerSecret),
 				ClpSerializer.translateInput(keyType),
-				ClpSerializer.translateInput(callbackUrl),
-				ClpSerializer.translateInput(keyName));
+				ClpSerializer.translateInput(keyName),
+				ClpSerializer.translateInput(callbackURL));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

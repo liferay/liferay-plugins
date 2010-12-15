@@ -86,19 +86,21 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByG_S",
 			new String[] { Long.class.getName(), String.class.getName() });
-	public static final FinderPath FINDER_PATH_FETCH_BY_U_G_M_S_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_ENTITY,
-			"fetchByU_G_M_S_T",
+			"fetchByU_G_S_M_T",
 			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName(),
-				String.class.getName(), String.class.getName()
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName(),
+				String.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_U_G_M_S_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_G_S_M_T = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByU_G_M_S_T",
+			"countByU_G_S_M_T",
 			new String[] {
-				Long.class.getName(), Long.class.getName(), Long.class.getName(),
-				String.class.getName(), String.class.getName()
+				Long.class.getName(), Long.class.getName(),
+				String.class.getName(), Long.class.getName(),
+				String.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
@@ -116,13 +118,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		EntityCacheUtil.putResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenImpl.class, oAuthToken.getPrimaryKey(), oAuthToken);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
 				new Long(oAuthToken.getUserId()),
 				new Long(oAuthToken.getGadgetId()),
-				new Long(oAuthToken.getModuleId()),
 				
-			oAuthToken.getServiceName(),
+			oAuthToken.getServiceName(), new Long(oAuthToken.getModuleId()),
 				
 			oAuthToken.getTokenName()
 			}, oAuthToken);
@@ -168,13 +169,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		EntityCacheUtil.removeResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthTokenImpl.class, oAuthToken.getPrimaryKey());
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
 				new Long(oAuthToken.getUserId()),
 				new Long(oAuthToken.getGadgetId()),
-				new Long(oAuthToken.getModuleId()),
 				
-			oAuthToken.getServiceName(),
+			oAuthToken.getServiceName(), new Long(oAuthToken.getModuleId()),
 				
 			oAuthToken.getTokenName()
 			});
@@ -270,13 +270,13 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		OAuthTokenModelImpl oAuthTokenModelImpl = (OAuthTokenModelImpl)oAuthToken;
 
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
 				new Long(oAuthTokenModelImpl.getOriginalUserId()),
 				new Long(oAuthTokenModelImpl.getOriginalGadgetId()),
-				new Long(oAuthTokenModelImpl.getOriginalModuleId()),
 				
 			oAuthTokenModelImpl.getOriginalServiceName(),
+				new Long(oAuthTokenModelImpl.getOriginalModuleId()),
 				
 			oAuthTokenModelImpl.getOriginalTokenName()
 			});
@@ -320,18 +320,18 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		if (!isNew &&
 				((oAuthToken.getUserId() != oAuthTokenModelImpl.getOriginalUserId()) ||
 				(oAuthToken.getGadgetId() != oAuthTokenModelImpl.getOriginalGadgetId()) ||
-				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
 				!Validator.equals(oAuthToken.getServiceName(),
 					oAuthTokenModelImpl.getOriginalServiceName()) ||
+				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
 				!Validator.equals(oAuthToken.getTokenName(),
 					oAuthTokenModelImpl.getOriginalTokenName()))) {
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
 					new Long(oAuthTokenModelImpl.getOriginalUserId()),
 					new Long(oAuthTokenModelImpl.getOriginalGadgetId()),
-					new Long(oAuthTokenModelImpl.getOriginalModuleId()),
 					
 				oAuthTokenModelImpl.getOriginalServiceName(),
+					new Long(oAuthTokenModelImpl.getOriginalModuleId()),
 					
 				oAuthTokenModelImpl.getOriginalTokenName()
 				});
@@ -340,18 +340,17 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		if (isNew ||
 				((oAuthToken.getUserId() != oAuthTokenModelImpl.getOriginalUserId()) ||
 				(oAuthToken.getGadgetId() != oAuthTokenModelImpl.getOriginalGadgetId()) ||
-				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
 				!Validator.equals(oAuthToken.getServiceName(),
 					oAuthTokenModelImpl.getOriginalServiceName()) ||
+				(oAuthToken.getModuleId() != oAuthTokenModelImpl.getOriginalModuleId()) ||
 				!Validator.equals(oAuthToken.getTokenName(),
 					oAuthTokenModelImpl.getOriginalTokenName()))) {
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
 					new Long(oAuthToken.getUserId()),
 					new Long(oAuthToken.getGadgetId()),
-					new Long(oAuthToken.getModuleId()),
 					
-				oAuthToken.getServiceName(),
+				oAuthToken.getServiceName(), new Long(oAuthToken.getModuleId()),
 					
 				oAuthToken.getTokenName()
 				}, oAuthToken);
@@ -372,17 +371,18 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		oAuthTokenImpl.setOauthTokenId(oAuthToken.getOauthTokenId());
 		oAuthTokenImpl.setCompanyId(oAuthToken.getCompanyId());
+		oAuthTokenImpl.setUserId(oAuthToken.getUserId());
+		oAuthTokenImpl.setUserName(oAuthToken.getUserName());
 		oAuthTokenImpl.setCreateDate(oAuthToken.getCreateDate());
 		oAuthTokenImpl.setModifiedDate(oAuthToken.getModifiedDate());
-		oAuthTokenImpl.setUserId(oAuthToken.getUserId());
 		oAuthTokenImpl.setGadgetId(oAuthToken.getGadgetId());
-		oAuthTokenImpl.setModuleId(oAuthToken.getModuleId());
 		oAuthTokenImpl.setServiceName(oAuthToken.getServiceName());
-		oAuthTokenImpl.setTokenName(oAuthToken.getTokenName());
+		oAuthTokenImpl.setModuleId(oAuthToken.getModuleId());
 		oAuthTokenImpl.setAccessToken(oAuthToken.getAccessToken());
+		oAuthTokenImpl.setTokenName(oAuthToken.getTokenName());
 		oAuthTokenImpl.setTokenSecret(oAuthToken.getTokenSecret());
 		oAuthTokenImpl.setSessionHandle(oAuthToken.getSessionHandle());
-		oAuthTokenImpl.setTokenExpireMillis(oAuthToken.getTokenExpireMillis());
+		oAuthTokenImpl.setExpiration(oAuthToken.getExpiration());
 
 		return oAuthTokenImpl;
 	}
@@ -851,22 +851,22 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	}
 
 	/**
-	 * Finds the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
+	 * Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	 *
 	 * @param userId the user id to search with
 	 * @param gadgetId the gadget id to search with
-	 * @param moduleId the module id to search with
 	 * @param serviceName the service name to search with
+	 * @param moduleId the module id to search with
 	 * @param tokenName the token name to search with
 	 * @return the matching o auth token
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken findByU_G_M_S_T(long userId, long gadgetId,
-		long moduleId, String serviceName, String tokenName)
+	public OAuthToken findByU_G_S_M_T(long userId, long gadgetId,
+		String serviceName, long moduleId, String tokenName)
 		throws NoSuchOAuthTokenException, SystemException {
-		OAuthToken oAuthToken = fetchByU_G_M_S_T(userId, gadgetId, moduleId,
-				serviceName, tokenName);
+		OAuthToken oAuthToken = fetchByU_G_S_M_T(userId, gadgetId, serviceName,
+				moduleId, tokenName);
 
 		if (oAuthToken == null) {
 			StringBundler msg = new StringBundler(12);
@@ -879,11 +879,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			msg.append(", gadgetId=");
 			msg.append(gadgetId);
 
-			msg.append(", moduleId=");
-			msg.append(moduleId);
-
 			msg.append(", serviceName=");
 			msg.append(serviceName);
+
+			msg.append(", moduleId=");
+			msg.append(moduleId);
 
 			msg.append(", tokenName=");
 			msg.append(tokenName);
@@ -901,45 +901,45 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	}
 
 	/**
-	 * Finds the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
 	 * @param userId the user id to search with
 	 * @param gadgetId the gadget id to search with
-	 * @param moduleId the module id to search with
 	 * @param serviceName the service name to search with
+	 * @param moduleId the module id to search with
 	 * @param tokenName the token name to search with
 	 * @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken fetchByU_G_M_S_T(long userId, long gadgetId,
-		long moduleId, String serviceName, String tokenName)
+	public OAuthToken fetchByU_G_S_M_T(long userId, long gadgetId,
+		String serviceName, long moduleId, String tokenName)
 		throws SystemException {
-		return fetchByU_G_M_S_T(userId, gadgetId, moduleId, serviceName,
+		return fetchByU_G_S_M_T(userId, gadgetId, serviceName, moduleId,
 			tokenName, true);
 	}
 
 	/**
-	 * Finds the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param userId the user id to search with
 	 * @param gadgetId the gadget id to search with
-	 * @param moduleId the module id to search with
 	 * @param serviceName the service name to search with
+	 * @param moduleId the module id to search with
 	 * @param tokenName the token name to search with
 	 * @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken fetchByU_G_M_S_T(long userId, long gadgetId,
-		long moduleId, String serviceName, String tokenName,
+	public OAuthToken fetchByU_G_S_M_T(long userId, long gadgetId,
+		String serviceName, long moduleId, String tokenName,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				userId, gadgetId, moduleId, serviceName, tokenName
+				userId, gadgetId, serviceName, moduleId, tokenName
 			};
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 					finderArgs, this);
 		}
 
@@ -948,33 +948,33 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			query.append(_SQL_SELECT_OAUTHTOKEN_WHERE);
 
-			query.append(_FINDER_COLUMN_U_G_M_S_T_USERID_2);
+			query.append(_FINDER_COLUMN_U_G_S_M_T_USERID_2);
 
-			query.append(_FINDER_COLUMN_U_G_M_S_T_GADGETID_2);
-
-			query.append(_FINDER_COLUMN_U_G_M_S_T_MODULEID_2);
+			query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETID_2);
 
 			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_U_G_M_S_T_SERVICENAME_1);
+				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1);
 			}
 			else {
 				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_SERVICENAME_3);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_SERVICENAME_2);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2);
 				}
 			}
 
+			query.append(_FINDER_COLUMN_U_G_S_M_T_MODULEID_2);
+
 			if (tokenName == null) {
-				query.append(_FINDER_COLUMN_U_G_M_S_T_TOKENNAME_1);
+				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1);
 			}
 			else {
 				if (tokenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_TOKENNAME_3);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_TOKENNAME_2);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2);
 				}
 			}
 
@@ -993,11 +993,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				qPos.add(gadgetId);
 
-				qPos.add(moduleId);
-
 				if (serviceName != null) {
 					qPos.add(serviceName);
 				}
+
+				qPos.add(moduleId);
 
 				if (tokenName != null) {
 					qPos.add(tokenName);
@@ -1010,7 +1010,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				OAuthToken oAuthToken = null;
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 						finderArgs, list);
 				}
 				else {
@@ -1020,12 +1020,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 					if ((oAuthToken.getUserId() != userId) ||
 							(oAuthToken.getGadgetId() != gadgetId) ||
-							(oAuthToken.getModuleId() != moduleId) ||
 							(oAuthToken.getServiceName() == null) ||
 							!oAuthToken.getServiceName().equals(serviceName) ||
+							(oAuthToken.getModuleId() != moduleId) ||
 							(oAuthToken.getTokenName() == null) ||
 							!oAuthToken.getTokenName().equals(tokenName)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 							finderArgs, oAuthToken);
 					}
 				}
@@ -1037,7 +1037,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			}
 			finally {
 				if (result == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_M_S_T,
+					FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 						finderArgs);
 				}
 
@@ -1178,20 +1178,20 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	}
 
 	/**
-	 * Removes the o auth token where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63; from the database.
+	 * Removes the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; from the database.
 	 *
 	 * @param userId the user id to search with
 	 * @param gadgetId the gadget id to search with
-	 * @param moduleId the module id to search with
 	 * @param serviceName the service name to search with
+	 * @param moduleId the module id to search with
 	 * @param tokenName the token name to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByU_G_M_S_T(long userId, long gadgetId, long moduleId,
-		String serviceName, String tokenName)
+	public void removeByU_G_S_M_T(long userId, long gadgetId,
+		String serviceName, long moduleId, String tokenName)
 		throws NoSuchOAuthTokenException, SystemException {
-		OAuthToken oAuthToken = findByU_G_M_S_T(userId, gadgetId, moduleId,
-				serviceName, tokenName);
+		OAuthToken oAuthToken = findByU_G_S_M_T(userId, gadgetId, serviceName,
+				moduleId, tokenName);
 
 		remove(oAuthToken);
 	}
@@ -1279,23 +1279,23 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	}
 
 	/**
-	 * Counts all the o auth tokens where userId = &#63; and gadgetId = &#63; and moduleId = &#63; and serviceName = &#63; and tokenName = &#63;.
+	 * Counts all the o auth tokens where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
 	 *
 	 * @param userId the user id to search with
 	 * @param gadgetId the gadget id to search with
-	 * @param moduleId the module id to search with
 	 * @param serviceName the service name to search with
+	 * @param moduleId the module id to search with
 	 * @param tokenName the token name to search with
 	 * @return the number of matching o auth tokens
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByU_G_M_S_T(long userId, long gadgetId, long moduleId,
-		String serviceName, String tokenName) throws SystemException {
+	public int countByU_G_S_M_T(long userId, long gadgetId, String serviceName,
+		long moduleId, String tokenName) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				userId, gadgetId, moduleId, serviceName, tokenName
+				userId, gadgetId, serviceName, moduleId, tokenName
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_G_M_S_T,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_U_G_S_M_T,
 				finderArgs, this);
 
 		if (count == null) {
@@ -1303,33 +1303,33 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 			query.append(_SQL_COUNT_OAUTHTOKEN_WHERE);
 
-			query.append(_FINDER_COLUMN_U_G_M_S_T_USERID_2);
+			query.append(_FINDER_COLUMN_U_G_S_M_T_USERID_2);
 
-			query.append(_FINDER_COLUMN_U_G_M_S_T_GADGETID_2);
-
-			query.append(_FINDER_COLUMN_U_G_M_S_T_MODULEID_2);
+			query.append(_FINDER_COLUMN_U_G_S_M_T_GADGETID_2);
 
 			if (serviceName == null) {
-				query.append(_FINDER_COLUMN_U_G_M_S_T_SERVICENAME_1);
+				query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1);
 			}
 			else {
 				if (serviceName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_SERVICENAME_3);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_SERVICENAME_2);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2);
 				}
 			}
 
+			query.append(_FINDER_COLUMN_U_G_S_M_T_MODULEID_2);
+
 			if (tokenName == null) {
-				query.append(_FINDER_COLUMN_U_G_M_S_T_TOKENNAME_1);
+				query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1);
 			}
 			else {
 				if (tokenName.equals(StringPool.BLANK)) {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_TOKENNAME_3);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3);
 				}
 				else {
-					query.append(_FINDER_COLUMN_U_G_M_S_T_TOKENNAME_2);
+					query.append(_FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2);
 				}
 			}
 
@@ -1348,11 +1348,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 				qPos.add(gadgetId);
 
-				qPos.add(moduleId);
-
 				if (serviceName != null) {
 					qPos.add(serviceName);
 				}
+
+				qPos.add(moduleId);
 
 				if (tokenName != null) {
 					qPos.add(tokenName);
@@ -1368,7 +1368,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_G_M_S_T,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_G_S_M_T,
 					finderArgs, count);
 
 				closeSession(session);
@@ -1467,15 +1467,15 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_1 = "oAuthToken.serviceName IS NULL";
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_2 = "oAuthToken.serviceName = ?";
 	private static final String _FINDER_COLUMN_G_S_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = ?)";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_USERID_2 = "oAuthToken.userId = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_GADGETID_2 = "oAuthToken.gadgetId = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_MODULEID_2 = "oAuthToken.moduleId = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_SERVICENAME_1 = "oAuthToken.serviceName IS NULL AND ";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_SERVICENAME_2 = "oAuthToken.serviceName = ? AND ";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = ?) AND ";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_TOKENNAME_1 = "oAuthToken.tokenName IS NULL";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_TOKENNAME_2 = "oAuthToken.tokenName = ?";
-	private static final String _FINDER_COLUMN_U_G_M_S_T_TOKENNAME_3 = "(oAuthToken.tokenName IS NULL OR oAuthToken.tokenName = ?)";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_USERID_2 = "oAuthToken.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_GADGETID_2 = "oAuthToken.gadgetId = ? AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_1 = "oAuthToken.serviceName IS NULL AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_2 = "oAuthToken.serviceName = ? AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_SERVICENAME_3 = "(oAuthToken.serviceName IS NULL OR oAuthToken.serviceName = ?) AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_MODULEID_2 = "oAuthToken.moduleId = ? AND ";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1 = "oAuthToken.tokenName IS NULL";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2 = "oAuthToken.tokenName = ?";
+	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3 = "(oAuthToken.tokenName IS NULL OR oAuthToken.tokenName = ?)";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "oAuthToken.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No OAuthToken exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No OAuthToken exists with the key {";

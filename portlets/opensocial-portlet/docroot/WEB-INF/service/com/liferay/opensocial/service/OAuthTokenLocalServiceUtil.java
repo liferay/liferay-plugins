@@ -231,24 +231,23 @@ public class OAuthTokenLocalServiceUtil {
 	}
 
 	public static com.liferay.opensocial.model.OAuthToken addOAuthToken(
-		long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName,
-		java.lang.String accessToken, java.lang.String tokenSecret,
-		java.lang.String sessionHandle, long tokenExpireMillis)
+		long userId, long gadgetId, java.lang.String serviceName,
+		long moduleId, java.lang.String accessToken,
+		java.lang.String tokenName, java.lang.String tokenSecret,
+		java.lang.String sessionHandle, int expiration)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addOAuthToken(userId, gadgetId, moduleId, serviceName,
-			tokenName, accessToken, tokenSecret, sessionHandle,
-			tokenExpireMillis);
+				   .addOAuthToken(userId, gadgetId, serviceName, moduleId,
+			accessToken, tokenName, tokenSecret, sessionHandle, expiration);
 	}
 
 	public static void deleteOAuthToken(long userId, long gadgetId,
-		long moduleId, java.lang.String serviceName, java.lang.String tokenName)
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.deleteOAuthToken(userId, gadgetId, moduleId, serviceName, tokenName);
+			.deleteOAuthToken(userId, gadgetId, serviceName, moduleId, tokenName);
 	}
 
 	public static void deleteOAuthTokens(long gadgetId,
@@ -258,12 +257,12 @@ public class OAuthTokenLocalServiceUtil {
 	}
 
 	public static com.liferay.opensocial.model.OAuthToken getOAuthToken(
-		long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+		long userId, long gadgetId, java.lang.String serviceName,
+		long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getOAuthToken(userId, gadgetId, moduleId, serviceName,
+				   .getOAuthToken(userId, gadgetId, serviceName, moduleId,
 			tokenName);
 	}
 

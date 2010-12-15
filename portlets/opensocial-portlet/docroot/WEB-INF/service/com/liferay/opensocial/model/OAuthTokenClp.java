@@ -62,22 +62,6 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_companyId = companyId;
 	}
 
-	public Date getCreateDate() {
-		return _createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		_createDate = createDate;
-	}
-
-	public Date getModifiedDate() {
-		return _modifiedDate;
-	}
-
-	public void setModifiedDate(Date modifiedDate) {
-		_modifiedDate = modifiedDate;
-	}
-
 	public long getUserId() {
 		return _userId;
 	}
@@ -94,20 +78,36 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_userUuid = userUuid;
 	}
 
+	public String getUserName() {
+		return _userName;
+	}
+
+	public void setUserName(String userName) {
+		_userName = userName;
+	}
+
+	public Date getCreateDate() {
+		return _createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		_createDate = createDate;
+	}
+
+	public Date getModifiedDate() {
+		return _modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		_modifiedDate = modifiedDate;
+	}
+
 	public long getGadgetId() {
 		return _gadgetId;
 	}
 
 	public void setGadgetId(long gadgetId) {
 		_gadgetId = gadgetId;
-	}
-
-	public long getModuleId() {
-		return _moduleId;
-	}
-
-	public void setModuleId(long moduleId) {
-		_moduleId = moduleId;
 	}
 
 	public String getServiceName() {
@@ -118,12 +118,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_serviceName = serviceName;
 	}
 
-	public String getTokenName() {
-		return _tokenName;
+	public long getModuleId() {
+		return _moduleId;
 	}
 
-	public void setTokenName(String tokenName) {
-		_tokenName = tokenName;
+	public void setModuleId(long moduleId) {
+		_moduleId = moduleId;
 	}
 
 	public String getAccessToken() {
@@ -132,6 +132,14 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 
 	public void setAccessToken(String accessToken) {
 		_accessToken = accessToken;
+	}
+
+	public String getTokenName() {
+		return _tokenName;
+	}
+
+	public void setTokenName(String tokenName) {
+		_tokenName = tokenName;
 	}
 
 	public String getTokenSecret() {
@@ -150,12 +158,12 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_sessionHandle = sessionHandle;
 	}
 
-	public long getTokenExpireMillis() {
-		return _tokenExpireMillis;
+	public int getExpiration() {
+		return _expiration;
 	}
 
-	public void setTokenExpireMillis(long tokenExpireMillis) {
-		_tokenExpireMillis = tokenExpireMillis;
+	public void setExpiration(int expiration) {
+		_expiration = expiration;
 	}
 
 	public OAuthToken toEscapedModel() {
@@ -174,17 +182,18 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 
 		clone.setOauthTokenId(getOauthTokenId());
 		clone.setCompanyId(getCompanyId());
+		clone.setUserId(getUserId());
+		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
-		clone.setUserId(getUserId());
 		clone.setGadgetId(getGadgetId());
-		clone.setModuleId(getModuleId());
 		clone.setServiceName(getServiceName());
-		clone.setTokenName(getTokenName());
+		clone.setModuleId(getModuleId());
 		clone.setAccessToken(getAccessToken());
+		clone.setTokenName(getTokenName());
 		clone.setTokenSecret(getTokenSecret());
 		clone.setSessionHandle(getSessionHandle());
-		clone.setTokenExpireMillis(getTokenExpireMillis());
+		clone.setExpiration(getExpiration());
 
 		return clone;
 	}
@@ -232,41 +241,43 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(29);
 
 		sb.append("{oauthTokenId=");
 		sb.append(getOauthTokenId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
+		sb.append(", userId=");
+		sb.append(getUserId());
+		sb.append(", userName=");
+		sb.append(getUserName());
 		sb.append(", createDate=");
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
-		sb.append(", userId=");
-		sb.append(getUserId());
 		sb.append(", gadgetId=");
 		sb.append(getGadgetId());
-		sb.append(", moduleId=");
-		sb.append(getModuleId());
 		sb.append(", serviceName=");
 		sb.append(getServiceName());
-		sb.append(", tokenName=");
-		sb.append(getTokenName());
+		sb.append(", moduleId=");
+		sb.append(getModuleId());
 		sb.append(", accessToken=");
 		sb.append(getAccessToken());
+		sb.append(", tokenName=");
+		sb.append(getTokenName());
 		sb.append(", tokenSecret=");
 		sb.append(getTokenSecret());
 		sb.append(", sessionHandle=");
 		sb.append(getSessionHandle());
-		sb.append(", tokenExpireMillis=");
-		sb.append(getTokenExpireMillis());
+		sb.append(", expiration=");
+		sb.append(getExpiration());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(46);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.OAuthToken");
@@ -281,6 +292,14 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		sb.append(getCompanyId());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>userId</column-name><column-value><![CDATA[");
+		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>userName</column-name><column-value><![CDATA[");
+		sb.append(getUserName());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>createDate</column-name><column-value><![CDATA[");
 		sb.append(getCreateDate());
 		sb.append("]]></column-value></column>");
@@ -289,28 +308,24 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		sb.append(getModifiedDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>userId</column-name><column-value><![CDATA[");
-		sb.append(getUserId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>gadgetId</column-name><column-value><![CDATA[");
 		sb.append(getGadgetId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>moduleId</column-name><column-value><![CDATA[");
-		sb.append(getModuleId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>serviceName</column-name><column-value><![CDATA[");
 		sb.append(getServiceName());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>tokenName</column-name><column-value><![CDATA[");
-		sb.append(getTokenName());
+			"<column><column-name>moduleId</column-name><column-value><![CDATA[");
+		sb.append(getModuleId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>accessToken</column-name><column-value><![CDATA[");
 		sb.append(getAccessToken());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>tokenName</column-name><column-value><![CDATA[");
+		sb.append(getTokenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>tokenSecret</column-name><column-value><![CDATA[");
@@ -321,8 +336,8 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		sb.append(getSessionHandle());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>tokenExpireMillis</column-name><column-value><![CDATA[");
-		sb.append(getTokenExpireMillis());
+			"<column><column-name>expiration</column-name><column-value><![CDATA[");
+		sb.append(getExpiration());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -332,16 +347,17 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 
 	private long _oauthTokenId;
 	private long _companyId;
-	private Date _createDate;
-	private Date _modifiedDate;
 	private long _userId;
 	private String _userUuid;
+	private String _userName;
+	private Date _createDate;
+	private Date _modifiedDate;
 	private long _gadgetId;
-	private long _moduleId;
 	private String _serviceName;
-	private String _tokenName;
+	private long _moduleId;
 	private String _accessToken;
+	private String _tokenName;
 	private String _tokenSecret;
 	private String _sessionHandle;
-	private long _tokenExpireMillis;
+	private int _expiration;
 }

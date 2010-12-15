@@ -116,20 +116,20 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		_keyType = keyType;
 	}
 
-	public String getCallbackUrl() {
-		return _callbackUrl;
-	}
-
-	public void setCallbackUrl(String callbackUrl) {
-		_callbackUrl = callbackUrl;
-	}
-
 	public String getKeyName() {
 		return _keyName;
 	}
 
 	public void setKeyName(String keyName) {
 		_keyName = keyName;
+	}
+
+	public String getCallbackURL() {
+		return _callbackURL;
+	}
+
+	public void setCallbackURL(String callbackURL) {
+		_callbackURL = callbackURL;
 	}
 
 	public OAuthConsumer toEscapedModel() {
@@ -155,8 +155,8 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		clone.setConsumerKey(getConsumerKey());
 		clone.setConsumerSecret(getConsumerSecret());
 		clone.setKeyType(getKeyType());
-		clone.setCallbackUrl(getCallbackUrl());
 		clone.setKeyName(getKeyName());
+		clone.setCallbackURL(getCallbackURL());
 
 		return clone;
 	}
@@ -222,10 +222,10 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		sb.append(getConsumerSecret());
 		sb.append(", keyType=");
 		sb.append(getKeyType());
-		sb.append(", callbackUrl=");
-		sb.append(getCallbackUrl());
 		sb.append(", keyName=");
 		sb.append(getKeyName());
+		sb.append(", callbackURL=");
+		sb.append(getCallbackURL());
 		sb.append("}");
 
 		return sb.toString();
@@ -275,12 +275,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		sb.append(getKeyType());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>callbackUrl</column-name><column-value><![CDATA[");
-		sb.append(getCallbackUrl());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>keyName</column-name><column-value><![CDATA[");
 		sb.append(getKeyName());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>callbackURL</column-name><column-value><![CDATA[");
+		sb.append(getCallbackURL());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -297,6 +297,6 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
-	private String _callbackUrl;
 	private String _keyName;
+	private String _callbackURL;
 }

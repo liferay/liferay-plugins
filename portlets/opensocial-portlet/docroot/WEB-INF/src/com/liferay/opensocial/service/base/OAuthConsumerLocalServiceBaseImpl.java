@@ -102,11 +102,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param oAuthConsumer the o auth consumer to delete
-	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws PortalException, SystemException {
+		throws SystemException {
 		oAuthConsumerPersistence.remove(oAuthConsumer);
 	}
 

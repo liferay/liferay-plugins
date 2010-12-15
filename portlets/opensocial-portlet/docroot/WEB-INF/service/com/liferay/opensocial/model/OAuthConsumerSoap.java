@@ -43,8 +43,8 @@ public class OAuthConsumerSoap implements Serializable {
 		soapModel.setConsumerKey(model.getConsumerKey());
 		soapModel.setConsumerSecret(model.getConsumerSecret());
 		soapModel.setKeyType(model.getKeyType());
-		soapModel.setCallbackUrl(model.getCallbackUrl());
 		soapModel.setKeyName(model.getKeyName());
+		soapModel.setCallbackURL(model.getCallbackURL());
 
 		return soapModel;
 	}
@@ -169,20 +169,20 @@ public class OAuthConsumerSoap implements Serializable {
 		_keyType = keyType;
 	}
 
-	public String getCallbackUrl() {
-		return _callbackUrl;
-	}
-
-	public void setCallbackUrl(String callbackUrl) {
-		_callbackUrl = callbackUrl;
-	}
-
 	public String getKeyName() {
 		return _keyName;
 	}
 
 	public void setKeyName(String keyName) {
 		_keyName = keyName;
+	}
+
+	public String getCallbackURL() {
+		return _callbackURL;
+	}
+
+	public void setCallbackURL(String callbackURL) {
+		_callbackURL = callbackURL;
 	}
 
 	private long _oauthConsumerId;
@@ -194,6 +194,6 @@ public class OAuthConsumerSoap implements Serializable {
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
-	private String _callbackUrl;
 	private String _keyName;
+	private String _callbackURL;
 }

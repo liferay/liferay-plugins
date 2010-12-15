@@ -40,8 +40,8 @@
 			<basic name="consumerKey" />
 			<basic name="consumerSecret" />
 			<basic name="keyType" />
-			<basic name="callbackUrl" />
 			<basic name="keyName" />
+			<basic name="callbackURL" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>
@@ -49,21 +49,22 @@
 		<attributes>
 			<id name="oauthTokenId" />
 			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="userId" />
 			<basic name="gadgetId" />
-			<basic name="moduleId" />
 			<basic name="serviceName" />
-			<basic name="tokenName" />
+			<basic name="moduleId" />
 			<basic name="accessToken" />
+			<basic name="tokenName" />
 			<basic name="tokenSecret" />
 			<basic name="sessionHandle" />
-			<basic name="tokenExpireMillis" />
+			<basic name="expiration" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>

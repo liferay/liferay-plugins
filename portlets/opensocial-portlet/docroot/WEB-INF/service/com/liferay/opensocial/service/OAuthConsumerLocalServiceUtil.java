@@ -80,13 +80,11 @@ public class OAuthConsumerLocalServiceUtil {
 	* Deletes the o auth consumer from the database. Also notifies the appropriate model listeners.
 	*
 	* @param oAuthConsumer the o auth consumer to delete
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void deleteOAuthConsumer(
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteOAuthConsumer(oAuthConsumer);
 	}
 
@@ -235,18 +233,16 @@ public class OAuthConsumerLocalServiceUtil {
 	public static com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType, java.lang.String callbackUrl,
-		java.lang.String keyName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String keyType, java.lang.String keyName,
+		java.lang.String callbackURL)
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .addOAuthConsumer(companyId, gadgetId, serviceName,
-			consumerKey, consumerSecret, keyType, callbackUrl, keyName);
+			consumerKey, consumerSecret, keyType, keyName, callbackURL);
 	}
 
 	public static void deleteOAuthConsumers(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteOAuthConsumers(gadgetId);
 	}
 
@@ -277,12 +273,12 @@ public class OAuthConsumerLocalServiceUtil {
 	public static com.liferay.opensocial.model.OAuthConsumer updateOAuthConsumer(
 		long oAuthConsumerId, java.lang.String consumerKey,
 		java.lang.String consumerSecret, java.lang.String keyType,
-		java.lang.String callbackUrl, java.lang.String keyName)
+		java.lang.String keyName, java.lang.String callbackURL)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateOAuthConsumer(oAuthConsumerId, consumerKey,
-			consumerSecret, keyType, callbackUrl, keyName);
+			consumerSecret, keyType, keyName, callbackURL);
 	}
 
 	public static void clearService() {

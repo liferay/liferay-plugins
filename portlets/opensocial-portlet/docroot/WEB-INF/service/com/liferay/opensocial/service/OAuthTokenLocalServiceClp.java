@@ -75,21 +75,21 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 				com.liferay.opensocial.model.OAuthToken.class, boolean.class);
 
 		_addOAuthTokenMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addOAuthToken", long.class, long.class, long.class,
+				"addOAuthToken", long.class, long.class,
+				java.lang.String.class, long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, long.class);
+				java.lang.String.class, int.class);
 
 		_deleteOAuthTokenMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
-				"deleteOAuthToken", long.class, long.class, long.class,
-				java.lang.String.class, java.lang.String.class);
+				"deleteOAuthToken", long.class, long.class,
+				java.lang.String.class, long.class, java.lang.String.class);
 
 		_deleteOAuthTokensMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteOAuthTokens", long.class, java.lang.String.class);
 
 		_getOAuthTokenMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getOAuthToken", long.class, long.class, long.class,
-				java.lang.String.class, java.lang.String.class);
+				"getOAuthToken", long.class, long.class,
+				java.lang.String.class, long.class, java.lang.String.class);
 
 		_getOAuthTokensMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getOAuthTokens", long.class, java.lang.String.class);
@@ -460,21 +460,20 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	}
 
 	public com.liferay.opensocial.model.OAuthToken addOAuthToken(long userId,
-		long gadgetId, long moduleId, java.lang.String serviceName,
-		java.lang.String tokenName, java.lang.String accessToken,
+		long gadgetId, java.lang.String serviceName, long moduleId,
+		java.lang.String accessToken, java.lang.String tokenName,
 		java.lang.String tokenSecret, java.lang.String sessionHandle,
-		long tokenExpireMillis)
+		int expiration)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addOAuthTokenMethodKey13,
-				userId, gadgetId, moduleId,
-				ClpSerializer.translateInput(serviceName),
+				userId, gadgetId, ClpSerializer.translateInput(serviceName),
+				moduleId, ClpSerializer.translateInput(accessToken),
 				ClpSerializer.translateInput(tokenName),
-				ClpSerializer.translateInput(accessToken),
 				ClpSerializer.translateInput(tokenSecret),
-				ClpSerializer.translateInput(sessionHandle), tokenExpireMillis);
+				ClpSerializer.translateInput(sessionHandle), expiration);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -500,14 +499,13 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		return (com.liferay.opensocial.model.OAuthToken)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteOAuthToken(long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public void deleteOAuthToken(long userId, long gadgetId,
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteOAuthTokenMethodKey14,
-				userId, gadgetId, moduleId,
-				ClpSerializer.translateInput(serviceName),
-				ClpSerializer.translateInput(tokenName));
+				userId, gadgetId, ClpSerializer.translateInput(serviceName),
+				moduleId, ClpSerializer.translateInput(tokenName));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -555,16 +553,15 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 	}
 
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(long userId,
-		long gadgetId, long moduleId, java.lang.String serviceName,
+		long gadgetId, java.lang.String serviceName, long moduleId,
 		java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getOAuthTokenMethodKey16,
-				userId, gadgetId, moduleId,
-				ClpSerializer.translateInput(serviceName),
-				ClpSerializer.translateInput(tokenName));
+				userId, gadgetId, ClpSerializer.translateInput(serviceName),
+				moduleId, ClpSerializer.translateInput(tokenName));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

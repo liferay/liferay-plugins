@@ -221,23 +221,23 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 	}
 
 	public com.liferay.opensocial.model.OAuthToken addOAuthToken(long userId,
-		long gadgetId, long moduleId, java.lang.String serviceName,
-		java.lang.String tokenName, java.lang.String accessToken,
+		long gadgetId, java.lang.String serviceName, long moduleId,
+		java.lang.String accessToken, java.lang.String tokenName,
 		java.lang.String tokenSecret, java.lang.String sessionHandle,
-		long tokenExpireMillis)
+		int expiration)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthTokenLocalService.addOAuthToken(userId, gadgetId,
-			moduleId, serviceName, tokenName, accessToken, tokenSecret,
-			sessionHandle, tokenExpireMillis);
+			serviceName, moduleId, accessToken, tokenName, tokenSecret,
+			sessionHandle, expiration);
 	}
 
-	public void deleteOAuthToken(long userId, long gadgetId, long moduleId,
-		java.lang.String serviceName, java.lang.String tokenName)
+	public void deleteOAuthToken(long userId, long gadgetId,
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_oAuthTokenLocalService.deleteOAuthToken(userId, gadgetId, moduleId,
-			serviceName, tokenName);
+		_oAuthTokenLocalService.deleteOAuthToken(userId, gadgetId, serviceName,
+			moduleId, tokenName);
 	}
 
 	public void deleteOAuthTokens(long gadgetId, java.lang.String serviceName)
@@ -246,12 +246,12 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 	}
 
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(long userId,
-		long gadgetId, long moduleId, java.lang.String serviceName,
+		long gadgetId, java.lang.String serviceName, long moduleId,
 		java.lang.String tokenName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthTokenLocalService.getOAuthToken(userId, gadgetId,
-			moduleId, serviceName, tokenName);
+			serviceName, moduleId, tokenName);
 	}
 
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> getOAuthTokens(

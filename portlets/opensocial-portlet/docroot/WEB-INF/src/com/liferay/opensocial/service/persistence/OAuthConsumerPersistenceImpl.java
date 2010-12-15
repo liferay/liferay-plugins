@@ -349,8 +349,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		oAuthConsumerImpl.setConsumerKey(oAuthConsumer.getConsumerKey());
 		oAuthConsumerImpl.setConsumerSecret(oAuthConsumer.getConsumerSecret());
 		oAuthConsumerImpl.setKeyType(oAuthConsumer.getKeyType());
-		oAuthConsumerImpl.setCallbackUrl(oAuthConsumer.getCallbackUrl());
 		oAuthConsumerImpl.setKeyName(oAuthConsumer.getKeyName());
+		oAuthConsumerImpl.setCallbackURL(oAuthConsumer.getCallbackURL());
 
 		return oAuthConsumerImpl;
 	}

@@ -83,42 +83,6 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the create date of this o auth token.
-	*
-	* @return the create date of this o auth token
-	*/
-	public java.util.Date getCreateDate() {
-		return _oAuthToken.getCreateDate();
-	}
-
-	/**
-	* Sets the create date of this o auth token.
-	*
-	* @param createDate the create date of this o auth token
-	*/
-	public void setCreateDate(java.util.Date createDate) {
-		_oAuthToken.setCreateDate(createDate);
-	}
-
-	/**
-	* Gets the modified date of this o auth token.
-	*
-	* @return the modified date of this o auth token
-	*/
-	public java.util.Date getModifiedDate() {
-		return _oAuthToken.getModifiedDate();
-	}
-
-	/**
-	* Sets the modified date of this o auth token.
-	*
-	* @param modifiedDate the modified date of this o auth token
-	*/
-	public void setModifiedDate(java.util.Date modifiedDate) {
-		_oAuthToken.setModifiedDate(modifiedDate);
-	}
-
-	/**
 	* Gets the user id of this o auth token.
 	*
 	* @return the user id of this o auth token
@@ -157,6 +121,60 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
+	* Gets the user name of this o auth token.
+	*
+	* @return the user name of this o auth token
+	*/
+	public java.lang.String getUserName() {
+		return _oAuthToken.getUserName();
+	}
+
+	/**
+	* Sets the user name of this o auth token.
+	*
+	* @param userName the user name of this o auth token
+	*/
+	public void setUserName(java.lang.String userName) {
+		_oAuthToken.setUserName(userName);
+	}
+
+	/**
+	* Gets the create date of this o auth token.
+	*
+	* @return the create date of this o auth token
+	*/
+	public java.util.Date getCreateDate() {
+		return _oAuthToken.getCreateDate();
+	}
+
+	/**
+	* Sets the create date of this o auth token.
+	*
+	* @param createDate the create date of this o auth token
+	*/
+	public void setCreateDate(java.util.Date createDate) {
+		_oAuthToken.setCreateDate(createDate);
+	}
+
+	/**
+	* Gets the modified date of this o auth token.
+	*
+	* @return the modified date of this o auth token
+	*/
+	public java.util.Date getModifiedDate() {
+		return _oAuthToken.getModifiedDate();
+	}
+
+	/**
+	* Sets the modified date of this o auth token.
+	*
+	* @param modifiedDate the modified date of this o auth token
+	*/
+	public void setModifiedDate(java.util.Date modifiedDate) {
+		_oAuthToken.setModifiedDate(modifiedDate);
+	}
+
+	/**
 	* Gets the gadget id of this o auth token.
 	*
 	* @return the gadget id of this o auth token
@@ -172,24 +190,6 @@ public class OAuthTokenWrapper implements OAuthToken {
 	*/
 	public void setGadgetId(long gadgetId) {
 		_oAuthToken.setGadgetId(gadgetId);
-	}
-
-	/**
-	* Gets the module id of this o auth token.
-	*
-	* @return the module id of this o auth token
-	*/
-	public long getModuleId() {
-		return _oAuthToken.getModuleId();
-	}
-
-	/**
-	* Sets the module id of this o auth token.
-	*
-	* @param moduleId the module id of this o auth token
-	*/
-	public void setModuleId(long moduleId) {
-		_oAuthToken.setModuleId(moduleId);
 	}
 
 	/**
@@ -211,21 +211,21 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the token name of this o auth token.
+	* Gets the module id of this o auth token.
 	*
-	* @return the token name of this o auth token
+	* @return the module id of this o auth token
 	*/
-	public java.lang.String getTokenName() {
-		return _oAuthToken.getTokenName();
+	public long getModuleId() {
+		return _oAuthToken.getModuleId();
 	}
 
 	/**
-	* Sets the token name of this o auth token.
+	* Sets the module id of this o auth token.
 	*
-	* @param tokenName the token name of this o auth token
+	* @param moduleId the module id of this o auth token
 	*/
-	public void setTokenName(java.lang.String tokenName) {
-		_oAuthToken.setTokenName(tokenName);
+	public void setModuleId(long moduleId) {
+		_oAuthToken.setModuleId(moduleId);
 	}
 
 	/**
@@ -244,6 +244,24 @@ public class OAuthTokenWrapper implements OAuthToken {
 	*/
 	public void setAccessToken(java.lang.String accessToken) {
 		_oAuthToken.setAccessToken(accessToken);
+	}
+
+	/**
+	* Gets the token name of this o auth token.
+	*
+	* @return the token name of this o auth token
+	*/
+	public java.lang.String getTokenName() {
+		return _oAuthToken.getTokenName();
+	}
+
+	/**
+	* Sets the token name of this o auth token.
+	*
+	* @param tokenName the token name of this o auth token
+	*/
+	public void setTokenName(java.lang.String tokenName) {
+		_oAuthToken.setTokenName(tokenName);
 	}
 
 	/**
@@ -283,21 +301,21 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the token expire millis of this o auth token.
+	* Gets the expiration of this o auth token.
 	*
-	* @return the token expire millis of this o auth token
+	* @return the expiration of this o auth token
 	*/
-	public long getTokenExpireMillis() {
-		return _oAuthToken.getTokenExpireMillis();
+	public int getExpiration() {
+		return _oAuthToken.getExpiration();
 	}
 
 	/**
-	* Sets the token expire millis of this o auth token.
+	* Sets the expiration of this o auth token.
 	*
-	* @param tokenExpireMillis the token expire millis of this o auth token
+	* @param expiration the expiration of this o auth token
 	*/
-	public void setTokenExpireMillis(long tokenExpireMillis) {
-		_oAuthToken.setTokenExpireMillis(tokenExpireMillis);
+	public void setExpiration(int expiration) {
+		_oAuthToken.setExpiration(expiration);
 	}
 
 	public boolean isNew() {

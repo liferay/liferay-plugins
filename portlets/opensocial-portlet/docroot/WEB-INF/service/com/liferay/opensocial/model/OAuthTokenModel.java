@@ -88,34 +88,6 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the create date of this o auth token.
-	 *
-	 * @return the create date of this o auth token
-	 */
-	public Date getCreateDate();
-
-	/**
-	 * Sets the create date of this o auth token.
-	 *
-	 * @param createDate the create date of this o auth token
-	 */
-	public void setCreateDate(Date createDate);
-
-	/**
-	 * Gets the modified date of this o auth token.
-	 *
-	 * @return the modified date of this o auth token
-	 */
-	public Date getModifiedDate();
-
-	/**
-	 * Sets the modified date of this o auth token.
-	 *
-	 * @param modifiedDate the modified date of this o auth token
-	 */
-	public void setModifiedDate(Date modifiedDate);
-
-	/**
 	 * Gets the user id of this o auth token.
 	 *
 	 * @return the user id of this o auth token
@@ -145,6 +117,49 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setUserUuid(String userUuid);
 
 	/**
+	 * Gets the user name of this o auth token.
+	 *
+	 * @return the user name of this o auth token
+	 */
+	@AutoEscape
+	public String getUserName();
+
+	/**
+	 * Sets the user name of this o auth token.
+	 *
+	 * @param userName the user name of this o auth token
+	 */
+	public void setUserName(String userName);
+
+	/**
+	 * Gets the create date of this o auth token.
+	 *
+	 * @return the create date of this o auth token
+	 */
+	public Date getCreateDate();
+
+	/**
+	 * Sets the create date of this o auth token.
+	 *
+	 * @param createDate the create date of this o auth token
+	 */
+	public void setCreateDate(Date createDate);
+
+	/**
+	 * Gets the modified date of this o auth token.
+	 *
+	 * @return the modified date of this o auth token
+	 */
+	public Date getModifiedDate();
+
+	/**
+	 * Sets the modified date of this o auth token.
+	 *
+	 * @param modifiedDate the modified date of this o auth token
+	 */
+	public void setModifiedDate(Date modifiedDate);
+
+	/**
 	 * Gets the gadget id of this o auth token.
 	 *
 	 * @return the gadget id of this o auth token
@@ -157,20 +172,6 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	 * @param gadgetId the gadget id of this o auth token
 	 */
 	public void setGadgetId(long gadgetId);
-
-	/**
-	 * Gets the module id of this o auth token.
-	 *
-	 * @return the module id of this o auth token
-	 */
-	public long getModuleId();
-
-	/**
-	 * Sets the module id of this o auth token.
-	 *
-	 * @param moduleId the module id of this o auth token
-	 */
-	public void setModuleId(long moduleId);
 
 	/**
 	 * Gets the service name of this o auth token.
@@ -188,19 +189,18 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setServiceName(String serviceName);
 
 	/**
-	 * Gets the token name of this o auth token.
+	 * Gets the module id of this o auth token.
 	 *
-	 * @return the token name of this o auth token
+	 * @return the module id of this o auth token
 	 */
-	@AutoEscape
-	public String getTokenName();
+	public long getModuleId();
 
 	/**
-	 * Sets the token name of this o auth token.
+	 * Sets the module id of this o auth token.
 	 *
-	 * @param tokenName the token name of this o auth token
+	 * @param moduleId the module id of this o auth token
 	 */
-	public void setTokenName(String tokenName);
+	public void setModuleId(long moduleId);
 
 	/**
 	 * Gets the access token of this o auth token.
@@ -216,6 +216,21 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	 * @param accessToken the access token of this o auth token
 	 */
 	public void setAccessToken(String accessToken);
+
+	/**
+	 * Gets the token name of this o auth token.
+	 *
+	 * @return the token name of this o auth token
+	 */
+	@AutoEscape
+	public String getTokenName();
+
+	/**
+	 * Sets the token name of this o auth token.
+	 *
+	 * @param tokenName the token name of this o auth token
+	 */
+	public void setTokenName(String tokenName);
 
 	/**
 	 * Gets the token secret of this o auth token.
@@ -248,18 +263,18 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setSessionHandle(String sessionHandle);
 
 	/**
-	 * Gets the token expire millis of this o auth token.
+	 * Gets the expiration of this o auth token.
 	 *
-	 * @return the token expire millis of this o auth token
+	 * @return the expiration of this o auth token
 	 */
-	public long getTokenExpireMillis();
+	public int getExpiration();
 
 	/**
-	 * Sets the token expire millis of this o auth token.
+	 * Sets the expiration of this o auth token.
 	 *
-	 * @param tokenExpireMillis the token expire millis of this o auth token
+	 * @param expiration the expiration of this o auth token
 	 */
-	public void setTokenExpireMillis(long tokenExpireMillis);
+	public void setExpiration(int expiration);
 
 	public boolean isNew();
 
