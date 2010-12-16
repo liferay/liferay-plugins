@@ -35,7 +35,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author Brian Wing Shun Chan
@@ -118,7 +117,6 @@ public class WSDLServlet extends HttpServlet {
 	}
 
 	protected String getURL(HttpServletRequest request) {
-
 		String hostname = ParamUtil.getString(
 			request, "hostname", request.getServerName());
 		String port = ParamUtil.getString(
