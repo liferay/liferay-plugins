@@ -61,14 +61,14 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
-		PortletURL editPortletURL = liferayPortletResponse.createRenderURL(
+		PortletURL portletURL = liferayPortletResponse.createRenderURL(
 			PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
-		editPortletURL.setParameter("jspPage", "/admin/edit_article.jsp");
-		editPortletURL.setParameter(
+		portletURL.setParameter("jspPage", "/admin/edit_article.jsp");
+		portletURL.setParameter(
 			"resourcePrimKey", String.valueOf(_article.getResourcePrimKey()));
 
-		return editPortletURL;
+		return portletURL;
 	}
 
 	public String getURLViewInContext(

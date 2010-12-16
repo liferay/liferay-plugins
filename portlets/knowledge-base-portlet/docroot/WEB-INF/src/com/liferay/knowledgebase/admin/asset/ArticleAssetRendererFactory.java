@@ -28,10 +28,14 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
 
+import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Peter Shin
@@ -66,26 +70,30 @@ public class ArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	}
 
 	public PortletURL getURLAdd(
-		LiferayPortletRequest liferayPortletRequest,
-		LiferayPortletResponse liferayPortletResponse) {
+			LiferayPortletRequest liferayPortletRequest,
+			LiferayPortletResponse liferayPortletResponse)
+		throws PortalException, SystemException {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)liferayPortletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+		HttpServletRequest request =
+			liferayPortletRequest.getHttpServletRequest();
 
-		PortletURL addAssetURL = null;
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		if (AdminPermission.contains(
+		if (!AdminPermission.contains(
 				themeDisplay.getPermissionChecker(),
 				themeDisplay.getScopeGroupId(), ActionKeys.ADD_ARTICLE)) {
 
-			addAssetURL = liferayPortletResponse.createRenderURL(
-				PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-			addAssetURL.setParameter("jspPage", "/admin/edit_article.jsp");
+			return null;
 		}
 
-		return addAssetURL;
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, PortletKeys.KNOWLEDGE_BASE_ADMIN,
+			getControlPanelPlid(themeDisplay), PortletRequest.RENDER_PHASE);
+
+		portletURL.setParameter("jspPage", "/admin/edit_article.jsp");
+
+		return portletURL;
 	}
 
 	public boolean hasPermission(
