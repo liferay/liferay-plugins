@@ -48,8 +48,10 @@ String tag = ParamUtil.getString(request, "tag");
 			params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
 		}
 
-		pageContext.setAttribute("results", ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator));
-		pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(params, false));
+		List<Article> articles = ArticleServiceUtil.getArticles(params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
+
+		pageContext.setAttribute("results", ListUtil.subList(articles, searchContainer.getStart(), searchContainer.getEnd()));
+		pageContext.setAttribute("total", articles.size());
 		%>
 
 	</liferay-ui:search-container-results>

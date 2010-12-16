@@ -30,6 +30,8 @@ String tag = ParamUtil.getString(request, "tag");
 	<liferay-ui:search-container-results>
 
 		<%
+		List<Article> articles = null;
+
 		if (selectionMethod.equals("articles")) {
 			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
 
@@ -44,8 +46,7 @@ String tag = ParamUtil.getString(request, "tag");
 				resourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeysSet), 0L);
 			}
 
-			results = KnowledgeBaseUtil.getArticles(resourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), true);
-			total = resourcePrimKeys.length;
+			articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, true);
 		}
 		else if (selectionMethod.equals("group")) {
 			Map<String, Object> params = new HashMap<String, Object>();
@@ -65,9 +66,11 @@ String tag = ParamUtil.getString(request, "tag");
 				params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
 			}
 
-			results = ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-			total = ArticleServiceUtil.getArticlesCount(params, false);
+			articles = ArticleServiceUtil.getArticles(params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
 		}
+
+		results = ListUtil.subList(articles, searchContainer.getStart(), searchContainer.getEnd());
+		total = articles.size();
 
 		pageContext.setAttribute("results", results);
 		pageContext.setAttribute("total", total);
