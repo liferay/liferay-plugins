@@ -118,9 +118,6 @@ public class WSDLServlet extends HttpServlet {
 	}
 
 	protected String getURL(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-
-		ServletContext servletContext = session.getServletContext();
 
 		String hostname = ParamUtil.getString(
 			request, "hostname", request.getServerName());
@@ -129,14 +126,14 @@ public class WSDLServlet extends HttpServlet {
 		String protocol = ParamUtil.getString(
 			request, "protocol", request.getScheme());
 
-		StringBundler sb = new StringBundler(5);
+		StringBundler sb = new StringBundler(6);
 
 		sb.append(protocol);
 		sb.append(Http.PROTOCOL_DELIMITER);
 		sb.append(hostname);
 		sb.append(StringPool.COLON);
 		sb.append(port);
-		sb.append(servletContext.getContextPath());
+		sb.append(request.getContextPath());
 
 		return sb.toString();
 	}
