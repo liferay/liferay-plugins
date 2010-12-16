@@ -21,6 +21,7 @@ import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.ChatUtil;
 import com.liferay.chat.util.PortletPropsValues;
+import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -134,11 +135,16 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			entryJSON.put("fromUserId", entry.getFromUserId());
 
 			if (entry.getFromUserId() != pollerRequest.getUserId()) {
-				User fromUser = UserLocalServiceUtil.getUserById(
-					entry.getFromUserId());
+				try {
+					User fromUser = UserLocalServiceUtil.getUserById(
+						entry.getFromUserId());
 
-				entryJSON.put("fromFullName", fromUser.getFullName());
-				entryJSON.put("fromPortraitId", fromUser.getPortraitId());
+					entryJSON.put("fromFullName", fromUser.getFullName());
+					entryJSON.put("fromPortraitId", fromUser.getPortraitId());
+				}
+				catch (NoSuchUserException nsue) {
+					continue;
+				}
 			}
 
 			entryJSON.put("toUserId", entry.getToUserId());
