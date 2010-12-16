@@ -35,7 +35,7 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Removing message accounts for user " + user.getUserId());
+					"Removing mail accounts for user " + user.getUserId());
 			}
 
 			List<Account> accounts = AccountLocalServiceUtil.getAccounts(
@@ -50,8 +50,7 @@ public class UserListener extends BaseModelListener<User> {
 		}
 		catch (Exception e) {
 			_log.error(
-				"Unable to remove message accounts for user " +
-					user.getUserId());
+				"Unable to remove mail accounts for user " + user.getUserId());
 		}
 	}
 

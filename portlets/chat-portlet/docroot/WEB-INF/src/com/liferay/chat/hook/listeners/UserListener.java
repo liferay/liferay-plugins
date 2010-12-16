@@ -31,14 +31,14 @@ public class UserListener extends BaseModelListener<User> {
 		try {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Removing chat entry and status for user "
-						+ user.getUserId());
+					"Removing chat entries and status for user " +
+						user.getUserId());
 			}
 
 			EntryLocalServiceUtil.deleteEntries(user.getUserId());
 
-			Status status =
-				StatusLocalServiceUtil.getUserStatus(user.getUserId());
+			Status status = StatusLocalServiceUtil.getUserStatus(
+				user.getUserId());
 
 			if (status != null) {
 				StatusLocalServiceUtil.deleteStatus(status);
@@ -46,7 +46,7 @@ public class UserListener extends BaseModelListener<User> {
 		}
 		catch (Exception e) {
 			_log.error(
-				"Unable to remove chat entry and status for user " +
+				"Unable to remove chat entries and status for user " +
 					user.getUserId());
 		}
 	}
