@@ -179,7 +179,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 	protected Set<Assignment> parseAssignments(Element assignmentsElement) {
 		if (assignmentsElement == null) {
-			return Collections.EMPTY_SET;
+			return Collections.emptySet();
 		}
 
 		Set<Assignment> assignments = new HashSet<Assignment>();

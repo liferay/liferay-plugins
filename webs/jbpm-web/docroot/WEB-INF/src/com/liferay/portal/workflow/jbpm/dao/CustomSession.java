@@ -378,7 +378,7 @@ public class CustomSession {
 		OrderByComparator orderByComparator) {
 
 		if ((actorIds != null) && (actorIds.length == 0)) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 
 		try {

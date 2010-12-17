@@ -105,13 +105,13 @@ public class V2ServiceDescriptionServiceImpl
 			Set<String> mimeTypePortletModes = portletModes.get(mimeType);
 
 			if (mimeTypePortletModes == null) {
-				mimeTypePortletModes = Collections.EMPTY_SET;
+				mimeTypePortletModes = Collections.emptySet();
 			}
 
 			Set<String> mimeTypeWindowStates = windowStates.get(mimeType);
 
 			if (mimeTypeWindowStates == null) {
-				mimeTypeWindowStates = Collections.EMPTY_SET;
+				mimeTypeWindowStates = Collections.emptySet();
 			}
 
 			MarkupType markupType = new MarkupType();

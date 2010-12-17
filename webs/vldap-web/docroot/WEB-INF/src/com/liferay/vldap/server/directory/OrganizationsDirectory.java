@@ -45,7 +45,7 @@ public class OrganizationsDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		List<Organization> organizations = Collections.EMPTY_LIST;
+		List<Organization> organizations = Collections.emptyList();
 
 		if (_user != null) {
 			organizations = OrganizationLocalServiceUtil.getUserOrganizations(

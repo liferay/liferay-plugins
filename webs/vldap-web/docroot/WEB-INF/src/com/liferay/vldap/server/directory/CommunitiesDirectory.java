@@ -44,7 +44,7 @@ public class CommunitiesDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		List<Group> groups = Collections.EMPTY_LIST;
+		List<Group> groups = Collections.emptyList();
 
 		if (_user != null) {
 			groups = GroupLocalServiceUtil.getUserGroups(_user.getUserId());

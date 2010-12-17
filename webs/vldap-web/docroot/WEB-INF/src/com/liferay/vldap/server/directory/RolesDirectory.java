@@ -50,12 +50,12 @@ public class RolesDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() throws Exception {
-		List<Role> roles = Collections.EMPTY_LIST;
+		List<Role> roles = Collections.emptyList();
 
 		if (_user != null) {
 			roles = RoleLocalServiceUtil.getUserRoles(_user.getUserId());
 
-			List<UserGroupRole> userGroupRoles = Collections.EMPTY_LIST;
+			List<UserGroupRole> userGroupRoles = Collections.emptyList();
 
 			Directory parentDirectory = getParentDirectory();
 

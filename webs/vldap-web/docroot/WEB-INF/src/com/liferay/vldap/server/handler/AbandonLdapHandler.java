@@ -33,7 +33,7 @@ public class AbandonLdapHandler extends BaseLdapHandler {
 		InternalRequest internalRequest, IoSession ioSession,
 		LdapHandlerContext ldapHandlerContext) {
 
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 }

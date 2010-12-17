@@ -45,7 +45,7 @@ public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 	private static final String _NAME = "jBPM";
 
 	private static final Map<String, Object> _OPTIONAL_ATTRIBUTES =
-		Collections.EMPTY_MAP;
+		Collections.emptyMap();
 
 	private static final String _VERSION = "3.2.6 SP1";
 

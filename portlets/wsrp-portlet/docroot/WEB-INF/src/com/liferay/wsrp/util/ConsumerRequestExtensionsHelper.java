@@ -98,6 +98,6 @@ public class ConsumerRequestExtensionsHelper {
 		new ConsumerRequestExtensionsHelper();
 
 	private List<ConsumerRequestExtension> _consumerRequestExtensions =
-		Collections.EMPTY_LIST;
+		Collections.emptyList();
 
 }

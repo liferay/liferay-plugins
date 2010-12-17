@@ -325,7 +325,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
 
 		if (dynamicQuery == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 
 		return dynamicQuery(dynamicQuery, start, end, orderByComparator);

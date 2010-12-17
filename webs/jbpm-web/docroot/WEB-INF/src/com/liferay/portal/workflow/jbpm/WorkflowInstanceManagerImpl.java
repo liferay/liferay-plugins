@@ -125,7 +125,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 
 			NodeType nodeType = node.getNodeType();
 
-			Set<Transition> transitions = Collections.EMPTY_SET;
+			Set<Transition> transitions = Collections.emptySet();
 
 			if (nodeType.equals(NodeType.Task)) {
 				transitions = token.getAvailableTransitions();

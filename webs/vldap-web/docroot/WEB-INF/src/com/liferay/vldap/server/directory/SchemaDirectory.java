@@ -37,7 +37,7 @@ public class SchemaDirectory extends BaseDirectory {
 	}
 
 	protected List<Directory> initDirectories() {
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 }
