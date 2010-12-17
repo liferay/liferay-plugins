@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.portlet;
 
+import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
@@ -939,7 +940,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		ClientData clientData = new ClientData();
 
-		clientData.setRequestVerb(HttpMethods.GET);
+		clientData.setRequestVerb(request.getMethod());
 		clientData.setUserAgent(request.getHeader(HttpHeaders.USER_AGENT));
 
 		User user = themeDisplay.getUser();
