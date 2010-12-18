@@ -11,7 +11,7 @@
 
 		<!-- Resource -->
 
-		<column name="resourcePrimKey" type="long" filter-primary="true" />
+		<column name="resourcePrimKey" type="long" />
 
 		<!-- Group instance -->
 
@@ -49,71 +49,12 @@
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
 		</finder>
-		<finder name="R_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
-		</finder>
-		<finder name="G_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="groupId" />
-		</finder>
-		<finder name="C_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="companyId" />
-		</finder>
-		<finder name="P_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-		</finder>
 		<finder name="R_V" return-type="Article" unique="true">
 			<finder-column name="resourcePrimKey" />
 			<finder-column name="version" />
 		</finder>
 		<finder name="R_S" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="R_S_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="G_P_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="groupId" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-		</finder>
-		<finder name="G_S_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="groupId" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="C_S_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="companyId" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="P_S_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="G_R_P" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="resourcePrimKey" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-		</finder>
-		<finder name="G_R_P_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="groupId" />
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-		</finder>
-		<finder name="G_P_S_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="groupId" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="G_R_P_S" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="resourcePrimKey" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="G_R_P_S_MaxV" return-type="Collection" where="version IN (SELECT MAX(article1.version) FROM [$ENTITY_TABLE$] article1 WHERE (article1.resourcePrimKey = resourcePrimKey))">
-			<finder-column name="groupId" />
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="status" />
 		</finder>
 
