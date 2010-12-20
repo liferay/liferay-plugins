@@ -259,6 +259,36 @@ public interface KaleoTaskAssignmentModel extends BaseModel<KaleoTaskAssignment>
 	 */
 	public void setAssigneeActionId(String assigneeActionId);
 
+	/**
+	 * Gets the assignee script of this kaleo task assignment.
+	 *
+	 * @return the assignee script of this kaleo task assignment
+	 */
+	@AutoEscape
+	public String getAssigneeScript();
+
+	/**
+	 * Sets the assignee script of this kaleo task assignment.
+	 *
+	 * @param assigneeScript the assignee script of this kaleo task assignment
+	 */
+	public void setAssigneeScript(String assigneeScript);
+
+	/**
+	 * Gets the assignee script language of this kaleo task assignment.
+	 *
+	 * @return the assignee script language of this kaleo task assignment
+	 */
+	@AutoEscape
+	public String getAssigneeScriptLanguage();
+
+	/**
+	 * Sets the assignee script language of this kaleo task assignment.
+	 *
+	 * @param assigneeScriptLanguage the assignee script language of this kaleo task assignment
+	 */
+	public void setAssigneeScriptLanguage(String assigneeScriptLanguage);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

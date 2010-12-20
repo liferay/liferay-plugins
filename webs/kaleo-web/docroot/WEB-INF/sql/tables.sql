@@ -198,7 +198,9 @@ create table KaleoTaskAssignment (
 	kaleoTaskId LONG,
 	assigneeClassName VARCHAR(200) null,
 	assigneeClassPK LONG,
-	assigneeActionId VARCHAR(75) null
+	assigneeActionId VARCHAR(75) null,
+	assigneeScript TEXT null,
+	assigneeScriptLanguage VARCHAR(75) null
 );
 
 create table KaleoTaskAssignmentInstance (

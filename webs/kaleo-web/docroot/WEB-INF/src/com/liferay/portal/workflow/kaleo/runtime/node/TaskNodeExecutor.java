@@ -36,6 +36,7 @@ import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -81,9 +82,21 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 				new Date(), dueDateDuration);
 		}
 
+		Collection<KaleoTaskAssignment> configuredKaleoTaskAssignments =
+			kaleoTask.getKaleoTaskAssignments();
+
 		Collection<KaleoTaskAssignment> kaleoTaskAssignments =
-			_taskAssignmentSelector.calculateTaskAssignments(
-				kaleoTask.getKaleoTaskAssignments(), executionContext);
+			new ArrayList<KaleoTaskAssignment>();
+
+		for (KaleoTaskAssignment configuredKaleoTaskAssignment :
+				configuredKaleoTaskAssignments) {
+
+			Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
+				_taskAssignmentSelector.calculateTaskAssignments(
+					configuredKaleoTaskAssignment, executionContext);
+
+			kaleoTaskAssignments.addAll(calculatedKaleoTaskAssignments);
+		}
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.addKaleoTaskInstanceToken(

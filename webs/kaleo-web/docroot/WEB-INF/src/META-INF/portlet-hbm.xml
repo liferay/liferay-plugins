@@ -240,6 +240,8 @@
 		<property name="assigneeClassName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="assigneeClassPK" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="assigneeActionId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeScript" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="assigneeScriptLanguage" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentInstanceImpl" table="KaleoTaskAssignmentInstance">
 		<cache usage="read-write" />

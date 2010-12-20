@@ -19,6 +19,6 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum AssignmentType {
 
-	RESOURCE_ACTION, ROLE, USER
+	RESOURCE_ACTION, ROLE, SCRIPT, USER
 
 }

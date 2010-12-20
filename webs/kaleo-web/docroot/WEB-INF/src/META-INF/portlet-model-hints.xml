@@ -276,6 +276,10 @@
 		</field>
 		<field name="assigneeClassPK" type="long" />
 		<field name="assigneeActionId" type="String" />
+		<field name="assigneeScript" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="assigneeScriptLanguage" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance">
 		<field name="kaleoTaskAssignmentInstanceId" type="long" />

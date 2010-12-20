@@ -34,6 +34,7 @@ import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
+import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
 import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
@@ -232,6 +233,22 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 				assignments.add(roleAssignment);
 			}
+		}
+
+		List<Element> scriptedAssignmentElements = assignmentsElement.elements(
+			"scripted-assignment");
+
+		for (Element scriptedAssignmentElement : scriptedAssignmentElements) {
+
+			String script = scriptedAssignmentElement.elementText(
+				"script");
+			String scriptLanguage = scriptedAssignmentElement.elementText(
+				"script-language");
+
+			ScriptAssignment scriptAssignment =
+				new ScriptAssignment(script, scriptLanguage);
+
+			assignments.add(scriptAssignment);
 		}
 
 		List<Element> userAssignmentElements = assignmentsElement.elements(

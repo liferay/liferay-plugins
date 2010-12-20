@@ -567,6 +567,8 @@
 		<column name="assigneeClassName" type="String" />
 		<column name="assigneeClassPK" type="long" />
 		<column name="assigneeActionId" type="String" />
+		<column name="assigneeScript" type="String" />
+		<column name="assigneeScriptLanguage" type="String" />
 
 		<!-- Order -->
 

@@ -16,13 +16,8 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.model.ResourceAction;
-import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
@@ -79,8 +74,21 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		kaleoTaskAssignmentInstance.setKaleoTaskName(
 			kaleoTaskInstanceToken.getKaleoTaskName());
 		kaleoTaskAssignmentInstance.setAssigneeClassName(assigneeClassName);
-		kaleoTaskAssignmentInstance.setAssigneeClassPK(assigneeClassPK);
 		kaleoTaskAssignmentInstance.setCompleted(false);
+
+		if ((assigneeClassPK == 0) &&
+			assigneeClassName.equals(User.class.getName())) {
+
+			KaleoInstance kaleoInstance =
+				kaleoInstanceLocalService.getKaleoInstance(
+					kaleoTaskInstanceToken.getKaleoInstanceId());
+
+			kaleoTaskAssignmentInstance.setAssigneeClassPK(
+				kaleoInstance.getUserId());
+		}
+		else {
+			kaleoTaskAssignmentInstance.setAssigneeClassPK(assigneeClassPK);
+		}
 
 		kaleoTaskAssignmentInstancePersistence.update(
 			kaleoTaskAssignmentInstance, false);
@@ -100,73 +108,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 				kaleoTaskAssignments.size());
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
-			String assigneeClassName =
-				kaleoTaskAssignment.getAssigneeClassName();
-
-			if (assigneeClassName.equals(ResourceAction.class.getName())) {
-				String className = (String)workflowContext.get(
-					WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-				String classPK = (String)workflowContext.get(
-					WorkflowConstants.CONTEXT_ENTRY_CLASS_PK);
-
-				String assigneeActionId =
-					kaleoTaskAssignment.getAssigneeActionId();
-
-				setResourceAssignees(
-					kaleoTaskInstanceToken, className, classPK,
-					assigneeActionId, serviceContext);
-
-				continue;
-			}
-
-			User user = userPersistence.findByPrimaryKey(
-				serviceContext.getUserId());
-			Date now = new Date();
-
-			long kaleoTaskAssignmentInstanceId =
-				counterLocalService.increment();
-
 			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
-				kaleoTaskAssignmentInstancePersistence.create(
-					kaleoTaskAssignmentInstanceId);
-
-			kaleoTaskAssignmentInstance.setGroupId(
-				kaleoTaskInstanceToken.getGroupId());
-			kaleoTaskAssignmentInstance.setCompanyId(user.getCompanyId());
-			kaleoTaskAssignmentInstance.setUserId(user.getUserId());
-			kaleoTaskAssignmentInstance.setUserName(user.getFullName());
-			kaleoTaskAssignmentInstance.setCreateDate(now);
-			kaleoTaskAssignmentInstance.setModifiedDate(now);
-			kaleoTaskAssignmentInstance.setKaleoDefinitionId(
-				kaleoTaskInstanceToken.getKaleoDefinitionId());
-			kaleoTaskAssignmentInstance.setKaleoInstanceId(
-				kaleoTaskInstanceToken.getKaleoInstanceId());
-			kaleoTaskAssignmentInstance.setKaleoTaskInstanceTokenId(
-				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
-			kaleoTaskAssignmentInstance.setKaleoTaskId(
-				kaleoTaskInstanceToken.getKaleoTaskId());
-			kaleoTaskAssignmentInstance.setKaleoTaskName(
-				kaleoTaskInstanceToken.getKaleoTaskName());
-
-			kaleoTaskAssignmentInstance.setAssigneeClassName(assigneeClassName);
-
-			if ((kaleoTaskAssignment.getAssigneeClassPK() == 0) &&
-				assigneeClassName.equals(User.class.getName())) {
-
-				KaleoInstance kaleoInstance =
-					kaleoInstanceLocalService.getKaleoInstance(
-						kaleoTaskInstanceToken.getKaleoInstanceId());
-
-				kaleoTaskAssignmentInstance.setAssigneeClassPK(
-					kaleoInstance.getUserId());
-			}
-			else {
-				kaleoTaskAssignmentInstance.setAssigneeClassPK(
-					kaleoTaskAssignment.getAssigneeClassPK());
-			}
-
-			kaleoTaskAssignmentInstancePersistence.update(
-				kaleoTaskAssignmentInstance, false);
+				addKaleoTaskAssignmentInstance(
+					kaleoTaskInstanceToken,
+					kaleoTaskAssignment.getAssigneeClassName(),
+					kaleoTaskAssignment.getAssigneeClassPK(),
+					serviceContext);
 
 			kaleoTaskAssignmentInstances.add(kaleoTaskAssignmentInstance);
 		}
@@ -262,23 +209,6 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 
 		return kaleoTaskAssignmentInstancePersistence.
 			findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
-	}
-
-	protected void setResourceAssignees(
-			KaleoTaskInstanceToken kaleoTaskInstanceToken,
-			String name, String primKey, String actionId,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		List<Role> roles = RoleLocalServiceUtil.getResourceRoles(
-			serviceContext.getCompanyId(), name,
-			ResourceConstants.SCOPE_INDIVIDUAL, primKey, actionId);
-
-		for (Role role : roles) {
-			addKaleoTaskAssignmentInstance(
-				kaleoTaskInstanceToken, Role.class.getName(),
-				role.getClassPK(), serviceContext);
-		}
 	}
 
 }

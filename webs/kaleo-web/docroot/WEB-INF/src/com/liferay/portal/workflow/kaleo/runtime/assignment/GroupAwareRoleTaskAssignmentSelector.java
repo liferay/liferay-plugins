@@ -18,10 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.ResourceAction;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
@@ -35,11 +33,11 @@ import java.util.List;
 /**
  * @author Michael C. Han
  */
-public class GroupAwareTaskAssignmentSelector
+public class GroupAwareRoleTaskAssignmentSelector
 	implements TaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			Collection<KaleoTaskAssignment> kaleoTaskAssignments,
+			KaleoTaskAssignment configuredKaleoTaskAssignment,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
@@ -62,10 +60,8 @@ public class GroupAwareTaskAssignmentSelector
 		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
-		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
-			if (isValidAssignment(kaleoTaskAssignment, group)) {
-				calculatedKaleoTaskAssignments.add(kaleoTaskAssignment);
-			}
+		if (isValidAssignment(configuredKaleoTaskAssignment, group)) {
+			calculatedKaleoTaskAssignments.add(configuredKaleoTaskAssignment);
 		}
 
 		return calculatedKaleoTaskAssignments;
@@ -74,14 +70,6 @@ public class GroupAwareTaskAssignmentSelector
 	protected boolean isValidAssignment(
 			KaleoTaskAssignment kaleoTaskAssignment, Group group)
 		throws PortalException, SystemException {
-
-		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
-
-		if (assigneeClassName.equals(ResourceAction.class.getName()) ||
-			assigneeClassName.equals(User.class.getName())) {
-
-			return true;
-		}
 
 		long roleId = kaleoTaskAssignment.getAssigneeClassPK();
 

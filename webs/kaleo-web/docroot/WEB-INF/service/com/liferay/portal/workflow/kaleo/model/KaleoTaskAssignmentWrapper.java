@@ -300,6 +300,43 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment.setAssigneeActionId(assigneeActionId);
 	}
 
+	/**
+	* Gets the assignee script of this kaleo task assignment.
+	*
+	* @return the assignee script of this kaleo task assignment
+	*/
+	public java.lang.String getAssigneeScript() {
+		return _kaleoTaskAssignment.getAssigneeScript();
+	}
+
+	/**
+	* Sets the assignee script of this kaleo task assignment.
+	*
+	* @param assigneeScript the assignee script of this kaleo task assignment
+	*/
+	public void setAssigneeScript(java.lang.String assigneeScript) {
+		_kaleoTaskAssignment.setAssigneeScript(assigneeScript);
+	}
+
+	/**
+	* Gets the assignee script language of this kaleo task assignment.
+	*
+	* @return the assignee script language of this kaleo task assignment
+	*/
+	public java.lang.String getAssigneeScriptLanguage() {
+		return _kaleoTaskAssignment.getAssigneeScriptLanguage();
+	}
+
+	/**
+	* Sets the assignee script language of this kaleo task assignment.
+	*
+	* @param assigneeScriptLanguage the assignee script language of this kaleo task assignment
+	*/
+	public void setAssigneeScriptLanguage(
+		java.lang.String assigneeScriptLanguage) {
+		_kaleoTaskAssignment.setAssigneeScriptLanguage(assigneeScriptLanguage);
+	}
+
 	public boolean isNew() {
 		return _kaleoTaskAssignment.isNew();
 	}

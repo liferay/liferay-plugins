@@ -1519,6 +1519,20 @@ public class ClpSerializer {
 
 					method12.invoke(newModel, value12);
 
+					Method method13 = newModelClass.getMethod("setAssigneeScript",
+							new Class[] { String.class });
+
+					String value13 = oldCplModel.getAssigneeScript();
+
+					method13.invoke(newModel, value13);
+
+					Method method14 = newModelClass.getMethod("setAssigneeScriptLanguage",
+							new Class[] { String.class });
+
+					String value14 = oldCplModel.getAssigneeScriptLanguage();
+
+					method14.invoke(newModel, value14);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -3395,6 +3409,22 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setAssigneeActionId(value12);
+
+					Method method13 = oldModelClass.getMethod(
+							"getAssigneeScript");
+
+					String value13 = (String)method13.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAssigneeScript(value13);
+
+					Method method14 = oldModelClass.getMethod(
+							"getAssigneeScriptLanguage");
+
+					String value14 = (String)method14.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setAssigneeScriptLanguage(value14);
 
 					return newModel;
 				}

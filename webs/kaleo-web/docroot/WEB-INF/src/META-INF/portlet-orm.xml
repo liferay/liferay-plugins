@@ -302,6 +302,8 @@
 			<basic name="assigneeClassName" />
 			<basic name="assigneeClassPK" />
 			<basic name="assigneeActionId" />
+			<basic name="assigneeScript" />
+			<basic name="assigneeScriptLanguage" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>

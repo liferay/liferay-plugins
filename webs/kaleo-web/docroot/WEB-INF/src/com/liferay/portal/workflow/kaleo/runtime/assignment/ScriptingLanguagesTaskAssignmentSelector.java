@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -16,19 +16,46 @@ package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilder;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Michael C. Han
  */
-public interface TaskAssignmentSelector {
+public class ScriptingLanguagesTaskAssignmentSelector
+	extends BaseTaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
 			KaleoTaskAssignment configuredKaleoTaskAssignment,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException;
+		throws PortalException, SystemException {
+
+		Map<String, Object> inputObjects =
+			ScriptingContextBuilder.buildScriptingContext(executionContext);
+
+		String script = configuredKaleoTaskAssignment.getAssigneeScript();
+
+		String scriptingLanguage =
+			configuredKaleoTaskAssignment.getAssigneeScriptLanguage();
+
+		Map<String, Object> results = ScriptingUtil.eval(
+			null, inputObjects, _outputNames, scriptingLanguage, script);
+
+		return getKaleoTaskAssignments(results);
+	}
+
+	private static Set<String> _outputNames = new HashSet<String>();
+
+	static {
+		_outputNames.add(_USER_ASSIGNMENT);
+		_outputNames.add(_ROLES_ASSIGNMENT);
+	}
 
 }

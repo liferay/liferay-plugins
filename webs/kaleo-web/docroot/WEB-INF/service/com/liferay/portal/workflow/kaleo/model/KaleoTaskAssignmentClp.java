@@ -158,6 +158,22 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		_assigneeActionId = assigneeActionId;
 	}
 
+	public String getAssigneeScript() {
+		return _assigneeScript;
+	}
+
+	public void setAssigneeScript(String assigneeScript) {
+		_assigneeScript = assigneeScript;
+	}
+
+	public String getAssigneeScriptLanguage() {
+		return _assigneeScriptLanguage;
+	}
+
+	public void setAssigneeScriptLanguage(String assigneeScriptLanguage) {
+		_assigneeScriptLanguage = assigneeScriptLanguage;
+	}
+
 	public KaleoTaskAssignment toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -185,6 +201,8 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		clone.setAssigneeClassName(getAssigneeClassName());
 		clone.setAssigneeClassPK(getAssigneeClassPK());
 		clone.setAssigneeActionId(getAssigneeActionId());
+		clone.setAssigneeScript(getAssigneeScript());
+		clone.setAssigneeScriptLanguage(getAssigneeScriptLanguage());
 
 		return clone;
 	}
@@ -238,7 +256,7 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("{kaleoTaskAssignmentId=");
 		sb.append(getKaleoTaskAssignmentId());
@@ -266,13 +284,17 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		sb.append(getAssigneeClassPK());
 		sb.append(", assigneeActionId=");
 		sb.append(getAssigneeActionId());
+		sb.append(", assigneeScript=");
+		sb.append(getAssigneeScript());
+		sb.append(", assigneeScriptLanguage=");
+		sb.append(getAssigneeScriptLanguage());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(49);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment");
@@ -330,6 +352,14 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 			"<column><column-name>assigneeActionId</column-name><column-value><![CDATA[");
 		sb.append(getAssigneeActionId());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeScript</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeScript());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>assigneeScriptLanguage</column-name><column-value><![CDATA[");
+		sb.append(getAssigneeScriptLanguage());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -350,4 +380,6 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	private String _assigneeClassName;
 	private long _assigneeClassPK;
 	private String _assigneeActionId;
+	private String _assigneeScript;
+	private String _assigneeScriptLanguage;
 }
