@@ -62,58 +62,58 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo definition.
+	 * Gets the kaleo definition ID of this kaleo definition.
 	 *
-	 * @return the kaleo definition id of this kaleo definition
+	 * @return the kaleo definition ID of this kaleo definition
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo definition.
+	 * Sets the kaleo definition ID of this kaleo definition.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo definition
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo definition
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the group id of this kaleo definition.
+	 * Gets the group ID of this kaleo definition.
 	 *
-	 * @return the group id of this kaleo definition
+	 * @return the group ID of this kaleo definition
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo definition.
+	 * Sets the group ID of this kaleo definition.
 	 *
-	 * @param groupId the group id of this kaleo definition
+	 * @param groupId the group ID of this kaleo definition
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo definition.
+	 * Gets the company ID of this kaleo definition.
 	 *
-	 * @return the company id of this kaleo definition
+	 * @return the company ID of this kaleo definition
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo definition.
+	 * Sets the company ID of this kaleo definition.
 	 *
-	 * @param companyId the company id of this kaleo definition
+	 * @param companyId the company ID of this kaleo definition
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo definition.
+	 * Gets the user ID of this kaleo definition.
 	 *
-	 * @return the user id of this kaleo definition
+	 * @return the user ID of this kaleo definition
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo definition.
+	 * Sets the user ID of this kaleo definition.
 	 *
-	 * @param userId the user id of this kaleo definition
+	 * @param userId the user ID of this kaleo definition
 	 */
 	public void setUserId(long userId);
 
@@ -311,16 +311,16 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	public void setActive(boolean active);
 
 	/**
-	 * Gets the start kaleo node id of this kaleo definition.
+	 * Gets the start kaleo node ID of this kaleo definition.
 	 *
-	 * @return the start kaleo node id of this kaleo definition
+	 * @return the start kaleo node ID of this kaleo definition
 	 */
 	public long getStartKaleoNodeId();
 
 	/**
-	 * Sets the start kaleo node id of this kaleo definition.
+	 * Sets the start kaleo node ID of this kaleo definition.
 	 *
-	 * @param startKaleoNodeId the start kaleo node id of this kaleo definition
+	 * @param startKaleoNodeId the start kaleo node ID of this kaleo definition
 	 */
 	public void setStartKaleoNodeId(long startKaleoNodeId);
 

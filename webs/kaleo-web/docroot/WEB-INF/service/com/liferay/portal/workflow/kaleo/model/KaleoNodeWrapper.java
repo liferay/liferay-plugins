@@ -47,72 +47,72 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the kaleo node id of this kaleo node.
+	* Gets the kaleo node ID of this kaleo node.
 	*
-	* @return the kaleo node id of this kaleo node
+	* @return the kaleo node ID of this kaleo node
 	*/
 	public long getKaleoNodeId() {
 		return _kaleoNode.getKaleoNodeId();
 	}
 
 	/**
-	* Sets the kaleo node id of this kaleo node.
+	* Sets the kaleo node ID of this kaleo node.
 	*
-	* @param kaleoNodeId the kaleo node id of this kaleo node
+	* @param kaleoNodeId the kaleo node ID of this kaleo node
 	*/
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNode.setKaleoNodeId(kaleoNodeId);
 	}
 
 	/**
-	* Gets the group id of this kaleo node.
+	* Gets the group ID of this kaleo node.
 	*
-	* @return the group id of this kaleo node
+	* @return the group ID of this kaleo node
 	*/
 	public long getGroupId() {
 		return _kaleoNode.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo node.
+	* Sets the group ID of this kaleo node.
 	*
-	* @param groupId the group id of this kaleo node
+	* @param groupId the group ID of this kaleo node
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoNode.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo node.
+	* Gets the company ID of this kaleo node.
 	*
-	* @return the company id of this kaleo node
+	* @return the company ID of this kaleo node
 	*/
 	public long getCompanyId() {
 		return _kaleoNode.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo node.
+	* Sets the company ID of this kaleo node.
 	*
-	* @param companyId the company id of this kaleo node
+	* @param companyId the company ID of this kaleo node
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoNode.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo node.
+	* Gets the user ID of this kaleo node.
 	*
-	* @return the user id of this kaleo node
+	* @return the user ID of this kaleo node
 	*/
 	public long getUserId() {
 		return _kaleoNode.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo node.
+	* Sets the user ID of this kaleo node.
 	*
-	* @param userId the user id of this kaleo node
+	* @param userId the user ID of this kaleo node
 	*/
 	public void setUserId(long userId) {
 		_kaleoNode.setUserId(userId);
@@ -193,18 +193,18 @@ public class KaleoNodeWrapper implements KaleoNode {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo node.
+	* Gets the kaleo definition ID of this kaleo node.
 	*
-	* @return the kaleo definition id of this kaleo node
+	* @return the kaleo definition ID of this kaleo node
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoNode.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo node.
+	* Sets the kaleo definition ID of this kaleo node.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo node
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo node
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoNode.setKaleoDefinitionId(kaleoDefinitionId);

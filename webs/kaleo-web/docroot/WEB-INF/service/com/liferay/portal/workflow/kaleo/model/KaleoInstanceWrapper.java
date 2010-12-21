@@ -47,72 +47,72 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	/**
-	* Gets the kaleo instance id of this kaleo instance.
+	* Gets the kaleo instance ID of this kaleo instance.
 	*
-	* @return the kaleo instance id of this kaleo instance
+	* @return the kaleo instance ID of this kaleo instance
 	*/
 	public long getKaleoInstanceId() {
 		return _kaleoInstance.getKaleoInstanceId();
 	}
 
 	/**
-	* Sets the kaleo instance id of this kaleo instance.
+	* Sets the kaleo instance ID of this kaleo instance.
 	*
-	* @param kaleoInstanceId the kaleo instance id of this kaleo instance
+	* @param kaleoInstanceId the kaleo instance ID of this kaleo instance
 	*/
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoInstance.setKaleoInstanceId(kaleoInstanceId);
 	}
 
 	/**
-	* Gets the group id of this kaleo instance.
+	* Gets the group ID of this kaleo instance.
 	*
-	* @return the group id of this kaleo instance
+	* @return the group ID of this kaleo instance
 	*/
 	public long getGroupId() {
 		return _kaleoInstance.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo instance.
+	* Sets the group ID of this kaleo instance.
 	*
-	* @param groupId the group id of this kaleo instance
+	* @param groupId the group ID of this kaleo instance
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoInstance.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo instance.
+	* Gets the company ID of this kaleo instance.
 	*
-	* @return the company id of this kaleo instance
+	* @return the company ID of this kaleo instance
 	*/
 	public long getCompanyId() {
 		return _kaleoInstance.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo instance.
+	* Sets the company ID of this kaleo instance.
 	*
-	* @param companyId the company id of this kaleo instance
+	* @param companyId the company ID of this kaleo instance
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoInstance.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo instance.
+	* Gets the user ID of this kaleo instance.
 	*
-	* @return the user id of this kaleo instance
+	* @return the user ID of this kaleo instance
 	*/
 	public long getUserId() {
 		return _kaleoInstance.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo instance.
+	* Sets the user ID of this kaleo instance.
 	*
-	* @param userId the user id of this kaleo instance
+	* @param userId the user ID of this kaleo instance
 	*/
 	public void setUserId(long userId) {
 		_kaleoInstance.setUserId(userId);
@@ -193,18 +193,18 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo instance.
+	* Gets the kaleo definition ID of this kaleo instance.
 	*
-	* @return the kaleo definition id of this kaleo instance
+	* @return the kaleo definition ID of this kaleo instance
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoInstance.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo instance.
+	* Sets the kaleo definition ID of this kaleo instance.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo instance
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo instance
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoInstance.setKaleoDefinitionId(kaleoDefinitionId);
@@ -247,18 +247,18 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 	}
 
 	/**
-	* Gets the root kaleo instance token id of this kaleo instance.
+	* Gets the root kaleo instance token ID of this kaleo instance.
 	*
-	* @return the root kaleo instance token id of this kaleo instance
+	* @return the root kaleo instance token ID of this kaleo instance
 	*/
 	public long getRootKaleoInstanceTokenId() {
 		return _kaleoInstance.getRootKaleoInstanceTokenId();
 	}
 
 	/**
-	* Sets the root kaleo instance token id of this kaleo instance.
+	* Sets the root kaleo instance token ID of this kaleo instance.
 	*
-	* @param rootKaleoInstanceTokenId the root kaleo instance token id of this kaleo instance
+	* @param rootKaleoInstanceTokenId the root kaleo instance token ID of this kaleo instance
 	*/
 	public void setRootKaleoInstanceTokenId(long rootKaleoInstanceTokenId) {
 		_kaleoInstance.setRootKaleoInstanceTokenId(rootKaleoInstanceTokenId);

@@ -47,72 +47,72 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the kaleo transition id of this kaleo transition.
+	* Gets the kaleo transition ID of this kaleo transition.
 	*
-	* @return the kaleo transition id of this kaleo transition
+	* @return the kaleo transition ID of this kaleo transition
 	*/
 	public long getKaleoTransitionId() {
 		return _kaleoTransition.getKaleoTransitionId();
 	}
 
 	/**
-	* Sets the kaleo transition id of this kaleo transition.
+	* Sets the kaleo transition ID of this kaleo transition.
 	*
-	* @param kaleoTransitionId the kaleo transition id of this kaleo transition
+	* @param kaleoTransitionId the kaleo transition ID of this kaleo transition
 	*/
 	public void setKaleoTransitionId(long kaleoTransitionId) {
 		_kaleoTransition.setKaleoTransitionId(kaleoTransitionId);
 	}
 
 	/**
-	* Gets the group id of this kaleo transition.
+	* Gets the group ID of this kaleo transition.
 	*
-	* @return the group id of this kaleo transition
+	* @return the group ID of this kaleo transition
 	*/
 	public long getGroupId() {
 		return _kaleoTransition.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo transition.
+	* Sets the group ID of this kaleo transition.
 	*
-	* @param groupId the group id of this kaleo transition
+	* @param groupId the group ID of this kaleo transition
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoTransition.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo transition.
+	* Gets the company ID of this kaleo transition.
 	*
-	* @return the company id of this kaleo transition
+	* @return the company ID of this kaleo transition
 	*/
 	public long getCompanyId() {
 		return _kaleoTransition.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo transition.
+	* Sets the company ID of this kaleo transition.
 	*
-	* @param companyId the company id of this kaleo transition
+	* @param companyId the company ID of this kaleo transition
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoTransition.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo transition.
+	* Gets the user ID of this kaleo transition.
 	*
-	* @return the user id of this kaleo transition
+	* @return the user ID of this kaleo transition
 	*/
 	public long getUserId() {
 		return _kaleoTransition.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo transition.
+	* Sets the user ID of this kaleo transition.
 	*
-	* @param userId the user id of this kaleo transition
+	* @param userId the user ID of this kaleo transition
 	*/
 	public void setUserId(long userId) {
 		_kaleoTransition.setUserId(userId);
@@ -193,36 +193,36 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo transition.
+	* Gets the kaleo definition ID of this kaleo transition.
 	*
-	* @return the kaleo definition id of this kaleo transition
+	* @return the kaleo definition ID of this kaleo transition
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoTransition.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo transition.
+	* Sets the kaleo definition ID of this kaleo transition.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo transition
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo transition
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoTransition.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo node id of this kaleo transition.
+	* Gets the kaleo node ID of this kaleo transition.
 	*
-	* @return the kaleo node id of this kaleo transition
+	* @return the kaleo node ID of this kaleo transition
 	*/
 	public long getKaleoNodeId() {
 		return _kaleoTransition.getKaleoNodeId();
 	}
 
 	/**
-	* Sets the kaleo node id of this kaleo transition.
+	* Sets the kaleo node ID of this kaleo transition.
 	*
-	* @param kaleoNodeId the kaleo node id of this kaleo transition
+	* @param kaleoNodeId the kaleo node ID of this kaleo transition
 	*/
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoTransition.setKaleoNodeId(kaleoNodeId);
@@ -265,18 +265,18 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the source kaleo node id of this kaleo transition.
+	* Gets the source kaleo node ID of this kaleo transition.
 	*
-	* @return the source kaleo node id of this kaleo transition
+	* @return the source kaleo node ID of this kaleo transition
 	*/
 	public long getSourceKaleoNodeId() {
 		return _kaleoTransition.getSourceKaleoNodeId();
 	}
 
 	/**
-	* Sets the source kaleo node id of this kaleo transition.
+	* Sets the source kaleo node ID of this kaleo transition.
 	*
-	* @param sourceKaleoNodeId the source kaleo node id of this kaleo transition
+	* @param sourceKaleoNodeId the source kaleo node ID of this kaleo transition
 	*/
 	public void setSourceKaleoNodeId(long sourceKaleoNodeId) {
 		_kaleoTransition.setSourceKaleoNodeId(sourceKaleoNodeId);
@@ -301,18 +301,18 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 	}
 
 	/**
-	* Gets the target kaleo node id of this kaleo transition.
+	* Gets the target kaleo node ID of this kaleo transition.
 	*
-	* @return the target kaleo node id of this kaleo transition
+	* @return the target kaleo node ID of this kaleo transition
 	*/
 	public long getTargetKaleoNodeId() {
 		return _kaleoTransition.getTargetKaleoNodeId();
 	}
 
 	/**
-	* Sets the target kaleo node id of this kaleo transition.
+	* Sets the target kaleo node ID of this kaleo transition.
 	*
-	* @param targetKaleoNodeId the target kaleo node id of this kaleo transition
+	* @param targetKaleoNodeId the target kaleo node ID of this kaleo transition
 	*/
 	public void setTargetKaleoNodeId(long targetKaleoNodeId) {
 		_kaleoTransition.setTargetKaleoNodeId(targetKaleoNodeId);

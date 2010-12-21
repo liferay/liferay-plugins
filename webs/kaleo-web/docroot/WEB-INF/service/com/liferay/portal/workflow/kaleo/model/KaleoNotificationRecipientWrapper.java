@@ -49,18 +49,18 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the kaleo notification recipient id of this kaleo notification recipient.
+	* Gets the kaleo notification recipient ID of this kaleo notification recipient.
 	*
-	* @return the kaleo notification recipient id of this kaleo notification recipient
+	* @return the kaleo notification recipient ID of this kaleo notification recipient
 	*/
 	public long getKaleoNotificationRecipientId() {
 		return _kaleoNotificationRecipient.getKaleoNotificationRecipientId();
 	}
 
 	/**
-	* Sets the kaleo notification recipient id of this kaleo notification recipient.
+	* Sets the kaleo notification recipient ID of this kaleo notification recipient.
 	*
-	* @param kaleoNotificationRecipientId the kaleo notification recipient id of this kaleo notification recipient
+	* @param kaleoNotificationRecipientId the kaleo notification recipient ID of this kaleo notification recipient
 	*/
 	public void setKaleoNotificationRecipientId(
 		long kaleoNotificationRecipientId) {
@@ -68,54 +68,54 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the group id of this kaleo notification recipient.
+	* Gets the group ID of this kaleo notification recipient.
 	*
-	* @return the group id of this kaleo notification recipient
+	* @return the group ID of this kaleo notification recipient
 	*/
 	public long getGroupId() {
 		return _kaleoNotificationRecipient.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo notification recipient.
+	* Sets the group ID of this kaleo notification recipient.
 	*
-	* @param groupId the group id of this kaleo notification recipient
+	* @param groupId the group ID of this kaleo notification recipient
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoNotificationRecipient.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo notification recipient.
+	* Gets the company ID of this kaleo notification recipient.
 	*
-	* @return the company id of this kaleo notification recipient
+	* @return the company ID of this kaleo notification recipient
 	*/
 	public long getCompanyId() {
 		return _kaleoNotificationRecipient.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo notification recipient.
+	* Sets the company ID of this kaleo notification recipient.
 	*
-	* @param companyId the company id of this kaleo notification recipient
+	* @param companyId the company ID of this kaleo notification recipient
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoNotificationRecipient.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo notification recipient.
+	* Gets the user ID of this kaleo notification recipient.
 	*
-	* @return the user id of this kaleo notification recipient
+	* @return the user ID of this kaleo notification recipient
 	*/
 	public long getUserId() {
 		return _kaleoNotificationRecipient.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo notification recipient.
+	* Sets the user ID of this kaleo notification recipient.
 	*
-	* @param userId the user id of this kaleo notification recipient
+	* @param userId the user ID of this kaleo notification recipient
 	*/
 	public void setUserId(long userId) {
 		_kaleoNotificationRecipient.setUserId(userId);
@@ -196,36 +196,36 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo notification recipient.
+	* Gets the kaleo definition ID of this kaleo notification recipient.
 	*
-	* @return the kaleo definition id of this kaleo notification recipient
+	* @return the kaleo definition ID of this kaleo notification recipient
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoNotificationRecipient.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo notification recipient.
+	* Sets the kaleo definition ID of this kaleo notification recipient.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo notification recipient
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo notification recipient
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoNotificationRecipient.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo notification id of this kaleo notification recipient.
+	* Gets the kaleo notification ID of this kaleo notification recipient.
 	*
-	* @return the kaleo notification id of this kaleo notification recipient
+	* @return the kaleo notification ID of this kaleo notification recipient
 	*/
 	public long getKaleoNotificationId() {
 		return _kaleoNotificationRecipient.getKaleoNotificationId();
 	}
 
 	/**
-	* Sets the kaleo notification id of this kaleo notification recipient.
+	* Sets the kaleo notification ID of this kaleo notification recipient.
 	*
-	* @param kaleoNotificationId the kaleo notification id of this kaleo notification recipient
+	* @param kaleoNotificationId the kaleo notification ID of this kaleo notification recipient
 	*/
 	public void setKaleoNotificationId(long kaleoNotificationId) {
 		_kaleoNotificationRecipient.setKaleoNotificationId(kaleoNotificationId);

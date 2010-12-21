@@ -60,58 +60,58 @@ public interface KaleoConditionModel extends BaseModel<KaleoCondition> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo condition id of this kaleo condition.
+	 * Gets the kaleo condition ID of this kaleo condition.
 	 *
-	 * @return the kaleo condition id of this kaleo condition
+	 * @return the kaleo condition ID of this kaleo condition
 	 */
 	public long getKaleoConditionId();
 
 	/**
-	 * Sets the kaleo condition id of this kaleo condition.
+	 * Sets the kaleo condition ID of this kaleo condition.
 	 *
-	 * @param kaleoConditionId the kaleo condition id of this kaleo condition
+	 * @param kaleoConditionId the kaleo condition ID of this kaleo condition
 	 */
 	public void setKaleoConditionId(long kaleoConditionId);
 
 	/**
-	 * Gets the group id of this kaleo condition.
+	 * Gets the group ID of this kaleo condition.
 	 *
-	 * @return the group id of this kaleo condition
+	 * @return the group ID of this kaleo condition
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo condition.
+	 * Sets the group ID of this kaleo condition.
 	 *
-	 * @param groupId the group id of this kaleo condition
+	 * @param groupId the group ID of this kaleo condition
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo condition.
+	 * Gets the company ID of this kaleo condition.
 	 *
-	 * @return the company id of this kaleo condition
+	 * @return the company ID of this kaleo condition
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo condition.
+	 * Sets the company ID of this kaleo condition.
 	 *
-	 * @param companyId the company id of this kaleo condition
+	 * @param companyId the company ID of this kaleo condition
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo condition.
+	 * Gets the user ID of this kaleo condition.
 	 *
-	 * @return the user id of this kaleo condition
+	 * @return the user ID of this kaleo condition
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo condition.
+	 * Sets the user ID of this kaleo condition.
 	 *
-	 * @param userId the user id of this kaleo condition
+	 * @param userId the user ID of this kaleo condition
 	 */
 	public void setUserId(long userId);
 

@@ -47,72 +47,72 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	/**
-	* Gets the kaleo log id of this kaleo log.
+	* Gets the kaleo log ID of this kaleo log.
 	*
-	* @return the kaleo log id of this kaleo log
+	* @return the kaleo log ID of this kaleo log
 	*/
 	public long getKaleoLogId() {
 		return _kaleoLog.getKaleoLogId();
 	}
 
 	/**
-	* Sets the kaleo log id of this kaleo log.
+	* Sets the kaleo log ID of this kaleo log.
 	*
-	* @param kaleoLogId the kaleo log id of this kaleo log
+	* @param kaleoLogId the kaleo log ID of this kaleo log
 	*/
 	public void setKaleoLogId(long kaleoLogId) {
 		_kaleoLog.setKaleoLogId(kaleoLogId);
 	}
 
 	/**
-	* Gets the group id of this kaleo log.
+	* Gets the group ID of this kaleo log.
 	*
-	* @return the group id of this kaleo log
+	* @return the group ID of this kaleo log
 	*/
 	public long getGroupId() {
 		return _kaleoLog.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo log.
+	* Sets the group ID of this kaleo log.
 	*
-	* @param groupId the group id of this kaleo log
+	* @param groupId the group ID of this kaleo log
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoLog.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo log.
+	* Gets the company ID of this kaleo log.
 	*
-	* @return the company id of this kaleo log
+	* @return the company ID of this kaleo log
 	*/
 	public long getCompanyId() {
 		return _kaleoLog.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo log.
+	* Sets the company ID of this kaleo log.
 	*
-	* @param companyId the company id of this kaleo log
+	* @param companyId the company ID of this kaleo log
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoLog.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo log.
+	* Gets the user ID of this kaleo log.
 	*
-	* @return the user id of this kaleo log
+	* @return the user ID of this kaleo log
 	*/
 	public long getUserId() {
 		return _kaleoLog.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo log.
+	* Sets the user ID of this kaleo log.
 	*
-	* @param userId the user id of this kaleo log
+	* @param userId the user ID of this kaleo log
 	*/
 	public void setUserId(long userId) {
 		_kaleoLog.setUserId(userId);
@@ -193,90 +193,90 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo log.
+	* Gets the kaleo definition ID of this kaleo log.
 	*
-	* @return the kaleo definition id of this kaleo log
+	* @return the kaleo definition ID of this kaleo log
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoLog.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo log.
+	* Sets the kaleo definition ID of this kaleo log.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo log
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo log
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoLog.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo instance id of this kaleo log.
+	* Gets the kaleo instance ID of this kaleo log.
 	*
-	* @return the kaleo instance id of this kaleo log
+	* @return the kaleo instance ID of this kaleo log
 	*/
 	public long getKaleoInstanceId() {
 		return _kaleoLog.getKaleoInstanceId();
 	}
 
 	/**
-	* Sets the kaleo instance id of this kaleo log.
+	* Sets the kaleo instance ID of this kaleo log.
 	*
-	* @param kaleoInstanceId the kaleo instance id of this kaleo log
+	* @param kaleoInstanceId the kaleo instance ID of this kaleo log
 	*/
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoLog.setKaleoInstanceId(kaleoInstanceId);
 	}
 
 	/**
-	* Gets the kaleo instance token id of this kaleo log.
+	* Gets the kaleo instance token ID of this kaleo log.
 	*
-	* @return the kaleo instance token id of this kaleo log
+	* @return the kaleo instance token ID of this kaleo log
 	*/
 	public long getKaleoInstanceTokenId() {
 		return _kaleoLog.getKaleoInstanceTokenId();
 	}
 
 	/**
-	* Sets the kaleo instance token id of this kaleo log.
+	* Sets the kaleo instance token ID of this kaleo log.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token id of this kaleo log
+	* @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo log
 	*/
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
 		_kaleoLog.setKaleoInstanceTokenId(kaleoInstanceTokenId);
 	}
 
 	/**
-	* Gets the kaleo task instance token id of this kaleo log.
+	* Gets the kaleo task instance token ID of this kaleo log.
 	*
-	* @return the kaleo task instance token id of this kaleo log
+	* @return the kaleo task instance token ID of this kaleo log
 	*/
 	public long getKaleoTaskInstanceTokenId() {
 		return _kaleoLog.getKaleoTaskInstanceTokenId();
 	}
 
 	/**
-	* Sets the kaleo task instance token id of this kaleo log.
+	* Sets the kaleo task instance token ID of this kaleo log.
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token id of this kaleo log
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo log
 	*/
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoLog.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 	}
 
 	/**
-	* Gets the kaleo node id of this kaleo log.
+	* Gets the kaleo node ID of this kaleo log.
 	*
-	* @return the kaleo node id of this kaleo log
+	* @return the kaleo node ID of this kaleo log
 	*/
 	public long getKaleoNodeId() {
 		return _kaleoLog.getKaleoNodeId();
 	}
 
 	/**
-	* Sets the kaleo node id of this kaleo log.
+	* Sets the kaleo node ID of this kaleo log.
 	*
-	* @param kaleoNodeId the kaleo node id of this kaleo log
+	* @param kaleoNodeId the kaleo node ID of this kaleo log
 	*/
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoLog.setKaleoNodeId(kaleoNodeId);
@@ -328,18 +328,18 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	/**
-	* Gets the kaleo action id of this kaleo log.
+	* Gets the kaleo action ID of this kaleo log.
 	*
-	* @return the kaleo action id of this kaleo log
+	* @return the kaleo action ID of this kaleo log
 	*/
 	public long getKaleoActionId() {
 		return _kaleoLog.getKaleoActionId();
 	}
 
 	/**
-	* Sets the kaleo action id of this kaleo log.
+	* Sets the kaleo action ID of this kaleo log.
 	*
-	* @param kaleoActionId the kaleo action id of this kaleo log
+	* @param kaleoActionId the kaleo action ID of this kaleo log
 	*/
 	public void setKaleoActionId(long kaleoActionId) {
 		_kaleoLog.setKaleoActionId(kaleoActionId);
@@ -383,18 +383,18 @@ public class KaleoLogWrapper implements KaleoLog {
 	}
 
 	/**
-	* Gets the previous kaleo node id of this kaleo log.
+	* Gets the previous kaleo node ID of this kaleo log.
 	*
-	* @return the previous kaleo node id of this kaleo log
+	* @return the previous kaleo node ID of this kaleo log
 	*/
 	public long getPreviousKaleoNodeId() {
 		return _kaleoLog.getPreviousKaleoNodeId();
 	}
 
 	/**
-	* Sets the previous kaleo node id of this kaleo log.
+	* Sets the previous kaleo node ID of this kaleo log.
 	*
-	* @param previousKaleoNodeId the previous kaleo node id of this kaleo log
+	* @param previousKaleoNodeId the previous kaleo node ID of this kaleo log
 	*/
 	public void setPreviousKaleoNodeId(long previousKaleoNodeId) {
 		_kaleoLog.setPreviousKaleoNodeId(previousKaleoNodeId);

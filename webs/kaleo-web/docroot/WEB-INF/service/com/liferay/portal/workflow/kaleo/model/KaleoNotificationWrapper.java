@@ -47,72 +47,72 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	}
 
 	/**
-	* Gets the kaleo notification id of this kaleo notification.
+	* Gets the kaleo notification ID of this kaleo notification.
 	*
-	* @return the kaleo notification id of this kaleo notification
+	* @return the kaleo notification ID of this kaleo notification
 	*/
 	public long getKaleoNotificationId() {
 		return _kaleoNotification.getKaleoNotificationId();
 	}
 
 	/**
-	* Sets the kaleo notification id of this kaleo notification.
+	* Sets the kaleo notification ID of this kaleo notification.
 	*
-	* @param kaleoNotificationId the kaleo notification id of this kaleo notification
+	* @param kaleoNotificationId the kaleo notification ID of this kaleo notification
 	*/
 	public void setKaleoNotificationId(long kaleoNotificationId) {
 		_kaleoNotification.setKaleoNotificationId(kaleoNotificationId);
 	}
 
 	/**
-	* Gets the group id of this kaleo notification.
+	* Gets the group ID of this kaleo notification.
 	*
-	* @return the group id of this kaleo notification
+	* @return the group ID of this kaleo notification
 	*/
 	public long getGroupId() {
 		return _kaleoNotification.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo notification.
+	* Sets the group ID of this kaleo notification.
 	*
-	* @param groupId the group id of this kaleo notification
+	* @param groupId the group ID of this kaleo notification
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoNotification.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo notification.
+	* Gets the company ID of this kaleo notification.
 	*
-	* @return the company id of this kaleo notification
+	* @return the company ID of this kaleo notification
 	*/
 	public long getCompanyId() {
 		return _kaleoNotification.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo notification.
+	* Sets the company ID of this kaleo notification.
 	*
-	* @param companyId the company id of this kaleo notification
+	* @param companyId the company ID of this kaleo notification
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoNotification.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo notification.
+	* Gets the user ID of this kaleo notification.
 	*
-	* @return the user id of this kaleo notification
+	* @return the user ID of this kaleo notification
 	*/
 	public long getUserId() {
 		return _kaleoNotification.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo notification.
+	* Sets the user ID of this kaleo notification.
 	*
-	* @param userId the user id of this kaleo notification
+	* @param userId the user ID of this kaleo notification
 	*/
 	public void setUserId(long userId) {
 		_kaleoNotification.setUserId(userId);
@@ -193,36 +193,36 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo notification.
+	* Gets the kaleo definition ID of this kaleo notification.
 	*
-	* @return the kaleo definition id of this kaleo notification
+	* @return the kaleo definition ID of this kaleo notification
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoNotification.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo notification.
+	* Sets the kaleo definition ID of this kaleo notification.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo notification
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo notification
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoNotification.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo node id of this kaleo notification.
+	* Gets the kaleo node ID of this kaleo notification.
 	*
-	* @return the kaleo node id of this kaleo notification
+	* @return the kaleo node ID of this kaleo notification
 	*/
 	public long getKaleoNodeId() {
 		return _kaleoNotification.getKaleoNodeId();
 	}
 
 	/**
-	* Sets the kaleo node id of this kaleo notification.
+	* Sets the kaleo node ID of this kaleo notification.
 	*
-	* @param kaleoNodeId the kaleo node id of this kaleo notification
+	* @param kaleoNodeId the kaleo node ID of this kaleo notification
 	*/
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoNotification.setKaleoNodeId(kaleoNodeId);

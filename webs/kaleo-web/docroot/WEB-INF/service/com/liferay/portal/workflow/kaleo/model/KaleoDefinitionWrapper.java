@@ -47,72 +47,72 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo definition.
+	* Gets the kaleo definition ID of this kaleo definition.
 	*
-	* @return the kaleo definition id of this kaleo definition
+	* @return the kaleo definition ID of this kaleo definition
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoDefinition.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo definition.
+	* Sets the kaleo definition ID of this kaleo definition.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo definition
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo definition
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoDefinition.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the group id of this kaleo definition.
+	* Gets the group ID of this kaleo definition.
 	*
-	* @return the group id of this kaleo definition
+	* @return the group ID of this kaleo definition
 	*/
 	public long getGroupId() {
 		return _kaleoDefinition.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo definition.
+	* Sets the group ID of this kaleo definition.
 	*
-	* @param groupId the group id of this kaleo definition
+	* @param groupId the group ID of this kaleo definition
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoDefinition.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo definition.
+	* Gets the company ID of this kaleo definition.
 	*
-	* @return the company id of this kaleo definition
+	* @return the company ID of this kaleo definition
 	*/
 	public long getCompanyId() {
 		return _kaleoDefinition.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo definition.
+	* Sets the company ID of this kaleo definition.
 	*
-	* @param companyId the company id of this kaleo definition
+	* @param companyId the company ID of this kaleo definition
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoDefinition.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo definition.
+	* Gets the user ID of this kaleo definition.
 	*
-	* @return the user id of this kaleo definition
+	* @return the user ID of this kaleo definition
 	*/
 	public long getUserId() {
 		return _kaleoDefinition.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo definition.
+	* Sets the user ID of this kaleo definition.
 	*
-	* @param userId the user id of this kaleo definition
+	* @param userId the user ID of this kaleo definition
 	*/
 	public void setUserId(long userId) {
 		_kaleoDefinition.setUserId(userId);
@@ -364,18 +364,18 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	}
 
 	/**
-	* Gets the start kaleo node id of this kaleo definition.
+	* Gets the start kaleo node ID of this kaleo definition.
 	*
-	* @return the start kaleo node id of this kaleo definition
+	* @return the start kaleo node ID of this kaleo definition
 	*/
 	public long getStartKaleoNodeId() {
 		return _kaleoDefinition.getStartKaleoNodeId();
 	}
 
 	/**
-	* Sets the start kaleo node id of this kaleo definition.
+	* Sets the start kaleo node ID of this kaleo definition.
 	*
-	* @param startKaleoNodeId the start kaleo node id of this kaleo definition
+	* @param startKaleoNodeId the start kaleo node ID of this kaleo definition
 	*/
 	public void setStartKaleoNodeId(long startKaleoNodeId) {
 		_kaleoDefinition.setStartKaleoNodeId(startKaleoNodeId);

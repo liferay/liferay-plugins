@@ -48,72 +48,72 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo task instance token id of this kaleo task instance token.
+	* Gets the kaleo task instance token ID of this kaleo task instance token.
 	*
-	* @return the kaleo task instance token id of this kaleo task instance token
+	* @return the kaleo task instance token ID of this kaleo task instance token
 	*/
 	public long getKaleoTaskInstanceTokenId() {
 		return _kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId();
 	}
 
 	/**
-	* Sets the kaleo task instance token id of this kaleo task instance token.
+	* Sets the kaleo task instance token ID of this kaleo task instance token.
 	*
-	* @param kaleoTaskInstanceTokenId the kaleo task instance token id of this kaleo task instance token
+	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo task instance token
 	*/
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId) {
 		_kaleoTaskInstanceToken.setKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 	}
 
 	/**
-	* Gets the group id of this kaleo task instance token.
+	* Gets the group ID of this kaleo task instance token.
 	*
-	* @return the group id of this kaleo task instance token
+	* @return the group ID of this kaleo task instance token
 	*/
 	public long getGroupId() {
 		return _kaleoTaskInstanceToken.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo task instance token.
+	* Sets the group ID of this kaleo task instance token.
 	*
-	* @param groupId the group id of this kaleo task instance token
+	* @param groupId the group ID of this kaleo task instance token
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoTaskInstanceToken.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo task instance token.
+	* Gets the company ID of this kaleo task instance token.
 	*
-	* @return the company id of this kaleo task instance token
+	* @return the company ID of this kaleo task instance token
 	*/
 	public long getCompanyId() {
 		return _kaleoTaskInstanceToken.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo task instance token.
+	* Sets the company ID of this kaleo task instance token.
 	*
-	* @param companyId the company id of this kaleo task instance token
+	* @param companyId the company ID of this kaleo task instance token
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoTaskInstanceToken.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo task instance token.
+	* Gets the user ID of this kaleo task instance token.
 	*
-	* @return the user id of this kaleo task instance token
+	* @return the user ID of this kaleo task instance token
 	*/
 	public long getUserId() {
 		return _kaleoTaskInstanceToken.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo task instance token.
+	* Sets the user ID of this kaleo task instance token.
 	*
-	* @param userId the user id of this kaleo task instance token
+	* @param userId the user ID of this kaleo task instance token
 	*/
 	public void setUserId(long userId) {
 		_kaleoTaskInstanceToken.setUserId(userId);
@@ -194,72 +194,72 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo task instance token.
+	* Gets the kaleo definition ID of this kaleo task instance token.
 	*
-	* @return the kaleo definition id of this kaleo task instance token
+	* @return the kaleo definition ID of this kaleo task instance token
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoTaskInstanceToken.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo task instance token.
+	* Sets the kaleo definition ID of this kaleo task instance token.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo task instance token
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo task instance token
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoTaskInstanceToken.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo instance id of this kaleo task instance token.
+	* Gets the kaleo instance ID of this kaleo task instance token.
 	*
-	* @return the kaleo instance id of this kaleo task instance token
+	* @return the kaleo instance ID of this kaleo task instance token
 	*/
 	public long getKaleoInstanceId() {
 		return _kaleoTaskInstanceToken.getKaleoInstanceId();
 	}
 
 	/**
-	* Sets the kaleo instance id of this kaleo task instance token.
+	* Sets the kaleo instance ID of this kaleo task instance token.
 	*
-	* @param kaleoInstanceId the kaleo instance id of this kaleo task instance token
+	* @param kaleoInstanceId the kaleo instance ID of this kaleo task instance token
 	*/
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoTaskInstanceToken.setKaleoInstanceId(kaleoInstanceId);
 	}
 
 	/**
-	* Gets the kaleo instance token id of this kaleo task instance token.
+	* Gets the kaleo instance token ID of this kaleo task instance token.
 	*
-	* @return the kaleo instance token id of this kaleo task instance token
+	* @return the kaleo instance token ID of this kaleo task instance token
 	*/
 	public long getKaleoInstanceTokenId() {
 		return _kaleoTaskInstanceToken.getKaleoInstanceTokenId();
 	}
 
 	/**
-	* Sets the kaleo instance token id of this kaleo task instance token.
+	* Sets the kaleo instance token ID of this kaleo task instance token.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token id of this kaleo task instance token
+	* @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo task instance token
 	*/
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
 		_kaleoTaskInstanceToken.setKaleoInstanceTokenId(kaleoInstanceTokenId);
 	}
 
 	/**
-	* Gets the kaleo task id of this kaleo task instance token.
+	* Gets the kaleo task ID of this kaleo task instance token.
 	*
-	* @return the kaleo task id of this kaleo task instance token
+	* @return the kaleo task ID of this kaleo task instance token
 	*/
 	public long getKaleoTaskId() {
 		return _kaleoTaskInstanceToken.getKaleoTaskId();
 	}
 
 	/**
-	* Sets the kaleo task id of this kaleo task instance token.
+	* Sets the kaleo task ID of this kaleo task instance token.
 	*
-	* @param kaleoTaskId the kaleo task id of this kaleo task instance token
+	* @param kaleoTaskId the kaleo task ID of this kaleo task instance token
 	*/
 	public void setKaleoTaskId(long kaleoTaskId) {
 		_kaleoTaskInstanceToken.setKaleoTaskId(kaleoTaskId);
@@ -320,18 +320,18 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 	}
 
 	/**
-	* Gets the completion user id of this kaleo task instance token.
+	* Gets the completion user ID of this kaleo task instance token.
 	*
-	* @return the completion user id of this kaleo task instance token
+	* @return the completion user ID of this kaleo task instance token
 	*/
 	public long getCompletionUserId() {
 		return _kaleoTaskInstanceToken.getCompletionUserId();
 	}
 
 	/**
-	* Sets the completion user id of this kaleo task instance token.
+	* Sets the completion user ID of this kaleo task instance token.
 	*
-	* @param completionUserId the completion user id of this kaleo task instance token
+	* @param completionUserId the completion user ID of this kaleo task instance token
 	*/
 	public void setCompletionUserId(long completionUserId) {
 		_kaleoTaskInstanceToken.setCompletionUserId(completionUserId);

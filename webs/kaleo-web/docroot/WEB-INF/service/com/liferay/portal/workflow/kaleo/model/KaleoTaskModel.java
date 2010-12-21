@@ -60,58 +60,58 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo task id of this kaleo task.
+	 * Gets the kaleo task ID of this kaleo task.
 	 *
-	 * @return the kaleo task id of this kaleo task
+	 * @return the kaleo task ID of this kaleo task
 	 */
 	public long getKaleoTaskId();
 
 	/**
-	 * Sets the kaleo task id of this kaleo task.
+	 * Sets the kaleo task ID of this kaleo task.
 	 *
-	 * @param kaleoTaskId the kaleo task id of this kaleo task
+	 * @param kaleoTaskId the kaleo task ID of this kaleo task
 	 */
 	public void setKaleoTaskId(long kaleoTaskId);
 
 	/**
-	 * Gets the group id of this kaleo task.
+	 * Gets the group ID of this kaleo task.
 	 *
-	 * @return the group id of this kaleo task
+	 * @return the group ID of this kaleo task
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo task.
+	 * Sets the group ID of this kaleo task.
 	 *
-	 * @param groupId the group id of this kaleo task
+	 * @param groupId the group ID of this kaleo task
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo task.
+	 * Gets the company ID of this kaleo task.
 	 *
-	 * @return the company id of this kaleo task
+	 * @return the company ID of this kaleo task
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo task.
+	 * Sets the company ID of this kaleo task.
 	 *
-	 * @param companyId the company id of this kaleo task
+	 * @param companyId the company ID of this kaleo task
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo task.
+	 * Gets the user ID of this kaleo task.
 	 *
-	 * @return the user id of this kaleo task
+	 * @return the user ID of this kaleo task
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo task.
+	 * Sets the user ID of this kaleo task.
 	 *
-	 * @param userId the user id of this kaleo task
+	 * @param userId the user ID of this kaleo task
 	 */
 	public void setUserId(long userId);
 
@@ -174,30 +174,30 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo task.
+	 * Gets the kaleo definition ID of this kaleo task.
 	 *
-	 * @return the kaleo definition id of this kaleo task
+	 * @return the kaleo definition ID of this kaleo task
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo task.
+	 * Sets the kaleo definition ID of this kaleo task.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo task
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo task
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node id of this kaleo task.
+	 * Gets the kaleo node ID of this kaleo task.
 	 *
-	 * @return the kaleo node id of this kaleo task
+	 * @return the kaleo node ID of this kaleo task
 	 */
 	public long getKaleoNodeId();
 
 	/**
-	 * Sets the kaleo node id of this kaleo task.
+	 * Sets the kaleo node ID of this kaleo task.
 	 *
-	 * @param kaleoNodeId the kaleo node id of this kaleo task
+	 * @param kaleoNodeId the kaleo node ID of this kaleo task
 	 */
 	public void setKaleoNodeId(long kaleoNodeId);
 

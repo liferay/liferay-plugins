@@ -60,58 +60,58 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo instance id of this kaleo instance.
+	 * Gets the kaleo instance ID of this kaleo instance.
 	 *
-	 * @return the kaleo instance id of this kaleo instance
+	 * @return the kaleo instance ID of this kaleo instance
 	 */
 	public long getKaleoInstanceId();
 
 	/**
-	 * Sets the kaleo instance id of this kaleo instance.
+	 * Sets the kaleo instance ID of this kaleo instance.
 	 *
-	 * @param kaleoInstanceId the kaleo instance id of this kaleo instance
+	 * @param kaleoInstanceId the kaleo instance ID of this kaleo instance
 	 */
 	public void setKaleoInstanceId(long kaleoInstanceId);
 
 	/**
-	 * Gets the group id of this kaleo instance.
+	 * Gets the group ID of this kaleo instance.
 	 *
-	 * @return the group id of this kaleo instance
+	 * @return the group ID of this kaleo instance
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo instance.
+	 * Sets the group ID of this kaleo instance.
 	 *
-	 * @param groupId the group id of this kaleo instance
+	 * @param groupId the group ID of this kaleo instance
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo instance.
+	 * Gets the company ID of this kaleo instance.
 	 *
-	 * @return the company id of this kaleo instance
+	 * @return the company ID of this kaleo instance
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo instance.
+	 * Sets the company ID of this kaleo instance.
 	 *
-	 * @param companyId the company id of this kaleo instance
+	 * @param companyId the company ID of this kaleo instance
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo instance.
+	 * Gets the user ID of this kaleo instance.
 	 *
-	 * @return the user id of this kaleo instance
+	 * @return the user ID of this kaleo instance
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo instance.
+	 * Sets the user ID of this kaleo instance.
 	 *
-	 * @param userId the user id of this kaleo instance
+	 * @param userId the user ID of this kaleo instance
 	 */
 	public void setUserId(long userId);
 
@@ -174,16 +174,16 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo instance.
+	 * Gets the kaleo definition ID of this kaleo instance.
 	 *
-	 * @return the kaleo definition id of this kaleo instance
+	 * @return the kaleo definition ID of this kaleo instance
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo instance.
+	 * Sets the kaleo definition ID of this kaleo instance.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo instance
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo instance
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
@@ -217,16 +217,16 @@ public interface KaleoInstanceModel extends BaseModel<KaleoInstance> {
 	public void setKaleoDefinitionVersion(int kaleoDefinitionVersion);
 
 	/**
-	 * Gets the root kaleo instance token id of this kaleo instance.
+	 * Gets the root kaleo instance token ID of this kaleo instance.
 	 *
-	 * @return the root kaleo instance token id of this kaleo instance
+	 * @return the root kaleo instance token ID of this kaleo instance
 	 */
 	public long getRootKaleoInstanceTokenId();
 
 	/**
-	 * Sets the root kaleo instance token id of this kaleo instance.
+	 * Sets the root kaleo instance token ID of this kaleo instance.
 	 *
-	 * @param rootKaleoInstanceTokenId the root kaleo instance token id of this kaleo instance
+	 * @param rootKaleoInstanceTokenId the root kaleo instance token ID of this kaleo instance
 	 */
 	public void setRootKaleoInstanceTokenId(long rootKaleoInstanceTokenId);
 

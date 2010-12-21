@@ -60,59 +60,59 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo notification recipient id of this kaleo notification recipient.
+	 * Gets the kaleo notification recipient ID of this kaleo notification recipient.
 	 *
-	 * @return the kaleo notification recipient id of this kaleo notification recipient
+	 * @return the kaleo notification recipient ID of this kaleo notification recipient
 	 */
 	public long getKaleoNotificationRecipientId();
 
 	/**
-	 * Sets the kaleo notification recipient id of this kaleo notification recipient.
+	 * Sets the kaleo notification recipient ID of this kaleo notification recipient.
 	 *
-	 * @param kaleoNotificationRecipientId the kaleo notification recipient id of this kaleo notification recipient
+	 * @param kaleoNotificationRecipientId the kaleo notification recipient ID of this kaleo notification recipient
 	 */
 	public void setKaleoNotificationRecipientId(
 		long kaleoNotificationRecipientId);
 
 	/**
-	 * Gets the group id of this kaleo notification recipient.
+	 * Gets the group ID of this kaleo notification recipient.
 	 *
-	 * @return the group id of this kaleo notification recipient
+	 * @return the group ID of this kaleo notification recipient
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo notification recipient.
+	 * Sets the group ID of this kaleo notification recipient.
 	 *
-	 * @param groupId the group id of this kaleo notification recipient
+	 * @param groupId the group ID of this kaleo notification recipient
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo notification recipient.
+	 * Gets the company ID of this kaleo notification recipient.
 	 *
-	 * @return the company id of this kaleo notification recipient
+	 * @return the company ID of this kaleo notification recipient
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo notification recipient.
+	 * Sets the company ID of this kaleo notification recipient.
 	 *
-	 * @param companyId the company id of this kaleo notification recipient
+	 * @param companyId the company ID of this kaleo notification recipient
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo notification recipient.
+	 * Gets the user ID of this kaleo notification recipient.
 	 *
-	 * @return the user id of this kaleo notification recipient
+	 * @return the user ID of this kaleo notification recipient
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo notification recipient.
+	 * Sets the user ID of this kaleo notification recipient.
 	 *
-	 * @param userId the user id of this kaleo notification recipient
+	 * @param userId the user ID of this kaleo notification recipient
 	 */
 	public void setUserId(long userId);
 
@@ -175,30 +175,30 @@ public interface KaleoNotificationRecipientModel extends BaseModel<KaleoNotifica
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo notification recipient.
+	 * Gets the kaleo definition ID of this kaleo notification recipient.
 	 *
-	 * @return the kaleo definition id of this kaleo notification recipient
+	 * @return the kaleo definition ID of this kaleo notification recipient
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo notification recipient.
+	 * Sets the kaleo definition ID of this kaleo notification recipient.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo notification recipient
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo notification recipient
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo notification id of this kaleo notification recipient.
+	 * Gets the kaleo notification ID of this kaleo notification recipient.
 	 *
-	 * @return the kaleo notification id of this kaleo notification recipient
+	 * @return the kaleo notification ID of this kaleo notification recipient
 	 */
 	public long getKaleoNotificationId();
 
 	/**
-	 * Sets the kaleo notification id of this kaleo notification recipient.
+	 * Sets the kaleo notification ID of this kaleo notification recipient.
 	 *
-	 * @param kaleoNotificationId the kaleo notification id of this kaleo notification recipient
+	 * @param kaleoNotificationId the kaleo notification ID of this kaleo notification recipient
 	 */
 	public void setKaleoNotificationId(long kaleoNotificationId);
 

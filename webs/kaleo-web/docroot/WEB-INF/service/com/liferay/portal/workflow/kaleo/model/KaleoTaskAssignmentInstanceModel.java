@@ -60,59 +60,59 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo task assignment instance id of this kaleo task assignment instance.
+	 * Gets the kaleo task assignment instance ID of this kaleo task assignment instance.
 	 *
-	 * @return the kaleo task assignment instance id of this kaleo task assignment instance
+	 * @return the kaleo task assignment instance ID of this kaleo task assignment instance
 	 */
 	public long getKaleoTaskAssignmentInstanceId();
 
 	/**
-	 * Sets the kaleo task assignment instance id of this kaleo task assignment instance.
+	 * Sets the kaleo task assignment instance ID of this kaleo task assignment instance.
 	 *
-	 * @param kaleoTaskAssignmentInstanceId the kaleo task assignment instance id of this kaleo task assignment instance
+	 * @param kaleoTaskAssignmentInstanceId the kaleo task assignment instance ID of this kaleo task assignment instance
 	 */
 	public void setKaleoTaskAssignmentInstanceId(
 		long kaleoTaskAssignmentInstanceId);
 
 	/**
-	 * Gets the group id of this kaleo task assignment instance.
+	 * Gets the group ID of this kaleo task assignment instance.
 	 *
-	 * @return the group id of this kaleo task assignment instance
+	 * @return the group ID of this kaleo task assignment instance
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo task assignment instance.
+	 * Sets the group ID of this kaleo task assignment instance.
 	 *
-	 * @param groupId the group id of this kaleo task assignment instance
+	 * @param groupId the group ID of this kaleo task assignment instance
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo task assignment instance.
+	 * Gets the company ID of this kaleo task assignment instance.
 	 *
-	 * @return the company id of this kaleo task assignment instance
+	 * @return the company ID of this kaleo task assignment instance
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo task assignment instance.
+	 * Sets the company ID of this kaleo task assignment instance.
 	 *
-	 * @param companyId the company id of this kaleo task assignment instance
+	 * @param companyId the company ID of this kaleo task assignment instance
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo task assignment instance.
+	 * Gets the user ID of this kaleo task assignment instance.
 	 *
-	 * @return the user id of this kaleo task assignment instance
+	 * @return the user ID of this kaleo task assignment instance
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo task assignment instance.
+	 * Sets the user ID of this kaleo task assignment instance.
 	 *
-	 * @param userId the user id of this kaleo task assignment instance
+	 * @param userId the user ID of this kaleo task assignment instance
 	 */
 	public void setUserId(long userId);
 
@@ -175,72 +175,72 @@ public interface KaleoTaskAssignmentInstanceModel extends BaseModel<KaleoTaskAss
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo task assignment instance.
+	 * Gets the kaleo definition ID of this kaleo task assignment instance.
 	 *
-	 * @return the kaleo definition id of this kaleo task assignment instance
+	 * @return the kaleo definition ID of this kaleo task assignment instance
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo task assignment instance.
+	 * Sets the kaleo definition ID of this kaleo task assignment instance.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo task assignment instance
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo task assignment instance
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo instance id of this kaleo task assignment instance.
+	 * Gets the kaleo instance ID of this kaleo task assignment instance.
 	 *
-	 * @return the kaleo instance id of this kaleo task assignment instance
+	 * @return the kaleo instance ID of this kaleo task assignment instance
 	 */
 	public long getKaleoInstanceId();
 
 	/**
-	 * Sets the kaleo instance id of this kaleo task assignment instance.
+	 * Sets the kaleo instance ID of this kaleo task assignment instance.
 	 *
-	 * @param kaleoInstanceId the kaleo instance id of this kaleo task assignment instance
+	 * @param kaleoInstanceId the kaleo instance ID of this kaleo task assignment instance
 	 */
 	public void setKaleoInstanceId(long kaleoInstanceId);
 
 	/**
-	 * Gets the kaleo instance token id of this kaleo task assignment instance.
+	 * Gets the kaleo instance token ID of this kaleo task assignment instance.
 	 *
-	 * @return the kaleo instance token id of this kaleo task assignment instance
+	 * @return the kaleo instance token ID of this kaleo task assignment instance
 	 */
 	public long getKaleoInstanceTokenId();
 
 	/**
-	 * Sets the kaleo instance token id of this kaleo task assignment instance.
+	 * Sets the kaleo instance token ID of this kaleo task assignment instance.
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token id of this kaleo task assignment instance
+	 * @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo task assignment instance
 	 */
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task instance token id of this kaleo task assignment instance.
+	 * Gets the kaleo task instance token ID of this kaleo task assignment instance.
 	 *
-	 * @return the kaleo task instance token id of this kaleo task assignment instance
+	 * @return the kaleo task instance token ID of this kaleo task assignment instance
 	 */
 	public long getKaleoTaskInstanceTokenId();
 
 	/**
-	 * Sets the kaleo task instance token id of this kaleo task assignment instance.
+	 * Sets the kaleo task instance token ID of this kaleo task assignment instance.
 	 *
-	 * @param kaleoTaskInstanceTokenId the kaleo task instance token id of this kaleo task assignment instance
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo task assignment instance
 	 */
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task id of this kaleo task assignment instance.
+	 * Gets the kaleo task ID of this kaleo task assignment instance.
 	 *
-	 * @return the kaleo task id of this kaleo task assignment instance
+	 * @return the kaleo task ID of this kaleo task assignment instance
 	 */
 	public long getKaleoTaskId();
 
 	/**
-	 * Sets the kaleo task id of this kaleo task assignment instance.
+	 * Sets the kaleo task ID of this kaleo task assignment instance.
 	 *
-	 * @param kaleoTaskId the kaleo task id of this kaleo task assignment instance
+	 * @param kaleoTaskId the kaleo task ID of this kaleo task assignment instance
 	 */
 	public void setKaleoTaskId(long kaleoTaskId);
 

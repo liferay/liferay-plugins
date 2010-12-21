@@ -60,58 +60,58 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo task instance token id of this kaleo task instance token.
+	 * Gets the kaleo task instance token ID of this kaleo task instance token.
 	 *
-	 * @return the kaleo task instance token id of this kaleo task instance token
+	 * @return the kaleo task instance token ID of this kaleo task instance token
 	 */
 	public long getKaleoTaskInstanceTokenId();
 
 	/**
-	 * Sets the kaleo task instance token id of this kaleo task instance token.
+	 * Sets the kaleo task instance token ID of this kaleo task instance token.
 	 *
-	 * @param kaleoTaskInstanceTokenId the kaleo task instance token id of this kaleo task instance token
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo task instance token
 	 */
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
 
 	/**
-	 * Gets the group id of this kaleo task instance token.
+	 * Gets the group ID of this kaleo task instance token.
 	 *
-	 * @return the group id of this kaleo task instance token
+	 * @return the group ID of this kaleo task instance token
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo task instance token.
+	 * Sets the group ID of this kaleo task instance token.
 	 *
-	 * @param groupId the group id of this kaleo task instance token
+	 * @param groupId the group ID of this kaleo task instance token
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo task instance token.
+	 * Gets the company ID of this kaleo task instance token.
 	 *
-	 * @return the company id of this kaleo task instance token
+	 * @return the company ID of this kaleo task instance token
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo task instance token.
+	 * Sets the company ID of this kaleo task instance token.
 	 *
-	 * @param companyId the company id of this kaleo task instance token
+	 * @param companyId the company ID of this kaleo task instance token
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo task instance token.
+	 * Gets the user ID of this kaleo task instance token.
 	 *
-	 * @return the user id of this kaleo task instance token
+	 * @return the user ID of this kaleo task instance token
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo task instance token.
+	 * Sets the user ID of this kaleo task instance token.
 	 *
-	 * @param userId the user id of this kaleo task instance token
+	 * @param userId the user ID of this kaleo task instance token
 	 */
 	public void setUserId(long userId);
 
@@ -174,58 +174,58 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo task instance token.
+	 * Gets the kaleo definition ID of this kaleo task instance token.
 	 *
-	 * @return the kaleo definition id of this kaleo task instance token
+	 * @return the kaleo definition ID of this kaleo task instance token
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo task instance token.
+	 * Sets the kaleo definition ID of this kaleo task instance token.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo task instance token
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo task instance token
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo instance id of this kaleo task instance token.
+	 * Gets the kaleo instance ID of this kaleo task instance token.
 	 *
-	 * @return the kaleo instance id of this kaleo task instance token
+	 * @return the kaleo instance ID of this kaleo task instance token
 	 */
 	public long getKaleoInstanceId();
 
 	/**
-	 * Sets the kaleo instance id of this kaleo task instance token.
+	 * Sets the kaleo instance ID of this kaleo task instance token.
 	 *
-	 * @param kaleoInstanceId the kaleo instance id of this kaleo task instance token
+	 * @param kaleoInstanceId the kaleo instance ID of this kaleo task instance token
 	 */
 	public void setKaleoInstanceId(long kaleoInstanceId);
 
 	/**
-	 * Gets the kaleo instance token id of this kaleo task instance token.
+	 * Gets the kaleo instance token ID of this kaleo task instance token.
 	 *
-	 * @return the kaleo instance token id of this kaleo task instance token
+	 * @return the kaleo instance token ID of this kaleo task instance token
 	 */
 	public long getKaleoInstanceTokenId();
 
 	/**
-	 * Sets the kaleo instance token id of this kaleo task instance token.
+	 * Sets the kaleo instance token ID of this kaleo task instance token.
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token id of this kaleo task instance token
+	 * @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo task instance token
 	 */
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task id of this kaleo task instance token.
+	 * Gets the kaleo task ID of this kaleo task instance token.
 	 *
-	 * @return the kaleo task id of this kaleo task instance token
+	 * @return the kaleo task ID of this kaleo task instance token
 	 */
 	public long getKaleoTaskId();
 
 	/**
-	 * Sets the kaleo task id of this kaleo task instance token.
+	 * Sets the kaleo task ID of this kaleo task instance token.
 	 *
-	 * @param kaleoTaskId the kaleo task id of this kaleo task instance token
+	 * @param kaleoTaskId the kaleo task ID of this kaleo task instance token
 	 */
 	public void setKaleoTaskId(long kaleoTaskId);
 
@@ -274,16 +274,16 @@ public interface KaleoTaskInstanceTokenModel extends BaseModel<KaleoTaskInstance
 	public void setClassPK(long classPK);
 
 	/**
-	 * Gets the completion user id of this kaleo task instance token.
+	 * Gets the completion user ID of this kaleo task instance token.
 	 *
-	 * @return the completion user id of this kaleo task instance token
+	 * @return the completion user ID of this kaleo task instance token
 	 */
 	public long getCompletionUserId();
 
 	/**
-	 * Sets the completion user id of this kaleo task instance token.
+	 * Sets the completion user ID of this kaleo task instance token.
 	 *
-	 * @param completionUserId the completion user id of this kaleo task instance token
+	 * @param completionUserId the completion user ID of this kaleo task instance token
 	 */
 	public void setCompletionUserId(long completionUserId);
 

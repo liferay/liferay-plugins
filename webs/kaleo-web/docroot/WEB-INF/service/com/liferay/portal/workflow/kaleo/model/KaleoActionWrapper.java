@@ -47,72 +47,72 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the kaleo action id of this kaleo action.
+	* Gets the kaleo action ID of this kaleo action.
 	*
-	* @return the kaleo action id of this kaleo action
+	* @return the kaleo action ID of this kaleo action
 	*/
 	public long getKaleoActionId() {
 		return _kaleoAction.getKaleoActionId();
 	}
 
 	/**
-	* Sets the kaleo action id of this kaleo action.
+	* Sets the kaleo action ID of this kaleo action.
 	*
-	* @param kaleoActionId the kaleo action id of this kaleo action
+	* @param kaleoActionId the kaleo action ID of this kaleo action
 	*/
 	public void setKaleoActionId(long kaleoActionId) {
 		_kaleoAction.setKaleoActionId(kaleoActionId);
 	}
 
 	/**
-	* Gets the group id of this kaleo action.
+	* Gets the group ID of this kaleo action.
 	*
-	* @return the group id of this kaleo action
+	* @return the group ID of this kaleo action
 	*/
 	public long getGroupId() {
 		return _kaleoAction.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo action.
+	* Sets the group ID of this kaleo action.
 	*
-	* @param groupId the group id of this kaleo action
+	* @param groupId the group ID of this kaleo action
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoAction.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo action.
+	* Gets the company ID of this kaleo action.
 	*
-	* @return the company id of this kaleo action
+	* @return the company ID of this kaleo action
 	*/
 	public long getCompanyId() {
 		return _kaleoAction.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo action.
+	* Sets the company ID of this kaleo action.
 	*
-	* @param companyId the company id of this kaleo action
+	* @param companyId the company ID of this kaleo action
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoAction.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo action.
+	* Gets the user ID of this kaleo action.
 	*
-	* @return the user id of this kaleo action
+	* @return the user ID of this kaleo action
 	*/
 	public long getUserId() {
 		return _kaleoAction.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo action.
+	* Sets the user ID of this kaleo action.
 	*
-	* @param userId the user id of this kaleo action
+	* @param userId the user ID of this kaleo action
 	*/
 	public void setUserId(long userId) {
 		_kaleoAction.setUserId(userId);
@@ -193,36 +193,36 @@ public class KaleoActionWrapper implements KaleoAction {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo action.
+	* Gets the kaleo definition ID of this kaleo action.
 	*
-	* @return the kaleo definition id of this kaleo action
+	* @return the kaleo definition ID of this kaleo action
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoAction.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo action.
+	* Sets the kaleo definition ID of this kaleo action.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo action
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo action
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoAction.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo node id of this kaleo action.
+	* Gets the kaleo node ID of this kaleo action.
 	*
-	* @return the kaleo node id of this kaleo action
+	* @return the kaleo node ID of this kaleo action
 	*/
 	public long getKaleoNodeId() {
 		return _kaleoAction.getKaleoNodeId();
 	}
 
 	/**
-	* Sets the kaleo node id of this kaleo action.
+	* Sets the kaleo node ID of this kaleo action.
 	*
-	* @param kaleoNodeId the kaleo node id of this kaleo action
+	* @param kaleoNodeId the kaleo node ID of this kaleo action
 	*/
 	public void setKaleoNodeId(long kaleoNodeId) {
 		_kaleoAction.setKaleoNodeId(kaleoNodeId);

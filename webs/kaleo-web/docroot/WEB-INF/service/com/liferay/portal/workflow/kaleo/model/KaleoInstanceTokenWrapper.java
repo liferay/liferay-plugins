@@ -47,72 +47,72 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo instance token id of this kaleo instance token.
+	* Gets the kaleo instance token ID of this kaleo instance token.
 	*
-	* @return the kaleo instance token id of this kaleo instance token
+	* @return the kaleo instance token ID of this kaleo instance token
 	*/
 	public long getKaleoInstanceTokenId() {
 		return _kaleoInstanceToken.getKaleoInstanceTokenId();
 	}
 
 	/**
-	* Sets the kaleo instance token id of this kaleo instance token.
+	* Sets the kaleo instance token ID of this kaleo instance token.
 	*
-	* @param kaleoInstanceTokenId the kaleo instance token id of this kaleo instance token
+	* @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo instance token
 	*/
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId) {
 		_kaleoInstanceToken.setKaleoInstanceTokenId(kaleoInstanceTokenId);
 	}
 
 	/**
-	* Gets the group id of this kaleo instance token.
+	* Gets the group ID of this kaleo instance token.
 	*
-	* @return the group id of this kaleo instance token
+	* @return the group ID of this kaleo instance token
 	*/
 	public long getGroupId() {
 		return _kaleoInstanceToken.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this kaleo instance token.
+	* Sets the group ID of this kaleo instance token.
 	*
-	* @param groupId the group id of this kaleo instance token
+	* @param groupId the group ID of this kaleo instance token
 	*/
 	public void setGroupId(long groupId) {
 		_kaleoInstanceToken.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this kaleo instance token.
+	* Gets the company ID of this kaleo instance token.
 	*
-	* @return the company id of this kaleo instance token
+	* @return the company ID of this kaleo instance token
 	*/
 	public long getCompanyId() {
 		return _kaleoInstanceToken.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this kaleo instance token.
+	* Sets the company ID of this kaleo instance token.
 	*
-	* @param companyId the company id of this kaleo instance token
+	* @param companyId the company ID of this kaleo instance token
 	*/
 	public void setCompanyId(long companyId) {
 		_kaleoInstanceToken.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this kaleo instance token.
+	* Gets the user ID of this kaleo instance token.
 	*
-	* @return the user id of this kaleo instance token
+	* @return the user ID of this kaleo instance token
 	*/
 	public long getUserId() {
 		return _kaleoInstanceToken.getUserId();
 	}
 
 	/**
-	* Sets the user id of this kaleo instance token.
+	* Sets the user ID of this kaleo instance token.
 	*
-	* @param userId the user id of this kaleo instance token
+	* @param userId the user ID of this kaleo instance token
 	*/
 	public void setUserId(long userId) {
 		_kaleoInstanceToken.setUserId(userId);
@@ -193,72 +193,72 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 	}
 
 	/**
-	* Gets the kaleo definition id of this kaleo instance token.
+	* Gets the kaleo definition ID of this kaleo instance token.
 	*
-	* @return the kaleo definition id of this kaleo instance token
+	* @return the kaleo definition ID of this kaleo instance token
 	*/
 	public long getKaleoDefinitionId() {
 		return _kaleoInstanceToken.getKaleoDefinitionId();
 	}
 
 	/**
-	* Sets the kaleo definition id of this kaleo instance token.
+	* Sets the kaleo definition ID of this kaleo instance token.
 	*
-	* @param kaleoDefinitionId the kaleo definition id of this kaleo instance token
+	* @param kaleoDefinitionId the kaleo definition ID of this kaleo instance token
 	*/
 	public void setKaleoDefinitionId(long kaleoDefinitionId) {
 		_kaleoInstanceToken.setKaleoDefinitionId(kaleoDefinitionId);
 	}
 
 	/**
-	* Gets the kaleo instance id of this kaleo instance token.
+	* Gets the kaleo instance ID of this kaleo instance token.
 	*
-	* @return the kaleo instance id of this kaleo instance token
+	* @return the kaleo instance ID of this kaleo instance token
 	*/
 	public long getKaleoInstanceId() {
 		return _kaleoInstanceToken.getKaleoInstanceId();
 	}
 
 	/**
-	* Sets the kaleo instance id of this kaleo instance token.
+	* Sets the kaleo instance ID of this kaleo instance token.
 	*
-	* @param kaleoInstanceId the kaleo instance id of this kaleo instance token
+	* @param kaleoInstanceId the kaleo instance ID of this kaleo instance token
 	*/
 	public void setKaleoInstanceId(long kaleoInstanceId) {
 		_kaleoInstanceToken.setKaleoInstanceId(kaleoInstanceId);
 	}
 
 	/**
-	* Gets the parent kaleo instance token id of this kaleo instance token.
+	* Gets the parent kaleo instance token ID of this kaleo instance token.
 	*
-	* @return the parent kaleo instance token id of this kaleo instance token
+	* @return the parent kaleo instance token ID of this kaleo instance token
 	*/
 	public long getParentKaleoInstanceTokenId() {
 		return _kaleoInstanceToken.getParentKaleoInstanceTokenId();
 	}
 
 	/**
-	* Sets the parent kaleo instance token id of this kaleo instance token.
+	* Sets the parent kaleo instance token ID of this kaleo instance token.
 	*
-	* @param parentKaleoInstanceTokenId the parent kaleo instance token id of this kaleo instance token
+	* @param parentKaleoInstanceTokenId the parent kaleo instance token ID of this kaleo instance token
 	*/
 	public void setParentKaleoInstanceTokenId(long parentKaleoInstanceTokenId) {
 		_kaleoInstanceToken.setParentKaleoInstanceTokenId(parentKaleoInstanceTokenId);
 	}
 
 	/**
-	* Gets the current kaleo node id of this kaleo instance token.
+	* Gets the current kaleo node ID of this kaleo instance token.
 	*
-	* @return the current kaleo node id of this kaleo instance token
+	* @return the current kaleo node ID of this kaleo instance token
 	*/
 	public long getCurrentKaleoNodeId() {
 		return _kaleoInstanceToken.getCurrentKaleoNodeId();
 	}
 
 	/**
-	* Sets the current kaleo node id of this kaleo instance token.
+	* Sets the current kaleo node ID of this kaleo instance token.
 	*
-	* @param currentKaleoNodeId the current kaleo node id of this kaleo instance token
+	* @param currentKaleoNodeId the current kaleo node ID of this kaleo instance token
 	*/
 	public void setCurrentKaleoNodeId(long currentKaleoNodeId) {
 		_kaleoInstanceToken.setCurrentKaleoNodeId(currentKaleoNodeId);

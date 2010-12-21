@@ -60,58 +60,58 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo action id of this kaleo action.
+	 * Gets the kaleo action ID of this kaleo action.
 	 *
-	 * @return the kaleo action id of this kaleo action
+	 * @return the kaleo action ID of this kaleo action
 	 */
 	public long getKaleoActionId();
 
 	/**
-	 * Sets the kaleo action id of this kaleo action.
+	 * Sets the kaleo action ID of this kaleo action.
 	 *
-	 * @param kaleoActionId the kaleo action id of this kaleo action
+	 * @param kaleoActionId the kaleo action ID of this kaleo action
 	 */
 	public void setKaleoActionId(long kaleoActionId);
 
 	/**
-	 * Gets the group id of this kaleo action.
+	 * Gets the group ID of this kaleo action.
 	 *
-	 * @return the group id of this kaleo action
+	 * @return the group ID of this kaleo action
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo action.
+	 * Sets the group ID of this kaleo action.
 	 *
-	 * @param groupId the group id of this kaleo action
+	 * @param groupId the group ID of this kaleo action
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo action.
+	 * Gets the company ID of this kaleo action.
 	 *
-	 * @return the company id of this kaleo action
+	 * @return the company ID of this kaleo action
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo action.
+	 * Sets the company ID of this kaleo action.
 	 *
-	 * @param companyId the company id of this kaleo action
+	 * @param companyId the company ID of this kaleo action
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo action.
+	 * Gets the user ID of this kaleo action.
 	 *
-	 * @return the user id of this kaleo action
+	 * @return the user ID of this kaleo action
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo action.
+	 * Sets the user ID of this kaleo action.
 	 *
-	 * @param userId the user id of this kaleo action
+	 * @param userId the user ID of this kaleo action
 	 */
 	public void setUserId(long userId);
 
@@ -174,30 +174,30 @@ public interface KaleoActionModel extends BaseModel<KaleoAction> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo action.
+	 * Gets the kaleo definition ID of this kaleo action.
 	 *
-	 * @return the kaleo definition id of this kaleo action
+	 * @return the kaleo definition ID of this kaleo action
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo action.
+	 * Sets the kaleo definition ID of this kaleo action.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo action
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo action
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo node id of this kaleo action.
+	 * Gets the kaleo node ID of this kaleo action.
 	 *
-	 * @return the kaleo node id of this kaleo action
+	 * @return the kaleo node ID of this kaleo action
 	 */
 	public long getKaleoNodeId();
 
 	/**
-	 * Sets the kaleo node id of this kaleo action.
+	 * Sets the kaleo node ID of this kaleo action.
 	 *
-	 * @param kaleoNodeId the kaleo node id of this kaleo action
+	 * @param kaleoNodeId the kaleo node ID of this kaleo action
 	 */
 	public void setKaleoNodeId(long kaleoNodeId);
 

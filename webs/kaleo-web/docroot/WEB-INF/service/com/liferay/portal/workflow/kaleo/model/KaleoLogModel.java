@@ -60,58 +60,58 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the kaleo log id of this kaleo log.
+	 * Gets the kaleo log ID of this kaleo log.
 	 *
-	 * @return the kaleo log id of this kaleo log
+	 * @return the kaleo log ID of this kaleo log
 	 */
 	public long getKaleoLogId();
 
 	/**
-	 * Sets the kaleo log id of this kaleo log.
+	 * Sets the kaleo log ID of this kaleo log.
 	 *
-	 * @param kaleoLogId the kaleo log id of this kaleo log
+	 * @param kaleoLogId the kaleo log ID of this kaleo log
 	 */
 	public void setKaleoLogId(long kaleoLogId);
 
 	/**
-	 * Gets the group id of this kaleo log.
+	 * Gets the group ID of this kaleo log.
 	 *
-	 * @return the group id of this kaleo log
+	 * @return the group ID of this kaleo log
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this kaleo log.
+	 * Sets the group ID of this kaleo log.
 	 *
-	 * @param groupId the group id of this kaleo log
+	 * @param groupId the group ID of this kaleo log
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this kaleo log.
+	 * Gets the company ID of this kaleo log.
 	 *
-	 * @return the company id of this kaleo log
+	 * @return the company ID of this kaleo log
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this kaleo log.
+	 * Sets the company ID of this kaleo log.
 	 *
-	 * @param companyId the company id of this kaleo log
+	 * @param companyId the company ID of this kaleo log
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this kaleo log.
+	 * Gets the user ID of this kaleo log.
 	 *
-	 * @return the user id of this kaleo log
+	 * @return the user ID of this kaleo log
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this kaleo log.
+	 * Sets the user ID of this kaleo log.
 	 *
-	 * @param userId the user id of this kaleo log
+	 * @param userId the user ID of this kaleo log
 	 */
 	public void setUserId(long userId);
 
@@ -174,72 +174,72 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the kaleo definition id of this kaleo log.
+	 * Gets the kaleo definition ID of this kaleo log.
 	 *
-	 * @return the kaleo definition id of this kaleo log
+	 * @return the kaleo definition ID of this kaleo log
 	 */
 	public long getKaleoDefinitionId();
 
 	/**
-	 * Sets the kaleo definition id of this kaleo log.
+	 * Sets the kaleo definition ID of this kaleo log.
 	 *
-	 * @param kaleoDefinitionId the kaleo definition id of this kaleo log
+	 * @param kaleoDefinitionId the kaleo definition ID of this kaleo log
 	 */
 	public void setKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
-	 * Gets the kaleo instance id of this kaleo log.
+	 * Gets the kaleo instance ID of this kaleo log.
 	 *
-	 * @return the kaleo instance id of this kaleo log
+	 * @return the kaleo instance ID of this kaleo log
 	 */
 	public long getKaleoInstanceId();
 
 	/**
-	 * Sets the kaleo instance id of this kaleo log.
+	 * Sets the kaleo instance ID of this kaleo log.
 	 *
-	 * @param kaleoInstanceId the kaleo instance id of this kaleo log
+	 * @param kaleoInstanceId the kaleo instance ID of this kaleo log
 	 */
 	public void setKaleoInstanceId(long kaleoInstanceId);
 
 	/**
-	 * Gets the kaleo instance token id of this kaleo log.
+	 * Gets the kaleo instance token ID of this kaleo log.
 	 *
-	 * @return the kaleo instance token id of this kaleo log
+	 * @return the kaleo instance token ID of this kaleo log
 	 */
 	public long getKaleoInstanceTokenId();
 
 	/**
-	 * Sets the kaleo instance token id of this kaleo log.
+	 * Sets the kaleo instance token ID of this kaleo log.
 	 *
-	 * @param kaleoInstanceTokenId the kaleo instance token id of this kaleo log
+	 * @param kaleoInstanceTokenId the kaleo instance token ID of this kaleo log
 	 */
 	public void setKaleoInstanceTokenId(long kaleoInstanceTokenId);
 
 	/**
-	 * Gets the kaleo task instance token id of this kaleo log.
+	 * Gets the kaleo task instance token ID of this kaleo log.
 	 *
-	 * @return the kaleo task instance token id of this kaleo log
+	 * @return the kaleo task instance token ID of this kaleo log
 	 */
 	public long getKaleoTaskInstanceTokenId();
 
 	/**
-	 * Sets the kaleo task instance token id of this kaleo log.
+	 * Sets the kaleo task instance token ID of this kaleo log.
 	 *
-	 * @param kaleoTaskInstanceTokenId the kaleo task instance token id of this kaleo log
+	 * @param kaleoTaskInstanceTokenId the kaleo task instance token ID of this kaleo log
 	 */
 	public void setKaleoTaskInstanceTokenId(long kaleoTaskInstanceTokenId);
 
 	/**
-	 * Gets the kaleo node id of this kaleo log.
+	 * Gets the kaleo node ID of this kaleo log.
 	 *
-	 * @return the kaleo node id of this kaleo log
+	 * @return the kaleo node ID of this kaleo log
 	 */
 	public long getKaleoNodeId();
 
 	/**
-	 * Sets the kaleo node id of this kaleo log.
+	 * Sets the kaleo node ID of this kaleo log.
 	 *
-	 * @param kaleoNodeId the kaleo node id of this kaleo log
+	 * @param kaleoNodeId the kaleo node ID of this kaleo log
 	 */
 	public void setKaleoNodeId(long kaleoNodeId);
 
@@ -280,16 +280,16 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public void setTerminalKaleoNode(boolean terminalKaleoNode);
 
 	/**
-	 * Gets the kaleo action id of this kaleo log.
+	 * Gets the kaleo action ID of this kaleo log.
 	 *
-	 * @return the kaleo action id of this kaleo log
+	 * @return the kaleo action ID of this kaleo log
 	 */
 	public long getKaleoActionId();
 
 	/**
-	 * Sets the kaleo action id of this kaleo log.
+	 * Sets the kaleo action ID of this kaleo log.
 	 *
-	 * @param kaleoActionId the kaleo action id of this kaleo log
+	 * @param kaleoActionId the kaleo action ID of this kaleo log
 	 */
 	public void setKaleoActionId(long kaleoActionId);
 
@@ -324,16 +324,16 @@ public interface KaleoLogModel extends BaseModel<KaleoLog> {
 	public void setKaleoActionDescription(String kaleoActionDescription);
 
 	/**
-	 * Gets the previous kaleo node id of this kaleo log.
+	 * Gets the previous kaleo node ID of this kaleo log.
 	 *
-	 * @return the previous kaleo node id of this kaleo log
+	 * @return the previous kaleo node ID of this kaleo log
 	 */
 	public long getPreviousKaleoNodeId();
 
 	/**
-	 * Sets the previous kaleo node id of this kaleo log.
+	 * Sets the previous kaleo node ID of this kaleo log.
 	 *
-	 * @param previousKaleoNodeId the previous kaleo node id of this kaleo log
+	 * @param previousKaleoNodeId the previous kaleo node ID of this kaleo log
 	 */
 	public void setPreviousKaleoNodeId(long previousKaleoNodeId);
 
