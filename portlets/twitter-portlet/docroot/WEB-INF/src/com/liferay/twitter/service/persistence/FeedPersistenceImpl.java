@@ -461,8 +461,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Finds the feed where companyId = &#63; and twitterUserId = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
 	 *
-	 * @param companyId the company id to search with
-	 * @param twitterUserId the twitter user id to search with
+	 * @param companyId the company ID to search with
+	 * @param twitterUserId the twitter user ID to search with
 	 * @return the matching feed
 	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
@@ -497,8 +497,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Finds the feed where companyId = &#63; and twitterUserId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param companyId the company id to search with
-	 * @param twitterUserId the twitter user id to search with
+	 * @param companyId the company ID to search with
+	 * @param twitterUserId the twitter user ID to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -510,8 +510,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Finds the feed where companyId = &#63; and twitterUserId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param companyId the company id to search with
-	 * @param twitterUserId the twitter user id to search with
+	 * @param companyId the company ID to search with
+	 * @param twitterUserId the twitter user ID to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -599,7 +599,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Finds the feed where companyId = &#63; and twitterScreenName = &#63; or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the matching feed
 	 * @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
@@ -635,7 +635,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Finds the feed where companyId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
@@ -648,7 +648,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Finds the feed where companyId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the matching feed, or <code>null</code> if a matching feed could not be found
 	 * @throws SystemException if a system exception occurred
@@ -859,8 +859,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Removes the feed where companyId = &#63; and twitterUserId = &#63; from the database.
 	 *
-	 * @param companyId the company id to search with
-	 * @param twitterUserId the twitter user id to search with
+	 * @param companyId the company ID to search with
+	 * @param twitterUserId the twitter user ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByC_TWUI(long companyId, long twitterUserId)
@@ -873,7 +873,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Removes the feed where companyId = &#63; and twitterScreenName = &#63; from the database.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -898,8 +898,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Counts all the feeds where companyId = &#63; and twitterUserId = &#63;.
 	 *
-	 * @param companyId the company id to search with
-	 * @param twitterUserId the twitter user id to search with
+	 * @param companyId the company ID to search with
+	 * @param twitterUserId the twitter user ID to search with
 	 * @return the number of matching feeds
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -957,7 +957,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	/**
 	 * Counts all the feeds where companyId = &#63; and twitterScreenName = &#63;.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param twitterScreenName the twitter screen name to search with
 	 * @return the number of matching feeds
 	 * @throws SystemException if a system exception occurred

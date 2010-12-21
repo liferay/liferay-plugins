@@ -75,58 +75,58 @@ public interface CommentModel extends BaseModel<Comment> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the comment id of this comment.
+	 * Gets the comment ID of this comment.
 	 *
-	 * @return the comment id of this comment
+	 * @return the comment ID of this comment
 	 */
 	public long getCommentId();
 
 	/**
-	 * Sets the comment id of this comment.
+	 * Sets the comment ID of this comment.
 	 *
-	 * @param commentId the comment id of this comment
+	 * @param commentId the comment ID of this comment
 	 */
 	public void setCommentId(long commentId);
 
 	/**
-	 * Gets the group id of this comment.
+	 * Gets the group ID of this comment.
 	 *
-	 * @return the group id of this comment
+	 * @return the group ID of this comment
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this comment.
+	 * Sets the group ID of this comment.
 	 *
-	 * @param groupId the group id of this comment
+	 * @param groupId the group ID of this comment
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this comment.
+	 * Gets the company ID of this comment.
 	 *
-	 * @return the company id of this comment
+	 * @return the company ID of this comment
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this comment.
+	 * Sets the company ID of this comment.
 	 *
-	 * @param companyId the company id of this comment
+	 * @param companyId the company ID of this comment
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this comment.
+	 * Gets the user ID of this comment.
 	 *
-	 * @return the user id of this comment
+	 * @return the user ID of this comment
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this comment.
+	 * Sets the user ID of this comment.
 	 *
-	 * @param userId the user id of this comment
+	 * @param userId the user ID of this comment
 	 */
 	public void setUserId(long userId);
 
@@ -196,16 +196,16 @@ public interface CommentModel extends BaseModel<Comment> {
 	public String getClassName();
 
 	/**
-	 * Gets the class name id of this comment.
+	 * Gets the class name ID of this comment.
 	 *
-	 * @return the class name id of this comment
+	 * @return the class name ID of this comment
 	 */
 	public long getClassNameId();
 
 	/**
-	 * Sets the class name id of this comment.
+	 * Sets the class name ID of this comment.
 	 *
-	 * @param classNameId the class name id of this comment
+	 * @param classNameId the class name ID of this comment
 	 */
 	public void setClassNameId(long classNameId);
 

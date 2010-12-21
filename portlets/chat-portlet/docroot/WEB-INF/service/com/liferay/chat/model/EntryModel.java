@@ -58,16 +58,16 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the entry id of this entry.
+	 * Gets the entry ID of this entry.
 	 *
-	 * @return the entry id of this entry
+	 * @return the entry ID of this entry
 	 */
 	public long getEntryId();
 
 	/**
-	 * Sets the entry id of this entry.
+	 * Sets the entry ID of this entry.
 	 *
-	 * @param entryId the entry id of this entry
+	 * @param entryId the entry ID of this entry
 	 */
 	public void setEntryId(long entryId);
 
@@ -86,16 +86,16 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setCreateDate(long createDate);
 
 	/**
-	 * Gets the from user id of this entry.
+	 * Gets the from user ID of this entry.
 	 *
-	 * @return the from user id of this entry
+	 * @return the from user ID of this entry
 	 */
 	public long getFromUserId();
 
 	/**
-	 * Sets the from user id of this entry.
+	 * Sets the from user ID of this entry.
 	 *
-	 * @param fromUserId the from user id of this entry
+	 * @param fromUserId the from user ID of this entry
 	 */
 	public void setFromUserId(long fromUserId);
 
@@ -115,16 +115,16 @@ public interface EntryModel extends BaseModel<Entry> {
 	public void setFromUserUuid(String fromUserUuid);
 
 	/**
-	 * Gets the to user id of this entry.
+	 * Gets the to user ID of this entry.
 	 *
-	 * @return the to user id of this entry
+	 * @return the to user ID of this entry
 	 */
 	public long getToUserId();
 
 	/**
-	 * Sets the to user id of this entry.
+	 * Sets the to user ID of this entry.
 	 *
-	 * @param toUserId the to user id of this entry
+	 * @param toUserId the to user ID of this entry
 	 */
 	public void setToUserId(long toUserId);
 

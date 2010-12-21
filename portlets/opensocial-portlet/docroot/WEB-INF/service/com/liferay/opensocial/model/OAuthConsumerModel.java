@@ -59,30 +59,30 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the oauth consumer id of this o auth consumer.
+	 * Gets the oauth consumer ID of this o auth consumer.
 	 *
-	 * @return the oauth consumer id of this o auth consumer
+	 * @return the oauth consumer ID of this o auth consumer
 	 */
 	public long getOauthConsumerId();
 
 	/**
-	 * Sets the oauth consumer id of this o auth consumer.
+	 * Sets the oauth consumer ID of this o auth consumer.
 	 *
-	 * @param oauthConsumerId the oauth consumer id of this o auth consumer
+	 * @param oauthConsumerId the oauth consumer ID of this o auth consumer
 	 */
 	public void setOauthConsumerId(long oauthConsumerId);
 
 	/**
-	 * Gets the company id of this o auth consumer.
+	 * Gets the company ID of this o auth consumer.
 	 *
-	 * @return the company id of this o auth consumer
+	 * @return the company ID of this o auth consumer
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this o auth consumer.
+	 * Sets the company ID of this o auth consumer.
 	 *
-	 * @param companyId the company id of this o auth consumer
+	 * @param companyId the company ID of this o auth consumer
 	 */
 	public void setCompanyId(long companyId);
 
@@ -115,16 +115,16 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the gadget id of this o auth consumer.
+	 * Gets the gadget ID of this o auth consumer.
 	 *
-	 * @return the gadget id of this o auth consumer
+	 * @return the gadget ID of this o auth consumer
 	 */
 	public long getGadgetId();
 
 	/**
-	 * Sets the gadget id of this o auth consumer.
+	 * Sets the gadget ID of this o auth consumer.
 	 *
-	 * @param gadgetId the gadget id of this o auth consumer
+	 * @param gadgetId the gadget ID of this o auth consumer
 	 */
 	public void setGadgetId(long gadgetId);
 

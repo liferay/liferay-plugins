@@ -47,54 +47,54 @@ public class MessageWrapper implements Message {
 	}
 
 	/**
-	* Gets the message id of this message.
+	* Gets the message ID of this message.
 	*
-	* @return the message id of this message
+	* @return the message ID of this message
 	*/
 	public long getMessageId() {
 		return _message.getMessageId();
 	}
 
 	/**
-	* Sets the message id of this message.
+	* Sets the message ID of this message.
 	*
-	* @param messageId the message id of this message
+	* @param messageId the message ID of this message
 	*/
 	public void setMessageId(long messageId) {
 		_message.setMessageId(messageId);
 	}
 
 	/**
-	* Gets the company id of this message.
+	* Gets the company ID of this message.
 	*
-	* @return the company id of this message
+	* @return the company ID of this message
 	*/
 	public long getCompanyId() {
 		return _message.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this message.
+	* Sets the company ID of this message.
 	*
-	* @param companyId the company id of this message
+	* @param companyId the company ID of this message
 	*/
 	public void setCompanyId(long companyId) {
 		_message.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this message.
+	* Gets the user ID of this message.
 	*
-	* @return the user id of this message
+	* @return the user ID of this message
 	*/
 	public long getUserId() {
 		return _message.getUserId();
 	}
 
 	/**
-	* Sets the user id of this message.
+	* Sets the user ID of this message.
 	*
-	* @param userId the user id of this message
+	* @param userId the user ID of this message
 	*/
 	public void setUserId(long userId) {
 		_message.setUserId(userId);
@@ -175,36 +175,36 @@ public class MessageWrapper implements Message {
 	}
 
 	/**
-	* Gets the account id of this message.
+	* Gets the account ID of this message.
 	*
-	* @return the account id of this message
+	* @return the account ID of this message
 	*/
 	public long getAccountId() {
 		return _message.getAccountId();
 	}
 
 	/**
-	* Sets the account id of this message.
+	* Sets the account ID of this message.
 	*
-	* @param accountId the account id of this message
+	* @param accountId the account ID of this message
 	*/
 	public void setAccountId(long accountId) {
 		_message.setAccountId(accountId);
 	}
 
 	/**
-	* Gets the folder id of this message.
+	* Gets the folder ID of this message.
 	*
-	* @return the folder id of this message
+	* @return the folder ID of this message
 	*/
 	public long getFolderId() {
 		return _message.getFolderId();
 	}
 
 	/**
-	* Sets the folder id of this message.
+	* Sets the folder ID of this message.
 	*
-	* @param folderId the folder id of this message
+	* @param folderId the folder ID of this message
 	*/
 	public void setFolderId(long folderId) {
 		_message.setFolderId(folderId);
@@ -391,18 +391,18 @@ public class MessageWrapper implements Message {
 	}
 
 	/**
-	* Gets the remote message id of this message.
+	* Gets the remote message ID of this message.
 	*
-	* @return the remote message id of this message
+	* @return the remote message ID of this message
 	*/
 	public long getRemoteMessageId() {
 		return _message.getRemoteMessageId();
 	}
 
 	/**
-	* Sets the remote message id of this message.
+	* Sets the remote message ID of this message.
 	*
-	* @param remoteMessageId the remote message id of this message
+	* @param remoteMessageId the remote message ID of this message
 	*/
 	public void setRemoteMessageId(long remoteMessageId) {
 		_message.setRemoteMessageId(remoteMessageId);

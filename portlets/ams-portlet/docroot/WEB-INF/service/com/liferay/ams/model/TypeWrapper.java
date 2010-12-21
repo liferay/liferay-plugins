@@ -47,36 +47,36 @@ public class TypeWrapper implements Type {
 	}
 
 	/**
-	* Gets the type id of this type.
+	* Gets the type ID of this type.
 	*
-	* @return the type id of this type
+	* @return the type ID of this type
 	*/
 	public long getTypeId() {
 		return _type.getTypeId();
 	}
 
 	/**
-	* Sets the type id of this type.
+	* Sets the type ID of this type.
 	*
-	* @param typeId the type id of this type
+	* @param typeId the type ID of this type
 	*/
 	public void setTypeId(long typeId) {
 		_type.setTypeId(typeId);
 	}
 
 	/**
-	* Gets the group id of this type.
+	* Gets the group ID of this type.
 	*
-	* @return the group id of this type
+	* @return the group ID of this type
 	*/
 	public long getGroupId() {
 		return _type.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this type.
+	* Sets the group ID of this type.
 	*
-	* @param groupId the group id of this type
+	* @param groupId the group ID of this type
 	*/
 	public void setGroupId(long groupId) {
 		_type.setGroupId(groupId);

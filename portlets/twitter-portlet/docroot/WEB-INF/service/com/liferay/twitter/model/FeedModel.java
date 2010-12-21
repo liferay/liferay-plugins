@@ -60,44 +60,44 @@ public interface FeedModel extends BaseModel<Feed> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the feed id of this feed.
+	 * Gets the feed ID of this feed.
 	 *
-	 * @return the feed id of this feed
+	 * @return the feed ID of this feed
 	 */
 	public long getFeedId();
 
 	/**
-	 * Sets the feed id of this feed.
+	 * Sets the feed ID of this feed.
 	 *
-	 * @param feedId the feed id of this feed
+	 * @param feedId the feed ID of this feed
 	 */
 	public void setFeedId(long feedId);
 
 	/**
-	 * Gets the company id of this feed.
+	 * Gets the company ID of this feed.
 	 *
-	 * @return the company id of this feed
+	 * @return the company ID of this feed
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this feed.
+	 * Sets the company ID of this feed.
 	 *
-	 * @param companyId the company id of this feed
+	 * @param companyId the company ID of this feed
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this feed.
+	 * Gets the user ID of this feed.
 	 *
-	 * @return the user id of this feed
+	 * @return the user ID of this feed
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this feed.
+	 * Sets the user ID of this feed.
 	 *
-	 * @param userId the user id of this feed
+	 * @param userId the user ID of this feed
 	 */
 	public void setUserId(long userId);
 
@@ -160,16 +160,16 @@ public interface FeedModel extends BaseModel<Feed> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the twitter user id of this feed.
+	 * Gets the twitter user ID of this feed.
 	 *
-	 * @return the twitter user id of this feed
+	 * @return the twitter user ID of this feed
 	 */
 	public long getTwitterUserId();
 
 	/**
-	 * Sets the twitter user id of this feed.
+	 * Sets the twitter user ID of this feed.
 	 *
-	 * @param twitterUserId the twitter user id of this feed
+	 * @param twitterUserId the twitter user ID of this feed
 	 */
 	public void setTwitterUserId(long twitterUserId);
 
@@ -204,16 +204,16 @@ public interface FeedModel extends BaseModel<Feed> {
 	public void setTwitterScreenName(String twitterScreenName);
 
 	/**
-	 * Gets the last status id of this feed.
+	 * Gets the last status ID of this feed.
 	 *
-	 * @return the last status id of this feed
+	 * @return the last status ID of this feed
 	 */
 	public long getLastStatusId();
 
 	/**
-	 * Sets the last status id of this feed.
+	 * Sets the last status ID of this feed.
 	 *
-	 * @param lastStatusId the last status id of this feed
+	 * @param lastStatusId the last status ID of this feed
 	 */
 	public void setLastStatusId(long lastStatusId);
 

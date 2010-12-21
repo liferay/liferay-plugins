@@ -47,18 +47,18 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the jira issue id of this j i r a issue.
+	* Gets the jira issue ID of this j i r a issue.
 	*
-	* @return the jira issue id of this j i r a issue
+	* @return the jira issue ID of this j i r a issue
 	*/
 	public long getJiraIssueId() {
 		return _jiraIssue.getJiraIssueId();
 	}
 
 	/**
-	* Sets the jira issue id of this j i r a issue.
+	* Sets the jira issue ID of this j i r a issue.
 	*
-	* @param jiraIssueId the jira issue id of this j i r a issue
+	* @param jiraIssueId the jira issue ID of this j i r a issue
 	*/
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraIssue.setJiraIssueId(jiraIssueId);
@@ -101,18 +101,18 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the project id of this j i r a issue.
+	* Gets the project ID of this j i r a issue.
 	*
-	* @return the project id of this j i r a issue
+	* @return the project ID of this j i r a issue
 	*/
 	public long getProjectId() {
 		return _jiraIssue.getProjectId();
 	}
 
 	/**
-	* Sets the project id of this j i r a issue.
+	* Sets the project ID of this j i r a issue.
 	*
-	* @param projectId the project id of this j i r a issue
+	* @param projectId the project ID of this j i r a issue
 	*/
 	public void setProjectId(long projectId) {
 		_jiraIssue.setProjectId(projectId);
@@ -173,36 +173,36 @@ public class JIRAIssueWrapper implements JIRAIssue {
 	}
 
 	/**
-	* Gets the reporter jira user id of this j i r a issue.
+	* Gets the reporter jira user ID of this j i r a issue.
 	*
-	* @return the reporter jira user id of this j i r a issue
+	* @return the reporter jira user ID of this j i r a issue
 	*/
 	public java.lang.String getReporterJiraUserId() {
 		return _jiraIssue.getReporterJiraUserId();
 	}
 
 	/**
-	* Sets the reporter jira user id of this j i r a issue.
+	* Sets the reporter jira user ID of this j i r a issue.
 	*
-	* @param reporterJiraUserId the reporter jira user id of this j i r a issue
+	* @param reporterJiraUserId the reporter jira user ID of this j i r a issue
 	*/
 	public void setReporterJiraUserId(java.lang.String reporterJiraUserId) {
 		_jiraIssue.setReporterJiraUserId(reporterJiraUserId);
 	}
 
 	/**
-	* Gets the assignee jira user id of this j i r a issue.
+	* Gets the assignee jira user ID of this j i r a issue.
 	*
-	* @return the assignee jira user id of this j i r a issue
+	* @return the assignee jira user ID of this j i r a issue
 	*/
 	public java.lang.String getAssigneeJiraUserId() {
 		return _jiraIssue.getAssigneeJiraUserId();
 	}
 
 	/**
-	* Sets the assignee jira user id of this j i r a issue.
+	* Sets the assignee jira user ID of this j i r a issue.
 	*
-	* @param assigneeJiraUserId the assignee jira user id of this j i r a issue
+	* @param assigneeJiraUserId the assignee jira user ID of this j i r a issue
 	*/
 	public void setAssigneeJiraUserId(java.lang.String assigneeJiraUserId) {
 		_jiraIssue.setAssigneeJiraUserId(assigneeJiraUserId);

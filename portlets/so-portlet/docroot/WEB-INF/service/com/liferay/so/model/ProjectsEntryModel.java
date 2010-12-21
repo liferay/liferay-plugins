@@ -60,44 +60,44 @@ public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the projects entry id of this projects entry.
+	 * Gets the projects entry ID of this projects entry.
 	 *
-	 * @return the projects entry id of this projects entry
+	 * @return the projects entry ID of this projects entry
 	 */
 	public long getProjectsEntryId();
 
 	/**
-	 * Sets the projects entry id of this projects entry.
+	 * Sets the projects entry ID of this projects entry.
 	 *
-	 * @param projectsEntryId the projects entry id of this projects entry
+	 * @param projectsEntryId the projects entry ID of this projects entry
 	 */
 	public void setProjectsEntryId(long projectsEntryId);
 
 	/**
-	 * Gets the company id of this projects entry.
+	 * Gets the company ID of this projects entry.
 	 *
-	 * @return the company id of this projects entry
+	 * @return the company ID of this projects entry
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this projects entry.
+	 * Sets the company ID of this projects entry.
 	 *
-	 * @param companyId the company id of this projects entry
+	 * @param companyId the company ID of this projects entry
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this projects entry.
+	 * Gets the user ID of this projects entry.
 	 *
-	 * @return the user id of this projects entry
+	 * @return the user ID of this projects entry
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this projects entry.
+	 * Sets the user ID of this projects entry.
 	 *
-	 * @param userId the user id of this projects entry
+	 * @param userId the user ID of this projects entry
 	 */
 	public void setUserId(long userId);
 

@@ -47,72 +47,72 @@ public class DefinitionWrapper implements Definition {
 	}
 
 	/**
-	* Gets the definition id of this definition.
+	* Gets the definition ID of this definition.
 	*
-	* @return the definition id of this definition
+	* @return the definition ID of this definition
 	*/
 	public long getDefinitionId() {
 		return _definition.getDefinitionId();
 	}
 
 	/**
-	* Sets the definition id of this definition.
+	* Sets the definition ID of this definition.
 	*
-	* @param definitionId the definition id of this definition
+	* @param definitionId the definition ID of this definition
 	*/
 	public void setDefinitionId(long definitionId) {
 		_definition.setDefinitionId(definitionId);
 	}
 
 	/**
-	* Gets the group id of this definition.
+	* Gets the group ID of this definition.
 	*
-	* @return the group id of this definition
+	* @return the group ID of this definition
 	*/
 	public long getGroupId() {
 		return _definition.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this definition.
+	* Sets the group ID of this definition.
 	*
-	* @param groupId the group id of this definition
+	* @param groupId the group ID of this definition
 	*/
 	public void setGroupId(long groupId) {
 		_definition.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this definition.
+	* Gets the company ID of this definition.
 	*
-	* @return the company id of this definition
+	* @return the company ID of this definition
 	*/
 	public long getCompanyId() {
 		return _definition.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this definition.
+	* Sets the company ID of this definition.
 	*
-	* @param companyId the company id of this definition
+	* @param companyId the company ID of this definition
 	*/
 	public void setCompanyId(long companyId) {
 		_definition.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this definition.
+	* Gets the user ID of this definition.
 	*
-	* @return the user id of this definition
+	* @return the user ID of this definition
 	*/
 	public long getUserId() {
 		return _definition.getUserId();
 	}
 
 	/**
-	* Sets the user id of this definition.
+	* Sets the user ID of this definition.
 	*
-	* @param userId the user id of this definition
+	* @param userId the user ID of this definition
 	*/
 	public void setUserId(long userId) {
 		_definition.setUserId(userId);
@@ -193,18 +193,18 @@ public class DefinitionWrapper implements Definition {
 	}
 
 	/**
-	* Gets the type id of this definition.
+	* Gets the type ID of this definition.
 	*
-	* @return the type id of this definition
+	* @return the type ID of this definition
 	*/
 	public long getTypeId() {
 		return _definition.getTypeId();
 	}
 
 	/**
-	* Sets the type id of this definition.
+	* Sets the type ID of this definition.
 	*
-	* @param typeId the type id of this definition
+	* @param typeId the type ID of this definition
 	*/
 	public void setTypeId(long typeId) {
 		_definition.setTypeId(typeId);

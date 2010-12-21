@@ -59,31 +59,31 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the svn revision id of this s v n revision.
+	 * Gets the svn revision ID of this s v n revision.
 	 *
-	 * @return the svn revision id of this s v n revision
+	 * @return the svn revision ID of this s v n revision
 	 */
 	public long getSvnRevisionId();
 
 	/**
-	 * Sets the svn revision id of this s v n revision.
+	 * Sets the svn revision ID of this s v n revision.
 	 *
-	 * @param svnRevisionId the svn revision id of this s v n revision
+	 * @param svnRevisionId the svn revision ID of this s v n revision
 	 */
 	public void setSvnRevisionId(long svnRevisionId);
 
 	/**
-	 * Gets the svn user id of this s v n revision.
+	 * Gets the svn user ID of this s v n revision.
 	 *
-	 * @return the svn user id of this s v n revision
+	 * @return the svn user ID of this s v n revision
 	 */
 	@AutoEscape
 	public String getSvnUserId();
 
 	/**
-	 * Sets the svn user id of this s v n revision.
+	 * Sets the svn user ID of this s v n revision.
 	 *
-	 * @param svnUserId the svn user id of this s v n revision
+	 * @param svnUserId the svn user ID of this s v n revision
 	 */
 	public void setSvnUserId(String svnUserId);
 
@@ -102,16 +102,16 @@ public interface SVNRevisionModel extends BaseModel<SVNRevision> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the svn repository id of this s v n revision.
+	 * Gets the svn repository ID of this s v n revision.
 	 *
-	 * @return the svn repository id of this s v n revision
+	 * @return the svn repository ID of this s v n revision
 	 */
 	public long getSvnRepositoryId();
 
 	/**
-	 * Sets the svn repository id of this s v n revision.
+	 * Sets the svn repository ID of this s v n revision.
 	 *
-	 * @param svnRepositoryId the svn repository id of this s v n revision
+	 * @param svnRepositoryId the svn repository ID of this s v n revision
 	 */
 	public void setSvnRepositoryId(long svnRepositoryId);
 

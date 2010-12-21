@@ -65,18 +65,18 @@ public class ArticleWrapper implements Article {
 	}
 
 	/**
-	* Gets the article id of this article.
+	* Gets the article ID of this article.
 	*
-	* @return the article id of this article
+	* @return the article ID of this article
 	*/
 	public long getArticleId() {
 		return _article.getArticleId();
 	}
 
 	/**
-	* Sets the article id of this article.
+	* Sets the article ID of this article.
 	*
-	* @param articleId the article id of this article
+	* @param articleId the article ID of this article
 	*/
 	public void setArticleId(long articleId) {
 		_article.setArticleId(articleId);
@@ -101,54 +101,54 @@ public class ArticleWrapper implements Article {
 	}
 
 	/**
-	* Gets the group id of this article.
+	* Gets the group ID of this article.
 	*
-	* @return the group id of this article
+	* @return the group ID of this article
 	*/
 	public long getGroupId() {
 		return _article.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this article.
+	* Sets the group ID of this article.
 	*
-	* @param groupId the group id of this article
+	* @param groupId the group ID of this article
 	*/
 	public void setGroupId(long groupId) {
 		_article.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this article.
+	* Gets the company ID of this article.
 	*
-	* @return the company id of this article
+	* @return the company ID of this article
 	*/
 	public long getCompanyId() {
 		return _article.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this article.
+	* Sets the company ID of this article.
 	*
-	* @param companyId the company id of this article
+	* @param companyId the company ID of this article
 	*/
 	public void setCompanyId(long companyId) {
 		_article.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this article.
+	* Gets the user ID of this article.
 	*
-	* @return the user id of this article
+	* @return the user ID of this article
 	*/
 	public long getUserId() {
 		return _article.getUserId();
 	}
 
 	/**
-	* Sets the user id of this article.
+	* Sets the user ID of this article.
 	*
-	* @param userId the user id of this article
+	* @param userId the user ID of this article
 	*/
 	public void setUserId(long userId) {
 		_article.setUserId(userId);
@@ -355,18 +355,18 @@ public class ArticleWrapper implements Article {
 	}
 
 	/**
-	* Gets the status by user id of this article.
+	* Gets the status by user ID of this article.
 	*
-	* @return the status by user id of this article
+	* @return the status by user ID of this article
 	*/
 	public long getStatusByUserId() {
 		return _article.getStatusByUserId();
 	}
 
 	/**
-	* Sets the status by user id of this article.
+	* Sets the status by user ID of this article.
 	*
-	* @param statusByUserId the status by user id of this article
+	* @param statusByUserId the status by user ID of this article
 	*/
 	public void setStatusByUserId(long statusByUserId) {
 		_article.setStatusByUserId(statusByUserId);

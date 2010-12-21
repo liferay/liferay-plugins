@@ -60,44 +60,44 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the oauth token id of this o auth token.
+	 * Gets the oauth token ID of this o auth token.
 	 *
-	 * @return the oauth token id of this o auth token
+	 * @return the oauth token ID of this o auth token
 	 */
 	public long getOauthTokenId();
 
 	/**
-	 * Sets the oauth token id of this o auth token.
+	 * Sets the oauth token ID of this o auth token.
 	 *
-	 * @param oauthTokenId the oauth token id of this o auth token
+	 * @param oauthTokenId the oauth token ID of this o auth token
 	 */
 	public void setOauthTokenId(long oauthTokenId);
 
 	/**
-	 * Gets the company id of this o auth token.
+	 * Gets the company ID of this o auth token.
 	 *
-	 * @return the company id of this o auth token
+	 * @return the company ID of this o auth token
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this o auth token.
+	 * Sets the company ID of this o auth token.
 	 *
-	 * @param companyId the company id of this o auth token
+	 * @param companyId the company ID of this o auth token
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this o auth token.
+	 * Gets the user ID of this o auth token.
 	 *
-	 * @return the user id of this o auth token
+	 * @return the user ID of this o auth token
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this o auth token.
+	 * Sets the user ID of this o auth token.
 	 *
-	 * @param userId the user id of this o auth token
+	 * @param userId the user ID of this o auth token
 	 */
 	public void setUserId(long userId);
 
@@ -160,16 +160,16 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the gadget id of this o auth token.
+	 * Gets the gadget ID of this o auth token.
 	 *
-	 * @return the gadget id of this o auth token
+	 * @return the gadget ID of this o auth token
 	 */
 	public long getGadgetId();
 
 	/**
-	 * Sets the gadget id of this o auth token.
+	 * Sets the gadget ID of this o auth token.
 	 *
-	 * @param gadgetId the gadget id of this o auth token
+	 * @param gadgetId the gadget ID of this o auth token
 	 */
 	public void setGadgetId(long gadgetId);
 
@@ -189,16 +189,16 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setServiceName(String serviceName);
 
 	/**
-	 * Gets the module id of this o auth token.
+	 * Gets the module ID of this o auth token.
 	 *
-	 * @return the module id of this o auth token
+	 * @return the module ID of this o auth token
 	 */
 	public long getModuleId();
 
 	/**
-	 * Sets the module id of this o auth token.
+	 * Sets the module ID of this o auth token.
 	 *
-	 * @param moduleId the module id of this o auth token
+	 * @param moduleId the module ID of this o auth token
 	 */
 	public void setModuleId(long moduleId);
 

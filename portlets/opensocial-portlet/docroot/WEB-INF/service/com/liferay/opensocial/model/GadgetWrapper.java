@@ -65,36 +65,36 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the gadget id of this gadget.
+	* Gets the gadget ID of this gadget.
 	*
-	* @return the gadget id of this gadget
+	* @return the gadget ID of this gadget
 	*/
 	public long getGadgetId() {
 		return _gadget.getGadgetId();
 	}
 
 	/**
-	* Sets the gadget id of this gadget.
+	* Sets the gadget ID of this gadget.
 	*
-	* @param gadgetId the gadget id of this gadget
+	* @param gadgetId the gadget ID of this gadget
 	*/
 	public void setGadgetId(long gadgetId) {
 		_gadget.setGadgetId(gadgetId);
 	}
 
 	/**
-	* Gets the company id of this gadget.
+	* Gets the company ID of this gadget.
 	*
-	* @return the company id of this gadget
+	* @return the company ID of this gadget
 	*/
 	public long getCompanyId() {
 		return _gadget.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this gadget.
+	* Sets the company ID of this gadget.
 	*
-	* @param companyId the company id of this gadget
+	* @param companyId the company ID of this gadget
 	*/
 	public void setCompanyId(long companyId) {
 		_gadget.setCompanyId(companyId);

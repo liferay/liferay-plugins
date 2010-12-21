@@ -395,7 +395,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Finds all the meetups entries where companyId = &#63;.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @return the matching meetups entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -412,7 +412,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param start the lower bound of the range of meetups entries to return
 	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
 	 * @return the range of matching meetups entries
@@ -430,7 +430,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param start the lower bound of the range of meetups entries to return
 	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -518,7 +518,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching meetups entry
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
@@ -554,7 +554,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching meetups entry
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
@@ -593,7 +593,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * </p>
 	 *
 	 * @param meetupsEntryId the primary key of the current meetups entry
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next meetups entry
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
@@ -736,7 +736,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Finds all the meetups entries where userId = &#63;.
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @return the matching meetups entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -752,7 +752,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @param start the lower bound of the range of meetups entries to return
 	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
 	 * @return the range of matching meetups entries
@@ -770,7 +770,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @param start the lower bound of the range of meetups entries to return
 	 * @param end the upper bound of the range of meetups entries to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -858,7 +858,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching meetups entry
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
@@ -893,7 +893,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching meetups entry
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
@@ -932,7 +932,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	 * </p>
 	 *
 	 * @param meetupsEntryId the primary key of the current meetups entry
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next meetups entry
 	 * @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
@@ -1184,7 +1184,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Removes all the meetups entries where companyId = &#63; from the database.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
@@ -1196,7 +1196,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Removes all the meetups entries where userId = &#63; from the database.
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUserId(long userId) throws SystemException {
@@ -1219,7 +1219,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Counts all the meetups entries where companyId = &#63;.
 	 *
-	 * @param companyId the company id to search with
+	 * @param companyId the company ID to search with
 	 * @return the number of matching meetups entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1272,7 +1272,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	/**
 	 * Counts all the meetups entries where userId = &#63;.
 	 *
-	 * @param userId the user id to search with
+	 * @param userId the user ID to search with
 	 * @return the number of matching meetups entries
 	 * @throws SystemException if a system exception occurred
 	 */

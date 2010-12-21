@@ -75,58 +75,58 @@ public interface FooModel extends BaseModel<Foo> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the foo id of this foo.
+	 * Gets the foo ID of this foo.
 	 *
-	 * @return the foo id of this foo
+	 * @return the foo ID of this foo
 	 */
 	public long getFooId();
 
 	/**
-	 * Sets the foo id of this foo.
+	 * Sets the foo ID of this foo.
 	 *
-	 * @param fooId the foo id of this foo
+	 * @param fooId the foo ID of this foo
 	 */
 	public void setFooId(long fooId);
 
 	/**
-	 * Gets the group id of this foo.
+	 * Gets the group ID of this foo.
 	 *
-	 * @return the group id of this foo
+	 * @return the group ID of this foo
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this foo.
+	 * Sets the group ID of this foo.
 	 *
-	 * @param groupId the group id of this foo
+	 * @param groupId the group ID of this foo
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this foo.
+	 * Gets the company ID of this foo.
 	 *
-	 * @return the company id of this foo
+	 * @return the company ID of this foo
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this foo.
+	 * Sets the company ID of this foo.
 	 *
-	 * @param companyId the company id of this foo
+	 * @param companyId the company ID of this foo
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this foo.
+	 * Gets the user ID of this foo.
 	 *
-	 * @return the user id of this foo
+	 * @return the user ID of this foo
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this foo.
+	 * Sets the user ID of this foo.
 	 *
-	 * @param userId the user id of this foo
+	 * @param userId the user ID of this foo
 	 */
 	public void setUserId(long userId);
 

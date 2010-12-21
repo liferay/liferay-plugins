@@ -47,54 +47,54 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 	}
 
 	/**
-	* Gets the projects entry id of this projects entry.
+	* Gets the projects entry ID of this projects entry.
 	*
-	* @return the projects entry id of this projects entry
+	* @return the projects entry ID of this projects entry
 	*/
 	public long getProjectsEntryId() {
 		return _projectsEntry.getProjectsEntryId();
 	}
 
 	/**
-	* Sets the projects entry id of this projects entry.
+	* Sets the projects entry ID of this projects entry.
 	*
-	* @param projectsEntryId the projects entry id of this projects entry
+	* @param projectsEntryId the projects entry ID of this projects entry
 	*/
 	public void setProjectsEntryId(long projectsEntryId) {
 		_projectsEntry.setProjectsEntryId(projectsEntryId);
 	}
 
 	/**
-	* Gets the company id of this projects entry.
+	* Gets the company ID of this projects entry.
 	*
-	* @return the company id of this projects entry
+	* @return the company ID of this projects entry
 	*/
 	public long getCompanyId() {
 		return _projectsEntry.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this projects entry.
+	* Sets the company ID of this projects entry.
 	*
-	* @param companyId the company id of this projects entry
+	* @param companyId the company ID of this projects entry
 	*/
 	public void setCompanyId(long companyId) {
 		_projectsEntry.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this projects entry.
+	* Gets the user ID of this projects entry.
 	*
-	* @return the user id of this projects entry
+	* @return the user ID of this projects entry
 	*/
 	public long getUserId() {
 		return _projectsEntry.getUserId();
 	}
 
 	/**
-	* Sets the user id of this projects entry.
+	* Sets the user ID of this projects entry.
 	*
-	* @param userId the user id of this projects entry
+	* @param userId the user ID of this projects entry
 	*/
 	public void setUserId(long userId) {
 		_projectsEntry.setUserId(userId);

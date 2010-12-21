@@ -60,44 +60,44 @@ public interface CheckoutModel extends BaseModel<Checkout> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the checkout id of this checkout.
+	 * Gets the checkout ID of this checkout.
 	 *
-	 * @return the checkout id of this checkout
+	 * @return the checkout ID of this checkout
 	 */
 	public long getCheckoutId();
 
 	/**
-	 * Sets the checkout id of this checkout.
+	 * Sets the checkout ID of this checkout.
 	 *
-	 * @param checkoutId the checkout id of this checkout
+	 * @param checkoutId the checkout ID of this checkout
 	 */
 	public void setCheckoutId(long checkoutId);
 
 	/**
-	 * Gets the company id of this checkout.
+	 * Gets the company ID of this checkout.
 	 *
-	 * @return the company id of this checkout
+	 * @return the company ID of this checkout
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this checkout.
+	 * Sets the company ID of this checkout.
 	 *
-	 * @param companyId the company id of this checkout
+	 * @param companyId the company ID of this checkout
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this checkout.
+	 * Gets the user ID of this checkout.
 	 *
-	 * @return the user id of this checkout
+	 * @return the user ID of this checkout
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this checkout.
+	 * Sets the user ID of this checkout.
 	 *
-	 * @param userId the user id of this checkout
+	 * @param userId the user ID of this checkout
 	 */
 	public void setUserId(long userId);
 
@@ -160,16 +160,16 @@ public interface CheckoutModel extends BaseModel<Checkout> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the asset id of this checkout.
+	 * Gets the asset ID of this checkout.
 	 *
-	 * @return the asset id of this checkout
+	 * @return the asset ID of this checkout
 	 */
 	public long getAssetId();
 
 	/**
-	 * Sets the asset id of this checkout.
+	 * Sets the asset ID of this checkout.
 	 *
-	 * @param assetId the asset id of this checkout
+	 * @param assetId the asset ID of this checkout
 	 */
 	public void setAssetId(long assetId);
 

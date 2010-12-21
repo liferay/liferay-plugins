@@ -101,7 +101,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Finds all the messages where companyId = &#63;.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @return the matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -116,7 +116,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
 	* @return the range of matching messages
@@ -133,7 +133,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -152,7 +152,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -171,7 +171,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -190,7 +190,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* </p>
 	*
 	* @param messageId the primary key of the current message
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
@@ -205,7 +205,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Finds all the messages where folderId = &#63;.
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @return the matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -220,7 +220,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
 	* @return the range of matching messages
@@ -237,7 +237,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -256,7 +256,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -274,7 +274,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
@@ -293,7 +293,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	* </p>
 	*
 	* @param messageId the primary key of the current message
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
@@ -308,8 +308,8 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Finds the message where folderId = &#63; and remoteMessageId = &#63; or throws a {@link com.liferay.mail.NoSuchMessageException} if it could not be found.
 	*
-	* @param folderId the folder id to search with
-	* @param remoteMessageId the remote message id to search with
+	* @param folderId the folder ID to search with
+	* @param remoteMessageId the remote message ID to search with
 	* @return the matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	* @throws SystemException if a system exception occurred
@@ -322,8 +322,8 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Finds the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param folderId the folder id to search with
-	* @param remoteMessageId the remote message id to search with
+	* @param folderId the folder ID to search with
+	* @param remoteMessageId the remote message ID to search with
 	* @return the matching message, or <code>null</code> if a matching message could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -334,8 +334,8 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Finds the message where folderId = &#63; and remoteMessageId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param folderId the folder id to search with
-	* @param remoteMessageId the remote message id to search with
+	* @param folderId the folder ID to search with
+	* @param remoteMessageId the remote message ID to search with
 	* @return the matching message, or <code>null</code> if a matching message could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -388,7 +388,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Removes all the messages where companyId = &#63; from the database.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByCompanyId(long companyId)
@@ -397,7 +397,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Removes all the messages where folderId = &#63; from the database.
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByFolderId(long folderId)
@@ -406,8 +406,8 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Removes the message where folderId = &#63; and remoteMessageId = &#63; from the database.
 	*
-	* @param folderId the folder id to search with
-	* @param remoteMessageId the remote message id to search with
+	* @param folderId the folder ID to search with
+	* @param remoteMessageId the remote message ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByF_R(long folderId, long remoteMessageId)
@@ -425,7 +425,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Counts all the messages where companyId = &#63;.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @return the number of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -435,7 +435,7 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Counts all the messages where folderId = &#63;.
 	*
-	* @param folderId the folder id to search with
+	* @param folderId the folder ID to search with
 	* @return the number of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -445,8 +445,8 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	/**
 	* Counts all the messages where folderId = &#63; and remoteMessageId = &#63;.
 	*
-	* @param folderId the folder id to search with
-	* @param remoteMessageId the remote message id to search with
+	* @param folderId the folder ID to search with
+	* @param remoteMessageId the remote message ID to search with
 	* @return the number of matching messages
 	* @throws SystemException if a system exception occurred
 	*/

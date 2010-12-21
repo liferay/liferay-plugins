@@ -57,16 +57,16 @@ public interface SVNRepositoryModel extends BaseModel<SVNRepository> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the svn repository id of this s v n repository.
+	 * Gets the svn repository ID of this s v n repository.
 	 *
-	 * @return the svn repository id of this s v n repository
+	 * @return the svn repository ID of this s v n repository
 	 */
 	public long getSvnRepositoryId();
 
 	/**
-	 * Sets the svn repository id of this s v n repository.
+	 * Sets the svn repository ID of this s v n repository.
 	 *
-	 * @param svnRepositoryId the svn repository id of this s v n repository
+	 * @param svnRepositoryId the svn repository ID of this s v n repository
 	 */
 	public void setSvnRepositoryId(long svnRepositoryId);
 

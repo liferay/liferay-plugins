@@ -60,44 +60,44 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the meetups entry id of this meetups entry.
+	 * Gets the meetups entry ID of this meetups entry.
 	 *
-	 * @return the meetups entry id of this meetups entry
+	 * @return the meetups entry ID of this meetups entry
 	 */
 	public long getMeetupsEntryId();
 
 	/**
-	 * Sets the meetups entry id of this meetups entry.
+	 * Sets the meetups entry ID of this meetups entry.
 	 *
-	 * @param meetupsEntryId the meetups entry id of this meetups entry
+	 * @param meetupsEntryId the meetups entry ID of this meetups entry
 	 */
 	public void setMeetupsEntryId(long meetupsEntryId);
 
 	/**
-	 * Gets the company id of this meetups entry.
+	 * Gets the company ID of this meetups entry.
 	 *
-	 * @return the company id of this meetups entry
+	 * @return the company ID of this meetups entry
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this meetups entry.
+	 * Sets the company ID of this meetups entry.
 	 *
-	 * @param companyId the company id of this meetups entry
+	 * @param companyId the company ID of this meetups entry
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this meetups entry.
+	 * Gets the user ID of this meetups entry.
 	 *
-	 * @return the user id of this meetups entry
+	 * @return the user ID of this meetups entry
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this meetups entry.
+	 * Sets the user ID of this meetups entry.
 	 *
-	 * @param userId the user id of this meetups entry
+	 * @param userId the user ID of this meetups entry
 	 */
 	public void setUserId(long userId);
 
@@ -260,16 +260,16 @@ public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
 	public void setPrice(double price);
 
 	/**
-	 * Gets the thumbnail id of this meetups entry.
+	 * Gets the thumbnail ID of this meetups entry.
 	 *
-	 * @return the thumbnail id of this meetups entry
+	 * @return the thumbnail ID of this meetups entry
 	 */
 	public long getThumbnailId();
 
 	/**
-	 * Sets the thumbnail id of this meetups entry.
+	 * Sets the thumbnail ID of this meetups entry.
 	 *
-	 * @param thumbnailId the thumbnail id of this meetups entry
+	 * @param thumbnailId the thumbnail ID of this meetups entry
 	 */
 	public void setThumbnailId(long thumbnailId);
 

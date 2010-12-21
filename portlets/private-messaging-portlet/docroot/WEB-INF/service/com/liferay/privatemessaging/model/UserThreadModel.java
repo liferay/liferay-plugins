@@ -59,44 +59,44 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the user thread id of this user thread.
+	 * Gets the user thread ID of this user thread.
 	 *
-	 * @return the user thread id of this user thread
+	 * @return the user thread ID of this user thread
 	 */
 	public long getUserThreadId();
 
 	/**
-	 * Sets the user thread id of this user thread.
+	 * Sets the user thread ID of this user thread.
 	 *
-	 * @param userThreadId the user thread id of this user thread
+	 * @param userThreadId the user thread ID of this user thread
 	 */
 	public void setUserThreadId(long userThreadId);
 
 	/**
-	 * Gets the company id of this user thread.
+	 * Gets the company ID of this user thread.
 	 *
-	 * @return the company id of this user thread
+	 * @return the company ID of this user thread
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this user thread.
+	 * Sets the company ID of this user thread.
 	 *
-	 * @param companyId the company id of this user thread
+	 * @param companyId the company ID of this user thread
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this user thread.
+	 * Gets the user ID of this user thread.
 	 *
-	 * @return the user id of this user thread
+	 * @return the user ID of this user thread
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this user thread.
+	 * Sets the user ID of this user thread.
 	 *
-	 * @param userId the user id of this user thread
+	 * @param userId the user ID of this user thread
 	 */
 	public void setUserId(long userId);
 
@@ -144,30 +144,30 @@ public interface UserThreadModel extends BaseModel<UserThread> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the mb thread id of this user thread.
+	 * Gets the mb thread ID of this user thread.
 	 *
-	 * @return the mb thread id of this user thread
+	 * @return the mb thread ID of this user thread
 	 */
 	public long getMbThreadId();
 
 	/**
-	 * Sets the mb thread id of this user thread.
+	 * Sets the mb thread ID of this user thread.
 	 *
-	 * @param mbThreadId the mb thread id of this user thread
+	 * @param mbThreadId the mb thread ID of this user thread
 	 */
 	public void setMbThreadId(long mbThreadId);
 
 	/**
-	 * Gets the top m b message id of this user thread.
+	 * Gets the top m b message ID of this user thread.
 	 *
-	 * @return the top m b message id of this user thread
+	 * @return the top m b message ID of this user thread
 	 */
 	public long getTopMBMessageId();
 
 	/**
-	 * Sets the top m b message id of this user thread.
+	 * Sets the top m b message ID of this user thread.
 	 *
-	 * @param topMBMessageId the top m b message id of this user thread
+	 * @param topMBMessageId the top m b message ID of this user thread
 	 */
 	public void setTopMBMessageId(long topMBMessageId);
 

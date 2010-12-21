@@ -47,54 +47,54 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the feed id of this feed.
+	* Gets the feed ID of this feed.
 	*
-	* @return the feed id of this feed
+	* @return the feed ID of this feed
 	*/
 	public long getFeedId() {
 		return _feed.getFeedId();
 	}
 
 	/**
-	* Sets the feed id of this feed.
+	* Sets the feed ID of this feed.
 	*
-	* @param feedId the feed id of this feed
+	* @param feedId the feed ID of this feed
 	*/
 	public void setFeedId(long feedId) {
 		_feed.setFeedId(feedId);
 	}
 
 	/**
-	* Gets the company id of this feed.
+	* Gets the company ID of this feed.
 	*
-	* @return the company id of this feed
+	* @return the company ID of this feed
 	*/
 	public long getCompanyId() {
 		return _feed.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this feed.
+	* Sets the company ID of this feed.
 	*
-	* @param companyId the company id of this feed
+	* @param companyId the company ID of this feed
 	*/
 	public void setCompanyId(long companyId) {
 		_feed.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this feed.
+	* Gets the user ID of this feed.
 	*
-	* @return the user id of this feed
+	* @return the user ID of this feed
 	*/
 	public long getUserId() {
 		return _feed.getUserId();
 	}
 
 	/**
-	* Sets the user id of this feed.
+	* Sets the user ID of this feed.
 	*
-	* @param userId the user id of this feed
+	* @param userId the user ID of this feed
 	*/
 	public void setUserId(long userId) {
 		_feed.setUserId(userId);
@@ -175,18 +175,18 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the twitter user id of this feed.
+	* Gets the twitter user ID of this feed.
 	*
-	* @return the twitter user id of this feed
+	* @return the twitter user ID of this feed
 	*/
 	public long getTwitterUserId() {
 		return _feed.getTwitterUserId();
 	}
 
 	/**
-	* Sets the twitter user id of this feed.
+	* Sets the twitter user ID of this feed.
 	*
-	* @param twitterUserId the twitter user id of this feed
+	* @param twitterUserId the twitter user ID of this feed
 	*/
 	public void setTwitterUserId(long twitterUserId) {
 		_feed.setTwitterUserId(twitterUserId);
@@ -231,18 +231,18 @@ public class FeedWrapper implements Feed {
 	}
 
 	/**
-	* Gets the last status id of this feed.
+	* Gets the last status ID of this feed.
 	*
-	* @return the last status id of this feed
+	* @return the last status ID of this feed
 	*/
 	public long getLastStatusId() {
 		return _feed.getLastStatusId();
 	}
 
 	/**
-	* Sets the last status id of this feed.
+	* Sets the last status ID of this feed.
 	*
-	* @param lastStatusId the last status id of this feed
+	* @param lastStatusId the last status ID of this feed
 	*/
 	public void setLastStatusId(long lastStatusId) {
 		_feed.setLastStatusId(lastStatusId);

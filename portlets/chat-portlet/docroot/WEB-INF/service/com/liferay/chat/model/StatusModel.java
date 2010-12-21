@@ -58,30 +58,30 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the status id of this status.
+	 * Gets the status ID of this status.
 	 *
-	 * @return the status id of this status
+	 * @return the status ID of this status
 	 */
 	public long getStatusId();
 
 	/**
-	 * Sets the status id of this status.
+	 * Sets the status ID of this status.
 	 *
-	 * @param statusId the status id of this status
+	 * @param statusId the status ID of this status
 	 */
 	public void setStatusId(long statusId);
 
 	/**
-	 * Gets the user id of this status.
+	 * Gets the user ID of this status.
 	 *
-	 * @return the user id of this status
+	 * @return the user ID of this status
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this status.
+	 * Sets the user ID of this status.
 	 *
-	 * @param userId the user id of this status
+	 * @param userId the user ID of this status
 	 */
 	public void setUserId(long userId);
 
@@ -157,17 +157,17 @@ public interface StatusModel extends BaseModel<Status> {
 	public void setAwake(boolean awake);
 
 	/**
-	 * Gets the active panel id of this status.
+	 * Gets the active panel ID of this status.
 	 *
-	 * @return the active panel id of this status
+	 * @return the active panel ID of this status
 	 */
 	@AutoEscape
 	public String getActivePanelId();
 
 	/**
-	 * Sets the active panel id of this status.
+	 * Sets the active panel ID of this status.
 	 *
-	 * @param activePanelId the active panel id of this status
+	 * @param activePanelId the active panel ID of this status
 	 */
 	public void setActivePanelId(String activePanelId);
 

@@ -47,54 +47,54 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the oauth token id of this o auth token.
+	* Gets the oauth token ID of this o auth token.
 	*
-	* @return the oauth token id of this o auth token
+	* @return the oauth token ID of this o auth token
 	*/
 	public long getOauthTokenId() {
 		return _oAuthToken.getOauthTokenId();
 	}
 
 	/**
-	* Sets the oauth token id of this o auth token.
+	* Sets the oauth token ID of this o auth token.
 	*
-	* @param oauthTokenId the oauth token id of this o auth token
+	* @param oauthTokenId the oauth token ID of this o auth token
 	*/
 	public void setOauthTokenId(long oauthTokenId) {
 		_oAuthToken.setOauthTokenId(oauthTokenId);
 	}
 
 	/**
-	* Gets the company id of this o auth token.
+	* Gets the company ID of this o auth token.
 	*
-	* @return the company id of this o auth token
+	* @return the company ID of this o auth token
 	*/
 	public long getCompanyId() {
 		return _oAuthToken.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this o auth token.
+	* Sets the company ID of this o auth token.
 	*
-	* @param companyId the company id of this o auth token
+	* @param companyId the company ID of this o auth token
 	*/
 	public void setCompanyId(long companyId) {
 		_oAuthToken.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this o auth token.
+	* Gets the user ID of this o auth token.
 	*
-	* @return the user id of this o auth token
+	* @return the user ID of this o auth token
 	*/
 	public long getUserId() {
 		return _oAuthToken.getUserId();
 	}
 
 	/**
-	* Sets the user id of this o auth token.
+	* Sets the user ID of this o auth token.
 	*
-	* @param userId the user id of this o auth token
+	* @param userId the user ID of this o auth token
 	*/
 	public void setUserId(long userId) {
 		_oAuthToken.setUserId(userId);
@@ -175,18 +175,18 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the gadget id of this o auth token.
+	* Gets the gadget ID of this o auth token.
 	*
-	* @return the gadget id of this o auth token
+	* @return the gadget ID of this o auth token
 	*/
 	public long getGadgetId() {
 		return _oAuthToken.getGadgetId();
 	}
 
 	/**
-	* Sets the gadget id of this o auth token.
+	* Sets the gadget ID of this o auth token.
 	*
-	* @param gadgetId the gadget id of this o auth token
+	* @param gadgetId the gadget ID of this o auth token
 	*/
 	public void setGadgetId(long gadgetId) {
 		_oAuthToken.setGadgetId(gadgetId);
@@ -211,18 +211,18 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the module id of this o auth token.
+	* Gets the module ID of this o auth token.
 	*
-	* @return the module id of this o auth token
+	* @return the module ID of this o auth token
 	*/
 	public long getModuleId() {
 		return _oAuthToken.getModuleId();
 	}
 
 	/**
-	* Sets the module id of this o auth token.
+	* Sets the module ID of this o auth token.
 	*
-	* @param moduleId the module id of this o auth token
+	* @param moduleId the module ID of this o auth token
 	*/
 	public void setModuleId(long moduleId) {
 		_oAuthToken.setModuleId(moduleId);

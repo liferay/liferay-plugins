@@ -47,36 +47,36 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the oauth consumer id of this o auth consumer.
+	* Gets the oauth consumer ID of this o auth consumer.
 	*
-	* @return the oauth consumer id of this o auth consumer
+	* @return the oauth consumer ID of this o auth consumer
 	*/
 	public long getOauthConsumerId() {
 		return _oAuthConsumer.getOauthConsumerId();
 	}
 
 	/**
-	* Sets the oauth consumer id of this o auth consumer.
+	* Sets the oauth consumer ID of this o auth consumer.
 	*
-	* @param oauthConsumerId the oauth consumer id of this o auth consumer
+	* @param oauthConsumerId the oauth consumer ID of this o auth consumer
 	*/
 	public void setOauthConsumerId(long oauthConsumerId) {
 		_oAuthConsumer.setOauthConsumerId(oauthConsumerId);
 	}
 
 	/**
-	* Gets the company id of this o auth consumer.
+	* Gets the company ID of this o auth consumer.
 	*
-	* @return the company id of this o auth consumer
+	* @return the company ID of this o auth consumer
 	*/
 	public long getCompanyId() {
 		return _oAuthConsumer.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this o auth consumer.
+	* Sets the company ID of this o auth consumer.
 	*
-	* @param companyId the company id of this o auth consumer
+	* @param companyId the company ID of this o auth consumer
 	*/
 	public void setCompanyId(long companyId) {
 		_oAuthConsumer.setCompanyId(companyId);
@@ -119,18 +119,18 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the gadget id of this o auth consumer.
+	* Gets the gadget ID of this o auth consumer.
 	*
-	* @return the gadget id of this o auth consumer
+	* @return the gadget ID of this o auth consumer
 	*/
 	public long getGadgetId() {
 		return _oAuthConsumer.getGadgetId();
 	}
 
 	/**
-	* Sets the gadget id of this o auth consumer.
+	* Sets the gadget ID of this o auth consumer.
 	*
-	* @param gadgetId the gadget id of this o auth consumer
+	* @param gadgetId the gadget ID of this o auth consumer
 	*/
 	public void setGadgetId(long gadgetId) {
 		_oAuthConsumer.setGadgetId(gadgetId);

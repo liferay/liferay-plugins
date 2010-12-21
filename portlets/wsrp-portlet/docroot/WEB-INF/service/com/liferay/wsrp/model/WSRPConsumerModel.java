@@ -74,30 +74,30 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the wsrp consumer id of this w s r p consumer.
+	 * Gets the wsrp consumer ID of this w s r p consumer.
 	 *
-	 * @return the wsrp consumer id of this w s r p consumer
+	 * @return the wsrp consumer ID of this w s r p consumer
 	 */
 	public long getWsrpConsumerId();
 
 	/**
-	 * Sets the wsrp consumer id of this w s r p consumer.
+	 * Sets the wsrp consumer ID of this w s r p consumer.
 	 *
-	 * @param wsrpConsumerId the wsrp consumer id of this w s r p consumer
+	 * @param wsrpConsumerId the wsrp consumer ID of this w s r p consumer
 	 */
 	public void setWsrpConsumerId(long wsrpConsumerId);
 
 	/**
-	 * Gets the company id of this w s r p consumer.
+	 * Gets the company ID of this w s r p consumer.
 	 *
-	 * @return the company id of this w s r p consumer
+	 * @return the company ID of this w s r p consumer
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this w s r p consumer.
+	 * Sets the company ID of this w s r p consumer.
 	 *
-	 * @param companyId the company id of this w s r p consumer
+	 * @param companyId the company ID of this w s r p consumer
 	 */
 	public void setCompanyId(long companyId);
 

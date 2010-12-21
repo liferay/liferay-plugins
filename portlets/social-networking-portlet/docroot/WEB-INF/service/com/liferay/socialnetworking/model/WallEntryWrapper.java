@@ -47,72 +47,72 @@ public class WallEntryWrapper implements WallEntry {
 	}
 
 	/**
-	* Gets the wall entry id of this wall entry.
+	* Gets the wall entry ID of this wall entry.
 	*
-	* @return the wall entry id of this wall entry
+	* @return the wall entry ID of this wall entry
 	*/
 	public long getWallEntryId() {
 		return _wallEntry.getWallEntryId();
 	}
 
 	/**
-	* Sets the wall entry id of this wall entry.
+	* Sets the wall entry ID of this wall entry.
 	*
-	* @param wallEntryId the wall entry id of this wall entry
+	* @param wallEntryId the wall entry ID of this wall entry
 	*/
 	public void setWallEntryId(long wallEntryId) {
 		_wallEntry.setWallEntryId(wallEntryId);
 	}
 
 	/**
-	* Gets the group id of this wall entry.
+	* Gets the group ID of this wall entry.
 	*
-	* @return the group id of this wall entry
+	* @return the group ID of this wall entry
 	*/
 	public long getGroupId() {
 		return _wallEntry.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this wall entry.
+	* Sets the group ID of this wall entry.
 	*
-	* @param groupId the group id of this wall entry
+	* @param groupId the group ID of this wall entry
 	*/
 	public void setGroupId(long groupId) {
 		_wallEntry.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this wall entry.
+	* Gets the company ID of this wall entry.
 	*
-	* @return the company id of this wall entry
+	* @return the company ID of this wall entry
 	*/
 	public long getCompanyId() {
 		return _wallEntry.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this wall entry.
+	* Sets the company ID of this wall entry.
 	*
-	* @param companyId the company id of this wall entry
+	* @param companyId the company ID of this wall entry
 	*/
 	public void setCompanyId(long companyId) {
 		_wallEntry.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this wall entry.
+	* Gets the user ID of this wall entry.
 	*
-	* @return the user id of this wall entry
+	* @return the user ID of this wall entry
 	*/
 	public long getUserId() {
 		return _wallEntry.getUserId();
 	}
 
 	/**
-	* Sets the user id of this wall entry.
+	* Sets the user ID of this wall entry.
 	*
-	* @param userId the user id of this wall entry
+	* @param userId the user ID of this wall entry
 	*/
 	public void setUserId(long userId) {
 		_wallEntry.setUserId(userId);

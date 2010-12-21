@@ -58,44 +58,44 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the attachment id of this attachment.
+	 * Gets the attachment ID of this attachment.
 	 *
-	 * @return the attachment id of this attachment
+	 * @return the attachment ID of this attachment
 	 */
 	public long getAttachmentId();
 
 	/**
-	 * Sets the attachment id of this attachment.
+	 * Sets the attachment ID of this attachment.
 	 *
-	 * @param attachmentId the attachment id of this attachment
+	 * @param attachmentId the attachment ID of this attachment
 	 */
 	public void setAttachmentId(long attachmentId);
 
 	/**
-	 * Gets the company id of this attachment.
+	 * Gets the company ID of this attachment.
 	 *
-	 * @return the company id of this attachment
+	 * @return the company ID of this attachment
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this attachment.
+	 * Sets the company ID of this attachment.
 	 *
-	 * @param companyId the company id of this attachment
+	 * @param companyId the company ID of this attachment
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this attachment.
+	 * Gets the user ID of this attachment.
 	 *
-	 * @return the user id of this attachment
+	 * @return the user ID of this attachment
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this attachment.
+	 * Sets the user ID of this attachment.
 	 *
-	 * @param userId the user id of this attachment
+	 * @param userId the user ID of this attachment
 	 */
 	public void setUserId(long userId);
 
@@ -115,44 +115,44 @@ public interface AttachmentModel extends BaseModel<Attachment> {
 	public void setUserUuid(String userUuid);
 
 	/**
-	 * Gets the account id of this attachment.
+	 * Gets the account ID of this attachment.
 	 *
-	 * @return the account id of this attachment
+	 * @return the account ID of this attachment
 	 */
 	public long getAccountId();
 
 	/**
-	 * Sets the account id of this attachment.
+	 * Sets the account ID of this attachment.
 	 *
-	 * @param accountId the account id of this attachment
+	 * @param accountId the account ID of this attachment
 	 */
 	public void setAccountId(long accountId);
 
 	/**
-	 * Gets the folder id of this attachment.
+	 * Gets the folder ID of this attachment.
 	 *
-	 * @return the folder id of this attachment
+	 * @return the folder ID of this attachment
 	 */
 	public long getFolderId();
 
 	/**
-	 * Sets the folder id of this attachment.
+	 * Sets the folder ID of this attachment.
 	 *
-	 * @param folderId the folder id of this attachment
+	 * @param folderId the folder ID of this attachment
 	 */
 	public void setFolderId(long folderId);
 
 	/**
-	 * Gets the message id of this attachment.
+	 * Gets the message ID of this attachment.
 	 *
-	 * @return the message id of this attachment
+	 * @return the message ID of this attachment
 	 */
 	public long getMessageId();
 
 	/**
-	 * Sets the message id of this attachment.
+	 * Sets the message ID of this attachment.
 	 *
-	 * @param messageId the message id of this attachment
+	 * @param messageId the message ID of this attachment
 	 */
 	public void setMessageId(long messageId);
 

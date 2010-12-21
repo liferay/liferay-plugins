@@ -60,58 +60,58 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the member request id of this member request.
+	 * Gets the member request ID of this member request.
 	 *
-	 * @return the member request id of this member request
+	 * @return the member request ID of this member request
 	 */
 	public long getMemberRequestId();
 
 	/**
-	 * Sets the member request id of this member request.
+	 * Sets the member request ID of this member request.
 	 *
-	 * @param memberRequestId the member request id of this member request
+	 * @param memberRequestId the member request ID of this member request
 	 */
 	public void setMemberRequestId(long memberRequestId);
 
 	/**
-	 * Gets the group id of this member request.
+	 * Gets the group ID of this member request.
 	 *
-	 * @return the group id of this member request
+	 * @return the group ID of this member request
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this member request.
+	 * Sets the group ID of this member request.
 	 *
-	 * @param groupId the group id of this member request
+	 * @param groupId the group ID of this member request
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this member request.
+	 * Gets the company ID of this member request.
 	 *
-	 * @return the company id of this member request
+	 * @return the company ID of this member request
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this member request.
+	 * Sets the company ID of this member request.
 	 *
-	 * @param companyId the company id of this member request
+	 * @param companyId the company ID of this member request
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this member request.
+	 * Gets the user ID of this member request.
 	 *
-	 * @return the user id of this member request
+	 * @return the user ID of this member request
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this member request.
+	 * Sets the user ID of this member request.
 	 *
-	 * @param userId the user id of this member request
+	 * @param userId the user ID of this member request
 	 */
 	public void setUserId(long userId);
 
@@ -189,16 +189,16 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 	public void setKey(String key);
 
 	/**
-	 * Gets the receiver user id of this member request.
+	 * Gets the receiver user ID of this member request.
 	 *
-	 * @return the receiver user id of this member request
+	 * @return the receiver user ID of this member request
 	 */
 	public long getReceiverUserId();
 
 	/**
-	 * Sets the receiver user id of this member request.
+	 * Sets the receiver user ID of this member request.
 	 *
-	 * @param receiverUserId the receiver user id of this member request
+	 * @param receiverUserId the receiver user ID of this member request
 	 */
 	public void setReceiverUserId(long receiverUserId);
 
@@ -218,30 +218,30 @@ public interface MemberRequestModel extends BaseModel<MemberRequest> {
 	public void setReceiverUserUuid(String receiverUserUuid);
 
 	/**
-	 * Gets the invited role id of this member request.
+	 * Gets the invited role ID of this member request.
 	 *
-	 * @return the invited role id of this member request
+	 * @return the invited role ID of this member request
 	 */
 	public long getInvitedRoleId();
 
 	/**
-	 * Sets the invited role id of this member request.
+	 * Sets the invited role ID of this member request.
 	 *
-	 * @param invitedRoleId the invited role id of this member request
+	 * @param invitedRoleId the invited role ID of this member request
 	 */
 	public void setInvitedRoleId(long invitedRoleId);
 
 	/**
-	 * Gets the invited team id of this member request.
+	 * Gets the invited team ID of this member request.
 	 *
-	 * @return the invited team id of this member request
+	 * @return the invited team ID of this member request
 	 */
 	public long getInvitedTeamId();
 
 	/**
-	 * Sets the invited team id of this member request.
+	 * Sets the invited team ID of this member request.
 	 *
-	 * @param invitedTeamId the invited team id of this member request
+	 * @param invitedTeamId the invited team ID of this member request
 	 */
 	public void setInvitedTeamId(long invitedTeamId);
 

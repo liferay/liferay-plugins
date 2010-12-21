@@ -65,36 +65,36 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the wsrp consumer portlet id of this w s r p consumer portlet.
+	* Gets the wsrp consumer portlet ID of this w s r p consumer portlet.
 	*
-	* @return the wsrp consumer portlet id of this w s r p consumer portlet
+	* @return the wsrp consumer portlet ID of this w s r p consumer portlet
 	*/
 	public long getWsrpConsumerPortletId() {
 		return _wsrpConsumerPortlet.getWsrpConsumerPortletId();
 	}
 
 	/**
-	* Sets the wsrp consumer portlet id of this w s r p consumer portlet.
+	* Sets the wsrp consumer portlet ID of this w s r p consumer portlet.
 	*
-	* @param wsrpConsumerPortletId the wsrp consumer portlet id of this w s r p consumer portlet
+	* @param wsrpConsumerPortletId the wsrp consumer portlet ID of this w s r p consumer portlet
 	*/
 	public void setWsrpConsumerPortletId(long wsrpConsumerPortletId) {
 		_wsrpConsumerPortlet.setWsrpConsumerPortletId(wsrpConsumerPortletId);
 	}
 
 	/**
-	* Gets the company id of this w s r p consumer portlet.
+	* Gets the company ID of this w s r p consumer portlet.
 	*
-	* @return the company id of this w s r p consumer portlet
+	* @return the company ID of this w s r p consumer portlet
 	*/
 	public long getCompanyId() {
 		return _wsrpConsumerPortlet.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this w s r p consumer portlet.
+	* Sets the company ID of this w s r p consumer portlet.
 	*
-	* @param companyId the company id of this w s r p consumer portlet
+	* @param companyId the company ID of this w s r p consumer portlet
 	*/
 	public void setCompanyId(long companyId) {
 		_wsrpConsumerPortlet.setCompanyId(companyId);
@@ -137,18 +137,18 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 	}
 
 	/**
-	* Gets the wsrp consumer id of this w s r p consumer portlet.
+	* Gets the wsrp consumer ID of this w s r p consumer portlet.
 	*
-	* @return the wsrp consumer id of this w s r p consumer portlet
+	* @return the wsrp consumer ID of this w s r p consumer portlet
 	*/
 	public long getWsrpConsumerId() {
 		return _wsrpConsumerPortlet.getWsrpConsumerId();
 	}
 
 	/**
-	* Sets the wsrp consumer id of this w s r p consumer portlet.
+	* Sets the wsrp consumer ID of this w s r p consumer portlet.
 	*
-	* @param wsrpConsumerId the wsrp consumer id of this w s r p consumer portlet
+	* @param wsrpConsumerId the wsrp consumer ID of this w s r p consumer portlet
 	*/
 	public void setWsrpConsumerId(long wsrpConsumerId) {
 		_wsrpConsumerPortlet.setWsrpConsumerId(wsrpConsumerId);

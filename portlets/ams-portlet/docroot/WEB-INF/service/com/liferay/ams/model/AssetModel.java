@@ -60,44 +60,44 @@ public interface AssetModel extends BaseModel<Asset> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the asset id of this asset.
+	 * Gets the asset ID of this asset.
 	 *
-	 * @return the asset id of this asset
+	 * @return the asset ID of this asset
 	 */
 	public long getAssetId();
 
 	/**
-	 * Sets the asset id of this asset.
+	 * Sets the asset ID of this asset.
 	 *
-	 * @param assetId the asset id of this asset
+	 * @param assetId the asset ID of this asset
 	 */
 	public void setAssetId(long assetId);
 
 	/**
-	 * Gets the company id of this asset.
+	 * Gets the company ID of this asset.
 	 *
-	 * @return the company id of this asset
+	 * @return the company ID of this asset
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this asset.
+	 * Sets the company ID of this asset.
 	 *
-	 * @param companyId the company id of this asset
+	 * @param companyId the company ID of this asset
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this asset.
+	 * Gets the user ID of this asset.
 	 *
-	 * @return the user id of this asset
+	 * @return the user ID of this asset
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this asset.
+	 * Sets the user ID of this asset.
 	 *
-	 * @param userId the user id of this asset
+	 * @param userId the user ID of this asset
 	 */
 	public void setUserId(long userId);
 
@@ -160,16 +160,16 @@ public interface AssetModel extends BaseModel<Asset> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the definition id of this asset.
+	 * Gets the definition ID of this asset.
 	 *
-	 * @return the definition id of this asset
+	 * @return the definition ID of this asset
 	 */
 	public long getDefinitionId();
 
 	/**
-	 * Sets the definition id of this asset.
+	 * Sets the definition ID of this asset.
 	 *
-	 * @param definitionId the definition id of this asset
+	 * @param definitionId the definition ID of this asset
 	 */
 	public void setDefinitionId(long definitionId);
 

@@ -47,18 +47,18 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the entry id of this entry.
+	* Gets the entry ID of this entry.
 	*
-	* @return the entry id of this entry
+	* @return the entry ID of this entry
 	*/
 	public long getEntryId() {
 		return _entry.getEntryId();
 	}
 
 	/**
-	* Sets the entry id of this entry.
+	* Sets the entry ID of this entry.
 	*
-	* @param entryId the entry id of this entry
+	* @param entryId the entry ID of this entry
 	*/
 	public void setEntryId(long entryId) {
 		_entry.setEntryId(entryId);
@@ -83,18 +83,18 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the from user id of this entry.
+	* Gets the from user ID of this entry.
 	*
-	* @return the from user id of this entry
+	* @return the from user ID of this entry
 	*/
 	public long getFromUserId() {
 		return _entry.getFromUserId();
 	}
 
 	/**
-	* Sets the from user id of this entry.
+	* Sets the from user ID of this entry.
 	*
-	* @param fromUserId the from user id of this entry
+	* @param fromUserId the from user ID of this entry
 	*/
 	public void setFromUserId(long fromUserId) {
 		_entry.setFromUserId(fromUserId);
@@ -121,18 +121,18 @@ public class EntryWrapper implements Entry {
 	}
 
 	/**
-	* Gets the to user id of this entry.
+	* Gets the to user ID of this entry.
 	*
-	* @return the to user id of this entry
+	* @return the to user ID of this entry
 	*/
 	public long getToUserId() {
 		return _entry.getToUserId();
 	}
 
 	/**
-	* Sets the to user id of this entry.
+	* Sets the to user ID of this entry.
 	*
-	* @param toUserId the to user id of this entry
+	* @param toUserId the to user ID of this entry
 	*/
 	public void setToUserId(long toUserId) {
 		_entry.setToUserId(toUserId);

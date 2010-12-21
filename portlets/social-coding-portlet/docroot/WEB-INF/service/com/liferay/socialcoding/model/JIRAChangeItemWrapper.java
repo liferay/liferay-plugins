@@ -47,36 +47,36 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 	}
 
 	/**
-	* Gets the jira change item id of this j i r a change item.
+	* Gets the jira change item ID of this j i r a change item.
 	*
-	* @return the jira change item id of this j i r a change item
+	* @return the jira change item ID of this j i r a change item
 	*/
 	public long getJiraChangeItemId() {
 		return _jiraChangeItem.getJiraChangeItemId();
 	}
 
 	/**
-	* Sets the jira change item id of this j i r a change item.
+	* Sets the jira change item ID of this j i r a change item.
 	*
-	* @param jiraChangeItemId the jira change item id of this j i r a change item
+	* @param jiraChangeItemId the jira change item ID of this j i r a change item
 	*/
 	public void setJiraChangeItemId(long jiraChangeItemId) {
 		_jiraChangeItem.setJiraChangeItemId(jiraChangeItemId);
 	}
 
 	/**
-	* Gets the jira change group id of this j i r a change item.
+	* Gets the jira change group ID of this j i r a change item.
 	*
-	* @return the jira change group id of this j i r a change item
+	* @return the jira change group ID of this j i r a change item
 	*/
 	public long getJiraChangeGroupId() {
 		return _jiraChangeItem.getJiraChangeGroupId();
 	}
 
 	/**
-	* Sets the jira change group id of this j i r a change item.
+	* Sets the jira change group ID of this j i r a change item.
 	*
-	* @param jiraChangeGroupId the jira change group id of this j i r a change item
+	* @param jiraChangeGroupId the jira change group ID of this j i r a change item
 	*/
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeItem.setJiraChangeGroupId(jiraChangeGroupId);

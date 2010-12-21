@@ -47,36 +47,36 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the svn revision id of this s v n revision.
+	* Gets the svn revision ID of this s v n revision.
 	*
-	* @return the svn revision id of this s v n revision
+	* @return the svn revision ID of this s v n revision
 	*/
 	public long getSvnRevisionId() {
 		return _svnRevision.getSvnRevisionId();
 	}
 
 	/**
-	* Sets the svn revision id of this s v n revision.
+	* Sets the svn revision ID of this s v n revision.
 	*
-	* @param svnRevisionId the svn revision id of this s v n revision
+	* @param svnRevisionId the svn revision ID of this s v n revision
 	*/
 	public void setSvnRevisionId(long svnRevisionId) {
 		_svnRevision.setSvnRevisionId(svnRevisionId);
 	}
 
 	/**
-	* Gets the svn user id of this s v n revision.
+	* Gets the svn user ID of this s v n revision.
 	*
-	* @return the svn user id of this s v n revision
+	* @return the svn user ID of this s v n revision
 	*/
 	public java.lang.String getSvnUserId() {
 		return _svnRevision.getSvnUserId();
 	}
 
 	/**
-	* Sets the svn user id of this s v n revision.
+	* Sets the svn user ID of this s v n revision.
 	*
-	* @param svnUserId the svn user id of this s v n revision
+	* @param svnUserId the svn user ID of this s v n revision
 	*/
 	public void setSvnUserId(java.lang.String svnUserId) {
 		_svnRevision.setSvnUserId(svnUserId);
@@ -101,18 +101,18 @@ public class SVNRevisionWrapper implements SVNRevision {
 	}
 
 	/**
-	* Gets the svn repository id of this s v n revision.
+	* Gets the svn repository ID of this s v n revision.
 	*
-	* @return the svn repository id of this s v n revision
+	* @return the svn repository ID of this s v n revision
 	*/
 	public long getSvnRepositoryId() {
 		return _svnRevision.getSvnRepositoryId();
 	}
 
 	/**
-	* Sets the svn repository id of this s v n revision.
+	* Sets the svn repository ID of this s v n revision.
 	*
-	* @param svnRepositoryId the svn repository id of this s v n revision
+	* @param svnRepositoryId the svn repository ID of this s v n revision
 	*/
 	public void setSvnRepositoryId(long svnRepositoryId) {
 		_svnRevision.setSvnRepositoryId(svnRepositoryId);

@@ -60,44 +60,44 @@ public interface AccountModel extends BaseModel<Account> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the account id of this account.
+	 * Gets the account ID of this account.
 	 *
-	 * @return the account id of this account
+	 * @return the account ID of this account
 	 */
 	public long getAccountId();
 
 	/**
-	 * Sets the account id of this account.
+	 * Sets the account ID of this account.
 	 *
-	 * @param accountId the account id of this account
+	 * @param accountId the account ID of this account
 	 */
 	public void setAccountId(long accountId);
 
 	/**
-	 * Gets the company id of this account.
+	 * Gets the company ID of this account.
 	 *
-	 * @return the company id of this account
+	 * @return the company ID of this account
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this account.
+	 * Sets the company ID of this account.
 	 *
-	 * @param companyId the company id of this account
+	 * @param companyId the company ID of this account
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this account.
+	 * Gets the user ID of this account.
 	 *
-	 * @return the user id of this account
+	 * @return the user ID of this account
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this account.
+	 * Sets the user ID of this account.
 	 *
-	 * @param userId the user id of this account
+	 * @param userId the user ID of this account
 	 */
 	public void setUserId(long userId);
 
@@ -407,58 +407,58 @@ public interface AccountModel extends BaseModel<Account> {
 	public void setFolderPrefix(String folderPrefix);
 
 	/**
-	 * Gets the inbox folder id of this account.
+	 * Gets the inbox folder ID of this account.
 	 *
-	 * @return the inbox folder id of this account
+	 * @return the inbox folder ID of this account
 	 */
 	public long getInboxFolderId();
 
 	/**
-	 * Sets the inbox folder id of this account.
+	 * Sets the inbox folder ID of this account.
 	 *
-	 * @param inboxFolderId the inbox folder id of this account
+	 * @param inboxFolderId the inbox folder ID of this account
 	 */
 	public void setInboxFolderId(long inboxFolderId);
 
 	/**
-	 * Gets the draft folder id of this account.
+	 * Gets the draft folder ID of this account.
 	 *
-	 * @return the draft folder id of this account
+	 * @return the draft folder ID of this account
 	 */
 	public long getDraftFolderId();
 
 	/**
-	 * Sets the draft folder id of this account.
+	 * Sets the draft folder ID of this account.
 	 *
-	 * @param draftFolderId the draft folder id of this account
+	 * @param draftFolderId the draft folder ID of this account
 	 */
 	public void setDraftFolderId(long draftFolderId);
 
 	/**
-	 * Gets the sent folder id of this account.
+	 * Gets the sent folder ID of this account.
 	 *
-	 * @return the sent folder id of this account
+	 * @return the sent folder ID of this account
 	 */
 	public long getSentFolderId();
 
 	/**
-	 * Sets the sent folder id of this account.
+	 * Sets the sent folder ID of this account.
 	 *
-	 * @param sentFolderId the sent folder id of this account
+	 * @param sentFolderId the sent folder ID of this account
 	 */
 	public void setSentFolderId(long sentFolderId);
 
 	/**
-	 * Gets the trash folder id of this account.
+	 * Gets the trash folder ID of this account.
 	 *
-	 * @return the trash folder id of this account
+	 * @return the trash folder ID of this account
 	 */
 	public long getTrashFolderId();
 
 	/**
-	 * Sets the trash folder id of this account.
+	 * Sets the trash folder ID of this account.
 	 *
-	 * @param trashFolderId the trash folder id of this account
+	 * @param trashFolderId the trash folder ID of this account
 	 */
 	public void setTrashFolderId(long trashFolderId);
 

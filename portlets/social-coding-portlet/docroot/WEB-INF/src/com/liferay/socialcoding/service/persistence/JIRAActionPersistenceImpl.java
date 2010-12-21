@@ -399,7 +399,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Finds all the j i r a actions where jiraUserId = &#63;.
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @return the matching j i r a actions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -416,7 +416,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @param start the lower bound of the range of j i r a actions to return
 	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
 	 * @return the range of matching j i r a actions
@@ -434,7 +434,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @param start the lower bound of the range of j i r a actions to return
 	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -534,7 +534,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching j i r a action
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
@@ -570,7 +570,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching j i r a action
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
@@ -609,7 +609,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * </p>
 	 *
 	 * @param jiraActionId the primary key of the current j i r a action
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next j i r a action
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
@@ -764,7 +764,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Finds all the j i r a actions where jiraIssueId = &#63;.
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @return the matching j i r a actions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -781,7 +781,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @param start the lower bound of the range of j i r a actions to return
 	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
 	 * @return the range of matching j i r a actions
@@ -799,7 +799,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @param start the lower bound of the range of j i r a actions to return
 	 * @param end the upper bound of the range of j i r a actions to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -887,7 +887,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching j i r a action
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
@@ -923,7 +923,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching j i r a action
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
@@ -962,7 +962,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 * </p>
 	 *
 	 * @param jiraActionId the primary key of the current j i r a action
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next j i r a action
 	 * @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
@@ -1576,7 +1576,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Removes all the j i r a actions where jiraUserId = &#63; from the database.
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
@@ -1588,7 +1588,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Removes all the j i r a actions where jiraIssueId = &#63; from the database.
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
@@ -1623,7 +1623,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Counts all the j i r a actions where jiraUserId = &#63;.
 	 *
-	 * @param jiraUserId the jira user id to search with
+	 * @param jiraUserId the jira user ID to search with
 	 * @return the number of matching j i r a actions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1688,7 +1688,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	/**
 	 * Counts all the j i r a actions where jiraIssueId = &#63;.
 	 *
-	 * @param jiraIssueId the jira issue id to search with
+	 * @param jiraIssueId the jira issue ID to search with
 	 * @return the number of matching j i r a actions
 	 * @throws SystemException if a system exception occurred
 	 */

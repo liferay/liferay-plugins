@@ -107,7 +107,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	/**
 	* Finds all the j i r a change groups where jiraUserId = &#63;.
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @return the matching j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/
@@ -122,7 +122,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
 	* @return the range of matching j i r a change groups
@@ -139,7 +139,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -158,7 +158,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
@@ -177,7 +177,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
@@ -197,7 +197,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* </p>
 	*
 	* @param jiraChangeGroupId the primary key of the current j i r a change group
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
@@ -212,7 +212,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	/**
 	* Finds all the j i r a change groups where jiraIssueId = &#63;.
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @return the matching j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/
@@ -227,7 +227,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
 	* @return the range of matching j i r a change groups
@@ -244,7 +244,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -263,7 +263,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
@@ -282,7 +282,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
@@ -302,7 +302,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* </p>
 	*
 	* @param jiraChangeGroupId the primary key of the current j i r a change group
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
@@ -360,7 +360,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	/**
 	* Removes all the j i r a change groups where jiraUserId = &#63; from the database.
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByJiraUserId(java.lang.String jiraUserId)
@@ -369,7 +369,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	/**
 	* Removes all the j i r a change groups where jiraIssueId = &#63; from the database.
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByJiraIssueId(long jiraIssueId)
@@ -386,7 +386,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	/**
 	* Counts all the j i r a change groups where jiraUserId = &#63;.
 	*
-	* @param jiraUserId the jira user id to search with
+	* @param jiraUserId the jira user ID to search with
 	* @return the number of matching j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/
@@ -396,7 +396,7 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	/**
 	* Counts all the j i r a change groups where jiraIssueId = &#63;.
 	*
-	* @param jiraIssueId the jira issue id to search with
+	* @param jiraIssueId the jira issue ID to search with
 	* @return the number of matching j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/

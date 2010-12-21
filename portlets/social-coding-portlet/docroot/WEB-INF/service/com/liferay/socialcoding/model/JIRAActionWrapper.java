@@ -47,36 +47,36 @@ public class JIRAActionWrapper implements JIRAAction {
 	}
 
 	/**
-	* Gets the jira action id of this j i r a action.
+	* Gets the jira action ID of this j i r a action.
 	*
-	* @return the jira action id of this j i r a action
+	* @return the jira action ID of this j i r a action
 	*/
 	public long getJiraActionId() {
 		return _jiraAction.getJiraActionId();
 	}
 
 	/**
-	* Sets the jira action id of this j i r a action.
+	* Sets the jira action ID of this j i r a action.
 	*
-	* @param jiraActionId the jira action id of this j i r a action
+	* @param jiraActionId the jira action ID of this j i r a action
 	*/
 	public void setJiraActionId(long jiraActionId) {
 		_jiraAction.setJiraActionId(jiraActionId);
 	}
 
 	/**
-	* Gets the jira user id of this j i r a action.
+	* Gets the jira user ID of this j i r a action.
 	*
-	* @return the jira user id of this j i r a action
+	* @return the jira user ID of this j i r a action
 	*/
 	public java.lang.String getJiraUserId() {
 		return _jiraAction.getJiraUserId();
 	}
 
 	/**
-	* Sets the jira user id of this j i r a action.
+	* Sets the jira user ID of this j i r a action.
 	*
-	* @param jiraUserId the jira user id of this j i r a action
+	* @param jiraUserId the jira user ID of this j i r a action
 	*/
 	public void setJiraUserId(java.lang.String jiraUserId) {
 		_jiraAction.setJiraUserId(jiraUserId);
@@ -119,18 +119,18 @@ public class JIRAActionWrapper implements JIRAAction {
 	}
 
 	/**
-	* Gets the jira issue id of this j i r a action.
+	* Gets the jira issue ID of this j i r a action.
 	*
-	* @return the jira issue id of this j i r a action
+	* @return the jira issue ID of this j i r a action
 	*/
 	public long getJiraIssueId() {
 		return _jiraAction.getJiraIssueId();
 	}
 
 	/**
-	* Sets the jira issue id of this j i r a action.
+	* Sets the jira issue ID of this j i r a action.
 	*
-	* @param jiraIssueId the jira issue id of this j i r a action
+	* @param jiraIssueId the jira issue ID of this j i r a action
 	*/
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraAction.setJiraIssueId(jiraIssueId);

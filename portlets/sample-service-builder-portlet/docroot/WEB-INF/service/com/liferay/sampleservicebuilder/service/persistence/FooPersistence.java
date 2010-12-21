@@ -208,7 +208,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* Finds the foo where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.sampleservicebuilder.NoSuchFooException} if it could not be found.
 	*
 	* @param uuid the uuid to search with
-	* @param groupId the group id to search with
+	* @param groupId the group ID to search with
 	* @return the matching foo
 	* @throws com.liferay.sampleservicebuilder.NoSuchFooException if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
@@ -222,7 +222,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* Finds the foo where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param uuid the uuid to search with
-	* @param groupId the group id to search with
+	* @param groupId the group ID to search with
 	* @return the matching foo, or <code>null</code> if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -234,7 +234,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* Finds the foo where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
 	* @param uuid the uuid to search with
-	* @param groupId the group id to search with
+	* @param groupId the group ID to search with
 	* @return the matching foo, or <code>null</code> if a matching foo could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -403,7 +403,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* Removes the foo where uuid = &#63; and groupId = &#63; from the database.
 	*
 	* @param uuid the uuid to search with
-	* @param groupId the group id to search with
+	* @param groupId the group ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUUID_G(java.lang.String uuid, long groupId)
@@ -441,7 +441,7 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	* Counts all the foos where uuid = &#63; and groupId = &#63;.
 	*
 	* @param uuid the uuid to search with
-	* @param groupId the group id to search with
+	* @param groupId the group ID to search with
 	* @return the number of matching foos
 	* @throws SystemException if a system exception occurred
 	*/

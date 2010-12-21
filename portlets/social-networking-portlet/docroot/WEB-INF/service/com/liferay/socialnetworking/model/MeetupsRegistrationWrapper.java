@@ -47,54 +47,54 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the meetups registration id of this meetups registration.
+	* Gets the meetups registration ID of this meetups registration.
 	*
-	* @return the meetups registration id of this meetups registration
+	* @return the meetups registration ID of this meetups registration
 	*/
 	public long getMeetupsRegistrationId() {
 		return _meetupsRegistration.getMeetupsRegistrationId();
 	}
 
 	/**
-	* Sets the meetups registration id of this meetups registration.
+	* Sets the meetups registration ID of this meetups registration.
 	*
-	* @param meetupsRegistrationId the meetups registration id of this meetups registration
+	* @param meetupsRegistrationId the meetups registration ID of this meetups registration
 	*/
 	public void setMeetupsRegistrationId(long meetupsRegistrationId) {
 		_meetupsRegistration.setMeetupsRegistrationId(meetupsRegistrationId);
 	}
 
 	/**
-	* Gets the company id of this meetups registration.
+	* Gets the company ID of this meetups registration.
 	*
-	* @return the company id of this meetups registration
+	* @return the company ID of this meetups registration
 	*/
 	public long getCompanyId() {
 		return _meetupsRegistration.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this meetups registration.
+	* Sets the company ID of this meetups registration.
 	*
-	* @param companyId the company id of this meetups registration
+	* @param companyId the company ID of this meetups registration
 	*/
 	public void setCompanyId(long companyId) {
 		_meetupsRegistration.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this meetups registration.
+	* Gets the user ID of this meetups registration.
 	*
-	* @return the user id of this meetups registration
+	* @return the user ID of this meetups registration
 	*/
 	public long getUserId() {
 		return _meetupsRegistration.getUserId();
 	}
 
 	/**
-	* Sets the user id of this meetups registration.
+	* Sets the user ID of this meetups registration.
 	*
-	* @param userId the user id of this meetups registration
+	* @param userId the user ID of this meetups registration
 	*/
 	public void setUserId(long userId) {
 		_meetupsRegistration.setUserId(userId);
@@ -175,18 +175,18 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 	}
 
 	/**
-	* Gets the meetups entry id of this meetups registration.
+	* Gets the meetups entry ID of this meetups registration.
 	*
-	* @return the meetups entry id of this meetups registration
+	* @return the meetups entry ID of this meetups registration
 	*/
 	public long getMeetupsEntryId() {
 		return _meetupsRegistration.getMeetupsEntryId();
 	}
 
 	/**
-	* Sets the meetups entry id of this meetups registration.
+	* Sets the meetups entry ID of this meetups registration.
 	*
-	* @param meetupsEntryId the meetups entry id of this meetups registration
+	* @param meetupsEntryId the meetups entry ID of this meetups registration
 	*/
 	public void setMeetupsEntryId(long meetupsEntryId) {
 		_meetupsRegistration.setMeetupsEntryId(meetupsEntryId);

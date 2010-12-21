@@ -75,58 +75,58 @@ public interface TemplateModel extends BaseModel<Template> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the template id of this template.
+	 * Gets the template ID of this template.
 	 *
-	 * @return the template id of this template
+	 * @return the template ID of this template
 	 */
 	public long getTemplateId();
 
 	/**
-	 * Sets the template id of this template.
+	 * Sets the template ID of this template.
 	 *
-	 * @param templateId the template id of this template
+	 * @param templateId the template ID of this template
 	 */
 	public void setTemplateId(long templateId);
 
 	/**
-	 * Gets the group id of this template.
+	 * Gets the group ID of this template.
 	 *
-	 * @return the group id of this template
+	 * @return the group ID of this template
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this template.
+	 * Sets the group ID of this template.
 	 *
-	 * @param groupId the group id of this template
+	 * @param groupId the group ID of this template
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this template.
+	 * Gets the company ID of this template.
 	 *
-	 * @return the company id of this template
+	 * @return the company ID of this template
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this template.
+	 * Sets the company ID of this template.
 	 *
-	 * @param companyId the company id of this template
+	 * @param companyId the company ID of this template
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this template.
+	 * Gets the user ID of this template.
 	 *
-	 * @return the user id of this template
+	 * @return the user ID of this template
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this template.
+	 * Sets the user ID of this template.
 	 *
-	 * @param userId the user id of this template
+	 * @param userId the user ID of this template
 	 */
 	public void setUserId(long userId);
 

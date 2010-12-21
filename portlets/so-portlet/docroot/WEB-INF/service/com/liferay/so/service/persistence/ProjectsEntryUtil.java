@@ -201,7 +201,7 @@ public class ProjectsEntryUtil {
 	/**
 	* Finds all the projects entries where userId = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the matching projects entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -217,7 +217,7 @@ public class ProjectsEntryUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param start the lower bound of the range of projects entries to return
 	* @param end the upper bound of the range of projects entries to return (not inclusive)
 	* @return the range of matching projects entries
@@ -236,7 +236,7 @@ public class ProjectsEntryUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param start the lower bound of the range of projects entries to return
 	* @param end the upper bound of the range of projects entries to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -258,7 +258,7 @@ public class ProjectsEntryUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
@@ -279,7 +279,7 @@ public class ProjectsEntryUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
@@ -301,7 +301,7 @@ public class ProjectsEntryUtil {
 	* </p>
 	*
 	* @param projectsEntryId the primary key of the current projects entry
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
@@ -369,7 +369,7 @@ public class ProjectsEntryUtil {
 	/**
 	* Removes all the projects entries where userId = &#63; from the database.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUserId(long userId)
@@ -390,7 +390,7 @@ public class ProjectsEntryUtil {
 	/**
 	* Counts all the projects entries where userId = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the number of matching projects entries
 	* @throws SystemException if a system exception occurred
 	*/

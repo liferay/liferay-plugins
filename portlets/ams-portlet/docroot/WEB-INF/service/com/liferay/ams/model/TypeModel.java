@@ -57,30 +57,30 @@ public interface TypeModel extends BaseModel<Type> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the type id of this type.
+	 * Gets the type ID of this type.
 	 *
-	 * @return the type id of this type
+	 * @return the type ID of this type
 	 */
 	public long getTypeId();
 
 	/**
-	 * Sets the type id of this type.
+	 * Sets the type ID of this type.
 	 *
-	 * @param typeId the type id of this type
+	 * @param typeId the type ID of this type
 	 */
 	public void setTypeId(long typeId);
 
 	/**
-	 * Gets the group id of this type.
+	 * Gets the group ID of this type.
 	 *
-	 * @return the group id of this type
+	 * @return the group ID of this type
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this type.
+	 * Sets the group ID of this type.
 	 *
-	 * @param groupId the group id of this type
+	 * @param groupId the group ID of this type
 	 */
 	public void setGroupId(long groupId);
 

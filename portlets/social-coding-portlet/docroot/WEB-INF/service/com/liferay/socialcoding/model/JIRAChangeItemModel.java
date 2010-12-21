@@ -57,30 +57,30 @@ public interface JIRAChangeItemModel extends BaseModel<JIRAChangeItem> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the jira change item id of this j i r a change item.
+	 * Gets the jira change item ID of this j i r a change item.
 	 *
-	 * @return the jira change item id of this j i r a change item
+	 * @return the jira change item ID of this j i r a change item
 	 */
 	public long getJiraChangeItemId();
 
 	/**
-	 * Sets the jira change item id of this j i r a change item.
+	 * Sets the jira change item ID of this j i r a change item.
 	 *
-	 * @param jiraChangeItemId the jira change item id of this j i r a change item
+	 * @param jiraChangeItemId the jira change item ID of this j i r a change item
 	 */
 	public void setJiraChangeItemId(long jiraChangeItemId);
 
 	/**
-	 * Gets the jira change group id of this j i r a change item.
+	 * Gets the jira change group ID of this j i r a change item.
 	 *
-	 * @return the jira change group id of this j i r a change item
+	 * @return the jira change group ID of this j i r a change item
 	 */
 	public long getJiraChangeGroupId();
 
 	/**
-	 * Sets the jira change group id of this j i r a change item.
+	 * Sets the jira change group ID of this j i r a change item.
 	 *
-	 * @param jiraChangeGroupId the jira change group id of this j i r a change item
+	 * @param jiraChangeGroupId the jira change group ID of this j i r a change item
 	 */
 	public void setJiraChangeGroupId(long jiraChangeGroupId);
 

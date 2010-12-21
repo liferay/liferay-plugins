@@ -201,7 +201,7 @@ public class UserThreadUtil {
 	/**
 	* Finds all the user threads where mbThreadId = &#63;.
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @return the matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -218,7 +218,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
 	* @return the range of matching user threads
@@ -237,7 +237,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -259,7 +259,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
@@ -281,7 +281,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
@@ -304,7 +304,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param userThreadId the primary key of the current user thread
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
@@ -323,7 +323,7 @@ public class UserThreadUtil {
 	/**
 	* Finds all the user threads where userId = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -339,7 +339,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
 	* @return the range of matching user threads
@@ -358,7 +358,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -380,7 +380,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
@@ -401,7 +401,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
@@ -423,7 +423,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param userThreadId the primary key of the current user thread
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
@@ -442,8 +442,8 @@ public class UserThreadUtil {
 	/**
 	* Finds the user thread where userId = &#63; and mbThreadId = &#63; or throws a {@link com.liferay.privatemessaging.NoSuchUserThreadException} if it could not be found.
 	*
-	* @param userId the user id to search with
-	* @param mbThreadId the mb thread id to search with
+	* @param userId the user ID to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @return the matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -458,8 +458,8 @@ public class UserThreadUtil {
 	/**
 	* Finds the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param userId the user id to search with
-	* @param mbThreadId the mb thread id to search with
+	* @param userId the user ID to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -472,8 +472,8 @@ public class UserThreadUtil {
 	/**
 	* Finds the user thread where userId = &#63; and mbThreadId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param userId the user id to search with
-	* @param mbThreadId the mb thread id to search with
+	* @param userId the user ID to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @return the matching user thread, or <code>null</code> if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -486,7 +486,7 @@ public class UserThreadUtil {
 	/**
 	* Finds all the user threads where userId = &#63; and deleted = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @return the matching user threads
 	* @throws SystemException if a system exception occurred
@@ -504,7 +504,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
@@ -524,7 +524,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
@@ -547,7 +547,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching user thread
@@ -570,7 +570,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching user thread
@@ -594,7 +594,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param userThreadId the primary key of the current user thread
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next user thread
@@ -614,7 +614,7 @@ public class UserThreadUtil {
 	/**
 	* Finds all the user threads where userId = &#63; and read = &#63; and deleted = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @return the matching user threads
@@ -633,7 +633,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @param start the lower bound of the range of user threads to return
@@ -654,7 +654,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @param start the lower bound of the range of user threads to return
@@ -679,7 +679,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @param orderByComparator the comparator to order the set by
@@ -703,7 +703,7 @@ public class UserThreadUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @param orderByComparator the comparator to order the set by
@@ -728,7 +728,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param userThreadId the primary key of the current user thread
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @param orderByComparator the comparator to order the set by
@@ -798,7 +798,7 @@ public class UserThreadUtil {
 	/**
 	* Removes all the user threads where mbThreadId = &#63; from the database.
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByMBThreadId(long mbThreadId)
@@ -809,7 +809,7 @@ public class UserThreadUtil {
 	/**
 	* Removes all the user threads where userId = &#63; from the database.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByUserId(long userId)
@@ -820,8 +820,8 @@ public class UserThreadUtil {
 	/**
 	* Removes the user thread where userId = &#63; and mbThreadId = &#63; from the database.
 	*
-	* @param userId the user id to search with
-	* @param mbThreadId the mb thread id to search with
+	* @param userId the user ID to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByU_M(long userId, long mbThreadId)
@@ -833,7 +833,7 @@ public class UserThreadUtil {
 	/**
 	* Removes all the user threads where userId = &#63; and deleted = &#63; from the database.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @throws SystemException if a system exception occurred
 	*/
@@ -845,7 +845,7 @@ public class UserThreadUtil {
 	/**
 	* Removes all the user threads where userId = &#63; and read = &#63; and deleted = &#63; from the database.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @throws SystemException if a system exception occurred
@@ -868,7 +868,7 @@ public class UserThreadUtil {
 	/**
 	* Counts all the user threads where mbThreadId = &#63;.
 	*
-	* @param mbThreadId the mb thread id to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @return the number of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -880,7 +880,7 @@ public class UserThreadUtil {
 	/**
 	* Counts all the user threads where userId = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the number of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -892,8 +892,8 @@ public class UserThreadUtil {
 	/**
 	* Counts all the user threads where userId = &#63; and mbThreadId = &#63;.
 	*
-	* @param userId the user id to search with
-	* @param mbThreadId the mb thread id to search with
+	* @param userId the user ID to search with
+	* @param mbThreadId the mb thread ID to search with
 	* @return the number of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -905,7 +905,7 @@ public class UserThreadUtil {
 	/**
 	* Counts all the user threads where userId = &#63; and deleted = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
 	* @return the number of matching user threads
 	* @throws SystemException if a system exception occurred
@@ -918,7 +918,7 @@ public class UserThreadUtil {
 	/**
 	* Counts all the user threads where userId = &#63; and read = &#63; and deleted = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
 	* @return the number of matching user threads

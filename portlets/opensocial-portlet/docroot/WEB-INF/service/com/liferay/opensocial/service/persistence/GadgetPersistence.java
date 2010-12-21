@@ -206,7 +206,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Finds all the gadgets where companyId = &#63;.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @return the matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -221,7 +221,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of gadgets to return
 	* @param end the upper bound of the range of gadgets to return (not inclusive)
 	* @return the range of matching gadgets
@@ -238,7 +238,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of gadgets to return
 	* @param end the upper bound of the range of gadgets to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -257,7 +257,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -276,7 +276,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -296,7 +296,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* </p>
 	*
 	* @param gadgetId the primary key of the current gadget
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
@@ -311,7 +311,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Finds the gadget where companyId = &#63; and url = &#63; or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param url the url to search with
 	* @return the matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
@@ -325,7 +325,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param url the url to search with
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -337,7 +337,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Finds the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param url the url to search with
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -401,7 +401,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Removes all the gadgets where companyId = &#63; from the database.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByCompanyId(long companyId)
@@ -410,7 +410,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Removes the gadget where companyId = &#63; and url = &#63; from the database.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param url the url to search with
 	* @throws SystemException if a system exception occurred
 	*/
@@ -439,7 +439,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Counts all the gadgets where companyId = &#63;.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @return the number of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -449,7 +449,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	/**
 	* Counts all the gadgets where companyId = &#63; and url = &#63;.
 	*
-	* @param companyId the company id to search with
+	* @param companyId the company ID to search with
 	* @param url the url to search with
 	* @return the number of matching gadgets
 	* @throws SystemException if a system exception occurred

@@ -59,31 +59,31 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the jira change group id of this j i r a change group.
+	 * Gets the jira change group ID of this j i r a change group.
 	 *
-	 * @return the jira change group id of this j i r a change group
+	 * @return the jira change group ID of this j i r a change group
 	 */
 	public long getJiraChangeGroupId();
 
 	/**
-	 * Sets the jira change group id of this j i r a change group.
+	 * Sets the jira change group ID of this j i r a change group.
 	 *
-	 * @param jiraChangeGroupId the jira change group id of this j i r a change group
+	 * @param jiraChangeGroupId the jira change group ID of this j i r a change group
 	 */
 	public void setJiraChangeGroupId(long jiraChangeGroupId);
 
 	/**
-	 * Gets the jira user id of this j i r a change group.
+	 * Gets the jira user ID of this j i r a change group.
 	 *
-	 * @return the jira user id of this j i r a change group
+	 * @return the jira user ID of this j i r a change group
 	 */
 	@AutoEscape
 	public String getJiraUserId();
 
 	/**
-	 * Sets the jira user id of this j i r a change group.
+	 * Sets the jira user ID of this j i r a change group.
 	 *
-	 * @param jiraUserId the jira user id of this j i r a change group
+	 * @param jiraUserId the jira user ID of this j i r a change group
 	 */
 	public void setJiraUserId(String jiraUserId);
 
@@ -102,16 +102,16 @@ public interface JIRAChangeGroupModel extends BaseModel<JIRAChangeGroup> {
 	public void setCreateDate(Date createDate);
 
 	/**
-	 * Gets the jira issue id of this j i r a change group.
+	 * Gets the jira issue ID of this j i r a change group.
 	 *
-	 * @return the jira issue id of this j i r a change group
+	 * @return the jira issue ID of this j i r a change group
 	 */
 	public long getJiraIssueId();
 
 	/**
-	 * Sets the jira issue id of this j i r a change group.
+	 * Sets the jira issue ID of this j i r a change group.
 	 *
-	 * @param jiraIssueId the jira issue id of this j i r a change group
+	 * @param jiraIssueId the jira issue ID of this j i r a change group
 	 */
 	public void setJiraIssueId(long jiraIssueId);
 

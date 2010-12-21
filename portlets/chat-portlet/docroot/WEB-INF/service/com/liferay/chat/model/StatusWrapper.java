@@ -47,36 +47,36 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the status id of this status.
+	* Gets the status ID of this status.
 	*
-	* @return the status id of this status
+	* @return the status ID of this status
 	*/
 	public long getStatusId() {
 		return _status.getStatusId();
 	}
 
 	/**
-	* Sets the status id of this status.
+	* Sets the status ID of this status.
 	*
-	* @param statusId the status id of this status
+	* @param statusId the status ID of this status
 	*/
 	public void setStatusId(long statusId) {
 		_status.setStatusId(statusId);
 	}
 
 	/**
-	* Gets the user id of this status.
+	* Gets the user ID of this status.
 	*
-	* @return the user id of this status
+	* @return the user ID of this status
 	*/
 	public long getUserId() {
 		return _status.getUserId();
 	}
 
 	/**
-	* Sets the user id of this status.
+	* Sets the user ID of this status.
 	*
-	* @param userId the user id of this status
+	* @param userId the user ID of this status
 	*/
 	public void setUserId(long userId) {
 		_status.setUserId(userId);
@@ -175,18 +175,18 @@ public class StatusWrapper implements Status {
 	}
 
 	/**
-	* Gets the active panel id of this status.
+	* Gets the active panel ID of this status.
 	*
-	* @return the active panel id of this status
+	* @return the active panel ID of this status
 	*/
 	public java.lang.String getActivePanelId() {
 		return _status.getActivePanelId();
 	}
 
 	/**
-	* Sets the active panel id of this status.
+	* Sets the active panel ID of this status.
 	*
-	* @param activePanelId the active panel id of this status
+	* @param activePanelId the active panel ID of this status
 	*/
 	public void setActivePanelId(java.lang.String activePanelId) {
 		_status.setActivePanelId(activePanelId);

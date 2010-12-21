@@ -60,44 +60,44 @@ public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration>
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the meetups registration id of this meetups registration.
+	 * Gets the meetups registration ID of this meetups registration.
 	 *
-	 * @return the meetups registration id of this meetups registration
+	 * @return the meetups registration ID of this meetups registration
 	 */
 	public long getMeetupsRegistrationId();
 
 	/**
-	 * Sets the meetups registration id of this meetups registration.
+	 * Sets the meetups registration ID of this meetups registration.
 	 *
-	 * @param meetupsRegistrationId the meetups registration id of this meetups registration
+	 * @param meetupsRegistrationId the meetups registration ID of this meetups registration
 	 */
 	public void setMeetupsRegistrationId(long meetupsRegistrationId);
 
 	/**
-	 * Gets the company id of this meetups registration.
+	 * Gets the company ID of this meetups registration.
 	 *
-	 * @return the company id of this meetups registration
+	 * @return the company ID of this meetups registration
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this meetups registration.
+	 * Sets the company ID of this meetups registration.
 	 *
-	 * @param companyId the company id of this meetups registration
+	 * @param companyId the company ID of this meetups registration
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this meetups registration.
+	 * Gets the user ID of this meetups registration.
 	 *
-	 * @return the user id of this meetups registration
+	 * @return the user ID of this meetups registration
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this meetups registration.
+	 * Sets the user ID of this meetups registration.
 	 *
-	 * @param userId the user id of this meetups registration
+	 * @param userId the user ID of this meetups registration
 	 */
 	public void setUserId(long userId);
 
@@ -160,16 +160,16 @@ public interface MeetupsRegistrationModel extends BaseModel<MeetupsRegistration>
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the meetups entry id of this meetups registration.
+	 * Gets the meetups entry ID of this meetups registration.
 	 *
-	 * @return the meetups entry id of this meetups registration
+	 * @return the meetups entry ID of this meetups registration
 	 */
 	public long getMeetupsEntryId();
 
 	/**
-	 * Sets the meetups entry id of this meetups registration.
+	 * Sets the meetups entry ID of this meetups registration.
 	 *
-	 * @param meetupsEntryId the meetups entry id of this meetups registration
+	 * @param meetupsEntryId the meetups entry ID of this meetups registration
 	 */
 	public void setMeetupsEntryId(long meetupsEntryId);
 

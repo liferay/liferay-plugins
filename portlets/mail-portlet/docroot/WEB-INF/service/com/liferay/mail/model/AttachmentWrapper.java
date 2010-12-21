@@ -47,54 +47,54 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the attachment id of this attachment.
+	* Gets the attachment ID of this attachment.
 	*
-	* @return the attachment id of this attachment
+	* @return the attachment ID of this attachment
 	*/
 	public long getAttachmentId() {
 		return _attachment.getAttachmentId();
 	}
 
 	/**
-	* Sets the attachment id of this attachment.
+	* Sets the attachment ID of this attachment.
 	*
-	* @param attachmentId the attachment id of this attachment
+	* @param attachmentId the attachment ID of this attachment
 	*/
 	public void setAttachmentId(long attachmentId) {
 		_attachment.setAttachmentId(attachmentId);
 	}
 
 	/**
-	* Gets the company id of this attachment.
+	* Gets the company ID of this attachment.
 	*
-	* @return the company id of this attachment
+	* @return the company ID of this attachment
 	*/
 	public long getCompanyId() {
 		return _attachment.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this attachment.
+	* Sets the company ID of this attachment.
 	*
-	* @param companyId the company id of this attachment
+	* @param companyId the company ID of this attachment
 	*/
 	public void setCompanyId(long companyId) {
 		_attachment.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this attachment.
+	* Gets the user ID of this attachment.
 	*
-	* @return the user id of this attachment
+	* @return the user ID of this attachment
 	*/
 	public long getUserId() {
 		return _attachment.getUserId();
 	}
 
 	/**
-	* Sets the user id of this attachment.
+	* Sets the user ID of this attachment.
 	*
-	* @param userId the user id of this attachment
+	* @param userId the user ID of this attachment
 	*/
 	public void setUserId(long userId) {
 		_attachment.setUserId(userId);
@@ -121,54 +121,54 @@ public class AttachmentWrapper implements Attachment {
 	}
 
 	/**
-	* Gets the account id of this attachment.
+	* Gets the account ID of this attachment.
 	*
-	* @return the account id of this attachment
+	* @return the account ID of this attachment
 	*/
 	public long getAccountId() {
 		return _attachment.getAccountId();
 	}
 
 	/**
-	* Sets the account id of this attachment.
+	* Sets the account ID of this attachment.
 	*
-	* @param accountId the account id of this attachment
+	* @param accountId the account ID of this attachment
 	*/
 	public void setAccountId(long accountId) {
 		_attachment.setAccountId(accountId);
 	}
 
 	/**
-	* Gets the folder id of this attachment.
+	* Gets the folder ID of this attachment.
 	*
-	* @return the folder id of this attachment
+	* @return the folder ID of this attachment
 	*/
 	public long getFolderId() {
 		return _attachment.getFolderId();
 	}
 
 	/**
-	* Sets the folder id of this attachment.
+	* Sets the folder ID of this attachment.
 	*
-	* @param folderId the folder id of this attachment
+	* @param folderId the folder ID of this attachment
 	*/
 	public void setFolderId(long folderId) {
 		_attachment.setFolderId(folderId);
 	}
 
 	/**
-	* Gets the message id of this attachment.
+	* Gets the message ID of this attachment.
 	*
-	* @return the message id of this attachment
+	* @return the message ID of this attachment
 	*/
 	public long getMessageId() {
 		return _attachment.getMessageId();
 	}
 
 	/**
-	* Sets the message id of this attachment.
+	* Sets the message ID of this attachment.
 	*
-	* @param messageId the message id of this attachment
+	* @param messageId the message ID of this attachment
 	*/
 	public void setMessageId(long messageId) {
 		_attachment.setMessageId(messageId);

@@ -47,36 +47,36 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the jira change group id of this j i r a change group.
+	* Gets the jira change group ID of this j i r a change group.
 	*
-	* @return the jira change group id of this j i r a change group
+	* @return the jira change group ID of this j i r a change group
 	*/
 	public long getJiraChangeGroupId() {
 		return _jiraChangeGroup.getJiraChangeGroupId();
 	}
 
 	/**
-	* Sets the jira change group id of this j i r a change group.
+	* Sets the jira change group ID of this j i r a change group.
 	*
-	* @param jiraChangeGroupId the jira change group id of this j i r a change group
+	* @param jiraChangeGroupId the jira change group ID of this j i r a change group
 	*/
 	public void setJiraChangeGroupId(long jiraChangeGroupId) {
 		_jiraChangeGroup.setJiraChangeGroupId(jiraChangeGroupId);
 	}
 
 	/**
-	* Gets the jira user id of this j i r a change group.
+	* Gets the jira user ID of this j i r a change group.
 	*
-	* @return the jira user id of this j i r a change group
+	* @return the jira user ID of this j i r a change group
 	*/
 	public java.lang.String getJiraUserId() {
 		return _jiraChangeGroup.getJiraUserId();
 	}
 
 	/**
-	* Sets the jira user id of this j i r a change group.
+	* Sets the jira user ID of this j i r a change group.
 	*
-	* @param jiraUserId the jira user id of this j i r a change group
+	* @param jiraUserId the jira user ID of this j i r a change group
 	*/
 	public void setJiraUserId(java.lang.String jiraUserId) {
 		_jiraChangeGroup.setJiraUserId(jiraUserId);
@@ -101,18 +101,18 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 	}
 
 	/**
-	* Gets the jira issue id of this j i r a change group.
+	* Gets the jira issue ID of this j i r a change group.
 	*
-	* @return the jira issue id of this j i r a change group
+	* @return the jira issue ID of this j i r a change group
 	*/
 	public long getJiraIssueId() {
 		return _jiraChangeGroup.getJiraIssueId();
 	}
 
 	/**
-	* Sets the jira issue id of this j i r a change group.
+	* Sets the jira issue ID of this j i r a change group.
 	*
-	* @param jiraIssueId the jira issue id of this j i r a change group
+	* @param jiraIssueId the jira issue ID of this j i r a change group
 	*/
 	public void setJiraIssueId(long jiraIssueId) {
 		_jiraChangeGroup.setJiraIssueId(jiraIssueId);

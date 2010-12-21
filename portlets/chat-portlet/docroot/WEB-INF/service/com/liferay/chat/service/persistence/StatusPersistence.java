@@ -101,7 +101,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Finds the status where userId = &#63; or throws a {@link com.liferay.chat.NoSuchStatusException} if it could not be found.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	* @throws SystemException if a system exception occurred
@@ -113,7 +113,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Finds the status where userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the matching status, or <code>null</code> if a matching status could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -123,7 +123,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Finds the status where userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the matching status, or <code>null</code> if a matching status could not be found
 	* @throws SystemException if a system exception occurred
 	*/
@@ -495,7 +495,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Removes the status where userId = &#63; from the database.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByUserId(long userId)
@@ -541,7 +541,7 @@ public interface StatusPersistence extends BasePersistence<Status> {
 	/**
 	* Counts all the statuses where userId = &#63;.
 	*
-	* @param userId the user id to search with
+	* @param userId the user ID to search with
 	* @return the number of matching statuses
 	* @throws SystemException if a system exception occurred
 	*/

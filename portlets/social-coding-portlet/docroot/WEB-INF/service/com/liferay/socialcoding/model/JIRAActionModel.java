@@ -59,31 +59,31 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the jira action id of this j i r a action.
+	 * Gets the jira action ID of this j i r a action.
 	 *
-	 * @return the jira action id of this j i r a action
+	 * @return the jira action ID of this j i r a action
 	 */
 	public long getJiraActionId();
 
 	/**
-	 * Sets the jira action id of this j i r a action.
+	 * Sets the jira action ID of this j i r a action.
 	 *
-	 * @param jiraActionId the jira action id of this j i r a action
+	 * @param jiraActionId the jira action ID of this j i r a action
 	 */
 	public void setJiraActionId(long jiraActionId);
 
 	/**
-	 * Gets the jira user id of this j i r a action.
+	 * Gets the jira user ID of this j i r a action.
 	 *
-	 * @return the jira user id of this j i r a action
+	 * @return the jira user ID of this j i r a action
 	 */
 	@AutoEscape
 	public String getJiraUserId();
 
 	/**
-	 * Sets the jira user id of this j i r a action.
+	 * Sets the jira user ID of this j i r a action.
 	 *
-	 * @param jiraUserId the jira user id of this j i r a action
+	 * @param jiraUserId the jira user ID of this j i r a action
 	 */
 	public void setJiraUserId(String jiraUserId);
 
@@ -116,16 +116,16 @@ public interface JIRAActionModel extends BaseModel<JIRAAction> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the jira issue id of this j i r a action.
+	 * Gets the jira issue ID of this j i r a action.
 	 *
-	 * @return the jira issue id of this j i r a action
+	 * @return the jira issue ID of this j i r a action
 	 */
 	public long getJiraIssueId();
 
 	/**
-	 * Sets the jira issue id of this j i r a action.
+	 * Sets the jira issue ID of this j i r a action.
 	 *
-	 * @param jiraIssueId the jira issue id of this j i r a action
+	 * @param jiraIssueId the jira issue ID of this j i r a action
 	 */
 	public void setJiraIssueId(long jiraIssueId);
 

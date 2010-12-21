@@ -60,44 +60,44 @@ public interface FolderModel extends BaseModel<Folder> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the folder id of this folder.
+	 * Gets the folder ID of this folder.
 	 *
-	 * @return the folder id of this folder
+	 * @return the folder ID of this folder
 	 */
 	public long getFolderId();
 
 	/**
-	 * Sets the folder id of this folder.
+	 * Sets the folder ID of this folder.
 	 *
-	 * @param folderId the folder id of this folder
+	 * @param folderId the folder ID of this folder
 	 */
 	public void setFolderId(long folderId);
 
 	/**
-	 * Gets the company id of this folder.
+	 * Gets the company ID of this folder.
 	 *
-	 * @return the company id of this folder
+	 * @return the company ID of this folder
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this folder.
+	 * Sets the company ID of this folder.
 	 *
-	 * @param companyId the company id of this folder
+	 * @param companyId the company ID of this folder
 	 */
 	public void setCompanyId(long companyId);
 
 	/**
-	 * Gets the user id of this folder.
+	 * Gets the user ID of this folder.
 	 *
-	 * @return the user id of this folder
+	 * @return the user ID of this folder
 	 */
 	public long getUserId();
 
 	/**
-	 * Sets the user id of this folder.
+	 * Sets the user ID of this folder.
 	 *
-	 * @param userId the user id of this folder
+	 * @param userId the user ID of this folder
 	 */
 	public void setUserId(long userId);
 
@@ -160,16 +160,16 @@ public interface FolderModel extends BaseModel<Folder> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
-	 * Gets the account id of this folder.
+	 * Gets the account ID of this folder.
 	 *
-	 * @return the account id of this folder
+	 * @return the account ID of this folder
 	 */
 	public long getAccountId();
 
 	/**
-	 * Sets the account id of this folder.
+	 * Sets the account ID of this folder.
 	 *
-	 * @param accountId the account id of this folder
+	 * @param accountId the account ID of this folder
 	 */
 	public void setAccountId(long accountId);
 

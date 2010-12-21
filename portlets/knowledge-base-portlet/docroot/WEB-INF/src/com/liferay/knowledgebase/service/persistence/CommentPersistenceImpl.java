@@ -891,7 +891,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Finds the comment where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
 	 *
 	 * @param uuid the uuid to search with
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @return the matching comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -927,7 +927,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Finds the comment where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
 	 * @param uuid the uuid to search with
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @return the matching comment, or <code>null</code> if a matching comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -940,7 +940,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Finds the comment where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
 	 * @param uuid the uuid to search with
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @return the matching comment, or <code>null</code> if a matching comment could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1043,7 +1043,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Finds all the comments where groupId = &#63;.
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @return the matching comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1058,7 +1058,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @param start the lower bound of the range of comments to return
 	 * @param end the upper bound of the range of comments to return (not inclusive)
 	 * @return the range of matching comments
@@ -1076,7 +1076,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @param start the lower bound of the range of comments to return
 	 * @param end the upper bound of the range of comments to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -1163,7 +1163,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
@@ -1198,7 +1198,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
@@ -1237,7 +1237,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * </p>
 	 *
 	 * @param commentId the primary key of the current comment
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a comment with the primary key could not be found
@@ -1380,8 +1380,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Finds all the comments where groupId = &#63; and classNameId = &#63;.
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @return the matching comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1398,8 +1398,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param start the lower bound of the range of comments to return
 	 * @param end the upper bound of the range of comments to return (not inclusive)
 	 * @return the range of matching comments
@@ -1417,8 +1417,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param start the lower bound of the range of comments to return
 	 * @param end the upper bound of the range of comments to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -1509,8 +1509,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
@@ -1549,8 +1549,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
@@ -1592,8 +1592,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * </p>
 	 *
 	 * @param commentId the primary key of the current comment
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a comment with the primary key could not be found
@@ -1740,7 +1740,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Finds all the comments where classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @return the matching comments
 	 * @throws SystemException if a system exception occurred
@@ -1758,7 +1758,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @param start the lower bound of the range of comments to return
 	 * @param end the upper bound of the range of comments to return (not inclusive)
@@ -1777,7 +1777,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @param start the lower bound of the range of comments to return
 	 * @param end the upper bound of the range of comments to return (not inclusive)
@@ -1869,7 +1869,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching comment
@@ -1909,7 +1909,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching comment
@@ -1952,7 +1952,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * </p>
 	 *
 	 * @param commentId the primary key of the current comment
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next comment
@@ -2100,8 +2100,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Finds the comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.knowledgebase.NoSuchCommentException} if it could not be found.
 	 *
-	 * @param userId the user id to search with
-	 * @param classNameId the class name id to search with
+	 * @param userId the user ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @return the matching comment
 	 * @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
@@ -2140,8 +2140,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Finds the comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param userId the user id to search with
-	 * @param classNameId the class name id to search with
+	 * @param userId the user ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @return the matching comment, or <code>null</code> if a matching comment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -2154,8 +2154,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Finds the comment where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param userId the user id to search with
-	 * @param classNameId the class name id to search with
+	 * @param userId the user ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @return the matching comment, or <code>null</code> if a matching comment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -2372,7 +2372,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Removes the comment where uuid = &#63; and groupId = &#63; from the database.
 	 *
 	 * @param uuid the uuid to search with
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByUUID_G(String uuid, long groupId)
@@ -2385,7 +2385,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Removes all the comments where groupId = &#63; from the database.
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
@@ -2397,8 +2397,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Removes all the comments where groupId = &#63; and classNameId = &#63; from the database.
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_C(long groupId, long classNameId)
@@ -2411,7 +2411,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Removes all the comments where classNameId = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2425,8 +2425,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Removes the comment where userId = &#63; and classNameId = &#63; and classPK = &#63; from the database.
 	 *
-	 * @param userId the user id to search with
-	 * @param classNameId the class name id to search with
+	 * @param userId the user ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2517,7 +2517,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 * Counts all the comments where uuid = &#63; and groupId = &#63;.
 	 *
 	 * @param uuid the uuid to search with
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @return the number of matching comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2587,7 +2587,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Counts all the comments where groupId = &#63;.
 	 *
-	 * @param groupId the group id to search with
+	 * @param groupId the group ID to search with
 	 * @return the number of matching comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2640,8 +2640,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Counts all the comments where groupId = &#63; and classNameId = &#63;.
 	 *
-	 * @param groupId the group id to search with
-	 * @param classNameId the class name id to search with
+	 * @param groupId the group ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @return the number of matching comments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -2699,7 +2699,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Counts all the comments where classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param classNameId the class name id to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @return the number of matching comments
 	 * @throws SystemException if a system exception occurred
@@ -2758,8 +2758,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	/**
 	 * Counts all the comments where userId = &#63; and classNameId = &#63; and classPK = &#63;.
 	 *
-	 * @param userId the user id to search with
-	 * @param classNameId the class name id to search with
+	 * @param userId the user ID to search with
+	 * @param classNameId the class name ID to search with
 	 * @param classPK the class p k to search with
 	 * @return the number of matching comments
 	 * @throws SystemException if a system exception occurred

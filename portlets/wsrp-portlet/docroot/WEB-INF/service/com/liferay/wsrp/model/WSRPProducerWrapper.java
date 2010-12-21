@@ -65,54 +65,54 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the wsrp producer id of this w s r p producer.
+	* Gets the wsrp producer ID of this w s r p producer.
 	*
-	* @return the wsrp producer id of this w s r p producer
+	* @return the wsrp producer ID of this w s r p producer
 	*/
 	public long getWsrpProducerId() {
 		return _wsrpProducer.getWsrpProducerId();
 	}
 
 	/**
-	* Sets the wsrp producer id of this w s r p producer.
+	* Sets the wsrp producer ID of this w s r p producer.
 	*
-	* @param wsrpProducerId the wsrp producer id of this w s r p producer
+	* @param wsrpProducerId the wsrp producer ID of this w s r p producer
 	*/
 	public void setWsrpProducerId(long wsrpProducerId) {
 		_wsrpProducer.setWsrpProducerId(wsrpProducerId);
 	}
 
 	/**
-	* Gets the group id of this w s r p producer.
+	* Gets the group ID of this w s r p producer.
 	*
-	* @return the group id of this w s r p producer
+	* @return the group ID of this w s r p producer
 	*/
 	public long getGroupId() {
 		return _wsrpProducer.getGroupId();
 	}
 
 	/**
-	* Sets the group id of this w s r p producer.
+	* Sets the group ID of this w s r p producer.
 	*
-	* @param groupId the group id of this w s r p producer
+	* @param groupId the group ID of this w s r p producer
 	*/
 	public void setGroupId(long groupId) {
 		_wsrpProducer.setGroupId(groupId);
 	}
 
 	/**
-	* Gets the company id of this w s r p producer.
+	* Gets the company ID of this w s r p producer.
 	*
-	* @return the company id of this w s r p producer
+	* @return the company ID of this w s r p producer
 	*/
 	public long getCompanyId() {
 		return _wsrpProducer.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this w s r p producer.
+	* Sets the company ID of this w s r p producer.
 	*
-	* @param companyId the company id of this w s r p producer
+	* @param companyId the company ID of this w s r p producer
 	*/
 	public void setCompanyId(long companyId) {
 		_wsrpProducer.setCompanyId(companyId);
@@ -191,18 +191,18 @@ public class WSRPProducerWrapper implements WSRPProducer {
 	}
 
 	/**
-	* Gets the portlet ids of this w s r p producer.
+	* Gets the portlet IDs of this w s r p producer.
 	*
-	* @return the portlet ids of this w s r p producer
+	* @return the portlet IDs of this w s r p producer
 	*/
 	public java.lang.String getPortletIds() {
 		return _wsrpProducer.getPortletIds();
 	}
 
 	/**
-	* Sets the portlet ids of this w s r p producer.
+	* Sets the portlet IDs of this w s r p producer.
 	*
-	* @param portletIds the portlet ids of this w s r p producer
+	* @param portletIds the portlet IDs of this w s r p producer
 	*/
 	public void setPortletIds(java.lang.String portletIds) {
 		_wsrpProducer.setPortletIds(portletIds);

@@ -201,7 +201,7 @@ public class OAuthTokenUtil {
 	/**
 	* Finds all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @return the matching o auth tokens
 	* @throws SystemException if a system exception occurred
@@ -219,7 +219,7 @@ public class OAuthTokenUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @param start the lower bound of the range of o auth tokens to return
 	* @param end the upper bound of the range of o auth tokens to return (not inclusive)
@@ -239,7 +239,7 @@ public class OAuthTokenUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @param start the lower bound of the range of o auth tokens to return
 	* @param end the upper bound of the range of o auth tokens to return (not inclusive)
@@ -263,7 +263,7 @@ public class OAuthTokenUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching o auth token
@@ -286,7 +286,7 @@ public class OAuthTokenUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching o auth token
@@ -310,7 +310,7 @@ public class OAuthTokenUtil {
 	* </p>
 	*
 	* @param oauthTokenId the primary key of the current o auth token
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next o auth token
@@ -330,10 +330,10 @@ public class OAuthTokenUtil {
 	/**
 	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	*
-	* @param userId the user id to search with
-	* @param gadgetId the gadget id to search with
+	* @param userId the user ID to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
-	* @param moduleId the module id to search with
+	* @param moduleId the module ID to search with
 	* @param tokenName the token name to search with
 	* @return the matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
@@ -352,10 +352,10 @@ public class OAuthTokenUtil {
 	/**
 	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param userId the user id to search with
-	* @param gadgetId the gadget id to search with
+	* @param userId the user ID to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
-	* @param moduleId the module id to search with
+	* @param moduleId the module ID to search with
 	* @param tokenName the token name to search with
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
@@ -372,10 +372,10 @@ public class OAuthTokenUtil {
 	/**
 	* Finds the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param userId the user id to search with
-	* @param gadgetId the gadget id to search with
+	* @param userId the user ID to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
-	* @param moduleId the module id to search with
+	* @param moduleId the module ID to search with
 	* @param tokenName the token name to search with
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
 	* @throws SystemException if a system exception occurred
@@ -441,7 +441,7 @@ public class OAuthTokenUtil {
 	/**
 	* Removes all the o auth tokens where gadgetId = &#63; and serviceName = &#63; from the database.
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @throws SystemException if a system exception occurred
 	*/
@@ -453,10 +453,10 @@ public class OAuthTokenUtil {
 	/**
 	* Removes the o auth token where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; from the database.
 	*
-	* @param userId the user id to search with
-	* @param gadgetId the gadget id to search with
+	* @param userId the user ID to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
-	* @param moduleId the module id to search with
+	* @param moduleId the module ID to search with
 	* @param tokenName the token name to search with
 	* @throws SystemException if a system exception occurred
 	*/
@@ -482,7 +482,7 @@ public class OAuthTokenUtil {
 	/**
 	* Counts all the o auth tokens where gadgetId = &#63; and serviceName = &#63;.
 	*
-	* @param gadgetId the gadget id to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @return the number of matching o auth tokens
 	* @throws SystemException if a system exception occurred
@@ -495,10 +495,10 @@ public class OAuthTokenUtil {
 	/**
 	* Counts all the o auth tokens where userId = &#63; and gadgetId = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
 	*
-	* @param userId the user id to search with
-	* @param gadgetId the gadget id to search with
+	* @param userId the user ID to search with
+	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
-	* @param moduleId the module id to search with
+	* @param moduleId the module ID to search with
 	* @param tokenName the token name to search with
 	* @return the number of matching o auth tokens
 	* @throws SystemException if a system exception occurred

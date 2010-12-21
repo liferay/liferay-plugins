@@ -427,7 +427,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Finds all the folders where accountId = &#63;.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @return the matching folders
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -444,7 +444,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param start the lower bound of the range of folders to return
 	 * @param end the upper bound of the range of folders to return (not inclusive)
 	 * @return the range of matching folders
@@ -462,7 +462,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param start the lower bound of the range of folders to return
 	 * @param end the upper bound of the range of folders to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by
@@ -549,7 +549,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the first matching folder
 	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
@@ -584,7 +584,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the last matching folder
 	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
@@ -623,7 +623,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 * </p>
 	 *
 	 * @param folderId the primary key of the current folder
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next folder
 	 * @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
@@ -765,7 +765,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Finds the folder where accountId = &#63; and fullName = &#63; or throws a {@link com.liferay.mail.NoSuchFolderException} if it could not be found.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param fullName the full name to search with
 	 * @return the matching folder
 	 * @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
@@ -801,7 +801,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Finds the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param fullName the full name to search with
 	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
 	 * @throws SystemException if a system exception occurred
@@ -814,7 +814,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Finds the folder where accountId = &#63; and fullName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param fullName the full name to search with
 	 * @return the matching folder, or <code>null</code> if a matching folder could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1026,7 +1026,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Removes all the folders where accountId = &#63; from the database.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByAccountId(long accountId) throws SystemException {
@@ -1038,7 +1038,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Removes the folder where accountId = &#63; and fullName = &#63; from the database.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param fullName the full name to search with
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1063,7 +1063,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Counts all the folders where accountId = &#63;.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @return the number of matching folders
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1116,7 +1116,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	/**
 	 * Counts all the folders where accountId = &#63; and fullName = &#63;.
 	 *
-	 * @param accountId the account id to search with
+	 * @param accountId the account ID to search with
 	 * @param fullName the full name to search with
 	 * @return the number of matching folders
 	 * @throws SystemException if a system exception occurred

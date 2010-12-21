@@ -136,7 +136,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Finds all the member requests where receiverUserId = &#63;.
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @return the matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -151,7 +151,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param start the lower bound of the range of member requests to return
 	* @param end the upper bound of the range of member requests to return (not inclusive)
 	* @return the range of matching member requests
@@ -168,7 +168,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param start the lower bound of the range of member requests to return
 	* @param end the upper bound of the range of member requests to return (not inclusive)
 	* @param orderByComparator the comparator to order the results by
@@ -187,7 +187,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -206,7 +206,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -226,7 +226,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* </p>
 	*
 	* @param memberRequestId the primary key of the current member request
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
@@ -241,7 +241,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Finds all the member requests where receiverUserId = &#63; and status = &#63;.
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @return the matching member requests
 	* @throws SystemException if a system exception occurred
@@ -257,7 +257,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @param start the lower bound of the range of member requests to return
 	* @param end the upper bound of the range of member requests to return (not inclusive)
@@ -275,7 +275,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @param start the lower bound of the range of member requests to return
 	* @param end the upper bound of the range of member requests to return (not inclusive)
@@ -295,7 +295,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the first matching member request
@@ -315,7 +315,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the last matching member request
@@ -336,7 +336,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	* </p>
 	*
 	* @param memberRequestId the primary key of the current member request
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next member request
@@ -352,8 +352,8 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or throws a {@link com.liferay.so.NoSuchMemberRequestException} if it could not be found.
 	*
-	* @param groupId the group id to search with
-	* @param receiverUserId the receiver user id to search with
+	* @param groupId the group ID to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @return the matching member request
 	* @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
@@ -367,8 +367,8 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param groupId the group id to search with
-	* @param receiverUserId the receiver user id to search with
+	* @param groupId the group ID to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @return the matching member request, or <code>null</code> if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
@@ -380,8 +380,8 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Finds the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param groupId the group id to search with
-	* @param receiverUserId the receiver user id to search with
+	* @param groupId the group ID to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @return the matching member request, or <code>null</code> if a matching member request could not be found
 	* @throws SystemException if a system exception occurred
@@ -446,7 +446,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Removes all the member requests where receiverUserId = &#63; from the database.
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByReceiverUserId(long receiverUserId)
@@ -455,7 +455,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Removes all the member requests where receiverUserId = &#63; and status = &#63; from the database.
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @throws SystemException if a system exception occurred
 	*/
@@ -465,8 +465,8 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Removes the member request where groupId = &#63; and receiverUserId = &#63; and status = &#63; from the database.
 	*
-	* @param groupId the group id to search with
-	* @param receiverUserId the receiver user id to search with
+	* @param groupId the group ID to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @throws SystemException if a system exception occurred
 	*/
@@ -495,7 +495,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Counts all the member requests where receiverUserId = &#63;.
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred
 	*/
@@ -505,7 +505,7 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Counts all the member requests where receiverUserId = &#63; and status = &#63;.
 	*
-	* @param receiverUserId the receiver user id to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred
@@ -516,8 +516,8 @@ public interface MemberRequestPersistence extends BasePersistence<MemberRequest>
 	/**
 	* Counts all the member requests where groupId = &#63; and receiverUserId = &#63; and status = &#63;.
 	*
-	* @param groupId the group id to search with
-	* @param receiverUserId the receiver user id to search with
+	* @param groupId the group ID to search with
+	* @param receiverUserId the receiver user ID to search with
 	* @param status the status to search with
 	* @return the number of matching member requests
 	* @throws SystemException if a system exception occurred

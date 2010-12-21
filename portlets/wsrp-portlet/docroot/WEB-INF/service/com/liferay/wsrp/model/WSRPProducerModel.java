@@ -74,44 +74,44 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setUuid(String uuid);
 
 	/**
-	 * Gets the wsrp producer id of this w s r p producer.
+	 * Gets the wsrp producer ID of this w s r p producer.
 	 *
-	 * @return the wsrp producer id of this w s r p producer
+	 * @return the wsrp producer ID of this w s r p producer
 	 */
 	public long getWsrpProducerId();
 
 	/**
-	 * Sets the wsrp producer id of this w s r p producer.
+	 * Sets the wsrp producer ID of this w s r p producer.
 	 *
-	 * @param wsrpProducerId the wsrp producer id of this w s r p producer
+	 * @param wsrpProducerId the wsrp producer ID of this w s r p producer
 	 */
 	public void setWsrpProducerId(long wsrpProducerId);
 
 	/**
-	 * Gets the group id of this w s r p producer.
+	 * Gets the group ID of this w s r p producer.
 	 *
-	 * @return the group id of this w s r p producer
+	 * @return the group ID of this w s r p producer
 	 */
 	public long getGroupId();
 
 	/**
-	 * Sets the group id of this w s r p producer.
+	 * Sets the group ID of this w s r p producer.
 	 *
-	 * @param groupId the group id of this w s r p producer
+	 * @param groupId the group ID of this w s r p producer
 	 */
 	public void setGroupId(long groupId);
 
 	/**
-	 * Gets the company id of this w s r p producer.
+	 * Gets the company ID of this w s r p producer.
 	 *
-	 * @return the company id of this w s r p producer
+	 * @return the company ID of this w s r p producer
 	 */
 	public long getCompanyId();
 
 	/**
-	 * Sets the company id of this w s r p producer.
+	 * Sets the company ID of this w s r p producer.
 	 *
-	 * @param companyId the company id of this w s r p producer
+	 * @param companyId the company ID of this w s r p producer
 	 */
 	public void setCompanyId(long companyId);
 
@@ -174,17 +174,17 @@ public interface WSRPProducerModel extends BaseModel<WSRPProducer> {
 	public void setVersion(String version);
 
 	/**
-	 * Gets the portlet ids of this w s r p producer.
+	 * Gets the portlet IDs of this w s r p producer.
 	 *
-	 * @return the portlet ids of this w s r p producer
+	 * @return the portlet IDs of this w s r p producer
 	 */
 	@AutoEscape
 	public String getPortletIds();
 
 	/**
-	 * Sets the portlet ids of this w s r p producer.
+	 * Sets the portlet IDs of this w s r p producer.
 	 *
-	 * @param portletIds the portlet ids of this w s r p producer
+	 * @param portletIds the portlet IDs of this w s r p producer
 	 */
 	public void setPortletIds(String portletIds);
 

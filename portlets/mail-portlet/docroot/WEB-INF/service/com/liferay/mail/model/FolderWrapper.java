@@ -47,54 +47,54 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the folder id of this folder.
+	* Gets the folder ID of this folder.
 	*
-	* @return the folder id of this folder
+	* @return the folder ID of this folder
 	*/
 	public long getFolderId() {
 		return _folder.getFolderId();
 	}
 
 	/**
-	* Sets the folder id of this folder.
+	* Sets the folder ID of this folder.
 	*
-	* @param folderId the folder id of this folder
+	* @param folderId the folder ID of this folder
 	*/
 	public void setFolderId(long folderId) {
 		_folder.setFolderId(folderId);
 	}
 
 	/**
-	* Gets the company id of this folder.
+	* Gets the company ID of this folder.
 	*
-	* @return the company id of this folder
+	* @return the company ID of this folder
 	*/
 	public long getCompanyId() {
 		return _folder.getCompanyId();
 	}
 
 	/**
-	* Sets the company id of this folder.
+	* Sets the company ID of this folder.
 	*
-	* @param companyId the company id of this folder
+	* @param companyId the company ID of this folder
 	*/
 	public void setCompanyId(long companyId) {
 		_folder.setCompanyId(companyId);
 	}
 
 	/**
-	* Gets the user id of this folder.
+	* Gets the user ID of this folder.
 	*
-	* @return the user id of this folder
+	* @return the user ID of this folder
 	*/
 	public long getUserId() {
 		return _folder.getUserId();
 	}
 
 	/**
-	* Sets the user id of this folder.
+	* Sets the user ID of this folder.
 	*
-	* @param userId the user id of this folder
+	* @param userId the user ID of this folder
 	*/
 	public void setUserId(long userId) {
 		_folder.setUserId(userId);
@@ -175,18 +175,18 @@ public class FolderWrapper implements Folder {
 	}
 
 	/**
-	* Gets the account id of this folder.
+	* Gets the account ID of this folder.
 	*
-	* @return the account id of this folder
+	* @return the account ID of this folder
 	*/
 	public long getAccountId() {
 		return _folder.getAccountId();
 	}
 
 	/**
-	* Sets the account id of this folder.
+	* Sets the account ID of this folder.
 	*
-	* @param accountId the account id of this folder
+	* @param accountId the account ID of this folder
 	*/
 	public void setAccountId(long accountId) {
 		_folder.setAccountId(accountId);
