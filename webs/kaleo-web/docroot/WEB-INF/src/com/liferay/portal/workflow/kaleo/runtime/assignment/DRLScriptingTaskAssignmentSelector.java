@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -33,20 +33,22 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class DRLScriptingTaskAssignmentSelector extends BaseTaskAssignmentSelector {
+public class DRLScriptingTaskAssignmentSelector
+	extends BaseTaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
+			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		List<Fact<?>> facts = RulesContextBuilder.buildRulesContext(
 			executionContext);
 
-		String script = configuredKaleoTaskAssignment.getAssigneeScript();
+		String assigneeScript = kaleoTaskAssignment.getAssigneeScript();
 
 		RulesResourceRetriever rulesResourceRetriever =
-			new RulesResourceRetriever(new StringResourceRetriever(script));
+			new RulesResourceRetriever(
+				new StringResourceRetriever(assigneeScript));
 
 		Query query = Query.createStandardQuery();
 

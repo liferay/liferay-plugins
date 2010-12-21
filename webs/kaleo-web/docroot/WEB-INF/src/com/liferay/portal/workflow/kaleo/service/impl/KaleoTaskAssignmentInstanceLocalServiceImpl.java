@@ -74,13 +74,12 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		kaleoTaskAssignmentInstance.setKaleoTaskName(
 			kaleoTaskInstanceToken.getKaleoTaskName());
 		kaleoTaskAssignmentInstance.setAssigneeClassName(assigneeClassName);
-		kaleoTaskAssignmentInstance.setCompleted(false);
 
 		if ((assigneeClassPK == 0) &&
 			assigneeClassName.equals(User.class.getName())) {
 
 			KaleoInstance kaleoInstance =
-				kaleoInstanceLocalService.getKaleoInstance(
+				kaleoInstancePersistence.findByPrimaryKey(
 					kaleoTaskInstanceToken.getKaleoInstanceId());
 
 			kaleoTaskAssignmentInstance.setAssigneeClassPK(
@@ -89,6 +88,8 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 		else {
 			kaleoTaskAssignmentInstance.setAssigneeClassPK(assigneeClassPK);
 		}
+
+		kaleoTaskAssignmentInstance.setCompleted(false);
 
 		kaleoTaskAssignmentInstancePersistence.update(
 			kaleoTaskAssignmentInstance, false);
@@ -112,8 +113,7 @@ public class KaleoTaskAssignmentInstanceLocalServiceImpl
 				addKaleoTaskAssignmentInstance(
 					kaleoTaskInstanceToken,
 					kaleoTaskAssignment.getAssigneeClassName(),
-					kaleoTaskAssignment.getAssigneeClassPK(),
-					serviceContext);
+					kaleoTaskAssignment.getAssigneeClassPK(), serviceContext);
 
 			kaleoTaskAssignmentInstances.add(kaleoTaskAssignmentInstance);
 		}

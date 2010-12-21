@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -31,45 +31,40 @@ public class MultiLanguageTaskAssignmentSelector
 	extends BaseTaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
+			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		String assigneeClassName =
-			configuredKaleoTaskAssignment.getAssigneeClassName();
+		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
 
-		TaskAssignmentSelector assignmentEvaluator = null;
+		TaskAssignmentSelector taskAssignmentSelector = null;
 
 		if (assigneeClassName.equals(ResourceAction.class.getName())) {
-			assignmentEvaluator = _taskAssignmentSelectors.get(
+			taskAssignmentSelector = _taskAssignmentSelectors.get(
 				assigneeClassName);
 		}
 		else {
-			String scriptLanguage =
-				configuredKaleoTaskAssignment.getAssigneeScriptLanguage();
+			String assigneeScriptLanguage =
+				kaleoTaskAssignment.getAssigneeScriptLanguage();
 
-			assignmentEvaluator = _taskAssignmentSelectors.get(scriptLanguage);
-
+			taskAssignmentSelector = _taskAssignmentSelectors.get(
+				assigneeScriptLanguage);
 		}
 
-		if (assignmentEvaluator == null) {
+		if (taskAssignmentSelector == null) {
 			throw new IllegalArgumentException(
-				"No assignment evaluator found for " +
-					configuredKaleoTaskAssignment.toXmlString());
+				"No task assignment selector found for " +
+					kaleoTaskAssignment.toXmlString());
 		}
 
-		return assignmentEvaluator.calculateTaskAssignments(
-			configuredKaleoTaskAssignment, executionContext);
+		return taskAssignmentSelector.calculateTaskAssignments(
+			kaleoTaskAssignment, executionContext);
 	}
 
 	public void setTaskAssignmentSelectors(
-		Map<String, TaskAssignmentSelector> conditionEvaluators) {
+		Map<String, TaskAssignmentSelector> taskAssignmentSelectors) {
 
-		for (Map.Entry<String, TaskAssignmentSelector> entry :
-				conditionEvaluators.entrySet()) {
-
-			_taskAssignmentSelectors.put(entry.getKey(), entry.getValue());
-		}
+		_taskAssignmentSelectors.putAll(taskAssignmentSelectors);
 	}
 
 	private Map<String, TaskAssignmentSelector> _taskAssignmentSelectors =

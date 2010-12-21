@@ -84,6 +84,46 @@
 			</map>
 		</property>
 	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" class="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector">
+		<property name="taskAssignmentSelectors">
+			<map>
+				<entry key="com.liferay.portal.model.ResourceAction">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ResourceActionTaskAssignmentSelector" />
+				</entry>
+				<entry key="com.liferay.portal.model.Role">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.GroupAwareRoleTaskAssignmentSelector" />
+				</entry>
+				<entry key="com.liferay.portal.model.User">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.DefaultTaskAssignmentSelector" />
+				</entry>
+				<entry key="SCRIPT" value-ref="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" />
+			</map>
+		</property>
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" class="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector">
+		<property name="taskAssignmentSelectors">
+			<map>
+				<entry key="beanshell">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
+				</entry>
+				<entry key="drl">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.DRLScriptingTaskAssignmentSelector" />
+				</entry>
+				<entry key="groovy">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
+				</entry>
+				<entry key="javascript">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
+				</entry>
+				<entry key="python">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
+				</entry>
+				<entry key="ruby">
+					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
+				</entry>
+			</map>
+		</property>
+	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" class="com.liferay.portal.workflow.kaleo.runtime.condition.MultiLanguageConditionEvaluator">
 		<property name="conditionEvaluators">
 			<map>
@@ -132,50 +172,9 @@
 						<property name="dueDateCalculator">
 							<bean class="com.liferay.portal.workflow.kaleo.runtime.calendar.DefaultDueDateCalculator" />
 						</property>
-						<property name="taskAssignmentSelector">
-							<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector">
-								<property name="taskAssignmentSelectors">
-									<map>
-										<entry key="com.liferay.portal.model.ResourceAction">
-											<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ResourceActionTaskAssignmentSelector" />
-										</entry>
-										<entry key="com.liferay.portal.model.Role">
-											<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.GroupAwareRoleTaskAssignmentSelector" />
-										</entry>
-										<entry key="SCRIPT" value-ref="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" />
-										<entry key="com.liferay.portal.model.User">
-											<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.DefaultTaskAssignmentSelector" />
-										</entry>
-									</map>
-								</property>
-							</bean>
-						</property>
+						<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" />
 						<property name="transitionSelector" ref="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" />
 					</bean>
-				</entry>
-			</map>
-		</property>
-	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector" class="com.liferay.portal.workflow.kaleo.runtime.assignment.MultiLanguageTaskAssignmentSelector">
-		<property name="taskAssignmentSelectors">
-			<map>
-				<entry key="beanshell">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
-				</entry>
-				<entry key="drl">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.DRLScriptingTaskAssignmentSelector" />
-				</entry>
-				<entry key="groovy">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
-				</entry>
-				<entry key="javascript">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
-				</entry>
-				<entry key="python">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
-				</entry>
-				<entry key="ruby">
-					<bean class="com.liferay.portal.workflow.kaleo.runtime.assignment.ScriptingLanguagesTaskAssignmentSelector" />
 				</entry>
 			</map>
 		</property>

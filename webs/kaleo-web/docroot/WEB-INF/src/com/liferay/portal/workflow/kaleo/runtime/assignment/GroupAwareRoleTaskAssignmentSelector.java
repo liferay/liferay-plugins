@@ -37,7 +37,7 @@ public class GroupAwareRoleTaskAssignmentSelector
 	implements TaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
+			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
@@ -60,8 +60,8 @@ public class GroupAwareRoleTaskAssignmentSelector
 		List<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
-		if (isValidAssignment(configuredKaleoTaskAssignment, group)) {
-			calculatedKaleoTaskAssignments.add(configuredKaleoTaskAssignment);
+		if (isValidAssignment(kaleoTaskAssignment, group)) {
+			calculatedKaleoTaskAssignments.add(kaleoTaskAssignment);
 		}
 
 		return calculatedKaleoTaskAssignments;

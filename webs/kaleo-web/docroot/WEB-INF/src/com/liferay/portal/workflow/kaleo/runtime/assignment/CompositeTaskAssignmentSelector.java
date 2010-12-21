@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -29,23 +29,23 @@ import java.util.Map;
 public class CompositeTaskAssignmentSelector implements TaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
+			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		String assigneeClassName =
-			configuredKaleoTaskAssignment.getAssigneeClassName();
+		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
 
 		TaskAssignmentSelector taskAssignmentSelector =
 			_taskAssignmentSelectors.get(assigneeClassName);
 
 		if (taskAssignmentSelector == null) {
 			throw new IllegalArgumentException(
-				"Unrecognized task assignment type: " + assigneeClassName);
+				"No task assignment selector found for class name " +
+					assigneeClassName);
 		}
 
 		return taskAssignmentSelector.calculateTaskAssignments(
-			configuredKaleoTaskAssignment, executionContext);
+			kaleoTaskAssignment, executionContext);
 	}
 
 	public void setTaskAssignmentSelectors(

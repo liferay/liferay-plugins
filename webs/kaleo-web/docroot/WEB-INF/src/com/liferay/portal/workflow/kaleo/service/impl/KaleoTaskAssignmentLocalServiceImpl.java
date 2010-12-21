@@ -26,6 +26,7 @@ import com.liferay.portal.workflow.kaleo.definition.AssignmentType;
 import com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment;
 import com.liferay.portal.workflow.kaleo.definition.RoleAssignment;
 import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
+import com.liferay.portal.workflow.kaleo.definition.ScriptLanguage;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskAssignmentLocalServiceBaseImpl;
@@ -157,8 +158,12 @@ public class KaleoTaskAssignmentLocalServiceImpl
 			ScriptAssignment scriptAssignment = (ScriptAssignment)assignment;
 
 			kaleoTaskAssignment.setAssigneeScript(scriptAssignment.getScript());
+
+			ScriptLanguage scriptLanguage =
+				scriptAssignment.getScriptLanguage();
+
 			kaleoTaskAssignment.setAssigneeScriptLanguage(
-				scriptAssignment.getScriptLanguage().getValue());
+				scriptLanguage.getValue());
 		}
 		else if (assignmentType.equals(AssignmentType.USER)) {
 			kaleoTaskAssignment.setAssigneeClassName(User.class.getName());

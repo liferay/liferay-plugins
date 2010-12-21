@@ -239,14 +239,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			"scripted-assignment");
 
 		for (Element scriptedAssignmentElement : scriptedAssignmentElements) {
-
-			String script = scriptedAssignmentElement.elementText(
-				"script");
+			String script = scriptedAssignmentElement.elementText("script");
 			String scriptLanguage = scriptedAssignmentElement.elementText(
 				"script-language");
 
-			ScriptAssignment scriptAssignment =
-				new ScriptAssignment(script, scriptLanguage);
+			ScriptAssignment scriptAssignment = new ScriptAssignment(
+				script, scriptLanguage);
 
 			assignments.add(scriptAssignment);
 		}

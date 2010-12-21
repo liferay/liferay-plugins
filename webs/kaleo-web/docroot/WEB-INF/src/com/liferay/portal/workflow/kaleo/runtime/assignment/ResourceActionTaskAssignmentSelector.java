@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
@@ -38,27 +37,27 @@ public class ResourceActionTaskAssignmentSelector
 	extends BaseTaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
+			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Map<String, Serializable> workflowContext =
 			executionContext.getWorkflowContext();
-
 		ServiceContext serviceContext =
 			executionContext.getServiceContext();
 
 		String resourceName = (String)workflowContext.get(
 			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-
 		String resourceClassPK = (String)workflowContext.get(
 			WorkflowConstants.CONTEXT_ENTRY_CLASS_PK);
 
-		String actionId = configuredKaleoTaskAssignment.getAssigneeActionId();
+		String assigneeActionId =
+			kaleoTaskAssignment.getAssigneeActionId();
 
 		List<Role> roles = RoleLocalServiceUtil.getResourceRoles(
 			serviceContext.getCompanyId(), resourceName,
-			ResourceConstants.SCOPE_INDIVIDUAL, resourceClassPK, actionId);
+			ResourceConstants.SCOPE_INDIVIDUAL, resourceClassPK,
+			assigneeActionId);
 
 		List<KaleoTaskAssignment> kaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>(roles.size());
@@ -67,4 +66,5 @@ public class ResourceActionTaskAssignmentSelector
 
 		return kaleoTaskAssignments;
 	}
+
 }

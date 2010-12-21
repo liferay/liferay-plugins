@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -36,7 +36,7 @@ public abstract class BaseTaskAssignmentSelector
 		List<KaleoTaskAssignment> kaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
-		User user = (User)results.get(_USER_ASSIGNMENT);
+		User user = (User)results.get(USER_ASSIGNMENT);
 
 		if (user != null) {
 			KaleoTaskAssignment kaleoTaskAssignment =
@@ -45,7 +45,7 @@ public abstract class BaseTaskAssignmentSelector
 			kaleoTaskAssignments.add(kaleoTaskAssignment);
 		}
 		else {
-			List<Role> roles = (List<Role>)results.get(_ROLES_ASSIGNMENT);
+			List<Role> roles = (List<Role>)results.get(ROLES_ASSIGNMENT);
 
 			getRoleKaleoTaskAssignments(roles, kaleoTaskAssignments);
 		}
@@ -56,17 +56,18 @@ public abstract class BaseTaskAssignmentSelector
 	protected void getRoleKaleoTaskAssignments(
 		List<Role> roles, List<KaleoTaskAssignment> kaleoTaskAssignments) {
 
-		if (roles != null) {
-			for (Role role : roles) {
-				KaleoTaskAssignment kaleoTaskAssignment =
-					new KaleoTaskAssignmentImpl();
+		if (roles == null) {
+			return;
+		}
 
-				kaleoTaskAssignment.setAssigneeClassName(
-					Role.class.getName());
-				kaleoTaskAssignment.setAssigneeClassPK(role.getRoleId());
+		for (Role role : roles) {
+			KaleoTaskAssignment kaleoTaskAssignment =
+				new KaleoTaskAssignmentImpl();
 
-				kaleoTaskAssignments.add(kaleoTaskAssignment);
-			}
+			kaleoTaskAssignment.setAssigneeClassName(Role.class.getName());
+			kaleoTaskAssignment.setAssigneeClassPK(role.getRoleId());
+
+			kaleoTaskAssignments.add(kaleoTaskAssignment);
 		}
 	}
 
@@ -80,6 +81,8 @@ public abstract class BaseTaskAssignmentSelector
 		return kaleoTaskAssignment;
 	}
 
-	protected static final String _USER_ASSIGNMENT = "user";
-	protected static final String _ROLES_ASSIGNMENT = "roles";
+	protected static final String ROLES_ASSIGNMENT = "roles";
+
+	protected static final String USER_ASSIGNMENT = "user";
+
 }

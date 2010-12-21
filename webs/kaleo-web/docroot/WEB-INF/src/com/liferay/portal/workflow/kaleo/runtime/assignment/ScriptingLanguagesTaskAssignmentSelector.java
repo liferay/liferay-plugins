@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -33,20 +33,21 @@ public class ScriptingLanguagesTaskAssignmentSelector
 	extends BaseTaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
+			KaleoTaskAssignment kaleoTaskAssignment,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		Map<String, Object> inputObjects =
 			ScriptingContextBuilder.buildScriptingContext(executionContext);
 
-		String script = configuredKaleoTaskAssignment.getAssigneeScript();
+		String assigneeScript = kaleoTaskAssignment.getAssigneeScript();
 
-		String scriptingLanguage =
-			configuredKaleoTaskAssignment.getAssigneeScriptLanguage();
+		String assigneeScriptingLanguage =
+			kaleoTaskAssignment.getAssigneeScriptLanguage();
 
 		Map<String, Object> results = ScriptingUtil.eval(
-			null, inputObjects, _outputNames, scriptingLanguage, script);
+			null, inputObjects, _outputNames, assigneeScriptingLanguage,
+			assigneeScript);
 
 		return getKaleoTaskAssignments(results);
 	}
@@ -54,8 +55,8 @@ public class ScriptingLanguagesTaskAssignmentSelector
 	private static Set<String> _outputNames = new HashSet<String>();
 
 	static {
-		_outputNames.add(_USER_ASSIGNMENT);
-		_outputNames.add(_ROLES_ASSIGNMENT);
+		_outputNames.add(ROLES_ASSIGNMENT);
+		_outputNames.add(USER_ASSIGNMENT);
 	}
 
 }

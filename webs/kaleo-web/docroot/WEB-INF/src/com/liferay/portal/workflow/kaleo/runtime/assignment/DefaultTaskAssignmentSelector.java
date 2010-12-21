@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -14,8 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
@@ -29,15 +27,15 @@ import java.util.List;
 public class DefaultTaskAssignmentSelector implements TaskAssignmentSelector {
 
 	public Collection<KaleoTaskAssignment> calculateTaskAssignments(
-			KaleoTaskAssignment configuredKaleoTaskAssignment,
-			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		KaleoTaskAssignment kaleoTaskAssignment,
+		ExecutionContext executionContext) {
 
-		List<KaleoTaskAssignment> calculatedTaskAssignments =
+		List<KaleoTaskAssignment> taskAssignments =
 			new ArrayList<KaleoTaskAssignment>(1);
 
-		calculatedTaskAssignments.add(configuredKaleoTaskAssignment);
+		taskAssignments.add(kaleoTaskAssignment);
 
-		return calculatedTaskAssignments;
+		return taskAssignments;
 	}
+
 }
