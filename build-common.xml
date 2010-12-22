@@ -27,7 +27,7 @@
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${project.dir}/lib" includes="activation.jar,jsp-api.jar,servlet-api.jar" />
+		<fileset dir="${project.dir}/lib" includes="activation.jar,jargs.jar,jsp-api.jar,servlet-api.jar,qdox.jar" />
 	</path>
 
 	<path id="test.classpath">
@@ -95,6 +95,17 @@ ECJ was automatically installed. Please rerun your task.
 		<copy todir="${javac.destdir}">
 			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
 		</copy>
+	</target>
+	
+	<target name="format-javadoc">
+		<java
+			classname="com.liferay.portal.tools.JavadocFormatter"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<arg line="--limit ${limit} --init ${init}" />
+		</java>
 	</target>
 
 	<target name="format-source">
