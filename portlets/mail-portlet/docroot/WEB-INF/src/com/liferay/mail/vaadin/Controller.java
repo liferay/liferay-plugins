@@ -102,8 +102,6 @@ public class Controller {
 	/**
 	 * Sets the current user based on the request and initializes any other
 	 * request-specific classes such as MailManager.
-	 *
-	 * @param request
 	 */
 	public void setRequest(PortletRequest request) {
 		user = null;
@@ -174,16 +172,18 @@ public class Controller {
 	}
 
 	/**
-	 * Returns the mail manager for the request or null if not initialized.
+	 * Returns the mail manager for the request or <code>null</code> if not
+	 * initialized.
 	 *
-	 * @return MailManager for current request, null if none
+	 * @return MailManager for current request, <code>null</code> if none
 	 */
 	public MailManager getMailManager() {
 		return mailMgr;
 	}
 
 	/**
-	 * Returns the password retriever for the current request, null if not set.
+	 * Returns the password retriever for the current request, <code>null</code>
+	 * if not set.
 	 */
 	public PasswordRetriever getPasswordRetriever() {
 		return passwordRetriever;

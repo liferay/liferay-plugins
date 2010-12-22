@@ -22,9 +22,9 @@ import javax.portlet.PortletSession;
  * <p>
  * This utility class is necessary to simulate JSF "session" scope across
  * multiple portlets. By default, the JSF framework defines session-scoped
- * managed beans in faces-config.xml within PortletSession.PORTLET_SCOPE
- * instead of PortletSession.APPLICATION_SCOPE, which defines a scope that
- * can share attribute values between portlets.
+ * managed beans in faces-config.xml within PortletSession.PORTLET_SCOPE instead
+ * of PortletSession.APPLICATION_SCOPE, which defines a scope that can share
+ * attribute values between portlets.
  * </p>
  *
  * @author Neil Griffin

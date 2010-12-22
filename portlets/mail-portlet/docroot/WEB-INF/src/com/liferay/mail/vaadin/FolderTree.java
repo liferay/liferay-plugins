@@ -375,11 +375,8 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 	}
 
 	/**
-	 * Similar to {@link MailManager#addFolder(long, String)}: create a new folder.
-	 * Success or error message display is handled inside this method.
-	 *
-	 * @param accountId
-	 * @param displayName
+	 * Similar to {@link MailManager#addFolder(long, String)}: create a new
+	 * folder. Success or error message display is handled inside this method.
 	 */
 	private void addFolder(long accountId, String displayName) {
 		Controller controller = Controller.get();
@@ -415,11 +412,8 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 	}
 
 	/**
-	 * Similar to {@link MailManager#renameFolder(long, String)}: rename a folder.
-	 * Success or error message display is handled inside this method.
-	 *
-	 * @param folderId
-	 * @param displayName
+	 * Similar to {@link MailManager#renameFolder(long, String)}: rename a
+	 * folder. Success or error message display is handled inside this method.
 	 */
 	private void renameFolder(long folderId, String displayName) {
 		Controller controller = Controller.get();
@@ -458,10 +452,8 @@ public class FolderTree extends Tree implements DropHandler, Action.Handler {
 	}
 
 	/**
-	 * Similar to {@link MailManager#deleteFolder(long, String)}: delete a folder.
-	 * Success or error message display is handled inside this method.
-	 *
-	 * @param folderId
+	 * Similar to {@link MailManager#deleteFolder(long, String)}: delete a
+	 * folder. Success or error message display is handled inside this method.
 	 */
 	private void deleteFolder(long folderId) {
 		Controller controller = Controller.get();

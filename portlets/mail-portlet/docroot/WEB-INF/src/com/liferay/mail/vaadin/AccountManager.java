@@ -44,12 +44,6 @@ public class AccountManager {
 	/**
 	 * Returns the (decrypted) password for a user, either from the account or
 	 * from the session.
-	 *
-	 * @param account
-	 * @param controller
-	 * @return
-	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	public String getPassword(Account account, Controller controller)
 		throws PortalException, SystemException {
@@ -58,7 +52,8 @@ public class AccountManager {
 	}
 
 	/**
-	 * Creates a new account and returns failure message key or null if successful.
+	 * Creates a new account and returns failure message key or
+	 * <code>null</code> if successful.
 	 */
 	public String addAccount(Account account, Controller controller)
 			throws PortalException, SystemException {
@@ -104,7 +99,8 @@ public class AccountManager {
 	}
 
 	/**
-	 * Updates an account and returns failure message key or null if successful.
+	 * Updates an account and returns failure message key or <code>null</code>
+	 * if successful.
 	 */
 	public String updateAccount(Account account, Controller controller)
 			throws PortalException, SystemException {

@@ -40,10 +40,12 @@ import javax.portlet.PortletPreferences;
 /**
  * <p>
  * This class is the backing bean behind the JobApplication.jspx file. It
- * contains bean properties to store the values of each ICEfaces component
- * on the page. In addition, it contains a submit action callback, so that
- * the job application form can be sent in the form of an email.
+ * contains bean properties to store the values of each ICEfaces component on
+ * the page. In addition, it contains a submit action callback, so that the job
+ * application form can be sent in the form of an email.
+ * </p>
  *
+ * <p>
  * Note that the email will only be sent if the portlet is configured to work
  * with your mail server as defined in the META-INF/context.xml file or
  * $JBOSS_HOME/server/default/deploy/mail-service.xml file. Also, the file

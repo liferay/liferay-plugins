@@ -303,7 +303,7 @@ public class MessageListTable extends Table
 	}
 
 	/**
-	 * @return selected message, null if many are selected
+	 * @return selected message, <code>null</code> if many are selected
 	 */
 	public Message getSelectedMessage() {
 

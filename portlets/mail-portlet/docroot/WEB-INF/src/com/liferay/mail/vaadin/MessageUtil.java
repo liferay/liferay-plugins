@@ -276,10 +276,8 @@ public class MessageUtil {
 
 	/**
 	 * Returns the {@link Mailbox} for an {@link Account}.
-	 * @param accountId
+	 *
 	 * @return {@link Mailbox}
-	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	public static Mailbox getMailbox(long accountId) throws PortalException,
 			SystemException {

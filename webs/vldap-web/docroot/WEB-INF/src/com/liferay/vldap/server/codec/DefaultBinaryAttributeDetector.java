@@ -21,8 +21,8 @@ import org.apache.directory.shared.ldap.schema.SchemaManager;
 import org.apache.directory.shared.ldap.util.StringTools;
 
 /**
- * This class is copied from an anonymous class found in
- * {@link org.apache.directory.server.ldap.LdapProtocolCodecFactory}.
+ * This class is copied from an anonymous class found in {@link
+ * org.apache.directory.server.ldap.LdapProtocolCodecFactory}.
  *
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan

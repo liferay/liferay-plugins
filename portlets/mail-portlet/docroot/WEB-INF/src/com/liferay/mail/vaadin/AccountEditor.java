@@ -166,7 +166,8 @@ public class AccountEditor extends FormLayout implements ClickListener {
 	}
 
 	/**
-	 * Get the created/modified Account object based on the contents of the window.
+	 * Get the created/modified Account object based on the contents of the
+	 * window.
 	 *
 	 * @return Account
 	 */

@@ -295,10 +295,8 @@ public class MailApplication extends Application {
 
 	/**
 	 * Switch to the compose mode, and return from it to the previous view when
-	 * finished. If returnUrl is not null, go to that URL instead when finished.
-	 *
-	 * @param composer
-	 * @param returnUrl
+	 * finished. If returnUrl is not <code>null</code>, go to that URL instead
+	 * when finished.
 	 */
 	public void switchToCompose(Composer composer, final String returnUrl) {
 		final ComponentContainer previousView = mainWindow.getContent();
@@ -364,13 +362,8 @@ public class MailApplication extends Application {
 	}
 
 	/**
-	 * Show the summary page JSP for non-maximized view mode: mail accounts, compose, etc.
-	 *
-	 * @param request
-	 * @param response
-	 * @param window
-	 * @throws IOException
-	 * @throws PortletException
+	 * Show the summary page JSP for non-maximized view mode: mail accounts,
+	 * compose, etc.
 	 */
 	public void writeViewPageHtml(RenderRequest request,
 			RenderResponse response, Window window) throws IOException,

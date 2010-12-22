@@ -110,9 +110,8 @@ public class ConfirmDialog extends Window implements Handler {
 	 * Adds a listener that will be called when the confirm button is clicked.
 	 * There may be several listeners that all will be called.
 	 *
-	 * @param listener
-	 *			a Button.ClickListener that will be called when confirm button
-	 *			is clicked.
+	 * @param listener a Button.ClickListener that will be called when confirm
+	 *        button is clicked.
 	 */
 	public void addConfirmButtonListener(Button.ClickListener listener) {
 

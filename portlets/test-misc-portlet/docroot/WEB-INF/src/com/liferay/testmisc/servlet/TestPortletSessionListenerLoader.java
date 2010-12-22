@@ -31,8 +31,7 @@ import com.liferay.portal.kernel.servlet.PortletSessionListenerLoader;
  * </p>
  *
  * @author Brian Wing Shun Chan
- *
- * @see com.liferay.testmisc.servlet.TestPortletSessionListener
+ * @see    com.liferay.testmisc.servlet.TestPortletSessionListener
  */
 public class TestPortletSessionListenerLoader
 	extends PortletSessionListenerLoader {
