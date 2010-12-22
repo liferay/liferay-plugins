@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.runtime.assignment;
 
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
@@ -24,7 +25,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,6 +32,7 @@ import java.util.Map;
 
 /**
  * @author Michael C. Han
+ * @author Eduardo Lundgren
  */
 public class ResourceActionTaskAssignmentSelector
 	extends BaseTaskAssignmentSelector {
@@ -46,10 +47,21 @@ public class ResourceActionTaskAssignmentSelector
 		ServiceContext serviceContext =
 			executionContext.getServiceContext();
 
-		String resourceName = (String)workflowContext.get(
-			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME);
-		String resourceClassPK = (String)workflowContext.get(
-			WorkflowConstants.CONTEXT_ENTRY_CLASS_PK);
+		ServiceContext contextServiceContext =
+			(ServiceContext)workflowContext.get(
+				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
+
+		String resourceName = GetterUtil.getString(
+			(String)contextServiceContext.getAttribute(
+				WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME),
+			(String)workflowContext.get(
+				WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME));
+
+		String resourceClassPK = GetterUtil.getString(
+			(String)contextServiceContext.getAttribute(
+				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK),
+			(String)workflowContext.get(
+				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
 
 		String assigneeActionId =
 			kaleoTaskAssignment.getAssigneeActionId();
