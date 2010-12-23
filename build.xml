@@ -82,7 +82,7 @@
 			excludes="build.*.properties,dist/**,clients/*-client/**,ext/*-ext/**,hooks/*-hook/**,layouttpl/*-layouttpl/**,portlets/*-portlet/**,summary.*,themes/*-theme/**,webs/*-web/**"
 		/>
 	</target>
-	
+
 	<target name="format-javadoc">
 		<ant dir="hooks" target="format-javadoc" inheritAll="false" />
 		<ant dir="layouttpl" target="format-javadoc" inheritAll="false" />
