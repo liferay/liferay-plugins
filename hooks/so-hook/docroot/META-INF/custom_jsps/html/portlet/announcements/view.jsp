@@ -58,7 +58,6 @@ Group group = themeDisplay.getScopeGroup();
 				<%= html %>
 
 				<c:if test="<%= Validator.isNull(distributionScope) && group.isCommunity() %>">
-
 					<aui:script>
 						<portlet:namespace />selectDistributionScope("<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + group.getGroupId() %>");
 					</aui:script>
