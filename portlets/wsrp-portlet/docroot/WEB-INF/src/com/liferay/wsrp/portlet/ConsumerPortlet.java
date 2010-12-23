@@ -14,11 +14,9 @@
 
 package com.liferay.wsrp.portlet;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -1436,6 +1434,24 @@ public class ConsumerPortlet extends GenericPortlet {
 			resourceResponse.setContentType(contentType);
 		}
 
+		NamedString[] clientAttributes = resourceContext.getClientAttributes();
+
+		if (clientAttributes != null) {
+			for (NamedString clientAttribute : clientAttributes) {
+				String name = clientAttribute.getName();
+				String value = clientAttribute.getValue();
+
+				if (name.equalsIgnoreCase(
+					HttpHeaders.CONTENT_DISPOSITION)) {
+
+					resourceResponse.setProperty(
+						HttpHeaders.CONTENT_DISPOSITION, value);
+
+					break;
+				}
+			}
+		}
+
 		String charSet = getCharSet(contentType);
 
 		String itemString = resourceContext.getItemString();
@@ -1596,6 +1612,14 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (Validator.isNotNull(contentType)) {
 			resourceResponse.setContentType(contentType);
+		}
+
+		String contentDisposition = response.getHeader(
+			HttpHeaders.CONTENT_DISPOSITION);
+
+		if (Validator.isNotNull(contentDisposition)) {
+			resourceResponse.setProperty(
+				HttpHeaders.CONTENT_DISPOSITION, contentDisposition);
 		}
 
 		String charSet = getCharSet(contentType);
