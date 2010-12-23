@@ -25,6 +25,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -47,18 +48,18 @@ public class ResourceActionTaskAssignmentSelector
 		ServiceContext serviceContext =
 			executionContext.getServiceContext();
 
-		ServiceContext contextServiceContext =
+		ServiceContext workflowContextServiceContext =
 			(ServiceContext)workflowContext.get(
 				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
 		String resourceName = GetterUtil.getString(
-			(String)contextServiceContext.getAttribute(
+			(String)workflowContextServiceContext.getAttribute(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME),
 			(String)workflowContext.get(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME));
 
 		String resourceClassPK = GetterUtil.getString(
-			(String)contextServiceContext.getAttribute(
+			(String)workflowContextServiceContext.getAttribute(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK),
 			(String)workflowContext.get(
 				WorkflowConstants.CONTEXT_ENTRY_CLASS_PK));
