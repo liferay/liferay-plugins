@@ -1428,12 +1428,6 @@ public class ConsumerPortlet extends GenericPortlet {
 		ResourceContext resourceContext =
 			wsrpResourceResponse.getResourceContext();
 
-		String contentType = resourceContext.getMimeType();
-
-		if (Validator.isNotNull(contentType)) {
-			resourceResponse.setContentType(contentType);
-		}
-
 		NamedString[] clientAttributes = resourceContext.getClientAttributes();
 
 		if (clientAttributes != null) {
@@ -1441,15 +1435,19 @@ public class ConsumerPortlet extends GenericPortlet {
 				String name = clientAttribute.getName();
 				String value = clientAttribute.getValue();
 
-				if (name.equalsIgnoreCase(
-					HttpHeaders.CONTENT_DISPOSITION)) {
-
+				if (name.equalsIgnoreCase(HttpHeaders.CONTENT_DISPOSITION)) {
 					resourceResponse.setProperty(
 						HttpHeaders.CONTENT_DISPOSITION, value);
 
 					break;
 				}
 			}
+		}
+
+		String contentType = resourceContext.getMimeType();
+
+		if (Validator.isNotNull(contentType)) {
+			resourceResponse.setContentType(contentType);
 		}
 
 		String charSet = getCharSet(contentType);
@@ -1602,6 +1600,14 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		Http.Response response = options.getResponse();
 
+		String contentDisposition = response.getHeader(
+			HttpHeaders.CONTENT_DISPOSITION);
+
+		if (Validator.isNotNull(contentDisposition)) {
+			resourceResponse.setProperty(
+				HttpHeaders.CONTENT_DISPOSITION, contentDisposition);
+		}
+
 		int contentLength = response.getContentLength();
 
 		if (contentLength >= 0) {
@@ -1612,14 +1618,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		if (Validator.isNotNull(contentType)) {
 			resourceResponse.setContentType(contentType);
-		}
-
-		String contentDisposition = response.getHeader(
-			HttpHeaders.CONTENT_DISPOSITION);
-
-		if (Validator.isNotNull(contentDisposition)) {
-			resourceResponse.setProperty(
-				HttpHeaders.CONTENT_DISPOSITION, contentDisposition);
 		}
 
 		String charSet = getCharSet(contentType);
