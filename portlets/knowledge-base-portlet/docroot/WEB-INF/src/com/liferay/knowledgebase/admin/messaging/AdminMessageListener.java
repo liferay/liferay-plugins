@@ -36,6 +36,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -210,8 +212,13 @@ public class AdminMessageListener extends BaseMessageListener {
 				continue;
 			}
 
+			Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+			int type = group.getType();
+
 			if (!GroupLocalServiceUtil.hasUserGroup(
-					subscribedUserId, groupId)) {
+					subscribedUserId, groupId) &&
+				(type != GroupConstants.TYPE_COMMUNITY_OPEN)) {
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
