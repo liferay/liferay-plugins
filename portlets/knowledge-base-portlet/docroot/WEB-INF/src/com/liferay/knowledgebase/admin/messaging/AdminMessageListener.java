@@ -21,8 +21,6 @@ import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.mail.service.MailServiceUtil;
-import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -36,8 +34,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -45,16 +41,12 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.TextFormatter;
 
-import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
 
@@ -144,235 +136,6 @@ public class AdminMessageListener extends BaseMessageListener {
 		}
 
 		return sb.toString();
-	}
-
-	protected void sendEmail(
-			long userId, long groupId, long resourcePrimKey, String portalURL,
-			String fromName, String fromAddress, String subject, String body,
-			List<Subscription> subscriptions, Set<Long> sent,
-			String replyToAddress, String mailId, boolean htmlFormat)
-		throws Exception {
-
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-		for (Subscription subscription : subscriptions) {
-			long subscribedUserId = subscription.getUserId();
-
-			if (sent.contains(subscribedUserId)) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Do not send a duplicate email to user " +
-							subscribedUserId);
-				}
-
-				continue;
-			}
-			else {
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						"Add user " + subscribedUserId +
-							" to the list of users who have received an email");
-				}
-
-				sent.add(subscribedUserId);
-			}
-
-			User user = null;
-
-			try {
-				user = UserLocalServiceUtil.getUserById(subscribedUserId);
-			}
-			catch (NoSuchUserException nsue) {
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Subscription " + subscription.getSubscriptionId() +
-							" is stale and will be deleted");
-				}
-
-				ArticleLocalServiceUtil.unsubscribeAllPortlets(
-					subscription.getCompanyId(),
-					subscription.getSubscriptionId());
-
-				continue;
-			}
-
-			if (!user.isActive()) {
-				continue;
-			}
-
-			Group group = GroupLocalServiceUtil.getGroup(groupId);
-
-			int type = group.getType();
-
-			if (!GroupLocalServiceUtil.hasUserGroup(
-					subscribedUserId, groupId) &&
-				(type != GroupConstants.TYPE_COMMUNITY_OPEN)) {
-
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Subscription " + subscription.getSubscriptionId() +
-							" is stale and will be deleted");
-				}
-
-				ArticleLocalServiceUtil.unsubscribeAllPortlets(
-					subscription.getCompanyId(),
-					subscription.getSubscriptionId());
-
-				continue;
-			}
-
-			PrincipalThreadLocal.setName(user.getUserId());
-
-			PermissionChecker permissionChecker =
-				PermissionCheckerFactoryUtil.create(user, true);
-
-			PermissionThreadLocal.setPermissionChecker(permissionChecker);
-
-			try {
-				if (!ArticlePermission.contains(
-						permissionChecker, resourcePrimKey, ActionKeys.VIEW)) {
-
-					if (_log.isInfoEnabled()) {
-						_log.info(
-							"User " + user.getUserId() +
-								" does not have view permission");
-					}
-
-					continue;
-				}
-			}
-			finally {
-				PrincipalThreadLocal.setName(null);
-				PermissionThreadLocal.setPermissionChecker(null);
-			}
-
-			String[] portletIds = ExpandoValueLocalServiceUtil.getData(
-				user.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletIds", subscription.getSubscriptionId(), new String[0]);
-
-			String articleURL = null;
-
-			for (String portletId : portletIds) {
-				articleURL = KnowledgeBaseUtil.getArticleURL(
-					portletId, resourcePrimKey, portalURL);
-
-				if (Validator.isNotNull(articleURL)) {
-					break;
-				}
-
-				if (_log.isInfoEnabled()) {
-					_log.info(
-						"Portlet " + portletId + " does not exist or does " +
-							"not contain article " + resourcePrimKey);
-
-					ArticleLocalServiceUtil.unsubscribe(
-						subscription.getCompanyId(), userId, portletId,
-						subscription.getClassPK());
-				}
-			}
-
-			if (Validator.isNull(articleURL)) {
-				continue;
-			}
-
-			String categoryTitle = LanguageUtil.get(
-				user.getLocale(), "category.kb");
-			String portletName = PortalUtil.getPortletTitle(
-				PortletKeys.KNOWLEDGE_BASE_ADMIN, user.getLocale());
-
-			String curFromName = StringUtil.replace(
-				fromName,
-				new String[] {
-					"[$CATEGORY_TITLE$]",
-					"[$PORTLET_NAME$]"
-				},
-				new String[] {
-					categoryTitle,
-					portletName
-				});
-
-			String curFromAddress = StringUtil.replace(
-				fromAddress,
-				new String[] {
-					"[$CATEGORY_TITLE$]",
-					"[$PORTLET_NAME$]"
-				},
-				new String[] {
-					categoryTitle,
-					portletName
-				});
-
-			String articleAttachments = getEmailArticleAttachments(
-				article, user.getLocale());
-			String articleVersion = LanguageUtil.format(
-				user.getLocale(), "version-x",
-				String.valueOf(article.getVersion()), false);
-
-			String curSubject = StringUtil.replace(
-				subject,
-				new String[] {
-					"[$ARTICLE_ATTACHMENTS$]",
-					"[$ARTICLE_URL$]",
-					"[$ARTICLE_VERSION$]",
-					"[$CATEGORY_TITLE$]",
-					"[$PORTLET_NAME$]",
-					"[$TO_ADDRESS$]",
-					"[$TO_NAME$]"
-				},
-				new String[] {
-					articleAttachments,
-					articleURL,
-					articleVersion,
-					categoryTitle,
-					portletName,
-					user.getEmailAddress(),
-					user.getFullName()
-				});
-
-			String curBody = StringUtil.replace(
-				body,
-				new String[] {
-					"[$ARTICLE_ATTACHMENTS$]",
-					"[$ARTICLE_URL$]",
-					"[$ARTICLE_VERSION$]",
-					"[$CATEGORY_TITLE$]",
-					"[$PORTLET_NAME$]",
-					"[$TO_ADDRESS$]",
-					"[$TO_NAME$]"
-				},
-				new String[] {
-					articleAttachments,
-					articleURL,
-					articleVersion,
-					categoryTitle,
-					portletName,
-					user.getEmailAddress(),
-					user.getFullName()
-				});
-
-			try {
-				InternetAddress from = new InternetAddress(
-					curFromAddress, curFromName);
-
-				InternetAddress to = new InternetAddress(
-					user.getEmailAddress(), user.getFullName());
-
-				InternetAddress replyTo = new InternetAddress(
-					replyToAddress, replyToAddress);
-
-				MailMessage message = new MailMessage(
-					from, to, curSubject, curBody, htmlFormat);
-
-				message.setReplyTo(new InternetAddress[] {replyTo});
-				message.setMessageId(mailId);
-
-				MailServiceUtil.sendEmail(message);
-			}
-			catch (Exception e) {
-				_log.error(e);
-			}
-		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AdminMessageListener.class);
