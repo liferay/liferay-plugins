@@ -59,7 +59,7 @@ public class DisplayPortlet extends AdminPortlet {
 
 	protected boolean isPRPRedirect(
 			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws PortletException, IOException {
+		throws PortletException {
 
 		try {
 			PortletSession portletSession = renderRequest.getPortletSession();

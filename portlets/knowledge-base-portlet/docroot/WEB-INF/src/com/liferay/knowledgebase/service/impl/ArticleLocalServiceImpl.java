@@ -821,8 +821,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected DynamicQuery buildDynamicQuery(
-			Map<String, Object> params, boolean allVersions)
-		throws SystemException {
+		Map<String, Object> params, boolean allVersions) {
 
 		for (Object value : params.values()) {
 			if (value instanceof Object[]) {

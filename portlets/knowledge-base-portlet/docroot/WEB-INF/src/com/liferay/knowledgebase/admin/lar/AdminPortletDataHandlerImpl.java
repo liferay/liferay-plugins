@@ -280,7 +280,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	protected void exportComment(
 			PortletDataContext portletDataContext, Element rootElement,
 			String name, String path, Comment comment)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Element commentElement = rootElement.addElement(name);
 
@@ -294,7 +294,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	protected void exportComments(
 			PortletDataContext portletDataContext, Class<?> classObj,
 			String name, Element rootElement)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(classObj);
 
