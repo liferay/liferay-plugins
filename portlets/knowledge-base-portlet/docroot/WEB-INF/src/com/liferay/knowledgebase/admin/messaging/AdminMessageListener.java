@@ -46,14 +46,14 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.TextFormatter;
 
-import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.mail.internet.InternetAddress;
@@ -78,27 +78,32 @@ public class AdminMessageListener extends BaseMessageListener {
 		String mailId = message.getString("mailId");
 		boolean htmlFormat = message.getBoolean("htmlFormat");
 
-		Set<Long> sent = new HashSet<Long>();
-
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				"Sending notifications for {mailId=" + mailId +
 					", resourcePrimKey=" + resourcePrimKey + "}");
 		}
 
-		// Article
-
-		List<Subscription> subscriptions =
-			SubscriptionLocalServiceUtil.getSubscriptions(
-				companyId, Article.class.getName(), resourcePrimKey);
-
-		sendEmail(
-			userId, groupId, resourcePrimKey, portalURL, fromName, fromAddress,
-			subject, body, subscriptions, sent, replyToAddress, mailId,
-			htmlFormat);
-
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+
+		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
+			article, portalURL);
+
+		subscriptionSender.setCompanyId(companyId);
+		subscriptionSender.setUserId(userId);
+		subscriptionSender.setGroupId(groupId);
+		subscriptionSender.setFrom(fromName, fromAddress);
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setBody(body);
+		subscriptionSender.setReplyToAddress(replyToAddress);
+		subscriptionSender.setMailId(mailId);
+		subscriptionSender.setHtmlFormat(htmlFormat);
+
+		subscriptionSender.notifyPersistedSubscribers(
+			Article.class.getName(), groupId);
+		subscriptionSender.notifyPersistedSubscribers(
+			Article.class.getName(), resourcePrimKey);
 
 		while (article.getParentResourcePrimKey() !=
 					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
@@ -107,32 +112,16 @@ public class AdminMessageListener extends BaseMessageListener {
 				article.getParentResourcePrimKey(),
 				WorkflowConstants.STATUS_APPROVED);
 
-			subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(
-				companyId, Article.class.getName(),
-				article.getResourcePrimKey());
-
-			sendEmail(
-				userId, groupId, resourcePrimKey, portalURL, fromName,
-				fromAddress, subject, body, subscriptions, sent, replyToAddress,
-				mailId, htmlFormat);
+			subscriptionSender.notifyPersistedSubscribers(
+				Article.class.getName(), article.getResourcePrimKey());
 		}
-
-		// Articles
-
-		subscriptions = SubscriptionLocalServiceUtil.getSubscriptions(
-			companyId, Article.class.getName(), groupId);
-
-		sendEmail(
-			userId, groupId, resourcePrimKey, portalURL, fromName, fromAddress,
-			subject, body, subscriptions, sent, replyToAddress, mailId,
-			htmlFormat);
 
 		if (_log.isInfoEnabled()) {
 			_log.info("Finished sending notifications");
 		}
 	}
 
-	protected String getEmailArticleAttachments(User user, Article article)
+	protected String getEmailArticleAttachments(Article article, Locale locale)
 		throws Exception {
 
 		String[] fileNames = article.getAttachmentsFileNames();
@@ -149,7 +138,7 @@ public class AdminMessageListener extends BaseMessageListener {
 
 			sb.append(FileUtil.getShortFileName(fileName));
 			sb.append(" (");
-			sb.append(TextFormatter.formatKB(kb, user.getLocale()));
+			sb.append(TextFormatter.formatKB(kb, locale));
 			sb.append("k)");
 			sb.append("<br />");
 		}
@@ -315,7 +304,7 @@ public class AdminMessageListener extends BaseMessageListener {
 				});
 
 			String articleAttachments = getEmailArticleAttachments(
-				user, article);
+				article, user.getLocale());
 			String articleVersion = LanguageUtil.format(
 				user.getLocale(), "version-x",
 				String.valueOf(article.getVersion()), false);
@@ -387,5 +376,165 @@ public class AdminMessageListener extends BaseMessageListener {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AdminMessageListener.class);
+
+	private class AdminSubscriptionSender extends SubscriptionSender {
+
+		public AdminSubscriptionSender(Article article, String portalURL) {
+			_article = article;
+			_portalURL = portalURL;
+		}
+
+		protected void deleteSubscription(Subscription subscription)
+			throws Exception {
+
+			ArticleLocalServiceUtil.unsubscribeAllPortlets(
+				subscription.getCompanyId(),
+				subscription.getSubscriptionId());
+		}
+
+		protected boolean hasPermission(Subscription subscription, User user)
+			throws Exception {
+
+			PrincipalThreadLocal.setName(user.getUserId());
+
+			PermissionChecker permissionChecker = null;
+
+			try {
+				permissionChecker = PermissionCheckerFactoryUtil.create(
+					user, true);
+
+				PermissionThreadLocal.setPermissionChecker(permissionChecker);
+
+				if (!ArticlePermission.contains(
+						permissionChecker, _article.getResourcePrimKey(),
+						ActionKeys.VIEW)) {
+
+					return false;
+				}
+			}
+			finally {
+				PrincipalThreadLocal.setName(null);
+
+				PermissionThreadLocal.setPermissionChecker(null);
+			}
+
+			String[] portletIds = ExpandoValueLocalServiceUtil.getData(
+				user.getCompanyId(), Subscription.class.getName(), "KB",
+				"portletIds", subscription.getSubscriptionId(), new String[0]);
+
+			for (String portletId : portletIds) {
+				String articleURL = KnowledgeBaseUtil.getArticleURL(
+					portletId, _article.getResourcePrimKey(), _portalURL);
+
+				if (Validator.isNotNull(articleURL)) {
+					context.put("articleURL", articleURL);
+
+					return true;
+				}
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Portlet " + portletId + " does not exist or does " +
+							"not contain article " +
+								_article.getResourcePrimKey());
+				}
+
+				ArticleLocalServiceUtil.unsubscribe(
+					subscription.getCompanyId(), userId, portletId,
+					subscription.getClassPK());
+			}
+
+			return false;
+		}
+
+		protected void processMailMessage(
+				MailMessage mailMessage, Locale locale)
+			throws Exception {
+
+			super.processMailMessage(mailMessage, locale);
+
+			InternetAddress from = mailMessage.getFrom();
+
+			String categoryTitle = LanguageUtil.get(locale, "category.kb");
+			String portletName = PortalUtil.getPortletTitle(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN, locale);
+
+			String processedFromAddress = StringUtil.replace(
+				from.getAddress(),
+				new String[] {
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					categoryTitle,
+					portletName
+				});
+
+			String processedFromName = StringUtil.replace(
+				from.getPersonal(),
+				new String[] {
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					categoryTitle,
+					portletName
+				});
+
+			InternetAddress processedFrom = new InternetAddress(
+				processedFromAddress, processedFromName);
+
+			mailMessage.setFrom(processedFrom);
+
+			String articleAttachments = getEmailArticleAttachments(
+				_article, locale);
+			String articleURL = (String)context.get("articleURL");
+			String articleVersion = LanguageUtil.format(
+				locale, "version-x", String.valueOf(_article.getVersion()),
+				false);
+
+			String processedSubject = StringUtil.replace(
+				subject,
+				new String[] {
+					"[$ARTICLE_ATTACHMENTS$]",
+					"[$ARTICLE_URL$]",
+					"[$ARTICLE_VERSION$]",
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					articleAttachments,
+					articleURL,
+					articleVersion,
+					categoryTitle,
+					portletName
+				});
+
+			mailMessage.setSubject(processedSubject);
+
+			String processedBody = StringUtil.replace(
+				body,
+				new String[] {
+					"[$ARTICLE_ATTACHMENTS$]",
+					"[$ARTICLE_URL$]",
+					"[$ARTICLE_VERSION$]",
+					"[$CATEGORY_TITLE$]",
+					"[$PORTLET_NAME$]"
+				},
+				new String[] {
+					articleAttachments,
+					articleURL,
+					articleVersion,
+					categoryTitle,
+					portletName
+				});
+
+			mailMessage.setBody(processedBody);
+		}
+
+		private Article _article;
+		private String _portalURL;
+
+	};
 
 }
