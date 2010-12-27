@@ -16,18 +16,17 @@
 
 <%@ include file="/init.jsp" %>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<liferay-ui:input-editor />
+<aui:form action="<%= actionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveMessage();" %>' >
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<input name="<portlet:namespace />message" type="hidden" value="" />
+	<liferay-ui:input-editor />
 
-<br /><br />
+	<aui:input name="preferences--message--" type="hidden" />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick="<portlet:namespace />saveMessage();" />
-
-</form>
+	<aui:button type="submit" />
+</aui:form>
 
 <aui:script>
 	function <portlet:namespace />initEditor() {

@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<configuration-action-class>com.liferay.wysiwyg.action.ConfigurationActionImpl</configuration-action-class>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.BaseConfigurationAction</configuration-action-class>
 		<css-class-wrapper>wysiwyg-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
