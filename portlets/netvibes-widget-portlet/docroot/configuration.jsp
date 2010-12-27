@@ -29,7 +29,7 @@ String htmlAttributes =
 	"width=" + width + "\n";
 %>
 
-<liferay-portlet:actionURL portletConfiguration="true" var="actionURL"/>
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
 <aui:form action="<%= actionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
@@ -118,7 +118,7 @@ String htmlAttributes =
 				<aui:input cssClass="lfr-textarea-container lfr-textarea" name="preferences--htmlAttributes--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= htmlAttributes %>" wrap="soft" />
 			</aui:fieldset>
 
-			<aui:button type="submit" onClick="<portlet:namespace />updateWidget('<%= link %>','<%= UnicodeFormatter.toString(title) %>','<%= UnicodeFormatter.toString(description) %>','<%= UnicodeFormatter.toString(thumbnail) %>');" />
+			<aui:button onClick="<portlet:namespace />updateWidget('<%= link %>','<%= UnicodeFormatter.toString(title) %>','<%= UnicodeFormatter.toString(description) %>','<%= UnicodeFormatter.toString(thumbnail) %>');" type="submit" />
 
 			<div class="separator"><!-- --></div>
 		</c:if>

@@ -43,7 +43,7 @@ String region = ParamUtil.getString(request, "region", "all");
 			for (String[] categoryValues : NetvibesWidgetUtil.getCategories()) {
 			%>
 
-				<option <%= Integer.parseInt(categoryValues[0]) == category ? "selected" : "" %> value="<%= Integer.parseInt(categoryValues[0]) %>"><%= categoryValues[1] %></option>
+				<option <%= GetterUtil.getInteger(categoryValues[0]) == category ? "selected" : "" %> value="<%= GetterUtil.getInteger(categoryValues[0]) %>"><%= categoryValues[1] %></option>
 
 			<%
 			}

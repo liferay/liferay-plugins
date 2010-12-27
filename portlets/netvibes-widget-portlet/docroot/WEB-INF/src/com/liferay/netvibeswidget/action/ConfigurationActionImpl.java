@@ -34,8 +34,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String[] htmlAttributes = StringUtil.split(getParameter(
-			actionRequest, "htmlAttributes"), StringPool.NEW_LINE);
+		String[] htmlAttributes = StringUtil.split(
+			getParameter(actionRequest, "htmlAttributes"), StringPool.NEW_LINE);
 
 		for (String htmlAttribute : htmlAttributes) {
 			int pos = htmlAttribute.indexOf(StringPool.EQUAL);
