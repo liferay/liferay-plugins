@@ -30,39 +30,12 @@ import java.sql.ResultSet;
 public class UpgradeRatings extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (!hasData("KB_Article")) {
+		if (!tableHasData("KB_Article")) {
 			return;
 		}
 
 		updateRatingsEntries();
 		updateRatingsStats();
-	}
-
-	protected boolean hasData(String tableName) throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement("select count(*) from " + tableName);
-
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				long count = rs.getLong(1);
-
-				if (count > 0) {
-					return true;
-				}
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-
-		return false;
 	}
 
 	protected void updateRatingsEntries() throws Exception {
