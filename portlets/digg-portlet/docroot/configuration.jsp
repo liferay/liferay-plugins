@@ -90,7 +90,7 @@
 </style>
 
 <aui:form action="<%= configurationURL %>" cssClass="digg-portlet-configuration" method="post">
-	<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<div class="fld <%= domain ? "selected" : "" %>">
 		<aui:input checked="<%= domain %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="domain" />
