@@ -15,17 +15,12 @@
 package com.liferay.netvibeswidget.action;
 
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
-import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletPreferences;
 
 /**
  * @author Jorge Ferrer
@@ -39,25 +34,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String link = ParamUtil.getString(actionRequest, "link");
-		String title = ParamUtil.getString(actionRequest, "title");
-		String description = ParamUtil.getString(actionRequest, "description");
-		String thumbnail = ParamUtil.getString(actionRequest, "thumbnail");
-
-		String[] htmlAttributes = StringUtil.split(ParamUtil.getString(
+		String[] htmlAttributes = StringUtil.split(getParameter(
 			actionRequest, "htmlAttributes"), StringPool.NEW_LINE);
-
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
-
-		preferences.setValue("link", link);
-		preferences.setValue("title", title);
-		preferences.setValue("description", description);
-		preferences.setValue("thumbnail", thumbnail);
 
 		for (String htmlAttribute : htmlAttributes) {
 			int pos = htmlAttribute.indexOf(StringPool.EQUAL);
@@ -70,15 +48,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			String value = htmlAttribute.substring(
 				pos + 1, htmlAttribute.length());
 
-			preferences.setValue(key, value);
+			setPreference(actionRequest, key, value);
 		}
 
-		if (SessionErrors.isEmpty(actionRequest)) {
-			preferences.store();
-
-			SessionMessages.add(
-				actionRequest, portletConfig.getPortletName() + ".doConfigure");
-		}
+		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
 }
