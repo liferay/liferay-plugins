@@ -14,7 +14,6 @@
 
 package com.liferay.socialnetworking.hook.upgrade.v1_0_0;
 
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -24,10 +23,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.MeetupsEntryTable;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.MeetupsRegistrationTable;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.WallEntryTable;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 /**
  * @author Julio Camarero
@@ -57,44 +52,12 @@ public class UpgradeNamespace extends UpgradeProcess {
 			WallEntryTable.TABLE_SQL_CREATE, WallEntryTable.TABLE_SQL_DROP);
 	}
 
-	protected boolean hasData(String tableName) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement("select count(*) from " + tableName);
-
-			rs = ps.executeQuery();
-
-			while (rs.next()) {
-				long count = rs.getLong(1);
-
-				if (count > 0) {
-					return true;
-				}
-			}
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(e.getMessage());
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-
-		return false;
-	}
-
 	protected void renameTable(
 			String oldTableName, String newTableName, Object[][] tableColumns,
 			String tableSqlCreate, String tableSqlDrop)
 		throws Exception {
 
-		if (hasData(newTableName)) {
+		if (tableHasData(newTableName)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Not renaming " + oldTableName + " to " + newTableName +
@@ -104,7 +67,7 @@ public class UpgradeNamespace extends UpgradeProcess {
 			return;
 		}
 
-		if (!hasData(oldTableName)) {
+		if (!tableHasData(oldTableName)) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Not renaming " + oldTableName + " to " + newTableName +
