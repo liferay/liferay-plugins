@@ -24,11 +24,11 @@
 	<aui:layout>
 		<aui:column id="controls" columnWidth="50">
 			<div class="aui-field-row">
-				<aui:input cssClass="url" inlineField="true" label="url" name="url" value="<%= url %>" />
+				<aui:input cssClass="url" inlineField="true" label="url" name="preferences--url--" value="<%= url %>" />
 			</div>
 
 			<div class="aui-field-row">
-				<aui:select label="preset-frame-size" name="presetSize" inlineField="true" cssClass="preset-size">
+				<aui:select label="preset-frame-size" name="preferences--presetSize--" inlineField="true" cssClass="preset-size">
 					<aui:option label="Custom" value="custom" />
 					<aui:option label="Standard 360 4:3" selected='<%= presetSize.equals("480x360") %>' value="480x360" />
 					<aui:option label="Standard 360 16:9" selected='<%= presetSize.equals("640x360") %>' value="640x360" />
@@ -40,33 +40,31 @@
 					<aui:option label="Full HD 1080 16:9" selected='<%= presetSize.equals("1920x1080") %>' value="1920x1080" />
 				</aui:select>
 
-				<aui:input cssClass="width invisible" inlineField="true" label="frame-width" name="width" value="<%= width %>" />
+				<aui:input cssClass="width invisible" inlineField="true" label="frame-width" name="preferences--width--" value="<%= width %>" />
 
-				<aui:input cssClass="height invisible" inlineField="true" label="frame-height" name="height" value="<%= height %>" />
+				<aui:input cssClass="height invisible" inlineField="true" label="frame-height" name="preferences--height--" value="<%= height %>" />
 			</div>
 
 			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 				<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "advanced-options") %>'>
 					<div class="aui-field-row">
-						<aui:input cssClass="player-color" inlineField="true" label="player-color" name="playerColor" value="<%= playerColor %>" />
+						<aui:input cssClass="player-color" inlineField="true" label="player-color" name="preferences--playerColor--" value="<%= playerColor %>" />
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="autoplay" inlineField="true" label="auto-play" name="autoplay" value="<%= autoplay %>" type="checkbox" />
+						<aui:input cssClass="autoplay" inlineField="true" label="auto-play" name="preferences--autoplay--" value="<%= autoplay %>" type="checkbox" />
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="enable-fullscreen" inlineField="true" label="enable-fullscreen-option" name="enableFullscreen" value="<%= enableFullscreen %>" type="checkbox" />
+						<aui:input cssClass="enable-fullscreen" inlineField="true" label="enable-fullscreen-option" name="preferences--enableFullscreen--" value="<%= enableFullscreen %>" type="checkbox" />
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="show-byline" inlineField="true" label="show-byline" name="showByline" value="<%= showByline %>" type="checkbox" />
+						<aui:input cssClass="show-byline" inlineField="true" label="show-byline" name="preferences--showByline--" value="<%= showByline %>" type="checkbox" />
 
-						<aui:input cssClass="show-portrait" inlineField="true" label="show-portrait" name="showPortrait" value="<%= showPortrait %>" type="checkbox" />
+						<aui:input cssClass="show-portrait" inlineField="true" label="show-portrait" name="preferences--showPortrait--" value="<%= showPortrait %>" type="checkbox" />
 
-						<aui:input cssClass="show-byline" inlineField="true" label="show-byline" name="showByline" value="<%= showByline %>" type="checkbox" />
-
-						<aui:input cssClass="show-title" inlineField="true" label="show-title" name="showTitle" value="<%= showTitle %>" type="checkbox" />
+						<aui:input cssClass="show-title" inlineField="true" label="show-title" name="preferences--showTitle--" value="<%= showTitle %>" type="checkbox" />
 					</div>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>
