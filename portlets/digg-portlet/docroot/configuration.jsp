@@ -93,9 +93,9 @@
 	<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<div class="fld <%= domain ? "selected" : "" %>">
-		<aui:input checked="<%= domain %>" cssClass="news-type r" inlineField="true" label="" name="newsType" type="radio" value="domain" />
+		<aui:input checked="<%= domain %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="domain" />
 
-		<aui:select  cssClass="source-pop-or-up" inlineField="true" label="" name="sourcePopOrUp">
+		<aui:select  cssClass="source-pop-or-up" inlineField="true" label="" name="preferences--sourcePopOrUp--">
 			<aui:option label="popular" selected='<%= sourcePopOrUp.equals("popular") %>' value="popular" />
 			<aui:option label="upcoming" selected='<%= sourcePopOrUp.equals("upcoming") %>' value="upcoming" />
 			<aui:option label="all" selected='<%= sourcePopOrUp.equals("all") %>' value="all" />
@@ -103,17 +103,17 @@
 
 		<label><liferay-ui:message key="stories-from-the-source-site" /></label>
 
-		<aui:input cssClass="url" inlineField="true" label="" name="url" size="17" value="<%= url %>" />
+		<aui:input cssClass="url" inlineField="true" label="" name="preferences--url--" size="17" value="<%= url %>" />
 
 		<div class="ffld">
-			<aui:select cssClass="url-sort" inlineField="true" label="" name="urlSort">
+			<aui:select cssClass="url-sort" inlineField="true" label="" name="preferences--urlSort--">
 				<aui:option label="sorted-by-date" selected='<%= urlSort.equals("promote_date-desc") %>' value="promote_date-desc" />
 				<aui:option label="sorted-by-diggs" selected='<%= urlSort.equals("digg_count-desc") %>' value="digg_count-desc" />
 			</aui:select>
 
 			<liferay-ui:message key="in-the" />
 
-			<aui:select cssClass="min-date" inlineField="true" label="" name="minDate">
+			<aui:select cssClass="min-date" inlineField="true" label="" name="preferences--minDate--">
 				<aui:option><%= LanguageUtil.get(pageContext, "last-millenium") %></aui:option>
 				<aui:option label="last-24-hours" selected='<%= minDate.equals("1") %>' value="1" />
 				<aui:option label="last-7-days" selected='<%= minDate.equals("7") %>' value="7" />
@@ -124,11 +124,11 @@
 	</div>
 
 	<div class="fld <%= front ? "selected" : "" %>">
-		<aui:input checked="<%= front %>" cssClass="news-type r" inlineField="true" label="" name="newsType" type="radio" value="front" />
+		<aui:input checked="<%= front %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="front" />
 
 		<label><liferay-ui:message key="all-popular-stories-in" /></label>
 
-		<aui:select cssClass="news-front" inlineField="true" label="" name="newsFront">
+		<aui:select cssClass="news-front" inlineField="true" label="" name="preferences--newsFront--">
 			<aui:option><%= LanguageUtil.get(pageContext, "all-topics") %></aui:option>
 			<aui:option label="Apple" selected='<%= newsFront.equals("apple") %>' value="apple" />
 			<aui:option label="Design" selected='<%= newsFront.equals("design") %>' value="design" />
@@ -184,11 +184,11 @@
 	</div>
 
 	<div class="fld <%= top ? "selected" : "" %>">
-		<aui:input checked="<%= top %>" cssClass="news-type r" inlineField="true" label="" name="newsType" type="radio" value="top" />
+		<aui:input checked="<%= top %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="top" />
 
 		<label><liferay-ui:message key="top-10-list-from" /></label>
 
-		<aui:select cssClass="news-top" inlineField="true" label="" name="newsTop">
+		<aui:select cssClass="news-top" inlineField="true" label="" name="preferences--newsTop--">
 			<aui:option><%= LanguageUtil.get(pageContext, "all-topics") %></aui:option>
 			<aui:option label="Technology" selected='<%= newsTop.equals("technology") %>' value="technology" />
 			<aui:option label="Science" selected='<%= newsTop.equals("science") %>' value="science" />
@@ -207,26 +207,26 @@
 	</div>
 
 	<div class="fld <%= user ? "selected" : "" %>">
-		<aui:input checked="<%= user %>" cssClass="news-type r" inlineField="true" label="" name="newsType" type="radio" value="user" />
+		<aui:input checked="<%= user %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="user" />
 
 		<label><liferay-ui:message key="stories" /></label>
 
-		<aui:select cssClass="news-user" inlineField="true" label="" name="newsUser">
+		<aui:select cssClass="news-user" inlineField="true" label="" name="preferences--newsUser--">
 			<aui:option label="dugg" selected='<%= newsUser.equals("dugg") %>' value="dugg" />
 			<aui:option label="submitted" selected='<%= newsUser.equals("submissions") %>' value="submissions" />
 		</aui:select>
 
 		<label><liferay-ui:message key="by-user" /></label>
 
-		<aui:input cssClass="user-username" inlineField="true" label="" name="userUsername" size="17" value="<%= userUsername %>" />
+		<aui:input cssClass="user-username" inlineField="true" label="" name="preferences--userUsername--" size="17" value="<%= userUsername %>" />
 	</div>
 
 	<div class="fld <%= search ? "selected" : "" %>">
-		<aui:input checked="<%= search %>" cssClass="news-type r" inlineField="true" label="" name="newsType" type="radio" value="search" />
+		<aui:input checked="<%= search %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="search" />
 
 		<label><liferay-ui:message key="search-results-for" /></label>
 
-		<aui:input cssClass="api-search" inlineField="true" label="" name="apiSearch" size="17" value="<%= apiSearch %>" /> in <aui:select cssClass="search-topics" inlineField="true" label="" name="searchTopics">
+		<aui:input cssClass="api-search" inlineField="true" label="" name="preferences--apiSearch--" size="17" value="<%= apiSearch %>" /> in <aui:select cssClass="search-topics" inlineField="true" label="" name="searchTopics">
 			<aui:option><%= LanguageUtil.get(pageContext, "all-topics") %></aui:option>
 			<aui:option label="Technology" selected='<%= searchTopics.equals("technology") %>' value="technology" />
 			<aui:option label="Science" selected='<%= searchTopics.equals("science") %>' value="science" />
@@ -238,16 +238,16 @@
 			<aui:option label="Offbeat" selected='<%= searchTopics.equals("offbeat") %>' value="offbeat" />
 		</aui:select>
 
-		<aui:select cssClass="search-sort" inlineField="true" label="" name="searchSort">
+		<aui:select cssClass="search-sort" inlineField="true" label="" name="preferences--searchSort--">
 			<aui:option label="sorted by date" selected='<%= searchSort.equals("promote_date-desc") %>' value="promote_date-desc" />
 			<aui:option label="sorted by diggs" selected='<%= searchSort.equals("digg_count-desc") %>' value="digg_count-desc" />
 		</aui:select>
 	</div>
 
 	<div class="fld <%= friends ? "selected" : "" %> f">
-		<aui:input checked="<%= friends %>" cssClass="news-type r" inlineField="true" label="" name="newsType" type="radio" value="friends" />
+		<aui:input checked="<%= friends %>" cssClass="news-type r" inlineField="true" label="" name="preferences--newsType--" type="radio" value="friends" />
 
-		<aui:select cssClass="news-friends"  inlineField="true" label="Stories your friends have" name="newsFriends">
+		<aui:select cssClass="news-friends"  inlineField="true" label="Stories your friends have" name="preferences--newsFriends--">
 			<aui:option label="dugg" selected='<%= newsFriends.equals("dugg") %>' value="dugg" />
 			<aui:option label="submitted" selected='<%= newsFriends.equals("submissions") %>' value="submissions" />
 			<aui:option label="commented on" selected='<%= newsFriends.equals("commented") %>' value="commented" />
@@ -256,32 +256,32 @@
 		<span id="yourusername">
 			<liferay-ui:message key="your-username" />:
 
-			<aui:input cssClass="friends-username" inlineField="true" label="" name="friendsUsername" value="<%= friendsUsername %>" />
+			<aui:input cssClass="friends-username" inlineField="true" label="" name="preferences--friendsUsername--" value="<%= friendsUsername %>" />
 		</span>
 	</div>
 
 	<div class="pfld">
-		<aui:input cssClass="story-count" inlineField="true" label="number-of-items" maxlength="2" name="storyCount" value="<%= storyCount %>" />
+		<aui:input cssClass="story-count" inlineField="true" label="number-of-items" maxlength="2" name="preferences--storyCount--" value="<%= storyCount %>" />
 
 		<div class="aui-field aui-field-inline aui-field-text polling">
 			<label class="aui-field-label"><%= LanguageUtil.get(pageContext, "polling") %></label>
 
-			<aui:input inlineField="true" label="" name="polling" type="checkbox" value="<%= polling %>" />
+			<aui:input inlineField="true" label="" name="preferences--polling--" type="checkbox" value="<%= polling %>" />
 
-			<aui:input cssClass="polling-rate" inlineField="true" label="" name="pollingRate" value="<%= pollingRate %>" />
+			<aui:input cssClass="polling-rate" inlineField="true" label="" name="preferences--pollingRate--" value="<%= pollingRate %>" />
 
 			<label class="aui-field-label aui-field-label-inline"><%= LanguageUtil.get(pageContext, "seconds-between-updates") %></label>
 		</div>
 	</div>
 
 	<div class="pfld">
-		<aui:input cssClass="show-diggs" inlineField="true" label="show-diggs" name="showDiggs" type="checkbox" value="<%= showDiggs %>" />
+		<aui:input cssClass="show-diggs" inlineField="true" label="show-diggs" name="preferences--showDiggs--" type="checkbox" value="<%= showDiggs %>" />
 
-		<aui:input cssClass="show-descriptions" inlineField="true" label="show-descriptions" name="showDesc" type="checkbox" value="<%= showDesc %>" />
+		<aui:input cssClass="show-descriptions" inlineField="true" label="show-descriptions" name="preferences--showDesc--" type="checkbox" value="<%= showDesc %>" />
 
-		<aui:input cssClass="show-thumbnails" inlineField="true" label="show-thumbnails" name="showThumbs" type="checkbox" value="<%= showThumbs %>" />
+		<aui:input cssClass="show-thumbnails" inlineField="true" label="show-thumbnails" name="preferences--showThumbs--" type="checkbox" value="<%= showThumbs %>" />
 
-		<aui:input cssClass="target-blank" inlineField="true" label="open-links-in-a-new-window" name="targetBlank" type="checkbox" value="<%= targetBlank %>" />
+		<aui:input cssClass="target-blank" inlineField="true" label="open-links-in-a-new-window" name="preferences--targetBlank--" type="checkbox" value="<%= targetBlank %>" />
 	</div>
 
 	<aui:button-row>
