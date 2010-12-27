@@ -85,7 +85,7 @@ public class AdminMessageListener extends BaseMessageListener {
 		subscriptionSender.setCompanyId(companyId);
 		subscriptionSender.setUserId(userId);
 		subscriptionSender.setGroupId(groupId);
-		subscriptionSender.setFrom(fromName, fromAddress);
+		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setBody(body);
 		subscriptionSender.setReplyToAddress(replyToAddress);
@@ -113,31 +113,6 @@ public class AdminMessageListener extends BaseMessageListener {
 		}
 	}
 
-	protected String getEmailArticleAttachments(Article article, Locale locale)
-		throws Exception {
-
-		String[] fileNames = article.getAttachmentsFileNames();
-
-		if (fileNames.length <= 0) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler(fileNames.length * 5);
-
-		for (String fileName : fileNames) {
-			long kb = DLLocalServiceUtil.getFileSize(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
-
-			sb.append(FileUtil.getShortFileName(fileName));
-			sb.append(" (");
-			sb.append(TextFormatter.formatKB(kb, locale));
-			sb.append("k)");
-			sb.append("<br />");
-		}
-
-		return sb.toString();
-	}
-
 	private static Log _log = LogFactoryUtil.getLog(AdminMessageListener.class);
 
 	private class AdminSubscriptionSender extends SubscriptionSender {
@@ -151,8 +126,7 @@ public class AdminMessageListener extends BaseMessageListener {
 			throws Exception {
 
 			ArticleLocalServiceUtil.unsubscribeAllPortlets(
-				subscription.getCompanyId(),
-				subscription.getSubscriptionId());
+				subscription.getCompanyId(), subscription.getSubscriptionId());
 		}
 
 		protected boolean hasPermission(Subscription subscription, User user)
@@ -160,17 +134,14 @@ public class AdminMessageListener extends BaseMessageListener {
 
 			PrincipalThreadLocal.setName(user.getUserId());
 
-			PermissionChecker permissionChecker = null;
-
 			try {
-				permissionChecker = PermissionCheckerFactoryUtil.create(
-					user, true);
+				PermissionChecker permissionChecker =
+					PermissionCheckerFactoryUtil.create(user, true);
 
 				PermissionThreadLocal.setPermissionChecker(permissionChecker);
 
 				if (!ArticlePermission.contains(
-						permissionChecker, _article.getResourcePrimKey(),
-						ActionKeys.VIEW)) {
+						permissionChecker, _article, ActionKeys.VIEW)) {
 
 					return false;
 				}
@@ -198,8 +169,7 @@ public class AdminMessageListener extends BaseMessageListener {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						"Portlet " + portletId + " does not exist or does " +
-							"not contain article " +
-								_article.getResourcePrimKey());
+							"not contain " + _article.getResourcePrimKey());
 				}
 
 				ArticleLocalServiceUtil.unsubscribe(
@@ -249,15 +219,14 @@ public class AdminMessageListener extends BaseMessageListener {
 
 			mailMessage.setFrom(processedFrom);
 
-			String articleAttachments = getEmailArticleAttachments(
+			String articleAttachments = _getEmailArticleAttachments(
 				_article, locale);
 			String articleURL = (String)context.get("articleURL");
 			String articleVersion = LanguageUtil.format(
-				locale, "version-x", String.valueOf(_article.getVersion()),
-				false);
+				locale, "version-x", String.valueOf(_article.getVersion()));
 
 			String processedSubject = StringUtil.replace(
-				subject,
+				mailMessage.getSubject(),
 				new String[] {
 					"[$ARTICLE_ATTACHMENTS$]",
 					"[$ARTICLE_URL$]",
@@ -276,7 +245,7 @@ public class AdminMessageListener extends BaseMessageListener {
 			mailMessage.setSubject(processedSubject);
 
 			String processedBody = StringUtil.replace(
-				body,
+				mailMessage.getBody(),
 				new String[] {
 					"[$ARTICLE_ATTACHMENTS$]",
 					"[$ARTICLE_URL$]",
@@ -293,6 +262,32 @@ public class AdminMessageListener extends BaseMessageListener {
 				});
 
 			mailMessage.setBody(processedBody);
+		}
+
+		private String _getEmailArticleAttachments(
+				Article article, Locale locale)
+			throws Exception {
+
+			String[] fileNames = article.getAttachmentsFileNames();
+
+			if (fileNames.length <= 0) {
+				return StringPool.BLANK;
+			}
+
+			StringBundler sb = new StringBundler(fileNames.length * 5);
+
+			for (String fileName : fileNames) {
+				long kb = DLLocalServiceUtil.getFileSize(
+					article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+				sb.append(FileUtil.getShortFileName(fileName));
+				sb.append(" (");
+				sb.append(TextFormatter.formatKB(kb, locale));
+				sb.append("k)");
+				sb.append("<br />");
+			}
+
+			return sb.toString();
 		}
 
 		private Article _article;
