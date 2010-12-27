@@ -24,11 +24,11 @@
 	<aui:layout>
 		<aui:column id="controls" columnWidth="50">
 			<div class="aui-field-row">
-				<aui:input cssClass="url" inlineField="true" label="url" name="url" value="<%= url %>" />
+				<aui:input cssClass="url" inlineField="true" label="url" name="preferences--url--" value="<%= url %>" />
 			</div>
 
 			<div class="aui-field-row">
-				<aui:select label="preset-frame-size" name="presetSize" inlineField="true" cssClass="preset-size">
+				<aui:select label="preset-frame-size" name="preferences--presetSize--" inlineField="true" cssClass="preset-size">
 					<aui:option label="Custom" value="custom" />
 					<aui:option label="Standard 360 4:3" selected='<%= presetSize.equals("480x360") %>' value="480x360" />
 					<aui:option label="Standard 360 16:9" selected='<%= presetSize.equals("640x360") %>' value="640x360" />
@@ -40,52 +40,52 @@
 					<aui:option label="Full HD 1080 16:9" selected='<%= presetSize.equals("1920x1080") %>' value="1920x1080" />
 				</aui:select>
 
-				<aui:input cssClass="width invisible" inlineField="true" label="frame-width" name="width" value="<%= width %>" />
+				<aui:input cssClass="width invisible" inlineField="true" label="frame-width" name="preferences--width--" value="<%= width %>" />
 
-				<aui:input cssClass="height invisible" inlineField="true" label="frame-height" name="height" value="<%= height %>" />
+				<aui:input cssClass="height invisible" inlineField="true" label="frame-height" name="preferences--height--" value="<%= height %>" />
 			</div>
 
 			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 				<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "advanced-options") %>'>
 					<div class="aui-field-row">
-						<aui:input cssClass="player-color" inlineField="true" label="player-color" name="playerColor" value="<%= playerColor %>" />
+						<aui:input cssClass="player-color" inlineField="true" label="player-color" name="preferences--playerColor--" value="<%= playerColor %>" />
 
-						<aui:input cssClass="border-color" inlineField="true" label="border-color" name="borderColor" value="<%= borderColor %>" />
+						<aui:input cssClass="border-color" inlineField="true" label="border-color" name="preferences--borderColor--" value="<%= borderColor %>" />
 					</div>
 
-					<aui:input cssClass="show-thicker-border" inlineField="true" label="show-thicker-border" name="showThickerBorder" value="<%= showThickerBorder %>" type="checkbox" />
+					<aui:input cssClass="show-thicker-border" inlineField="true" label="show-thicker-border" name="preferences--showThickerBorder--" value="<%= showThickerBorder %>" type="checkbox" />
 
 					<div class="aui-field-row">
-						<aui:input cssClass="hd" inlineField="true" label="hd-video" name="hd" value="<%= hd %>" type="checkbox" />
+						<aui:input cssClass="hd" inlineField="true" label="hd-video" name="preferences--hd--" value="<%= hd %>" type="checkbox" />
 
-						<aui:input cssClass="autoplay" inlineField="true" label="auto-play" name="autoplay" value="<%= autoplay %>" type="checkbox" />
+						<aui:input cssClass="autoplay" inlineField="true" label="auto-play" name="preferences--autoplay--" value="<%= autoplay %>" type="checkbox" />
 
-						<aui:input cssClass="loop" inlineField="true" label="loop" name="loop" value="<%= loop %>" type="checkbox" />
-					</div>
-
-					<div class="aui-field-row">
-						<aui:input cssClass="enable-fullscreen" inlineField="true" label="enable-fullscreen-option" name="enableFullscreen" value="<%= enableFullscreen %>" type="checkbox" />
-
-						<aui:input checked="<%= enableKeyboardControls %>" cssClass="enable-keyboard-controls" inlineField="true" label="enable-keyboard-controls" name="enableKeyboardControls" value="<%= enableKeyboardControls %>" type="checkbox" />
+						<aui:input cssClass="loop" inlineField="true" label="loop" name="preferences--loop--" value="<%= loop %>" type="checkbox" />
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="show-info" inlineField="true" label="show-video-info" name="showInfo" value="<%= showInfo %>" type="checkbox" />
+						<aui:input cssClass="enable-fullscreen" inlineField="true" label="enable-fullscreen-option" name="preferences--enableFullscreen--" value="<%= enableFullscreen %>" type="checkbox" />
 
-						<aui:input cssClass="enable-enhanced-genie-menu" helpMessage="enhanced-genie-menu-help" inlineField="true" label="enable-enhanced-genie-menu" name="enableEnhancedGenieMenu" value="<%= enableEnhancedGenieMenu %>" type="checkbox" />
-
-						<aui:input cssClass="enable-search" inlineField="true" label="enable-search" name="enableSearch" type="checkbox" value="<%= enableSearch %>" />
+						<aui:input checked="<%= enableKeyboardControls %>" cssClass="enable-keyboard-controls" inlineField="true" label="enable-keyboard-controls" name="preferences--enableKeyboardControls--" value="<%= enableKeyboardControls %>" type="checkbox" />
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="start-time" inlineField="true" label="start-time" name="startTime" value="<%= startTime %>" />
+						<aui:input cssClass="show-info" inlineField="true" label="show-video-info" name="preferences--showInfo--" value="<%= showInfo %>" type="checkbox" />
+
+						<aui:input cssClass="enable-enhanced-genie-menu" helpMessage="enhanced-genie-menu-help" inlineField="true" label="enable-enhanced-genie-menu" name="preferences--enableEnhancedGenieMenu--" value="<%= enableEnhancedGenieMenu %>" type="checkbox" />
+
+						<aui:input cssClass="enable-search" inlineField="true" label="enable-search" name="preferences--enableSearch--" type="checkbox" value="<%= enableSearch %>" />
+					</div>
+
+					<div class="aui-field-row">
+						<aui:input cssClass="start-time" inlineField="true" label="start-time" name="preferences--startTime--" value="<%= startTime %>" />
 
 						<aui:select label="annotations" name="annotations" value="<%= annotations %>" inlineField="true" cssClass="annotations">
 							<aui:option label="show-by-default" selected="<%= annotations == 1 %>" value="1" />
 							<aui:option label="do-not-show-by-default" selected="<%= annotations == 3 %>" value="3" />
 						</aui:select>
 
-						<aui:select label="closed-captioning" name="closedCaptioning" inlineField="true" cssClass="closed-captioning">
+						<aui:select label="closed-captioning" name="preferences--closedCaptioning--" inlineField="true" cssClass="closed-captioning">
 							<aui:option label="show-by-default" selected="<%= closedCaptioning == 1 %>" value="1" />
 							<aui:option label="do-not-show-by-default" selected="<%= closedCaptioning == 0 %>" value="0" />
 						</aui:select>
