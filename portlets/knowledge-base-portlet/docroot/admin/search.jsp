@@ -47,25 +47,42 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 				Hits hits = indexer.search(searchContext);
 
+				Map<Long, String> resourcePrimKeyToUidMap = new HashMap<Long, String>();
+
 				List<Object[]> objects = new ArrayList<Object[]>();
 
 				for (int i = 0; i < hits.getDocs().length; i++) {
-					Article article = null;
+					Document document = hits.doc(i);
 
-					try {
-						article = ArticleServiceUtil.getLatestArticle(GetterUtil.getLong(hits.doc(i).get(Field.ENTRY_CLASS_PK)), WorkflowConstants.STATUS_APPROVED);
-					}
-					catch (NoSuchArticleException nsae) {
-						continue;
-					}
-					catch (PrincipalException pe) {
-						continue;
+					long entryClassPK = GetterUtil.getLong(document.get(Field.ENTRY_CLASS_PK));
+
+					String title = document.get(Field.TITLE);
+					String snippet = hits.snippet(i);
+
+					if (Validator.isNull(snippet)) {
+						if (Validator.isNotNull(document.get(Field.DESCRIPTION))) {
+							snippet = document.get(Field.DESCRIPTION);
+						}
+						else {
+							snippet = StringUtil.shorten(document.get(Field.CONTENT), 500);
+						}
 					}
 
-					String title = StringUtil.highlight(article.getTitle(), hits.getQueryTerms());
-					String content = StringUtil.highlight(hits.snippet(i), hits.getQueryTerms());
+					resourcePrimKeyToUidMap.put(entryClassPK, document.getUID());
 
-					objects.add(new Object[] {article, title, content});
+					objects.add(new Object[] {entryClassPK, StringUtil.highlight(title, hits.getQueryTerms()), StringUtil.highlight(snippet, hits.getQueryTerms())});
+				}
+
+				long[] indexerResourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeyToUidMap.keySet()), 0L);
+
+				List<Article> articles = ArticleLocalServiceUtil.getArticles(indexerResourcePrimKeys, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+				for (Article article : articles) {
+					resourcePrimKeyToUidMap.remove(article.getResourcePrimKey());
+				}
+
+				if (!resourcePrimKeyToUidMap.isEmpty()) {
+					SearchEngineUtil.deleteDocuments(company.getCompanyId(), resourcePrimKeyToUidMap.values());
 				}
 
 				pageContext.setAttribute("results", objects);
@@ -78,16 +95,16 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 				<%
 				for (Object[] result : (List<Object[]>)results) {
-					Article article = (Article)result[0];
+					long entryClassPK = (Long)result[0];
 
 					String title = (String)result[1];
-					String content = (String)result[2];
+					String snippet = (String)result[2];
 				%>
 
 					<div class="kb-title-wrapper">
 						<portlet:renderURL var="viewArticleURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(entryClassPK) %>" />
 						</portlet:renderURL>
 
 						<liferay-ui:icon
@@ -100,23 +117,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 						/>
 					</div>
 
-					<%
-					request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
-					%>
-
-					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
-
-					<c:choose>
-						<c:when test="<%= Validator.isNotNull(content) %>">
-							<%= content %>
-						</c:when>
-						<c:when test="<%= Validator.isNotNull(article.getDescription()) %>">
-							<%= article.getDescription() %>
-						</c:when>
-						<c:otherwise>
-							<%= StringUtil.shorten(HtmlUtil.extractText(article.getContent()), 500) %>
-						</c:otherwise>
-					</c:choose>
+					<%= snippet %>
 
 				<%
 				}

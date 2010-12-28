@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BaseIndexer;
@@ -121,6 +122,7 @@ public class AdminIndexer extends BaseIndexer {
 		long userId = article.getUserId();
 		String userName = PortalUtil.getUserName(userId, article.getUserName());
 		long resourcePrimKey = article.getResourcePrimKey();
+		long parentResourcePrimKey = article.getParentResourcePrimKey();
 		String title = article.getTitle();
 		String content = HtmlUtil.extractText(article.getContent());
 		String description = article.getDescription();
@@ -156,6 +158,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
+		document.addKeyword(_PARENT_RESOURCE_PRIM_KEY, parentResourcePrimKey);
 
 		return document;
 	}
@@ -189,6 +192,7 @@ public class AdminIndexer extends BaseIndexer {
 		throws Exception {
 
 		_addPortletPreferences(contextQuery, searchContext);
+		_addViewableParentResourcePrimKeys(contextQuery, searchContext);
 	}
 
 	protected void postProcessSearchQuery(
@@ -203,7 +207,7 @@ public class AdminIndexer extends BaseIndexer {
 
 	protected void reindexArticles(long companyId) throws Exception {
 		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(
-			companyId, WorkflowConstants.STATUS_APPROVED, false);
+			companyId, WorkflowConstants.STATUS_APPROVED);
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 
@@ -219,7 +223,7 @@ public class AdminIndexer extends BaseIndexer {
 		throws Exception {
 
 		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-			companyId, WorkflowConstants.STATUS_APPROVED, false, start, end,
+			companyId, WorkflowConstants.STATUS_APPROVED, start, end,
 			new ArticleModifiedDateComparator());
 
 		if (articles.isEmpty()) {
@@ -339,6 +343,26 @@ public class AdminIndexer extends BaseIndexer {
 		}
 	}
 
+	private void _addViewableParentResourcePrimKeys(
+			BooleanQuery contextQuery, SearchContext searchContext)
+		throws Exception {
+
+		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+
+		for (long groupId : searchContext.getGroupIds()) {
+			long[] viewableParentResourcePrimKeys =
+				ArticleServiceUtil.getViewableParentResourcePrimKeys(
+					groupId, WorkflowConstants.STATUS_APPROVED);
+
+			for (long parentResourcePrimKey : viewableParentResourcePrimKeys) {
+				booleanQuery.addExactTerm(
+					_PARENT_RESOURCE_PRIM_KEY, parentResourcePrimKey);
+			}
+		}
+
+		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
+	}
+
 	private String[] _splitKeywords(String keywords) {
 		keywords = keywords.trim();
 
@@ -372,5 +396,8 @@ public class AdminIndexer extends BaseIndexer {
 
 		return keywordsList.toArray(new String[keywordsList.size()]);
 	}
+
+	private static final String _PARENT_RESOURCE_PRIM_KEY =
+		"parentResourcePrimKey";
 
 }
