@@ -12,30 +12,22 @@
  * details.
  */
 
-package com.liferay.knowledgebase.model;
+package com.liferay.knowledgebase.hook.upgrade;
+
+import com.liferay.knowledgebase.hook.upgrade.v1_1_0.UpgradeArticle;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
  * @author Peter Shin
- * @author Brian Wing Shun Chan
  */
-public class ArticleConstants {
+public class UpgradeProcess_1_1_0 extends UpgradeProcess {
 
-	public static final int ARCHIVED = 0;
+	public int getThreshold() {
+		return 110;
+	}
 
-	public static final long DEFAULT_PARENT_RESOURCE_PRIM_KEY = 0;
-
-	public static final int DEFAULT_PRIORITY = 0;
-
-	public static final int DEFAULT_VERSION = 1;
-
-	public static final String DIR_NAME_PREFIX = "knowledgebase/articles/";
-
-	public static final int[] LATEST_ANY = new int[] {
-		ArticleConstants.LATEST_APPROVED, ArticleConstants.LATEST_VERSION
-	};
-
-	public static final int LATEST_APPROVED = 2;
-
-	public static final int LATEST_VERSION = 1;
+	protected void doUpgrade() throws Exception {
+		upgrade(UpgradeArticle.class);
+	}
 
 }

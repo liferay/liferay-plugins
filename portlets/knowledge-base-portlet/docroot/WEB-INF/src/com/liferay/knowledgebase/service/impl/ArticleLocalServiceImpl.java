@@ -118,6 +118,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
+		article.setLatest(ArticleConstants.LATEST_VERSION);
 		article.setStatus(WorkflowConstants.STATUS_DRAFT);
 
 		articlePersistence.update(article, false);
@@ -545,9 +546,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
+		article.setLatest(ArticleConstants.LATEST_VERSION);
 		article.setStatus(status);
 
 		articlePersistence.update(article, false);
+
+		if (oldArticle.getStatus() == WorkflowConstants.STATUS_APPROVED) {
+			oldArticle.setLatest(ArticleConstants.LATEST_APPROVED);
+
+			articlePersistence.update(oldArticle, false);
+		}
 
 		// Resources
 
@@ -717,6 +725,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		if (status != WorkflowConstants.STATUS_APPROVED) {
 			return article;
+		}
+
+		if (article.getVersion() != ArticleConstants.DEFAULT_VERSION) {
+			Article oldArticle = articlePersistence.findByR_V(
+				resourcePrimKey, article.getVersion() - 1);
+
+			oldArticle.setLatest(ArticleConstants.ARCHIVED);
+
+			articlePersistence.update(oldArticle, false);
 		}
 
 		// Articles

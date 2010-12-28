@@ -33,6 +33,7 @@
 		<column name="content" type="String" />
 		<column name="description" type="String" />
 		<column name="priority" type="int" />
+		<column name="latest" type="int" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
 		<column name="statusByUserName" type="String" />
