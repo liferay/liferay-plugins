@@ -41,6 +41,7 @@
 <%@ page import="com.liferay.portal.kernel.util.PropsUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.TextFormatter" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 <%@ page import="com.liferay.portal.model.CompanyConstants" %>
 <%@ page import="com.liferay.portal.model.User" %>
@@ -53,7 +54,6 @@
 <%@ page import="com.liferay.privatemessaging.model.UserThread" %>
 <%@ page import="com.liferay.privatemessaging.service.UserThreadLocalServiceUtil" %>
 <%@ page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
-<%@ page import="com.liferay.util.TextFormatter" %>
 
 <%@ page import="java.text.Format" %>
 

@@ -86,6 +86,7 @@
 <%@ page import="com.liferay.portal.kernel.util.SetUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.StringUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.TextFormatter" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
@@ -106,7 +107,6 @@
 <%@ page import="com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.portletconfiguration.util.PortletConfigurationUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
-<%@ page import="com.liferay.util.TextFormatter" %>
 <%@ page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.text.Format" %>
