@@ -529,6 +529,197 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Finds all the articles where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L(
+		long resourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_L(resourcePrimKey, latest);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L(
+		long resourcePrimKey, int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_L(resourcePrimKey, latest, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L(
+		long resourcePrimKey, int latest, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L(resourcePrimKey, latest, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_L_First(
+		long resourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_First(resourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_L_Last(
+		long resourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_Last(resourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByR_L_PrevAndNext(
+		long articleId, long resourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_PrevAndNext(articleId, resourcePrimKey, latest,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L(
+		long[] resourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_L(resourcePrimKeies, latests);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L(
+		long[] resourcePrimKeies, int[] latests, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_L(resourcePrimKeies, latests, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L(
+		long[] resourcePrimKeies, int[] latests, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L(resourcePrimKeies, latests, start, end,
+			orderByComparator);
+	}
+
+	/**
 	* Finds all the articles where resourcePrimKey = &#63; and status = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key to search with
@@ -658,6 +849,2715 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Finds all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L(
+		long groupId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L(groupId, latest);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L(
+		long groupId, int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L(groupId, latest, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L(
+		long groupId, int latest, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L(groupId, latest, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_L_First(
+		long groupId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_First(groupId, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_L_Last(
+		long groupId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_Last(groupId, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByG_L_PrevAndNext(
+		long articleId, long groupId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_PrevAndNext(articleId, groupId, latest,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L(
+		long groupId, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L(groupId, latests);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L(
+		long groupId, int[] latests, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L(groupId, latests, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L(
+		long groupId, int[] latests, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L(groupId, latests, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L(
+		long groupId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_L(groupId, latest);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L(
+		long groupId, int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_L(groupId, latest, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L(
+		long groupId, int latest, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L(groupId, latest, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L(
+		long groupId, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_L(groupId, latests);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L(
+		long groupId, int[] latests, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_L(groupId, latests, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L(
+		long groupId, int[] latests, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L(groupId, latests, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where companyId = &#63; and latest = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L(
+		long companyId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_L(companyId, latest);
+	}
+
+	/**
+	* Finds a range of all the articles where companyId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L(
+		long companyId, int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_L(companyId, latest, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where companyId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L(
+		long companyId, int latest, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L(companyId, latest, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where companyId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByC_L_First(
+		long companyId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_First(companyId, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where companyId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByC_L_Last(
+		long companyId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_Last(companyId, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where companyId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByC_L_PrevAndNext(
+		long articleId, long companyId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_PrevAndNext(articleId, companyId, latest,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where companyId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L(
+		long companyId, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_L(companyId, latests);
+	}
+
+	/**
+	* Finds a range of all the articles where companyId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L(
+		long companyId, int[] latests, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_L(companyId, latests, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where companyId = &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L(
+		long companyId, int[] latests, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L(companyId, latests, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L_S(
+		long resourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_L_S(resourcePrimKey, latest, status);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L_S(
+		long resourcePrimKey, int latest, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S(resourcePrimKey, latest, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L_S(
+		long resourcePrimKey, int latest, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S(resourcePrimKey, latest, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_L_S_First(
+		long resourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S_First(resourcePrimKey, latest, status,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_L_S_Last(
+		long resourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S_Last(resourcePrimKey, latest, status,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByR_L_S_PrevAndNext(
+		long articleId, long resourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S_PrevAndNext(articleId, resourcePrimKey, latest,
+			status, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L_S(
+		long[] resourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByR_L_S(resourcePrimKeies, latests, status);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L_S(
+		long[] resourcePrimKeies, int[] latests, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S(resourcePrimKeies, latests, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_L_S(
+		long[] resourcePrimKeies, int[] latests, int status, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_L_S(resourcePrimKeies, latests, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L(
+		long groupId, long parentResourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L(groupId, parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L(
+		long groupId, long parentResourcePrimKey, int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L(groupId, parentResourcePrimKey, latest, start,
+			end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L(
+		long groupId, long parentResourcePrimKey, int latest, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L(groupId, parentResourcePrimKey, latest, start,
+			end, orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_P_L_First(
+		long groupId, long parentResourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_First(groupId, parentResourcePrimKey, latest,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_P_L_Last(
+		long groupId, long parentResourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_Last(groupId, parentResourcePrimKey, latest,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByG_P_L_PrevAndNext(
+		long articleId, long groupId, long parentResourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_PrevAndNext(articleId, groupId,
+			parentResourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L(groupId, parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L(groupId, parentResourcePrimKeies, latests,
+			start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L(groupId, parentResourcePrimKeies, latests,
+			start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L(
+		long groupId, long parentResourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L(groupId, parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L(
+		long groupId, long parentResourcePrimKey, int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L(groupId, parentResourcePrimKey, latest,
+			start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L(
+		long groupId, long parentResourcePrimKey, int latest, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L(groupId, parentResourcePrimKey, latest,
+			start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L(groupId, parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int start,
+		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L(groupId, parentResourcePrimKeies,
+			latests, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L(
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L(groupId, parentResourcePrimKeies,
+			latests, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L_S(
+		long groupId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L_S(groupId, latest, status);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L_S(
+		long groupId, int latest, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L_S(groupId, latest, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L_S(
+		long groupId, int latest, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_S(groupId, latest, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_L_S_First(
+		long groupId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_S_First(groupId, latest, status, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_L_S_Last(
+		long groupId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_S_Last(groupId, latest, status, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByG_L_S_PrevAndNext(
+		long articleId, long groupId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_S_PrevAndNext(articleId, groupId, latest, status,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L_S(
+		long groupId, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L_S(groupId, latests, status);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L_S(
+		long groupId, int[] latests, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_L_S(groupId, latests, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_L_S(
+		long groupId, int[] latests, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_L_S(groupId, latests, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L_S(
+		long groupId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_L_S(groupId, latest, status);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L_S(
+		long groupId, int latest, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L_S(groupId, latest, status, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L_S(
+		long groupId, int latest, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L_S(groupId, latest, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L_S(
+		long groupId, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_L_S(groupId, latests, status);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L_S(
+		long groupId, int[] latests, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L_S(groupId, latests, status, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_L_S(
+		long groupId, int[] latests, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L_S(groupId, latests, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L_S(
+		long companyId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_L_S(companyId, latest, status);
+	}
+
+	/**
+	* Finds a range of all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L_S(
+		long companyId, int latest, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S(companyId, latest, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L_S(
+		long companyId, int latest, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S(companyId, latest, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByC_L_S_First(
+		long companyId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S_First(companyId, latest, status,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByC_L_S_Last(
+		long companyId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S_Last(companyId, latest, status,
+			orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByC_L_S_PrevAndNext(
+		long articleId, long companyId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S_PrevAndNext(articleId, companyId, latest,
+			status, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L_S(
+		long companyId, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByC_L_S(companyId, latests, status);
+	}
+
+	/**
+	* Finds a range of all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L_S(
+		long companyId, int[] latests, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S(companyId, latests, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByC_L_S(
+		long companyId, int[] latests, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByC_L_S(companyId, latests, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_G_P_L_First(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_First(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_G_P_L_Last(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_Last(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByR_G_P_L_PrevAndNext(
+		long articleId, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_PrevAndNext(articleId, resourcePrimKey,
+			groupId, parentResourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L_S(
+		long groupId, long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S(groupId, parentResourcePrimKey, latest, status);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L_S(
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S(groupId, parentResourcePrimKey, latest,
+			status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L_S(
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S(groupId, parentResourcePrimKey, latest,
+			status, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_P_L_S_First(
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S_First(groupId, parentResourcePrimKey, latest,
+			status, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByG_P_L_S_Last(
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S_Last(groupId, parentResourcePrimKey, latest,
+			status, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByG_P_L_S_PrevAndNext(
+		long articleId, long groupId, long parentResourcePrimKey, int latest,
+		int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S_PrevAndNext(articleId, groupId,
+			parentResourcePrimKey, latest, status, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S(groupId, parentResourcePrimKeies, latests,
+			status);
+	}
+
+	/**
+	* Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, int[] latests,
+		int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S(groupId, parentResourcePrimKeies, latests,
+			status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, int[] latests,
+		int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_P_L_S(groupId, parentResourcePrimKeies, latests,
+			status, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L_S(
+		long groupId, long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S(groupId, parentResourcePrimKey, latest,
+			status);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L_S(
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S(groupId, parentResourcePrimKey, latest,
+			status, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L_S(
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S(groupId, parentResourcePrimKey, latest,
+			status, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S(groupId, parentResourcePrimKeies,
+			latests, status);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, int[] latests,
+		int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S(groupId, parentResourcePrimKeies,
+			latests, status, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByG_P_L_S(
+		long groupId, long[] parentResourcePrimKeies, int[] latests,
+		int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S(groupId, parentResourcePrimKeies,
+			latests, status, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L_S(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L_S(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L_S(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status, start, end, orderByComparator);
+	}
+
+	/**
+	* Finds the first article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the first matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_G_P_L_S_First(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S_First(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status, orderByComparator);
+	}
+
+	/**
+	* Finds the last article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the last matching article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article findByR_G_P_L_S_Last(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S_Last(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status, orderByComparator);
+	}
+
+	/**
+	* Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] findByR_G_P_L_S_PrevAndNext(
+		long articleId, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S_PrevAndNext(articleId, resourcePrimKey,
+			groupId, parentResourcePrimKey, latest, status, orderByComparator);
+	}
+
+	/**
+	* Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L_S(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status);
+	}
+
+	/**
+	* Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L_S(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status, start, end);
+	}
+
+	/**
+	* Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> findByR_G_P_L_S(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L_S(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L_S(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L_S(
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L_S(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @return the range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L_S(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @param start the lower bound of the range of articles to return
+	* @param end the upper bound of the range of articles to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by
+	* @return the ordered range of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.knowledgebase.model.Article> filterFindByR_G_P_L_S(
+		long[] resourcePrimKeies, long groupId, long[] parentResourcePrimKeies,
+		int[] latests, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status, start, end,
+			orderByComparator);
+	}
+
+	/**
 	* Finds all the articles.
 	*
 	* @return the articles
@@ -755,6 +3655,18 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Removes all the articles where resourcePrimKey = &#63; and latest = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByR_L(long resourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByR_L(resourcePrimKey, latest);
+	}
+
+	/**
 	* Removes all the articles where resourcePrimKey = &#63; and status = &#63; from the database.
 	*
 	* @param resourcePrimKey the resource prim key to search with
@@ -764,6 +3676,133 @@ public class ArticleUtil {
 	public static void removeByR_S(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getPersistence().removeByR_S(resourcePrimKey, status);
+	}
+
+	/**
+	* Removes all the articles where groupId = &#63; and latest = &#63; from the database.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_L(long groupId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_L(groupId, latest);
+	}
+
+	/**
+	* Removes all the articles where companyId = &#63; and latest = &#63; from the database.
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByC_L(long companyId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_L(companyId, latest);
+	}
+
+	/**
+	* Removes all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByR_L_S(long resourcePrimKey, int latest,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByR_L_S(resourcePrimKey, latest, status);
+	}
+
+	/**
+	* Removes all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; from the database.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_P_L(long groupId, long parentResourcePrimKey,
+		int latest) throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_P_L(groupId, parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Removes all the articles where groupId = &#63; and latest = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_L_S(long groupId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_L_S(groupId, latest, status);
+	}
+
+	/**
+	* Removes all the articles where companyId = &#63; and latest = &#63; and status = &#63; from the database.
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByC_L_S(long companyId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByC_L_S(companyId, latest, status);
+	}
+
+	/**
+	* Removes all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByR_G_P_L(long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByR_G_P_L(resourcePrimKey, groupId, parentResourcePrimKey,
+			latest);
+	}
+
+	/**
+	* Removes all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_P_L_S(long groupId,
+		long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByG_P_L_S(groupId, parentResourcePrimKey, latest, status);
+	}
+
+	/**
+	* Removes all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63; from the database.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByR_G_P_L_S(long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence()
+			.removeByR_G_P_L_S(resourcePrimKey, groupId, parentResourcePrimKey,
+			latest, status);
 	}
 
 	/**
@@ -827,6 +3866,32 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Counts all the articles where resourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_L(long resourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByR_L(resourcePrimKey, latest);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_L(long[] resourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByR_L(resourcePrimKeies, latests);
+	}
+
+	/**
 	* Counts all the articles where resourcePrimKey = &#63; and status = &#63;.
 	*
 	* @param resourcePrimKey the resource prim key to search with
@@ -837,6 +3902,479 @@ public class ArticleUtil {
 	public static int countByR_S(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByR_S(resourcePrimKey, status);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_L(long groupId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_L(groupId, latest);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_L(long groupId, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_L(groupId, latests);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_L(long groupId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_L(groupId, latest);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = any &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_L(long groupId, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_L(groupId, latests);
+	}
+
+	/**
+	* Counts all the articles where companyId = &#63; and latest = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_L(long companyId, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_L(companyId, latest);
+	}
+
+	/**
+	* Counts all the articles where companyId = &#63; and latest = any &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_L(long companyId, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_L(companyId, latests);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_L_S(long resourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByR_L_S(resourcePrimKey, latest, status);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_L_S(long[] resourcePrimKeies, int[] latests,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByR_L_S(resourcePrimKeies, latests, status);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_P_L(long groupId, long parentResourcePrimKey,
+		int latest) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByG_P_L(groupId, parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_P_L(long groupId,
+		long[] parentResourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByG_P_L(groupId, parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_P_L(long groupId,
+		long parentResourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_P_L(groupId, parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_P_L(long groupId,
+		long[] parentResourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_P_L(groupId, parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_L_S(long groupId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_L_S(groupId, latest, status);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_L_S(long groupId, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_L_S(groupId, latests, status);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_L_S(long groupId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_L_S(groupId, latest, status);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_L_S(long groupId, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_L_S(groupId, latests, status);
+	}
+
+	/**
+	* Counts all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_L_S(long companyId, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_L_S(companyId, latest, status);
+	}
+
+	/**
+	* Counts all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByC_L_S(long companyId, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByC_L_S(companyId, latests, status);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_G_P_L(long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_G_P_L(long[] resourcePrimKeies, long groupId,
+		long[] parentResourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByR_G_P_L(long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByR_G_P_L(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByR_G_P_L(long[] resourcePrimKeies,
+		long groupId, long[] parentResourcePrimKeies, int[] latests)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByR_G_P_L(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_P_L_S(long groupId, long parentResourcePrimKey,
+		int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByG_P_L_S(groupId, parentResourcePrimKey, latest,
+			status);
+	}
+
+	/**
+	* Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_P_L_S(long groupId,
+		long[] parentResourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByG_P_L_S(groupId, parentResourcePrimKeies, latests,
+			status);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_P_L_S(long groupId,
+		long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_P_L_S(groupId, parentResourcePrimKey,
+			latest, status);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_P_L_S(long groupId,
+		long[] parentResourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_P_L_S(groupId, parentResourcePrimKeies,
+			latests, status);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_G_P_L_S(long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status);
+	}
+
+	/**
+	* Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByR_G_P_L_S(long[] resourcePrimKeies, long groupId,
+		long[] parentResourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .countByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByR_G_P_L_S(long resourcePrimKey,
+		long groupId, long parentResourcePrimKey, int latest, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByR_G_P_L_S(resourcePrimKey, groupId,
+			parentResourcePrimKey, latest, status);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	*
+	* @param resourcePrimKeies the resource prim keies to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKeies the parent resource prim keies to search with
+	* @param latests the latests to search with
+	* @param status the status to search with
+	* @return the number of matching articles that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByR_G_P_L_S(long[] resourcePrimKeies,
+		long groupId, long[] parentResourcePrimKeies, int[] latests, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByR_G_P_L_S(resourcePrimKeies, groupId,
+			parentResourcePrimKeies, latests, status);
 	}
 
 	/**

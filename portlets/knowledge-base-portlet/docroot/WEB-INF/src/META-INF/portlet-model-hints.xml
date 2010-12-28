@@ -26,6 +26,7 @@
 			<hint name="display-width">98%</hint>
 		</field>
 		<field name="priority" type="int" />
+		<field name="latest" type="int" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
 		<field name="statusByUserName" type="String" />

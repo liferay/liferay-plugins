@@ -30,6 +30,7 @@
 			<basic name="content" />
 			<basic name="description" />
 			<basic name="priority" />
+			<basic name="latest" />
 			<basic name="status" />
 			<basic name="statusByUserId" />
 			<basic name="statusByUserName" />

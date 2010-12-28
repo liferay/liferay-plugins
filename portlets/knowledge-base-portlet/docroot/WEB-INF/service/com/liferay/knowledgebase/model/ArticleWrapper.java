@@ -337,6 +337,24 @@ public class ArticleWrapper implements Article {
 	}
 
 	/**
+	* Gets the latest of this article.
+	*
+	* @return the latest of this article
+	*/
+	public int getLatest() {
+		return _article.getLatest();
+	}
+
+	/**
+	* Sets the latest of this article.
+	*
+	* @param latest the latest of this article
+	*/
+	public void setLatest(int latest) {
+		_article.setLatest(latest);
+	}
+
+	/**
 	* Gets the status of this article.
 	*
 	* @return the status of this article

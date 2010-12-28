@@ -79,12 +79,13 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 			{ "content", new Integer(Types.CLOB) },
 			{ "description", new Integer(Types.VARCHAR) },
 			{ "priority", new Integer(Types.INTEGER) },
+			{ "latest", new Integer(Types.INTEGER) },
 			{ "status", new Integer(Types.INTEGER) },
 			{ "statusByUserId", new Integer(Types.BIGINT) },
 			{ "statusByUserName", new Integer(Types.VARCHAR) },
 			{ "statusDate", new Integer(Types.TIMESTAMP) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title VARCHAR(150) null,content TEXT null,description STRING null,priority INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title VARCHAR(150) null,content TEXT null,description STRING null,priority INTEGER,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";
 	public static final String ORDER_BY_JPQL = " ORDER BY article.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.modifiedDate DESC";
@@ -122,6 +123,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
 		model.setPriority(soapModel.getPriority());
+		model.setLatest(soapModel.getLatest());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
 		model.setStatusByUserName(soapModel.getStatusByUserName());
@@ -355,6 +357,14 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		_priority = priority;
 	}
 
+	public int getLatest() {
+		return _latest;
+	}
+
+	public void setLatest(int latest) {
+		_latest = latest;
+	}
+
 	public int getStatus() {
 		return _status;
 	}
@@ -485,6 +495,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
 		clone.setPriority(getPriority());
+		clone.setLatest(getLatest());
 		clone.setStatus(getStatus());
 		clone.setStatusByUserId(getStatusByUserId());
 		clone.setStatusByUserName(getStatusByUserName());
@@ -536,7 +547,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(39);
+		StringBundler sb = new StringBundler(41);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -568,6 +579,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		sb.append(getDescription());
 		sb.append(", priority=");
 		sb.append(getPriority());
+		sb.append(", latest=");
+		sb.append(getLatest());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -582,7 +595,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(61);
+		StringBundler sb = new StringBundler(64);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.Article");
@@ -649,6 +662,10 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>latest</column-name><column-value><![CDATA[");
+		sb.append(getLatest());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -693,6 +710,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	private String _content;
 	private String _description;
 	private int _priority;
+	private int _latest;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserUuid;

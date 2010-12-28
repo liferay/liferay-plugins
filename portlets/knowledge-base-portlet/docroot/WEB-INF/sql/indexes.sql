@@ -1,4 +1,14 @@
+create index IX_1F4986AF on KB_Article (companyId, latest);
+create index IX_7B69A695 on KB_Article (companyId, latest, status);
+create index IX_8A8C3831 on KB_Article (groupId, latest);
+create index IX_202BB617 on KB_Article (groupId, latest, status);
+create index IX_1FC5BAD6 on KB_Article (groupId, parentResourcePrimKey, latest);
+create index IX_BCDEC3BC on KB_Article (groupId, parentResourcePrimKey, latest, status);
 create index IX_330AA4A7 on KB_Article (resourcePrimKey);
+create index IX_C7E7A249 on KB_Article (resourcePrimKey, groupId, parentResourcePrimKey, latest);
+create index IX_EE7882F on KB_Article (resourcePrimKey, groupId, parentResourcePrimKey, latest, status);
+create index IX_FC627AE2 on KB_Article (resourcePrimKey, latest);
+create index IX_83F0B7C8 on KB_Article (resourcePrimKey, latest, status);
 create index IX_A1094C8D on KB_Article (resourcePrimKey, status);
 create unique index IX_A7A71D41 on KB_Article (resourcePrimKey, version);
 create index IX_3D477900 on KB_Article (uuid_);

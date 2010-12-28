@@ -14,6 +14,7 @@ create table KB_Article (
 	content TEXT null,
 	description STRING null,
 	priority INTEGER,
+	latest INTEGER,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,

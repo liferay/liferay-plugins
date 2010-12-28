@@ -290,6 +290,20 @@ public interface ArticleModel extends BaseModel<Article> {
 	public void setPriority(int priority);
 
 	/**
+	 * Gets the latest of this article.
+	 *
+	 * @return the latest of this article
+	 */
+	public int getLatest();
+
+	/**
+	 * Sets the latest of this article.
+	 *
+	 * @param latest the latest of this article
+	 */
+	public void setLatest(int latest);
+
+	/**
 	 * Gets the status of this article.
 	 *
 	 * @return the status of this article
