@@ -118,8 +118,7 @@ public class TemplateServiceClp implements TemplateService {
 	public java.util.List<com.liferay.knowledgebase.model.Template> getGroupTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesMethodKey2,
@@ -130,10 +129,6 @@ public class TemplateServiceClp implements TemplateService {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}

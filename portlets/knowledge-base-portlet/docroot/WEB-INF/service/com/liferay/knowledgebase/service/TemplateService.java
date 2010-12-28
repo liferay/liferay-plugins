@@ -56,8 +56,7 @@ public interface TemplateService {
 	public java.util.List<com.liferay.knowledgebase.model.Template> getGroupTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getGroupTemplatesCount(long groupId)

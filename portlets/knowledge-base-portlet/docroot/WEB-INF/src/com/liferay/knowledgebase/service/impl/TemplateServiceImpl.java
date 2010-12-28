@@ -57,7 +57,7 @@ public class TemplateServiceImpl extends TemplateServiceBaseImpl {
 	public List<Template> getGroupTemplates(
 			long groupId, int start, int end,
 			OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		return templatePersistence.filterFindByGroupId(
 			groupId, start, end, orderByComparator);
