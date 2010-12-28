@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
-import com.liferay.knowledgebase.model.Article;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -46,14 +45,13 @@ public class UpgradeRatings extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			StringBundler sb = new StringBundler(2);
+			StringBundler sb = new StringBundler(3);
 
 			sb.append("select entryId, score from RatingsEntry where ");
-			sb.append("classNameId = ?");
+			sb.append("classNameId = ");
+			sb.append(PortalUtil.getClassNameId(_ARTICLE_CLASS_NAME));
 
 			ps = con.prepareStatement(sb.toString());
-
-			ps.setLong(1, PortalUtil.getClassNameId(Article.class));
 
 			rs = ps.executeQuery();
 
@@ -84,15 +82,14 @@ public class UpgradeRatings extends UpgradeProcess {
 		try {
 			con = DataAccess.getConnection();
 
-			StringBundler sb = new StringBundler(3);
+			StringBundler sb = new StringBundler(4);
 
 			sb.append("select statsId, totalScore, averageScore ");
 			sb.append("from RatingsStats where ");
-			sb.append("classNameId = ?");
+			sb.append("classNameId = ");
+			sb.append(PortalUtil.getClassNameId(_ARTICLE_CLASS_NAME));
 
 			ps = con.prepareStatement(sb.toString());
-
-			ps.setLong(1, PortalUtil.getClassNameId(Article.class));
 
 			rs = ps.executeQuery();
 
@@ -101,7 +98,7 @@ public class UpgradeRatings extends UpgradeProcess {
 				double totalScore = rs.getDouble("totalScore");
 				double averageScore = rs.getDouble("averageScore");
 
-				sb = new StringBundler(4);
+				sb = new StringBundler(6);
 
 				sb.append("update RatingsStats set totalScore = ");
 				sb.append(totalScore * 2);
@@ -117,5 +114,8 @@ public class UpgradeRatings extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
+
+	private static final String _ARTICLE_CLASS_NAME =
+		"com.liferay.knowledgebase.model.Article";
 
 }
