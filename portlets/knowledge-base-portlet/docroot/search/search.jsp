@@ -47,13 +47,13 @@ String keywords = ParamUtil.getString(request, "keywords");
 				searchContext.setScopeStrict(false);
 				searchContext.setStart(searchContainer.getStart());
 
-				searchContext.setAttribute("selectionMethod", selectionMethod);
-				searchContext.setAttribute("resourcePrimKeys", resourcePrimKeys);
-				searchContext.setAttribute("assetEntryQueryContains", assetEntryQueryContains);
 				searchContext.setAttribute("assetEntryQueryAndOperator", assetEntryQueryAndOperator);
+				searchContext.setAttribute("assetEntryQueryContains", assetEntryQueryContains);
 				searchContext.setAttribute("assetEntryQueryName", assetEntryQueryName);
 				searchContext.setAttribute("assetCategoryIds", assetCategoryIds);
 				searchContext.setAttribute("assetTagNames", assetTagNames);
+				searchContext.setAttribute("resourcePrimKeys", resourcePrimKeys);
+				searchContext.setAttribute("selectionMethod", selectionMethod);
 
 				Indexer indexer = portlet.getIndexerInstance();
 

@@ -376,7 +376,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		List<Article> articles = new ArrayList<Article>();
 
 		long groupId = portletDataContext.getScopeGroupId();
-		long[] parentResourcePrimKeys = new long[] {
+		long[] parentResourcePrimKeys = {
 			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
 		};
 

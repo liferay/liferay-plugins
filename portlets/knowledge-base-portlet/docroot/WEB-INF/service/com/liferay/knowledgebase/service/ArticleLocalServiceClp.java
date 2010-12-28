@@ -107,17 +107,16 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		_getArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getArticle", long.class, int.class);
 
-		_getArticleVersionsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticleVersions", long.class, int.class, int.class,
-				int.class,
+		_getArticlesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", long.class, int.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getArticleVersionsCountMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticleVersionsCount", long.class, int.class);
-
-		_getArticlesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getArticlesMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getArticles", long[].class, int.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getArticlesCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount", long.class, int.class);
 
 		_getArticlesCountMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getArticlesCount", long[].class, int.class);
@@ -841,13 +840,13 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticleVersions(
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticleVersionsMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey22,
 				resourcePrimKey, status, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -871,40 +870,13 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getArticleVersionsCount(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getArticleVersionsCountMethodKey23,
-				resourcePrimKey, status);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		long[] resourcePrimKeys, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey23,
 				ClpSerializer.translateInput(resourcePrimKeys), status, start,
 				end, ClpSerializer.translateInput(orderByComparator));
 
@@ -926,6 +898,33 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 
 		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getArticlesCount(long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getArticlesCountMethodKey24,
+				resourcePrimKey, status);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public int getArticlesCount(long[] resourcePrimKeys, int status)
@@ -1486,9 +1485,9 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	private MethodKey _deleteAttachmentMethodKey19;
 	private MethodKey _deleteGroupArticlesMethodKey20;
 	private MethodKey _getArticleMethodKey21;
-	private MethodKey _getArticleVersionsMethodKey22;
-	private MethodKey _getArticleVersionsCountMethodKey23;
-	private MethodKey _getArticlesMethodKey24;
+	private MethodKey _getArticlesMethodKey22;
+	private MethodKey _getArticlesMethodKey23;
+	private MethodKey _getArticlesCountMethodKey24;
 	private MethodKey _getArticlesCountMethodKey25;
 	private MethodKey _getCompanyArticlesMethodKey26;
 	private MethodKey _getCompanyArticlesCountMethodKey27;

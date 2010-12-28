@@ -247,7 +247,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Article article = articlePersistence.findByResourcePrimKey_First(
 			resourcePrimKey, new ArticleVersionComparator());
 
-		// Child Articles
+		// Child articles
 
 		List<Article> articles = getSiblingArticles(
 			article.getGroupId(), article.getResourcePrimKey(),
@@ -288,7 +288,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return articlePersistence.findByR_V(resourcePrimKey, version);
 	}
 
-	public List<Article> getArticleVersions(
+	public List<Article> getArticles(
 			long resourcePrimKey, int status, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -300,16 +300,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		return articlePersistence.findByR_S(
 			resourcePrimKey, status, start, end, orderByComparator);
-	}
-
-	public int getArticleVersionsCount(long resourcePrimKey, int status)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.countByResourcePrimKey(resourcePrimKey);
-		}
-
-		return articlePersistence.countByR_S(resourcePrimKey, status);
 	}
 
 	public List<Article> getArticles(
@@ -326,6 +316,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return articlePersistence.findByR_L_S(
 			resourcePrimKeys, ArticleConstants.LATEST_ANY, status, start, end,
 			orderByComparator);
+	}
+
+	public int getArticlesCount(long resourcePrimKey, int status)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.countByResourcePrimKey(resourcePrimKey);
+		}
+
+		return articlePersistence.countByR_S(resourcePrimKey, status);
 	}
 
 	public int getArticlesCount(long[] resourcePrimKeys, int status)
@@ -747,7 +747,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Article oldArticle = articlePersistence.findByR_V(
 				resourcePrimKey, article.getVersion() - 1);
 
-			oldArticle.setLatest(ArticleConstants.ARCHIVED);
+			oldArticle.setLatest(ArticleConstants.LATEST_ARCHIVED);
 
 			articlePersistence.update(oldArticle, false);
 		}

@@ -126,7 +126,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articleLocalService.getArticle(resourcePrimKey, version);
 	}
 
-	public List<Article> getArticleVersions(
+	public List<Article> getArticles(
 			long resourcePrimKey, int status, int start, int end,
 			OrderByComparator orderByComparator)
 		throws PortalException, SystemException {
@@ -137,21 +137,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			return Collections.emptyList();
 		}
 
-		return articleLocalService.getArticleVersions(
+		return articleLocalService.getArticles(
 			resourcePrimKey, status, start, end, orderByComparator);
-	}
-
-	public int getArticleVersionsCount(long resourcePrimKey, int status)
-		throws PortalException, SystemException {
-
-		if (!ArticlePermission.contains(
-				getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW)) {
-
-			return 0;
-		}
-
-		return articleLocalService.getArticleVersionsCount(
-			resourcePrimKey, status);
 	}
 
 	public List<Article> getArticles(
@@ -173,6 +160,18 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articlePersistence.filterFindByR_G_P_L_S(
 			resourcePrimKeys, groupId, viewableParentResourcePrimKeys,
 			ArticleConstants.LATEST_ANY, status, start, end, orderByComparator);
+	}
+
+	public int getArticlesCount(long resourcePrimKey, int status)
+		throws PortalException, SystemException {
+
+		if (!ArticlePermission.contains(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.VIEW)) {
+
+			return 0;
+		}
+
+		return articleLocalService.getArticlesCount(resourcePrimKey, status);
 	}
 
 	public int getArticlesCount(

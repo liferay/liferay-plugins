@@ -62,7 +62,7 @@ public class UpgradeArticle extends UpgradeProcess {
 				long curResourcePrimKey = rs.getLong("resourcePrimKey");
 				int curStatus = rs.getInt("status");
 
-				int latest = _ARCHIVED;
+				int latest = _LATEST_ARCHIVED;
 
 				if (curResourcePrimKey != resourcePrimKey) {
 					resourcePrimKey = curResourcePrimKey;
@@ -93,9 +93,9 @@ public class UpgradeArticle extends UpgradeProcess {
 		}
 	}
 
-	private static final int _ARCHIVED = 0;
-
 	private static final int _LATEST_APPROVED = 2;
+
+	private static final int _LATEST_ARCHIVED = 0;
 
 	private static final int _LATEST_VERSION = 1;
 

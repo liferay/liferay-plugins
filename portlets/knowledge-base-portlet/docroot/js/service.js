@@ -7,8 +7,6 @@ Liferay.Service.registerClass(
 		deleteArticle: true,
 		deleteAttachment: true,
 		getArticle: true,
-		getArticleVersions: true,
-		getArticleVersionsCount: true,
 		getArticles: true,
 		getArticlesCount: true,
 		getGroupArticles: true,

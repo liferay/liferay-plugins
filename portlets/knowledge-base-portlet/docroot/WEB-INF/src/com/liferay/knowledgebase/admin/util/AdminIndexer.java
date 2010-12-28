@@ -95,160 +95,19 @@ public class AdminIndexer extends BaseIndexer {
 		String[] queryTerms = hits.getQueryTerms();
 
 		queryTerms = ArrayUtil.append(
-			queryTerms, _splitKeywords(searchContext.getKeywords()));
+			queryTerms, splitKeywords(searchContext.getKeywords()));
 
 		hits.setQueryTerms(queryTerms);
 
 		return hits;
 	}
 
-	protected void doDelete(Object obj) throws Exception {
-		Article article = (Article)obj;
-
-		Document document = new DocumentImpl();
-
-		document.addUID(PORTLET_ID, article.getResourcePrimKey());
-
-		SearchEngineUtil.deleteDocument(
-			article.getCompanyId(), document.get(Field.UID));
-	}
-
-	protected Document doGetDocument(Object obj) throws Exception {
-		Article article = (Article)obj;
-
-		long companyId = article.getCompanyId();
-		long groupId = getParentGroupId(article.getGroupId());
-		long scopeGroupId = article.getGroupId();
-		long userId = article.getUserId();
-		String userName = PortalUtil.getUserName(userId, article.getUserName());
-		long resourcePrimKey = article.getResourcePrimKey();
-		long parentResourcePrimKey = article.getParentResourcePrimKey();
-		String title = article.getTitle();
-		String content = HtmlUtil.extractText(article.getContent());
-		String description = article.getDescription();
-		Date modifiedDate = article.getModifiedDate();
-
-		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
-			Article.class.getName(), resourcePrimKey);
-		String[] assetCategoryNames =
-			AssetCategoryLocalServiceUtil.getCategoryNames(
-				Article.class.getName(), resourcePrimKey);
-		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
-			Article.class.getName(), resourcePrimKey);
-
-		Document document = new DocumentImpl();
-
-		document.addUID(PORTLET_ID, resourcePrimKey);
-
-		document.addModifiedDate(modifiedDate);
-
-		document.addKeyword(Field.COMPANY_ID, companyId);
-		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
-		document.addKeyword(Field.GROUP_ID, groupId);
-		document.addKeyword(Field.SCOPE_GROUP_ID, scopeGroupId);
-		document.addKeyword(Field.USER_ID, userId);
-		document.addText(Field.USER_NAME, userName);
-
-		document.addText(Field.TITLE, title);
-		document.addText(Field.CONTENT, content);
-		document.addText(Field.DESCRIPTION, description);
-		document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
-		document.addKeyword(Field.ASSET_CATEGORY_NAMES, assetCategoryNames);
-		document.addKeyword(Field.ASSET_TAG_NAMES, assetTagNames);
-
-		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
-		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
-		document.addKeyword(_PARENT_RESOURCE_PRIM_KEY, parentResourcePrimKey);
-
-		return document;
-	}
-
-	protected void doReindex(Object obj) throws Exception {
-		Article article = (Article)obj;
-
-		SearchEngineUtil.updateDocument(
-			article.getCompanyId(), getDocument(article));
-	}
-
-	protected void doReindex(String className, long classPK) throws Exception {
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			classPK, WorkflowConstants.STATUS_APPROVED);
-
-		doReindex(article);
-	}
-
-	protected void doReindex(String[] ids) throws Exception {
-		long companyId = GetterUtil.getLong(ids[0]);
-
-		reindexArticles(companyId);
-	}
-
-	protected String getPortletId(SearchContext searchContext) {
-		return PORTLET_ID;
-	}
-
-	protected void postProcessContextQuery(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		_addPortletPreferences(contextQuery, searchContext);
-		_addViewableParentResourcePrimKeys(contextQuery, searchContext);
-	}
-
-	protected void postProcessSearchQuery(
-			BooleanQuery searchQuery, SearchContext searchContext)
-		throws Exception {
-
-		for (String value : _splitKeywords(searchContext.getKeywords())) {
-			searchQuery.addTerm(Field.TITLE, value, true);
-			searchQuery.addTerm(Field.CONTENT, value, true);
-		}
-	}
-
-	protected void reindexArticles(long companyId) throws Exception {
-		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(
-			companyId, WorkflowConstants.STATUS_APPROVED);
-
-		int pages = count / Indexer.DEFAULT_INTERVAL;
-
-		for (int i = 0; i <= pages; i++) {
-			int start = (i * Indexer.DEFAULT_INTERVAL);
-			int end = start + Indexer.DEFAULT_INTERVAL;
-
-			reindexArticles(companyId, start, end);
-		}
-	}
-
-	protected void reindexArticles(long companyId, int start, int end)
-		throws Exception {
-
-		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
-			companyId, WorkflowConstants.STATUS_APPROVED, start, end,
-			new ArticleModifiedDateComparator());
-
-		if (articles.isEmpty()) {
-			return;
-		}
-
-		Collection<Document> documents = new ArrayList<Document>();
-
-		for (Article article : articles) {
-			Document document = getDocument(article);
-
-			documents.add(document);
-		}
-
-		SearchEngineUtil.updateDocuments(companyId, documents);
-	}
-
-	private void _addPortletPreferences(
+	protected void addPortletPreferences(
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
 		String selectionMethod = (String)searchContext.getAttribute(
 			"selectionMethod");
-		long[] resourcePrimKeys = (long[])searchContext.getAttribute(
-			"resourcePrimKeys");
 
 		if (Validator.isNull(selectionMethod)) {
 			return;
@@ -256,6 +115,9 @@ public class AdminIndexer extends BaseIndexer {
 
 		if (selectionMethod.equals("articles")) {
 			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
+
+			long[] resourcePrimKeys = (long[])searchContext.getAttribute(
+				"resourcePrimKeys");
 
 			for (long resourcePrimKey : resourcePrimKeys) {
 				booleanQuery.addExactTerm(
@@ -271,10 +133,10 @@ public class AdminIndexer extends BaseIndexer {
 			return;
 		}
 
-		Boolean assetEntryQueryContains = (Boolean)searchContext.getAttribute(
-			"assetEntryQueryContains");
 		Boolean assetEntryQueryAndOperator =
 			(Boolean)searchContext.getAttribute("assetEntryQueryAndOperator");
+		Boolean assetEntryQueryContains = (Boolean)searchContext.getAttribute(
+			"assetEntryQueryContains");
 		String assetEntryQueryName = (String)searchContext.getAttribute(
 			"assetEntryQueryName");
 		long[] assetCategoryIds = (long[])searchContext.getAttribute(
@@ -343,7 +205,7 @@ public class AdminIndexer extends BaseIndexer {
 		}
 	}
 
-	private void _addViewableParentResourcePrimKeys(
+	protected void addViewableParentResourcePrimKeys(
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
@@ -356,14 +218,154 @@ public class AdminIndexer extends BaseIndexer {
 
 			for (long parentResourcePrimKey : viewableParentResourcePrimKeys) {
 				booleanQuery.addExactTerm(
-					_PARENT_RESOURCE_PRIM_KEY, parentResourcePrimKey);
+					"parentResourcePrimKey", parentResourcePrimKey);
 			}
 		}
 
 		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
 	}
 
-	private String[] _splitKeywords(String keywords) {
+	protected void doDelete(Object obj) throws Exception {
+		Article article = (Article)obj;
+
+		Document document = new DocumentImpl();
+
+		document.addUID(PORTLET_ID, article.getResourcePrimKey());
+
+		SearchEngineUtil.deleteDocument(
+			article.getCompanyId(), document.get(Field.UID));
+	}
+
+	protected Document doGetDocument(Object obj) throws Exception {
+		Article article = (Article)obj;
+
+		long companyId = article.getCompanyId();
+		long groupId = getParentGroupId(article.getGroupId());
+		long scopeGroupId = article.getGroupId();
+		long userId = article.getUserId();
+		String userName = PortalUtil.getUserName(userId, article.getUserName());
+		long resourcePrimKey = article.getResourcePrimKey();
+		long parentResourcePrimKey = article.getParentResourcePrimKey();
+		String title = article.getTitle();
+		String content = HtmlUtil.extractText(article.getContent());
+		String description = article.getDescription();
+		Date modifiedDate = article.getModifiedDate();
+
+		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
+			Article.class.getName(), resourcePrimKey);
+		String[] assetCategoryNames =
+			AssetCategoryLocalServiceUtil.getCategoryNames(
+				Article.class.getName(), resourcePrimKey);
+		String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
+			Article.class.getName(), resourcePrimKey);
+
+		Document document = new DocumentImpl();
+
+		document.addUID(PORTLET_ID, resourcePrimKey);
+
+		document.addModifiedDate(modifiedDate);
+
+		document.addKeyword(Field.COMPANY_ID, companyId);
+		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
+		document.addKeyword(Field.GROUP_ID, groupId);
+		document.addKeyword(Field.SCOPE_GROUP_ID, scopeGroupId);
+		document.addKeyword(Field.USER_ID, userId);
+		document.addText(Field.USER_NAME, userName);
+
+		document.addText(Field.TITLE, title);
+		document.addText(Field.CONTENT, content);
+		document.addText(Field.DESCRIPTION, description);
+		document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
+		document.addKeyword(Field.ASSET_CATEGORY_NAMES, assetCategoryNames);
+		document.addKeyword(Field.ASSET_TAG_NAMES, assetTagNames);
+
+		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
+		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
+
+		document.addKeyword("parentResourcePrimKey", parentResourcePrimKey);
+
+		return document;
+	}
+
+	protected void doReindex(Object obj) throws Exception {
+		Article article = (Article)obj;
+
+		SearchEngineUtil.updateDocument(
+			article.getCompanyId(), getDocument(article));
+	}
+
+	protected void doReindex(String className, long classPK) throws Exception {
+		Article article = ArticleLocalServiceUtil.getLatestArticle(
+			classPK, WorkflowConstants.STATUS_APPROVED);
+
+		doReindex(article);
+	}
+
+	protected void doReindex(String[] ids) throws Exception {
+		long companyId = GetterUtil.getLong(ids[0]);
+
+		reindexArticles(companyId);
+	}
+
+	protected String getPortletId(SearchContext searchContext) {
+		return PORTLET_ID;
+	}
+
+	protected void postProcessContextQuery(
+			BooleanQuery contextQuery, SearchContext searchContext)
+		throws Exception {
+
+		addPortletPreferences(contextQuery, searchContext);
+		addViewableParentResourcePrimKeys(contextQuery, searchContext);
+	}
+
+	protected void postProcessSearchQuery(
+			BooleanQuery searchQuery, SearchContext searchContext)
+		throws Exception {
+
+		for (String value : splitKeywords(searchContext.getKeywords())) {
+			searchQuery.addTerm(Field.TITLE, value, true);
+			searchQuery.addTerm(Field.CONTENT, value, true);
+		}
+	}
+
+	protected void reindexArticles(long companyId) throws Exception {
+		int count = ArticleLocalServiceUtil.getCompanyArticlesCount(
+			companyId, WorkflowConstants.STATUS_APPROVED);
+
+		int pages = count / Indexer.DEFAULT_INTERVAL;
+
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int end = start + Indexer.DEFAULT_INTERVAL;
+
+			reindexArticles(companyId, start, end);
+		}
+	}
+
+	protected void reindexArticles(long companyId, int start, int end)
+		throws Exception {
+
+		List<Article> articles = ArticleLocalServiceUtil.getCompanyArticles(
+			companyId, WorkflowConstants.STATUS_APPROVED, start, end,
+			new ArticleModifiedDateComparator());
+
+		if (articles.isEmpty()) {
+			return;
+		}
+
+		Collection<Document> documents = new ArrayList<Document>();
+
+		for (Article article : articles) {
+			Document document = getDocument(article);
+
+			documents.add(document);
+		}
+
+		SearchEngineUtil.updateDocuments(companyId, documents);
+	}
+
+	protected String[] splitKeywords(String keywords) {
 		keywords = keywords.trim();
 
 		if (Validator.isNull(keywords)) {
@@ -396,8 +398,5 @@ public class AdminIndexer extends BaseIndexer {
 
 		return keywordsList.toArray(new String[keywordsList.size()]);
 	}
-
-	private static final String _PARENT_RESOURCE_PRIM_KEY =
-		"parentResourcePrimKey";
 
 }

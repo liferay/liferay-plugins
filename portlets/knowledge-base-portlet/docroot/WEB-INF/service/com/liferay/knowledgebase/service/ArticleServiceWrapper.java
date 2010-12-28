@@ -69,19 +69,13 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getArticle(resourcePrimKey, version);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticleVersions(
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticleVersions(resourcePrimKey, status,
-			start, end, orderByComparator);
-	}
-
-	public int getArticleVersionsCount(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticleVersionsCount(resourcePrimKey, status);
+		return _articleService.getArticles(resourcePrimKey, status, start, end,
+			orderByComparator);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
@@ -91,6 +85,12 @@ public class ArticleServiceWrapper implements ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getArticles(groupId, resourcePrimKeys, status,
 			viewableParentResourcePrimKeys, start, end, orderByComparator);
+	}
+
+	public int getArticlesCount(long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticlesCount(resourcePrimKey, status);
 	}
 
 	public int getArticlesCount(long groupId, long[] resourcePrimKeys,

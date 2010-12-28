@@ -20,8 +20,6 @@ package com.liferay.knowledgebase.model;
  */
 public class ArticleConstants {
 
-	public static final int ARCHIVED = 0;
-
 	public static final long DEFAULT_PARENT_RESOURCE_PRIM_KEY = 0;
 
 	public static final int DEFAULT_PRIORITY = 0;
@@ -35,6 +33,8 @@ public class ArticleConstants {
 	};
 
 	public static final int LATEST_APPROVED = 2;
+
+	public static final int LATEST_ARCHIVED = 0;
 
 	public static final int LATEST_VERSION = 1;
 
