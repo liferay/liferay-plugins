@@ -28,10 +28,6 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Property;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -70,7 +66,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -254,17 +249,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Child Articles
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", article.getGroupId());
-		params.put("parentResourcePrimKey", article.getResourcePrimKey());
-
-		List<Article> childArticles = getArticles(
-			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		List<Article> articles = getSiblingArticles(
+			article.getGroupId(), article.getResourcePrimKey(),
+			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
-		for (Article childArticle : childArticles) {
-			deleteArticle(childArticle.getResourcePrimKey());
+		for (Article curArticle : articles) {
+			deleteArticle(curArticle.getResourcePrimKey());
 		}
 
 		deleteArticle(article);
@@ -281,15 +272,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteGroupArticles(long groupId)
 		throws PortalException, SystemException {
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", groupId);
-		params.put(
-			"parentResourcePrimKey",
-			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-
-		List<Article> articles = getArticles(
-			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		List<Article> articles = getSiblingArticles(
+			groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
 		for (Article article : articles) {
@@ -303,7 +288,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return articlePersistence.findByR_V(resourcePrimKey, version);
 	}
 
-	public List<Article> getArticles(
+	public List<Article> getArticleVersions(
 			long resourcePrimKey, int status, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -312,97 +297,103 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return articlePersistence.findByResourcePrimKey(
 				resourcePrimKey, start, end, orderByComparator);
 		}
-		else {
-			return articlePersistence.findByR_S(
-				resourcePrimKey, status, start, end, orderByComparator);
-		}
+
+		return articlePersistence.findByR_S(
+			resourcePrimKey, status, start, end, orderByComparator);
 	}
 
-	public List<Article> getArticles(
-			Map<String, Object> params, boolean allVersions, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
-
-		if (dynamicQuery == null) {
-			return Collections.emptyList();
-		}
-
-		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
-	}
-
-	public int getArticlesCount(long resourcePrimKey, int status)
+	public int getArticleVersionsCount(long resourcePrimKey, int status)
 		throws SystemException {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.countByResourcePrimKey(resourcePrimKey);
 		}
-		else {
-			return articlePersistence.countByR_S(resourcePrimKey, status);
-		}
+
+		return articlePersistence.countByR_S(resourcePrimKey, status);
 	}
 
-	public int getArticlesCount(Map<String, Object> params, boolean allVersions)
+	public List<Article> getArticles(
+			long[] resourcePrimKeys, int status, int start, int end,
+			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = buildDynamicQuery(params, allVersions);
-
-		if (dynamicQuery == null) {
-			return 0;
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.findByR_L(
+				resourcePrimKeys, new int[] {ArticleConstants.LATEST_VERSION},
+				start, end, orderByComparator);
 		}
 
-		return (int)dynamicQueryCount(dynamicQuery);
+		return articlePersistence.findByR_L_S(
+			resourcePrimKeys, ArticleConstants.LATEST_ANY, status, start, end,
+			orderByComparator);
+	}
+
+	public int getArticlesCount(long[] resourcePrimKeys, int status)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.countByR_L(
+				resourcePrimKeys, new int[] {ArticleConstants.LATEST_VERSION});
+		}
+
+		return articlePersistence.countByR_L_S(
+			resourcePrimKeys, ArticleConstants.LATEST_ANY, status);
 	}
 
 	public List<Article> getCompanyArticles(
-			long companyId, int status, boolean allVersions, int start, int end,
+			long companyId, int status, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		Map<String, Object> params = new HashMap<String, Object>();
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.findByC_L(
+				companyId, ArticleConstants.LATEST_VERSION, start, end,
+				orderByComparator);
+		}
 
-		params.put("companyId", companyId);
-		params.put("status", status);
-
-		return getArticles(params, allVersions, start, end, orderByComparator);
+		return articlePersistence.findByC_L_S(
+			companyId, ArticleConstants.LATEST_ANY, status, start, end,
+			orderByComparator);
 	}
 
-	public int getCompanyArticlesCount(
-			long companyId, int status, boolean allVersions)
+	public int getCompanyArticlesCount(long companyId, int status)
 		throws SystemException {
 
-		Map<String, Object> params = new HashMap<String, Object>();
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.countByC_L(
+				companyId, ArticleConstants.LATEST_VERSION);
+		}
 
-		params.put("companyId", companyId);
-		params.put("status", status);
-
-		return getArticlesCount(params, allVersions);
+		return articlePersistence.countByC_L_S(
+			companyId, ArticleConstants.LATEST_ANY, status);
 	}
 
 	public List<Article> getGroupArticles(
-			long groupId, int status, boolean allVersions, int start, int end,
+			long groupId, int status, int start, int end,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		Map<String, Object> params = new HashMap<String, Object>();
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.findByG_L(
+				groupId, ArticleConstants.LATEST_VERSION, start, end,
+				orderByComparator);
+		}
 
-		params.put("groupId", groupId);
-		params.put("status", status);
-
-		return getArticles(params, allVersions, start, end, orderByComparator);
+		return articlePersistence.findByG_L_S(
+			groupId, ArticleConstants.LATEST_ANY, status, start, end,
+			orderByComparator);
 	}
 
-	public int getGroupArticlesCount(
-			long groupId, int status, boolean allVersions)
+	public int getGroupArticlesCount(long groupId, int status)
 		throws SystemException {
 
-		Map<String, Object> params = new HashMap<String, Object>();
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.countByG_L(
+				groupId, ArticleConstants.LATEST_VERSION);
+		}
 
-		params.put("groupId", groupId);
-		params.put("status", status);
-
-		return getArticlesCount(params, allVersions);
+		return articlePersistence.countByG_L_S(
+			groupId, ArticleConstants.LATEST_ANY, status);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey, int status)
@@ -412,10 +403,40 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return articlePersistence.findByResourcePrimKey_First(
 				resourcePrimKey, new ArticleVersionComparator());
 		}
-		else {
-			return articlePersistence.findByR_S_First(
-				resourcePrimKey, status, new ArticleVersionComparator());
+
+		return articlePersistence.findByR_S_First(
+			resourcePrimKey, status, new ArticleVersionComparator());
+	}
+
+	public List<Article> getSiblingArticles(
+			long groupId, long parentResourcePrimKey, int status, int start,
+			int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.findByG_P_L(
+				groupId, parentResourcePrimKey, ArticleConstants.LATEST_VERSION,
+				start, end, orderByComparator);
 		}
+
+		return articlePersistence.findByG_P_L_S(
+			groupId, new long[] {parentResourcePrimKey},
+			ArticleConstants.LATEST_ANY, status, start, end, orderByComparator);
+	}
+
+	public int getSiblingArticlesCount(
+			long groupId, long parentResourcePrimKey, int status)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.countByG_P_L(
+				groupId, parentResourcePrimKey,
+				ArticleConstants.LATEST_VERSION);
+		}
+
+		return articlePersistence.countByG_P_L_S(
+			groupId, new long[] {parentResourcePrimKey},
+			ArticleConstants.LATEST_ANY, status);
 	}
 
 	public void subscribe(
@@ -658,15 +679,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return article;
 		}
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", article.getGroupId());
-		params.put("parentResourcePrimKey", article.getParentResourcePrimKey());
-		params.put("status", WorkflowConstants.STATUS_APPROVED);
-
-		List<Article> siblingArticles = getArticles(
-			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator(true));
+		List<Article> siblingArticles = getSiblingArticles(
+			article.getGroupId(), article.getParentResourcePrimKey(),
+			WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 
 		siblingArticles = ListUtil.copy(siblingArticles);
 
@@ -835,74 +851,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				_log.error("File already exists for " + dfe.getMessage());
 			}
 		}
-	}
-
-	protected DynamicQuery buildDynamicQuery(
-		Map<String, Object> params, boolean allVersions) {
-
-		for (Object value : params.values()) {
-			if (value instanceof Object[]) {
-				Object[] valueArray = (Object[])value;
-
-				if (valueArray.length == 0) {
-					return null;
-				}
-			}
-		}
-
-		Integer status = (Integer)params.get("status");
-
-		if ((status != null) && (status == WorkflowConstants.STATUS_ANY)) {
-			params.remove("status");
-		}
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article1", getClass().getClassLoader());
-
-		for (Map.Entry<String, Object> entry : params.entrySet()) {
-			String key = entry.getKey();
-			Object value = entry.getValue();
-
-			if (value instanceof Object[]) {
-				Property property = PropertyFactoryUtil.forName(key);
-
-				dynamicQuery.add(property.in((Object[])value));
-			}
-			else {
-				Property property = PropertyFactoryUtil.forName(key);
-
-				dynamicQuery.add(property.eq(value));
-			}
-		}
-
-		if (allVersions) {
-			return dynamicQuery;
-		}
-
-		DynamicQuery subselectDynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Article.class, "article2", getClass().getClassLoader());
-
-		Property versionProperty = PropertyFactoryUtil.forName("version");
-
-		subselectDynamicQuery.setProjection(versionProperty.max());
-
-		Property resourcePrimKeyProperty1 = PropertyFactoryUtil.forName(
-			"article1.resourcePrimKey");
-		Property resourcePrimKeyProperty2 = PropertyFactoryUtil.forName(
-			"article2.resourcePrimKey");
-
-		subselectDynamicQuery.add(
-			resourcePrimKeyProperty1.eqProperty(resourcePrimKeyProperty2));
-
-		if ((status != null) && (status != WorkflowConstants.STATUS_ANY)) {
-			Property property = PropertyFactoryUtil.forName("status");
-
-			subselectDynamicQuery.add(property.eq(status));
-		}
-
-		dynamicQuery.add(versionProperty.in(subselectDynamicQuery));
-
-		return dynamicQuery;
 	}
 
 	protected void checkAttachments(long companyId)

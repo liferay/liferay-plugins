@@ -28,10 +28,16 @@
 		<liferay-ui:search-container
 			iteratorURL="<%= iteratorURL %>"
 		>
-			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_ANY, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()) %>"
-				total="<%= ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_ANY, false) %>"
-			/>
+			<liferay-ui:search-container-results>
+
+				<%
+				long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_ANY);
+
+				pageContext.setAttribute("results", ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_ANY, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()));
+				pageContext.setAttribute("total", ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_ANY, viewableParentResourcePrimKeys));
+				%>
+
+			</liferay-ui:search-container-results>
 
 			<div class="kb-results-body">
 

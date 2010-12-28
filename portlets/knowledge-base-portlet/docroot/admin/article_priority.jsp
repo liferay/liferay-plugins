@@ -38,13 +38,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 	</c:if>
 
 	<%
-	Map<String, Object> params = new HashMap<String, Object>();
-
-	params.put("groupId", scopeGroupId);
-	params.put("parentResourcePrimKey", parentResourcePrimKey);
-	params.put("status", WorkflowConstants.STATUS_APPROVED);
-
-	int total = ArticleServiceUtil.getArticlesCount(params, false);
+	int total = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 	if ((resourcePrimKey <= 0) || (parentResourcePrimKey != oldParentResourcePrimKey)) {
 		total = total + 1;

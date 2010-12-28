@@ -37,8 +37,10 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -373,49 +375,31 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		List<Article> articles = new ArrayList<Article>();
 
-		Map<String, Object> params = new HashMap<String, Object>();
+		long groupId = portletDataContext.getScopeGroupId();
+		long[] parentResourcePrimKeys = new long[] {
+			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
+		};
 
-		params.put("groupId", portletDataContext.getScopeGroupId());
-		params.put(
-			"parentResourcePrimKey",
-			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-		params.put("status", WorkflowConstants.STATUS_APPROVED);
+		while (parentResourcePrimKeys.length > 0) {
+			List<Article> curArticles = ArticleUtil.findByG_P_L_S(
+				groupId, parentResourcePrimKeys, ArticleConstants.LATEST_ANY,
+				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 
-		List<Article> rootArticles = ArticleLocalServiceUtil.getArticles(
-			params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator(true));
+			List<Article> filteredArticles = new ArrayList<Article>();
 
-		for (Article rootArticle : rootArticles) {
-			if (portletDataContext.isWithinDateRange(
-					rootArticle.getModifiedDate())) {
-
-				articles.add(rootArticle);
-			}
-		}
-
-		int index = -1;
-
-		while ((index = index + 1) < articles.size()) {
-			Article article = articles.get(index);
-
-			Map<String, Object> curParams = new HashMap<String, Object>();
-
-			curParams.put("groupId", article.getGroupId());
-			curParams.put(
-				"parentResourcePrimKey", article.getResourcePrimKey());
-			curParams.put("status", WorkflowConstants.STATUS_APPROVED);
-
-			List<Article> childArticles = ArticleLocalServiceUtil.getArticles(
-				curParams, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				new ArticlePriorityComparator(true));
-
-			for (Article childArticle : childArticles) {
+			for (Article curArticle : curArticles) {
 				if (portletDataContext.isWithinDateRange(
-						childArticle.getModifiedDate())) {
+						curArticle.getModifiedDate())) {
 
-					articles.add(childArticle);
+					filteredArticles.add(curArticle);
 				}
 			}
+
+			articles.addAll(filteredArticles);
+
+			parentResourcePrimKeys = StringUtil.split(
+				ListUtil.toString(filteredArticles, "resourcePrimKey"), 0L);
 		}
 
 		return articles;
@@ -439,14 +423,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(article.getResourcePrimKey()));
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", portletDataContext.getScopeGroupId());
-		params.put("parentResourcePrimKey", parentResourcePrimKey);
-		params.put("status", WorkflowConstants.STATUS_APPROVED);
-
-		int maxPriority = ArticleLocalServiceUtil.getArticlesCount(
-			params, false);
+		int maxPriority = ArticleLocalServiceUtil.getSiblingArticlesCount(
+			portletDataContext.getScopeGroupId(), parentResourcePrimKey,
+			WorkflowConstants.STATUS_APPROVED);
 
 		if (priority > maxPriority) {
 			priority = maxPriority;

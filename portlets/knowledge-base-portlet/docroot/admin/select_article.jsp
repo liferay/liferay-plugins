@@ -44,19 +44,10 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 			headerNames="title"
 			iteratorURL="<%= iteratorURL %>"
 		>
-			<liferay-ui:search-container-results>
-
-				<%
-				Map<String, Object> params = new HashMap<String, Object>();
-
-				params.put("groupId", scopeGroupId);
-				params.put("parentResourcePrimKey", parentResourcePrimKey);
-
-				pageContext.setAttribute("results", ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticlePriorityComparator(true)));
-				pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(params, false));
-				%>
-
-			</liferay-ui:search-container-results>
+			<liferay-ui:search-container-results
+				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), new ArticlePriorityComparator(true)) %>"
+				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY) %>"
+			/>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.Article"
@@ -71,12 +62,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				</portlet:renderURL>
 
 				<%
-				Map<String, Object> params = new HashMap<String, Object>();
-
-				params.put("groupId", scopeGroupId);
-				params.put("parentResourcePrimKey", curArticle.getResourcePrimKey());
-
-				List<Article> articles = ArticleServiceUtil.getArticles(params, false, 0, 1, null);
+				List<Article> articles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, curArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY, 0, 1, null);
 
 				String titleHREF = null;
 

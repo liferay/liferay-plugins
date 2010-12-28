@@ -19,7 +19,7 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Article> articles = KnowledgeBaseUtil.getArticles(resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
+List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">

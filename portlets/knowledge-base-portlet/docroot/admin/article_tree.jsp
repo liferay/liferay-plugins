@@ -31,22 +31,16 @@ Article selArticle = (Article)request.getAttribute("article_tree.jsp-selArticle"
 	<c:when test="<%= articles == null %>">
 
 		<%
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("groupId", scopeGroupId);
-		params.put("parentResourcePrimKey", article.getResourcePrimKey());
-		params.put("status", status);
-
-		List<Article> childArticles = ArticleServiceUtil.getArticles(params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+		List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 		%>
 
-		<c:if test="<%= !childArticles.isEmpty() %>">
+		<c:if test="<%= !siblingArticles.isEmpty() %>">
 
 			<%
-			Article firstArticle = childArticles.get(0);
-			Article lastArticle = childArticles.get(childArticles.size() - 1);
+			Article firstArticle = siblingArticles.get(0);
+			Article lastArticle = siblingArticles.get(siblingArticles.size() - 1);
 
-			request.setAttribute("article_tree.jsp-articles", childArticles);
+			request.setAttribute("article_tree.jsp-articles", siblingArticles);
 			request.setAttribute("article_tree.jsp-firstArticleId", String.valueOf(firstArticle.getArticleId()));
 			request.setAttribute("article_tree.jsp-lastArticleId", String.valueOf(lastArticle.getArticleId()));
 			request.setAttribute("article_tree.jsp-selArticle", article);
@@ -100,19 +94,13 @@ Article selArticle = (Article)request.getAttribute("article_tree.jsp-selArticle"
 				</c:choose>
 
 				<%
-				Map<String, Object> params = new HashMap<String, Object>();
-
-				params.put("groupId", scopeGroupId);
-				params.put("parentResourcePrimKey", curArticle.getResourcePrimKey());
-				params.put("status", status);
-
-				List<Article> childArticles = ArticleServiceUtil.getArticles(params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+				List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, curArticle.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 				%>
 
-				<c:if test="<%= !childArticles.isEmpty() %>">
+				<c:if test="<%= !siblingArticles.isEmpty() %>">
 
 					<%
-					request.setAttribute("article_tree.jsp-articles", childArticles);
+					request.setAttribute("article_tree.jsp-articles", siblingArticles);
 					%>
 
 					<liferay-util:include page="/admin/article_tree.jsp" servletContext="<%= application %>" />

@@ -31,19 +31,10 @@
 			headerNames="title"
 			iteratorURL="<%= iteratorURL %>"
 		>
-			<liferay-ui:search-container-results>
-
-				<%
-				Map<String, Object> params = new HashMap<String, Object>();
-
-				params.put("groupId", scopeGroupId);
-				params.put("status", WorkflowConstants.STATUS_APPROVED);
-
-				pageContext.setAttribute("results", ArticleLocalServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticleTitleComparator(true)));
-				pageContext.setAttribute("total", ArticleLocalServiceUtil.getArticlesCount(params, false));
-				%>
-
-			</liferay-ui:search-container-results>
+			<liferay-ui:search-container-results
+				results="<%= ArticleLocalServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), new ArticleTitleComparator(true)) %>"
+				total="<%= ArticleLocalServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED) %>"
+			/>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.Article"

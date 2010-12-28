@@ -18,13 +18,11 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
-import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
@@ -41,7 +39,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.PortletConstants;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -52,10 +49,7 @@ import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.portlet.PortletPreferences;
@@ -194,7 +188,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static List<Article> getArticles(
-			long[] resourcePrimKeys, int start, int end,
+			long groupId, long[] resourcePrimKeys, int start, int end,
 			boolean checkPermission)
 		throws Exception {
 
@@ -212,20 +206,17 @@ public class KnowledgeBaseUtil {
 		resourcePrimKeys = StringUtil.split(
 			StringUtil.merge(selResourcePrimKeys), 0L);
 
-		Map<String, Object> params = new HashMap<String, Object>();
-
-		params.put("resourcePrimKey", ArrayUtil.toArray(resourcePrimKeys));
-		params.put("status", WorkflowConstants.STATUS_APPROVED);
-
 		List<Article> unsortedArticles = null;
 
 		if (checkPermission) {
 			unsortedArticles = ArticleServiceUtil.getArticles(
-				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				groupId, resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
+				null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 		else {
 			unsortedArticles = ArticleLocalServiceUtil.getArticles(
-				params, false, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 
 		unsortedArticles = ListUtil.copy(unsortedArticles);
@@ -414,79 +405,60 @@ public class KnowledgeBaseUtil {
 				orderByAscending);
 		}
 
-		int delta = SearchContainer.DEFAULT_DELTA;
-		int lastIntervalStart = 0;
-		boolean listNotExhausted = true;
+		List<Article> articles = new ArrayList<Article>();
 
-		while (listNotExhausted) {
-			List<Article> articles = new ArrayList<Article>();
+		if (selectionMethod.equals("articles")) {
+			List<AssetEntry> assetEntries = getAssetEntries(
+				plid, portletId, assetCategoryId, assetTagName);
 
-			if (selectionMethod.equals("articles")) {
-				List<AssetEntry> assetEntries = getAssetEntries(
-					plid, portletId, assetCategoryId, assetTagName);
+			if (assetEntries != null) {
+				long[] classPKs = StringUtil.split(
+					ListUtil.toString(assetEntries, "classPK"), 0L);
 
-				if (assetEntries != null) {
-					long[] classPKs = StringUtil.split(
-						ListUtil.toString(assetEntries, "classPK"), 0L);
+				Set<Long> classPKsSet = SetUtil.fromArray(classPKs);
+				Set<Long> resourcePrimKeysSet = SetUtil.fromArray(
+					resourcePrimKeys);
 
-					Set<Long> classPKsSet = SetUtil.fromArray(classPKs);
-					Set<Long> resourcePrimKeysSet = SetUtil.fromArray(
-						resourcePrimKeys);
+				resourcePrimKeysSet.retainAll(classPKsSet);
 
-					resourcePrimKeysSet.retainAll(classPKsSet);
-
-					resourcePrimKeys = StringUtil.split(
-						StringUtil.merge(resourcePrimKeysSet), 0L);
-				}
-
-				articles = getArticles(
-					resourcePrimKeys, lastIntervalStart,
-					lastIntervalStart + delta, false);
+				resourcePrimKeys = StringUtil.split(
+					StringUtil.merge(resourcePrimKeysSet), 0L);
 			}
-			else if (selectionMethod.equals("group")) {
-				Map<String, Object> params = new HashMap<String, Object>();
 
-				params.put("groupId", group.getGroupId());
-				params.put("status", WorkflowConstants.STATUS_APPROVED);
+			articles = getArticles(
+				group.getGroupId(), resourcePrimKeys, 0, 1, true);
+		}
+		else if (selectionMethod.equals("group")) {
+			List<AssetEntry> assetEntries = getAssetEntries(
+				plid, portletId, assetCategoryId, assetTagName);
 
-				if (!allArticles) {
-					params.put(
-						"parentResourcePrimKey",
-						ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-				}
+			if (assetEntries != null) {
+				long[] classPKs = StringUtil.split(
+					ListUtil.toString(assetEntries, "classPK"), 0L);
 
-				List<AssetEntry> assetEntries = getAssetEntries(
-					plid, portletId, assetCategoryId, assetTagName);
-
-				if (assetEntries != null) {
-					long[] classPKs = StringUtil.split(
-						ListUtil.toString(assetEntries, "classPK"), 0L);
-
-					params.put("resourcePrimKey", ArrayUtil.toArray(classPKs));
-				}
-
-				articles = ArticleLocalServiceUtil.getArticles(
-					params, false, lastIntervalStart, lastIntervalStart + delta,
+				articles = ArticleServiceUtil.getArticles(
+					group.getGroupId(), classPKs,
+					WorkflowConstants.STATUS_APPROVED, null, 0, 1,
 					orderByComparator);
 			}
-
-			Iterator<Article> itr = articles.iterator();
-
-			lastIntervalStart += delta;
-			listNotExhausted = (articles.size() == delta);
-
-			while (itr.hasNext()) {
-				Article article = itr.next();
-
-				if (ArticlePermission.contains(
-						permissionChecker, article, ActionKeys.VIEW)) {
-
-					return article;
-				}
+			else if (!allArticles) {
+				articles = ArticleServiceUtil.getSiblingArticles(
+					group.getGroupId(),
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+					WorkflowConstants.STATUS_APPROVED, 0, 1, orderByComparator);
+			}
+			else {
+				articles = ArticleServiceUtil.getGroupArticles(
+					group.getGroupId(), WorkflowConstants.STATUS_APPROVED,
+					null, 0, 1, orderByComparator);
 			}
 		}
 
-		return null;
+		if (articles.isEmpty()) {
+			return null;
+		}
+
+		return articles.get(0);
 	}
 
 	protected static Object[] getPlidAndWindowState(

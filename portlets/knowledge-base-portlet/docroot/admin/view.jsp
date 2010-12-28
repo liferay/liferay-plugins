@@ -122,19 +122,10 @@
 			delta="<%= articlesDelta %>"
 			iteratorURL="<%= iteratorURL %>"
 		>
-			<liferay-ui:search-container-results>
-
-				<%
-				Map<String, Object> params = new HashMap<String, Object>();
-
-				params.put("groupId", scopeGroupId);
-				params.put("parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-
-				pageContext.setAttribute("results", ArticleServiceUtil.getArticles(params, false, searchContainer.getStart(), searchContainer.getEnd(), new ArticlePriorityComparator(true)));
-				pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(params, false));
-				%>
-
-			</liferay-ui:search-container-results>
+			<liferay-ui:search-container-results
+				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), new ArticlePriorityComparator(true)) %>"
+				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY) %>"
+			/>
 
 			<div class="kb-results-body">
 
