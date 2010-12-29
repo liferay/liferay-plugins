@@ -20,8 +20,10 @@ import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
+import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
+import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -33,8 +35,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -58,6 +58,7 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.util.portlet.PortletProps;
@@ -1195,27 +1196,39 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				serviceContext.getPortalURL()
 			});
 
-		String mailId =
+		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
+			article, serviceContext.getPortalURL());
+
+		subscriptionSender.setBody(body);
+		subscriptionSender.setCompanyId(article.getCompanyId());
+		subscriptionSender.setFrom(fromAddress, fromName);
+		subscriptionSender.setGroupId(article.getGroupId());
+		subscriptionSender.setHtmlFormat(true);
+		subscriptionSender.setMailId(
 			StringPool.LESS_THAN + "knowledge_base.article." +
 				article.getResourcePrimKey() + StringPool.AT +
-					company.getMx() + StringPool.GREATER_THAN;
+					company.getMx() + StringPool.GREATER_THAN);
+		subscriptionSender.setReplyToAddress(fromAddress);
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setUserId(article.getUserId());
 
-		Message message = new Message();
+		subscriptionSender.addPersistedSubscribers(
+			Article.class.getName(), article.getGroupId());
+		subscriptionSender.addPersistedSubscribers(
+			Article.class.getName(), article.getResourcePrimKey());
 
-		message.put("companyId", article.getCompanyId());
-		message.put("groupId", article.getGroupId());
-		message.put("userId", article.getUserId());
-		message.put("resourcePrimKey", article.getResourcePrimKey());
-		message.put("portalURL", serviceContext.getPortalURL());
-		message.put("fromName", fromName);
-		message.put("fromAddress", fromAddress);
-		message.put("subject", subject);
-		message.put("body", body);
-		message.put("replyToAddress", fromAddress);
-		message.put("mailId", mailId);
-		message.put("htmlFormat", Boolean.TRUE);
+		while (article.getParentResourcePrimKey() !=
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
-		MessageBusUtil.sendMessage("liferay/knowledge_base_admin", message);
+			article = ArticleLocalServiceUtil.getLatestArticle(
+				article.getParentResourcePrimKey(),
+				WorkflowConstants.STATUS_APPROVED);
+
+			subscriptionSender.addPersistedSubscribers(
+				Article.class.getName(), article.getResourcePrimKey());
+		}
+
+		subscriptionSender.flushNotificationsAsync();
 	}
 
 	protected void updateAttachments(
