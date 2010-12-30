@@ -56,11 +56,7 @@ MailManager mailManager = MailManager.getInstance(request);
 
 			CustomAttributes customAttributes = CustomAttributes.getInstance("data-");
 
-			customAttributes.add("folderId", folderId);
-			customAttributes.add("keywords", keywords);
-			customAttributes.add("orderByField", orderByField);
-			customAttributes.add("orderByType", orderByType);
-			customAttributes.add("pageNumber", pageNumber);
+			customAttributes.add("folderId", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber);
 			%>
 
 			<aui:a cssClass="messages-link" customAttributes="<%= customAttributes %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
