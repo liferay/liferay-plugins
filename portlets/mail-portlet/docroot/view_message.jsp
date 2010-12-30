@@ -1,4 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 <%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.

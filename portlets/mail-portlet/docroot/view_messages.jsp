@@ -1,5 +1,3 @@
-<%@ taglib prefix="aui" uri="http://liferay.com/tld/aui" %>
-<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 <%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
@@ -83,7 +81,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				<%
 					CustomAttributes customAttributes1 = CustomAttributes.getInstance("data-");
 
-					customAttributes1.add("folder-id", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", 1);
+					customAttributes1.add("folderId", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", 1);
 				%>
 
 				<aui:a cssClass="messages-link" customAttributes="<%= customAttributes1 %>" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
@@ -93,7 +91,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				<%
 					CustomAttributes customAttributes2 = CustomAttributes.getInstance("data-");
 
-					customAttributes2.add("folder-id", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber - 1);
+					customAttributes2.add("folderId", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber - 1);
 				%>
 
 				<aui:a cssClass="messages-link" customAttributes="<%= customAttributes2 %>" href="javascript:;" label="&lt; Newer" />
@@ -105,7 +103,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				<%
 					CustomAttributes customAttributes3 = CustomAttributes.getInstance("data-");
 
-					customAttributes3.add("folder-id", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber + 1);
+					customAttributes3.add("folderId", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber + 1);
 				%>
 
 				<aui:a cssClass="messages-link" customAttributes="<%= customAttributes3 %>" href="javascript:;" label="Older &gt;" />&nbsp;
