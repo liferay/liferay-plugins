@@ -53,9 +53,17 @@ MailManager mailManager = MailManager.getInstance(request);
 			if (Validator.isNotNull(keywords)) {
 				folderName = LanguageUtil.get(pageContext, "search-results");
 			}
+
+			CustomAttributes customAttributes = CustomAttributes.getInstance("data-");
+
+			customAttributes.add("folderId", folderId);
+			customAttributes.add("keywords", keywords);
+			customAttributes.add("orderByField", orderByField);
+			customAttributes.add("orderByType", orderByType);
+			customAttributes.add("pageNumber", pageNumber);
 			%>
 
-			<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
+			<aui:a cssClass="messages-link" customAttributes="<%= customAttributes %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
 		</aui:column>
 		<aui:column cssClass="compose-message-container">
 			<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
