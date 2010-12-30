@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -1196,17 +1195,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				serviceContext.getPortalURL()
 			});
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append(StringPool.LESS_THAN);
-		sb.append("knowledge_base.article.");
-		sb.append(article.getResourcePrimKey());
-		sb.append(StringPool.AT);
-		sb.append(company.getMx());
-		sb.append(StringPool.GREATER_THAN);
-
-		String mailId = sb.toString();
-
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
 			article, serviceContext.getPortalURL());
 
@@ -1215,7 +1203,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setGroupId(article.getGroupId());
 		subscriptionSender.setHtmlFormat(true);
-		subscriptionSender.setMailId(mailId);
+		subscriptionSender.setMailId(
+			StringPool.LESS_THAN + "knowledge_base.article." +
+				article.getResourcePrimKey() + StringPool.AT +
+					company.getMx() + StringPool.GREATER_THAN);
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(article.getUserId());
