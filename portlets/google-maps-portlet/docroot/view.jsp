@@ -163,6 +163,6 @@
 		</aui:script>
 	</c:when>
 	<c:otherwise>
-		<liferay-ui:message key="please-contact-the-administrator-to-setup-this-portlet" />
+		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />
 	</c:otherwise>
 </c:choose>

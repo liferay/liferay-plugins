@@ -66,14 +66,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		</c:if>
 	</c:when>
 	<c:otherwise>
-
-		<%
-		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-		%>
-
-		<div class="portlet-msg-info">
-			<a href="<%= portletDisplay.getURLConfiguration() %>"><liferay-ui:message key="please-select-a-wiki-page-that-will-act-as-a-navigation-menu" /></a>
-		</div>
+		<liferay-util:include page="/html/portal/portlet_not_setup.jsp" />
 	</c:otherwise>
 </c:choose>
 
