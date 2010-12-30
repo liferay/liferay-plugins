@@ -16,121 +16,56 @@
 
 <%@ include file="/init.jsp" %>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="ad-client" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />adClient" type="text" value="<%= adClient %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="ad-channel" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />adChannel" type="text" value="<%= adChannel %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="ad-type" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />adType">
+<aui:form action="<%= actionURL %>" method="post" name="<portlet:namespace />fm">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+
+	<aui:fieldset>
+		<aui:input cssClass="lfr-input-text-container" name="preferences--adClient--" type="text" value="<%= adClient %>" />
+
+		<aui:input cssClass="lfr-input-text-container" name="preferences--adChannel--" type="text" value="<%= adChannel %>" />
+
+		<aui:select name="preferences--adType--">
 
 			<%
 			for (int i = 1; i < adTypes.length; i++) {
 			%>
 
-				<option <%= (adType == GetterUtil.getInteger(adTypes[i][0])) ? "selected" : "" %> value="<%= adTypes[i][0] %>"><%= adTypes[i][1] %></option>
+				<aui:option label="<%= adTypes[i][1] %>" selected="<%= adType == GetterUtil.getInteger(adTypes[i][0]) %>" value="<%= adTypes[i][0] %>" />
 
 			<%
 			}
 			%>
 
-		</select>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="ad-format" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />adFormat">
+		</aui:select>
+
+		<aui:select name="preferences--adFormat--">
 
 			<%
 			for (int i = 1; i < adFormats.length; i++) {
 			%>
 
-				<option <%= (adFormat == GetterUtil.getInteger(adFormats[i][0])) ? "selected" : "" %> value="<%= adFormats[i][0] %>"><%= adFormats[i][3] %></option>
+				<aui:option label="<%= adFormats[i][3] %>" selected="<%= adFormat == GetterUtil.getInteger(adFormats[i][0]) %>" value="<%= adFormats[i][0] %>" />
 
 			<%
 			}
 			%>
 
-		</select>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="color-border" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />colorBorder" type="text"  value="<%= colorBorder %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="color-background" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />colorBg" type="text" value="<%= colorBg %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="color-link" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />colorLink" type="text" value="<%= colorLink %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="color-text" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />colorText" type="text" value="<%= colorText %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="color-url" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />colorUrl" type="text" value="<%= colorUrl %>" />
-	</td>
-</tr>
-</table>
+		</aui:select>
 
-<br />
+		<aui:input cssClass="lfr-input-text-container" name="preferences--colorBorder--" type="text" value="<%= colorBorder %>" />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
+		<aui:input cssClass="lfr-input-text-container" label="color-background" name="preferences--colorBg--" type="text" value="<%= colorBg %>" />
 
-</form>
+		<aui:input cssClass="lfr-input-text-container" name="preferences--colorLink--" type="text" value="<%= colorLink %>" />
 
-<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
-	<aui:script>
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />adClient);
-	</aui:script>
-</c:if>
+		<aui:input cssClass="lfr-input-text-container" name="preferences--colorText--" type="text" value="<%= colorText %>" />
+
+		<aui:input cssClass="lfr-input-text-container" name="preferences--colorUrl--" type="text" value="<%= colorUrl %>" />
+	</aui:fieldset>
+
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>
