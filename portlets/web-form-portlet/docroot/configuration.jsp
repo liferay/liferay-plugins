@@ -21,18 +21,18 @@ String redirect = ParamUtil.getString(renderRequest, "redirect");
 
 String titleXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "title");
 String descriptionXml = LocalizationUtil.getLocalizationXmlFromPreferences(preferences, renderRequest, "description");
-boolean requireCaptcha = PrefsParamUtil.getBoolean(preferences, renderRequest, "requireCaptcha");
-String successURL = PrefsParamUtil.getString(preferences, renderRequest, "successURL");
+boolean requireCaptcha = GetterUtil.getBoolean(preferences.getValue("requireCaptcha", StringPool.BLANK));
+String successURL = preferences.getValue("successURL", StringPool.BLANK);
 
-boolean sendAsEmail = PrefsParamUtil.getBoolean(preferences, renderRequest, "sendAsEmail");
-String subject = PrefsParamUtil.getString(preferences, renderRequest, "subject");
-String emailAddress = PrefsParamUtil.getString(preferences, renderRequest, "emailAddress");
+boolean sendAsEmail = GetterUtil.getBoolean(preferences.getValue("sendAsEmail", StringPool.BLANK));
+String subject = preferences.getValue("subject", StringPool.BLANK);
+String emailAddress = preferences.getValue("emailAddress", StringPool.BLANK);
 
-boolean saveToDatabase = PrefsParamUtil.getBoolean(preferences, renderRequest, "saveToDatabase");
+boolean saveToDatabase = GetterUtil.getBoolean(preferences.getValue("saveToDatabase", StringPool.BLANK));
 String databaseTableName = preferences.getValue("databaseTableName", StringPool.BLANK);
 
-boolean saveToFile = PrefsParamUtil.getBoolean(preferences, renderRequest, "saveToFile");
-String fileName = PrefsParamUtil.getString(preferences, renderRequest, "fileName");
+boolean saveToFile = GetterUtil.getBoolean(preferences.getValue("saveToFile", StringPool.BLANK));
+String fileName = preferences.getValue("fileName", StringPool.BLANK);
 
 boolean fieldsEditingDisabled = false;
 
@@ -60,9 +60,9 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					<liferay-ui:input-localized name="description" type="textarea" xml="<%= descriptionXml %>" />
 				</aui:field-wrapper>
 
-				<aui:input name="requireCaptcha" type="checkbox" value="<%= requireCaptcha %>" />
+				<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="successURL" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
+				<aui:input cssClass="lfr-input-text-container" label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" />
 			</aui:fieldset>
 		</liferay-ui:panel>
 
@@ -74,19 +74,19 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
 				<liferay-ui:error key="fileNameInvalid" message="please-enter-a-valid-path-and-filename" />
 
-				<aui:input inlineLabel="left" label="send-as-email" name="sendAsEmail" type="checkbox" value="<%= sendAsEmail %>" />
+				<aui:input label="send-as-email" name="preferences--sendAsEmail--" type="checkbox" value="<%= sendAsEmail %>" />
 
-				<aui:input cssClass="lfr-input-text-container" name="subject" value="<%= subject %>" />
+				<aui:input cssClass="lfr-input-text-container" name="preferences--subject--" value="<%= subject %>" />
 
-				<aui:input cssClass="lfr-input-text-container" name="emailAddress" value="<%= emailAddress %>" />
+				<aui:input cssClass="lfr-input-text-container" name="preferences--emailAddress--" value="<%= emailAddress %>" />
 			</aui:fieldset>
 
 			<aui:fieldset cssClass="handle-data" label="database">
-				<aui:input name="saveToDatabase" type="checkbox" value="<%= saveToDatabase %>" />
+				<aui:input name="preferences--saveToDatabase--" type="checkbox" value="<%= saveToDatabase %>" />
 			</aui:fieldset>
 
 			<aui:fieldset cssClass="handle-data" label="file">
-				<aui:input name="saveToFile" type="checkbox" value="<%= saveToFile %>" />
+				<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
 
 				<aui:input cssClass="lfr-input-text-container" label="path-and-file-name" name="filename" value="<%= fileName %>" />
 			</aui:fieldset>

@@ -16,8 +16,8 @@ package com.liferay.webform.action;
 
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -53,28 +53,14 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		validateFields(actionRequest);
+
+		if (!SessionErrors.isEmpty(actionRequest)) {
+			return;
+		}
 
 		Locale defaultLocale = LocaleUtil.getDefault();
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
-
-		String title = ParamUtil.getString(
-			actionRequest, "title" + StringPool.UNDERLINE + defaultLanguageId);
-		boolean requireCaptcha = ParamUtil.getBoolean(
-			actionRequest, "requireCaptcha");
-		String successURL = ParamUtil.getString(actionRequest, "successURL");
-
-		boolean sendAsEmail = ParamUtil.getBoolean(
-			actionRequest, "sendAsEmail");
-		String subject = ParamUtil.getString(actionRequest, "subject");
-		String emailAddress = ParamUtil.getString(
-			actionRequest, "emailAddress");
-
-		boolean saveToDatabase = ParamUtil.getBoolean(
-			actionRequest, "saveToDatabase");
-
-		boolean saveToFile = ParamUtil.getBoolean(actionRequest, "saveToFile");
-		String fileName = ParamUtil.getString(actionRequest, "fileName");
 
 		boolean updateFields = ParamUtil.getBoolean(
 			actionRequest, "updateFields");
@@ -86,60 +72,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				actionRequest, portletResource);
 
-		if (Validator.isNull(title)) {
-			SessionErrors.add(actionRequest, "titleRequired");
-		}
-
-		if (Validator.isNull(subject)) {
-			SessionErrors.add(actionRequest, "subjectRequired");
-		}
-
-		if (!sendAsEmail && !saveToDatabase && !saveToFile) {
-			SessionErrors.add(actionRequest, "handlingRequired");
-		}
-
-		if (sendAsEmail) {
-			if (Validator.isNull(emailAddress)) {
-				SessionErrors.add(actionRequest, "emailAddressRequired");
-			}
-			else if (!Validator.isEmailAddress(emailAddress)) {
-				SessionErrors.add(actionRequest, "emailAddressInvalid");
-			}
-		}
-
-		if (saveToFile) {
-
-			// Check if server can create a file as specified
-
-			try {
-				FileOutputStream fos = new FileOutputStream(fileName, true);
-
-				fos.close();
-			}
-			catch (SecurityException es) {
-				SessionErrors.add(actionRequest, "fileNameInvalid");
-			}
-			catch (FileNotFoundException fnfe) {
-				SessionErrors.add(actionRequest, "fileNameInvalid");
-			}
-		}
-
-		if (!SessionErrors.isEmpty(actionRequest)) {
-			return;
-		}
-
 		LocalizationUtil.setLocalizedPreferencesValues(
 			actionRequest, preferences, "title");
 		LocalizationUtil.setLocalizedPreferencesValues(
 			actionRequest, preferences, "description");
-		preferences.setValue("requireCaptcha", String.valueOf(requireCaptcha));
-		preferences.setValue("successURL", successURL);
-		preferences.setValue("sendAsEmail", String.valueOf(sendAsEmail));
-		preferences.setValue("subject", subject);
-		preferences.setValue("emailAddress", emailAddress);
-		preferences.setValue("saveToDatabase", String.valueOf(saveToDatabase));
-		preferences.setValue("saveToFile", String.valueOf(saveToFile));
-		preferences.setValue("fileName", fileName);
 
 		if (updateFields) {
 			int i = 1;
@@ -253,10 +189,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 
 		if (SessionErrors.isEmpty(actionRequest)) {
 			preferences.store();
-
-			SessionMessages.add(
-				actionRequest, portletConfig.getPortletName() + ".doConfigure");
 		}
+
+		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
 	public String render(
@@ -271,6 +206,65 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		}
 		else {
 			return "/configuration.jsp";
+		}
+	}
+
+	protected void validateFields(ActionRequest actionRequest) throws Exception {
+		Locale defaultLocale = LocaleUtil.getDefault();
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
+
+		String title = ParamUtil.getString(
+			actionRequest, "title" + StringPool.UNDERLINE + defaultLanguageId);
+
+		boolean sendAsEmail = GetterUtil.getBoolean(
+			getParameter(actionRequest, "sendAsEmail"));
+		String subject = getParameter(actionRequest, "subject");
+
+		boolean saveToDatabase = GetterUtil.getBoolean(
+			getParameter(actionRequest, "saveToDatabase"));
+
+		boolean saveToFile = GetterUtil.getBoolean(
+			getParameter(actionRequest, "saveToFile"));
+
+		if (Validator.isNull(title)) {
+			SessionErrors.add(actionRequest, "titleRequired");
+		}
+
+		if (Validator.isNull(subject)) {
+			SessionErrors.add(actionRequest, "subjectRequired");
+		}
+
+		if (!sendAsEmail && !saveToDatabase && !saveToFile) {
+			SessionErrors.add(actionRequest, "handlingRequired");
+		}
+
+		if (sendAsEmail) {
+			String emailAddress = getParameter(actionRequest, "emailAddress");
+
+			if (Validator.isNull(emailAddress)) {
+				SessionErrors.add(actionRequest, "emailAddressRequired");
+			}
+			else if (!Validator.isEmailAddress(emailAddress)) {
+				SessionErrors.add(actionRequest, "emailAddressInvalid");
+			}
+		}
+
+		if (saveToFile) {
+			String fileName = getParameter(actionRequest, "fileName");
+
+			// Check if server can create a file as specified
+
+			try {
+				FileOutputStream fos = new FileOutputStream(fileName, true);
+
+				fos.close();
+			}
+			catch (SecurityException es) {
+				SessionErrors.add(actionRequest, "fileNameInvalid");
+			}
+			catch (FileNotFoundException fnfe) {
+				SessionErrors.add(actionRequest, "fileNameInvalid");
+			}
 		}
 	}
 
