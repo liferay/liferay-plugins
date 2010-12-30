@@ -14,8 +14,8 @@
 
 package com.liferay.wikinavigation.hook.upgrade;
 
-import com.liferay.wikinavigation.hook.upgrade.v1_0_0.UpgradePortletPreferences;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.wikinavigation.hook.upgrade.v1_0_0.UpgradePortletPreferences;
 
 /**
  * @author Julio Camarero
