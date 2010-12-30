@@ -54,6 +54,6 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 String movie = preferences.getValue("movie", StringPool.BLANK);
-String flashAttributes = preferences.getValue("flash-attributes", StringPool.BLANK);
-String flashVariables = preferences.getValue("flash-variables", StringPool.BLANK);
+String flashAttributes = preferences.getValue("flashAttributes", StringPool.BLANK);
+String flashVariables = preferences.getValue("flashVariables", StringPool.BLANK);
 %>

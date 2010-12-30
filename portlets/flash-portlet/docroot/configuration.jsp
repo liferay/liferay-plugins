@@ -49,44 +49,20 @@ flashAttributes = ParamUtil.getString(request, "flashAttributes", flashAttribute
 flashVariables = ParamUtil.getString(request, "flashVariables", flashVariables);
 %>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="movie" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />movie" type="text" value="<%= movie %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="flash-attributes" />
-	</td>
-	<td>
-		<textarea class="lfr-textarea" name="<portlet:namespace />flashAttributes" wrap="soft" onKeyDown="Liferay.Util.checkTab(this); disableEsc();"><%= flashAttributes %></textarea>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="flash-variables" />
-	</td>
-	<td>
-		<textarea class="lfr-textarea" name="<portlet:namespace />flashVariables" wrap="soft" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();"><%= flashVariables %></textarea>
-	</td>
-</tr>
-</table>
+<aui:form action="<%= actionURL %>" method="post" name="fm">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<br />
+	<aui:fieldset>
+		<aui:input cssClass="lfr-input-text-container" name="preferences--movie--" type="text" value="<%= movie %>" />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
+		<aui:input cssClass="lfr-textarea-container" name="preferences--flashAttributes--" onKeyDown="Liferay.Util.checkTab(this); disableEsc();" type="textarea" value="<%= flashAttributes %>" wrap="soft" />
 
-</form>
+		<aui:input cssClass="lfr-textarea-container" name="preferences--flashVariables--" onKeyDown="Liferay.Util.checkTab(this); Liferay.Util.disableEsc();" type="textarea" value="<%= flashVariables %>" wrap="soft" />
+	</aui:fieldset>
 
-<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
-	<aui:script>
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />movie);
-	</aui:script>
-</c:if>
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>
