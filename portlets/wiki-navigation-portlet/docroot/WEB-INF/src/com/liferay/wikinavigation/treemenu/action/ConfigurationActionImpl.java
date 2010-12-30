@@ -16,17 +16,13 @@ package com.liferay.wikinavigation.treemenu.action;
 
 import com.liferay.portal.kernel.portlet.BaseConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portlet.wiki.NoSuchNodeException;
 import com.liferay.portlet.wiki.service.WikiNodeServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletPreferences;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -42,38 +38,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+		validateNode(actionRequest);
 
-		if (!cmd.equals(Constants.UPDATE)) {
-			return;
-		}
-
-		long selNodeId = ParamUtil.getLong(actionRequest, "selNodeId");
-		int depth = ParamUtil.getInteger(actionRequest, "depth");
-
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
-
-		try {
-			WikiNodeServiceUtil.getNode(selNodeId);
-		}
-		catch (NoSuchNodeException nsne) {
-			SessionErrors.add(actionRequest, nsne.getClass().getName());
-		}
-
-		preferences.setValue("sel-node-id", String.valueOf(selNodeId));
-		preferences.setValue("depth", String.valueOf(depth));
-
-		if (SessionErrors.isEmpty(actionRequest)) {
-			preferences.store();
-
-			SessionMessages.add(
-				actionRequest, portletConfig.getPortletName() + ".doConfigure");
-		}
+		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
 	public String render(
@@ -82,6 +49,18 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		throws Exception {
 
 		return "/tree_menu/configuration.jsp";
+	}
+
+	protected void validateNode(ActionRequest actionRequest) throws Exception{
+		long selNodeId = GetterUtil.getLong(
+			getParameter(actionRequest, "selNodeId"));
+
+		try {
+			WikiNodeServiceUtil.getNode(selNodeId);
+		}
+		catch (NoSuchNodeException nsne) {
+			SessionErrors.add(actionRequest, nsne.getClass().getName());
+		}
 	}
 
 }

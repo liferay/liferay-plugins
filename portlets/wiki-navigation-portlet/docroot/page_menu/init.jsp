@@ -25,8 +25,8 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-long selNodeId = PrefsParamUtil.getLong(preferences, request, "sel-node-id");
-String selTitle = PrefsParamUtil.getString(preferences, request, "sel-title");
+long selNodeId = PrefsParamUtil.getLong(preferences, request, "selNodeId");
+String selTitle = PrefsParamUtil.getString(preferences, request, "selTitle");
 
 WikiPage wikiPage = null;
 

@@ -26,67 +26,52 @@ if ((selNodeId == 0) && (wikiNodes.size() == 1)) {
 }
 %>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
+<aui:form action="<%= actionURL %>" method="post" name="fm">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="node" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />selNodeId">
-			<option value=""></option>
+	<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
+
+	<aui:fieldset>
+		<aui:select label="node" name="preferences--selNodeId--" showEmptyOption="<%= true %>">
 
 			<%
 			for (WikiNode wikiNode : wikiNodes) {
 			%>
 
-				<option <%= (selNodeId == wikiNode.getNodeId()) ? "selected" : "" %> value="<%= wikiNode.getNodeId() %>"><%= wikiNode.getName() %></option>
+				<aui:option label="<%= wikiNode.getName() %>" selected="<%= (selNodeId == wikiNode.getNodeId()) %>" value="<%= wikiNode.getNodeId() %>" />
 
 			<%
 			}
 			%>
 
-		</select>
-	</td>
-</tr>
+		</aui:select>
 
-<c:if test="<%= selNodeId > 0 %>">
-	<tr>
-		<td>
-			<liferay-ui:message key="page" />
-		</td>
-		<td>
+
+		<c:if test="<%= selNodeId > 0 %>">
 
 			<%
 			List<WikiPage> wikiPages = WikiPageServiceUtil.getNodePages(selNodeId, WikiNavigationConstants.MAX_PAGES);
 			%>
 
-			<select name="<portlet:namespace />selTitle">
-				<option value=""></option>
+			<aui:select label="page" name="preferences--selTitle--" showEmptyOption="<%= true %>">
 
 				<%
 				for (WikiPage curWikiPage : wikiPages) {
 				%>
 
-					<option <%= (curWikiPage.getTitle().equals(selTitle)) ? "selected" : "" %> value="<%= curWikiPage.getTitle() %>"><%= curWikiPage.getTitle() %></option>
+					<aui:option label="<%= curWikiPage.getTitle() %>" selected="<%= (curWikiPage.getTitle().equals(selTitle)) %>" />
 
 				<%
 				}
 				%>
 
-			</select>
-		</td>
-	</tr>
-</c:if>
+			</aui:select>
+		</c:if>
+	</aui:fieldset>
 
-</table>
-
-<br />
-
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
-
-</form>
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>

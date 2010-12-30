@@ -20,58 +20,45 @@
 List<WikiNode> wikiNodes = WikiNodeLocalServiceUtil.getNodes(scopeGroupId);
 %>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
+<aui:form action="<%= actionURL %>" method="post" name="fm">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="node" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />selNodeId">
-			<option value=""></option>
+	<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
+
+	<aui:fieldset>
+		<aui:select label="node" name="preferences--selNodeId--" showEmptyOption="<%= true %>">
 
 			<%
 			for (WikiNode wikiNode : wikiNodes) {
 			%>
 
-				<option <%= (selNodeId == wikiNode.getNodeId()) ? "selected" : "" %> value="<%= wikiNode.getNodeId() %>"><%= wikiNode.getName() %></option>
+				<aui:option label="<%= wikiNode.getName() %>" selected="<%= (selNodeId == wikiNode.getNodeId()) %>" value="<%= wikiNode.getNodeId() %>" />
 
 			<%
 			}
 			%>
 
-		</select>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="depth" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />depth">
-			<option <%= (depth == WikiNavigationConstants.DEPTH_ALL) ? "selected" : "" %> value="<%= WikiNavigationConstants.DEPTH_ALL %>"><liferay-ui:message key="all" /></option>
+		</aui:select>
+
+		<aui:select name="preferences--depth--">
+			<aui:option label="all" selected="<%= depth == WikiNavigationConstants.DEPTH_ALL %>" value="<%= WikiNavigationConstants.DEPTH_ALL %>" />
 
 			<%
 			for (int i = 1; i < 6; i++) {
 			%>
 
-				<option <%= (depth == i) ? "selected" : "" %> value="<%= i %>"><%= i %></option>
+				<aui:option label="<%= i %>" selected="<%= depth == i %>" />
 
 			<%
 			}
 			%>
 
-		</select>
-	</td>
-</tr>
-</table>
+		</aui:select>
+	</aui:fieldset>
 
-<br />
-
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
-
-</form>
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>

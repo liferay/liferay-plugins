@@ -26,7 +26,7 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 int depth = PrefsParamUtil.getInteger(preferences, request, "depth", WikiNavigationConstants.DEPTH_ALL);
-long selNodeId = PrefsParamUtil.getLong(preferences, request, "sel-node-id");
+long selNodeId = PrefsParamUtil.getLong(preferences, request, "selNodeId");
 
 if (selNodeId <= 0) {
 	String wikiName = PropsUtil.get("wiki.initial.node.name");
