@@ -64,6 +64,31 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 			subscription.getCompanyId(), subscription.getSubscriptionId());
 	}
 
+	protected String getEmailArticleAttachments(Article article, Locale locale)
+		throws Exception {
+
+		String[] fileNames = article.getAttachmentsFileNames();
+
+		if (fileNames.length <= 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(fileNames.length * 5);
+
+		for (String fileName : fileNames) {
+			long kb = DLLocalServiceUtil.getFileSize(
+				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+
+			sb.append(FileUtil.getShortFileName(fileName));
+			sb.append(" (");
+			sb.append(TextFormatter.formatKB(kb, locale));
+			sb.append("k)");
+			sb.append("<br />");
+		}
+
+		return sb.toString();
+	}
+
 	protected boolean hasPermission(Subscription subscription, User user)
 		throws Exception {
 
@@ -196,31 +221,6 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 			});
 
 		mailMessage.setBody(processedBody);
-	}
-
-	protected String getEmailArticleAttachments(Article article, Locale locale)
-		throws Exception {
-
-		String[] fileNames = article.getAttachmentsFileNames();
-
-		if (fileNames.length <= 0) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler(fileNames.length * 5);
-
-		for (String fileName : fileNames) {
-			long kb = DLLocalServiceUtil.getFileSize(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
-
-			sb.append(FileUtil.getShortFileName(fileName));
-			sb.append(" (");
-			sb.append(TextFormatter.formatKB(kb, locale));
-			sb.append("k)");
-			sb.append("<br />");
-		}
-
-		return sb.toString();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
