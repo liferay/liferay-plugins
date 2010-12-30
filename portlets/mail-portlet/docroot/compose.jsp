@@ -1,3 +1,5 @@
+<%@ page import="com.liferay.taglib.util.Attrs" %>
+<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 <%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
@@ -106,9 +108,15 @@ else {
 	<aui:button-row>
 		<aui:button type="submit" value="send" />
 
-		<aui:button cssClass="save-draft" data-messageId="<%= messageId %>" type="button" value="save" />
+		<%
+			CustomAttributes customAttributes1 = CustomAttributes.getInstance("data-");
 
-		<aui:button cssClass="discard-draft" data-messageId="<%= messageId %>" type="button" value="discard" />
+			customAttributes1.add("messageId", messageId);
+		%>
+
+		<aui:button cssClass="save-draft" customAttributes="<%= customAttributes1 %>" type="button" value="save" />
+
+		<aui:button cssClass="discard-draft" customAttributes="<%= customAttributes1 %>" type="button" value="discard" />
 	</aui:button-row>
 </form>
 

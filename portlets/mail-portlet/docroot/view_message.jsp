@@ -1,3 +1,4 @@
+<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 <%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
@@ -54,32 +55,60 @@ MailManager mailManager = MailManager.getInstance(request);
 				folderName = LanguageUtil.get(pageContext, "search-results");
 			}
 
-			CustomAttributes customAttributes = CustomAttributes.getInstance("data-");
+			CustomAttributes customAttributes1 = CustomAttributes.getInstance("data-");
 
-			customAttributes.add("folderId", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber);
+			customAttributes1.add("folderId", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber);
 			%>
 
-			<aui:a cssClass="messages-link" customAttributes="<%= customAttributes %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
+			<aui:a cssClass="messages-link" customAttributes="<%= customAttributes1 %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
 		</aui:column>
 		<aui:column cssClass="compose-message-container">
-			<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
 
-			<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply-all" />
+			<%
+				CustomAttributes customAttributes2 = CustomAttributes.getInstance("data-");
 
-			<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="forward" />
+				customAttributes2.add("replyMessageId", message.getMessageId());
+			%>
+
+			<aui:button cssClass="compose-message" data-messageType="reply" customAttributes="<%= customAttributes2 %>" href="javascript:;" value="reply" />
+
+			<aui:button cssClass="compose-message" data-messageType="reply-all" customAttributes="<%= customAttributes2 %>" href="javascript:;" value="reply-all" />
+
+			<aui:button cssClass="compose-message" data-messageType="forward" customAttributes="<%= customAttributes2 %>" href="javascript:;" value="forward" />
 		</aui:column>
 		<aui:column>
-			<aui:button cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" value="delete" />
+
+			<%
+				CustomAttributes customAttributes3 = CustomAttributes.getInstance("data-");
+
+				customAttributes3.add("folderId", folderId, "keywords", keywords, "messageId", message.getMessageId(), "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber);
+			%>
+
+			<aui:button cssClass="delete-message" customAttributes="<%= customAttributes3 %>" value="delete" />
 		</aui:column>
 		<aui:column cssClass="message-count">
 			<c:if test="<%= messageNumber > 1 %>">
-				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
+
+				<%
+					CustomAttributes customAttributes4 = CustomAttributes.getInstance("data-");
+
+					customAttributes4.add("folderId", folderId, "keywords", keywords, "messageNumber", messageNumber - 1, "orderByField", orderByField, "orderByType", orderByType);
+				%>
+
+				<aui:a cssClass="message-link" customAttributes="<%= customAttributes4 %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
 			</c:if>
 
 			<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {messageNumber, messageCount} %>' />
 
 			<c:if test="<%= messageNumber < messageCount %>">
-				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>
+
+				<%
+					CustomAttributes customAttributes5 = CustomAttributes.getInstance("data-");
+
+					customAttributes5.add("folderId", folderId, "keywords", keywords, "messageNumber", messageNumber + 1, "orderByField", orderByField, "orderByType", orderByType);
+				%>
+
+				<aui:a cssClass="message-link" customAttributes="<%= customAttributes5 %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>
 			</c:if>
 		</aui:column>
 	</aui:layout>
@@ -141,11 +170,18 @@ MailManager mailManager = MailManager.getInstance(request);
 	</div>
 
 	<aui:button-row>
-		<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply" />
 
-		<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="reply-all" />
+		<%
+			CustomAttributes customAttributes6 = CustomAttributes.getInstance("data-");
 
-		<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" href="javascript:;" value="forward" />
+			customAttributes6.add("replyMessageId", message.getMessageId());
+		%>
+
+		<aui:button cssClass="compose-message" data-messageType="reply" customAttributes="<%= customAttributes6 %>" href="javascript:;" value="reply" />
+
+		<aui:button cssClass="compose-message" data-messageType="reply-all" customAttributes="<%= customAttributes6 %>" href="javascript:;" value="reply-all" />
+
+		<aui:button cssClass="compose-message" data-messageType="forward" customAttributes="<%= customAttributes6 %>" href="javascript:;" value="forward" />
 	</aui:button-row>
 
 	<c:if test="<%= Validator.isNull(message.getBody()) %>">

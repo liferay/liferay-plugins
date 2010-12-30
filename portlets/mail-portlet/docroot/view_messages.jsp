@@ -1,3 +1,5 @@
+<%@ taglib prefix="aui" uri="http://liferay.com/tld/aui" %>
+<%@ page import="com.liferay.portal.kernel.servlet.taglib.CustomAttributes" %>
 <%--
 /**
  * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
@@ -78,17 +80,35 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:column>
 		<aui:column cssClass="pagination">
 			<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
-				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
+				<%
+					CustomAttributes customAttributes1 = CustomAttributes.getInstance("data-");
+
+					customAttributes1.add("folder-id", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", 1);
+				%>
+
+				<aui:a cssClass="messages-link" customAttributes="<%= customAttributes1 %>" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
 			</c:if>
 
 			<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
-				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
+				<%
+					CustomAttributes customAttributes2 = CustomAttributes.getInstance("data-");
+
+					customAttributes2.add("folder-id", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber - 1);
+				%>
+
+				<aui:a cssClass="messages-link" customAttributes="<%= customAttributes2 %>" href="javascript:;" label="&lt; Newer" />
 			</c:if>
 
 			<liferay-ui:message key="x-of-x" arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' />
 
 			<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
-				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
+				<%
+					CustomAttributes customAttributes3 = CustomAttributes.getInstance("data-");
+
+					customAttributes3.add("folder-id", folderId, "keywords", keywords, "orderByField", orderByField, "orderByType", orderByType, "pageNumber", pageNumber + 1);
+				%>
+
+				<aui:a cssClass="messages-link" customAttributes="<%= customAttributes3 %>" href="javascript:;" label="Older &gt;" />&nbsp;
 			</c:if>
 		</aui:column>
 	</aui:layout>
@@ -123,7 +143,13 @@ MailManager mailManager = MailManager.getInstance(request);
 							}
 							%>
 
-							<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_ADDRESS %>" data-orderByType="<%= addressOrderByType %>" data-pageNumber="1" href="javascript:;" label="address" />
+							<%
+								CustomAttributes customAttributes4 = CustomAttributes.getInstance("data-");
+
+								customAttributes4.add("folderId", folderId, "keywords", keywords, "pageNumber", 1, "orderByField", MailConstants.ORDER_BY_ADDRESS, "orderByType", addressOrderByType);
+							%>
+
+							<aui:a cssClass="messages-link" customAttributes="<%= customAttributes4 %>" href="javascript:;" label="address" />
 						</th>
 						<th class="subject">
 
@@ -135,7 +161,13 @@ MailManager mailManager = MailManager.getInstance(request);
 							}
 							%>
 
-							<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SUBJECT %>" data-orderByType="<%= subjectOrderByType %>" data-pageNumber="1" href="javascript:;" label="subject" />
+							<%
+								CustomAttributes customAttributes5 = CustomAttributes.getInstance("data-");
+
+								customAttributes5.add("folderId", folderId, "keywords", keywords, "pageNumber", 1, "orderByField", MailConstants.ORDER_BY_SUBJECT, "orderByType", subjectOrderByType);
+							%>
+
+							<aui:a cssClass="messages-link" customAttributes="<%= customAttributes5 %>" href="javascript:;" label="subject" />
 						</th>
 						<th class="date">
 
@@ -147,7 +179,14 @@ MailManager mailManager = MailManager.getInstance(request);
 							}
 							%>
 
-							<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="<%= dateOrderByType %>" data-pageNumber="1" href="javascript:;" label="date" />
+							<%
+								CustomAttributes customAttributes6 = CustomAttributes.getInstance("data-");
+
+								customAttributes6.add("folderId", folderId, "keywords", keywords, "pageNumber", 1, "orderByField", MailConstants.ORDER_BY_SENT_DATE, "orderByType", dateOrderByType);
+							%>
+
+
+							<aui:a cssClass="messages-link" customAttributes="<%= customAttributes6 %>" href="javascript:;" label="date" />
 						</th>
 						<th class="attachments"></th>
 					</tr>
