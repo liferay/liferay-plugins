@@ -91,21 +91,33 @@
 
 					<%
 					String taglibOnClick = renderResponse.getNamespace() + "reorderArticles(0);";
+
+					CustomAttributes customAttributes = CustomAttributes.getInstance();
+
+					customAttributes.add("onClick", taglibOnClick);
 					%>
 
-					<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><img border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_up.png" vspace="2" width="16" /></aui:a><br />
+					<aui:a customAttributes="<%= customAttributes %>" href="javascript:;"><img border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_up.png" vspace="2" width="16" /></aui:a><br />
 
 					<%
 					taglibOnClick = renderResponse.getNamespace() + "reorderArticles(1);";
+
+					customAttributes = CustomAttributes.getInstance();
+
+					customAttributes.add("onClick", taglibOnClick);
 					%>
 
-					<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><img border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_down.png" vspace="2" width="16" /></aui:a><br />
+					<aui:a customAttributes="<%= customAttributes %>" href="javascript:;"><img border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_down.png" vspace="2" width="16" /></aui:a><br />
 
 					<%
 					taglibOnClick = renderResponse.getNamespace() + "removeSelectedArticle();";
+
+					customAttributes = CustomAttributes.getInstance();
+
+					customAttributes.add("onClick", taglibOnClick);
 					%>
 
-					<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><img border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" vspace="2" width="16" /></aui:a>
+					<aui:a customAttributes="<%= customAttributes %>" href="javascript:;"><img border="0" height="16" hspace="0" src="<%= themeDisplay.getPathThemeImages() %>/arrows/02_x.png" vspace="2" width="16" /></aui:a>
 				</td>
 			</tr>
 			</table>

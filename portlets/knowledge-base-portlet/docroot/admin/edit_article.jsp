@@ -100,10 +100,14 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 				<%
 				String taglibOnClick = "var selectArticleWindow = window.open('" + selectArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value, 'selectArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticleWindow.focus();";
+
+				CustomAttributes customAttributes = CustomAttributes.getInstance();
+
+				customAttributes.add("onClick", taglibOnClick);
 				%>
 
 				<div class="kb-edit-link">
-					<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
+					<aui:a customAttributes="<%= customAttributes %>" href="javascript:;"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
 				</div>
 			</c:if>
 		</aui:field-wrapper>
@@ -125,10 +129,14 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 			<%
 			String taglibOnClick = "var editAttachmentsWindow = window.open('" + updateAttachmentsURL + "&" + renderResponse.getNamespace() + "dirName=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "dirName.value, 'editAttachments', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); editAttachmentsWindow.focus();";
+
+			CustomAttributes customAttributes = CustomAttributes.getInstance();
+
+			customAttributes.add("onClick", taglibOnClick);
 			%>
 
 			<div class="kb-edit-link">
-				<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="edit-attachments" /> &raquo;</aui:a>
+				<aui:a customAttributes="<%= customAttributes %>" href="javascript:;"><liferay-ui:message key="edit-attachments" /> &raquo;</aui:a>
 			</div>
 		</aui:field-wrapper>
 

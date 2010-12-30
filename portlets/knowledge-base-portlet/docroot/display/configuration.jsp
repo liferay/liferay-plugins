@@ -92,10 +92,14 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 
 						<%
 						String taglibOnClick = "var selectArticlesWindow = window.open('" + selectArticlesURL + "', 'selectArticles', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticlesWindow.focus();";
+
+						CustomAttributes customAttributes = CustomAttributes.getInstance();
+
+						customAttributes.add("onClick", taglibOnClick);
 						%>
 
 						<div class="kb-edit-link">
-							<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-articles" /> &raquo;</aui:a>
+							<aui:a customAttributes="<%= customAttributes %>" href="javascript:;"><liferay-ui:message key="select-articles" /> &raquo;</aui:a>
 						</div>
 					</aui:field-wrapper>
 				</div>
