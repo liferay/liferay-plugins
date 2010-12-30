@@ -107,14 +107,14 @@ else {
 		<aui:button type="submit" value="send" />
 
 		<%
-			CustomAttributes customAttributes1 = CustomAttributes.getInstance("data-");
+		CustomAttributes customAttributes = CustomAttributes.getInstance("data-");
 
-			customAttributes1.add("messageId", messageId);
+		customAttributes.add("messageId", messageId);
 		%>
 
-		<aui:button cssClass="save-draft" customAttributes="<%= customAttributes1 %>" type="button" value="save" />
+		<aui:button cssClass="save-draft" customAttributes="<%= customAttributes %>" type="button" value="save" />
 
-		<aui:button cssClass="discard-draft" customAttributes="<%= customAttributes1 %>" type="button" value="discard" />
+		<aui:button cssClass="discard-draft" customAttributes="<%= customAttributes %>" type="button" value="discard" />
 	</aui:button-row>
 </form>
 
