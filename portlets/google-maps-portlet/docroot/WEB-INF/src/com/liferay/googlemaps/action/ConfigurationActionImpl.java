@@ -37,39 +37,8 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (!cmd.equals(Constants.UPDATE)) {
-			return;
-		}
-
-		String license = ParamUtil.getString(actionRequest, "license");
-		String mapAddress = ParamUtil.getString(actionRequest, "mapAddress");
-		boolean mapInputEnabled = ParamUtil.getBoolean(
-			actionRequest, "mapInputEnabled");
-		String directionsAddress = ParamUtil.getString(
-			actionRequest, "directionsAddress");
-		boolean directionsInputEnabled = ParamUtil.getBoolean(
-			actionRequest, "directionsInputEnabled");
-		String height = ParamUtil.getString(actionRequest, "height");
-
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
-
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
-
-		preferences.setValue("license", license);
-		preferences.setValue("map-address", mapAddress);
-		preferences.setValue(
-			"map-input-enabled", String.valueOf(mapInputEnabled));
-		preferences.setValue("directions-address", directionsAddress);
-		preferences.setValue(
-			"directions-input-enabled", String.valueOf(directionsInputEnabled));
-		preferences.setValue("height", height);
-
-		preferences.store();
 
 		PortletSession portletSession = actionRequest.getPortletSession();
 
@@ -82,8 +51,7 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 				"directionsAddress",
 			PortletSession.APPLICATION_SCOPE);
 
-		SessionMessages.add(
-			actionRequest, portletConfig.getPortletName() + ".doConfigure");
+		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
 }

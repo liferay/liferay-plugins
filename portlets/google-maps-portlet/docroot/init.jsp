@@ -45,10 +45,10 @@ if (Validator.isNotNull(portletResource)) {
 }
 
 String license = preferences.getValue("license", StringPool.BLANK);
-String mapAddress = preferences.getValue("map-address", StringPool.BLANK);
-boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("map-input-enabled", StringPool.BLANK));
-String directionsAddress = preferences.getValue("directions-address", StringPool.BLANK);
-boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directions-input-enabled", StringPool.BLANK));
+String mapAddress = preferences.getValue("mapAddress", StringPool.BLANK);
+boolean mapInputEnabled = GetterUtil.getBoolean(preferences.getValue("mapInputEnabled", StringPool.BLANK));
+String directionsAddress = preferences.getValue("directionsAddress", StringPool.BLANK);
+boolean directionsInputEnabled = GetterUtil.getBoolean(preferences.getValue("directionsInputEnabled", StringPool.BLANK));
 int height = GetterUtil.getInteger(preferences.getValue("height", StringPool.BLANK), 300);
 
 String sesMapAddress = (String)session.getAttribute(renderResponse.getNamespace() + "mapAddress");

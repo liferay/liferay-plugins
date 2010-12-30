@@ -16,87 +16,30 @@
 
 <%@ include file="/init.jsp" %>
 
-<form action="<liferay-portlet:actionURL portletConfiguration="true" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
 
-<div class="portlet-msg-info">
-	<a href="http://www.google.com/apis/maps/signup.html" target="_blank"><liferay-ui:message key="you-can-get-a-license-directly-from-google" /></a>
-</div>
+<aui:form action="<%= actionURL %>" method="post" name="fm">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="google-license" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />license" type="text" value="<%= license %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="map-address" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />mapAddress" type="text" value="<%= mapAddress %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="map-input-enabled" />
-	</td>
-	<td>
-		<liferay-ui:input-checkbox param="mapInputEnabled" defaultValue="<%= mapInputEnabled %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="directions-address" />
-	</td>
-	<td>
-		<input class="lfr-input-text" name="<portlet:namespace />directionsAddress" type="text" value="<%= directionsAddress %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="directions-input-enabled" />
-	</td>
-	<td>
-		<liferay-ui:input-checkbox param="directionsInputEnabled" defaultValue="<%= directionsInputEnabled %>" />
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="height" />
-	</td>
-	<td>
-		<input name="<portlet:namespace />height" size="4" type="text" value="<%= height %>" /> px
-	</td>
-</tr>
-</table>
+	<aui:fieldset>
+		<div class="portlet-msg-info">
+			<aui:a href="http://www.google.com/apis/maps/signup.html" target="_blank" label="you-can-get-a-license-directly-from-google" />
+		</div>
 
-<br />
+		<aui:input cssClass="lfr-input-text-container" label="google-license" name="preferences--license--" type="text" value="<%= license %>" />
 
-<input type="button" value="<liferay-ui:message key="save" />" onClick="submitForm(document.<portlet:namespace />fm);" />
+		<aui:input cssClass="lfr-input-text-container" name="preferences--mapAddress--" type="text" value="<%= mapAddress %>" />
 
-</form>
+		<aui:input name="preferences--mapInputEnabled--" type="checkbox" value="<%= mapInputEnabled %>" />
 
-<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
-	<script type="text/javascript">
-		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />license);
-	</script>
-</c:if>
+		<aui:input cssClass="lfr-input-text-container" name="preferences--directionsAddress--" type="text" value="<%= directionsAddress %>" />
+
+		<aui:input name="preferences--directionsInputEnabled--" type="checkbox" value="<%= directionsInputEnabled %>" />
+
+		<aui:input name="preferences--height--" size="4" suffix="px" type="text" value="<%= height %>" />
+	</aui:fieldset>
+
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>
