@@ -21,7 +21,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
 <liferay-ui:header
-	backLabel='<%= "&laquo; " + LanguageUtil.get(pageContext, "back-to-messages") %>'
+	backLabel="messages"
 	backURL="<%= backURL.toString() %>"
 	title="<%= HtmlUtil.escape(PrivateMessagingUtil.getThreadSubject(mbThreadId)) %>"
 />
