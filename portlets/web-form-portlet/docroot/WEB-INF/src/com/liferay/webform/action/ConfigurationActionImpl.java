@@ -209,7 +209,9 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		}
 	}
 
-	protected void validateFields(ActionRequest actionRequest) throws Exception {
+	protected void validateFields(ActionRequest actionRequest)
+		throws Exception {
+
 		Locale defaultLocale = LocaleUtil.getDefault();
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
@@ -255,9 +257,10 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 			// Check if server can create a file as specified
 
 			try {
-				FileOutputStream fos = new FileOutputStream(fileName, true);
+				FileOutputStream fileOutputStream = new FileOutputStream(
+					fileName, true);
 
-				fos.close();
+				fileOutputStream.close();
 			}
 			catch (SecurityException es) {
 				SessionErrors.add(actionRequest, "fileNameInvalid");
