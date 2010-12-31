@@ -23,8 +23,7 @@ public class UpgradePortletPreferences
 	extends CamelCaseUpgradePortletPreferences {
 
 	protected String[] getPortletIds() {
-		return new String[] {
-			"%1_WAR_googlemapsportlet_INSTANCE_%"};
+		return new String[] {"1_WAR_googlemapsportlet_INSTANCE_%"};
 	}
 
 }

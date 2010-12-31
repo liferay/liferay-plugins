@@ -34,7 +34,7 @@ List<WikiNode> wikiNodes = WikiNodeLocalServiceUtil.getNodes(scopeGroupId);
 			for (WikiNode wikiNode : wikiNodes) {
 			%>
 
-				<aui:option label="<%= wikiNode.getName() %>" selected="<%= (selNodeId == wikiNode.getNodeId()) %>" value="<%= wikiNode.getNodeId() %>" />
+				<aui:option label="<%= wikiNode.getName() %>" selected="<%= selNodeId == wikiNode.getNodeId() %>" value="<%= wikiNode.getNodeId() %>" />
 
 			<%
 			}

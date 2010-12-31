@@ -40,14 +40,13 @@ if ((selNodeId == 0) && (wikiNodes.size() == 1)) {
 			for (WikiNode wikiNode : wikiNodes) {
 			%>
 
-				<aui:option label="<%= wikiNode.getName() %>" selected="<%= (selNodeId == wikiNode.getNodeId()) %>" value="<%= wikiNode.getNodeId() %>" />
+				<aui:option label="<%= wikiNode.getName() %>" selected="<%= selNodeId == wikiNode.getNodeId() %>" value="<%= wikiNode.getNodeId() %>" />
 
 			<%
 			}
 			%>
 
 		</aui:select>
-
 
 		<c:if test="<%= selNodeId > 0 %>">
 
@@ -61,7 +60,7 @@ if ((selNodeId == 0) && (wikiNodes.size() == 1)) {
 				for (WikiPage curWikiPage : wikiPages) {
 				%>
 
-					<aui:option label="<%= curWikiPage.getTitle() %>" selected="<%= (curWikiPage.getTitle().equals(selTitle)) %>" />
+					<aui:option label="<%= curWikiPage.getTitle() %>" selected="<%= selTitle.equals(curWikiPage.getTitle()) %>" />
 
 				<%
 				}
