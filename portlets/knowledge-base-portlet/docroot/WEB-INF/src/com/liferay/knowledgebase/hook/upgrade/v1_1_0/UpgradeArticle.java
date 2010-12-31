@@ -91,22 +91,7 @@ public class UpgradeArticle extends UpgradeProcess {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-
-		runSQL(_INDEXES_SQL);
 	}
-
-	private static final String[] _INDEXES_SQL = new String[] {
-		"create index IX_1F4986AF on KB_Article (companyId, latest)",
-		"create index IX_7B69A695 on KB_Article (companyId, latest, status)",
-		"create index IX_8A8C3831 on KB_Article (groupId, latest)",
-		"create index IX_202BB617 on KB_Article (groupId, latest, status)",
-		"create index IX_1FC5BAD6 on KB_Article (groupId, parentResourcePrimKey, latest)",
-		"create index IX_BCDEC3BC on KB_Article (groupId, parentResourcePrimKey, latest, status)",
-		"create index IX_C7E7A249 on KB_Article (resourcePrimKey, groupId, parentResourcePrimKey, latest)",
-		"create index IX_EE7882F on KB_Article (resourcePrimKey, groupId, parentResourcePrimKey, latest, status)",
-		"create index IX_FC627AE2 on KB_Article (resourcePrimKey, latest)",
-		"create index IX_83F0B7C8 on KB_Article (resourcePrimKey, latest, status)"
-	};
 
 	private static final int _LATEST_APPROVED = 2;
 
