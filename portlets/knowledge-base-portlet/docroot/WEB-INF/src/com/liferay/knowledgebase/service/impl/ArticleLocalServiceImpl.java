@@ -1204,9 +1204,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subscriptionSender.setGroupId(article.getGroupId());
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId(
-			StringPool.LESS_THAN + "knowledge_base.article." +
-				article.getResourcePrimKey() + StringPool.AT +
-					company.getMx() + StringPool.GREATER_THAN);
+			company, "kb_article", article.getArticleId());
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(article.getUserId());
