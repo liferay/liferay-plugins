@@ -23,8 +23,6 @@ import com.liferay.portlet.wiki.service.WikiNodeServiceUtil;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * @author Thiago Moreira
@@ -41,14 +39,6 @@ public class ConfigurationActionImpl extends BaseConfigurationAction {
 		validateNode(actionRequest);
 
 		super.processAction(portletConfig, actionRequest, actionResponse);
-	}
-
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		return "/tree_menu/configuration.jsp";
 	}
 
 	protected void validateNode(ActionRequest actionRequest) throws Exception{

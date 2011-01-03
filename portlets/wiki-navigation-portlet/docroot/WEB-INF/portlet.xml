@@ -14,6 +14,10 @@
 			<name>view-jsp</name>
 			<value>/tree_menu/view.jsp</value>
 		</init-param>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/tree_menu/configuration.jsp</value>
+		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
@@ -46,6 +50,10 @@
 		<init-param>
 			<name>view-jsp</name>
 			<value>/page_menu/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/page_menu/configuration.jsp</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
