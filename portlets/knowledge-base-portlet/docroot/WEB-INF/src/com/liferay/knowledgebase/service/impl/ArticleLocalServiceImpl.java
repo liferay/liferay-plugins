@@ -47,9 +47,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
-import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
@@ -972,64 +970,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		Company company = companyPersistence.findByPrimaryKey(
-			article.getCompanyId());
-
-		Group group = groupPersistence.findByPrimaryKey(
-			serviceContext.getScopeGroupId());
-
-		User user = userPersistence.fetchByPrimaryKey(article.getUserId());
-
-		String fullName = article.getUserName();
-		String emailAddress = StringPool.BLANK;
-
-		if (user != null) {
-			fullName = user.getFullName();
-			emailAddress = user.getEmailAddress();
-		}
-
 		String fromName = preferences.getValue(
 			"email-from-name", PortletProps.get("admin.email.from.name"));
 		String fromAddress = preferences.getValue(
 			"email-from-address", PortletProps.get("admin.email.from.address"));
-
-		fromName = StringUtil.replace(
-			fromName,
-			new String[] {
-				"[$ARTICLE_USER_ADDRESS$]",
-				"[$ARTICLE_USER_NAME$]",
-				"[$COMPANY_ID$]",
-				"[$COMPANY_MX$]",
-				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]"
-			},
-			new String[] {
-				emailAddress,
-				fullName,
-				String.valueOf(company.getCompanyId()),
-				company.getMx(),
-				company.getName(),
-				group.getName()
-			});
-
-		fromAddress = StringUtil.replace(
-			fromAddress,
-			new String[] {
-				"[$ARTICLE_USER_ADDRESS$]",
-				"[$ARTICLE_USER_NAME$]",
-				"[$COMPANY_ID$]",
-				"[$COMPANY_MX$]",
-				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]"
-			},
-			new String[] {
-				emailAddress,
-				fullName,
-				String.valueOf(company.getCompanyId()),
-				company.getMx(),
-				company.getName(),
-				group.getName()
-			});
 
 		String articleContent = StringUtil.replace(
 			article.getContent(),
@@ -1129,82 +1073,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			}
 		}
 
-		subject = StringUtil.replace(
-			subject,
-			new String[] {
-				"[$ARTICLE_CONTENT$]",
-				"[$ARTICLE_CONTENT_DIFF$]",
-				"[$ARTICLE_TITLE$]",
-				"[$ARTICLE_TITLE_DIFF$]",
-				"[$ARTICLE_USER_ADDRESS$]",
-				"[$ARTICLE_USER_NAME$]",
-				"[$COMPANY_ID$]",
-				"[$COMPANY_MX$]",
-				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]",
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]"
-			},
-			new String[] {
-				articleContent,
-				articleDiffs.get("content"),
-				article.getTitle(),
-				articleDiffs.get("title"),
-				emailAddress,
-				fullName,
-				String.valueOf(company.getCompanyId()),
-				company.getMx(),
-				company.getName(),
-				group.getName(),
-				fromAddress,
-				fromName,
-				serviceContext.getPortalURL()
-			});
-
-		body = StringUtil.replace(
-			body,
-			new String[] {
-				"[$ARTICLE_CONTENT$]",
-				"[$ARTICLE_CONTENT_DIFF$]",
-				"[$ARTICLE_TITLE$]",
-				"[$ARTICLE_TITLE_DIFF$]",
-				"[$ARTICLE_USER_ADDRESS$]",
-				"[$ARTICLE_USER_NAME$]",
-				"[$COMPANY_ID$]",
-				"[$COMPANY_MX$]",
-				"[$COMPANY_NAME$]",
-				"[$COMMUNITY_NAME$]",
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]"
-			},
-			new String[] {
-				articleContent,
-				articleDiffs.get("content"),
-				article.getTitle(),
-				articleDiffs.get("title"),
-				emailAddress,
-				fullName,
-				String.valueOf(company.getCompanyId()),
-				company.getMx(),
-				company.getName(),
-				group.getName(),
-				fromAddress,
-				fromName,
-				serviceContext.getPortalURL()
-			});
-
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
 			article, serviceContext.getPortalURL());
 
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(article.getCompanyId());
+		subscriptionSender.setContextAttributes(
+			"[$ARTICLE_CONTENT$]", articleContent, "[$ARTICLE_CONTENT_DIFF$]",
+			articleDiffs.get("content"), "[$ARTICLE_TITLE$]",
+			article.getTitle(), "[$ARTICLE_TITLE_DIFF$]",
+			articleDiffs.get("title"));
+		subscriptionSender.setContextUserPrefix("ARTICLE");
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setGroupId(article.getGroupId());
 		subscriptionSender.setHtmlFormat(true);
-		subscriptionSender.setMailId(
-			company, "kb_article", article.getArticleId());
+		subscriptionSender.setMailId("kb_article", article.getArticleId());
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(article.getUserId());

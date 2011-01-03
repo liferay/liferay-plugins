@@ -121,7 +121,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 				portletId, _article.getResourcePrimKey(), _portalURL);
 
 			if (Validator.isNotNull(articleURL)) {
-				context.put("articleURL", articleURL);
+				setContextAttribute("[$ARTICLE_URL$]", articleURL);
 
 				return true;
 			}
@@ -180,7 +180,6 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 		String articleAttachments = getEmailArticleAttachments(
 			_article, locale);
-		String articleURL = (String)context.get("articleURL");
 		String articleVersion = LanguageUtil.format(
 			locale, "version-x", String.valueOf(_article.getVersion()));
 
@@ -188,14 +187,12 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 			mailMessage.getSubject(),
 			new String[] {
 				"[$ARTICLE_ATTACHMENTS$]",
-				"[$ARTICLE_URL$]",
 				"[$ARTICLE_VERSION$]",
 				"[$CATEGORY_TITLE$]",
 				"[$PORTLET_NAME$]"
 			},
 			new String[] {
 				articleAttachments,
-				articleURL,
 				articleVersion,
 				categoryTitle,
 				portletName
@@ -207,14 +204,12 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 			mailMessage.getBody(),
 			new String[] {
 				"[$ARTICLE_ATTACHMENTS$]",
-				"[$ARTICLE_URL$]",
 				"[$ARTICLE_VERSION$]",
 				"[$CATEGORY_TITLE$]",
 				"[$PORTLET_NAME$]"
 			},
 			new String[] {
 				articleAttachments,
-				articleURL,
 				articleVersion,
 				categoryTitle,
 				portletName
