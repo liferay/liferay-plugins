@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;

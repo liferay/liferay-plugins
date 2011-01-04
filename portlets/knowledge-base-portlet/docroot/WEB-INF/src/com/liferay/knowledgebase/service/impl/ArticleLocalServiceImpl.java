@@ -1143,6 +1143,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subscriptionSender.setGroupId(article.getGroupId());
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("kb_article", article.getArticleId());
+		subscriptionSender.setPortletId(PortletKeys.KNOWLEDGE_BASE_ADMIN);
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(article.getUserId());

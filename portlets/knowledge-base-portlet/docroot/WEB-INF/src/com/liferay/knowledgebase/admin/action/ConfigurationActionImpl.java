@@ -243,7 +243,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			SessionErrors.add(actionRequest, "emailFromName");
 		}
 		else if (!Validator.isEmailAddress(emailFromAddress) &&
-				 !Validator.isVariableTerm(emailFromAddress)) {
+				 !_isVariableTerm(emailFromAddress)) {
 
 			SessionErrors.add(actionRequest, "emailFromAddress");
 		}
@@ -265,6 +265,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		preferences.setValue("rss-delta", String.valueOf(rssDelta));
 		preferences.setValue("rss-display-style", rssDisplayStyle);
 		preferences.setValue("rss-format", rssFormat);
+	}
+
+	private boolean _isVariableTerm(String s) {
+		return (s.contains("[$") && s.contains("$]"));
 	}
 
 }
