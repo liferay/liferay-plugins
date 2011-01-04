@@ -1,5 +1,7 @@
 AUI().use(
+	'aui-base',
 	'aui-dialog',
+	'aui-io-plugin',
 	function(A) {
 		Liferay.namespace('SO');
 
