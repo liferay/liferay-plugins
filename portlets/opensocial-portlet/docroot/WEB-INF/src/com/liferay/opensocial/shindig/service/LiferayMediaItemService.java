@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -33,7 +34,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
@@ -250,10 +250,10 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
 
-		DLFileEntry dlFileEntry = DLAppLocalServiceUtil.getFileEntry(
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 			mediaItemIdLong);
 
-		return getMediaItem(dlFileEntry, fields, securityToken);
+		return getMediaItem(fileEntry, fields, securityToken);
 	}
 
 	protected RestfulCollection<MediaItem> doGetMediaItems(
@@ -270,7 +270,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 			User user = UserLocalServiceUtil.getUserById(userIdLong);
 
-			List<DLFileEntry> dlFileEntries = new ArrayList<DLFileEntry>();
+			List<FileEntry> fileEntries = new ArrayList<FileEntry>();
 
 			GroupId.Type groupIdType = groupId.getType();
 
@@ -285,31 +285,31 @@ public class LiferayMediaItemService implements MediaItemService {
 				for (User socialUser : socialUsers) {
 					Group group = socialUser.getGroup();
 
-					List<DLFileEntry> friendDLFileEntries =
+					List<FileEntry> friendFileEntries =
 						DLAppLocalServiceUtil.getGroupFileEntries(
 							group.getGroupId(), collectionOptions.getFirst(),
 							collectionOptions.getMax());
 
-					dlFileEntries.addAll(friendDLFileEntries);
+					fileEntries.addAll(friendFileEntries);
 				}
 			}
 			else if (groupIdType.equals(GroupId.Type.self)) {
 				Group group = user.getGroup();
 
-				dlFileEntries = DLAppLocalServiceUtil.getGroupFileEntries(
+				fileEntries = DLAppLocalServiceUtil.getGroupFileEntries(
 					group.getGroupId(), collectionOptions.getFirst(),
 					collectionOptions.getMax());
 			}
 
-			for (DLFileEntry dlFileEntry : dlFileEntries) {
-				MediaItem.Type mediaItemType = getMediaItemType(dlFileEntry);
+			for (FileEntry fileEntry : fileEntries) {
+				MediaItem.Type mediaItemType = getMediaItemType(fileEntry);
 
 				if (mediaItemType == null) {
 					continue;
 				}
 
 				MediaItem mediaItem = getMediaItem(
-					dlFileEntry, fields, securityToken);
+					fileEntry, fields, securityToken);
 
 				mediaItems.add(mediaItem);
 			}
@@ -335,20 +335,20 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long albumIdLong = GetterUtil.getLong(albumId);
 
-		List<DLFileEntry> dLFileEntries = DLAppLocalServiceUtil.getFileEntries(
+		List<FileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
 			groupIdLong, albumIdLong);
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
-		for (DLFileEntry dlFileEntry : dLFileEntries) {
-			MediaItem.Type mediaItemType = getMediaItemType(dlFileEntry);
+		for (FileEntry fileEntry : fileEntries) {
+			MediaItem.Type mediaItemType = getMediaItemType(fileEntry);
 
 			if (mediaItemType == null) {
 				continue;
 			}
 
 			MediaItem mediaItem = getMediaItem(
-				dlFileEntry, fields, securityToken);
+				fileEntry, fields, securityToken);
 
 			mediaItems.add(mediaItem);
 		}
@@ -374,20 +374,20 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long albumIdLong = GetterUtil.getLong(albumId);
 
-		List<DLFileEntry> dLFileEntries = DLAppLocalServiceUtil.getFileEntries(
+		List<FileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
 			groupIdLong, albumIdLong);
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
-		for (DLFileEntry dlFileEntry : dLFileEntries) {
-			MediaItem.Type mediaItemType = getMediaItemType(dlFileEntry);
+		for (FileEntry fileEntry : fileEntries) {
+			MediaItem.Type mediaItemType = getMediaItemType(fileEntry);
 
 			if (mediaItemType == null) {
 				continue;
 			}
 
 			MediaItem mediaItem = getMediaItem(
-				dlFileEntry, fields, securityToken);
+				fileEntry, fields, securityToken);
 
 			if (mediaItemIds.contains(mediaItem.getId())) {
 				mediaItems.add(mediaItem);
@@ -448,19 +448,19 @@ public class LiferayMediaItemService implements MediaItemService {
 		else {
 			long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
 
-			DLFileEntry dlFileEntry = DLAppLocalServiceUtil.getFileEntry(
+			FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 				mediaItemIdLong);
 
 			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAddCommunityPermissions(true);
 			serviceContext.setAddGuestPermissions(true);
-			serviceContext.setCreateDate(dlFileEntry.getCreateDate());
-			serviceContext.setModifiedDate(dlFileEntry.getModifiedDate());
+			serviceContext.setCreateDate(fileEntry.getCreateDate());
+			serviceContext.setModifiedDate(fileEntry.getModifiedDate());
 			serviceContext.setScopeGroupId(groupIdLong);
 
 			DLAppLocalServiceUtil.updateFileEntry(
-				userIdLong, dlFileEntry.getFileEntryId(), fileName,
+				userIdLong, fileEntry.getFileEntryId(), fileName,
 				mediaItem.getTitle(), mediaItem.getDescription(),
 				StringPool.BLANK, false, extraSettingsJSONObject.toString(),
 				byteArray, serviceContext);
@@ -475,17 +475,17 @@ public class LiferayMediaItemService implements MediaItemService {
 		return address;
 	}
 
-	protected String getDLFileEntryURL(
-		DLFileEntry dlFileEntry, SecurityToken securityToken) {
+	protected String getFileEntryURL(
+		FileEntry fileEntry, SecurityToken securityToken) {
 
 		StringBuilder sb = new StringBuilder(6);
 
 		sb.append(securityToken.getDomain());
 		sb.append(PortalUtil.getPathContext());
 		sb.append("/documents/");
-		sb.append(dlFileEntry.getGroupId());
+		sb.append(fileEntry.getRepositoryId());
 		sb.append(StringPool.SLASH);
-		sb.append(dlFileEntry.getUuid());
+		sb.append(fileEntry.getUuid());
 
 		return sb.toString();
 	}
@@ -523,31 +523,29 @@ public class LiferayMediaItemService implements MediaItemService {
 	}
 
 	protected MediaItem getMediaItem(
-			DLFileEntry dlFileEntry, Set<String> fields,
+			FileEntry fileEntry, Set<String> fields,
 			SecurityToken securityToken)
 		throws Exception {
 
 		MediaItem mediaItem = new MediaItemImpl();
 
-		mediaItem.setAlbumId(String.valueOf(dlFileEntry.getFolderId()));
-		mediaItem.setCreated(String.valueOf(dlFileEntry.getCreateDate()));
-		mediaItem.setDescription(dlFileEntry.getDescription());
-		mediaItem.setId(String.valueOf(dlFileEntry.getFileEntryId()));
-		mediaItem.setLastUpdated(
-			String.valueOf(dlFileEntry.getModifiedDate()));
+		mediaItem.setAlbumId(String.valueOf(fileEntry.getFolderId()));
+		mediaItem.setCreated(String.valueOf(fileEntry.getCreateDate()));
+		mediaItem.setDescription(fileEntry.getDescription());
+		mediaItem.setId(String.valueOf(fileEntry.getFileEntryId()));
+		mediaItem.setLastUpdated(String.valueOf(fileEntry.getModifiedDate()));
 		mediaItem.setMimeType(
-			MimeTypesUtil.getContentType(dlFileEntry.getExtension()));
-		mediaItem.setNumViews(
-			String.valueOf(dlFileEntry.getReadCount()));
-		mediaItem.setTitle(dlFileEntry.getTitle());
-		mediaItem.setType(getMediaItemType(dlFileEntry));
-		mediaItem.setUrl(getDLFileEntryURL(dlFileEntry, securityToken));
+			MimeTypesUtil.getContentType(fileEntry.getExtension()));
+		mediaItem.setNumViews(String.valueOf(fileEntry.getReadCount()));
+		mediaItem.setTitle(fileEntry.getTitle());
+		mediaItem.setType(getMediaItemType(fileEntry));
+		mediaItem.setUrl(getFileEntryURL(fileEntry, securityToken));
 
 		JSONObject extraSettingsJSONObject = null;
 
 		try {
 			extraSettingsJSONObject = JSONFactoryUtil.createJSONObject(
-				dlFileEntry.getExtraSettings());
+				fileEntry.getExtraSettings());
 		}
 		catch (JSONException jsone) {
 		}
@@ -576,9 +574,9 @@ public class LiferayMediaItemService implements MediaItemService {
 		return mediaItem;
 	}
 
-	protected MediaItem.Type getMediaItemType(DLFileEntry dlFileEntry) {
+	protected MediaItem.Type getMediaItemType(FileEntry fileEntry) {
 		String contentType = MimeTypesUtil.getContentType(
-			dlFileEntry.getExtension());
+			fileEntry.getExtension());
 
 		if (contentType.startsWith("audio")) {
 			return Type.AUDIO;
