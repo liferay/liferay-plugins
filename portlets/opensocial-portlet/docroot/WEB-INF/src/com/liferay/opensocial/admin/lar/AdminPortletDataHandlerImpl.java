@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.opensocial.lar;
+package com.liferay.opensocial.admin.lar;
 
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.model.Gadget;

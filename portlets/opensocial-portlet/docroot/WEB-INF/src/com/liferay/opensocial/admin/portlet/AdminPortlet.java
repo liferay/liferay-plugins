@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.opensocial.portlet;
+package com.liferay.opensocial.admin.portlet;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;

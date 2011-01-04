@@ -4,13 +4,13 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<portlet-data-handler-class>com.liferay.wsrp.lar.AdminPortletDataHandlerImpl</portlet-data-handler-class>
+		<portlet-data-handler-class>com.liferay.wsrp.admin.lar.AdminPortletDataHandlerImpl</portlet-data-handler-class>
 		<control-panel-entry-category>portal</control-panel-entry-category>
 		<css-class-wrapper>wsrp-portlet-admin</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<friendly-url-mapper-class>com.liferay.wsrp.portlet.ConsumerFriendlyURLMapper</friendly-url-mapper-class>
+		<friendly-url-mapper-class>com.liferay.wsrp.consumer.portlet.ConsumerFriendlyURLMapper</friendly-url-mapper-class>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

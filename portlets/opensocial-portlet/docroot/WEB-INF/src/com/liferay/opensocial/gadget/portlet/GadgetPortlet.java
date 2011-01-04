@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.opensocial.portlet;
+package com.liferay.opensocial.gadget.portlet;
 
+import com.liferay.opensocial.gadget.action.ConfigurationActionImpl;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.WebKeys;

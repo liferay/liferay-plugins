@@ -9,7 +9,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Admin</display-name>
-		<portlet-class>com.liferay.wsrp.portlet.AdminPortlet</portlet-class>
+		<portlet-class>com.liferay.wsrp.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/admin/view.jsp</value>
@@ -34,7 +34,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<portlet-class>com.liferay.wsrp.portlet.ConsumerPortlet</portlet-class>
+		<portlet-class>com.liferay.wsrp.consumer.portlet.ConsumerPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>

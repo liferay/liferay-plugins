@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wsrp.portlet;
+package com.liferay.wsrp.admin.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
