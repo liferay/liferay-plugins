@@ -58,7 +58,7 @@ public class StartupAction extends SimpleAction {
 
 		try {
 			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "portletIds",
+				table.getTableId(), "portletPrimKeys",
 				ExpandoColumnConstants.STRING_ARRAY);
 		}
 		catch (DuplicateColumnNameException dcne) {

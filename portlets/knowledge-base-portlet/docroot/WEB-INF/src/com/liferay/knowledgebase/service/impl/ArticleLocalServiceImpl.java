@@ -29,7 +29,13 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
+import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -42,6 +48,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -57,6 +64,7 @@ import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.util.portlet.PortletProps;
 
@@ -375,6 +383,36 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			companyId, ArticleConstants.LATEST_ANY, status);
 	}
 
+	public List<ExpandoValue> getExpandoValues(
+			long companyId, long plid, String portletId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			ExpandoValue.class, "expandoValue",
+			PortalClassLoaderUtil.getClassLoader());
+
+		Property tableIdProperty = PropertyFactoryUtil.forName("tableId");
+		Property columnIdProperty = PropertyFactoryUtil.forName("columnId");
+		Property dataProperty = PropertyFactoryUtil.forName("data");
+
+		ExpandoColumn expandoColumn = expandoColumnLocalService.getColumn(
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys");
+
+		String portletPrimKey = ArticleConstants.getPortletPrimKey(
+			plid, portletId);
+
+		Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
+
+		conjunction.add(tableIdProperty.eq(expandoColumn.getTableId()));
+		conjunction.add(columnIdProperty.eq(expandoColumn.getColumnId()));
+		conjunction.add(dataProperty.like(
+			StringPool.PERCENT + portletPrimKey + StringPool.PERCENT));
+
+		dynamicQuery.add(conjunction);
+
+		return expandoValuePersistence.findWithDynamicQuery(dynamicQuery);
+	}
+
 	public List<Article> getGroupArticles(
 			long groupId, int status, int start, int end,
 			OrderByComparator orderByComparator)
@@ -447,8 +485,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public void subscribe(
-			long companyId, long groupId, long userId, String portletId,
-			long classPK)
+			long companyId, long groupId, long userId, long plid,
+			String portletId, long classPK)
 		throws PortalException, SystemException {
 
 		// Subscription
@@ -468,40 +506,47 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		ExpandoValue expandoValue = expandoValueLocalService.getValue(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletIds", subscription.getSubscriptionId());
+			"portletPrimKeys", subscription.getSubscriptionId());
 
-		String[] portletIds = new String[] {portletId};
+		String[] portletPrimKeys = new String[] {
+			ArticleConstants.getPortletPrimKey(plid, portletId)
+		};
 
 		if (expandoValue != null) {
-			portletIds = ArrayUtil.append(
-				portletIds, expandoValue.getStringArray());
+			portletPrimKeys = ArrayUtil.append(
+				portletPrimKeys, expandoValue.getStringArray());
 
 			expandoValueLocalService.deleteValue(
 				subscription.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletIds", subscription.getSubscriptionId());
+				"portletPrimKeys", subscription.getSubscriptionId());
 		}
 
 		expandoValueLocalService.addValue(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletIds", subscription.getSubscriptionId(), portletIds);
+			"portletPrimKeys", subscription.getSubscriptionId(),
+			portletPrimKeys);
 	}
 
 	public void unsubscribe(
-			long companyId, long userId, String portletId, long classPK)
+			long companyId, long userId, long plid, String portletId,
+			long classPK)
 		throws PortalException, SystemException {
 
 		Subscription subscription = subscriptionLocalService.getSubscription(
 			companyId, userId, Article.class.getName(), classPK);
 
-		String[] portletIds = expandoValueLocalService.getData(
-			companyId, Subscription.class.getName(), "KB", "portletIds",
+		String[] portletPrimKeys = expandoValueLocalService.getData(
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
 			subscription.getSubscriptionId(), new String[0]);
 
-		portletIds = ArrayUtil.remove(portletIds, portletId);
+		String portletPrimKey = ArticleConstants.getPortletPrimKey(
+			plid, portletId);
+
+		portletPrimKeys = ArrayUtil.remove(portletPrimKeys, portletPrimKey);
 
 		// Subscription
 
-		if (portletIds.length == 0) {
+		if (portletPrimKeys.length == 0) {
 			subscriptionLocalService.deleteSubscription(subscription);
 		}
 
@@ -509,12 +554,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		expandoValueLocalService.deleteValue(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletIds", subscription.getSubscriptionId());
+			"portletPrimKeys", subscription.getSubscriptionId());
 
-		if (portletIds.length != 0) {
+		if (portletPrimKeys.length != 0) {
 			expandoValueLocalService.addValue(
 				subscription.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletIds", subscription.getSubscriptionId(), portletIds);
+				"portletPrimKeys", subscription.getSubscriptionId(),
+				portletPrimKeys);
 		}
 	}
 
@@ -528,7 +574,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Expando
 
 		expandoValueLocalService.deleteValue(
-			companyId, Subscription.class.getName(), "KB", "portletIds",
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
 			subscriptionId);
 	}
 

@@ -360,18 +360,19 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, status);
 	}
 
-	public void subscribe(long companyId, long groupId, String portletId)
+	public void subscribe(
+			long companyId, long groupId, long plid, String portletId)
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.subscribe(
-			companyId, groupId, getUserId(), portletId, groupId);
+			companyId, groupId, getUserId(), plid, portletId, groupId);
 	}
 
 	public void subscribeArticle(
-			long companyId, long groupId, String portletId,
+			long companyId, long groupId, long plid, String portletId,
 			long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -379,28 +380,29 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.subscribe(
-			companyId, groupId, getUserId(), portletId, resourcePrimKey);
+			companyId, groupId, getUserId(), plid, portletId, resourcePrimKey);
 	}
 
-	public void unsubscribe(long companyId, long groupId, String portletId)
+	public void unsubscribe(
+			long companyId, long groupId, long plid, String portletId)
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.unsubscribe(
-			companyId, getUserId(), portletId, groupId);
+			companyId, getUserId(), plid, portletId, groupId);
 	}
 
 	public void unsubscribeArticle(
-			long companyId, String portletId, long resourcePrimKey)
+			long companyId, long plid, String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.unsubscribe(
-			companyId, getUserId(), portletId, resourcePrimKey);
+			companyId, getUserId(), plid, portletId, resourcePrimKey);
 	}
 
 	public Article updateArticle(

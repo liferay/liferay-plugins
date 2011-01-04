@@ -57,31 +57,39 @@
 		<%
 		Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
 
-		String[] portletIds = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletIds", subscription.getSubscriptionId(), new String[0]);
+		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
 
-		List<String> portletTitles = new ArrayList<String>();
+		List<String> portlets = new ArrayList<String>();
 
-		for (String portletId : portletIds) {
-			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletId, StringPool.BLANK);
+		for (String portletPrimKey : portletPrimKeys) {
+			String curPortletId = ArticleConstants.getPortletId(portletPrimKey);
 
-			String portletTitle = PortletConfigurationUtil.getPortletTitle(jxPreferences, themeDisplay.getLanguageId());
+			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), curPortletId, StringPool.BLANK);
 
-			if (Validator.isNull(portletTitle)) {
-				portletTitle = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletId), locale);
+			String portlet = PortletConfigurationUtil.getPortletTitle(jxPreferences, themeDisplay.getLanguageId());
+
+			if (Validator.isNull(portlet)) {
+				portlet = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(curPortletId), locale);
 			}
 
-			if (!portletTitles.contains(portletTitle)) {
-				portletTitles.add(portletTitle);
+			long curPlid = ArticleConstants.getPlid(portletPrimKey);
+
+			Layout curLayout = LayoutLocalServiceUtil.getLayout(curPlid);
+
+			portlet = portlet.concat(" - ").concat(curLayout.getName(locale));
+
+			if (!portlets.contains(portlet)) {
+				portlets.add(portlet);
 			}
 		}
 
-		Collections.sort(portletTitles);
+		Collections.sort(portlets);
 		%>
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
 			name="portlets"
-			value="<%= StringUtil.merge(portletTitles, StringPool.COMMA_AND_SPACE) %>"
+			value="<%= StringUtil.merge(portlets, StringPool.COMMA_AND_SPACE) %>"
 		/>
 
 		<c:if test="<%= themeDisplay.isSignedIn() %>">

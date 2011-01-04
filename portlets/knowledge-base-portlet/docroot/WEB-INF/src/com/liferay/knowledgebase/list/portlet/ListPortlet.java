@@ -55,13 +55,13 @@ public class ListPortlet extends AdminPortlet {
 		if (resourcePrimKey <= 0) {
 			ArticleLocalServiceUtil.subscribe(
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getUserId(), portletId,
+				themeDisplay.getUserId(), themeDisplay.getPlid(), portletId,
 				themeDisplay.getScopeGroupId());
 		}
 		else {
 			ArticleServiceUtil.subscribeArticle(
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				portletId, resourcePrimKey);
+				themeDisplay.getPlid(), portletId, resourcePrimKey);
 		}
 	}
 
@@ -84,11 +84,13 @@ public class ListPortlet extends AdminPortlet {
 		if (resourcePrimKey <= 0) {
 			ArticleLocalServiceUtil.unsubscribe(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				portletId, themeDisplay.getScopeGroupId());
+				themeDisplay.getPlid(), portletId,
+				themeDisplay.getScopeGroupId());
 		}
 		else {
 			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
+				themeDisplay.getCompanyId(), themeDisplay.getPlid(), portletId,
+				resourcePrimKey);
 		}
 	}
 

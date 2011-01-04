@@ -292,12 +292,12 @@ public class AdminPortlet extends MVCPortlet {
 		if (resourcePrimKey <= 0) {
 			ArticleServiceUtil.subscribe(
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				portletId);
+				themeDisplay.getPlid(), portletId);
 		}
 		else {
 			ArticleServiceUtil.subscribeArticle(
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				portletId, resourcePrimKey);
+				themeDisplay.getPlid(), portletId, resourcePrimKey);
 		}
 	}
 
@@ -316,11 +316,12 @@ public class AdminPortlet extends MVCPortlet {
 		if (resourcePrimKey <= 0) {
 			ArticleServiceUtil.unsubscribe(
 				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				portletId);
+				themeDisplay.getPlid(), portletId);
 		}
 		else {
 			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), portletId, resourcePrimKey);
+				themeDisplay.getCompanyId(), themeDisplay.getPlid(), portletId,
+				resourcePrimKey);
 		}
 	}
 

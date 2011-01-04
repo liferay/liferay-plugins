@@ -72,10 +72,15 @@
 					if (SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId)) {
 						Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId);
 
-						String[] portletIds = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletIds", subscription.getSubscriptionId(), new String[0]);
+						String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
 
-						if (ArrayUtil.contains(portletIds, portletDisplay.getId())) {
-							subscribed = true;
+						for (String portletPrimKey : portletPrimKeys) {
+							long curPlid = ArticleConstants.getPlid(portletPrimKey);
+							String curPortletId = ArticleConstants.getPortletId(portletPrimKey);
+
+							if ((curPlid == plid) && curPortletId.equals(portletDisplay.getId())) {
+								subscribed = true;
+							}
 						}
 					}
 					%>

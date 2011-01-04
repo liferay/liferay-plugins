@@ -39,6 +39,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.PortletConstants;
+import com.liferay.portal.model.PortletPreferences;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -49,10 +50,11 @@ import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-import javax.portlet.PortletPreferences;
 import javax.portlet.WindowState;
 
 /**
@@ -247,7 +249,7 @@ public class KnowledgeBaseUtil {
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 		Group group = layout.getGroup();
 
-		PortletPreferences jxPreferences =
+		javax.portlet.PortletPreferences jxPreferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				layout, portletId, StringPool.BLANK);
 
@@ -378,7 +380,7 @@ public class KnowledgeBaseUtil {
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 		Group group = layout.getGroup();
 
-		PortletPreferences jxPreferences =
+		javax.portlet.PortletPreferences jxPreferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				layout, portletId, StringPool.BLANK);
 
@@ -461,6 +463,28 @@ public class KnowledgeBaseUtil {
 		return articles.get(0);
 	}
 
+	public static Map<String, Object> getPreferencesMap(
+			PortletPreferences preferences)
+		throws Exception{
+
+		javax.portlet.PortletPreferences jxPreferences =
+			PortletPreferencesFactoryUtil.fromDefaultXML(
+				preferences.getPreferences());
+
+		String selectionMethod = jxPreferences.getValue(
+			"selection-method", "group");
+		long[] resourcePrimKeys = GetterUtil.getLongValues(
+			jxPreferences.getValues("resource-prim-keys", null));
+
+		Map<String, Object> preferencesMap = new HashMap<String, Object>();
+
+		preferencesMap.put("selectionMethod", selectionMethod);
+		preferencesMap.put(
+			"resourcePrimKeys", ArrayUtil.toArray(resourcePrimKeys));
+
+		return preferencesMap;
+	}
+
 	protected static Object[] getPlidAndWindowState(
 			String portletId, long resourcePrimKey, boolean checkWindowState)
 		throws Exception {
@@ -477,7 +501,7 @@ public class KnowledgeBaseUtil {
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		PortletPreferences jxPreferences =
+		javax.portlet.PortletPreferences jxPreferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				layout, portletId, StringPool.BLANK);
 
@@ -594,7 +618,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static boolean hasArticle(
-		Article article, PortletPreferences jxPreferences) {
+		Article article, javax.portlet.PortletPreferences jxPreferences) {
 
 		String selectionMethod = jxPreferences.getValue(
 			"selection-method", "group");
