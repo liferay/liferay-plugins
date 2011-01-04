@@ -187,33 +187,35 @@ public class ArticleServiceUtil {
 		return getService().getViewableParentResourcePrimKeys(groupId, status);
 	}
 
-	public static void subscribe(long companyId, long groupId,
+	public static void subscribe(long companyId, long groupId, long plid,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().subscribe(companyId, groupId, portletId);
+		getService().subscribe(companyId, groupId, plid, portletId);
 	}
 
 	public static void subscribeArticle(long companyId, long groupId,
+		long plid, java.lang.String portletId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.subscribeArticle(companyId, groupId, plid, portletId,
+			resourcePrimKey);
+	}
+
+	public static void unsubscribe(long companyId, long groupId, long plid,
+		java.lang.String portletId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().unsubscribe(companyId, groupId, plid, portletId);
+	}
+
+	public static void unsubscribeArticle(long companyId, long plid,
 		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.subscribeArticle(companyId, groupId, portletId, resourcePrimKey);
-	}
-
-	public static void unsubscribe(long companyId, long groupId,
-		java.lang.String portletId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribe(companyId, groupId, portletId);
-	}
-
-	public static void unsubscribeArticle(long companyId,
-		java.lang.String portletId, long resourcePrimKey)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribeArticle(companyId, portletId, resourcePrimKey);
+			.unsubscribeArticle(companyId, plid, portletId, resourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateArticle(

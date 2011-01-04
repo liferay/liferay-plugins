@@ -55,6 +55,7 @@ import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
+import com.liferay.portlet.expando.service.persistence.ExpandoColumnPersistence;
 import com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
 
@@ -13316,6 +13317,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	protected WorkflowInstanceLinkPersistence workflowInstanceLinkPersistence;
 	@BeanReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
+	@BeanReference(type = ExpandoColumnPersistence.class)
+	protected ExpandoColumnPersistence expandoColumnPersistence;
 	@BeanReference(type = ExpandoValuePersistence.class)
 	protected ExpandoValuePersistence expandoValuePersistence;
 	@BeanReference(type = SocialActivityPersistence.class)

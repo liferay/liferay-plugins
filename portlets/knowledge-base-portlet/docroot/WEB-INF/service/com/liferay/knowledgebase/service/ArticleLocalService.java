@@ -298,6 +298,11 @@ public interface ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.expando.model.ExpandoValue> getExpandoValues(
+		long companyId, long plid, java.lang.String portletId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -325,12 +330,12 @@ public interface ArticleLocalService {
 		long parentResourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribe(long companyId, long groupId, long userId,
+	public void subscribe(long companyId, long groupId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribe(long companyId, long userId,
+	public void unsubscribe(long companyId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

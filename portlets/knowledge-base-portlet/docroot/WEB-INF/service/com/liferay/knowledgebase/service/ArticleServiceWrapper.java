@@ -166,33 +166,34 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getViewableParentResourcePrimKeys(groupId, status);
 	}
 
-	public void subscribe(long companyId, long groupId,
+	public void subscribe(long companyId, long groupId, long plid,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.subscribe(companyId, groupId, portletId);
+		_articleService.subscribe(companyId, groupId, plid, portletId);
 	}
 
-	public void subscribeArticle(long companyId, long groupId,
+	public void subscribeArticle(long companyId, long groupId, long plid,
 		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.subscribeArticle(companyId, groupId, portletId,
+		_articleService.subscribeArticle(companyId, groupId, plid, portletId,
 			resourcePrimKey);
 	}
 
-	public void unsubscribe(long companyId, long groupId,
+	public void unsubscribe(long companyId, long groupId, long plid,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.unsubscribe(companyId, groupId, portletId);
+		_articleService.unsubscribe(companyId, groupId, plid, portletId);
 	}
 
-	public void unsubscribeArticle(long companyId, java.lang.String portletId,
-		long resourcePrimKey)
+	public void unsubscribeArticle(long companyId, long plid,
+		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.unsubscribeArticle(companyId, portletId, resourcePrimKey);
+		_articleService.unsubscribeArticle(companyId, plid, portletId,
+			resourcePrimKey);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(

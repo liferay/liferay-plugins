@@ -61,8 +61,11 @@ import com.liferay.portal.service.persistence.WorkflowInstanceLinkPersistence;
 import com.liferay.portlet.asset.service.AssetEntryLocalService;
 import com.liferay.portlet.asset.service.AssetEntryService;
 import com.liferay.portlet.asset.service.persistence.AssetEntryPersistence;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalService;
+import com.liferay.portlet.expando.service.ExpandoColumnService;
 import com.liferay.portlet.expando.service.ExpandoValueLocalService;
 import com.liferay.portlet.expando.service.ExpandoValueService;
+import com.liferay.portlet.expando.service.persistence.ExpandoColumnPersistence;
 import com.liferay.portlet.expando.service.persistence.ExpandoValuePersistence;
 import com.liferay.portlet.social.service.SocialActivityLocalService;
 import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
@@ -926,6 +929,63 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 	}
 
 	/**
+	 * Gets the expando column local service.
+	 *
+	 * @return the expando column local service
+	 */
+	public ExpandoColumnLocalService getExpandoColumnLocalService() {
+		return expandoColumnLocalService;
+	}
+
+	/**
+	 * Sets the expando column local service.
+	 *
+	 * @param expandoColumnLocalService the expando column local service
+	 */
+	public void setExpandoColumnLocalService(
+		ExpandoColumnLocalService expandoColumnLocalService) {
+		this.expandoColumnLocalService = expandoColumnLocalService;
+	}
+
+	/**
+	 * Gets the expando column remote service.
+	 *
+	 * @return the expando column remote service
+	 */
+	public ExpandoColumnService getExpandoColumnService() {
+		return expandoColumnService;
+	}
+
+	/**
+	 * Sets the expando column remote service.
+	 *
+	 * @param expandoColumnService the expando column remote service
+	 */
+	public void setExpandoColumnService(
+		ExpandoColumnService expandoColumnService) {
+		this.expandoColumnService = expandoColumnService;
+	}
+
+	/**
+	 * Gets the expando column persistence.
+	 *
+	 * @return the expando column persistence
+	 */
+	public ExpandoColumnPersistence getExpandoColumnPersistence() {
+		return expandoColumnPersistence;
+	}
+
+	/**
+	 * Sets the expando column persistence.
+	 *
+	 * @param expandoColumnPersistence the expando column persistence
+	 */
+	public void setExpandoColumnPersistence(
+		ExpandoColumnPersistence expandoColumnPersistence) {
+		this.expandoColumnPersistence = expandoColumnPersistence;
+	}
+
+	/**
 	 * Gets the expando value local service.
 	 *
 	 * @return the expando value local service
@@ -1108,6 +1168,12 @@ public abstract class ArticleLocalServiceBaseImpl implements ArticleLocalService
 	protected AssetEntryService assetEntryService;
 	@BeanReference(type = AssetEntryPersistence.class)
 	protected AssetEntryPersistence assetEntryPersistence;
+	@BeanReference(type = ExpandoColumnLocalService.class)
+	protected ExpandoColumnLocalService expandoColumnLocalService;
+	@BeanReference(type = ExpandoColumnService.class)
+	protected ExpandoColumnService expandoColumnService;
+	@BeanReference(type = ExpandoColumnPersistence.class)
+	protected ExpandoColumnPersistence expandoColumnPersistence;
 	@BeanReference(type = ExpandoValueLocalService.class)
 	protected ExpandoValueLocalService expandoValueLocalService;
 	@BeanReference(type = ExpandoValueService.class)

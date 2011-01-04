@@ -336,6 +336,12 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getCompanyArticlesCount(companyId, status);
 	}
 
+	public java.util.List<com.liferay.portlet.expando.model.ExpandoValue> getExpandoValues(
+		long companyId, long plid, java.lang.String portletId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getExpandoValues(companyId, plid, portletId);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -372,19 +378,20 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			parentResourcePrimKey, status);
 	}
 
-	public void subscribe(long companyId, long groupId, long userId,
+	public void subscribe(long companyId, long groupId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribe(companyId, groupId, userId, portletId,
-			classPK);
+		_articleLocalService.subscribe(companyId, groupId, userId, plid,
+			portletId, classPK);
 	}
 
-	public void unsubscribe(long companyId, long userId,
+	public void unsubscribe(long companyId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribe(companyId, userId, portletId, classPK);
+		_articleLocalService.unsubscribe(companyId, userId, plid, portletId,
+			classPK);
 	}
 
 	public void unsubscribeAllPortlets(long companyId, long subscriptionId)

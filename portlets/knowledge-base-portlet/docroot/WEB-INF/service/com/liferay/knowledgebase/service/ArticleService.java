@@ -146,23 +146,23 @@ public interface ArticleService {
 	public long[] getViewableParentResourcePrimKeys(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribe(long companyId, long groupId,
+	public void subscribe(long companyId, long groupId, long plid,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribeArticle(long companyId, long groupId,
+	public void subscribeArticle(long companyId, long groupId, long plid,
 		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribe(long companyId, long groupId,
+	public void unsubscribe(long companyId, long groupId, long plid,
 		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribeArticle(long companyId, java.lang.String portletId,
-		long resourcePrimKey)
+	public void unsubscribeArticle(long companyId, long plid,
+		java.lang.String portletId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
