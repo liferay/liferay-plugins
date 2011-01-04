@@ -16,14 +16,13 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -38,13 +37,10 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.Locale;
-
-import javax.mail.internet.InternetAddress;
 
 /**
  * @author Peter Shin
@@ -64,10 +60,10 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 			subscription.getCompanyId(), subscription.getSubscriptionId());
 	}
 
-	protected String getEmailArticleAttachments(Article article, Locale locale)
+	protected String getEmailArticleAttachments(Locale locale)
 		throws Exception {
 
-		String[] fileNames = article.getAttachmentsFileNames();
+		String[] fileNames = _article.getAttachmentsFileNames();
 
 		if (fileNames.length <= 0) {
 			return StringPool.BLANK;
@@ -77,7 +73,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 		for (String fileName : fileNames) {
 			long kb = DLLocalServiceUtil.getFileSize(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+				_article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			sb.append(FileUtil.getShortFileName(fileName));
 			sb.append(" (");
@@ -87,6 +83,25 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		}
 
 		return sb.toString();
+	}
+
+	protected String getEmailArticleURL() throws Exception {
+		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(
+			_subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletPrimKeys", _subscription.getSubscriptionId(),
+			new String[0]);
+
+		for (String portletPrimKey : portletPrimKeys) {
+			String articleURL = KnowledgeBaseUtil.getArticleURL(
+				ArticleConstants.getPortletId(portletPrimKey),
+				_article.getResourcePrimKey(), _portalURL);
+
+			if (Validator.isNotNull(articleURL)) {
+				return articleURL;
+			}
+		}
+
+		return _portalURL;
 	}
 
 	protected boolean hasPermission(Subscription subscription, User user)
@@ -100,122 +115,60 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
 
-			if (!ArticlePermission.contains(
-					permissionChecker, _article, ActionKeys.VIEW)) {
-
-				return false;
-			}
+			return ArticlePermission.contains(
+				permissionChecker, _article, ActionKeys.VIEW);
 		}
 		finally {
 			PrincipalThreadLocal.setName(null);
 
 			PermissionThreadLocal.setPermissionChecker(null);
 		}
-
-		String[] portletIds = ExpandoValueLocalServiceUtil.getData(
-			user.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletIds", subscription.getSubscriptionId(), new String[0]);
-
-		for (String portletId : portletIds) {
-			String articleURL = KnowledgeBaseUtil.getArticleURL(
-				portletId, _article.getResourcePrimKey(), _portalURL);
-
-			if (Validator.isNotNull(articleURL)) {
-				setContextAttribute("[$ARTICLE_URL$]", articleURL);
-
-				return true;
-			}
-
-			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Portlet " + portletId + " does not exist or does " +
-						"not contain " + _article.getResourcePrimKey());
-			}
-
-			ArticleLocalServiceUtil.unsubscribe(
-				subscription.getCompanyId(), userId, portletId,
-				subscription.getClassPK());
-		}
-
-		return false;
 	}
 
-	protected void processMailMessage(MailMessage mailMessage, Locale locale)
+	protected void notifySubscriber(Subscription subscription)
 		throws Exception {
 
-		super.processMailMessage(mailMessage, locale);
+		_subscription = subscription;
 
-		InternetAddress from = mailMessage.getFrom();
+		super.notifySubscriber(subscription);
+	}
 
-		String categoryTitle = LanguageUtil.get(locale, "category.kb");
-		String portletName = PortalUtil.getPortletTitle(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN, locale);
+	protected String replaceContent(String content, Locale locale) {
+		try {
+			content = _replaceContent(content, locale);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 
-		String processedFromAddress = StringUtil.replace(
-			from.getAddress(),
-			new String[] {
-				"[$CATEGORY_TITLE$]",
-				"[$PORTLET_NAME$]"
-			},
-			new String[] {
-				categoryTitle,
-				portletName
-			});
+		return super.replaceContent(content, locale);
+	}
 
-		String processedFromName = StringUtil.replace(
-			from.getPersonal(),
-			new String[] {
-				"[$CATEGORY_TITLE$]",
-				"[$PORTLET_NAME$]"
-			},
-			new String[] {
-				categoryTitle,
-				portletName
-			});
+	private String _replaceContent(String content, Locale locale)
+		throws Exception {
 
-		InternetAddress processedFrom = new InternetAddress(
-			processedFromAddress, processedFromName);
-
-		mailMessage.setFrom(processedFrom);
-
-		String articleAttachments = getEmailArticleAttachments(
-			_article, locale);
+		String articleAttachments = getEmailArticleAttachments(locale);
+		String articleURL = getEmailArticleURL();
 		String articleVersion = LanguageUtil.format(
 			locale, "version-x", String.valueOf(_article.getVersion()));
+		String categoryTitle = LanguageUtil.get(locale, "category.kb");
 
-		String processedSubject = StringUtil.replace(
-			mailMessage.getSubject(),
+		content = StringUtil.replace(
+			content,
 			new String[] {
 				"[$ARTICLE_ATTACHMENTS$]",
+				"[$ARTICLE_URL$]",
 				"[$ARTICLE_VERSION$]",
-				"[$CATEGORY_TITLE$]",
-				"[$PORTLET_NAME$]"
+				"[$CATEGORY_TITLE$]"
 			},
 			new String[] {
 				articleAttachments,
+				articleURL,
 				articleVersion,
-				categoryTitle,
-				portletName
+				categoryTitle
 			});
 
-		mailMessage.setSubject(processedSubject);
-
-		String processedBody = StringUtil.replace(
-			mailMessage.getBody(),
-			new String[] {
-				"[$ARTICLE_ATTACHMENTS$]",
-				"[$ARTICLE_VERSION$]",
-				"[$CATEGORY_TITLE$]",
-				"[$PORTLET_NAME$]"
-			},
-			new String[] {
-				articleAttachments,
-				articleVersion,
-				categoryTitle,
-				portletName
-			});
-
-		mailMessage.setBody(processedBody);
+		return content;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
@@ -223,5 +176,6 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 	private Article _article;
 	private String _portalURL;
+	private Subscription _subscription;
 
 }
