@@ -18,6 +18,8 @@
 package com.liferay.so.hook.upgrade.v2_0_0;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.Group;
@@ -28,8 +30,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 
@@ -84,10 +84,10 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 		boolean deleteFolder = true;
 
-		List<DLFileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
+		List<FileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
 			groupId, rootFolderId);
 
-		for (DLFileEntry fileEntry : fileEntries) {
+		for (FileEntry fileEntry : fileEntries) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
@@ -100,10 +100,10 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 			}
 		}
 
-		List<DLFolder> folders = DLAppLocalServiceUtil.getFolders(
+		List<Folder> folders = DLAppLocalServiceUtil.getFolders(
 			groupId, rootFolderId);
 
-		for (DLFolder folder : folders) {
+		for (Folder folder : folders) {
 			ServiceContext serviceContext = new ServiceContext();
 
 			try {
