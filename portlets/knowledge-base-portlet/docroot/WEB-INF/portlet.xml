@@ -11,6 +11,10 @@
 		<display-name>Knowledge Base Admin</display-name>
 		<portlet-class>com.liferay.knowledgebase.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
+			<name>config-jsp</name>
+			<value>/admin/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>jsp-path</name>
 			<value>/admin/</value>
 		</init-param>
@@ -50,6 +54,10 @@
 		<portlet-name>2</portlet-name>
 		<display-name>Knowledge Base Aggregator</display-name>
 		<portlet-class>com.liferay.knowledgebase.aggregator.portlet.AggregatorPortlet</portlet-class>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/aggregator/configuration.jsp</value>
+		</init-param>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/aggregator/</value>
@@ -91,6 +99,10 @@
 		<display-name>Knowledge Base Display</display-name>
 		<portlet-class>com.liferay.knowledgebase.display.portlet.DisplayPortlet</portlet-class>
 		<init-param>
+			<name>config-jsp</name>
+			<value>/display/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>jsp-path</name>
 			<value>/display/</value>
 		</init-param>
@@ -131,6 +143,10 @@
 		<display-name>Knowledge Base Search</display-name>
 		<portlet-class>com.liferay.knowledgebase.search.portlet.SearchPortlet</portlet-class>
 		<init-param>
+			<name>config-jsp</name>
+			<value>/search/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>jsp-path</name>
 			<value>/search/</value>
 		</init-param>
@@ -170,6 +186,10 @@
 		<portlet-name>5</portlet-name>
 		<display-name>Knowledge Base List</display-name>
 		<portlet-class>com.liferay.knowledgebase.list.portlet.ListPortlet</portlet-class>
+		<init-param>
+			<name>config-jsp</name>
+			<value>/list/configuration.jsp</value>
+		</init-param>
 		<init-param>
 			<name>jsp-path</name>
 			<value>/list/</value>

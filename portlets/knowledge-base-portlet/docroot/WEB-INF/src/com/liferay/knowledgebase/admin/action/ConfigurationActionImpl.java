@@ -16,18 +16,12 @@ package com.liferay.knowledgebase.admin.action;
 
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
-import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletPreferences;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
 
 /**
  * @author Peter Shin
@@ -40,149 +34,25 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
-
-		if (!cmd.equals(Constants.UPDATE)) {
-			return;
-		}
-
-		String portletResource = ParamUtil.getString(
-			actionRequest, "portletResource");
-
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				actionRequest, portletResource);
-
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
 		if (tabs2.equals("article-added-email")) {
-			updateEmailArticleAdded(actionRequest, preferences);
+			validateEmailArticleAdded(actionRequest);
 		}
 		else if (tabs2.equals("article-updated-email")) {
-			updateEmailArticleUpdated(actionRequest, preferences);
-		}
-		else if (tabs2.equals("display-settings")) {
-			updateDisplaySettings(actionRequest, preferences);
+			validateEmailArticleUpdated(actionRequest);
 		}
 		else if (tabs2.equals("email-from")) {
-			updateEmailFrom(actionRequest, preferences);
-		}
-		else if (tabs2.equals("rss")) {
-			updateRSS(actionRequest, preferences);
+			validateEmailFrom(actionRequest);
 		}
 
-		postProcessPreferences(preferences, actionRequest);
-
-		if (SessionErrors.isEmpty(actionRequest)) {
-			preferences.store();
-
-			SessionMessages.add(
-				actionRequest, portletConfig.getPortletName() + ".doConfigure");
-		}
+		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
-	public String render(
-			PortletConfig portletConfig, RenderRequest renderRequest,
-			RenderResponse renderResponse)
-		throws Exception {
-
-		PortletConfig selPortletConfig = getSelPortletConfig(renderRequest);
-
-		String jspPath = selPortletConfig.getInitParameter("jsp-path");
-
-		return jspPath + "configuration.jsp";
-	}
-
-	protected void postProcessPreferences(
-			PortletPreferences preferences, ActionRequest actionRequest)
-		throws Exception {
-	}
-
-	protected void updateDisplaySettings(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		String tabs3 = ParamUtil.getString(actionRequest, "tabs3");
-
-		if (tabs3.equals("article")) {
-			updateDisplaySettingsArticle(actionRequest, preferences);
-		}
-		else if (tabs3.equals("template")) {
-			updateDisplaySettingsTemplate(actionRequest, preferences);
-		}
-	}
-
-	protected void updateDisplaySettingsArticle(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int articlesDelta = ParamUtil.getInteger(
-			actionRequest, "articlesDelta");
-		String articlesDisplayStyle = ParamUtil.getString(
-			actionRequest, "articlesDisplayStyle");
-		String childArticlesDisplayStyle = ParamUtil.getString(
-			actionRequest, "childArticlesDisplayStyle");
-		boolean enableArticleDescription = ParamUtil.getBoolean(
-			actionRequest, "enableArticleDescription");
-		boolean enableArticleAssetCategories = ParamUtil.getBoolean(
-			actionRequest, "enableArticleAssetCategories");
-		boolean enableArticleAssetTags = ParamUtil.getBoolean(
-			actionRequest, "enableArticleAssetTags");
-		boolean enableArticleRatings = ParamUtil.getBoolean(
-			actionRequest, "enableArticleRatings");
-		boolean enableArticleComments = ParamUtil.getBoolean(
-			actionRequest, "enableArticleComments");
-
-		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
-		preferences.setValue("articles-display-style", articlesDisplayStyle);
-		preferences.setValue(
-			"child-articles-display-style", childArticlesDisplayStyle);
-		preferences.setValue(
-			"enable-article-description",
-			String.valueOf(enableArticleDescription));
-		preferences.setValue(
-			"enable-article-asset-categories",
-			String.valueOf(enableArticleAssetCategories));
-		preferences.setValue(
-			"enable-article-asset-tags",
-			String.valueOf(enableArticleAssetTags));
-		preferences.setValue(
-			"enable-article-ratings", String.valueOf(enableArticleRatings));
-		preferences.setValue(
-			"enable-article-comments", String.valueOf(enableArticleComments));
-	}
-
-	protected void updateDisplaySettingsTemplate(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int templatesDelta = ParamUtil.getInteger(
-			actionRequest, "templatesDelta");
-		String templatesDisplayStyle = ParamUtil.getString(
-			actionRequest, "templatesDisplayStyle");
-		boolean enableTemplateDescription = ParamUtil.getBoolean(
-			actionRequest, "enableTemplateDescription");
-		boolean enableTemplateComments = ParamUtil.getBoolean(
-			actionRequest, "enableTemplateComments");
-
-		preferences.setValue("templates-delta", String.valueOf(templatesDelta));
-		preferences.setValue("templates-display-style", templatesDisplayStyle);
-		preferences.setValue(
-			"enable-template-description",
-			String.valueOf(enableTemplateDescription));
-		preferences.setValue(
-			"enable-template-comments", String.valueOf(enableTemplateComments));
-	}
-
-	protected void updateEmailArticleAdded(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		boolean emailArticleAddedEnabled = ParamUtil.getBoolean(
-			actionRequest, "emailArticleAddedEnabled");
-		String emailArticleAddedSubject = ParamUtil.getString(
+	protected void validateEmailArticleAdded(ActionRequest actionRequest) {
+		String emailArticleAddedSubject = getParameter(
 			actionRequest, "emailArticleAddedSubject");
-		String emailArticleAddedBody = ParamUtil.getString(
+		String emailArticleAddedBody = getParameter(
 			actionRequest, "emailArticleAddedBody");
 
 		if (Validator.isNull(emailArticleAddedSubject)) {
@@ -191,26 +61,12 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		else if (Validator.isNull(emailArticleAddedBody)) {
 			SessionErrors.add(actionRequest, "emailArticleAddedBody");
 		}
-		else {
-			preferences.setValue(
-				"email-article-added-enabled",
-				String.valueOf(emailArticleAddedEnabled));
-			preferences.setValue(
-				"email-article-added-subject", emailArticleAddedSubject);
-			preferences.setValue(
-				"email-article-added-body", emailArticleAddedBody);
-		}
 	}
 
-	protected void updateEmailArticleUpdated(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(
-			actionRequest, "emailArticleUpdatedEnabled");
-		String emailArticleUpdatedSubject = ParamUtil.getString(
+	protected void validateEmailArticleUpdated(ActionRequest actionRequest) {
+		String emailArticleUpdatedSubject = getParameter(
 			actionRequest, "emailArticleUpdatedSubject");
-		String emailArticleUpdatedBody = ParamUtil.getString(
+		String emailArticleUpdatedBody = getParameter(
 			actionRequest, "emailArticleUpdatedBody");
 
 		if (Validator.isNull(emailArticleUpdatedSubject)) {
@@ -219,24 +75,11 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		else if (Validator.isNull(emailArticleUpdatedBody)) {
 			SessionErrors.add(actionRequest, "emailArticleUpdatedBody");
 		}
-		else {
-			preferences.setValue(
-				"email-article-updated-enabled",
-				String.valueOf(emailArticleUpdatedEnabled));
-			preferences.setValue(
-				"email-article-updated-subject", emailArticleUpdatedSubject);
-			preferences.setValue(
-				"email-article-updated-body", emailArticleUpdatedBody);
-		}
 	}
 
-	protected void updateEmailFrom(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		String emailFromName = ParamUtil.getString(
-			actionRequest, "emailFromName");
-		String emailFromAddress = ParamUtil.getString(
+	protected void validateEmailFrom(ActionRequest actionRequest) {
+		String emailFromName = getParameter(actionRequest, "emailFromName");
+		String emailFromAddress = getParameter(
 			actionRequest, "emailFromAddress");
 
 		if (Validator.isNull(emailFromName)) {
@@ -247,24 +90,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 			SessionErrors.add(actionRequest, "emailFromAddress");
 		}
-		else {
-			preferences.setValue("email-from-name", emailFromName);
-			preferences.setValue("email-from-address", emailFromAddress);
-		}
-	}
-
-	protected void updateRSS(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int rssDelta = ParamUtil.getInteger(actionRequest, "rssDelta");
-		String rssDisplayStyle = ParamUtil.getString(
-			actionRequest, "rssDisplayStyle");
-		String rssFormat = ParamUtil.getString(actionRequest, "rssFormat");
-
-		preferences.setValue("rss-delta", String.valueOf(rssDelta));
-		preferences.setValue("rss-display-style", rssDisplayStyle);
-		preferences.setValue("rss-format", rssFormat);
 	}
 
 	private boolean _isVariableTerm(String s) {

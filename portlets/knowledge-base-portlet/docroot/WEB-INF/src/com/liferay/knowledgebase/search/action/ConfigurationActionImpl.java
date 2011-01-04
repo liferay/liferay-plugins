@@ -14,95 +14,45 @@
 
 package com.liferay.knowledgebase.search.action;
 
-import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.portlet.ActionRequest;
-import javax.portlet.PortletPreferences;
+import javax.portlet.ActionResponse;
+import javax.portlet.PortletConfig;
 
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class ConfigurationActionImpl
-	extends com.liferay.knowledgebase.admin.action.ConfigurationActionImpl {
+public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
-	protected void postProcessPreferences(
-			PortletPreferences preferences, ActionRequest actionRequest)
+	public void processAction(
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
 		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
 
 		if (tabs2.equals("selection-method")) {
-			updateSelectionMethod(actionRequest, preferences);
+			updateSelectionMethod(actionRequest);
 		}
+
+		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
-	protected void updateDisplaySettings(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		int articlesDelta = ParamUtil.getInteger(
-			actionRequest, "articlesDelta");
-		String childArticlesDisplayStyle = ParamUtil.getString(
-			actionRequest, "childArticlesDisplayStyle");
-		boolean enableArticleAssetCategories = ParamUtil.getBoolean(
-			actionRequest, "enableArticleAssetCategories");
-		boolean enableArticleAssetTags = ParamUtil.getBoolean(
-			actionRequest, "enableArticleAssetTags");
-		boolean enableArticleRatings = ParamUtil.getBoolean(
-			actionRequest, "enableArticleRatings");
-		boolean enableArticleComments = ParamUtil.getBoolean(
-			actionRequest, "enableArticleComments");
-
-		preferences.setValue("articles-delta", String.valueOf(articlesDelta));
-		preferences.setValue(
-			"child-articles-display-style", childArticlesDisplayStyle);
-		preferences.setValue(
-			"enable-article-asset-categories",
-			String.valueOf(enableArticleAssetCategories));
-		preferences.setValue(
-			"enable-article-asset-tags",
-			String.valueOf(enableArticleAssetTags));
-		preferences.setValue(
-			"enable-article-ratings", String.valueOf(enableArticleRatings));
-		preferences.setValue(
-			"enable-article-comments", String.valueOf(enableArticleComments));
-	}
-
-	protected void updateSelectionMethod(
-			ActionRequest actionRequest, PortletPreferences preferences)
-		throws Exception {
-
-		String selectionMethod = ParamUtil.getString(
-			actionRequest, "selectionMethod");
-		long[] resourcePrimKeys = StringUtil.split(
-			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
-		boolean assetEntryQueryContains = ParamUtil.getBoolean(
-			actionRequest, "assetEntryQueryContains");
-		boolean assetEntryQueryAndOperator = ParamUtil.getBoolean(
-			actionRequest, "assetEntryQueryAndOperator");
-		String assetEntryQueryName = ParamUtil.getString(
-			actionRequest, "assetEntryQueryName");
-		long[] assetCategoryIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "assetCategoryIds"), 0L);
+	protected void updateSelectionMethod(ActionRequest actionRequest) {
+		String[] resourcePrimKeys = StringUtil.split(
+			ParamUtil.getString(actionRequest, "resourcePrimKeys"));
+		String[] assetCategoryIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "assetCategoryIds"));
 		String[] assetTagNames = StringUtil.split(
 			ParamUtil.getString(actionRequest, "assetTagNames"));
 
-		preferences.setValue("selection-method", selectionMethod);
-		preferences.setValues(
-			"resource-prim-keys", ArrayUtil.toStringArray(resourcePrimKeys));
-		preferences.setValue(
-			"asset-entry-query-contains",
-			String.valueOf(assetEntryQueryContains));
-		preferences.setValue(
-			"asset-entry-query-and-operator",
-			String.valueOf(assetEntryQueryAndOperator));
-		preferences.setValue("asset-entry-query-name", assetEntryQueryName);
-		preferences.setValues(
-			"asset-category-ids", ArrayUtil.toStringArray(assetCategoryIds));
-		preferences.setValues("asset-tag-names", assetTagNames);
+		setPreference(actionRequest, "resourcePrimKeys", resourcePrimKeys);
+		setPreference(actionRequest, "assetCategoryIds", assetCategoryIds);
+		setPreference(actionRequest, "assetTagNames", assetTagNames);
 	}
 
 }

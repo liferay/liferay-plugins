@@ -255,18 +255,18 @@ public class KnowledgeBaseUtil {
 				layout, portletId, StringPool.BLANK);
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "group");
+			"selectionMethod", "group");
 
 		boolean assetEntryQueryContains = GetterUtil.getBoolean(
-			jxPreferences.getValue("asset-entry-query-contains", null), true);
+			jxPreferences.getValue("assetEntryQueryContains", null), true);
 		boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(
-			jxPreferences.getValue("asset-entry-query-and-operator", null));
+			jxPreferences.getValue("assetEntryQueryAndOperator", null));
 		String assetEntryQueryName = jxPreferences.getValue(
-			"asset-entry-query-name", "asset-categories");
+			"assetEntryQueryName", "asset-categories");
 		long[] assetCategoryIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("asset-category-ids", null));
+			jxPreferences.getValues("assetCategoryIds", null));
 		String[] assetTagNames = jxPreferences.getValues(
-			"asset-tag-names", new String[0]);
+			"assetTagNames", new String[0]);
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST) ||
 			selectionMethod.equals("articles")) {
@@ -386,16 +386,16 @@ public class KnowledgeBaseUtil {
 				layout, portletId, StringPool.BLANK);
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "group");
+			"selectionMethod", "group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resource-prim-keys", null));
+			jxPreferences.getValues("resourcePrimKeys", null));
 
 		boolean allArticles = GetterUtil.getBoolean(
-			jxPreferences.getValue("all-articles", null), true);
+			jxPreferences.getValue("allArticles", null), true);
 		String orderByColumn = jxPreferences.getValue(
-			"order-by-column", "modified-date");
+			"orderByColumn", "modified-date");
 		boolean orderByAscending = GetterUtil.getBoolean(
-			jxPreferences.getValue("order-by-ascending", null));
+			jxPreferences.getValue("orderByAscending", null));
 
 		OrderByComparator orderByComparator = null;
 
@@ -468,7 +468,7 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		String emailArticleAddedBody = jxPreferences.getValue(
-			"email-article-added-body", StringPool.BLANK);
+			"emailArticleAddedBody", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailArticleAddedBody)) {
 			return emailArticleAddedBody;
@@ -482,7 +482,7 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		String emailArticleAddedEnabled = jxPreferences.getValue(
-			"email-article-added-enabled", StringPool.BLANK);
+			"emailArticleAddedEnabled", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailArticleAddedEnabled)) {
 			return GetterUtil.getBoolean(emailArticleAddedEnabled);
@@ -496,7 +496,7 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		String emailArticleAddedSubject = jxPreferences.getValue(
-			"email-article-added-subject", StringPool.BLANK);
+			"emailArticleAddedSubject", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailArticleAddedSubject)) {
 			return emailArticleAddedSubject;
@@ -510,7 +510,7 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		String emailArticleUpdatedBody = jxPreferences.getValue(
-			"email-article-updated-body", StringPool.BLANK);
+			"emailArticleUpdatedBody", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailArticleUpdatedBody)) {
 			return emailArticleUpdatedBody;
@@ -524,7 +524,7 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		String emailArticleUpdatedEnabled = jxPreferences.getValue(
-			"email-article-updated-enabled", StringPool.BLANK);
+			"emailArticleUpdatedEnabled", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailArticleUpdatedEnabled)) {
 			return GetterUtil.getBoolean(emailArticleUpdatedEnabled);
@@ -538,7 +538,7 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		String emailArticleUpdatedSubject = jxPreferences.getValue(
-			"email-article-updated-subject", StringPool.BLANK);
+			"emailArticleUpdatedSubject", StringPool.BLANK);
 
 		if (Validator.isNotNull(emailArticleUpdatedSubject)) {
 			return emailArticleUpdatedSubject;
@@ -552,14 +552,14 @@ public class KnowledgeBaseUtil {
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		return jxPreferences.getValue(
-			"email-from-address", PortletProps.get("admin.email.from.address"));
+			"emailFromAddress", PortletProps.get("admin.email.from.address"));
 	}
 
 	public static String getEmailFromName(
 		javax.portlet.PortletPreferences jxPreferences) {
 
 		return jxPreferences.getValue(
-			"email-from-name", PortletProps.get("admin.email.from.name"));
+			"emailFromName", PortletProps.get("admin.email.from.name"));
 	}
 
 	public static Map<String, Object> getPreferencesMap(
@@ -571,9 +571,9 @@ public class KnowledgeBaseUtil {
 				preferences.getPreferences());
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "group");
+			"selectionMethod", "group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resource-prim-keys", null));
+			jxPreferences.getValues("resourcePrimKeys", null));
 
 		Map<String, Object> preferencesMap = new HashMap<String, Object>();
 
@@ -608,7 +608,7 @@ public class KnowledgeBaseUtil {
 
 		if (checkWindowState) {
 			String articleWindowState = jxPreferences.getValue(
-				"article-window-state", WindowState.MAXIMIZED.toString());
+				"articleWindowState", WindowState.MAXIMIZED.toString());
 
 			if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
 				windowState = WindowState.MAXIMIZED;
@@ -720,9 +720,9 @@ public class KnowledgeBaseUtil {
 		Article article, javax.portlet.PortletPreferences jxPreferences) {
 
 		String selectionMethod = jxPreferences.getValue(
-			"selection-method", "group");
+			"selectionMethod", "group");
 		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resource-prim-keys", null));
+			jxPreferences.getValues("resourcePrimKeys", null));
 
 		boolean hasArticle = ArrayUtil.contains(
 			resourcePrimKeys, article.getResourcePrimKey());

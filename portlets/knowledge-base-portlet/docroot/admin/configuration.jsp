@@ -72,9 +72,9 @@ else if (tabs2.equals("article-updated-email")) {
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("email-from") %>'>
-				<aui:input cssClass="lfr-input-text-container" label="name" name="emailFromName" value="<%= emailFromName %>" />
+				<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= emailFromName %>" />
 
-				<aui:input cssClass="lfr-input-text-container" label="address" name="emailFromAddress" value="<%= emailFromAddress %>" />
+				<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
 
 				<div class="definition-of-terms">
 					<h4><liferay-ui:message key="definition-of-terms" /></h4>
@@ -134,23 +134,23 @@ else if (tabs2.equals("article-updated-email")) {
 			<c:when test='<%= tabs2.startsWith("article-") %>'>
 				<c:choose>
 					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input inlineLabel="left" label="enabled" name="emailArticleAddedEnabled" type="checkbox" value="<%= emailArticleAddedEnabled %>" />
+						<aui:input inlineLabel="left" label="enabled" name="preferences--emailArticleAddedEnabled--" type="checkbox" value="<%= emailArticleAddedEnabled %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input inlineLabel="left" label="enabled" name="emailArticleUpdatedEnabled" type="checkbox" value="<%= emailArticleUpdatedEnabled %>" />
+						<aui:input inlineLabel="left" label="enabled" name="preferences--emailArticleUpdatedEnabled--" type="checkbox" value="<%= emailArticleUpdatedEnabled %>" />
 					</c:when>
 				</c:choose>
 
 				<c:choose>
 					<c:when test='<%= tabs2.equals("article-added-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="emailArticleAddedSubject" value="<%= emailArticleAddedSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailArticleAddedSubject--" value="<%= emailArticleAddedSubject %>" />
 					</c:when>
 					<c:when test='<%= tabs2.equals("article-updated-email") %>'>
-						<aui:input cssClass="lfr-input-text-container" label="subject" name="emailArticleUpdatedSubject" value="<%= emailArticleUpdatedSubject %>" />
+						<aui:input cssClass="lfr-input-text-container" label="subject" name="preferences--emailArticleUpdatedSubject--" value="<%= emailArticleUpdatedSubject %>" />
 					</c:when>
 				</c:choose>
 
-				<aui:input cssClass="lfr-textarea-container" label="body" name="<%= editorParam %>" type="textarea" value="<%= editorBody %>" />
+				<aui:input cssClass="lfr-textarea-container" label="body" name='<%= "preferences--".concat(editorParam).concat("--") %>' type="textarea" value="<%= editorBody %>" />
 
 				<div class="definition-of-terms">
 					<h4><liferay-ui:message key="definition-of-terms" /></h4>
@@ -288,7 +288,7 @@ else if (tabs2.equals("article-updated-email")) {
 
 				<c:choose>
 					<c:when test='<%= tabs3.equals("article") %>'>
-						<aui:select label="maximum-items-to-display" name="articlesDelta">
+						<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
 
 							<%
 							int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
@@ -309,30 +309,30 @@ else if (tabs2.equals("article-updated-email")) {
 
 						</aui:select>
 
-						<aui:select label="display-style" name="articlesDisplayStyle">
+						<aui:select label="display-style" name="preferences--articlesDisplayStyle--">
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 						</aui:select>
 
-						<aui:select name="childArticlesDisplayStyle">
+						<aui:select name="preferences--childArticlesDisplayStyle--">
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 						</aui:select>
 
-						<aui:input inlineLabel="left" label="enable-description" name="enableArticleDescription" type="checkbox" value="<%= enableArticleDescription %>" />
+						<aui:input inlineLabel="left" label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
 
-						<aui:input inlineLabel="left" label="enable-categories" name="enableArticleAssetCategories" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+						<aui:input inlineLabel="left" label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
 
-						<aui:input inlineLabel="left" label="enable-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
+						<aui:input inlineLabel="left" label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
-						<aui:input inlineLabel="left" label="enable-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+						<aui:input inlineLabel="left" label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
 
-						<aui:input inlineLabel="left" label="enable-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
+						<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:select label="maximum-items-to-display" name="templatesDelta">
+						<aui:select label="maximum-items-to-display" name="preferences--templatesDelta--">
 
 							<%
 							int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
@@ -353,20 +353,20 @@ else if (tabs2.equals("article-updated-email")) {
 
 						</aui:select>
 
-						<aui:select label="display-style" name="templatesDisplayStyle">
+						<aui:select label="display-style" name="preferences--templatesDisplayStyle--">
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= templatesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= templatesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= templatesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 						</aui:select>
 
-						<aui:input inlineLabel="left" label="enable-description" name="enableTemplateDescription" type="checkbox" value="<%= enableTemplateDescription %>" />
+						<aui:input inlineLabel="left" label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
 
-						<aui:input inlineLabel="left" label="enable-comments" name="enableTemplateComments" type="checkbox" value="<%= enableTemplateComments %>" />
+						<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
 					</c:when>
 				</c:choose>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
-				<aui:select label="maximum-items-to-display" name="rssDelta">
+				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
 					<aui:option label="1" selected="<%= rssDelta == 1 %>" />
 					<aui:option label="2" selected="<%= rssDelta == 2 %>" />
 					<aui:option label="3" selected="<%= rssDelta == 3 %>" />
@@ -386,13 +386,13 @@ else if (tabs2.equals("article-updated-email")) {
 					<aui:option label="100" selected="<%= rssDelta == 100 %>" />
 				</aui:select>
 
-				<aui:select label="display-style" name="rssDisplayStyle">
+				<aui:select label="display-style" name="preferences--rssDisplayStyle--">
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
-				<aui:select label="format" name="rssFormat">
+				<aui:select label="format" name="preferences--rssFormat--">
 					<aui:option label="RSS 1.0" selected='<%= rssFormat.equals("rss10") %>' value="rss10" />
 					<aui:option label="RSS 2.0" selected='<%= rssFormat.equals("rss20") %>' value="rss20" />
 					<aui:option label="Atom 1.0" selected='<%= rssFormat.equals("atom10") %>' value="atom10" />

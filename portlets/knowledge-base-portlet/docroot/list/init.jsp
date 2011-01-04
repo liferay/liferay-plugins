@@ -23,21 +23,21 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String articlesTitle = preferences.getValue("articles-title", StringPool.BLANK);
-boolean allArticles = GetterUtil.getBoolean(preferences.getValue("all-articles", null), true);
-String orderByColumn = preferences.getValue("order-by-column", "modified-date");
-boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("order-by-ascending", null));
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String articleWindowState = preferences.getValue("article-window-state", WindowState.MAXIMIZED.toString());
-String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
-boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-ratings", null));
-boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
+String articlesTitle = preferences.getValue("articlesTitle", StringPool.BLANK);
+boolean allArticles = GetterUtil.getBoolean(preferences.getValue("allArticles", null), true);
+String orderByColumn = preferences.getValue("orderByColumn", "modified-date");
+boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("orderByAscending", null));
+int articlesDelta = GetterUtil.getInteger(preferences.getValue("articlesDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String articleWindowState = preferences.getValue("articleWindowState", WindowState.MAXIMIZED.toString());
+String childArticlesDisplayStyle = preferences.getValue("childArticlesDisplayStyle", "abstract");
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null), true);
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null), true);
+boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
+boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null), true);
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-String rssFormat = preferences.getValue("rss-format", "atom10");
+int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+String rssFormat = preferences.getValue("rssFormat", "atom10");
 
 String rssFormatType = RSSUtil.getFormatType(rssFormat);
 double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);

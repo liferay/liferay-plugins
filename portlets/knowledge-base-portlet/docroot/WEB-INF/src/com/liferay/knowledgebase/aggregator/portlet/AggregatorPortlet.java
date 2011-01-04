@@ -54,7 +54,7 @@ public class AggregatorPortlet extends AdminPortlet {
 		PortletPreferences preferences = resourceRequest.getPreferences();
 
 		String articleWindowState = preferences.getValue(
-			"article-window-state", WindowState.MAXIMIZED.toString());
+			"articleWindowState", WindowState.MAXIMIZED.toString());
 
 		if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
 			return true;

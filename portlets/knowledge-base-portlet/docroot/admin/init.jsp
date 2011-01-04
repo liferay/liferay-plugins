@@ -23,23 +23,23 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articles-delta", StringPool.BLANK), 5);
-String articlesDisplayStyle = preferences.getValue("articles-display-style", "full-content");
-String childArticlesDisplayStyle = preferences.getValue("child-articles-display-style", "abstract");
-boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enable-article-description", null));
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-categories", null), true);
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enable-article-asset-tags", null), true);
-boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enable-article-ratings", null));
-boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enable-article-comments", null), true);
+int articlesDelta = GetterUtil.getInteger(preferences.getValue("articlesDelta", StringPool.BLANK), 5);
+String articlesDisplayStyle = preferences.getValue("articlesDisplayStyle", "full-content");
+String childArticlesDisplayStyle = preferences.getValue("childArticlesDisplayStyle", "abstract");
+boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableArticleDescription", null));
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null), true);
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null), true);
+boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
+boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null), true);
 
-int templatesDelta = GetterUtil.getInteger(preferences.getValue("templates-delta", StringPool.BLANK), 5);
-String templatesDisplayStyle = preferences.getValue("templates-display-style", "full-content");
-boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enable-template-description", null));
-boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enable-template-comments", null), true);
+int templatesDelta = GetterUtil.getInteger(preferences.getValue("templatesDelta", StringPool.BLANK), 5);
+String templatesDisplayStyle = preferences.getValue("templatesDisplayStyle", "full-content");
+boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enableTemplateDescription", null));
+boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enableTemplateComments", null), true);
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rss-delta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rss-display-style", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-String rssFormat = preferences.getValue("rss-format", "atom10");
+int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
+String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+String rssFormat = preferences.getValue("rssFormat", "atom10");
 
 String rssFormatType = RSSUtil.getFormatType(rssFormat);
 double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);

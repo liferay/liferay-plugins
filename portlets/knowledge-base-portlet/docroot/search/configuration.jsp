@@ -42,7 +42,7 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
-				<aui:select label="maximum-items-to-display" name="articlesDelta">
+				<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
 
 					<%
 					int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
@@ -63,19 +63,19 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 
 				</aui:select>
 
-				<aui:select name="childArticlesDisplayStyle">
+				<aui:select name="preferences--childArticlesDisplayStyle--">
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
-				<aui:input inlineLabel="left" label="show-categories" name="enableArticleAssetCategories" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+				<aui:input inlineLabel="left" label="show-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
 
-				<aui:input inlineLabel="left" label="show-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
+				<aui:input inlineLabel="left" label="show-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
-				<aui:input inlineLabel="left" label="show-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+				<aui:input inlineLabel="left" label="show-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
 
-				<aui:input inlineLabel="left" label="show-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
+				<aui:input inlineLabel="left" label="show-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("selection-method") %>'>
 
@@ -83,7 +83,7 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 				String taglibOnChange = renderResponse.getNamespace() + "updateSelectionMethod(this.value);";
 				%>
 
-				<aui:select name="selectionMethod" onChange="<%= taglibOnChange %>">
+				<aui:select name="preferences--selectionMethod--" onChange="<%= taglibOnChange %>">
 					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
 					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
 				</aui:select>
@@ -120,12 +120,12 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 
 				<div id="<portlet:namespace />filterOptions">
 					<aui:field-wrapper label="filter">
-						<aui:select inlineField="<%= true %>" label="" name="assetEntryQueryContains">
+						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryContains--">
 							<aui:option label="contains" selected="<%= assetEntryQueryContains %>" value="<%= true %>" />
 							<aui:option label="does-not-contain" selected="<%= !assetEntryQueryContains %>" value="<%= false %>" />
 						</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="assetEntryQueryAndOperator">
+						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryAndOperator--">
 							<aui:option label="all" selected="<%= assetEntryQueryAndOperator %>" value="<%= true %>" />
 							<aui:option label="any" selected="<%= !assetEntryQueryAndOperator %>" value="<%= false %>" />
 						</aui:select>
@@ -134,7 +134,7 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 						taglibOnChange = renderResponse.getNamespace() + "updateAssetEntryQueryName(this.value);";
 						%>
 
-						<aui:select inlineField="<%= true %>" inlineLabel="left" label="of-the-following" name="assetEntryQueryName" onChange="<%= taglibOnChange %>">
+						<aui:select inlineField="<%= true %>" inlineLabel="left" label="of-the-following" name="preferences--assetEntryQueryName--" onChange="<%= taglibOnChange %>">
 							<aui:option label="categories" selected='<%= assetEntryQueryName.equals("asset-categories") %>' value="asset-categories" />
 							<aui:option label="tags" selected='<%= assetEntryQueryName.equals("asset-tags") %>' value="asset-tags" />
 						</aui:select>
@@ -156,7 +156,7 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
-				<aui:select label="maximum-items-to-display" name="rssDelta">
+				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
 					<aui:option label="1" selected="<%= rssDelta == 1 %>" />
 					<aui:option label="2" selected="<%= rssDelta == 2 %>" />
 					<aui:option label="3" selected="<%= rssDelta == 3 %>" />
@@ -176,13 +176,13 @@ List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePri
 					<aui:option label="100" selected="<%= rssDelta == 100 %>" />
 				</aui:select>
 
-				<aui:select label="display-style" name="rssDisplayStyle">
+				<aui:select label="display-style" name="preferences--rssDisplayStyle--">
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
-				<aui:select label="format" name="rssFormat">
+				<aui:select label="format" name="preferences--rssFormat--">
 					<aui:option label="RSS 1.0" selected='<%= rssFormat.equals("rss10") %>' value="rss10" />
 					<aui:option label="RSS 2.0" selected='<%= rssFormat.equals("rss20") %>' value="rss20" />
 					<aui:option label="Atom 1.0" selected='<%= rssFormat.equals("atom10") %>' value="atom10" />

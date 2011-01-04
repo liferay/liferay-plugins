@@ -39,30 +39,30 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
-				<aui:input cssClass="lfr-input-text-container" label="title" name="articlesTitle" value="<%= articlesTitle %>" />
+				<aui:input cssClass="lfr-input-text-container" label="title" name="preferences--articlesTitle--" value="<%= articlesTitle %>" />
 
 				<div class="kb-field-wrapper">
 					<aui:field-wrapper label="options">
-						<aui:select inlineField="<%= true %>" label="" name="allArticles">
+						<aui:select inlineField="<%= true %>" label="" name="preferences--allArticles--">
 							<aui:option label="all-articles" selected="<%= allArticles %>" value="<%= true %>" />
 							<aui:option label="root-articles" selected="<%= !allArticles %>" value="<%= false %>" />
 						</aui:select>
 
-						<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="orderByColumn">
+						<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="preferences--orderByColumn--">
 							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
 							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
 							<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
 							<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
 						</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="orderByAscending">
+						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByAscending--">
 							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
 							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
 						</aui:select>
 					</aui:field-wrapper>
 				</div>
 
-				<aui:select label="maximum-items-to-display" name="articlesDelta">
+				<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
 
 					<%
 					int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
@@ -83,27 +83,27 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
 				</aui:select>
 
-				<aui:select name="articleWindowState">
+				<aui:select name="preferences--articleWindowState--">
 					<aui:option label="maximized" selected="<%= articleWindowState.equals(WindowState.MAXIMIZED.toString()) %>" value="<%= WindowState.MAXIMIZED.toString() %>" />
 					<aui:option label="normal" selected="<%= articleWindowState.equals(WindowState.NORMAL.toString()) %>" value="<%= WindowState.NORMAL.toString() %>" />
 				</aui:select>
 
-				<aui:select name="childArticlesDisplayStyle">
+				<aui:select name="preferences--childArticlesDisplayStyle--">
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
-				<aui:input inlineLabel="left" label="show-categories" name="enableArticleAssetCategories" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+				<aui:input inlineLabel="left" label="show-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
 
-				<aui:input inlineLabel="left" label="show-tags" name="enableArticleAssetTags" type="checkbox" value="<%= enableArticleAssetTags %>" />
+				<aui:input inlineLabel="left" label="show-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
-				<aui:input inlineLabel="left" label="show-ratings" name="enableArticleRatings" type="checkbox" value="<%= enableArticleRatings %>" />
+				<aui:input inlineLabel="left" label="show-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
 
-				<aui:input inlineLabel="left" label="show-comments" name="enableArticleComments" type="checkbox" value="<%= enableArticleComments %>" />
+				<aui:input inlineLabel="left" label="show-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
-				<aui:select label="maximum-items-to-display" name="rssDelta">
+				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
 					<aui:option label="1" selected="<%= rssDelta == 1 %>" />
 					<aui:option label="2" selected="<%= rssDelta == 2 %>" />
 					<aui:option label="3" selected="<%= rssDelta == 3 %>" />
@@ -123,13 +123,13 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 					<aui:option label="100" selected="<%= rssDelta == 100 %>" />
 				</aui:select>
 
-				<aui:select label="display-style" name="rssDisplayStyle">
+				<aui:select label="display-style" name="preferences--rssDisplayStyle--">
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
 				</aui:select>
 
-				<aui:select label="format" name="rssFormat">
+				<aui:select label="format" name="preferences--rssFormat--">
 					<aui:option label="RSS 1.0" selected='<%= rssFormat.equals("rss10") %>' value="rss10" />
 					<aui:option label="RSS 2.0" selected='<%= rssFormat.equals("rss20") %>' value="rss20" />
 					<aui:option label="Atom 1.0" selected='<%= rssFormat.equals("atom10") %>' value="atom10" />
