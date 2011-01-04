@@ -594,8 +594,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	protected static boolean hasArticle(
-			Article article, PortletPreferences jxPreferences)
-		throws Exception {
+		Article article, PortletPreferences jxPreferences) {
 
 		String selectionMethod = jxPreferences.getValue(
 			"selection-method", "group");

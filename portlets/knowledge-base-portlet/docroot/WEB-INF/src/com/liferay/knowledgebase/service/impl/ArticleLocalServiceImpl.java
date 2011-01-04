@@ -64,6 +64,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -305,6 +306,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
+		if ((resourcePrimKeys == null) || (resourcePrimKeys.length == 0)) {
+			return Collections.emptyList();
+		}
+
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.findByR_L(
 				resourcePrimKeys, new int[] {ArticleConstants.LATEST_VERSION},
@@ -328,6 +333,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public int getArticlesCount(long[] resourcePrimKeys, int status)
 		throws SystemException {
+
+		if ((resourcePrimKeys == null) || (resourcePrimKeys.length == 0)) {
+			return 0;
+		}
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.countByR_L(

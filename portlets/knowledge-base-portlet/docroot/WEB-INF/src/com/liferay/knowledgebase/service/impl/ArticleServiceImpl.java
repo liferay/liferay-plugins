@@ -147,6 +147,10 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
+		if ((resourcePrimKeys == null) || (resourcePrimKeys.length == 0)) {
+			return Collections.emptyList();
+		}
+
 		viewableParentResourcePrimKeys = getViewableParentResourcePrimKeys(
 			groupId, status, viewableParentResourcePrimKeys);
 
@@ -178,6 +182,10 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			long groupId, long[] resourcePrimKeys, int status,
 			long[] viewableParentResourcePrimKeys)
 		throws SystemException {
+
+		if ((resourcePrimKeys == null) || (resourcePrimKeys.length == 0)) {
+			return 0;
+		}
 
 		viewableParentResourcePrimKeys = getViewableParentResourcePrimKeys(
 			groupId, status, viewableParentResourcePrimKeys);
