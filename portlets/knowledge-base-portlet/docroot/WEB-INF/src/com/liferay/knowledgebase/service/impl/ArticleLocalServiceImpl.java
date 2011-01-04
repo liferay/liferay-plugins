@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -66,9 +65,7 @@ import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoValue;
-import com.liferay.util.portlet.PortletProps;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Arrays;
@@ -862,12 +859,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Subscriptions
 
-		if (article.getVersion() != ArticleConstants.DEFAULT_VERSION) {
-			notifySubscribers(article, true, serviceContext);
-		}
-		else {
-			notifySubscribers(article, false, serviceContext);
-		}
+		notifySubscribers(article, serviceContext);
 
 		return article;
 	}
@@ -987,7 +979,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected void notifySubscribers(
-			Article article, boolean update, ServiceContext serviceContext)
+			Article article, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (Validator.isNull(serviceContext.getLayoutFullURL())) {
@@ -1009,26 +1001,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				defaultPreferences);
 		}
 
-		String emailArticleAddedEnabled = preferences.getValue(
-			"email-article-added-enabled",
-			PortletProps.get("admin.email.article.added.enabled"));
+		if (serviceContext.isCommandAdd() &&
+			!KnowledgeBaseUtil.getEmailArticleAddedEnabled(preferences)) {
 
-		if (!update && !GetterUtil.getBoolean(emailArticleAddedEnabled)) {
 			return;
 		}
 
-		String emailArticleUpdatedEnabled = preferences.getValue(
-			"email-article-updated-enabled",
-			PortletProps.get("admin.email.article.updated.enabled"));
+		if (serviceContext.isCommandUpdate() &&
+			!KnowledgeBaseUtil.getEmailArticleUpdatedEnabled(preferences)) {
 
-		if (update && !GetterUtil.getBoolean(emailArticleUpdatedEnabled)) {
 			return;
 		}
 
-		String fromName = preferences.getValue(
-			"email-from-name", PortletProps.get("admin.email.from.name"));
-		String fromAddress = preferences.getValue(
-			"email-from-address", PortletProps.get("admin.email.from.address"));
+		String fromName = KnowledgeBaseUtil.getEmailFromName(preferences);
+		String fromAddress = KnowledgeBaseUtil.getEmailFromAddress(preferences);
 
 		String articleContent = StringUtil.replace(
 			article.getContent(),
@@ -1066,66 +1052,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String subject = null;
 		String body = null;
 
-		if (!update) {
-			subject = preferences.getValue("email-article-added-subject", null);
-
-			if (subject == null) {
-				String name = PortletProps.get(
-					"admin.email.article.added.subject");
-
-				try {
-					subject = StringUtil.read(
-						getClass().getClassLoader(), name);
-				}
-				catch (IOException ioe) {
-					_log.error(ioe, ioe);
-				}
-			}
-
-			body = preferences.getValue("email-article-added-body", null);
-
-			if (body == null) {
-				String name = PortletProps.get(
-					"admin.email.article.added.body");
-
-				try {
-					body = StringUtil.read(getClass().getClassLoader(), name);
-				}
-				catch (IOException ioe) {
-					_log.error(ioe, ioe);
-				}
-			}
+		if (serviceContext.isCommandAdd()) {
+			subject = KnowledgeBaseUtil.getEmailArticleAddedSubject(
+				preferences);
+			body = KnowledgeBaseUtil.getEmailArticleUpdatedBody(preferences);
 		}
 		else {
-			subject = preferences.getValue(
-				"email-article-updated-subject", null);
-
-			if (subject == null) {
-				String name = PortletProps.get(
-					"admin.email.article.updated.subject");
-
-				try {
-					subject = StringUtil.read(
-						getClass().getClassLoader(), name);
-				}
-				catch (IOException ioe) {
-					_log.error(ioe, ioe);
-				}
-			}
-
-			body = preferences.getValue("email-article-updated-body", null);
-
-			if (body == null) {
-				String name = PortletProps.get(
-					"admin.email.article.updated.body");
-
-				try {
-					body = StringUtil.read(getClass().getClassLoader(), name);
-				}
-				catch (IOException ioe) {
-					_log.error(ioe, ioe);
-				}
-			}
+			subject = KnowledgeBaseUtil.getEmailArticleUpdatedSubject(
+				preferences);
+			body = KnowledgeBaseUtil.getEmailArticleUpdatedBody(preferences);
 		}
 
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(

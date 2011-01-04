@@ -45,6 +45,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 </portlet:actionURL>
 
 <aui:form action="<%= updateArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateArticle();" %>'>
+	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 	<aui:input name="dirName" type="hidden" value="<%= dirName %>" />
@@ -176,6 +177,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 	}
 
 	function <portlet:namespace />updateArticle() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (article == null) ? Constants.ADD : Constants.UPDATE %>";
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
 	}

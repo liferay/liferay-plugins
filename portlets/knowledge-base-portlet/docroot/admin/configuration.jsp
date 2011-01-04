@@ -20,16 +20,16 @@
 String tabs2 = ParamUtil.getString(request, "tabs2", "email-from");
 String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
-String emailFromName = ParamUtil.getString(request, "emailFromName", preferences.getValue("email-from-name", PortletProps.get("admin.email.from.name")));
-String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", preferences.getValue("email-from-address", PortletProps.get("admin.email.from.address")));
+String emailFromName = ParamUtil.getString(request, "emailFromName", KnowledgeBaseUtil.getEmailFromName(preferences));
+String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", KnowledgeBaseUtil.getEmailFromAddress(preferences));
 
-boolean emailArticleAddedEnabled = ParamUtil.getBoolean(request, "emailArticleAddedEnabled", GetterUtil.getBoolean(preferences.getValue("email-article-added-enabled", PortletProps.get("admin.email.article.added.enabled"))));
-String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", preferences.getValue("email-article-added-subject", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.added.subject"))));
-String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", preferences.getValue("email-article-added-body", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.added.body"))));
+boolean emailArticleAddedEnabled = ParamUtil.getBoolean(request, "emailArticleAddedEnabled", KnowledgeBaseUtil.getEmailArticleAddedEnabled(preferences));
+String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", KnowledgeBaseUtil.getEmailArticleAddedSubject(preferences));
+String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", KnowledgeBaseUtil.getEmailArticleAddedBody(preferences));
 
-boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailArticleUpdatedEnabled", GetterUtil.getBoolean(preferences.getValue("email-article-updated-enabled", PortletProps.get("admin.email.article.updated.enabled"))));
-String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", preferences.getValue("email-article-updated-subject", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.updated.subject"))));
-String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", preferences.getValue("email-article-updated-body", StringUtil.read(getClass().getClassLoader(), PortletProps.get("admin.email.article.updated.body"))));
+boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailArticleUpdatedEnabled", KnowledgeBaseUtil.getEmailArticleUpdatedEnabled(preferences));
+String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", KnowledgeBaseUtil.getEmailArticleUpdatedSubject(preferences));
+String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", KnowledgeBaseUtil.getEmailArticleUpdatedBody(preferences));
 
 String editorParam = StringPool.BLANK;
 String editorBody = StringPool.BLANK;

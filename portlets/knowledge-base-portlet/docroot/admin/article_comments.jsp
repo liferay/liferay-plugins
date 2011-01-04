@@ -93,6 +93,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 				</c:if>
 
 				<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateComment();" %>'>
+					<aui:input name="<%= Constants.CMD %>" type="hidden" />
 					<aui:input name="commentId" type="hidden" value="<%= commentId %>" />
 					<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(Article.class) %>" />
 					<aui:input name="classPK" type="hidden" value="<%= article.getResourcePrimKey() %>" />
@@ -220,6 +221,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 		}
 
 		function <portlet:namespace />updateComment() {
+			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (comment == null) ? Constants.ADD : Constants.UPDATE %>";
 			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="redirect" value="<%= viewArticleURL %>" /></portlet:actionURL>");
 		}
 	</aui:script>

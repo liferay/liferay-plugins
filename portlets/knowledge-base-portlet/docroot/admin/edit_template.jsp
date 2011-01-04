@@ -37,6 +37,7 @@ String content = BeanParamUtil.getString(template, request, "content");
 </portlet:actionURL>
 
 <aui:form action="<%= updateTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateTemplate();" %>'>
+	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="templateId" type="hidden" value="<%= templateId %>" />
 
 	<liferay-ui:error exception="<%= TemplateContentException.class %>" message="please-enter-valid-content" />
@@ -79,6 +80,7 @@ String content = BeanParamUtil.getString(template, request, "content");
 	}
 
 	function <portlet:namespace />updateTemplate() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (template == null) ? Constants.ADD : Constants.UPDATE %>";
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
 	}

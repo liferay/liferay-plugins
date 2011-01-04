@@ -36,6 +36,7 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -332,6 +333,8 @@ public class AdminPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
@@ -350,15 +353,19 @@ public class AdminPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Article.class.getName(), actionRequest);
 
-		if (resourcePrimKey <= 0) {
+		if (cmd.equals(Constants.ADD)) {
 			article = ArticleServiceUtil.addArticle(
 				parentResourcePrimKey, title, content, description, priority,
 				dirName, serviceContext);
 		}
-		else {
+		else if (cmd.equals(Constants.UPDATE)) {
 			article = ArticleServiceUtil.updateArticle(
 				resourcePrimKey, parentResourcePrimKey, title, content,
 				description, priority, dirName, serviceContext);
+		}
+
+		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {
+			return;
 		}
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
@@ -416,6 +423,8 @@ public class AdminPortlet extends MVCPortlet {
 			return;
 		}
 
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		long commentId = ParamUtil.getLong(actionRequest, "commentId");
 
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
@@ -426,12 +435,12 @@ public class AdminPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Article.class.getName(), actionRequest);
 
-		if (commentId <= 0) {
+		if (cmd.equals(Constants.ADD)) {
 			CommentLocalServiceUtil.addComment(
 				themeDisplay.getUserId(), classNameId, classPK, content,
 				helpful, serviceContext);
 		}
-		else {
+		else if (cmd.equals(Constants.UPDATE)) {
 			CommentLocalServiceUtil.updateComment(
 				commentId, classNameId, classPK, content, helpful,
 				serviceContext);
@@ -442,6 +451,8 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		long templateId = ParamUtil.getLong(actionRequest, "templateId");
 
 		String title = ParamUtil.getString(actionRequest, "title");
@@ -451,11 +462,11 @@ public class AdminPortlet extends MVCPortlet {
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Template.class.getName(), actionRequest);
 
-		if (templateId <= 0) {
+		if (cmd.equals(Constants.ADD)) {
 			TemplateServiceUtil.addTemplate(
 				title, content, description, serviceContext);
 		}
-		else {
+		else if (cmd.equals(Constants.UPDATE)) {
 			TemplateServiceUtil.updateTemplate(
 				templateId, title, content, description, serviceContext);
 		}

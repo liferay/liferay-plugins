@@ -111,7 +111,6 @@
 <%@ page import="com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.portletconfiguration.util.PortletConfigurationUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
-<%@ page import="com.liferay.util.portlet.PortletProps" %>
 
 <%@ page import="java.text.Format" %>
 
