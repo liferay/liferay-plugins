@@ -230,7 +230,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 					gadgetId);
 			}
 
-			return remove(gadget);
+			return gadgetPersistence.remove(gadget);
 		}
 		catch (NoSuchGadgetException nsee) {
 			throw nsee;
@@ -1407,7 +1407,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Gadget gadget : findByUuid(uuid)) {
-			remove(gadget);
+			gadgetPersistence.remove(gadget);
 		}
 	}
 
@@ -1419,7 +1419,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Gadget gadget : findByCompanyId(companyId)) {
-			remove(gadget);
+			gadgetPersistence.remove(gadget);
 		}
 	}
 
@@ -1434,7 +1434,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		throws NoSuchGadgetException, SystemException {
 		Gadget gadget = findByC_U(companyId, url);
 
-		remove(gadget);
+		gadgetPersistence.remove(gadget);
 	}
 
 	/**
@@ -1444,7 +1444,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	 */
 	public void removeAll() throws SystemException {
 		for (Gadget gadget : findAll()) {
-			remove(gadget);
+			gadgetPersistence.remove(gadget);
 		}
 	}
 

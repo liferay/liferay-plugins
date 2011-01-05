@@ -256,7 +256,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 					kaleoInstanceTokenId);
 			}
 
-			return remove(kaleoInstanceToken);
+			return kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 		catch (NoSuchInstanceTokenException nsee) {
 			throw nsee;
@@ -2369,7 +2369,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByCompanyId(companyId)) {
-			remove(kaleoInstanceToken);
+			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2383,7 +2383,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			remove(kaleoInstanceToken);
+			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2397,7 +2397,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByKaleoInstanceId(
 				kaleoInstanceId)) {
-			remove(kaleoInstanceToken);
+			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2412,7 +2412,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByC_PKITI(companyId,
 				parentKaleoInstanceTokenId)) {
-			remove(kaleoInstanceToken);
+			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2429,7 +2429,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findByC_PKITI_CD(
 				companyId, parentKaleoInstanceTokenId, completionDate)) {
-			remove(kaleoInstanceToken);
+			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 	}
 
@@ -2440,7 +2440,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoInstanceToken kaleoInstanceToken : findAll()) {
-			remove(kaleoInstanceToken);
+			kaleoInstanceTokenPersistence.remove(kaleoInstanceToken);
 		}
 	}
 

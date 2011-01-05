@@ -234,7 +234,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 					meetupsRegistrationId);
 			}
 
-			return remove(meetupsRegistration);
+			return meetupsRegistrationPersistence.remove(meetupsRegistration);
 		}
 		catch (NoSuchMeetupsRegistrationException nsee) {
 			throw nsee;
@@ -1413,7 +1413,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByMeetupsEntryId(
 				meetupsEntryId)) {
-			remove(meetupsRegistration);
+			meetupsRegistrationPersistence.remove(meetupsRegistration);
 		}
 	}
 
@@ -1429,7 +1429,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		MeetupsRegistration meetupsRegistration = findByU_ME(userId,
 				meetupsEntryId);
 
-		remove(meetupsRegistration);
+		meetupsRegistrationPersistence.remove(meetupsRegistration);
 	}
 
 	/**
@@ -1443,7 +1443,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findByME_S(
 				meetupsEntryId, status)) {
-			remove(meetupsRegistration);
+			meetupsRegistrationPersistence.remove(meetupsRegistration);
 		}
 	}
 
@@ -1454,7 +1454,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 	 */
 	public void removeAll() throws SystemException {
 		for (MeetupsRegistration meetupsRegistration : findAll()) {
-			remove(meetupsRegistration);
+			meetupsRegistrationPersistence.remove(meetupsRegistration);
 		}
 	}
 

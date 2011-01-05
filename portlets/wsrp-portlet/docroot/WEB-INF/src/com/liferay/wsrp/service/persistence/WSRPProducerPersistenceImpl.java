@@ -237,7 +237,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 					wsrpProducerId);
 			}
 
-			return remove(wsrpProducer);
+			return wsrpProducerPersistence.remove(wsrpProducer);
 		}
 		catch (NoSuchProducerException nsee) {
 			throw nsee;
@@ -1425,7 +1425,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (WSRPProducer wsrpProducer : findByUuid(uuid)) {
-			remove(wsrpProducer);
+			wsrpProducerPersistence.remove(wsrpProducer);
 		}
 	}
 
@@ -1440,7 +1440,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		throws NoSuchProducerException, SystemException {
 		WSRPProducer wsrpProducer = findByUUID_G(uuid, groupId);
 
-		remove(wsrpProducer);
+		wsrpProducerPersistence.remove(wsrpProducer);
 	}
 
 	/**
@@ -1451,7 +1451,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (WSRPProducer wsrpProducer : findByCompanyId(companyId)) {
-			remove(wsrpProducer);
+			wsrpProducerPersistence.remove(wsrpProducer);
 		}
 	}
 
@@ -1462,7 +1462,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	 */
 	public void removeAll() throws SystemException {
 		for (WSRPProducer wsrpProducer : findAll()) {
-			remove(wsrpProducer);
+			wsrpProducerPersistence.remove(wsrpProducer);
 		}
 	}
 

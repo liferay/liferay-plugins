@@ -264,7 +264,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 					kaleoLogId);
 			}
 
-			return remove(kaleoLog);
+			return kaleoLogPersistence.remove(kaleoLog);
 		}
 		catch (NoSuchLogException nsee) {
 			throw nsee;
@@ -2742,7 +2742,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoLog kaleoLog : findByCompanyId(companyId)) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 
@@ -2755,7 +2755,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKaleoDefinitionId(kaleoDefinitionId)) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 
@@ -2768,7 +2768,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public void removeByKaleoInstanceId(long kaleoInstanceId)
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKaleoInstanceId(kaleoInstanceId)) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 
@@ -2782,7 +2782,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKaleoTaskInstanceTokenId(
 				kaleoTaskInstanceTokenId)) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 
@@ -2796,7 +2796,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public void removeByKITI_T(long kaleoInstanceTokenId, String type)
 		throws SystemException {
 		for (KaleoLog kaleoLog : findByKITI_T(kaleoInstanceTokenId, type)) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 
@@ -2812,7 +2812,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		String type) throws SystemException {
 		for (KaleoLog kaleoLog : findByKITI_KNI_T(kaleoInstanceTokenId,
 				kaleoNodeId, type)) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 
@@ -2823,7 +2823,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoLog kaleoLog : findAll()) {
-			remove(kaleoLog);
+			kaleoLogPersistence.remove(kaleoLog);
 		}
 	}
 

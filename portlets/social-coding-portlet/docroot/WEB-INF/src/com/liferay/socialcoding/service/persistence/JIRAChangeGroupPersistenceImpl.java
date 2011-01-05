@@ -214,7 +214,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 					jiraChangeGroupId);
 			}
 
-			return remove(jiraChangeGroup);
+			return jiraChangeGroupPersistence.remove(jiraChangeGroup);
 		}
 		catch (NoSuchJIRAChangeGroupException nsee) {
 			throw nsee;
@@ -1211,7 +1211,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findByJiraUserId(jiraUserId)) {
-			remove(jiraChangeGroup);
+			jiraChangeGroupPersistence.remove(jiraChangeGroup);
 		}
 	}
 
@@ -1223,7 +1223,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findByJiraIssueId(jiraIssueId)) {
-			remove(jiraChangeGroup);
+			jiraChangeGroupPersistence.remove(jiraChangeGroup);
 		}
 	}
 
@@ -1234,7 +1234,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAChangeGroup jiraChangeGroup : findAll()) {
-			remove(jiraChangeGroup);
+			jiraChangeGroupPersistence.remove(jiraChangeGroup);
 		}
 	}
 

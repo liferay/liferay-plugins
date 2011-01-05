@@ -181,7 +181,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 					assetId);
 			}
 
-			return remove(asset);
+			return assetPersistence.remove(asset);
 		}
 		catch (NoSuchAssetException nsee) {
 			throw nsee;
@@ -469,7 +469,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	 */
 	public void removeAll() throws SystemException {
 		for (Asset asset : findAll()) {
-			remove(asset);
+			assetPersistence.remove(asset);
 		}
 	}
 

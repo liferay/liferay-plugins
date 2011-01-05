@@ -229,7 +229,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 					fooId);
 			}
 
-			return remove(foo);
+			return fooPersistence.remove(foo);
 		}
 		catch (NoSuchFooException nsee) {
 			throw nsee;
@@ -1400,7 +1400,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Foo foo : findByUuid(uuid)) {
-			remove(foo);
+			fooPersistence.remove(foo);
 		}
 	}
 
@@ -1415,7 +1415,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		throws NoSuchFooException, SystemException {
 		Foo foo = findByUUID_G(uuid, groupId);
 
-		remove(foo);
+		fooPersistence.remove(foo);
 	}
 
 	/**
@@ -1426,7 +1426,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public void removeByField2(boolean field2) throws SystemException {
 		for (Foo foo : findByField2(field2)) {
-			remove(foo);
+			fooPersistence.remove(foo);
 		}
 	}
 
@@ -1437,7 +1437,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	 */
 	public void removeAll() throws SystemException {
 		for (Foo foo : findAll()) {
-			remove(foo);
+			fooPersistence.remove(foo);
 		}
 	}
 

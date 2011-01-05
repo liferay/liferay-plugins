@@ -180,7 +180,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 					typeId);
 			}
 
-			return remove(type);
+			return typePersistence.remove(type);
 		}
 		catch (NoSuchTypeException nsee) {
 			throw nsee;
@@ -461,7 +461,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	 */
 	public void removeAll() throws SystemException {
 		for (Type type : findAll()) {
-			remove(type);
+			typePersistence.remove(type);
 		}
 	}
 

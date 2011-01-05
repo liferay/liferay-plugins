@@ -224,7 +224,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 					kaleoTaskId);
 			}
 
-			return remove(kaleoTask);
+			return kaleoTaskPersistence.remove(kaleoTask);
 		}
 		catch (NoSuchTaskException nsee) {
 			throw nsee;
@@ -1356,7 +1356,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTask kaleoTask : findByCompanyId(companyId)) {
-			remove(kaleoTask);
+			kaleoTaskPersistence.remove(kaleoTask);
 		}
 	}
 
@@ -1369,7 +1369,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
 		throws SystemException {
 		for (KaleoTask kaleoTask : findByKaleoDefinitionId(kaleoDefinitionId)) {
-			remove(kaleoTask);
+			kaleoTaskPersistence.remove(kaleoTask);
 		}
 	}
 
@@ -1383,7 +1383,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		throws NoSuchTaskException, SystemException {
 		KaleoTask kaleoTask = findByKaleoNodeId(kaleoNodeId);
 
-		remove(kaleoTask);
+		kaleoTaskPersistence.remove(kaleoTask);
 	}
 
 	/**
@@ -1393,7 +1393,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTask kaleoTask : findAll()) {
-			remove(kaleoTask);
+			kaleoTaskPersistence.remove(kaleoTask);
 		}
 	}
 

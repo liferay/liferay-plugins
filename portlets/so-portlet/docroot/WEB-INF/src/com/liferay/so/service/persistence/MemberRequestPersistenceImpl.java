@@ -260,7 +260,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 					memberRequestId);
 			}
 
-			return remove(memberRequest);
+			return memberRequestPersistence.remove(memberRequest);
 		}
 		catch (NoSuchMemberRequestException nsee) {
 			throw nsee;
@@ -1611,7 +1611,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		throws NoSuchMemberRequestException, SystemException {
 		MemberRequest memberRequest = findByKey(key);
 
-		remove(memberRequest);
+		memberRequestPersistence.remove(memberRequest);
 	}
 
 	/**
@@ -1623,7 +1623,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public void removeByReceiverUserId(long receiverUserId)
 		throws SystemException {
 		for (MemberRequest memberRequest : findByReceiverUserId(receiverUserId)) {
-			remove(memberRequest);
+			memberRequestPersistence.remove(memberRequest);
 		}
 	}
 
@@ -1637,7 +1637,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	public void removeByR_S(long receiverUserId, int status)
 		throws SystemException {
 		for (MemberRequest memberRequest : findByR_S(receiverUserId, status)) {
-			remove(memberRequest);
+			memberRequestPersistence.remove(memberRequest);
 		}
 	}
 
@@ -1654,7 +1654,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		MemberRequest memberRequest = findByG_R_S(groupId, receiverUserId,
 				status);
 
-		remove(memberRequest);
+		memberRequestPersistence.remove(memberRequest);
 	}
 
 	/**
@@ -1664,7 +1664,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 */
 	public void removeAll() throws SystemException {
 		for (MemberRequest memberRequest : findAll()) {
-			remove(memberRequest);
+			memberRequestPersistence.remove(memberRequest);
 		}
 	}
 

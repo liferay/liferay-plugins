@@ -222,7 +222,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 					wallEntryId);
 			}
 
-			return remove(wallEntry);
+			return wallEntryPersistence.remove(wallEntry);
 		}
 		catch (NoSuchWallEntryException nsee) {
 			throw nsee;
@@ -1552,7 +1552,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (WallEntry wallEntry : findByGroupId(groupId)) {
-			remove(wallEntry);
+			wallEntryPersistence.remove(wallEntry);
 		}
 	}
 
@@ -1564,7 +1564,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (WallEntry wallEntry : findByUserId(userId)) {
-			remove(wallEntry);
+			wallEntryPersistence.remove(wallEntry);
 		}
 	}
 
@@ -1578,7 +1578,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public void removeByG_U(long groupId, long userId)
 		throws SystemException {
 		for (WallEntry wallEntry : findByG_U(groupId, userId)) {
-			remove(wallEntry);
+			wallEntryPersistence.remove(wallEntry);
 		}
 	}
 
@@ -1589,7 +1589,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 */
 	public void removeAll() throws SystemException {
 		for (WallEntry wallEntry : findAll()) {
-			remove(wallEntry);
+			wallEntryPersistence.remove(wallEntry);
 		}
 	}
 

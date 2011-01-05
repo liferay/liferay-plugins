@@ -240,7 +240,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 					kaleoTaskAssignmentId);
 			}
 
-			return remove(kaleoTaskAssignment);
+			return kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 		catch (NoSuchTaskAssignmentException nsee) {
 			throw nsee;
@@ -1961,7 +1961,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTaskAssignment kaleoTaskAssignment : findByCompanyId(
 				companyId)) {
-			remove(kaleoTaskAssignment);
+			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
 
@@ -1975,7 +1975,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		throws SystemException {
 		for (KaleoTaskAssignment kaleoTaskAssignment : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			remove(kaleoTaskAssignment);
+			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
 
@@ -1988,7 +1988,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	public void removeByKaleoTaskId(long kaleoTaskId) throws SystemException {
 		for (KaleoTaskAssignment kaleoTaskAssignment : findByKaleoTaskId(
 				kaleoTaskId)) {
-			remove(kaleoTaskAssignment);
+			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
 
@@ -2003,7 +2003,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		throws SystemException {
 		for (KaleoTaskAssignment kaleoTaskAssignment : findByACN_KTI(
 				assigneeClassName, kaleoTaskId)) {
-			remove(kaleoTaskAssignment);
+			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
 
@@ -2014,7 +2014,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTaskAssignment kaleoTaskAssignment : findAll()) {
-			remove(kaleoTaskAssignment);
+			kaleoTaskAssignmentPersistence.remove(kaleoTaskAssignment);
 		}
 	}
 

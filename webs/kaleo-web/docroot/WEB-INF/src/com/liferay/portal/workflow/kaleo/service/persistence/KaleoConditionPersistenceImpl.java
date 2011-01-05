@@ -221,7 +221,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 					kaleoConditionId);
 			}
 
-			return remove(kaleoCondition);
+			return kaleoConditionPersistence.remove(kaleoCondition);
 		}
 		catch (NoSuchConditionException nsee) {
 			throw nsee;
@@ -1046,7 +1046,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoCondition kaleoCondition : findByCompanyId(companyId)) {
-			remove(kaleoCondition);
+			kaleoConditionPersistence.remove(kaleoCondition);
 		}
 	}
 
@@ -1061,7 +1061,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		throws NoSuchConditionException, SystemException {
 		KaleoCondition kaleoCondition = findByC_C(className, classPK);
 
-		remove(kaleoCondition);
+		kaleoConditionPersistence.remove(kaleoCondition);
 	}
 
 	/**
@@ -1071,7 +1071,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoCondition kaleoCondition : findAll()) {
-			remove(kaleoCondition);
+			kaleoConditionPersistence.remove(kaleoCondition);
 		}
 	}
 

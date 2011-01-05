@@ -222,7 +222,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 					svnRevisionId);
 			}
 
-			return remove(svnRevision);
+			return svnRevisionPersistence.remove(svnRevision);
 		}
 		catch (NoSuchSVNRevisionException nsee) {
 			throw nsee;
@@ -1606,7 +1606,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public void removeBySVNUserId(String svnUserId) throws SystemException {
 		for (SVNRevision svnRevision : findBySVNUserId(svnUserId)) {
-			remove(svnRevision);
+			svnRevisionPersistence.remove(svnRevision);
 		}
 	}
 
@@ -1619,7 +1619,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public void removeBySVNRepositoryId(long svnRepositoryId)
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNRepositoryId(svnRepositoryId)) {
-			remove(svnRevision);
+			svnRevisionPersistence.remove(svnRevision);
 		}
 	}
 
@@ -1634,7 +1634,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws SystemException {
 		for (SVNRevision svnRevision : findBySVNU_SVNR(svnUserId,
 				svnRepositoryId)) {
-			remove(svnRevision);
+			svnRevisionPersistence.remove(svnRevision);
 		}
 	}
 
@@ -1645,7 +1645,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	 */
 	public void removeAll() throws SystemException {
 		for (SVNRevision svnRevision : findAll()) {
-			remove(svnRevision);
+			svnRevisionPersistence.remove(svnRevision);
 		}
 	}
 

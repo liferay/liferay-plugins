@@ -224,7 +224,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 					oauthConsumerId);
 			}
 
-			return remove(oAuthConsumer);
+			return oAuthConsumerPersistence.remove(oAuthConsumer);
 		}
 		catch (NoSuchOAuthConsumerException nsee) {
 			throw nsee;
@@ -1051,7 +1051,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public void removeByGadgetId(long gadgetId) throws SystemException {
 		for (OAuthConsumer oAuthConsumer : findByGadgetId(gadgetId)) {
-			remove(oAuthConsumer);
+			oAuthConsumerPersistence.remove(oAuthConsumer);
 		}
 	}
 
@@ -1066,7 +1066,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		throws NoSuchOAuthConsumerException, SystemException {
 		OAuthConsumer oAuthConsumer = findByG_S(gadgetId, serviceName);
 
-		remove(oAuthConsumer);
+		oAuthConsumerPersistence.remove(oAuthConsumer);
 	}
 
 	/**
@@ -1076,7 +1076,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 */
 	public void removeAll() throws SystemException {
 		for (OAuthConsumer oAuthConsumer : findAll()) {
-			remove(oAuthConsumer);
+			oAuthConsumerPersistence.remove(oAuthConsumer);
 		}
 	}
 

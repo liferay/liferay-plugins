@@ -234,7 +234,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 					statusId);
 			}
 
-			return remove(status);
+			return statusPersistence.remove(status);
 		}
 		catch (NoSuchStatusException nsee) {
 			throw nsee;
@@ -1683,7 +1683,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		throws NoSuchStatusException, SystemException {
 		Status status = findByUserId(userId);
 
-		remove(status);
+		statusPersistence.remove(status);
 	}
 
 	/**
@@ -1695,7 +1695,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public void removeByModifiedDate(long modifiedDate)
 		throws SystemException {
 		for (Status status : findByModifiedDate(modifiedDate)) {
-			remove(status);
+			statusPersistence.remove(status);
 		}
 	}
 
@@ -1707,7 +1707,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public void removeByOnline(boolean online) throws SystemException {
 		for (Status status : findByOnline(online)) {
-			remove(status);
+			statusPersistence.remove(status);
 		}
 	}
 
@@ -1721,7 +1721,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public void removeByM_O(long modifiedDate, boolean online)
 		throws SystemException {
 		for (Status status : findByM_O(modifiedDate, online)) {
-			remove(status);
+			statusPersistence.remove(status);
 		}
 	}
 
@@ -1732,7 +1732,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 */
 	public void removeAll() throws SystemException {
 		for (Status status : findAll()) {
-			remove(status);
+			statusPersistence.remove(status);
 		}
 	}
 

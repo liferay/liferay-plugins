@@ -242,7 +242,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 					wsrpConsumerPortletId);
 			}
 
-			return remove(wsrpConsumerPortlet);
+			return wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 		}
 		catch (NoSuchConsumerPortletException nsee) {
 			throw nsee;
@@ -1447,7 +1447,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findByUuid(uuid)) {
-			remove(wsrpConsumerPortlet);
+			wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 		}
 	}
 
@@ -1461,7 +1461,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findByWsrpConsumerId(
 				wsrpConsumerId)) {
-			remove(wsrpConsumerPortlet);
+			wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 		}
 	}
 
@@ -1477,7 +1477,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		WSRPConsumerPortlet wsrpConsumerPortlet = findByW_P(wsrpConsumerId,
 				portletHandle);
 
-		remove(wsrpConsumerPortlet);
+		wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 	}
 
 	/**
@@ -1487,7 +1487,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 */
 	public void removeAll() throws SystemException {
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : findAll()) {
-			remove(wsrpConsumerPortlet);
+			wsrpConsumerPortletPersistence.remove(wsrpConsumerPortlet);
 		}
 	}
 

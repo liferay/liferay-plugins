@@ -232,7 +232,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 					kaleoTaskInstanceTokenId);
 			}
 
-			return remove(kaleoTaskInstanceToken);
+			return kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
 		}
 		catch (NoSuchTaskInstanceTokenException nsee) {
 			throw nsee;
@@ -1577,7 +1577,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByCompanyId(
 				companyId)) {
-			remove(kaleoTaskInstanceToken);
+			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -1591,7 +1591,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			remove(kaleoTaskInstanceToken);
+			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -1605,7 +1605,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findByKaleoInstanceId(
 				kaleoInstanceId)) {
-			remove(kaleoTaskInstanceToken);
+			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
 		}
 	}
 
@@ -1616,7 +1616,7 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTaskInstanceToken kaleoTaskInstanceToken : findAll()) {
-			remove(kaleoTaskInstanceToken);
+			kaleoTaskInstanceTokenPersistence.remove(kaleoTaskInstanceToken);
 		}
 	}
 

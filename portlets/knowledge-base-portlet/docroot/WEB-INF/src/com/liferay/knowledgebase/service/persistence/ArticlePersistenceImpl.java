@@ -434,7 +434,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					articleId);
 			}
 
-			return remove(article);
+			return articlePersistence.remove(article);
 		}
 		catch (NoSuchArticleException nsee) {
 			throw nsee;
@@ -9848,7 +9848,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Article article : findByUuid(uuid)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9863,7 +9863,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		throws NoSuchArticleException, SystemException {
 		Article article = findByUUID_G(uuid, groupId);
 
-		remove(article);
+		articlePersistence.remove(article);
 	}
 
 	/**
@@ -9875,7 +9875,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByResourcePrimKey(long resourcePrimKey)
 		throws SystemException {
 		for (Article article : findByResourcePrimKey(resourcePrimKey)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9890,7 +9890,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		throws NoSuchArticleException, SystemException {
 		Article article = findByR_V(resourcePrimKey, version);
 
-		remove(article);
+		articlePersistence.remove(article);
 	}
 
 	/**
@@ -9903,7 +9903,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByR_L(long resourcePrimKey, int latest)
 		throws SystemException {
 		for (Article article : findByR_L(resourcePrimKey, latest)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9917,7 +9917,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByR_S(long resourcePrimKey, int status)
 		throws SystemException {
 		for (Article article : findByR_S(resourcePrimKey, status)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9930,7 +9930,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 */
 	public void removeByG_L(long groupId, int latest) throws SystemException {
 		for (Article article : findByG_L(groupId, latest)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9944,7 +9944,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByC_L(long companyId, int latest)
 		throws SystemException {
 		for (Article article : findByC_L(companyId, latest)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9959,7 +9959,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByR_L_S(long resourcePrimKey, int latest, int status)
 		throws SystemException {
 		for (Article article : findByR_L_S(resourcePrimKey, latest, status)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9975,7 +9975,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		int latest) throws SystemException {
 		for (Article article : findByG_P_L(groupId, parentResourcePrimKey,
 				latest)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -9990,7 +9990,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByG_L_S(long groupId, int latest, int status)
 		throws SystemException {
 		for (Article article : findByG_L_S(groupId, latest, status)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -10005,7 +10005,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public void removeByC_L_S(long companyId, int latest, int status)
 		throws SystemException {
 		for (Article article : findByC_L_S(companyId, latest, status)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -10022,7 +10022,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		long parentResourcePrimKey, int latest) throws SystemException {
 		for (Article article : findByR_G_P_L(resourcePrimKey, groupId,
 				parentResourcePrimKey, latest)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -10039,7 +10039,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		int latest, int status) throws SystemException {
 		for (Article article : findByG_P_L_S(groupId, parentResourcePrimKey,
 				latest, status)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -10058,7 +10058,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		throws SystemException {
 		for (Article article : findByR_G_P_L_S(resourcePrimKey, groupId,
 				parentResourcePrimKey, latest, status)) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 
@@ -10069,7 +10069,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 */
 	public void removeAll() throws SystemException {
 		for (Article article : findAll()) {
-			remove(article);
+			articlePersistence.remove(article);
 		}
 	}
 

@@ -259,7 +259,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 					userThreadId);
 			}
 
-			return remove(userThread);
+			return userThreadPersistence.remove(userThread);
 		}
 		catch (NoSuchUserThreadException nsee) {
 			throw nsee;
@@ -2146,7 +2146,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public void removeByMBThreadId(long mbThreadId) throws SystemException {
 		for (UserThread userThread : findByMBThreadId(mbThreadId)) {
-			remove(userThread);
+			userThreadPersistence.remove(userThread);
 		}
 	}
 
@@ -2158,7 +2158,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (UserThread userThread : findByUserId(userId)) {
-			remove(userThread);
+			userThreadPersistence.remove(userThread);
 		}
 	}
 
@@ -2173,7 +2173,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		throws NoSuchUserThreadException, SystemException {
 		UserThread userThread = findByU_M(userId, mbThreadId);
 
-		remove(userThread);
+		userThreadPersistence.remove(userThread);
 	}
 
 	/**
@@ -2186,7 +2186,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public void removeByU_D(long userId, boolean deleted)
 		throws SystemException {
 		for (UserThread userThread : findByU_D(userId, deleted)) {
-			remove(userThread);
+			userThreadPersistence.remove(userThread);
 		}
 	}
 
@@ -2201,7 +2201,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public void removeByU_R_D(long userId, boolean read, boolean deleted)
 		throws SystemException {
 		for (UserThread userThread : findByU_R_D(userId, read, deleted)) {
-			remove(userThread);
+			userThreadPersistence.remove(userThread);
 		}
 	}
 
@@ -2212,7 +2212,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	 */
 	public void removeAll() throws SystemException {
 		for (UserThread userThread : findAll()) {
-			remove(userThread);
+			userThreadPersistence.remove(userThread);
 		}
 	}
 

@@ -269,7 +269,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					kaleoTransitionId);
 			}
 
-			return remove(kaleoTransition);
+			return kaleoTransitionPersistence.remove(kaleoTransition);
 		}
 		catch (NoSuchTransitionException nsee) {
 			throw nsee;
@@ -1959,7 +1959,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoTransition kaleoTransition : findByCompanyId(companyId)) {
-			remove(kaleoTransition);
+			kaleoTransitionPersistence.remove(kaleoTransition);
 		}
 	}
 
@@ -1973,7 +1973,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		throws SystemException {
 		for (KaleoTransition kaleoTransition : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			remove(kaleoTransition);
+			kaleoTransitionPersistence.remove(kaleoTransition);
 		}
 	}
 
@@ -1985,7 +1985,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public void removeByKaleoNodeId(long kaleoNodeId) throws SystemException {
 		for (KaleoTransition kaleoTransition : findByKaleoNodeId(kaleoNodeId)) {
-			remove(kaleoTransition);
+			kaleoTransitionPersistence.remove(kaleoTransition);
 		}
 	}
 
@@ -2000,7 +2000,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		throws NoSuchTransitionException, SystemException {
 		KaleoTransition kaleoTransition = findByKNI_N(kaleoNodeId, name);
 
-		remove(kaleoTransition);
+		kaleoTransitionPersistence.remove(kaleoTransition);
 	}
 
 	/**
@@ -2015,7 +2015,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		KaleoTransition kaleoTransition = findByKNI_DT(kaleoNodeId,
 				defaultTransition);
 
-		remove(kaleoTransition);
+		kaleoTransitionPersistence.remove(kaleoTransition);
 	}
 
 	/**
@@ -2025,7 +2025,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoTransition kaleoTransition : findAll()) {
-			remove(kaleoTransition);
+			kaleoTransitionPersistence.remove(kaleoTransition);
 		}
 	}
 

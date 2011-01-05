@@ -183,7 +183,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 					checkoutId);
 			}
 
-			return remove(checkout);
+			return checkoutPersistence.remove(checkout);
 		}
 		catch (NoSuchCheckoutException nsee) {
 			throw nsee;
@@ -473,7 +473,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 	 */
 	public void removeAll() throws SystemException {
 		for (Checkout checkout : findAll()) {
-			remove(checkout);
+			checkoutPersistence.remove(checkout);
 		}
 	}
 

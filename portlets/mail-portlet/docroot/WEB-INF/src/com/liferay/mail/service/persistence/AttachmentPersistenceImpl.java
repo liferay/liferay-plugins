@@ -197,7 +197,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 					attachmentId);
 			}
 
-			return remove(attachment);
+			return attachmentPersistence.remove(attachment);
 		}
 		catch (NoSuchAttachmentException nsee) {
 			throw nsee;
@@ -822,7 +822,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public void removeByMessageId(long messageId) throws SystemException {
 		for (Attachment attachment : findByMessageId(messageId)) {
-			remove(attachment);
+			attachmentPersistence.remove(attachment);
 		}
 	}
 
@@ -833,7 +833,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 */
 	public void removeAll() throws SystemException {
 		for (Attachment attachment : findAll()) {
-			remove(attachment);
+			attachmentPersistence.remove(attachment);
 		}
 	}
 

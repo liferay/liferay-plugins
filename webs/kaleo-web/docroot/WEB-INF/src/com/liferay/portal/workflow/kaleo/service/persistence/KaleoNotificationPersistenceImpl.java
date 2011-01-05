@@ -230,7 +230,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 					kaleoNotificationId);
 			}
 
-			return remove(kaleoNotification);
+			return kaleoNotificationPersistence.remove(kaleoNotification);
 		}
 		catch (NoSuchNotificationException nsee) {
 			throw nsee;
@@ -1609,7 +1609,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNotification kaleoNotification : findByCompanyId(companyId)) {
-			remove(kaleoNotification);
+			kaleoNotificationPersistence.remove(kaleoNotification);
 		}
 	}
 
@@ -1623,7 +1623,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		throws SystemException {
 		for (KaleoNotification kaleoNotification : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			remove(kaleoNotification);
+			kaleoNotificationPersistence.remove(kaleoNotification);
 		}
 	}
 
@@ -1638,7 +1638,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		throws SystemException {
 		for (KaleoNotification kaleoNotification : findByKNI_ET(kaleoNodeId,
 				executionType)) {
-			remove(kaleoNotification);
+			kaleoNotificationPersistence.remove(kaleoNotification);
 		}
 	}
 
@@ -1649,7 +1649,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoNotification kaleoNotification : findAll()) {
-			remove(kaleoNotification);
+			kaleoNotificationPersistence.remove(kaleoNotification);
 		}
 	}
 

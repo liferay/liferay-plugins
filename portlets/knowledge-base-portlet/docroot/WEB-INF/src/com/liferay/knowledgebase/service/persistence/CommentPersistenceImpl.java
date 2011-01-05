@@ -282,7 +282,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 					commentId);
 			}
 
-			return remove(comment);
+			return commentPersistence.remove(comment);
 		}
 		catch (NoSuchCommentException nsee) {
 			throw nsee;
@@ -2364,7 +2364,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Comment comment : findByUuid(uuid)) {
-			remove(comment);
+			commentPersistence.remove(comment);
 		}
 	}
 
@@ -2379,7 +2379,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 		throws NoSuchCommentException, SystemException {
 		Comment comment = findByUUID_G(uuid, groupId);
 
-		remove(comment);
+		commentPersistence.remove(comment);
 	}
 
 	/**
@@ -2390,7 +2390,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (Comment comment : findByGroupId(groupId)) {
-			remove(comment);
+			commentPersistence.remove(comment);
 		}
 	}
 
@@ -2404,7 +2404,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	public void removeByG_C(long groupId, long classNameId)
 		throws SystemException {
 		for (Comment comment : findByG_C(groupId, classNameId)) {
-			remove(comment);
+			commentPersistence.remove(comment);
 		}
 	}
 
@@ -2418,7 +2418,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	public void removeByC_C(long classNameId, long classPK)
 		throws SystemException {
 		for (Comment comment : findByC_C(classNameId, classPK)) {
-			remove(comment);
+			commentPersistence.remove(comment);
 		}
 	}
 
@@ -2434,7 +2434,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 		throws NoSuchCommentException, SystemException {
 		Comment comment = findByU_C_C(userId, classNameId, classPK);
 
-		remove(comment);
+		commentPersistence.remove(comment);
 	}
 
 	/**
@@ -2444,7 +2444,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	 */
 	public void removeAll() throws SystemException {
 		for (Comment comment : findAll()) {
-			remove(comment);
+			commentPersistence.remove(comment);
 		}
 	}
 

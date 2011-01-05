@@ -234,7 +234,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 					templateId);
 			}
 
-			return remove(template);
+			return templatePersistence.remove(template);
 		}
 		catch (NoSuchTemplateException nsee) {
 			throw nsee;
@@ -1544,7 +1544,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	 */
 	public void removeByUuid(String uuid) throws SystemException {
 		for (Template template : findByUuid(uuid)) {
-			remove(template);
+			templatePersistence.remove(template);
 		}
 	}
 
@@ -1559,7 +1559,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		throws NoSuchTemplateException, SystemException {
 		Template template = findByUUID_G(uuid, groupId);
 
-		remove(template);
+		templatePersistence.remove(template);
 	}
 
 	/**
@@ -1570,7 +1570,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	 */
 	public void removeByGroupId(long groupId) throws SystemException {
 		for (Template template : findByGroupId(groupId)) {
-			remove(template);
+			templatePersistence.remove(template);
 		}
 	}
 
@@ -1581,7 +1581,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 	 */
 	public void removeAll() throws SystemException {
 		for (Template template : findAll()) {
-			remove(template);
+			templatePersistence.remove(template);
 		}
 	}
 

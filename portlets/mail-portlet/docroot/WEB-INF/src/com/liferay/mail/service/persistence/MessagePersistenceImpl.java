@@ -229,7 +229,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 					messageId);
 			}
 
-			return remove(message);
+			return messagePersistence.remove(message);
 		}
 		catch (NoSuchMessageException nsee) {
 			throw nsee;
@@ -1378,7 +1378,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (Message message : findByCompanyId(companyId)) {
-			remove(message);
+			messagePersistence.remove(message);
 		}
 	}
 
@@ -1390,7 +1390,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public void removeByFolderId(long folderId) throws SystemException {
 		for (Message message : findByFolderId(folderId)) {
-			remove(message);
+			messagePersistence.remove(message);
 		}
 	}
 
@@ -1405,7 +1405,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		throws NoSuchMessageException, SystemException {
 		Message message = findByF_R(folderId, remoteMessageId);
 
-		remove(message);
+		messagePersistence.remove(message);
 	}
 
 	/**
@@ -1415,7 +1415,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 	 */
 	public void removeAll() throws SystemException {
 		for (Message message : findAll()) {
-			remove(message);
+			messagePersistence.remove(message);
 		}
 	}
 

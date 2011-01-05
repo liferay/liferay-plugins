@@ -277,7 +277,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 					entryId);
 			}
 
-			return remove(entry);
+			return entryPersistence.remove(entry);
 		}
 		catch (NoSuchEntryException nsee) {
 			throw nsee;
@@ -3080,7 +3080,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByCreateDate(long createDate) throws SystemException {
 		for (Entry entry : findByCreateDate(createDate)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3092,7 +3092,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByFromUserId(long fromUserId) throws SystemException {
 		for (Entry entry : findByFromUserId(fromUserId)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3104,7 +3104,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeByToUserId(long toUserId) throws SystemException {
 		for (Entry entry : findByToUserId(toUserId)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3118,7 +3118,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByC_F(long createDate, long fromUserId)
 		throws SystemException {
 		for (Entry entry : findByC_F(createDate, fromUserId)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3132,7 +3132,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByC_T(long createDate, long toUserId)
 		throws SystemException {
 		for (Entry entry : findByC_T(createDate, toUserId)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3147,7 +3147,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByC_F_T(long createDate, long fromUserId, long toUserId)
 		throws SystemException {
 		for (Entry entry : findByC_F_T(createDate, fromUserId, toUserId)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3162,7 +3162,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void removeByF_T_C(long fromUserId, long toUserId, String content)
 		throws SystemException {
 		for (Entry entry : findByF_T_C(fromUserId, toUserId, content)) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 
@@ -3173,7 +3173,7 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	 */
 	public void removeAll() throws SystemException {
 		for (Entry entry : findAll()) {
-			remove(entry);
+			entryPersistence.remove(entry);
 		}
 	}
 

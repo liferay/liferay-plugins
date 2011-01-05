@@ -223,7 +223,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					feedId);
 			}
 
-			return remove(feed);
+			return feedPersistence.remove(feed);
 		}
 		catch (NoSuchFeedException nsee) {
 			throw nsee;
@@ -867,7 +867,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TWUI(companyId, twitterUserId);
 
-		remove(feed);
+		feedPersistence.remove(feed);
 	}
 
 	/**
@@ -881,7 +881,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		throws NoSuchFeedException, SystemException {
 		Feed feed = findByC_TSN(companyId, twitterScreenName);
 
-		remove(feed);
+		feedPersistence.remove(feed);
 	}
 
 	/**
@@ -891,7 +891,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	 */
 	public void removeAll() throws SystemException {
 		for (Feed feed : findAll()) {
-			remove(feed);
+			feedPersistence.remove(feed);
 		}
 	}
 

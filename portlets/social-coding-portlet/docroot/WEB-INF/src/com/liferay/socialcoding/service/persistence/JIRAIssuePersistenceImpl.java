@@ -343,7 +343,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 					jiraIssueId);
 			}
 
-			return remove(jiraIssue);
+			return jiraIssuePersistence.remove(jiraIssue);
 		}
 		catch (NoSuchJIRAIssueException nsee) {
 			throw nsee;
@@ -4749,7 +4749,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public void removeByProjectId(long projectId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByProjectId(projectId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4763,7 +4763,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		throws NoSuchJIRAIssueException, SystemException {
 		JIRAIssue jiraIssue = findByKey(key);
 
-		remove(jiraIssue);
+		jiraIssuePersistence.remove(jiraIssue);
 	}
 
 	/**
@@ -4775,7 +4775,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByReporterJiraUserId(String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByReporterJiraUserId(reporterJiraUserId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4788,7 +4788,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByAssigneeJiraUserId(String assigneeJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByAssigneeJiraUserId(assigneeJiraUserId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4802,7 +4802,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByMD_P(Date modifiedDate, long projectId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P(modifiedDate, projectId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4816,7 +4816,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByP_RJUI(long projectId, String reporterJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI(projectId, reporterJiraUserId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4830,7 +4830,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public void removeByP_AJUI(long projectId, String assigneeJiraUserId)
 		throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_AJUI(projectId, assigneeJiraUserId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4846,7 +4846,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4862,7 +4862,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId) throws SystemException {
 		for (JIRAIssue jiraIssue : findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4878,7 +4878,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String status) throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_RJUI_S(projectId,
 				reporterJiraUserId, status)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4894,7 +4894,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String status) throws SystemException {
 		for (JIRAIssue jiraIssue : findByP_AJUI_S(projectId,
 				assigneeJiraUserId, status)) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 
@@ -4905,7 +4905,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAIssue jiraIssue : findAll()) {
-			remove(jiraIssue);
+			jiraIssuePersistence.remove(jiraIssue);
 		}
 	}
 

@@ -213,7 +213,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 					folderId);
 			}
 
-			return remove(folder);
+			return folderPersistence.remove(folder);
 		}
 		catch (NoSuchFolderException nsee) {
 			throw nsee;
@@ -1031,7 +1031,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public void removeByAccountId(long accountId) throws SystemException {
 		for (Folder folder : findByAccountId(accountId)) {
-			remove(folder);
+			folderPersistence.remove(folder);
 		}
 	}
 
@@ -1046,7 +1046,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		throws NoSuchFolderException, SystemException {
 		Folder folder = findByA_F(accountId, fullName);
 
-		remove(folder);
+		folderPersistence.remove(folder);
 	}
 
 	/**
@@ -1056,7 +1056,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 	 */
 	public void removeAll() throws SystemException {
 		for (Folder folder : findAll()) {
-			remove(folder);
+			folderPersistence.remove(folder);
 		}
 	}
 

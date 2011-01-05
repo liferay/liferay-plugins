@@ -276,7 +276,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 					kaleoDefinitionId);
 			}
 
-			return remove(kaleoDefinition);
+			return kaleoDefinitionPersistence.remove(kaleoDefinition);
 		}
 		catch (NoSuchDefinitionException nsee) {
 			throw nsee;
@@ -2277,7 +2277,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByCompanyId(companyId)) {
-			remove(kaleoDefinition);
+			kaleoDefinitionPersistence.remove(kaleoDefinition);
 		}
 	}
 
@@ -2291,7 +2291,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public void removeByC_N(long companyId, String name)
 		throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByC_N(companyId, name)) {
-			remove(kaleoDefinition);
+			kaleoDefinitionPersistence.remove(kaleoDefinition);
 		}
 	}
 
@@ -2305,7 +2305,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public void removeByC_A(long companyId, boolean active)
 		throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByC_A(companyId, active)) {
-			remove(kaleoDefinition);
+			kaleoDefinitionPersistence.remove(kaleoDefinition);
 		}
 	}
 
@@ -2321,7 +2321,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		throws NoSuchDefinitionException, SystemException {
 		KaleoDefinition kaleoDefinition = findByC_N_V(companyId, name, version);
 
-		remove(kaleoDefinition);
+		kaleoDefinitionPersistence.remove(kaleoDefinition);
 	}
 
 	/**
@@ -2336,7 +2336,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findByC_N_A(companyId, name,
 				active)) {
-			remove(kaleoDefinition);
+			kaleoDefinitionPersistence.remove(kaleoDefinition);
 		}
 	}
 
@@ -2347,7 +2347,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoDefinition kaleoDefinition : findAll()) {
-			remove(kaleoDefinition);
+			kaleoDefinitionPersistence.remove(kaleoDefinition);
 		}
 	}
 

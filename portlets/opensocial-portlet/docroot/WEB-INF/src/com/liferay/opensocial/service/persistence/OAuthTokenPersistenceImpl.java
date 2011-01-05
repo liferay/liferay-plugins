@@ -235,7 +235,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 					oauthTokenId);
 			}
 
-			return remove(oAuthToken);
+			return oAuthTokenPersistence.remove(oAuthToken);
 		}
 		catch (NoSuchOAuthTokenException nsee) {
 			throw nsee;
@@ -1173,7 +1173,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	public void removeByG_S(long gadgetId, String serviceName)
 		throws SystemException {
 		for (OAuthToken oAuthToken : findByG_S(gadgetId, serviceName)) {
-			remove(oAuthToken);
+			oAuthTokenPersistence.remove(oAuthToken);
 		}
 	}
 
@@ -1193,7 +1193,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		OAuthToken oAuthToken = findByU_G_S_M_T(userId, gadgetId, serviceName,
 				moduleId, tokenName);
 
-		remove(oAuthToken);
+		oAuthTokenPersistence.remove(oAuthToken);
 	}
 
 	/**
@@ -1203,7 +1203,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 */
 	public void removeAll() throws SystemException {
 		for (OAuthToken oAuthToken : findAll()) {
-			remove(oAuthToken);
+			oAuthTokenPersistence.remove(oAuthToken);
 		}
 	}
 

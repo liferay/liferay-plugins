@@ -221,7 +221,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 					jiraActionId);
 			}
 
-			return remove(jiraAction);
+			return jiraActionPersistence.remove(jiraAction);
 		}
 		catch (NoSuchJIRAActionException nsee) {
 			throw nsee;
@@ -1581,7 +1581,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeByJiraUserId(String jiraUserId) throws SystemException {
 		for (JIRAAction jiraAction : findByJiraUserId(jiraUserId)) {
-			remove(jiraAction);
+			jiraActionPersistence.remove(jiraAction);
 		}
 	}
 
@@ -1593,7 +1593,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeByJiraIssueId(long jiraIssueId) throws SystemException {
 		for (JIRAAction jiraAction : findByJiraIssueId(jiraIssueId)) {
-			remove(jiraAction);
+			jiraActionPersistence.remove(jiraAction);
 		}
 	}
 
@@ -1605,7 +1605,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeByType(String type) throws SystemException {
 		for (JIRAAction jiraAction : findByType(type)) {
-			remove(jiraAction);
+			jiraActionPersistence.remove(jiraAction);
 		}
 	}
 
@@ -1616,7 +1616,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	 */
 	public void removeAll() throws SystemException {
 		for (JIRAAction jiraAction : findAll()) {
-			remove(jiraAction);
+			jiraActionPersistence.remove(jiraAction);
 		}
 	}
 

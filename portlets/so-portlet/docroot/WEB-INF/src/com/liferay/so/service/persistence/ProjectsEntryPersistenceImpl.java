@@ -201,7 +201,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 					projectsEntryId);
 			}
 
-			return remove(projectsEntry);
+			return projectsEntryPersistence.remove(projectsEntry);
 		}
 		catch (NoSuchProjectsEntryException nsee) {
 			throw nsee;
@@ -836,7 +836,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	public void removeByUserId(long userId) throws SystemException {
 		for (ProjectsEntry projectsEntry : findByUserId(userId)) {
-			remove(projectsEntry);
+			projectsEntryPersistence.remove(projectsEntry);
 		}
 	}
 
@@ -847,7 +847,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	 */
 	public void removeAll() throws SystemException {
 		for (ProjectsEntry projectsEntry : findAll()) {
-			remove(projectsEntry);
+			projectsEntryPersistence.remove(projectsEntry);
 		}
 	}
 

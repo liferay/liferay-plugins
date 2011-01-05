@@ -183,7 +183,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 					definitionId);
 			}
 
-			return remove(definition);
+			return definitionPersistence.remove(definition);
 		}
 		catch (NoSuchDefinitionException nsee) {
 			throw nsee;
@@ -478,7 +478,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 	 */
 	public void removeAll() throws SystemException {
 		for (Definition definition : findAll()) {
-			remove(definition);
+			definitionPersistence.remove(definition);
 		}
 	}
 

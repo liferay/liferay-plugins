@@ -233,7 +233,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 					kaleoNotificationRecipientId);
 			}
 
-			return remove(kaleoNotificationRecipient);
+			return kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 		}
 		catch (NoSuchNotificationRecipientException nsee) {
 			throw nsee;
@@ -1576,7 +1576,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	public void removeByCompanyId(long companyId) throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByCompanyId(
 				companyId)) {
-			remove(kaleoNotificationRecipient);
+			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 		}
 	}
 
@@ -1590,7 +1590,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoDefinitionId(
 				kaleoDefinitionId)) {
-			remove(kaleoNotificationRecipient);
+			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 		}
 	}
 
@@ -1604,7 +1604,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findByKaleoNotificationId(
 				kaleoNotificationId)) {
-			remove(kaleoNotificationRecipient);
+			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 		}
 	}
 
@@ -1615,7 +1615,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 	 */
 	public void removeAll() throws SystemException {
 		for (KaleoNotificationRecipient kaleoNotificationRecipient : findAll()) {
-			remove(kaleoNotificationRecipient);
+			kaleoNotificationRecipientPersistence.remove(kaleoNotificationRecipient);
 		}
 	}
 

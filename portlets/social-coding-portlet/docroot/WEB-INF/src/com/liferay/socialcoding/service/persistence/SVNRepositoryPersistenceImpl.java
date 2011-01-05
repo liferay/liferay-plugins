@@ -203,7 +203,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 					svnRepositoryId);
 			}
 
-			return remove(svnRepository);
+			return svnRepositoryPersistence.remove(svnRepository);
 		}
 		catch (NoSuchSVNRepositoryException nsee) {
 			throw nsee;
@@ -657,7 +657,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		throws NoSuchSVNRepositoryException, SystemException {
 		SVNRepository svnRepository = findByUrl(url);
 
-		remove(svnRepository);
+		svnRepositoryPersistence.remove(svnRepository);
 	}
 
 	/**
@@ -667,7 +667,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	 */
 	public void removeAll() throws SystemException {
 		for (SVNRepository svnRepository : findAll()) {
-			remove(svnRepository);
+			svnRepositoryPersistence.remove(svnRepository);
 		}
 	}
 
