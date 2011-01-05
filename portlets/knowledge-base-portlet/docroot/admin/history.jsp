@@ -44,8 +44,8 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 			rowChecker="<%= new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getArticles(scopeGroupId, article.getResourcePrimKey(), status, searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
-				total="<%= ArticleServiceUtil.getArticlesCount(scopeGroupId, article.getResourcePrimKey(), status) %>"
+				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), status, searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
+				total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey(), status) %>"
 			/>
 
 			<liferay-ui:search-container-row
