@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
@@ -1007,19 +1008,19 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		if (serviceContext.isCommandAdd() &&
-			!KnowledgeBaseUtil.getEmailArticleAddedEnabled(preferences)) {
+			!AdminUtil.getEmailArticleAddedEnabled(preferences)) {
 
 			return;
 		}
 
 		if (serviceContext.isCommandUpdate() &&
-			!KnowledgeBaseUtil.getEmailArticleUpdatedEnabled(preferences)) {
+			!AdminUtil.getEmailArticleUpdatedEnabled(preferences)) {
 
 			return;
 		}
 
-		String fromName = KnowledgeBaseUtil.getEmailFromName(preferences);
-		String fromAddress = KnowledgeBaseUtil.getEmailFromAddress(preferences);
+		String fromName = AdminUtil.getEmailFromName(preferences);
+		String fromAddress = AdminUtil.getEmailFromAddress(preferences);
 
 		String articleContent = StringUtil.replace(
 			article.getContent(),
@@ -1058,14 +1059,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String body = null;
 
 		if (serviceContext.isCommandAdd()) {
-			subject = KnowledgeBaseUtil.getEmailArticleAddedSubject(
-				preferences);
-			body = KnowledgeBaseUtil.getEmailArticleUpdatedBody(preferences);
+			subject = AdminUtil.getEmailArticleAddedSubject(preferences);
+			body = AdminUtil.getEmailArticleUpdatedBody(preferences);
 		}
 		else {
-			subject = KnowledgeBaseUtil.getEmailArticleUpdatedSubject(
-				preferences);
-			body = KnowledgeBaseUtil.getEmailArticleUpdatedBody(preferences);
+			subject = AdminUtil.getEmailArticleUpdatedSubject(preferences);
+			body = AdminUtil.getEmailArticleUpdatedBody(preferences);
 		}
 
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(

@@ -20,16 +20,16 @@
 String tabs2 = ParamUtil.getString(request, "tabs2", "email-from");
 String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 
-String emailFromName = ParamUtil.getString(request, "emailFromName", KnowledgeBaseUtil.getEmailFromName(preferences));
-String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", KnowledgeBaseUtil.getEmailFromAddress(preferences));
+String emailFromName = ParamUtil.getString(request, "emailFromName", AdminUtil.getEmailFromName(preferences));
+String emailFromAddress = ParamUtil.getString(request, "emailFromAddress", AdminUtil.getEmailFromAddress(preferences));
 
-boolean emailArticleAddedEnabled = ParamUtil.getBoolean(request, "emailArticleAddedEnabled", KnowledgeBaseUtil.getEmailArticleAddedEnabled(preferences));
-String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", KnowledgeBaseUtil.getEmailArticleAddedSubject(preferences));
-String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", KnowledgeBaseUtil.getEmailArticleAddedBody(preferences));
+boolean emailArticleAddedEnabled = ParamUtil.getBoolean(request, "emailArticleAddedEnabled", AdminUtil.getEmailArticleAddedEnabled(preferences));
+String emailArticleAddedSubject = ParamUtil.getString(request, "emailArticleAddedSubject", AdminUtil.getEmailArticleAddedSubject(preferences));
+String emailArticleAddedBody = ParamUtil.getString(request, "emailArticleAddedBody", AdminUtil.getEmailArticleAddedBody(preferences));
 
-boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailArticleUpdatedEnabled", KnowledgeBaseUtil.getEmailArticleUpdatedEnabled(preferences));
-String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", KnowledgeBaseUtil.getEmailArticleUpdatedSubject(preferences));
-String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", KnowledgeBaseUtil.getEmailArticleUpdatedBody(preferences));
+boolean emailArticleUpdatedEnabled = ParamUtil.getBoolean(request, "emailArticleUpdatedEnabled", AdminUtil.getEmailArticleUpdatedEnabled(preferences));
+String emailArticleUpdatedSubject = ParamUtil.getString(request, "emailArticleUpdatedSubject", AdminUtil.getEmailArticleUpdatedSubject(preferences));
+String emailArticleUpdatedBody = ParamUtil.getString(request, "emailArticleUpdatedBody", AdminUtil.getEmailArticleUpdatedBody(preferences));
 
 String editorParam = StringPool.BLANK;
 String editorBody = StringPool.BLANK;

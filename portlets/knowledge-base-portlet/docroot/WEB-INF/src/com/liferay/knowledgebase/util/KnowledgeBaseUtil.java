@@ -47,8 +47,6 @@ import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
-import com.liferay.util.ContentUtil;
-import com.liferay.util.portlet.PortletProps;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -462,104 +460,6 @@ public class KnowledgeBaseUtil {
 		}
 
 		return articles.get(0);
-	}
-
-	public static String getEmailArticleAddedBody(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		String emailArticleAddedBody = jxPreferences.getValue(
-			"emailArticleAddedBody", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleAddedBody)) {
-			return emailArticleAddedBody;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.added.body"));
-	}
-
-	public static boolean getEmailArticleAddedEnabled(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		String emailArticleAddedEnabled = jxPreferences.getValue(
-			"emailArticleAddedEnabled", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleAddedEnabled)) {
-			return GetterUtil.getBoolean(emailArticleAddedEnabled);
-		}
-
-		return GetterUtil.getBoolean(
-			PortletProps.get("admin.email.article.added.enabled"));
-	}
-
-	public static String getEmailArticleAddedSubject(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		String emailArticleAddedSubject = jxPreferences.getValue(
-			"emailArticleAddedSubject", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleAddedSubject)) {
-			return emailArticleAddedSubject;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.added.subject"));
-	}
-
-	public static String getEmailArticleUpdatedBody(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		String emailArticleUpdatedBody = jxPreferences.getValue(
-			"emailArticleUpdatedBody", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleUpdatedBody)) {
-			return emailArticleUpdatedBody;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.updated.body"));
-	}
-
-	public static boolean getEmailArticleUpdatedEnabled(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		String emailArticleUpdatedEnabled = jxPreferences.getValue(
-			"emailArticleUpdatedEnabled", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleUpdatedEnabled)) {
-			return GetterUtil.getBoolean(emailArticleUpdatedEnabled);
-		}
-
-		return GetterUtil.getBoolean(
-			PortletProps.get("admin.email.article.updated.enabled"));
-	}
-
-	public static String getEmailArticleUpdatedSubject(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		String emailArticleUpdatedSubject = jxPreferences.getValue(
-			"emailArticleUpdatedSubject", StringPool.BLANK);
-
-		if (Validator.isNotNull(emailArticleUpdatedSubject)) {
-			return emailArticleUpdatedSubject;
-		}
-
-		return ContentUtil.get(
-			PortletProps.get("admin.email.article.updated.subject"));
-	}
-
-	public static String getEmailFromAddress(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		return jxPreferences.getValue(
-			"emailFromAddress", PortletProps.get("admin.email.from.address"));
-	}
-
-	public static String getEmailFromName(
-		javax.portlet.PortletPreferences jxPreferences) {
-
-		return jxPreferences.getValue(
-			"emailFromName", PortletProps.get("admin.email.from.name"));
 	}
 
 	public static Map<String, Object> getPreferencesMap(

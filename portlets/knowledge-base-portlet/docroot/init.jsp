@@ -37,6 +37,7 @@
 <%@ page import="com.liferay.knowledgebase.NoSuchTemplateException" %>
 <%@ page import="com.liferay.knowledgebase.TemplateContentException" %>
 <%@ page import="com.liferay.knowledgebase.TemplateTitleException" %>
+<%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
 <%@ page import="com.liferay.knowledgebase.model.Article" %>
 <%@ page import="com.liferay.knowledgebase.model.Comment" %>
 <%@ page import="com.liferay.knowledgebase.model.Template" %>
