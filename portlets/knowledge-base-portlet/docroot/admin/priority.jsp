@@ -27,7 +27,7 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey", parentResourcePrimKey);
 %>
 
-<div class="kb-article-priority">
+<div class="kb-priority">
 	<c:if test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 
 		<%
@@ -58,4 +58,20 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 		%>
 
 	</aui:select>
+
+	<c:if test="<%= (article == null) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE)) %>">
+		<portlet:renderURL var="selectArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+			<portlet:param name="jspPage" value="/admin/select_article.jsp" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
+		</portlet:renderURL>
+
+		<%
+		String taglibOnClick = "var selectArticleWindow = window.open('" + selectArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value, 'selectArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticleWindow.focus();";
+		%>
+
+		<div class="kb-edit-link">
+			<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
+		</div>
+	</c:if>
 </div>

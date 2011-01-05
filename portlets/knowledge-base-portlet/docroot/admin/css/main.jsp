@@ -96,6 +96,10 @@
 	margin: 4px 0 0;
 }
 
+.knowledge-base-portlet-admin .kb-attachments {
+	margin: 5px 0 0;
+}
+
 .knowledge-base-portlet-admin .kb-edit-link {
 	margin: 5px 0 0;
 }

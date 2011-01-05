@@ -19,17 +19,7 @@
 <%
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-String dirName = ParamUtil.getString(request, "dirName");
-
-String[] fileNames = new String[0];
-
-if (article != null) {
-	fileNames = article.getAttachmentsFileNames();
-}
-
-if (Validator.isNotNull(dirName)) {
-	fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
-}
+String[] fileNames = article.getAttachmentsFileNames();
 %>
 
 <c:if test="<%= fileNames.length > 0 %>">

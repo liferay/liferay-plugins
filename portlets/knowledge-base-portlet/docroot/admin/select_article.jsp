@@ -80,7 +80,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					align="right"
 				>
 					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/article_priority.jsp" servletContext="<%= application %>">
+						<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>">
 							<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 							<liferay-util:param name="priority" value="<%= String.valueOf(ArticleConstants.DEFAULT_PRIORITY) %>" />
@@ -106,7 +106,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					<%= oldParentArticle.getTitle() %>
 
 					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/article_priority.jsp" servletContext="<%= application %>">
+						<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>">
 							<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 							<liferay-util:param name="priority" value="<%= String.valueOf(ArticleConstants.DEFAULT_PRIORITY) %>" />
