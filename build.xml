@@ -13,6 +13,8 @@
 	<target name="build-service">
 		<ant dir="portlets" target="build-service" inheritAll="false" />
 		<ant dir="webs" target="build-service" inheritAll="false" />
+
+		<ant dir="portlets/test-clp-portlet" target="compile" inheritAll="false" />
 	</target>
 
 	<target name="build-summary">
