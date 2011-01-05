@@ -133,18 +133,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		super.notifySubscriber(subscription);
 	}
 
-	protected String replaceContent(String content, Locale locale) {
-		try {
-			content = _replaceContent(content, locale);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
-		return super.replaceContent(content, locale);
-	}
-
-	private String _replaceContent(String content, Locale locale)
+	protected String replaceContent(String content, Locale locale)
 		throws Exception {
 
 		String articleAttachments = getEmailArticleAttachments(locale);
@@ -168,7 +157,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 				categoryTitle
 			});
 
-		return content;
+		return super.replaceContent(content, locale);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

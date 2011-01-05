@@ -61,6 +61,18 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 		upgradeExpandoValues(expandoTable);
 	}
 
+	protected ExpandoTable getExpandoTable(String name) throws Exception {
+		long companyId = PortalUtil.getDefaultCompanyId();
+
+		try {
+			return ExpandoTableLocalServiceUtil.getTable(
+				companyId, Subscription.class.getName(), name);
+		}
+		catch (NoSuchTableException nste) {
+			return null;
+		}
+	}
+
 	protected boolean hasExpandoColumn(ExpandoTable expandoTable, String name)
 		throws Exception {
 
@@ -73,18 +85,6 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 		}
 
 		return true;
-	}
-
-	protected ExpandoTable getExpandoTable(String name) throws Exception {
-		long companyId = PortalUtil.getDefaultCompanyId();
-
-		try {
-			return ExpandoTableLocalServiceUtil.getTable(
-				companyId, Subscription.class.getName(), name);
-		}
-		catch (NoSuchTableException nste) {
-			return null;
-		}
 	}
 
 	protected void upgradeExpandoValues(ExpandoTable expandoTable)

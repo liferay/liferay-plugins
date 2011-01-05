@@ -49,6 +49,15 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		super.processAction(portletConfig, actionRequest, actionResponse);
 	}
 
+	protected boolean isVariableTerm(String s) {
+		if (s.contains("[$") && s.contains("$]")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	protected void validateEmailArticleAdded(ActionRequest actionRequest) {
 		String emailArticleAddedSubject = getParameter(
 			actionRequest, "emailArticleAddedSubject");
@@ -86,14 +95,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			SessionErrors.add(actionRequest, "emailFromName");
 		}
 		else if (!Validator.isEmailAddress(emailFromAddress) &&
-				 !_isVariableTerm(emailFromAddress)) {
+				 !isVariableTerm(emailFromAddress)) {
 
 			SessionErrors.add(actionRequest, "emailFromAddress");
 		}
-	}
-
-	private boolean _isVariableTerm(String s) {
-		return (s.contains("[$") && s.contains("$]"));
 	}
 
 }

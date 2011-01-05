@@ -384,26 +384,31 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long companyId, long plid, String portletId)
 		throws SystemException {
 
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			ExpandoValue.class, "expandoValue",
-			PortalClassLoaderUtil.getClassLoader());
+		Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
 
 		Property tableIdProperty = PropertyFactoryUtil.forName("tableId");
-		Property columnIdProperty = PropertyFactoryUtil.forName("columnId");
-		Property dataProperty = PropertyFactoryUtil.forName("data");
 
 		ExpandoColumn expandoColumn = expandoColumnLocalService.getColumn(
 			companyId, Subscription.class.getName(), "KB", "portletPrimKeys");
 
+		conjunction.add(tableIdProperty.eq(expandoColumn.getTableId()));
+
+		Property columnIdProperty = PropertyFactoryUtil.forName("columnId");
+
+		conjunction.add(columnIdProperty.eq(expandoColumn.getColumnId()));
+
+		Property dataProperty = PropertyFactoryUtil.forName("data");
+
 		String portletPrimKey = ArticleConstants.getPortletPrimKey(
 			plid, portletId);
 
-		Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
+		conjunction.add(
+			dataProperty.like(
+				StringPool.PERCENT + portletPrimKey + StringPool.PERCENT));
 
-		conjunction.add(tableIdProperty.eq(expandoColumn.getTableId()));
-		conjunction.add(columnIdProperty.eq(expandoColumn.getColumnId()));
-		conjunction.add(dataProperty.like(
-			StringPool.PERCENT + portletPrimKey + StringPool.PERCENT));
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			ExpandoValue.class, "expandoValue",
+			PortalClassLoaderUtil.getClassLoader());
 
 		dynamicQuery.add(conjunction);
 
@@ -505,7 +510,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
 			"portletPrimKeys", subscription.getSubscriptionId());
 
-		String[] portletPrimKeys = new String[] {
+		String[] portletPrimKeys = {
 			ArticleConstants.getPortletPrimKey(plid, portletId)
 		};
 
