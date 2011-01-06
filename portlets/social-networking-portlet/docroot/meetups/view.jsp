@@ -100,6 +100,16 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			<br />
 
+			<div>
+				<%= dateFormatDateTime.format(meetupsEntry.getStartDate()) %>
+
+				&#150; 
+
+				<%= dateFormatDateTime.format(meetupsEntry.getEndDate()) %>
+			</div>
+
+			<br />
+
 			<c:if test="<%= yesTotal > 1 %>">
 				<div>
 					<%= LanguageUtil.format(pageContext, "x-people-are-planning-to-attend-this-meetup", String.valueOf(yesTotal)) %>
