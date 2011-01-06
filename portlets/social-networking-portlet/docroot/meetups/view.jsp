@@ -101,11 +101,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 			<br />
 
 			<div>
-				<%= dateFormatDateTime.format(meetupsEntry.getStartDate()) %>
-
-				&#150; 
-
-				<%= dateFormatDateTime.format(meetupsEntry.getEndDate()) %>
+				<%= dateFormatDateTime.format(meetupsEntry.getStartDate()) %> &#150; <%= dateFormatDateTime.format(meetupsEntry.getEndDate()) %>
 			</div>
 
 			<br />
