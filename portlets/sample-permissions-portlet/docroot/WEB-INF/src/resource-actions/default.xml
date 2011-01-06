@@ -39,6 +39,11 @@
 			<guest-unsupported>
 				<action-key>UPDATE</action-key>
 			</guest-unsupported>
+			<owner-defaults>
+				<action-key>DELETE</action-key>
+				<action-key>UPDATE</action-key>
+				<action-key>VIEW</action-key>
+			</owner-defaults>
 		</permissions>
 	</model-resource>
 </resource-action-mapping>
