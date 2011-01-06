@@ -68,7 +68,7 @@
 	<target name="loop-modules">
 		<if>
 			<not>
-				<equals arg1="${plugins.includes}" arg2=""/>
+				<equals arg1="${plugins.includes}" arg2="" />
 			</not>
 			<then>
 				<for param="module.name">
@@ -79,9 +79,9 @@
 						<antelope:stringutil string="@{module.name}" property="module.name.unix">
 							<antelope:replace regex="\\" replacement="/" />
 						</antelope:stringutil>
-		
+
 						<antelope:grep in="${module.name.unix}" regex="(.*/)(.*)" group="2" property="module.name" />
-		
+
 						<antcall target="${loop.modules.cmd}" />
 					</sequential>
 				</for>
