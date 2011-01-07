@@ -16,7 +16,6 @@ package com.liferay.opensocial.shindig.service;
 
 import com.liferay.opensocial.util.SerializerUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -61,7 +60,7 @@ import org.apache.shindig.social.opensocial.spi.MediaItemService;
 import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
- * @author Michael Young
+ * @author Dennis Ju
  */
 public class LiferayMediaItemService implements MediaItemService {
 
@@ -420,17 +419,6 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		String fileName = getFileName(mediaItem, options);
 
-		JSONObject extraSettingsJSONObject = JSONFactoryUtil.createJSONObject();
-
-		extraSettingsJSONObject.put("DURATION", mediaItem.getDuration());
-
-		JSONObject locationJSONObject = getLocation(mediaItem.getLocation());
-
-		extraSettingsJSONObject.put("location", locationJSONObject);
-
-		SerializerUtil.copyProperties(
-			mediaItem, extraSettingsJSONObject, _MEDIA_ITEM_FIELDS);
-
 		if (mediaItemId == null) {
 			long albumIdLong = GetterUtil.getLong(albumId);
 
@@ -442,8 +430,8 @@ public class LiferayMediaItemService implements MediaItemService {
 
 			DLAppLocalServiceUtil.addFileEntry(
 				userIdLong, groupIdLong, albumIdLong, fileName,
-				mediaItem.getDescription(), StringPool.BLANK,
-				extraSettingsJSONObject.toString(), byteArray, serviceContext);
+				mediaItem.getDescription(), StringPool.BLANK, byteArray,
+				serviceContext);
 		}
 		else {
 			long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
@@ -462,8 +450,7 @@ public class LiferayMediaItemService implements MediaItemService {
 			DLAppLocalServiceUtil.updateFileEntry(
 				userIdLong, fileEntry.getFileEntryId(), fileName,
 				mediaItem.getTitle(), mediaItem.getDescription(),
-				StringPool.BLANK, false, extraSettingsJSONObject.toString(),
-				byteArray, serviceContext);
+				StringPool.BLANK, false, byteArray, serviceContext);
 		}
 	}
 
@@ -540,36 +527,6 @@ public class LiferayMediaItemService implements MediaItemService {
 		mediaItem.setTitle(fileEntry.getTitle());
 		mediaItem.setType(getMediaItemType(fileEntry));
 		mediaItem.setUrl(getFileEntryURL(fileEntry, securityToken));
-
-		JSONObject extraSettingsJSONObject = null;
-
-		try {
-			extraSettingsJSONObject = JSONFactoryUtil.createJSONObject(
-				fileEntry.getExtraSettings());
-		}
-		catch (JSONException jsone) {
-		}
-
-		if (extraSettingsJSONObject != null) {
-			if (extraSettingsJSONObject.has(
-					MediaItem.Field.DURATION.toString())) {
-
-				mediaItem.setDuration(
-					extraSettingsJSONObject.getString("DURATION"));
-			}
-
-			if (extraSettingsJSONObject.has(
-					MediaItem.Field.LOCATION.toString())) {
-
-				Address address = getAddress(
-					extraSettingsJSONObject.getJSONObject("location"));
-
-				mediaItem.setLocation(address);
-			}
-
-			SerializerUtil.copyProperties(
-				extraSettingsJSONObject, mediaItem, _MEDIA_ITEM_FIELDS);
-		}
 
 		return mediaItem;
 	}
