@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/contacts-center/icon.png</icon>
+		<icon>/contacts_center/icon.png</icon>
 		<css-class-wrapper>contacts-portlet-contacts-center</css-class-wrapper>
 	</portlet>
 	<role-mapper>
