@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.0.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_0_0.dtd">
+
+<hook>
+	<portal-properties>portal.properties</portal-properties>
+	<service>
+		<service-type>com.liferay.portlet.expando.service.ExpandoColumnLocalService</service-type>
+		<service-impl>com.liferay.hook.expando.mongodb.service.MongoDBColumnLocalService</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.expando.service.ExpandoRowLocalService</service-type>
+		<service-impl>com.liferay.hook.expando.mongodb.service.MongoDBRowLocalService</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.expando.service.ExpandoTableLocalService</service-type>
+		<service-impl>com.liferay.hook.expando.mongodb.service.MongoDBTableLocalService</service-impl>
+	</service>
+	<service>
+		<service-type>com.liferay.portlet.expando.service.ExpandoValueLocalService</service-type>
+		<service-impl>com.liferay.hook.expando.mongodb.service.MongoDBValueLocalService</service-impl>
+	</service>
+</hook>
