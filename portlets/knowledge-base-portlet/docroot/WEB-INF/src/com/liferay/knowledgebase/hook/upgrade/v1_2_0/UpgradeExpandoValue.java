@@ -54,11 +54,9 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 			return;
 		}
 
-		if (hasExpandoColumn(expandoTable, "portletPrimKeys")) {
-			return;
+		if (!hasExpandoColumn(expandoTable, "portletPrimKeys")) {
+			upgradeExpandoValues(expandoTable);
 		}
-
-		upgradeExpandoValues(expandoTable);
 	}
 
 	protected ExpandoTable getExpandoTable(String name) throws Exception {
@@ -122,11 +120,9 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 				groupId = subscription.getClassPK();
 			}
 
-			String[] portletIds = ExpandoValueLocalServiceUtil.getData(
-				subscription.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletIds", subscription.getSubscriptionId(), new String[0]);
-
 			String[] portletPrimKeys = new String[0];
+
+			String[] portletIds = expandoValue.getStringArray();
 
 			for (int i = 0; i < portletIds.length; i++) {
 				String portletId = portletIds[i];

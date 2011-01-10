@@ -31,19 +31,22 @@ public class GroupListener extends BaseModelListener<Group> {
 
 	public void onBeforeRemove(Group group) throws ModelListenerException {
 		try {
-			List<Subscription> subscriptions =
-				SubscriptionLocalServiceUtil.getSubscriptions(
-					group.getCompanyId(), Article.class.getName(),
-					group.getGroupId());
-
-			for (Subscription subscription : subscriptions) {
-				ArticleLocalServiceUtil.unsubscribeAllPortlets(
-					subscription.getCompanyId(),
-					subscription.getSubscriptionId());
-			}
+			doOnBeforeRemove(group);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
+		}
+	}
+
+	protected void doOnBeforeRemove(Group group) throws Exception {
+		List<Subscription> subscriptions =
+			SubscriptionLocalServiceUtil.getSubscriptions(
+				group.getCompanyId(), Article.class.getName(),
+				group.getGroupId());
+
+		for (Subscription subscription : subscriptions) {
+			ArticleLocalServiceUtil.unsubscribeAllPortlets(
+				subscription.getCompanyId(), subscription.getSubscriptionId());
 		}
 	}
 

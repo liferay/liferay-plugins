@@ -30,12 +30,10 @@ import java.sql.ResultSet;
 public class UpgradeRatings extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (!tableHasData("KB_Article")) {
-			return;
+		if (tableHasData("KB_Article")) {
+			updateRatingsEntries();
+			updateRatingsStats();
 		}
-
-		updateRatingsEntries();
-		updateRatingsStats();
 	}
 
 	protected void updateRatingsEntries() throws Exception {

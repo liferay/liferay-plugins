@@ -28,11 +28,9 @@ import java.sql.ResultSet;
 public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (tableHasColumn("KB_Article", "latest")) {
-			return;
+		if (!tableHasColumn("KB_Article", "latest")) {
+			upgradeArticles();
 		}
-
-		upgradeArticles();
 	}
 
 	protected void upgradeArticles() throws Exception {

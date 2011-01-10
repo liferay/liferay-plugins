@@ -22,11 +22,9 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (tableHasColumn("KB_Article", "status")) {
-			return;
+		if (!tableHasColumn("KB_Article", "status")) {
+			upgradeArticles();
 		}
-
-		upgradeArticles();
 	}
 
 	protected void upgradeArticles() throws Exception {
