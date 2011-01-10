@@ -38,9 +38,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -109,11 +107,11 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	protected void notifySubscriber(Subscription subscription)
 		throws Exception {
 
-		_context.put("subscription", subscription);
+		setContextAttribute("subscription", subscription);
 
 		super.notifySubscriber(subscription);
 
-		_context.remove("subscription");
+		setContextAttribute("subscription", null);
 	}
 
 	protected String replaceContent(String content, Locale locale)
@@ -137,7 +135,8 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 				categoryTitle
 			});
 
-		Subscription subscription = (Subscription)_context.get("subscription");
+		Subscription subscription = (Subscription)getContextAttribute(
+			"subscription");
 
 		if (subscription == null) {
 			return super.replaceContent(content, locale);
@@ -167,7 +166,6 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	}
 
 	private Article _article;
-	private Map<String, Object> _context = new HashMap<String, Object>();
 	private String _portalURL;
 
 }
