@@ -358,5 +358,5 @@
 </c:choose>
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("svn.view_svn.jspf");
+private static Log _log = LogFactoryUtil.getLog("svn.view_svn_jspf");
 %>
