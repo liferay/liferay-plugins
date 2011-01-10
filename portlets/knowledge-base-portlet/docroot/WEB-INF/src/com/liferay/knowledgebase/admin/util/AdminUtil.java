@@ -14,19 +14,122 @@
 
 package com.liferay.knowledgebase.admin.util;
 
+import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.ArticleConstants;
+import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.portlet.PortletProps;
 
+import java.util.Map;
+
 import javax.portlet.PortletPreferences;
+
+import net.htmlparser.jericho.Attribute;
+import net.htmlparser.jericho.Attributes;
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.OutputDocument;
+import net.htmlparser.jericho.Source;
 
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class AdminUtil {
+
+	public static String getArticleDiff(
+			long resourcePrimKey, int sourceVersion, int targetVersion,
+			String param)
+		throws Exception {
+
+		if (sourceVersion < ArticleConstants.DEFAULT_VERSION) {
+			sourceVersion = ArticleConstants.DEFAULT_VERSION;
+		}
+
+		if (sourceVersion == targetVersion) {
+			Article article = ArticleLocalServiceUtil.getArticle(
+				resourcePrimKey, targetVersion);
+
+			return BeanPropertiesUtil.getString(article, param);
+		}
+
+		Article sourceArticle = ArticleLocalServiceUtil.getArticle(
+			resourcePrimKey, sourceVersion);
+		Article targetArticle = ArticleLocalServiceUtil.getArticle(
+			resourcePrimKey, targetVersion);
+
+		String sourceHtml = BeanPropertiesUtil.getString(sourceArticle, param);
+		String targetHtml = BeanPropertiesUtil.getString(targetArticle, param);
+
+		String diff = DiffHtmlUtil.diff(
+			new UnsyncStringReader(sourceHtml),
+			new UnsyncStringReader(targetHtml));
+
+		Source source = new Source(diff);
+
+		OutputDocument outputDocument = new OutputDocument(source);
+
+		for (Element element : source.getAllElements()) {
+			StringBundler sb = new StringBundler(4);
+
+			Attributes attributes = element.getAttributes();
+
+			Attribute changeTypeAttribute = attributes.get("changeType");
+
+			if (changeTypeAttribute != null) {
+				String changeTypeValue = changeTypeAttribute.getValue();
+
+				if (changeTypeValue.contains("diff-added-image")) {
+					sb.append("border: 10px solid #CFC; ");
+				}
+				else if (changeTypeValue.contains("diff-changed-image")) {
+					sb.append("border: 10px solid #C6C6FD; ");
+				}
+				else if (changeTypeValue.contains("diff-removed-image")) {
+					sb.append("border: 10px solid #FDC6C6; ");
+				}
+			}
+
+			Attribute classAttribute = attributes.get("class");
+
+			if (classAttribute != null) {
+				String classValue = classAttribute.getValue();
+
+				if (classValue.contains("diff-html-added")) {
+					sb.append("background-color: #CFC; ");
+				}
+				else if (classValue.contains("diff-html-changed")) {
+					sb.append("background-color: #C6C6FD; ");
+				}
+				else if (classValue.contains("diff-html-removed")) {
+					sb.append("background-color: #FDC6C6; ");
+					sb.append("text-decoration: line-through; ");
+				}
+			}
+
+			if (Validator.isNull(sb.toString())) {
+				continue;
+			}
+
+			Attribute styleAttribute = attributes.get("style");
+
+			if (styleAttribute != null) {
+				sb.append(GetterUtil.getString(styleAttribute.getValue()));
+			}
+
+			Map<String, String> map = outputDocument.replace(attributes, false);
+
+			map.put("style", sb.toString());
+		}
+
+		return outputDocument.toString();
+	}
 
 	public static String getEmailArticleAddedBody(
 		PortletPreferences preferences) {

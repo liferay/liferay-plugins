@@ -21,7 +21,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
 
-int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", (article.getVersion() != ArticleConstants.DEFAULT_VERSION) ? (article.getVersion() - 1) : article.getVersion());
+int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", article.getVersion() - 1);
 int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVersion());
 %>
 
@@ -130,7 +130,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 
 			<div class="float-container kb-entity-header">
 				<div class="kb-title">
-					<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "title", null) %>
+					<%= AdminUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "title") %>
 				</div>
 
 				<div class="kb-tools">
@@ -150,7 +150,7 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 			</div>
 
 			<div class="kb-entity-body">
-				<%= KnowledgeBaseUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "content", null) %>
+				<%= AdminUtil.getArticleDiff(article.getResourcePrimKey(), sourceVersion, targetVersion, "content") %>
 			</div>
 
 			<div class="kb-entity-footer">

@@ -25,11 +25,11 @@ import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
-import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.NoSuchSubscriptionException;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -984,6 +984,27 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 	}
 
+	protected Map<String, String> getEmailArticleDiffs(Article article) {
+		Map<String, String> emailArticleDiffs = new HashMap<String, String>();
+
+		for (String param : new String[] {"content", "title"}) {
+			String value = BeanPropertiesUtil.getString(article, param);
+
+			try {
+				value = AdminUtil.getArticleDiff(
+					article.getResourcePrimKey(), article.getVersion() - 1,
+					article.getVersion(), param);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+
+			emailArticleDiffs.put(param, value);
+		}
+
+		return emailArticleDiffs;
+	}
+
 	protected void notifySubscribers(
 			Article article, ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -1033,26 +1054,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				"src=\"" + serviceContext.getPortalURL() + "/"
 			});
 
-		Map<String, String> articleDiffs = new HashMap<String, String>();
+		Map<String, String> articleDiffs = getEmailArticleDiffs(article);
 
-		String[] parameters = new String[] {"content", "title"};
+		for (String key : articleDiffs.keySet()) {
+			String value = StringUtil.replace(
+				articleDiffs.get(key),
+				new String[] {
+					"href=\"/",
+					"src=\"/"
+				},
+				new String[] {
+					"href=\"" + serviceContext.getPortalURL() + "/",
+					"src=\"" + serviceContext.getPortalURL() + "/"
+				});
 
-		for (String parameter : parameters) {
-			String articleDiff = StringPool.BLANK;
-
-			try {
-				articleDiff = KnowledgeBaseUtil.getArticleDiff(
-					article.getResourcePrimKey(), article.getVersion(),
-					parameter, serviceContext.getPortalURL());
-			}
-			catch (Exception e) {
-				_log.error(
-					"Unable to process diff for {resourcePrimKey=" +
-						article.getResourcePrimKey() + ", version=" +
-							article.getVersion() + "}");
-			}
-
-			articleDiffs.put(parameter, articleDiff);
+			articleDiffs.put(key, value);
 		}
 
 		String subject = null;

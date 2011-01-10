@@ -20,11 +20,8 @@ import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -61,53 +58,6 @@ import javax.portlet.WindowState;
  * @author Brian Wing Shun Chan
  */
 public class KnowledgeBaseUtil {
-
-	public static String getArticleDiff(
-			long resourcePrimKey, int sourceVersion, int targetVersion,
-			String parameter, String portalURL)
-		throws Exception {
-
-		if (sourceVersion == targetVersion) {
-			Article article = ArticleLocalServiceUtil.getArticle(
-				resourcePrimKey, targetVersion);
-
-			Object object = BeanPropertiesUtil.getObject(article, parameter);
-
-			return String.valueOf(object);
-		}
-
-		Article sourceArticle = ArticleLocalServiceUtil.getArticle(
-			resourcePrimKey, sourceVersion);
-		Article targetArticle = ArticleLocalServiceUtil.getArticle(
-			resourcePrimKey, targetVersion);
-
-		Object sourceObject = BeanPropertiesUtil.getObject(
-			sourceArticle, parameter);
-		Object targetObject = BeanPropertiesUtil.getObject(
-			targetArticle, parameter);
-
-		String sourceHtml = String.valueOf(sourceObject);
-		String targetHtml = String.valueOf(targetObject);
-
-		return getDiff(sourceHtml, targetHtml, portalURL);
-	}
-
-	public static String getArticleDiff(
-			long resourcePrimKey, int version, String parameter,
-			String portalURL)
-		throws Exception {
-
-		int sourceVersion = version;
-		int targetVersion = version;
-
-		if (sourceVersion != ArticleConstants.DEFAULT_VERSION) {
-			sourceVersion = sourceVersion - 1;
-		}
-
-		return getArticleDiff(
-			resourcePrimKey, sourceVersion, targetVersion, parameter,
-			portalURL);
-	}
 
 	public static String getArticleURL(
 			String portletId, long resourcePrimKey, String portalURL)
@@ -520,79 +470,6 @@ public class KnowledgeBaseUtil {
 		}
 
 		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
-	}
-
-	protected static String getDiff(
-			String sourceHtml, String targetHtml, String portalURL)
-		throws Exception {
-
-		String diff = DiffHtmlUtil.diff(
-			new UnsyncStringReader(sourceHtml),
-			new UnsyncStringReader(targetHtml));
-
-		diff = StringUtil.replace(
-			diff,
-			new String[] {
-				"changeType=\"diff-added-image\"",
-				"changeType=\"diff-changed-image\"",
-				"changeType=\"diff-removed-image\"",
-				"class=\"diff-html-added\"",
-				"class=\"diff-html-changed\"",
-				"class=\"diff-html-removed\""
-			},
-			new String[] {
-				"style=\"border: 10px solid #CFC;\"",
-				"style=\"border: 10px solid #C6C6FD;\"",
-				"style=\"border: 10px solid #FDC6C6;\"",
-				"style=\"background-color: #CFC;\"",
-				"style=\"background-color: #C6C6FD\"",
-				"style=\"background-color: #FDC6C6; " +
-					"text-decoration: line-through;\""
-			});
-
-		if (Validator.isNotNull(portalURL)) {
-			diff = StringUtil.replace(
-				diff,
-				new String[] {
-					"href=\"/",
-					"src=\"/"
-				},
-				new String[] {
-					"href=\"" + portalURL + "/",
-					"src=\"" + portalURL + "/"
-				});
-		}
-
-		int i = diff.indexOf("<img ");
-
-		while (i != -1) {
-			String oldImg = diff.substring(i, diff.indexOf("/>", i) + 2);
-
-			int x = oldImg.indexOf("style=\"");
-			int y = oldImg.indexOf("style=\"", x + 7);
-			int z = oldImg.indexOf(StringPool.QUOTE, y + 7);
-
-			if (y != -1) {
-				String style = oldImg.substring(y, z + 1);
-
-				String newImg = StringUtil.replace(
-					oldImg,
-					new String[] {
-						style,
-						"style=\""
-					},
-					new String[] {
-						StringPool.BLANK,
-						style.substring(0, style.length() - 1)
-					});
-
-				diff = StringUtil.replace(diff, oldImg, newImg);
-			}
-
-			i = diff.indexOf("<img ", i + 5);
-		}
-
-		return diff;
 	}
 
 	protected static Object[] getPlidAndWindowState(
