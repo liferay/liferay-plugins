@@ -62,21 +62,21 @@
 		List<String> portlets = new ArrayList<String>();
 
 		for (String portletPrimKey : portletPrimKeys) {
-			String curPortletId = ArticleConstants.getPortletId(portletPrimKey);
+			String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKey);
 
-			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), curPortletId, StringPool.BLANK);
+			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletPrimKeyPortletId, StringPool.BLANK);
 
 			String portlet = PortletConfigurationUtil.getPortletTitle(jxPreferences, themeDisplay.getLanguageId());
 
 			if (Validator.isNull(portlet)) {
-				portlet = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(curPortletId), locale);
+				portlet = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletPrimKeyPortletId), locale);
 			}
 
-			long curPlid = ArticleConstants.getPlid(portletPrimKey);
+			long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
 
-			Layout curLayout = LayoutLocalServiceUtil.getLayout(curPlid);
+			Layout portletPrimKeyLayout = LayoutLocalServiceUtil.getLayout(portletPrimKeyPlid);
 
-			portlet = portlet.concat(" - ").concat(curLayout.getName(locale));
+			portlet = portlet.concat(" - ").concat(portletPrimKeyLayout.getName(locale));
 
 			if (!portlets.contains(portlet)) {
 				portlets.add(portlet);

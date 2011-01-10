@@ -145,11 +145,13 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
 			"portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
-		String portletId = ArticleConstants.getPortletId(portletPrimKeys[0]);
+		String portletPrimKeyPortletId = ArticleConstants.getPortletId(
+			portletPrimKeys[0]);
 
 		String articleURL = KnowledgeBaseUtil.getArticleURL(
-			portletId, _article.getResourcePrimKey(), _portalURL);
-		String portletTitle = PortalUtil.getPortletTitle(portletId, locale);
+			portletPrimKeyPortletId, _article.getResourcePrimKey(), _portalURL);
+		String portletTitle = PortalUtil.getPortletTitle(
+			portletPrimKeyPortletId, locale);
 
 		content = StringUtil.replace(
 			content,

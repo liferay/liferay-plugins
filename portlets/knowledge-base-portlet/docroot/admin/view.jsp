@@ -78,7 +78,7 @@
 							long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
 							String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKey);
 
-							if ((portletPrimKeyPortletId == plid.longValue()) && portletPrimKeyPortletId.equals(portletDisplay.getId())) {
+							if ((portletPrimKeyPlid == plid.longValue()) && portletPrimKeyPortletId.equals(portletDisplay.getId())) {
 								subscribed = true;
 							}
 						}

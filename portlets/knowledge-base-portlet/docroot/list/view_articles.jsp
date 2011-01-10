@@ -114,10 +114,10 @@ String tag = ParamUtil.getString(request, "tag");
 					String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
 
 					for (String portletPrimKey : portletPrimKeys) {
-						long curPlid = ArticleConstants.getPlid(portletPrimKey);
-						String curPortletId = ArticleConstants.getPortletId(portletPrimKey);
+						long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
+						String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKey);
 
-						if ((curPlid == plid) && curPortletId.equals(portletDisplay.getId())) {
+						if ((portletPrimKeyPlid == plid.longValue()) && portletPrimKeyPortletId.equals(portletDisplay.getId())) {
 							subscribed = true;
 						}
 					}
