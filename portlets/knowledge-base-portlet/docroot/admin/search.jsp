@@ -25,7 +25,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 <liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "search-articles") %>'>
+	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanel" %>' persistState="<%= true %>" title="search-articles">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/search.jsp" />
 			<portlet:param name="keywords" value="<%= keywords %>" />

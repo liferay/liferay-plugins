@@ -19,7 +19,7 @@
 <liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "AllArticlesPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AllArticlesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "all-articles") %>'>
+	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "AllArticlesPanel" %>' persistState="<%= true %>" title="all-articles">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view_all_articles.jsp" />
 			<portlet:param name="topLink" value="all-articles" />

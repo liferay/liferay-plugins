@@ -34,7 +34,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(label) %>">
-						<liferay-ui:panel id='pageMenu_<%= label %>' title='<%= label %>' collapsible="<%= true %>" persistState="<%= true %>" extended="<%= true %>">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= "pageMenu_" + label %>' persistState="<%= true %>" title="<%= label %>">
 							<%= _buildPageMenuLinksHTML(menuItem.getChildren()) %>
 						</liferay-ui:panel>
 					</c:when>

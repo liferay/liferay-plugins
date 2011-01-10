@@ -45,7 +45,7 @@
 </c:if>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "TemplatesPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "TemplatesPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "templates") %>'>
+	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "TemplatesPanel" %>' persistState="<%= true %>" title="templates">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
 			<portlet:param name="topLink" value="templates" />

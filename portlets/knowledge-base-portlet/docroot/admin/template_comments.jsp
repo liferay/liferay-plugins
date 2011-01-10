@@ -36,7 +36,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 <c:if test="<%= enableTemplateComments && themeDisplay.isSignedIn() %>">
 	<div class="kb-template-comments">
 		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanelContainer" %>' persistState="<%= true %>">
-			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanel" %>' persistState="<%= true %>" title='<%= LanguageUtil.get(pageContext, "comments") %>'>
+			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
 				<c:if test="<%= comment != null %>">
 					<table class="lfr-table" width="100%">
 					<tr>
