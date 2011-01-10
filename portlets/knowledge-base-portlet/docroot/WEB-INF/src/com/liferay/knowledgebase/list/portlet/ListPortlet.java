@@ -15,16 +15,10 @@
 package com.liferay.knowledgebase.list.portlet;
 
 import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.ArticleServiceUtil;
-import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 
 import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
@@ -36,82 +30,6 @@ import javax.portlet.WindowState;
  */
 public class ListPortlet extends AdminPortlet {
 
-	public void subscribe(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		if (resourcePrimKey <= 0) {
-			ArticleLocalServiceUtil.subscribe(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getUserId(), themeDisplay.getPlid(), portletId,
-				themeDisplay.getScopeGroupId());
-		}
-		else {
-			ArticleServiceUtil.subscribeArticle(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getPlid(), portletId, resourcePrimKey);
-		}
-	}
-
-	public void unsubscribe(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		if (resourcePrimKey <= 0) {
-			ArticleLocalServiceUtil.unsubscribe(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-				themeDisplay.getPlid(), portletId,
-				themeDisplay.getScopeGroupId());
-		}
-		else {
-			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), themeDisplay.getPlid(), portletId,
-				resourcePrimKey);
-		}
-	}
-
-	public void unsubscribeAllPortlets(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		if (!themeDisplay.isSignedIn()) {
-			return;
-		}
-
-		long subscriptionId = ParamUtil.getLong(
-			actionRequest, "subscriptionId");
-
-		ArticleLocalServiceUtil.unsubscribeAllPortlets(
-			themeDisplay.getCompanyId(), subscriptionId);
-	}
-
 	protected int getStatus(PortletRequest portletRequest) {
 		return WorkflowConstants.STATUS_APPROVED;
 	}
@@ -122,8 +40,9 @@ public class ListPortlet extends AdminPortlet {
 
 		if (actionName.equals("deleteComment") ||
 			actionName.equals("subscribe") ||
+			actionName.equals("subscribeArticle") ||
 			actionName.equals("unsubscribe") ||
-			actionName.equals("unsubscribeAllPortlets") ||
+			actionName.equals("unsubscribeArticle") ||
 			actionName.equals("updateComment")) {
 
 			return true;

@@ -508,8 +508,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Expando
 
 		ExpandoValue expandoValue = expandoValueLocalService.getValue(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletPrimKeys", subscription.getSubscriptionId());
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
+			subscription.getSubscriptionId());
 
 		String[] portletPrimKeys = {
 			ArticleConstants.getPortletPrimKey(plid, portletId)
@@ -520,14 +520,31 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				portletPrimKeys, expandoValue.getStringArray());
 
 			expandoValueLocalService.deleteValue(
-				subscription.getCompanyId(), Subscription.class.getName(), "KB",
+				companyId, Subscription.class.getName(), "KB",
 				"portletPrimKeys", subscription.getSubscriptionId());
 		}
 
 		expandoValueLocalService.addValue(
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
+			subscription.getSubscriptionId(), portletPrimKeys);
+	}
+
+	public void subscribeArticle(
+			long companyId, long groupId, long userId, long plid,
+			String portletId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		// Subscription
+
+		Subscription subscription = subscriptionLocalService.addSubscription(
+			userId, groupId, Article.class.getName(), resourcePrimKey);
+
+		// Expando
+
+		expandoValueLocalService.addValue(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
 			"portletPrimKeys", subscription.getSubscriptionId(),
-			portletPrimKeys);
+			new String[] {ArticleConstants.getPortletPrimKey(plid, portletId)});
 	}
 
 	public void unsubscribe(
@@ -556,29 +573,34 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Expando
 
 		expandoValueLocalService.deleteValue(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletPrimKeys", subscription.getSubscriptionId());
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
+			subscription.getSubscriptionId());
 
-		if (portletPrimKeys.length != 0) {
-			expandoValueLocalService.addValue(
-				subscription.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletPrimKeys", subscription.getSubscriptionId(),
-				portletPrimKeys);
+		if (portletPrimKeys.length == 0) {
+			return;
 		}
+
+		expandoValueLocalService.addValue(
+			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
+			subscription.getSubscriptionId(), portletPrimKeys);
 	}
 
-	public void unsubscribeAllPortlets(long companyId, long subscriptionId)
+	public void unsubscribeArticle(
+			long companyId, long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
+
+		Subscription subscription = subscriptionLocalService.getSubscription(
+			companyId, userId, Article.class.getName(), resourcePrimKey);
 
 		// Subscription
 
-		subscriptionLocalService.deleteSubscription(subscriptionId);
+		subscriptionLocalService.deleteSubscription(subscription);
 
 		// Expando
 
 		expandoValueLocalService.deleteValue(
 			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscriptionId);
+			subscription.getSubscriptionId());
 	}
 
 	public Article updateArticle(
@@ -979,8 +1001,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				article.getResourcePrimKey());
 
 		for (Subscription subscription : subscriptions) {
-			unsubscribeAllPortlets(
-				subscription.getCompanyId(), subscription.getSubscriptionId());
+			unsubscribeArticle(
+				subscription.getCompanyId(), subscription.getUserId(),
+				subscription.getClassPK());
 		}
 	}
 

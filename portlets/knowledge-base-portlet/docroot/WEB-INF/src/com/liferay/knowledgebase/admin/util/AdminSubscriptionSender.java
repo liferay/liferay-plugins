@@ -54,8 +54,18 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	protected void deleteSubscription(Subscription subscription)
 		throws Exception {
 
-		ArticleLocalServiceUtil.unsubscribeAllPortlets(
-			subscription.getCompanyId(), subscription.getSubscriptionId());
+		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(
+			subscription.getCompanyId(), Subscription.class.getName(), "KB",
+			"portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
+
+		long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKeys[0]);
+		String portletPrimKeyPortletId = ArticleConstants.getPortletId(
+			portletPrimKeys[0]);
+
+		ArticleLocalServiceUtil.unsubscribe(
+			subscription.getCompanyId(), subscription.getUserId(),
+			portletPrimKeyPlid, portletPrimKeyPortletId,
+			subscription.getClassPK());
 	}
 
 	protected String getEmailArticleAttachments(Locale locale)

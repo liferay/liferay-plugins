@@ -22,7 +22,7 @@
 
 <liferay-ui:search-container
 	delta="<%= articlesDelta %>"
-	headerNames="title,portlets,version"
+	headerNames="title,application,version"
 	iteratorURL="<%= iteratorURL %>"
 >
 	<liferay-ui:search-container-results>
@@ -56,55 +56,49 @@
 
 		<%
 		Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
-
-		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
-
-		List<String> portlets = new ArrayList<String>();
-
-		for (String portletPrimKey : portletPrimKeys) {
-			String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKey);
-
-			PortletPreferences jxPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletPrimKeyPortletId, StringPool.BLANK);
-
-			String portlet = PortletConfigurationUtil.getPortletTitle(jxPreferences, themeDisplay.getLanguageId());
-
-			if (Validator.isNull(portlet)) {
-				portlet = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletPrimKeyPortletId), locale);
-			}
-
-			long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
-
-			Layout portletPrimKeyLayout = LayoutLocalServiceUtil.getLayout(portletPrimKeyPlid);
-
-			portlet = portlet.concat(" - ").concat(portletPrimKeyLayout.getName(locale));
-
-			if (!portlets.contains(portlet)) {
-				portlets.add(portlet);
-			}
-		}
-
-		Collections.sort(portlets);
 		%>
 
 		<liferay-ui:search-container-column-text
+			buffer="buffer"
 			href="<%= rowURL %>"
-			name="portlets"
-			value="<%= StringUtil.merge(portlets, StringPool.COMMA_AND_SPACE) %>"
-		/>
+			name="application"
+		>
 
-		<c:if test="<%= themeDisplay.isSignedIn() %>">
+			<%
+			String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
+
+			String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKeys[0]);
+
+			PortletPreferences selPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletPrimKeyPortletId, StringPool.BLANK);
+
+			String selPortletTitle = PortletConfigurationUtil.getPortletTitle(selPreferences, themeDisplay.getLanguageId());
+
+			if (Validator.isNull(selPortletTitle)) {
+				selPortletTitle = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletPrimKeyPortletId), locale);
+			}
+
+			Layout selLayout = LayoutLocalServiceUtil.getLayout(ArticleConstants.getPlid(portletPrimKeys[0]));
+
+			buffer.append(selPortletTitle);
+			buffer.append(" - ");
+			buffer.append(selLayout.getName(locale));
+			%>
+
+		</liferay-ui:search-container-column-text>
+
+		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 			<liferay-ui:search-container-column-text
 				align="right"
 			>
-				<portlet:actionURL name="unsubscribeAllPortlets" var="unsubscribeAllPortletsURL">
+				<portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
-					<portlet:param name="subscriptionId" value="<%= String.valueOf(subscription.getSubscriptionId()) %>" />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				</portlet:actionURL>
 
 				<liferay-ui:icon
 					image="unsubscribe"
 					label="<%= true %>"
-					url="<%= unsubscribeAllPortletsURL %>"
+					url="<%= unsubscribeArticleURL %>"
 				/>
 			</liferay-ui:search-container-column-text>
 		</c:if>

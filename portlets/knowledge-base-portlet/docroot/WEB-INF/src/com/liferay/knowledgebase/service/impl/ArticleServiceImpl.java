@@ -20,6 +20,7 @@ import com.liferay.knowledgebase.service.base.ArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -361,14 +362,17 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public void subscribe(
-			long companyId, long groupId, long plid, String portletId)
+			long companyId, long groupId, long plid, String portletId,
+			long classPK)
 		throws PortalException, SystemException {
 
-		AdminPermission.check(
-			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
 
 		articleLocalService.subscribe(
-			companyId, groupId, getUserId(), plid, portletId, groupId);
+			companyId, groupId, getUserId(), plid, portletId, classPK);
 	}
 
 	public void subscribeArticle(
@@ -379,30 +383,32 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.subscribe(
+		articleLocalService.subscribeArticle(
 			companyId, groupId, getUserId(), plid, portletId, resourcePrimKey);
 	}
 
 	public void unsubscribe(
-			long companyId, long groupId, long plid, String portletId)
+			long companyId, long groupId, long plid, String portletId,
+			long classPK)
 		throws PortalException, SystemException {
 
-		AdminPermission.check(
-			getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
 
 		articleLocalService.unsubscribe(
-			companyId, getUserId(), plid, portletId, groupId);
+			companyId, getUserId(), plid, portletId, classPK);
 	}
 
-	public void unsubscribeArticle(
-			long companyId, long plid, String portletId, long resourcePrimKey)
+	public void unsubscribeArticle(long companyId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.unsubscribe(
-			companyId, getUserId(), plid, portletId, resourcePrimKey);
+		articleLocalService.unsubscribeArticle(
+			companyId, getUserId(), resourcePrimKey);
 	}
 
 	public Article updateArticle(

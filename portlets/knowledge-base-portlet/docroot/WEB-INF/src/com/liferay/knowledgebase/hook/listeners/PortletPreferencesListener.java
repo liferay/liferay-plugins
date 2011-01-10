@@ -171,9 +171,8 @@ public class PortletPreferencesListener
 				continue;
 			}
 
-			ArticleLocalServiceUtil.unsubscribe(
+			ArticleLocalServiceUtil.unsubscribeArticle(
 				subscription.getCompanyId(), subscription.getUserId(),
-				preferences.getPlid(), preferences.getPortletId(),
 				subscription.getClassPK());
 		}
 	}

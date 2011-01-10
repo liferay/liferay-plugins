@@ -103,30 +103,10 @@ String tag = ParamUtil.getString(request, "tag");
 				url="<%= rssURL %>"
 			/>
 
-			<c:if test="<%= themeDisplay.isSignedIn() %>">
-
-				<%
-				boolean subscribed = false;
-
-				if (SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey())) {
-					Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
-
-					String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
-
-					for (String portletPrimKey : portletPrimKeys) {
-						long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
-						String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKey);
-
-						if ((portletPrimKeyPlid == plid.longValue()) && portletPrimKeyPortletId.equals(portletDisplay.getId())) {
-							subscribed = true;
-						}
-					}
-				}
-				%>
-
+			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 				<c:choose>
-					<c:when test="<%= subscribed %>">
-						<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
+					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey()) %>">
+						<portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:actionURL>
@@ -134,11 +114,11 @@ String tag = ParamUtil.getString(request, "tag");
 						<liferay-ui:icon
 							image="unsubscribe"
 							label="<%= true %>"
-							url="<%= unsubscribeURL %>"
+							url="<%= unsubscribeArticleURL %>"
 						/>
 					</c:when>
 					<c:otherwise>
-						<portlet:actionURL name="subscribe" var="subscribeURL">
+						<portlet:actionURL name="subscribeArticle" var="subscribeArticleURL">
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:actionURL>
@@ -146,7 +126,7 @@ String tag = ParamUtil.getString(request, "tag");
 						<liferay-ui:icon
 							image="subscribe"
 							label="<%= true %>"
-							url="<%= subscribeURL %>"
+							url="<%= subscribeArticleURL %>"
 						/>
 					</c:otherwise>
 				</c:choose>

@@ -37,8 +37,8 @@ public class SearchPortlet extends AdminPortlet {
 			actionRequest, ActionRequest.ACTION_NAME);
 
 		if (actionName.equals("deleteComment") ||
-			actionName.equals("subscribe") ||
-			actionName.equals("unsubscribe") ||
+			actionName.equals("subscribeArticle") ||
+			actionName.equals("unsubscribeArticle") ||
 			actionName.equals("updateComment")) {
 
 			return true;

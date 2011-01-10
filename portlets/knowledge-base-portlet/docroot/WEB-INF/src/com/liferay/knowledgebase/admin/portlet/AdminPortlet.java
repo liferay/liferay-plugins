@@ -285,24 +285,14 @@ public class AdminPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long resourcePrimKey = ParamUtil.getLong(
-			actionRequest, "resourcePrimKey");
-
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		if (resourcePrimKey <= 0) {
-			ArticleServiceUtil.subscribe(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getPlid(), portletId);
-		}
-		else {
-			ArticleServiceUtil.subscribeArticle(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getPlid(), portletId, resourcePrimKey);
-		}
+		ArticleServiceUtil.subscribe(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			themeDisplay.getPlid(), portletId, themeDisplay.getScopeGroupId());
 	}
 
-	public void unsubscribe(
+	public void subscribeArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -314,16 +304,37 @@ public class AdminPortlet extends MVCPortlet {
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		if (resourcePrimKey <= 0) {
-			ArticleServiceUtil.unsubscribe(
-				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-				themeDisplay.getPlid(), portletId);
-		}
-		else {
-			ArticleServiceUtil.unsubscribeArticle(
-				themeDisplay.getCompanyId(), themeDisplay.getPlid(), portletId,
-				resourcePrimKey);
-		}
+		ArticleServiceUtil.subscribeArticle(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			themeDisplay.getPlid(), portletId, resourcePrimKey);
+	}
+
+	public void unsubscribe(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		ArticleServiceUtil.unsubscribe(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			themeDisplay.getPlid(), portletId, themeDisplay.getScopeGroupId());
+	}
+
+	public void unsubscribeArticle(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		ArticleServiceUtil.unsubscribeArticle(
+			themeDisplay.getCompanyId(), resourcePrimKey);
 	}
 
 	public void updateArticle(
