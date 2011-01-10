@@ -156,39 +156,43 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 				"subscribe", long.class, long.class, long.class, long.class,
 				java.lang.String.class, long.class);
 
-		_unsubscribeMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
+		_subscribeArticleMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
+				"subscribeArticle", long.class, long.class, long.class,
+				long.class, java.lang.String.class, long.class);
+
+		_unsubscribeMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribe", long.class, long.class, long.class,
 				java.lang.String.class, long.class);
 
-		_unsubscribeAllPortletsMethodKey36 = new MethodKey(_classLoaderProxy.getClassName(),
-				"unsubscribeAllPortlets", long.class, long.class);
+		_unsubscribeArticleMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribeArticle", long.class, long.class, long.class);
 
-		_updateArticleMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateArticleMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateArticle", long.class, long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, int.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateArticleResourcesMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateArticleResourcesMethodKey39 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateArticleResources",
 				com.liferay.knowledgebase.model.Article.class,
 				java.lang.String[].class, java.lang.String[].class);
 
-		_updateAssetMethodKey39 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAssetMethodKey40 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAsset", long.class,
 				com.liferay.knowledgebase.model.Article.class, long[].class,
 				java.lang.String[].class);
 
-		_updateAttachmentsMethodKey40 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateAttachmentsMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAttachments", long.class, long.class,
 				java.lang.String.class);
 
-		_updateDisplayOrderMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateDisplayOrderMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDisplayOrder",
 				com.liferay.knowledgebase.model.Article.class, long.class,
 				int.class);
 
-		_updateStatusMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey43 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
@@ -1222,11 +1226,41 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
+	public void subscribeArticle(long companyId, long groupId, long userId,
+		long plid, java.lang.String portletId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey35,
+				companyId, groupId, userId, plid,
+				ClpSerializer.translateInput(portletId), resourcePrimKey);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public void unsubscribe(long companyId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeMethodKey35,
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeMethodKey36,
 				companyId, userId, plid,
 				ClpSerializer.translateInput(portletId), classPK);
 
@@ -1252,11 +1286,12 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		}
 	}
 
-	public void unsubscribeAllPortlets(long companyId, long subscriptionId)
+	public void unsubscribeArticle(long companyId, long userId,
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeAllPortletsMethodKey36,
-				companyId, subscriptionId);
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey37,
+				companyId, userId, resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -1289,7 +1324,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateArticleMethodKey37,
+		MethodHandler methodHandler = new MethodHandler(_updateArticleMethodKey38,
 				userId, resourcePrimKey, parentResourcePrimKey,
 				ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
@@ -1327,7 +1362,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateArticleResourcesMethodKey38,
+		MethodHandler methodHandler = new MethodHandler(_updateArticleResourcesMethodKey39,
 				ClpSerializer.translateInput(article),
 				ClpSerializer.translateInput(communityPermissions),
 				ClpSerializer.translateInput(guestPermissions));
@@ -1359,7 +1394,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		long[] assetCategoryIds, java.lang.String[] assetTagNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey39,
+		MethodHandler methodHandler = new MethodHandler(_updateAssetMethodKey40,
 				userId, ClpSerializer.translateInput(article),
 				ClpSerializer.translateInput(assetCategoryIds),
 				ClpSerializer.translateInput(assetTagNames));
@@ -1392,7 +1427,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey40,
+		MethodHandler methodHandler = new MethodHandler(_updateAttachmentsMethodKey41,
 				companyId, resourcePrimKey,
 				ClpSerializer.translateInput(dirName));
 
@@ -1427,7 +1462,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateDisplayOrderMethodKey41,
+		MethodHandler methodHandler = new MethodHandler(_updateDisplayOrderMethodKey42,
 				ClpSerializer.translateInput(article), parentResourcePrimKey,
 				priority);
 
@@ -1462,7 +1497,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey42,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey43,
 				userId, resourcePrimKey, status,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -1530,12 +1565,13 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	private MethodKey _getSiblingArticlesMethodKey32;
 	private MethodKey _getSiblingArticlesCountMethodKey33;
 	private MethodKey _subscribeMethodKey34;
-	private MethodKey _unsubscribeMethodKey35;
-	private MethodKey _unsubscribeAllPortletsMethodKey36;
-	private MethodKey _updateArticleMethodKey37;
-	private MethodKey _updateArticleResourcesMethodKey38;
-	private MethodKey _updateAssetMethodKey39;
-	private MethodKey _updateAttachmentsMethodKey40;
-	private MethodKey _updateDisplayOrderMethodKey41;
-	private MethodKey _updateStatusMethodKey42;
+	private MethodKey _subscribeArticleMethodKey35;
+	private MethodKey _unsubscribeMethodKey36;
+	private MethodKey _unsubscribeArticleMethodKey37;
+	private MethodKey _updateArticleMethodKey38;
+	private MethodKey _updateArticleResourcesMethodKey39;
+	private MethodKey _updateAssetMethodKey40;
+	private MethodKey _updateAttachmentsMethodKey41;
+	private MethodKey _updateDisplayOrderMethodKey42;
+	private MethodKey _updateStatusMethodKey43;
 }

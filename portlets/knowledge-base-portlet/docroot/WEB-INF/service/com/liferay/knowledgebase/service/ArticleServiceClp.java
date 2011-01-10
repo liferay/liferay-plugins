@@ -98,7 +98,7 @@ public class ArticleServiceClp implements ArticleService {
 
 		_subscribeMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribe", long.class, long.class, long.class,
-				java.lang.String.class);
+				java.lang.String.class, long.class);
 
 		_subscribeArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribeArticle", long.class, long.class, long.class,
@@ -106,11 +106,10 @@ public class ArticleServiceClp implements ArticleService {
 
 		_unsubscribeMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"unsubscribe", long.class, long.class, long.class,
-				java.lang.String.class);
+				java.lang.String.class, long.class);
 
 		_unsubscribeArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"unsubscribeArticle", long.class, long.class,
-				java.lang.String.class, long.class);
+				"unsubscribeArticle", long.class, long.class);
 
 		_updateArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateArticle", long.class, long.class,
@@ -684,12 +683,12 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public void subscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId)
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_subscribeMethodKey17,
 				companyId, groupId, plid,
-				ClpSerializer.translateInput(portletId));
+				ClpSerializer.translateInput(portletId), classPK);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -744,12 +743,12 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public void unsubscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId)
+		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_unsubscribeMethodKey19,
 				companyId, groupId, plid,
-				ClpSerializer.translateInput(portletId));
+				ClpSerializer.translateInput(portletId), classPK);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -773,13 +772,11 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void unsubscribeArticle(long companyId, long plid,
-		java.lang.String portletId, long resourcePrimKey)
+	public void unsubscribeArticle(long companyId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey20,
-				companyId, plid, ClpSerializer.translateInput(portletId),
-				resourcePrimKey);
+				companyId, resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

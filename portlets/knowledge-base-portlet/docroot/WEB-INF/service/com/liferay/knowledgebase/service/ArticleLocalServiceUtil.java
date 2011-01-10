@@ -409,6 +409,15 @@ public class ArticleLocalServiceUtil {
 			.subscribe(companyId, groupId, userId, plid, portletId, classPK);
 	}
 
+	public static void subscribeArticle(long companyId, long groupId,
+		long userId, long plid, java.lang.String portletId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService()
+			.subscribeArticle(companyId, groupId, userId, plid, portletId,
+			resourcePrimKey);
+	}
+
 	public static void unsubscribe(long companyId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -416,11 +425,11 @@ public class ArticleLocalServiceUtil {
 		getService().unsubscribe(companyId, userId, plid, portletId, classPK);
 	}
 
-	public static void unsubscribeAllPortlets(long companyId,
-		long subscriptionId)
+	public static void unsubscribeArticle(long companyId, long userId,
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().unsubscribeAllPortlets(companyId, subscriptionId);
+		getService().unsubscribeArticle(companyId, userId, resourcePrimKey);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateArticle(

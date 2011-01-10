@@ -386,6 +386,14 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			portletId, classPK);
 	}
 
+	public void subscribeArticle(long companyId, long groupId, long userId,
+		long plid, java.lang.String portletId, long resourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.subscribeArticle(companyId, groupId, userId, plid,
+			portletId, resourcePrimKey);
+	}
+
 	public void unsubscribe(long companyId, long userId, long plid,
 		java.lang.String portletId, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -394,10 +402,12 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			classPK);
 	}
 
-	public void unsubscribeAllPortlets(long companyId, long subscriptionId)
+	public void unsubscribeArticle(long companyId, long userId,
+		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribeAllPortlets(companyId, subscriptionId);
+		_articleLocalService.unsubscribeArticle(companyId, userId,
+			resourcePrimKey);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
