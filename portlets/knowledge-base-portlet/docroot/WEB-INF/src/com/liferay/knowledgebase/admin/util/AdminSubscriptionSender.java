@@ -145,6 +145,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
 			"portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
+
 		String portletPrimKeyPortletId = ArticleConstants.getPortletId(
 			portletPrimKeys[0]);
 
