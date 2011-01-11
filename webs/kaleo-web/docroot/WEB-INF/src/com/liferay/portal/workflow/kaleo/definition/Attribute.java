@@ -14,25 +14,42 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-/**
- * @author Michael C. Han
- */
-public abstract class Recipient extends DefinitionNode {
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 
-	public Recipient(RecipientType recipientType) {
-		_recipientType = recipientType;
+/**
+ * @author Marcellus Tavares
+ */
+public class Attribute extends DefinitionNode {
+
+	public Attribute() {
+	}
+
+	public Attribute(String name, String value) {
+		_name = name;
+		_value = value;
 	}
 
 	public void configureParent(DefinitionNode parentNode) {
-		Recipients recipients = (Recipients)parentNode;
-
-		recipients.addRecipient(this);
+		BeanPropertiesUtil.setProperty(parentNode, _name, _value);
 	}
 
-	public RecipientType getRecipientType() {
-		return _recipientType;
+	public String getName() {
+		return _name;
 	}
 
-	private RecipientType _recipientType;
+	public String getValue() {
+		return _value;
+	}
+
+	public void setName(String name) {
+		_name = name;
+	}
+
+	public void setValue(String value) {
+		_value = value;
+	}
+
+	private String _name;
+	private String _value;
 
 }

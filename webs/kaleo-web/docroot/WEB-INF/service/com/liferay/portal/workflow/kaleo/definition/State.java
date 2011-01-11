@@ -14,15 +14,15 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.kernel.util.GetterUtil;
+
 /**
  * @author Michael C. Han
  */
 public class State extends Node {
 
-	public State(String name, String description, boolean initial) {
-		super(NodeType.STATE, name, description);
-
-		_initial = initial;
+	public State () {
+		super(NodeType.STATE);
 	}
 
 	public boolean isInitial() {
@@ -36,6 +36,10 @@ public class State extends Node {
 		else {
 			return false;
 		}
+	}
+
+	public void setInitial(String initial) {
+		_initial = GetterUtil.getBoolean(initial);
 	}
 
 	private boolean _initial;

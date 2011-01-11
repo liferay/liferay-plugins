@@ -14,25 +14,31 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-/**
- * @author Michael C. Han
- */
-public abstract class Recipient extends DefinitionNode {
+import java.util.HashSet;
+import java.util.Set;
 
-	public Recipient(RecipientType recipientType) {
-		_recipientType = recipientType;
+/**
+ * @author Marcellus Tavares
+ */
+public class ResourceActionAssignments extends DefinitionNode {
+
+	public void addResourceActionAssignment(
+		ResourceActionAssignment resourceActionAssignment) {
+
+		_resourceActionAssignments.add(resourceActionAssignment);
 	}
 
 	public void configureParent(DefinitionNode parentNode) {
-		Recipients recipients = (Recipients)parentNode;
+		Assignments assignments = (Assignments)parentNode;
 
-		recipients.addRecipient(this);
+		for (ResourceActionAssignment resourceActionAssignment :
+				_resourceActionAssignments) {
+
+			assignments.addAssignment(resourceActionAssignment);
+		}
 	}
 
-	public RecipientType getRecipientType() {
-		return _recipientType;
-	}
-
-	private RecipientType _recipientType;
+	private Set<ResourceActionAssignment> _resourceActionAssignments =
+		new HashSet<ResourceActionAssignment>();
 
 }

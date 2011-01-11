@@ -12,23 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.parser;
+package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.xml.Visitor;
-import com.liferay.portal.workflow.kaleo.definition.Definition;
-import com.liferay.portal.workflow.kaleo.definition.DefinitionNode;
-
-import java.io.InputStream;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 
 /**
- * @author Michael C. Han
  * @author Marcellus Tavares
  */
-public interface WorkflowModelParser {
+public class ScriptLanguageAttribute extends Attribute {
 
-	public Definition parse(InputStream inputStream) throws WorkflowException;
+	public void configureParent(DefinitionNode parentNode) {
+		ScriptLanguage scriptLanguage = ScriptLanguage.parse(getValue());
 
-	public void setVisitor(Visitor<DefinitionNode> visitor);
+		BeanPropertiesUtil.setProperty(
+			parentNode, getName(), scriptLanguage);
+	}
 
 }

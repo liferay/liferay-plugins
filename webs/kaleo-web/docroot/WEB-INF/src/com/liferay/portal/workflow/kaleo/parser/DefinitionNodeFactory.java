@@ -14,21 +14,21 @@
 
 package com.liferay.portal.workflow.kaleo.parser;
 
-import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.xml.Visitor;
-import com.liferay.portal.workflow.kaleo.definition.Definition;
+import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.workflow.kaleo.definition.DefinitionNode;
-
-import java.io.InputStream;
+import com.liferay.portal.workflow.kaleo.service.ClpSerializer;
 
 /**
- * @author Michael C. Han
  * @author Marcellus Tavares
  */
-public interface WorkflowModelParser {
+public class DefinitionNodeFactory {
 
-	public Definition parse(InputStream inputStream) throws WorkflowException;
+	public DefinitionNode getDefinitionNode(String name) {
+		DefinitionNode definitionNode =
+			(DefinitionNode)PortletBeanLocatorUtil.locate(
+				ClpSerializer.SERVLET_CONTEXT_NAME, name);
 
-	public void setVisitor(Visitor<DefinitionNode> visitor);
+		return definitionNode;
+	}
 
 }

@@ -12,23 +12,32 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.parser;
+package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.xml.Visitor;
-import com.liferay.portal.workflow.kaleo.definition.Definition;
-import com.liferay.portal.workflow.kaleo.definition.DefinitionNode;
-
-import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * @author Michael C. Han
  * @author Marcellus Tavares
  */
-public interface WorkflowModelParser {
+public class Actions extends DefinitionNode {
 
-	public Definition parse(InputStream inputStream) throws WorkflowException;
+	public void addAction(Action action) {
+		_actions.add(action);
+	}
 
-	public void setVisitor(Visitor<DefinitionNode> visitor);
+	public void addNotification(Notification notification) {
+		_notifications.add(notification);
+	}
+
+	public void configureParent(DefinitionNode parentNode) {
+		Node node = (Node)parentNode;
+
+		node.setActions(_actions);
+		node.setNotifications(_notifications);
+	}
+
+	private Set<Action> _actions = new HashSet<Action>();
+	private Set<Notification> _notifications = new HashSet<Notification>();
 
 }

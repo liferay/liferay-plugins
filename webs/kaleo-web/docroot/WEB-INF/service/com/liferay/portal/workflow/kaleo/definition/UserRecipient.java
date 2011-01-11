@@ -23,6 +23,10 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class UserRecipient extends Recipient {
 
+	public UserRecipient() {
+		super(RecipientType.USER);
+	}
+
 	public UserRecipient(long userId, String screenName, String emailAddress) {
 		super(RecipientType.USER);
 

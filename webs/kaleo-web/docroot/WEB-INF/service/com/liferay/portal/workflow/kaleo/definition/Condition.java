@@ -17,16 +17,12 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public class Condition {
+public class Condition extends DefinitionNode {
 
-	public Condition(String script, String scriptLanguage) {
-		this(null, script, scriptLanguage);
-	}
+	public void configureParent(DefinitionNode parentNode) {
+		Transition transition = (Transition)parentNode;
 
-	public Condition(String description, String script, String scriptLanguage) {
-		_description = description;
-		_script = script;
-		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
+		transition.setCondition(this);
 	}
 
 	public String getDescription() {
@@ -39,6 +35,18 @@ public class Condition {
 
 	public ScriptLanguage getScriptLanguage() {
 		return _scriptLanguage;
+	}
+
+	public void setDescription(String description) {
+		_description = description;
+	}
+
+	public void setScript(String script) {
+		_script = script;
+	}
+
+	public void setScriptLanguage(ScriptLanguage scriptLanguage) {
+		_scriptLanguage = scriptLanguage;
 	}
 
 	private String _description;

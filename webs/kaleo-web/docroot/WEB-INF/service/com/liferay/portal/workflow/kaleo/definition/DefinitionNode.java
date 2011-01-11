@@ -12,23 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.parser;
-
-import com.liferay.portal.kernel.workflow.WorkflowException;
-import com.liferay.portal.kernel.xml.Visitor;
-import com.liferay.portal.workflow.kaleo.definition.Definition;
-import com.liferay.portal.workflow.kaleo.definition.DefinitionNode;
-
-import java.io.InputStream;
+package com.liferay.portal.workflow.kaleo.definition;
 
 /**
- * @author Michael C. Han
  * @author Marcellus Tavares
  */
-public interface WorkflowModelParser {
+public abstract class DefinitionNode {
 
-	public Definition parse(InputStream inputStream) throws WorkflowException;
-
-	public void setVisitor(Visitor<DefinitionNode> visitor);
+	public abstract void configureParent(DefinitionNode parentNode);
 
 }

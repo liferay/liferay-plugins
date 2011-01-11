@@ -23,14 +23,24 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class UserAssignment extends Assignment {
 
-	public UserAssignment(
-		long userId, String screenName, String emailAddress) {
-
+	public UserAssignment() {
 		super(AssignmentType.USER);
+	}
 
-		_userId = userId;
-		_screenName = GetterUtil.getString(screenName);
-		_emailAddress = GetterUtil.getString(emailAddress);
+	public void configureParent(DefinitionNode parentNode) {
+		if (parentNode instanceof Recipients) {
+			Recipients recipients = (Recipients)parentNode;
+
+			UserRecipient userRecipient = new UserRecipient(
+				getUserId(), getScreenName(), getEmailAddress());
+
+			recipients.addRecipient(userRecipient);
+		}
+		else if (parentNode instanceof Assignments) {
+			Assignments assignments = (Assignments)parentNode;
+
+			assignments.addAssignment(this);
+		}
 	}
 
 	public boolean equals(Object obj) {
@@ -66,6 +76,18 @@ public class UserAssignment extends Assignment {
 		return _userId;
 	}
 
+	public void setEmailAddress(String emailAddress) {
+		_emailAddress = emailAddress;
+	}
+
+	public void setScreenName(String screenName) {
+		_screenName = screenName;
+	}
+
+	public void setUserId(String userId) {
+		 _userId = GetterUtil.getLong(userId);
+	}
+
 	public int hashCode() {
 		return _emailAddress.concat(_screenName).concat(
 			String.valueOf(_userId)).hashCode();
@@ -85,8 +107,8 @@ public class UserAssignment extends Assignment {
 		return sb.toString();
 	}
 
-	private String _emailAddress;
-	private String _screenName;
+	private String _emailAddress = "";
+	private String _screenName = "";
 	private long _userId;
 
 }

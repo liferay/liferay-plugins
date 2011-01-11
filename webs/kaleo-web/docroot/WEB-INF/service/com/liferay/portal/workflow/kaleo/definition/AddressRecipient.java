@@ -21,6 +21,10 @@ import com.liferay.portal.kernel.util.Validator;
  */
 public class AddressRecipient extends Recipient {
 
+	public AddressRecipient() {
+		super(RecipientType.ADDRESS);
+	}
+
 	public AddressRecipient(String address) {
 		super(RecipientType.ADDRESS);
 
@@ -51,6 +55,10 @@ public class AddressRecipient extends Recipient {
 
 	public int hashCode() {
 		return _address.hashCode();
+	}
+
+	public void setAddress(String address) {
+		_address = address;
 	}
 
 	private String _address;

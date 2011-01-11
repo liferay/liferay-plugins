@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+
+<beans
+	default-destroy-method="destroy"
+	default-init-method="afterPropertiesSet"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+	
+	<bean id="action" class="com.liferay.portal.workflow.kaleo.definition.Action" scope="prototype" />
+
+	<bean id="actions" class="com.liferay.portal.workflow.kaleo.definition.Actions" scope="prototype" />
+
+	<bean id="address" class="com.liferay.portal.workflow.kaleo.definition.AddressRecipient" scope="prototype" />
+
+	<bean id="assignments" class="com.liferay.portal.workflow.kaleo.definition.Assignments" scope="prototype" />
+
+	<bean id="condition" class="com.liferay.portal.workflow.kaleo.definition.Condition" scope="prototype" />
+	
+	<bean id="default" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="defaultValue" />
+	</bean>
+
+	<bean id="description" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="description" />
+	</bean>
+
+	<bean id="due-date-duration" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="duration" />
+	</bean>
+
+	<bean id="due-date-scale" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="scale" />
+	</bean>
+
+	<bean id="email-address" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="emailAddress" />
+	</bean>
+
+	<bean id="execution-type" class="com.liferay.portal.workflow.kaleo.definition.ExecutionTypeAttribute" scope="prototype">
+		<property name="name" value="executionType" />
+	</bean>
+
+	<bean id="fork" class="com.liferay.portal.workflow.kaleo.definition.Fork" scope="prototype" />
+
+	<bean id="initial"  class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="initial" />
+	</bean>
+
+	<bean id="join" class="com.liferay.portal.workflow.kaleo.definition.Join" scope="prototype" />
+
+	<bean id="name" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="name" />
+	</bean>
+
+	<bean id="notification" class="com.liferay.portal.workflow.kaleo.definition.Notification" scope="prototype" />
+
+	<bean id="notification-type" class="com.liferay.portal.workflow.kaleo.definition.NotificationTypeAttribute" scope="prototype" />
+
+	<bean id="recipients" class="com.liferay.portal.workflow.kaleo.definition.Recipients" scope="prototype" />
+
+	<bean id="resource-action" class="com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignment" scope="prototype" />
+
+	<bean id="resource-actions" class="com.liferay.portal.workflow.kaleo.definition.ResourceActionAssignments" scope="prototype" />
+
+	<bean id="role" class="com.liferay.portal.workflow.kaleo.definition.RoleAssignment" scope="prototype" />
+
+	<bean id="role-type" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="roleType" />
+	</bean>
+
+	<bean id="roles" class="com.liferay.portal.workflow.kaleo.definition.RoleAssignments" scope="prototype" />
+
+	<bean id="state" class="com.liferay.portal.workflow.kaleo.definition.State" scope="prototype" />
+
+	<bean id="target" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="targetName" />
+	</bean>
+
+	<bean id="task" class="com.liferay.portal.workflow.kaleo.definition.Task" scope="prototype" />
+
+	<bean id="template" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="template" />
+	</bean>
+
+	<bean id="template-language" class="com.liferay.portal.workflow.kaleo.definition.TemplateLanguageAttribute" scope="prototype" />
+
+	<bean id="transition" class="com.liferay.portal.workflow.kaleo.definition.Transition" scope="prototype" />
+
+	<bean id="transitions" class="com.liferay.portal.workflow.kaleo.definition.Transitions" scope="prototype" />
+
+	<bean id="screen-name" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="screenName" />
+	</bean>
+
+	<bean id="script" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="script" />
+	</bean>
+
+	<bean id="script-language" class="com.liferay.portal.workflow.kaleo.definition.ScriptLanguageAttribute" scope="prototype">
+		<property name="name" value="scriptLanguage" />
+	</bean>
+
+	<bean id="user" class="com.liferay.portal.workflow.kaleo.definition.UserAssignment" scope="prototype" />
+
+	<bean id="user-id" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="userId" />
+	</bean>
+
+	<bean id="version" class="com.liferay.portal.workflow.kaleo.definition.Attribute" scope="prototype">
+		<property name="name" value="version" />
+	</bean>
+
+	<bean id="workflow-definition" class="com.liferay.portal.workflow.kaleo.definition.Definition" scope="prototype" />
+
+	<bean id="com.liferay.portal.workflow.kaleo.parser.DefinitionNodeFactory" class="com.liferay.portal.workflow.kaleo.parser.DefinitionNodeFactory" />
+	
+	<bean id="com.liferay.portal.workflow.kaleo.parser.KaleoDefinitionVisitor" class="com.liferay.portal.workflow.kaleo.parser.KaleoDefinitionVisitor">
+		<property name="definitionNodeFactory" ref="com.liferay.portal.workflow.kaleo.parser.DefinitionNodeFactory"/>
+	</bean>
+
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" class="com.liferay.portal.workflow.kaleo.parser.XMLWorkflowModelParser">
+		<property name="visitor" ref="com.liferay.portal.workflow.kaleo.parser.KaleoDefinitionVisitor" />
+	</bean>
+	
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" class="com.liferay.portal.workflow.kaleo.parser.DefaultWorkflowValidator" />
+</beans>

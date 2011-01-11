@@ -14,12 +14,19 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Michael C. Han
  */
 public class RoleAssignment extends Assignment {
+
+	public RoleAssignment() {
+		super(AssignmentType.ROLE);
+
+		_autoCreate = true;
+	}
 
 	public RoleAssignment(long roleId, String roleType) {
 		super(AssignmentType.ROLE);
@@ -33,6 +40,12 @@ public class RoleAssignment extends Assignment {
 
 		_roleName = roleName;
 		_roleType = roleType;
+	}
+
+	public void configureParent(DefinitionNode parentNode) {
+		RoleAssignments roleAssignments = (RoleAssignments)parentNode;
+
+		roleAssignments.addRoleAssignment(this);
 	}
 
 	public boolean equals(Object obj) {
@@ -73,6 +86,18 @@ public class RoleAssignment extends Assignment {
 
 	public boolean isAutoCreate() {
 		return _autoCreate;
+	}
+
+	public void setName(String name) {
+		_roleName = name;
+	}
+
+	public void setRoleType(String roleType) {
+		_roleType = roleType;
+	}
+
+	public void setAutoCreate(String autoCreate) {
+		_autoCreate = GetterUtil.getBoolean(autoCreate);
 	}
 
 	public void setAutoCreate(boolean autoCreate) {
