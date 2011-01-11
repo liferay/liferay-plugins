@@ -58,14 +58,16 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 			subscription.getCompanyId(), Subscription.class.getName(), "KB",
 			"portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
 
-		long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKeys[0]);
-		String portletPrimKeyPortletId = ArticleConstants.getPortletId(
-			portletPrimKeys[0]);
+		for (String portletPrimKey : portletPrimKeys) {
+			long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
+			String portletPrimKeyPortletId = ArticleConstants.getPortletId(
+				portletPrimKey);
 
-		ArticleLocalServiceUtil.unsubscribe(
-			subscription.getCompanyId(), subscription.getUserId(),
-			portletPrimKeyPlid, portletPrimKeyPortletId,
-			subscription.getClassPK());
+			ArticleLocalServiceUtil.unsubscribe(
+				subscription.getCompanyId(), subscription.getUserId(),
+				portletPrimKeyPlid, portletPrimKeyPortletId,
+				subscription.getClassPK());
+		}
 	}
 
 	protected String getEmailArticleAttachments(Locale locale)
