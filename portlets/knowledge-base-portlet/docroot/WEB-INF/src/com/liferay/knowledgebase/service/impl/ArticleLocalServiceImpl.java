@@ -552,6 +552,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long classPK)
 		throws PortalException, SystemException {
 
+		// Subscription
+
 		Subscription subscription = subscriptionLocalService.getSubscription(
 			companyId, userId, Article.class.getName(), classPK);
 
@@ -563,8 +565,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			plid, portletId);
 
 		portletPrimKeys = ArrayUtil.remove(portletPrimKeys, portletPrimKey);
-
-		// Subscription
 
 		if (portletPrimKeys.length == 0) {
 			subscriptionLocalService.deleteSubscription(subscription);
@@ -589,10 +589,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long companyId, long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
+		// Subscription
+
 		Subscription subscription = subscriptionLocalService.getSubscription(
 			companyId, userId, Article.class.getName(), resourcePrimKey);
-
-		// Subscription
 
 		subscriptionLocalService.deleteSubscription(subscription);
 
