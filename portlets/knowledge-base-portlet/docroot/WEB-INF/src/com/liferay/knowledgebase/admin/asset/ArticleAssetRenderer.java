@@ -28,10 +28,11 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.asset.model.BaseAssetRenderer;
 
+import java.util.Locale;
+
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-import java.util.Locale;
 
 /**
  * @author Peter Shin
