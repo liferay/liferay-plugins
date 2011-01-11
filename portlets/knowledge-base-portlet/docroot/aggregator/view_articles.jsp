@@ -82,14 +82,13 @@ String tag = ParamUtil.getString(request, "tag");
 			Article article = (Article)results.get(i);
 		%>
 
-			<div class="kb-title-wrapper <%= ((Validator.isNull(articlesTitle) && (i == 0)) ? "kb-title-wrapper-first" : StringPool.BLANK) %>">
+			<div class="kb-title <%= ((Validator.isNull(articlesTitle) && (i == 0)) ? "kb-title-first" : StringPool.BLANK) %>">
 				<portlet:renderURL var="viewArticleURL" windowState="<%= articleWindowState %>">
 					<portlet:param name="jspPage" value="/aggregator/view_article.jsp" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				</portlet:renderURL>
 
 				<liferay-ui:icon
-					cssClass="kb-title"
 					image="../trees/page"
 					label="<%= true %>"
 					message="<%= article.getTitle() %>"

@@ -66,14 +66,13 @@
 				for (Template template : (List<Template>)results) {
 				%>
 
-					<div class="kb-title-wrapper">
+					<div class="kb-title">
 						<portlet:renderURL var="viewTemplateURL">
 							<portlet:param name="jspPage" value="/admin/view_template.jsp" />
 							<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 						</portlet:renderURL>
 
 						<liferay-ui:icon
-							cssClass="kb-title"
 							image="../trees/page"
 							label="<%= true %>"
 							message="<%= template.getTitle() %>"

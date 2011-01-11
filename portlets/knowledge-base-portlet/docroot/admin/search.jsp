@@ -101,14 +101,13 @@ String keywords = ParamUtil.getString(request, "keywords");
 					String snippet = (String)result[2];
 				%>
 
-					<div class="kb-title-wrapper">
+					<div class="kb-title">
 						<portlet:renderURL var="viewArticleURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(entryClassPK) %>" />
 						</portlet:renderURL>
 
 						<liferay-ui:icon
-							cssClass="kb-title"
 							image="../trees/page"
 							label="<%= true %>"
 							message="<%= title %>"

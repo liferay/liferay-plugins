@@ -28,8 +28,9 @@
 		<workflow-handler>com.liferay.knowledgebase.admin.workflow.ArticleWorkflowHandler</workflow-handler>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<show-portlet-access-denied>false</show-portlet-access-denied>
-		<header-portlet-css>/admin/css/main.jsp</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet-admin</css-class-wrapper>
+		<header-portlet-css>/admin/css/common.css</header-portlet-css>
+		<header-portlet-css>/admin/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-admin</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
@@ -40,8 +41,9 @@
 		<friendly-url-mapping>knowledge_base_aggregator</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/aggregator/portlet/aggregator-friendly-url-routes.xml</friendly-url-routes>
 		<instanceable>true</instanceable>
-		<header-portlet-css>/aggregator/css/main.jsp</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet-aggregator</css-class-wrapper>
+		<header-portlet-css>/admin/css/common.css</header-portlet-css>
+		<header-portlet-css>/aggregator/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-aggregator</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
@@ -51,8 +53,9 @@
 		<friendly-url-mapping>knowledge_base_display</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/display/portlet/display-friendly-url-routes.xml</friendly-url-routes>
 		<instanceable>true</instanceable>
-		<header-portlet-css>/display/css/main.jsp</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet-display</css-class-wrapper>
+		<header-portlet-css>/admin/css/common.css</header-portlet-css>
+		<header-portlet-css>/display/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-display</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
@@ -61,8 +64,9 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base_search</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/search/portlet/search-friendly-url-routes.xml</friendly-url-routes>
-		<header-portlet-css>/search/css/main.jsp</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet-search</css-class-wrapper>
+		<header-portlet-css>/admin/css/common.css</header-portlet-css>
+		<header-portlet-css>/search/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-search</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>5</portlet-name>
@@ -71,8 +75,9 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base_list</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/list/portlet/list-friendly-url-routes.xml</friendly-url-routes>
-		<header-portlet-css>/list/css/main.jsp</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet-list</css-class-wrapper>
+		<header-portlet-css>/admin/css/common.css</header-portlet-css>
+		<header-portlet-css>/list/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-list</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

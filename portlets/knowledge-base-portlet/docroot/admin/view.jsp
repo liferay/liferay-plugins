@@ -138,14 +138,13 @@
 				for (Article article : (List<Article>)results) {
 				%>
 
-					<div class="kb-title-wrapper">
+					<div class="kb-title">
 						<portlet:renderURL var="viewArticleURL">
 							<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						</portlet:renderURL>
 
 						<liferay-ui:icon
-							cssClass="kb-title"
 							image="../trees/page"
 							label="<%= true %>"
 							message="<%= article.getTitle() %>"

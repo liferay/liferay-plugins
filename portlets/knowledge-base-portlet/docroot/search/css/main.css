@@ -1,0 +1,35 @@
+/* ---------- Configuration ---------- */
+
+.portlet-configuration .aui-field-wrapper-content {
+	margin: 0;
+}
+
+.portlet-configuration .kb-asset-selector-wrapper {
+	margin: 5px 0 0;
+}
+
+.portlet-configuration .kb-edit-link {
+	margin-top: 5px;
+}
+
+.portlet-configuration .kb-field-wrapper {
+	margin: 10px 0;
+}
+
+.portlet-configuration .kb-selected-entries span {
+	display: block;
+}
+
+/* ---------- Portlet ---------- */
+
+.knowledge-base-portlet-search .kb-search-header {
+	margin: 0 0 15px;
+}
+
+.knowledge-base-portlet-search .kb-search-input-text-container input {
+	width: 100%;
+}
+
+.knowledge-base-portlet-search .kb-select-box select {
+	min-width: 150px;
+}
