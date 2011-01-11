@@ -31,6 +31,7 @@ import com.liferay.portlet.asset.model.BaseAssetRenderer;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+import java.util.Locale;
 
 /**
  * @author Peter Shin
@@ -49,11 +50,11 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 		return _article.getGroupId();
 	}
 
-	public String getSummary() {
+	public String getSummary(Locale locale) {
 		return HtmlUtil.stripHtml(_article.getContent());
 	}
 
-	public String getTitle() {
+	public String getTitle(Locale locale) {
 		return _article.getTitle();
 	}
 
