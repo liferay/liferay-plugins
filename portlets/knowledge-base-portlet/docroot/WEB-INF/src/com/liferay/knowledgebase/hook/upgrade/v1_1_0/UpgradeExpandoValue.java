@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade.v1_2_0;
+package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -54,7 +55,7 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 			return;
 		}
 
-		if (!hasExpandoColumn(expandoTable, "portletPrimKeys")) {
+		if (hasExpandoColumn(expandoTable, "portletIds")) {
 			upgradeExpandoValues(expandoTable);
 		}
 	}
@@ -88,9 +89,17 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 	protected void upgradeExpandoValues(ExpandoTable expandoTable)
 		throws Exception {
 
-		ExpandoColumnLocalServiceUtil.addColumn(
-			expandoTable.getTableId(), "portletPrimKeys",
-			ExpandoColumnConstants.STRING_ARRAY);
+		Group controlPanelGroup = GroupLocalServiceUtil.getGroup(
+			expandoTable.getCompanyId(), GroupConstants.CONTROL_PANEL);
+
+		long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(
+			controlPanelGroup.getGroupId(), true);
+
+		if (!hasExpandoColumn(expandoTable, "portletPrimKeys")) {
+			ExpandoColumnLocalServiceUtil.addColumn(
+				expandoTable.getTableId(), "portletPrimKeys",
+				ExpandoColumnConstants.STRING_ARRAY);
+		}
 
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
@@ -108,16 +117,19 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 				continue;
 			}
 
-			long groupId = 0;
+			Article article = null;
 
 			try {
-				Article article = ArticleLocalServiceUtil.getLatestArticle(
+				article = ArticleLocalServiceUtil.getLatestArticle(
 					subscription.getClassPK(), WorkflowConstants.STATUS_ANY);
-
-				groupId = article.getGroupId();
 			}
 			catch (NoSuchArticleException nsae) {
-				groupId = subscription.getClassPK();
+			}
+
+			long groupId = subscription.getClassPK();
+
+			if (article != null) {
+				groupId = article.getGroupId();
 			}
 
 			String[] portletPrimKeys = new String[0];
@@ -126,28 +138,47 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 
 			for (int i = 0; i < portletIds.length; i++) {
 				String portletId = portletIds[i];
-				long plid = PortalUtil.getPlidFromPortletId(groupId, portletId);
 
-				if (plid == LayoutConstants.DEFAULT_PLID) {
-					Group controlPanelGroup = GroupLocalServiceUtil.getGroup(
-						subscription.getCompanyId(),
-						GroupConstants.CONTROL_PANEL);
+				String portletPrimKey = null;
 
-					plid = LayoutLocalServiceUtil.getDefaultPlid(
-						controlPanelGroup.getGroupId(), true);
+				if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+					portletPrimKey = ArticleConstants.getPortletPrimKey(
+						controlPanelPlid, PortletKeys.KNOWLEDGE_BASE_ADMIN);
 				}
 
-				String portletPrimKey = ArticleConstants.getPortletPrimKey(
-					plid, portletId);
+				long plid = LayoutConstants.DEFAULT_PLID;
+
+				if (portletPrimKey == null) {
+					plid = PortalUtil.getPlidFromPortletId(groupId, portletId);
+				}
+
+				if (plid != LayoutConstants.DEFAULT_PLID) {
+					portletPrimKey = ArticleConstants.getPortletPrimKey(
+						plid, portletId);
+				}
+
+				if (portletPrimKey == null) {
+					continue;
+				}
 
 				portletPrimKeys = ArrayUtil.append(
 					portletPrimKeys, portletPrimKey);
+
+				if ((portletPrimKeys.length > 0) && (article != null)) {
+					break;
+				}
 			}
 
-			ExpandoValueLocalServiceUtil.addValue(
-				subscription.getCompanyId(), Subscription.class.getName(), "KB",
-				"portletPrimKeys", subscription.getSubscriptionId(),
-				portletPrimKeys);
+			if (portletPrimKeys.length <= 0) {
+				SubscriptionLocalServiceUtil.deleteSubscription(
+					subscription.getSubscriptionId());
+			}
+			else {
+				ExpandoValueLocalServiceUtil.addValue(
+					subscription.getCompanyId(), Subscription.class.getName(),
+					"KB", "portletPrimKeys", subscription.getSubscriptionId(),
+					portletPrimKeys);
+			}
 		}
 
 		ExpandoColumnLocalServiceUtil.deleteColumn(

@@ -12,22 +12,24 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade;
+package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_2_0.UpgradeExpandoValue;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.upgrade.CamelCaseUpgradePortletPreferences;
 
 /**
  * @author Peter Shin
  */
-public class UpgradeProcess_1_2_0 extends UpgradeProcess {
+public class UpgradePortletPreferences
+	extends CamelCaseUpgradePortletPreferences {
 
-	public int getThreshold() {
-		return 120;
+	protected String[] getPortletIds() {
+		return _PORTLET_IDS;
 	}
 
-	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeExpandoValue.class);
-	}
+	private static final String[] _PORTLET_IDS = new String[] {
+		"1_WAR_knowledgebaseportlet", "%2_WAR_knowledgebaseportlet_INSTANCE_%",
+		"%3_WAR_knowledgebaseportlet_INSTANCE_%", "4_WAR_knowledgebaseportlet",
+		"5_WAR_knowledgebaseportlet"
+	};
 
 }
