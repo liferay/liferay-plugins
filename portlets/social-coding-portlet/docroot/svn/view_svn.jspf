@@ -286,7 +286,12 @@
 
 							ResultRow row = new ResultRow(new Object[] {svnRevision, rowHREF, jiraIssue}, svnRevision.getSvnRevisionId(), i);
 
-							TextSearchEntry rowTextEntry = new TextSearchEntry(SearchEntry.DEFAULT_ALIGN, SearchEntry.DEFAULT_VALIGN, String.valueOf(svnRevision.getRevisionNumber()), rowHREF, "_blank", String.valueOf(svnRevision.getRevisionNumber()));
+							TextSearchEntry rowTextEntry = new TextSearchEntry();
+							
+							rowTextEntry.setHref(rowHREF);
+							rowTextEntry.setName(String.valueOf(svnRevision.getRevisionNumber()));
+							rowTextEntry.setTarget("_blank");
+							rowTextEntry.setTitle(String.valueOf(svnRevision.getRevisionNumber()));
 
 							// Revision number
 
