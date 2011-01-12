@@ -17,10 +17,6 @@ package com.liferay.portal.workflow.kaleo.model;
 /**
  * The model interface for the KaleoAction service. Represents a row in the &quot;KaleoAction&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see KaleoActionModel
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl
@@ -31,6 +27,6 @@ public interface KaleoAction extends KaleoActionModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a kaleo action model instance should use the {@link KaleoAction} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoActionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

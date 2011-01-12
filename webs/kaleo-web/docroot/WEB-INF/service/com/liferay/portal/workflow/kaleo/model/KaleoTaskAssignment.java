@@ -17,10 +17,6 @@ package com.liferay.portal.workflow.kaleo.model;
 /**
  * The model interface for the KaleoTaskAssignment service. Represents a row in the &quot;KaleoTaskAssignment&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see KaleoTaskAssignmentModel
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl
@@ -31,6 +27,6 @@ public interface KaleoTaskAssignment extends KaleoTaskAssignmentModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a kaleo task assignment model instance should use the {@link KaleoTaskAssignment} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskAssignmentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

@@ -17,10 +17,6 @@ package com.liferay.portal.workflow.kaleo.model;
 /**
  * The model interface for the KaleoInstance service. Represents a row in the &quot;KaleoInstance&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see KaleoInstanceModel
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl
@@ -31,7 +27,7 @@ public interface KaleoInstance extends KaleoInstanceModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a kaleo instance model instance should use the {@link KaleoInstance} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition getKaleoDefinition()
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -233,8 +233,8 @@ public interface KaleoLogLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskAssignmentKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> previousKaleoTaskAssignmentInstances,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String comment,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)

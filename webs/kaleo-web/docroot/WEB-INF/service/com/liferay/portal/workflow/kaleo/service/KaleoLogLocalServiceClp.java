@@ -97,8 +97,7 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 				com.liferay.portal.service.ServiceContext.class);
 
 		_addTaskAssignmentKaleoLogMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addTaskAssignmentKaleoLog",
-				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
+				"addTaskAssignmentKaleoLog", java.util.List.class,
 				com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken.class,
 				java.lang.String.class, java.util.Map.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -633,8 +632,8 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addTaskAssignmentKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
-		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken newKaleoTaskInstanceToken,
+		java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> previousKaleoTaskAssignmentInstances,
+		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String comment,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -643,8 +642,9 @@ public class KaleoLogLocalServiceClp implements KaleoLogLocalService {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_addTaskAssignmentKaleoLogMethodKey16,
-				ClpSerializer.translateInput(previousKaleoTaskInstanceToken),
-				ClpSerializer.translateInput(newKaleoTaskInstanceToken),
+				ClpSerializer.translateInput(
+					previousKaleoTaskAssignmentInstances),
+				ClpSerializer.translateInput(kaleoTaskInstanceToken),
 				ClpSerializer.translateInput(comment),
 				ClpSerializer.translateInput(workflowContext),
 				ClpSerializer.translateInput(serviceContext));
