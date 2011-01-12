@@ -15,7 +15,6 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.opensocial.util.SerializerUtil;
-import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -35,17 +34,10 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.regex.Matcher;
@@ -231,27 +223,6 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 	}
 
-	protected void addAttributes(
-			MediaItem mediaItem, ExpandoBridge expandoBridge)
-		throws Exception {
-
-		if (mediaItem.getLocation() != null &&
-			!expandoBridge.hasAttribute("location")) {
-
-			expandoBridge.addAttribute("location");
-		}
-
-		for (Object field : _MEDIA_ITEM_FIELDS) {
-			String fieldName = field.toString();
-
-			String value = BeanPropertiesUtil.getString(mediaItem, fieldName);
-
-			if (value != null && !expandoBridge.hasAttribute(fieldName)) {
-				expandoBridge.addAttribute(fieldName);
-			}
-		}
-	}
-
 	protected void doCreateMediaItem(
 			UserId userId, String appId, String albumId, MediaItem mediaItem,
 			SecurityToken securityToken)
@@ -268,7 +239,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
 
-		DLAppServiceUtil.deleteFileEntry(mediaItemIdLong);
+		DLAppLocalServiceUtil.deleteFileEntry(mediaItemIdLong);
 	}
 
 	protected MediaItem doGetMediaItem(
@@ -278,7 +249,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
 
-		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(
+		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 			mediaItemIdLong);
 
 		return getMediaItem(fileEntry, fields, securityToken);
@@ -314,9 +285,8 @@ public class LiferayMediaItemService implements MediaItemService {
 					Group group = socialUser.getGroup();
 
 					List<FileEntry> friendFileEntries =
-						DLAppServiceUtil.getGroupFileEntries(
-							group.getGroupId(), socialUser.getUserId(),
-							collectionOptions.getFirst(),
+						DLAppLocalServiceUtil.getGroupFileEntries(
+							group.getGroupId(), collectionOptions.getFirst(),
 							collectionOptions.getMax());
 
 					fileEntries.addAll(friendFileEntries);
@@ -325,9 +295,9 @@ public class LiferayMediaItemService implements MediaItemService {
 			else if (groupIdType.equals(GroupId.Type.self)) {
 				Group group = user.getGroup();
 
-				fileEntries = DLAppServiceUtil.getGroupFileEntries(
-					group.getGroupId(), user.getUserId(),
-					collectionOptions.getFirst(), collectionOptions.getMax());
+				fileEntries = DLAppLocalServiceUtil.getGroupFileEntries(
+					group.getGroupId(), collectionOptions.getFirst(),
+					collectionOptions.getMax());
 			}
 
 			for (FileEntry fileEntry : fileEntries) {
@@ -364,7 +334,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long albumIdLong = GetterUtil.getLong(albumId);
 
-		List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
+		List<FileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
 			groupIdLong, albumIdLong);
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
@@ -403,7 +373,7 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long albumIdLong = GetterUtil.getLong(albumId);
 
-		List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
+		List<FileEntry> fileEntries = DLAppLocalServiceUtil.getFileEntries(
 			groupIdLong, albumIdLong);
 
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
@@ -449,39 +419,17 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		String fileName = getFileName(mediaItem, options);
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setAddCommunityPermissions(true);
-		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(groupIdLong);
-
-		Map<String, Serializable> expandoBridgeAttributes =
-			new LinkedHashMap<String, Serializable>();
-
-		if (mediaItem.getLocation() != null) {
-			JSONObject locationJSONObject = getLocation(
-				mediaItem.getLocation());
-
-			expandoBridgeAttributes.put(
-				"location", locationJSONObject.toString());
-		}
-
-		SerializerUtil.copyProperties(
-			mediaItem, expandoBridgeAttributes, _MEDIA_ITEM_FIELDS);
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-
-		ExpandoBridge expandoBridge =
-			ExpandoBridgeFactoryUtil.getExpandoBridge(
-				user.getCompanyId(), FileEntry.class.toString());
-
-		addAttributes(mediaItem, expandoBridge);
-
 		if (mediaItemId == null) {
 			long albumIdLong = GetterUtil.getLong(albumId);
 
-			DLAppServiceUtil.addFileEntry(
-				groupIdLong, albumIdLong, fileName,
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setAddCommunityPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setScopeGroupId(groupIdLong);
+
+			DLAppLocalServiceUtil.addFileEntry(
+				userIdLong, groupIdLong, albumIdLong, fileName,
 				mediaItem.getDescription(), StringPool.BLANK, byteArray,
 				serviceContext);
 		}
@@ -491,13 +439,18 @@ public class LiferayMediaItemService implements MediaItemService {
 			FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
 				mediaItemIdLong);
 
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setAddCommunityPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
 			serviceContext.setCreateDate(fileEntry.getCreateDate());
 			serviceContext.setModifiedDate(fileEntry.getModifiedDate());
+			serviceContext.setScopeGroupId(groupIdLong);
 
-			DLAppServiceUtil.updateFileEntry(
-				fileEntry.getFileEntryId(), fileName, mediaItem.getTitle(),
-				mediaItem.getDescription(), StringPool.BLANK, false, byteArray,
-				serviceContext);
+			DLAppLocalServiceUtil.updateFileEntry(
+				userIdLong, fileEntry.getFileEntryId(), fileName,
+				mediaItem.getTitle(), mediaItem.getDescription(),
+				StringPool.BLANK, false, byteArray, serviceContext);
 		}
 	}
 
@@ -575,30 +528,6 @@ public class LiferayMediaItemService implements MediaItemService {
 		mediaItem.setType(getMediaItemType(fileEntry));
 		mediaItem.setUrl(getFileEntryURL(fileEntry, securityToken));
 
-		Map<String, Serializable> attributes =
-			fileEntry.getLatestFileVersion().getAttributes();
-
-		if (attributes.containsKey("location")) {
-
-			JSONObject addressJSONObject = null;
-
-			try {
-				addressJSONObject = JSONFactoryUtil.createJSONObject(
-					(String)attributes.get("location"));
-			}
-			catch (Exception e) {
-			}
-
-			if (addressJSONObject != null) {
-				Address address = getAddress(addressJSONObject);
-
-				mediaItem.setLocation(address);
-			}
-		}
-
-		SerializerUtil.copyProperties(
-			attributes, mediaItem, _MEDIA_ITEM_FIELDS);
-
 		return mediaItem;
 	}
 
@@ -629,11 +558,11 @@ public class LiferayMediaItemService implements MediaItemService {
 	};
 
 	private static final MediaItem.Field[] _MEDIA_ITEM_FIELDS = {
-		MediaItem.Field.DURATION, MediaItem.Field.FILE_SIZE,
-		MediaItem.Field.LANGUAGE, MediaItem.Field.NUM_COMMENTS,
-		MediaItem.Field.NUM_VOTES, MediaItem.Field.RATING,
-		MediaItem.Field.START_TIME, MediaItem.Field.TAGGED_PEOPLE,
-		MediaItem.Field.TAGS, MediaItem.Field.THUMBNAIL_URL
+		MediaItem.Field.FILE_SIZE, MediaItem.Field.LANGUAGE,
+		MediaItem.Field.NUM_COMMENTS, MediaItem.Field.NUM_VOTES,
+		MediaItem.Field.RATING, MediaItem.Field.START_TIME,
+		MediaItem.Field.TAGGED_PEOPLE, MediaItem.Field.TAGS,
+		MediaItem.Field.THUMBNAIL_URL
 	};
 
 	private static Log _log = LogFactoryUtil.getLog(
