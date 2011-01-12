@@ -128,6 +128,13 @@ public class ClpSerializer {
 
 					method9.invoke(newModel, value9);
 
+					Method method10 = newModelClass.getMethod("setForwardCookies",
+							new Class[] { String.class });
+
+					String value10 = oldCplModel.getForwardCookies();
+
+					method10.invoke(newModel, value10);
+
 					return newModel;
 				}
 				catch (Exception e) {
@@ -421,6 +428,14 @@ public class ClpSerializer {
 							(Object[])null);
 
 					newModel.setRegistrationPropertiesString(value9);
+
+					Method method10 = oldModelClass.getMethod(
+							"getForwardCookies");
+
+					String value10 = (String)method10.invoke(oldModel,
+							(Object[])null);
+
+					newModel.setForwardCookies(value10);
 
 					return newModel;
 				}

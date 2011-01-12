@@ -12,107 +12,106 @@
  * details.
  */
 
-package com.liferay.util.axis;
+package com.liferay.wsrp.axis;
 
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedInputStream;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InitialThreadLocal;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.util.SystemProperties;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.util.CookieUtil;
+import com.liferay.util.axis.SimpleHTTPSender;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.net.Authenticator;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-
-import java.util.regex.Pattern;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.axis.AxisFault;
-import org.apache.axis.Message;
 import org.apache.axis.MessageContext;
 import org.apache.axis.transport.http.HTTPConstants;
 import org.apache.axis.transport.http.HTTPSender;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Michael Young
  */
-public class SimpleHTTPSender extends HTTPSender {
+public class WSRPHTTPSender extends HTTPSender {
+
+	public WSRPHTTPSender(String forwardCookies) {
+		_forwardCookies = new String[0];
+
+		if (Validator.isNotNull(forwardCookies)) {
+			forwardCookies = forwardCookies.toLowerCase();
+
+			_forwardCookies = StringUtil.split(
+				forwardCookies, StringPool.COMMA);
+		}
+	}
 
 	public static String getCurrentCookie() {
 		return _currentCookie.get();
 	}
 
+	public static HttpServletRequest getCurrentRequest() {
+		return _currentRequest.get();
+	}
+
+	public static void setCurrentRequest(HttpServletRequest httpServletRequest)
+	{
+		_currentRequest.set(httpServletRequest);
+	}
+
 	public void invoke(MessageContext ctx) throws AxisFault {
-		String url = ctx.getStrProp(MessageContext.TRANS_URL);
+		HttpServletRequest request = getCurrentRequest();
 
-		if (_pattern.matcher(url).matches()) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("A match was found for " + url);
-			}
-
-			_invoke(ctx, url);
-		}
-		else {
-			if (_log.isDebugEnabled()) {
-				_log.debug("No match was found for " + url);
-			}
-
+		if (request == null) {
 			super.invoke(ctx);
 
-			_registerCurrentCookie(ctx);
+			return;
 		}
-	}
 
-	private void _invoke(MessageContext ctx, String url) throws AxisFault {
-		try {
-			String userName = ctx.getUsername();
-			String password = ctx.getPassword();
+		Object cookiesObject = ctx.getProperty(HTTPConstants.HEADER_COOKIE);
 
-			if ((userName != null) && (password != null)) {
-				Authenticator.setDefault(
-					new SimpleAuthenticator(userName, password));
+		String[] cookiesArray = new String[0];
+
+		if (cookiesObject instanceof String[]) {
+			cookiesArray = (String[])cookiesObject;
+		}
+		else if (cookiesObject instanceof String) {
+			cookiesArray = new String[] {(String)cookiesObject};
+		}
+
+		Map<String, String> cookiesMap = new HashMap<String, String>();
+
+		for (String cookie : cookiesArray) {
+			String name = cookie.substring(0, cookie.indexOf(StringPool.EQUAL));
+
+			cookiesMap.put(name.toLowerCase(), cookie);
+		}
+
+		for (String forwardCookie : _forwardCookies) {
+			String value = CookieUtil.get(request, forwardCookie);
+
+			if (Validator.isNotNull(value)) {
+				StringBundler sb = new StringBundler(forwardCookie);
+
+				sb.append(StringPool.EQUAL);
+				sb.append(value);
+
+				cookiesMap.put(forwardCookie, sb.toString());
 			}
-
-			URL urlObj = new URL(url);
-
-			URLConnection urlc = urlObj.openConnection();
-
-			_writeToConnection(urlc, ctx);
-			_readFromConnection(urlc, ctx);
-		}
-		catch (Exception e) {
-			throw AxisFault.makeFault(e);
-		}
-		finally {
-			Authenticator.setDefault(null);
-		}
-	}
-
-	private void _readFromConnection(URLConnection urlc, MessageContext ctx)
-		throws Exception {
-
-		String contentType = urlc.getContentType();
-		String contentLocation = urlc.getHeaderField("Content-Location");
-
-		InputStream is = ((HttpURLConnection)urlc).getErrorStream();
-
-		if (is == null) {
-			is = urlc.getInputStream();
 		}
 
-		is = new UnsyncBufferedInputStream(is, 8192);
+		cookiesObject = cookiesMap.values().toArray(new String[0]);
 
-		Message response = new Message(is, false, contentType, contentLocation);
+		ctx.setProperty(HTTPConstants.HEADER_COOKIE, cookiesObject);
 
-		response.setMessageType(Message.RESPONSE);
+		super.invoke(ctx);
 
-		ctx.setResponseMessage(response);
+		_registerCurrentCookie(ctx);
 	}
 
 	private void _registerCurrentCookie(MessageContext ctx) {
@@ -129,36 +128,15 @@ public class SimpleHTTPSender extends HTTPSender {
 		_currentCookie.set(cookie);
 	}
 
-	private void _writeToConnection(URLConnection urlc, MessageContext ctx)
-		throws Exception {
-
-		urlc.setDoOutput(true);
-
-		Message request = ctx.getRequestMessage();
-
-		String contentType = request.getContentType(ctx.getSOAPConstants());
-
-		urlc.setRequestProperty("Content-Type", contentType);
-
-		if (ctx.useSOAPAction()) {
-			urlc.setRequestProperty("SOAPAction", ctx.getSOAPActionURI());
-		}
-
-		OutputStream os = new UnsyncBufferedOutputStream(
-			urlc.getOutputStream(), 8192);
-
-		request.writeTo(os);
-
-		os.flush();
-	}
-
-	private static Log _log = LogFactoryUtil.getLog(SimpleHTTPSender.class);
+	private static Log _log = LogFactoryUtil.getLog(WSRPHTTPSender.class);
 
 	private static ThreadLocal<String> _currentCookie =
 		new InitialThreadLocal<String>(
 			SimpleHTTPSender.class + "._currentCookie", StringPool.BLANK);
-	private static Pattern _pattern = Pattern.compile(
-		SystemProperties.get(
-			SimpleHTTPSender.class.getName() + ".regexp.pattern"));
+	private static ThreadLocal<HttpServletRequest> _currentRequest =
+		new InitialThreadLocal<HttpServletRequest>(
+			SimpleHTTPSender.class + "._currentRequest", null);
+
+	private String[] _forwardCookies;
 
 }

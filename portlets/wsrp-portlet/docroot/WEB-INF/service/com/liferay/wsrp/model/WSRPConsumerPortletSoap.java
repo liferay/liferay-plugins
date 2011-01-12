@@ -21,13 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.wsrp.service.http.WSRPConsumerPortletServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.wsrp.service.http.WSRPConsumerPortletServiceSoap
  * @generated
  */
 public class WSRPConsumerPortletSoap implements Serializable {

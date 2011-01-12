@@ -212,8 +212,9 @@ public interface WSRPConsumerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(long companyId,
-		java.lang.String adminPortletId, java.lang.String name,
-		java.lang.String url, java.lang.String userToken,
+		java.lang.String adminPortletId, java.lang.String forwardCookies,
+		java.lang.String name, java.lang.String url,
+		java.lang.String userToken,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -251,7 +252,8 @@ public interface WSRPConsumerLocalService {
 
 	public com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
 		long wsrpConsumerId, java.lang.String adminPortletId,
-		java.lang.String name, java.lang.String url, java.lang.String userToken)
+		java.lang.String forwardCookies, java.lang.String name,
+		java.lang.String url, java.lang.String userToken)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

@@ -15,6 +15,7 @@
 package com.liferay.wsrp.proxy;
 
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.client.PasswordCallback;
 
 import java.lang.reflect.InvocationHandler;
@@ -55,19 +56,12 @@ import org.apache.ws.security.message.token.UsernameToken;
  */
 public class ServiceHandler implements InvocationHandler {
 
-	public ServiceHandler(String userToken) {
-		_userToken = userToken;
+	public ServiceHandler(String forwardCookies, String userToken) {
+		_engineConfiguration = getEngineConfiguration(
+			forwardCookies, userToken);
 
-		if (Validator.isNotNull(_userToken)) {
-			EngineConfiguration engineConfiguration = getEngineConfiguration();
-
-			_v1ServiceLocator = new WSRPServiceLocator(engineConfiguration);
-			_v2ServiceLocator = new WSRP_v2_ServiceLocator(engineConfiguration);
-		}
-		else {
-			_v1ServiceLocator = new WSRPServiceLocator();
-			_v2ServiceLocator = new WSRP_v2_ServiceLocator();
-		}
+		_v1ServiceLocator = new WSRPServiceLocator(_engineConfiguration);
+		_v2ServiceLocator = new WSRP_v2_ServiceLocator(_engineConfiguration);
 
 		_v1ServiceLocator.setMaintainSession(true);
 		_v2ServiceLocator.setMaintainSession(true);
@@ -180,47 +174,42 @@ public class ServiceHandler implements InvocationHandler {
 			new Class[] {proxyInterface}, invocationHandler);
 	}
 
-	public void setUserToken(String userToken) {
-		_userToken = userToken;
-	}
-
 	public void setV2(boolean v2) {
 		_v2 = v2;
 	}
 
-	protected EngineConfiguration getEngineConfiguration() {
-		Handler handler = new WSDoAllSender();
-
-		handler.setOption(WSHandlerConstants.ACTION, "UsernameToken");
-		handler.setOption(WSHandlerConstants.MUST_UNDERSTAND, "false");
-		handler.setOption(UsernameToken.PASSWORD_TYPE, WSConstants.PW_NONE);
-		handler.setOption(
-			WSHandlerConstants.PW_CALLBACK_CLASS,
-			PasswordCallback.class.getName());
-		handler.setOption(WSHandlerConstants.USER, _userToken);
+	protected EngineConfiguration getEngineConfiguration(
+		String forwardCookies, String userToken) {
 
 		SimpleChain simpleChain = new SimpleChain();
 
-		simpleChain.addHandler(handler);
+		if (Validator.isNotNull(userToken)) {
+			Handler handler = new WSDoAllSender();
+
+			handler.setOption(WSHandlerConstants.ACTION, "UsernameToken");
+			handler.setOption(WSHandlerConstants.MUST_UNDERSTAND, "false");
+			handler.setOption(UsernameToken.PASSWORD_TYPE, WSConstants.PW_NONE);
+			handler.setOption(
+				WSHandlerConstants.PW_CALLBACK_CLASS,
+				PasswordCallback.class.getName());
+			handler.setOption(WSHandlerConstants.USER, userToken);
+
+			simpleChain.addHandler(handler);
+		}
 
 		SimpleProvider simpleProvider = new SimpleProvider();
 
+		HTTPSender httpSender = new WSRPHTTPSender(forwardCookies);
+
 		simpleProvider.deployTransport(
 			HTTPTransport.DEFAULT_TRANSPORT_NAME,
-			new SimpleTargetedChain(simpleChain, new HTTPSender(), null));
+			new SimpleTargetedChain(simpleChain, httpSender, null));
 
 		return simpleProvider;
 	}
 
 	protected Service getService() {
-		Service service = null;
-
-		if (Validator.isNotNull(_userToken)) {
-			service = new Service(getEngineConfiguration());
-		}
-		else {
-			service = new Service();
-		}
+		Service service = new Service(_engineConfiguration);
 
 		service.setMaintainSession(true);
 
@@ -240,7 +229,7 @@ public class ServiceHandler implements InvocationHandler {
 		_GET_WSRP_V2_SERVICE_DESCRIPTION_SERVICE_METHOD =
 			"getWSRP_v2_ServiceDescription_Service";
 
-	private String _userToken;
+	private EngineConfiguration _engineConfiguration;
 	private WSRPServiceLocator _v1ServiceLocator;
 	private boolean _v2;
 	private WSRP_v2_ServiceLocator _v2ServiceLocator;

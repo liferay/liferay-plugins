@@ -66,9 +66,10 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			{ "url", new Integer(Types.VARCHAR) },
 			{ "wsdl", new Integer(Types.CLOB) },
 			{ "registrationContextString", new Integer(Types.CLOB) },
-			{ "registrationPropertiesString", new Integer(Types.VARCHAR) }
+			{ "registrationPropertiesString", new Integer(Types.VARCHAR) },
+			{ "forwardCookies", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (uuid_ VARCHAR(75) null,wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPConsumer (uuid_ VARCHAR(75) null,wsrpConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,wsdl TEXT null,registrationContextString TEXT null,registrationPropertiesString STRING null,forwardCookies VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPConsumer";
 	public static final String ORDER_BY_JPQL = " ORDER BY wsrpConsumer.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY WSRP_WSRPConsumer.name ASC";
@@ -210,6 +211,19 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		_registrationPropertiesString = registrationPropertiesString;
 	}
 
+	public String getForwardCookies() {
+		if (_forwardCookies == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _forwardCookies;
+		}
+	}
+
+	public void setForwardCookies(String forwardCookies) {
+		_forwardCookies = forwardCookies;
+	}
+
 	public WSRPConsumer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (WSRPConsumer)this;
@@ -247,6 +261,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		clone.setWsdl(getWsdl());
 		clone.setRegistrationContextString(getRegistrationContextString());
 		clone.setRegistrationPropertiesString(getRegistrationPropertiesString());
+		clone.setForwardCookies(getForwardCookies());
 
 		return clone;
 	}
@@ -292,7 +307,7 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -314,13 +329,15 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		sb.append(getRegistrationContextString());
 		sb.append(", registrationPropertiesString=");
 		sb.append(getRegistrationPropertiesString());
+		sb.append(", forwardCookies=");
+		sb.append(getForwardCookies());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumer");
@@ -366,6 +383,10 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 			"<column><column-name>registrationPropertiesString</column-name><column-value><![CDATA[");
 		sb.append(getRegistrationPropertiesString());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>forwardCookies</column-name><column-value><![CDATA[");
+		sb.append(getForwardCookies());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -382,5 +403,6 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	private String _wsdl;
 	private String _registrationContextString;
 	private String _registrationPropertiesString;
+	private String _forwardCookies;
 	private transient ExpandoBridge _expandoBridge;
 }

@@ -57,11 +57,10 @@ public class WSRPConsumerLocalServiceImpl
 	extends WSRPConsumerLocalServiceBaseImpl {
 
 	public WSRPConsumer addWSRPConsumer(
-			long companyId, String adminPortletId, String name, String url,
-			String userToken, ServiceContext serviceContext)
+			long companyId, String adminPortletId, String forwardCookies,
+			String name, String url, String userToken,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
-
-		String wsdl = getWSDL(url, userToken);
 
 		Date now = new Date();
 
@@ -75,9 +74,13 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setUuid(serviceContext.getUuid());
 		wsrpConsumer.setCompanyId(companyId);
 		wsrpConsumer.setCreateDate(now);
+		wsrpConsumer.setForwardCookies(forwardCookies);
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
+
+		String wsdl = getWSDL(wsrpConsumer, userToken);
+
 		wsrpConsumer.setWsdl(wsdl);
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
@@ -245,20 +248,24 @@ public class WSRPConsumerLocalServiceImpl
 	}
 
 	public WSRPConsumer updateWSRPConsumer(
-			long wsrpConsumerId, String adminPortletId, String name,
-			String url, String userToken)
+			long wsrpConsumerId, String adminPortletId, String forwardCookies,
+			String name, String url, String userToken)
 		throws PortalException, SystemException {
 
-		String wsdl = getWSDL(url, userToken);
-
 		validate(name);
+
+		WSRPConsumerManagerFactory.destroyWSRPConsumerManager(url);
 
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
 			wsrpConsumerId);
 
+		wsrpConsumer.setForwardCookies(forwardCookies);
 		wsrpConsumer.setModifiedDate(new Date());
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
+
+		String wsdl = getWSDL(wsrpConsumer, userToken);
+
 		wsrpConsumer.setWsdl(wsdl);
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
@@ -266,13 +273,13 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumer;
 	}
 
-	protected String getWSDL(String url, String userToken)
+	protected String getWSDL(WSRPConsumer wsrpConsumer, String userToken)
 		throws PortalException {
 
 		try {
 			WSRPConsumerManager wsrpConsumerManager =
 				WSRPConsumerManagerFactory.getWSRPConsumerManager(
-					url, userToken);
+					wsrpConsumer, userToken);
 
 			return wsrpConsumerManager.getWsdl();
 		}

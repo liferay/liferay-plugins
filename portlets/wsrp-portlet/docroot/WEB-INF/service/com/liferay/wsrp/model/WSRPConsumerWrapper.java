@@ -228,6 +228,24 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		_wsrpConsumer.setRegistrationPropertiesString(registrationPropertiesString);
 	}
 
+	/**
+	* Gets the forward cookies of this w s r p consumer.
+	*
+	* @return the forward cookies of this w s r p consumer
+	*/
+	public java.lang.String getForwardCookies() {
+		return _wsrpConsumer.getForwardCookies();
+	}
+
+	/**
+	* Sets the forward cookies of this w s r p consumer.
+	*
+	* @param forwardCookies the forward cookies of this w s r p consumer
+	*/
+	public void setForwardCookies(java.lang.String forwardCookies) {
+		_wsrpConsumer.setForwardCookies(forwardCookies);
+	}
+
 	public boolean isNew() {
 		return _wsrpConsumer.isNew();
 	}

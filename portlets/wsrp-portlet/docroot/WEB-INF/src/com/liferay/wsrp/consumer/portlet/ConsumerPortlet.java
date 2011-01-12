@@ -41,8 +41,8 @@ import com.liferay.portal.service.PhoneLocalServiceUtil;
 import com.liferay.portal.service.WebsiteLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.axis.SimpleHTTPSender;
 import com.liferay.util.servlet.PortletResponseUtil;
+import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
@@ -497,10 +497,8 @@ public class ConsumerPortlet extends GenericPortlet {
 		if ((markupServiceTransientValue == null) ||
 			(markupServiceTransientValue.isNull())) {
 
-			String userToken = WSRPConsumerManager.getUserToken(portletRequest);
-
 			WSRP_v2_Markup_PortType markupService =
-				wsrpConsumerManager.getMarkupService(userToken);
+				wsrpConsumerManager.getMarkupService();
 
 			markupServiceTransientValue =
 				new TransientValue<WSRP_v2_Markup_PortType>(markupService);
@@ -532,7 +530,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 					markupService.initCookie(initCookie);
 
-					cookie = SimpleHTTPSender.getCurrentCookie();
+					cookie = WSRPHTTPSender.getCurrentCookie();
 
 					portletSession.setAttribute(
 						cookieKey, cookie, PortletSession.APPLICATION_SCOPE);

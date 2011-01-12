@@ -21,13 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.wsrp.service.http.WSRPConsumerServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.wsrp.service.http.WSRPConsumerServiceSoap
  * @generated
  */
 public class WSRPConsumerSoap implements Serializable {
@@ -44,6 +40,7 @@ public class WSRPConsumerSoap implements Serializable {
 		soapModel.setWsdl(model.getWsdl());
 		soapModel.setRegistrationContextString(model.getRegistrationContextString());
 		soapModel.setRegistrationPropertiesString(model.getRegistrationPropertiesString());
+		soapModel.setForwardCookies(model.getForwardCookies());
 
 		return soapModel;
 	}
@@ -177,6 +174,14 @@ public class WSRPConsumerSoap implements Serializable {
 		_registrationPropertiesString = registrationPropertiesString;
 	}
 
+	public String getForwardCookies() {
+		return _forwardCookies;
+	}
+
+	public void setForwardCookies(String forwardCookies) {
+		_forwardCookies = forwardCookies;
+	}
+
 	private String _uuid;
 	private long _wsrpConsumerId;
 	private long _companyId;
@@ -187,4 +192,5 @@ public class WSRPConsumerSoap implements Serializable {
 	private String _wsdl;
 	private String _registrationContextString;
 	private String _registrationPropertiesString;
+	private String _forwardCookies;
 }

@@ -45,6 +45,7 @@ import com.liferay.wsrp.util.WebKeys;
 import java.rmi.RemoteException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -596,20 +597,43 @@ public class V2MarkupServiceImpl
 	}
 
 	protected String getRawContent(Http.Options httpOptions) throws Exception {
+		HttpServletRequest request = ServletUtil.getRequest();
 		HttpSession session = ServletUtil.getSession();
 
-		Cookie[] cookies = (Cookie[])session.getAttribute(WebKeys.COOKIES);
+		Cookie[] sessionCookies = (Cookie[])session.getAttribute(
+			WebKeys.COOKIES);
 
-		if (cookies != null) {
-			httpOptions.setCookies(cookies);
+		Map<String, Cookie> cookiesMap = new HashMap<String, Cookie>();
+
+		if (sessionCookies != null) {
+			for (Cookie cookie : sessionCookies) {
+				cookiesMap.put(cookie.getName(), cookie);
+			}
+		}
+
+		Cookie[] forwardCookies = request.getCookies();
+
+		if (forwardCookies != null) {
+			for (Cookie cookie : forwardCookies) {
+				if (!cookie.getName().equalsIgnoreCase("cookie_support") ||
+					!cookie.getName().equalsIgnoreCase("guest_language_id") ||
+					!cookie.getName().equalsIgnoreCase("jsessionid")) {
+
+					cookiesMap.put(cookie.getName(), cookie);
+				}
+			}
+		}
+
+		if (cookiesMap.size() > 0) {
+			httpOptions.setCookies(cookiesMap.values().toArray(new Cookie[0]));
 		}
 
 		String rawContent = HttpUtil.URLtoString(httpOptions);
 
-		cookies = HttpUtil.getCookies();
+		Cookie[] cookiesArray = HttpUtil.getCookies();
 
-		if (cookies != null) {
-			session.setAttribute(WebKeys.COOKIES, cookies);
+		if (cookiesArray != null) {
+			session.setAttribute(WebKeys.COOKIES, cookiesArray);
 		}
 
 		return rawContent;

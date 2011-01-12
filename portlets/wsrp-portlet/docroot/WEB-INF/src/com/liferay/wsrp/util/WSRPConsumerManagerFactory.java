@@ -31,26 +31,13 @@ public class WSRPConsumerManagerFactory {
 		_wsrpConsumerManagersByUrl.remove(url);
 	}
 
-	public static WSRPConsumerManager getWSRPConsumerManager(String url)
-		throws Exception {
-
-		return _getWSRPConsumerManager(url, null, null);
-	}
-
-	public static WSRPConsumerManager getWSRPConsumerManager(
-			String url, String userToken)
-		throws Exception {
-
-		return _getWSRPConsumerManager(url, null, userToken);
-	}
-
 	public static WSRPConsumerManager getWSRPConsumerManager(
 			WSRPConsumer wsrpConsumer, String userToken)
 		throws Exception {
 
 		return _getWSRPConsumerManager(
 			wsrpConsumer.getUrl(), wsrpConsumer.getRegistrationContext(),
-			userToken);
+			wsrpConsumer.getForwardCookies(), userToken);
 	}
 
 	public static boolean testWSRPConsumerManager(
@@ -59,7 +46,7 @@ public class WSRPConsumerManagerFactory {
 		try {
 			new WSRPConsumerManager(
 				wsrpConsumer.getUrl(), wsrpConsumer.getRegistrationContext(),
-				userToken);
+				wsrpConsumer.getForwardCookies(), userToken);
 
 			return true;
 		}
@@ -70,7 +57,7 @@ public class WSRPConsumerManagerFactory {
 
 	private static WSRPConsumerManager _getWSRPConsumerManager(
 			String url, RegistrationContext registrationContext,
-			String userToken)
+			String forwardCookies, String userToken)
 		throws Exception {
 
 		Map<String, WSRPConsumerManager> wsrpConsumerManagersByUserToken =
@@ -98,7 +85,7 @@ public class WSRPConsumerManagerFactory {
 		}
 
 		wsrpConsumerManager = new WSRPConsumerManager(
-			url, registrationContext, userToken);
+			url, registrationContext, forwardCookies, userToken);
 
 		wsrpConsumerManagersByUserToken.put(userTokenKey, wsrpConsumerManager);
 

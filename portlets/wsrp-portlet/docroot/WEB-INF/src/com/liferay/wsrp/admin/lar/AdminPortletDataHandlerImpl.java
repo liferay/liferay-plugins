@@ -355,6 +355,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			importedWSRPConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(
 				wsrpConsumer.getUuid());
 
+			importedWSRPConsumer.setForwardCookies(
+				wsrpConsumer.getForwardCookies());
 			importedWSRPConsumer.setName(wsrpConsumer.getName());
 			importedWSRPConsumer.setUrl(wsrpConsumer.getUrl());
 			importedWSRPConsumer.setWsdl(wsrpConsumer.getWsdl());
@@ -368,7 +370,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			serviceContext.setUuid(wsrpConsumer.getUuid());
 
 			importedWSRPConsumer = WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-				portletDataContext.getCompanyId(), null, wsrpConsumer.getName(),
+				portletDataContext.getCompanyId(), null,
+				wsrpConsumer.getForwardCookies(), wsrpConsumer.getName(),
 				wsrpConsumer.getUrl(), null, serviceContext);
 		}
 

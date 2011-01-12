@@ -8,7 +8,8 @@ create table WSRP_WSRPConsumer (
 	url STRING null,
 	wsdl TEXT null,
 	registrationContextString TEXT null,
-	registrationPropertiesString STRING null
+	registrationPropertiesString STRING null,
+	forwardCookies VARCHAR(75) null
 );
 
 create table WSRP_WSRPConsumerPortlet (

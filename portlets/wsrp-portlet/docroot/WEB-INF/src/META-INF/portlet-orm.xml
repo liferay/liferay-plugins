@@ -25,6 +25,7 @@
 			<basic name="wsdl" />
 			<basic name="registrationContextString" />
 			<basic name="registrationPropertiesString" />
+			<basic name="forwardCookies" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>

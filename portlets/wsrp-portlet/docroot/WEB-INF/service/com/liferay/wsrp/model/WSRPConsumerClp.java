@@ -125,6 +125,14 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		_registrationPropertiesString = registrationPropertiesString;
 	}
 
+	public String getForwardCookies() {
+		return _forwardCookies;
+	}
+
+	public void setForwardCookies(String forwardCookies) {
+		_forwardCookies = forwardCookies;
+	}
+
 	public oasis.names.tc.wsrp.v2.types.RegistrationContext getRegistrationContext() {
 		throw new UnsupportedOperationException();
 	}
@@ -167,6 +175,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		clone.setWsdl(getWsdl());
 		clone.setRegistrationContextString(getRegistrationContextString());
 		clone.setRegistrationPropertiesString(getRegistrationPropertiesString());
+		clone.setForwardCookies(getForwardCookies());
 
 		return clone;
 	}
@@ -212,7 +221,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(21);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -234,13 +243,15 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		sb.append(getRegistrationContextString());
 		sb.append(", registrationPropertiesString=");
 		sb.append(getRegistrationPropertiesString());
+		sb.append(", forwardCookies=");
+		sb.append(getForwardCookies());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(34);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.wsrp.model.WSRPConsumer");
@@ -286,6 +297,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 			"<column><column-name>registrationPropertiesString</column-name><column-value><![CDATA[");
 		sb.append(getRegistrationPropertiesString());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>forwardCookies</column-name><column-value><![CDATA[");
+		sb.append(getForwardCookies());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -302,4 +317,5 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	private String _wsdl;
 	private String _registrationContextString;
 	private String _registrationPropertiesString;
+	private String _forwardCookies;
 }

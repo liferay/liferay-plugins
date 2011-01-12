@@ -201,6 +201,8 @@ public class AdminPortlet extends MVCPortlet {
 			actionRequest, "wsrpConsumerId");
 
 		String adminPortletId = PortalUtil.getPortletId(actionRequest);
+		String forwardCookies = ParamUtil.getString(
+			actionRequest, "forwardCookies");
 		String name = ParamUtil.getString(actionRequest, "name");
 		String url = ParamUtil.getString(actionRequest, "url");
 
@@ -211,12 +213,13 @@ public class AdminPortlet extends MVCPortlet {
 				WSRPConsumer.class.getName(), actionRequest);
 
 			WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-				themeDisplay.getCompanyId(), adminPortletId, name, url,
-				userToken, serviceContext);
+				themeDisplay.getCompanyId(), adminPortletId, forwardCookies,
+				name, url, userToken, serviceContext);
 		}
 		else {
 			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-				wsrpConsumerId, adminPortletId, name, url, userToken);
+				wsrpConsumerId, adminPortletId, forwardCookies, name, url,
+				userToken);
 		}
 	}
 

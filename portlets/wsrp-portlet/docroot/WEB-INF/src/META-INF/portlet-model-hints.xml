@@ -20,6 +20,7 @@
 		<field name="registrationPropertiesString" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
+		<field name="forwardCookies" type="String" />
 	</model>
 	<model name="com.liferay.wsrp.model.WSRPConsumerPortlet">
 		<field name="uuid" type="String" />

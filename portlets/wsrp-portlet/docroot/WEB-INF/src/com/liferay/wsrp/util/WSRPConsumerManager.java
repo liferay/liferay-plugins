@@ -91,11 +91,11 @@ public class WSRPConsumerManager {
 
 	public WSRPConsumerManager(
 			String url, RegistrationContext registrationContext,
-			String userToken)
+			String forwardCookies, String userToken)
 		throws Exception {
 
 		try {
-			_serviceHandler = new ServiceHandler(userToken);
+			_serviceHandler = new ServiceHandler(forwardCookies, userToken);
 
 			_service = (WSRP_v2_Service)Proxy.newProxyInstance(
 				WSRP_v2_Service.class.getClassLoader(),
@@ -159,10 +159,8 @@ public class WSRPConsumerManager {
 		return _events.get(key);
 	}
 
-	public WSRP_v2_Markup_PortType getMarkupService(String userToken)
+	public WSRP_v2_Markup_PortType getMarkupService()
 		throws Exception {
-
-		_serviceHandler.setUserToken(userToken);
 
 		return _service.getWSRP_v2_Markup_Service(_markupServiceURL);
 	}

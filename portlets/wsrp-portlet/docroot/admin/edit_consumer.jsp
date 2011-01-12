@@ -67,6 +67,14 @@ catch (NoSuchConsumerException nsce) {
 		</c:choose>
 	</td>
 </tr>
+<tr>
+	<td>
+		<liferay-ui:message key="forward-cookies" />
+	</td>
+	<td>
+		<liferay-ui:input-field model="<%= WSRPConsumer.class %>" bean="<%= wsrpConsumer %>" field="forwardCookies" />
+	</td>
+</tr>
 </table>
 
 <br />

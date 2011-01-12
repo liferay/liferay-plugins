@@ -21,6 +21,7 @@
 		<column name="wsdl" type="String" />
 		<column name="registrationContextString" type="String" />
 		<column name="registrationPropertiesString" type="String" />
+		<column name="forwardCookies" type="String" />
 
 		<!-- Order -->
 

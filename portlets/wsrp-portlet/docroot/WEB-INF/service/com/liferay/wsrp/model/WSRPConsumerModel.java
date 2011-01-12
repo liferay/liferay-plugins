@@ -205,6 +205,21 @@ public interface WSRPConsumerModel extends BaseModel<WSRPConsumer> {
 	public void setRegistrationPropertiesString(
 		String registrationPropertiesString);
 
+	/**
+	 * Gets the forward cookies of this w s r p consumer.
+	 *
+	 * @return the forward cookies of this w s r p consumer
+	 */
+	@AutoEscape
+	public String getForwardCookies();
+
+	/**
+	 * Sets the forward cookies of this w s r p consumer.
+	 *
+	 * @param forwardCookies the forward cookies of this w s r p consumer
+	 */
+	public void setForwardCookies(String forwardCookies);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);
