@@ -171,6 +171,7 @@
 		<java
 			classname="com.liferay.portal.tools.servicebuilder.ServiceBuilder"
 			classpathref="service.classpath"
+			outputproperty="service.test.output"
 		>
 			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
@@ -198,6 +199,15 @@
 			<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
 			<arg value="service.plugin.name=${plugin.name}" />
 		</java>
+
+		<echo>${service.test.output}</echo>
+
+		<if>
+			<contains string="${service.test.output}" substring="Error" /> 
+			<then>
+				<fail>Service Builder generated exceptions.</fail>
+			</then>
+		</if>
 
 		<delete file="ServiceBuilder.temp" />
 
