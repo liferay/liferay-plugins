@@ -29,6 +29,7 @@ import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
+import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
@@ -37,6 +38,7 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 import java.io.Serializable;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -146,6 +148,9 @@ public class DefaultTaskManagerImpl
 			kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceToken(
 				workflowTaskInstanceId);
 
+		List<KaleoTaskAssignmentInstance> previousTaskAssignmentInstances =
+			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+
 		workflowContext = updateWorkflowContext(
 			workflowContext, kaleoTaskInstanceToken);
 
@@ -159,15 +164,15 @@ public class DefaultTaskManagerImpl
 				workflowTaskInstanceId, dueDate, serviceContext);
 		}
 
-		KaleoTaskInstanceToken newKaleoTaskInstanceToken =
+		kaleoTaskInstanceToken =
 			kaleoTaskInstanceTokenLocalService.assignKaleoTaskInstanceToken(
 				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId(),
 				assigneeClassName, assigneeClassPK, workflowContext,
 				serviceContext);
 
 		ExecutionContext executionContext = new ExecutionContext(
-			newKaleoTaskInstanceToken.getKaleoInstanceToken(),
-			newKaleoTaskInstanceToken, workflowContext, serviceContext);
+			kaleoTaskInstanceToken.getKaleoInstanceToken(),
+			kaleoTaskInstanceToken, workflowContext, serviceContext);
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
@@ -180,11 +185,11 @@ public class DefaultTaskManagerImpl
 			executionContext);
 
 		kaleoLogLocalService.addTaskAssignmentKaleoLog(
-			kaleoTaskInstanceToken, newKaleoTaskInstanceToken,
+			previousTaskAssignmentInstances, kaleoTaskInstanceToken,
 			comment, workflowContext, serviceContext);
 
 		return new WorkflowTaskAdapter(
-			newKaleoTaskInstanceToken, workflowContext);
+			kaleoTaskInstanceToken, workflowContext);
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(

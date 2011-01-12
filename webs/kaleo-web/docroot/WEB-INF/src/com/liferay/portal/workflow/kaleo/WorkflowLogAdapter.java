@@ -30,17 +30,17 @@ public class WorkflowLogAdapter extends DefaultWorkflowLog {
 		setPreviousState(kaleoLogEntry.getPreviousKaleoNodeName());
 
 		long previousAssigneeClassPK =
-			kaleoLogEntry.getCurrentAssigneeClassPK();
+			kaleoLogEntry.getPreviousAssigneeClassPK();
 
 		if (previousAssigneeClassPK > 0) {
 			String previousAssigneeClassName =
-				kaleoLogEntry.getCurrentAssigneeClassName();
+				kaleoLogEntry.getPreviousAssigneeClassName();
 
 			if (previousAssigneeClassName.equals(Role.class.getName())) {
-				setRoleId(previousAssigneeClassPK);
+				setPreviousRoleId(previousAssigneeClassPK);
 			}
 			else {
-				setUserId(previousAssigneeClassPK);
+				setPreviousUserId(previousAssigneeClassPK);
 			}
 		}
 

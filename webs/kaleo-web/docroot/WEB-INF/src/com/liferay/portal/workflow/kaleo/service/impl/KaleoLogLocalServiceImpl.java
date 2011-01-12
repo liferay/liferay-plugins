@@ -129,20 +129,21 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 	}
 
 	public KaleoLog addTaskAssignmentKaleoLog(
-			KaleoTaskInstanceToken previousKaleoTaskInstanceToken,
-			KaleoTaskInstanceToken newKaleoTaskInstanceToken,
-			String comment, Map<String, Serializable> workflowContext,
+			List<KaleoTaskAssignmentInstance>
+			previousKaleoTaskAssignmentInstances,
+			KaleoTaskInstanceToken kaleoTaskInstanceToken, String comment,
+			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
-			newKaleoTaskInstanceToken.getKaleoInstanceToken();
+			kaleoTaskInstanceToken.getKaleoInstanceToken();
 
 		KaleoLog kaleoLog = createKaleoLog(
 			kaleoInstanceToken, LogType.TASK_ASSIGNMENT, serviceContext);
 
 		kaleoLog.setKaleoTaskInstanceTokenId(
-			newKaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
+			kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 
 		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
@@ -150,14 +151,10 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		kaleoLog.setKaleoNodeId(currentKaleoNode.getKaleoNodeId());
 		kaleoLog.setKaleoNodeName(currentKaleoNode.getName());
 
-		if (previousKaleoTaskInstanceToken != null) {
-			List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
-				previousKaleoTaskInstanceToken.
-					getKaleoTaskAssignmentInstances();
-
-			if (kaleoTaskAssignmentInstances.size() == 1) {
+		if (previousKaleoTaskAssignmentInstances != null) {
+			if (previousKaleoTaskAssignmentInstances.size() == 1) {
 				KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
-					kaleoTaskAssignmentInstances.get(0);
+					previousKaleoTaskAssignmentInstances.get(0);
 
 				kaleoLog.setPreviousAssigneeClassName(
 					kaleoTaskAssignmentInstance.getAssigneeClassName());
@@ -167,7 +164,7 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		}
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
-			newKaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
+			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();
 
 		if (!kaleoTaskAssignmentInstances.isEmpty()) {
 			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance =
