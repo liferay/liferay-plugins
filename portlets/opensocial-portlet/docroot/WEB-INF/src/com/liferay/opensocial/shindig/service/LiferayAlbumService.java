@@ -14,6 +14,8 @@
 
 package com.liferay.opensocial.shindig.service;
 
+import com.liferay.opensocial.util.SerializerUtil;
+import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -25,10 +27,17 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
@@ -46,7 +55,7 @@ import org.apache.shindig.social.opensocial.spi.GroupId;
 import org.apache.shindig.social.opensocial.spi.UserId;
 
 /**
- * @author Michael Young
+ * @author Dennis Ju
  */
 public class LiferayAlbumService implements AlbumService {
 
@@ -183,6 +192,21 @@ public class LiferayAlbumService implements AlbumService {
 		}
 	}
 
+	protected void addAttributes(
+			Album album, ExpandoBridge expandoBridge)
+		throws Exception {
+
+		for (Object field : _ALBUM_FIELDS) {
+			String fieldName = field.toString();
+
+			String value = BeanPropertiesUtil.getString(album, fieldName);
+
+			if (value != null && !expandoBridge.hasAttribute(fieldName)) {
+				expandoBridge.addAttribute(fieldName);
+			}
+		}
+	}
+
 	protected void doCreateAlbum(
 			UserId userId, String appId, Album album,
 			SecurityToken securityToken)
@@ -198,7 +222,7 @@ public class LiferayAlbumService implements AlbumService {
 
 		long albumIdLong = GetterUtil.getLong(albumId);
 
-		DLAppLocalServiceUtil.deleteFolder(albumIdLong);
+		DLAppServiceUtil.deleteFolder(albumIdLong);
 	}
 
 	protected Album doGetAlbum(
@@ -208,16 +232,9 @@ public class LiferayAlbumService implements AlbumService {
 
 		long albumIdLong = GetterUtil.getLong(albumId);
 
-		Folder folder = DLAppLocalServiceUtil.getFolder(albumIdLong);
+		Folder folder = DLAppServiceUtil.getFolder(albumIdLong);
 
-		Album album = new AlbumImpl();
-
-		album.setDescription(folder.getDescription());
-		album.setId(String.valueOf(folder.getFolderId()));
-		album.setOwnerId(String.valueOf(folder.getUserId()));
-		album.setTitle(folder.getName());
-
-		return album;
+		return getAlbum(folder, fields, securityToken);
 	}
 
 	protected RestfulCollection<Album> doGetAlbums(
@@ -229,8 +246,10 @@ public class LiferayAlbumService implements AlbumService {
 		List<Album> albums = new ArrayList<Album>();
 
 		for (String albumId : albumIds) {
-			Album album = doGetAlbum(
-				userId, appId, fields, albumId, securityToken);
+			Folder folder = DLAppServiceUtil.getFolder(
+				GetterUtil.getLong(albumId));
+
+			Album album = getAlbum(folder, fields, securityToken);
 
 			albums.add(album);
 		}
@@ -271,7 +290,7 @@ public class LiferayAlbumService implements AlbumService {
 					Group group = socialUser.getGroup();
 
 					List<Folder> friendFolders =
-						DLAppLocalServiceUtil.getFolders(
+						DLAppServiceUtil.getFolders(
 							group.getGroupId(),
 							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
@@ -281,18 +300,13 @@ public class LiferayAlbumService implements AlbumService {
 			else if (groupIdType.equals(GroupId.Type.self)) {
 				Group group = user.getGroup();
 
-				folders = DLAppLocalServiceUtil.getFolders(
+				folders = DLAppServiceUtil.getFolders(
 					group.getGroupId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 			}
 
 			for (Folder folder : folders) {
-				Album album = new AlbumImpl();
-
-				album.setDescription(folder.getDescription());
-				album.setId(Long.toString(folder.getFolderId()));
-				album.setOwnerId(Long.toString(folder.getUserId()));
-				album.setTitle(folder.getName());
+				Album album = getAlbum(folder, fields, securityToken);
 
 				albums.add(album);
 			}
@@ -322,21 +336,56 @@ public class LiferayAlbumService implements AlbumService {
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(groupIdLong);
 
+		Map<String, Serializable> expandoBridgeAttributes =
+			new LinkedHashMap<String, Serializable>();
+
+		SerializerUtil.copyProperties(
+			album, expandoBridgeAttributes, _ALBUM_FIELDS);
+
+		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
+
+		ExpandoBridge expandoBridge =
+			ExpandoBridgeFactoryUtil.getExpandoBridge(
+				user.getCompanyId(), Folder.class.toString());
+
+		addAttributes(album, expandoBridge);
+
 		if (albumId == null) {
-			DLAppLocalServiceUtil.addFolder(
-				userIdLong, groupIdLong,
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			DLAppServiceUtil.addFolder(
+				groupIdLong, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				album.getTitle(), album.getDescription(), serviceContext);
 		}
 		else {
 			Folder folder = DLAppLocalServiceUtil.getFolder(
 				GetterUtil.getLong(albumId));
 
-			DLAppLocalServiceUtil.updateFolder(
+			DLAppServiceUtil.updateFolder(
 				folder.getFolderId(), folder.getParentFolderId(),
 				album.getTitle(), album.getDescription(), serviceContext);
 		}
 	}
+
+	protected Album getAlbum(Folder folder, Set<String> fields,
+			SecurityToken securityToken) {
+
+		Album album = new AlbumImpl();
+
+		album.setDescription(folder.getDescription());
+		album.setId(String.valueOf(folder.getFolderId()));
+		album.setOwnerId(String.valueOf(folder.getUserId()));
+		album.setTitle(folder.getName());
+
+		SerializerUtil.copyProperties(
+			folder.getAttributes(), album, _ALBUM_FIELDS);
+
+		return album;
+	}
+
+	private static final Album.Field[] _ALBUM_FIELDS = {
+		Album.Field.LOCATION, Album.Field.MEDIA_ITEM_COUNT,
+		Album.Field.MEDIA_MIME_TYPE, Album.Field.MEDIA_TYPE,
+		Album.Field.THUMBNAIL_URL
+	};
 
 	private static Log _log = LogFactoryUtil.getLog(LiferayAlbumService.class);
 

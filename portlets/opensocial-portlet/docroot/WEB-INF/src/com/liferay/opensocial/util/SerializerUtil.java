@@ -18,13 +18,17 @@ import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.io.Serializable;
+
+import java.util.Map;
+
 /**
  * @author Brian Wing Shun Chan
  */
 public class SerializerUtil {
 
 	public static void copyProperties(
-		JSONObject jsonObject, Object bean, Object[] fields) {
+			JSONObject jsonObject, Object bean, Object[] fields) {
 
 		for (Object field : fields) {
 			copyProperty(jsonObject, bean, field);
@@ -32,15 +36,32 @@ public class SerializerUtil {
 	}
 
 	public static void copyProperties(
-		Object bean, JSONObject jsonObject, Object[] fields) {
+			Map<String, Serializable> map, Object bean,
+			Object[] fields) {
+
+		for (Object field : fields) {
+			copyProperty(map, bean, field);
+		}
+	}
+
+	public static void copyProperties(
+			Object bean, JSONObject jsonObject, Object[] fields) {
 
 		for (Object field : fields) {
 			copyProperty(bean, jsonObject, field);
 		}
 	}
 
+	public static void copyProperties(
+			Object bean, Map<String, Serializable> map, Object[] fields) {
+
+		for (Object field : fields) {
+			copyProperty(bean, map, field);
+		}
+	}
+
 	public static void copyProperty(
-		JSONObject jsonObject, Object bean, Object field) {
+			JSONObject jsonObject, Object bean, Object field) {
 
 		String fieldName = field.toString();
 
@@ -52,7 +73,19 @@ public class SerializerUtil {
 	}
 
 	public static void copyProperty(
-		Object bean, JSONObject jsonObject, Object field) {
+			Map<String, Serializable> map, Object bean, Object field) {
+
+		String fieldName = field.toString();
+
+		if (map.containsKey(fieldName)) {
+			String value = (String)map.get(fieldName);
+
+			BeanPropertiesUtil.setProperty(bean, fieldName, value);
+		}
+	}
+
+	public static void copyProperty(
+			Object bean, JSONObject jsonObject, Object field) {
 
 		String fieldName = field.toString();
 
@@ -60,6 +93,18 @@ public class SerializerUtil {
 
 		if (Validator.isNotNull(value)) {
 			jsonObject.put(fieldName, value);
+		}
+	}
+
+	public static void copyProperty(
+			Object bean, Map<String, Serializable> map, Object field) {
+
+		String fieldName = field.toString();
+
+		String value = BeanPropertiesUtil.getString(bean, fieldName);
+
+		if (Validator.isNotNull(value)) {
+			map.put(fieldName, value);
 		}
 	}
 
