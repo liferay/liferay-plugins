@@ -25,15 +25,15 @@ import java.util.Set;
 /**
  * @author Michael C. Han
  */
-public abstract class Node extends DefinitionNode {
+public abstract class Node {
 
-	public Node(NodeType nodeType) {
+	public Node(NodeType nodeType, String name, String description) {
 		_nodeType = nodeType;
+		_name = name;
+		_description = description;
 	}
 
 	public void addTransition(Transition transition) {
-		transition.setSourceNode(this);
-
 		_transitions.put(transition.getName(), transition);
 	}
 
@@ -99,22 +99,8 @@ public abstract class Node extends DefinitionNode {
 		_actions = actions;
 	}
 
-	public void setDescription(String description) {
-		_description = description;
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
 	public void setNotifications(Set<Notification> notifications) {
 		_notifications = notifications;
-	}
-
-	public void configureParent(DefinitionNode parentNode) {
-		Definition definition = (Definition)parentNode;
-
-		definition.addNode(this);
 	}
 
 	private Set<Action> _actions;

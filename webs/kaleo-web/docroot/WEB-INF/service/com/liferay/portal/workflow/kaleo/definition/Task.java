@@ -14,9 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
-
 import java.util.Set;
 
 /**
@@ -24,12 +21,16 @@ import java.util.Set;
  */
 public class Task extends Node {
 
-	public Task() {
-		super(NodeType.TASK);
+	public Task(String name, String description) {
+		super(NodeType.TASK, name, description);
 	}
 
 	public Set<Assignment> getAssignments() {
 		return _assignments;
+	}
+
+	public DueDateDuration getDueDateDuration() {
+		return _dueDateDuration;
 	}
 
 	public State getStartState() {
@@ -44,16 +45,8 @@ public class Task extends Node {
 		_assignments = assignments;
 	}
 
-	public double getDuration() {
-		return _duration;
-	}
-
-	public DurationScale getDurationScale() {
-		if (Validator.isNotNull(_scale)) {
-			return DurationScale.parse(_scale);
-		}
-
-		return null;
+	public void setDueDateDuration(DueDateDuration dueDateDuration) {
+		_dueDateDuration = dueDateDuration;
 	}
 
 	public void setStartState(State startState) {
@@ -64,17 +57,8 @@ public class Task extends Node {
 		_targetState = targetState;
 	}
 
-	public void setDuration(String duration) {
-		_duration = GetterUtil.getLong(duration);
-	}
-
-	public void setScale(String scale) {
-		_scale = scale;
-	}
-
 	private Set<Assignment> _assignments;
-	private double _duration;
-	private String _scale;
+	private DueDateDuration _dueDateDuration;
 	private State _startState;
 	private State _targetState;
 

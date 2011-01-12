@@ -19,23 +19,18 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public class ResourceActionAssignment extends Assignment {
 
-	public ResourceActionAssignment() {
+	public ResourceActionAssignment(String actionId) {
 		super(AssignmentType.RESOURCE_ACTION);
-	}
 
-	public void configureParent(DefinitionNode parentNode) {
-		ResourceActionAssignments resourceActionAssignments =
-			(ResourceActionAssignments)parentNode;
-
-		resourceActionAssignments.addResourceActionAssignment(this);
+		_actionId = actionId;
 	}
 
 	public String getActionId() {
 		return _actionId;
 	}
 
-	public void setValue(String value) {
-		_actionId = value;
+	public void setActionId(String actionId) {
+		_actionId = actionId;
 	}
 
 	private String _actionId;

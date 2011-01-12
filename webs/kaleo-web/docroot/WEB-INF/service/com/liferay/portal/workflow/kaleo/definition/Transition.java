@@ -14,17 +14,18 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-
 /**
  * @author Michael C. Han
  */
-public class Transition extends DefinitionNode {
+public class Transition {
 
-	public void configureParent(DefinitionNode parentNode) {
-		Transitions transitions = (Transitions)parentNode;
+	public Transition(
+		String name, Node sourceNode, Node targetNode, boolean defaultValue) {
 
-		transitions.add(this);
+		_name = name;
+		_sourceNode = sourceNode;
+		_targetNode = targetNode;
+		_default = defaultValue;
 	}
 
 	public Condition getCondition() {
@@ -39,10 +40,6 @@ public class Transition extends DefinitionNode {
 		return _sourceNode;
 	}
 
-	public String getTargetName() {
-		return _targetName;
-	}
-
 	public Node getTargetNode() {
 		return _targetNode;
 	}
@@ -55,30 +52,9 @@ public class Transition extends DefinitionNode {
 		_condition = condition;
 	}
 
-	public void setDefaultValue(String defaultValue) {
-		_default = GetterUtil.getBoolean(defaultValue);
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
-	public void setSourceNode(Node sourceNode) {
-		_sourceNode = sourceNode;
-	}
-
-	public void setTargetName(String targetName) {
-		_targetName = targetName;
-	}
-
-	public void setTargetNode(Node targetNode) {
-		_targetNode = targetNode;
-	}
-
 	private Condition _condition;
 	private boolean _default;
 	private String _name;
-	private String _targetName;
 	private Node _sourceNode;
 	private Node _targetNode;
 

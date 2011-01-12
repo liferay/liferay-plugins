@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public abstract class Assignment extends DefinitionNode {
+public class Assignment {
 
 	public Assignment(AssignmentType assignmentType) {
 		_assignmentType = assignmentType;

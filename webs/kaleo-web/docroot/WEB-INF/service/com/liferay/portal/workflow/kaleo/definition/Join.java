@@ -19,8 +19,8 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public class Join extends Node {
 
-	public Join() {
-		super(NodeType.JOIN);
+	public Join(String name, String description) {
+		super(NodeType.JOIN, name, description);
 	}
 
 }

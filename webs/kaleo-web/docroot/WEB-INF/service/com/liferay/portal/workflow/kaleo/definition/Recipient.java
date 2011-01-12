@@ -17,16 +17,10 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public abstract class Recipient extends DefinitionNode {
+public abstract class Recipient {
 
 	public Recipient(RecipientType recipientType) {
 		_recipientType = recipientType;
-	}
-
-	public void configureParent(DefinitionNode parentNode) {
-		Recipients recipients = (Recipients)parentNode;
-
-		recipients.addRecipient(this);
 	}
 
 	public RecipientType getRecipientType() {

@@ -14,7 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.workflow.WorkflowException;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -24,13 +24,34 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class Definition extends DefinitionNode {
+public class Definition {
 
-	public void addNode(Node node) {
-		_nodesMap.put(node.getName(), node);
+	public Definition(String name, String description, int version) {
+		_name = name;
+		_description = description;
+		_version = version;
 	}
 
-	public void configureParent(DefinitionNode parentNode) {
+	public void addNode(Node node) throws WorkflowException {
+		if (_nodesMap.containsKey(node.getName())) {
+			throw new IllegalArgumentException(
+				"Duplicate node " + node.getName());
+		}
+
+		_nodesMap.put(node.getName(), node);
+
+		if (node instanceof State) {
+			State state = (State)node;
+
+			if (state.isInitial()) {
+				if (_initialState != null) {
+					throw new WorkflowException(
+						"Duplicate initial state " + state.getName());
+				}
+
+				_initialState = state;
+			}
+		}
 	}
 
 	public String getDescription() {
@@ -55,22 +76,6 @@ public class Definition extends DefinitionNode {
 
 	public int getVersion() {
 		return _version;
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
-	public void setVersion(String version) {
-		_version = GetterUtil.getInteger(version);
-	}
-
-	public void setDescription(String description) {
-		_description = description;
-	}
-
-	public void setInitialState(State initialState) {
-		_initialState = initialState;
 	}
 
 	private String _description;

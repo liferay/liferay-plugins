@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
-import com.liferay.portal.workflow.kaleo.definition.DurationScale;
+import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
 import com.liferay.portal.workflow.kaleo.definition.Task;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskLocalServiceBaseImpl;
@@ -56,11 +56,12 @@ public class KaleoTaskLocalServiceImpl extends KaleoTaskLocalServiceBaseImpl {
 		kaleoTask.setKaleoNodeId(kaleoNodeId);
 		kaleoTask.setName(task.getName());
 
-		DurationScale durationScale = task.getDurationScale();
+		DueDateDuration dueDateDuration = task.getDueDateDuration();
 
-		if (durationScale != null) {
-			kaleoTask.setDueDateDuration(task.getDuration());
-			kaleoTask.setDueDateScale(durationScale.getValue());
+		if (dueDateDuration != null) {
+			kaleoTask.setDueDateDuration(dueDateDuration.getDuration());
+			kaleoTask.setDueDateScale(
+				dueDateDuration.getDurationScale().getValue());
 		}
 
 		kaleoTaskPersistence.update(kaleoTask, false);

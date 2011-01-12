@@ -19,12 +19,18 @@ import com.liferay.portal.kernel.util.Validator;
 /**
  * @author Michael C. Han
  */
-public class Action extends DefinitionNode {
+public class Action {
 
-	public void configureParent(DefinitionNode parentNode) {
-		Actions actions = (Actions)parentNode;
+	public Action(
+		String name, String description, String executionType, String script,
+		String scriptLanguage, int priority) {
 
-		actions.addAction(this);
+		_name = name;
+		_description = description;
+		_executionType = ExecutionType.parse(executionType);
+		_script = script;
+		_scriptLanguage = ScriptLanguage.parse(scriptLanguage);
+		_priority = priority;
 	}
 
 	public boolean equals(Object obj) {
@@ -71,22 +77,6 @@ public class Action extends DefinitionNode {
 
 	public int hashCode() {
 		return _name.hashCode();
-	}
-
-	public void setExecutionType(ExecutionType executionType) {
-		_executionType = executionType;
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
-	public void setScript(String script) {
-		_script = script;
-	}
-
-	public void setScriptLanguage(ScriptLanguage scriptLanguage) {
-		_scriptLanguage = scriptLanguage;
 	}
 
 	private String _description;

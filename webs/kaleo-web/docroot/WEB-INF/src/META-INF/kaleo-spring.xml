@@ -59,7 +59,6 @@
 		<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
 		<property name="workflowDeployer" ref="com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer" />
 		<property name="workflowModelParser" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" />
-		<property name="workflowValidator" ref="com.liferay.portal.workflow.kaleo.parser.WorkflowValidator" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory" class="com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorFactory">
 		<property name="actionExecutors">
@@ -215,5 +214,9 @@
 				</entry>
 			</map>
 		</property>
-	</bean>	
+	</bean>
+
+	<!-- Parser -->
+
+	<bean id="com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser" class="com.liferay.portal.workflow.kaleo.parser.XMLWorkflowModelParser" />
 </beans>

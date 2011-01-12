@@ -19,8 +19,8 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public class Fork extends Node {
 
-	public Fork() {
-		super(NodeType.FORK);
+	public Fork(String name, String description) {
+		super(NodeType.FORK, name, description);
 	}
 
 }

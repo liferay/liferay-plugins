@@ -22,19 +22,24 @@ import java.util.Set;
 /**
  * @author Michael C. Han
  */
-public class Notification extends DefinitionNode {
+public class Notification {
 
-	public void configureParent(DefinitionNode parentNode) {
-		Actions actions = (Actions)parentNode;
+	public Notification(
+		String name, String description, String executionType, String template,
+		String templateLanguage) {
 
-		actions.addNotification(this);
+		_name = name;
+		_description = description;
+		_executionType = ExecutionType.parse(executionType);
+		_template = template;
+		_templateLanguage = TemplateLanguage.parse(templateLanguage);
 	}
 
-	public void addNotificationType(NotificationType notificationType) {
-		_notificationTypes.add(notificationType);
+	public void addNotificationType(String notificationType) {
+		_notificationTypes.add(NotificationType.parse(notificationType));
 	}
 
-	public void addRecipient(Recipient recipient) {
+	public void addRecipients(Recipient recipient) {
 		_recipients.add(recipient);
 	}
 
@@ -86,22 +91,6 @@ public class Notification extends DefinitionNode {
 
 	public int hashCode() {
 		return _name.hashCode();
-	}
-
-	public void setExecutionType(ExecutionType executionType) {
-		_executionType = executionType;
-	}
-
-	public void setName(String name) {
-		_name = name;
-	}
-
-	public void setTemplate(String template) {
-		_template = template;
-	}
-
-	public void setTemplateLanguage(TemplateLanguage templateLanguage) {
-		_templateLanguage = templateLanguage;
 	}
 
 	private String _description;
