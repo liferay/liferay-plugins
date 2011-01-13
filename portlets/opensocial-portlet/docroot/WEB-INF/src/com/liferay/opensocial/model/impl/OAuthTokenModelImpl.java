@@ -72,9 +72,9 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 			{ "tokenName", new Integer(Types.VARCHAR) },
 			{ "tokenSecret", new Integer(Types.VARCHAR) },
 			{ "sessionHandle", new Integer(Types.VARCHAR) },
-			{ "expiration", new Integer(Types.INTEGER) }
+			{ "expiration", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oauthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oauthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -291,11 +291,11 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		_sessionHandle = sessionHandle;
 	}
 
-	public int getExpiration() {
+	public long getExpiration() {
 		return _expiration;
 	}
 
-	public void setExpiration(int expiration) {
+	public void setExpiration(long expiration) {
 		_expiration = expiration;
 	}
 
@@ -513,6 +513,6 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	private String _originalTokenName;
 	private String _tokenSecret;
 	private String _sessionHandle;
-	private int _expiration;
+	private long _expiration;
 	private transient ExpandoBridge _expandoBridge;
 }

@@ -33,7 +33,7 @@ public class OAuthTokenLocalServiceImpl
 	public OAuthToken addOAuthToken(
 			long userId, long gadgetId, String serviceName, long moduleId,
 			String accessToken, String tokenName, String tokenSecret,
-			String sessionHandle, int expiration)
+			String sessionHandle, long expiration)
 		throws PortalException, SystemException {
 
 		User user = UserLocalServiceUtil.getUser(userId);

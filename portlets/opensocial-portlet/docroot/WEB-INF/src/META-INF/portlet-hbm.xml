@@ -50,6 +50,6 @@
 		<property name="tokenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="tokenSecret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="sessionHandle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="expiration" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="expiration" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 	</class>
 </hibernate-mapping>

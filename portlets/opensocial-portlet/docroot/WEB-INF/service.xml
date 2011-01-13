@@ -96,7 +96,7 @@
 		<column name="tokenName" type="String" />
 		<column name="tokenSecret" type="String" />
 		<column name="sessionHandle" type="String" />
-		<column name="expiration" type="int" />
+		<column name="expiration" type="long" />
 
 		<!-- Finder methods -->
 

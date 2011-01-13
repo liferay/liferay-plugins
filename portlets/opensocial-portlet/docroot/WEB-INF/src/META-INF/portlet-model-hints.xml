@@ -41,6 +41,6 @@
 		<field name="tokenName" type="String" />
 		<field name="tokenSecret" type="String" />
 		<field name="sessionHandle" type="String" />
-		<field name="expiration" type="int" />
+		<field name="expiration" type="long" />
 	</model>
 </model-hints>
