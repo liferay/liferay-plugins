@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.wsrp.model.WSRPProducer;
@@ -467,4 +468,7 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public WSRPProducer remove(WSRPProducer wsrpProducer)
+		throws SystemException;
 }

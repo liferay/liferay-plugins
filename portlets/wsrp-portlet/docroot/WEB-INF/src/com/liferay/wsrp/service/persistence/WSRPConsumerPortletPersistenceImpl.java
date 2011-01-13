@@ -255,6 +255,18 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		}
 	}
 
+	/**
+	 * Removes the w s r p consumer portlet from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpConsumerPortlet the w s r p consumer portlet to remove
+	 * @return the w s r p consumer portlet that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumerPortlet remove(WSRPConsumerPortlet wsrpConsumerPortlet)
+		throws SystemException {
+		return super.remove(wsrpConsumerPortlet);
+	}
+
 	protected WSRPConsumerPortlet removeImpl(
 		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
 		wsrpConsumerPortlet = toUnwrappedModel(wsrpConsumerPortlet);

@@ -230,6 +230,18 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 	}
 
+	/**
+	 * Removes the w s r p consumer from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpConsumer the w s r p consumer to remove
+	 * @return the w s r p consumer that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPConsumer remove(WSRPConsumer wsrpConsumer)
+		throws SystemException {
+		return super.remove(wsrpConsumer);
+	}
+
 	protected WSRPConsumer removeImpl(WSRPConsumer wsrpConsumer)
 		throws SystemException {
 		wsrpConsumer = toUnwrappedModel(wsrpConsumer);

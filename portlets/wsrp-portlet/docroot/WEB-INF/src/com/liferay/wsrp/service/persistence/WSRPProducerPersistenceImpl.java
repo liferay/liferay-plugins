@@ -250,6 +250,18 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		}
 	}
 
+	/**
+	 * Removes the w s r p producer from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wsrpProducer the w s r p producer to remove
+	 * @return the w s r p producer that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WSRPProducer remove(WSRPProducer wsrpProducer)
+		throws SystemException {
+		return super.remove(wsrpProducer);
+	}
+
 	protected WSRPProducer removeImpl(WSRPProducer wsrpProducer)
 		throws SystemException {
 		wsrpProducer = toUnwrappedModel(wsrpProducer);
