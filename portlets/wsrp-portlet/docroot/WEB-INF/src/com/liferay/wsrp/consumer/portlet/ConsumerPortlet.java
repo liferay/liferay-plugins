@@ -72,6 +72,7 @@ import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
 import javax.portlet.GenericPortlet;
+import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
@@ -826,7 +827,9 @@ public class ConsumerPortlet extends GenericPortlet {
 	}
 
 	protected WSRPConsumerPortlet getWSRPConsumerPortlet() throws Exception {
-		String portletName = getPortletConfig().getPortletName();
+		PortletConfig portletConfig = getPortletConfig();
+
+		String portletName = portletConfig.getPortletName();
 
 		int pos = portletName.indexOf(StringPool.UNDERLINE);
 
