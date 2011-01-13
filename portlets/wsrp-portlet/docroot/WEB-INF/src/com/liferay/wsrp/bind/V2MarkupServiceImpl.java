@@ -45,6 +45,7 @@ import com.liferay.wsrp.util.WebKeys;
 import java.rmi.RemoteException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -597,13 +598,12 @@ public class V2MarkupServiceImpl
 	}
 
 	protected String getRawContent(Http.Options httpOptions) throws Exception {
-		HttpServletRequest request = ServletUtil.getRequest();
+		Map<String, Cookie> cookiesMap = new HashMap<String, Cookie>();
+
 		HttpSession session = ServletUtil.getSession();
 
 		Cookie[] sessionCookies = (Cookie[])session.getAttribute(
 			WebKeys.COOKIES);
-
-		Map<String, Cookie> cookiesMap = new HashMap<String, Cookie>();
 
 		if (sessionCookies != null) {
 			for (Cookie cookie : sessionCookies) {
@@ -611,29 +611,35 @@ public class V2MarkupServiceImpl
 			}
 		}
 
+		HttpServletRequest request = ServletUtil.getRequest();
+
 		Cookie[] forwardCookies = request.getCookies();
 
 		if (forwardCookies != null) {
 			for (Cookie cookie : forwardCookies) {
-				if (!cookie.getName().equalsIgnoreCase("cookie_support") ||
-					!cookie.getName().equalsIgnoreCase("guest_language_id") ||
-					!cookie.getName().equalsIgnoreCase("jsessionid")) {
+				String cookieName = cookie.getName();
 
-					cookiesMap.put(cookie.getName(), cookie);
+				if (!cookieName.equalsIgnoreCase("cookie_support") ||
+					!cookieName.equalsIgnoreCase("guest_language_id") ||
+					!cookieName.equalsIgnoreCase("jsessionid")) {
+
+					cookiesMap.put(cookieName, cookie);
 				}
 			}
 		}
 
-		if (cookiesMap.size() > 0) {
-			httpOptions.setCookies(cookiesMap.values().toArray(new Cookie[0]));
+		if (!cookiesMap.isEmpty()) {
+			Collection<Cookie> cookiesCollection = cookiesMap.values();
+
+			httpOptions.setCookies(cookiesCollection.toArray(new Cookie[0]));
 		}
 
 		String rawContent = HttpUtil.URLtoString(httpOptions);
 
-		Cookie[] cookiesArray = HttpUtil.getCookies();
+		Cookie[] cookies = HttpUtil.getCookies();
 
-		if (cookiesArray != null) {
-			session.setAttribute(WebKeys.COOKIES, cookiesArray);
+		if (cookies != null) {
+			session.setAttribute(WebKeys.COOKIES, cookies);
 		}
 
 		return rawContent;

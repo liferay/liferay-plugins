@@ -159,9 +159,7 @@ public class WSRPConsumerManager {
 		return _events.get(key);
 	}
 
-	public WSRP_v2_Markup_PortType getMarkupService()
-		throws Exception {
-
+	public WSRP_v2_Markup_PortType getMarkupService() throws Exception {
 		return _service.getWSRP_v2_Markup_Service(_markupServiceURL);
 	}
 

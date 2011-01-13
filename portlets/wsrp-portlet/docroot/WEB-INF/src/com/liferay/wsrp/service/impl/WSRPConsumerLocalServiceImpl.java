@@ -57,8 +57,8 @@ public class WSRPConsumerLocalServiceImpl
 	extends WSRPConsumerLocalServiceBaseImpl {
 
 	public WSRPConsumer addWSRPConsumer(
-			long companyId, String adminPortletId, String forwardCookies,
-			String name, String url, String userToken,
+			long companyId, String adminPortletId, String name, String url,
+			String forwardCookies, String userToken,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -74,14 +74,11 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setUuid(serviceContext.getUuid());
 		wsrpConsumer.setCompanyId(companyId);
 		wsrpConsumer.setCreateDate(now);
-		wsrpConsumer.setForwardCookies(forwardCookies);
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-
-		String wsdl = getWSDL(wsrpConsumer, userToken);
-
-		wsrpConsumer.setWsdl(wsdl);
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
+		wsrpConsumer.setForwardCookies(forwardCookies);
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
@@ -248,8 +245,8 @@ public class WSRPConsumerLocalServiceImpl
 	}
 
 	public WSRPConsumer updateWSRPConsumer(
-			long wsrpConsumerId, String adminPortletId, String forwardCookies,
-			String name, String url, String userToken)
+			long wsrpConsumerId, String adminPortletId, String name, String url,
+			String forwardCookies, String userToken)
 		throws PortalException, SystemException {
 
 		validate(name);
@@ -259,14 +256,11 @@ public class WSRPConsumerLocalServiceImpl
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
 			wsrpConsumerId);
 
-		wsrpConsumer.setForwardCookies(forwardCookies);
 		wsrpConsumer.setModifiedDate(new Date());
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-
-		String wsdl = getWSDL(wsrpConsumer, userToken);
-
-		wsrpConsumer.setWsdl(wsdl);
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
+		wsrpConsumer.setForwardCookies(forwardCookies);
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 

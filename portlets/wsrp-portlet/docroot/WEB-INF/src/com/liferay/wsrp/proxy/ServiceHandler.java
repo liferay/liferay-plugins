@@ -61,9 +61,11 @@ public class ServiceHandler implements InvocationHandler {
 			forwardCookies, userToken);
 
 		_v1ServiceLocator = new WSRPServiceLocator(_engineConfiguration);
-		_v2ServiceLocator = new WSRP_v2_ServiceLocator(_engineConfiguration);
 
 		_v1ServiceLocator.setMaintainSession(true);
+
+		_v2ServiceLocator = new WSRP_v2_ServiceLocator(_engineConfiguration);
+
 		_v2ServiceLocator.setMaintainSession(true);
 	}
 

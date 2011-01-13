@@ -34,16 +34,17 @@ public class WSRPFilter implements Filter {
 	public void destroy() {
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response,
+	public void doFilter(
+			ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		WSRPHTTPSender.setCurrentRequest((HttpServletRequest)request);
+		WSRPHTTPSender.setCurrentRequest((HttpServletRequest)servletRequest);
 
-		filterChain.doFilter(request, response);
+		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
-	public void init(FilterConfig filterConfig) throws ServletException {
+	public void init(FilterConfig filterConfig) {
 	}
 
 }
