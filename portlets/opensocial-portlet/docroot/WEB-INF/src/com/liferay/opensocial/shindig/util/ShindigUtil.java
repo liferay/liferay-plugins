@@ -16,7 +16,6 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
-import com.liferay.opensocial.gadget.portlet.GadgetPortlet;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -122,8 +121,7 @@ public class ShindigUtil {
 			String portletName)
 		throws Exception {
 
-		int pos = portletName.indexOf(
-			StringPool.UNDERLINE, GadgetPortlet.PORTLET_NAME_PREFIX.length());
+		int pos = portletName.indexOf(StringPool.UNDERLINE);
 
 		String uuid = GetterUtil.getString(portletName.substring(pos + 1));
 

@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
@@ -248,15 +247,10 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 			return portlet;
 		}
 
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(GadgetPortlet.PORTLET_NAME_PREFIX);
-		sb.append(companyId);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(uuid);
+		String portletName = GadgetPortlet.PORTLET_NAME_PREFIX + uuid;
 
 		String portletId = PortalUtil.getJsSafePortletId(
-			PortalUUIDUtil.toJsSafeUuid(sb.toString()));
+			PortalUUIDUtil.toJsSafeUuid(portletName));
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
 			companyId, _GADGET_PORTLET_ID);
