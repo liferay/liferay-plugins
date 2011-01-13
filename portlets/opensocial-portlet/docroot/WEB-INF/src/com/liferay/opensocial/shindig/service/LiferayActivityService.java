@@ -14,7 +14,7 @@
 
 package com.liferay.opensocial.shindig.service;
 
-import com.liferay.opensocial.util.SerializerUtil;
+import com.liferay.opensocial.shindig.util.SerializerUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
