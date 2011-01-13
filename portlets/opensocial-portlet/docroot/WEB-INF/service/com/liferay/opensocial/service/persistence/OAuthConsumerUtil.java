@@ -141,27 +141,27 @@ public class OAuthConsumerUtil {
 	/**
 	* Creates a new o auth consumer with the primary key. Does not add the o auth consumer to the database.
 	*
-	* @param oauthConsumerId the primary key for the new o auth consumer
+	* @param oAuthConsumerId the primary key for the new o auth consumer
 	* @return the new o auth consumer
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer create(
-		long oauthConsumerId) {
-		return getPersistence().create(oauthConsumerId);
+		long oAuthConsumerId) {
+		return getPersistence().create(oAuthConsumerId);
 	}
 
 	/**
 	* Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oauthConsumerId the primary key of the o auth consumer to remove
+	* @param oAuthConsumerId the primary key of the o auth consumer to remove
 	* @return the o auth consumer that was removed
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer remove(
-		long oauthConsumerId)
+		long oAuthConsumerId)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().remove(oauthConsumerId);
+		return getPersistence().remove(oAuthConsumerId);
 	}
 
 	public static com.liferay.opensocial.model.OAuthConsumer updateImpl(
@@ -173,29 +173,29 @@ public class OAuthConsumerUtil {
 	/**
 	* Finds the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
 	*
-	* @param oauthConsumerId the primary key of the o auth consumer to find
+	* @param oAuthConsumerId the primary key of the o auth consumer to find
 	* @return the o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByPrimaryKey(
-		long oauthConsumerId)
+		long oAuthConsumerId)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().findByPrimaryKey(oauthConsumerId);
+		return getPersistence().findByPrimaryKey(oAuthConsumerId);
 	}
 
 	/**
 	* Finds the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param oauthConsumerId the primary key of the o auth consumer to find
+	* @param oAuthConsumerId the primary key of the o auth consumer to find
 	* @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByPrimaryKey(
-		long oauthConsumerId)
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(oauthConsumerId);
+		return getPersistence().fetchByPrimaryKey(oAuthConsumerId);
 	}
 
 	/**
@@ -301,7 +301,7 @@ public class OAuthConsumerUtil {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param oauthConsumerId the primary key of the current o auth consumer
+	* @param oAuthConsumerId the primary key of the current o auth consumer
 	* @param gadgetId the gadget ID to search with
 	* @param orderByComparator the comparator to order the set by
 	* @return the previous, current, and next o auth consumer
@@ -309,12 +309,12 @@ public class OAuthConsumerUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer[] findByGadgetId_PrevAndNext(
-		long oauthConsumerId, long gadgetId,
+		long oAuthConsumerId, long gadgetId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
-				   .findByGadgetId_PrevAndNext(oauthConsumerId, gadgetId,
+				   .findByGadgetId_PrevAndNext(oAuthConsumerId, gadgetId,
 			orderByComparator);
 	}
 

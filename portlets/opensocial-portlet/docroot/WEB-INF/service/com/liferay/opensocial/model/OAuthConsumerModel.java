@@ -59,18 +59,18 @@ public interface OAuthConsumerModel extends BaseModel<OAuthConsumer> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the oauth consumer ID of this o auth consumer.
+	 * Gets the o auth consumer ID of this o auth consumer.
 	 *
-	 * @return the oauth consumer ID of this o auth consumer
+	 * @return the o auth consumer ID of this o auth consumer
 	 */
-	public long getOauthConsumerId();
+	public long getOAuthConsumerId();
 
 	/**
-	 * Sets the oauth consumer ID of this o auth consumer.
+	 * Sets the o auth consumer ID of this o auth consumer.
 	 *
-	 * @param oauthConsumerId the oauth consumer ID of this o auth consumer
+	 * @param oAuthConsumerId the o auth consumer ID of this o auth consumer
 	 */
-	public void setOauthConsumerId(long oauthConsumerId);
+	public void setOAuthConsumerId(long oAuthConsumerId);
 
 	/**
 	 * Gets the company ID of this o auth consumer.

@@ -47,21 +47,21 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 	}
 
 	/**
-	* Gets the oauth consumer ID of this o auth consumer.
+	* Gets the o auth consumer ID of this o auth consumer.
 	*
-	* @return the oauth consumer ID of this o auth consumer
+	* @return the o auth consumer ID of this o auth consumer
 	*/
-	public long getOauthConsumerId() {
-		return _oAuthConsumer.getOauthConsumerId();
+	public long getOAuthConsumerId() {
+		return _oAuthConsumer.getOAuthConsumerId();
 	}
 
 	/**
-	* Sets the oauth consumer ID of this o auth consumer.
+	* Sets the o auth consumer ID of this o auth consumer.
 	*
-	* @param oauthConsumerId the oauth consumer ID of this o auth consumer
+	* @param oAuthConsumerId the o auth consumer ID of this o auth consumer
 	*/
-	public void setOauthConsumerId(long oauthConsumerId) {
-		_oAuthConsumer.setOauthConsumerId(oauthConsumerId);
+	public void setOAuthConsumerId(long oAuthConsumerId) {
+		_oAuthConsumer.setOAuthConsumerId(oAuthConsumerId);
 	}
 
 	/**

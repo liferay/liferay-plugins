@@ -9,7 +9,7 @@ create table OpenSocial_Gadget (
 );
 
 create table OpenSocial_OAuthConsumer (
-	oauthConsumerId LONG not null primary key,
+	oAuthConsumerId LONG not null primary key,
 	companyId LONG,
 	createDate DATE null,
 	modifiedDate DATE null,

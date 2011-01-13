@@ -33,23 +33,23 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public long getPrimaryKey() {
-		return _oauthConsumerId;
+		return _oAuthConsumerId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setOauthConsumerId(pk);
+		setOAuthConsumerId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_oauthConsumerId);
+		return new Long(_oAuthConsumerId);
 	}
 
-	public long getOauthConsumerId() {
-		return _oauthConsumerId;
+	public long getOAuthConsumerId() {
+		return _oAuthConsumerId;
 	}
 
-	public void setOauthConsumerId(long oauthConsumerId) {
-		_oauthConsumerId = oauthConsumerId;
+	public void setOAuthConsumerId(long oAuthConsumerId) {
+		_oAuthConsumerId = oAuthConsumerId;
 	}
 
 	public long getCompanyId() {
@@ -146,7 +146,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public Object clone() {
 		OAuthConsumerClp clone = new OAuthConsumerClp();
 
-		clone.setOauthConsumerId(getOauthConsumerId());
+		clone.setOAuthConsumerId(getOAuthConsumerId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
@@ -204,8 +204,8 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 
-		sb.append("{oauthConsumerId=");
-		sb.append(getOauthConsumerId());
+		sb.append("{oAuthConsumerId=");
+		sb.append(getOAuthConsumerId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createDate=");
@@ -239,8 +239,8 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>oauthConsumerId</column-name><column-value><![CDATA[");
-		sb.append(getOauthConsumerId());
+			"<column><column-name>oAuthConsumerId</column-name><column-value><![CDATA[");
+		sb.append(getOAuthConsumerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -288,7 +288,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		return sb.toString();
 	}
 
-	private long _oauthConsumerId;
+	private long _oAuthConsumerId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;

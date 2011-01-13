@@ -171,14 +171,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Creates a new o auth consumer with the primary key. Does not add the o auth consumer to the database.
 	 *
-	 * @param oauthConsumerId the primary key for the new o auth consumer
+	 * @param oAuthConsumerId the primary key for the new o auth consumer
 	 * @return the new o auth consumer
 	 */
-	public OAuthConsumer create(long oauthConsumerId) {
+	public OAuthConsumer create(long oAuthConsumerId) {
 		OAuthConsumer oAuthConsumer = new OAuthConsumerImpl();
 
 		oAuthConsumer.setNew(true);
-		oAuthConsumer.setPrimaryKey(oauthConsumerId);
+		oAuthConsumer.setPrimaryKey(oAuthConsumerId);
 
 		return oAuthConsumer;
 	}
@@ -199,12 +199,12 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Removes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oauthConsumerId the primary key of the o auth consumer to remove
+	 * @param oAuthConsumerId the primary key of the o auth consumer to remove
 	 * @return the o auth consumer that was removed
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthConsumer remove(long oauthConsumerId)
+	public OAuthConsumer remove(long oAuthConsumerId)
 		throws NoSuchOAuthConsumerException, SystemException {
 		Session session = null;
 
@@ -212,16 +212,16 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			session = openSession();
 
 			OAuthConsumer oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
-					new Long(oauthConsumerId));
+					new Long(oAuthConsumerId));
 
 			if (oAuthConsumer == null) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-						oauthConsumerId);
+						oAuthConsumerId);
 				}
 
 				throw new NoSuchOAuthConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					oauthConsumerId);
+					oAuthConsumerId);
 			}
 
 			return oAuthConsumerPersistence.remove(oAuthConsumer);
@@ -235,6 +235,18 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		finally {
 			closeSession(session);
 		}
+	}
+
+	/**
+	 * Removes the o auth consumer from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param oAuthConsumer the o auth consumer to remove
+	 * @return the o auth consumer that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthConsumer remove(OAuthConsumer oAuthConsumer)
+		throws SystemException {
+		return super.remove(oAuthConsumer);
 	}
 
 	protected OAuthConsumer removeImpl(OAuthConsumer oAuthConsumer)
@@ -340,7 +352,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		oAuthConsumerImpl.setNew(oAuthConsumer.isNew());
 		oAuthConsumerImpl.setPrimaryKey(oAuthConsumer.getPrimaryKey());
 
-		oAuthConsumerImpl.setOauthConsumerId(oAuthConsumer.getOauthConsumerId());
+		oAuthConsumerImpl.setOAuthConsumerId(oAuthConsumer.getOAuthConsumerId());
 		oAuthConsumerImpl.setCompanyId(oAuthConsumer.getCompanyId());
 		oAuthConsumerImpl.setCreateDate(oAuthConsumer.getCreateDate());
 		oAuthConsumerImpl.setModifiedDate(oAuthConsumer.getModifiedDate());
@@ -371,22 +383,22 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Finds the o auth consumer with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthConsumerException} if it could not be found.
 	 *
-	 * @param oauthConsumerId the primary key of the o auth consumer to find
+	 * @param oAuthConsumerId the primary key of the o auth consumer to find
 	 * @return the o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthConsumer findByPrimaryKey(long oauthConsumerId)
+	public OAuthConsumer findByPrimaryKey(long oAuthConsumerId)
 		throws NoSuchOAuthConsumerException, SystemException {
-		OAuthConsumer oAuthConsumer = fetchByPrimaryKey(oauthConsumerId);
+		OAuthConsumer oAuthConsumer = fetchByPrimaryKey(oAuthConsumerId);
 
 		if (oAuthConsumer == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oauthConsumerId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oAuthConsumerId);
 			}
 
 			throw new NoSuchOAuthConsumerException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				oauthConsumerId);
+				oAuthConsumerId);
 		}
 
 		return oAuthConsumer;
@@ -407,14 +419,14 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	/**
 	 * Finds the o auth consumer with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param oauthConsumerId the primary key of the o auth consumer to find
+	 * @param oAuthConsumerId the primary key of the o auth consumer to find
 	 * @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthConsumer fetchByPrimaryKey(long oauthConsumerId)
+	public OAuthConsumer fetchByPrimaryKey(long oAuthConsumerId)
 		throws SystemException {
 		OAuthConsumer oAuthConsumer = (OAuthConsumer)EntityCacheUtil.getResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
-				OAuthConsumerImpl.class, oauthConsumerId, this);
+				OAuthConsumerImpl.class, oAuthConsumerId, this);
 
 		if (oAuthConsumer == null) {
 			Session session = null;
@@ -423,7 +435,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				session = openSession();
 
 				oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
-						new Long(oauthConsumerId));
+						new Long(oAuthConsumerId));
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -640,17 +652,17 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param oauthConsumerId the primary key of the current o auth consumer
+	 * @param oAuthConsumerId the primary key of the current o auth consumer
 	 * @param gadgetId the gadget ID to search with
 	 * @param orderByComparator the comparator to order the set by
 	 * @return the previous, current, and next o auth consumer
 	 * @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthConsumer[] findByGadgetId_PrevAndNext(long oauthConsumerId,
+	public OAuthConsumer[] findByGadgetId_PrevAndNext(long oAuthConsumerId,
 		long gadgetId, OrderByComparator orderByComparator)
 		throws NoSuchOAuthConsumerException, SystemException {
-		OAuthConsumer oAuthConsumer = findByPrimaryKey(oauthConsumerId);
+		OAuthConsumer oAuthConsumer = findByPrimaryKey(oAuthConsumerId);
 
 		Session session = null;
 

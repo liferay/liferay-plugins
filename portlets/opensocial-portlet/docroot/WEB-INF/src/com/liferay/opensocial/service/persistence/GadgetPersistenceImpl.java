@@ -243,6 +243,17 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 	}
 
+	/**
+	 * Removes the gadget from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param gadget the gadget to remove
+	 * @return the gadget that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Gadget remove(Gadget gadget) throws SystemException {
+		return super.remove(gadget);
+	}
+
 	protected Gadget removeImpl(Gadget gadget) throws SystemException {
 		gadget = toUnwrappedModel(gadget);
 

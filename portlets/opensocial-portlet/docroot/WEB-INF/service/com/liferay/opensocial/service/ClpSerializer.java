@@ -133,10 +133,10 @@ public class ClpSerializer {
 
 					Object newModel = newModelClass.newInstance();
 
-					Method method0 = newModelClass.getMethod("setOauthConsumerId",
+					Method method0 = newModelClass.getMethod("setOAuthConsumerId",
 							new Class[] { Long.TYPE });
 
-					Long value0 = new Long(oldCplModel.getOauthConsumerId());
+					Long value0 = new Long(oldCplModel.getOAuthConsumerId());
 
 					method0.invoke(newModel, value0);
 
@@ -456,11 +456,11 @@ public class ClpSerializer {
 					OAuthConsumerClp newModel = new OAuthConsumerClp();
 
 					Method method0 = oldModelClass.getMethod(
-							"getOauthConsumerId");
+							"getOAuthConsumerId");
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setOauthConsumerId(value0);
+					newModel.setOAuthConsumerId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 

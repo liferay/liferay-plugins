@@ -13,7 +13,7 @@
 		</field>
 	</model>
 	<model name="com.liferay.opensocial.model.OAuthConsumer">
-		<field name="oauthConsumerId" type="long" />
+		<field name="oAuthConsumerId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />

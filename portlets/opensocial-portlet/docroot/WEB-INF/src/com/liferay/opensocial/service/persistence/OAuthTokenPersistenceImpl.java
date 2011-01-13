@@ -248,6 +248,17 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		}
 	}
 
+	/**
+	 * Removes the o auth token from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param oAuthToken the o auth token to remove
+	 * @return the o auth token that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public OAuthToken remove(OAuthToken oAuthToken) throws SystemException {
+		return super.remove(oAuthToken);
+	}
+
 	protected OAuthToken removeImpl(OAuthToken oAuthToken)
 		throws SystemException {
 		oAuthToken = toUnwrappedModel(oAuthToken);

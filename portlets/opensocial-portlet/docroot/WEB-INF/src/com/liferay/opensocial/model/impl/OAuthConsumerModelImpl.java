@@ -57,7 +57,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_OAuthConsumer";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oauthConsumerId", new Integer(Types.BIGINT) },
+			{ "oAuthConsumerId", new Integer(Types.BIGINT) },
 			{ "companyId", new Integer(Types.BIGINT) },
 			{ "createDate", new Integer(Types.TIMESTAMP) },
 			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
@@ -69,7 +69,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			{ "keyName", new Integer(Types.VARCHAR) },
 			{ "callbackURL", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oauthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null,keyName VARCHAR(75) null,callbackURL VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oAuthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null,keyName VARCHAR(75) null,callbackURL VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthConsumer";
 	public static final String ORDER_BY_JPQL = " ORDER BY oAuthConsumer.serviceName ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_OAuthConsumer.serviceName ASC";
@@ -89,23 +89,23 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public long getPrimaryKey() {
-		return _oauthConsumerId;
+		return _oAuthConsumerId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setOauthConsumerId(pk);
+		setOAuthConsumerId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_oauthConsumerId);
+		return new Long(_oAuthConsumerId);
 	}
 
-	public long getOauthConsumerId() {
-		return _oauthConsumerId;
+	public long getOAuthConsumerId() {
+		return _oAuthConsumerId;
 	}
 
-	public void setOauthConsumerId(long oauthConsumerId) {
-		_oauthConsumerId = oauthConsumerId;
+	public void setOAuthConsumerId(long oAuthConsumerId) {
+		_oAuthConsumerId = oAuthConsumerId;
 	}
 
 	public long getCompanyId() {
@@ -263,7 +263,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public Object clone() {
 		OAuthConsumerImpl clone = new OAuthConsumerImpl();
 
-		clone.setOauthConsumerId(getOauthConsumerId());
+		clone.setOAuthConsumerId(getOAuthConsumerId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
@@ -321,8 +321,8 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 
-		sb.append("{oauthConsumerId=");
-		sb.append(getOauthConsumerId());
+		sb.append("{oAuthConsumerId=");
+		sb.append(getOAuthConsumerId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createDate=");
@@ -356,8 +356,8 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>oauthConsumerId</column-name><column-value><![CDATA[");
-		sb.append(getOauthConsumerId());
+			"<column><column-name>oAuthConsumerId</column-name><column-value><![CDATA[");
+		sb.append(getOAuthConsumerId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -405,7 +405,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		return sb.toString();
 	}
 
-	private long _oauthConsumerId;
+	private long _oAuthConsumerId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;

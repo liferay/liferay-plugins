@@ -21,20 +21,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.opensocial.service.http.OAuthConsumerServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.opensocial.service.http.OAuthConsumerServiceSoap
  * @generated
  */
 public class OAuthConsumerSoap implements Serializable {
 	public static OAuthConsumerSoap toSoapModel(OAuthConsumer model) {
 		OAuthConsumerSoap soapModel = new OAuthConsumerSoap();
 
-		soapModel.setOauthConsumerId(model.getOauthConsumerId());
+		soapModel.setOAuthConsumerId(model.getOAuthConsumerId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
@@ -90,19 +86,19 @@ public class OAuthConsumerSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _oauthConsumerId;
+		return _oAuthConsumerId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setOauthConsumerId(pk);
+		setOAuthConsumerId(pk);
 	}
 
-	public long getOauthConsumerId() {
-		return _oauthConsumerId;
+	public long getOAuthConsumerId() {
+		return _oAuthConsumerId;
 	}
 
-	public void setOauthConsumerId(long oauthConsumerId) {
-		_oauthConsumerId = oauthConsumerId;
+	public void setOAuthConsumerId(long oAuthConsumerId) {
+		_oAuthConsumerId = oAuthConsumerId;
 	}
 
 	public long getCompanyId() {
@@ -185,7 +181,7 @@ public class OAuthConsumerSoap implements Serializable {
 		_callbackURL = callbackURL;
 	}
 
-	private long _oauthConsumerId;
+	private long _oAuthConsumerId;
 	private long _companyId;
 	private Date _createDate;
 	private Date _modifiedDate;

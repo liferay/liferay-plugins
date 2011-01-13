@@ -131,11 +131,11 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	}
 
 	public com.liferay.opensocial.model.OAuthConsumer createOAuthConsumer(
-		long oauthConsumerId) {
+		long oAuthConsumerId) {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_createOAuthConsumerMethodKey1,
-				oauthConsumerId);
+				oAuthConsumerId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -153,11 +153,11 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		return (com.liferay.opensocial.model.OAuthConsumer)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void deleteOAuthConsumer(long oauthConsumerId)
+	public void deleteOAuthConsumer(long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteOAuthConsumerMethodKey2,
-				oauthConsumerId);
+				oAuthConsumerId);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -324,13 +324,13 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	}
 
 	public com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
-		long oauthConsumerId)
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getOAuthConsumerMethodKey8,
-				oauthConsumerId);
+				oAuthConsumerId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

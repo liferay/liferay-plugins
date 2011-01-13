@@ -55,25 +55,25 @@ public class OAuthConsumerLocalServiceUtil {
 	/**
 	* Creates a new o auth consumer with the primary key. Does not add the o auth consumer to the database.
 	*
-	* @param oauthConsumerId the primary key for the new o auth consumer
+	* @param oAuthConsumerId the primary key for the new o auth consumer
 	* @return the new o auth consumer
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer createOAuthConsumer(
-		long oauthConsumerId) {
-		return getService().createOAuthConsumer(oauthConsumerId);
+		long oAuthConsumerId) {
+		return getService().createOAuthConsumer(oAuthConsumerId);
 	}
 
 	/**
 	* Deletes the o auth consumer with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oauthConsumerId the primary key of the o auth consumer to delete
+	* @param oAuthConsumerId the primary key of the o auth consumer to delete
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static void deleteOAuthConsumer(long oauthConsumerId)
+	public static void deleteOAuthConsumer(long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteOAuthConsumer(oauthConsumerId);
+		getService().deleteOAuthConsumer(oAuthConsumerId);
 	}
 
 	/**
@@ -162,16 +162,16 @@ public class OAuthConsumerLocalServiceUtil {
 	/**
 	* Gets the o auth consumer with the primary key.
 	*
-	* @param oauthConsumerId the primary key of the o auth consumer to get
+	* @param oAuthConsumerId the primary key of the o auth consumer to get
 	* @return the o auth consumer
 	* @throws PortalException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer getOAuthConsumer(
-		long oauthConsumerId)
+		long oAuthConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getOAuthConsumer(oauthConsumerId);
+		return getService().getOAuthConsumer(oAuthConsumerId);
 	}
 
 	/**

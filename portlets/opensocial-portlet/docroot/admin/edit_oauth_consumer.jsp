@@ -33,7 +33,7 @@ try {
 catch (NoSuchOAuthConsumerException nsce) {
 }
 
-long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oauthConsumerId");
+long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oAuthConsumerId");
 
 String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 %>

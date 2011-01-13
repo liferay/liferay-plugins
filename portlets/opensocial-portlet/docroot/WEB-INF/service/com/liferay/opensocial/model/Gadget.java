@@ -17,10 +17,6 @@ package com.liferay.opensocial.model;
 /**
  * The model interface for the Gadget service. Represents a row in the &quot;OpenSocial_Gadget&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.opensocial.model.impl.GadgetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see GadgetModel
  * @see com.liferay.opensocial.model.impl.GadgetImpl
@@ -31,6 +27,6 @@ public interface Gadget extends GadgetModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a gadget model instance should use the {@link Gadget} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.opensocial.model.impl.GadgetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

@@ -16,6 +16,7 @@ package com.liferay.opensocial.service.persistence;
 
 import com.liferay.opensocial.model.OAuthToken;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -371,4 +372,6 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public OAuthToken remove(OAuthToken oAuthToken) throws SystemException;
 }

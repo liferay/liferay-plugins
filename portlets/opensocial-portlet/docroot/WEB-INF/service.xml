@@ -39,7 +39,7 @@
 
 		<!-- PK fields -->
 
-		<column name="oauthConsumerId" type="long" primary="true" />
+		<column name="oAuthConsumerId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 

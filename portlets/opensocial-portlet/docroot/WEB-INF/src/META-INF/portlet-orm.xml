@@ -27,7 +27,7 @@
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.opensocial.model.impl.OAuthConsumerModelImpl">
 		<attributes>
-			<id name="oauthConsumerId" />
+			<id name="oAuthConsumerId" />
 			<basic name="companyId" />
 			<basic name="createDate">
 				<temporal>TIMESTAMP</temporal>
@@ -42,6 +42,7 @@
 			<basic name="keyType" />
 			<basic name="keyName" />
 			<basic name="callbackURL" />
+			<transient name="OAuthConsumerId" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>
