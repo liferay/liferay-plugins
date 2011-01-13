@@ -1453,8 +1453,14 @@ public class ConsumerPortlet extends GenericPortlet {
 		String itemString = resourceContext.getItemString();
 		byte[] itemBinary = resourceContext.getItemBinary();
 
+		Boolean requiresRewriting = resourceContext.getRequiresRewriting();
+
+		if (requiresRewriting == null) {
+			requiresRewriting = Boolean.FALSE;
+		}
+
 		if (ParamUtil.getBoolean(resourceRequest, "wsrp-requiresRewrite") ||
-			resourceContext.getRequiresRewriting()) {
+			requiresRewriting) {
 
 			if (itemBinary != null) {
 				itemString = new String(itemBinary, charSet);
@@ -1632,7 +1638,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 	protected String getCharSet(String contentType) {
 		if (Validator.isNotNull(contentType)) {
-			int x = contentType.indexOf("charset=");
+			int x = contentType.lastIndexOf("charset=");
 
 			if (x >= 0) {
 				return contentType.substring(x + 8).trim();
