@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @author Michael Young
  */
-public class WSRPFilter implements Filter {
+public class WSRPHTTPSenderFilter implements Filter {
 
 	public void destroy() {
 	}
