@@ -33,7 +33,7 @@ try {
 catch (NoSuchOAuthConsumerException nsce) {
 }
 
-long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oAuthConsumerId");
+long oAuthConsumerId = BeanParamUtil.getLong(oAuthConsumer, request, "oauthConsumerId");
 
 String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 %>
@@ -80,9 +80,9 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 	</td>
 	<td>
 		<select name="<portlet:namespace />keyType">
-			<option <%= keyType.equals(OAuthConsumerConstants.HMAC_SYMMETRIC) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.HMAC_SYMMETRIC %>"><%= OAuthConsumerConstants.HMAC_SYMMETRIC.toString() %></option>
-			<option <%= keyType.equals(OAuthConsumerConstants.PLAINTEXT) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.PLAINTEXT %>"><%= OAuthConsumerConstants.PLAINTEXT.toString() %></option>
-			<option <%= keyType.equals(OAuthConsumerConstants.RSA_PRIVATE) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.RSA_PRIVATE %>"><%= OAuthConsumerConstants.RSA_PRIVATE.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC %>"><%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_PLAINTEXT) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT %>"><%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>"><%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE.toString() %></option>
 		</select>
 	</td>
 </tr>
