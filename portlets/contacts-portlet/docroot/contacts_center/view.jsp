@@ -16,4 +16,20 @@
 
 <%@ include file="/init.jsp" %>
 
-This is the <b>Contacts Center</b> portlet.
+<%
+String topLink = ParamUtil.getString(request, "topLink", "contacts-home");
+%>
+
+<liferay-util:include page="/contacts_center/top_links.jsp" portletId="<%= portletDisplay.getId() %>" />
+
+<c:choose>
+	<c:when test='<%= topLink.equals("contacts-home") %>'>
+		<liferay-util:include page="/contacts_center/view_contacts.jsp" portletId="<%= portletDisplay.getId() %>" />
+	</c:when>
+	<c:when test='<%= topLink.equals("requests") %>'>
+		<liferay-util:include page="/contacts_center/view_requests.jsp" portletId="<%= portletDisplay.getId() %>" />
+	</c:when>
+	<c:when test='<%= topLink.equals("find-people") %>'>
+		<liferay-util:include page="/contacts_center/view_find_people.jsp" portletId="<%= portletDisplay.getId() %>" />
+	</c:when>
+</c:choose>
