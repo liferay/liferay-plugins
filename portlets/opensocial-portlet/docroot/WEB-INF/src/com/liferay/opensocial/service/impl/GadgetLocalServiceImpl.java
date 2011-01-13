@@ -247,7 +247,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 			return portlet;
 		}
 
-		String portletName = GadgetPortlet.PORTLET_NAME_PREFIX + uuid;
+		String portletName = GadgetPortlet.PORTLET_NAME_PREFIX.concat(uuid);
 
 		String portletId = PortalUtil.getJsSafePortletId(
 			PortalUUIDUtil.toJsSafeUuid(portletName));
