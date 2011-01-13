@@ -305,7 +305,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	*
 	* @return the expiration of this o auth token
 	*/
-	public int getExpiration() {
+	public long getExpiration() {
 		return _oAuthToken.getExpiration();
 	}
 
@@ -314,7 +314,7 @@ public class OAuthTokenWrapper implements OAuthToken {
 	*
 	* @param expiration the expiration of this o auth token
 	*/
-	public void setExpiration(int expiration) {
+	public void setExpiration(long expiration) {
 		_oAuthToken.setExpiration(expiration);
 	}
 

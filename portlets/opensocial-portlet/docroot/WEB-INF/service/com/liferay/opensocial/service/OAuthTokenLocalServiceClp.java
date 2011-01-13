@@ -78,7 +78,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 				"addOAuthToken", long.class, long.class,
 				java.lang.String.class, long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, int.class);
+				java.lang.String.class, long.class);
 
 		_deleteOAuthTokenMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteOAuthToken", long.class, long.class,
@@ -463,7 +463,7 @@ public class OAuthTokenLocalServiceClp implements OAuthTokenLocalService {
 		long gadgetId, java.lang.String serviceName, long moduleId,
 		java.lang.String accessToken, java.lang.String tokenName,
 		java.lang.String tokenSecret, java.lang.String sessionHandle,
-		int expiration)
+		long expiration)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;

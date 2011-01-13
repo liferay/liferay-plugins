@@ -328,9 +328,9 @@ public class ClpSerializer {
 					method12.invoke(newModel, value12);
 
 					Method method13 = newModelClass.getMethod("setExpiration",
-							new Class[] { Integer.TYPE });
+							new Class[] { Long.TYPE });
 
-					Integer value13 = new Integer(oldCplModel.getExpiration());
+					Long value13 = new Long(oldCplModel.getExpiration());
 
 					method13.invoke(newModel, value13);
 
@@ -638,7 +638,7 @@ public class ClpSerializer {
 
 					Method method13 = oldModelClass.getMethod("getExpiration");
 
-					Integer value13 = (Integer)method13.invoke(oldModel,
+					Long value13 = (Long)method13.invoke(oldModel,
 							(Object[])null);
 
 					newModel.setExpiration(value13);

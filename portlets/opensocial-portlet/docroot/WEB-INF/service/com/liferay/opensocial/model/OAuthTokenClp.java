@@ -158,11 +158,11 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		_sessionHandle = sessionHandle;
 	}
 
-	public int getExpiration() {
+	public long getExpiration() {
 		return _expiration;
 	}
 
-	public void setExpiration(int expiration) {
+	public void setExpiration(long expiration) {
 		_expiration = expiration;
 	}
 
@@ -359,5 +359,5 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	private String _tokenName;
 	private String _tokenSecret;
 	private String _sessionHandle;
-	private int _expiration;
+	private long _expiration;
 }

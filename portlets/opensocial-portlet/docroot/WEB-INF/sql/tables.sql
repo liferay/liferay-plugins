@@ -36,5 +36,5 @@ create table OpenSocial_OAuthToken (
 	tokenName VARCHAR(75) null,
 	tokenSecret VARCHAR(75) null,
 	sessionHandle VARCHAR(75) null,
-	expiration INTEGER
+	expiration LONG
 );

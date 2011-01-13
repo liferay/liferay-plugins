@@ -224,7 +224,7 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 		long gadgetId, java.lang.String serviceName, long moduleId,
 		java.lang.String accessToken, java.lang.String tokenName,
 		java.lang.String tokenSecret, java.lang.String sessionHandle,
-		int expiration)
+		long expiration)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _oAuthTokenLocalService.addOAuthToken(userId, gadgetId,

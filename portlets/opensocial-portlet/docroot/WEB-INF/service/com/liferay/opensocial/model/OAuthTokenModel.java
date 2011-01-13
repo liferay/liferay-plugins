@@ -267,14 +267,14 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	 *
 	 * @return the expiration of this o auth token
 	 */
-	public int getExpiration();
+	public long getExpiration();
 
 	/**
 	 * Sets the expiration of this o auth token.
 	 *
 	 * @param expiration the expiration of this o auth token
 	 */
-	public void setExpiration(int expiration);
+	public void setExpiration(long expiration);
 
 	public boolean isNew();
 

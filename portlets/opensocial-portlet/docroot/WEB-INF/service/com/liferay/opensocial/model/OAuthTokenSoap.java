@@ -21,13 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.opensocial.service.http.OAuthTokenServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.opensocial.service.http.OAuthTokenServiceSoap
  * @generated
  */
 public class OAuthTokenSoap implements Serializable {
@@ -204,11 +200,11 @@ public class OAuthTokenSoap implements Serializable {
 		_sessionHandle = sessionHandle;
 	}
 
-	public int getExpiration() {
+	public long getExpiration() {
 		return _expiration;
 	}
 
-	public void setExpiration(int expiration) {
+	public void setExpiration(long expiration) {
 		_expiration = expiration;
 	}
 
@@ -225,5 +221,5 @@ public class OAuthTokenSoap implements Serializable {
 	private String _tokenName;
 	private String _tokenSecret;
 	private String _sessionHandle;
-	private int _expiration;
+	private long _expiration;
 }
