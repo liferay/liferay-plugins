@@ -828,8 +828,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected WSRPConsumerPortlet getWSRPConsumerPortlet() throws Exception {
 		String portletName = getPortletConfig().getPortletName();
 
-		int pos = portletName.indexOf(
-			StringPool.UNDERLINE, PORTLET_NAME_PREFIX.length());
+		int pos = portletName.indexOf(StringPool.UNDERLINE);
 
 		String wsrpConsumerPortletUuid = portletName.substring(pos + 1);
 

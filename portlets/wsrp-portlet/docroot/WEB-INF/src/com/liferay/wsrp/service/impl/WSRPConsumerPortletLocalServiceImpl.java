@@ -503,15 +503,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 		PortletDescription portletDescription =
 			wsrpConsumerManager.getPortletDescription(portletHandle);
 
-		StringBuilder sb = new StringBuilder();
-
-		sb.append(ConsumerPortlet.PORTLET_NAME_PREFIX);
-		sb.append(companyId);
-		sb.append(StringPool.UNDERLINE);
-		sb.append(wsrpConsumerPortletUuid);
+		String portletName = 
+			ConsumerPortlet.PORTLET_NAME_PREFIX + wsrpConsumerPortletUuid;
 
 		String portletId = PortalUtil.getJsSafePortletId(
-			PortalUUIDUtil.toJsSafeUuid(sb.toString()));
+			PortalUUIDUtil.toJsSafeUuid(portletName));
 
 		portlet = PortletLocalServiceUtil.clonePortlet(
 			companyId, _CONSUMER_PORTLET_ID);
