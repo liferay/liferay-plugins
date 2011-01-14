@@ -19,6 +19,11 @@
 <%
 String topLink = ParamUtil.getString(request, "topLink", "contacts-home");
 
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("jspPage", "/contacts_center/view.jsp");
+portletURL.setParameter("topLink", topLink);
+
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
@@ -33,6 +38,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 	<liferay-ui:search-container
 		emptyResultsMessage="no-users-were-found"
+		iteratorURL="<%= portletURL %>"
 	>
 		<div>
 			<aui:input inlineField="<%= true %>" id="keywords" label="" name="keywords" size="30" title="search-users" type="text" />
@@ -43,7 +49,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 		<br />
 
 		<liferay-ui:search-container-results
-			results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, true, null, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+			results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, true, null, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
 			total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, true, null) %>"
 		/>
 
@@ -62,19 +68,19 @@ String keywords = ParamUtil.getString(request, "keywords");
 			<liferay-ui:search-container-column-text
 				name="people"
 			>
-				<div class="asset-image">
+				<div class="lfr-user-portrait">
 					<a href="<%= rowURL %>"><img alt="<liferay-ui:message key="avatar" />" class="avatar" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 				</div>
 
-				<div class="asset-data">
-					<div class="asset-data-name">
+				<div class="lfr-user-data">
+					<div class="lfr-user-data-name">
 						<a href="<%= rowURL %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
 					</div>
-					<div class="asset-data-job-title">
+					<div class="lfr-user-data-job-title">
 						<%= HtmlUtil.escape(user2.getJobTitle()) %>
 					</div>
-					<div class="asset-data-extra">
-						<span class="asset-data-email"><%= HtmlUtil.escape(user2.getEmailAddress()) %></span>
+					<div class="lfr-user-data-extra">
+						<span class="lfr-user-data-email"><%= HtmlUtil.escape(user2.getEmailAddress()) %></span>
 					</div>
 				</div>
 			</liferay-ui:search-container-column-text>

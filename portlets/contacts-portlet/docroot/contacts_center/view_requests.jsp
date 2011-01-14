@@ -49,12 +49,12 @@
 			String creatorUserName = "<a href=\"" + rowURL.toString() +"\">" + user2.getFullName() + "</a>";
 			%>
 
-			<div class="asset-image">
+			<div class="lfr-user-portrait">
 				<a href="<%= rowURL %>"><img alt="<liferay-ui:message key="avatar" />" class="avatar" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 			</div>
 
-			<div class="asset-data">
-				<div class="asset-data-title">
+			<div class="lfr-user-data">
+				<div class="lfr-user-data-title">
 					<c:choose>
 						<c:when test="<%= socialRequest.getType() == SocialRelationConstants.TYPE_BI_COWORKER %>">
 							<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-coworker" />
@@ -66,14 +66,14 @@
 				</div>
 			</div>
 
-			<div class="asset-action">
+			<div class="lfr-user-action">
 				<portlet:actionURL name="updateSocialRequest" var="confirmURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="requestId" value="<%= String.valueOf(socialRequest.getRequestId()) %>" />
 					<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
 				</portlet:actionURL >
 
-				<span class="asset-action-item asset-action-confirm"><a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a></span>
+				<span class="lfr-user-action-item lfr-user-action-confirm"><a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a></span>
 
 				<portlet:actionURL name="updateSocialRequest" var="ignoreURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -81,7 +81,7 @@
 					<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
 				</portlet:actionURL >
 
-				<span class="asset-action-item asset-action-ignore"><a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a></span>
+				<span class="lfr-user-action-item lfr-user-action-ignore"><a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a></span>
 			</div>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>

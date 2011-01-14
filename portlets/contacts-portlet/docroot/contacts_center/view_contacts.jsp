@@ -116,3 +116,23 @@ String displayContacts = ParamUtil.getString(request, "displayContacts", StringP
 		</div>
 	</aui:column>
 </aui:layout>
+
+<aui:script use="aui-base">
+	var container = A.one('.lfr-asset-column-details');
+
+	container.delegate(
+		'mouseenter',
+		function(event) {
+			event.currentTarget.ancestor('.lfr-user-grid-item').addClass('hover');
+		},
+		'.lfr-user-grid-item img'
+	);
+
+	container.delegate(
+		'mouseleave',
+		function(event) {
+			event.currentTarget.ancestor('.lfr-user-grid-item').removeClass('hover');
+		},
+		'.lfr-user-grid-item img'
+	);
+</aui:script>

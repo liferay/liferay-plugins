@@ -21,25 +21,40 @@ List<User> users = (List<User>)request.getAttribute("view_users.jsp-users");
 %>
 
 <c:if test="<%= users != null %>">
-	<div class="asset-image-container">
+	<div class="lfr-user-grid-container">
+		<ul class="lfr-user-grid">
 
-		<%
-		PortletURL userURL = renderResponse.createRenderURL();
+			<%
+			PortletURL userURL = renderResponse.createRenderURL();
 
-		userURL.setParameter("jspPage", "/contacts_center/view_user.jsp");
-		userURL.setParameter("backURL", currentURL);
+			userURL.setParameter("jspPage", "/contacts_center/view_user.jsp");
+			userURL.setParameter("backURL", currentURL);
 
-		for (User user2 : users) {
-			userURL.setParameter("userId", String.valueOf(user2.getUserId()));
-		%>
+			for (User user2 : users) {
+				userURL.setParameter("userId", String.valueOf(user2.getUserId()));
+			%>
 
-			<div class="asset-image">
-				<a href="<%= userURL.toString() %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
-			</div>
+				<li class="lfr-user-grid-item">
+					<div class="lfr-user-thumb">
+						<a href="<%= userURL.toString() %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
+					</div>
+					<div class="lfr-user-info">
+						<div class="lfr-user-data-name">
+							<%= HtmlUtil.escape(user2.getFullName()) %>
+						</div>
+						<div class="lfr-user-data-job-title">
+							<%= HtmlUtil.escape(user2.getJobTitle()) %>
+						</div>
+						<div class="lfr-user-data-extra">
+							<span class="lfr-user-data-email"><%= HtmlUtil.escape(user2.getEmailAddress()) %></span>
+						</div>
+					</div>
+				</li>
 
-		<%
-		}
-		%>
+			<%
+			}
+			%>
 
+		</ul>
 	</div>
 </c:if>
