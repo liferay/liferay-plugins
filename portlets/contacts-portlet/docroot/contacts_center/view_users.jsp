@@ -38,13 +38,16 @@ List<User> users = (List<User>)request.getAttribute("view_users.jsp-users");
 					<div class="lfr-user-thumb">
 						<a href="<%= userURL.toString() %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 					</div>
+
 					<div class="lfr-user-info">
 						<div class="lfr-user-data-name">
 							<%= HtmlUtil.escape(user2.getFullName()) %>
 						</div>
+
 						<div class="lfr-user-data-job-title">
 							<%= HtmlUtil.escape(user2.getJobTitle()) %>
 						</div>
+
 						<div class="lfr-user-data-extra">
 							<span class="lfr-user-data-email"><%= HtmlUtil.escape(user2.getEmailAddress()) %></span>
 						</div>

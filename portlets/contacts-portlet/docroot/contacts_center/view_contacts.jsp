@@ -16,23 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-String displayContacts = ParamUtil.getString(request, "displayContacts", StringPool.BLANK);
-%>
-
 <aui:layout>
-	<c:if test="<%= Validator.isNotNull(displayContacts) %>">
-		<portlet:renderURL var="backURL">
-			<portlet:param name="jspPage" value="/contacts-center/view.jsp" />
-			<portlet:param name="topLink" value="contacts" />
-		</portlet:renderURL>
-
-		<liferay-ui:header
-			backURL="<%= backURL.toString() %>"
-			title="<%= displayContacts %>"
-		/>
-	</c:if>
-
 	<aui:column columnWidth="<%= 75 %>" cssClass="lfr-asset-column lfr-asset-column-details" first="<%= true %>">
 		<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 

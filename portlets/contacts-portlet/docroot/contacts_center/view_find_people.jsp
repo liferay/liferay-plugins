@@ -76,9 +76,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 					<div class="lfr-user-data-name">
 						<a href="<%= rowURL %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
 					</div>
+
 					<div class="lfr-user-data-job-title">
 						<%= HtmlUtil.escape(user2.getJobTitle()) %>
 					</div>
+
 					<div class="lfr-user-data-extra">
 						<span class="lfr-user-data-email"><%= HtmlUtil.escape(user2.getEmailAddress()) %></span>
 					</div>
