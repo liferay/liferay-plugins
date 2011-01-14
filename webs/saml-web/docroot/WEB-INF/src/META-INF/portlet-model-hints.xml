@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.portal.saml.model.SPSession">
+		<field name="spSessionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="ssoSessionId" type="long" />
+		<field name="issuer" type="String" />
+	</model>
+	<model name="com.liferay.portal.saml.model.SSOSession">
+		<field name="ssoSessionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="lastActiveDate" type="Date" />
+		<field name="key" type="String" />
+	</model>
+</model-hints>

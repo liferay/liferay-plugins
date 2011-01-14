@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.liferay.portal.saml">
+	<namespace>SAML</namespace>
+	<entity name="SPSession" local-service="true" remote-service="false">
+
+		<!--  PK fields -->
+
+		<column name="spSessionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="ssoSessionId" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="issuer" type="String" />
+	
+		<!-- Finder methods -->
+
+		<finder  name="SSOSessionId" return-type="Collection">
+			<finder-column name="ssoSessionId" />
+		</finder>
+		<finder  name="S_I" return-type="SPSession">
+			<finder-column name="ssoSessionId" />
+			<finder-column name="issuer" />
+		</finder>
+	</entity>
+	<entity name="SSOSession" local-service="true" remote-service="false">
+
+		<!--  PK fields -->
+
+		<column name="ssoSessionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="lastActiveDate" type="Date" />
+		<column name="key" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder  name="Key" return-type="SSOSession">
+			<finder-column name="key" />
+		</finder>
+	</entity>
+</service-builder>

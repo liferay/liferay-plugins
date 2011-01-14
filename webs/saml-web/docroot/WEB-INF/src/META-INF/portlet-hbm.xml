@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.portal.saml.model.SPSession" />
+	<import class="com.liferay.portal.saml.model.SSOSession" />
+	<class name="com.liferay.portal.saml.model.impl.SPSessionImpl" table="SAML_SPSession">
+		<cache usage="read-write" />
+		<id name="spSessionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="ssoSessionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="issuer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.portal.saml.model.impl.SSOSessionImpl" table="SAML_SSOSession">
+		<cache usage="read-write" />
+		<id name="ssoSessionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="lastActiveDate" type="org.hibernate.type.TimestampType" />
+		<property name="key" column="key_" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
