@@ -54,7 +54,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 
 			<c:if test="<%= coworker %>">
 				<div class="lfr-asset-icon lfr-asset-friend<%= (following || follower) ? StringPool.BLANK : " last" %>">
-					<liferay-ui:message key="co-worker" />
+					<liferay-ui:message key="coworker" />
 				</div>
 			</c:if>
 

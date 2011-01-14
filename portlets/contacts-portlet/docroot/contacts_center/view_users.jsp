@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List<User> users = (List<User>)request.getAttribute("view_users.jsp-users");
+List<User> users = (List<User>)request.getAttribute("view_contacts.jsp-users");
 %>
 
 <c:if test="<%= users != null %>">

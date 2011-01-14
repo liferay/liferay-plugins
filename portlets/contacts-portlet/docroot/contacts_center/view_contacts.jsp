@@ -38,14 +38,14 @@
 			</c:if>
 
 			<%
-			List<User> friends = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, delta, new UserLoginDateComparator());
+			List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, delta, new UserLoginDateComparator());
 			%>
 
-			<c:if test="<%= !friends.isEmpty() %>">
+			<c:if test="<%= !friendUsers.isEmpty() %>">
 				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="friends">
 
 					<%
-					request.setAttribute("view_users.jsp-users", friends);
+					request.setAttribute("view_contacts.jsp-users", friendUsers);
 					%>
 
 					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
@@ -53,14 +53,14 @@
 			</c:if>
 
 			<%
-			List<User> coworkers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, delta, new UserLoginDateComparator());
+			List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, delta, new UserLoginDateComparator());
 			%>
 
-			<c:if test="<%= !coworkers.isEmpty() %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="co-workers">
+			<c:if test="<%= !coworkerUsers.isEmpty() %>">
+				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="coworkers">
 
 					<%
-					request.setAttribute("view_users.jsp-users", coworkers);
+					request.setAttribute("view_contacts.jsp-users", coworkerUsers);
 					%>
 
 					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
@@ -68,21 +68,21 @@
 			</c:if>
 
 			<%
-			List<User> following = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, delta, new UserLoginDateComparator());
+			List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, delta, new UserLoginDateComparator());
 			%>
 
-			<c:if test="<%= !following.isEmpty() %>">
+			<c:if test="<%= !followingUsers.isEmpty() %>">
 				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="following">
 
 					<%
-					request.setAttribute("view_users.jsp-users", following);
+					request.setAttribute("view_contacts.jsp-users", followingUsers);
 					%>
 
 					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
 				</liferay-ui:panel>
 			</c:if>
 
-			<c:if test="<%= friends.isEmpty() && coworkers.isEmpty() && following.isEmpty() %>">
+			<c:if test="<%= friendUsers.isEmpty() && coworkerUsers.isEmpty() && followingUsers.isEmpty() %>">
 				<div class="portlet-msg-info">
 					<liferay-ui:message key="you-have-no-contacts" />
 				</div>
