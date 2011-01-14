@@ -15,11 +15,11 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.opensocial.shindig.util.SerializerUtil;
-import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -35,16 +35,10 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.regex.Matcher;
@@ -228,21 +222,6 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 	}
 
-	protected void addAttributes(
-			MediaItem mediaItem, ExpandoBridge expandoBridge)
-		throws Exception {
-
-		for (Object field : _MEDIA_ITEM_FIELDS) {
-			String fieldName = field.toString();
-
-			String value = BeanPropertiesUtil.getString(mediaItem, fieldName);
-
-			if (value != null && !expandoBridge.hasAttribute(fieldName)) {
-				expandoBridge.addAttribute(fieldName);
-			}
-		}
-	}
-
 	protected void doCreateMediaItem(
 			UserId userId, String appId, String albumId, MediaItem mediaItem,
 			SecurityToken securityToken)
@@ -269,10 +248,9 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
 
-		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(
-			mediaItemIdLong);
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(mediaItemIdLong);
 
-		return getMediaItem(fileEntry, fields, securityToken);
+		return toMediaItem(fileEntry, fields, securityToken);
 	}
 
 	protected RestfulCollection<MediaItem> doGetMediaItems(
@@ -322,13 +300,14 @@ public class LiferayMediaItemService implements MediaItemService {
 			}
 
 			for (FileEntry fileEntry : fileEntries) {
-				MediaItem.Type mediaItemType = getMediaItemType(fileEntry);
+				MediaItem.Type mediaItemType = toMediaItemType(
+					fileEntry.getExtension());
 
 				if (mediaItemType == null) {
 					continue;
 				}
 
-				MediaItem mediaItem = getMediaItem(
+				MediaItem mediaItem = toMediaItem(
 					fileEntry, fields, securityToken);
 
 				mediaItems.add(mediaItem);
@@ -361,14 +340,14 @@ public class LiferayMediaItemService implements MediaItemService {
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
 		for (FileEntry fileEntry : fileEntries) {
-			MediaItem.Type mediaItemType = getMediaItemType(fileEntry);
+			MediaItem.Type mediaItemType = toMediaItemType(
+				fileEntry.getExtension());
 
 			if (mediaItemType == null) {
 				continue;
 			}
 
-			MediaItem mediaItem = getMediaItem(
-				fileEntry, fields, securityToken);
+			MediaItem mediaItem = toMediaItem(fileEntry, fields, securityToken);
 
 			mediaItems.add(mediaItem);
 		}
@@ -400,14 +379,14 @@ public class LiferayMediaItemService implements MediaItemService {
 		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
 		for (FileEntry fileEntry : fileEntries) {
-			MediaItem.Type mediaItemType = getMediaItemType(fileEntry);
+			MediaItem.Type mediaItemType = toMediaItemType(
+				fileEntry.getExtension());
 
 			if (mediaItemType == null) {
 				continue;
 			}
 
-			MediaItem mediaItem = getMediaItem(
-				fileEntry, fields, securityToken);
+			MediaItem mediaItem = toMediaItem(fileEntry, fields, securityToken);
 
 			if (mediaItemIds.contains(mediaItem.getId())) {
 				mediaItems.add(mediaItem);
@@ -444,29 +423,18 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setExpandoBridgeAttributes(
+			SerializerUtil.toExpandoAttributes(
+				mediaItem, _MEDIA_ITEM_FIELDS, user.getCompanyId(),
+				DLFileEntry.class.getName()));
 		serviceContext.setScopeGroupId(groupIdLong);
-
-		Map<String, Serializable> expandoBridgeAttributes =
-			new LinkedHashMap<String, Serializable>();
-
-		SerializerUtil.copyProperties(
-			mediaItem, expandoBridgeAttributes, _MEDIA_ITEM_FIELDS);
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-
-		ExpandoBridge expandoBridge =
-			ExpandoBridgeFactoryUtil.getExpandoBridge(
-				user.getCompanyId(), DLFileEntry.class.getName());
-
-		addAttributes(mediaItem, expandoBridge);
 
 		if (mediaItemId == null) {
 			long albumIdLong = GetterUtil.getLong(albumId);
 
 			DLAppServiceUtil.addFileEntry(
-				groupIdLong, albumIdLong, fileName,
-				mediaItem.getDescription(), StringPool.BLANK, byteArray,
-				serviceContext);
+				groupIdLong, albumIdLong, fileName, mediaItem.getDescription(),
+				StringPool.BLANK, byteArray, serviceContext);
 		}
 		else {
 			long mediaItemIdLong = GetterUtil.getLong(mediaItemId);
@@ -519,7 +487,7 @@ public class LiferayMediaItemService implements MediaItemService {
 		}
 	}
 
-	protected MediaItem getMediaItem(
+	protected MediaItem toMediaItem(
 			FileEntry fileEntry, Set<String> fields,
 			SecurityToken securityToken)
 		throws Exception {
@@ -535,21 +503,19 @@ public class LiferayMediaItemService implements MediaItemService {
 			MimeTypesUtil.getContentType(fileEntry.getExtension()));
 		mediaItem.setNumViews(String.valueOf(fileEntry.getReadCount()));
 		mediaItem.setTitle(fileEntry.getTitle());
-		mediaItem.setType(getMediaItemType(fileEntry));
+		mediaItem.setType(toMediaItemType(fileEntry.getExtension()));
 		mediaItem.setUrl(getFileEntryURL(fileEntry, securityToken));
 
-		Map<String, Serializable> attributes =
-			fileEntry.getLatestFileVersion().getAttributes();
+		FileVersion fileVersion = fileEntry.getLatestFileVersion();
 
 		SerializerUtil.copyProperties(
-			attributes, mediaItem, _MEDIA_ITEM_FIELDS);
+			fileVersion.getAttributes(), mediaItem, _MEDIA_ITEM_FIELDS);
 
 		return mediaItem;
 	}
 
-	protected MediaItem.Type getMediaItemType(FileEntry fileEntry) {
-		String contentType = MimeTypesUtil.getContentType(
-			fileEntry.getExtension());
+	protected MediaItem.Type toMediaItemType(String extension) {
+		String contentType = MimeTypesUtil.getContentType(extension);
 
 		if (contentType.startsWith("audio")) {
 			return Type.AUDIO;

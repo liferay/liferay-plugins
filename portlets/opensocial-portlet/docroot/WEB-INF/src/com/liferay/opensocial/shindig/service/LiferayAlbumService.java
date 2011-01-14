@@ -15,8 +15,8 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.opensocial.shindig.util.SerializerUtil;
-import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -29,16 +29,10 @@ import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
-import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Future;
 
@@ -193,21 +187,6 @@ public class LiferayAlbumService implements AlbumService {
 		}
 	}
 
-	protected void addAttributes(
-			Album album, ExpandoBridge expandoBridge)
-		throws Exception {
-
-		for (Object field : _ALBUM_FIELDS) {
-			String fieldName = field.toString();
-
-			String value = BeanPropertiesUtil.getString(album, fieldName);
-
-			if (value != null && !expandoBridge.hasAttribute(fieldName)) {
-				expandoBridge.addAttribute(fieldName);
-			}
-		}
-	}
-
 	protected void doCreateAlbum(
 			UserId userId, String appId, Album album,
 			SecurityToken securityToken)
@@ -235,7 +214,7 @@ public class LiferayAlbumService implements AlbumService {
 
 		Folder folder = DLAppServiceUtil.getFolder(albumIdLong);
 
-		return getAlbum(folder, fields, securityToken);
+		return toAlbum(folder, fields, securityToken);
 	}
 
 	protected RestfulCollection<Album> doGetAlbums(
@@ -250,7 +229,7 @@ public class LiferayAlbumService implements AlbumService {
 			Folder folder = DLAppServiceUtil.getFolder(
 				GetterUtil.getLong(albumId));
 
-			Album album = getAlbum(folder, fields, securityToken);
+			Album album = toAlbum(folder, fields, securityToken);
 
 			albums.add(album);
 		}
@@ -290,10 +269,9 @@ public class LiferayAlbumService implements AlbumService {
 				for (User socialUser : socialUsers) {
 					Group group = socialUser.getGroup();
 
-					List<Folder> friendFolders =
-						DLAppServiceUtil.getFolders(
-							group.getGroupId(),
-							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+					List<Folder> friendFolders = DLAppServiceUtil.getFolders(
+						group.getGroupId(),
+						DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 					folders.addAll(friendFolders);
 				}
@@ -307,7 +285,7 @@ public class LiferayAlbumService implements AlbumService {
 			}
 
 			for (Folder folder : folders) {
-				Album album = getAlbum(folder, fields, securityToken);
+				Album album = toAlbum(folder, fields, securityToken);
 
 				albums.add(album);
 			}
@@ -335,21 +313,11 @@ public class LiferayAlbumService implements AlbumService {
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setExpandoBridgeAttributes(
+			SerializerUtil.toExpandoAttributes(
+				album, _ALBUM_FIELDS, user.getCompanyId(),
+				DLFolder.class.getName()));
 		serviceContext.setScopeGroupId(groupIdLong);
-
-		Map<String, Serializable> expandoBridgeAttributes =
-			new LinkedHashMap<String, Serializable>();
-
-		SerializerUtil.copyProperties(
-			album, expandoBridgeAttributes, _ALBUM_FIELDS);
-
-		serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
-
-		ExpandoBridge expandoBridge =
-			ExpandoBridgeFactoryUtil.getExpandoBridge(
-				user.getCompanyId(), DLFolder.class.getName());
-
-		addAttributes(album, expandoBridge);
 
 		if (albumId == null) {
 			DLAppServiceUtil.addFolder(
@@ -366,8 +334,9 @@ public class LiferayAlbumService implements AlbumService {
 		}
 	}
 
-	protected Album getAlbum(Folder folder, Set<String> fields,
-			SecurityToken securityToken) {
+	protected Album toAlbum(
+			Folder folder, Set<String> fields, SecurityToken securityToken)
+		throws JSONException {
 
 		Album album = new AlbumImpl();
 
