@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<filter>
+		<filter-name>SecureFilter</filter-name>
+		<filter-class>com.liferay.saml2.filter.SecureFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>SecureFilter</filter-name>
+		<url-pattern>/protected/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>com.liferay.saml2.servlet.listener.OpenSAMLContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>ACSServlet</servlet-name>
+		<servlet-class>com.liferay.saml2.servlet.AssertionConsumerServiceServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GenerateGoogleAppsAuthnRequestServlet</servlet-name>
+		<servlet-class>com.liferay.saml2.servlet.GenerateGoogleAppsAuthnRequestServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>KeepaliveServlet</servlet-name>
+		<servlet-class>com.liferay.saml2.servlet.KeepaliveServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>LogoutServlet</servlet-name>
+		<servlet-class>com.liferay.saml2.servlet.LogoutServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SingleLogoutServlet</servlet-name>
+		<servlet-class>com.liferay.saml2.servlet.SingleLogoutServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SSOServlet</servlet-name>
+		<servlet-class>com.liferay.saml2.servlet.SSOServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ACSServlet</servlet-name>
+		<url-pattern>/saml/acs</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GenerateGoogleAppsAuthnRequestServlet</servlet-name>
+		<url-pattern>/GenerateGoogleAppsAuthnRequest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>KeepaliveServlet</servlet-name>
+		<url-pattern>/protected/keepalive</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SingleLogoutServlet</servlet-name>
+		<url-pattern>/saml/SOAP/SLO</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SSOServlet</servlet-name>
+		<url-pattern>/saml/sso</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
