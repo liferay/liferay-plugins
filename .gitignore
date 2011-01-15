@@ -1,2 +1,2 @@
-dist/
-build.*.properties
+/build.*.properties
+/dist
