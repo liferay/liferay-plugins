@@ -1,0 +1,63 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.mongodb.hook.listeners;
+
+import com.liferay.mongodb.lang.MongoOperator;
+import com.liferay.mongodb.util.MongoDBUtil;
+import com.liferay.portal.ModelListenerException;
+import com.liferay.portal.model.BaseModelListener;
+import com.liferay.portlet.expando.model.ExpandoColumn;
+import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
+
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+
+/**
+ * @author Raymond Augé
+ * @author Brian Wing Shun Chan
+ */
+public class ExpandoColumnListener extends BaseModelListener<ExpandoColumn> {
+
+	public void onAfterCreate(ExpandoColumn expandoColumn)
+		throws ModelListenerException {
+
+		try {
+			doOnAfterCreate(expandoColumn);
+		}
+		catch (Exception e) {
+			throw new ModelListenerException();
+		}
+	}
+
+	protected void doOnAfterCreate(ExpandoColumn expandoColumn)
+		throws Exception {
+
+		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
+			expandoColumn.getTableId());
+
+		DBCollection dbCollection = MongoDBUtil.getCollection(expandoTable);
+
+		dbCollection.dropIndex(expandoColumn.getName());
+
+		DBObject quueryDBObject = new BasicDBObject();
+		DBObject operatorDBObject = new BasicDBObject(
+			MongoOperator.UNSET, new BasicDBObject(expandoColumn.getName(), 1));
+
+		dbCollection.update(quueryDBObject, operatorDBObject, false, true);
+	}
+
+}
