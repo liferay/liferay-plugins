@@ -22,9 +22,12 @@ import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Layout;
@@ -37,7 +40,6 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.ControlPanelEntry;
 
 import java.util.List;
@@ -236,7 +238,10 @@ public class ServicePreAction extends Action {
 			themeDisplay.getScopeGroupId(), plid, _PORTLET_ID, resourcePrimKey,
 			themeDisplay.getPortalURL());
 
-		if (PropsValues.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
+		String portletAddDefaultResourceCheckEnabled = PropsUtil.get(
+			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED);
+
+		if (GetterUtil.getBoolean(portletAddDefaultResourceCheckEnabled)) {
 			articleURL = HttpUtil.setParameter(
 				articleURL, "p_p_auth",
 				AuthTokenUtil.getToken(request, plid, _PORTLET_ID));
@@ -254,7 +259,10 @@ public class ServicePreAction extends Action {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (!PropsValues.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
+		String portletAddDefaultResourceCheckEnabled = PropsUtil.get(
+			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED);
+
+		if (!GetterUtil.getBoolean(portletAddDefaultResourceCheckEnabled)) {
 			return false;
 		}
 
