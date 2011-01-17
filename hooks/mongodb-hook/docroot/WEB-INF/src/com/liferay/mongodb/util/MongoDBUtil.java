@@ -95,7 +95,7 @@ public class MongoDBUtil {
 	private DBCollection _getCollection(ExpandoTable expandoTable) {
 		return _instance._getCollection(
 			expandoTable.getCompanyId(), expandoTable.getClassName(),
-			expandoTable.getClassName());
+			expandoTable.getName());
 	}
 
 	private DBCollection _getCollection(

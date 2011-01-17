@@ -32,18 +32,18 @@ import com.mongodb.DBObject;
  */
 public class ExpandoColumnListener extends BaseModelListener<ExpandoColumn> {
 
-	public void onAfterCreate(ExpandoColumn expandoColumn)
+	public void onAfterRemove(ExpandoColumn expandoColumn)
 		throws ModelListenerException {
 
 		try {
-			doOnAfterCreate(expandoColumn);
+			doOnAfterRemove(expandoColumn);
 		}
 		catch (Exception e) {
-			throw new ModelListenerException();
+			throw new ModelListenerException(e);
 		}
 	}
 
-	protected void doOnAfterCreate(ExpandoColumn expandoColumn)
+	protected void doOnAfterRemove(ExpandoColumn expandoColumn)
 		throws Exception {
 
 		ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
@@ -51,7 +51,13 @@ public class ExpandoColumnListener extends BaseModelListener<ExpandoColumn> {
 
 		DBCollection dbCollection = MongoDBUtil.getCollection(expandoTable);
 
-		dbCollection.dropIndex(expandoColumn.getName());
+		for (DBObject indexDBObject : dbCollection.getIndexInfo()) {
+			DBObject keyDBObject = (DBObject)indexDBObject.get("key");
+
+			if (keyDBObject.containsField(expandoColumn.getName())) {
+				dbCollection.dropIndex(keyDBObject);
+			}
+		}
 
 		DBObject quueryDBObject = new BasicDBObject();
 		DBObject operatorDBObject = new BasicDBObject(

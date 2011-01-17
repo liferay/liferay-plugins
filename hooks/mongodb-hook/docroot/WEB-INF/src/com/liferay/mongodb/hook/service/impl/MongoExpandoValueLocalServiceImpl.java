@@ -31,6 +31,7 @@ import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoValueLocalService;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceWrapper;
+import com.liferay.portlet.expando.service.persistence.ExpandoColumnUtil;
 import com.liferay.portlet.expando.service.persistence.ExpandoValueUtil;
 
 import com.mongodb.BasicDBObject;
@@ -177,8 +178,12 @@ public class MongoExpandoValueLocalServiceImpl
 
 	public void deleteColumnValues(long columnId) throws SystemException {
 		try {
-			ExpandoColumn expandoColumn =
-				ExpandoColumnLocalServiceUtil.getColumn(columnId);
+			ExpandoColumn expandoColumn = ExpandoColumnUtil.fetchByPrimaryKey(
+				columnId);
+
+			if (expandoColumn == null) {
+				return;
+			}
 
 			ExpandoTable expandoTable = ExpandoTableLocalServiceUtil.getTable(
 				expandoColumn.getTableId());

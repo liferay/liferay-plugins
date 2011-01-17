@@ -38,9 +38,12 @@ public class ExpandoTableListener extends BaseModelListener<ExpandoTable> {
 			DBCollection dbCollection = db.createCollection(
 				collectionName, null);
 
-			dbCollection.createIndex(new BasicDBObject("classPK", 1));
-			dbCollection.createIndex(new BasicDBObject("rowId", 1));
 			dbCollection.createIndex(new BasicDBObject("valueId", 1));
+			dbCollection.createIndex(new BasicDBObject("companyId", 1));
+			dbCollection.createIndex(new BasicDBObject("tableId", 1));
+			dbCollection.createIndex(new BasicDBObject("rowId", 1));
+			dbCollection.createIndex(new BasicDBObject("classNameId", 1));
+			dbCollection.createIndex(new BasicDBObject("classPK", 1));
 		}
 	}
 
