@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
@@ -24,9 +23,10 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -34,9 +34,9 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 
 import java.util.Locale;
 
@@ -54,19 +54,20 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	protected void deleteSubscription(Subscription subscription)
 		throws Exception {
 
-		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
+		if (subscription.getClassPK() == _article.getResourcePrimKey()) {
 
-		for (String portletPrimKey : portletPrimKeys) {
-			long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
-			String portletPrimKeyPortletId = ArticleConstants.getPortletId(
-				portletPrimKey);
+			// Article subscription.
 
-			ArticleLocalServiceUtil.unsubscribe(
-				subscription.getCompanyId(), subscription.getUserId(),
-				portletPrimKeyPlid, portletPrimKeyPortletId,
-				subscription.getClassPK());
+			ArticleLocalServiceUtil.unsubscribeArticle(
+				subscription.getUserId(), _article.getResourcePrimKey());
+		}
+
+		if (subscription.getClassPK() == _article.getGroupId()) {
+
+			// Group subscription.
+
+			ArticleLocalServiceUtil.unsubscribeGroupArticles(
+				subscription.getUserId(), _article.getGroupId());
 		}
 	}
 
@@ -83,7 +84,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 		for (String fileName : fileNames) {
 			long kb = DLLocalServiceUtil.getFileSize(
-				_article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+				companyId, CompanyConstants.SYSTEM, fileName);
 
 			sb.append(FileUtil.getShortFileName(fileName));
 			sb.append(" (");
@@ -95,8 +96,28 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		return sb.toString();
 	}
 
+	protected String getEmailArticleURL(long resourcePrimKey) throws Exception {
+		long plid = LayoutLocalServiceUtil.getDefaultPlid(
+			_article.getGroupId());
+
+		if (plid == LayoutConstants.DEFAULT_PLID) {
+			return _portalURL;
+		}
+
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		String currentURL = _portalURL + PortalUtil.getLayoutActualURL(layout);
+
+		return KnowledgeBaseUtil.findArticleURL(resourcePrimKey, currentURL);
+	}
+
 	protected boolean hasPermission(Subscription subscription, User user)
 		throws Exception {
+
+		String contextName = PrincipalThreadLocal.getName();
+
+		PermissionChecker contextPermissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
 
 		PrincipalThreadLocal.setName(user.getUserId());
 
@@ -110,72 +131,26 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 				permissionChecker, _article, ActionKeys.VIEW);
 		}
 		finally {
-			PrincipalThreadLocal.setName(null);
+			PrincipalThreadLocal.setName(contextName);
 
-			PermissionThreadLocal.setPermissionChecker(null);
+			PermissionThreadLocal.setPermissionChecker(
+				contextPermissionChecker);
 		}
-	}
-
-	protected void notifySubscriber(Subscription subscription)
-		throws Exception {
-
-		setContextAttribute("subscription", subscription);
-
-		super.notifySubscriber(subscription);
-
-		setContextAttribute("subscription", null);
 	}
 
 	protected String replaceContent(String content, Locale locale)
 		throws Exception {
 
 		String articleAttachments = getEmailArticleAttachments(locale);
+		String articleURL = getEmailArticleURL(_article.getResourcePrimKey());
 		String articleVersion = LanguageUtil.format(
 			locale, "version-x", String.valueOf(_article.getVersion()));
 		String categoryTitle = LanguageUtil.get(locale, "category.kb");
 
-		content = StringUtil.replace(
-			content,
-			new String[] {
-				"[$ARTICLE_ATTACHMENTS$]",
-				"[$ARTICLE_VERSION$]",
-				"[$CATEGORY_TITLE$]"
-			},
-			new String[] {
-				articleAttachments,
-				articleVersion,
-				categoryTitle
-			});
-
-		Subscription subscription = (Subscription)getContextAttribute(
-			"subscription");
-
-		if (subscription == null) {
-			return super.replaceContent(content, locale);
-		}
-
-		String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
-
-		String portletPrimKeyPortletId = ArticleConstants.getPortletId(
-			portletPrimKeys[0]);
-
-		String articleURL = KnowledgeBaseUtil.getArticleURL(
-			portletPrimKeyPortletId, _article.getResourcePrimKey(), _portalURL);
-		String portletTitle = PortalUtil.getPortletTitle(
-			portletPrimKeyPortletId, locale);
-
-		content = StringUtil.replace(
-			content,
-			new String[] {
-				"[$ARTICLE_URL$]",
-				"[$PORTLET_NAME$]"
-			},
-			new String[] {
-				articleURL,
-				portletTitle
-			});
+		setContextAttribute("[$ARTICLE_ATTACHMENTS$]", articleAttachments);
+		setContextAttribute("[$ARTICLE_URL$]", articleURL);
+		setContextAttribute("[$ARTICLE_VERSION$]", articleVersion);
+		setContextAttribute("[$CATEGORY_TITLE$]", categoryTitle);
 
 		return super.replaceContent(content, locale);
 	}

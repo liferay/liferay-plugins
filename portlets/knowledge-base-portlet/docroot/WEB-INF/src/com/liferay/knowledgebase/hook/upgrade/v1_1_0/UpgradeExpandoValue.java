@@ -14,34 +14,14 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_1_0;
 
-import com.liferay.knowledgebase.NoSuchArticleException;
-import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.ArticleConstants;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.portal.NoSuchSubscriptionException;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Subscription;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.NoSuchColumnException;
 import com.liferay.portlet.expando.NoSuchTableException;
-import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
-import com.liferay.portlet.expando.model.ExpandoValue;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-
-import java.util.List;
 
 /**
  * @author Peter Shin
@@ -88,98 +68,6 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 
 	protected void upgradeExpandoValues(ExpandoTable expandoTable)
 		throws Exception {
-
-		Group controlPanelGroup = GroupLocalServiceUtil.getGroup(
-			expandoTable.getCompanyId(), GroupConstants.CONTROL_PANEL);
-
-		long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(
-			controlPanelGroup.getGroupId(), true);
-
-		if (!hasExpandoColumn(expandoTable, "portletPrimKeys")) {
-			ExpandoColumnLocalServiceUtil.addColumn(
-				expandoTable.getTableId(), "portletPrimKeys",
-				ExpandoColumnConstants.STRING_ARRAY);
-		}
-
-		List<ExpandoValue> expandoValues =
-			ExpandoValueLocalServiceUtil.getColumnValues(
-				expandoTable.getCompanyId(), Subscription.class.getName(),
-				"KB", "portletIds", QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (ExpandoValue expandoValue : expandoValues) {
-			Subscription subscription = null;
-
-			try {
-				subscription = SubscriptionLocalServiceUtil.getSubscription(
-					expandoValue.getClassPK());
-			}
-			catch (NoSuchSubscriptionException nsse) {
-				continue;
-			}
-
-			Article article = null;
-
-			try {
-				article = ArticleLocalServiceUtil.getLatestArticle(
-					subscription.getClassPK(), WorkflowConstants.STATUS_ANY);
-			}
-			catch (NoSuchArticleException nsae) {
-			}
-
-			long groupId = subscription.getClassPK();
-
-			if (article != null) {
-				groupId = article.getGroupId();
-			}
-
-			String[] portletPrimKeys = new String[0];
-
-			String[] portletIds = expandoValue.getStringArray();
-
-			for (int i = 0; i < portletIds.length; i++) {
-				String portletId = portletIds[i];
-
-				String portletPrimKey = null;
-
-				if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-					portletPrimKey = ArticleConstants.getPortletPrimKey(
-						controlPanelPlid, PortletKeys.KNOWLEDGE_BASE_ADMIN);
-				}
-
-				long plid = LayoutConstants.DEFAULT_PLID;
-
-				if (portletPrimKey == null) {
-					plid = PortalUtil.getPlidFromPortletId(groupId, portletId);
-				}
-
-				if (plid != LayoutConstants.DEFAULT_PLID) {
-					portletPrimKey = ArticleConstants.getPortletPrimKey(
-						plid, portletId);
-				}
-
-				if (portletPrimKey == null) {
-					continue;
-				}
-
-				portletPrimKeys = ArrayUtil.append(
-					portletPrimKeys, portletPrimKey);
-
-				if ((portletPrimKeys.length > 0) && (article != null)) {
-					break;
-				}
-			}
-
-			if (portletPrimKeys.length <= 0) {
-				SubscriptionLocalServiceUtil.deleteSubscription(
-					subscription.getSubscriptionId());
-			}
-			else {
-				ExpandoValueLocalServiceUtil.addValue(
-					subscription.getCompanyId(), Subscription.class.getName(),
-					"KB", "portletPrimKeys", subscription.getSubscriptionId(),
-					portletPrimKeys);
-			}
-		}
 
 		ExpandoColumnLocalServiceUtil.deleteColumn(
 			expandoTable.getTableId(), "portletIds");

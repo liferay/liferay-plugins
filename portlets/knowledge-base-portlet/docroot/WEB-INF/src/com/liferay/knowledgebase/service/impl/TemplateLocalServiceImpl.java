@@ -149,6 +149,11 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		socialActivityLocalService.deleteActivities(
 			Template.class.getName(), template.getTemplateId());
+
+		// Comment
+
+		commentLocalService.deleteComments(
+			Template.class.getName(), template.getTemplateId());
 	}
 
 	public List<Template> getGroupTemplates(

@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,24 +11,15 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ include file="/display/init.jsp" %>
+package com.liferay.knowledgebase.util;
 
-<%
-Article article = (Article)portletSession.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
-%>
+/**
+ * @author Brian Wing Shun Chan
+ * @author Peter Shin
+ */
+public class Constants implements com.liferay.portal.kernel.util.Constants {
 
-<c:choose>
-	<c:when test="<%= article == null %>">
-		<liferay-ui:message key="there-are-no-articles" />
-	</c:when>
-	<c:otherwise>
+	public static final String FIND_ARTICLE = "find_article";
 
-		<%
-		request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
-		%>
-
-		<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
-	</c:otherwise>
-</c:choose>
+}

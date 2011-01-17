@@ -30,47 +30,10 @@ String tag = ParamUtil.getString(request, "tag");
 	<liferay-ui:search-container-results>
 
 		<%
-		if (selectionMethod.equals("articles")) {
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
+		Map<String, Object> preferencesArticlesMap = KnowledgeBaseUtil.getPortletPreferencesArticlesMap(scopeGroupId, portletDisplay.getId(), categoryId, tag, searchContainer.getStart(), searchContainer.getEnd(), preferences);
 
-			if (assetEntries != null) {
-				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
-
-				Set<Long> classPKsSet = SetUtil.fromArray(classPKs);
-				Set<Long> resourcePrimKeysSet = SetUtil.fromArray(resourcePrimKeys);
-
-				resourcePrimKeysSet.retainAll(classPKsSet);
-
-				resourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeysSet), 0L);
-			}
-
-			results = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), true);
-			total = resourcePrimKeys.length;
-		}
-		else if (selectionMethod.equals("group")) {
-			List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
-
-			if (assetEntries != null) {
-				long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
-				long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
-
-				results = ArticleServiceUtil.getArticles(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-				total = ArticleServiceUtil.getArticlesCount(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys);
-			}
-			else if (!allArticles) {
-				results = ArticleServiceUtil.getSiblingArticles(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-				total = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED);
-			}
-			else {
-				long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
-
-				results = ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-				total = ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys);
-			}
-		}
-
-		pageContext.setAttribute("results", results);
-		pageContext.setAttribute("total", total);
+		pageContext.setAttribute("results", preferencesArticlesMap.get("articles"));
+		pageContext.setAttribute("total", preferencesArticlesMap.get("count"));
 		%>
 
 	</liferay-ui:search-container-results>

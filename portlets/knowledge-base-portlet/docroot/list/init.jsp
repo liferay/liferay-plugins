@@ -23,39 +23,24 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-String articlesTitle = preferences.getValue("articlesTitle", StringPool.BLANK);
-boolean allArticles = GetterUtil.getBoolean(preferences.getValue("allArticles", null), true);
-String orderByColumn = preferences.getValue("orderByColumn", "modified-date");
-boolean orderByAscending = GetterUtil.getBoolean(preferences.getValue("orderByAscending", null));
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articlesDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String articleWindowState = preferences.getValue("articleWindowState", WindowState.MAXIMIZED.toString());
-String childArticlesDisplayStyle = preferences.getValue("childArticlesDisplayStyle", "abstract");
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null), true);
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null), true);
-boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
-boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null), true);
+Map<String, String> preferencesMap = KnowledgeBaseUtil.initPortletPreferencesMap(rootPortletId, preferences);
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-String rssFormat = preferences.getValue("rssFormat", "atom10");
+String articlesTitle = preferencesMap.get("articlesTitle");
+boolean allArticles = GetterUtil.getBoolean(preferencesMap.get("allArticles"));
+String orderByColumn = preferencesMap.get("orderByColumn");
+boolean orderByAscending = GetterUtil.getBoolean(preferencesMap.get("orderByAscending"));
+int articlesDelta = GetterUtil.getInteger(preferencesMap.get("articlesDelta"));
+String articleWindowState = preferencesMap.get("articleWindowState");
 
-String rssFormatType = RSSUtil.getFormatType(rssFormat);
-double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
+String childArticlesDisplayStyle = preferencesMap.get("childArticlesDisplayStyle");
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetCategories"));
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetTags"));
+boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableArticleRatings"));
+boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
 
-OrderByComparator orderByComparator = null;
-
-if (orderByColumn.equals("create-date")) {
-	orderByComparator = new ArticleCreateDateComparator(orderByAscending);
-}
-else if (orderByColumn.equals("modified-date")) {
-	orderByComparator = new ArticleModifiedDateComparator(orderByAscending);
-}
-else if (orderByColumn.equals("priority")) {
-	orderByComparator = new ArticlePriorityComparator(orderByAscending);
-}
-else if (orderByColumn.equals("title")) {
-	orderByComparator = new ArticleTitleComparator(orderByAscending);
-}
+int rssDelta = GetterUtil.getInteger(preferencesMap.get("rssDelta"));
+String rssDisplayStyle = preferencesMap.get("rssDisplayStyle");
+String rssFormat = preferencesMap.get("rssFormat");
 
 if (articleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.equals(WindowState.MAXIMIZED)) {
 	PortletURL portletURL = renderResponse.createRenderURL();

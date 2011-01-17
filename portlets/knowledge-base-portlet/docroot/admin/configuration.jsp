@@ -122,12 +122,6 @@ else if (tabs2.equals("article-updated-email")) {
 						<dd>
 							<liferay-ui:message key="the-company-name-associated-with-the-article" />
 						</dd>
-						<dt>
-							[$PORTLET_NAME$]
-						</dt>
-						<dd>
-							<%= PortalUtil.getPortletTitle(renderResponse) %>
-						</dd>
 					</dl>
 				</div>
 			</c:when>
@@ -257,12 +251,6 @@ else if (tabs2.equals("article-updated-email")) {
 						</dt>
 						<dd>
 							<%= PortalUtil.getPortalURL(themeDisplay) %>
-						</dd>
-						<dt>
-							[$PORTLET_NAME$]
-						</dt>
-						<dd>
-							<%= PortalUtil.getPortletTitle(renderResponse) %>
 						</dd>
 						<dt>
 							[$TO_ADDRESS$]

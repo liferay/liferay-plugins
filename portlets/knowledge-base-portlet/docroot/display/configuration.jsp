@@ -19,7 +19,9 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Article> articles = KnowledgeBaseUtil.getArticles(scopeGroupId, resourcePrimKeys, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
+List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+articles = KnowledgeBaseUtil.sortArticles(resourcePrimKeys, articles);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">

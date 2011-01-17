@@ -14,8 +14,6 @@
 
 package com.liferay.knowledgebase.model;
 
-import com.liferay.portal.kernel.util.GetterUtil;
-
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
@@ -39,23 +37,5 @@ public class ArticleConstants {
 	public static final int LATEST_ARCHIVED = 0;
 
 	public static final int LATEST_VERSION = 1;
-
-	public static final String PLID_SEPARATOR = "_PLID_";
-
-	public static long getPlid(String portletPrimKey) {
-		int pos = portletPrimKey.indexOf(PLID_SEPARATOR);
-
-		return GetterUtil.getLong(portletPrimKey.substring(0, pos));
-	}
-
-	public static String getPortletId(String portletPrimKey) {
-		int pos = portletPrimKey.indexOf(PLID_SEPARATOR);
-
-		return portletPrimKey.substring(pos + PLID_SEPARATOR.length());
-	}
-
-	public static String getPortletPrimKey(long plid, String portletId) {
-		return String.valueOf(plid).concat(PLID_SEPARATOR).concat(portletId);
-	}
 
 }

@@ -23,28 +23,27 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articlesDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String childArticlesDisplayStyle = preferences.getValue("childArticlesDisplayStyle", "abstract");
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null), true);
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null), true);
-boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
-boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null), true);
+Map<String, String> preferencesMap = KnowledgeBaseUtil.initPortletPreferencesMap(rootPortletId, preferences);
 
-String selectionMethod = preferences.getValue("selectionMethod", "group");
-long[] resourcePrimKeys = GetterUtil.getLongValues(preferences.getValues("resourcePrimKeys", null));
+int articlesDelta = GetterUtil.getInteger(preferencesMap.get("articlesDelta"));
 
-boolean assetEntryQueryContains = GetterUtil.getBoolean(preferences.getValue("assetEntryQueryContains", null), true);
-boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(preferences.getValue("assetEntryQueryAndOperator", null));
-String assetEntryQueryName = preferences.getValue("assetEntryQueryName", "asset-categories");
-long[] assetCategoryIds = GetterUtil.getLongValues(preferences.getValues("assetCategoryIds", null));
-String[] assetTagNames = preferences.getValues("assetTagNames", new String[0]);
+String childArticlesDisplayStyle = preferencesMap.get("childArticlesDisplayStyle");
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetCategories"));
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetTags"));
+boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableArticleRatings"));
+boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-String rssFormat = preferences.getValue("rssFormat", "atom10");
+String selectionMethod = preferencesMap.get("selectionMethod");
+long[] resourcePrimKeys = StringUtil.split(preferencesMap.get("resourcePrimKeys"), 0L);
+boolean assetEntryQueryContains = GetterUtil.getBoolean(preferencesMap.get("assetEntryQueryContains"));
+boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(preferencesMap.get("assetEntryQueryAndOperator"));
+String assetEntryQueryName = preferencesMap.get("assetEntryQueryName");
+long[] assetCategoryIds = StringUtil.split(preferencesMap.get("assetCategoryIds"), 0L);
+String[] assetTagNames = StringUtil.split(preferencesMap.get("assetTagNames"));
 
-String rssFormatType = RSSUtil.getFormatType(rssFormat);
-double rssFormatVersion = RSSUtil.getFormatVersion(rssFormat);
+int rssDelta = GetterUtil.getInteger(preferencesMap.get("rssDelta"));
+String rssDisplayStyle = preferencesMap.get("rssDisplayStyle");
+String rssFormat = preferencesMap.get("rssFormat");
 
 if (windowState.equals(WindowState.MAXIMIZED)) {
 	PortletURL portletURL = renderResponse.createRenderURL();

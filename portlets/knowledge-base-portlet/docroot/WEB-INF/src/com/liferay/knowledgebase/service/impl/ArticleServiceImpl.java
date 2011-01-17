@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.RSSUtil;
@@ -202,23 +201,20 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			ArticleConstants.LATEST_ANY, status);
 	}
 
-	public String getArticlesRSS(
-			String portletId, long resourcePrimKey, int status, int max,
-			String type, double version, String displayStyle, boolean maximized,
-			ThemeDisplay themeDisplay)
+	public String getArticleRSS(
+			String portletId, long resourcePrimKey, int status, int rssDelta,
+			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Article article = articleLocalService.getLatestArticle(
 			resourcePrimKey, status);
 
-		String title = HtmlUtil.escape(article.getTitle());
+		String name = HtmlUtil.escape(article.getTitle());
+		String description = HtmlUtil.escape(article.getTitle());
 
-		String name = title;
-		String description = title;
-
-		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			portletId, resourcePrimKey, layoutFullURL, maximized);
+			themeDisplay.getScopeGroupId(), themeDisplay.getPlid(), portletId,
+			resourcePrimKey, themeDisplay.getPortalURL());
 
 		List<Article> articles = Collections.emptyList();
 
@@ -229,13 +225,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 				article.getGroupId(), resourcePrimKey, status);
 
 			articles = getArticles(
-				article.getGroupId(), resourcePrimKeys, status, null, 0, max,
-				new ArticleModifiedDateComparator());
+				article.getGroupId(), resourcePrimKeys, status, null, 0,
+				rssDelta, new ArticleModifiedDateComparator());
 		}
 
 		return exportToRSS(
-			portletId, name, description, type, version, displayStyle,
-			maximized, layoutFullURL, feedURL, articles, themeDisplay);
+			portletId, rssDisplayStyle, rssFormat, name, description, feedURL,
+			articles, themeDisplay);
 	}
 
 	public List<Article> getGroupArticles(
@@ -277,8 +273,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String getGroupArticlesRSS(
-			String portletId, int status, int max, String type, double version,
-			String displayStyle, boolean maximized, ThemeDisplay themeDisplay)
+			String portletId, int status, int rssDelta, String rssDisplayStyle,
+			String rssFormat, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Group group = themeDisplay.getScopeGroup();
@@ -288,16 +284,15 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String name = descriptiveName;
 		String description = descriptiveName;
 
-		String layoutFullURL = PortalUtil.getLayoutFullURL(themeDisplay);
-		String feedURL = layoutFullURL;
+		String feedURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 		List<Article> articles = getGroupArticles(
-			group.getGroupId(), status, null, 0, max,
+			group.getGroupId(), status, null, 0, rssDelta,
 			new ArticleModifiedDateComparator());
 
 		return exportToRSS(
-			portletId, name, description, type, version, displayStyle,
-			maximized, layoutFullURL, feedURL, articles, themeDisplay);
+			portletId, rssDisplayStyle, rssFormat, name, description, feedURL,
+			articles, themeDisplay);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey, int status)
@@ -361,35 +356,17 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, status);
 	}
 
-	public void subscribe(
-			long companyId, long groupId, long plid, String portletId,
-			long classPK)
-		throws PortalException, SystemException {
-
-		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			AdminPermission.check(
-				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
-		}
-
-		articleLocalService.subscribe(
-			companyId, groupId, getUserId(), plid, portletId, classPK);
-	}
-
-	public void subscribeArticle(
-			long companyId, long groupId, long plid, String portletId,
-			long resourcePrimKey)
+	public void subscribeArticle(long groupId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
 		articleLocalService.subscribeArticle(
-			companyId, groupId, getUserId(), plid, portletId, resourcePrimKey);
+			getUserId(), groupId, resourcePrimKey);
 	}
 
-	public void unsubscribe(
-			long companyId, long groupId, long plid, String portletId,
-			long classPK)
+	public void subscribeGroupArticles(long groupId, String portletId)
 		throws PortalException, SystemException {
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
@@ -397,18 +374,27 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
 		}
 
-		articleLocalService.unsubscribe(
-			companyId, getUserId(), plid, portletId, classPK);
+		articleLocalService.subscribeGroupArticles(getUserId(), groupId);
 	}
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.SUBSCRIBE);
 
-		articleLocalService.unsubscribeArticle(
-			companyId, getUserId(), resourcePrimKey);
+		articleLocalService.unsubscribeArticle(getUserId(), resourcePrimKey);
+	}
+
+	public void unsubscribeGroupArticles(long groupId, String portletId)
+		throws PortalException, SystemException {
+
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			AdminPermission.check(
+				getPermissionChecker(), groupId, ActionKeys.SUBSCRIBE);
+		}
+
+		articleLocalService.unsubscribeGroupArticles(getUserId(), groupId);
 	}
 
 	public Article updateArticle(
@@ -443,25 +429,17 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	protected String exportToRSS(
-			String portletId, String name, String description, String type,
-			double version, String displayStyle, boolean maximized,
-			String layoutFullURL, String feedURL, List<Article> articles,
-			ThemeDisplay themeDisplay)
+			String portletId, String rssDisplayStyle, String rssFormat,
+			String name, String description, String feedURL,
+			List<Article> articles, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
-
-		if (!PortletPermissionUtil.contains(
-				themeDisplay.getPermissionChecker(), themeDisplay.getPlid(),
-				portletId, ActionKeys.VIEW)) {
-
-			articles = Collections.emptyList();
-		}
 
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
 
 		for (Article article : articles) {
 			String value = null;
 
-			if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
+			if (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT)) {
 				value = HtmlUtil.extractText(article.getDescription());
 
 				if (Validator.isNull(value)) {
@@ -469,7 +447,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 						HtmlUtil.extractText(article.getContent()), 200);
 				}
 			}
-			else if (displayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) {
+			else if (rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE)) {
 				value = StringPool.BLANK;
 			}
 			else {
@@ -493,8 +471,9 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			author = HtmlUtil.escape(userName);
 
 			String link = KnowledgeBaseUtil.getArticleURL(
-				portletId, article.getResourcePrimKey(), layoutFullURL,
-				maximized);
+				themeDisplay.getScopeGroupId(), themeDisplay.getPlid(),
+				portletId, article.getResourcePrimKey(),
+				themeDisplay.getPortalURL());
 
 			SyndContent syndContent = new SyndContentImpl();
 
@@ -514,11 +493,15 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			syndEntries.add(syndEntry);
 		}
 
+		String feedType = RSSUtil.getFeedType(
+			RSSUtil.getFormatType(rssFormat),
+			RSSUtil.getFormatVersion(rssFormat));
+
 		SyndFeed syndFeed = new SyndFeedImpl();
 
 		syndFeed.setDescription(description);
 		syndFeed.setEntries(syndEntries);
-		syndFeed.setFeedType(RSSUtil.getFeedType(type, version));
+		syndFeed.setFeedType(feedType);
 		syndFeed.setLink(feedURL);
 		syndFeed.setTitle(name);
 

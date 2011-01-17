@@ -65,10 +65,29 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 		return comment;
 	}
 
+	public void deleteComment (Comment comment) throws SystemException {
+		commentPersistence.remove(comment);
+	}
+
 	public void deleteComment (long commentId)
 		throws PortalException, SystemException {
 
-		commentPersistence.remove(commentId);
+		Comment comment = commentPersistence.findByPrimaryKey(commentId);
+
+		deleteComment(comment);
+	}
+
+	public void deleteComments (String className, long classPK)
+		throws SystemException {
+
+		long classNameId = PortalUtil.getClassNameId(className);
+
+		List<Comment> comments = commentPersistence.findByC_C(
+			classNameId, classPK);
+
+		for (Comment comment : comments) {
+			deleteComment(comment);
+		}
 	}
 
 	public Comment getComment(long userId, String className, long classPK)

@@ -24,12 +24,11 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 	<table class="lfr-table">
 	<tr>
 		<td>
-			<portlet:resourceURL id="rss" var="rssURL">
+			<portlet:resourceURL id="articleRSS" var="articleRSSURL">
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-				<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
-				<portlet:param name="type" value="<%= rssFormatType %>" />
-				<portlet:param name="version" value="<%= String.valueOf(rssFormatVersion) %>" />
-				<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+				<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
+				<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
+				<portlet:param name="rssFormat" value="<%= rssFormat %>" />
 			</portlet:resourceURL>
 
 			<liferay-ui:icon
@@ -37,7 +36,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 				label="<%= true %>"
 				method="get"
 				target="_blank"
-				url="<%= rssURL %>"
+				url="<%= articleRSSURL %>"
 			/>
 		</td>
 

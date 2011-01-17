@@ -14,13 +14,20 @@
 
 package com.liferay.knowledgebase.util;
 
+import com.liferay.knowledgebase.admin.util.AdminUtil;
+import com.liferay.knowledgebase.hook.events.ServicePreAction;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
-import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
+import com.liferay.knowledgebase.util.comparator.ArticleTitleComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -31,26 +38,31 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.PortletConstants;
-import com.liferay.portal.model.PortletPreferences;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetTagServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetEntryQuery;
+import com.liferay.util.RSSUtil;
+import com.liferay.util.UniqueList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
+import javax.portlet.PortletPreferences;
 import javax.portlet.WindowState;
 
 /**
@@ -59,77 +71,69 @@ import javax.portlet.WindowState;
  */
 public class KnowledgeBaseUtil {
 
+	public static String findArticleURL(
+		long resourcePrimKey, String currentURL) {
+
+		String namespace = ServicePreAction.NAMESPACE;
+
+		currentURL = HttpUtil.setParameter(
+			currentURL, namespace + Constants.CMD, Constants.FIND_ARTICLE);
+		currentURL = HttpUtil.setParameter(
+			currentURL, namespace + "resourcePrimKey", resourcePrimKey);
+
+		return currentURL;
+	}
+
 	public static String getArticleURL(
-			String portletId, long resourcePrimKey, String portalURL)
-		throws Exception {
+			long groupId, long plid, String portletId, long resourcePrimKey,
+			String portalURL)
+		throws PortalException, SystemException {
 
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			Article article = ArticleLocalServiceUtil.getLatestArticle(
-				resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
-			String layoutFullURL = PortalUtil.getControlPanelFullURL(
-				article.getGroupId(), PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
-
-			return getArticleURL(
-				portletId, resourcePrimKey, layoutFullURL, false);
+		if (!isValidPortletId(portletId)) {
+			return StringPool.BLANK;
 		}
 
-		Object[] plidAndWindowState = getPlidAndWindowState(
-			portletId, rootPortletId, resourcePrimKey, portalURL);
-
-		long plid = (Long)plidAndWindowState[0];
-		WindowState windowState = (WindowState)plidAndWindowState[1];
-
-		if (plid == LayoutConstants.DEFAULT_PLID) {
-			return StringPool.BLANK;
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			return AdminUtil.getArticleURL(groupId, resourcePrimKey);
 		}
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
-		String layoutFullURL = portalURL + layoutActualURL;
+		PortletPreferences preferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, StringPool.BLANK);
 
-		boolean maximized = windowState.equals(WindowState.MAXIMIZED);
+		Map<String, String> preferencesMap = initPortletPreferencesMap(
+			portletId, preferences);
 
-		return getArticleURL(
-			portletId, resourcePrimKey, layoutFullURL, maximized);
-	}
-
-	public static String getArticleURL(
-		String portletId, long resourcePrimKey, String layoutFullURL,
-		boolean maximized) {
-
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-		String namespace = PortalUtil.getPortletNamespace(portletId);
-
+		String p_p_state = null;
 		String jspPage = null;
 
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			jspPage = "/admin/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
+			p_p_state = preferencesMap.get("articleWindowState");
 			jspPage = "/aggregator/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			p_p_state = WindowState.NORMAL.toString();
 			jspPage = "/display/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
+			p_p_state = preferencesMap.get("articleWindowState");
 			jspPage = "/list/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
+			p_p_state = WindowState.MAXIMIZED.toString();
 			jspPage = "/search/view_article.jsp";
 		}
 
-		String articleURL = layoutFullURL;
+		String articleURL = portalURL + PortalUtil.getLayoutActualURL(layout);
 
-		if (maximized) {
-			articleURL = HttpUtil.setParameter(
-				articleURL, "p_p_state", WindowState.MAXIMIZED.toString());
-		}
+		String namespace = PortalUtil.getPortletNamespace(portletId);
 
 		articleURL = HttpUtil.setParameter(articleURL, "p_p_id", portletId);
+		articleURL = HttpUtil.setParameter(articleURL, "p_p_state", p_p_state);
 		articleURL = HttpUtil.setParameter(
 			articleURL, namespace + "jspPage", jspPage);
 		articleURL = HttpUtil.setParameter(
@@ -138,387 +142,487 @@ public class KnowledgeBaseUtil {
 		return articleURL;
 	}
 
-	public static List<Article> getArticles(
-			long groupId, long[] resourcePrimKeys, int start, int end,
-			boolean checkPermission)
-		throws Exception {
+	public static Map<String, Object> getPortletPreferencesArticlesMap(
+			long groupId, String portletId, long assetCategoryId,
+			String assetTagName, int start, int end,
+			PortletPreferences preferences)
+		throws PortalException, SystemException {
 
-		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
-			start = 0;
-			end = resourcePrimKeys.length;
+		if (!isValidPortletId(portletId)) {
+			return new HashMap<String, Object>();
 		}
 
-		List<Long> selResourcePrimKeys = new ArrayList<Long>();
-
-		for (int i = start; (i < end) && (i < resourcePrimKeys.length); i++) {
-			selResourcePrimKeys.add(resourcePrimKeys[i]);
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			return new HashMap<String, Object>();
 		}
 
-		resourcePrimKeys = StringUtil.split(
-			StringUtil.merge(selResourcePrimKeys), 0L);
+		Map<String, String> preferencesMap = initPortletPreferencesMap(
+			portletId, preferences);
 
-		List<Article> unsortedArticles = null;
+		String selectionMethod = preferencesMap.get("selectionMethod");
+		long[] resourcePrimKeys = StringUtil.split(
+			preferencesMap.get("resourcePrimKeys"), 0L);
+		boolean allArticles = GetterUtil.getBoolean(
+			preferencesMap.get("allArticles"));
+		String orderByColumn = preferencesMap.get("orderByColumn");
+		boolean orderByAscending = GetterUtil.getBoolean(
+			preferencesMap.get("orderByAscending"));
 
-		if (checkPermission) {
-			unsortedArticles = ArticleServiceUtil.getArticles(
-				groupId, resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
-				null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
-		else {
-			unsortedArticles = ArticleLocalServiceUtil.getArticles(
-				resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		}
+		long[] classPKs = getAssetEntriesClassPKs(
+			groupId, assetCategoryId, assetTagName, preferencesMap);
 
-		unsortedArticles = ListUtil.copy(unsortedArticles);
+		List<Article> articles = null;
+		Integer count = null;
 
-		List<Article> articles = new ArrayList<Article>();
+		if (selectionMethod.equals("group")) {
+			if (classPKs != null) {
+				long[] viewableParentResourcePrimKeys = new long[] {
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
+				};
 
-		for (long resourcePrimKey : resourcePrimKeys) {
-			for (int i = 0; i < unsortedArticles.size(); i++) {
-				Article article = unsortedArticles.get(i);
-
-				if (article.getResourcePrimKey() == resourcePrimKey) {
-					articles.add(article);
-					unsortedArticles.remove(article);
-
-					break;
+				if (allArticles) {
+					viewableParentResourcePrimKeys =
+						ArticleServiceUtil.getViewableParentResourcePrimKeys(
+							groupId, WorkflowConstants.STATUS_APPROVED);
 				}
+
+				articles = ArticleServiceUtil.getArticles(
+					groupId, classPKs, WorkflowConstants.STATUS_APPROVED,
+					viewableParentResourcePrimKeys, start, end,
+					getOrderByComparator(orderByColumn, orderByAscending));
+
+				count = ArticleServiceUtil.getArticlesCount(
+					groupId, classPKs, WorkflowConstants.STATUS_APPROVED,
+					viewableParentResourcePrimKeys);
+			}
+			else if (allArticles) {
+				long[] viewableParentResourcePrimKeys =
+					ArticleServiceUtil.getViewableParentResourcePrimKeys(
+						groupId, WorkflowConstants.STATUS_APPROVED);
+
+				articles = ArticleServiceUtil.getGroupArticles(
+					groupId, WorkflowConstants.STATUS_APPROVED,
+					viewableParentResourcePrimKeys, start, end,
+					getOrderByComparator(orderByColumn, orderByAscending));
+
+				count = ArticleServiceUtil.getGroupArticlesCount(
+					groupId, WorkflowConstants.STATUS_APPROVED,
+					viewableParentResourcePrimKeys);
+			}
+			else {
+				articles = ArticleServiceUtil.getSiblingArticles(
+					groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+					WorkflowConstants.STATUS_APPROVED, start, end,
+					getOrderByComparator(orderByColumn, orderByAscending));
+
+				count = ArticleServiceUtil.getSiblingArticlesCount(
+					groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+					WorkflowConstants.STATUS_APPROVED);
 			}
 		}
 
-		return articles;
+		if (selectionMethod.equals("articles")) {
+			if (classPKs != null) {
+				List<Long> list = new UniqueList<Long>();
+
+				list.addAll(SetUtil.fromArray(resourcePrimKeys));
+				list.retainAll(SetUtil.fromArray(classPKs));
+
+				resourcePrimKeys = StringUtil.split(StringUtil.merge(list), 0L);
+			}
+
+			articles = ArticleServiceUtil.getArticles(
+				groupId, resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
+				null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+			articles = sortArticles(resourcePrimKeys, articles);
+
+			count = articles.size();
+
+			if ((start != QueryUtil.ALL_POS) && (end != QueryUtil.ALL_POS)) {
+				articles = ListUtil.subList(articles, start, end);
+			}
+		}
+
+		Map<String, Object> articlesMap = new HashMap<String, Object>();
+
+		articlesMap.put("articles", articles);
+		articlesMap.put("count", count);
+
+		return articlesMap;
 	}
 
-	public static List<AssetEntry> getAssetEntries(
-			long plid, String portletId, long assetCategoryId,
-			String assetTagName)
-		throws Exception {
+	public static boolean hasArticle(
+			long plid, String portletId, long resourcePrimKey)
+		throws PortalException, SystemException {
+
+		if (!isValidPortletId(portletId)) {
+			return false;
+		}
+
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
+		if (!ArticlePermission.contains(
+				permissionChecker, resourcePrimKey, ActionKeys.VIEW)) {
+
+			return false;
+		}
+
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			return true;
+		}
+
+		Article article = ArticleServiceUtil.getLatestArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-		Group group = layout.getGroup();
 
-		javax.portlet.PortletPreferences jxPreferences =
+		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
 				layout, portletId, StringPool.BLANK);
 
-		String selectionMethod = jxPreferences.getValue(
-			"selectionMethod", "group");
+		Map<String, String> preferencesMap = initPortletPreferencesMap(
+			portletId, preferences);
 
+		String selectionMethod = preferencesMap.get("selectionMethod");
+		long[] resourcePrimKeys = StringUtil.split(
+			preferencesMap.get("resourcePrimKeys"), 0L);
+		boolean allArticles = GetterUtil.getBoolean(
+			preferencesMap.get("allArticles"));
+
+		long[] classPKs = getAssetEntriesClassPKs(
+			article.getGroupId(), 0, null, preferencesMap);
+
+		if (selectionMethod.equals("group") && (classPKs == null)) {
+			return true;
+		}
+
+		List<Article> articles = null;
+
+		if (selectionMethod.equals("group")) {
+			long[] viewableParentResourcePrimKeys = new long[] {
+				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
+			};
+
+			if (allArticles) {
+				viewableParentResourcePrimKeys =
+					ArticleServiceUtil.getViewableParentResourcePrimKeys(
+						article.getGroupId(),
+						WorkflowConstants.STATUS_APPROVED);
+			}
+
+			articles = ArticleServiceUtil.getArticles(
+				article.getGroupId(), classPKs,
+				WorkflowConstants.STATUS_APPROVED,
+				viewableParentResourcePrimKeys, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null);
+		}
+
+		if (selectionMethod.equals("articles")) {
+			if (classPKs != null) {
+				List<Long> list = new UniqueList<Long>();
+
+				list.addAll(SetUtil.fromArray(resourcePrimKeys));
+				list.retainAll(SetUtil.fromArray(classPKs));
+
+				resourcePrimKeys = StringUtil.split(StringUtil.merge(list), 0L);
+			}
+
+			articles = ArticleServiceUtil.getArticles(
+				article.getGroupId(), resourcePrimKeys,
+				WorkflowConstants.STATUS_APPROVED, null, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null);
+		}
+
+		resourcePrimKeys = StringUtil.split(
+			ListUtil.toString(articles, "resourcePrimKey"), 0L);
+
+		while (resourcePrimKey !=
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
+			if (ArrayUtil.contains(resourcePrimKeys, resourcePrimKey)) {
+				return true;
+			}
+
+			Article curArticle = ArticleServiceUtil.getLatestArticle(
+				resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+
+			resourcePrimKey = curArticle.getParentResourcePrimKey();
+		}
+
+		return false;
+	}
+
+	public static Map<String, String> initPortletPreferencesMap(
+		String portletId, PortletPreferences preferences) {
+
+		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			return AdminUtil.initPortletPreferencesMap(preferences);
+		}
+
+		Map<String, Object> defaultPreferences = new HashMap<String, Object>();
+
+		defaultPreferences.put("articlesTitle", StringPool.BLANK);
+		defaultPreferences.put("articlesDelta", SearchContainer.DEFAULT_DELTA);
+		defaultPreferences.put("articlesDisplayStyle", "title");
+		defaultPreferences.put(
+			"articleWindowState", WindowState.MAXIMIZED.toString());
+
+		defaultPreferences.put("childArticlesDisplayStyle", "abstract");
+		defaultPreferences.put("enableArticleAssetCategories", true);
+		defaultPreferences.put("enableArticleAssetTags", true);
+		defaultPreferences.put("enableArticleRatings", false);
+		defaultPreferences.put("enableArticleComments", true);
+
+		defaultPreferences.put("selectionMethod", "group");
+		defaultPreferences.put("resourcePrimKeys", new Long[0]);
+		defaultPreferences.put("allArticles", true);
+		defaultPreferences.put("orderByColumn", "modified-date");
+		defaultPreferences.put("orderByAscending", false);
+		defaultPreferences.put("assetEntryQueryContains", true);
+		defaultPreferences.put("assetEntryQueryAndOperator", false);
+		defaultPreferences.put("assetEntryQueryName", "asset-categories");
+		defaultPreferences.put("assetCategoryIds", new Long[0]);
+		defaultPreferences.put("assetTagNames", new String[0]);
+
+		defaultPreferences.put("rssDelta", SearchContainer.DEFAULT_DELTA);
+		defaultPreferences.put(
+			"rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+		defaultPreferences.put("rssFormat", "atom10");
+
+		Map<String, String> preferencesMap = new HashMap<String, String>();
+
+		for (Map.Entry<String, Object> entry : defaultPreferences.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+
+			if (value instanceof Object[]) {
+				String[] values = ArrayUtil.toStringArray((Object[])value);
+
+				value = StringUtil.merge(preferences.getValues(key, values));
+			}
+			else {
+				value = preferences.getValue(key, String.valueOf(value));
+			}
+
+			preferencesMap.put(key, String.valueOf(value));
+		}
+
+		return Collections.unmodifiableMap(preferencesMap);
+	}
+
+	public static List<Article> sortArticles(
+		long[] resourcePrimKeys, List<Article> articles) {
+
+		long[] keys = StringUtil.split(
+			ListUtil.toString(articles, "resourcePrimKey"), 0L);
+
+		Map<Long, Article> map = new HashMap<Long, Article>();
+
+		for (int i = 0; i < articles.size(); i++) {
+			map.put(keys[i], articles.get(i));
+		}
+
+		List<Article> list = new ArrayList<Article>();
+
+		for (long resourcePrimKey : resourcePrimKeys) {
+			if (map.containsKey(resourcePrimKey)) {
+				list.add(map.get(resourcePrimKey));
+			}
+		}
+
+		return list;
+	}
+
+	protected static long[] getAssetEntriesClassPKs(
+			long groupId, long assetCategoryId, String assetTagName,
+			Map<String, String> preferencesMap)
+		throws PortalException, SystemException {
+
+		String selectionMethod = preferencesMap.get("selectionMethod");
 		boolean assetEntryQueryContains = GetterUtil.getBoolean(
-			jxPreferences.getValue("assetEntryQueryContains", null), true);
+			preferencesMap.get("assetEntryQueryContains"));
 		boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(
-			jxPreferences.getValue("assetEntryQueryAndOperator", null));
-		String assetEntryQueryName = jxPreferences.getValue(
-			"assetEntryQueryName", "asset-categories");
-		long[] assetCategoryIds = GetterUtil.getLongValues(
-			jxPreferences.getValues("assetCategoryIds", null));
-		String[] assetTagNames = jxPreferences.getValues(
-			"assetTagNames", new String[0]);
+			preferencesMap.get("assetEntryQueryAndOperator"));
+		String assetEntryQueryName = preferencesMap.get("assetEntryQueryName");
+		long[] assetCategoryIds = StringUtil.split(
+			preferencesMap.get("assetCategoryIds"), 0L);
+		String[] assetTagNames = StringUtil.split(
+			preferencesMap.get("assetTagNames"));
 
-		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST) ||
-			selectionMethod.equals("articles")) {
+		boolean assetCategories = false;
+		boolean assetTags = false;
 
-			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
-				return null;
-			}
-
-			assetEntryQueryName = StringPool.BLANK;
+		if (selectionMethod.equals("group")) {
+			assetCategories = assetEntryQueryName.equals("asset-categories");
+			assetTags = assetEntryQueryName.equals("asset-tags");
 		}
 
-		long[] allAssetCategoryIds = new long[0];
-		long[] anyAssetCategoryIds = new long[0];
-		long[] notAllAssetCategoryIds = new long[0];
-		long[] notAnyAssetCategoryIds = new long[0];
+		long[] allCategoryIds = new long[0];
+		long[] anyCategoryIds = new long[0];
+		long[] notAllCategoryIds = new long[0];
+		long[] notAnyCategoryIds = new long[0];
 
-		if (assetEntryQueryName.equals("asset-categories")) {
-			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName) &&
-				(assetCategoryIds.length <= 0)) {
-
-				return null;
-			}
-
+		if (assetCategories) {
 			if (assetEntryQueryContains && assetEntryQueryAndOperator) {
-				allAssetCategoryIds = assetCategoryIds;
+				allCategoryIds = assetCategoryIds;
 			}
 			else if (assetEntryQueryContains && !assetEntryQueryAndOperator) {
-				anyAssetCategoryIds = assetCategoryIds;
+				anyCategoryIds = assetCategoryIds;
 			}
 			else if (!assetEntryQueryContains && assetEntryQueryAndOperator) {
-				notAllAssetCategoryIds = assetCategoryIds;
+				notAllCategoryIds = assetCategoryIds;
 			}
 			else {
-				notAnyAssetCategoryIds = assetCategoryIds;
+				notAnyCategoryIds = assetCategoryIds;
 			}
 		}
 
-		long[] allAssetTagIds = new long[0];
-		long[] anyAssetTagIds = new long[0];
-		long[] notAllAssetTagIds = new long[0];
-		long[] notAnyAssetTagIds = new long[0];
+		long[] allTagIds = new long[0];
+		long[] anyTagIds = new long[0];
+		long[] notAllTagIds = new long[0];
+		long[] notAnyTagIds = new long[0];
 
-		if (assetEntryQueryName.equals("asset-tags")) {
-			if ((assetCategoryId <= 0) && Validator.isNull(assetTagName) &&
-				(assetTagNames.length <= 0)) {
-
-				return null;
-			}
-
-			long[] assetTagIds = AssetTagLocalServiceUtil.getTagIds(
-				group.getGroupId(), assetTagNames);
-
-			if ((assetTagIds.length <= 0) && assetEntryQueryContains &&
-				(assetCategoryId <= 0) && Validator.isNull(assetTagName)) {
-
-				return new ArrayList<AssetEntry>();
-			}
+		if (assetTags) {
+			long[] tagIds = AssetTagLocalServiceUtil.getTagIds(
+				groupId, assetTagNames);
 
 			if (assetEntryQueryContains && assetEntryQueryAndOperator) {
-				allAssetTagIds = assetTagIds;
+				allTagIds = tagIds;
 			}
 			else if (assetEntryQueryContains && !assetEntryQueryAndOperator) {
-				anyAssetTagIds = assetTagIds;
+				anyTagIds = tagIds;
 			}
 			else if (!assetEntryQueryContains && assetEntryQueryAndOperator) {
-				notAllAssetTagIds = assetTagIds;
+				notAllTagIds = tagIds;
 			}
 			else {
-				notAnyAssetTagIds = assetTagIds;
+				notAnyTagIds = tagIds;
 			}
 		}
+
+		// Process public render parameters.
 
 		if (assetCategoryId > 0) {
-			allAssetCategoryIds = ArrayUtil.append(
-				allAssetCategoryIds, assetCategoryId);
+			allCategoryIds = ArrayUtil.append(allCategoryIds, assetCategoryId);
 		}
 
 		if (Validator.isNotNull(assetTagName)) {
-			long[] assetTagIds = AssetTagLocalServiceUtil.getTagIds(
-				group.getGroupId(), new String[] {assetTagName});
+			String[] names = new String[] {assetTagName};
 
-			allAssetTagIds = ArrayUtil.append(allAssetTagIds, assetTagIds);
+			allTagIds = ArrayUtil.append(
+				allTagIds, AssetTagLocalServiceUtil.getTagIds(groupId, names));
+		}
+
+		// Mimic behavior in AssetEntryServiceImpl#setupQuery. Process
+		// permission checks for AssetCategories and AssetTags.
+
+		List<Long> categoryIds = new UniqueList<Long>();
+
+		categoryIds.addAll(SetUtil.fromArray(allCategoryIds));
+		categoryIds.addAll(SetUtil.fromArray(anyCategoryIds));
+
+		for (long categoryId : categoryIds) {
+			try {
+				AssetCategoryServiceUtil.getCategory(categoryId);
+			}
+			catch (PrincipalException pe) {
+				allCategoryIds = ArrayUtil.remove(allCategoryIds, categoryId);
+				anyCategoryIds = ArrayUtil.remove(anyCategoryIds, categoryId);
+			}
+		}
+
+		List<Long> tagIds = new UniqueList<Long>();
+
+		tagIds.addAll(SetUtil.fromArray(allTagIds));
+		tagIds.addAll(SetUtil.fromArray(anyTagIds));
+
+		for (long tagId : tagIds) {
+			try {
+				AssetTagServiceUtil.getTag(tagId);
+			}
+			catch (PrincipalException pe) {
+				allTagIds = ArrayUtil.remove(allTagIds, tagId);
+				anyTagIds = ArrayUtil.remove(anyTagIds, tagId);
+			}
+		}
+
+		// Check AssetEntryQuery properties.
+
+		if ((allCategoryIds.length == 0) && (allTagIds.length == 0) &&
+			(anyCategoryIds.length == 0) && (anyTagIds.length == 0) &&
+			(notAllCategoryIds.length == 0) && (notAllTagIds.length == 0) &&
+			(notAnyCategoryIds.length == 0) && (notAnyTagIds.length == 0)) {
+
+			if (!assetEntryQueryContains) {
+
+				// Assets are not being used to filter articles.
+
+				return null;
+			}
+			else if (((assetCategoryIds.length > 0) && assetCategories) ||
+					 ((assetTagNames.length > 0) && assetTags)) {
+
+				// Selected assets not found. Return no classPKs.
+
+				return new long[0];
+			}
+			else {
+
+				// Assets are not being used to filter articles.
+
+				return null;
+			}
 		}
 
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
-		assetEntryQuery.setAllCategoryIds(allAssetCategoryIds);
-		assetEntryQuery.setAllTagIds(allAssetTagIds);
-		assetEntryQuery.setAnyCategoryIds(anyAssetCategoryIds);
-		assetEntryQuery.setAnyTagIds(anyAssetTagIds);
 		assetEntryQuery.setClassName(Article.class.getName());
-		assetEntryQuery.setGroupIds(new long[] {group.getGroupId()});
-		assetEntryQuery.setNotAllCategoryIds(notAllAssetCategoryIds);
-		assetEntryQuery.setNotAllTagIds(notAllAssetTagIds);
-		assetEntryQuery.setNotAnyCategoryIds(notAnyAssetCategoryIds);
-		assetEntryQuery.setNotAnyTagIds(notAnyAssetTagIds);
+		assetEntryQuery.setGroupIds(new long[] {groupId});
 
-		return AssetEntryLocalServiceUtil.getEntries(assetEntryQuery);
+		assetEntryQuery.setAllCategoryIds(allCategoryIds);
+		assetEntryQuery.setAnyCategoryIds(anyCategoryIds);
+		assetEntryQuery.setNotAllCategoryIds(notAllCategoryIds);
+		assetEntryQuery.setNotAnyCategoryIds(notAnyCategoryIds);
+
+		assetEntryQuery.setAllTagIds(allTagIds);
+		assetEntryQuery.setAnyTagIds(anyTagIds);
+		assetEntryQuery.setNotAllTagIds(notAllTagIds);
+		assetEntryQuery.setNotAnyTagIds(notAnyTagIds);
+
+		// Delegate article permission checks to ArticleServiceImpl.
+
+		List<AssetEntry> assetEntries = AssetEntryLocalServiceUtil.getEntries(
+			assetEntryQuery);
+
+		return StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
 	}
 
-	public static Article getDisplayArticle(
-			long plid, String portletId, long assetCategoryId,
-			String assetTagName, PermissionChecker permissionChecker)
-		throws Exception {
-
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		if (!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			return null;
-		}
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-		Group group = layout.getGroup();
-
-		javax.portlet.PortletPreferences jxPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
-
-		String selectionMethod = jxPreferences.getValue(
-			"selectionMethod", "group");
-		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resourcePrimKeys", null));
-
-		boolean allArticles = GetterUtil.getBoolean(
-			jxPreferences.getValue("allArticles", null), true);
-		String orderByColumn = jxPreferences.getValue(
-			"orderByColumn", "modified-date");
-		boolean orderByAscending = GetterUtil.getBoolean(
-			jxPreferences.getValue("orderByAscending", null));
-
-		OrderByComparator orderByComparator = null;
+	protected static OrderByComparator getOrderByComparator(
+		String orderByColumn, boolean orderByAscending) {
 
 		if (orderByColumn.equals("create-date")) {
-			orderByComparator = new ArticleCreateDateComparator(
-				orderByAscending);
+			return new ArticleCreateDateComparator(orderByAscending);
 		}
 		else if (orderByColumn.equals("modified-date")) {
-			orderByComparator = new ArticleModifiedDateComparator(
-				orderByAscending);
+			return new ArticleModifiedDateComparator(orderByAscending);
+		}
+		else if (orderByColumn.equals("priority")) {
+			return new ArticlePriorityComparator(orderByAscending);
+		}
+		else if (orderByColumn.equals("title")) {
+			return new ArticleTitleComparator(orderByAscending);
 		}
 
-		List<Article> articles = new ArrayList<Article>();
-
-		if (selectionMethod.equals("articles")) {
-			List<AssetEntry> assetEntries = getAssetEntries(
-				plid, portletId, assetCategoryId, assetTagName);
-
-			if (assetEntries != null) {
-				long[] classPKs = StringUtil.split(
-					ListUtil.toString(assetEntries, "classPK"), 0L);
-
-				Set<Long> classPKsSet = SetUtil.fromArray(classPKs);
-				Set<Long> resourcePrimKeysSet = SetUtil.fromArray(
-					resourcePrimKeys);
-
-				resourcePrimKeysSet.retainAll(classPKsSet);
-
-				resourcePrimKeys = StringUtil.split(
-					StringUtil.merge(resourcePrimKeysSet), 0L);
-			}
-
-			articles = getArticles(
-				group.getGroupId(), resourcePrimKeys, 0, 1, true);
-		}
-		else if (selectionMethod.equals("group")) {
-			List<AssetEntry> assetEntries = getAssetEntries(
-				plid, portletId, assetCategoryId, assetTagName);
-
-			if (assetEntries != null) {
-				long[] classPKs = StringUtil.split(
-					ListUtil.toString(assetEntries, "classPK"), 0L);
-
-				articles = ArticleServiceUtil.getArticles(
-					group.getGroupId(), classPKs,
-					WorkflowConstants.STATUS_APPROVED, null, 0, 1,
-					orderByComparator);
-			}
-			else if (!allArticles) {
-				articles = ArticleServiceUtil.getSiblingArticles(
-					group.getGroupId(),
-					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-					WorkflowConstants.STATUS_APPROVED, 0, 1, orderByComparator);
-			}
-			else {
-				articles = ArticleServiceUtil.getGroupArticles(
-					group.getGroupId(), WorkflowConstants.STATUS_APPROVED,
-					null, 0, 1, orderByComparator);
-			}
-		}
-
-		if (articles.isEmpty()) {
-			return null;
-		}
-
-		return articles.get(0);
+		return null;
 	}
 
-	public static Map<String, Object> getPreferencesMap(
-			PortletPreferences preferences)
-		throws Exception{
+	protected static boolean isValidPortletId(String portletId) {
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
-		javax.portlet.PortletPreferences jxPreferences =
-			PortletPreferencesFactoryUtil.fromDefaultXML(
-				preferences.getPreferences());
+		String[] rootPortletIds = PortletKeys.KNOWLEDGE_BASE_PORTLETS;
 
-		String selectionMethod = jxPreferences.getValue(
-			"selectionMethod", "group");
-		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resourcePrimKeys", null));
-
-		Map<String, Object> preferencesMap = new HashMap<String, Object>();
-
-		preferencesMap.put("selectionMethod", selectionMethod);
-		preferencesMap.put(
-			"resourcePrimKeys", ArrayUtil.toArray(resourcePrimKeys));
-
-		return preferencesMap;
-	}
-
-	protected static Object[] getPlidAndWindowState(
-			String portletId, long resourcePrimKey, boolean checkWindowState)
-		throws Exception {
-
-		Article article = ArticleLocalServiceUtil.getLatestArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-		long plid = PortalUtil.getPlidFromPortletId(
-			article.getGroupId(), portletId);
-
-		if (plid == LayoutConstants.DEFAULT_PLID) {
-			return new Object[] {plid, WindowState.NORMAL};
-		}
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		javax.portlet.PortletPreferences jxPreferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
-
-		WindowState windowState = WindowState.NORMAL;
-
-		if (checkWindowState) {
-			String articleWindowState = jxPreferences.getValue(
-				"articleWindowState", WindowState.MAXIMIZED.toString());
-
-			if (articleWindowState.equals(WindowState.MAXIMIZED.toString())) {
-				windowState = WindowState.MAXIMIZED;
-			}
-		}
-
-		if (hasArticle(article, jxPreferences)) {
-			return new Object[] {plid, windowState};
-		}
-
-		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
-	}
-
-	protected static Object[] getPlidAndWindowState(
-			String portletId, String rootPortletId, long resourcePrimKey,
-			String portalURL)
-		throws Exception {
-
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			return getPlidAndWindowState(portletId, resourcePrimKey, true);
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			return getPlidAndWindowState(portletId, resourcePrimKey, false);
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
-			return getPlidAndWindowState(portletId, resourcePrimKey, true);
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
-			return getPlidAndWindowState(portletId, resourcePrimKey, false);
-		}
-
-		return new Object[] {LayoutConstants.DEFAULT_PLID, WindowState.NORMAL};
-	}
-
-	protected static boolean hasArticle(
-		Article article, javax.portlet.PortletPreferences jxPreferences) {
-
-		String selectionMethod = jxPreferences.getValue(
-			"selectionMethod", "group");
-		long[] resourcePrimKeys = GetterUtil.getLongValues(
-			jxPreferences.getValues("resourcePrimKeys", null));
-
-		boolean hasArticle = ArrayUtil.contains(
-			resourcePrimKeys, article.getResourcePrimKey());
-
-		if ((selectionMethod.equals("group")) ||
-			(selectionMethod.equals("articles") && hasArticle)) {
-
-			return true;
-		}
-
-		if (selectionMethod.equals("articles")) {
-
-			// Retrieving all parent and children articles for each selected
-			// article can be expensive. Skip this check for better performance.
-
-			return true;
-		}
-
-		return false;
+		return ArrayUtil.contains(rootPortletIds, rootPortletId);
 	}
 
 }

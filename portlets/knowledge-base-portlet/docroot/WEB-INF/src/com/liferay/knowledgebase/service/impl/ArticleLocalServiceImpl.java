@@ -28,33 +28,25 @@ import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
-import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
-import com.liferay.portal.kernel.dao.orm.Conjunction;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Property;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
@@ -64,8 +56,6 @@ import com.liferay.portal.service.ServiceContextUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.asset.model.AssetEntry;
-import com.liferay.portlet.expando.model.ExpandoColumn;
-import com.liferay.portlet.expando.model.ExpandoValue;
 
 import java.io.InputStream;
 
@@ -223,6 +213,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		socialActivityLocalService.deleteActivities(
 			Article.class.getName(), article.getResourcePrimKey());
 
+		// Comment
+
+		commentLocalService.deleteComments(
+			Article.class.getName(), article.getResourcePrimKey());
+
 		// Indexer
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(Article.class);
@@ -277,6 +272,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteGroupArticles(long groupId)
 		throws PortalException, SystemException {
 
+		// Articles
+
 		List<Article> articles = getSiblingArticles(
 			groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
@@ -284,6 +281,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		for (Article article : articles) {
 			deleteArticle(article.getResourcePrimKey());
+		}
+
+		// Subscriptions
+
+		Group group = groupLocalService.getGroup(groupId);
+
+		List<Subscription> subscriptions =
+			subscriptionLocalService.getSubscriptions(
+				group.getCompanyId(), Article.class.getName(), groupId);
+
+		for (Subscription subscription : subscriptions) {
+			unsubscribeGroupArticles(subscription.getUserId(), groupId);
 		}
 	}
 
@@ -381,41 +390,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			companyId, ArticleConstants.LATEST_ANY, status);
 	}
 
-	public List<ExpandoValue> getExpandoValues(
-			long companyId, long plid, String portletId)
-		throws SystemException {
-
-		Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
-
-		Property tableIdProperty = PropertyFactoryUtil.forName("tableId");
-
-		ExpandoColumn expandoColumn = expandoColumnLocalService.getColumn(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys");
-
-		conjunction.add(tableIdProperty.eq(expandoColumn.getTableId()));
-
-		Property columnIdProperty = PropertyFactoryUtil.forName("columnId");
-
-		conjunction.add(columnIdProperty.eq(expandoColumn.getColumnId()));
-
-		Property dataProperty = PropertyFactoryUtil.forName("data");
-
-		String portletPrimKey = ArticleConstants.getPortletPrimKey(
-			plid, portletId);
-
-		conjunction.add(
-			dataProperty.like(
-				StringPool.PERCENT + portletPrimKey + StringPool.PERCENT));
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			ExpandoValue.class, "expandoValue",
-			PortalClassLoaderUtil.getClassLoader());
-
-		dynamicQuery.add(conjunction);
-
-		return expandoValuePersistence.findWithDynamicQuery(dynamicQuery);
-	}
-
 	public List<Article> getGroupArticles(
 			long groupId, int status, int start, int end,
 			OrderByComparator orderByComparator)
@@ -487,120 +461,33 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			ArticleConstants.LATEST_ANY, status);
 	}
 
-	public void subscribe(
-			long companyId, long groupId, long userId, long plid,
-			String portletId, long classPK)
-		throws PortalException, SystemException {
-
-		// Subscription
-
-		Subscription subscription = null;
-
-		try {
-			subscription = subscriptionLocalService.getSubscription(
-				companyId, userId, Article.class.getName(), classPK);
-		}
-		catch (NoSuchSubscriptionException nsse) {
-			subscription = subscriptionLocalService.addSubscription(
-				userId, groupId, Article.class.getName(), classPK);
-		}
-
-		// Expando
-
-		ExpandoValue expandoValue = expandoValueLocalService.getValue(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscription.getSubscriptionId());
-
-		String[] portletPrimKeys = {
-			ArticleConstants.getPortletPrimKey(plid, portletId)
-		};
-
-		if (expandoValue != null) {
-			portletPrimKeys = ArrayUtil.append(
-				portletPrimKeys, expandoValue.getStringArray());
-
-			expandoValueLocalService.deleteValue(
-				companyId, Subscription.class.getName(), "KB",
-				"portletPrimKeys", subscription.getSubscriptionId());
-		}
-
-		expandoValueLocalService.addValue(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscription.getSubscriptionId(), portletPrimKeys);
-	}
-
 	public void subscribeArticle(
-			long companyId, long groupId, long userId, long plid,
-			String portletId, long resourcePrimKey)
+			long userId, long groupId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		// Subscription
-
-		Subscription subscription = subscriptionLocalService.addSubscription(
+		subscriptionLocalService.addSubscription(
 			userId, groupId, Article.class.getName(), resourcePrimKey);
-
-		// Expando
-
-		expandoValueLocalService.addValue(
-			subscription.getCompanyId(), Subscription.class.getName(), "KB",
-			"portletPrimKeys", subscription.getSubscriptionId(),
-			new String[] {ArticleConstants.getPortletPrimKey(plid, portletId)});
 	}
 
-	public void unsubscribe(
-			long companyId, long userId, long plid, String portletId,
-			long classPK)
+	public void subscribeGroupArticles(long userId, long groupId)
 		throws PortalException, SystemException {
 
-		// Subscription
-
-		Subscription subscription = subscriptionLocalService.getSubscription(
-			companyId, userId, Article.class.getName(), classPK);
-
-		String[] portletPrimKeys = expandoValueLocalService.getData(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscription.getSubscriptionId(), new String[0]);
-
-		String portletPrimKey = ArticleConstants.getPortletPrimKey(
-			plid, portletId);
-
-		portletPrimKeys = ArrayUtil.remove(portletPrimKeys, portletPrimKey);
-
-		if (portletPrimKeys.length == 0) {
-			subscriptionLocalService.deleteSubscription(subscription);
-		}
-
-		// Expando
-
-		expandoValueLocalService.deleteValue(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscription.getSubscriptionId());
-
-		if (portletPrimKeys.length == 0) {
-			return;
-		}
-
-		expandoValueLocalService.addValue(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscription.getSubscriptionId(), portletPrimKeys);
+		subscriptionLocalService.addSubscription(
+			userId, groupId, Article.class.getName(), groupId);
 	}
 
-	public void unsubscribeArticle(
-			long companyId, long userId, long resourcePrimKey)
+	public void unsubscribeArticle(long userId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		// Subscription
+		subscriptionLocalService.deleteSubscription(
+			userId, Article.class.getName(), resourcePrimKey);
+	}
 
-		Subscription subscription = subscriptionLocalService.getSubscription(
-			companyId, userId, Article.class.getName(), resourcePrimKey);
+	public void unsubscribeGroupArticles(long userId, long groupId)
+		throws PortalException, SystemException {
 
-		subscriptionLocalService.deleteSubscription(subscription);
-
-		// Expando
-
-		expandoValueLocalService.deleteValue(
-			companyId, Subscription.class.getName(), "KB", "portletPrimKeys",
-			subscription.getSubscriptionId());
+		subscriptionLocalService.deleteSubscription(
+			userId, Article.class.getName(), groupId);
 	}
 
 	public Article updateArticle(
@@ -1002,8 +889,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		for (Subscription subscription : subscriptions) {
 			unsubscribeArticle(
-				subscription.getCompanyId(), subscription.getUserId(),
-				subscription.getClassPK());
+				subscription.getUserId(), subscription.getClassPK());
 		}
 	}
 
@@ -1121,7 +1007,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subscriptionSender.setGroupId(article.getGroupId());
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("kb_article", article.getArticleId());
-		subscriptionSender.setPortletId(PortletKeys.KNOWLEDGE_BASE_ADMIN);
 		subscriptionSender.setReplyToAddress(fromAddress);
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(article.getUserId());

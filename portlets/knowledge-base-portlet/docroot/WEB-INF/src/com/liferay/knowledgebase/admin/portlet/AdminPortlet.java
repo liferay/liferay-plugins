@@ -33,7 +33,6 @@ import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
@@ -50,7 +49,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.RSSUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
@@ -62,7 +60,6 @@ import java.io.InputStream;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -160,7 +157,7 @@ public class AdminPortlet extends MVCPortlet {
 
 			if (resourcePrimKey > 0) {
 				article = ArticleServiceUtil.getLatestArticle(
-					resourcePrimKey, getStatus(renderRequest));
+					resourcePrimKey, _STATUS);
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
@@ -176,8 +173,7 @@ public class AdminPortlet extends MVCPortlet {
 			renderRequest.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_TEMPLATE, template);
 
-			renderRequest.setAttribute(
-				WebKeys.KNOWLEDGE_BASE_STATUS, getStatus(renderRequest));
+			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, _STATUS);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
@@ -193,6 +189,32 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		super.render(renderRequest, renderResponse);
+	}
+
+	public void serveArticleRSS(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
+		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			resourceRequest, "rssDisplayStyle");
+		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
+
+		String portletId = PortalUtil.getPortletId(resourceRequest);
+
+		String rss = ArticleServiceUtil.getArticleRSS(
+			portletId, resourcePrimKey, _STATUS, rssDelta, rssDisplayStyle,
+			rssFormat, themeDisplay);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, null,
+			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
 	}
 
 	public void serveAttachment(
@@ -211,42 +233,23 @@ public class AdminPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, shortFileName, is, contentType);
 	}
 
-	public void serveRSS(
+	public void serveGroupArticlesRSS(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long resourcePrimKey = ParamUtil.getLong(
-			resourceRequest, "resourcePrimKey");
-
-		int max = ParamUtil.getInteger(
-			resourceRequest, "max", SearchContainer.DEFAULT_DELTA);
-		String type = ParamUtil.getString(
-			resourceRequest, "type", RSSUtil.DEFAULT_TYPE);
-		double version = ParamUtil.getDouble(
-			resourceRequest, "version", RSSUtil.DEFAULT_VERSION);
-		String displayStyle = ParamUtil.getString(
-			resourceRequest, "displayStyle",
-			RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
+		String rssDisplayStyle = ParamUtil.getString(
+			resourceRequest, "rssDisplayStyle");
+		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
 
 		String portletId = PortalUtil.getPortletId(resourceRequest);
 
-		String rss = StringPool.BLANK;
-
-		if (resourcePrimKey <= 0) {
-			rss = ArticleServiceUtil.getGroupArticlesRSS(
-				portletId, getStatus(resourceRequest), max, type, version,
-				displayStyle, isServeRSSMaximized(resourceRequest),
-				themeDisplay);
-		}
-		else {
-			rss = ArticleServiceUtil.getArticlesRSS(
-				portletId, resourcePrimKey, getStatus(resourceRequest), max,
-				type, version, displayStyle,
-				isServeRSSMaximized(resourceRequest), themeDisplay);
-		}
+		String rss = ArticleServiceUtil.getGroupArticlesRSS(
+			portletId, _STATUS, rssDelta, rssDisplayStyle, rssFormat,
+			themeDisplay);
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, null,
@@ -263,8 +266,11 @@ public class AdminPortlet extends MVCPortlet {
 			if (resourceID.equals("attachment")) {
 				serveAttachment(resourceRequest, resourceResponse);
 			}
-			else if (resourceID.equals("rss")) {
-				serveRSS(resourceRequest, resourceResponse);
+			else if (resourceID.equals("articleRSS")) {
+				serveArticleRSS(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("groupArticlesRSS")) {
+				serveGroupArticlesRSS(resourceRequest, resourceResponse);
 			}
 		}
 		catch (IOException ioe) {
@@ -278,20 +284,6 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void subscribe(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
-		ArticleServiceUtil.subscribe(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			themeDisplay.getPlid(), portletId, themeDisplay.getScopeGroupId());
-	}
-
 	public void subscribeArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -302,14 +294,11 @@ public class AdminPortlet extends MVCPortlet {
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		String portletId = PortalUtil.getPortletId(actionRequest);
-
 		ArticleServiceUtil.subscribeArticle(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			themeDisplay.getPlid(), portletId, resourcePrimKey);
+			themeDisplay.getScopeGroupId(), resourcePrimKey);
 	}
 
-	public void unsubscribe(
+	public void subscribeGroupArticles(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -318,23 +307,31 @@ public class AdminPortlet extends MVCPortlet {
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
-		ArticleServiceUtil.unsubscribe(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			themeDisplay.getPlid(), portletId, themeDisplay.getScopeGroupId());
+		ArticleServiceUtil.subscribeGroupArticles(
+			themeDisplay.getScopeGroupId(), portletId);
 	}
 
 	public void unsubscribeArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
 
-		ArticleServiceUtil.unsubscribeArticle(
-			themeDisplay.getCompanyId(), resourcePrimKey);
+		ArticleServiceUtil.unsubscribeArticle(resourcePrimKey);
+	}
+
+	public void unsubscribeGroupArticles(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String portletId = PortalUtil.getPortletId(actionRequest);
+
+		ArticleServiceUtil.unsubscribeGroupArticles(
+			themeDisplay.getScopeGroupId(), portletId);
 	}
 
 	public void updateArticle(
@@ -516,14 +513,6 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	protected int getStatus(PortletRequest portletRequest) {
-		return WorkflowConstants.STATUS_ANY;
-	}
-
-	protected boolean isServeRSSMaximized(ResourceRequest resourceRequest) {
-		return _SERVE_RSS_MAXIMIZED;
-	}
-
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof ArticleContentException ||
 			cause instanceof ArticleTitleException ||
@@ -544,6 +533,6 @@ public class AdminPortlet extends MVCPortlet {
 		return false;
 	}
 
-	private static final boolean _SERVE_RSS_MAXIMIZED = false;
+	private static final int _STATUS = WorkflowConstants.STATUS_ANY;
 
 }

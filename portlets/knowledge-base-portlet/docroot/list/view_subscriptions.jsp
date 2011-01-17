@@ -22,7 +22,7 @@
 
 <liferay-ui:search-container
 	delta="<%= articlesDelta %>"
-	headerNames="title,application,version"
+	headerNames="title,version"
 	iteratorURL="<%= iteratorURL %>"
 >
 	<liferay-ui:search-container-results>
@@ -33,7 +33,7 @@
 		long[] classPKs = StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L);
 		long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
 
-		pageContext.setAttribute("results", ArticleServiceUtil.getArticles(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator));
+		pageContext.setAttribute("results", ArticleServiceUtil.getArticles(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()));
 		pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys));
 		%>
 
@@ -53,38 +53,6 @@
 			href="<%= rowURL %>"
 			property="title"
 		/>
-
-		<%
-		Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
-		%>
-
-		<liferay-ui:search-container-column-text
-			buffer="buffer"
-			href="<%= rowURL %>"
-			name="application"
-		>
-
-			<%
-			String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
-
-			String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKeys[0]);
-
-			PortletPreferences selPreferences = PortletPreferencesFactoryUtil.getPortletSetup(themeDisplay.getLayout(), portletPrimKeyPortletId, StringPool.BLANK);
-
-			String selPortletTitle = PortletConfigurationUtil.getPortletTitle(selPreferences, themeDisplay.getLanguageId());
-
-			if (Validator.isNull(selPortletTitle)) {
-				selPortletTitle = PortalUtil.getPortletTitle(PortletConstants.getRootPortletId(portletPrimKeyPortletId), locale);
-			}
-
-			Layout selLayout = LayoutLocalServiceUtil.getLayout(ArticleConstants.getPlid(portletPrimKeys[0]));
-
-			buffer.append(selPortletTitle);
-			buffer.append(" - ");
-			buffer.append(selLayout.getName(locale));
-			%>
-
-		</liferay-ui:search-container-column-text>
 
 		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 			<liferay-ui:search-container-column-text

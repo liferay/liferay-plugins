@@ -47,11 +47,10 @@
 		<table class="lfr-table">
 		<tr>
 			<td>
-				<portlet:resourceURL id="rss" var="rssURL">
-					<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
-					<portlet:param name="type" value="<%= rssFormatType %>" />
-					<portlet:param name="version" value="<%= String.valueOf(rssFormatVersion) %>" />
-					<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+				<portlet:resourceURL id="groupArticlesRSS" var="groupArticlesRSSURL">
+					<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
+					<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
+					<portlet:param name="rssFormat" value="<%= rssFormat %>" />
 				</portlet:resourceURL>
 
 				<liferay-ui:icon
@@ -59,53 +58,33 @@
 					label="<%= true %>"
 					method="get"
 					target="_blank"
-					url="<%= rssURL %>"
+					url="<%= groupArticlesRSSURL %>"
 				/>
 			</td>
 
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
 				<td>
-
-					<%
-					boolean subscribed = false;
-
-					if (SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId)) {
-						Subscription subscription = SubscriptionLocalServiceUtil.getSubscription(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId);
-
-						String[] portletPrimKeys = ExpandoValueLocalServiceUtil.getData(user.getCompanyId(), Subscription.class.getName(), "KB", "portletPrimKeys", subscription.getSubscriptionId(), new String[0]);
-
-						for (String portletPrimKey : portletPrimKeys) {
-							long portletPrimKeyPlid = ArticleConstants.getPlid(portletPrimKey);
-							String portletPrimKeyPortletId = ArticleConstants.getPortletId(portletPrimKey);
-
-							if ((portletPrimKeyPlid == plid.longValue()) && portletPrimKeyPortletId.equals(portletDisplay.getId())) {
-								subscribed = true;
-							}
-						}
-					}
-					%>
-
 					<c:choose>
-						<c:when test="<%= subscribed %>">
-							<portlet:actionURL name="unsubscribe" var="unsubscribeURL">
+						<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
+							<portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 							</portlet:actionURL>
 
 							<liferay-ui:icon
 								image="unsubscribe"
 								label="<%= true %>"
-								url="<%= unsubscribeURL %>"
+								url="<%= unsubscribeGroupArticlesURL %>"
 							/>
 						</c:when>
 						<c:otherwise>
-							<portlet:actionURL name="subscribe" var="subscribeURL">
+							<portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 							</portlet:actionURL>
 
 							<liferay-ui:icon
 								image="subscribe"
 								label="<%= true %>"
-								url="<%= subscribeURL %>"
+								url="<%= subscribeGroupArticlesURL %>"
 							/>
 						</c:otherwise>
 					</c:choose>
@@ -127,10 +106,16 @@
 			delta="<%= articlesDelta %>"
 			iteratorURL="<%= iteratorURL %>"
 		>
-			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), new ArticlePriorityComparator(true)) %>"
-				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY) %>"
-			/>
+			<liferay-ui:search-container-results>
+
+				<%
+				long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_ANY);
+
+				pageContext.setAttribute("results", ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_ANY, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()));
+				pageContext.setAttribute("total", ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_ANY, viewableParentResourcePrimKeys));
+				%>
+
+			</liferay-ui:search-container-results>
 
 			<div class="kb-results-body">
 

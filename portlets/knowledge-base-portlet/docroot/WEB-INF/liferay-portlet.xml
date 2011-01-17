@@ -56,6 +56,7 @@
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<header-portlet-css>/display/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-display</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>

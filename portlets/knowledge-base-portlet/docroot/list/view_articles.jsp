@@ -31,28 +31,10 @@ String tag = ParamUtil.getString(request, "tag");
 	<liferay-ui:search-container-results>
 
 		<%
-		List<AssetEntry> assetEntries = KnowledgeBaseUtil.getAssetEntries(plid, portletDisplay.getId(), categoryId, tag);
+		Map<String, Object> preferencesArticlesMap = KnowledgeBaseUtil.getPortletPreferencesArticlesMap(scopeGroupId, portletDisplay.getId(), categoryId, tag, searchContainer.getStart(), searchContainer.getEnd(), preferences);
 
-		if (assetEntries != null) {
-			long[] classPKs = StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L);
-			long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
-
-			results = ArticleServiceUtil.getArticles(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-			total = ArticleServiceUtil.getArticlesCount(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys);
-		}
-		else if (!allArticles) {
-			results = ArticleServiceUtil.getSiblingArticles(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-			total = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED);
-		}
-		else {
-			long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
-
-			results = ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator);
-			total = ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys);
-		}
-
-		pageContext.setAttribute("results", results);
-		pageContext.setAttribute("total", total);
+		pageContext.setAttribute("results", preferencesArticlesMap.get("articles"));
+		pageContext.setAttribute("total", preferencesArticlesMap.get("count"));
 		%>
 
 	</liferay-ui:search-container-results>
@@ -87,12 +69,11 @@ String tag = ParamUtil.getString(request, "tag");
 		<liferay-ui:search-container-column-text
 			align="right"
 		>
-			<portlet:resourceURL id="rss" var="rssURL">
+			<portlet:resourceURL id="articleRSS" var="articleRSSURL">
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-				<portlet:param name="max" value="<%= String.valueOf(rssDelta) %>" />
-				<portlet:param name="type" value="<%= rssFormatType %>" />
-				<portlet:param name="version" value="<%= String.valueOf(rssFormatVersion) %>" />
-				<portlet:param name="displayStyle" value="<%= rssDisplayStyle %>" />
+				<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
+				<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
+				<portlet:param name="rssFormat" value="<%= rssFormat %>" />
 			</portlet:resourceURL>
 
 			<liferay-ui:icon
@@ -100,7 +81,7 @@ String tag = ParamUtil.getString(request, "tag");
 				label="<%= true %>"
 				method="get"
 				target="_blank"
-				url="<%= rssURL %>"
+				url="<%= articleRSSURL %>"
 			/>
 
 			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
