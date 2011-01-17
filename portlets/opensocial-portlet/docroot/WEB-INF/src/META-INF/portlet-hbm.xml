@@ -19,7 +19,7 @@
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthConsumerImpl" table="OpenSocial_OAuthConsumer">
 		<cache usage="read-write" />
-		<id name="oAuthConsumerId" type="long">
+		<id name="oAuthConsumerId" type="long" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
