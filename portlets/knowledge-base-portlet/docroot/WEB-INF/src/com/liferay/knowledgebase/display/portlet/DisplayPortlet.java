@@ -298,13 +298,19 @@ public class DisplayPortlet extends MVCPortlet {
 			PortletSession portletSession = renderRequest.getPortletSession();
 
 			Article newArticle = getArticle(renderRequest);
+
 			Article oldArticle = (Article)portletSession.getAttribute(
 				WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 			portletSession.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_ARTICLE, newArticle);
 
-			return !Validator.equals(newArticle, oldArticle);
+			if (Validator.equals(newArticle, oldArticle)) {
+				return false;
+			}
+			else {
+				return true;
+			}
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

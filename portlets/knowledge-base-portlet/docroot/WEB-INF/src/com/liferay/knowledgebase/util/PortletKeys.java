@@ -30,10 +30,8 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 		"5_WAR_knowledgebaseportlet";
 
 	public static final String[] KNOWLEDGE_BASE_PORTLETS = {
-		PortletKeys.KNOWLEDGE_BASE_ADMIN,
-		PortletKeys.KNOWLEDGE_BASE_AGGREGATOR,
-		PortletKeys.KNOWLEDGE_BASE_DISPLAY,
-		PortletKeys.KNOWLEDGE_BASE_LIST,
+		PortletKeys.KNOWLEDGE_BASE_ADMIN, PortletKeys.KNOWLEDGE_BASE_AGGREGATOR,
+		PortletKeys.KNOWLEDGE_BASE_DISPLAY, PortletKeys.KNOWLEDGE_BASE_LIST,
 		PortletKeys.KNOWLEDGE_BASE_SEARCH,
 	};
 

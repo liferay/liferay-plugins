@@ -204,6 +204,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		articlePersistence.removeByResourcePrimKey(
 			article.getResourcePrimKey());
 
+		// Comment
+
+		commentLocalService.deleteComments(
+			Article.class.getName(), article.getResourcePrimKey());
+
 		// Asset
 
 		deleteAssets(article);
@@ -211,11 +216,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Social
 
 		socialActivityLocalService.deleteActivities(
-			Article.class.getName(), article.getResourcePrimKey());
-
-		// Comment
-
-		commentLocalService.deleteComments(
 			Article.class.getName(), article.getResourcePrimKey());
 
 		// Indexer

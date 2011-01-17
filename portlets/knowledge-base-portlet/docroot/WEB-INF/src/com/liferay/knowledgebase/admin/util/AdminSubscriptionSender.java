@@ -54,18 +54,16 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	protected void deleteSubscription(Subscription subscription)
 		throws Exception {
 
+		// Article subscription
+
 		if (subscription.getClassPK() == _article.getResourcePrimKey()) {
-
-			// Article subscription.
-
 			ArticleLocalServiceUtil.unsubscribeArticle(
 				subscription.getUserId(), _article.getResourcePrimKey());
 		}
 
+		// Group subscription
+
 		if (subscription.getClassPK() == _article.getGroupId()) {
-
-			// Group subscription.
-
 			ArticleLocalServiceUtil.unsubscribeGroupArticles(
 				subscription.getUserId(), _article.getGroupId());
 		}

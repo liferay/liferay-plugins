@@ -145,14 +145,14 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 			template.getCompanyId(), Template.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL, template.getTemplateId());
 
-		// Social
-
-		socialActivityLocalService.deleteActivities(
-			Template.class.getName(), template.getTemplateId());
-
 		// Comment
 
 		commentLocalService.deleteComments(
+			Template.class.getName(), template.getTemplateId());
+
+		// Social
+
+		socialActivityLocalService.deleteActivities(
 			Template.class.getName(), template.getTemplateId());
 	}
 

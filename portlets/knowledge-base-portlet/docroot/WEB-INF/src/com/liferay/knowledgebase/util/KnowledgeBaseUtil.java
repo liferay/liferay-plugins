@@ -501,7 +501,7 @@ public class KnowledgeBaseUtil {
 			}
 		}
 
-		// Process public render parameters.
+		// Process public render parameters
 
 		if (assetCategoryId > 0) {
 			allCategoryIds = ArrayUtil.append(allCategoryIds, assetCategoryId);
@@ -547,7 +547,7 @@ public class KnowledgeBaseUtil {
 			}
 		}
 
-		// Check AssetEntryQuery properties.
+		// Check AssetEntryQuery properties
 
 		if ((allCategoryIds.length == 0) && (allTagIds.length == 0) &&
 			(anyCategoryIds.length == 0) && (anyTagIds.length == 0) &&
@@ -556,20 +556,20 @@ public class KnowledgeBaseUtil {
 
 			if (!assetEntryQueryContains) {
 
-				// Assets are not being used to filter articles.
+				// Assets are not being used to filter articles
 
 				return null;
 			}
 			else if (((assetCategoryIds.length > 0) && assetCategories) ||
 					 ((assetTagNames.length > 0) && assetTags)) {
 
-				// Selected assets not found. Return no classPKs.
+				// Selected assets not found. Return no classPKs
 
 				return new long[0];
 			}
 			else {
 
-				// Assets are not being used to filter articles.
+				// Assets are not being used to filter articles
 
 				return null;
 			}
@@ -590,7 +590,7 @@ public class KnowledgeBaseUtil {
 		assetEntryQuery.setNotAllTagIds(notAllTagIds);
 		assetEntryQuery.setNotAnyTagIds(notAnyTagIds);
 
-		// Delegate article permission checks to ArticleServiceImpl.
+		// Delegate article permission checks to ArticleServiceImpl
 
 		List<AssetEntry> assetEntries = AssetEntryLocalServiceUtil.getEntries(
 			assetEntryQuery);
