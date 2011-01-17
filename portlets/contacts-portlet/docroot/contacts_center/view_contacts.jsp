@@ -92,7 +92,13 @@
 
 	<aui:column columnWidth="<%= 25 %>" cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>">
 		<div class="lfr-asset-summary">
-			<img alt="<liferay-ui:message key="avatar" />" class="avatar" src="<%= user.getPortraitURL(themeDisplay) %>" />
+			<portlet:renderURL var="viewURL">
+				<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+				<portlet:param name="redirect" value="<%= currentURL %>" />
+				<portlet:param name="userId" value="<%= String.valueOf(user.getUserId()) %>" />
+			</portlet:renderURL>
+
+			<a href="<%= viewURL %>"><img alt="<liferay-ui:message key="avatar" />" class="avatar" src="<%= user.getPortraitURL(themeDisplay) %>" /></a>
 
 			<div class="lfr-asset-name">
 				<h4><%= HtmlUtil.escape(user.getFullName()) %></h4>

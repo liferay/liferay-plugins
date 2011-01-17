@@ -39,7 +39,6 @@ else {
 			<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-			<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon

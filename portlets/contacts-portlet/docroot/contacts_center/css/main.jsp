@@ -72,10 +72,15 @@
 	border: 1px solid #88C5D9;
 	display: none;
 	left: -5px;
+	min-height: 50px;
 	padding: 5px 5px 5px 60px;
 	position: absolute;
 	top: -5px;
 	width: 175px;
+}
+
+.ie .contacts-portlet-contacts-center .lfr-user-grid-item .lfr-user-info {
+	height: 50px;
 }
 
 .contacts-portlet-contacts-center .lfr-user-grid-item.hover .lfr-user-info {
@@ -122,4 +127,93 @@
 
 .contacts-portlet-contacts-center .lfr-user-action-ignore a {
 	background: url(<%= themeImagesPath %>/common/deactivate.png) no-repeat;
+}
+
+.contacts-portlet-contacts-center .lfr-asset-data {
+	margin-bottom: 1.5em;
+}
+
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-coworker,
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-friend {
+	background: url(<%= themeImagesPath %>/common/group.png) no-repeat;
+}
+
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-follower,
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-following {
+	background: url(<%= themeImagesPath %>/common/assign.png) no-repeat;
+}
+
+.contacts-portlet-contacts-center .lfr-asset-data .lfr-user-data-name {
+	color: #777;
+	font-size: 1.5em;
+	font-weight: bold;
+}
+
+.contacts-portlet-contacts-center .section {
+	float: left;
+	margin: 0 1em 1em 0;
+	width: 45%;
+}
+
+.contacts-portlet-contacts-center .section h3 {
+	color: #555;
+	background: no-repeat 2px 50%;
+	border-bottom: 1px dotted #CCC;
+	font-size: 1.2em;
+	margin-top: 0;
+	padding: 2px 0 2px 25px;
+}
+
+.contacts-portlet-contacts-center .lfr-user-phones h3 {
+	background-image: url(<%= themeImagesPath %>/common/telephone.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-email-addresses h3 {
+	background-image: url(<%= themeImagesPath %>/mail/unread.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-instant-messenger h3 {
+	background-image: url(<%= themeImagesPath %>/common/conversation.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-addresses h3 {
+	background-image: url(<%= themeImagesPath %>/dock/home.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-websites h3 {
+	background-image: url(<%= themeImagesPath %>/common/history.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-social-network h3 {
+	background-image: url(<%= themeImagesPath %>/common/group.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-sms h3 {
+	background-image: url(<%= themeImagesPath %>/common/telephone_mobile.png);
+}
+
+.contacts-portlet-contacts-center .lfr-user-comments h3 {
+	background-image: url(<%= themeImagesPath %>/dock/welcome_message.png);
+}
+
+.contacts-portlet-contacts-center .property-list li {
+	list-style: none;
+	margin-bottom: 1em;
+}
+
+.contacts-portlet-contacts-center .property-list dt {
+	clear: left;
+	font-weight: bold;
+	min-width: 5em;
+}
+
+.contacts-portlet-contacts-center .property-list dt,
+.contacts-portlet-contacts-center .property-list dd {
+	float: left;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.contacts-portlet-contacts-center .property-list dd {
+	padding-left: 1em;
 }
