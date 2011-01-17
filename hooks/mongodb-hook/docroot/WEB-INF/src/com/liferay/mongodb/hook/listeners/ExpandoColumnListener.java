@@ -59,11 +59,10 @@ public class ExpandoColumnListener extends BaseModelListener<ExpandoColumn> {
 			}
 		}
 
-		DBObject quueryDBObject = new BasicDBObject();
 		DBObject operatorDBObject = new BasicDBObject(
 			MongoOperator.UNSET, new BasicDBObject(expandoColumn.getName(), 1));
 
-		dbCollection.update(quueryDBObject, operatorDBObject, false, true);
+		dbCollection.update(new BasicDBObject(), operatorDBObject, false, true);
 	}
 
 }
