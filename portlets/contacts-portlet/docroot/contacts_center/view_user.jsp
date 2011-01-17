@@ -26,6 +26,7 @@ User user2 = UserLocalServiceUtil.getUser(userId);
 user2 = user2.toEscapedModel();
 
 request.setAttribute("view_user.jsp-user", user2);
+
 request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 %>
 
