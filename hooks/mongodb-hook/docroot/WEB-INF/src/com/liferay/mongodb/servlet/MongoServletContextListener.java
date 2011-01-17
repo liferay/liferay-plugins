@@ -17,6 +17,8 @@ package com.liferay.mongodb.servlet;
 import com.liferay.mongodb.util.MongoDBUtil;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 
+import com.mongodb.Mongo;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -36,7 +38,9 @@ public class MongoServletContextListener
 	}
 
 	protected void doPortalDestroy() throws Exception {
-		MongoDBUtil.getMongo().close();
+		Mongo mongo = MongoDBUtil.getMongo();
+
+		mongo.close();
 	}
 
 	protected void doPortalInit() {
