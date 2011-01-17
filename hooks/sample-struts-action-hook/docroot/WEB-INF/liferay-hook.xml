@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.1.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_1_0.dtd">
+
+<hook>
+	<custom-jsp-dir>/WEB-INF/jsp</custom-jsp-dir>
+	<struts-action>
+		<struts-action-path>/portal/sample/action</struts-action-path>
+		<struts-action-impl>com.liferay.samplestrutsaction.action.SampleAction</struts-action-impl>
+	</struts-action>
+</hook>
