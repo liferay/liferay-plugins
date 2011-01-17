@@ -95,9 +95,9 @@ public interface ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.lang.String getArticlesRSS(java.lang.String portletId,
-		long resourcePrimKey, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle, boolean maximized,
+	public java.lang.String getArticleRSS(java.lang.String portletId,
+		long resourcePrimKey, int status, int rssDelta,
+		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -116,8 +116,8 @@ public interface ArticleService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getGroupArticlesRSS(java.lang.String portletId,
-		int status, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean maximized,
+		int status, int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -146,22 +146,20 @@ public interface ArticleService {
 	public long[] getViewableParentResourcePrimKeys(long groupId, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK)
+	public void subscribeArticle(long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void subscribeArticle(long companyId, long groupId, long plid,
-		java.lang.String portletId, long resourcePrimKey)
+	public void subscribeGroupArticles(long groupId, java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK)
+	public void unsubscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeGroupArticles(long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

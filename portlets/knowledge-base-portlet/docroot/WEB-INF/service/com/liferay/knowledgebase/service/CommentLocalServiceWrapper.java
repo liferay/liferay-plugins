@@ -242,6 +242,11 @@ public class CommentLocalServiceWrapper implements CommentLocalService {
 			content, helpful, serviceContext);
 	}
 
+	public void deleteComments(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_commentLocalService.deleteComments(className, classPK);
+	}
+
 	public com.liferay.knowledgebase.model.Comment getComment(long userId,
 		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,

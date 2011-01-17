@@ -336,12 +336,6 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getCompanyArticlesCount(companyId, status);
 	}
 
-	public java.util.List<com.liferay.portlet.expando.model.ExpandoValue> getExpandoValues(
-		long companyId, long plid, java.lang.String portletId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getExpandoValues(companyId, plid, portletId);
-	}
-
 	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -378,36 +372,28 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			parentResourcePrimKey, status);
 	}
 
-	public void subscribe(long companyId, long groupId, long userId, long plid,
-		java.lang.String portletId, long classPK)
+	public void subscribeArticle(long userId, long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribe(companyId, groupId, userId, plid,
-			portletId, classPK);
+		_articleLocalService.subscribeArticle(userId, groupId, resourcePrimKey);
 	}
 
-	public void subscribeArticle(long companyId, long groupId, long userId,
-		long plid, java.lang.String portletId, long resourcePrimKey)
+	public void subscribeGroupArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.subscribeArticle(companyId, groupId, userId, plid,
-			portletId, resourcePrimKey);
+		_articleLocalService.subscribeGroupArticles(userId, groupId);
 	}
 
-	public void unsubscribe(long companyId, long userId, long plid,
-		java.lang.String portletId, long classPK)
+	public void unsubscribeArticle(long userId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribe(companyId, userId, plid, portletId,
-			classPK);
+		_articleLocalService.unsubscribeArticle(userId, resourcePrimKey);
 	}
 
-	public void unsubscribeArticle(long companyId, long userId,
-		long resourcePrimKey)
+	public void unsubscribeGroupArticles(long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.unsubscribeArticle(companyId, userId,
-			resourcePrimKey);
+		_articleLocalService.unsubscribeGroupArticles(userId, groupId);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,

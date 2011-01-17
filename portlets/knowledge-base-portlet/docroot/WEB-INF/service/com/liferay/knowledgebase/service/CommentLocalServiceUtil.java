@@ -257,6 +257,11 @@ public class CommentLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void deleteComments(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteComments(className, classPK);
+	}
+
 	public static com.liferay.knowledgebase.model.Comment getComment(
 		long userId, java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,

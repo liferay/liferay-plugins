@@ -15,10 +15,10 @@ Liferay.Service.registerClass(
 		getSiblingArticles: true,
 		getSiblingArticlesCount: true,
 		getViewableParentResourcePrimKeys: true,
-		subscribe: true,
 		subscribeArticle: true,
-		unsubscribe: true,
+		subscribeGroupArticles: true,
 		unsubscribeArticle: true,
+		unsubscribeGroupArticles: true,
 		updateArticle: true,
 		updateAttachments: true
 	}

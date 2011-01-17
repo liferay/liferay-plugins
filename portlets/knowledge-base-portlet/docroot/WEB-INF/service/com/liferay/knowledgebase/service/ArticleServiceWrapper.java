@@ -100,14 +100,14 @@ public class ArticleServiceWrapper implements ArticleService {
 			status, viewableParentResourcePrimKeys);
 	}
 
-	public java.lang.String getArticlesRSS(java.lang.String portletId,
-		long resourcePrimKey, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle, boolean maximized,
+	public java.lang.String getArticleRSS(java.lang.String portletId,
+		long resourcePrimKey, int status, int rssDelta,
+		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticlesRSS(portletId, resourcePrimKey,
-			status, max, type, version, displayStyle, maximized, themeDisplay);
+		return _articleService.getArticleRSS(portletId, resourcePrimKey,
+			status, rssDelta, rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
@@ -127,13 +127,13 @@ public class ArticleServiceWrapper implements ArticleService {
 	}
 
 	public java.lang.String getGroupArticlesRSS(java.lang.String portletId,
-		int status, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean maximized,
+		int status, int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getGroupArticlesRSS(portletId, status, max,
-			type, version, displayStyle, maximized, themeDisplay);
+		return _articleService.getGroupArticlesRSS(portletId, status, rssDelta,
+			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
 	public com.liferay.knowledgebase.model.Article getLatestArticle(
@@ -166,32 +166,29 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getViewableParentResourcePrimKeys(groupId, status);
 	}
 
-	public void subscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK)
+	public void subscribeArticle(long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.subscribe(companyId, groupId, plid, portletId, classPK);
+		_articleService.subscribeArticle(groupId, resourcePrimKey);
 	}
 
-	public void subscribeArticle(long companyId, long groupId, long plid,
-		java.lang.String portletId, long resourcePrimKey)
+	public void subscribeGroupArticles(long groupId, java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.subscribeArticle(companyId, groupId, plid, portletId,
-			resourcePrimKey);
+		_articleService.subscribeGroupArticles(groupId, portletId);
 	}
 
-	public void unsubscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK)
+	public void unsubscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.unsubscribe(companyId, groupId, plid, portletId, classPK);
+		_articleService.unsubscribeArticle(resourcePrimKey);
 	}
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeGroupArticles(long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleService.unsubscribeArticle(companyId, resourcePrimKey);
+		_articleService.unsubscribeGroupArticles(groupId, portletId);
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(

@@ -62,10 +62,9 @@ public class ArticleServiceClp implements ArticleService {
 				"getArticlesCount", long.class, long[].class, int.class,
 				long[].class);
 
-		_getArticlesRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticlesRSS", java.lang.String.class, long.class,
-				int.class, int.class, java.lang.String.class, double.class,
-				java.lang.String.class, boolean.class,
+		_getArticleRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticleRSS", java.lang.String.class, long.class, int.class,
+				int.class, java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
 		_getGroupArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -78,8 +77,7 @@ public class ArticleServiceClp implements ArticleService {
 
 		_getGroupArticlesRSSMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupArticlesRSS", java.lang.String.class, int.class,
-				int.class, java.lang.String.class, double.class,
-				java.lang.String.class, boolean.class,
+				int.class, java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
 		_getLatestArticleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -96,20 +94,17 @@ public class ArticleServiceClp implements ArticleService {
 		_getViewableParentResourcePrimKeysMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getViewableParentResourcePrimKeys", long.class, int.class);
 
-		_subscribeMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"subscribe", long.class, long.class, long.class,
-				java.lang.String.class, long.class);
+		_subscribeArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"subscribeArticle", long.class, long.class);
 
-		_subscribeArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"subscribeArticle", long.class, long.class, long.class,
-				java.lang.String.class, long.class);
+		_subscribeGroupArticlesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"subscribeGroupArticles", long.class, java.lang.String.class);
 
-		_unsubscribeMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
-				"unsubscribe", long.class, long.class, long.class,
-				java.lang.String.class, long.class);
+		_unsubscribeArticleMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribeArticle", long.class);
 
-		_unsubscribeArticleMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"unsubscribeArticle", long.class, long.class);
+		_unsubscribeGroupArticlesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"unsubscribeGroupArticles", long.class, java.lang.String.class);
 
 		_updateArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateArticle", long.class, long.class,
@@ -416,18 +411,19 @@ public class ArticleServiceClp implements ArticleService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public java.lang.String getArticlesRSS(java.lang.String portletId,
-		long resourcePrimKey, int status, int max, java.lang.String type,
-		double version, java.lang.String displayStyle, boolean maximized,
+	public java.lang.String getArticleRSS(java.lang.String portletId,
+		long resourcePrimKey, int status, int rssDelta,
+		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticlesRSSMethodKey9,
+		MethodHandler methodHandler = new MethodHandler(_getArticleRSSMethodKey9,
 				ClpSerializer.translateInput(portletId), resourcePrimKey,
-				status, max, ClpSerializer.translateInput(type), version,
-				ClpSerializer.translateInput(displayStyle), maximized,
+				status, rssDelta,
+				ClpSerializer.translateInput(rssDisplayStyle),
+				ClpSerializer.translateInput(rssFormat),
 				ClpSerializer.translateInput(themeDisplay));
 
 		try {
@@ -516,17 +512,17 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public java.lang.String getGroupArticlesRSS(java.lang.String portletId,
-		int status, int max, java.lang.String type, double version,
-		java.lang.String displayStyle, boolean maximized,
+		int status, int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesRSSMethodKey12,
-				ClpSerializer.translateInput(portletId), status, max,
-				ClpSerializer.translateInput(type), version,
-				ClpSerializer.translateInput(displayStyle), maximized,
+				ClpSerializer.translateInput(portletId), status, rssDelta,
+				ClpSerializer.translateInput(rssDisplayStyle),
+				ClpSerializer.translateInput(rssFormat),
 				ClpSerializer.translateInput(themeDisplay));
 
 		try {
@@ -682,13 +678,11 @@ public class ArticleServiceClp implements ArticleService {
 		return (long[])ClpSerializer.translateOutput(returnObj);
 	}
 
-	public void subscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK)
+	public void subscribeArticle(long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_subscribeMethodKey17,
-				companyId, groupId, plid,
-				ClpSerializer.translateInput(portletId), classPK);
+		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey17,
+				groupId, resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -712,13 +706,11 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void subscribeArticle(long companyId, long groupId, long plid,
-		java.lang.String portletId, long resourcePrimKey)
+	public void subscribeGroupArticles(long groupId, java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_subscribeArticleMethodKey18,
-				companyId, groupId, plid,
-				ClpSerializer.translateInput(portletId), resourcePrimKey);
+		MethodHandler methodHandler = new MethodHandler(_subscribeGroupArticlesMethodKey18,
+				groupId, ClpSerializer.translateInput(portletId));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -742,13 +734,11 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void unsubscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK)
+	public void unsubscribeArticle(long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeMethodKey19,
-				companyId, groupId, plid,
-				ClpSerializer.translateInput(portletId), classPK);
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey19,
+				resourcePrimKey);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -772,11 +762,12 @@ public class ArticleServiceClp implements ArticleService {
 		}
 	}
 
-	public void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public void unsubscribeGroupArticles(long groupId,
+		java.lang.String portletId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_unsubscribeArticleMethodKey20,
-				companyId, resourcePrimKey);
+		MethodHandler methodHandler = new MethodHandler(_unsubscribeGroupArticlesMethodKey20,
+				groupId, ClpSerializer.translateInput(portletId));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -889,7 +880,7 @@ public class ArticleServiceClp implements ArticleService {
 	private MethodKey _getArticlesMethodKey6;
 	private MethodKey _getArticlesCountMethodKey7;
 	private MethodKey _getArticlesCountMethodKey8;
-	private MethodKey _getArticlesRSSMethodKey9;
+	private MethodKey _getArticleRSSMethodKey9;
 	private MethodKey _getGroupArticlesMethodKey10;
 	private MethodKey _getGroupArticlesCountMethodKey11;
 	private MethodKey _getGroupArticlesRSSMethodKey12;
@@ -897,10 +888,10 @@ public class ArticleServiceClp implements ArticleService {
 	private MethodKey _getSiblingArticlesMethodKey14;
 	private MethodKey _getSiblingArticlesCountMethodKey15;
 	private MethodKey _getViewableParentResourcePrimKeysMethodKey16;
-	private MethodKey _subscribeMethodKey17;
-	private MethodKey _subscribeArticleMethodKey18;
-	private MethodKey _unsubscribeMethodKey19;
-	private MethodKey _unsubscribeArticleMethodKey20;
+	private MethodKey _subscribeArticleMethodKey17;
+	private MethodKey _subscribeGroupArticlesMethodKey18;
+	private MethodKey _unsubscribeArticleMethodKey19;
+	private MethodKey _unsubscribeGroupArticlesMethodKey20;
 	private MethodKey _updateArticleMethodKey21;
 	private MethodKey _updateAttachmentsMethodKey22;
 }

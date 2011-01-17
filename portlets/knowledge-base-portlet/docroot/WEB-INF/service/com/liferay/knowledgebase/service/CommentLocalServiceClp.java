@@ -80,18 +80,21 @@ public class CommentLocalServiceClp implements CommentLocalService {
 				java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getCommentMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCommentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteComments", java.lang.String.class, long.class);
+
+		_getCommentMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getComment", long.class, java.lang.String.class, long.class);
 
-		_getCommentsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCommentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getComments", java.lang.String.class, long.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getCommentsCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCommentsCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCommentsCount", java.lang.String.class, long.class);
 
-		_updateCommentMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCommentMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateComment", long.class, long.class, long.class,
 				java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -528,13 +531,36 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		return (com.liferay.knowledgebase.model.Comment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void deleteComments(java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_deleteCommentsMethodKey15,
+				ClpSerializer.translateInput(className), classPK);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.knowledgebase.model.Comment getComment(long userId,
 		java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCommentMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_getCommentMethodKey16,
 				userId, ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -567,7 +593,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCommentsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getCommentsMethodKey17,
 				ClpSerializer.translateInput(className), classPK, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -595,7 +621,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCommentsCountMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getCommentsCountMethodKey18,
 				ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -626,7 +652,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey19,
 				commentId, classNameId, classPK,
 				ClpSerializer.translateInput(content), helpful,
 				ClpSerializer.translateInput(serviceContext));
@@ -675,8 +701,9 @@ public class CommentLocalServiceClp implements CommentLocalService {
 	private MethodKey _updateCommentMethodKey12;
 	private MethodKey _updateCommentMethodKey13;
 	private MethodKey _addCommentMethodKey14;
-	private MethodKey _getCommentMethodKey15;
-	private MethodKey _getCommentsMethodKey16;
-	private MethodKey _getCommentsCountMethodKey17;
-	private MethodKey _updateCommentMethodKey18;
+	private MethodKey _deleteCommentsMethodKey15;
+	private MethodKey _getCommentMethodKey16;
+	private MethodKey _getCommentsMethodKey17;
+	private MethodKey _getCommentsCountMethodKey18;
+	private MethodKey _updateCommentMethodKey19;
 }

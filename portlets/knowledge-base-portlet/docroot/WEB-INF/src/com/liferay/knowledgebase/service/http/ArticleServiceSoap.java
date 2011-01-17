@@ -290,25 +290,10 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void subscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK) throws RemoteException {
-		try {
-			ArticleServiceUtil.subscribe(companyId, groupId, plid, portletId,
-				classPK);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static void subscribeArticle(long companyId, long groupId,
-		long plid, java.lang.String portletId, long resourcePrimKey)
+	public static void subscribeArticle(long groupId, long resourcePrimKey)
 		throws RemoteException {
 		try {
-			ArticleServiceUtil.subscribeArticle(companyId, groupId, plid,
-				portletId, resourcePrimKey);
+			ArticleServiceUtil.subscribeArticle(groupId, resourcePrimKey);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -317,11 +302,10 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void unsubscribe(long companyId, long groupId, long plid,
-		java.lang.String portletId, long classPK) throws RemoteException {
+	public static void subscribeGroupArticles(long groupId,
+		java.lang.String portletId) throws RemoteException {
 		try {
-			ArticleServiceUtil.unsubscribe(companyId, groupId, plid, portletId,
-				classPK);
+			ArticleServiceUtil.subscribeGroupArticles(groupId, portletId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -330,10 +314,22 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void unsubscribeArticle(long companyId, long resourcePrimKey)
+	public static void unsubscribeArticle(long resourcePrimKey)
 		throws RemoteException {
 		try {
-			ArticleServiceUtil.unsubscribeArticle(companyId, resourcePrimKey);
+			ArticleServiceUtil.unsubscribeArticle(resourcePrimKey);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void unsubscribeGroupArticles(long groupId,
+		java.lang.String portletId) throws RemoteException {
+		try {
+			ArticleServiceUtil.unsubscribeGroupArticles(groupId, portletId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
