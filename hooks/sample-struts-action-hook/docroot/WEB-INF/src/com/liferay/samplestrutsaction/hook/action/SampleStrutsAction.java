@@ -14,7 +14,7 @@
 
 package com.liferay.samplestrutsaction.hook.action;
 
-import com.liferay.portal.kernel.struts.StrutsAction;
+import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Mika Koivisto
  */
-public class SampleStrutsAction implements StrutsAction {
+public class SampleStrutsAction extends BaseStrutsAction {
 
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response)
@@ -33,7 +33,7 @@ public class SampleStrutsAction implements StrutsAction {
 
 		request.setAttribute("name", name);
 
-		return "/portal/sample/sample.jsp";
+		return "/portal/sample.jsp";
 	}
 
 }
