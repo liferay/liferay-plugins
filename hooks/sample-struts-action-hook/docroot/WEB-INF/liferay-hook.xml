@@ -2,9 +2,9 @@
 <!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.1.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_1_0.dtd">
 
 <hook>
-	<custom-jsp-dir>/WEB-INF/jsp</custom-jsp-dir>
+	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<struts-action>
-		<struts-action-path>/portal/sample/action</struts-action-path>
-		<struts-action-impl>com.liferay.samplestrutsaction.action.SampleAction</struts-action-impl>
+		<struts-action-path>/portal/sample</struts-action-path>
+		<struts-action-impl>com.liferay.samplestrutsaction.hook.action.SampleStrutsAction</struts-action-impl>
 	</struts-action>
 </hook>

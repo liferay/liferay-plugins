@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.samplestrutsaction.action;
+package com.liferay.samplestrutsaction.hook.action;
 
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -23,13 +23,13 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Mika Koivisto
  */
-public class SampleAction implements StrutsAction {
+public class SampleStrutsAction implements StrutsAction {
 
 	public String execute(
-		HttpServletRequest request, HttpServletResponse response)
+			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
 
-		String name = ParamUtil.get(request, "name", "World");
+		String name = ParamUtil.getString(request, "name", "World");
 
 		request.setAttribute("name", name);
 
