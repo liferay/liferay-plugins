@@ -46,6 +46,8 @@ import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
+import com.liferay.portlet.social.service.persistence.SocialActivityPersistence;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -2900,6 +2902,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 	protected ResourcePersistence resourcePersistence;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	@BeanReference(type = SocialActivityPersistence.class)
+	protected SocialActivityPersistence socialActivityPersistence;
 	private static final String _SQL_SELECT_COMMENT = "SELECT comment FROM Comment comment";
 	private static final String _SQL_SELECT_COMMENT_WHERE = "SELECT comment FROM Comment comment WHERE ";
 	private static final String _SQL_COUNT_COMMENT = "SELECT COUNT(comment) FROM Comment comment";
