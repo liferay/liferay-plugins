@@ -107,6 +107,7 @@ import oasis.names.tc.wsrp.v2.types.MarkupContext;
 import oasis.names.tc.wsrp.v2.types.MarkupParams;
 import oasis.names.tc.wsrp.v2.types.MarkupResponse;
 import oasis.names.tc.wsrp.v2.types.MimeRequest;
+import oasis.names.tc.wsrp.v2.types.MimeResponse;
 import oasis.names.tc.wsrp.v2.types.NamedString;
 import oasis.names.tc.wsrp.v2.types.NavigationalContext;
 import oasis.names.tc.wsrp.v2.types.Online;
@@ -342,12 +343,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			markupContext = markupResponse.getMarkupContext();
 		}
 
-		renderResponse.setContentType(ContentTypes.TEXT_HTML_UTF8);
-
-		String content = rewriteURLs(
-			renderResponse, markupContext.getItemString());
-
-		PortletResponseUtil.write(renderResponse, content);
+		processMimeResponse(
+			renderRequest, renderResponse, markupContext, false);
 	}
 
 	protected void doServeResource(
@@ -1288,6 +1285,61 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
+	protected void processMimeResponse(
+			PortletRequest portletRequest,
+			javax.portlet.MimeResponse jxMimeResponse,
+			MimeResponse mimeResponse, boolean resource)
+		throws Exception {
+
+		String contentType = mimeResponse.getMimeType();
+
+		if (Validator.isNotNull(contentType)) {
+			jxMimeResponse.setContentType(contentType);
+		}
+
+		String charSet = getCharSet(contentType);
+
+		String itemString = mimeResponse.getItemString();
+		byte[] itemBinary = mimeResponse.getItemBinary();
+
+		Boolean requiresRewriting = mimeResponse.getRequiresRewriting();
+
+		if (requiresRewriting == null) {
+			requiresRewriting = Boolean.FALSE;
+		}
+
+		if (ParamUtil.getBoolean(portletRequest, "wsrp-requiresRewrite") ||
+			requiresRewriting) {
+
+			if (itemBinary != null) {
+				itemString = new String(itemBinary, charSet);
+			}
+
+			itemString = rewriteURLs(jxMimeResponse, itemString);
+		}
+
+		if (Validator.isNotNull(itemString)) {
+			if (resource) {
+				ResourceResponse resourceResponse =
+					(ResourceResponse)jxMimeResponse;
+
+				resourceResponse.setContentLength(itemString.length());
+			}
+
+			PortletResponseUtil.write(jxMimeResponse, itemString);
+		}
+		else if (itemBinary != null) {
+			if (resource) {
+				ResourceResponse resourceResponse =
+					(ResourceResponse)jxMimeResponse;
+
+				resourceResponse.setContentLength(itemBinary.length);
+			}
+
+			PortletResponseUtil.write(jxMimeResponse, itemBinary);
+		}
+	}
+
 	protected void processMultipartForm(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			InteractionParams interactionParams)
@@ -1444,43 +1496,8 @@ public class ConsumerPortlet extends GenericPortlet {
 			}
 		}
 
-		String contentType = resourceContext.getMimeType();
-
-		if (Validator.isNotNull(contentType)) {
-			resourceResponse.setContentType(contentType);
-		}
-
-		String charSet = getCharSet(contentType);
-
-		String itemString = resourceContext.getItemString();
-		byte[] itemBinary = resourceContext.getItemBinary();
-
-		Boolean requiresRewriting = resourceContext.getRequiresRewriting();
-
-		if (requiresRewriting == null) {
-			requiresRewriting = Boolean.FALSE;
-		}
-
-		if (ParamUtil.getBoolean(resourceRequest, "wsrp-requiresRewrite") ||
-			requiresRewriting) {
-
-			if (itemBinary != null) {
-				itemString = new String(itemBinary, charSet);
-			}
-
-			itemString = rewriteURLs(resourceResponse, itemString);
-		}
-
-		if (Validator.isNotNull(itemString)) {
-			resourceResponse.setContentLength(itemString.length());
-
-			PortletResponseUtil.write(resourceResponse, itemString);
-		}
-		else if (itemBinary != null) {
-			resourceResponse.setContentLength(itemBinary.length);
-
-			PortletResponseUtil.write(resourceResponse, itemBinary);
-		}
+		processMimeResponse(
+			resourceRequest, resourceResponse, resourceContext, true);
 	}
 
 	protected void processUpdateResponse(
