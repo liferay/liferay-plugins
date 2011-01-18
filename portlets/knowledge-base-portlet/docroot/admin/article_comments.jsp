@@ -33,7 +33,7 @@ String content = BeanParamUtil.getString(comment, request, "content");
 boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 %>
 
-<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() %>">
+<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() && (article.isApproved() || (article.getVersion() > ArticleConstants.DEFAULT_VERSION)) %>">
 	<div class="kb-article-comments">
 		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">

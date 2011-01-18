@@ -15,11 +15,13 @@
 package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.CommentContentException;
+import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.service.base.CommentLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -37,6 +39,8 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 			long userId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		// Comment
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
@@ -62,11 +66,25 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 
 		commentPersistence.update(comment, false);
 
+		// Social
+
+		socialActivityLocalService.addActivity(
+			userId, comment.getGroupId(), Comment.class.getName(),
+			commentId, AdminActivityKeys.ADD_COMMENT, StringPool.BLANK, 0);
+
 		return comment;
 	}
 
 	public void deleteComment (Comment comment) throws SystemException {
+
+		// Comment
+
 		commentPersistence.remove(comment);
+
+		// Social
+
+		socialActivityLocalService.deleteActivities(
+			Comment.class.getName(), comment.getCommentId());
 	}
 
 	public void deleteComment (long commentId)
@@ -122,6 +140,8 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 			boolean helpful, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Comment
+
 		validate(content);
 
 		Comment comment = commentPersistence.findByPrimaryKey(commentId);
@@ -133,6 +153,12 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 		comment.setHelpful(helpful);
 
 		commentPersistence.update(comment, false);
+
+		// Social
+
+		socialActivityLocalService.addActivity(
+			comment.getUserId(), comment.getGroupId(), Comment.class.getName(),
+			commentId, AdminActivityKeys.UPDATE_COMMENT, StringPool.BLANK, 0);
 
 		return comment;
 	}
