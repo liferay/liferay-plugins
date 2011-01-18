@@ -16,78 +16,207 @@
 
 <%@ include file="/init.jsp" %>
 
+<%
+String topLink = ParamUtil.getString(request, "topLink", "contacts-home");
+
+int socialRelationType = ParamUtil.getInteger(request, "socialRelationType", 0);
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("jspPage", "/contacts_center/view.jsp");
+portletURL.setParameter("topLink", topLink);
+portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType));
+%>
+
+<c:if test="<%= socialRelationType > 0 %>">
+
+	<%
+	String title = "friends";
+
+	if (socialRelationType == SocialRelationConstants.TYPE_BI_COWORKER) {
+		title = "coworkers";
+	}
+	else if (socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
+		title = "following";
+	}
+	%>
+
+	<portlet:renderURL var="backURL">
+		<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
+		<portlet:param name="topLink" value="contacts-home" />
+	</portlet:renderURL>
+
+	<liferay-ui:header
+		backURL="<%= backURL.toString() %>"
+		title="<%= title %>"
+	/>
+</c:if>
+
 <aui:layout>
 	<aui:column columnWidth="<%= 75 %>" cssClass="lfr-asset-column lfr-asset-column-details" first="<%= true %>">
-		<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
+		<c:choose>
+			<c:when test="<%= socialRelationType > 0 %>">
+				<liferay-portlet:renderURL varImpl="searchURL">
+					<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
+					<portlet:param name="topLink" value="<%= topLink %>" />
+					<portlet:param name="socialRelationType" value="<%= String.valueOf(socialRelationType) %>" />
+				</liferay-portlet:renderURL>
 
-			<%
-			int requestCount = SocialRequestLocalServiceUtil.getReceiverUserRequestsCount(themeDisplay.getUserId(), SocialRequestConstants.STATUS_PENDING);
-			%>
+				<aui:form action="<%= searchURL %>" method="get" name="fm">
+					<liferay-portlet:renderURLParams varImpl="searchURL" />
+					<aui:input name="topLink" type="hidden" value="<%= topLink %>" />
+					<aui:input name="socialRelationType" type="hidden" value="<%= String.valueOf(socialRelationType) %>" />
 
-			<c:if test="<%= requestCount > 0 %>">
-				<div class="lfr-asset-metadata">
-					<div class="lfr-asset-icon lfr-asset-requests last">
-						<portlet:renderURL var="requestURL">
-							<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
-							<portlet:param name="topLink" value="requests" />
-						</portlet:renderURL>
+					<liferay-ui:search-container
+						emptyResultsMessage="no-users-were-found"
+						iteratorURL="<%= portletURL %>"
+					>
 
-						<a href="<%= requestURL %>"><liferay-ui:message arguments="<%= String.valueOf(requestCount) %>" key='<%= requestCount > 1 ? "you-have-x-pending-requests" : "you-have-a-pending-request" %>' /></a>
-					</div>
-				</div>
-			</c:if>
+						<%
+						String keywords = ParamUtil.getString(request, "keywords");
+						%>
 
-			<%
-			List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, delta, new UserLoginDateComparator());
-			%>
+						<div>
+							<aui:input inlineField="<%= true %>" id="keywords" label="" name="keywords" size="30" title="search-users" type="text" />
 
-			<c:if test="<%= !friendUsers.isEmpty() %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="friends">
+							<aui:button type="submit" value="search" />
+						</div>
+
+						<br />
+
+						<%
+						LinkedHashMap<String, Object> params = new LinkedHashMap<String, Object>();
+
+						params.put("socialRelationType", new Long[] {themeDisplay.getUserId(), new Long(socialRelationType)});
+						%>
+
+						<liferay-ui:search-container-results
+							results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, true, params, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
+							total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, true, params) %>"
+						/>
+
+						<liferay-ui:search-container-row
+							className="com.liferay.portal.model.User"
+							escapedModel="<%= true %>"
+							keyProperty="userId"
+							modelVar="user2"
+						>
+							<liferay-portlet:renderURL varImpl="rowURL">
+								<portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+								<portlet:param name="backURL" value="<%= currentURL %>" />
+								<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+							</liferay-portlet:renderURL>
+
+							<%@ include file="/contacts_center/user_columns.jspf" %>
+						</liferay-ui:search-container-row>
+
+						<liferay-ui:search-iterator />
+					</liferay-ui:search-container>
+				</aui:form>
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 
 					<%
-					request.setAttribute("view_contacts.jsp-users", friendUsers);
+					int requestCount = SocialRequestLocalServiceUtil.getReceiverUserRequestsCount(themeDisplay.getUserId(), SocialRequestConstants.STATUS_PENDING);
 					%>
 
-					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
-				</liferay-ui:panel>
-			</c:if>
+					<c:if test="<%= requestCount > 0 %>">
+						<div class="lfr-asset-metadata">
+							<div class="lfr-asset-icon lfr-asset-requests last">
+								<portlet:renderURL var="requestURL">
+									<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
+									<portlet:param name="topLink" value="requests" />
+								</portlet:renderURL>
 
-			<%
-			List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, delta, new UserLoginDateComparator());
-			%>
-
-			<c:if test="<%= !coworkerUsers.isEmpty() %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="coworkers">
+								<a href="<%= requestURL %>"><liferay-ui:message arguments="<%= String.valueOf(requestCount) %>" key='<%= requestCount > 1 ? "you-have-x-pending-requests" : "you-have-a-pending-request" %>' /></a>
+							</div>
+						</div>
+					</c:if>
 
 					<%
-					request.setAttribute("view_contacts.jsp-users", coworkerUsers);
+					int friendUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 					%>
 
-					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
-				</liferay-ui:panel>
-			</c:if>
+					<c:if test="<%= friendUsersCount > 0 %>">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="friends">
 
-			<%
-			List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, delta, new UserLoginDateComparator());
-			%>
+							<%
+							List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, delta, new UserLoginDateComparator());
 
-			<c:if test="<%= !followingUsers.isEmpty() %>">
-				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="following">
+							request.setAttribute("view_contacts.jsp-users", friendUsers);
+							%>
+
+							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+
+							<portlet:renderURL var="viewURL">
+								<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
+								<portlet:param name="topLink" value="contacts-home" />
+								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
+							</portlet:renderURL>
+
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(friendUsersCount) %>" key="view-x-friends" /></a>
+						</liferay-ui:panel>
+					</c:if>
 
 					<%
-					request.setAttribute("view_contacts.jsp-users", followingUsers);
+					int coworkerUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER);
 					%>
 
-					<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
-				</liferay-ui:panel>
-			</c:if>
+					<c:if test="<%= coworkerUsersCount > 0 %>">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="coworkers">
 
-			<c:if test="<%= friendUsers.isEmpty() && coworkerUsers.isEmpty() && followingUsers.isEmpty() %>">
-				<div class="portlet-msg-info">
-					<liferay-ui:message key="you-have-no-contacts" />
-				</div>
-			</c:if>
-		</liferay-ui:panel-container>
+							<%
+							List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, delta, new UserLoginDateComparator());
+
+							request.setAttribute("view_contacts.jsp-users", coworkerUsers);
+							%>
+
+							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+
+							<portlet:renderURL var="viewURL">
+								<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
+								<portlet:param name="topLink" value="contacts-home" />
+								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_COWORKER) %>" />
+							</portlet:renderURL>
+
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(coworkerUsersCount) %>" key="view-x-coworkers" /></a>
+						</liferay-ui:panel>
+					</c:if>
+
+					<%
+					int followingUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+					%>
+
+					<c:if test="<%= followingUsersCount > 0 %>">
+						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="following">
+
+							<%
+							List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, delta, new UserLoginDateComparator());
+
+							request.setAttribute("view_contacts.jsp-users", followingUsers);
+							%>
+
+							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+
+							<portlet:renderURL var="viewURL">
+								<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
+								<portlet:param name="topLink" value="contacts-home" />
+								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
+							</portlet:renderURL>
+
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="view-x-people-youre-following" /></a>
+						</liferay-ui:panel>
+					</c:if>
+
+					<c:if test="<%= (friendUsersCount <= 0) && (coworkerUsersCount <= 0) && (followingUsersCount <= 0) %>">
+						<div class="portlet-msg-info">
+							<liferay-ui:message key="you-have-no-contacts" />
+						</div>
+					</c:if>
+				</liferay-ui:panel-container>
+			</c:otherwise>
+		</c:choose>
 	</aui:column>
 
 	<aui:column columnWidth="<%= 25 %>" cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>">

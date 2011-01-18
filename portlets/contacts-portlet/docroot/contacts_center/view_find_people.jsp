@@ -27,6 +27,8 @@ portletURL.setParameter("topLink", topLink);
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
+<liferay-ui:header title="find-people" />
+
 <liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
 	<portlet:param name="topLink" value="<%= topLink %>" />
@@ -65,32 +67,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
 			</liferay-portlet:renderURL>
 
-			<liferay-ui:search-container-column-text
-				name="people"
-			>
-				<div class="lfr-user-portrait">
-					<a href="<%= rowURL %>"><img alt="<liferay-ui:message key="avatar" />" class="avatar" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
-				</div>
-
-				<div class="lfr-user-data">
-					<div class="lfr-user-data-name">
-						<a href="<%= rowURL %>"><%= user2.getFullName() %></a>
-					</div>
-
-					<div class="lfr-user-data-job-title">
-						<%= user2.getJobTitle() %>
-					</div>
-
-					<div class="lfr-user-data-extra">
-						<span class="lfr-user-data-email"><%= user2.getEmailAddress() %></span>
-					</div>
-				</div>
-			</liferay-ui:search-container-column-text>
-
-			<liferay-ui:search-container-column-jsp
-				align="right"
-				path="/contacts_center/user_action.jsp"
-			/>
+			<%@ include file="/contacts_center/user_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />
