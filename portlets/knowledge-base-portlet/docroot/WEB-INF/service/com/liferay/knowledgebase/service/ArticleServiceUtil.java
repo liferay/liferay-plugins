@@ -115,14 +115,14 @@ public class ArticleServiceUtil {
 			viewableParentResourcePrimKeys);
 	}
 
-	public static java.lang.String getArticleRSS(java.lang.String portletId,
-		long resourcePrimKey, int status, int rssDelta,
-		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
+	public static java.lang.String getArticleRSS(long resourcePrimKey,
+		int status, int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getArticleRSS(portletId, resourcePrimKey, status, rssDelta,
+				   .getArticleRSS(resourcePrimKey, status, rssDelta,
 			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
@@ -144,15 +144,15 @@ public class ArticleServiceUtil {
 			viewableParentResourcePrimKeys);
 	}
 
-	public static java.lang.String getGroupArticlesRSS(
-		java.lang.String portletId, int status, int rssDelta,
-		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
+	public static java.lang.String getGroupArticlesRSS(int status,
+		int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getGroupArticlesRSS(portletId, status, rssDelta,
-			rssDisplayStyle, rssFormat, themeDisplay);
+				   .getGroupArticlesRSS(status, rssDelta, rssDisplayStyle,
+			rssFormat, themeDisplay);
 	}
 
 	public static com.liferay.knowledgebase.model.Article getLatestArticle(

@@ -63,8 +63,8 @@ public class ArticleServiceClp implements ArticleService {
 				long[].class);
 
 		_getArticleRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticleRSS", java.lang.String.class, long.class, int.class,
-				int.class, java.lang.String.class, java.lang.String.class,
+				"getArticleRSS", long.class, int.class, int.class,
+				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
 		_getGroupArticlesMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -76,8 +76,8 @@ public class ArticleServiceClp implements ArticleService {
 				"getGroupArticlesCount", long.class, int.class, long[].class);
 
 		_getGroupArticlesRSSMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getGroupArticlesRSS", java.lang.String.class, int.class,
-				int.class, java.lang.String.class, java.lang.String.class,
+				"getGroupArticlesRSS", int.class, int.class,
+				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.theme.ThemeDisplay.class);
 
 		_getLatestArticleMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -411,17 +411,16 @@ public class ArticleServiceClp implements ArticleService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public java.lang.String getArticleRSS(java.lang.String portletId,
-		long resourcePrimKey, int status, int rssDelta,
-		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
+	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
+		int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getArticleRSSMethodKey9,
-				ClpSerializer.translateInput(portletId), resourcePrimKey,
-				status, rssDelta,
+				resourcePrimKey, status, rssDelta,
 				ClpSerializer.translateInput(rssDisplayStyle),
 				ClpSerializer.translateInput(rssFormat),
 				ClpSerializer.translateInput(themeDisplay));
@@ -511,16 +510,15 @@ public class ArticleServiceClp implements ArticleService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public java.lang.String getGroupArticlesRSS(java.lang.String portletId,
-		int status, int rssDelta, java.lang.String rssDisplayStyle,
-		java.lang.String rssFormat,
+	public java.lang.String getGroupArticlesRSS(int status, int rssDelta,
+		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getGroupArticlesRSSMethodKey12,
-				ClpSerializer.translateInput(portletId), status, rssDelta,
+				status, rssDelta,
 				ClpSerializer.translateInput(rssDisplayStyle),
 				ClpSerializer.translateInput(rssFormat),
 				ClpSerializer.translateInput(themeDisplay));
