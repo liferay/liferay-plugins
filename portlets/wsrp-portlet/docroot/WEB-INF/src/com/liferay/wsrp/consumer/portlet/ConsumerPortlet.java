@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -1291,11 +1292,10 @@ public class ConsumerPortlet extends GenericPortlet {
 			MimeResponse mimeResponse, boolean resource)
 		throws Exception {
 
-		String contentType = mimeResponse.getMimeType();
+		String contentType = GetterUtil.get(
+			mimeResponse.getMimeType(), ContentTypes.TEXT_HTML_UTF8);
 
-		if (Validator.isNotNull(contentType)) {
-			jxMimeResponse.setContentType(contentType);
-		}
+		jxMimeResponse.setContentType(contentType);
 
 		String charSet = getCharSet(contentType);
 
