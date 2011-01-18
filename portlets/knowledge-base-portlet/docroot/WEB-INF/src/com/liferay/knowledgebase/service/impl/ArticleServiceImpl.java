@@ -202,7 +202,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String getArticleRSS(
-			String portletId, long resourcePrimKey, int status, int rssDelta,
+			long resourcePrimKey, int status, int rssDelta,
 			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
@@ -213,8 +213,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String description = HtmlUtil.escape(article.getTitle());
 
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			themeDisplay.getScopeGroupId(), themeDisplay.getPlid(), portletId,
-			resourcePrimKey, themeDisplay.getPortalURL());
+			themeDisplay.getPlid(), resourcePrimKey,
+			themeDisplay.getPortalURL());
 
 		List<Article> articles = Collections.emptyList();
 
@@ -230,8 +230,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		return exportToRSS(
-			portletId, rssDisplayStyle, rssFormat, name, description, feedURL,
-			articles, themeDisplay);
+			rssDisplayStyle, rssFormat, name, description, feedURL, articles,
+			themeDisplay);
 	}
 
 	public List<Article> getGroupArticles(
@@ -273,8 +273,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String getGroupArticlesRSS(
-			String portletId, int status, int rssDelta, String rssDisplayStyle,
-			String rssFormat, ThemeDisplay themeDisplay)
+			int status, int rssDelta, String rssDisplayStyle, String rssFormat,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		Group group = themeDisplay.getScopeGroup();
@@ -291,8 +291,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			new ArticleModifiedDateComparator());
 
 		return exportToRSS(
-			portletId, rssDisplayStyle, rssFormat, name, description, feedURL,
-			articles, themeDisplay);
+			rssDisplayStyle, rssFormat, name, description, feedURL, articles,
+			themeDisplay);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey, int status)
@@ -429,9 +429,9 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	protected String exportToRSS(
-			String portletId, String rssDisplayStyle, String rssFormat,
-			String name, String description, String feedURL,
-			List<Article> articles, ThemeDisplay themeDisplay)
+			String rssDisplayStyle, String rssFormat, String name,
+			String description, String feedURL, List<Article> articles,
+			ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
@@ -471,8 +471,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			author = HtmlUtil.escape(userName);
 
 			String link = KnowledgeBaseUtil.getArticleURL(
-				themeDisplay.getScopeGroupId(), themeDisplay.getPlid(),
-				portletId, article.getResourcePrimKey(),
+				themeDisplay.getPlid(), article.getResourcePrimKey(),
 				themeDisplay.getPortalURL());
 
 			SyndContent syndContent = new SyndContentImpl();

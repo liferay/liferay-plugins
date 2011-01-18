@@ -11,11 +11,6 @@
 		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/all-articles</pattern>
-		<implicit-parameter name="jspPage">/admin/view_all_articles.jsp</implicit-parameter>
-		<implicit-parameter name="topLink">all-articles</implicit-parameter>
-	</route>
-	<route>
 		<pattern>/home</pattern>
 		<implicit-parameter name="jspPage">/admin/view.jsp</implicit-parameter>
 		<implicit-parameter name="topLink">home</implicit-parameter>

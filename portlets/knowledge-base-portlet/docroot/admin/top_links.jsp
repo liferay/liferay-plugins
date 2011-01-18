@@ -36,7 +36,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 				%>
 
 				<liferay-ui:icon
-					cssClass="top-link"
+					cssClass='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") ? "top-link" : "top-link last" %>'
 					image="../aui/home"
 					label="<%= true %>"
 					message="home"
@@ -55,7 +55,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 					%>
 
 					<liferay-ui:icon
-						cssClass="top-link"
+						cssClass="top-link last"
 						image="../aui/bookmark"
 						label="<%= true %>"
 						message="templates"
@@ -63,24 +63,6 @@ String path = GetterUtil.getString(request.getPathInfo());
 						url="<%= taglibURL %>"
 					/>
 				</c:if>
-
-				<portlet:renderURL var="allArticlesURL">
-					<portlet:param name="jspPage" value="/admin/view_all_articles.jsp" />
-					<portlet:param name="topLink" value="all-articles" />
-				</portlet:renderURL>
-
-				<%
-				taglibURL = topLink.equals("all-articles") ? StringPool.BLANK : allArticlesURL;
-				%>
-
-				<liferay-ui:icon
-					cssClass="top-link last"
-					image="view"
-					label="<%= true %>"
-					message="all-articles"
-					method="get"
-					url="<%= taglibURL %>"
-				/>
 			</div>
 
 			<div class="article-search">

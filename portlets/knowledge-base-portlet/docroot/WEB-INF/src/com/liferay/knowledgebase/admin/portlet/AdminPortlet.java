@@ -206,11 +206,9 @@ public class AdminPortlet extends MVCPortlet {
 			resourceRequest, "rssDisplayStyle");
 		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
 
-		String portletId = PortalUtil.getPortletId(resourceRequest);
-
 		String rss = ArticleServiceUtil.getArticleRSS(
-			portletId, resourcePrimKey, _STATUS, rssDelta, rssDisplayStyle,
-			rssFormat, themeDisplay);
+			resourcePrimKey, _STATUS, rssDelta, rssDisplayStyle, rssFormat,
+			themeDisplay);
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, null,
@@ -245,11 +243,8 @@ public class AdminPortlet extends MVCPortlet {
 			resourceRequest, "rssDisplayStyle");
 		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
 
-		String portletId = PortalUtil.getPortletId(resourceRequest);
-
 		String rss = ArticleServiceUtil.getGroupArticlesRSS(
-			portletId, _STATUS, rssDelta, rssDisplayStyle, rssFormat,
-			themeDisplay);
+			_STATUS, rssDelta, rssDisplayStyle, rssFormat, themeDisplay);
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, null,

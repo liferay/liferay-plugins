@@ -25,8 +25,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.model.CompanyConstants;
-import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -35,7 +33,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.SubscriptionSender;
 
 import java.util.Locale;
@@ -98,15 +95,8 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		long plid = LayoutLocalServiceUtil.getDefaultPlid(
 			_article.getGroupId());
 
-		if (plid == LayoutConstants.DEFAULT_PLID) {
-			return _portalURL;
-		}
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		String currentURL = _portalURL + PortalUtil.getLayoutActualURL(layout);
-
-		return KnowledgeBaseUtil.findArticleURL(resourcePrimKey, currentURL);
+		return KnowledgeBaseUtil.getArticleURL(
+			plid, resourcePrimKey, _portalURL);
 	}
 
 	protected boolean hasPermission(Subscription subscription, User user)

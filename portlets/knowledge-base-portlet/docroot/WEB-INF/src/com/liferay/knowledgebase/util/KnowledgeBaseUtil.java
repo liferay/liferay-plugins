@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.util;
 
-import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.hook.events.ServicePreAction;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
@@ -71,71 +70,18 @@ import javax.portlet.WindowState;
  */
 public class KnowledgeBaseUtil {
 
-	public static String findArticleURL(
-		long resourcePrimKey, String currentURL) {
-
-		String namespace = ServicePreAction.NAMESPACE;
-
-		currentURL = HttpUtil.setParameter(
-			currentURL, namespace + Constants.CMD, Constants.FIND_ARTICLE);
-		currentURL = HttpUtil.setParameter(
-			currentURL, namespace + "resourcePrimKey", resourcePrimKey);
-
-		return currentURL;
-	}
-
 	public static String getArticleURL(
-			long groupId, long plid, String portletId, long resourcePrimKey,
-			String portalURL)
+			long plid, long resourcePrimKey, String portalURL)
 		throws PortalException, SystemException {
-
-		if (!isValidPortletId(portletId)) {
-			return StringPool.BLANK;
-		}
-
-		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			return AdminUtil.getArticleURL(groupId, resourcePrimKey);
-		}
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
-
-		Map<String, String> preferencesMap = initPortletPreferencesMap(
-			portletId, preferences);
-
-		String p_p_state = null;
-		String jspPage = null;
-
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			p_p_state = preferencesMap.get("articleWindowState");
-			jspPage = "/aggregator/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			p_p_state = WindowState.NORMAL.toString();
-			jspPage = "/display/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
-			p_p_state = preferencesMap.get("articleWindowState");
-			jspPage = "/list/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
-			p_p_state = WindowState.MAXIMIZED.toString();
-			jspPage = "/search/view_article.jsp";
-		}
-
 		String articleURL = portalURL + PortalUtil.getLayoutActualURL(layout);
 
-		String namespace = PortalUtil.getPortletNamespace(portletId);
+		String namespace = ServicePreAction.NAMESPACE;
 
-		articleURL = HttpUtil.setParameter(articleURL, "p_p_id", portletId);
-		articleURL = HttpUtil.setParameter(articleURL, "p_p_state", p_p_state);
 		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + "jspPage", jspPage);
+			articleURL, namespace + Constants.CMD, Constants.FIND_ARTICLE);
 		articleURL = HttpUtil.setParameter(
 			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
 
@@ -149,11 +95,7 @@ public class KnowledgeBaseUtil {
 		throws PortalException, SystemException {
 
 		if (!isValidPortletId(portletId)) {
-			return new HashMap<String, Object>();
-		}
-
-		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			return new HashMap<String, Object>();
+			return Collections.emptyMap();
 		}
 
 		Map<String, String> preferencesMap = initPortletPreferencesMap(
@@ -234,7 +176,8 @@ public class KnowledgeBaseUtil {
 			articles = ArticleServiceUtil.getArticles(
 				groupId, resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
 				null, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-			articles = sortArticles(resourcePrimKeys, articles);
+			articles = sortPortletPreferencesArticles(
+				resourcePrimKeys, articles);
 
 			count = articles.size();
 
@@ -251,7 +194,7 @@ public class KnowledgeBaseUtil {
 		return articlesMap;
 	}
 
-	public static boolean hasArticle(
+	public static boolean hasPortletPreferencesArticle(
 			long plid, String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
@@ -266,10 +209,6 @@ public class KnowledgeBaseUtil {
 				permissionChecker, resourcePrimKey, ActionKeys.VIEW)) {
 
 			return false;
-		}
-
-		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			return true;
 		}
 
 		Article article = ArticleServiceUtil.getLatestArticle(
@@ -356,8 +295,8 @@ public class KnowledgeBaseUtil {
 	public static Map<String, String> initPortletPreferencesMap(
 		String portletId, PortletPreferences preferences) {
 
-		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			return AdminUtil.initPortletPreferencesMap(preferences);
+		if (!isValidPortletId(portletId)) {
+			return Collections.emptyMap();
 		}
 
 		Map<String, Object> defaultPreferences = new HashMap<String, Object>();
@@ -411,7 +350,7 @@ public class KnowledgeBaseUtil {
 		return Collections.unmodifiableMap(preferencesMap);
 	}
 
-	public static List<Article> sortArticles(
+	public static List<Article> sortPortletPreferencesArticles(
 		long[] resourcePrimKeys, List<Article> articles) {
 
 		long[] keys = StringUtil.split(
@@ -621,6 +560,9 @@ public class KnowledgeBaseUtil {
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
 		String[] rootPortletIds = PortletKeys.KNOWLEDGE_BASE_PORTLETS;
+
+		rootPortletIds = ArrayUtil.remove(
+			rootPortletIds, PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 		return ArrayUtil.contains(rootPortletIds, rootPortletId);
 	}

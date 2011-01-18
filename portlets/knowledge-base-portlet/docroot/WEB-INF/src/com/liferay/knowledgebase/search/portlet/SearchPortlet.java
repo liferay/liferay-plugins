@@ -36,7 +36,6 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.IOException;
@@ -121,11 +120,9 @@ public class SearchPortlet extends AdminPortlet {
 			resourceRequest, "rssDisplayStyle");
 		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
 
-		String portletId = PortalUtil.getPortletId(resourceRequest);
-
 		String rss = ArticleServiceUtil.getArticleRSS(
-			portletId, resourcePrimKey, _STATUS, rssDelta, rssDisplayStyle,
-			rssFormat, themeDisplay);
+			resourcePrimKey, _STATUS, rssDelta, rssDisplayStyle, rssFormat,
+			themeDisplay);
 
 		PortletResponseUtil.sendFile(
 			resourceRequest, resourceResponse, null,
