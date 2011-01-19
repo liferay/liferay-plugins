@@ -30,6 +30,7 @@ boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get(
 boolean enableArticleAssetTags = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetTags"));
 boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableArticleRatings"));
 boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
+boolean showArticleComments = GetterUtil.getBoolean(preferencesMap.get("showArticleComments"));
 
 String selectionMethod = preferencesMap.get("selection-method");
 long[] resourcePrimKeys = StringUtil.split(preferencesMap.get("resourcePrimKeys"), 0L);

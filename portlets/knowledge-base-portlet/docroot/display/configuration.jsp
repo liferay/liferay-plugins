@@ -56,7 +56,9 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 
 				<aui:input inlineLabel="left" label="show-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
 
-				<aui:input inlineLabel="left" label="show-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+				<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+
+				<aui:input inlineLabel="left" label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("selection-method") %>'>
 				<div class="portlet-msg-info">

@@ -312,6 +312,7 @@ public class KnowledgeBaseUtil {
 		defaultPreferences.put("enableArticleAssetTags", true);
 		defaultPreferences.put("enableArticleRatings", false);
 		defaultPreferences.put("enableArticleComments", true);
+		defaultPreferences.put("showArticleComments", true);
 
 		defaultPreferences.put("selectionMethod", "group");
 		defaultPreferences.put("resourcePrimKeys", new Long[0]);
