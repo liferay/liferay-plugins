@@ -28,9 +28,11 @@
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
@@ -48,6 +50,7 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.util.comparator.UserLastNameComparator" %>
 <%@ page import="com.liferay.portal.util.comparator.UserLoginDateComparator" %>
+<%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRequestConstants" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
@@ -57,6 +60,7 @@
 <%@ page import="java.util.LinkedHashMap" %>
 <%@ page import="java.util.List" %>
 
+<%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
@@ -65,7 +69,28 @@
 <liferay-theme:defineObjects />
 
 <%
+PortletPreferences preferences = renderRequest.getPreferences();
+
+String portletResource = ParamUtil.getString(request, "portletResource");
+
+if (Validator.isNotNull(portletResource)) {
+	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
+}
+
 String currentURL = PortalUtil.getCurrentURL(request);
 
-int delta = 20;
+int usersPerSection = PrefsParamUtil.getInteger(preferences, request, "usersPerSection", 20);
+
+boolean showUsersInformation = PrefsParamUtil.getBoolean(preferences, request, "showUsersInformation", true);
+
+boolean showAdditionalEmailAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAdditionalEmailAddresses", true);
+boolean showAddresses = PrefsParamUtil.getBoolean(preferences, request, "showAddresses", true);
+boolean showComments = PrefsParamUtil.getBoolean(preferences, request, "showComments", true);
+boolean showInstantMessenger = PrefsParamUtil.getBoolean(preferences, request, "showInstantMessenger", true);
+boolean showPhones = PrefsParamUtil.getBoolean(preferences, request, "showPhones", true);
+boolean showSMS = PrefsParamUtil.getBoolean(preferences, request, "showSMS", true);
+boolean showSocialNetwork = PrefsParamUtil.getBoolean(preferences, request, "showSocialNetwork", true);
+boolean showWebsites = PrefsParamUtil.getBoolean(preferences, request, "showWebsites", true);
+
+boolean showUsersRecentActivity = PrefsParamUtil.getBoolean(preferences, request, "showUsersRecentActivity", true);
 %>

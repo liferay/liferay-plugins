@@ -142,7 +142,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="friends">
 
 							<%
-							List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, delta, new UserLoginDateComparator());
+							List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, usersPerSection, new UserLoginDateComparator());
 
 							request.setAttribute("view_contacts.jsp-users", friendUsers);
 							%>
@@ -167,7 +167,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="coworkers">
 
 							<%
-							List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, delta, new UserLoginDateComparator());
+							List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, usersPerSection, new UserLoginDateComparator());
 
 							request.setAttribute("view_contacts.jsp-users", coworkerUsers);
 							%>
@@ -192,7 +192,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 						<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="following">
 
 							<%
-							List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, delta, new UserLoginDateComparator());
+							List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, usersPerSection, new UserLoginDateComparator());
 
 							request.setAttribute("view_contacts.jsp-users", followingUsers);
 							%>
@@ -205,7 +205,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 								<portlet:param name="socialRelationType" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
 							</portlet:renderURL>
 
-							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="view-x-people-youre-following" /></a>
+							<a href="<%= viewURL %>"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key="view-x-people-you-are-following" /></a>
 						</liferay-ui:panel>
 					</c:if>
 

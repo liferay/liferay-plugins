@@ -20,6 +20,10 @@
 	color: #999;
 }
 
+.lfr-user-profile-preferences {
+	margin-left: 20px;
+}
+
 .contacts-portlet-contacts-center .contact-search {
 	float: right;
 	margin: 0 0 .5em .5em;
