@@ -263,7 +263,7 @@ public class AggregatorPortlet extends MVCPortlet {
 		long classNameId = ParamUtil.getLong(actionRequest, "classNameId");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		String content = ParamUtil.getString(actionRequest, "content");
-		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful", true);
+		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Comment.class.getName(), actionRequest);

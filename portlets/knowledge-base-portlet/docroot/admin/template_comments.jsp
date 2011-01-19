@@ -60,7 +60,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 						<div class="kb-helpful-inputs">
 							<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
 
-							<aui:input checked="<%= (comment != null) && helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
+							<aui:input checked="<%= (comment == null) || helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
 							<aui:input checked="<%= (comment != null) && !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
 						</div>
 
