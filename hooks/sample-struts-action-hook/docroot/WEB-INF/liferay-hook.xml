@@ -5,11 +5,11 @@
 	<portal-properties>portal.properties</portal-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<struts-action>
-		<struts-action-path>/portal/sample</struts-action-path>
-		<struts-action-impl>com.liferay.samplestrutsaction.hook.action.SampleStrutsAction</struts-action-impl>
-	</struts-action>
-	<struts-action>
 		<struts-action-path>/message_boards/view</struts-action-path>
 		<struts-action-impl>com.liferay.samplestrutsaction.hook.action.SampleStrutsPortletAction</struts-action-impl>
+	</struts-action>
+	<struts-action>
+		<struts-action-path>/portal/sample</struts-action-path>
+		<struts-action-impl>com.liferay.samplestrutsaction.hook.action.SampleStrutsAction</struts-action-impl>
 	</struts-action>
 </hook>

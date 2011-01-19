@@ -31,37 +31,38 @@ import javax.portlet.ResourceResponse;
 public class SampleStrutsPortletAction extends BaseStrutsPortletAction {
 
 	public void processAction(
-		StrutsPortletAction originalStrutsPortletAction,
-		PortletConfig portletConfig, ActionRequest actionRequest,
-		ActionResponse actionResponse)
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ActionRequest actionRequest,
+			ActionResponse actionResponse)
 		throws Exception {
 
 		originalStrutsPortletAction.processAction(
-			originalStrutsPortletAction, portletConfig, actionRequest,
-			actionResponse);
+			portletConfig, actionRequest, actionResponse);
 	}
 
 	public String render(
-		StrutsPortletAction originalStrutsPortletAction,
-		PortletConfig portletConfig, RenderRequest renderRequest,
-		RenderResponse renderResponse)
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, RenderRequest renderRequest,
+			RenderResponse renderResponse)
 		throws Exception {
 
-		System.out.println("Wrapped /message_boards/view action");
+		System.out.println(
+			"Called SampleStrutsPortletAction.render(" +
+				originalStrutsPortletAction + ", " + portletConfig + ", " +
+					renderRequest + ", " + renderResponse + ")");
 
 		return originalStrutsPortletAction.render(
-			null, portletConfig, renderRequest, renderResponse);
+			portletConfig, renderRequest, renderResponse);
 	}
 
 	public void serveResource(
-		StrutsPortletAction originalStrutsPortletAction,
-		PortletConfig portletConfig, ResourceRequest resourceRequest,
-		ResourceResponse resourceResponse)
+			StrutsPortletAction originalStrutsPortletAction,
+			PortletConfig portletConfig, ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse)
 		throws Exception {
 
 		originalStrutsPortletAction.serveResource(
-			originalStrutsPortletAction, portletConfig, resourceRequest,
-			resourceResponse);
+			portletConfig, resourceRequest, resourceResponse);
 	}
 
 }
