@@ -31,15 +31,21 @@
 		<aui:field-wrapper cssClass="lfr-user-profile-preferences">
 			<aui:column>
 				<aui:input name="preferences--showAdditionalEmailAddresses--" type="checkbox" value="<%= showAdditionalEmailAddresses %>" />
+
 				<aui:input name="preferences--showAddresses--" type="checkbox" value="<%= showAddresses %>" />
+
 				<aui:input name="preferences--showComments--" type="checkbox" value="<%= showComments %>" />
+
 				<aui:input name="preferences--showInstantMessenger--" type="checkbox" value="<%= showInstantMessenger %>" />
 			</aui:column>
 
 			<aui:column>
 				<aui:input name="preferences--showPhones--" type="checkbox" value="<%= showPhones %>" />
+
 				<aui:input label="show-sms" name="preferences--showSMS--" type="checkbox" value="<%= showSMS %>" />
+
 				<aui:input name="preferences--showSocialNetwork--" type="checkbox" value="<%= showSocialNetwork %>" />
+
 				<aui:input name="preferences--showWebsites--" type="checkbox" value="<%= showWebsites %>" />
 			</aui:column>
 		</aui:field-wrapper>
