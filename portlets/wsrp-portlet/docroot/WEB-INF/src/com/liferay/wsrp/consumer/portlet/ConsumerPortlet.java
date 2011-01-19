@@ -344,8 +344,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			markupContext = markupResponse.getMarkupContext();
 		}
 
-		processMimeResponse(
-			renderRequest, renderResponse, markupContext, false);
+		processMimeResponse(renderRequest, renderResponse, markupContext);
 	}
 
 	protected void doServeResource(
@@ -1289,7 +1288,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected void processMimeResponse(
 			PortletRequest portletRequest,
 			javax.portlet.MimeResponse jxMimeResponse,
-			MimeResponse mimeResponse, boolean resource)
+			MimeResponse mimeResponse)
 		throws Exception {
 
 		String contentType = GetterUtil.get(
@@ -1319,7 +1318,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		if (Validator.isNotNull(itemString)) {
-			if (resource) {
+			if (jxMimeResponse instanceof ResourceResponse) {
 				ResourceResponse resourceResponse =
 					(ResourceResponse)jxMimeResponse;
 
@@ -1329,7 +1328,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			PortletResponseUtil.write(jxMimeResponse, itemString);
 		}
 		else if (itemBinary != null) {
-			if (resource) {
+			if (jxMimeResponse instanceof ResourceResponse) {
 				ResourceResponse resourceResponse =
 					(ResourceResponse)jxMimeResponse;
 
@@ -1496,8 +1495,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			}
 		}
 
-		processMimeResponse(
-			resourceRequest, resourceResponse, resourceContext, true);
+		processMimeResponse(resourceRequest, resourceResponse, resourceContext);
 	}
 
 	protected void processUpdateResponse(
