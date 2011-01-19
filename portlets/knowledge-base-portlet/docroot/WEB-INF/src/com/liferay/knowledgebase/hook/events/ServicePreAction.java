@@ -152,10 +152,10 @@ public class ServicePreAction extends Action {
 			return getDisplayPortletURL(resourcePrimKey, request);
 		}
 
-		boolean viewPermission = ArticlePermission.contains(
-			themeDisplay.getPermissionChecker(), article, ActionKeys.VIEW);
+		if (!ArticlePermission.contains(
+				themeDisplay.getPermissionChecker(), article,
+				ActionKeys.VIEW)) {
 
-		if (!viewPermission) {
 			return getDisplayPortletURL(resourcePrimKey, request);
 		}
 
