@@ -19,7 +19,7 @@
 <%
 String topLink = ParamUtil.getString(request, "topLink", "contacts-home");
 
-int socialRelationType = ParamUtil.getInteger(request, "socialRelationType", 0);
+int socialRelationType = ParamUtil.getInteger(request, "socialRelationType");
 
 boolean viewUser = GetterUtil.getBoolean((String)request.getAttribute("view_user.jsp-viewUser"));
 
@@ -39,7 +39,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 				image="../aui/home"
 				label="<%= true %>"
 				message="contacts-home"
-				url='<%= (topLink.equals("contacts-home") && !viewUser && (socialRelationType <= 0)) ? StringPool.BLANK : portletURL.toString() %>'
+				url='<%= (topLink.equals("contacts-home") && (socialRelationType <= 0) && !viewUser) ? StringPool.BLANK : portletURL.toString() %>'
 			/>
 
 			<%
