@@ -14,7 +14,11 @@
 
 package com.liferay.knowledgebase.hook.events;
 
+import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
+import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
+import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.Constants;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
@@ -32,12 +36,14 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.auth.AuthTokenUtil;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -136,14 +142,31 @@ public class ServicePreAction extends Action {
 		long resourcePrimKey = ParamUtil.getLong(
 			request, NAMESPACE + "resourcePrimKey");
 
-		if (resourcePrimKey <= 0) {
-			return null;
+		Article article = null;
+
+		try {
+			article = ArticleLocalServiceUtil.getLatestArticle(
+				resourcePrimKey, WorkflowConstants.STATUS_ANY);
+		}
+		catch (NoSuchArticleException nsae) {
+			return getDisplayPortletURL(resourcePrimKey, request);
 		}
 
-		String articleURL = getArticleURL(false, resourcePrimKey, themeDisplay);
+		boolean viewPermission = ArticlePermission.contains(
+			themeDisplay.getPermissionChecker(), article, ActionKeys.VIEW);
 
-		if (articleURL == null) {
-			articleURL = getArticleURL(true, resourcePrimKey, themeDisplay);
+		if (!viewPermission) {
+			return getDisplayPortletURL(resourcePrimKey, request);
+		}
+
+		String articleURL = null;
+
+		if (article.getGroupId() == themeDisplay.getScopeGroupId()) {
+			articleURL = getArticleURL(false, resourcePrimKey, themeDisplay);
+
+			if (articleURL == null) {
+				articleURL = getArticleURL(true, resourcePrimKey, themeDisplay);
+			}
 		}
 
 		if (articleURL == null) {

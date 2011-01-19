@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
@@ -293,6 +294,18 @@ public class DisplayPortlet extends MVCPortlet {
 		throws PortletException {
 
 		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			LayoutTypePortlet layoutTypePortlet =
+				themeDisplay.getLayoutTypePortlet();
+
+			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+			if (!layoutTypePortlet.hasPortletId(portletDisplay.getId())) {
+				return false;
+			}
+
 			PortletSession portletSession = renderRequest.getPortletSession();
 
 			Article newArticle = getArticle(renderRequest);
