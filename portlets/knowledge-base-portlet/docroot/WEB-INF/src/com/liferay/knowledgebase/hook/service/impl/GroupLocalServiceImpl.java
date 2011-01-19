@@ -12,31 +12,32 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.listeners;
+package com.liferay.knowledgebase.hook.service.impl;
 
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
-import com.liferay.portal.ModelListenerException;
-import com.liferay.portal.model.BaseModelListener;
-import com.liferay.portal.model.Group;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.GroupLocalService;
+import com.liferay.portal.service.GroupLocalServiceWrapper;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Peter Shin
  */
-public class GroupListener extends BaseModelListener<Group> {
+public class GroupLocalServiceImpl extends GroupLocalServiceWrapper {
 
-	public void onBeforeRemove(Group group) throws ModelListenerException {
-		try {
-			doOnBeforeRemove(group);
-		}
-		catch (Exception e) {
-			throw new ModelListenerException(e);
-		}
+	public GroupLocalServiceImpl(GroupLocalService groupLocalService) {
+		super(groupLocalService);
 	}
 
-	protected void doOnBeforeRemove(Group group) throws Exception {
-		ArticleLocalServiceUtil.deleteGroupArticles(group.getGroupId());
-		TemplateLocalServiceUtil.deleteGroupTemplates(group.getGroupId());
+	public void deleteGroup(long groupId)
+		throws PortalException, SystemException {
+
+		ArticleLocalServiceUtil.deleteGroupArticles(groupId);
+
+		TemplateLocalServiceUtil.deleteGroupTemplates(groupId);
+
+		super.deleteGroup(groupId);
 	}
 
 }

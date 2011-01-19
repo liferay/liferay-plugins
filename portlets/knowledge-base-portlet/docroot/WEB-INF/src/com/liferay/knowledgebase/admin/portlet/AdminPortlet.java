@@ -27,6 +27,7 @@ import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.TemplateContentException;
 import com.liferay.knowledgebase.TemplateTitleException;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
@@ -436,7 +437,7 @@ public class AdminPortlet extends MVCPortlet {
 		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Article.class.getName(), actionRequest);
+			Comment.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
 			CommentLocalServiceUtil.addComment(

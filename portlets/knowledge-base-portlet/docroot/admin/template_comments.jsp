@@ -93,6 +93,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 				</c:if>
 
 				<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateComment();" %>'>
+					<aui:input name="<%= Constants.CMD %>" type="hidden" />
 					<aui:input name="commentId" type="hidden" value="<%= commentId %>" />
 					<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(Template.class) %>" />
 					<aui:input name="classPK" type="hidden" value="<%= template.getTemplateId() %>" />
@@ -220,6 +221,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 		}
 
 		function <portlet:namespace />updateComment() {
+			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (comment == null) ? Constants.ADD : Constants.UPDATE %>";
 			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /><portlet:param name="redirect" value="<%= viewTemplateURL %>" /></portlet:actionURL>");
 		}
 	</aui:script>

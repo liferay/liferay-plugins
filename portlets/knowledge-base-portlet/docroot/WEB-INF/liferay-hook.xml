@@ -4,4 +4,8 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<language-properties>content/Language_en.properties</language-properties>
+	<service>
+		<service-type>com.liferay.portal.service.GroupLocalService</service-type>
+		<service-impl>com.liferay.knowledgebase.hook.service.impl.GroupLocalServiceImpl</service-impl>
+	</service>
 </hook>

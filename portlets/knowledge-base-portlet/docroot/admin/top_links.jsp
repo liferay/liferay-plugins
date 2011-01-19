@@ -25,26 +25,26 @@ String path = GetterUtil.getString(request.getPathInfo());
 <c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<div class="top-links-container">
 		<div class="top-links">
-			<div class="top-links-navigation">
-				<portlet:renderURL var="homeURL">
-					<portlet:param name="jspPage" value="/admin/view.jsp" />
-					<portlet:param name="topLink" value="home" />
-				</portlet:renderURL>
+			<c:if test='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") %>'>
+				<div class="top-links-navigation">
+					<portlet:renderURL var="homeURL">
+						<portlet:param name="jspPage" value="/admin/view.jsp" />
+						<portlet:param name="topLink" value="home" />
+					</portlet:renderURL>
 
-				<%
-				String taglibURL = (path.endsWith("/admin/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
-				%>
+					<%
+					String taglibURL = (path.endsWith("/admin/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
+					%>
 
-				<liferay-ui:icon
-					cssClass='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") ? "top-link" : "top-link last" %>'
-					image="../aui/home"
-					label="<%= true %>"
-					message="home"
-					method="get"
-					url="<%= taglibURL %>"
-				/>
+					<liferay-ui:icon
+						cssClass="top-link"
+						image="../aui/home"
+						label="<%= true %>"
+						message="home"
+						method="get"
+						url="<%= taglibURL %>"
+					/>
 
-				<c:if test='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") %>'>
 					<portlet:renderURL var="templatesURL">
 						<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
 						<portlet:param name="topLink" value="templates" />
@@ -62,8 +62,8 @@ String path = GetterUtil.getString(request.getPathInfo());
 						method="get"
 						url="<%= taglibURL %>"
 					/>
-				</c:if>
-			</div>
+				</div>
+			</c:if>
 
 			<div class="article-search">
 				<liferay-portlet:renderURL varImpl="searchURL">

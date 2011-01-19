@@ -22,28 +22,28 @@ String topLink = ParamUtil.getString(request, "topLink", "home");
 String path = GetterUtil.getString(request.getPathInfo());
 %>
 
-<div class="top-links-container">
-	<div class="top-links">
-		<div class="top-links-navigation">
-			<portlet:renderURL var="homeURL">
-				<portlet:param name="jspPage" value="/list/view.jsp" />
-				<portlet:param name="topLink" value="home" />
-			</portlet:renderURL>
+<c:if test="<%= themeDisplay.isSignedIn() %>">
+	<div class="top-links-container">
+		<div class="top-links">
+			<div class="top-links-navigation">
+				<portlet:renderURL var="homeURL">
+					<portlet:param name="jspPage" value="/list/view.jsp" />
+					<portlet:param name="topLink" value="home" />
+				</portlet:renderURL>
 
-			<%
-			String taglibURL = (path.endsWith("/list/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
-			%>
+				<%
+				String taglibURL = (path.endsWith("/list/view.jsp") && topLink.equals("home")) ? StringPool.BLANK : homeURL;
+				%>
 
-			<liferay-ui:icon
-				cssClass='<%= themeDisplay.isSignedIn() ? "top-link" : "top-link last" %>'
-				image="../aui/home"
-				label="<%= true %>"
-				message="home"
-				method="get"
-				url="<%= taglibURL %>"
-			/>
+				<liferay-ui:icon
+					cssClass="top-link"
+					image="../aui/home"
+					label="<%= true %>"
+					message="home"
+					method="get"
+					url="<%= taglibURL %>"
+				/>
 
-			<c:if test="<%= themeDisplay.isSignedIn() %>">
 				<portlet:renderURL var="mySubscriptionsURL">
 					<portlet:param name="jspPage" value="/list/view_subscriptions.jsp" />
 					<portlet:param name="topLink" value="my-subscriptions" />
@@ -61,7 +61,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 					method="get"
 					url="<%= taglibURL %>"
 				/>
-			</c:if>
+			</div>
 		</div>
 	</div>
-</div>
+</c:if>

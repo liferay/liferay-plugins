@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.CommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.util.WebKeys;
@@ -265,7 +266,7 @@ public class ListPortlet extends MVCPortlet {
 		boolean helpful = ParamUtil.getBoolean(actionRequest, "helpful");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			Article.class.getName(), actionRequest);
+			Comment.class.getName(), actionRequest);
 
 		if (cmd.equals(Constants.ADD)) {
 			CommentLocalServiceUtil.addComment(
