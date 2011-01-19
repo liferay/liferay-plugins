@@ -38,10 +38,17 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 	<aui:input name="targetVersion" type="hidden" value="<%= targetVersion %>" />
 
 	<aui:fieldset>
+
+		<%
+		RowChecker rowChecker = new RowChecker(renderResponse);
+
+		rowChecker.setAllRowIds(null);
+		%>
+
 		<liferay-ui:search-container
 			delta="<%= 100 %>"
 			headerNames="version,date,author,title"
-			rowChecker="<%= new RowChecker(renderResponse, RowChecker.ALIGN, RowChecker.VALIGN, RowChecker.FORM_NAME, null, RowChecker.ROW_IDS) %>"
+			rowChecker="<%= rowChecker %>"
 		>
 			<liferay-ui:search-container-results
 				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), status, searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
