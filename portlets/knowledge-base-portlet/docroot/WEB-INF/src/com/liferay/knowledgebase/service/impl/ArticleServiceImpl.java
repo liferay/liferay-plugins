@@ -213,7 +213,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String description = HtmlUtil.escape(article.getTitle());
 
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			themeDisplay.getPlid(), resourcePrimKey,
+			resourcePrimKey, themeDisplay.getPlid(),
 			themeDisplay.getPortalURL());
 
 		List<Article> articles = Collections.emptyList();
@@ -432,7 +432,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			String rssDisplayStyle, String rssFormat, String name,
 			String description, String feedURL, List<Article> articles,
 			ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		List<SyndEntry> syndEntries = new ArrayList<SyndEntry>();
 
@@ -471,7 +471,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			author = HtmlUtil.escape(userName);
 
 			String link = KnowledgeBaseUtil.getArticleURL(
-				themeDisplay.getPlid(), article.getResourcePrimKey(),
+				article.getResourcePrimKey(), themeDisplay.getPlid(),
 				themeDisplay.getPortalURL());
 
 			SyndContent syndContent = new SyndContentImpl();

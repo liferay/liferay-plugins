@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.ControlPanelEntry;
@@ -88,10 +87,9 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Link
 
-		long plid = LayoutLocalServiceUtil.getDefaultPlid(article.getGroupId());
-
 		String link = KnowledgeBaseUtil.getArticleURL(
-			plid, article.getResourcePrimKey(), themeDisplay.getPortalURL());
+			article.getResourcePrimKey(), themeDisplay.getPlid(),
+			themeDisplay.getPortalURL());
 
 		// Title
 
@@ -140,11 +138,9 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		String link = StringPool.BLANK;
 
 		if (article != null) {
-			long plid = LayoutLocalServiceUtil.getDefaultPlid(
-				article.getGroupId());
-
 			link = KnowledgeBaseUtil.getArticleURL(
-				plid, comment.getClassPK(), themeDisplay.getPortalURL());
+				article.getResourcePrimKey(), themeDisplay.getPlid(),
+				themeDisplay.getPortalURL());
 		}
 		else if (template != null) {
 			link = getTemplateURL(

@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.asset;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -78,7 +79,13 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 		LiferayPortletResponse liferayPortletResponse,
 		String noSuchEntryRedirect) {
 
-		return noSuchEntryRedirect;
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)liferayPortletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
+
+		return KnowledgeBaseUtil.getArticleURL(
+			_article.getResourcePrimKey(), themeDisplay.getPlid(),
+			themeDisplay.getPortalURL());
 	}
 
 	public long getUserId() {

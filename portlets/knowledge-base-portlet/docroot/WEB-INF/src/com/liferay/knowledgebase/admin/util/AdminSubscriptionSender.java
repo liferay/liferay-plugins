@@ -32,7 +32,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.SubscriptionSender;
 
 import java.util.Locale;
@@ -43,9 +43,11 @@ import java.util.Locale;
  */
 public class AdminSubscriptionSender extends SubscriptionSender {
 
-	public AdminSubscriptionSender(Article article, String portalURL) {
+	public AdminSubscriptionSender(
+		Article article, ServiceContext serviceContext) {
+
 		_article = article;
-		_portalURL = portalURL;
+		_serviceContext = serviceContext;
 	}
 
 	protected void deleteSubscription(Subscription subscription)
@@ -91,14 +93,6 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		return sb.toString();
 	}
 
-	protected String getEmailArticleURL(long resourcePrimKey) throws Exception {
-		long plid = LayoutLocalServiceUtil.getDefaultPlid(
-			_article.getGroupId());
-
-		return KnowledgeBaseUtil.getArticleURL(
-			plid, resourcePrimKey, _portalURL);
-	}
-
 	protected boolean hasPermission(Subscription subscription, User user)
 		throws Exception {
 
@@ -130,7 +124,9 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		throws Exception {
 
 		String articleAttachments = getEmailArticleAttachments(locale);
-		String articleURL = getEmailArticleURL(_article.getResourcePrimKey());
+		String articleURL = KnowledgeBaseUtil.getArticleURL(
+			_article.getResourcePrimKey(), _serviceContext.getPlid(),
+			_serviceContext.getPortalURL());
 		String articleVersion = LanguageUtil.format(
 			locale, "version-x", String.valueOf(_article.getVersion()));
 		String categoryTitle = LanguageUtil.get(locale, "category.kb");
@@ -144,6 +140,6 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	}
 
 	private Article _article;
-	private String _portalURL;
+	private ServiceContext _serviceContext;
 
 }

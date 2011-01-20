@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.util;
 
-import com.liferay.knowledgebase.hook.events.ServicePreAction;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
@@ -71,19 +70,15 @@ import javax.portlet.WindowState;
 public class KnowledgeBaseUtil {
 
 	public static String getArticleURL(
-			long plid, long resourcePrimKey, String portalURL)
-		throws PortalException, SystemException {
+		long resourcePrimKey, long selPlid, String portalURL) {
 
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		String articleURL = portalURL + PortalUtil.getLayoutActualURL(layout);
-
-		String namespace = ServicePreAction.NAMESPACE;
+		String articleURL =
+			portalURL + PortalUtil.getPathMain() +
+				"/portal/knowledge_base/find_article";
 
 		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + Constants.CMD, Constants.FIND_ARTICLE);
-		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
+			articleURL, "resourcePrimKey", resourcePrimKey);
+		articleURL = HttpUtil.setParameter(articleURL, "selPlid", selPlid);
 
 		return articleURL;
 	}

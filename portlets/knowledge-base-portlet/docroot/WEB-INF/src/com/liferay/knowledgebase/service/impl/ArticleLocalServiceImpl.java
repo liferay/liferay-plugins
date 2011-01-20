@@ -993,7 +993,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		SubscriptionSender subscriptionSender = new AdminSubscriptionSender(
-			article, serviceContext.getPortalURL());
+			article, serviceContext);
 
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(article.getCompanyId());
