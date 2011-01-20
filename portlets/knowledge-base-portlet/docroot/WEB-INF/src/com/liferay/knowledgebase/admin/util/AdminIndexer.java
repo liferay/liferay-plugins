@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.search.TermQueryFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -374,14 +375,14 @@ public class AdminIndexer extends BaseIndexer {
 
 		List<String> keywordsList = new ArrayList<String>();
 
-		StringBuilder sb = new StringBuilder();
+		StringBundler sb = new StringBundler();
 
 		for (char c : keywords.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
 					keywordsList.add(sb.toString());
 
-					sb = new StringBuilder();
+					sb = new StringBundler();
 				}
 			}
 			else if (Character.isLetterOrDigit(c)) {

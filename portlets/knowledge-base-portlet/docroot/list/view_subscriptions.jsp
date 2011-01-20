@@ -74,7 +74,7 @@
 
 	<liferay-ui:search-iterator />
 
-	<c:if test="<%= results.isEmpty() && (total == 0) %>">
+	<c:if test="<%= total == 0 %>">
 		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
 	</c:if>
 </liferay-ui:search-container>

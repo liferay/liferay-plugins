@@ -78,7 +78,9 @@ String tag = ParamUtil.getString(request, "tag");
 
 	</div>
 
-	<div class="taglib-search-iterator-page-iterator-bottom">
-		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-	</div>
+	<c:if test="<%= (total == 0) || (total > searchContainer.getDelta()) %>">
+		<div class="taglib-search-iterator-page-iterator-bottom">
+			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+		</div>
+	</c:if>
 </liferay-ui:search-container>
