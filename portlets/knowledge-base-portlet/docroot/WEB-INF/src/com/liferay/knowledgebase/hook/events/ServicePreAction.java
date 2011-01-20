@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.auth.AuthTokenUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -67,13 +66,17 @@ public class ServicePreAction extends Action {
 			return;
 		}
 
-		String portletId = PortalUtil.getPortletId(request);
+		String portletId = ParamUtil.getString(request, "p_p_id");
+
+		if (Validator.isNull(portletId)) {
+			return;
+		}
 
 		String displayPortletId =
 			PortletKeys.KNOWLEDGE_BASE_DISPLAY +
 				PortletConstants.INSTANCE_SEPARATOR + "0000";
 
-		if ((portletId != null) && !portletId.equals(displayPortletId)) {
+		if (!portletId.equals(displayPortletId)) {
 			return;
 		}
 
