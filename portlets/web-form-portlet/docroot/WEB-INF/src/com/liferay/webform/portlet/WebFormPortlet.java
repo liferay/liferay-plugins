@@ -137,8 +137,15 @@ public class WebFormPortlet extends MVCPortlet {
 			String fieldLabel = preferences.getValue(
 				"fieldLabel" + i, StringPool.BLANK);
 
+			String fieldType = preferences.getValue(
+				"fieldType" + i, StringPool.BLANK);
+
 			if (Validator.isNull(fieldLabel)) {
 				break;
+			}
+
+			if (WebFormUtil.PARAGRAPH_FIELD_TYPE.equalsIgnoreCase(fieldType)) {
+				continue;
 			}
 
 			fieldsMap.put(fieldLabel, actionRequest.getParameter("field" + i));

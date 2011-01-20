@@ -53,6 +53,8 @@ import javax.portlet.PortletPreferences;
  */
 public class WebFormUtil {
 
+	public static final String PARAGRAPH_FIELD_TYPE = "paragraph";
+
 	public static final boolean VALIDATION_SCRIPT_ENABLED =
 		GetterUtil.getBoolean(PortletProps.get("validation.script.enabled"));
 
@@ -88,10 +90,16 @@ public class WebFormUtil {
 			String fieldLabel = preferences.getValue(
 				"fieldLabel" + i, StringPool.BLANK);
 
+			String fieldType = preferences.getValue(
+				"fieldType" + i, StringPool.BLANK);
+
 			while ((i == 1) || (Validator.isNotNull(fieldLabel))) {
-				ExpandoColumnLocalServiceUtil.addColumn(
-					expandoTable.getTableId(), fieldLabel,
-					ExpandoColumnConstants.STRING);
+
+				if (!PARAGRAPH_FIELD_TYPE.equalsIgnoreCase(fieldType)) {
+					ExpandoColumnLocalServiceUtil.addColumn(
+						expandoTable.getTableId(), fieldLabel,
+						ExpandoColumnConstants.STRING);
+				}
 
 				i++;
 
