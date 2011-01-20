@@ -144,7 +144,7 @@ public class WebFormPortlet extends MVCPortlet {
 				break;
 			}
 
-			if (WebFormUtil.PARAGRAPH_FIELD_TYPE.equalsIgnoreCase(fieldType)) {
+			if (fieldType.equalsIgnoreCase("paragraph")) {
 				continue;
 			}
 
