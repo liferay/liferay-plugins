@@ -30,10 +30,10 @@ catch (NoSuchCommentException nsce) {
 long commentId = BeanParamUtil.getLong(comment, request, "commentId");
 
 String content = BeanParamUtil.getString(comment, request, "content");
-boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
+boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 %>
 
-<c:if test="<%= enableArticleComments || showArticleComments %>">
+<c:if test="<%= layoutTypePortlet.hasPortletId(portletDisplay.getId()) && (enableArticleComments || showArticleComments) %>">
 	<div class="kb-article-comments">
 		<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() && (article.isApproved() || (article.getVersion() > ArticleConstants.DEFAULT_VERSION)) %>">
 			<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
@@ -55,13 +55,13 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 
 						<liferay-ui:error exception="<%= CommentContentException.class %>" message="please-enter-valid-content" />
 
-						<aui:input cssClass="lfr-textarea-container" label="" name="content" type="textarea" value="<%= (comment != null) ? content : StringPool.BLANK %>" />
+						<aui:input cssClass="lfr-textarea-container" label="" name="content" type="textarea" value="<%= content %>" />
 
 						<div class="kb-helpful-inputs">
 							<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
 
-							<aui:input checked="<%= (comment == null) || helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
-							<aui:input checked="<%= (comment != null) && !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
+							<aui:input checked="<%= helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
+							<aui:input checked="<%= !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
 						</div>
 
 						<aui:button-row cssClass="kb-submit-buttons">
@@ -86,7 +86,9 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 					total="<%= CommentLocalServiceUtil.getCommentsCount(Article.class.getName(), article.getResourcePrimKey()) %>"
 				/>
 
-				<div class="separator"><!-- --></div>
+				<c:if test="<%= total > 0 %>">
+					<div class="separator"><!-- --></div>
+				</c:if>
 
 				<%
 				for (Comment curComment : (List<Comment>)results) {
@@ -102,9 +104,11 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful");
 				}
 				%>
 
-				<div class="taglib-search-iterator-page-iterator-bottom">
-					<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-				</div>
+				<c:if test="<%= total > searchContainer.getDelta() %>">
+					<div class="taglib-search-iterator-page-iterator-bottom">
+						<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+					</div>
+				</c:if>
 			</liferay-ui:search-container>
 		</c:if>
 	</div>
