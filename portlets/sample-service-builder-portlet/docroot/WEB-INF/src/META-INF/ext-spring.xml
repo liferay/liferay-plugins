@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+<!--	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>/WEB-INF/jdbc.properties</value>
+		</property>
+		<property name="placeholderPrefix" value="${jdbc." />
+	</bean>
+	<bean id="extdbDataSourceTarget" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.extdb.driverClassName}" />
+		<property name="url" value="${jdbc.extdb.url}" />
+		<property name="username" value="${jdbc.extdb.username}" />
+		<property name="password" value="${jdbc.extdb.password}" />
+	</bean>
+	<bean id="extdbDataSource" class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+		<property name="targetDataSource">
+			<ref bean="extdbDataSourceTarget" />
+		</property>
+	</bean>
+	<bean id="extdbHibernateSessionFactory" class="com.liferay.portal.spring.hibernate.PortletHibernateConfiguration">
+		<property name="dataSource">
+			<ref bean="extdbDataSource" />
+		</property>
+	</bean>
+	<bean id="extdbSessionFactory" class="com.liferay.portal.dao.orm.hibernate.SessionFactoryImpl">
+		<property name="sessionFactoryImplementor">
+			<ref bean="extdbHibernateSessionFactory" />
+		</property>
+	</bean>
+	<bean id="extdbTransactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="dataSource">
+			<ref bean="extdbDataSource" />
+		</property>
+		<property name="sessionFactory">
+			<ref bean="extdbHibernateSessionFactory" />
+		</property>
+	</bean>-->
+</beans>
