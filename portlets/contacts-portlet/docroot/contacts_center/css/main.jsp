@@ -137,14 +137,20 @@
 	margin-bottom: 1.5em;
 }
 
-.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-coworker,
-.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-friend {
-	background: url(<%= themeImagesPath %>/common/group.png) no-repeat;
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-coworker {
+	background: url(<%= themeImagesPath %>/social/coworker.png) no-repeat;
 }
 
-.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-follower,
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-friend {
+	background: url(<%= themeImagesPath %>/social/friend.png) no-repeat;
+}
+
+.contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-follower {
+	background: url(<%= themeImagesPath %>/social/follower.png) no-repeat;
+}
+
 .contacts-portlet-contacts-center .lfr-asset-metadata .lfr-asset-following {
-	background: url(<%= themeImagesPath %>/common/assign.png) no-repeat;
+	background: url(<%= themeImagesPath %>/social/following.png) no-repeat;
 }
 
 .contacts-portlet-contacts-center .lfr-asset-data .lfr-user-data-name {

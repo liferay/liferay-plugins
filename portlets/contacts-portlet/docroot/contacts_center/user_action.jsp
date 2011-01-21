@@ -57,7 +57,7 @@ else {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="leave"
+				image="../social/remove_friend"
 				message="remove-as-friend"
 				url="<%= friendURL %>"
 			/>
@@ -65,7 +65,7 @@ else {
 		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 			<liferay-ui:icon
 				cssClass="disabled"
-				image="join"
+				image="../social/friend"
 				message="friend-requested"
 			/>
 		</c:when>
@@ -77,7 +77,7 @@ else {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="join"
+				image="../social/add_friend"
 				message="add-as-friend"
 				url="<%= friendURL %>"
 			/>
@@ -93,7 +93,7 @@ else {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="leave"
+				image="../social/remove_coworker"
 				message="remove-as-coworker"
 				url="<%= friendURL %>"
 			/>
@@ -101,7 +101,7 @@ else {
 		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 			<liferay-ui:icon
 				cssClass="disabled"
-				image="join"
+				image="../social/coworker"
 				message="coworker-requested"
 			/>
 		</c:when>
@@ -113,7 +113,7 @@ else {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="join"
+				image="../social/add_coworker"
 				message="add-as-coworker"
 				url="<%= friendURL %>"
 			/>
@@ -129,7 +129,7 @@ else {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="leave"
+				image="../social/unfollow"
 				message="unfollow"
 				url="<%= friendURL %>"
 			/>
@@ -142,7 +142,7 @@ else {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="join"
+				image="../social/follow"
 				message="follow"
 				url="<%= followURL %>"
 			/>
