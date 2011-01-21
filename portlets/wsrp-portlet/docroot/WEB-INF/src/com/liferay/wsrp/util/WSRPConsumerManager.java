@@ -279,8 +279,8 @@ public class WSRPConsumerManager {
 
 	private boolean _isV2(List<Element> serviceElements) {
 		for (Element serviceElement : serviceElements) {
-			List<Element> bindingElements =
-				serviceElement.elements(_getWsdlQName("port"));
+			List<Element> bindingElements = serviceElement.elements(
+				_getWsdlQName("port"));
 
 			Element firstBindingElement = bindingElements.get(0);
 
@@ -339,8 +339,8 @@ public class WSRPConsumerManager {
 		throws Exception {
 
 		for (Element serviceElement : serviceElements) {
-			List<Element> bindingElements =
-				serviceElement.elements(_getWsdlQName("port"));
+			List<Element> bindingElements = serviceElement.elements(
+				_getWsdlQName("port"));
 
 			for (Element bindingElement : bindingElements) {
 				_readBindingElement(bindingElement);

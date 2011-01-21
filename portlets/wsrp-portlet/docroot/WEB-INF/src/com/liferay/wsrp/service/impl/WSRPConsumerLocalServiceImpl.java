@@ -77,12 +77,7 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-
-		// Must set forward cookies first so that WSRPConsumerManagerFactory
-		// has access to them
-
-		wsrpConsumer.setForwardCookies(forwardCookies);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies, userToken));
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
@@ -263,22 +258,24 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(new Date());
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-
-		// Must set forward cookies first so that WSRPConsumerManagerFactory
-		// has access to them
-
-		wsrpConsumer.setForwardCookies(forwardCookies);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, forwardCookies, userToken));
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
 		return wsrpConsumer;
 	}
 
-	protected String getWSDL(WSRPConsumer wsrpConsumer, String userToken)
+	protected String getWSDL(
+			WSRPConsumer wsrpConsumer, String forwardCookies, String userToken)
 		throws PortalException {
 
 		try {
+
+			// Must set forward cookies first so that WSRPConsumerManagerFactory
+			// has access to them
+
+			wsrpConsumer.setForwardCookies(forwardCookies);
+
 			WSRPConsumerManager wsrpConsumerManager =
 				WSRPConsumerManagerFactory.getWSRPConsumerManager(
 					wsrpConsumer, userToken);

@@ -82,8 +82,9 @@ public class ServiceHandler implements InvocationHandler {
 	public Object doInvoke(Object proxy, Method method, Object[] args)
 		throws Exception {
 
-		ClassLoader classLoader =
-			Thread.currentThread().getContextClassLoader();
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
 
 		String methodName = method.getName();
 
@@ -104,7 +105,7 @@ public class ServiceHandler implements InvocationHandler {
 		sb.append(serviceName);
 		sb.append("_Binding_SOAPStub");
 
-		Class<?> clazz = classLoader.loadClass(sb.toString());
+		Class<?> clazz = contextClassLoader.loadClass(sb.toString());
 
 		args = new Object[] {bindingURL, getService()};
 
@@ -126,32 +127,31 @@ public class ServiceHandler implements InvocationHandler {
 		if (_v2) {
 			return stub;
 		}
-		else {
-			sb = new StringBundler(4);
 
-			sb.append(_OASIS_PACKAGE);
-			sb.append("v2.intf.WSRP_v2_");
-			sb.append(serviceName);
-			sb.append("_PortType");
+		sb.setIndex(0);
 
-			Class<?> proxyInterface = classLoader.loadClass(sb.toString());
+		sb.append(_OASIS_PACKAGE);
+		sb.append("v2.intf.WSRP_v2_");
+		sb.append(serviceName);
+		sb.append("_PortType");
 
-			sb = new StringBundler(3);
+		Class<?> proxyInterface = contextClassLoader.loadClass(sb.toString());
 
-			sb.append(_WSRP_PROXY_PACKAGE);
-			sb.append(serviceName);
-			sb.append("ServiceHandler");
+		sb.setIndex(0);
 
-			clazz = classLoader.loadClass(sb.toString());
+		sb.append(_WSRP_PROXY_PACKAGE);
+		sb.append(serviceName);
+		sb.append("ServiceHandler");
 
-			InvocationHandler invocationHandler =
-				(InvocationHandler)ConstructorUtils.invokeConstructor(
-					clazz, stub);
+		clazz = contextClassLoader.loadClass(sb.toString());
 
-			return Proxy.newProxyInstance(
-				ServiceHandler.class.getClassLoader(),
-				new Class[] {proxyInterface}, invocationHandler);
-		}
+		InvocationHandler invocationHandler =
+			(InvocationHandler)ConstructorUtils.invokeConstructor(
+				clazz, stub);
+
+		return Proxy.newProxyInstance(
+			ServiceHandler.class.getClassLoader(), new Class[] {proxyInterface},
+			invocationHandler);
 	}
 
 	protected EngineConfiguration getEngineConfiguration(
@@ -193,6 +193,7 @@ public class ServiceHandler implements InvocationHandler {
 	}
 
 	private static String _OASIS_PACKAGE = "oasis.names.tc.wsrp.";
+
 	private static String _WSRP_PROXY_PACKAGE = "com.liferay.wsrp.proxy.";
 
 	private EngineConfiguration _engineConfiguration;
