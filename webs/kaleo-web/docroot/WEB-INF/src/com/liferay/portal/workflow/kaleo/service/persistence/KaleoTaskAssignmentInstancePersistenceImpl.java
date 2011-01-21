@@ -261,6 +261,19 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		}
 	}
 
+	/**
+	 * Removes the kaleo task assignment instance from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTaskAssignmentInstance the kaleo task assignment instance to remove
+	 * @return the kaleo task assignment instance that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignmentInstance remove(
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
+		throws SystemException {
+		return super.remove(kaleoTaskAssignmentInstance);
+	}
+
 	protected KaleoTaskAssignmentInstance removeImpl(
 		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
 		throws SystemException {

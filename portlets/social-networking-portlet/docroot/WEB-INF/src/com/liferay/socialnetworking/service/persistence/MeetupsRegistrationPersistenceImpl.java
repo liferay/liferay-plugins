@@ -247,6 +247,18 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		}
 	}
 
+	/**
+	 * Removes the meetups registration from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param meetupsRegistration the meetups registration to remove
+	 * @return the meetups registration that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsRegistration remove(MeetupsRegistration meetupsRegistration)
+		throws SystemException {
+		return super.remove(meetupsRegistration);
+	}
+
 	protected MeetupsRegistration removeImpl(
 		MeetupsRegistration meetupsRegistration) throws SystemException {
 		meetupsRegistration = toUnwrappedModel(meetupsRegistration);

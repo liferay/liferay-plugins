@@ -701,7 +701,7 @@ public class JIRAActionUtil {
 
 	public static JIRAActionPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (JIRAActionPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (JIRAActionPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAActionPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAActionUtil.class,

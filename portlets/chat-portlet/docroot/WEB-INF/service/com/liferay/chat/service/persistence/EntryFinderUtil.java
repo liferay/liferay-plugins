@@ -41,7 +41,7 @@ public class EntryFinderUtil {
 
 	public static EntryFinder getFinder() {
 		if (_finder == null) {
-			_finder = (EntryFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (EntryFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.getServletContextName(),
 					EntryFinder.class.getName());
 
 			ReferenceRegistry.registerReference(EntryFinderUtil.class, "_finder");

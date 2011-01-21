@@ -253,6 +253,18 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		}
 	}
 
+	/**
+	 * Removes the kaleo task assignment from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTaskAssignment the kaleo task assignment to remove
+	 * @return the kaleo task assignment that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskAssignment remove(KaleoTaskAssignment kaleoTaskAssignment)
+		throws SystemException {
+		return super.remove(kaleoTaskAssignment);
+	}
+
 	protected KaleoTaskAssignment removeImpl(
 		KaleoTaskAssignment kaleoTaskAssignment) throws SystemException {
 		kaleoTaskAssignment = toUnwrappedModel(kaleoTaskAssignment);

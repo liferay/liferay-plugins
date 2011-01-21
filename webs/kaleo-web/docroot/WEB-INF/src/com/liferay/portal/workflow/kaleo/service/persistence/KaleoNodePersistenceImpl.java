@@ -238,6 +238,17 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 	}
 
+	/**
+	 * Removes the kaleo node from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoNode the kaleo node to remove
+	 * @return the kaleo node that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNode remove(KaleoNode kaleoNode) throws SystemException {
+		return super.remove(kaleoNode);
+	}
+
 	protected KaleoNode removeImpl(KaleoNode kaleoNode)
 		throws SystemException {
 		kaleoNode = toUnwrappedModel(kaleoNode);

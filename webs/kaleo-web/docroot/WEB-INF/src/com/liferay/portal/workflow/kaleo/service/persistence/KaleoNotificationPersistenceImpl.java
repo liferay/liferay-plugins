@@ -243,6 +243,18 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		}
 	}
 
+	/**
+	 * Removes the kaleo notification from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoNotification the kaleo notification to remove
+	 * @return the kaleo notification that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotification remove(KaleoNotification kaleoNotification)
+		throws SystemException {
+		return super.remove(kaleoNotification);
+	}
+
 	protected KaleoNotification removeImpl(KaleoNotification kaleoNotification)
 		throws SystemException {
 		kaleoNotification = toUnwrappedModel(kaleoNotification);

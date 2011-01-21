@@ -196,6 +196,17 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		}
 	}
 
+	/**
+	 * Removes the definition from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param definition the definition to remove
+	 * @return the definition that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Definition remove(Definition definition) throws SystemException {
+		return super.remove(definition);
+	}
+
 	protected Definition removeImpl(Definition definition)
 		throws SystemException {
 		definition = toUnwrappedModel(definition);

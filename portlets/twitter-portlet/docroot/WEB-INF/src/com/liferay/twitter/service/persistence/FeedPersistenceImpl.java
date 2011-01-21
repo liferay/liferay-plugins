@@ -236,6 +236,17 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		}
 	}
 
+	/**
+	 * Removes the feed from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param feed the feed to remove
+	 * @return the feed that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Feed remove(Feed feed) throws SystemException {
+		return super.remove(feed);
+	}
+
 	protected Feed removeImpl(Feed feed) throws SystemException {
 		feed = toUnwrappedModel(feed);
 

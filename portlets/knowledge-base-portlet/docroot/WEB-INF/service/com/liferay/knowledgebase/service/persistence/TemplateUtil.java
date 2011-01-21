@@ -689,7 +689,7 @@ public class TemplateUtil {
 
 	public static TemplatePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (TemplatePersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (TemplatePersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.getServletContextName(),
 					TemplatePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(TemplateUtil.class,

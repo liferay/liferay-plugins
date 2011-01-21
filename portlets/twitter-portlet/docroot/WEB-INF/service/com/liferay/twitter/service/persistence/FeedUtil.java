@@ -407,7 +407,7 @@ public class FeedUtil {
 
 	public static FeedPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (FeedPersistence)PortletBeanLocatorUtil.locate(com.liferay.twitter.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (FeedPersistence)PortletBeanLocatorUtil.locate(com.liferay.twitter.service.ClpSerializer.getServletContextName(),
 					FeedPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(FeedUtil.class, "_persistence");

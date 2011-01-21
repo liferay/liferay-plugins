@@ -290,6 +290,17 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		}
 	}
 
+	/**
+	 * Removes the entry from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param entry the entry to remove
+	 * @return the entry that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Entry remove(Entry entry) throws SystemException {
+		return super.remove(entry);
+	}
+
 	protected Entry removeImpl(Entry entry) throws SystemException {
 		entry = toUnwrappedModel(entry);
 

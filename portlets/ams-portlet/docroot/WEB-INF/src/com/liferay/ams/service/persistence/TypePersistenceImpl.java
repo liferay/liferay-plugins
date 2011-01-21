@@ -193,6 +193,17 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		}
 	}
 
+	/**
+	 * Removes the type from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param type the type to remove
+	 * @return the type that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Type remove(Type type) throws SystemException {
+		return super.remove(type);
+	}
+
 	protected Type removeImpl(Type type) throws SystemException {
 		type = toUnwrappedModel(type);
 

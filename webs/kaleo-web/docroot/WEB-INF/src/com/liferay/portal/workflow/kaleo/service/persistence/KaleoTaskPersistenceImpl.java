@@ -237,6 +237,17 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		}
 	}
 
+	/**
+	 * Removes the kaleo task from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTask the kaleo task to remove
+	 * @return the kaleo task that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTask remove(KaleoTask kaleoTask) throws SystemException {
+		return super.remove(kaleoTask);
+	}
+
 	protected KaleoTask removeImpl(KaleoTask kaleoTask)
 		throws SystemException {
 		kaleoTask = toUnwrappedModel(kaleoTask);

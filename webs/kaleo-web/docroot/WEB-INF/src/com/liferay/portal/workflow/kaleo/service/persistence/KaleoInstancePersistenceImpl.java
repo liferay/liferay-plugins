@@ -258,6 +258,18 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		}
 	}
 
+	/**
+	 * Removes the kaleo instance from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoInstance the kaleo instance to remove
+	 * @return the kaleo instance that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstance remove(KaleoInstance kaleoInstance)
+		throws SystemException {
+		return super.remove(kaleoInstance);
+	}
+
 	protected KaleoInstance removeImpl(KaleoInstance kaleoInstance)
 		throws SystemException {
 		kaleoInstance = toUnwrappedModel(kaleoInstance);

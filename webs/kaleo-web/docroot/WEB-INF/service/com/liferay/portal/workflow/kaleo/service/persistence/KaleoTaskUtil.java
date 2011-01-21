@@ -722,7 +722,7 @@ public class KaleoTaskUtil {
 
 	public static KaleoTaskPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (KaleoTaskPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (KaleoTaskPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoTaskPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoTaskUtil.class,

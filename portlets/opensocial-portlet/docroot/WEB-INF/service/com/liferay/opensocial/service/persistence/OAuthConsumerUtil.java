@@ -484,7 +484,7 @@ public class OAuthConsumerUtil {
 
 	public static OAuthConsumerPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (OAuthConsumerPersistence)PortletBeanLocatorUtil.locate(com.liferay.opensocial.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (OAuthConsumerPersistence)PortletBeanLocatorUtil.locate(com.liferay.opensocial.service.ClpSerializer.getServletContextName(),
 					OAuthConsumerPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(OAuthConsumerUtil.class,

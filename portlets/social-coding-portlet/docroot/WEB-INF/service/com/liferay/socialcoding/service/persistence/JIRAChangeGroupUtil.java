@@ -561,7 +561,7 @@ public class JIRAChangeGroupUtil {
 
 	public static JIRAChangeGroupPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (JIRAChangeGroupPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (JIRAChangeGroupPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAChangeGroupPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAChangeGroupUtil.class,

@@ -14,6 +14,7 @@
 
 package com.liferay.sampleservicebuilder.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.sampleservicebuilder.model.Foo;
@@ -466,4 +467,6 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Foo remove(Foo foo) throws SystemException;
 }

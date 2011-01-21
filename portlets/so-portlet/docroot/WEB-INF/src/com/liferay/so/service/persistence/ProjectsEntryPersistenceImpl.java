@@ -214,6 +214,18 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		}
 	}
 
+	/**
+	 * Removes the projects entry from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param projectsEntry the projects entry to remove
+	 * @return the projects entry that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public ProjectsEntry remove(ProjectsEntry projectsEntry)
+		throws SystemException {
+		return super.remove(projectsEntry);
+	}
+
 	protected ProjectsEntry removeImpl(ProjectsEntry projectsEntry)
 		throws SystemException {
 		projectsEntry = toUnwrappedModel(projectsEntry);

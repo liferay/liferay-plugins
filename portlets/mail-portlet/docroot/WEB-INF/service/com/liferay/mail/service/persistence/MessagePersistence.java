@@ -16,6 +16,7 @@ package com.liferay.mail.service.persistence;
 
 import com.liferay.mail.model.Message;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -461,4 +462,6 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Message remove(Message message) throws SystemException;
 }

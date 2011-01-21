@@ -645,7 +645,7 @@ public class MeetupsRegistrationUtil {
 
 	public static MeetupsRegistrationPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (MeetupsRegistrationPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (MeetupsRegistrationPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.getServletContextName(),
 					MeetupsRegistrationPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(MeetupsRegistrationUtil.class,

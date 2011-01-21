@@ -45,7 +45,7 @@ public class StatusFinderUtil {
 
 	public static StatusFinder getFinder() {
 		if (_finder == null) {
-			_finder = (StatusFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (StatusFinder)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.getServletContextName(),
 					StatusFinder.class.getName());
 
 			ReferenceRegistry.registerReference(StatusFinderUtil.class,

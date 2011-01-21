@@ -247,6 +247,17 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 	}
 
+	/**
+	 * Removes the status from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param status the status to remove
+	 * @return the status that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Status remove(Status status) throws SystemException {
+		return super.remove(status);
+	}
+
 	protected Status removeImpl(Status status) throws SystemException {
 		status = toUnwrappedModel(status);
 

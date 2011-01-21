@@ -267,7 +267,7 @@ public class DefinitionUtil {
 
 	public static DefinitionPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (DefinitionPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (DefinitionPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.getServletContextName(),
 					DefinitionPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(DefinitionUtil.class,

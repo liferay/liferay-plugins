@@ -297,6 +297,17 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 		}
 	}
 
+	/**
+	 * Removes the comment from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param comment the comment to remove
+	 * @return the comment that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Comment remove(Comment comment) throws SystemException {
+		return super.remove(comment);
+	}
+
 	protected Comment removeImpl(Comment comment) throws SystemException {
 		comment = toUnwrappedModel(comment);
 

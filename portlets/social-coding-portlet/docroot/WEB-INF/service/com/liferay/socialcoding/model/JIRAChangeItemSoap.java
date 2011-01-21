@@ -20,13 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.socialcoding.service.http.JIRAChangeItemServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.socialcoding.service.http.JIRAChangeItemServiceSoap
  * @generated
  */
 public class JIRAChangeItemSoap implements Serializable {

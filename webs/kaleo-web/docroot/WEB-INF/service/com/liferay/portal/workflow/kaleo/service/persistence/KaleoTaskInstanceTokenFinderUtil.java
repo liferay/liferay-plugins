@@ -37,7 +37,7 @@ public class KaleoTaskInstanceTokenFinderUtil {
 
 	public static KaleoTaskInstanceTokenFinder getFinder() {
 		if (_finder == null) {
-			_finder = (KaleoTaskInstanceTokenFinder)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (KaleoTaskInstanceTokenFinder)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoTaskInstanceTokenFinder.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoTaskInstanceTokenFinderUtil.class,

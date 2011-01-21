@@ -227,6 +227,18 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		}
 	}
 
+	/**
+	 * Removes the j i r a change group from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraChangeGroup the j i r a change group to remove
+	 * @return the j i r a change group that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeGroup remove(JIRAChangeGroup jiraChangeGroup)
+		throws SystemException {
+		return super.remove(jiraChangeGroup);
+	}
+
 	protected JIRAChangeGroup removeImpl(JIRAChangeGroup jiraChangeGroup)
 		throws SystemException {
 		jiraChangeGroup = toUnwrappedModel(jiraChangeGroup);

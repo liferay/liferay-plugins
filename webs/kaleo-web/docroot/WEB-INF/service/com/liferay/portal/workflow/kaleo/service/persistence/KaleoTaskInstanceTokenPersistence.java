@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 
@@ -612,4 +613,8 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	*/
 	public boolean containsKaleoTaskAssignmentInstances(long pk)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public KaleoTaskInstanceToken remove(
+		KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws SystemException;
 }

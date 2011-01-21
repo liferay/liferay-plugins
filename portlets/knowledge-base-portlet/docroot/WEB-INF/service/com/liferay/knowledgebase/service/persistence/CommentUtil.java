@@ -1005,7 +1005,7 @@ public class CommentUtil {
 
 	public static CommentPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (CommentPersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (CommentPersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.getServletContextName(),
 					CommentPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(CommentUtil.class,

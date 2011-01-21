@@ -17,10 +17,6 @@ package com.liferay.socialcoding.model;
 /**
  * The model interface for the SVNRevision service. Represents a row in the &quot;SC_SVNRevision&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRevisionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see SVNRevisionModel
  * @see com.liferay.socialcoding.model.impl.SVNRevisionImpl
@@ -31,7 +27,7 @@ public interface SVNRevision extends SVNRevisionModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a s v n revision model instance should use the {@link SVNRevision} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.SVNRevisionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository();
 

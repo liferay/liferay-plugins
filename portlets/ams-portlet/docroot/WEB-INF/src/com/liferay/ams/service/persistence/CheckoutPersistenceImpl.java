@@ -196,6 +196,17 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		}
 	}
 
+	/**
+	 * Removes the checkout from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param checkout the checkout to remove
+	 * @return the checkout that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Checkout remove(Checkout checkout) throws SystemException {
+		return super.remove(checkout);
+	}
+
 	protected Checkout removeImpl(Checkout checkout) throws SystemException {
 		checkout = toUnwrappedModel(checkout);
 

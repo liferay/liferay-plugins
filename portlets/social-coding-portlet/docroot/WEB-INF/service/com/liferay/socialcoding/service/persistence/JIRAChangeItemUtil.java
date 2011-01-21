@@ -420,7 +420,7 @@ public class JIRAChangeItemUtil {
 
 	public static JIRAChangeItemPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (JIRAChangeItemPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (JIRAChangeItemPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAChangeItemPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAChangeItemUtil.class,

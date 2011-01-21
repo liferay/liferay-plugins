@@ -16,6 +16,7 @@ package com.liferay.mail.service.persistence;
 
 import com.liferay.mail.model.Attachment;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -282,4 +283,6 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Attachment remove(Attachment attachment) throws SystemException;
 }

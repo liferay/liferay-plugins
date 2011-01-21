@@ -853,7 +853,7 @@ public class KaleoTransitionUtil {
 
 	public static KaleoTransitionPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (KaleoTransitionPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (KaleoTransitionPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoTransitionPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoTransitionUtil.class,

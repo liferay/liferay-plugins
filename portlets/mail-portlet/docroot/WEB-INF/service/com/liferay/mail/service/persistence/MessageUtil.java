@@ -625,7 +625,7 @@ public class MessageUtil {
 
 	public static MessagePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (MessagePersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (MessagePersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.getServletContextName(),
 					MessagePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(MessageUtil.class,

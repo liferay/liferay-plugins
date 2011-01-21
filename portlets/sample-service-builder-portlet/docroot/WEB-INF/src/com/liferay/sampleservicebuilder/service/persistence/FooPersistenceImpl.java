@@ -242,6 +242,17 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		}
 	}
 
+	/**
+	 * Removes the foo from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param foo the foo to remove
+	 * @return the foo that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Foo remove(Foo foo) throws SystemException {
+		return super.remove(foo);
+	}
+
 	protected Foo removeImpl(Foo foo) throws SystemException {
 		foo = toUnwrappedModel(foo);
 

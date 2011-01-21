@@ -14,6 +14,7 @@
 
 package com.liferay.socialnetworking.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialnetworking.model.MeetupsEntry;
@@ -410,4 +411,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public MeetupsEntry remove(MeetupsEntry meetupsEntry)
+		throws SystemException;
 }

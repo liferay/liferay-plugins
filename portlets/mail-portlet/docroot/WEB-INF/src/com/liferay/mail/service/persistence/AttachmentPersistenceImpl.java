@@ -210,6 +210,17 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		}
 	}
 
+	/**
+	 * Removes the attachment from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param attachment the attachment to remove
+	 * @return the attachment that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Attachment remove(Attachment attachment) throws SystemException {
+		return super.remove(attachment);
+	}
+
 	protected Attachment removeImpl(Attachment attachment)
 		throws SystemException {
 		attachment = toUnwrappedModel(attachment);

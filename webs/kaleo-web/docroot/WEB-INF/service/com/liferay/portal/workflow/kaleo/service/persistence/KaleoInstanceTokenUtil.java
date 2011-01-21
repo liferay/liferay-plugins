@@ -1059,7 +1059,7 @@ public class KaleoInstanceTokenUtil {
 
 	public static KaleoInstanceTokenPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (KaleoInstanceTokenPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (KaleoInstanceTokenPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoInstanceTokenPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoInstanceTokenUtil.class,

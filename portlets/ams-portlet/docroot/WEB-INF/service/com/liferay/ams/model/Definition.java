@@ -17,10 +17,6 @@ package com.liferay.ams.model;
 /**
  * The model interface for the Definition service. Represents a row in the &quot;AMS_Definition&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.DefinitionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see DefinitionModel
  * @see com.liferay.ams.model.impl.DefinitionImpl
@@ -31,6 +27,6 @@ public interface Definition extends DefinitionModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a definition model instance should use the {@link Definition} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.DefinitionImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

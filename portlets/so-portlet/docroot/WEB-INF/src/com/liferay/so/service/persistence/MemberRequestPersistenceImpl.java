@@ -273,6 +273,18 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		}
 	}
 
+	/**
+	 * Removes the member request from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param memberRequest the member request to remove
+	 * @return the member request that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MemberRequest remove(MemberRequest memberRequest)
+		throws SystemException {
+		return super.remove(memberRequest);
+	}
+
 	protected MemberRequest removeImpl(MemberRequest memberRequest)
 		throws SystemException {
 		memberRequest = toUnwrappedModel(memberRequest);

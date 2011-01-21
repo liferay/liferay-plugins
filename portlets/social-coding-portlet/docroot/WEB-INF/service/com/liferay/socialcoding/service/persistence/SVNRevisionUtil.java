@@ -723,7 +723,7 @@ public class SVNRevisionUtil {
 
 	public static SVNRevisionPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (SVNRevisionPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (SVNRevisionPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					SVNRevisionPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(SVNRevisionUtil.class,

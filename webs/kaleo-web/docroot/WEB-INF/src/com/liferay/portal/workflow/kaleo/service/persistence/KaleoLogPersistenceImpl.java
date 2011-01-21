@@ -277,6 +277,17 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		}
 	}
 
+	/**
+	 * Removes the kaleo log from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoLog the kaleo log to remove
+	 * @return the kaleo log that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoLog remove(KaleoLog kaleoLog) throws SystemException {
+		return super.remove(kaleoLog);
+	}
+
 	protected KaleoLog removeImpl(KaleoLog kaleoLog) throws SystemException {
 		kaleoLog = toUnwrappedModel(kaleoLog);
 

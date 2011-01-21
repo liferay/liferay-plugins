@@ -234,6 +234,18 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		}
 	}
 
+	/**
+	 * Removes the kaleo condition from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoCondition the kaleo condition to remove
+	 * @return the kaleo condition that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoCondition remove(KaleoCondition kaleoCondition)
+		throws SystemException {
+		return super.remove(kaleoCondition);
+	}
+
 	protected KaleoCondition removeImpl(KaleoCondition kaleoCondition)
 		throws SystemException {
 		kaleoCondition = toUnwrappedModel(kaleoCondition);

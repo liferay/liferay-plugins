@@ -234,6 +234,18 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		}
 	}
 
+	/**
+	 * Removes the kaleo action from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoAction the kaleo action to remove
+	 * @return the kaleo action that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoAction remove(KaleoAction kaleoAction)
+		throws SystemException {
+		return super.remove(kaleoAction);
+	}
+
 	protected KaleoAction removeImpl(KaleoAction kaleoAction)
 		throws SystemException {
 		kaleoAction = toUnwrappedModel(kaleoAction);

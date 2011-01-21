@@ -485,7 +485,7 @@ public class KaleoConditionUtil {
 
 	public static KaleoConditionPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (KaleoConditionPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (KaleoConditionPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoConditionPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoConditionUtil.class,

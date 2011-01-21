@@ -20,13 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.mail.service.http.AttachmentServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.mail.service.http.AttachmentServiceSoap
  * @generated
  */
 public class AttachmentSoap implements Serializable {

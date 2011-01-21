@@ -40,7 +40,7 @@ public class JIRAChangeGroupFinderUtil {
 
 	public static JIRAChangeGroupFinder getFinder() {
 		if (_finder == null) {
-			_finder = (JIRAChangeGroupFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (JIRAChangeGroupFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAChangeGroupFinder.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAChangeGroupFinderUtil.class,

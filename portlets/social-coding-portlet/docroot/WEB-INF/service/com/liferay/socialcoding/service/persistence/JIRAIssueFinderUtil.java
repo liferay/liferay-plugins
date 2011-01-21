@@ -40,7 +40,7 @@ public class JIRAIssueFinderUtil {
 
 	public static JIRAIssueFinder getFinder() {
 		if (_finder == null) {
-			_finder = (JIRAIssueFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (JIRAIssueFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAIssueFinder.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAIssueFinderUtil.class,

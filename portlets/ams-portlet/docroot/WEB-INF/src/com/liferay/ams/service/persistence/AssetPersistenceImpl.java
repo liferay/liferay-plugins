@@ -194,6 +194,17 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		}
 	}
 
+	/**
+	 * Removes the asset from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param asset the asset to remove
+	 * @return the asset that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Asset remove(Asset asset) throws SystemException {
+		return super.remove(asset);
+	}
+
 	protected Asset removeImpl(Asset asset) throws SystemException {
 		asset = toUnwrappedModel(asset);
 

@@ -263,7 +263,7 @@ public class TypeUtil {
 
 	public static TypePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (TypePersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (TypePersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.getServletContextName(),
 					TypePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(TypeUtil.class, "_persistence");

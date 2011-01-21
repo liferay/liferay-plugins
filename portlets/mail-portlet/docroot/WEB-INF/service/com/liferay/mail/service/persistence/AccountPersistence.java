@@ -16,6 +16,7 @@ package com.liferay.mail.service.persistence;
 
 import com.liferay.mail.model.Account;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -337,4 +338,6 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Account remove(Account account) throws SystemException;
 }

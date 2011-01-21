@@ -263,7 +263,7 @@ public class AssetUtil {
 
 	public static AssetPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (AssetPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (AssetPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.getServletContextName(),
 					AssetPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(AssetUtil.class, "_persistence");

@@ -224,6 +224,18 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		}
 	}
 
+	/**
+	 * Removes the meetups entry from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param meetupsEntry the meetups entry to remove
+	 * @return the meetups entry that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public MeetupsEntry remove(MeetupsEntry meetupsEntry)
+		throws SystemException {
+		return super.remove(meetupsEntry);
+	}
+
 	protected MeetupsEntry removeImpl(MeetupsEntry meetupsEntry)
 		throws SystemException {
 		meetupsEntry = toUnwrappedModel(meetupsEntry);

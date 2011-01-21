@@ -768,7 +768,7 @@ public class StatusUtil {
 
 	public static StatusPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (StatusPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (StatusPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.getServletContextName(),
 					StatusPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(StatusUtil.class, "_persistence");

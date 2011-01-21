@@ -214,6 +214,18 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		}
 	}
 
+	/**
+	 * Removes the j i r a change item from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraChangeItem the j i r a change item to remove
+	 * @return the j i r a change item that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAChangeItem remove(JIRAChangeItem jiraChangeItem)
+		throws SystemException {
+		return super.remove(jiraChangeItem);
+	}
+
 	protected JIRAChangeItem removeImpl(JIRAChangeItem jiraChangeItem)
 		throws SystemException {
 		jiraChangeItem = toUnwrappedModel(jiraChangeItem);

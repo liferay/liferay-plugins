@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 
@@ -619,4 +620,6 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*/
 	public boolean containsKaleoActions(long pk)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public KaleoNode remove(KaleoNode kaleoNode) throws SystemException;
 }

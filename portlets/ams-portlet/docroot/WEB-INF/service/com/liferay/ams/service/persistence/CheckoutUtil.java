@@ -266,7 +266,7 @@ public class CheckoutUtil {
 
 	public static CheckoutPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (CheckoutPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (CheckoutPersistence)PortletBeanLocatorUtil.locate(com.liferay.ams.service.ClpSerializer.getServletContextName(),
 					CheckoutPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(CheckoutUtil.class,

@@ -1962,7 +1962,7 @@ public class JIRAIssueUtil {
 
 	public static JIRAIssuePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (JIRAIssuePersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAIssuePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAIssueUtil.class,

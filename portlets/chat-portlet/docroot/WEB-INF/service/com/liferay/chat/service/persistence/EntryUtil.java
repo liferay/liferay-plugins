@@ -1339,7 +1339,7 @@ public class EntryUtil {
 
 	public static EntryPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (EntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (EntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.chat.service.ClpSerializer.getServletContextName(),
 					EntryPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(EntryUtil.class, "_persistence");

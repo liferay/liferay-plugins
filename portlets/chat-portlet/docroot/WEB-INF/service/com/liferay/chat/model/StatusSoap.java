@@ -20,13 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.chat.service.http.StatusServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.chat.service.http.StatusServiceSoap
  * @generated
  */
 public class StatusSoap implements Serializable {

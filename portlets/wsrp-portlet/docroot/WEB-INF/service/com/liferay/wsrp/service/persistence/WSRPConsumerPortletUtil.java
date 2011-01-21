@@ -636,7 +636,7 @@ public class WSRPConsumerPortletUtil {
 
 	public static WSRPConsumerPortletPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (WSRPConsumerPortletPersistence)PortletBeanLocatorUtil.locate(com.liferay.wsrp.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (WSRPConsumerPortletPersistence)PortletBeanLocatorUtil.locate(com.liferay.wsrp.service.ClpSerializer.getServletContextName(),
 					WSRPConsumerPortletPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(WSRPConsumerPortletUtil.class,

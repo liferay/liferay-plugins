@@ -873,7 +873,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 
 	public static KaleoTaskAssignmentInstancePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (KaleoTaskAssignmentInstancePersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (KaleoTaskAssignmentInstancePersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoTaskAssignmentInstancePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoTaskAssignmentInstanceUtil.class,

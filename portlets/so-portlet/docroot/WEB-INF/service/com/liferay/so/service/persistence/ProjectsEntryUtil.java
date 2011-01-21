@@ -412,7 +412,7 @@ public class ProjectsEntryUtil {
 
 	public static ProjectsEntryPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (ProjectsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (ProjectsEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.getServletContextName(),
 					ProjectsEntryPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(ProjectsEntryUtil.class,

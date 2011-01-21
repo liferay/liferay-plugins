@@ -17,10 +17,6 @@ package com.liferay.chat.model;
 /**
  * The model interface for the Status service. Represents a row in the &quot;Chat_Status&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.chat.model.impl.StatusImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see StatusModel
  * @see com.liferay.chat.model.impl.StatusImpl
@@ -31,6 +27,6 @@ public interface Status extends StatusModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a status model instance should use the {@link Status} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.chat.model.impl.StatusImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

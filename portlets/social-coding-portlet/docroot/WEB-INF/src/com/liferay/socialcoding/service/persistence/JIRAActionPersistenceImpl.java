@@ -234,6 +234,17 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		}
 	}
 
+	/**
+	 * Removes the j i r a action from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraAction the j i r a action to remove
+	 * @return the j i r a action that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAAction remove(JIRAAction jiraAction) throws SystemException {
+		return super.remove(jiraAction);
+	}
+
 	protected JIRAAction removeImpl(JIRAAction jiraAction)
 		throws SystemException {
 		jiraAction = toUnwrappedModel(jiraAction);

@@ -16,6 +16,7 @@ package com.liferay.ams.service.persistence;
 
 import com.liferay.ams.model.Definition;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -156,4 +157,6 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Definition remove(Definition definition) throws SystemException;
 }

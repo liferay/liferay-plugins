@@ -40,7 +40,7 @@ public class JIRAActionFinderUtil {
 
 	public static JIRAActionFinder getFinder() {
 		if (_finder == null) {
-			_finder = (JIRAActionFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (JIRAActionFinder)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					JIRAActionFinder.class.getName());
 
 			ReferenceRegistry.registerReference(JIRAActionFinderUtil.class,

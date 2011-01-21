@@ -17,10 +17,6 @@ package com.liferay.socialnetworking.model;
 /**
  * The model interface for the MeetupsEntry service. Represents a row in the &quot;SN_MeetupsEntry&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.socialnetworking.model.impl.MeetupsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see MeetupsEntryModel
  * @see com.liferay.socialnetworking.model.impl.MeetupsEntryImpl
@@ -31,6 +27,6 @@ public interface MeetupsEntry extends MeetupsEntryModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a meetups entry model instance should use the {@link MeetupsEntry} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.socialnetworking.model.impl.MeetupsEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

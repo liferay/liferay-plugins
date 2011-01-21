@@ -479,7 +479,7 @@ public class FolderUtil {
 
 	public static FolderPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (FolderPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (FolderPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.getServletContextName(),
 					FolderPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(FolderUtil.class, "_persistence");

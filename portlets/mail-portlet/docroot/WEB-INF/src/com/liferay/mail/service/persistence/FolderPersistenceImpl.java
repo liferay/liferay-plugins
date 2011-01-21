@@ -226,6 +226,17 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		}
 	}
 
+	/**
+	 * Removes the folder from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param folder the folder to remove
+	 * @return the folder that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Folder remove(Folder folder) throws SystemException {
+		return super.remove(folder);
+	}
+
 	protected Folder removeImpl(Folder folder) throws SystemException {
 		folder = toUnwrappedModel(folder);
 

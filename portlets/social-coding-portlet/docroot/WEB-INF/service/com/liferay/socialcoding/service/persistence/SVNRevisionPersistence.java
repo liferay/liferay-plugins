@@ -14,6 +14,7 @@
 
 package com.liferay.socialcoding.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 import com.liferay.socialcoding.model.SVNRevision;
@@ -541,4 +542,7 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public SVNRevision remove(SVNRevision svnRevision)
+		throws SystemException;
 }

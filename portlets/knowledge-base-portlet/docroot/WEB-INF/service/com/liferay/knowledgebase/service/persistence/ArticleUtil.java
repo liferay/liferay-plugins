@@ -4390,7 +4390,7 @@ public class ArticleUtil {
 
 	public static ArticlePersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (ArticlePersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (ArticlePersistence)PortletBeanLocatorUtil.locate(com.liferay.knowledgebase.service.ClpSerializer.getServletContextName(),
 					ArticlePersistence.class.getName());
 
 			ReferenceRegistry.registerReference(ArticleUtil.class,

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoNotification;
 
@@ -621,4 +622,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	*/
 	public boolean containsKaleoNotificationRecipients(long pk)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public KaleoNotification remove(KaleoNotification kaleoNotification)
+		throws SystemException;
 }

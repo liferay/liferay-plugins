@@ -21,10 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.knowledgebase.service.http.TemplateServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services, specifically {@link com.liferay.knowledgebase.service.http.TemplateServiceSoap}.
  *
  * @author    Brian Wing Shun Chan
  * @see       com.liferay.knowledgebase.service.http.TemplateServiceSoap

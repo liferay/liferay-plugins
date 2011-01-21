@@ -942,7 +942,7 @@ public class UserThreadUtil {
 
 	public static UserThreadPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (UserThreadPersistence)PortletBeanLocatorUtil.locate(com.liferay.privatemessaging.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (UserThreadPersistence)PortletBeanLocatorUtil.locate(com.liferay.privatemessaging.service.ClpSerializer.getServletContextName(),
 					UserThreadPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(UserThreadUtil.class,

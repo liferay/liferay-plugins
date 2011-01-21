@@ -246,6 +246,19 @@ public class KaleoNotificationRecipientPersistenceImpl
 		}
 	}
 
+	/**
+	 * Removes the kaleo notification recipient from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoNotificationRecipient the kaleo notification recipient to remove
+	 * @return the kaleo notification recipient that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoNotificationRecipient remove(
+		KaleoNotificationRecipient kaleoNotificationRecipient)
+		throws SystemException {
+		return super.remove(kaleoNotificationRecipient);
+	}
+
 	protected KaleoNotificationRecipient removeImpl(
 		KaleoNotificationRecipient kaleoNotificationRecipient)
 		throws SystemException {

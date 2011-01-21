@@ -289,6 +289,18 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		}
 	}
 
+	/**
+	 * Removes the kaleo definition from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoDefinition the kaleo definition to remove
+	 * @return the kaleo definition that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoDefinition remove(KaleoDefinition kaleoDefinition)
+		throws SystemException {
+		return super.remove(kaleoDefinition);
+	}
+
 	protected KaleoDefinition removeImpl(KaleoDefinition kaleoDefinition)
 		throws SystemException {
 		kaleoDefinition = toUnwrappedModel(kaleoDefinition);

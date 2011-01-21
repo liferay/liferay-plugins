@@ -445,6 +445,17 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
+	/**
+	 * Removes the article from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param article the article to remove
+	 * @return the article that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article remove(Article article) throws SystemException {
+		return super.remove(article);
+	}
+
 	protected Article removeImpl(Article article) throws SystemException {
 		article = toUnwrappedModel(article);
 

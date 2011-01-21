@@ -356,6 +356,17 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 	}
 
+	/**
+	 * Removes the j i r a issue from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param jiraIssue the j i r a issue to remove
+	 * @return the j i r a issue that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public JIRAIssue remove(JIRAIssue jiraIssue) throws SystemException {
+		return super.remove(jiraIssue);
+	}
+
 	protected JIRAIssue removeImpl(JIRAIssue jiraIssue)
 		throws SystemException {
 		jiraIssue = toUnwrappedModel(jiraIssue);

@@ -235,6 +235,18 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		}
 	}
 
+	/**
+	 * Removes the s v n revision from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param svnRevision the s v n revision to remove
+	 * @return the s v n revision that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRevision remove(SVNRevision svnRevision)
+		throws SystemException {
+		return super.remove(svnRevision);
+	}
+
 	protected SVNRevision removeImpl(SVNRevision svnRevision)
 		throws SystemException {
 		svnRevision = toUnwrappedModel(svnRevision);

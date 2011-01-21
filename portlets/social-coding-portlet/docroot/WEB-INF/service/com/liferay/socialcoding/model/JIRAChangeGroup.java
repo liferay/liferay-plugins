@@ -17,10 +17,6 @@ package com.liferay.socialcoding.model;
 /**
  * The model interface for the JIRAChangeGroup service. Represents a row in the &quot;changegroup&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see JIRAChangeGroupModel
  * @see com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl
@@ -31,6 +27,6 @@ public interface JIRAChangeGroup extends JIRAChangeGroupModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a j i r a change group model instance should use the {@link JIRAChangeGroup} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAChangeGroupImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

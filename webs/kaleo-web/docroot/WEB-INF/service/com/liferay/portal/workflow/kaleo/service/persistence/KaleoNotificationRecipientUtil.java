@@ -718,7 +718,7 @@ public class KaleoNotificationRecipientUtil {
 
 	public static KaleoNotificationRecipientPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (KaleoNotificationRecipientPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (KaleoNotificationRecipientPersistence)PortletBeanLocatorUtil.locate(com.liferay.portal.workflow.kaleo.service.ClpSerializer.getServletContextName(),
 					KaleoNotificationRecipientPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(KaleoNotificationRecipientUtil.class,

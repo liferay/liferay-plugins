@@ -282,6 +282,18 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		}
 	}
 
+	/**
+	 * Removes the kaleo transition from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTransition the kaleo transition to remove
+	 * @return the kaleo transition that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTransition remove(KaleoTransition kaleoTransition)
+		throws SystemException {
+		return super.remove(kaleoTransition);
+	}
+
 	protected KaleoTransition removeImpl(KaleoTransition kaleoTransition)
 		throws SystemException {
 		kaleoTransition = toUnwrappedModel(kaleoTransition);

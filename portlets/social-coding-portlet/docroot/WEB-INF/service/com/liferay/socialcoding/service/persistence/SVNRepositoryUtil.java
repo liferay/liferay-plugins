@@ -336,7 +336,7 @@ public class SVNRepositoryUtil {
 
 	public static SVNRepositoryPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (SVNRepositoryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (SVNRepositoryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialcoding.service.ClpSerializer.getServletContextName(),
 					SVNRepositoryPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(SVNRepositoryUtil.class,

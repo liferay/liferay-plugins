@@ -21,13 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * <p>
- * This class is used by
- * {@link com.liferay.socialcoding.service.http.JIRAChangeGroupServiceSoap}.
- * </p>
+ * This class is used by SOAP remote services.
  *
  * @author    Brian Wing Shun Chan
- * @see       com.liferay.socialcoding.service.http.JIRAChangeGroupServiceSoap
  * @generated
  */
 public class JIRAChangeGroupSoap implements Serializable {

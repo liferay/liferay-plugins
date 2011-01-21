@@ -242,6 +242,17 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		}
 	}
 
+	/**
+	 * Removes the message from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param message the message to remove
+	 * @return the message that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Message remove(Message message) throws SystemException {
+		return super.remove(message);
+	}
+
 	protected Message removeImpl(Message message) throws SystemException {
 		message = toUnwrappedModel(message);
 

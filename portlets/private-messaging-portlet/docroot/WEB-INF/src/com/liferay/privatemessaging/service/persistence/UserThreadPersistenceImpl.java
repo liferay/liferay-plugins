@@ -272,6 +272,17 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		}
 	}
 
+	/**
+	 * Removes the user thread from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param userThread the user thread to remove
+	 * @return the user thread that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public UserThread remove(UserThread userThread) throws SystemException {
+		return super.remove(userThread);
+	}
+
 	protected UserThread removeImpl(UserThread userThread)
 		throws SystemException {
 		userThread = toUnwrappedModel(userThread);

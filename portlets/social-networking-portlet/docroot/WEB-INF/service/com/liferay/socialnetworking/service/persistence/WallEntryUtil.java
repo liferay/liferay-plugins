@@ -708,7 +708,7 @@ public class WallEntryUtil {
 
 	public static WallEntryPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (WallEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (WallEntryPersistence)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.getServletContextName(),
 					WallEntryPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(WallEntryUtil.class,

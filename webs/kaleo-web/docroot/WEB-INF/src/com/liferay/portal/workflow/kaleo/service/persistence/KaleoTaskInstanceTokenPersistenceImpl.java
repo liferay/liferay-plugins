@@ -245,6 +245,19 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		}
 	}
 
+	/**
+	 * Removes the kaleo task instance token from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoTaskInstanceToken the kaleo task instance token to remove
+	 * @return the kaleo task instance token that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoTaskInstanceToken remove(
+		KaleoTaskInstanceToken kaleoTaskInstanceToken)
+		throws SystemException {
+		return super.remove(kaleoTaskInstanceToken);
+	}
+
 	protected KaleoTaskInstanceToken removeImpl(
 		KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws SystemException {

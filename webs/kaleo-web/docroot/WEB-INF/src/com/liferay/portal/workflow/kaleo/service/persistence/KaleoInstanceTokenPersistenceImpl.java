@@ -269,6 +269,18 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		}
 	}
 
+	/**
+	 * Removes the kaleo instance token from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param kaleoInstanceToken the kaleo instance token to remove
+	 * @return the kaleo instance token that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public KaleoInstanceToken remove(KaleoInstanceToken kaleoInstanceToken)
+		throws SystemException {
+		return super.remove(kaleoInstanceToken);
+	}
+
 	protected KaleoInstanceToken removeImpl(
 		KaleoInstanceToken kaleoInstanceToken) throws SystemException {
 		kaleoInstanceToken = toUnwrappedModel(kaleoInstanceToken);

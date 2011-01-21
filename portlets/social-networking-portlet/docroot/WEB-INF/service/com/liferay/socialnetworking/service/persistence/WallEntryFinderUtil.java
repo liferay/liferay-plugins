@@ -38,7 +38,7 @@ public class WallEntryFinderUtil {
 
 	public static WallEntryFinder getFinder() {
 		if (_finder == null) {
-			_finder = (WallEntryFinder)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_finder = (WallEntryFinder)PortletBeanLocatorUtil.locate(com.liferay.socialnetworking.service.ClpSerializer.getServletContextName(),
 					WallEntryFinder.class.getName());
 
 			ReferenceRegistry.registerReference(WallEntryFinderUtil.class,

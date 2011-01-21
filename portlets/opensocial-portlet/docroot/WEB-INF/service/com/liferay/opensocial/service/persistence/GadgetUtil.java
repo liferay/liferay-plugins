@@ -621,7 +621,7 @@ public class GadgetUtil {
 
 	public static GadgetPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (GadgetPersistence)PortletBeanLocatorUtil.locate(com.liferay.opensocial.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (GadgetPersistence)PortletBeanLocatorUtil.locate(com.liferay.opensocial.service.ClpSerializer.getServletContextName(),
 					GadgetPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(GadgetUtil.class, "_persistence");

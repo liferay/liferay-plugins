@@ -478,7 +478,7 @@ public class AccountUtil {
 
 	public static AccountPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (AccountPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (AccountPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.getServletContextName(),
 					AccountPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(AccountUtil.class,

@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.service.persistence;
 
 import com.liferay.knowledgebase.model.Template;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 
 /**
@@ -524,4 +525,6 @@ public interface TemplatePersistence extends BasePersistence<Template> {
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public Template remove(Template template) throws SystemException;
 }

@@ -17,10 +17,6 @@ package com.liferay.knowledgebase.model;
 /**
  * The model interface for the Comment service. Represents a row in the &quot;KB_Comment&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.CommentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see CommentModel
  * @see com.liferay.knowledgebase.model.impl.CommentImpl
@@ -31,6 +27,6 @@ public interface Comment extends CommentModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a comment model instance should use the {@link Comment} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.knowledgebase.model.impl.CommentImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

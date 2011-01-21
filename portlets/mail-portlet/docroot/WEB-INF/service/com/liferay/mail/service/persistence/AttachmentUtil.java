@@ -412,7 +412,7 @@ public class AttachmentUtil {
 
 	public static AttachmentPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (AttachmentPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (AttachmentPersistence)PortletBeanLocatorUtil.locate(com.liferay.mail.service.ClpSerializer.getServletContextName(),
 					AttachmentPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(AttachmentUtil.class,

@@ -17,10 +17,6 @@ package com.liferay.socialcoding.model;
 /**
  * The model interface for the JIRAIssue service. Represents a row in the &quot;jiraissue&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAIssueImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see JIRAIssueModel
  * @see com.liferay.socialcoding.model.impl.JIRAIssueImpl
@@ -31,6 +27,6 @@ public interface JIRAIssue extends JIRAIssueModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a j i r a issue model instance should use the {@link JIRAIssue} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.socialcoding.model.impl.JIRAIssueImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

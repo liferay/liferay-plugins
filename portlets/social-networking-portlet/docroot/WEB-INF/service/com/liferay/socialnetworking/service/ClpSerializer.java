@@ -16,6 +16,8 @@ package com.liferay.socialnetworking.service;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
 import com.liferay.socialnetworking.model.MeetupsEntryClp;
@@ -32,7 +34,57 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  */
 public class ClpSerializer {
-	public static final String SERVLET_CONTEXT_NAME = "social-networking-portlet";
+	public static String getServletContextName() {
+		if (Validator.isNotNull(_servletContextName)) {
+			return _servletContextName;
+		}
+
+		synchronized (ClpSerializer.class) {
+			if (Validator.isNotNull(_servletContextName)) {
+				return _servletContextName;
+			}
+
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Class<?> portletPropsClass = classLoader.loadClass(
+						"com.liferay.util.portlet.PortletProps");
+
+				Method getMethod = portletPropsClass.getMethod("get",
+						new Class<?>[] { String.class });
+
+				String portletPropsServletContextName = (String)getMethod.invoke(null,
+						"social-networking-portlet-deployment-context");
+
+				if (Validator.isNotNull(portletPropsServletContextName)) {
+					_servletContextName = portletPropsServletContextName;
+				}
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+
+			if (Validator.isNull(_servletContextName)) {
+				try {
+					String propsUtilServletContextName = PropsUtil.get(
+							"social-networking-portlet-deployment-context");
+
+					if (Validator.isNotNull(propsUtilServletContextName)) {
+						_servletContextName = propsUtilServletContextName;
+					}
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+			}
+
+			if (Validator.isNull(_servletContextName)) {
+				_servletContextName = "social-networking-portlet";
+			}
+
+			return _servletContextName;
+		}
+	}
 
 	public static void setClassLoader(ClassLoader classLoader) {
 		_classLoader = classLoader;
@@ -667,4 +719,5 @@ public class ClpSerializer {
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);
 	private static ClassLoader _classLoader;
+	private static String _servletContextName;
 }

@@ -235,6 +235,17 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		}
 	}
 
+	/**
+	 * Removes the wall entry from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param wallEntry the wall entry to remove
+	 * @return the wall entry that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public WallEntry remove(WallEntry wallEntry) throws SystemException {
+		return super.remove(wallEntry);
+	}
+
 	protected WallEntry removeImpl(WallEntry wallEntry)
 		throws SystemException {
 		wallEntry = toUnwrappedModel(wallEntry);

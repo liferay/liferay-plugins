@@ -617,7 +617,7 @@ public class FooUtil {
 
 	public static FooPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (FooPersistence)PortletBeanLocatorUtil.locate(com.liferay.sampleservicebuilder.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (FooPersistence)PortletBeanLocatorUtil.locate(com.liferay.sampleservicebuilder.service.ClpSerializer.getServletContextName(),
 					FooPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(FooUtil.class, "_persistence");

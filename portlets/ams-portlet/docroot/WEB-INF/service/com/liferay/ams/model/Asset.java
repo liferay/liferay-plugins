@@ -17,10 +17,6 @@ package com.liferay.ams.model;
 /**
  * The model interface for the Asset service. Represents a row in the &quot;AMS_Asset&quot; database table, with each column mapped to a property of this class.
  *
- * <p>
- * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.AssetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  * @see AssetModel
  * @see com.liferay.ams.model.impl.AssetImpl
@@ -31,6 +27,6 @@ public interface Asset extends AssetModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never reference this interface directly. All methods that expect a asset model instance should use the {@link Asset} interface instead.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.ams.model.impl.AssetImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

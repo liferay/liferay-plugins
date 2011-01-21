@@ -216,6 +216,18 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		}
 	}
 
+	/**
+	 * Removes the s v n repository from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param svnRepository the s v n repository to remove
+	 * @return the s v n repository that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public SVNRepository remove(SVNRepository svnRepository)
+		throws SystemException {
+		return super.remove(svnRepository);
+	}
+
 	protected SVNRepository removeImpl(SVNRepository svnRepository)
 		throws SystemException {
 		svnRepository = toUnwrappedModel(svnRepository);

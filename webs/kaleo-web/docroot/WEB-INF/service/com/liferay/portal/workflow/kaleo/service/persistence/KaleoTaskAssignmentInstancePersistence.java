@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 
@@ -658,4 +659,8 @@ public interface KaleoTaskAssignmentInstancePersistence extends BasePersistence<
 	*/
 	public int countAll()
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public KaleoTaskAssignmentInstance remove(
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
+		throws SystemException;
 }

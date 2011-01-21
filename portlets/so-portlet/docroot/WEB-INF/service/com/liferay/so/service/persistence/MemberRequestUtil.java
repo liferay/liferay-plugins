@@ -713,7 +713,7 @@ public class MemberRequestUtil {
 
 	public static MemberRequestPersistence getPersistence() {
 		if (_persistence == null) {
-			_persistence = (MemberRequestPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.SERVLET_CONTEXT_NAME,
+			_persistence = (MemberRequestPersistence)PortletBeanLocatorUtil.locate(com.liferay.so.service.ClpSerializer.getServletContextName(),
 					MemberRequestPersistence.class.getName());
 
 			ReferenceRegistry.registerReference(MemberRequestUtil.class,

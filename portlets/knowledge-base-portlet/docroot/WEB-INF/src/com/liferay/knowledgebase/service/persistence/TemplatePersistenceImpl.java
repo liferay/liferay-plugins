@@ -247,6 +247,17 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		}
 	}
 
+	/**
+	 * Removes the template from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param template the template to remove
+	 * @return the template that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Template remove(Template template) throws SystemException {
+		return super.remove(template);
+	}
+
 	protected Template removeImpl(Template template) throws SystemException {
 		template = toUnwrappedModel(template);
 
