@@ -14,6 +14,8 @@
 
 package com.liferay.wsrp.proxy;
 
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.client.PasswordCallback;
@@ -25,17 +27,7 @@ import java.lang.reflect.Proxy;
 
 import java.net.URL;
 
-import oasis.names.tc.wsrp.v1.bind.WSRP_v1_Markup_Binding_SOAPStub;
-import oasis.names.tc.wsrp.v1.intf.WSRP_v1_Markup_PortType;
-import oasis.names.tc.wsrp.v1.intf.WSRP_v1_PortletManagement_PortType;
-import oasis.names.tc.wsrp.v1.intf.WSRP_v1_Registration_PortType;
-import oasis.names.tc.wsrp.v1.intf.WSRP_v1_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v1.wsdl.WSRPServiceLocator;
-import oasis.names.tc.wsrp.v2.bind.WSRP_v2_Markup_Binding_SOAPStub;
-import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
-import oasis.names.tc.wsrp.v2.intf.WSRP_v2_PortletManagement_PortType;
-import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Registration_PortType;
-import oasis.names.tc.wsrp.v2.intf.WSRP_v2_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v2.wsdl.WSRP_v2_ServiceLocator;
 
 import org.apache.axis.EngineConfiguration;
@@ -46,6 +38,8 @@ import org.apache.axis.client.Service;
 import org.apache.axis.configuration.SimpleProvider;
 import org.apache.axis.transport.http.HTTPSender;
 import org.apache.axis.transport.http.HTTPTransport;
+import org.apache.commons.beanutils.ConstructorUtils;
+import org.apache.commons.beanutils.MethodUtils;
 import org.apache.ws.axis.security.WSDoAllSender;
 import org.apache.ws.security.WSConstants;
 import org.apache.ws.security.handler.WSHandlerConstants;
@@ -56,45 +50,22 @@ import org.apache.ws.security.message.token.UsernameToken;
  */
 public class ServiceHandler implements InvocationHandler {
 
-	public ServiceHandler(String forwardCookies, String userToken) {
+	public ServiceHandler(String forwardCookies, String userToken, boolean v2) {
 		_engineConfiguration = getEngineConfiguration(
 			forwardCookies, userToken);
 
-		_v1ServiceLocator = new WSRPServiceLocator(_engineConfiguration);
+		_v2 = v2;
 
-		_v1ServiceLocator.setMaintainSession(true);
+		if (_v2) {
+			_serviceLocator = new WSRP_v2_ServiceLocator(_engineConfiguration);
+			_version = "v2";
+		}
+		else {
+			_serviceLocator = new WSRPServiceLocator(_engineConfiguration);;
+			_version = "v1";
+		}
 
-		_v2ServiceLocator = new WSRP_v2_ServiceLocator(_engineConfiguration);
-
-		_v2ServiceLocator.setMaintainSession(true);
-	}
-
-	public WSRP_v1_Markup_PortType getV1MarkupService(URL url)
-		throws Exception {
-
-		Service service = getService();
-
-		WSRP_v1_Markup_Binding_SOAPStub markupService =
-			new WSRP_v1_Markup_Binding_SOAPStub(url, service);
-
-		markupService.setPortName(
-			_v1ServiceLocator.getWSRP_v1_Markup_ServiceWSDDServiceName());
-
-		return markupService;
-	}
-
-	public WSRP_v2_Markup_PortType getV2MarkupService(URL url)
-		throws Exception {
-
-		Service service = getService();
-
-		WSRP_v2_Markup_Binding_SOAPStub markupService =
-			new WSRP_v2_Markup_Binding_SOAPStub(url, service);
-
-		markupService.setPortName(
-			_v2ServiceLocator.getWSRP_v2_Markup_ServiceWSDDServiceName());
-
-		return markupService;
+		_serviceLocator.setMaintainSession(true);
 	}
 
 	public Object invoke(Object proxy, Method method, Object[] args)
@@ -111,73 +82,76 @@ public class ServiceHandler implements InvocationHandler {
 	public Object doInvoke(Object proxy, Method method, Object[] args)
 		throws Exception {
 
+		ClassLoader classLoader =
+			Thread.currentThread().getContextClassLoader();
+
 		String methodName = method.getName();
 
 		URL bindingURL = (URL)args[0];
 
+		int x = methodName.indexOf("_v2_") + 4;
+		int y = methodName.lastIndexOf("_Service");
+
+		String serviceName = methodName.substring(x, y);
+
+		StringBundler sb = new StringBundler(7);
+
+		sb.append(_OASIS_PACKAGE);
+		sb.append(_version);
+		sb.append(".bind.WSRP_");
+		sb.append(_version);
+		sb.append(StringPool.UNDERLINE) ;
+		sb.append(serviceName);
+		sb.append("_Binding_SOAPStub");
+
+		Class<?> clazz = classLoader.loadClass(sb.toString());
+
+		args = new Object[] {bindingURL, getService()};
+
+		Object stub = ConstructorUtils.invokeConstructor(clazz, args);
+
+		sb = new StringBundler(5);
+
+		sb.append("getWSRP_");
+		sb.append(_version);
+		sb.append(StringPool.UNDERLINE);
+		sb.append(serviceName);
+		sb.append("_ServiceWSDDServiceName");
+
+		Object serviceWSDDServiceName = MethodUtils.invokeMethod(
+			_serviceLocator, sb.toString(), null);
+
+		MethodUtils.invokeMethod(stub, "setPortName", serviceWSDDServiceName);
+
 		if (_v2) {
-			if (methodName.equals(_GET_WSRP_V2_MARKUP_SERVICE_METHOD)) {
-				return getV2MarkupService(bindingURL);
-			}
-			else {
-				return method.invoke(_v2ServiceLocator, args);
-			}
+			return stub;
 		}
+		else {
+			sb = new StringBundler(4);
 
-		Class<?> proxyInterface = null;
-		InvocationHandler invocationHandler = null;
+			sb.append(_OASIS_PACKAGE);
+			sb.append("v2.intf.WSRP_v2_");
+			sb.append(serviceName);
+			sb.append("_PortType");
 
-		if (methodName.equals(_GET_WSRP_V2_MARKUP_SERVICE_METHOD)) {
-			proxyInterface = WSRP_v2_Markup_PortType.class;
+			Class<?> proxyInterface = classLoader.loadClass(sb.toString());
 
-			WSRP_v1_Markup_PortType markupService =
-				getV1MarkupService(bindingURL);
+			sb = new StringBundler(3);
 
-			invocationHandler = new MarkupServiceHandler(markupService);
+			sb.append(_WSRP_PROXY_PACKAGE);
+			sb.append(serviceName);
+			sb.append("ServiceHandler");
+
+			clazz = classLoader.loadClass(sb.toString());
+
+			InvocationHandler invocationHandler =
+				(InvocationHandler)ConstructorUtils.invokeConstructor(
+					clazz, stub);
+
+			return Proxy.newProxyInstance(
+				ServiceHandler.class.getClassLoader(),
+				new Class[] {proxyInterface}, invocationHandler);
 		}
-		else if (methodName.equals(
-			_GET_WSRP_V2_PORTLET_MANAGEMENT_SERVICE_METHOD)) {
-
-			proxyInterface = WSRP_v2_PortletManagement_PortType.class;
-
-			WSRP_v1_PortletManagement_PortType portletManagementService =
-				_v1ServiceLocator.getWSRP_v1_PortletManagement_Service(
-					bindingURL);
-
-			invocationHandler = new PortletManagementServiceHandler(
-				portletManagementService);
-		}
-		else if (methodName.equals(
-					_GET_WSRP_V2_REGISTRATION_SERVICE_METHOD)) {
-
-			proxyInterface = WSRP_v2_Registration_PortType.class;
-
-			WSRP_v1_Registration_PortType registrationService =
-				_v1ServiceLocator.getWSRP_v1_Registration_Service(bindingURL);
-
-			invocationHandler = new RegistrationServiceHandler(
-				registrationService);
-		}
-		else if (methodName.equals(
-					_GET_WSRP_V2_SERVICE_DESCRIPTION_SERVICE_METHOD)) {
-
-			proxyInterface = WSRP_v2_ServiceDescription_PortType.class;
-
-			WSRP_v1_ServiceDescription_PortType serviceDescriptionService =
-				_v1ServiceLocator.getWSRP_v1_ServiceDescription_Service(
-					bindingURL);
-
-			invocationHandler = new ServiceDescriptionServiceHandler(
-				serviceDescriptionService);
-		}
-
-		return Proxy.newProxyInstance(
-			ServiceHandler.class.getClassLoader(),
-			new Class[] {proxyInterface}, invocationHandler);
-	}
-
-	public void setV2(boolean v2) {
-		_v2 = v2;
 	}
 
 	protected EngineConfiguration getEngineConfiguration(
@@ -218,22 +192,12 @@ public class ServiceHandler implements InvocationHandler {
 		return service;
 	}
 
-	private static final String _GET_WSRP_V2_MARKUP_SERVICE_METHOD =
-		"getWSRP_v2_Markup_Service";
-
-	private static final String _GET_WSRP_V2_PORTLET_MANAGEMENT_SERVICE_METHOD =
-		"getWSRP_v2_PortletManagement_Service";
-
-	private static final String _GET_WSRP_V2_REGISTRATION_SERVICE_METHOD =
-		"getWSRP_v2_Registration_Service";
-
-	private static final String
-		_GET_WSRP_V2_SERVICE_DESCRIPTION_SERVICE_METHOD =
-			"getWSRP_v2_ServiceDescription_Service";
+	private static String _OASIS_PACKAGE = "oasis.names.tc.wsrp.";
+	private static String _WSRP_PROXY_PACKAGE = "com.liferay.wsrp.proxy.";
 
 	private EngineConfiguration _engineConfiguration;
-	private WSRPServiceLocator _v1ServiceLocator;
+	private Service _serviceLocator;
 	private boolean _v2;
-	private WSRP_v2_ServiceLocator _v2ServiceLocator;
+	private String _version;
 
 }

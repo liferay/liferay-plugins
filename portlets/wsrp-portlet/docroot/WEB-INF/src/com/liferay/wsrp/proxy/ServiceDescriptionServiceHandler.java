@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import oasis.names.tc.wsrp.v1.bind.WSRP_v1_ServiceDescription_Binding_SOAPStub;
 import oasis.names.tc.wsrp.v1.intf.WSRP_v1_ServiceDescription_PortType;
 import oasis.names.tc.wsrp.v1.types.GetServiceDescription;
 import oasis.names.tc.wsrp.v1.types.ServiceDescription;
@@ -30,7 +31,7 @@ import oasis.names.tc.wsrp.v1.types.ServiceDescription;
 public class ServiceDescriptionServiceHandler implements InvocationHandler {
 
 	public ServiceDescriptionServiceHandler(
-		WSRP_v1_ServiceDescription_PortType serviceDescriptionService) {
+		WSRP_v1_ServiceDescription_Binding_SOAPStub serviceDescriptionService) {
 
 		_serviceDescriptionService = serviceDescriptionService;
 	}

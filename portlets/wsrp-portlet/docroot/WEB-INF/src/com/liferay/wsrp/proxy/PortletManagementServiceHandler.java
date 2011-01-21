@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import oasis.names.tc.wsrp.v1.bind.WSRP_v1_PortletManagement_Binding_SOAPStub;
 import oasis.names.tc.wsrp.v1.intf.WSRP_v1_PortletManagement_PortType;
 
 /**
@@ -28,7 +29,7 @@ import oasis.names.tc.wsrp.v1.intf.WSRP_v1_PortletManagement_PortType;
 public class PortletManagementServiceHandler implements InvocationHandler {
 
 	public PortletManagementServiceHandler(
-		WSRP_v1_PortletManagement_PortType portletManagementService) {
+		WSRP_v1_PortletManagement_Binding_SOAPStub portletManagementService) {
 
 		_portletManagementService = portletManagementService;
 	}

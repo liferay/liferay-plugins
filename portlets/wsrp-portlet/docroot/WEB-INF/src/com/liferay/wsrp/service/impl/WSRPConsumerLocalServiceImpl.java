@@ -77,8 +77,12 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(now);
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
+
+		// Must set forward cookies first so that WSRPConsumerManagerFactory
+		// has access to them
+
 		wsrpConsumer.setForwardCookies(forwardCookies);
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 
@@ -259,8 +263,12 @@ public class WSRPConsumerLocalServiceImpl
 		wsrpConsumer.setModifiedDate(new Date());
 		wsrpConsumer.setName(name);
 		wsrpConsumer.setUrl(url);
-		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
+
+		// Must set forward cookies first so that WSRPConsumerManagerFactory
+		// has access to them
+
 		wsrpConsumer.setForwardCookies(forwardCookies);
+		wsrpConsumer.setWsdl(getWSDL(wsrpConsumer, userToken));
 
 		wsrpConsumerPersistence.update(wsrpConsumer, false);
 

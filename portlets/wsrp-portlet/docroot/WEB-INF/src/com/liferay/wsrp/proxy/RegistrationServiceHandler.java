@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import oasis.names.tc.wsrp.v1.bind.WSRP_v1_Registration_Binding_SOAPStub;
 import oasis.names.tc.wsrp.v1.intf.WSRP_v1_Registration_PortType;
 import oasis.names.tc.wsrp.v1.types.RegistrationContext;
 import oasis.names.tc.wsrp.v1.types.RegistrationData;
@@ -31,7 +32,7 @@ import oasis.names.tc.wsrp.v2.types.Register;
 public class RegistrationServiceHandler implements InvocationHandler {
 
 	public RegistrationServiceHandler(
-		WSRP_v1_Registration_PortType registrationDescriptionService) {
+		WSRP_v1_Registration_Binding_SOAPStub registrationDescriptionService) {
 
 		_registrationDescriptionService = registrationDescriptionService;
 	}

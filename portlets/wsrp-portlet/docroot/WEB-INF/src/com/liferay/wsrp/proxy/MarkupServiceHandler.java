@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+import oasis.names.tc.wsrp.v1.bind.WSRP_v1_Markup_Binding_SOAPStub;
 import oasis.names.tc.wsrp.v1.intf.WSRP_v1_Markup_PortType;
 import oasis.names.tc.wsrp.v1.types.BlockingInteractionResponse;
 import oasis.names.tc.wsrp.v1.types.Extension;
@@ -34,7 +35,7 @@ import oasis.names.tc.wsrp.v1.types.ReleaseSessions;
  */
 public class MarkupServiceHandler implements InvocationHandler {
 
-	public MarkupServiceHandler(WSRP_v1_Markup_PortType markupService) {
+	public MarkupServiceHandler(WSRP_v1_Markup_Binding_SOAPStub markupService) {
 		_markupService = markupService;
 	}
 

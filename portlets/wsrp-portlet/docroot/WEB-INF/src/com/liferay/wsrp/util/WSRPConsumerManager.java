@@ -95,12 +95,6 @@ public class WSRPConsumerManager {
 		throws Exception {
 
 		try {
-			_serviceHandler = new ServiceHandler(forwardCookies, userToken);
-
-			_service = (WSRP_v2_Service)Proxy.newProxyInstance(
-				WSRP_v2_Service.class.getClassLoader(),
-				new Class[] {WSRP_v2_Service.class}, _serviceHandler);
-
 			_wsdl = HttpUtil.URLtoString(url);
 
 			Document document = SAXReaderUtil.read(_wsdl);
@@ -112,13 +106,14 @@ public class WSRPConsumerManager {
 			List<Element> serviceElements = root.elements(
 				_getWsdlQName("service"));
 
-			for (Element serviceElement : serviceElements) {
-				boolean v2 = _readServiceElement(serviceElement);
+			ServiceHandler serviceHandler = new ServiceHandler(
+				forwardCookies, userToken, _isV2(serviceElements));
 
-				if (v2) {
-					break;
-				}
-			}
+			_service = (WSRP_v2_Service)Proxy.newProxyInstance(
+				WSRP_v2_Service.class.getClassLoader(),
+				new Class[] {WSRP_v2_Service.class}, serviceHandler);
+
+			_readServiceElements(serviceElements);
 
 			updateServiceDescription(registrationContext);
 		}
@@ -282,6 +277,23 @@ public class WSRPConsumerManager {
 		return SAXReaderUtil.createQName(localName, _wsdlNamespace);
 	}
 
+	private boolean _isV2(List<Element> serviceElements) {
+		for (Element serviceElement : serviceElements) {
+			List<Element> bindingElements =
+				serviceElement.elements(_getWsdlQName("port"));
+
+			Element firstBindingElement = bindingElements.get(0);
+
+	 		String binding = firstBindingElement.attributeValue("binding");
+
+			if (binding.contains("v2")) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	private void _readBindingElement(Element bindingElement) throws Exception {
 		String binding = bindingElement.attributeValue("binding");
 
@@ -323,26 +335,25 @@ public class WSRPConsumerManager {
 		}
 	}
 
-	private boolean _readServiceElement(Element element) throws Exception {
-		List<Element> bindingElements = element.elements(_getWsdlQName("port"));
+	private void _readServiceElements(List<Element> serviceElements)
+		throws Exception {
 
-		Element firstBindingElement = bindingElements.get(0);
+		for (Element serviceElement : serviceElements) {
+			List<Element> bindingElements =
+				serviceElement.elements(_getWsdlQName("port"));
 
- 		String binding = firstBindingElement.attributeValue("binding");
+			for (Element bindingElement : bindingElements) {
+				_readBindingElement(bindingElement);
+			}
 
-		boolean v2 = false;
+			Element firstBindingElement = bindingElements.get(0);
 
-		if (binding.contains("v2")) {
-			v2 = true;
+			String binding = firstBindingElement.attributeValue("binding");
 
-			_serviceHandler.setV2(v2);
+	 		if (binding.contains("v2")) {
+				break;
+			}
 		}
-
-		for (Element bindingElement : bindingElements) {
-			_readBindingElement(bindingElement);
-		}
-
-		return v2;
 	}
 
 	private static final String _WSDL_URI = "http://schemas.xmlsoap.org/wsdl/";
@@ -382,7 +393,6 @@ public class WSRPConsumerManager {
 	private WSRP_v2_Service _service;
 	private ServiceDescription _serviceDescription;
 	private WSRP_v2_ServiceDescription_PortType _serviceDescriptionService;
-	private ServiceHandler _serviceHandler;
 	private String _wsdl;
 	private Namespace _wsdlNamespace;
 
