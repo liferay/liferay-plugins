@@ -112,6 +112,9 @@ public class KnowledgeBaseUtil {
 		Integer count = null;
 
 		if (selectionMethod.equals("group")) {
+			OrderByComparator orderByComparator =
+				getOrderByComparator(orderByColumn, orderByAscending);
+
 			if (classPKs != null) {
 				long[] viewableParentResourcePrimKeys = new long[] {
 					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
@@ -126,7 +129,7 @@ public class KnowledgeBaseUtil {
 				articles = ArticleServiceUtil.getArticles(
 					groupId, classPKs, WorkflowConstants.STATUS_APPROVED,
 					viewableParentResourcePrimKeys, start, end,
-					getOrderByComparator(orderByColumn, orderByAscending));
+					orderByComparator);
 
 				count = ArticleServiceUtil.getArticlesCount(
 					groupId, classPKs, WorkflowConstants.STATUS_APPROVED,
@@ -140,7 +143,7 @@ public class KnowledgeBaseUtil {
 				articles = ArticleServiceUtil.getGroupArticles(
 					groupId, WorkflowConstants.STATUS_APPROVED,
 					viewableParentResourcePrimKeys, start, end,
-					getOrderByComparator(orderByColumn, orderByAscending));
+					orderByComparator);
 
 				count = ArticleServiceUtil.getGroupArticlesCount(
 					groupId, WorkflowConstants.STATUS_APPROVED,
@@ -150,7 +153,7 @@ public class KnowledgeBaseUtil {
 				articles = ArticleServiceUtil.getSiblingArticles(
 					groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 					WorkflowConstants.STATUS_APPROVED, start, end,
-					getOrderByComparator(orderByColumn, orderByAscending));
+					orderByComparator);
 
 				count = ArticleServiceUtil.getSiblingArticlesCount(
 					groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
@@ -223,33 +226,49 @@ public class KnowledgeBaseUtil {
 			preferencesMap.get("resourcePrimKeys"), 0L);
 		boolean allArticles = GetterUtil.getBoolean(
 			preferencesMap.get("allArticles"));
+		String orderByColumn = preferencesMap.get("orderByColumn");
+		boolean orderByAscending = GetterUtil.getBoolean(
+			preferencesMap.get("orderByAscending"));
 
 		long[] classPKs = getAssetEntriesClassPKs(
 			article.getGroupId(), 0, null, preferencesMap);
 
-		if (selectionMethod.equals("group") && (classPKs == null)) {
-			return true;
-		}
+		// Mimic behavior in KnowledgeBaseUtil#getPortletPreferencesArticlesMap.
 
 		List<Article> articles = null;
 
 		if (selectionMethod.equals("group")) {
-			long[] viewableParentResourcePrimKeys = new long[] {
-				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
-			};
+			OrderByComparator orderByComparator =
+				getOrderByComparator(orderByColumn, orderByAscending);
 
-			if (allArticles) {
-				viewableParentResourcePrimKeys =
-					ArticleServiceUtil.getViewableParentResourcePrimKeys(
-						article.getGroupId(),
-						WorkflowConstants.STATUS_APPROVED);
+			if (classPKs != null) {
+				long[] viewableParentResourcePrimKeys = new long[] {
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
+				};
+
+				if (allArticles) {
+					viewableParentResourcePrimKeys = null;
+				}
+
+				articles = ArticleServiceUtil.getArticles(
+					article.getGroupId(), classPKs,
+					WorkflowConstants.STATUS_APPROVED,
+					viewableParentResourcePrimKeys, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, orderByComparator);
 			}
-
-			articles = ArticleServiceUtil.getArticles(
-				article.getGroupId(), classPKs,
-				WorkflowConstants.STATUS_APPROVED,
-				viewableParentResourcePrimKeys, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, null);
+			else if (allArticles) {
+				articles = ArticleServiceUtil.getGroupArticles(
+					article.getGroupId(), WorkflowConstants.STATUS_APPROVED,
+					null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					orderByComparator);
+			}
+			else {
+				articles = ArticleServiceUtil.getSiblingArticles(
+					article.getGroupId(),
+					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
+					WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, orderByComparator);
+			}
 		}
 
 		if (selectionMethod.equals("articles")) {
@@ -266,15 +285,47 @@ public class KnowledgeBaseUtil {
 				article.getGroupId(), resourcePrimKeys,
 				WorkflowConstants.STATUS_APPROVED, null, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);
+			articles = sortPortletPreferencesArticles(
+				resourcePrimKeys, articles);
 		}
 
-		resourcePrimKeys = StringUtil.split(
+		// The Display portlet shows the first available article.
+
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+			articles = ListUtil.subList(articles, 0, 1);
+		}
+
+		// Users can navigate to the root article. See article_breadcrumbs.jspf.
+
+		if (selectionMethod.equals("articles") || (classPKs != null) ||
+			rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+
+			List<Article> rootArticles = new UniqueList<Article>();
+
+			for (Article curArticle : articles) {
+				while (curArticle.getParentResourcePrimKey() !=
+							ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
+					curArticle = ArticleServiceUtil.getLatestArticle(
+						curArticle.getParentResourcePrimKey(),
+						WorkflowConstants.STATUS_APPROVED);
+				}
+
+				rootArticles.add(curArticle);
+			}
+
+			articles = rootArticles;
+		}
+
+		long[] selResourcePrimKeys = StringUtil.split(
 			ListUtil.toString(articles, "resourcePrimKey"), 0L);
 
 		while (resourcePrimKey !=
 					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
-			if (ArrayUtil.contains(resourcePrimKeys, resourcePrimKey)) {
+			if (ArrayUtil.contains(selResourcePrimKeys, resourcePrimKey)) {
 				return true;
 			}
 
