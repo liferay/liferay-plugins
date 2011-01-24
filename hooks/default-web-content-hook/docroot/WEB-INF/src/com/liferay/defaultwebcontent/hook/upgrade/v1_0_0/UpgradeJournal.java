@@ -150,8 +150,7 @@ public class UpgradeJournal extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		long companyId = PortalUtil.getDefaultCompanyId();
 
-		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
+		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
 
 		long groupId = group.getGroupId();
 		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
