@@ -17,12 +17,10 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
-
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<%@ include file="/admin/top_links.jspf" %>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanel" %>' persistState="<%= true %>" title="search-articles">
@@ -42,6 +40,8 @@ String keywords = ParamUtil.getString(request, "keywords");
 				searchContext.setEnd(searchContainer.getEnd());
 				searchContext.setKeywords(keywords);
 				searchContext.setStart(searchContainer.getStart());
+
+				Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
 
 				Indexer indexer = portlet.getIndexerInstance();
 

@@ -23,7 +23,7 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 
-long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey", parentResourcePrimKey);
+long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey");
 %>
 
 <liferay-ui:header
@@ -79,12 +79,17 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				<liferay-ui:search-container-column-text
 					align="right"
 				>
+
+					<%
+					int priorityMax = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, curArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
+					%>
+
 					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>">
+						<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
 							<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
+							<liferay-util:param name="parentArticleTitle" value="<%= String.valueOf(curArticle.getTitle()) %>" />
 							<liferay-util:param name="priority" value="<%= String.valueOf(ArticleConstants.DEFAULT_PRIORITY) %>" />
-							<liferay-util:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
+							<liferay-util:param name="priorityMax" value="<%= String.valueOf(((article != null) && (article.getParentResourcePrimKey() == curArticle.getResourcePrimKey())) ? priorityMax : priorityMax + 1) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
@@ -105,12 +110,16 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 
 					<%= oldParentArticle.getTitle() %>
 
+					<%
+					int priorityMax = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY);
+					%>
+
 					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>">
+						<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
 							<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
+							<liferay-util:param name="parentArticleTitle" value="<%= StringPool.BLANK %>" />
 							<liferay-util:param name="priority" value="<%= String.valueOf(ArticleConstants.DEFAULT_PRIORITY) %>" />
-							<liferay-util:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
+							<liferay-util:param name="priorityMax" value="<%= String.valueOf(((article != null) && (article.getParentResourcePrimKey() == ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY)) ? priorityMax : priorityMax + 1) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
@@ -135,25 +144,23 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				<c:if test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 
 					<%
-					List<Article> articles = new ArrayList<Article>();
+					List<Article> selArticles = new ArrayList<Article>();
 
-					articles.add(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY));
+					long selParentResourcePrimKey = parentResourcePrimKey;
 
-					int index = -1;
+					while (selParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+						Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-					while ((index = index + 1) < articles.size()) {
-						Article curArticle = articles.get(index);
+						selArticles.add(selArticle);
 
-						if (curArticle.getParentResourcePrimKey() != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-							articles.add(ArticleServiceUtil.getLatestArticle(curArticle.getParentResourcePrimKey(), WorkflowConstants.STATUS_ANY));
-						}
+						selParentResourcePrimKey = selArticle.getParentResourcePrimKey();
 					}
 
-					for (int i = articles.size(); i > 0; i--) {
-						Article curArticle = articles.get(i - 1);
+					for (int i = selArticles.size(); i > 0; i--) {
+						Article selArticle = selArticles.get(i - 1);
 					%>
 
-						<aui:a href='<%= HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", curArticle.getResourcePrimKey()) %>'><%= (i == 1) ? curArticle.getTitle() : StringUtil.shorten(curArticle.getTitle(), 30) %></aui:a> &raquo;
+						<aui:a href='<%= HttpUtil.setParameter(breadcrumbURL, "parentResourcePrimKey", selArticle.getResourcePrimKey()) %>'><%= (i == 1) ? selArticle.getTitle() : StringUtil.shorten(selArticle.getTitle(), 30) %></aui:a> &raquo;
 
 					<%
 					}

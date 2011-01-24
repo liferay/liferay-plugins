@@ -1,0 +1,101 @@
+<%--
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<c:if test='<%= request.getAttribute("template_icons.jspf-selTemplate") != null %>'>
+
+	<%
+	Template selTemplate = (Template)request.getAttribute("template_icons.jspf-selTemplate");
+
+	long templateId = ParamUtil.getLong(request, "templateId");
+	%>
+
+	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || TemplatePermission.contains(permissionChecker, selTemplate, ActionKeys.DELETE) || TemplatePermission.contains(permissionChecker, selTemplate, ActionKeys.PERMISSIONS) || TemplatePermission.contains(permissionChecker, selTemplate, ActionKeys.UPDATE) %>">
+		<div class="kb-template-icons">
+			<table class="lfr-table">
+			<tr>
+				<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+					<td>
+						<portlet:renderURL var="checkURL">
+							<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="templateId" value="<%= String.valueOf(selTemplate.getTemplateId()) %>" />
+						</portlet:renderURL>
+
+						<liferay-ui:icon
+							image="../aui/check"
+							label="<%= true %>"
+							message="use-this-template"
+							url="<%= checkURL %>"
+						/>
+					</td>
+				</c:if>
+
+				<c:if test="<%= TemplatePermission.contains(permissionChecker, selTemplate, ActionKeys.UPDATE) %>">
+					<td>
+						<portlet:renderURL var="editURL">
+							<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+							<portlet:param name="templateId" value="<%= String.valueOf(selTemplate.getTemplateId()) %>" />
+						</portlet:renderURL>
+
+						<liferay-ui:icon
+							image="edit"
+							label="<%= true %>"
+							url="<%= editURL %>"
+						/>
+					</td>
+				</c:if>
+
+				<c:if test="<%= TemplatePermission.contains(permissionChecker, selTemplate, ActionKeys.PERMISSIONS) %>">
+					<td>
+						<liferay-security:permissionsURL
+							modelResource="<%= Template.class.getName() %>"
+							modelResourceDescription="<%= selTemplate.getTitle() %>"
+							resourcePrimKey="<%= String.valueOf(selTemplate.getTemplateId()) %>"
+							var="permissionsURL"
+						/>
+
+						<liferay-ui:icon
+							image="permissions"
+							label="<%= true %>"
+							url="<%= permissionsURL %>"
+						/>
+					</td>
+				</c:if>
+
+				<c:if test="<%= TemplatePermission.contains(permissionChecker, selTemplate, ActionKeys.DELETE) %>">
+					<td>
+						<portlet:renderURL var="templatesURL">
+							<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+							<portlet:param name="topLink" value="templates" />
+						</portlet:renderURL>
+
+						<portlet:actionURL name="deleteTemplate" var="deleteURL">
+							<portlet:param name="redirect" value="<%= (selTemplate.getTemplateId() == templateId) ? templatesURL : currentURL %>" />
+							<portlet:param name="templateId" value="<%= String.valueOf(selTemplate.getTemplateId()) %>" />
+						</portlet:actionURL>
+
+						<liferay-ui:icon-delete
+							label="<%= true %>"
+							url="<%= deleteURL %>"
+						/>
+					</td>
+				</c:if>
+			</tr>
+			</table>
+		</div>
+	</c:if>
+</c:if>

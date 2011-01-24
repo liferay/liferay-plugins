@@ -18,11 +18,13 @@
 
 <%
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+
+int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<%@ include file="/admin/top_links.jspf" %>
 
-<liferay-util:include page="/admin/article_breadcrumbs.jsp" servletContext="<%= application %>" />
+<%@ include file="/admin/article_breadcrumbs.jspf" %>
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
@@ -30,22 +32,27 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 	</div>
 
 	<div class="kb-tools">
-		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
+		<%@ include file="/admin/article_tools.jspf" %>
 	</div>
 </div>
 
 <div class="kb-entity-body">
-	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
+
+	<%
+	request.setAttribute("article_icons.jspf-selArticle", article);
+	%>
+
+	<%@ include file="/admin/article_icons.jspf" %>
 
 	<%= article.getContent() %>
 
-	<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
+	<%@ include file="/admin/article_attachments.jspf" %>
 
-	<liferay-util:include page="/admin/article_assets.jsp" servletContext="<%= application %>" />
+	<%@ include file="/admin/article_assets.jspf" %>
 
-	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
+	<%@ include file="/admin/article_ratings.jspf" %>
 
-	<liferay-util:include page="/admin/article_tree.jsp" servletContext="<%= application %>" />
+	<%@ include file="/admin/article_tree.jspf" %>
 
-	<liferay-util:include page="/admin/article_comments.jsp" servletContext="<%= application %>" />
+	<%@ include file="/admin/article_comments.jspf" %>
 </div>

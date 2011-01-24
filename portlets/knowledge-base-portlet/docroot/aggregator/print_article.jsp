@@ -16,4 +16,25 @@
 
 <%@ include file="/aggregator/init.jsp" %>
 
-<liferay-util:include page="/admin/print_article.jsp" servletContext="<%= application %>" />
+<%
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+%>
+
+<div class="float-container kb-entity-header">
+	<div class="kb-title">
+		<%= article.getTitle() %>
+	</div>
+
+	<div class="kb-tools">
+		<liferay-ui:icon
+			image="print"
+			label="<%= true %>"
+			method="get"
+			url="javascript:print();"
+		/>
+	</div>
+</div>
+
+<div class="kb-entity-body">
+	<%= article.getContent() %>
+</div>

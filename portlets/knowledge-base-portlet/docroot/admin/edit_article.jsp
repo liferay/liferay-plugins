@@ -28,9 +28,18 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 int version = BeanParamUtil.getInteger(article, request, "version", ArticleConstants.DEFAULT_VERSION);
 String content = BeanParamUtil.getString(article, request, "content", BeanPropertiesUtil.getString(template, "content"));
+int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
 int status = BeanParamUtil.getInteger(article, request, "status", WorkflowConstants.STATUS_DRAFT);
 
 String dirName = ParamUtil.getString(request, "dirName");
+
+Map<String, String> fileNameToFileMessageMap = new LinkedHashMap<String, String>();
+
+if (article != null) {
+	for (String fileName : article.getAttachmentsFileNames()) {
+		fileNameToFileMessageMap.put(fileName, FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)");
+	}
+}
 %>
 
 <liferay-ui:header
@@ -88,13 +97,27 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 		<aui:field-wrapper label="display-order">
 			<div id="<portlet:namespace />priority">
-				<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>" />
+
+				<%
+				int priorityMax = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+				%>
+
+				<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
+					<liferay-util:param name="parentArticleTitle" value='<%= (parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") : StringPool.BLANK %>' />
+					<liferay-util:param name="priority" value="<%= String.valueOf(priority) %>" />
+					<liferay-util:param name="priorityMax" value="<%= String.valueOf((article != null) ? priorityMax : priorityMax + 1) %>" />
+				</liferay-util:include>
 			</div>
 		</aui:field-wrapper>
 
 		<aui:field-wrapper label="attachments">
 			<div id="<portlet:namespace />attachments">
-				<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>" />
+
+				<%
+				request.setAttribute("attachments.jsp-fileNameToFileMessageMap", fileNameToFileMessageMap);
+				%>
+
+				<liferay-util:include page="/admin/attachments.jsp" portletId="<%= portletDisplay.getId() %>" />
 			</div>
 		</aui:field-wrapper>
 

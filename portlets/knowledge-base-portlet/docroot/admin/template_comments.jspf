@@ -14,11 +14,7 @@
  */
 --%>
 
-<%@ include file="/admin/init.jsp" %>
-
 <%
-Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
-
 Comment comment = null;
 
 try {
@@ -33,7 +29,7 @@ String content = BeanParamUtil.getString(comment, request, "content");
 boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 %>
 
-<c:if test="<%= layoutTypePortlet.hasPortletId(portletDisplay.getId()) && (enableTemplateComments || showTemplateComments) %>">
+<c:if test="<%= (enableTemplateComments || showTemplateComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) %>">
 	<div class="kb-template-comments">
 		<c:if test="<%= enableTemplateComments && themeDisplay.isSignedIn() %>">
 			<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Template" + template.getTemplateId() + "CommentsPanelContainer" %>' persistState="<%= true %>">
@@ -41,10 +37,10 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 					<c:if test="<%= comment != null %>">
 
 						<%
-						request.setAttribute("template_comments.jsp-comment", comment);
+						request.setAttribute("template_comment.jspf-selComment", comment);
 						%>
 
-						<liferay-util:include page="/admin/template_comment.jsp" servletContext="<%= application %>" />
+						<%@ include file="/admin/template_comment.jspf" %>
 					</c:if>
 
 					<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateComment();" %>'>
@@ -95,10 +91,10 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 				%>
 
 					<%
-					request.setAttribute("template_comments.jsp-comment", curComment);
+					request.setAttribute("template_comment.jspf-selComment", curComment);
 					%>
 
-					<liferay-util:include page="/admin/template_comment.jsp" servletContext="<%= application %>" />
+					<%@ include file="/admin/template_comment.jspf" %>
 
 				<%
 				}
