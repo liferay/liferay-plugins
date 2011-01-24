@@ -101,11 +101,11 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 		PermissionChecker contextPermissionChecker =
 			PermissionThreadLocal.getPermissionChecker();
 
-		PrincipalThreadLocal.setName(user.getUserId());
-
 		try {
 			PermissionChecker permissionChecker =
 				PermissionCheckerFactoryUtil.create(user, true);
+
+			PrincipalThreadLocal.setName(user.getUserId());
 
 			PermissionThreadLocal.setPermissionChecker(permissionChecker);
 

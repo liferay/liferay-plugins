@@ -32,7 +32,7 @@ boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableA
 boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
 boolean showArticleComments = GetterUtil.getBoolean(preferencesMap.get("showArticleComments"));
 
-String selectionMethod = preferencesMap.get("selection-method");
+String selectionMethod = preferencesMap.get("selectionMethod");
 long[] resourcePrimKeys = StringUtil.split(preferencesMap.get("resourcePrimKeys"), 0L);
 boolean allArticles = GetterUtil.getBoolean(preferencesMap.get("allArticles"));
 String orderByColumn = preferencesMap.get("orderByColumn");
