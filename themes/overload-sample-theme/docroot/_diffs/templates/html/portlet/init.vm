@@ -1,0 +1,17 @@
+#set ($response = $pageContext.response)
+
+#set ($portletURLUtil = $portal.class.forName("com.liferay.portlet.PortletURLUtil"))
+
+#if ($renderRequest)
+	#set ($windowState = $renderRequest.getWindowState())
+	#set ($portletMode = $renderRequest.getPortletMode())
+
+	#set ($currentURLObj = $portletURLUtil.getCurrent($renderRequest, $renderResponse))
+#elseif ($resourceRequest)
+	#set ($windowState = $resourceRequest.getWindowState())
+	#set ($portletMode = $resourceRequest.getPortletMode())
+
+	#set ($currentURLObj = $portletURLUtil.getCurrent($resourceRequest, $resourceResponse))
+#end
+
+#set ($currentURL = $currentURLObj.toString())
