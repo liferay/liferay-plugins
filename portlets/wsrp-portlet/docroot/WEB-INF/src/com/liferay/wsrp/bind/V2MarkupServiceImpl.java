@@ -613,9 +613,6 @@ public class V2MarkupServiceImpl
 
 		HttpServletRequest request = ServletUtil.getRequest();
 
-		String domain = request.getServerName();
-		String path = StringPool.SLASH;
-
 		Cookie[] forwardCookies = request.getCookies();
 
 		if (forwardCookies != null) {
@@ -627,11 +624,11 @@ public class V2MarkupServiceImpl
 					!cookieName.equalsIgnoreCase("jsessionid")) {
 
 					if (Validator.isNull(cookie.getDomain())) {
-						cookie.setDomain(domain);
+						cookie.setDomain(request.getServerName());
 					}
 
 					if (Validator.isNull(cookie.getPath())) {
-						cookie.setPath(path);
+						cookie.setPath(StringPool.SLASH);
 					}
 
 					cookiesMap.put(cookieName, cookie);
