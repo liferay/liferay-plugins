@@ -94,6 +94,11 @@
 	margin: 10px -2px 0 -7px;
 }
 
+.knowledge-base-portlet .kb-entity-body .kb-article-comments .aui-field-content,
+.knowledge-base-portlet .kb-entity-body .kb-template-comments .aui-field-content {
+	margin: 0;
+}
+
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-helpful-inputs,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments .kb-helpful-inputs {
 	margin: 4px 0 0;
