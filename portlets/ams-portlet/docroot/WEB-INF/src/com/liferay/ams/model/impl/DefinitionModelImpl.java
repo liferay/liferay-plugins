@@ -59,19 +59,19 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	 */
 	public static final String TABLE_NAME = "AMS_Definition";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "definitionId", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "typeId", new Integer(Types.BIGINT) },
-			{ "manufacturer", new Integer(Types.VARCHAR) },
-			{ "model", new Integer(Types.VARCHAR) },
-			{ "orderDate", new Integer(Types.TIMESTAMP) },
-			{ "quantity", new Integer(Types.INTEGER) },
-			{ "price", new Integer(Types.DOUBLE) }
+			{ "definitionId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "typeId", Types.BIGINT },
+			{ "manufacturer", Types.VARCHAR },
+			{ "model", Types.VARCHAR },
+			{ "orderDate", Types.TIMESTAMP },
+			{ "quantity", Types.INTEGER },
+			{ "price", Types.DOUBLE }
 		};
 	public static final String TABLE_SQL_CREATE = "create table AMS_Definition (definitionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,typeId LONG,manufacturer VARCHAR(75) null,model VARCHAR(75) null,orderDate DATE null,quantity INTEGER,price DOUBLE)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Definition";

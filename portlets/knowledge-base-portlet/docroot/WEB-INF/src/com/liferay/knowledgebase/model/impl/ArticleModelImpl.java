@@ -64,26 +64,26 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	 */
 	public static final String TABLE_NAME = "KB_Article";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", new Integer(Types.VARCHAR) },
-			{ "articleId", new Integer(Types.BIGINT) },
-			{ "resourcePrimKey", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "parentResourcePrimKey", new Integer(Types.BIGINT) },
-			{ "version", new Integer(Types.INTEGER) },
-			{ "title", new Integer(Types.VARCHAR) },
-			{ "content", new Integer(Types.CLOB) },
-			{ "description", new Integer(Types.VARCHAR) },
-			{ "priority", new Integer(Types.INTEGER) },
-			{ "latest", new Integer(Types.INTEGER) },
-			{ "status", new Integer(Types.INTEGER) },
-			{ "statusByUserId", new Integer(Types.BIGINT) },
-			{ "statusByUserName", new Integer(Types.VARCHAR) },
-			{ "statusDate", new Integer(Types.TIMESTAMP) }
+			{ "uuid_", Types.VARCHAR },
+			{ "articleId", Types.BIGINT },
+			{ "resourcePrimKey", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "parentResourcePrimKey", Types.BIGINT },
+			{ "version", Types.INTEGER },
+			{ "title", Types.VARCHAR },
+			{ "content", Types.CLOB },
+			{ "description", Types.VARCHAR },
+			{ "priority", Types.INTEGER },
+			{ "latest", Types.INTEGER },
+			{ "status", Types.INTEGER },
+			{ "statusByUserId", Types.BIGINT },
+			{ "statusByUserName", Types.VARCHAR },
+			{ "statusDate", Types.TIMESTAMP }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title VARCHAR(150) null,content TEXT null,description STRING null,priority INTEGER,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";

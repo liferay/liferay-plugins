@@ -57,13 +57,13 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_Gadget";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", new Integer(Types.VARCHAR) },
-			{ "gadgetId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "name", new Integer(Types.VARCHAR) },
-			{ "url", new Integer(Types.VARCHAR) }
+			{ "uuid_", Types.VARCHAR },
+			{ "gadgetId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "name", Types.VARCHAR },
+			{ "url", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";

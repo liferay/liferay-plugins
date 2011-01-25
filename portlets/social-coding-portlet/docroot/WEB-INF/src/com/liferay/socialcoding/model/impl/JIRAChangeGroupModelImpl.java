@@ -58,10 +58,10 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	 */
 	public static final String TABLE_NAME = "changegroup";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "id", new Integer(Types.BIGINT) },
-			{ "author", new Integer(Types.VARCHAR) },
-			{ "created", new Integer(Types.TIMESTAMP) },
-			{ "issueid", new Integer(Types.BIGINT) }
+			{ "id", Types.BIGINT },
+			{ "author", Types.VARCHAR },
+			{ "created", Types.TIMESTAMP },
+			{ "issueid", Types.BIGINT }
 		};
 	public static final String TABLE_SQL_CREATE = "create table changegroup (id LONG not null primary key,author VARCHAR(75) null,created DATE null,issueid LONG)";
 	public static final String TABLE_SQL_DROP = "drop table changegroup";

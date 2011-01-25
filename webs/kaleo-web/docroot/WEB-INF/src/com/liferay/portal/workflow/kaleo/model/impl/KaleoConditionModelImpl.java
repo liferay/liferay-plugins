@@ -58,18 +58,18 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	 */
 	public static final String TABLE_NAME = "KaleoCondition";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoConditionId", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "className", new Integer(Types.VARCHAR) },
-			{ "classPK", new Integer(Types.BIGINT) },
-			{ "description", new Integer(Types.VARCHAR) },
-			{ "script", new Integer(Types.CLOB) },
-			{ "scriptLanguage", new Integer(Types.VARCHAR) }
+			{ "kaleoConditionId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "className", Types.VARCHAR },
+			{ "classPK", Types.BIGINT },
+			{ "description", Types.VARCHAR },
+			{ "script", Types.CLOB },
+			{ "scriptLanguage", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoCondition (kaleoConditionId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,className VARCHAR(75) null,classPK LONG,description STRING null,script TEXT null,scriptLanguage VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoCondition";

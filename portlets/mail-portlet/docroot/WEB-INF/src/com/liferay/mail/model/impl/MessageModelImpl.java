@@ -60,25 +60,25 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	 */
 	public static final String TABLE_NAME = "Mail_Message";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "messageId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "accountId", new Integer(Types.BIGINT) },
-			{ "folderId", new Integer(Types.BIGINT) },
-			{ "sender", new Integer(Types.VARCHAR) },
-			{ "to_", new Integer(Types.CLOB) },
-			{ "cc", new Integer(Types.CLOB) },
-			{ "bcc", new Integer(Types.CLOB) },
-			{ "sentDate", new Integer(Types.TIMESTAMP) },
-			{ "subject", new Integer(Types.VARCHAR) },
-			{ "preview", new Integer(Types.VARCHAR) },
-			{ "body", new Integer(Types.CLOB) },
-			{ "flags", new Integer(Types.VARCHAR) },
-			{ "size_", new Integer(Types.BIGINT) },
-			{ "remoteMessageId", new Integer(Types.BIGINT) }
+			{ "messageId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "accountId", Types.BIGINT },
+			{ "folderId", Types.BIGINT },
+			{ "sender", Types.VARCHAR },
+			{ "to_", Types.CLOB },
+			{ "cc", Types.CLOB },
+			{ "bcc", Types.CLOB },
+			{ "sentDate", Types.TIMESTAMP },
+			{ "subject", Types.VARCHAR },
+			{ "preview", Types.VARCHAR },
+			{ "body", Types.CLOB },
+			{ "flags", Types.VARCHAR },
+			{ "size_", Types.BIGINT },
+			{ "remoteMessageId", Types.BIGINT }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Mail_Message (messageId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,folderId LONG,sender STRING null,to_ TEXT null,cc TEXT null,bcc TEXT null,sentDate DATE null,subject STRING null,preview VARCHAR(75) null,body TEXT null,flags VARCHAR(75) null,size_ LONG,remoteMessageId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Message";

@@ -58,14 +58,14 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	 */
 	public static final String TABLE_NAME = "jiraaction";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "id", new Integer(Types.BIGINT) },
-			{ "author", new Integer(Types.VARCHAR) },
-			{ "created", new Integer(Types.TIMESTAMP) },
-			{ "updated", new Integer(Types.TIMESTAMP) },
-			{ "issueid", new Integer(Types.BIGINT) },
-			{ "actiontype", new Integer(Types.VARCHAR) },
-			{ "actionbody", new Integer(Types.VARCHAR) },
-			{ "actionlevel", new Integer(Types.VARCHAR) }
+			{ "id", Types.BIGINT },
+			{ "author", Types.VARCHAR },
+			{ "created", Types.TIMESTAMP },
+			{ "updated", Types.TIMESTAMP },
+			{ "issueid", Types.BIGINT },
+			{ "actiontype", Types.VARCHAR },
+			{ "actionbody", Types.VARCHAR },
+			{ "actionlevel", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table jiraaction (id LONG not null primary key,author VARCHAR(75) null,created DATE null,updated DATE null,issueid LONG,actiontype VARCHAR(75) null,actionbody VARCHAR(75) null,actionlevel VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraaction";

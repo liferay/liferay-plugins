@@ -57,15 +57,15 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	 */
 	public static final String TABLE_NAME = "Mail_Attachment";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "attachmentId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "accountId", new Integer(Types.BIGINT) },
-			{ "folderId", new Integer(Types.BIGINT) },
-			{ "messageId", new Integer(Types.BIGINT) },
-			{ "contentPath", new Integer(Types.VARCHAR) },
-			{ "fileName", new Integer(Types.VARCHAR) },
-			{ "size_", new Integer(Types.BIGINT) }
+			{ "attachmentId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "accountId", Types.BIGINT },
+			{ "folderId", Types.BIGINT },
+			{ "messageId", Types.BIGINT },
+			{ "contentPath", Types.VARCHAR },
+			{ "fileName", Types.VARCHAR },
+			{ "size_", Types.BIGINT }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Mail_Attachment (attachmentId LONG not null primary key,companyId LONG,userId LONG,accountId LONG,folderId LONG,messageId LONG,contentPath VARCHAR(75) null,fileName VARCHAR(75) null,size_ LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Attachment";

@@ -58,16 +58,16 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	 */
 	public static final String TABLE_NAME = "AMS_Asset";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "assetId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "definitionId", new Integer(Types.BIGINT) },
-			{ "serialNumber", new Integer(Types.VARCHAR) },
-			{ "inactiveDate", new Integer(Types.TIMESTAMP) },
-			{ "active_", new Integer(Types.BOOLEAN) }
+			{ "assetId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "definitionId", Types.BIGINT },
+			{ "serialNumber", Types.VARCHAR },
+			{ "inactiveDate", Types.TIMESTAMP },
+			{ "active_", Types.BOOLEAN }
 		};
 	public static final String TABLE_SQL_CREATE = "create table AMS_Asset (assetId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,definitionId LONG,serialNumber VARCHAR(75) null,inactiveDate DATE null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Asset";

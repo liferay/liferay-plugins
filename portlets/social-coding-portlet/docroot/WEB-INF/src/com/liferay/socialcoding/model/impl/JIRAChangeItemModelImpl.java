@@ -55,13 +55,13 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	 */
 	public static final String TABLE_NAME = "changeitem";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "id", new Integer(Types.BIGINT) },
-			{ "groupid", new Integer(Types.BIGINT) },
-			{ "field", new Integer(Types.VARCHAR) },
-			{ "oldValue", new Integer(Types.VARCHAR) },
-			{ "oldString", new Integer(Types.VARCHAR) },
-			{ "newValue", new Integer(Types.VARCHAR) },
-			{ "newString", new Integer(Types.VARCHAR) }
+			{ "id", Types.BIGINT },
+			{ "groupid", Types.BIGINT },
+			{ "field", Types.VARCHAR },
+			{ "oldValue", Types.VARCHAR },
+			{ "oldString", Types.VARCHAR },
+			{ "newValue", Types.VARCHAR },
+			{ "newString", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table changeitem (id LONG not null primary key,groupid LONG,field VARCHAR(75) null,oldValue VARCHAR(75) null,oldString VARCHAR(75) null,newValue VARCHAR(75) null,newString VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table changeitem";

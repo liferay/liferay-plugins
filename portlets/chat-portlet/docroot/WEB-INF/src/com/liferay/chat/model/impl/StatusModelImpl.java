@@ -57,14 +57,14 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	 */
 	public static final String TABLE_NAME = "Chat_Status";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "statusId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "modifiedDate", new Integer(Types.BIGINT) },
-			{ "online_", new Integer(Types.BOOLEAN) },
-			{ "awake", new Integer(Types.BOOLEAN) },
-			{ "activePanelId", new Integer(Types.VARCHAR) },
-			{ "message", new Integer(Types.VARCHAR) },
-			{ "playSound", new Integer(Types.BOOLEAN) }
+			{ "statusId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "modifiedDate", Types.BIGINT },
+			{ "online_", Types.BOOLEAN },
+			{ "awake", Types.BOOLEAN },
+			{ "activePanelId", Types.VARCHAR },
+			{ "message", Types.VARCHAR },
+			{ "playSound", Types.BOOLEAN }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Chat_Status (statusId LONG not null primary key,userId LONG,modifiedDate LONG,online_ BOOLEAN,awake BOOLEAN,activePanelId VARCHAR(75) null,message STRING null,playSound BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Status";

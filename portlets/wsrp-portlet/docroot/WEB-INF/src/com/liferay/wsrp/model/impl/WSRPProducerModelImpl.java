@@ -57,15 +57,15 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	 */
 	public static final String TABLE_NAME = "WSRP_WSRPProducer";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", new Integer(Types.VARCHAR) },
-			{ "wsrpProducerId", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "name", new Integer(Types.VARCHAR) },
-			{ "version", new Integer(Types.VARCHAR) },
-			{ "portletIds", new Integer(Types.VARCHAR) }
+			{ "uuid_", Types.VARCHAR },
+			{ "wsrpProducerId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "name", Types.VARCHAR },
+			{ "version", Types.VARCHAR },
+			{ "portletIds", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table WSRP_WSRPProducer (uuid_ VARCHAR(75) null,wsrpProducerId LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,version VARCHAR(75) null,portletIds STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table WSRP_WSRPProducer";

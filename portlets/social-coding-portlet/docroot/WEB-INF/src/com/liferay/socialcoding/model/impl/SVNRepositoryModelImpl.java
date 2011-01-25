@@ -55,9 +55,9 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	 */
 	public static final String TABLE_NAME = "SC_SVNRepository";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "svnRepositoryId", new Integer(Types.BIGINT) },
-			{ "url", new Integer(Types.VARCHAR) },
-			{ "revisionNumber", new Integer(Types.BIGINT) }
+			{ "svnRepositoryId", Types.BIGINT },
+			{ "url", Types.VARCHAR },
+			{ "revisionNumber", Types.BIGINT }
 		};
 	public static final String TABLE_SQL_CREATE = "create table SC_SVNRepository (svnRepositoryId LONG not null primary key,url VARCHAR(200) null,revisionNumber LONG)";
 	public static final String TABLE_SQL_DROP = "drop table SC_SVNRepository";

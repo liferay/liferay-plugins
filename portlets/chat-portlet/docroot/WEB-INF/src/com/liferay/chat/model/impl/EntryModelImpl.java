@@ -56,11 +56,11 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	 */
 	public static final String TABLE_NAME = "Chat_Entry";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "entryId", new Integer(Types.BIGINT) },
-			{ "createDate", new Integer(Types.BIGINT) },
-			{ "fromUserId", new Integer(Types.BIGINT) },
-			{ "toUserId", new Integer(Types.BIGINT) },
-			{ "content", new Integer(Types.VARCHAR) }
+			{ "entryId", Types.BIGINT },
+			{ "createDate", Types.BIGINT },
+			{ "fromUserId", Types.BIGINT },
+			{ "toUserId", Types.BIGINT },
+			{ "content", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Chat_Entry (entryId LONG not null primary key,createDate LONG,fromUserId LONG,toUserId LONG,content VARCHAR(1000) null)";
 	public static final String TABLE_SQL_DROP = "drop table Chat_Entry";

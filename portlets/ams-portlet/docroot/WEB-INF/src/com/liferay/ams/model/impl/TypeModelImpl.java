@@ -54,9 +54,9 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	 */
 	public static final String TABLE_NAME = "AMS_Type";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "typeId", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "name", new Integer(Types.VARCHAR) }
+			{ "typeId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "name", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table AMS_Type (typeId LONG not null primary key,groupId LONG,name VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table AMS_Type";

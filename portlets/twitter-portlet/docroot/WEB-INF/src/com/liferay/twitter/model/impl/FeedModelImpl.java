@@ -58,15 +58,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	 */
 	public static final String TABLE_NAME = "Twitter_Feed";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "feedId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "twitterUserId", new Integer(Types.BIGINT) },
-			{ "twitterScreenName", new Integer(Types.VARCHAR) },
-			{ "lastStatusId", new Integer(Types.BIGINT) }
+			{ "feedId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "twitterUserId", Types.BIGINT },
+			{ "twitterScreenName", Types.VARCHAR },
+			{ "lastStatusId", Types.BIGINT }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Twitter_Feed (feedId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,twitterUserId LONG,twitterScreenName VARCHAR(75) null,lastStatusId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table Twitter_Feed";

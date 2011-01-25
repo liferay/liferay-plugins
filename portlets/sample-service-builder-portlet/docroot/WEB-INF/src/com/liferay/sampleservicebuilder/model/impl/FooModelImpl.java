@@ -61,19 +61,19 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	 */
 	public static final String TABLE_NAME = "SSB_Foo";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", new Integer(Types.VARCHAR) },
-			{ "fooId", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "field1", new Integer(Types.VARCHAR) },
-			{ "field2", new Integer(Types.BOOLEAN) },
-			{ "field3", new Integer(Types.INTEGER) },
-			{ "field4", new Integer(Types.TIMESTAMP) },
-			{ "field5", new Integer(Types.VARCHAR) }
+			{ "uuid_", Types.VARCHAR },
+			{ "fooId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "field1", Types.VARCHAR },
+			{ "field2", Types.BOOLEAN },
+			{ "field3", Types.INTEGER },
+			{ "field4", Types.TIMESTAMP },
+			{ "field5", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table SSB_Foo (uuid_ VARCHAR(75) null,fooId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,field1 VARCHAR(75) null,field2 BOOLEAN,field3 INTEGER,field4 DATE null,field5 VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table SSB_Foo";

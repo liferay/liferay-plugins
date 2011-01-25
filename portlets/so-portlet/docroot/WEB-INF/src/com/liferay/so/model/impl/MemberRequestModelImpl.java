@@ -60,18 +60,18 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	 */
 	public static final String TABLE_NAME = "SO_MemberRequest";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "memberRequestId", new Integer(Types.BIGINT) },
-			{ "groupId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "key_", new Integer(Types.VARCHAR) },
-			{ "receiverUserId", new Integer(Types.BIGINT) },
-			{ "invitedRoleId", new Integer(Types.BIGINT) },
-			{ "invitedTeamId", new Integer(Types.BIGINT) },
-			{ "status", new Integer(Types.INTEGER) }
+			{ "memberRequestId", Types.BIGINT },
+			{ "groupId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "key_", Types.VARCHAR },
+			{ "receiverUserId", Types.BIGINT },
+			{ "invitedRoleId", Types.BIGINT },
+			{ "invitedTeamId", Types.BIGINT },
+			{ "status", Types.INTEGER }
 		};
 	public static final String TABLE_SQL_CREATE = "create table SO_MemberRequest (memberRequestId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,key_ VARCHAR(75) null,receiverUserId LONG,invitedRoleId LONG,invitedTeamId LONG,status INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table SO_MemberRequest";

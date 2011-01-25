@@ -58,17 +58,17 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	 */
 	public static final String TABLE_NAME = "jiraissue";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "id", new Integer(Types.BIGINT) },
-			{ "created", new Integer(Types.TIMESTAMP) },
-			{ "updated", new Integer(Types.TIMESTAMP) },
-			{ "project", new Integer(Types.BIGINT) },
-			{ "pkey", new Integer(Types.VARCHAR) },
-			{ "summary", new Integer(Types.VARCHAR) },
-			{ "description", new Integer(Types.VARCHAR) },
-			{ "reporter", new Integer(Types.VARCHAR) },
-			{ "assignee", new Integer(Types.VARCHAR) },
-			{ "resolution", new Integer(Types.VARCHAR) },
-			{ "issuestatus", new Integer(Types.VARCHAR) }
+			{ "id", Types.BIGINT },
+			{ "created", Types.TIMESTAMP },
+			{ "updated", Types.TIMESTAMP },
+			{ "project", Types.BIGINT },
+			{ "pkey", Types.VARCHAR },
+			{ "summary", Types.VARCHAR },
+			{ "description", Types.VARCHAR },
+			{ "reporter", Types.VARCHAR },
+			{ "assignee", Types.VARCHAR },
+			{ "resolution", Types.VARCHAR },
+			{ "issuestatus", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table jiraissue (id LONG not null primary key,created DATE null,updated DATE null,project LONG,pkey VARCHAR(75) null,summary VARCHAR(75) null,description VARCHAR(75) null,reporter VARCHAR(75) null,assignee VARCHAR(75) null,resolution VARCHAR(75) null,issuestatus VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table jiraissue";

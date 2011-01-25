@@ -59,15 +59,15 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	 */
 	public static final String TABLE_NAME = "PM_UserThread";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "userThreadId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "mbThreadId", new Integer(Types.BIGINT) },
-			{ "topMBMessageId", new Integer(Types.BIGINT) },
-			{ "read_", new Integer(Types.BOOLEAN) },
-			{ "deleted", new Integer(Types.BOOLEAN) }
+			{ "userThreadId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "mbThreadId", Types.BIGINT },
+			{ "topMBMessageId", Types.BIGINT },
+			{ "read_", Types.BOOLEAN },
+			{ "deleted", Types.BOOLEAN }
 		};
 	public static final String TABLE_SQL_CREATE = "create table PM_UserThread (userThreadId LONG not null primary key,companyId LONG,userId LONG,createDate DATE null,modifiedDate DATE null,mbThreadId LONG,topMBMessageId LONG,read_ BOOLEAN,deleted BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table PM_UserThread";

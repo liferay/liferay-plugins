@@ -59,16 +59,16 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	 */
 	public static final String TABLE_NAME = "Mail_Folder";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "folderId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "accountId", new Integer(Types.BIGINT) },
-			{ "fullName", new Integer(Types.VARCHAR) },
-			{ "displayName", new Integer(Types.VARCHAR) },
-			{ "remoteMessageCount", new Integer(Types.INTEGER) }
+			{ "folderId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "accountId", Types.BIGINT },
+			{ "fullName", Types.VARCHAR },
+			{ "displayName", Types.VARCHAR },
+			{ "remoteMessageCount", Types.INTEGER }
 		};
 	public static final String TABLE_SQL_CREATE = "create table Mail_Folder (folderId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,accountId LONG,fullName VARCHAR(75) null,displayName VARCHAR(75) null,remoteMessageCount INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table Mail_Folder";
