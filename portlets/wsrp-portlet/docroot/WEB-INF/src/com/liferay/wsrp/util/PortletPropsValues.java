@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.util;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
@@ -23,5 +24,11 @@ public class PortletPropsValues {
 
 	public static final String[] CONSUMER_REQUEST_EXTENSIONS =
 		PortletProps.getArray(PortletPropsKeys.CONSUMER_REQUEST_EXTENSIONS);
+
+	public static final boolean SECURE_RESOURCE_URLS = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.SECURE_RESOURCE_URLS));
+
+	public static final String[] SECURE_RESOURCE_SALT =
+		PortletProps.getArray(PortletPropsKeys.SECURE_RESOURCE_SALT);
 
 }
