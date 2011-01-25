@@ -1376,12 +1376,11 @@ public class ConsumerPortlet extends GenericPortlet {
 		Boolean requiresRewriting = mimeResponse.getRequiresRewriting();
 
 		if (requiresRewriting == null) {
-			requiresRewriting = Boolean.FALSE;
+			requiresRewriting = ParamUtil.getBoolean(
+				portletRequest, "wsrp-requiresRewrite");
 		}
 
-		if (ParamUtil.getBoolean(portletRequest, "wsrp-requiresRewrite") ||
-			requiresRewriting) {
-
+		if (requiresRewriting) {
 			if (itemBinary != null) {
 				itemString = new String(itemBinary, charSet);
 			}
