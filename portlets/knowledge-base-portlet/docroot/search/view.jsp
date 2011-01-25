@@ -25,16 +25,18 @@ String keywords = request.getParameter("keywords");
 <aui:form action="<%= searchURL %>" method="get" name="searchFm">
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-	<table class="lfr-table <%= (keywords != null) ? "kb-search-header" : StringPool.BLANK %>">
-	<tr>
-		<td width="99%">
-			<aui:input cssClass="kb-search-input-text-container" label="" name="keywords" title="search-articles" type="text" />
-		</td>
-		<td>
-			<aui:button type="submit" value="search" />
-		</td>
-	</tr>
-	</table>
+	<aui:fieldset>
+		<table class="lfr-table <%= (keywords != null) ? "kb-search-header" : StringPool.BLANK %>">
+		<tr>
+			<td width="99%">
+				<aui:input cssClass="kb-search-input-text-container" label="" name="keywords" title="search-articles" type="text" />
+			</td>
+			<td>
+				<aui:button type="submit" value="search" />
+			</td>
+		</tr>
+		</table>
+	</aui:fieldset>
 </aui:form>
 
 <c:if test="<%= keywords != null %>">

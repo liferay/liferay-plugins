@@ -7,17 +7,20 @@
 
 /* ---------- Portal ---------- */
 
+.knowledge-base-portlet .aui-fieldset {
+	padding: 0px;
+}
+
+.knowledge-base-portlet .aui-fieldset .aui-field-text .aui-field-element {
+	display: block;
+}
+
 .knowledge-base-portlet .lfr-panel-container {
 	border-width: 0;
 }
 
 .knowledge-base-portlet .lfr-panel-container .lfr-panel-titlebar {
 	margin-bottom: 0;
-}
-
-.knowledge-base-portlet .lfr-textarea-container textarea {
-	height: 100px;
-	width: 100%;
 }
 
 .knowledge-base-portlet .taglib-search-iterator-page-iterator-bottom {
@@ -88,7 +91,7 @@
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments,
 .knowledge-base-portlet .kb-entity-body .kb-template-comments {
-	margin: 10px -7px 0;
+	margin: 10px -2px 0 -7px;
 }
 
 .knowledge-base-portlet .kb-entity-body .kb-article-comments .kb-helpful-inputs,

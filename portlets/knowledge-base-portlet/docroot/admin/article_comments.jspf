@@ -25,7 +25,6 @@ catch (NoSuchCommentException nsce) {
 
 long commentId = BeanParamUtil.getLong(comment, request, "commentId");
 
-String content = BeanParamUtil.getString(comment, request, "content");
 boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 %>
 
@@ -51,18 +50,22 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 
 						<liferay-ui:error exception="<%= CommentContentException.class %>" message="please-enter-valid-content" />
 
-						<aui:input cssClass="lfr-textarea-container" label="" name="content" type="textarea" value="<%= content %>" />
+						<aui:model-context bean="<%= comment %>" model="<%= Comment.class %>" />
 
-						<div class="kb-helpful-inputs">
-							<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
+						<aui:fieldset>
+							<aui:input label="" name="content" />
 
-							<aui:input checked="<%= helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
-							<aui:input checked="<%= !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
-						</div>
+							<div class="kb-helpful-inputs">
+								<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
 
-						<aui:button-row cssClass="kb-submit-buttons">
-							<aui:button type="submit" value="post" />
-						</aui:button-row>
+								<aui:input checked="<%= helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
+								<aui:input checked="<%= !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
+							</div>
+
+							<aui:button-row cssClass="kb-submit-buttons">
+								<aui:button type="submit" value="post" />
+							</aui:button-row>
+						</aui:fieldset>
 					</aui:form>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>

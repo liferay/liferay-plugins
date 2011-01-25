@@ -45,8 +45,11 @@
 		<field name="classPK" type="long" />
 		<field name="content" type="String">
 			<hint-collection name="TEXTAREA" />
+			<hint name="display-width">100%</hint>
 		</field>
-		<field name="helpful" type="boolean" />
+		<field name="helpful" type="boolean">
+			<hint name="default-value">true</hint>
+		</field>
 	</model>
 	<model name="com.liferay.knowledgebase.model.Template">
 		<field name="uuid" type="String" />
