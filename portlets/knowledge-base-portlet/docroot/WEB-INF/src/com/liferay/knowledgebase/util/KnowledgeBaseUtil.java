@@ -112,8 +112,8 @@ public class KnowledgeBaseUtil {
 		Integer count = null;
 
 		if (selectionMethod.equals("group")) {
-			OrderByComparator orderByComparator =
-				getOrderByComparator(orderByColumn, orderByAscending);
+			OrderByComparator orderByComparator = getOrderByComparator(
+				orderByColumn, orderByAscending);
 
 			if (classPKs != null) {
 				long[] viewableParentResourcePrimKeys = new long[] {
@@ -233,13 +233,13 @@ public class KnowledgeBaseUtil {
 		long[] classPKs = getAssetEntriesClassPKs(
 			article.getGroupId(), 0, null, preferencesMap);
 
-		// Mimic behavior in KnowledgeBaseUtil#getPortletPreferencesArticlesMap.
+		// Mimic behavior in KnowledgeBaseUtil#getPortletPreferencesArticlesMap
 
 		List<Article> articles = null;
 
 		if (selectionMethod.equals("group")) {
-			OrderByComparator orderByComparator =
-				getOrderByComparator(orderByColumn, orderByAscending);
+			OrderByComparator orderByComparator = getOrderByComparator(
+				orderByColumn, orderByAscending);
 
 			if (classPKs != null) {
 				long[] viewableParentResourcePrimKeys = new long[] {
@@ -289,7 +289,7 @@ public class KnowledgeBaseUtil {
 				resourcePrimKeys, articles);
 		}
 
-		// The Display portlet shows the first available article.
+		// The Display portlet shows the first available article
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
