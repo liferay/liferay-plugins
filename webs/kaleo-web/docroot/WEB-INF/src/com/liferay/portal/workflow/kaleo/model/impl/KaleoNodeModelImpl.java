@@ -58,19 +58,19 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	 */
 	public static final String TABLE_NAME = "KaleoNode";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "type_", Types.VARCHAR },
-			{ "initial_", Types.BOOLEAN },
-			{ "terminal", Types.BOOLEAN }
+			{ "kaleoNodeId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "name", new Integer(Types.VARCHAR) },
+			{ "description", new Integer(Types.VARCHAR) },
+			{ "type_", new Integer(Types.VARCHAR) },
+			{ "initial_", new Integer(Types.BOOLEAN) },
+			{ "terminal", new Integer(Types.BOOLEAN) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoNode (kaleoNodeId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,name VARCHAR(200) null,description STRING null,type_ VARCHAR(20) null,initial_ BOOLEAN,terminal BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoNode";

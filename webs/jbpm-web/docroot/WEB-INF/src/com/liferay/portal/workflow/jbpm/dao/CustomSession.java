@@ -470,13 +470,15 @@ public class CustomSession {
 	}
 
 	public int searchCountTaskInstances(
-		String taskName, String assetType, Date dueDateGT, Date dueDateLT,
+		String taskName, String assetType, Long assetPrimaryKey,
+		Date dueDateGT, Date dueDateLT,
 		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
 		ServiceContext serviceContext) {
 
 		try {
 			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
-				taskName, assetType, dueDateGT, dueDateLT, completed,
+				taskName, assetType, assetPrimaryKey,
+				dueDateGT, dueDateLT, completed,
 				searchByUserRoles, andOperator, serviceContext);
 
 			return (int)criteriaCount(criteria);
@@ -487,14 +489,16 @@ public class CustomSession {
 	}
 
 	public List<TaskInstance> searchTaskInstances(
-		String taskName, String assetType, Date dueDateGT, Date dueDateLT,
+		String taskName, String assetType, Long assetPrimaryKey,
+		Date dueDateGT, Date dueDateLT,
 		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
 		int start, int end, OrderByComparator orderByComparator,
 		ServiceContext serviceContext) {
 
 		try {
 			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
-				taskName, assetType, dueDateGT, dueDateLT, completed,
+				taskName, assetType, assetPrimaryKey,
+				dueDateGT, dueDateLT, completed,
 				searchByUserRoles, andOperator, serviceContext);
 
 			addPagination(criteria, start, end);
@@ -605,7 +609,8 @@ public class CustomSession {
 	}
 
 	protected Criteria buildTaskInstanceExtensionSearchCriteria(
-			String taskName, String assetType, Date dueDateGT, Date dueDateLT,
+			String taskName, String assetType, Long assetPrimaryKey,
+			Date dueDateGT, Date dueDateLT,
 			Boolean completed, Boolean searchByUserRoles, boolean andOperator,
 			ServiceContext serviceContext)
 		throws SystemException {
@@ -651,6 +656,12 @@ public class CustomSession {
 							"workflowContext",
 							"%\"entryType\":\"%" + assetTypeKeyword + "%\"%"));
 				}
+			}
+			if (Validator.isNotNull(assetPrimaryKey)) {
+				junction.add(
+					Restrictions.like(
+						"workflowContext",
+						"%\"entryClassPK\":\"%" + assetPrimaryKey + "%\"%"));
 			}
 
 			if (dueDateGT != null) {

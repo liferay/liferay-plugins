@@ -171,9 +171,9 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		_searchMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", java.lang.String.class, java.lang.String.class,
-				java.util.Date.class, java.util.Date.class,
-				java.lang.Boolean.class, java.lang.Boolean.class,
-				boolean.class, int.class, int.class,
+				java.lang.Long.class, java.util.Date.class,
+				java.util.Date.class, java.lang.Boolean.class,
+				java.lang.Boolean.class, boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -184,9 +184,10 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		_searchCountMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchCount", java.lang.String.class, java.lang.String.class,
-				java.util.Date.class, java.util.Date.class,
-				java.lang.Boolean.class, java.lang.Boolean.class,
-				boolean.class, com.liferay.portal.service.ServiceContext.class);
+				java.lang.Long.class, java.util.Date.class,
+				java.util.Date.class, java.lang.Boolean.class,
+				java.lang.Boolean.class, boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
 
 		_updateDueDateMethodKey35 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDueDate", long.class, java.util.Date.class,
@@ -1153,9 +1154,10 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
 		java.lang.String taskName, java.lang.String assetType,
-		java.util.Date dueDateGT, java.util.Date dueDateLT,
-		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
-		boolean andOperator, int start, int end,
+		java.lang.Long assetPrimaryKey, java.util.Date dueDateGT,
+		java.util.Date dueDateLT, java.lang.Boolean completed,
+		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
+		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -1164,6 +1166,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		MethodHandler methodHandler = new MethodHandler(_searchMethodKey32,
 				ClpSerializer.translateInput(taskName),
 				ClpSerializer.translateInput(assetType),
+				ClpSerializer.translateInput(assetPrimaryKey),
 				ClpSerializer.translateInput(dueDateGT),
 				ClpSerializer.translateInput(dueDateLT),
 				ClpSerializer.translateInput(completed),
@@ -1224,9 +1227,10 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	}
 
 	public int searchCount(java.lang.String taskName,
-		java.lang.String assetType, java.util.Date dueDateGT,
-		java.util.Date dueDateLT, java.lang.Boolean completed,
-		java.lang.Boolean searchByUserRoles, boolean andOperator,
+		java.lang.String assetType, java.lang.Long assetPrimaryKey,
+		java.util.Date dueDateGT, java.util.Date dueDateLT,
+		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
+		boolean andOperator,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -1234,6 +1238,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey34,
 				ClpSerializer.translateInput(taskName),
 				ClpSerializer.translateInput(assetType),
+				ClpSerializer.translateInput(assetPrimaryKey),
 				ClpSerializer.translateInput(dueDateGT),
 				ClpSerializer.translateInput(dueDateLT),
 				ClpSerializer.translateInput(completed),

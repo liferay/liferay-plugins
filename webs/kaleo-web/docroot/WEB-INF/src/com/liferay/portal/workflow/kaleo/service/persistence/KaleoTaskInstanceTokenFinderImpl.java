@@ -154,6 +154,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 		if (appendSearchCriteria(kaleoTaskInstanceTokenQuery)) {
 			sql = CustomSQLUtil.appendCriteria(sql, " AND (");
 			sql = CustomSQLUtil.appendCriteria(
+				sql, getAssetPrimaryKey(kaleoTaskInstanceTokenQuery));
+			sql = CustomSQLUtil.appendCriteria(
 				sql, getAssetType(kaleoTaskInstanceTokenQuery));
 			sql = CustomSQLUtil.appendCriteria(
 				sql,
@@ -209,6 +211,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 		setRoleIds(qPos, kaleoTaskInstanceTokenQuery);
 		setSearchByUserRoles(qPos, kaleoTaskInstanceTokenQuery);
 
+		setAssetPrimaryKey(qPos, kaleoTaskInstanceTokenQuery);
 		setAssetType(qPos, kaleoTaskInstanceTokenQuery);
 		setDueDateGT(qPos, kaleoTaskInstanceTokenQuery);
 		setDueDateLT(qPos, kaleoTaskInstanceTokenQuery);
@@ -220,7 +223,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected boolean appendSearchCriteria(
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
-		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getAssetType())) {
+		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getAssetPrimaryKey())) {
+			return true;
+		}
+
+ 		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getAssetType())) {
 			return true;
 		}
 
@@ -237,6 +244,18 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		return false;
+	}
+
+	protected String getAssetPrimaryKey(
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
+
+		Long assetPrimaryKey = kaleoTaskInstanceTokenQuery.getAssetPrimaryKey();
+
+		if (assetPrimaryKey == null) {
+			return StringPool.BLANK;
+		}
+
+		return "(KaleoTaskInstanceToken.classPK = ?)";
 	}
 
 	protected String getAssetType(
@@ -505,6 +524,20 @@ public class KaleoTaskInstanceTokenFinderImpl
 		}
 
 		return sb.toString();
+	}
+
+	protected void setAssetPrimaryKey(
+		QueryPos qPos,
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
+
+
+		Long assetPriamryKey = kaleoTaskInstanceTokenQuery.getAssetPrimaryKey();
+
+		if (assetPriamryKey  == null) {
+			return;
+		}
+
+		qPos.add(assetPriamryKey);
 	}
 
 	protected void setAssetType(

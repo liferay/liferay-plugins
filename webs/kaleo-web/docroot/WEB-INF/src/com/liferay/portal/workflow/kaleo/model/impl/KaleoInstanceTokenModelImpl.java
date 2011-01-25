@@ -58,22 +58,22 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	 */
 	public static final String TABLE_NAME = "KaleoInstanceToken";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoInstanceTokenId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "parentKaleoInstanceTokenId", Types.BIGINT },
-			{ "currentKaleoNodeId", Types.BIGINT },
-			{ "currentKaleoNodeName", Types.VARCHAR },
-			{ "className", Types.VARCHAR },
-			{ "classPK", Types.BIGINT },
-			{ "completed", Types.BOOLEAN },
-			{ "completionDate", Types.TIMESTAMP }
+			{ "kaleoInstanceTokenId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "kaleoInstanceId", new Integer(Types.BIGINT) },
+			{ "parentKaleoInstanceTokenId", new Integer(Types.BIGINT) },
+			{ "currentKaleoNodeId", new Integer(Types.BIGINT) },
+			{ "currentKaleoNodeName", new Integer(Types.VARCHAR) },
+			{ "className", new Integer(Types.VARCHAR) },
+			{ "classPK", new Integer(Types.BIGINT) },
+			{ "completed", new Integer(Types.BOOLEAN) },
+			{ "completionDate", new Integer(Types.TIMESTAMP) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoInstanceToken (kaleoInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,parentKaleoInstanceTokenId LONG,currentKaleoNodeId LONG,currentKaleoNodeName VARCHAR(200) null,className VARCHAR(75) null,classPK LONG,completed BOOLEAN,completionDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoInstanceToken";

@@ -58,21 +58,21 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	 */
 	public static final String TABLE_NAME = "KaleoTaskAssignment";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTaskAssignmentId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "kaleoTaskId", Types.BIGINT },
-			{ "assigneeClassName", Types.VARCHAR },
-			{ "assigneeClassPK", Types.BIGINT },
-			{ "assigneeActionId", Types.VARCHAR },
-			{ "assigneeScript", Types.CLOB },
-			{ "assigneeScriptLanguage", Types.VARCHAR }
+			{ "kaleoTaskAssignmentId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "kaleoNodeId", new Integer(Types.BIGINT) },
+			{ "kaleoTaskId", new Integer(Types.BIGINT) },
+			{ "assigneeClassName", new Integer(Types.VARCHAR) },
+			{ "assigneeClassPK", new Integer(Types.BIGINT) },
+			{ "assigneeActionId", new Integer(Types.VARCHAR) },
+			{ "assigneeScript", new Integer(Types.CLOB) },
+			{ "assigneeScriptLanguage", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoTaskAssignment (kaleoTaskAssignmentId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoTaskId LONG,assigneeClassName VARCHAR(200) null,assigneeClassPK LONG,assigneeActionId VARCHAR(75) null,assigneeScript TEXT null,assigneeScriptLanguage VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoTaskAssignment";

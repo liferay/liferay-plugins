@@ -58,22 +58,22 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	 */
 	public static final String TABLE_NAME = "KaleoNotification";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoNotificationId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "kaleoNodeName", Types.VARCHAR },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "executionType", Types.VARCHAR },
-			{ "template", Types.CLOB },
-			{ "templateLanguage", Types.VARCHAR },
-			{ "notificationTypes", Types.VARCHAR }
+			{ "kaleoNotificationId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "kaleoNodeId", new Integer(Types.BIGINT) },
+			{ "kaleoNodeName", new Integer(Types.VARCHAR) },
+			{ "name", new Integer(Types.VARCHAR) },
+			{ "description", new Integer(Types.VARCHAR) },
+			{ "executionType", new Integer(Types.VARCHAR) },
+			{ "template", new Integer(Types.CLOB) },
+			{ "templateLanguage", new Integer(Types.VARCHAR) },
+			{ "notificationTypes", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoNotification (kaleoNotificationId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,kaleoNodeName VARCHAR(200) null,name VARCHAR(200) null,description STRING null,executionType VARCHAR(20) null,template TEXT null,templateLanguage VARCHAR(75) null,notificationTypes VARCHAR(25) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoNotification";

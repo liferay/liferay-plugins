@@ -58,22 +58,22 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	 */
 	public static final String TABLE_NAME = "KaleoInstance";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoDefinitionName", Types.VARCHAR },
-			{ "kaleoDefinitionVersion", Types.INTEGER },
-			{ "rootKaleoInstanceTokenId", Types.BIGINT },
-			{ "className", Types.VARCHAR },
-			{ "classPK", Types.BIGINT },
-			{ "completed", Types.BOOLEAN },
-			{ "completionDate", Types.TIMESTAMP },
-			{ "workflowContext", Types.CLOB }
+			{ "kaleoInstanceId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "kaleoDefinitionName", new Integer(Types.VARCHAR) },
+			{ "kaleoDefinitionVersion", new Integer(Types.INTEGER) },
+			{ "rootKaleoInstanceTokenId", new Integer(Types.BIGINT) },
+			{ "className", new Integer(Types.VARCHAR) },
+			{ "classPK", new Integer(Types.BIGINT) },
+			{ "completed", new Integer(Types.BOOLEAN) },
+			{ "completionDate", new Integer(Types.TIMESTAMP) },
+			{ "workflowContext", new Integer(Types.CLOB) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoInstance (kaleoInstanceId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoDefinitionName VARCHAR(200) null,kaleoDefinitionVersion INTEGER,rootKaleoInstanceTokenId LONG,className VARCHAR(200) null,classPK LONG,completed BOOLEAN,completionDate DATE null,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoInstance";

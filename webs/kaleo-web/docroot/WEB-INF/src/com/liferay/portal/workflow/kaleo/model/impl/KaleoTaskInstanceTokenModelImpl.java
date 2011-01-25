@@ -58,25 +58,25 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	 */
 	public static final String TABLE_NAME = "KaleoTaskInstanceToken";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTaskInstanceTokenId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoInstanceId", Types.BIGINT },
-			{ "kaleoInstanceTokenId", Types.BIGINT },
-			{ "kaleoTaskId", Types.BIGINT },
-			{ "kaleoTaskName", Types.VARCHAR },
-			{ "className", Types.VARCHAR },
-			{ "classPK", Types.BIGINT },
-			{ "completionUserId", Types.BIGINT },
-			{ "completed", Types.BOOLEAN },
-			{ "completionDate", Types.TIMESTAMP },
-			{ "dueDate", Types.TIMESTAMP },
-			{ "workflowContext", Types.CLOB }
+			{ "kaleoTaskInstanceTokenId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "kaleoInstanceId", new Integer(Types.BIGINT) },
+			{ "kaleoInstanceTokenId", new Integer(Types.BIGINT) },
+			{ "kaleoTaskId", new Integer(Types.BIGINT) },
+			{ "kaleoTaskName", new Integer(Types.VARCHAR) },
+			{ "className", new Integer(Types.VARCHAR) },
+			{ "classPK", new Integer(Types.BIGINT) },
+			{ "completionUserId", new Integer(Types.BIGINT) },
+			{ "completed", new Integer(Types.BOOLEAN) },
+			{ "completionDate", new Integer(Types.TIMESTAMP) },
+			{ "dueDate", new Integer(Types.TIMESTAMP) },
+			{ "workflowContext", new Integer(Types.CLOB) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoTaskInstanceToken (kaleoTaskInstanceTokenId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskId LONG,kaleoTaskName VARCHAR(200) null,className VARCHAR(75) null,classPK LONG,completionUserId LONG,completed BOOLEAN,completionDate DATE null,dueDate DATE null,workflowContext TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoTaskInstanceToken";

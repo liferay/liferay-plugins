@@ -58,19 +58,19 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	 */
 	public static final String TABLE_NAME = "KaleoTask";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "kaleoTaskId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "kaleoDefinitionId", Types.BIGINT },
-			{ "kaleoNodeId", Types.BIGINT },
-			{ "name", Types.VARCHAR },
-			{ "description", Types.VARCHAR },
-			{ "dueDateDuration", Types.DOUBLE },
-			{ "dueDateScale", Types.VARCHAR }
+			{ "kaleoTaskId", new Integer(Types.BIGINT) },
+			{ "groupId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "kaleoDefinitionId", new Integer(Types.BIGINT) },
+			{ "kaleoNodeId", new Integer(Types.BIGINT) },
+			{ "name", new Integer(Types.VARCHAR) },
+			{ "description", new Integer(Types.VARCHAR) },
+			{ "dueDateDuration", new Integer(Types.DOUBLE) },
+			{ "dueDateScale", new Integer(Types.VARCHAR) }
 		};
 	public static final String TABLE_SQL_CREATE = "create table KaleoTask (kaleoTaskId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoDefinitionId LONG,kaleoNodeId LONG,name VARCHAR(75) null,description VARCHAR(75) null,dueDateDuration DOUBLE,dueDateScale VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table KaleoTask";

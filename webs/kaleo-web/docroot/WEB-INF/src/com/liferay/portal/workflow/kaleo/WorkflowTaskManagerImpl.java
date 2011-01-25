@@ -479,9 +479,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public List<WorkflowTask> search(
 			long companyId, long userId, String taskName, String assetType,
-			Date dueDateGT, Date dueDateLT, Boolean completed,
-			Boolean searchByUserRoles, boolean andOperator, int start, int end,
-			OrderByComparator orderByComparator)
+			Long assetPrimaryKey, Date dueDateGT, Date dueDateLT,
+			Boolean completed, Boolean searchByUserRoles, boolean andOperator,
+			int start, int end, OrderByComparator orderByComparator)
 		throws WorkflowException {
 
 		try {
@@ -492,7 +492,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				KaleoTaskInstanceTokenLocalServiceUtil.search(
-					taskName, assetType, dueDateGT, dueDateLT, completed,
+					taskName, assetType, assetPrimaryKey,
+					dueDateGT, dueDateLT, completed,
 					searchByUserRoles, andOperator, start, end,
 					orderByComparator, serviceContext);
 
@@ -524,8 +525,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public int searchCount(
 			long companyId, long userId, String taskName, String assetType,
-			Date dueDateGT, Date dueDateLT, Boolean completed,
-			Boolean searchByUserRoles, boolean andOperator)
+			Long assetPrimaryKey, Date dueDateGT, Date dueDateLT,
+			Boolean completed, Boolean searchByUserRoles, boolean andOperator)
 		throws WorkflowException {
 
 		try {
@@ -535,8 +536,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setUserId(userId);
 
 			return KaleoTaskInstanceTokenLocalServiceUtil.searchCount(
-				taskName, assetType, dueDateGT, dueDateLT, completed,
-				searchByUserRoles, andOperator, serviceContext);
+				taskName, assetType, assetPrimaryKey, dueDateGT, dueDateLT,
+				completed, searchByUserRoles, andOperator, serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);

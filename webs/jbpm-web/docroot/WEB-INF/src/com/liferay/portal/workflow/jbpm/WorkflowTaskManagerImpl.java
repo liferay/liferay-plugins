@@ -662,7 +662,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<TaskInstance> taskInstances =
 				customSession.searchTaskInstances(
-					keywords, keywords, null, null, completed,
+					keywords, keywords, null, null, null, completed,
 					searchByUserRoles, false, start, end, orderByComparator,
 					serviceContext);
 
@@ -678,7 +678,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 	public List<WorkflowTask> search(
 			long companyId, long userId, String taskName, String assetType,
-			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Long assetPrimaryKey, Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator, int start, int end,
 			OrderByComparator orderByComparator)
 		throws WorkflowException {
@@ -695,7 +695,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<TaskInstance> taskInstances =
 				customSession.searchTaskInstances(
-					taskName, assetType, dueDateGT, dueDateLT, completed,
+					taskName, assetType, assetPrimaryKey,
+					dueDateGT, dueDateLT, completed,
 					searchByUserRoles, andOperator, start, end,
 					orderByComparator, serviceContext);
 
@@ -725,7 +726,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setUserId(userId);
 
 			return customSession.searchCountTaskInstances(
-				keywords, keywords, null, null, completed,
+				keywords, keywords, null, null, null, completed,
 				searchByUserRoles, false, serviceContext);
 		}
 		catch (Exception e) {
@@ -737,8 +738,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 	}
 
 	public int searchCount(
-		long companyId, long userId, String taskName, String assetType,
-			Date dueDateGT, Date dueDateLT, Boolean completed,
+			long companyId, long userId, String taskName, String assetType,
+			Long assetPrimaryKey, Date dueDateGT,
+			Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator)
 		throws WorkflowException {
 
@@ -753,7 +755,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			serviceContext.setUserId(userId);
 
 			return customSession.searchCountTaskInstances(
-				taskName, assetType, dueDateGT, dueDateLT, completed,
+				taskName, assetType, assetPrimaryKey,
+				dueDateGT, dueDateLT, completed,
 				searchByUserRoles, andOperator, serviceContext);
 		}
 		catch (Exception e) {
