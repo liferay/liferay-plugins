@@ -22,8 +22,10 @@ public class PortletPropsKeys {
 	public static final String CONSUMER_REQUEST_EXTENSIONS =
 		"consumer.request.extensions";
 
-	public static final String SECURE_RESOURCE_URLS = "secure.resource.urls";
+	public static final String SECURE_RESOURCE_URLS_ENABLED =
+		"secure.resource.urls.enabled";
 
-	public static final String SECURE_RESOURCE_SALT = "secure.resource.salt";
+	public static final String SECURE_RESOURCE_URLS_SALT =
+		"secure.resource.urls.salt";
 
 }

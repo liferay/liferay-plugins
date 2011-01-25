@@ -25,10 +25,11 @@ public class PortletPropsValues {
 	public static final String[] CONSUMER_REQUEST_EXTENSIONS =
 		PortletProps.getArray(PortletPropsKeys.CONSUMER_REQUEST_EXTENSIONS);
 
-	public static final boolean SECURE_RESOURCE_URLS = GetterUtil.getBoolean(
-		PortletProps.get(PortletPropsKeys.SECURE_RESOURCE_URLS));
+	public static final boolean SECURE_RESOURCE_URLS_ENABLED =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.SECURE_RESOURCE_URLS_ENABLED));
 
-	public static final String[] SECURE_RESOURCE_SALT =
-		PortletProps.getArray(PortletPropsKeys.SECURE_RESOURCE_SALT);
+	public static final String[] SECURE_RESOURCE_URLS_SALT =
+		PortletProps.getArray(PortletPropsKeys.SECURE_RESOURCE_URLS_SALT);
 
 }

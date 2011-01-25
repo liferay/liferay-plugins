@@ -38,9 +38,7 @@ import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.Website;
 import com.liferay.portal.security.auth.AuthTokenUtil;
-import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.AddressLocalServiceUtil;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.EmailAddressLocalServiceUtil;
 import com.liferay.portal.service.ListTypeServiceUtil;
 import com.liferay.portal.service.PhoneLocalServiceUtil;
@@ -241,7 +239,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		HttpServletRequest request = PortalUtil.getHttpServletRequest(
 			resourceRequest);
-
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(
 			resourceResponse);
 
@@ -250,7 +247,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		String url = GetterUtil.getString(
 			resourceRequest.getParameter("wsrp-url"));
-
 		String wsrpAuth = GetterUtil.getString(
 			resourceRequest.getParameter("wsrp-auth"));
 
@@ -258,9 +254,10 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		sb.append(resourceID);
 		sb.append(url);
-		sb.append(PortletPropsValues.SECURE_RESOURCE_SALT);
+		sb.append(PortletPropsValues.SECURE_RESOURCE_URLS_SALT);
 
-		String expectedWsrpAuth = encodeWSRPAuth(sb.toString());
+		String expectedWsrpAuth = encodeWSRPAuth(
+			resourceRequest, sb.toString());
 
 		if (wsrpAuth.equals(expectedWsrpAuth)) {
 			return true;
@@ -268,7 +265,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		sb.append(AuthTokenUtil.getToken(request));
 
-		expectedWsrpAuth = encodeWSRPAuth(sb.toString());
+		expectedWsrpAuth = encodeWSRPAuth(resourceRequest, sb.toString());
 
 		if (wsrpAuth.equals(expectedWsrpAuth)) {
 			return true;
@@ -404,7 +401,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		if (PortletPropsValues.SECURE_RESOURCE_URLS) {
+		if (PortletPropsValues.SECURE_RESOURCE_URLS_ENABLED) {
 			if (!authorize(resourceRequest, resourceResponse)) {
 				return;
 			}
@@ -429,12 +426,16 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 	}
 
-	protected String encodeWSRPAuth(String wsrpAuth) throws Exception {
-		Company company = CompanyLocalServiceUtil.getCompany(
-			CompanyThreadLocal.getCompanyId());
+	protected String encodeWSRPAuth(
+			PortletRequest portletRequest, String wsrpAuth)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Company company = themeDisplay.getCompany();
 
 		wsrpAuth = String.valueOf(wsrpAuth.hashCode());
-
 		wsrpAuth = Encryptor.encrypt(company.getKeyObj(), wsrpAuth);
 		wsrpAuth = Base64.toURLSafe(wsrpAuth);
 
@@ -1761,7 +1762,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			liferayPortletURL =
 				(LiferayPortletURL)liferayPortletResponse.createResourceURL();
 
-			if (PortletPropsValues.SECURE_RESOURCE_URLS) {
+			if (PortletPropsValues.SECURE_RESOURCE_URLS_ENABLED) {
 				secureResourceURL(
 					portletRequest, liferayPortletURL, parameterMap);
 			}
@@ -1847,9 +1848,6 @@ public class ConsumerPortlet extends GenericPortlet {
 			String extensionURL1 = rewriteMatcher.group(3);
 			String extensionURL2 = rewriteMatcher.group(4);
 
-			String replacement = null;
-			String rewrittenUrl = null;
-
 			Map<String, String> parameterMap =
 				new HashMap<String, String>();
 
@@ -1873,19 +1871,19 @@ public class ConsumerPortlet extends GenericPortlet {
 					parameterMap.put(name, HttpUtil.decodeURL(value));
 				}
 
-				rewrittenUrl = rewriteURL(
+				String rewrittenURL = rewriteURL(
 					portletRequest, portletResponse, parameterMap);
 
-				rewriteMatcher.appendReplacement(sb, rewrittenUrl);
+				rewriteMatcher.appendReplacement(sb, rewrittenURL);
 			}
 			else if (Validator.isNotNull(extensionURL1)) {
 				parameterMap.put("wsrp-urlType", "render");
 				parameterMap.put("wsrp-windowState", "wsrp:normal");
 
-				rewrittenUrl = rewriteURL(
+				String rewrittenURL = rewriteURL(
 					portletRequest, portletResponse, parameterMap);
 
-				replacement = "location.href = '" + rewrittenUrl + "'";
+				String replacement = "location.href = '" + rewrittenURL + "'";
 
 				rewriteMatcher.appendReplacement(sb, replacement);
 			}
@@ -1893,10 +1891,10 @@ public class ConsumerPortlet extends GenericPortlet {
 				parameterMap.put("wsrp-urlType", "render");
 				parameterMap.put("wsrp-windowState", "wsrp:normal");
 
-				rewrittenUrl = rewriteURL(
+				String rewrittenURL = rewriteURL(
 					portletRequest, portletResponse, parameterMap);
 
-				replacement = "href=\"" + rewrittenUrl + "\"";
+				String replacement = "href=\"" + rewrittenURL + "\"";
 
 				rewriteMatcher.appendReplacement(sb, replacement);
 			}
@@ -1927,13 +1925,13 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		sb.append(resourceID);
 		sb.append(url);
-		sb.append(PortletPropsValues.SECURE_RESOURCE_SALT);
+		sb.append(PortletPropsValues.SECURE_RESOURCE_URLS_SALT);
 
 		if (themeDisplay.isSignedIn()) {
 			sb.append(AuthTokenUtil.getToken(request));
 		}
 
-		String wsrpAuth = encodeWSRPAuth(sb.toString());
+		String wsrpAuth = encodeWSRPAuth(portletRequest, sb.toString());
 
 		parameterMap.put("wsrp-auth", wsrpAuth);
 	}
