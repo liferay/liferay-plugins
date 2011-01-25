@@ -119,8 +119,8 @@ public class InstanceUtil {
 				group.getTypeSettingsProperties();
 
 			return GetterUtil.getBoolean(
-				typeSettingsProperties.getProperty("social-office-initialized"),
-				false);
+				typeSettingsProperties.getProperty(
+					"social-office-initialized"));
 		}
 		catch (Exception e) {
 			return false;
@@ -302,7 +302,7 @@ public class InstanceUtil {
 			group.getTypeSettingsProperties();
 
 		typeSettingsProperties.setProperty(
-			"social-office-initialized", String.valueOf(true));
+			"social-office-initialized", Boolean.TRUE.toString());
 
 		GroupLocalServiceUtil.updateGroup(
 			group.getGroupId(), typeSettingsProperties.toString());
@@ -413,13 +413,12 @@ public class InstanceUtil {
 		for (User user : users) {
 			Group group = user.getGroup();
 
-			long groupId = group.getGroupId();
+			LayoutSetLocalServiceUtil.deleteLayoutSet(group.getGroupId(), true);
+			LayoutSetLocalServiceUtil.deleteLayoutSet(
+				group.getGroupId(), false);
 
-			LayoutSetLocalServiceUtil.deleteLayoutSet(groupId, true);
-			LayoutSetLocalServiceUtil.deleteLayoutSet(groupId, false);
-
-			LayoutSetLocalServiceUtil.addLayoutSet(groupId, true);
-			LayoutSetLocalServiceUtil.addLayoutSet(groupId, false);
+			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), true);
+			LayoutSetLocalServiceUtil.addLayoutSet(group.getGroupId(), false);
 		}
 	}
 
