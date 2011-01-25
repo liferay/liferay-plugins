@@ -20,7 +20,6 @@
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 String parentArticleTitle = ParamUtil.getString(request, "parentArticleTitle");
-int priority = ParamUtil.getInteger(request, "priority");
 int priorityMax = ParamUtil.getInteger(request, "priorityMax");
 %>
 
@@ -35,7 +34,7 @@ int priorityMax = ParamUtil.getInteger(request, "priorityMax");
 		for (int i = 0; i < priorityMax; i++) {
 		%>
 
-			<aui:option label="<%= i + 1 %>" selected="<%= priority == i %>" value="<%= i %>" />
+			<aui:option label="<%= i + 1 %>" value="<%= i %>" />
 
 		<%
 		}
