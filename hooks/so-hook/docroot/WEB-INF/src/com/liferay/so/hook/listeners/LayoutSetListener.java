@@ -70,7 +70,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 				return;
 			}
 
-			Group group = GroupLocalServiceUtil.getGroup (
+			Group group = GroupLocalServiceUtil.getGroup(
 				layoutSet.getGroupId());
 
 			if (group.isUser()) {

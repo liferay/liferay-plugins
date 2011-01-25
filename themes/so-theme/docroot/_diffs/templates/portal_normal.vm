@@ -12,6 +12,10 @@
 
 <body class="$css_class">
 
+#if($is_signed_in)
+	#dockbar()
+#end
+
 <div id="wrapper">
 	<header id="banner" role="banner">
 		<hgroup id="heading">
@@ -20,8 +24,6 @@
 					<span>$company_name</span>
 				</a>
 			</h1>
-
-			#parse ("$full_templates_path/navigation_top.vm")
 
 			#if ($has_navigation)
 				#parse ("$full_templates_path/navigation.vm")

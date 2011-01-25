@@ -20,29 +20,26 @@ package com.liferay.so.util;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.model.Portlet;
-import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
@@ -57,23 +54,12 @@ import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
-import com.liferay.portlet.calendar.model.CalEvent;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.portlet.messageboards.model.MBCategory;
-import com.liferay.portlet.messageboards.model.MBMessage;
-import com.liferay.portlet.wiki.model.WikiNode;
-import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.util.portlet.PortletProps;
 
-import java.io.InputStream;
-
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import javax.portlet.PortletPreferences;
 
@@ -92,11 +78,10 @@ public class InstanceUtil {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
-			setupCompany(companyId);
-			setupPermissions(companyId);
-			setupLoginLayout(companyId);
 			setupCommunity(companyId);
 			setupUsers(companyId);
+
+			setInitialized(companyId);
 		}
 		catch (Exception e) {
 		}
@@ -106,33 +91,6 @@ public class InstanceUtil {
 	}
 
 	public static void initRuntime(long companyId) {
-		Set<String> applicationsAllowed = SetUtil.fromArray(
-			PortletPropsValues.APPLICATIONS_ALLOWED);
-		Set<String> controlPanelItems = SetUtil.fromArray(
-			PortletPropsValues.CONTROL_PANEL_ITEMS);
-
-		List<Portlet> portlets = PortletLocalServiceUtil.getPortlets();
-
-		for (Portlet portlet : portlets) {
-			PortletApp portletApp = portlet.getPortletApp();
-
-			if (portletApp.isWARFile()) {
-				continue;
-			}
-
-			String portletId = portlet.getPortletId();
-
-			if (applicationsAllowed.contains(portletId)) {
-				portlet.setSystem(false);
-			}
-			else {
-				portlet.setSystem(true);
-			}
-
-			if (!controlPanelItems.contains(portletId)) {
-				portlet.setControlPanelEntryCategory(StringPool.BLANK);
-			}
-		}
 
 		// Communities
 
@@ -151,6 +109,22 @@ public class InstanceUtil {
 		// Clear cache
 
 		PortletLocalServiceUtil.clearCache();
+	}
+
+	public static boolean isInitialized(long companyId) {
+		try {
+			Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+			UnicodeProperties typeSettingsProperties =
+				group.getTypeSettingsProperties();
+
+			return GetterUtil.getBoolean(
+				typeSettingsProperties.getProperty("social-office-initialized"),
+				false);
+		}
+		catch (Exception e) {
+			return false;
+		}
 	}
 
 	protected static Layout addLayout(
@@ -321,6 +295,19 @@ public class InstanceUtil {
 		portletSetup.store();
 	}
 
+	protected static void setInitialized(long companyId) throws Exception {
+		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"social-office-initialized", String.valueOf(true));
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
+	}
+
 	protected static void setupCommunity(long companyId)
 		throws Exception {
 
@@ -418,296 +405,22 @@ public class InstanceUtil {
 		updatePermissions(layout, true);
 	}
 
-	protected static void setupCompany(long companyId) throws Exception {
-
-		// Security settings
-
-		String authType = CompanyConstants.AUTH_TYPE_SN;
-		boolean autoLogin = true;
-		boolean sendPassword = true;
-		boolean strangers = true;
-		boolean strangersWithMx = true;
-		boolean strangersVerify = false;
-		boolean communityLogo = false;
-
-		CompanyLocalServiceUtil.updateSecurity(
-			companyId, authType, autoLogin, sendPassword, strangers,
-			strangersWithMx, strangersVerify, communityLogo);
-
-		// Company logo
-
-		ClassLoader classLoader = InstanceUtil.class.getClassLoader();
-
-		InputStream inputStream = classLoader.getResourceAsStream(
-			"/resources/logo.png");
-
-		CompanyLocalServiceUtil.updateLogo(companyId, inputStream);
-	}
-
-	protected static void setupLoginLayout(long companyId)
-		throws Exception {
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(
-			group.getGroupId(), false, 1);
-
-		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
-			layout.getCompanyId());
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		layoutTypePortlet.setLayoutTemplateId(0, "1_column", false);
-
-		if (layoutTypePortlet.hasPortletId("47")) {
-			layoutTypePortlet.removePortletId(defaultUserId, "47");
-		}
-
-		if (!layoutTypePortlet.hasPortletId(PortletKeys.LOGIN)) {
-			LayoutTemplate layoutTemplate =
-				layoutTypePortlet.getLayoutTemplate();
-
-			List<String> columns = layoutTemplate.getColumns();
-
-			layoutTypePortlet.setPortletIds(columns.get(0), PortletKeys.LOGIN);
-		}
-
-		LayoutLocalServiceUtil.updateLayout(
-			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
-			layout.getTypeSettings());
-
-		LayoutLocalServiceUtil.updateFriendlyURL(layout.getPlid(), "/login");
-
-		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			layout.getGroupId(), false, "so_WAR_sotheme", "01", "", false);
-	}
-
-	protected static void setupPermissions(long companyId) throws Exception {
-
-		// Community Member - Blogs
-
-		Role role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.COMMUNITY_MEMBER);
-
-		long roleId = role.getRoleId();
-		String name = "com.liferay.portlet.blogs";
-		int scope = ResourceConstants.SCOPE_GROUP_TEMPLATE;
-		String primKey = String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID);
-		String[] actionIds = new String[] {ActionKeys.ADD_ENTRY};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Calendar
-
-		name = "com.liferay.portlet.calendar";
-		actionIds = new String[] {
-			ActionKeys.ADD_EVENT, ActionKeys.EXPORT_ALL_EVENTS
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Calendar Event
-
-		name = CalEvent.class.getName();
-		actionIds = new String[] {ActionKeys.VIEW};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Community
-
-		name = Group.class.getName();
-		actionIds = new String[] {ActionKeys.ASSIGN_MEMBERS};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Document Library
-
-		name = "com.liferay.portlet.documentlibrary";
-		actionIds = new String[] {
-			ActionKeys.ADD_FOLDER, ActionKeys.ADD_DOCUMENT
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Document Library Document
-
-		name = DLFileEntry.class.getName();
-		actionIds = new String[] {
-			ActionKeys.ADD_DISCUSSION, ActionKeys.UPDATE, ActionKeys.VIEW
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Document Library Folder
-
-		name = DLFolder.class.getName();
-		actionIds = new String[] {
-			ActionKeys.ADD_DOCUMENT, ActionKeys.ADD_SUBFOLDER, ActionKeys.VIEW
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Message Boards
-
-		name = "com.liferay.portlet.messageboards";
-		actionIds = new String[] {ActionKeys.ADD_CATEGORY};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Message Boards Category
-
-		name = MBCategory.class.getName();
-		actionIds = new String[] {
-			ActionKeys.ADD_FILE, ActionKeys.ADD_MESSAGE,
-			ActionKeys.ADD_SUBCATEGORY, ActionKeys.MOVE_THREAD,
-			ActionKeys.REPLY_TO_MESSAGE, ActionKeys.SUBSCRIBE, ActionKeys.VIEW
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Message Boards Message
-
-		name = MBMessage.class.getName();
-		actionIds = new String[] {ActionKeys.VIEW};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Wiki
-
-		name = "com.liferay.portlet.wiki";
-		actionIds = new String[] {ActionKeys.ADD_NODE};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Wiki Node
-
-		name = WikiNode.class.getName();
-		actionIds = new String[] {
-			ActionKeys.ADD_ATTACHMENT, ActionKeys.ADD_PAGE,
-			ActionKeys.SUBSCRIBE, ActionKeys.VIEW
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Member - Wiki Page
-
-		name = WikiPage.class.getName();
-		actionIds = new String[] {
-			ActionKeys.ADD_DISCUSSION, ActionKeys.DELETE, ActionKeys.SUBSCRIBE,
-			ActionKeys.UPDATE, ActionKeys.VIEW
-		};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Community Owner - Announcements
-
-		role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.COMMUNITY_OWNER);
-
-		roleId = role.getRoleId();
-		name = PortletKeys.ANNOUNCEMENTS;
-		actionIds = new String[] {ActionKeys.ADD_ENTRY};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Power User - Add Community
-
-		role = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.POWER_USER);
-
-		roleId = role.getRoleId();
-		name = PortletKeys.PORTAL;
-		scope = ResourceConstants.SCOPE_COMPANY;
-		primKey = String.valueOf(companyId);
-		actionIds = new String[] {ActionKeys.ADD_COMMUNITY};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Power User - Directory
-
-		name = PortletKeys.DIRECTORY;
-		actionIds = new String[] {ActionKeys.VIEW};
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-
-		// Power User - Document Library
-
-		name = "com.liferay.portlet.documentlibrary";
-
-		ResourcePermissionLocalServiceUtil.setResourcePermissions(
-			companyId, name, scope, primKey, roleId, actionIds);
-	}
-
 	protected static void setupUsers(long companyId) throws Exception {
 		List<User> users = UserLocalServiceUtil.search(
 			companyId, null, null, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			(OrderByComparator)null);
 
 		for (User user : users) {
-			UserLocalServiceUtil.deleteUser(user.getUserId());
+			Group group = user.getGroup();
+
+			long groupId = group.getGroupId();
+
+			LayoutSetLocalServiceUtil.deleteLayoutSet(groupId, true);
+			LayoutSetLocalServiceUtil.deleteLayoutSet(groupId, false);
+
+			LayoutSetLocalServiceUtil.addLayoutSet(groupId, true);
+			LayoutSetLocalServiceUtil.addLayoutSet(groupId, false);
 		}
-
-		long creatorUserId = 0;
-		boolean autoPassword = false;
-		String password1 = "admin";
-		String password2 = password1;
-		boolean autoScreenName = false;
-		String screenName = "admin";
-		String emailAddress = "admin@admin.com";
-		long facebookId = 0;
-		String openId = StringPool.BLANK;
-		Locale locale = Locale.US;
-		String firstName = "Admin";
-		String middleName = StringPool.BLANK;
-		String lastName = "Admin";
-		int prefixId = 0;
-		int suffixId = 0;
-		boolean male = true;
-		int birthdayMonth = Calendar.JANUARY;
-		int birthdayDay = 1;
-		int birthdayYear = 1970;
-		String jobTitle = StringPool.BLANK;
-		long[] groupIds = null;
-		long[] organizationIds = null;
-		long[] userGroupIds = null;
-
-		Role adminRole = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.ADMINISTRATOR);
-
-		Role powerUserRole = RoleLocalServiceUtil.getRole(
-			companyId, RoleConstants.POWER_USER);
-
-		long[] roleIds = new long[] {
-			adminRole.getRoleId(), powerUserRole.getRoleId()
-		};
-
-		boolean sendEmail = false;
-		ServiceContext serviceContext = null;
-
-		UserLocalServiceUtil.addUser(
-			creatorUserId, companyId, autoPassword, password1, password2,
-			autoScreenName, screenName, emailAddress, facebookId, openId,
-			locale, firstName, middleName, lastName, prefixId, suffixId, male,
-			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
-			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
 	}
 
 	protected static void updatePermissions(

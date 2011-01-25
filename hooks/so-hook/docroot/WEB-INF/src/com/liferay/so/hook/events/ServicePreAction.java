@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.User;
@@ -82,11 +81,6 @@ public class ServicePreAction extends Action {
 			redirect = getUserRedirect(
 				themeDisplay, ParamUtil.getLong(request, "_11_p_u_i_d"));
 		}
-		else if (themeDisplay.isSignedIn() &&
-				 isGuestGroup(themeDisplay, currentURL)) {
-
-			redirect = getHomeRedirect(themeDisplay);
-		}
 
 		if (Validator.isNotNull(redirect)) {
 			response.sendRedirect(redirect);
@@ -105,26 +99,6 @@ public class ServicePreAction extends Action {
 		long userId = ParamUtil.getLong(request, "_11_p_u_i_d");
 
 		if (userId <= 0) {
-			return false;
-		}
-
-		return true;
-	}
-
-	protected boolean isGuestGroup(
-		ThemeDisplay themeDisplay, String currentURL) throws Exception {
-
-		Layout layout = themeDisplay.getLayout();
-
-		if ((layout == null) || (layout.getLayoutId() != 1)) {
-			return false;
-		}
-
-		Group group = layout.getGroup();
-
-		if (!group.getName().equals(GroupConstants.GUEST) ||
-			currentURL.startsWith("/c/")) {
-
 			return false;
 		}
 
@@ -168,15 +142,6 @@ public class ServicePreAction extends Action {
 		}
 
 		return null;
-	}
-
-	protected String getHomeRedirect(ThemeDisplay themeDisplay)
-		throws Exception {
-
-		User user = themeDisplay.getUser();
-
-		return themeDisplay.getPathFriendlyURLPublic() + "/" +
-			user.getScreenName();
 	}
 
 	protected String getRedirect(

@@ -18,13 +18,8 @@
 package com.liferay.so.hook.upgrade;
 
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
-import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.so.util.InstanceUtil;
 
 import java.util.List;
 
@@ -42,22 +37,7 @@ public class UpgradeUtil {
 
 		Company company = companies.get(0);
 
-		long companyId = company.getCompanyId();
-
-		Group group = GroupLocalServiceUtil.getGroup(
-			companyId, GroupConstants.GUEST);
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(
-			group.getGroupId(), false, 1);
-
-		LayoutTypePortlet layoutTypePortlet =
-			(LayoutTypePortlet)layout.getLayoutType();
-
-		if (!layoutTypePortlet.hasPortletId("47")) {
-			return false;
-		}
-
-		return true;
+		return !InstanceUtil.isInitialized(company.getCompanyId());
 	}
 
 }
