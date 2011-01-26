@@ -28,4 +28,15 @@ public class PortletPropsValues {
 	public static final String SHINDIG_NO_CACHE = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.SHINDIG_NO_CACHE));
 
+	public static final String SHINDIG_SIGNING_GLOBAL_CALLBACK_URL =
+		GetterUtil.getString(
+			PortletProps.get(
+				PortletPropsKeys.SHINDIG_SIGNING_GLOBAL_CALLBACK_URL));
+
+	public static final String SHINDIG_SIGNING_KEY_FILE = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.SHINDIG_SIGNING_KEY_FILE));
+
+	public static final String SHINDIG_SIGNING_KEY_NAME = GetterUtil.getString(
+		PortletProps.get(PortletPropsKeys.SHINDIG_SIGNING_KEY_NAME));
+
 }

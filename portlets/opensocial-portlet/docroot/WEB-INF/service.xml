@@ -54,8 +54,6 @@
 		<column name="consumerKey" type="String" />
 		<column name="consumerSecret" type="String" />
 		<column name="keyType" type="String" />
-		<column name="keyName" type="String" />
-		<column name="callbackURL" type="String" />
 
 		<!-- Order -->
 
@@ -77,7 +75,7 @@
 
 		<!-- PK fields -->
 
-		<column name="oauthTokenId" type="long" primary="true" />
+		<column name="oAuthTokenId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 

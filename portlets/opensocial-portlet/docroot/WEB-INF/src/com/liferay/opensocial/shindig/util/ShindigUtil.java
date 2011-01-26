@@ -20,6 +20,7 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -155,6 +156,10 @@ public class ShindigUtil {
 		return gadget.getSpec();
 	}
 
+	public static String getHost() {
+		return _host.get();
+	}
+
 	public static long getModuleId(String namespace) {
 		return namespace.hashCode();
 	}
@@ -168,13 +173,13 @@ public class ShindigUtil {
 			return null;
 		}
 
-		OAuthSpec oauthSpec = modulePrefs.getOAuthSpec();
+		OAuthSpec oAuthSpec = modulePrefs.getOAuthSpec();
 
-		if (oauthSpec == null) {
+		if (oAuthSpec == null) {
 			return null;
 		}
 
-		return oauthSpec.getServices();
+		return oAuthSpec.getServices();
 	}
 
 	public static String getOwnerId(Layout layout)
@@ -210,6 +215,10 @@ public class ShindigUtil {
 		return _TABLE_OPEN_SOCIAL;
 	}
 
+	public static void setHost(String host) {
+		_host.set(host);
+	}
+
 	private static final String _COLUMN_USER_PREFS = "USER_PREFS_";
 
 	private static final String _OPEN_SSL_A_Z = "-----[A-Z ]*-----";
@@ -221,6 +230,10 @@ public class ShindigUtil {
 
 	@Inject
 	private static ContainerConfig _containerConfig;
+
+	private static AutoResetThreadLocal<String> _host =
+		new AutoResetThreadLocal<String>(
+			ShindigUtil.class + "._host", StringPool.BLANK);
 
 	@Inject
 	private static Processor _processor;

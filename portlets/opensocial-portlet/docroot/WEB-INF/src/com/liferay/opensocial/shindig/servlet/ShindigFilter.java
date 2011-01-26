@@ -14,9 +14,7 @@
 
 package com.liferay.opensocial.shindig.servlet;
 
-import com.google.inject.Inject;
-
-import com.liferay.opensocial.shindig.config.LiferayJsonContainerConfig;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
@@ -28,7 +26,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.shindig.common.servlet.InjectedFilter;
-import org.apache.shindig.config.ContainerConfig;
 
 /**
  * @author Michael Young
@@ -43,21 +40,15 @@ public class ShindigFilter extends InjectedFilter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		StringBundler sb = new StringBundler(4);
+		StringBundler sb = new StringBundler(3);
 
 		sb.append(servletRequest.getServerName());
 		sb.append(StringPool.COLON);
 		sb.append(servletRequest.getServerPort());
 
-		LiferayJsonContainerConfig liferayJsonContainerConfig =
-			(LiferayJsonContainerConfig)_containerConfig;
-
-		liferayJsonContainerConfig.setHost(sb.toString());
+		ShindigUtil.setHost(sb.toString());
 
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
-
-	@Inject
-	private ContainerConfig _containerConfig;
 
 }

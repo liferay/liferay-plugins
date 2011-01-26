@@ -18,8 +18,7 @@ import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import com.google.inject.name.Named;
 
-import com.liferay.portal.kernel.util.AutoResetThreadLocal;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import org.apache.shindig.config.ContainerConfigException;
@@ -45,18 +44,10 @@ public class LiferayJsonContainerConfig extends JsonContainerConfig {
 		String value = super.getString(container, property);
 
 		if (Validator.isNotNull(value)) {
-			value = value.replaceAll("%host%", _host.get());
+			value = value.replaceAll("%host%", ShindigUtil.getHost());
 		}
 
 		return value;
 	}
-
-	public void setHost(String host) {
-		_host.set(host);
-	}
-
-	private static AutoResetThreadLocal<String> _host =
-		new AutoResetThreadLocal<String>(
-			LiferayJsonContainerConfig.class + "._host", StringPool.BLANK);
 
 }

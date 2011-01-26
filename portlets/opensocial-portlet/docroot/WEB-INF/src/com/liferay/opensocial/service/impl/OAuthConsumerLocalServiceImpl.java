@@ -51,8 +51,6 @@ public class OAuthConsumerLocalServiceImpl
 		oAuthConsumer.setConsumerKey(consumerKey);
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(keyType);
-		oAuthConsumer.setKeyName(keyName);
-		oAuthConsumer.setCallbackURL(callbackURL);
 
 		oAuthConsumerPersistence.update(oAuthConsumer, false);
 
@@ -131,8 +129,6 @@ public class OAuthConsumerLocalServiceImpl
 		oAuthConsumer.setConsumerKey(consumerKey);
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(keyType);
-		oAuthConsumer.setKeyName(keyName);
-		oAuthConsumer.setCallbackURL(callbackURL);
 
 		oAuthConsumerPersistence.update(oAuthConsumer, false);
 
