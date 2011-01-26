@@ -15,6 +15,7 @@
 package com.liferay.opensocial.admin.portlet;
 
 import com.liferay.opensocial.model.Gadget;
+import com.liferay.opensocial.model.OAuthConsumerConstants;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -136,6 +137,10 @@ public class AdminPortlet extends MVCPortlet {
 		String consumerSecret = ParamUtil.getString(
 			actionRequest, "consumerSecret");
 		String keyType = ParamUtil.getString(actionRequest, "keyType");
+
+		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
+			consumerSecret = StringPool.BLANK;
+		}
 
 		if (oAuthConsumerId <= 0) {
 			OAuthConsumerLocalServiceUtil.addOAuthConsumer(

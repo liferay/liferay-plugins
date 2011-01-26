@@ -60,30 +60,30 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 </tr>
 <tr>
 	<td>
+		<liferay-ui:message key="key-type" />
+	</td>
+	<td>
+		<select name="<portlet:namespace />keyType" id="<portlet:namespace />keyType">
+			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC %>"><%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_PLAINTEXT) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT %>"><%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT.toString() %></option>
+			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>"><%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE.toString() %></option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>
 		<liferay-ui:message key="consumer-key" />
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= OAuthConsumer.class %>" bean="<%= oAuthConsumer %>" field="consumerKey" />
 	</td>
 </tr>
-<tr>
+<tr id="<portlet:namespace />consumerSecret" class="aui-helper-hidden">
 	<td>
 		<liferay-ui:message key="consumer-secret" />
 	</td>
 	<td>
 		<liferay-ui:input-field model="<%= OAuthConsumer.class %>" bean="<%= oAuthConsumer %>" field="consumerSecret" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="key-type" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />keyType">
-			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC %>"><%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC.toString() %></option>
-			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_PLAINTEXT) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT %>"><%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT.toString() %></option>
-			<option <%= keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE) ? "selected" : StringPool.BLANK %> value="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>"><%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE.toString() %></option>
-		</select>
 	</td>
 </tr>
 </table>
@@ -95,6 +95,32 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 <input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" />
 
 </form>
+
+<aui:script use="aui-base">
+	function <portlet:namespace />renderConsumerSecretRow() {
+		var row = A.one('#<portlet:namespace />consumerSecret');
+
+		A.one('#<portlet:namespace />keyType').get('options').each(
+			function() {
+				if (this.get('selected') && this.get('value') == '<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>') {
+					row.hide();
+				}
+				else {
+					row.show();
+				}
+			}
+		)
+	};
+
+	A.one('#<portlet:namespace />keyType').on(
+		'change',
+		function() {
+			<portlet:namespace />renderConsumerSecretRow();
+		}
+	);
+
+	<portlet:namespace />renderConsumerSecretRow();
+</aui:script>
 
 <aui:script>
 	function <portlet:namespace />saveOAuthConsumer() {
