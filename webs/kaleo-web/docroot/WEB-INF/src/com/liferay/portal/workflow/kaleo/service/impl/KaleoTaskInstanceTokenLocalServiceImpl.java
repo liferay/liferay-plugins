@@ -16,34 +16,25 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Junction;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
-import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoTaskInstanceTokenLocalServiceBaseImpl;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
-import com.liferay.portal.workflow.kaleo.util.RoleRetrievalUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
-
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -494,6 +485,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		kaleoTaskInstanceTokenQuery.setDueDateLT(dueDateLT);
 		kaleoTaskInstanceTokenQuery.setSearchByUserRoles(searchByUserRoles);
 		kaleoTaskInstanceTokenQuery.setTaskName(taskName);
+		kaleoTaskInstanceTokenQuery.setAndOperator(andOperator);
 
 		return kaleoTaskInstanceTokenFinder.countKaleoTaskInstanceTokens(
 			kaleoTaskInstanceTokenQuery);
@@ -535,66 +527,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			PropertyFactoryUtil.forName("completed").eq(completed));
 	}
 
-	protected void addSearchByUserRolesCriterion(
-			DynamicQuery dynamicQuery, Boolean searchByUserRoles,
-			ServiceContext serviceContext)
-		throws SystemException {
-
-		if (searchByUserRoles == null) {
-			return;
-		}
-
-		if (!searchByUserRoles) {
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("assigneeClassName").eq(
-					User.class.getName()));
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("assigneeClassPK").eq(
-					serviceContext.getUserId()));
-			return;
-		}
-
-		List<Long> roleIds = RoleRetrievalUtil.getRoleIds(serviceContext);
-
-		List<UserGroupRole> userGroupRoles =
-			UserGroupRoleLocalServiceUtil.getUserGroupRoles(
-				serviceContext.getUserId());
-
-		if (userGroupRoles.isEmpty()) {
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("assigneeClassName").eq(
-					Role.class.getName()));
-
-			dynamicQuery.add(
-				PropertyFactoryUtil.forName("assigneeClassPK").in(
-					roleIds.toArray(new Long[roleIds.size()])));
-		}
-		else {
-			Junction junction = RestrictionsFactoryUtil.disjunction();
-
-			junction.add(
-				RestrictionsFactoryUtil.and(
-					PropertyFactoryUtil.forName("assigneeClassName").eq(
-						Role.class.getName()),
-					PropertyFactoryUtil.forName("assigneeClassPK").in(
-						roleIds.toArray(new Long[roleIds.size()]))));
-
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				junction.add(
-					RestrictionsFactoryUtil.and(
-						PropertyFactoryUtil.forName("groupId").eq(
-							userGroupRole.getGroupId()),
-						RestrictionsFactoryUtil.and(
-							PropertyFactoryUtil.forName("assigneeClassName").eq(
-								Role.class.getName()),
-							PropertyFactoryUtil.forName("assigneeClassPK").eq(
-								userGroupRole.getRoleId()))));
-			}
-
-			dynamicQuery.add(junction);
-		}
-	}
-
 	protected DynamicQuery buildDynamicQuery(
 		Boolean completed, ServiceContext serviceContext) {
 
@@ -623,74 +555,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		dynamicQuery.add(
 			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
 				kaleoInstanceId));
-
-		addCompletedCriterion(dynamicQuery, completed);
-
-		return dynamicQuery;
-	}
-
-	protected DynamicQuery buildDynamicQuery(
-			String taskName, String assetType, Date dueDateGT, Date dueDateLT,
-			Boolean completed, Boolean searchByUserRoles, boolean andOperator,
-			ServiceContext serviceContext)
-		throws SystemException {
-
-		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
-			KaleoTaskInstanceToken.class, getClass().getClassLoader());
-
-		dynamicQuery.add(
-			PropertyFactoryUtil.forName("companyId").eq(
-				serviceContext.getCompanyId()));
-
-		if (Validator.isNotNull(taskName) || Validator.isNotNull(assetType) ||
-			(dueDateGT != null) || (dueDateLT != null)) {
-
-			Junction junction = null;
-
-			if (andOperator) {
-				junction = RestrictionsFactoryUtil.conjunction();
-			}
-			else {
-				junction = RestrictionsFactoryUtil.disjunction();
-			}
-
-			if (Validator.isNotNull(taskName)) {
-				String[] taskNameKeywords = StringUtil.split(
-					taskName, StringPool.SPACE);
-
-				for (String taskNameKeyword : taskNameKeywords) {
-					junction.add(
-						PropertyFactoryUtil.forName("kaleoTaskName").like(
-							taskNameKeyword));
-				}
-			}
-
-			if (Validator.isNotNull(assetType)) {
-				String[] assetTypeKeywords = StringUtil.split(
-					assetType, StringPool.SPACE);
-
-				for (String assetTypeKeyword : assetTypeKeywords) {
-					junction.add(
-						PropertyFactoryUtil.forName("workflowContext").like(
-							assetTypeKeyword));
-				}
-			}
-
-			if (dueDateGT != null) {
-				junction.add(
-					PropertyFactoryUtil.forName("dueDate").ge(dueDateGT));
-			}
-
-			if (dueDateLT != null) {
-				junction.add(
-					PropertyFactoryUtil.forName("dueDate").lt(dueDateLT));
-			}
-
-			dynamicQuery.add(junction);
-		}
-
-		addSearchByUserRolesCriterion(
-			dynamicQuery, searchByUserRoles, serviceContext);
 
 		addCompletedCriterion(dynamicQuery, completed);
 
