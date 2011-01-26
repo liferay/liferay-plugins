@@ -161,18 +161,21 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sql,
 				getDueDateGT(
 					kaleoTaskInstanceTokenQuery,
+					(kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() == null) &&
 					(kaleoTaskInstanceTokenQuery.getAssetType() == null)));
 			sql = CustomSQLUtil.appendCriteria(
 				sql,
 				getDueDateLT(
 					kaleoTaskInstanceTokenQuery,
-					((kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
+					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() == null) &&
+					 (kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateGT() == null))));
 			sql = CustomSQLUtil.appendCriteria(
 				sql,
 				getTaskName(
 					kaleoTaskInstanceTokenQuery,
-					((kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
+					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() == null) &&
+					 (kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateGT() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateLT() == null))));
 			sql = CustomSQLUtil.appendCriteria(sql, ")");
