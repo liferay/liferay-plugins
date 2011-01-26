@@ -248,20 +248,6 @@ public class ClpSerializer {
 
 					method8.invoke(newModel, value8);
 
-					Method method9 = newModelClass.getMethod("setKeyName",
-							new Class[] { String.class });
-
-					String value9 = oldCplModel.getKeyName();
-
-					method9.invoke(newModel, value9);
-
-					Method method10 = newModelClass.getMethod("setCallbackURL",
-							new Class[] { String.class });
-
-					String value10 = oldCplModel.getCallbackURL();
-
-					method10.invoke(newModel, value10);
-
 					return newModel;
 				}
 				catch (Exception e) {
@@ -288,10 +274,10 @@ public class ClpSerializer {
 
 					Object newModel = newModelClass.newInstance();
 
-					Method method0 = newModelClass.getMethod("setOauthTokenId",
+					Method method0 = newModelClass.getMethod("setOAuthTokenId",
 							new Class[] { Long.TYPE });
 
-					Long value0 = new Long(oldCplModel.getOauthTokenId());
+					Long value0 = new Long(oldCplModel.getOAuthTokenId());
 
 					method0.invoke(newModel, value0);
 
@@ -567,20 +553,6 @@ public class ClpSerializer {
 
 					newModel.setKeyType(value8);
 
-					Method method9 = oldModelClass.getMethod("getKeyName");
-
-					String value9 = (String)method9.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setKeyName(value9);
-
-					Method method10 = oldModelClass.getMethod("getCallbackURL");
-
-					String value10 = (String)method10.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setCallbackURL(value10);
-
 					return newModel;
 				}
 				catch (Exception e) {
@@ -603,11 +575,11 @@ public class ClpSerializer {
 				try {
 					OAuthTokenClp newModel = new OAuthTokenClp();
 
-					Method method0 = oldModelClass.getMethod("getOauthTokenId");
+					Method method0 = oldModelClass.getMethod("getOAuthTokenId");
 
 					Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-					newModel.setOauthTokenId(value0);
+					newModel.setOAuthTokenId(value0);
 
 					Method method1 = oldModelClass.getMethod("getCompanyId");
 

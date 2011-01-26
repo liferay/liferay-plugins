@@ -47,21 +47,21 @@ public class OAuthTokenWrapper implements OAuthToken {
 	}
 
 	/**
-	* Gets the oauth token ID of this o auth token.
+	* Gets the o auth token ID of this o auth token.
 	*
-	* @return the oauth token ID of this o auth token
+	* @return the o auth token ID of this o auth token
 	*/
-	public long getOauthTokenId() {
-		return _oAuthToken.getOauthTokenId();
+	public long getOAuthTokenId() {
+		return _oAuthToken.getOAuthTokenId();
 	}
 
 	/**
-	* Sets the oauth token ID of this o auth token.
+	* Sets the o auth token ID of this o auth token.
 	*
-	* @param oauthTokenId the oauth token ID of this o auth token
+	* @param oAuthTokenId the o auth token ID of this o auth token
 	*/
-	public void setOauthTokenId(long oauthTokenId) {
-		_oAuthToken.setOauthTokenId(oauthTokenId);
+	public void setOAuthTokenId(long oAuthTokenId) {
+		_oAuthToken.setOAuthTokenId(oAuthTokenId);
 	}
 
 	/**

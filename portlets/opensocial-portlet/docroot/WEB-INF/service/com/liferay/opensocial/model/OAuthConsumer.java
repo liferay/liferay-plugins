@@ -29,4 +29,7 @@ public interface OAuthConsumer extends OAuthConsumerModel {
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.opensocial.model.impl.OAuthConsumerImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public java.lang.String getKeyName();
+
+	public void setKeyName(java.lang.String keyName);
 }

@@ -79,23 +79,23 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	/**
 	 * Creates a new o auth token with the primary key. Does not add the o auth token to the database.
 	 *
-	 * @param oauthTokenId the primary key for the new o auth token
+	 * @param oAuthTokenId the primary key for the new o auth token
 	 * @return the new o auth token
 	 */
-	public OAuthToken createOAuthToken(long oauthTokenId) {
-		return oAuthTokenPersistence.create(oauthTokenId);
+	public OAuthToken createOAuthToken(long oAuthTokenId) {
+		return oAuthTokenPersistence.create(oAuthTokenId);
 	}
 
 	/**
 	 * Deletes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oauthTokenId the primary key of the o auth token to delete
+	 * @param oAuthTokenId the primary key of the o auth token to delete
 	 * @throws PortalException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void deleteOAuthToken(long oauthTokenId)
+	public void deleteOAuthToken(long oAuthTokenId)
 		throws PortalException, SystemException {
-		oAuthTokenPersistence.remove(oauthTokenId);
+		oAuthTokenPersistence.remove(oAuthTokenId);
 	}
 
 	/**
@@ -178,14 +178,14 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	/**
 	 * Gets the o auth token with the primary key.
 	 *
-	 * @param oauthTokenId the primary key of the o auth token to get
+	 * @param oAuthTokenId the primary key of the o auth token to get
 	 * @return the o auth token
 	 * @throws PortalException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken getOAuthToken(long oauthTokenId)
+	public OAuthToken getOAuthToken(long oAuthTokenId)
 		throws PortalException, SystemException {
-		return oAuthTokenPersistence.findByPrimaryKey(oauthTokenId);
+		return oAuthTokenPersistence.findByPrimaryKey(oAuthTokenId);
 	}
 
 	/**

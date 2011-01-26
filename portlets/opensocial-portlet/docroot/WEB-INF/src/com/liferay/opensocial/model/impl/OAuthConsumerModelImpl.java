@@ -57,19 +57,17 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_OAuthConsumer";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oAuthConsumerId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "gadgetId", Types.BIGINT },
-			{ "serviceName", Types.VARCHAR },
-			{ "consumerKey", Types.VARCHAR },
-			{ "consumerSecret", Types.CLOB },
-			{ "keyType", Types.VARCHAR },
-			{ "keyName", Types.VARCHAR },
-			{ "callbackURL", Types.VARCHAR }
+			{ "oAuthConsumerId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "gadgetId", new Integer(Types.BIGINT) },
+			{ "serviceName", new Integer(Types.VARCHAR) },
+			{ "consumerKey", new Integer(Types.VARCHAR) },
+			{ "consumerSecret", new Integer(Types.CLOB) },
+			{ "keyType", new Integer(Types.VARCHAR) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oAuthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null,keyName VARCHAR(75) null,callbackURL VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oAuthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthConsumer";
 	public static final String ORDER_BY_JPQL = " ORDER BY oAuthConsumer.serviceName ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_OAuthConsumer.serviceName ASC";
@@ -210,32 +208,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		_keyType = keyType;
 	}
 
-	public String getKeyName() {
-		if (_keyName == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _keyName;
-		}
-	}
-
-	public void setKeyName(String keyName) {
-		_keyName = keyName;
-	}
-
-	public String getCallbackURL() {
-		if (_callbackURL == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _callbackURL;
-		}
-	}
-
-	public void setCallbackURL(String callbackURL) {
-		_callbackURL = callbackURL;
-	}
-
 	public OAuthConsumer toEscapedModel() {
 		if (isEscapedModel()) {
 			return (OAuthConsumer)this;
@@ -272,8 +244,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		clone.setConsumerKey(getConsumerKey());
 		clone.setConsumerSecret(getConsumerSecret());
 		clone.setKeyType(getKeyType());
-		clone.setKeyName(getKeyName());
-		clone.setCallbackURL(getCallbackURL());
 
 		return clone;
 	}
@@ -319,7 +289,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{oAuthConsumerId=");
 		sb.append(getOAuthConsumerId());
@@ -339,17 +309,13 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		sb.append(getConsumerSecret());
 		sb.append(", keyType=");
 		sb.append(getKeyType());
-		sb.append(", keyName=");
-		sb.append(getKeyName());
-		sb.append(", callbackURL=");
-		sb.append(getCallbackURL());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.OAuthConsumer");
@@ -391,14 +357,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 			"<column><column-name>keyType</column-name><column-value><![CDATA[");
 		sb.append(getKeyType());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>keyName</column-name><column-value><![CDATA[");
-		sb.append(getKeyName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>callbackURL</column-name><column-value><![CDATA[");
-		sb.append(getCallbackURL());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -417,7 +375,5 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
-	private String _keyName;
-	private String _callbackURL;
 	private transient ExpandoBridge _expandoBridge;
 }

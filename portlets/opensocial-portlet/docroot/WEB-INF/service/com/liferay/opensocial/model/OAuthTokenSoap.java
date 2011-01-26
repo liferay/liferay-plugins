@@ -30,7 +30,7 @@ public class OAuthTokenSoap implements Serializable {
 	public static OAuthTokenSoap toSoapModel(OAuthToken model) {
 		OAuthTokenSoap soapModel = new OAuthTokenSoap();
 
-		soapModel.setOauthTokenId(model.getOauthTokenId());
+		soapModel.setOAuthTokenId(model.getOAuthTokenId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
@@ -89,19 +89,19 @@ public class OAuthTokenSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _oauthTokenId;
+		return _oAuthTokenId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setOauthTokenId(pk);
+		setOAuthTokenId(pk);
 	}
 
-	public long getOauthTokenId() {
-		return _oauthTokenId;
+	public long getOAuthTokenId() {
+		return _oAuthTokenId;
 	}
 
-	public void setOauthTokenId(long oauthTokenId) {
-		_oauthTokenId = oauthTokenId;
+	public void setOAuthTokenId(long oAuthTokenId) {
+		_oAuthTokenId = oAuthTokenId;
 	}
 
 	public long getCompanyId() {
@@ -208,7 +208,7 @@ public class OAuthTokenSoap implements Serializable {
 		_expiration = expiration;
 	}
 
-	private long _oauthTokenId;
+	private long _oAuthTokenId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

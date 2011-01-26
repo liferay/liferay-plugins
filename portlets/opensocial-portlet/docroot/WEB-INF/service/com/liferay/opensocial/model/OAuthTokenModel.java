@@ -60,18 +60,18 @@ public interface OAuthTokenModel extends BaseModel<OAuthToken> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the oauth token ID of this o auth token.
+	 * Gets the o auth token ID of this o auth token.
 	 *
-	 * @return the oauth token ID of this o auth token
+	 * @return the o auth token ID of this o auth token
 	 */
-	public long getOauthTokenId();
+	public long getOAuthTokenId();
 
 	/**
-	 * Sets the oauth token ID of this o auth token.
+	 * Sets the o auth token ID of this o auth token.
 	 *
-	 * @param oauthTokenId the oauth token ID of this o auth token
+	 * @param oAuthTokenId the o auth token ID of this o auth token
 	 */
-	public void setOauthTokenId(long oauthTokenId);
+	public void setOAuthTokenId(long oAuthTokenId);
 
 	/**
 	 * Gets the company ID of this o auth token.

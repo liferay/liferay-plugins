@@ -17,13 +17,11 @@ create table OpenSocial_OAuthConsumer (
 	serviceName VARCHAR(75) null,
 	consumerKey VARCHAR(75) null,
 	consumerSecret TEXT null,
-	keyType VARCHAR(75) null,
-	keyName VARCHAR(75) null,
-	callbackURL VARCHAR(75) null
+	keyType VARCHAR(75) null
 );
 
 create table OpenSocial_OAuthToken (
-	oauthTokenId LONG not null primary key,
+	oAuthTokenId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
 	userName VARCHAR(75) null,

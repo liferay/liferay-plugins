@@ -56,20 +56,20 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	/**
 	* Creates a new o auth token with the primary key. Does not add the o auth token to the database.
 	*
-	* @param oauthTokenId the primary key for the new o auth token
+	* @param oAuthTokenId the primary key for the new o auth token
 	* @return the new o auth token
 	*/
-	public com.liferay.opensocial.model.OAuthToken create(long oauthTokenId);
+	public com.liferay.opensocial.model.OAuthToken create(long oAuthTokenId);
 
 	/**
 	* Removes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oauthTokenId the primary key of the o auth token to remove
+	* @param oAuthTokenId the primary key of the o auth token to remove
 	* @return the o auth token that was removed
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.OAuthToken remove(long oauthTokenId)
+	public com.liferay.opensocial.model.OAuthToken remove(long oAuthTokenId)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -80,25 +80,25 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	/**
 	* Finds the o auth token with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	*
-	* @param oauthTokenId the primary key of the o auth token to find
+	* @param oAuthTokenId the primary key of the o auth token to find
 	* @return the o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByPrimaryKey(
-		long oauthTokenId)
+		long oAuthTokenId)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Finds the o auth token with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param oauthTokenId the primary key of the o auth token to find
+	* @param oAuthTokenId the primary key of the o auth token to find
 	* @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByPrimaryKey(
-		long oauthTokenId)
+		long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -198,7 +198,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	* </p>
 	*
-	* @param oauthTokenId the primary key of the current o auth token
+	* @param oAuthTokenId the primary key of the current o auth token
 	* @param gadgetId the gadget ID to search with
 	* @param serviceName the service name to search with
 	* @param orderByComparator the comparator to order the set by
@@ -207,7 +207,7 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken[] findByG_S_PrevAndNext(
-		long oauthTokenId, long gadgetId, java.lang.String serviceName,
+		long oAuthTokenId, long gadgetId, java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.opensocial.NoSuchOAuthTokenException,
 			com.liferay.portal.kernel.exception.SystemException;

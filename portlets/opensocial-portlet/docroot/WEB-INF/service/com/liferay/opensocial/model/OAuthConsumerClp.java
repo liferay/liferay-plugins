@@ -116,20 +116,12 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		_keyType = keyType;
 	}
 
-	public String getKeyName() {
-		return _keyName;
+	public java.lang.String getKeyName() {
+		throw new UnsupportedOperationException();
 	}
 
-	public void setKeyName(String keyName) {
-		_keyName = keyName;
-	}
-
-	public String getCallbackURL() {
-		return _callbackURL;
-	}
-
-	public void setCallbackURL(String callbackURL) {
-		_callbackURL = callbackURL;
+	public void setKeyName(java.lang.String keyName) {
+		throw new UnsupportedOperationException();
 	}
 
 	public OAuthConsumer toEscapedModel() {
@@ -155,8 +147,6 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		clone.setConsumerKey(getConsumerKey());
 		clone.setConsumerSecret(getConsumerSecret());
 		clone.setKeyType(getKeyType());
-		clone.setKeyName(getKeyName());
-		clone.setCallbackURL(getCallbackURL());
 
 		return clone;
 	}
@@ -202,7 +192,7 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{oAuthConsumerId=");
 		sb.append(getOAuthConsumerId());
@@ -222,17 +212,13 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		sb.append(getConsumerSecret());
 		sb.append(", keyType=");
 		sb.append(getKeyType());
-		sb.append(", keyName=");
-		sb.append(getKeyName());
-		sb.append(", callbackURL=");
-		sb.append(getCallbackURL());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.OAuthConsumer");
@@ -274,14 +260,6 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 			"<column><column-name>keyType</column-name><column-value><![CDATA[");
 		sb.append(getKeyType());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>keyName</column-name><column-value><![CDATA[");
-		sb.append(getKeyName());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>callbackURL</column-name><column-value><![CDATA[");
-		sb.append(getCallbackURL());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -297,6 +275,4 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	private String _consumerKey;
 	private String _consumerSecret;
 	private String _keyType;
-	private String _keyName;
-	private String _callbackURL;
 }

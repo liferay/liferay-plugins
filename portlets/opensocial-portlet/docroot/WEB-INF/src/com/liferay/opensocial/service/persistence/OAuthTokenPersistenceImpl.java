@@ -183,14 +183,14 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	/**
 	 * Creates a new o auth token with the primary key. Does not add the o auth token to the database.
 	 *
-	 * @param oauthTokenId the primary key for the new o auth token
+	 * @param oAuthTokenId the primary key for the new o auth token
 	 * @return the new o auth token
 	 */
-	public OAuthToken create(long oauthTokenId) {
+	public OAuthToken create(long oAuthTokenId) {
 		OAuthToken oAuthToken = new OAuthTokenImpl();
 
 		oAuthToken.setNew(true);
-		oAuthToken.setPrimaryKey(oauthTokenId);
+		oAuthToken.setPrimaryKey(oAuthTokenId);
 
 		return oAuthToken;
 	}
@@ -211,12 +211,12 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	/**
 	 * Removes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param oauthTokenId the primary key of the o auth token to remove
+	 * @param oAuthTokenId the primary key of the o auth token to remove
 	 * @return the o auth token that was removed
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken remove(long oauthTokenId)
+	public OAuthToken remove(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
 		Session session = null;
 
@@ -224,15 +224,15 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			session = openSession();
 
 			OAuthToken oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
-					new Long(oauthTokenId));
+					new Long(oAuthTokenId));
 
 			if (oAuthToken == null) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oauthTokenId);
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oAuthTokenId);
 				}
 
 				throw new NoSuchOAuthTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-					oauthTokenId);
+					oAuthTokenId);
 			}
 
 			return oAuthTokenPersistence.remove(oAuthToken);
@@ -380,7 +380,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		oAuthTokenImpl.setNew(oAuthToken.isNew());
 		oAuthTokenImpl.setPrimaryKey(oAuthToken.getPrimaryKey());
 
-		oAuthTokenImpl.setOauthTokenId(oAuthToken.getOauthTokenId());
+		oAuthTokenImpl.setOAuthTokenId(oAuthToken.getOAuthTokenId());
 		oAuthTokenImpl.setCompanyId(oAuthToken.getCompanyId());
 		oAuthTokenImpl.setUserId(oAuthToken.getUserId());
 		oAuthTokenImpl.setUserName(oAuthToken.getUserName());
@@ -414,22 +414,22 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	/**
 	 * Finds the o auth token with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
 	 *
-	 * @param oauthTokenId the primary key of the o auth token to find
+	 * @param oAuthTokenId the primary key of the o auth token to find
 	 * @return the o auth token
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken findByPrimaryKey(long oauthTokenId)
+	public OAuthToken findByPrimaryKey(long oAuthTokenId)
 		throws NoSuchOAuthTokenException, SystemException {
-		OAuthToken oAuthToken = fetchByPrimaryKey(oauthTokenId);
+		OAuthToken oAuthToken = fetchByPrimaryKey(oAuthTokenId);
 
 		if (oAuthToken == null) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oauthTokenId);
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + oAuthTokenId);
 			}
 
 			throw new NoSuchOAuthTokenException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
-				oauthTokenId);
+				oAuthTokenId);
 		}
 
 		return oAuthToken;
@@ -450,14 +450,14 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	/**
 	 * Finds the o auth token with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param oauthTokenId the primary key of the o auth token to find
+	 * @param oAuthTokenId the primary key of the o auth token to find
 	 * @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken fetchByPrimaryKey(long oauthTokenId)
+	public OAuthToken fetchByPrimaryKey(long oAuthTokenId)
 		throws SystemException {
 		OAuthToken oAuthToken = (OAuthToken)EntityCacheUtil.getResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,
-				OAuthTokenImpl.class, oauthTokenId, this);
+				OAuthTokenImpl.class, oAuthTokenId, this);
 
 		if (oAuthToken == null) {
 			Session session = null;
@@ -466,7 +466,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				session = openSession();
 
 				oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
-						new Long(oauthTokenId));
+						new Long(oAuthTokenId));
 			}
 			catch (Exception e) {
 				throw processException(e);
@@ -707,7 +707,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param oauthTokenId the primary key of the current o auth token
+	 * @param oAuthTokenId the primary key of the current o auth token
 	 * @param gadgetId the gadget ID to search with
 	 * @param serviceName the service name to search with
 	 * @param orderByComparator the comparator to order the set by
@@ -715,10 +715,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	 * @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public OAuthToken[] findByG_S_PrevAndNext(long oauthTokenId, long gadgetId,
+	public OAuthToken[] findByG_S_PrevAndNext(long oAuthTokenId, long gadgetId,
 		String serviceName, OrderByComparator orderByComparator)
 		throws NoSuchOAuthTokenException, SystemException {
-		OAuthToken oAuthToken = findByPrimaryKey(oauthTokenId);
+		OAuthToken oAuthToken = findByPrimaryKey(oAuthTokenId);
 
 		Session session = null;
 

@@ -45,25 +45,25 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 	/**
 	* Creates a new o auth token with the primary key. Does not add the o auth token to the database.
 	*
-	* @param oauthTokenId the primary key for the new o auth token
+	* @param oAuthTokenId the primary key for the new o auth token
 	* @return the new o auth token
 	*/
 	public com.liferay.opensocial.model.OAuthToken createOAuthToken(
-		long oauthTokenId) {
-		return _oAuthTokenLocalService.createOAuthToken(oauthTokenId);
+		long oAuthTokenId) {
+		return _oAuthTokenLocalService.createOAuthToken(oAuthTokenId);
 	}
 
 	/**
 	* Deletes the o auth token with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param oauthTokenId the primary key of the o auth token to delete
+	* @param oAuthTokenId the primary key of the o auth token to delete
 	* @throws PortalException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public void deleteOAuthToken(long oauthTokenId)
+	public void deleteOAuthToken(long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_oAuthTokenLocalService.deleteOAuthToken(oauthTokenId);
+		_oAuthTokenLocalService.deleteOAuthToken(oAuthTokenId);
 	}
 
 	/**
@@ -152,16 +152,16 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 	/**
 	* Gets the o auth token with the primary key.
 	*
-	* @param oauthTokenId the primary key of the o auth token to get
+	* @param oAuthTokenId the primary key of the o auth token to get
 	* @return the o auth token
 	* @throws PortalException if a o auth token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken getOAuthToken(
-		long oauthTokenId)
+		long oAuthTokenId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _oAuthTokenLocalService.getOAuthToken(oauthTokenId);
+		return _oAuthTokenLocalService.getOAuthToken(oAuthTokenId);
 	}
 
 	/**

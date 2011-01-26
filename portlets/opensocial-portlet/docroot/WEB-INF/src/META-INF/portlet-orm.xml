@@ -40,15 +40,13 @@
 			<basic name="consumerKey" />
 			<basic name="consumerSecret" />
 			<basic name="keyType" />
-			<basic name="keyName" />
-			<basic name="callbackURL" />
 			<transient name="OAuthConsumerId" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.opensocial.model.impl.OAuthTokenModelImpl">
 		<attributes>
-			<id name="oauthTokenId" />
+			<id name="oAuthTokenId" />
 			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />
@@ -66,6 +64,7 @@
 			<basic name="tokenSecret" />
 			<basic name="sessionHandle" />
 			<basic name="expiration" />
+			<transient name="OAuthTokenId" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>
@@ -76,7 +75,9 @@
 	</entity>
 	<entity class="com.liferay.opensocial.model.impl.OAuthConsumerImpl" name="OAuthConsumer">
 		<table name="OpenSocial_OAuthConsumer" />
-		<attributes />
+		<attributes>
+			<transient name="keyName" />
+		</attributes>
 	</entity>
 	<entity class="com.liferay.opensocial.model.impl.OAuthTokenImpl" name="OAuthToken">
 		<table name="OpenSocial_OAuthToken" />

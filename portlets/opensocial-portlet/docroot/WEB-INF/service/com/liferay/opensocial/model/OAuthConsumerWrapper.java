@@ -208,42 +208,6 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		_oAuthConsumer.setKeyType(keyType);
 	}
 
-	/**
-	* Gets the key name of this o auth consumer.
-	*
-	* @return the key name of this o auth consumer
-	*/
-	public java.lang.String getKeyName() {
-		return _oAuthConsumer.getKeyName();
-	}
-
-	/**
-	* Sets the key name of this o auth consumer.
-	*
-	* @param keyName the key name of this o auth consumer
-	*/
-	public void setKeyName(java.lang.String keyName) {
-		_oAuthConsumer.setKeyName(keyName);
-	}
-
-	/**
-	* Gets the callback u r l of this o auth consumer.
-	*
-	* @return the callback u r l of this o auth consumer
-	*/
-	public java.lang.String getCallbackURL() {
-		return _oAuthConsumer.getCallbackURL();
-	}
-
-	/**
-	* Sets the callback u r l of this o auth consumer.
-	*
-	* @param callbackURL the callback u r l of this o auth consumer
-	*/
-	public void setCallbackURL(java.lang.String callbackURL) {
-		_oAuthConsumer.setCallbackURL(callbackURL);
-	}
-
 	public boolean isNew() {
 		return _oAuthConsumer.isNew();
 	}
@@ -304,6 +268,14 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 
 	public java.lang.String toXmlString() {
 		return _oAuthConsumer.toXmlString();
+	}
+
+	public java.lang.String getKeyName() {
+		return _oAuthConsumer.getKeyName();
+	}
+
+	public void setKeyName(java.lang.String keyName) {
+		_oAuthConsumer.setKeyName(keyName);
 	}
 
 	public OAuthConsumer getWrappedOAuthConsumer() {

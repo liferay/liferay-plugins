@@ -59,22 +59,22 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_OAuthToken";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oauthTokenId", Types.BIGINT },
-			{ "companyId", Types.BIGINT },
-			{ "userId", Types.BIGINT },
-			{ "userName", Types.VARCHAR },
-			{ "createDate", Types.TIMESTAMP },
-			{ "modifiedDate", Types.TIMESTAMP },
-			{ "gadgetId", Types.BIGINT },
-			{ "serviceName", Types.VARCHAR },
-			{ "moduleId", Types.BIGINT },
-			{ "accessToken", Types.VARCHAR },
-			{ "tokenName", Types.VARCHAR },
-			{ "tokenSecret", Types.VARCHAR },
-			{ "sessionHandle", Types.VARCHAR },
-			{ "expiration", Types.BIGINT }
+			{ "oAuthTokenId", new Integer(Types.BIGINT) },
+			{ "companyId", new Integer(Types.BIGINT) },
+			{ "userId", new Integer(Types.BIGINT) },
+			{ "userName", new Integer(Types.VARCHAR) },
+			{ "createDate", new Integer(Types.TIMESTAMP) },
+			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
+			{ "gadgetId", new Integer(Types.BIGINT) },
+			{ "serviceName", new Integer(Types.VARCHAR) },
+			{ "moduleId", new Integer(Types.BIGINT) },
+			{ "accessToken", new Integer(Types.VARCHAR) },
+			{ "tokenName", new Integer(Types.VARCHAR) },
+			{ "tokenSecret", new Integer(Types.VARCHAR) },
+			{ "sessionHandle", new Integer(Types.VARCHAR) },
+			{ "expiration", new Integer(Types.BIGINT) }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oauthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";
@@ -92,23 +92,23 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public long getPrimaryKey() {
-		return _oauthTokenId;
+		return _oAuthTokenId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setOauthTokenId(pk);
+		setOAuthTokenId(pk);
 	}
 
 	public Serializable getPrimaryKeyObj() {
-		return new Long(_oauthTokenId);
+		return new Long(_oAuthTokenId);
 	}
 
-	public long getOauthTokenId() {
-		return _oauthTokenId;
+	public long getOAuthTokenId() {
+		return _oAuthTokenId;
 	}
 
-	public void setOauthTokenId(long oauthTokenId) {
-		_oauthTokenId = oauthTokenId;
+	public void setOAuthTokenId(long oAuthTokenId) {
+		_oAuthTokenId = oAuthTokenId;
 	}
 
 	public long getCompanyId() {
@@ -326,7 +326,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public Object clone() {
 		OAuthTokenImpl clone = new OAuthTokenImpl();
 
-		clone.setOauthTokenId(getOauthTokenId());
+		clone.setOAuthTokenId(getOAuthTokenId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -389,8 +389,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
-		sb.append("{oauthTokenId=");
-		sb.append(getOauthTokenId());
+		sb.append("{oAuthTokenId=");
+		sb.append(getOAuthTokenId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -430,8 +430,8 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>oauthTokenId</column-name><column-value><![CDATA[");
-		sb.append(getOauthTokenId());
+			"<column><column-name>oAuthTokenId</column-name><column-value><![CDATA[");
+		sb.append(getOAuthTokenId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -491,7 +491,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		return sb.toString();
 	}
 
-	private long _oauthTokenId;
+	private long _oAuthTokenId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

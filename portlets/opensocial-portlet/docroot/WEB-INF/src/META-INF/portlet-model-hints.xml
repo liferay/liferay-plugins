@@ -24,11 +24,9 @@
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="keyType" type="String" />
-		<field name="keyName" type="String" />
-		<field name="callbackURL" type="String" />
 	</model>
 	<model name="com.liferay.opensocial.model.OAuthToken">
-		<field name="oauthTokenId" type="long" />
+		<field name="oAuthTokenId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
 		<field name="userName" type="String" />
