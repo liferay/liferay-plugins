@@ -14,7 +14,11 @@
  */
 --%>
 
+<%@ include file="/admin/init.jsp" %>
+
 <%
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+
 String[] fileNames = article.getAttachmentsFileNames();
 %>
 

@@ -19,13 +19,11 @@
 <%
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
-
 int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", article.getVersion() - 1);
 int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVersion());
 %>
 
-<%@ include file="/admin/top_links.jspf" %>
+<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
 	<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
@@ -51,8 +49,8 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 			rowChecker="<%= rowChecker %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), status, searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
-				total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey(), status) %>"
+				results="<%= ArticleServiceUtil.getArticles(article.getResourcePrimKey(), article.getStatus(), searchContainer.getStart(), searchContainer.getEnd(), new ArticleVersionComparator()) %>"
+				total="<%= ArticleServiceUtil.getArticlesCount(article.getResourcePrimKey(), article.getStatus()) %>"
 			/>
 
 			<liferay-ui:search-container-row
@@ -103,33 +101,35 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 					property="title"
 				/>
 
-				<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
-					<liferay-ui:search-container-column-text
-						align="right"
-					>
-						<portlet:renderURL var="historyURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						</portlet:renderURL>
+				<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+					<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
+						<liferay-ui:search-container-column-text
+							align="right"
+						>
+							<portlet:renderURL var="historyURL">
+								<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+								<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+							</portlet:renderURL>
 
-						<portlet:actionURL name="updateArticle" var="revertURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
-							<portlet:param name="redirect" value="<%= historyURL %>" />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-							<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getParentResourcePrimKey()) %>" />
-							<portlet:param name="title" value="<%= curArticle.getTitle() %>" />
-							<portlet:param name="content" value="<%= curArticle.getContent() %>" />
-							<portlet:param name="description" value="<%= curArticle.getDescription() %>" />
-							<portlet:param name="priority" value="<%= String.valueOf(article.getPriority()) %>" />
-						</portlet:actionURL>
+							<portlet:actionURL name="updateArticle" var="revertURL">
+								<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
+								<portlet:param name="redirect" value="<%= historyURL %>" />
+								<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+								<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getParentResourcePrimKey()) %>" />
+								<portlet:param name="title" value="<%= curArticle.getTitle() %>" />
+								<portlet:param name="content" value="<%= curArticle.getContent() %>" />
+								<portlet:param name="description" value="<%= curArticle.getDescription() %>" />
+								<portlet:param name="priority" value="<%= String.valueOf(article.getPriority()) %>" />
+							</portlet:actionURL>
 
-						<liferay-ui:icon
-							image="undo"
-							label="<%= true %>"
-							message="revert"
-							url="<%= revertURL %>"
-						/>
-					</liferay-ui:search-container-column-text>
+							<liferay-ui:icon
+								image="undo"
+								label="<%= true %>"
+								message="revert"
+								url="<%= revertURL %>"
+							/>
+						</liferay-ui:search-container-column-text>
+					</c:if>
 				</c:if>
 			</liferay-ui:search-container-row>
 

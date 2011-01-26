@@ -19,6 +19,7 @@ import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
@@ -30,8 +31,11 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.ContentUtil;
+import com.liferay.util.RSSUtil;
 import com.liferay.util.portlet.PortletProps;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
@@ -268,6 +272,47 @@ public class AdminUtil {
 			templateURL, namespace + "templateId", templateId);
 
 		return templateURL;
+	}
+
+	public static Map<String, String> initPortletPreferencesMap(
+		PortletPreferences preferences) {
+
+		Map<String, Object> defaultPreferences = new HashMap<String, Object>();
+
+		defaultPreferences.put("articlesDelta", 5);
+		defaultPreferences.put("articlesDisplayStyle", "full-content");
+
+		defaultPreferences.put("childArticlesDisplayStyle", "abstract");
+		defaultPreferences.put("enableArticleDescription", false);
+		defaultPreferences.put("enableArticleAssetCategories", true);
+		defaultPreferences.put("enableArticleAssetTags", true);
+		defaultPreferences.put("enableArticleRatings", false);
+		defaultPreferences.put("enableArticleComments", true);
+		defaultPreferences.put("showArticleComments", true);
+
+		defaultPreferences.put("templatesDelta", 5);
+		defaultPreferences.put("templatesDisplayStyle", "full-content");
+		defaultPreferences.put("enableTemplateDescription", false);
+		defaultPreferences.put("enableTemplateComments", true);
+		defaultPreferences.put("showTemplateComments", true);
+
+		defaultPreferences.put("rssDelta", SearchContainer.DEFAULT_DELTA);
+		defaultPreferences.put(
+			"rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
+		defaultPreferences.put("rssFormat", "atom10");
+
+		Map<String, String> preferencesMap = new HashMap<String, String>();
+
+		for (Map.Entry<String, Object> entry : defaultPreferences.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+
+			value = preferences.getValue(key, String.valueOf(value));
+
+			preferencesMap.put(key, String.valueOf(value));
+		}
+
+		return Collections.unmodifiableMap(preferencesMap);
 	}
 
 }

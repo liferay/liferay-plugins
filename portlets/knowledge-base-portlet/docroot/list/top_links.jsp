@@ -14,6 +14,8 @@
  */
 --%>
 
+<%@ include file="/list/init.jsp" %>
+
 <%
 String topLink = ParamUtil.getString(request, "topLink", "home");
 

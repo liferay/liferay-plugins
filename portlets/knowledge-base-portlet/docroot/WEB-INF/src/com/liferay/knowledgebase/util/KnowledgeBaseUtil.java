@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.util;
 
+import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
@@ -297,7 +298,7 @@ public class KnowledgeBaseUtil {
 			articles = ListUtil.subList(articles, 0, 1);
 		}
 
-		// Users can navigate to the root article. See article_breadcrumbs.jspf.
+		// Users can navigate to the root article. See article_breadcrumbs.jsp.
 
 		if (selectionMethod.equals("articles") || (classPKs != null) ||
 			rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
@@ -340,6 +341,12 @@ public class KnowledgeBaseUtil {
 
 	public static Map<String, String> initPortletPreferencesMap(
 		String portletId, PortletPreferences preferences) {
+
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
+
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+			return AdminUtil.initPortletPreferencesMap(preferences);
+		}
 
 		if (!isValidPortletId(portletId)) {
 			return Collections.emptyMap();

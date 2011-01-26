@@ -16,18 +16,18 @@
 
 <%@ include file="/list/init.jsp" %>
 
-<%@ include file="/list/top_links.jspf" %>
+<liferay-util:include page="/list/top_links.jsp" servletContext="<%= application %>" />
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(articlesTitle) %>">
 		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "ArticlesPanelContainer" %>' persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' cssClass="kb-articles-panel" persistState="<%= true %>" title="<%= articlesTitle %>">
-				<%@ include file="/list/view_articles.jspf" %>
+				<liferay-util:include page="/list/view_articles.jsp" servletContext="<%= application %>" />
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>
 	</c:when>
 	<c:otherwise>
-		<%@ include file="/list/view_articles.jspf" %>
+		<liferay-util:include page="/list/view_articles.jsp" servletContext="<%= application %>" />
 	</c:otherwise>
 </c:choose>
 

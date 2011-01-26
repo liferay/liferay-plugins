@@ -26,12 +26,6 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 String dirName = ParamUtil.getString(request, "dirName");
 
 String[] fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
-
-Map<String, String> fileNameToFileMessageMap = new LinkedHashMap<String, String>();
-
-for (String fileName : fileNames) {
-	fileNameToFileMessageMap.put(fileName, FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)");
-}
 %>
 
 <liferay-ui:header
@@ -85,7 +79,7 @@ for (String fileName : fileNames) {
 					<liferay-ui:icon
 						image="clip"
 						label="<%= true %>"
-						message="<%= fileNameToFileMessageMap.get(fileName) %>"
+						message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
 						method="get"
 						url="<%= rowURL %>"
 					/>
@@ -118,14 +112,7 @@ for (String fileName : fileNames) {
 </aui:form>
 
 <liferay-util:buffer var="html">
-
-	<%
-	request.setAttribute("attachments.jsp-fileNameToFileMessageMap", fileNameToFileMessageMap);
-	%>
-
-	<liferay-util:include page="/admin/attachments.jsp" portletId="<%= portletDisplay.getId() %>">
-		<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-	</liferay-util:include>
+	<liferay-util:include page="/admin/attachments.jsp" servletContext="<%= application %>" />
 </liferay-util:buffer>
 
 <aui:script>

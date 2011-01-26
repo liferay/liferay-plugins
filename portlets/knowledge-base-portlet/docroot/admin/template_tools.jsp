@@ -14,6 +14,12 @@
  */
 --%>
 
+<%@ include file="/admin/init.jsp" %>
+
+<%
+Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+%>
+
 <div class="kb-template-tools">
 	<table class="lfr-table">
 	<tr>

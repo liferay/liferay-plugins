@@ -173,12 +173,9 @@ public class AdminPortlet extends MVCPortlet {
 
 			renderRequest.setAttribute(
 				WebKeys.KNOWLEDGE_BASE_TEMPLATE, template);
-
-			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, _STATUS);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
-				e instanceof NoSuchCommentException ||
 				e instanceof NoSuchTemplateException ||
 				e instanceof PrincipalException) {
 

@@ -14,10 +14,61 @@
  */
 --%>
 
-<div class="kb-article-tools">
-	<table class="lfr-table">
-	<tr>
-		<td>
+<%@ include file="/list/init.jsp" %>
+
+<%
+long categoryId = ParamUtil.getLong(request, "categoryId");
+String tag = ParamUtil.getString(request, "tag");
+%>
+
+<liferay-portlet:renderURL varImpl="iteratorURL" />
+
+<liferay-ui:search-container
+	delta="<%= articlesDelta %>"
+	headerNames="title,author,date,version"
+	iteratorURL="<%= iteratorURL %>"
+>
+	<liferay-ui:search-container-results>
+
+		<%
+		Map<String, Object> preferencesArticlesMap = KnowledgeBaseUtil.getPortletPreferencesArticlesMap(scopeGroupId, portletDisplay.getId(), categoryId, tag, searchContainer.getStart(), searchContainer.getEnd(), preferences);
+
+		pageContext.setAttribute("results", preferencesArticlesMap.get("articles"));
+		pageContext.setAttribute("total", preferencesArticlesMap.get("count"));
+		%>
+
+	</liferay-ui:search-container-results>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.knowledgebase.model.Article"
+		keyProperty="resourcePrimKey"
+		modelVar="article"
+	>
+		<portlet:renderURL var="rowURL" windowState="<%= articleWindowState %>">
+			<portlet:param name="jspPage" value="/list/view_article.jsp" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			property="title"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="author"
+			property="userName"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="date"
+			value="<%= dateFormatDateTime.format(article.getModifiedDate()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			align="right"
+		>
 			<portlet:resourceURL id="articleRSS" var="articleRSSURL">
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 				<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
@@ -32,10 +83,8 @@
 				target="_blank"
 				url="<%= articleRSSURL %>"
 			/>
-		</td>
 
-		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
-			<td>
+			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 				<c:choose>
 					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey()) %>">
 						<portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
@@ -62,40 +111,13 @@
 						/>
 					</c:otherwise>
 				</c:choose>
-			</td>
-		</c:if>
+			</c:if>
+		</liferay-ui:search-container-column-text>
+	</liferay-ui:search-container-row>
 
-		<td>
-			<portlet:renderURL var="historyURL">
-				<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			</portlet:renderURL>
+	<liferay-ui:search-iterator />
 
-			<liferay-ui:icon
-				image="recent_changes"
-				label="<%= true %>"
-				message="history"
-				method="get"
-				url="<%= historyURL %>"
-			/>
-		</td>
-		<td>
-			<portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="jspPage" value='<%= jspPath + "print_article.jsp" %>' />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			</portlet:renderURL>
-
-			<%
-			String taglibURL = "javascript:var printArticleWindow = window.open('" + printURL + "', 'printArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printArticleWindow.focus();";
-			%>
-
-			<liferay-ui:icon
-				image="print"
-				label="<%= true %>"
-				method="get"
-				url="<%= taglibURL %>"
-			/>
-		</td>
-	</tr>
-	</table>
-</div>
+	<c:if test="<%= total == 0 %>">
+		<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
+	</c:if>
+</liferay-ui:search-container>

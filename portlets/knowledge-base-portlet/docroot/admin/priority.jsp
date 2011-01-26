@@ -17,24 +17,34 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-String parentArticleTitle = ParamUtil.getString(request, "parentArticleTitle");
-int priorityMax = ParamUtil.getInteger(request, "priorityMax");
+long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
+
+long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
 %>
 
 <div class="kb-priority">
-	<c:if test="<%= Validator.isNotNull(parentArticleTitle) %>">
-		<%= parentArticleTitle %>
+	<c:if test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
+		<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") %>
 	</c:if>
+
+	<%
+	int total = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+	if ((article == null) || (article.getParentResourcePrimKey() != parentResourcePrimKey)) {
+		total = total + 1;
+	}
+	%>
 
 	<aui:select inlineField="<%= true %>" label="" name="priority">
 
 		<%
-		for (int i = 0; i < priorityMax; i++) {
+		for (int i = 0; i < total; i++) {
 		%>
 
-			<aui:option label="<%= i + 1 %>" value="<%= i %>" />
+			<aui:option label="<%= i + 1 %>" selected="<%= priority == i %>" value="<%= i %>" />
 
 		<%
 		}

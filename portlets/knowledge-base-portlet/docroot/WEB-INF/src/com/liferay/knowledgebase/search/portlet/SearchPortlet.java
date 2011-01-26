@@ -88,12 +88,9 @@ public class SearchPortlet extends AdminPortlet {
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
-
-			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, _STATUS);
 		}
 		catch (Exception e) {
 			if (e instanceof NoSuchArticleException ||
-				e instanceof NoSuchCommentException ||
 				e instanceof PrincipalException) {
 
 				SessionErrors.add(renderRequest, e.getClass().getName());

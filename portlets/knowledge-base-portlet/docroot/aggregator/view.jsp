@@ -20,12 +20,12 @@
 	<c:when test="<%= Validator.isNotNull(articlesTitle) %>">
 		<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "ArticlesPanelContainer" %>' persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' persistState="<%= true %>" title="<%= articlesTitle %>">
-				<%@ include file="/aggregator/view_articles.jspf" %>
+				<liferay-util:include page="/aggregator/view_articles.jsp" servletContext="<%= application %>" />
 			</liferay-ui:panel>
 		</liferay-ui:panel-container>
 	</c:when>
 	<c:otherwise>
-		<%@ include file="/aggregator/view_articles.jspf" %>
+		<liferay-util:include page="/aggregator/view_articles.jsp" servletContext="<%= application %>" />
 	</c:otherwise>
 </c:choose>
 

@@ -18,37 +18,16 @@
 
 <%
 Article article = (Article)portletSession.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
-
-int status = GetterUtil.getInteger((Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS));
 %>
 
 <c:choose>
 	<c:when test="<%= article != null %>">
-		<%@ include file="/admin/article_breadcrumbs.jspf" %>
 
-		<div class="float-container kb-entity-header">
-			<div class="kb-title">
-				<%= article.getTitle() %>
-			</div>
+		<%
+		request.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
+		%>
 
-			<div class="kb-tools">
-				<%@ include file="/admin/article_tools.jspf" %>
-			</div>
-		</div>
-
-		<div class="kb-entity-body">
-			<%= article.getContent() %>
-
-			<%@ include file="/admin/article_attachments.jspf" %>
-
-			<%@ include file="/admin/article_assets.jspf" %>
-
-			<%@ include file="/admin/article_ratings.jspf" %>
-
-			<%@ include file="/admin/article_tree.jspf" %>
-
-			<%@ include file="/admin/article_comments.jspf" %>
-		</div>
+		<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
 		<liferay-ui:message key="there-are-no-articles" />

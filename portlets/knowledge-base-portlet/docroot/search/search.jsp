@@ -14,22 +14,25 @@
  */
 --%>
 
-<%@ include file="/admin/init.jsp" %>
+<%@ include file="/search/init.jsp" %>
 
 <%
 String keywords = ParamUtil.getString(request, "keywords");
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<div class="kb-search-header">
+	<liferay-util:include page="/search/view.jsp" servletContext="<%= application %>" />
+</div>
 
 <liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanelContainer" %>' persistState="<%= true %>">
 	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "SearchArticlesPanel" %>' persistState="<%= true %>" title="search-articles">
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value="/admin/search.jsp" />
+			<portlet:param name="jspPage" value="/search/search.jsp" />
 			<portlet:param name="keywords" value="<%= keywords %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
+			delta="<%= articlesDelta %>"
 			iteratorURL="<%= iteratorURL %>"
 		>
 			<liferay-ui:search-container-results>
@@ -39,9 +42,18 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 				searchContext.setEnd(searchContainer.getEnd());
 				searchContext.setKeywords(keywords);
+				searchContext.setScopeStrict(false);
 				searchContext.setStart(searchContainer.getStart());
 
-				Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
+				searchContext.setAttribute("assetEntryQueryAndOperator", assetEntryQueryAndOperator);
+				searchContext.setAttribute("assetEntryQueryContains", assetEntryQueryContains);
+				searchContext.setAttribute("assetEntryQueryName", assetEntryQueryName);
+				searchContext.setAttribute("assetCategoryIds", assetCategoryIds);
+				searchContext.setAttribute("assetTagNames", assetTagNames);
+				searchContext.setAttribute("resourcePrimKeys", resourcePrimKeys);
+				searchContext.setAttribute("selectionMethod", selectionMethod);
+
+				Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 				Indexer indexer = portlet.getIndexerInstance();
 
@@ -103,7 +115,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 					<div class="kb-title">
 						<portlet:renderURL var="viewArticleURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+							<portlet:param name="jspPage" value="/search/view_article.jsp" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(entryClassPK) %>" />
 						</portlet:renderURL>
 

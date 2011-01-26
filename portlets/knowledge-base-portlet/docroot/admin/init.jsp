@@ -23,24 +23,26 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-int articlesDelta = GetterUtil.getInteger(preferences.getValue("articlesDelta", StringPool.BLANK), 5);
-String articlesDisplayStyle = preferences.getValue("articlesDisplayStyle", "full-content");
+Map<String, String> preferencesMap = KnowledgeBaseUtil.initPortletPreferencesMap(rootPortletId, preferences);
 
-String childArticlesDisplayStyle = preferences.getValue("childArticlesDisplayStyle", "abstract");
-boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableArticleDescription", null));
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null), true);
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null), true);
-boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
-boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null), true);
-boolean showArticleComments = GetterUtil.getBoolean(preferences.getValue("showArticleComments", null), true);
+int articlesDelta = GetterUtil.getInteger(preferencesMap.get("articlesDelta"));
+String articlesDisplayStyle = preferencesMap.get("articlesDisplayStyle");
 
-int templatesDelta = GetterUtil.getInteger(preferences.getValue("templatesDelta", StringPool.BLANK), 5);
-String templatesDisplayStyle = preferences.getValue("templatesDisplayStyle", "full-content");
-boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enableTemplateDescription", null));
-boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enableTemplateComments", null), true);
-boolean showTemplateComments = GetterUtil.getBoolean(preferences.getValue("showTemplateComments", null), true);
+String childArticlesDisplayStyle = preferencesMap.get("childArticlesDisplayStyle");
+boolean enableArticleDescription = GetterUtil.getBoolean(preferencesMap.get("enableArticleDescription"));
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetCategories"));
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetTags"));
+boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableArticleRatings"));
+boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
+boolean showArticleComments = GetterUtil.getBoolean(preferencesMap.get("showArticleComments"));
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-String rssFormat = preferences.getValue("rssFormat", "atom10");
+int templatesDelta = GetterUtil.getInteger(preferencesMap.get("templatesDelta"));
+String templatesDisplayStyle = preferencesMap.get("templatesDisplayStyle");
+boolean enableTemplateDescription = GetterUtil.getBoolean(preferencesMap.get("enableTemplateDescription"));
+boolean enableTemplateComments = GetterUtil.getBoolean(preferencesMap.get("enableTemplateComments"));
+boolean showTemplateComments = GetterUtil.getBoolean(preferencesMap.get("showTemplateComments"));
+
+int rssDelta = GetterUtil.getInteger(preferencesMap.get("rssDelta"));
+String rssDisplayStyle = preferencesMap.get("rssDisplayStyle");
+String rssFormat = preferencesMap.get("rssFormat");
 %>

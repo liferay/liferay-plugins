@@ -16,7 +16,7 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<%@ include file="/admin/top_links.jspf" %>
+<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <div class="float-container kb-results-header">
 	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
@@ -139,10 +139,10 @@
 					</div>
 
 					<%
-					request.setAttribute("article_icons.jspf-selArticle", article);
+					request.setAttribute("article_icons.jsp-article", article);
 					%>
 
-					<%@ include file="/admin/article_icons.jspf" %>
+					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 					<c:choose>
 						<c:when test='<%= articlesDisplayStyle.equals("full-content") %>'>

@@ -14,6 +14,12 @@
  */
 --%>
 
+<%@ include file="/admin/init.jsp" %>
+
+<%
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+%>
+
 <c:if test="<%= article.getParentResourcePrimKey() != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 	<div class="kb-article-breadcrumbs">
 
@@ -23,7 +29,7 @@
 		long selParentResourcePrimKey = article.getResourcePrimKey();
 
 		while (selParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status);
+			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, article.getStatus());
 
 			selArticles.add(selArticle);
 

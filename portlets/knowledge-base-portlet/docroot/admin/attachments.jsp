@@ -17,27 +17,35 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Map<String, String> fileNameToFileMessageMap = (Map<String, String>)request.getAttribute("attachments.jsp-fileNameToFileMessageMap");
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
+
+String dirName = ParamUtil.getString(request, "dirName");
+
+String[] fileNames = new String[0];
+
+if (Validator.isNotNull(dirName)) {
+	fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+}
 %>
 
 <div class="kb-attachments">
 
 	<%
-	for (Map.Entry<String, String> entry : fileNameToFileMessageMap.entrySet()) {
+	for (String fileName : fileNames) {
 	%>
 
 		<div>
 			<portlet:resourceURL id="attachment" var="clipURL">
 				<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
-				<portlet:param name="fileName" value="<%= entry.getKey() %>" />
+				<portlet:param name="fileName" value="<%= fileName %>" />
 			</portlet:resourceURL>
 
 			<liferay-ui:icon
 				image="clip"
 				label="<%= true %>"
-				message="<%= entry.getValue() %>"
+				message='<%= FileUtil.getShortFileName(fileName) + " (" + TextFormatter.formatKB(DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, fileName), locale) + "k)" %>'
 				method="get"
 				url="<%= clipURL %>"
 			/>
@@ -62,6 +70,6 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 	%>
 
 	<div class="kb-edit-link">
-		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key='<%= fileNameToFileMessageMap.isEmpty() ? "add-attachments" : "attachments" %>' /> &raquo;</aui:a>
+		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key='<%= (fileNames.length != 0) ? "attachments" : "add-attachments" %>' /> &raquo;</aui:a>
 	</div>
 </div>

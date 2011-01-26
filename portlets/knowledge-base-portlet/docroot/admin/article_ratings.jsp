@@ -14,6 +14,12 @@
  */
 --%>
 
+<%@ include file="/admin/init.jsp" %>
+
+<%
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+%>
+
 <c:if test="<%= enableArticleRatings %>">
 	<liferay-ui:ratings
 		className="<%= Article.class.getName() %>"

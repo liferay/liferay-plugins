@@ -20,7 +20,7 @@
 Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
 %>
 
-<%@ include file="/admin/top_links.jspf" %>
+<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
@@ -28,19 +28,19 @@ Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLA
 	</div>
 
 	<div class="kb-tools">
-		<%@ include file="/admin/template_tools.jspf" %>
+		<liferay-util:include page="/admin/template_tools.jsp" servletContext="<%= application %>" />
 	</div>
 </div>
 
 <div class="kb-entity-body">
 
 	<%
-	request.setAttribute("template_icons.jspf-selTemplate", template);
+	request.setAttribute("template_icons.jsp-template", template);
 	%>
 
-	<%@ include file="/admin/template_icons.jspf" %>
+	<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
 
 	<%= template.getContent() %>
 
-	<%@ include file="/admin/template_comments.jspf" %>
+	<liferay-util:include page="/admin/template_comments.jsp" servletContext="<%= application %>" />
 </div>

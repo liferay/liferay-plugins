@@ -16,7 +16,7 @@
 
 <%@ include file="/list/init.jsp" %>
 
-<%@ include file="/list/top_links.jspf" %>
+<liferay-util:include page="/list/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="iteratorURL" />
 

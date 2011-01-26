@@ -16,7 +16,7 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<%@ include file="/admin/top_links.jspf" %>
+<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
 
 <c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
 	<div class="float-container kb-results-header">
@@ -82,10 +82,10 @@
 					</div>
 
 					<%
-					request.setAttribute("template_icons.jspf-selTemplate", template);
+					request.setAttribute("template_icons.jsp-template", template);
 					%>
 
-					<%@ include file="/admin/template_icons.jspf" %>
+					<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
 
 					<c:choose>
 						<c:when test='<%= templatesDisplayStyle.equals("full-content") %>'>

@@ -14,8 +14,12 @@
  */
 --%>
 
+<%@ include file="/admin/init.jsp" %>
+
 <%
-List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
+
+List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), article.getStatus(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 %>
 
 <c:if test="<%= !siblingArticles.isEmpty() %>">
@@ -36,7 +40,7 @@ List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroup
 				Article curArticle = (Article)results.get(i)[0];
 				String curHTML = (String)results.get(i)[1];
 
-				List<Article> curSiblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, curArticle.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+				List<Article> curSiblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, curArticle.getResourcePrimKey(), article.getStatus(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 
 				for (int j = 0; j < curSiblingArticles.size(); j++) {
 					String html = "</div>";
@@ -66,14 +70,12 @@ List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroup
 					/>
 				</div>
 				<div class="kb-element-body">
-					<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 
-						<%
-						request.setAttribute("article_icons.jspf-selArticle", curArticle);
-						%>
+					<%
+					request.setAttribute("article_icons.jsp-article", curArticle);
+					%>
 
-						<%@ include file="/admin/article_icons.jspf" %>
-					</c:if>
+					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 					<c:choose>
 						<c:when test='<%= childArticlesDisplayStyle.equals("full-content") %>'>

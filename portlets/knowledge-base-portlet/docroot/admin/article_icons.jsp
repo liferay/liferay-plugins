@@ -14,23 +14,24 @@
  */
 --%>
 
-<c:if test='<%= request.getAttribute("article_icons.jspf-selArticle") != null %>'>
+<%@ include file="/admin/init.jsp" %>
 
-	<%
-	Article selArticle = (Article)request.getAttribute("article_icons.jspf-selArticle");
+<%
+Article article = (Article)request.getAttribute("article_icons.jsp-article");
 
-	long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-	%>
+long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+%>
 
+<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<div class="kb-article-icons">
 		<table class="lfr-table">
 		<tr>
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ((selArticle.getStatus() == WorkflowConstants.STATUS_APPROVED) || (selArticle.getVersion() != ArticleConstants.DEFAULT_VERSION)) %>">
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ((article.getStatus() == WorkflowConstants.STATUS_APPROVED) || (article.getVersion() != ArticleConstants.DEFAULT_VERSION)) %>">
 				<td>
 					<portlet:renderURL var="addArticleURL">
 						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(selArticle.getResourcePrimKey()) %>" />
+						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 
 					<liferay-ui:icon
@@ -42,12 +43,12 @@
 				</td>
 			</c:if>
 
-			<c:if test="<%= ArticlePermission.contains(permissionChecker, selArticle, ActionKeys.UPDATE) %>">
+			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 				<td>
 					<portlet:renderURL var="editURL">
 						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selArticle.getResourcePrimKey()) %>" />
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:renderURL>
 
 					<liferay-ui:icon
@@ -58,12 +59,12 @@
 				</td>
 			</c:if>
 
-			<c:if test="<%= ArticlePermission.contains(permissionChecker, selArticle, ActionKeys.PERMISSIONS) %>">
+			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
 				<td>
 					<liferay-security:permissionsURL
 						modelResource="<%= Article.class.getName() %>"
-						modelResourceDescription="<%= selArticle.getTitle() %>"
-						resourcePrimKey="<%= String.valueOf(selArticle.getResourcePrimKey()) %>"
+						modelResourceDescription="<%= article.getTitle() %>"
+						resourcePrimKey="<%= String.valueOf(article.getResourcePrimKey()) %>"
 						var="permissionsURL"
 					/>
 
@@ -75,7 +76,7 @@
 				</td>
 			</c:if>
 
-			<c:if test="<%= ArticlePermission.contains(permissionChecker, selArticle, ActionKeys.DELETE) %>">
+			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
 				<td>
 					<portlet:renderURL var="homeURL">
 						<portlet:param name="jspPage" value="/admin/view.jsp" />
@@ -83,8 +84,8 @@
 					</portlet:renderURL>
 
 					<portlet:actionURL name="deleteArticle" var="deleteURL">
-						<portlet:param name="redirect" value="<%= (selArticle.getResourcePrimKey() == resourcePrimKey) ? homeURL : currentURL %>" />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selArticle.getResourcePrimKey()) %>" />
+						<portlet:param name="redirect" value="<%= (article.getResourcePrimKey() == resourcePrimKey) ? homeURL : currentURL %>" />
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 					</portlet:actionURL>
 
 					<liferay-ui:icon-delete
@@ -95,9 +96,9 @@
 			</c:if>
 
 			<td>
-				<aui:model-context bean="<%= selArticle %>" model="<%= Article.class %>" />
+				<aui:model-context bean="<%= article %>" model="<%= Article.class %>" />
 
-				<aui:workflow-status status="<%= selArticle.getStatus() %>" version="<%= String.valueOf(selArticle.getVersion()) %>" />
+				<aui:workflow-status status="<%= article.getStatus() %>" version="<%= String.valueOf(article.getVersion()) %>" />
 			</td>
 		</tr>
 		</table>

@@ -14,6 +14,8 @@
  */
 --%>
 
+<%@ include file="/aggregator/init.jsp" %>
+
 <%
 long categoryId = ParamUtil.getLong(request, "categoryId");
 String tag = ParamUtil.getString(request, "tag");

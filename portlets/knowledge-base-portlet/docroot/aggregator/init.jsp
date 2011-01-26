@@ -48,9 +48,9 @@ String assetEntryQueryName = preferencesMap.get("assetEntryQueryName");
 long[] assetCategoryIds = StringUtil.split(preferencesMap.get("assetCategoryIds"), 0L);
 String[] assetTagNames = StringUtil.split(preferencesMap.get("assetTagNames"));
 
-int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
-String rssDisplayStyle = preferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-String rssFormat = preferences.getValue("rssFormat", "atom10");
+int rssDelta = GetterUtil.getInteger(preferencesMap.get("rssDelta"));
+String rssDisplayStyle = preferencesMap.get("rssDisplayStyle");
+String rssFormat = preferencesMap.get("rssFormat");
 
 if (articleWindowState.equals(WindowState.MAXIMIZED.toString()) && windowState.equals(WindowState.MAXIMIZED)) {
 	PortletURL portletURL = renderResponse.createRenderURL();

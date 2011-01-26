@@ -79,17 +79,10 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				<liferay-ui:search-container-column-text
 					align="right"
 				>
-
-					<%
-					int priorityMax = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, curArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
-					%>
-
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
-							<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-							<liferay-util:param name="parentArticleTitle" value="<%= String.valueOf(curArticle.getTitle()) %>" />
+							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 							<liferay-util:param name="priority" value="<%= String.valueOf(ArticleConstants.DEFAULT_PRIORITY) %>" />
-							<liferay-util:param name="priorityMax" value="<%= String.valueOf(((article != null) && (article.getParentResourcePrimKey() == curArticle.getResourcePrimKey())) ? priorityMax : priorityMax + 1) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
@@ -103,23 +96,12 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 
 			<c:if test="<%= oldParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 				<aui:button-row>
-
-					<%
-					Article oldParentArticle = ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey, WorkflowConstants.STATUS_ANY);
-					%>
-
-					<%= oldParentArticle.getTitle() %>
-
-					<%
-					int priorityMax = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY);
-					%>
+					<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") %>
 
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
-							<liferay-util:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-							<liferay-util:param name="parentArticleTitle" value="<%= StringPool.BLANK %>" />
+							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 							<liferay-util:param name="priority" value="<%= String.valueOf(ArticleConstants.DEFAULT_PRIORITY) %>" />
-							<liferay-util:param name="priorityMax" value="<%= String.valueOf(((article != null) && (article.getParentResourcePrimKey() == ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY)) ? priorityMax : priorityMax + 1) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
 
