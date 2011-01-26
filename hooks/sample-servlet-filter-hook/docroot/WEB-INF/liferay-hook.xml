@@ -13,9 +13,9 @@
 	<servlet-filter-mapping>
 		<servlet-filter-name>Sample Filter</servlet-filter-name>
 		<before-filter>SSO Open SSO Filter</before-filter>
-		<url-pattern>/web/*</url-pattern>
 		<url-pattern>/group/*</url-pattern>
 		<url-pattern>/user/*</url-pattern>
+		<url-pattern>/web/*</url-pattern>
 		<url-pattern>*.jsp</url-pattern>
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>

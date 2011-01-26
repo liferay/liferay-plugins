@@ -14,6 +14,8 @@
 
 package com.liferay.sampleservletfilter.hook.filter;
 
+import com.liferay.portal.kernel.util.WebKeys;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -22,7 +24,6 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Mika Koivisto
@@ -30,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 public class SampleFilter implements Filter {
 
 	public void destroy() {
-		System.out.println("SampleFilter.destroy()");
+		System.out.println("Called SampleFilter.destroy()");
 	}
 
 	public void doFilter(
@@ -38,17 +39,20 @@ public class SampleFilter implements Filter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		System.out.println("SampleFilter.doFilter() - Hello " + _hello +
-			" uri: " + ((HttpServletRequest)servletRequest).getRequestURI());
+		String uri = (String)servletRequest.getAttribute(
+			WebKeys.INVOKER_FILTER_URI);
+
+		System.out.println(
+			"Called SampleFilter.doFilter(" + servletRequest + ", " +
+				servletResponse + ", " + filterChain + ") for URI " + uri);
 
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
-	public void init(FilterConfig filterConfig) throws ServletException {
-		System.out.println("SampleFilter.init()");
-
-		_hello = filterConfig.getInitParameter("hello");
+	public void init(FilterConfig filterConfig) {
+		System.out.println(
+			"Called SampleFilter.init(" + filterConfig + ") where hello=" +
+				filterConfig.getInitParameter("hello"));
 	}
 
-	private String _hello;
 }
