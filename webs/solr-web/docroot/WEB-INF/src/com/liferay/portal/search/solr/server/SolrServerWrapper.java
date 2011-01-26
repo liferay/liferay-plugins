@@ -15,6 +15,7 @@
 package com.liferay.portal.search.solr.server;
 
 import java.io.IOException;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.solr.client.solrj.SolrRequest;
@@ -49,9 +50,7 @@ public class SolrServerWrapper {
 		return _invocationCount.getAndIncrement();
 	}
 
-	public SolrPingResponse ping()
-		throws IOException, SolrServerException {
-
+	public SolrPingResponse ping() throws IOException, SolrServerException {
 		try {
 			return _solrServer.ping();
 		}
@@ -59,17 +58,18 @@ public class SolrServerWrapper {
 			if (sse.getRootCause() instanceof IOException) {
 				_solrServerFactory.killServer(this);
 			}
+
 			throw sse;
 		}
 	}
 
-	public NamedList<Object> request(SolrRequest request)
+	public NamedList<Object> request(SolrRequest solrRequest)
 		throws IOException, SolrServerException {
 
 		try {
 			incrementInvocationCount();
 
-			return _solrServer.request(request);
+			return _solrServer.request(solrRequest);
 		}
 		catch (SolrServerException sse) {
 			if (sse.getRootCause() instanceof IOException) {

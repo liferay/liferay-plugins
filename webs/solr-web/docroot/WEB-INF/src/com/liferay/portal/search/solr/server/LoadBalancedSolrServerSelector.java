@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -22,12 +22,15 @@ import java.util.TreeSet;
  */
 public class LoadBalancedSolrServerSelector implements SolrServerSelector {
 
-	public SolrServerWrapper select(List<SolrServerWrapper> availableServers) {
+	public SolrServerWrapper select(
+		List<SolrServerWrapper> solrServerWrappers) {
+
 		TreeSet<SolrServerWrapper> sortedSolrServerWrappers =
 			new TreeSet<SolrServerWrapper>(new SolrServerWrapperComparator());
 
-		sortedSolrServerWrappers.addAll(availableServers);
+		sortedSolrServerWrappers.addAll(solrServerWrappers);
 
 		return sortedSolrServerWrappers.first();
 	}
+
 }

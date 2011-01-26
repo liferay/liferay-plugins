@@ -108,6 +108,9 @@ public class BasicAuthSolrServer extends SolrServer {
 		_server.setBaseURL(baseURL);
 	}
 
+	/**
+	 * @deprecated
+	 */
 	public void setConnectionManagerTimeout(int connectionManagerTimeout) {
 		_server.setConnectionManagerTimeout(connectionManagerTimeout);
 	}

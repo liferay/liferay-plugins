@@ -43,7 +43,6 @@ public class LoadBalancerSolrServer extends SolrServer {
 		catch (Exception e) {
 			throw new SolrServerException(e);
 		}
-
 	}
 
 	private SolrServerFactory _solrServerFactory;

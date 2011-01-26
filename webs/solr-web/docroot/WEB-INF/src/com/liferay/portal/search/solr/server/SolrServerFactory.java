@@ -16,7 +16,6 @@ package com.liferay.portal.search.solr.server;
 
 import java.util.List;
 
-import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 
 /**

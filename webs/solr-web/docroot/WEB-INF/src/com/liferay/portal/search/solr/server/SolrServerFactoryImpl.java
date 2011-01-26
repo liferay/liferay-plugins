@@ -34,6 +34,7 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 
 			SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
 				id, solrServer);
+
 			solrServerWrapper.setSolrServerFactory(this);
 
 			_liveServers.put(id, solrServerWrapper);
@@ -57,7 +58,6 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 
 		throw new SolrServerException("No server available");
-
 	}
 
 	public List<SolrServerWrapper> getLiveServers() {
@@ -98,6 +98,6 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		new HashMap<String, SolrServerWrapper>();
 	private Map<String, SolrServerWrapper> _liveServers =
 		new HashMap<String, SolrServerWrapper>();
-
 	private SolrServerSelector _solrServerSelector;
+
 }

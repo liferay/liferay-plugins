@@ -19,7 +19,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.SolrPingResponse;
 
 /**
@@ -40,7 +39,6 @@ public class LiveServerChecker {
 					solrServerFactory.getDeadServers();
 
 				for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
-
 					try {
 						SolrPingResponse solrPingResponse =
 							solrServerWrapper.ping();
