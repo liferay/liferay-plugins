@@ -40,15 +40,10 @@ public class LiveServerChecker {
 					solrServerFactory.getDeadServers();
 
 				for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
-					SolrServer solrServer = solrServerFactory.getDeadServer(
-						solrServerWrapper);
-
-					if (solrServer == null) {
-						continue;
-					}
 
 					try {
-						SolrPingResponse solrPingResponse = solrServer.ping();
+						SolrPingResponse solrPingResponse =
+							solrServerWrapper.ping();
 
 						if (solrPingResponse.getStatus() == 0) {
 							solrServerFactory.startServer(solrServerWrapper);

@@ -14,10 +14,6 @@
 
 package com.liferay.portal.search.solr.server;
 
-import java.io.IOException;
-
-import java.util.List;
-
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -36,37 +32,18 @@ public class LoadBalancerSolrServer extends SolrServer {
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {
 
-		List<SolrServerWrapper> solrServerWrappers =
-			_solrServerFactory.getLiveServers();
+		SolrServerWrapper solrServerWapper = _solrServerFactory.getLiveServer();
 
-		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
-			SolrServer solrServer = _solrServerFactory.getLiveServer(
-				solrServerWrapper);
-
-			if (solrServer == null) {
-				continue;
-			}
-
-			try {
-				return solrServer.request(solrRequest);
-			}
-			catch (SolrException se) {
-				throw se;
-			}
-			catch (SolrServerException sse) {
-				if (sse.getRootCause() instanceof IOException) {
-					_solrServerFactory.killServer(solrServerWrapper);
-				}
-				else {
-					throw sse;
-				}
-			}
-			catch (Exception e) {
-				throw new SolrServerException(e);
-			}
+		try {
+			return solrServerWapper.request(solrRequest);
+		}
+		catch (SolrException se) {
+			throw se;
+		}
+		catch (Exception e) {
+			throw new SolrServerException(e);
 		}
 
-		throw new SolrServerException("No server available");
 	}
 
 	private SolrServerFactory _solrServerFactory;

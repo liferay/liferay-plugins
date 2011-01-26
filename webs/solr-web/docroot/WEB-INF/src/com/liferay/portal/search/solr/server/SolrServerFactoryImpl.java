@@ -15,11 +15,12 @@
 package com.liferay.portal.search.solr.server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
 
 /**
  * @author Bruno Farache
@@ -31,19 +32,11 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 			String id = entry.getKey();
 			SolrServer solrServer = entry.getValue();
 
-			_liveServers.put(id, new SolrServerWrapper(id, solrServer));
-		}
-	}
+			SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
+				id, solrServer);
+			solrServerWrapper.setSolrServerFactory(this);
 
-	public SolrServer getDeadServer(SolrServerWrapper solrServerWrapper) {
-		synchronized (this) {
-			String id = solrServerWrapper.getId();
-
-			if (_deadServers.containsKey(id)) {
-				return _deadServers.get(id).getServer();
-			}
-
-			return null;
+			_liveServers.put(id, solrServerWrapper);
 		}
 	}
 
@@ -53,16 +46,18 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 	}
 
-	public SolrServer getLiveServer(SolrServerWrapper solrServerWrapper) {
-		synchronized (this) {
-			String id = solrServerWrapper.getId();
+	public SolrServerWrapper getLiveServer() throws SolrServerException {
+		List<SolrServerWrapper> liveServers = getLiveServers();
 
-			if (_liveServers.containsKey(id)) {
-				return _liveServers.get(id).getServer();
-			}
+		SolrServerWrapper solrServerWrapper = _solrServerSelector.select(
+			liveServers);
 
-			return null;
+		if (solrServerWrapper != null) {
+			return solrServerWrapper;
 		}
+
+		throw new SolrServerException("No server available");
+
 	}
 
 	public List<SolrServerWrapper> getLiveServers() {
@@ -82,6 +77,10 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 		}
 	}
 
+	public void setSolrServerSelector(SolrServerSelector solrServerSelector) {
+		_solrServerSelector = solrServerSelector;
+	}
+
 	public void startServer(SolrServerWrapper solrServerWrapper) {
 		synchronized (this) {
 			if (_liveServers.containsKey(solrServerWrapper.getId())) {
@@ -90,12 +89,15 @@ public class SolrServerFactoryImpl implements SolrServerFactory {
 
 			_deadServers.remove(solrServerWrapper.getId());
 			_liveServers.put(solrServerWrapper.getId(), solrServerWrapper);
+
+			solrServerWrapper.resetInvocationCount();
 		}
 	}
 
 	private Map<String, SolrServerWrapper> _deadServers =
-		new TreeMap<String, SolrServerWrapper>(String.CASE_INSENSITIVE_ORDER);
+		new HashMap<String, SolrServerWrapper>();
 	private Map<String, SolrServerWrapper> _liveServers =
-		new TreeMap<String, SolrServerWrapper>(String.CASE_INSENSITIVE_ORDER);
+		new HashMap<String, SolrServerWrapper>();
 
+	private SolrServerSelector _solrServerSelector;
 }

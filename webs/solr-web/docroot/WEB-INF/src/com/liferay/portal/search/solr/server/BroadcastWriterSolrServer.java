@@ -17,6 +17,8 @@ package com.liferay.portal.search.solr.server;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
+import java.util.List;
+
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
@@ -28,8 +30,8 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BroadcastWriterSolrServer extends SolrServer {
 
-	public BroadcastWriterSolrServer(SolrServerWrapper... solrServerWrappers) {
-		_solrServerWrappers = solrServerWrappers;
+	public BroadcastWriterSolrServer(SolrServerFactory solrServerFactory) {
+		_solrServerFactory = solrServerFactory;
 	}
 
 	public NamedList<Object> request(SolrRequest solrRequest)
@@ -42,11 +44,12 @@ public class BroadcastWriterSolrServer extends SolrServer {
 				"This SolrServer should be used only to update requests");
 		}
 
-		for (SolrServerWrapper solrServerWrapper : _solrServerWrappers) {
-			try {
-				SolrServer server = solrServerWrapper.getServer();
+		List<SolrServerWrapper> solrServerWrappers =
+			_solrServerFactory.getLiveServers();
 
-				response = server.request(solrRequest);
+		for (SolrServerWrapper solrServerWrapper : solrServerWrappers) {
+			try {
+				response = solrServerWrapper.request(solrRequest);
 			}
 			catch (Exception e) {
 				_log.error(
@@ -66,6 +69,6 @@ public class BroadcastWriterSolrServer extends SolrServer {
 	private static Log _log = LogFactoryUtil.getLog(
 		BroadcastWriterSolrServer.class);
 
-	private SolrServerWrapper[] _solrServerWrappers;
+	private SolrServerFactory _solrServerFactory;
 
 }

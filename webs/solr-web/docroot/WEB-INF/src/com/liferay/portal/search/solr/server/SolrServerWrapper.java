@@ -14,7 +14,14 @@
 
 package com.liferay.portal.search.solr.server;
 
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.response.SolrPingResponse;
+import org.apache.solr.common.util.NamedList;
 
 /**
  * @author Bruno Farache
@@ -30,11 +37,59 @@ public class SolrServerWrapper {
 		return _id;
 	}
 
+	public int getInvocationCount() {
+		return _invocationCount.get();
+	}
+
 	public SolrServer getServer() {
 		return _solrServer;
 	}
 
+	public int incrementInvocationCount() {
+		return _invocationCount.getAndIncrement();
+	}
+
+	public SolrPingResponse ping()
+		throws IOException, SolrServerException {
+
+		try {
+			return _solrServer.ping();
+		}
+		catch (SolrServerException sse) {
+			if (sse.getRootCause() instanceof IOException) {
+				_solrServerFactory.killServer(this);
+			}
+			throw sse;
+		}
+	}
+
+	public NamedList<Object> request(SolrRequest request)
+		throws IOException, SolrServerException {
+
+		try {
+			incrementInvocationCount();
+
+			return _solrServer.request(request);
+		}
+		catch (SolrServerException sse) {
+			if (sse.getRootCause() instanceof IOException) {
+				_solrServerFactory.killServer(this);
+			}
+			throw sse;
+		}
+	}
+
+	public void resetInvocationCount() {
+		_invocationCount.set(0);
+	}
+
+	public void setSolrServerFactory(SolrServerFactory solrServerFactory) {
+		_solrServerFactory = solrServerFactory;
+	}
+
 	private String _id;
+	private AtomicInteger _invocationCount = new AtomicInteger(0);
 	private SolrServer _solrServer;
+	private SolrServerFactory _solrServerFactory;
 
 }

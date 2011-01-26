@@ -17,17 +17,17 @@ package com.liferay.portal.search.solr.server;
 import java.util.List;
 
 import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.SolrServerException;
 
 /**
  * @author Bruno Farache
  */
 public interface SolrServerFactory {
 
-	public SolrServer getDeadServer(SolrServerWrapper serverWrapper);
-
 	public List<SolrServerWrapper> getDeadServers();
 
-	public SolrServer getLiveServer(SolrServerWrapper serverWrapper);
+	public SolrServerWrapper getLiveServer()
+		throws SolrServerException;
 
 	public List<SolrServerWrapper> getLiveServers();
 
