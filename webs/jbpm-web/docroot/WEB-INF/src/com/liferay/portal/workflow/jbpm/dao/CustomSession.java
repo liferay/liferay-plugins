@@ -470,13 +470,14 @@ public class CustomSession {
 	}
 
 	public int searchCountTaskInstances(
-		String taskName, String assetType, Long assetPrimaryKey, Date dueDateGT,
-		Date dueDateLT, Boolean completed, Boolean searchByUserRoles,
-		boolean andOperator, ServiceContext serviceContext) {
+		String taskName, String assetType, Long[] assetPrimaryKeys,
+		Date dueDateGT, Date dueDateLT, Boolean completed,
+		Boolean searchByUserRoles, boolean andOperator,
+		ServiceContext serviceContext) {
 
 		try {
 			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
-				taskName, assetType, assetPrimaryKey, dueDateGT, dueDateLT,
+				taskName, assetType, assetPrimaryKeys, dueDateGT, dueDateLT,
 				completed, searchByUserRoles, andOperator, serviceContext);
 
 			return (int)criteriaCount(criteria);
@@ -487,14 +488,14 @@ public class CustomSession {
 	}
 
 	public List<TaskInstance> searchTaskInstances(
-		String taskName, String assetType, Long assetPrimaryKey, Date dueDateGT,
-		Date dueDateLT, Boolean completed, Boolean searchByUserRoles,
-		boolean andOperator, int start, int end,
+		String taskName, String assetType, Long[] assetPrimaryKeys,
+		Date dueDateGT, Date dueDateLT, Boolean completed,
+		Boolean searchByUserRoles, boolean andOperator, int start, int end,
 		OrderByComparator orderByComparator, ServiceContext serviceContext) {
 
 		try {
 			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
-				taskName, assetType, assetPrimaryKey, dueDateGT, dueDateLT,
+				taskName, assetType, assetPrimaryKeys, dueDateGT, dueDateLT,
 				completed, searchByUserRoles, andOperator, serviceContext);
 
 			addPagination(criteria, start, end);
@@ -605,7 +606,7 @@ public class CustomSession {
 	}
 
 	protected Criteria buildTaskInstanceExtensionSearchCriteria(
-			String taskName, String assetType, Long assetPrimaryKey,
+			String taskName, String assetType, Long[] assetPrimaryKeys,
 			Date dueDateGT, Date dueDateLT, Boolean completed,
 			Boolean searchByUserRoles, boolean andOperator,
 			ServiceContext serviceContext)
@@ -654,11 +655,13 @@ public class CustomSession {
 				}
 			}
 
-			if (Validator.isNotNull(assetPrimaryKey)) {
-				junction.add(
-					Restrictions.like(
-						"workflowContext",
-						"%\"entryClassPK\":\"%" + assetPrimaryKey + "%\"%"));
+			if (Validator.isNotNull(assetPrimaryKeys)) {
+				for (Long assetPrimaryKey : assetPrimaryKeys) {
+					junction.add(
+						Restrictions.like(
+							"workflowContext",
+							"%\"entryClassPK\":\"%" + assetPrimaryKey + "%\"%"));
+				}
 			}
 
 			if (dueDateGT != null) {
