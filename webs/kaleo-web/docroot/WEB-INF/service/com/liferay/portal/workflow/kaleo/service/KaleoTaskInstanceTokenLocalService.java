@@ -331,7 +331,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
 		java.lang.String taskName, java.lang.String assetType,
-		java.lang.Long assetPrimaryKey, java.util.Date dueDateGT,
+		java.lang.Long[] assetPrimaryKeys, java.util.Date dueDateGT,
 		java.util.Date dueDateLT, java.lang.Boolean completed,
 		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
 		int end,
@@ -347,7 +347,7 @@ public interface KaleoTaskInstanceTokenLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(java.lang.String taskName,
-		java.lang.String assetType, java.lang.Long assetPrimaryKey,
+		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
 		java.util.Date dueDateGT, java.util.Date dueDateLT,
 		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
 		boolean andOperator,

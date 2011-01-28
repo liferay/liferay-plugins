@@ -32,8 +32,8 @@ public class KaleoTaskInstanceTokenQuery {
 		_userId = serviceContext.getUserId();
 	}
 
-	public Long getAssetPrimaryKey() {
-		return _assetPrimaryKey;
+	public Long[] getAssetPrimaryKeys() {
+		return _assetPrimaryKeys;
 	}
 
 	public String getAssetType() {
@@ -108,8 +108,8 @@ public class KaleoTaskInstanceTokenQuery {
 		_andOperator = andOperator;
 	}
 
-	public void setAssetPrimaryKey(Long assetPrimaryKey) {
-		_assetPrimaryKey = assetPrimaryKey;
+	public void setAssetPrimaryKeys(Long[] assetPrimaryKeys) {
+		_assetPrimaryKeys = assetPrimaryKeys;
 	}
 
 	public void setAssetType(String assetType) {
@@ -177,7 +177,7 @@ public class KaleoTaskInstanceTokenQuery {
 	}
 
 	private boolean _andOperator = true;
-	private Long _assetPrimaryKey;
+	private Long[] _assetPrimaryKeys;
 	private String _assetType;
 	private String _assigneeClassName;
 	private Long _assigneeClassPK;

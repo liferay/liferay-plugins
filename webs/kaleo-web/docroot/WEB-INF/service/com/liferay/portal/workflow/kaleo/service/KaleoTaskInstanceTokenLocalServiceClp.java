@@ -171,7 +171,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		_searchMethodKey32 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", java.lang.String.class, java.lang.String.class,
-				java.lang.Long.class, java.util.Date.class,
+				java.lang.Long[].class, java.util.Date.class,
 				java.util.Date.class, java.lang.Boolean.class,
 				java.lang.Boolean.class, boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class,
@@ -184,7 +184,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 		_searchCountMethodKey34 = new MethodKey(_classLoaderProxy.getClassName(),
 				"searchCount", java.lang.String.class, java.lang.String.class,
-				java.lang.Long.class, java.util.Date.class,
+				java.lang.Long[].class, java.util.Date.class,
 				java.util.Date.class, java.lang.Boolean.class,
 				java.lang.Boolean.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -1154,7 +1154,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> search(
 		java.lang.String taskName, java.lang.String assetType,
-		java.lang.Long assetPrimaryKey, java.util.Date dueDateGT,
+		java.lang.Long[] assetPrimaryKeys, java.util.Date dueDateGT,
 		java.util.Date dueDateLT, java.lang.Boolean completed,
 		java.lang.Boolean searchByUserRoles, boolean andOperator, int start,
 		int end,
@@ -1166,7 +1166,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		MethodHandler methodHandler = new MethodHandler(_searchMethodKey32,
 				ClpSerializer.translateInput(taskName),
 				ClpSerializer.translateInput(assetType),
-				ClpSerializer.translateInput(assetPrimaryKey),
+				ClpSerializer.translateInput(assetPrimaryKeys),
 				ClpSerializer.translateInput(dueDateGT),
 				ClpSerializer.translateInput(dueDateLT),
 				ClpSerializer.translateInput(completed),
@@ -1227,7 +1227,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 	}
 
 	public int searchCount(java.lang.String taskName,
-		java.lang.String assetType, java.lang.Long assetPrimaryKey,
+		java.lang.String assetType, java.lang.Long[] assetPrimaryKeys,
 		java.util.Date dueDateGT, java.util.Date dueDateLT,
 		java.lang.Boolean completed, java.lang.Boolean searchByUserRoles,
 		boolean andOperator,
@@ -1238,7 +1238,7 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		MethodHandler methodHandler = new MethodHandler(_searchCountMethodKey34,
 				ClpSerializer.translateInput(taskName),
 				ClpSerializer.translateInput(assetType),
-				ClpSerializer.translateInput(assetPrimaryKey),
+				ClpSerializer.translateInput(assetPrimaryKeys),
 				ClpSerializer.translateInput(dueDateGT),
 				ClpSerializer.translateInput(dueDateLT),
 				ClpSerializer.translateInput(completed),
