@@ -59,20 +59,20 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_OAuthToken";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oAuthTokenId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "userId", new Integer(Types.BIGINT) },
-			{ "userName", new Integer(Types.VARCHAR) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "gadgetId", new Integer(Types.BIGINT) },
-			{ "serviceName", new Integer(Types.VARCHAR) },
-			{ "moduleId", new Integer(Types.BIGINT) },
-			{ "accessToken", new Integer(Types.VARCHAR) },
-			{ "tokenName", new Integer(Types.VARCHAR) },
-			{ "tokenSecret", new Integer(Types.VARCHAR) },
-			{ "sessionHandle", new Integer(Types.VARCHAR) },
-			{ "expiration", new Integer(Types.BIGINT) }
+			{ "oAuthTokenId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "userId", Types.BIGINT },
+			{ "userName", Types.VARCHAR },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "gadgetId", Types.BIGINT },
+			{ "serviceName", Types.VARCHAR },
+			{ "moduleId", Types.BIGINT },
+			{ "accessToken", Types.VARCHAR },
+			{ "tokenName", Types.VARCHAR },
+			{ "tokenSecret", Types.VARCHAR },
+			{ "sessionHandle", Types.VARCHAR },
+			{ "expiration", Types.BIGINT }
 		};
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthToken (oAuthTokenId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,moduleId LONG,accessToken VARCHAR(75) null,tokenName VARCHAR(75) null,tokenSecret VARCHAR(75) null,sessionHandle VARCHAR(75) null,expiration LONG)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthToken";

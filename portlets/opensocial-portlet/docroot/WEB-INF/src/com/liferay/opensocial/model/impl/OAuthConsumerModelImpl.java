@@ -57,15 +57,15 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	 */
 	public static final String TABLE_NAME = "OpenSocial_OAuthConsumer";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "oAuthConsumerId", new Integer(Types.BIGINT) },
-			{ "companyId", new Integer(Types.BIGINT) },
-			{ "createDate", new Integer(Types.TIMESTAMP) },
-			{ "modifiedDate", new Integer(Types.TIMESTAMP) },
-			{ "gadgetId", new Integer(Types.BIGINT) },
-			{ "serviceName", new Integer(Types.VARCHAR) },
-			{ "consumerKey", new Integer(Types.VARCHAR) },
-			{ "consumerSecret", new Integer(Types.CLOB) },
-			{ "keyType", new Integer(Types.VARCHAR) }
+			{ "oAuthConsumerId", Types.BIGINT },
+			{ "companyId", Types.BIGINT },
+			{ "createDate", Types.TIMESTAMP },
+			{ "modifiedDate", Types.TIMESTAMP },
+			{ "gadgetId", Types.BIGINT },
+			{ "serviceName", Types.VARCHAR },
+			{ "consumerKey", Types.VARCHAR },
+			{ "consumerSecret", Types.CLOB },
+			{ "keyType", Types.VARCHAR }
 		};
 	public static final String TABLE_SQL_CREATE = "create table OpenSocial_OAuthConsumer (oAuthConsumerId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,gadgetId LONG,serviceName VARCHAR(75) null,consumerKey VARCHAR(75) null,consumerSecret TEXT null,keyType VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_OAuthConsumer";

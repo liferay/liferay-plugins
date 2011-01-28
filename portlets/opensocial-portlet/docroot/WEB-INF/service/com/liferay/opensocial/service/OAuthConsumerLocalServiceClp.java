@@ -78,7 +78,6 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 		_addOAuthConsumerMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addOAuthConsumer", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class);
 
 		_deleteOAuthConsumersMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -469,8 +468,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType, java.lang.String keyName,
-		java.lang.String callbackURL)
+		java.lang.String keyType)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -478,9 +476,7 @@ public class OAuthConsumerLocalServiceClp implements OAuthConsumerLocalService {
 				companyId, gadgetId, ClpSerializer.translateInput(serviceName),
 				ClpSerializer.translateInput(consumerKey),
 				ClpSerializer.translateInput(consumerSecret),
-				ClpSerializer.translateInput(keyType),
-				ClpSerializer.translateInput(keyName),
-				ClpSerializer.translateInput(callbackURL));
+				ClpSerializer.translateInput(keyType));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

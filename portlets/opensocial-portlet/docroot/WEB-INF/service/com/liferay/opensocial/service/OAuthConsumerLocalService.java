@@ -212,8 +212,7 @@ public interface OAuthConsumerLocalService {
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,
-		java.lang.String keyType, java.lang.String keyName,
-		java.lang.String callbackURL)
+		java.lang.String keyType)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteOAuthConsumers(long gadgetId)
