@@ -59,8 +59,11 @@ public class ClpSerializer {
 					_servletContextName = portletPropsServletContextName;
 				}
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (Throwable t) {
+				if (_log.isWarnEnabled()) {
+					_log.warn("Unable to locate deployment context from portlet properties",
+						t);
+				}
 			}
 
 			if (Validator.isNull(_servletContextName)) {
@@ -72,8 +75,11 @@ public class ClpSerializer {
 						_servletContextName = propsUtilServletContextName;
 					}
 				}
-				catch (Exception e) {
-					_log.error(e, e);
+				catch (Throwable t) {
+					if (_log.isWarnEnabled()) {
+						_log.warn("Unable to locate deployment context from portal properties",
+							t);
+					}
 				}
 			}
 
