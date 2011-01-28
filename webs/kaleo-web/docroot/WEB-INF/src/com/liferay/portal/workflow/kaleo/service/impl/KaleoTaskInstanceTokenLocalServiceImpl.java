@@ -35,6 +35,7 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTo
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
+
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -427,9 +428,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws SystemException {
 
 		return search(
-			keywords, keywords, null, null, null, completed,
-			searchByUserRoles, false, start, end,
-			orderByComparator, serviceContext);
+			keywords, keywords, null, null, null, completed, searchByUserRoles,
+			false, start, end, orderByComparator, serviceContext);
 	}
 
 	public List<KaleoTaskInstanceToken> search(
@@ -464,8 +464,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		throws SystemException {
 
 		return searchCount(
-			keywords, keywords, null, null, null, completed,
-			searchByUserRoles, false, serviceContext);
+			keywords, keywords, null, null, null, completed, searchByUserRoles,
+			false, serviceContext);
 	}
 
 	public int searchCount(

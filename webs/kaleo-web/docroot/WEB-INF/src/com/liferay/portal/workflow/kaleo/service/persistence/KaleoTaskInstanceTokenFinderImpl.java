@@ -161,20 +161,23 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sql,
 				getDueDateGT(
 					kaleoTaskInstanceTokenQuery,
-					(kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() == null) &&
-					(kaleoTaskInstanceTokenQuery.getAssetType() == null)));
+					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() ==
+						null) &&
+					 (kaleoTaskInstanceTokenQuery.getAssetType() == null))));
 			sql = CustomSQLUtil.appendCriteria(
 				sql,
 				getDueDateLT(
 					kaleoTaskInstanceTokenQuery,
-					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() == null) &&
+					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() ==
+						null) &&
 					 (kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateGT() == null))));
 			sql = CustomSQLUtil.appendCriteria(
 				sql,
 				getTaskName(
 					kaleoTaskInstanceTokenQuery,
-					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() == null) &&
+					((kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() ==
+						null) &&
 					 (kaleoTaskInstanceTokenQuery.getAssetType() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateGT() == null) &&
 					 (kaleoTaskInstanceTokenQuery.getDueDateLT() == null))));
@@ -226,7 +229,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected boolean appendSearchCriteria(
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
-		if (Validator.isNotNull(kaleoTaskInstanceTokenQuery.getAssetPrimaryKey())) {
+		if (kaleoTaskInstanceTokenQuery.getAssetPrimaryKey() != null) {
 			return true;
 		}
 
@@ -532,7 +535,6 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected void setAssetPrimaryKey(
 		QueryPos qPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
-
 
 		Long assetPriamryKey = kaleoTaskInstanceTokenQuery.getAssetPrimaryKey();
 

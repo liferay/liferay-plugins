@@ -470,16 +470,14 @@ public class CustomSession {
 	}
 
 	public int searchCountTaskInstances(
-		String taskName, String assetType, Long assetPrimaryKey,
-		Date dueDateGT, Date dueDateLT,
-		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
-		ServiceContext serviceContext) {
+		String taskName, String assetType, Long assetPrimaryKey, Date dueDateGT,
+		Date dueDateLT, Boolean completed, Boolean searchByUserRoles,
+		boolean andOperator, ServiceContext serviceContext) {
 
 		try {
 			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
-				taskName, assetType, assetPrimaryKey,
-				dueDateGT, dueDateLT, completed,
-				searchByUserRoles, andOperator, serviceContext);
+				taskName, assetType, assetPrimaryKey, dueDateGT, dueDateLT,
+				completed, searchByUserRoles, andOperator, serviceContext);
 
 			return (int)criteriaCount(criteria);
 		}
@@ -489,17 +487,15 @@ public class CustomSession {
 	}
 
 	public List<TaskInstance> searchTaskInstances(
-		String taskName, String assetType, Long assetPrimaryKey,
-		Date dueDateGT, Date dueDateLT,
-		Boolean completed, Boolean searchByUserRoles, boolean andOperator,
-		int start, int end, OrderByComparator orderByComparator,
-		ServiceContext serviceContext) {
+		String taskName, String assetType, Long assetPrimaryKey, Date dueDateGT,
+		Date dueDateLT, Boolean completed, Boolean searchByUserRoles,
+		boolean andOperator, int start, int end,
+		OrderByComparator orderByComparator, ServiceContext serviceContext) {
 
 		try {
 			Criteria criteria = buildTaskInstanceExtensionSearchCriteria(
-				taskName, assetType, assetPrimaryKey,
-				dueDateGT, dueDateLT, completed,
-				searchByUserRoles, andOperator, serviceContext);
+				taskName, assetType, assetPrimaryKey, dueDateGT, dueDateLT,
+				completed, searchByUserRoles, andOperator, serviceContext);
 
 			addPagination(criteria, start, end);
 			addOrder(criteria, orderByComparator);
@@ -610,8 +606,8 @@ public class CustomSession {
 
 	protected Criteria buildTaskInstanceExtensionSearchCriteria(
 			String taskName, String assetType, Long assetPrimaryKey,
-			Date dueDateGT, Date dueDateLT,
-			Boolean completed, Boolean searchByUserRoles, boolean andOperator,
+			Date dueDateGT, Date dueDateLT, Boolean completed,
+			Boolean searchByUserRoles, boolean andOperator,
 			ServiceContext serviceContext)
 		throws SystemException {
 
@@ -657,6 +653,7 @@ public class CustomSession {
 							"%\"entryType\":\"%" + assetTypeKeyword + "%\"%"));
 				}
 			}
+
 			if (Validator.isNotNull(assetPrimaryKey)) {
 				junction.add(
 					Restrictions.like(
