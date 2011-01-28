@@ -33,8 +33,7 @@ public class OAuthConsumerLocalServiceImpl
 
 	public OAuthConsumer addOAuthConsumer(
 			long companyId, long gadgetId, String serviceName,
-			String consumerKey, String consumerSecret, String keyType,
-			String keyName, String callbackURL)
+			String consumerKey, String consumerSecret, String keyType)
 		throws SystemException {
 
 		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {

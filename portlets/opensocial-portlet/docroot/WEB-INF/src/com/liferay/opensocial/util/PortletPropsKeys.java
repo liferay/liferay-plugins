@@ -23,13 +23,13 @@ public class PortletPropsKeys {
 
 	public static final String SHINDIG_NO_CACHE = "shindig.no.cache";
 
-	public static final String SHINDIG_SIGNING_GLOBAL_CALLBACK_URL =
-		"shindig.signing.global-callback-url";
+	public static final String SHINDIG_OAUTH_CALLBACK_URL =
+		"shindig.oauth.callback.url";
 
-	public static final String SHINDIG_SIGNING_KEY_FILE =
-		"shindig.signing.key-file";
+	public static final String SHINDIG_OAUTH_KEY_FILE_NAME =
+		"shindig.oauth.key.file.name";
 
-	public static final String SHINDIG_SIGNING_KEY_NAME =
-		"shindig.signing.key-name";
+	public static final String SHINDIG_OAUTH_KEY_NAME =
+		"shindig.oauth.key.name";
 
 }

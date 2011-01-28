@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
@@ -168,7 +168,7 @@ public class SerializerUtil {
 			Object bean, String fieldName, String value)
 		throws JSONException {
 
-		if (value.equals(StringPool.BLANK)) {
+		if (Validator.isNull(value)) {
 			return;
 		}
 

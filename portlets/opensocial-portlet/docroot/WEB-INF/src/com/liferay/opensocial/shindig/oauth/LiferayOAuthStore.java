@@ -24,6 +24,7 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
+import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -42,10 +43,8 @@ import org.apache.shindig.gadgets.oauth.OAuthStore;
 @Singleton
 public class LiferayOAuthStore implements OAuthStore {
 
-	public LiferayOAuthStore(String callbackURL, OAuthConsumer oAuthConsumer) {
-		_callbackURL = callbackURL;
-
-		_defaultOAuthConsumer = oAuthConsumer;
+	public LiferayOAuthStore(OAuthConsumer oAuthConsumer) {
+		_oAuthConsumer = oAuthConsumer;
 	}
 
 	public ConsumerInfo getConsumerKeyAndSecret(
@@ -60,28 +59,29 @@ public class LiferayOAuthStore implements OAuthStore {
 			throw new GadgetException(
 				GadgetException.Code.INTERNAL_SERVER_ERROR,
 				"No key for gadget " + securityToken.getAppUrl() +
-				" and service " + serviceName);
+					" and service " + serviceName);
 		}
 
-		net.oauth.OAuthConsumer consumer = null;
+		net.oauth.OAuthConsumer netOAuthConsumer = null;
 
-		if (oAuthConsumer.getKeyType().equals(
-				OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
+		String keyType = oAuthConsumer.getKeyType();
 
-			consumer = new net.oauth.OAuthConsumer(
+		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
+			netOAuthConsumer = new net.oauth.OAuthConsumer(
 				null, oAuthConsumer.getConsumerKey(), null,
 				oAuthServiceProvider);
 
-			consumer.setProperty(OAuth.OAUTH_SIGNATURE_METHOD, OAuth.RSA_SHA1);
-			consumer.setProperty(
+			netOAuthConsumer.setProperty(
+				OAuth.OAUTH_SIGNATURE_METHOD, OAuth.RSA_SHA1);
+			netOAuthConsumer.setProperty(
 				RSA_SHA1.PRIVATE_KEY, oAuthConsumer.getConsumerSecret());
 		}
 		else {
-			consumer = new net.oauth.OAuthConsumer(
+			netOAuthConsumer = new net.oauth.OAuthConsumer(
 				null, oAuthConsumer.getConsumerKey(),
 				oAuthConsumer.getConsumerSecret(), oAuthServiceProvider);
 
-			consumer.setProperty(
+			netOAuthConsumer.setProperty(
 				OAuth.OAUTH_SIGNATURE_METHOD, OAuth.HMAC_SHA1);
 		}
 
@@ -90,7 +90,7 @@ public class LiferayOAuthStore implements OAuthStore {
 		String callbackURL = _callbackURL.replace(
 			"%host%", ShindigUtil.getHost());
 
-		return new ConsumerInfo(consumer, keyName, callbackURL);
+		return new ConsumerInfo(netOAuthConsumer, keyName, callbackURL);
 	}
 
 	public TokenInfo getTokenInfo(
@@ -166,8 +166,7 @@ public class LiferayOAuthStore implements OAuthStore {
 				userId, gadget.getGadgetId(), serviceName,
 				securityToken.getModuleId(), tokenInfo.getAccessToken(),
 				tokenName, tokenInfo.getTokenSecret(),
-				tokenInfo.getSessionHandle(),
-				tokenInfo.getTokenExpireMillis());
+				tokenInfo.getSessionHandle(), tokenInfo.getTokenExpireMillis());
 		}
 		catch (Exception e) {
 			throw new GadgetException(
@@ -209,25 +208,23 @@ public class LiferayOAuthStore implements OAuthStore {
 				gadget.getGadgetId(), serviceName);
 		}
 		catch (Exception e) {
-			return _defaultOAuthConsumer;
+			return _oAuthConsumer;
 		}
 
 		if (oAuthConsumer.getKeyType().equals(
-			OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
+				OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
 
-			if (_defaultOAuthConsumer == null) {
+			if (_oAuthConsumer == null) {
 				throw new GadgetException(
 					GadgetException.Code.INTERNAL_SERVER_ERROR,
-					"No OAuth signing key specified.");
+					"No OAuth key specified");
 			}
 
-			oAuthConsumer.setConsumerSecret(
-				_defaultOAuthConsumer.getConsumerSecret());
+			oAuthConsumer.setConsumerSecret(_oAuthConsumer.getConsumerSecret());
 		}
 
 		return oAuthConsumer;
 	}
-
 	protected OAuthToken getOAuthToken(
 			SecurityToken securityToken, String serviceName,
 			String tokenName)
@@ -269,8 +266,7 @@ public class LiferayOAuthStore implements OAuthStore {
 		return oAuthToken;
 	}
 
-	private String _callbackURL;
-
-	private OAuthConsumer _defaultOAuthConsumer;
+	private String _callbackURL = PortletPropsValues.SHINDIG_OAUTH_CALLBACK_URL;
+	private OAuthConsumer _oAuthConsumer;
 
 }

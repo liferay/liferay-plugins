@@ -15,7 +15,6 @@
 package com.liferay.opensocial.shindig.servlet;
 
 import com.liferay.opensocial.shindig.util.ShindigUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.IOException;
@@ -40,13 +39,11 @@ public class ShindigFilter extends InjectedFilter {
 			FilterChain filterChain)
 		throws IOException, ServletException {
 
-		StringBundler sb = new StringBundler(3);
+		String host = servletRequest.getServerName().concat(
+			StringPool.COLON).concat(
+				String.valueOf(servletRequest.getServerPort()));
 
-		sb.append(servletRequest.getServerName());
-		sb.append(StringPool.COLON);
-		sb.append(servletRequest.getServerPort());
-
-		ShindigUtil.setHost(sb.toString());
+		ShindigUtil.setHost(host);
 
 		filterChain.doFilter(servletRequest, servletResponse);
 	}

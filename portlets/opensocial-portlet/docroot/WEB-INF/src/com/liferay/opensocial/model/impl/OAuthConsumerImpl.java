@@ -15,7 +15,7 @@
 package com.liferay.opensocial.model.impl;
 
 import com.liferay.opensocial.model.OAuthConsumer;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
  * @author Michael Young
@@ -27,12 +27,7 @@ public class OAuthConsumerImpl
 	}
 
 	public String getKeyName() {
-		if (_keyName == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _keyName;
-		}
+		return GetterUtil.getString(_keyName);
 	}
 
 	public void setKeyName(String keyName) {

@@ -140,7 +140,7 @@ public class AdminPortlet extends MVCPortlet {
 		if (oAuthConsumerId <= 0) {
 			OAuthConsumerLocalServiceUtil.addOAuthConsumer(
 				themeDisplay.getCompanyId(), gadgetId, serviceName, consumerKey,
-				consumerSecret, keyType, StringPool.BLANK, StringPool.BLANK);
+				consumerSecret, keyType);
 		}
 		else {
 			OAuthConsumerLocalServiceUtil.updateOAuthConsumer(

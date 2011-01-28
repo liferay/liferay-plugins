@@ -40,40 +40,34 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 
 	@Inject
 	public LiferayOAuthStoreProvider() {
-		String callbackURL =
-			PortletPropsValues.SHINDIG_SIGNING_GLOBAL_CALLBACK_URL;
+		OAuthConsumer oAuthConsumer = _getOAuthConsumer(
+			PortletPropsValues.SHINDIG_OAUTH_KEY_FILE_NAME,
+			PortletPropsValues.SHINDIG_OAUTH_KEY_NAME);
 
-		OAuthConsumer oAuthConsumer = loadDefaultKey(
-			PortletPropsValues.SHINDIG_SIGNING_KEY_FILE,
-			PortletPropsValues.SHINDIG_SIGNING_KEY_NAME);
-
-		_store = new LiferayOAuthStore(callbackURL, oAuthConsumer);
+		_oAuthStore = new LiferayOAuthStore(oAuthConsumer);
 	}
 
 	public OAuthStore get() {
-		return _store;
+		return _oAuthStore;
 	}
 
-	private OAuthConsumer loadDefaultKey(
-		String signingKeyFile, String signingKeyName) {
+	private OAuthConsumer _getOAuthConsumer(
+		String keyFileName, String keyName) {
 
 		OAuthConsumer oAuthConsumer = new OAuthConsumerImpl();
 
-		oAuthConsumer.setServiceName(_DEFAULT_SERVICE_NAME);
 		oAuthConsumer.setConsumerKey(_DEFAULT_CONSUMER_KEY);
+		oAuthConsumer.setServiceName(_DEFAULT_SERVICE_NAME);
 
 		String consumerSecret = null;
 
 		String path = PropsUtil.get(PropsKeys.LIFERAY_HOME).concat(
-			_SIGNING_KEY_FILE_PATH);
+			_KEY_DIR).concat(keyFileName);
 
-		signingKeyFile = signingKeyFile.replaceAll(
-			StringPool.QUOTE, StringPool.BLANK);
-
-		signingKeyFile = path.concat(signingKeyFile);
+		path = path.replaceAll(StringPool.QUOTE, StringPool.BLANK);
 
 		try {
-			consumerSecret = FileUtil.read(signingKeyFile);
+			consumerSecret = FileUtil.read(keyFileName);
 		}
 		catch (Exception e) {
 		}
@@ -84,8 +78,7 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 				}
 
 				if (_log.isWarnEnabled()) {
-					_log.warn("Failed to load OAuth signing key from " +
-						signingKeyFile);
+					_log.warn("Unable to load OAuth key from " + keyFileName);
 				}
 
 				return null;
@@ -96,7 +89,7 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE);
-		oAuthConsumer.setKeyName(signingKeyName);
+		oAuthConsumer.setKeyName(keyName);
 
 		return oAuthConsumer;
 	}
@@ -105,11 +98,11 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 
 	private static final String _DEFAULT_SERVICE_NAME = "LIFERAY";
 
-	private static final String _SIGNING_KEY_FILE_PATH = "/data/opensocial/";
+	private static final String _KEY_DIR = "/data/opensocial/";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		LiferayOAuthStoreProvider.class);
 
-	private final LiferayOAuthStore _store;
+	private final OAuthStore _oAuthStore;
 
 }
