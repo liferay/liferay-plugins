@@ -22,9 +22,9 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  */
 public class ArticleVersionComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "version ASC, createDate DESC";
+	public static String ORDER_BY_ASC = "version ASC";
 
-	public static String ORDER_BY_DESC = "version DESC, createDate ASC";
+	public static String ORDER_BY_DESC = "version DESC";
 
 	public static String[] ORDER_BY_FIELDS = {"version"};
 
