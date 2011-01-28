@@ -20,6 +20,7 @@ import com.liferay.opensocial.service.base.OAuthConsumerLocalServiceBaseImpl;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Date;
 import java.util.List;
@@ -35,6 +36,10 @@ public class OAuthConsumerLocalServiceImpl
 			String consumerKey, String consumerSecret, String keyType,
 			String keyName, String callbackURL)
 		throws SystemException {
+
+		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
+			consumerSecret = StringPool.BLANK;
+		}
 
 		Date now = new Date();
 

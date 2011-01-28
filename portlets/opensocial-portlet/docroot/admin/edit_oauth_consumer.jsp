@@ -112,6 +112,10 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 		)
 	};
 
+	function <portlet:namespace />saveOAuthConsumer() {
+		submitForm(document.<portlet:namespace />fm);
+	}
+
 	A.one('#<portlet:namespace />keyType').on(
 		'change',
 		function() {
@@ -120,12 +124,6 @@ String keyType = BeanParamUtil.getString(oAuthConsumer, request, "keyType");
 	);
 
 	<portlet:namespace />renderConsumerSecretRow();
-</aui:script>
-
-<aui:script>
-	function <portlet:namespace />saveOAuthConsumer() {
-		submitForm(document.<portlet:namespace />fm);
-	}
 
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
