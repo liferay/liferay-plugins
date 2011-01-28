@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
+import com.liferay.knowledgebase.admin.util.PriorityHelperUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.model.Comment;
@@ -27,7 +28,6 @@ import com.liferay.knowledgebase.service.persistence.ArticleUtil;
 import com.liferay.knowledgebase.service.persistence.CommentUtil;
 import com.liferay.knowledgebase.service.persistence.TemplateUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.PriorityHelperUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
