@@ -28,8 +28,10 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 int version = BeanParamUtil.getInteger(article, request, "version", ArticleConstants.DEFAULT_VERSION);
 String content = BeanParamUtil.getString(article, request, "content", BeanPropertiesUtil.getString(template, "content"));
+long priority = BeanParamUtil.getLong(article, request, "priority");
 int status = BeanParamUtil.getInteger(article, request, "status", WorkflowConstants.STATUS_DRAFT);
 
+int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelperUtil.getHumanPriority(scopeGroupId, resourcePrimKey, parentResourcePrimKey, priority));
 String dirName = ParamUtil.getString(request, "dirName");
 %>
 
@@ -88,7 +90,9 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 		<aui:field-wrapper label="display-order">
 			<div id="<portlet:namespace />priority">
-				<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>" />
+				<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>">
+					<liferay-util:param name="humanPriority" value="<%= String.valueOf(humanPriority) %>" />
+				</liferay-util:include>
 			</div>
 		</aui:field-wrapper>
 

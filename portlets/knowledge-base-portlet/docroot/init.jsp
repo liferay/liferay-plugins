@@ -51,6 +51,7 @@
 <%@ page import="com.liferay.knowledgebase.service.permission.TemplatePermission" %>
 <%@ page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %>
 <%@ page import="com.liferay.knowledgebase.util.PortletKeys" %>
+<%@ page import="com.liferay.knowledgebase.util.PriorityHelperUtil" %>
 <%@ page import="com.liferay.knowledgebase.util.WebKeys" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator" %>

@@ -22,7 +22,10 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleConstants.DEFAULT_PRIORITY);
+
+int maxHumanPriority = PriorityHelperUtil.getMaxHumanPriority(scopeGroupId, parentResourcePrimKey, article);
+
+int humanPriority = ParamUtil.getInteger(request, "humanPriority", maxHumanPriority);
 %>
 
 <div class="kb-priority">
@@ -30,21 +33,13 @@ int priority = BeanParamUtil.getInteger(article, request, "priority", ArticleCon
 		<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") %>
 	</c:if>
 
-	<%
-	int total = ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
-
-	if ((article == null) || (article.getParentResourcePrimKey() != parentResourcePrimKey)) {
-		total = total + 1;
-	}
-	%>
-
-	<aui:select inlineField="<%= true %>" label="" name="priority">
+	<aui:select ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="" name="humanPriority">
 
 		<%
-		for (int i = 0; i < total; i++) {
+		for (int i = 1; i <= maxHumanPriority; i++) {
 		%>
 
-			<aui:option label="<%= i + 1 %>" selected="<%= priority == i %>" value="<%= i %>" />
+			<aui:option label="<%= i %>" selected="<%= humanPriority == i %>" />
 
 		<%
 		}

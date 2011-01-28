@@ -61,7 +61,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public Article addArticle(
 			long parentResourcePrimKey, String title, String content,
-			String description, int priority, String dirName,
+			String description, long priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -399,7 +399,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public Article updateArticle(
 			long resourcePrimKey, long parentResourcePrimKey, String title,
-			String content, String description, int priority, String dirName,
+			String content, String description, long priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 

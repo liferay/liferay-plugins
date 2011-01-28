@@ -26,6 +26,7 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.PriorityHelperUtil;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
@@ -38,7 +39,6 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -76,7 +76,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public Article addArticle(
 			long userId, long parentResourcePrimKey, String title,
-			String content, String description, int priority, String dirName,
+			String content, String description, long priority, String dirName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -85,6 +85,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
 		Date now = new Date();
+
+		priority = getPriority(groupId, 0, parentResourcePrimKey, priority);
 
 		validate(title, content);
 
@@ -492,7 +494,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 	public Article updateArticle(
 			long userId, long resourcePrimKey, long parentResourcePrimKey,
-			String title, String content, String description, int priority,
+			String title, String content, String description, long priority,
 			String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -503,6 +505,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			resourcePrimKey, new ArticleVersionComparator());
 		int version = oldArticle.getVersion();
 		int status = WorkflowConstants.STATUS_DRAFT;
+
+		priority = getPriority(
+			oldArticle.getGroupId(), resourcePrimKey, parentResourcePrimKey,
+			priority);
 
 		validate(title, content);
 
@@ -629,60 +635,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return dirName;
 	}
 
-	public Article updateDisplayOrder(
-			Article article, long parentResourcePrimKey, int priority)
-		throws PortalException, SystemException {
-
-		Article oldArticle = articlePersistence.findByResourcePrimKey_First(
-			article.getResourcePrimKey(), new ArticleVersionComparator(true));
-
-		if ((article.getVersion() != ArticleConstants.DEFAULT_VERSION) &&
-			(article.getPriority() == oldArticle.getPriority()) &&
-			(article.getParentResourcePrimKey() ==
-				oldArticle.getParentResourcePrimKey())) {
-
-			return article;
-		}
-
-		List<Article> siblingArticles = getSiblingArticles(
-			article.getGroupId(), article.getParentResourcePrimKey(),
-			WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
-
-		siblingArticles = ListUtil.copy(siblingArticles);
-
-		siblingArticles.remove(article);
-		siblingArticles.add(priority, article);
-
-		for (int i = 0; i < siblingArticles.size(); i++) {
-			Article siblingArticle = siblingArticles.get(i);
-
-			long siblingParentResourcePrimKey =
-				siblingArticle.getParentResourcePrimKey();
-
-			if (priority == i) {
-				siblingParentResourcePrimKey = parentResourcePrimKey;
-			}
-
-			List<Article> articles = articlePersistence.findByResourcePrimKey(
-				siblingArticle.getResourcePrimKey());
-
-			for (Article curArticle : articles) {
-				curArticle.setParentResourcePrimKey(
-					siblingParentResourcePrimKey);
-				curArticle.setPriority(i);
-
-				articlePersistence.update(curArticle, false);
-
-				if (article.getArticleId() == curArticle.getArticleId()) {
-					article = curArticle;
-				}
-			}
-		}
-
-		return article;
-	}
-
 	public Article updateStatus(
 			long userId, long resourcePrimKey, int status,
 			ServiceContext serviceContext)
@@ -716,11 +668,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			articlePersistence.update(oldArticle, false);
 		}
-
-		// Articles
-
-		updateDisplayOrder(
-			article, article.getParentResourcePrimKey(), article.getPriority());
 
 		// Asset
 
@@ -912,6 +859,46 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		return emailArticleDiffs;
+	}
+
+	protected long getPriority(
+			long groupId, long resourcePrimKey, long parentResourcePrimKey,
+			long priority)
+		throws SystemException {
+
+		int count = articlePersistence.countByNotR_G_P_P_L(
+			resourcePrimKey, groupId, parentResourcePrimKey, priority,
+			ArticleConstants.LATEST_VERSION);
+
+		if (count == 0) {
+			return priority;
+		}
+
+		List<Article> articles = getSiblingArticles(
+			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticlePriorityComparator(true));
+
+		long newPriority = 0;
+		long value = 0;
+
+		for (Article article : articles) {
+			value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+
+			if (article.getPriority() == priority) {
+				newPriority = value;
+
+				value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+			}
+
+			if (article.getResourcePrimKey() != resourcePrimKey) {
+				article.setPriority(value);
+
+				articlePersistence.update(article, false);
+			}
+		}
+
+		return newPriority;
 	}
 
 	protected void notifySubscribers(

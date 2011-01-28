@@ -27,6 +27,7 @@ import com.liferay.knowledgebase.service.persistence.ArticleUtil;
 import com.liferay.knowledgebase.service.persistence.CommentUtil;
 import com.liferay.knowledgebase.service.persistence.TemplateUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.PriorityHelperUtil;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
@@ -370,8 +371,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		throws SystemException {
 
 		// Sort articles to simplify import code. Order articles by depth and
-		// sort siblings by priority. See AdminPortletDataHandler#importArticle
-		// and ArticleLocalServiceImpl#updateDisplayOrder.
+		// sort siblings by priority. See AdminPortletDataHandler#importArticle.
 
 		List<Article> articles = new ArrayList<Article>();
 
@@ -411,7 +411,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected void importArticle(
-			PortletDataContext portletDataContext,
+			PortletDataContext portletDataContext, int humanPriority,
 			Map<Long, Long> resourcePrimKeys, Map<String, String> dirNames,
 			Element articleElement, Article article)
 		throws Exception {
@@ -419,17 +419,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		long userId = portletDataContext.getUserId(article.getUserUuid());
 		long parentResourcePrimKey = MapUtil.getLong(
 			resourcePrimKeys, article.getParentResourcePrimKey());
-		int priority = article.getPriority();
 		String dirName = MapUtil.getString(
 			dirNames, String.valueOf(article.getResourcePrimKey()));
-
-		int maxPriority = ArticleLocalServiceUtil.getSiblingArticlesCount(
-			portletDataContext.getScopeGroupId(), parentResourcePrimKey,
-			WorkflowConstants.STATUS_APPROVED);
-
-		if (priority > maxPriority) {
-			priority = maxPriority;
-		}
 
 		long[] assetCategoryIds = null;
 
@@ -468,10 +459,15 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			if (existingArticle == null) {
 				importedArticle = importArticleVersions(
 					portletDataContext, article.getUuid(),
-					parentResourcePrimKey, priority, dirName, assetCategoryIds,
+					parentResourcePrimKey, dirName, assetCategoryIds,
 					assetTagNames, articleElement);
 			}
 			else {
+				long priority = PriorityHelperUtil.getPriority(
+					existingArticle.getGroupId(),
+					existingArticle.getResourcePrimKey(), parentResourcePrimKey,
+					humanPriority);
+
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
 					userId, existingArticle.getResourcePrimKey(),
 					parentResourcePrimKey, article.getTitle(),
@@ -481,8 +477,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 		else {
 			importedArticle = importArticleVersions(
-				portletDataContext, null, parentResourcePrimKey, priority,
-				dirName, assetCategoryIds, assetTagNames, articleElement);
+				portletDataContext, null, parentResourcePrimKey, dirName,
+				assetCategoryIds, assetTagNames, articleElement);
 		}
 
 		resourcePrimKeys.put(
@@ -550,9 +546,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected Article importArticleVersions(
 			PortletDataContext portletDataContext, String uuid,
-			long parentResourcePrimKey, int priority, String dirName,
-			long[] assetCategoryIds, String[] assetTagNames,
-			Element articleElement)
+			long parentResourcePrimKey, String dirName, long[] assetCategoryIds,
+			String[] assetTagNames, Element articleElement)
 		throws Exception {
 
 		Element versionsElement = articleElement.element("versions");
@@ -560,6 +555,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		List<Element> articleElements = versionsElement.elements("article");
 
 		Article importedArticle = null;
+
+		long priority = PriorityHelperUtil.getPriority(
+			portletDataContext.getScopeGroupId(), 0, parentResourcePrimKey, 0);
 
 		for (Element curArticleElement : articleElements) {
 			Article curArticle =
@@ -633,7 +631,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					portletDataContext, importId, dirNames, rootElement);
 			}
 
-			for (Element articleElement : rootElement.elements("article")) {
+			List<Element> articleElements = rootElement.elements("article");
+
+			for (int i = 0; i < articleElements.size(); i++) {
+				Element articleElement = articleElements.get(i);
+
 				String path = articleElement.attributeValue("path");
 
 				if (!portletDataContext.isPathNotProcessed(path)) {
@@ -644,7 +646,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					(Article)portletDataContext.getZipEntryAsObject(path);
 
 				importArticle(
-					portletDataContext, resourcePrimKeys, dirNames,
+					portletDataContext, i + 1, resourcePrimKeys, dirNames,
 					articleElement, article);
 			}
 

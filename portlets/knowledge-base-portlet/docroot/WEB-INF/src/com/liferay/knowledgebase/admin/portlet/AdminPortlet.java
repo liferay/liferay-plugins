@@ -33,6 +33,7 @@ import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.PriorityHelperUtil;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
@@ -344,10 +345,15 @@ public class AdminPortlet extends MVCPortlet {
 		String title = ParamUtil.getString(actionRequest, "title");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
-		int priority = ParamUtil.getInteger(actionRequest, "priority");
+		int humanPriority = ParamUtil.getInteger(
+			actionRequest, "humanPriority");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
+
+		long priority = PriorityHelperUtil.getPriority(
+			themeDisplay.getScopeGroupId(), resourcePrimKey,
+			parentResourcePrimKey, humanPriority);
 
 		Article article = null;
 
