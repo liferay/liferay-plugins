@@ -250,7 +250,7 @@ public class ArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.Article addArticle(
 		long userId, long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String content, java.lang.String description, long priority,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -423,7 +423,7 @@ public class ArticleLocalServiceUtil {
 	public static com.liferay.knowledgebase.model.Article updateArticle(
 		long userId, long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+		java.lang.String description, long priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -459,15 +459,6 @@ public class ArticleLocalServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateAttachments(companyId, resourcePrimKey, dirName);
-	}
-
-	public static com.liferay.knowledgebase.model.Article updateDisplayOrder(
-		com.liferay.knowledgebase.model.Article article,
-		long parentResourcePrimKey, int priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .updateDisplayOrder(article, parentResourcePrimKey, priority);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateStatus(

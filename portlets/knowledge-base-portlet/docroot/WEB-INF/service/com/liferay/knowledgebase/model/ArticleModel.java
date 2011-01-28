@@ -280,14 +280,14 @@ public interface ArticleModel extends BaseModel<Article> {
 	 *
 	 * @return the priority of this article
 	 */
-	public int getPriority();
+	public long getPriority();
 
 	/**
 	 * Sets the priority of this article.
 	 *
 	 * @param priority the priority of this article
 	 */
-	public void setPriority(int priority);
+	public void setPriority(long priority);
 
 	/**
 	 * Gets the latest of this article.

@@ -25,7 +25,7 @@
 			<hint name="display-height">40</hint>
 			<hint name="display-width">98%</hint>
 		</field>
-		<field name="priority" type="int" />
+		<field name="priority" type="long" />
 		<field name="latest" type="int" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />

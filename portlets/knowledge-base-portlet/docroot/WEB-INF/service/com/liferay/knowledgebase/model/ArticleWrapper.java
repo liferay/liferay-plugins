@@ -323,7 +323,7 @@ public class ArticleWrapper implements Article {
 	*
 	* @return the priority of this article
 	*/
-	public int getPriority() {
+	public long getPriority() {
 		return _article.getPriority();
 	}
 
@@ -332,7 +332,7 @@ public class ArticleWrapper implements Article {
 	*
 	* @param priority the priority of this article
 	*/
-	public void setPriority(int priority) {
+	public void setPriority(long priority) {
 		_article.setPriority(priority);
 	}
 

@@ -209,9 +209,9 @@ public class ClpSerializer {
 					method13.invoke(newModel, value13);
 
 					Method method14 = newModelClass.getMethod("setPriority",
-							new Class[] { Integer.TYPE });
+							new Class[] { Long.TYPE });
 
-					Integer value14 = new Integer(oldCplModel.getPriority());
+					Long value14 = new Long(oldCplModel.getPriority());
 
 					method14.invoke(newModel, value14);
 
@@ -611,7 +611,7 @@ public class ClpSerializer {
 
 					Method method14 = oldModelClass.getMethod("getPriority");
 
-					Integer value14 = (Integer)method14.invoke(oldModel,
+					Long value14 = (Long)method14.invoke(oldModel,
 							(Object[])null);
 
 					newModel.setPriority(value14);

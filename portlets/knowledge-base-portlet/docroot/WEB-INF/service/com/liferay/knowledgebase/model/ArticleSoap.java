@@ -215,11 +215,11 @@ public class ArticleSoap implements Serializable {
 		_description = description;
 	}
 
-	public int getPriority() {
+	public long getPriority() {
 		return _priority;
 	}
 
-	public void setPriority(int priority) {
+	public void setPriority(long priority) {
 		_priority = priority;
 	}
 
@@ -277,7 +277,7 @@ public class ArticleSoap implements Serializable {
 	private String _title;
 	private String _content;
 	private String _description;
-	private int _priority;
+	private long _priority;
 	private int _latest;
 	private int _status;
 	private long _statusByUserId;

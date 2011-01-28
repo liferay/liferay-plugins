@@ -225,7 +225,7 @@ public interface ArticleLocalService {
 
 	public com.liferay.knowledgebase.model.Article addArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String content, java.lang.String description, long priority,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -344,7 +344,7 @@ public interface ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+		java.lang.String description, long priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -364,12 +364,6 @@ public interface ArticleLocalService {
 
 	public java.lang.String updateAttachments(long companyId,
 		long resourcePrimKey, java.lang.String dirName)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.knowledgebase.model.Article updateDisplayOrder(
-		com.liferay.knowledgebase.model.Article article,
-		long parentResourcePrimKey, int priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

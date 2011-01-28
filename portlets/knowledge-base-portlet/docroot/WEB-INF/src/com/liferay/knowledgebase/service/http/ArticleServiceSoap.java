@@ -67,7 +67,7 @@ import java.rmi.RemoteException;
 public class ArticleServiceSoap {
 	public static com.liferay.knowledgebase.model.ArticleSoap addArticle(
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String content, java.lang.String description, long priority,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
@@ -341,7 +341,7 @@ public class ArticleServiceSoap {
 	public static com.liferay.knowledgebase.model.ArticleSoap updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+		java.lang.String description, long priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {

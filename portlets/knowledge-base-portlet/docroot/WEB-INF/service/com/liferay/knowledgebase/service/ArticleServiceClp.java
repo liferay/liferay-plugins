@@ -27,7 +27,7 @@ public class ArticleServiceClp implements ArticleService {
 
 		_addArticleMethodKey0 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addArticle", long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class, int.class,
+				java.lang.String.class, java.lang.String.class, long.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -109,7 +109,7 @@ public class ArticleServiceClp implements ArticleService {
 		_updateArticleMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateArticle", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, int.class, java.lang.String.class,
+				java.lang.String.class, long.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_updateAttachmentsMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -119,7 +119,7 @@ public class ArticleServiceClp implements ArticleService {
 
 	public com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String content, java.lang.String description, long priority,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -792,7 +792,7 @@ public class ArticleServiceClp implements ArticleService {
 	public com.liferay.knowledgebase.model.Article updateArticle(
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+		java.lang.String description, long priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

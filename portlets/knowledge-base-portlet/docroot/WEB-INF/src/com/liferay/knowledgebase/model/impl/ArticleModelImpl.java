@@ -78,14 +78,14 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 			{ "title", Types.VARCHAR },
 			{ "content", Types.CLOB },
 			{ "description", Types.VARCHAR },
-			{ "priority", Types.INTEGER },
+			{ "priority", Types.BIGINT },
 			{ "latest", Types.INTEGER },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title VARCHAR(150) null,content TEXT null,description STRING null,priority INTEGER,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title VARCHAR(150) null,content TEXT null,description STRING null,priority LONG,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";
 	public static final String ORDER_BY_JPQL = " ORDER BY article.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.modifiedDate DESC";
@@ -349,11 +349,11 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		_description = description;
 	}
 
-	public int getPriority() {
+	public long getPriority() {
 		return _priority;
 	}
 
-	public void setPriority(int priority) {
+	public void setPriority(long priority) {
 		_priority = priority;
 	}
 
@@ -709,7 +709,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	private String _title;
 	private String _content;
 	private String _description;
-	private int _priority;
+	private long _priority;
 	private int _latest;
 	private int _status;
 	private long _statusByUserId;

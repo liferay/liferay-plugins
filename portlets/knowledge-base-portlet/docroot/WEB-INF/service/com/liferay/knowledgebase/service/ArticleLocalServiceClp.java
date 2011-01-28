@@ -77,7 +77,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 
 		_addArticleMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addArticle", long.class, long.class, java.lang.String.class,
-				java.lang.String.class, java.lang.String.class, int.class,
+				java.lang.String.class, java.lang.String.class, long.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
@@ -163,7 +163,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		_updateArticleMethodKey37 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateArticle", long.class, long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
-				java.lang.String.class, int.class, java.lang.String.class,
+				java.lang.String.class, long.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
 		_updateArticleResourcesMethodKey38 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -180,12 +180,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 				"updateAttachments", long.class, long.class,
 				java.lang.String.class);
 
-		_updateDisplayOrderMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateDisplayOrder",
-				com.liferay.knowledgebase.model.Article.class, long.class,
-				int.class);
-
-		_updateStatusMethodKey42 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey41 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
@@ -591,7 +586,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 
 	public com.liferay.knowledgebase.model.Article addArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, int priority,
+		java.lang.String content, java.lang.String description, long priority,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1276,7 +1271,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
 		long resourcePrimKey, long parentResourcePrimKey,
 		java.lang.String title, java.lang.String content,
-		java.lang.String description, int priority, java.lang.String dirName,
+		java.lang.String description, long priority, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1413,41 +1408,6 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.knowledgebase.model.Article updateDisplayOrder(
-		com.liferay.knowledgebase.model.Article article,
-		long parentResourcePrimKey, int priority)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_updateDisplayOrderMethodKey41,
-				ClpSerializer.translateInput(article), parentResourcePrimKey,
-				priority);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
-	}
-
 	public com.liferay.knowledgebase.model.Article updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -1455,7 +1415,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey42,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey41,
 				userId, resourcePrimKey, status,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -1529,6 +1489,5 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	private MethodKey _updateArticleResourcesMethodKey38;
 	private MethodKey _updateAssetMethodKey39;
 	private MethodKey _updateAttachmentsMethodKey40;
-	private MethodKey _updateDisplayOrderMethodKey41;
-	private MethodKey _updateStatusMethodKey42;
+	private MethodKey _updateStatusMethodKey41;
 }
