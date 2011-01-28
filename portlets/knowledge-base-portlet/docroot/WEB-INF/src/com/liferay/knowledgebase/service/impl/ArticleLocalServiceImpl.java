@@ -872,27 +872,48 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return priority;
 		}
 
-		List<Article> articles = getSiblingArticles(
-			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator(true));
+		int total = getSiblingArticlesCount(
+			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		int pages = total / PriorityHelperUtil.INTERVAL_SIZE;
 
 		long newPriority = 0;
 		long value = 0;
 
-		for (Article article : articles) {
-			value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * PriorityHelperUtil.INTERVAL_SIZE);
+			int end = start + PriorityHelperUtil.INTERVAL_SIZE;
 
-			if (article.getPriority() == priority) {
-				newPriority = value;
+			List<Article> articles = getSiblingArticles(
+				groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
+				start, end, new ArticlePriorityComparator(true));
 
-				value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+			if (articles.isEmpty()) {
+				continue;
 			}
 
-			if (article.getResourcePrimKey() != resourcePrimKey) {
-				article.setPriority(value);
+			Article lastArticle = articles.get(articles.size() - 1);
 
-				articlePersistence.update(article, false);
+			if (lastArticle.getPriority() < priority) {
+				value = lastArticle.getPriority();
+
+				continue;
+			}
+
+			for (Article article : articles) {
+				value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+
+				if (article.getPriority() == priority) {
+					newPriority = value;
+
+					value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+				}
+
+				if (article.getResourcePrimKey() != resourcePrimKey) {
+					article.setPriority(value);
+
+					articlePersistence.update(article, false);
+				}
 			}
 		}
 
