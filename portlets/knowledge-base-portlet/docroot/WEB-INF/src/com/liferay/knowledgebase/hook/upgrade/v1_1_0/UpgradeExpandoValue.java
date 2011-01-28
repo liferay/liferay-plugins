@@ -36,7 +36,7 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 		}
 
 		if (hasExpandoColumn(expandoTable, "portletIds")) {
-			upgradeExpandoValues(expandoTable);
+			updateExpandoValues(expandoTable);
 		}
 	}
 
@@ -66,7 +66,7 @@ public class UpgradeExpandoValue extends UpgradeProcess {
 		return true;
 	}
 
-	protected void upgradeExpandoValues(ExpandoTable expandoTable)
+	protected void updateExpandoValues(ExpandoTable expandoTable)
 		throws Exception {
 
 		ExpandoColumnLocalServiceUtil.deleteColumn(

@@ -84,9 +84,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
-		Date now = new Date();
-
 		priority = getPriority(groupId, 0, parentResourcePrimKey, priority);
+		Date now = new Date();
 
 		validate(title, content);
 
@@ -504,11 +503,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		Article oldArticle = articlePersistence.findByResourcePrimKey_First(
 			resourcePrimKey, new ArticleVersionComparator());
 		int version = oldArticle.getVersion();
-		int status = WorkflowConstants.STATUS_DRAFT;
-
 		priority = getPriority(
 			oldArticle.getGroupId(), resourcePrimKey, parentResourcePrimKey,
 			priority);
+		int status = WorkflowConstants.STATUS_DRAFT;
 
 		validate(title, content);
 

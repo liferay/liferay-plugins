@@ -29,11 +29,11 @@ public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
 		if (tableHasData("KB_Article")) {
-			upgradeArticles();
+			updateArticles();
 		}
 	}
 
-	protected void upgradeArticles() throws Exception {
+	protected void updateArticles() throws Exception {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

@@ -23,11 +23,11 @@ public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
 		if (!tableHasColumn("KB_Article", "status")) {
-			upgradeArticles();
+			updateArticles();
 		}
 	}
 
-	protected void upgradeArticles() throws Exception {
+	protected void updateArticles() throws Exception {
 		runSQL("alter table KB_Article add status INTEGER");
 		runSQL("alter table KB_Article add statusByUserId LONG");
 		runSQL("alter table KB_Article add statusByUserName VARCHAR(75)");
