@@ -44,6 +44,15 @@ a:active {
 	font-size: 1.1em;
 }
 
+/* ---------- Heading ---------- */
+
+#skip-to-content,
+#banner h2.community-title,
+#banner h3.page-title,
+#navigation h1 {
+	display: none;
+}
+
 /* ---------- Banner ---------- */
 
 #banner {
@@ -266,6 +275,12 @@ a:active {
 
 .columns-3 #column-2 {
 	width: 50%;
+}
+
+/* ---------- Footer ---------- */
+
+#footer {
+	display: none;
 }
 
 /* ---------- Application ---------- */
