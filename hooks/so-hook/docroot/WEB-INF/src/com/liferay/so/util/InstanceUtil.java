@@ -76,10 +76,6 @@ import javax.portlet.PortletPreferences;
  */
 public class InstanceUtil {
 
-	public static void initLayoutSetPrototype(long companyId) throws Exception {
-		setupLayoutSetPrototype(companyId);
-	}
-
 	public static void initInstance(long companyId) {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
@@ -95,6 +91,10 @@ public class InstanceUtil {
 		finally {
 			PortletPreferencesThreadLocal.setStrict(true);
 		}
+	}
+
+	public static void initLayoutSetPrototype(long companyId) throws Exception {
+		setupLayoutSetPrototype(companyId);
 	}
 
 	public static void initRuntime(long companyId) {
@@ -302,19 +302,6 @@ public class InstanceUtil {
 		portletSetup.store();
 	}
 
-	protected static void setInitialized(long companyId) throws Exception {
-		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
-
-		UnicodeProperties typeSettingsProperties =
-			group.getTypeSettingsProperties();
-
-		typeSettingsProperties.setProperty(
-			"social-office-initialized", Boolean.TRUE.toString());
-
-		GroupLocalServiceUtil.updateGroup(
-			group.getGroupId(), typeSettingsProperties.toString());
-	}
-
 	protected static void setupExpando(long companyId) throws Exception {
 		ExpandoTable expandoTable = null;
 
@@ -339,7 +326,7 @@ public class InstanceUtil {
 		catch (Exception e) {
 		}
 
-		// Layout Set Prototype
+		// Layout set prototype
 
 		try {
 			expandoTable = ExpandoTableLocalServiceUtil.addTable(
@@ -359,6 +346,19 @@ public class InstanceUtil {
 		}
 		catch (Exception e) {
 		}
+	}
+
+	protected static void setInitialized(long companyId) throws Exception {
+		Group group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"social-office-initialized", Boolean.TRUE.toString());
+
+		GroupLocalServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
 	protected static void setupLayoutSetPrototype(long companyId)

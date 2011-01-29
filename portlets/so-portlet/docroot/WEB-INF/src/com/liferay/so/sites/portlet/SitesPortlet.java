@@ -17,14 +17,10 @@
 
 package com.liferay.so.sites.portlet;
 
-import com.liferay.portal.DuplicateGroupException;
-import com.liferay.portal.GroupNameException;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -50,8 +46,6 @@ public class SitesPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long userId = PortalUtil.getUserId(actionRequest);
-
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 		int type = ParamUtil.getInteger(actionRequest, "type");
@@ -65,8 +59,6 @@ public class SitesPortlet extends MVCPortlet {
 		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
 		expandoBridge.setAttribute("socialOfficeEnabled", Boolean.TRUE);
-
-		// Layout set prototypes
 
 		long publicLayoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "publicLayoutSetPrototypeId");
