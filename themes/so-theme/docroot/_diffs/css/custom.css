@@ -57,100 +57,6 @@ a:active {
 	padding-top: 15px;
 }
 
-/* ---------- Top Navigation ---------- */
-
-#navigation-top {
-	position: absolute;
-	right: 0;
-	top: 0;
-	z-index: 2;
-}
-
-#navigation-top div {
-	background: url(../images/custom/navigation_top.png);
-	float: left;
-	height: 31px;
-}
-
-#navigation-top .content-controls {
-	background: none;
-	margin-right: 5px;
-}
-
-#navigation-top .left-side {
-	background-position: left 31px;
-	width: 3px;
-}
-
-#navigation-top .right-side {
-	background-position: right 31px;
-	width: 3px;
-}
-
-#navigation-top ul {
-	margin: 0;
-}
-
-#navigation-top li {
-	border-left: 1px solid #B0BAFF;
-	display: inline;
-	float: left;
-}
-
-#navigation-top li a {
-	display: block;
-	padding: 8px;
-}
-
-#navigation-top .child-menu {
-	background: #FFF;
-	border: 1px solid #B0BAFF;
-	border-top: none;
-	position: absolute;
-	right: 0;
-	top: 30px;
-	width: 239px;
-	z-index: 20;
-}
-
-#navigation-top .child-menu li {
-	border: none;
-}
-
-#navigation-top .child-menu li a {
-	border-top: 1px solid #B0BAFF;
-	width: 223px;
-}
-
-#navigation-top .child-menu li a:hover {
-	background: #F6F9FB;
-}
-
-#navigation-top .no-border {
-	border-left: none;
-}
-
-#navigation-top .my-sites a.heading {
-	background: transparent url(../images/custom/menu_arrow.png) no-repeat 7px 14px;
-	padding: 8px 8px 8px 19px;
-}
-
-#navigation-top .my-search {
-	background: none;
-	margin-right: 15px;
-	padding-top: 2px;
-}
-
-#navigation-top .sign-out a {
-	color: #955;
-}
-
-#navigation-top .open .heading {
-	background: #FFF;
-	position: relative;
-	z-index: 21;
-}
-
 /* ---------- Navigation ---------- */
 
 #navigation {
@@ -289,6 +195,10 @@ a:active {
 	color: #8F0920;
 	font-size: 18px;
 	font-weight: bold;
+}
+
+.portlet-title img {
+	display: none;
 }
 
 .portlet-topper-toolbar {
@@ -1213,36 +1123,6 @@ table.calendar {
 
 .portlet-document-library .sidebar .file-entries li {
 	height: 17px;
-}
-
-/* Log In */
-
-.portlet-login {
-	margin: 0 auto;
-	padding: 15px;
-	width: 300px;
-}
-
-.page-maximized .portlet-login {
-	width: 390px;
-}
-
-.portlet-login .portlet-content {
-	background: #F0F5F7;
-	border: 1px solid #B0BAFF;
-	margin-top: 10px;
-	padding: 10px;
-}
-
-.portlet-login .navigation {
-	background: #FFF;
-	border: 1px solid #D7DCFF;
-	margin-top: 12px;
-}
-
-.portlet-login .navigation li {
-	float: none;
-	padding: .5em;
 }
 
 /* Message Boards */
