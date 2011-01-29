@@ -61,13 +61,6 @@ import org.json.JSONObject;
  */
 public class ShindigUtil {
 
-	public static String convertFromOpenSsl(String key) {
-		key = key.replaceAll(_OPEN_SSL_A_Z, StringPool.BLANK);
-		key = key.replace(StringPool.NEW_LINE, StringPool.BLANK);
-
-		return key;
-	}
-
 	public static String createSecurityToken(
 			String ownerId, long viewerId, String appId, String domain,
 			String appUrl, long moduleId, String activeUrl)
@@ -220,8 +213,6 @@ public class ShindigUtil {
 	}
 
 	private static final String _COLUMN_USER_PREFS = "USER_PREFS_";
-
-	private static final String _OPEN_SSL_A_Z = "-----[A-Z ]*-----";
 
 	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
 

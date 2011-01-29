@@ -21,7 +21,6 @@ import com.google.inject.Singleton;
 import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.opensocial.model.OAuthConsumerConstants;
 import com.liferay.opensocial.model.impl.OAuthConsumerImpl;
-import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -49,6 +48,13 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 
 	public OAuthStore get() {
 		return _oAuthStore;
+	}
+
+	private String _convertFromOpenSsl(String key) {
+		key = key.replaceAll(_OPEN_SSL_A_Z, StringPool.BLANK);
+		key = key.replace(StringPool.NEW_LINE, StringPool.BLANK);
+
+		return key;
 	}
 
 	private OAuthConsumer _getOAuthConsumer(
@@ -85,7 +91,7 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 			}
 		}
 
-		consumerSecret = ShindigUtil.convertFromOpenSsl(consumerSecret);
+		consumerSecret = _convertFromOpenSsl(consumerSecret);
 
 		oAuthConsumer.setConsumerSecret(consumerSecret);
 		oAuthConsumer.setKeyType(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE);
@@ -99,6 +105,8 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 	private static final String _DEFAULT_SERVICE_NAME = "LIFERAY";
 
 	private static final String _KEY_DIR = "/data/opensocial/";
+
+	private static final String _OPEN_SSL_A_Z = "-----[A-Z ]*-----";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		LiferayOAuthStoreProvider.class);

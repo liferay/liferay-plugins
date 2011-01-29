@@ -17,7 +17,6 @@ package com.liferay.opensocial.service.impl;
 import com.liferay.opensocial.model.OAuthConsumer;
 import com.liferay.opensocial.model.OAuthConsumerConstants;
 import com.liferay.opensocial.service.base.OAuthConsumerLocalServiceBaseImpl;
-import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
@@ -124,7 +123,7 @@ public class OAuthConsumerLocalServiceImpl
 		throws PortalException, SystemException {
 
 		if (keyType.equals(OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE)) {
-			consumerSecret = ShindigUtil.convertFromOpenSsl(consumerSecret);
+			consumerSecret = StringPool.BLANK;
 		}
 
 		OAuthConsumer oAuthConsumer = oAuthConsumerPersistence.findByPrimaryKey(
