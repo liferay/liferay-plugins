@@ -26,56 +26,6 @@ Group group = (Group)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
-	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
-		<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="editURL">
-			<liferay-portlet:param name="struts_action" value="/communities/edit_community" />
-			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
-			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<%
-		String taglibEditURL = "javascript:Liferay.SO.Sites.displayPopup('" + editURL + "','" + LanguageUtil.get(pageContext, "edit-site") + "');";
-		%>
-
-		<liferay-ui:icon
-			image="edit"
-			url="<%= taglibEditURL %>"
-		/>
-	</c:if>
-
-	<c:if test="<%= permissionChecker.isCommunityAdmin(group.getGroupId()) %>">
-		<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" var="redirectURL">
-			<liferay-portlet:param name="jspPage" value="/sites/view.jsp" />
-		</liferay-portlet:renderURL>
-
-		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="manageMembersURL">
-			<liferay-portlet:param name="jspPage" value="/sites/edit_members.jsp" />
-			<liferay-portlet:param name="redirect" value="<%= redirectURL %>" />
-			<liferay-portlet:param name="returnToFullPageURL" value="<%= redirectURL %>" />
-			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<liferay-ui:icon
-			image="assign"
-			message="manage-members"
-			url="<%= manageMembersURL %>"
-		/>
-	</c:if>
-
-	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
-		<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="manageTeamsURL">
-			<liferay-portlet:param name="struts_action" value="/communities/view_teams" />
-			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
-			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</liferay-portlet:renderURL>
-
-		<liferay-ui:icon
-			image="group"
-			message="manage-teams"
-			url="<%= manageTeamsURL %>"
-		/>
-	</c:if>
-
 	<c:choose>
 		<c:when test="<%= !GroupLocalServiceUtil.hasUserGroup(user.getUserId(), group.getGroupId()) %>">
 			<c:if test="<%= group.getType() == GroupConstants.TYPE_COMMUNITY_OPEN %>">
@@ -108,15 +58,4 @@ Group group = (Group)row.getObject();
 			/>
 		</c:when>
 	</c:choose>
-
-	<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.DELETE) %>">
-		<liferay-portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="deleteURL">
-			<liferay-portlet:param name="struts_action" value="/communities/edit_community" />
-			<liferay-portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-			<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
-			<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-		</liferay-portlet:actionURL>
-
-		<liferay-ui:icon-delete url="<%= deleteURL %>" />
-	</c:if>
 </liferay-ui:icon-menu>

@@ -54,6 +54,12 @@ import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletPreferencesThreadLocal;
+import com.liferay.portlet.expando.model.ExpandoColumnConstants;
+import com.liferay.portlet.expando.model.ExpandoTable;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
+import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
 import com.liferay.util.portlet.PortletProps;
 
 import java.util.HashMap;
@@ -70,15 +76,16 @@ import javax.portlet.PortletPreferences;
  */
 public class InstanceUtil {
 
-	public static void initCommunity(long companyId) throws Exception {
-		setupCommunity(companyId);
+	public static void initLayoutSetPrototype(long companyId) throws Exception {
+		setupLayoutSetPrototype(companyId);
 	}
 
 	public static void initInstance(long companyId) {
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
-			setupCommunity(companyId);
+			setupExpando(companyId);
+			setupLayoutSetPrototype(companyId);
 			setupUsers(companyId);
 
 			setInitialized(companyId);
@@ -308,11 +315,62 @@ public class InstanceUtil {
 			group.getGroupId(), typeSettingsProperties.toString());
 	}
 
-	protected static void setupCommunity(long companyId)
+	protected static void setupExpando(long companyId) throws Exception {
+		ExpandoTable expandoTable = null;
+
+		// Group
+
+		try {
+			expandoTable = ExpandoTableLocalServiceUtil.addTable(
+				Group.class.getName(),
+				ExpandoTableConstants.DEFAULT_TABLE_NAME);
+		}
+		catch (Exception e) {
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				Group.class.getName(),
+				ExpandoTableConstants.DEFAULT_TABLE_NAME);
+		}
+
+		try {
+			ExpandoColumnLocalServiceUtil.addColumn(
+				expandoTable.getTableId(), "socialOfficeEnabled",
+				ExpandoColumnConstants.BOOLEAN);
+		}
+		catch (Exception e) {
+		}
+
+		// Layout Set Prototype
+
+		try {
+			expandoTable = ExpandoTableLocalServiceUtil.addTable(
+				LayoutSetPrototype.class.getName(),
+				ExpandoTableConstants.DEFAULT_TABLE_NAME);
+		}
+		catch (Exception e) {
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
+				LayoutSetPrototype.class.getName(),
+				ExpandoTableConstants.DEFAULT_TABLE_NAME);
+		}
+
+		try {
+			ExpandoColumnLocalServiceUtil.addColumn(
+				expandoTable.getTableId(), "socialOfficeDefault",
+				ExpandoColumnConstants.BOOLEAN);
+		}
+		catch (Exception e) {
+		}
+	}
+
+	protected static void setupLayoutSetPrototype(long companyId)
 		throws Exception {
 
 		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
 			companyId, "Social Office Community");
+
+		ExpandoValueLocalServiceUtil.addValue(
+			LayoutSetPrototype.class.getName(),
+			ExpandoTableConstants.DEFAULT_TABLE_NAME, "socialOfficeDefault",
+			layoutSetPrototype.getLayoutSetPrototypeId(), true);
 
 		Group group = layoutSetPrototype.getGroup();
 

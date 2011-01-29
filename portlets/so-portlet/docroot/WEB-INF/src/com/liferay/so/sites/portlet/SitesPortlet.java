@@ -17,16 +17,23 @@
 
 package com.liferay.so.sites.portlet;
 
+import com.liferay.portal.DuplicateGroupException;
+import com.liferay.portal.GroupNameException;
+import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
-import com.liferay.portal.model.UserGroupRole;
-import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
-import com.liferay.portal.service.UserGroupRoleServiceUtil;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupServiceUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
-
-import java.util.Iterator;
-import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -36,46 +43,46 @@ import javax.portlet.ActionResponse;
  */
 public class SitesPortlet extends MVCPortlet {
 
-	public void updateRoles(
+	public void addCommunity(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long userId = ParamUtil.getLong(actionRequest, "userId");
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
-		long roleId = ParamUtil.getLong(actionRequest, "roleId");
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		List<UserGroupRole> userGroupRoles =
-			UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId, groupId);
+		long userId = PortalUtil.getUserId(actionRequest);
 
-		Iterator<UserGroupRole> itr = userGroupRoles.iterator();
+		String name = ParamUtil.getString(actionRequest, "name");
+		String description = ParamUtil.getString(actionRequest, "description");
+		int type = ParamUtil.getInteger(actionRequest, "type");
 
-		while (itr.hasNext()) {
-			UserGroupRole userGroupRole = itr.next();
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Group.class.getName(), actionRequest);
 
-			Role role = userGroupRole.getRole();
+		Group group = GroupServiceUtil.addGroup(
+			name, description, type, StringPool.BLANK, true, serviceContext);
 
-			if ((role.getType() != RoleConstants.TYPE_COMMUNITY) ||
-				(role.getName().equals(RoleConstants.COMMUNITY_MEMBER))) {
+		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
-				itr.remove();
-			}
-		}
+		expandoBridge.setAttribute("socialOfficeEnabled", Boolean.TRUE);
 
-		long[] deleteRoleIds = new long[userGroupRoles.size()];
+		// Layout set prototypes
 
-		for (int i = 0; i < userGroupRoles.size(); i++) {
-			UserGroupRole userGroupRole = userGroupRoles.get(i);
+		long publicLayoutSetPrototypeId = ParamUtil.getLong(
+			actionRequest, "publicLayoutSetPrototypeId");
+		long privateLayoutSetPrototypeId = ParamUtil.getLong(
+			actionRequest, "privateLayoutSetPrototypeId");
 
-			deleteRoleIds[i] = userGroupRole.getRoleId();
-		}
-
-		UserGroupRoleServiceUtil.deleteUserGroupRoles(
-			userId, groupId, deleteRoleIds);
-
-		if (roleId > 0) {
-			UserGroupRoleServiceUtil.addUserGroupRoles(
-				userId, groupId, new long[] {roleId});
-		}
+		PortalClassInvoker.invoke(
+			true, _applyLayoutSetPrototypesMethodKey, group,
+			publicLayoutSetPrototypeId, privateLayoutSetPrototypeId);
 	}
+
+	private static final String _CLASS_NAME =
+		"com.liferay.portlet.communities.util.CommunitiesUtil";
+
+	private static MethodKey _applyLayoutSetPrototypesMethodKey = new MethodKey(
+		_CLASS_NAME, "applyLayoutSetPrototypes", Group.class, long.class,
+		long.class);
 
 }

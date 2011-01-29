@@ -34,7 +34,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>5</portlet-name>
-		<header-portlet-javascript>/sites/javascript.js</header-portlet-javascript>
+		<header-portlet-javascript>/sites/js/main.js</header-portlet-javascript>
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>so-portlet-sites</css-class-wrapper>
 	</portlet>

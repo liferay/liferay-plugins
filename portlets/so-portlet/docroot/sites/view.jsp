@@ -57,9 +57,8 @@ pageContext.setAttribute("portletURL", portletURL);
 		/>
 
 		<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
-			<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" portletName="<%= PortletKeys.COMMUNITIES %>" var="addSiteURL">
-				<liferay-portlet:param name="struts_action" value="/communities/edit_community" />
-				<liferay-portlet:param name="redirect" value="<%= currentURL %>" />
+			<liferay-portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="addSiteURL">
+				<liferay-portlet:param name="jspPage" value="/sites/edit_community.jsp" />
 			</liferay-portlet:renderURL>
 
 			<a class="add-site" href="javascript:;" onClick="Liferay.SO.Sites.displayPopup('<%= addSiteURL %>','<liferay-ui:message key="add-site" />');"><liferay-ui:message key="add-site" /></a>
@@ -117,8 +116,12 @@ pageContext.setAttribute("portletURL", portletURL);
 				<liferay-portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 			</liferay-portlet:actionURL>
 
-			<div>
-				<a href="<%= rowURL %>"><%= HtmlUtil.escape(group.getName()) %></a>
+			<%
+			boolean socialOfficeEnabled = GetterUtil.getBoolean(group.getExpandoBridge().getAttribute("socialOfficeEnabled"));
+			%>
+
+			<div<%= socialOfficeEnabled ? " class=\"social-office-enabled\"" : StringPool.BLANK %>>
+				<a href="<%= rowURL %>"><%= HtmlUtil.escape(group.getDescriptiveName()) %></a>
 
 				<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 					<img alt="arrow" class="description-toggle" src="<%= themeDisplay.getPathThemeImage() %>/custom/arrow_right.png" />
