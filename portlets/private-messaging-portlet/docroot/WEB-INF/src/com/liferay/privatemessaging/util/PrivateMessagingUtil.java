@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
@@ -125,7 +126,10 @@ public class PrivateMessagingUtil {
 		List<MBMessage> filteredMBMessages = new ArrayList<MBMessage>();
 
 		for (MBMessage mbMessage : mbMessages) {
-			if (mbMessage.getMessageId() >= topMBMessage.getMessageId()) {
+			int compareTo = DateUtil.compareTo(
+				topMBMessage.getCreateDate(), mbMessage.getCreateDate());
+
+			if (compareTo <= 0) {
 				filteredMBMessages.add(mbMessage);
 			}
 		}
