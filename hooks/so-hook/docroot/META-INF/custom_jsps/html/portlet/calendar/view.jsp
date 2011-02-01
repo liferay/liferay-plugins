@@ -20,7 +20,7 @@
 <%@ include file="/html/portlet/calendar/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
+String tabs1 = ParamUtil.getString(request, "tabs1", "month");
 
 String eventType = ParamUtil.getString(request, "eventType");
 
@@ -34,13 +34,53 @@ portletURL.setParameter("tabs1", tabs1);
 
 <form method="post" name="<portlet:namespace />fm">
 
-<c:if test='<%= !tabs1.equals("events") %>'>
-	<%@ include file="/html/portlet/calendar/mini_calendar.jsp" %>
+<script type="text/javascript">
+	function <portlet:namespace />updateCalendar(month, day, year) {
+		location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="eventType" value="<%= eventType %>" /></portlet:renderURL>&<portlet:namespace />month=' + month + '&<portlet:namespace />day=' + day + '&<portlet:namespace />year=' + year;
+	}
+</script>
 
-	<liferay-util:include page="/html/portlet/calendar/tabs1.jsp" />
+<%
+Set data = new HashSet();
 
-	<br />
-</c:if>
+for (int i = 1; i <= selCal.getActualMaximum(Calendar.DATE); i++) {
+	Calendar tempCal = (Calendar)selCal.clone();
+
+	tempCal.set(Calendar.MONTH, selMonth);
+	tempCal.set(Calendar.DATE, i);
+	tempCal.set(Calendar.YEAR, selYear);
+
+	boolean hasEvents = CalEventLocalServiceUtil.hasEvents(scopeGroupId, tempCal, eventType);
+
+	if (hasEvents) {
+		data.add(new Integer(i));
+	}
+}
+%>
+
+<div class="mini-calendar">
+	<div class="calendar-container">
+		<liferay-ui:message key="today-is" />
+
+		<div class="calendar-day">
+			<h2 class="day-text"><%= DateUtil.getCurrentDate("EEEE", locale) %></h2>
+
+			<h3 class="day-number"><%= curDay %></h3>
+		</div>
+	</div>
+
+	<liferay-ui:calendar
+		month="<%= selMonth %>"
+		day="<%= selDay %>"
+		year="<%= selYear %>"
+		headerFormat='<%= new SimpleDateFormat("MMMM, yyyy", locale) %>'
+		data="<%= data %>"
+	/>
+</div>
+
+<liferay-util:include page="/html/portlet/calendar/tabs1.jsp" />
+
+<br />
 
 <c:choose>
 	<c:when test='<%= tabs1.equals("day") %>'>
@@ -52,9 +92,6 @@ portletURL.setParameter("tabs1", tabs1);
 	<c:when test='<%= tabs1.equals("month") %>'>
 		<%@ include file="/html/portlet/calendar/month.jspf" %>
 	</c:when>
-	<c:when test='<%= tabs1.equals("events") %>'>
-		<%@ include file="/html/portlet/calendar/events.jspf" %>
-	</c:when>
 	<c:when test='<%= tabs1.equals("export-import") %>'>
 		<%@ include file="/html/portlet/calendar/export_import.jspf" %>
 	</c:when>
@@ -62,8 +99,42 @@ portletURL.setParameter("tabs1", tabs1);
 
 </form>
 
-<c:if test='<%= !tabs1.equals("export-import") && !tabs1.equals("events") %>'>
-	<%@ include file="/html/portlet/calendar/export_import_action.jsp" %>
+<c:if test='<%= !tabs1.equals("export-import") %>'>
+
+	<%
+	String className = StringPool.BLANK;
+
+	if (tabs1.equals("day")) {
+		className += " day-view";
+	}
+	%>
+
+	<form method="post" name="<portlet:namespace />fm1">
+
+	<div class="export-import-calendar<%= className %>">
+		<input type="hidden" name="exportFileName" type="text" value="<%= layout.getGroup().getName() %>.ics">
+
+		<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_EVENT) %>">
+			<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/calendar/view" /><portlet:param name="tabs1" value="export-import" /></portlet:renderURL>"><liferay-ui:message key="import" /></a>
+		</c:if>
+
+		<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.EXPORT_ALL_EVENTS) %>">
+			<a class="export-events" href="javascript:;" onClick="document.<portlet:namespace />fm1.action = '<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="struts_action" value="/calendar/export_events" /></portlet:actionURL>'; document.<portlet:namespace />fm1.submit();"><liferay-ui:message key="export" /></a>
+		</c:if>
+
+		<c:if test="<%= GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+			<liferay-security:permissionsURL
+				modelResource="com.liferay.portlet.calendar"
+				modelResourceDescription="<%= portletDisplay.getTitle() %>"
+				resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+				var="permissionsURL"
+			/>
+
+			<a class="permissions" href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
+		</c:if>
+	</div>
+
+	</form>
 </c:if>
 
 <aui:script use="aui-dialog">

@@ -29,7 +29,7 @@ CalEvent event = (CalEvent)request.getAttribute(WebKeys.CALENDAR_EVENT);
 	<liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 </c:if>
 
-<liferay-util:include page="/html/portlet/calendar/view_event.portal.jsp" />
+<liferay-util:include page="/html/portlet/calendar/view_event.jsp" useCustomPage="<%= false %>" />
 
 <c:if test="<%= CalEventPermission.contains(permissionChecker, event, ActionKeys.UPDATE) %>">
 	<br />

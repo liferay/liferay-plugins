@@ -21,4 +21,4 @@
 
 <liferay-util:include page="/html/portlet/calendar/sidebar.jsp" />
 
-<liferay-util:include page="/html/portlet/calendar/edit_event.portal.jsp" />
+<liferay-util:include page="/html/portlet/calendar/edit_event.jsp" useCustomPage="<%= false %>" />
