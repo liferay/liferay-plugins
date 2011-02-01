@@ -24,7 +24,7 @@ String formAction = (String)request.getAttribute("liferay-ui:discussion:formActi
 %>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/html/taglib/ui/discussion/page.portal.jsp" />
+	<liferay-util:include page="/html/taglib/ui/discussion/page.jsp" useCustomPage="<%= false %>" />
 </liferay-util:buffer>
 
 <c:choose>

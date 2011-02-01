@@ -38,7 +38,7 @@ Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMM, yyyy", 
 %>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/html/taglib/ui/calendar/page.portal.jsp" />
+	<liferay-util:include page="/html/taglib/ui/calendar/page.jsp" useCustomPage="<%= false %>" />
 </liferay-util:buffer>
 
 <%

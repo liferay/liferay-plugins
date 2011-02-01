@@ -23,7 +23,7 @@
 Group group = layout.getGroup();
 %>
 
-<liferay-util:include page="/html/taglib/ui/search/start.portal.jsp" />
+<liferay-util:include page="/html/taglib/ui/search/start.jsp" useCustomPage="<%= false %>" />
 
 <c:if test="<%= group.isUser() %>">
 	<aui:script use="aui-base">
