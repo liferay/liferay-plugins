@@ -615,6 +615,10 @@ a:active {
 
 /* Blogs */
 
+.portlet-blogs .portlet-toolbar .aui-search-bar {
+	display: none;
+}
+
 .portlet-blogs .entry-footer {
 	background: #E8EFF4;
 	border-top: 1px solid #B0BAFF;

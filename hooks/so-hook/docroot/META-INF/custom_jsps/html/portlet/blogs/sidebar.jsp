@@ -19,9 +19,20 @@
 
 <%@ include file="/html/portlet/blogs/init.jsp" %>
 
+<%
+String keywords = ParamUtil.getString(request, "keywords");
+%>
+
+<liferay-portlet:renderURL varImpl="searchURL"><portlet:param name="struts_action" value="/blogs/search" /></liferay-portlet:renderURL>
+
+<form action="<%= searchURL %>" method="get" name="<portlet:namespace />sidebarFm1" onSubmit="submitForm(this); return false;">
+<liferay-portlet:renderURLParams varImpl="searchURL" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
+<input name="<portlet:namespace />groupId" type="hidden" value="<%= String.valueOf(layout.getGroupId()) %>" />
+
 <div class="sidebar">
 	<div class="search">
-		<input class="search-input" id="<portlet:namespace />keywords" name="<portlet:namespace />keywords" type="text" />
+		<input class="search-input" id="<portlet:namespace />keywords" name="<portlet:namespace />keywords" type="text" value="<%= keywords %>" />
 
 		<input class="search-button" type="submit" value="<liferay-ui:message key="search" />" />
 	</div>
@@ -82,3 +93,5 @@
 		</ul>
 	</c:if>
 </div>
+
+</form>

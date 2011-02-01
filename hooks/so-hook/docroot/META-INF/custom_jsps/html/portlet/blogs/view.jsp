@@ -19,6 +19,8 @@
 
 <%@ include file="/html/portlet/blogs/init.jsp" %>
 
+<liferay-util:include page="/html/portlet/blogs/sidebar.jsp" />
+
 <liferay-ui:header title="blogs" />
 
-<liferay-util:include page="/html/portlet/blogs/view.portal.jsp" />
+<liferay-util:include page="/html/portlet/blogs/view.jsp" useCustomPage="<%= false %>" />
