@@ -91,8 +91,8 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 						%>
 
 						<liferay-ui:search-container-results
-							results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, true, params, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
-							total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, true, params) %>"
+							results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, params, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
+							total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, params) %>"
 						/>
 
 						<liferay-ui:search-container-row

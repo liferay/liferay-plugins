@@ -556,8 +556,8 @@ public class UpgradeCompany extends UpgradeProcess {
 		// Users
 
 		List<User> users = UserLocalServiceUtil.search(
-			companyId, null, null, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			(OrderByComparator)null);
+			companyId, null, WorkflowConstants.STATUS_ANY, null,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 
 		for (User user : users) {
 			String screenName = user.getScreenName();

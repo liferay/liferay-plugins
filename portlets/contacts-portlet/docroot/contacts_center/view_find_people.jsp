@@ -51,8 +51,8 @@ String keywords = ParamUtil.getString(request, "keywords");
 		<br />
 
 		<liferay-ui:search-container-results
-			results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, true, null, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
-			total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, true, null) %>"
+			results="<%= UserLocalServiceUtil.search(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null, searchContainer.getStart(), searchContainer.getEnd(), new UserLastNameComparator(true)) %>"
+			total="<%= UserLocalServiceUtil.searchCount(company.getCompanyId(), keywords, WorkflowConstants.STATUS_APPROVED, null) %>"
 		/>
 
 		<liferay-ui:search-container-row

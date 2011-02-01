@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
@@ -458,8 +459,8 @@ public class InstanceUtil {
 
 	protected static void setupUsers(long companyId) throws Exception {
 		List<User> users = UserLocalServiceUtil.search(
-			companyId, null, null, null, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			(OrderByComparator)null);
+			companyId, null, WorkflowConstants.STATUS_ANY, null,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 
 		for (User user : users) {
 			Group group = user.getGroup();

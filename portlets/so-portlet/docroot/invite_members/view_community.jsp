@@ -47,7 +47,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				<%
 				LinkedHashMap usersParams = new LinkedHashMap();
 
-				List<User> users = UserLocalServiceUtil.search(layout.getCompanyId(), StringPool.BLANK, true, usersParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
+				List<User> users = UserLocalServiceUtil.search(layout.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, usersParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
 
 				User defaultUser = UserLocalServiceUtil.getDefaultUser(layout.getCompanyId());
 
