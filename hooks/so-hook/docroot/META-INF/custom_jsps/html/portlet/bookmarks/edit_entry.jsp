@@ -58,7 +58,7 @@ long folderId = BeanParamUtil.getLong(entry, request, "folderId");
 
 		<aui:input name="url" />
 
-		<aui:input name="comments" />
+		<aui:input name="description" />
 
 		<liferay-ui:custom-attributes-available className="<%= BookmarksEntry.class.getName() %>">
 			<liferay-ui:custom-attribute-list

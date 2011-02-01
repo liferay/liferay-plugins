@@ -30,15 +30,15 @@ long folderId = BeanParamUtil.getLong(folder, request, "folderId", defaultFolder
 
 if ((folder == null) && (defaultFolderId != BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID)) {
 	try {
-		folder = BookmarksFolderLocalServiceUtil.getFolder(folderId);
+		folder = BookmarksFolderServiceUtil.getFolder(folderId);
 	}
 	catch (NoSuchFolderException nsfe) {
 		folderId = BookmarksFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 	}
 }
 
-int foldersCount = BookmarksFolderLocalServiceUtil.getFoldersCount(scopeGroupId, folderId);
-int entriesCount = BookmarksEntryLocalServiceUtil.getEntriesCount(scopeGroupId, folderId);
+int foldersCount = BookmarksFolderServiceUtil.getFoldersCount(scopeGroupId, folderId);
+int entriesCount = BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId);
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
@@ -76,8 +76,8 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 	%>
 
 	<liferay-ui:search-container-results
-		results="<%= BookmarksEntryLocalServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
-		total="<%= BookmarksEntryLocalServiceUtil.getEntriesCount(scopeGroupId, folderId) %>"
+		results="<%= BookmarksEntryServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
+		total="<%= BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -107,7 +107,7 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 			orderableProperty="name"
 			property="name"
 			target="_blank"
-			title="<%= entry.getComments() %>"
+			title="<%= entry.getDescription() %>"
 		/>
 
 		<liferay-ui:search-container-column-jsp
@@ -122,7 +122,7 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 		</div>
 	</c:if>
 
-	<c:if test="<%= BookmarksEntryLocalServiceUtil.getEntriesCount(scopeGroupId, folderId) <= 0 %>">
+	<c:if test="<%= BookmarksEntryServiceUtil.getEntriesCount(scopeGroupId, folderId) <= 0 %>">
 		<liferay-ui:message key="there-are-no-entries" />
 	</c:if>
 
