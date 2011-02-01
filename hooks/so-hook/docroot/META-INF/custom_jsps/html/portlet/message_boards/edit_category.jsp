@@ -21,4 +21,4 @@
 
 <liferay-util:include page="/html/portlet/message_boards/sidebar.jsp" />
 
-<liferay-util:include page="/html/portlet/message_boards/edit_category.portal.jsp" />
+<liferay-util:include page="/html/portlet/message_boards/edit_category.jsp" useCustomPage="<%= false %>" />

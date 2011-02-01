@@ -490,256 +490,204 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 		<c:if test='<%= topLink.equals("recent-posts") && (groupThreadsUserId > 0) %>'>
 			<div class="portlet-msg-info">
-				<liferay-ui:message key="filter-by-user" />: <%= PortalUtil.getUserName(groupThreadsUserId, StringPool.BLANK) %>
+				<liferay-ui:message key="filter-by-user" />: <%= HtmlUtil.escape(PortalUtil.getUserName(groupThreadsUserId, StringPool.BLANK)) %>
 			</div>
 		</c:if>
 
-		<%
-		int totalCategories = 0;
-		%>
-
 		<c:if test='<%= topLink.equals("my-subscriptions") %>'>
+			<liferay-ui:search-container
+				curParam="cur1"
+				deltaConfigurable="<%= false %>"
+				emptyResultsMessage="you-are-not-subscribed-to-any-categories"
+				headerNames="category,categories,threads,posts"
+				iteratorURL="<%= portletURL %>"
+			>
+				<liferay-ui:search-container-results
+					results="<%= MBCategoryServiceUtil.getSubscribedCategories(scopeGroupId, user.getUserId(), searchContainer.getStart(), searchContainer.getEnd()) %>"
+					total="<%= MBCategoryServiceUtil.getSubscribedCategoriesCount(scopeGroupId, user.getUserId()) %>"
+				/>
+
+				<liferay-ui:search-container-row
+					className="com.liferay.portlet.messageboards.model.MBCategory"
+					escapedModel="<%= true %>"
+					keyProperty="categoryId"
+					modelVar="curCategory"
+				>
+					<liferay-ui:search-container-row-parameter name="categorySubscriptionClassPKs" value="<%= categorySubscriptionClassPKs %>" />
+
+					<liferay-portlet:renderURL varImpl="rowURL">
+						<portlet:param name="struts_action" value="/message_boards/view" />
+						<portlet:param name="mbCategoryId" value="<%= String.valueOf(curCategory.getCategoryId()) %>" />
+					</liferay-portlet:renderURL>
+
+					<%@ include file="/html/portlet/message_boards/subscribed_category_columns.jspf" %>
+				</liferay-ui:search-container-row>
+
+				<liferay-ui:search-iterator type="more" />
+			</liferay-ui:search-container>
+		</c:if>
+
+		<liferay-ui:search-container
+			headerNames="thread,started-by,posts,views,last-post"
+			iteratorURL="<%= portletURL %>"
+		>
 
 			<%
-			List<String> headerNames = new ArrayList<String>();
+			String emptyResultsMessage = null;
 
-			headerNames.add("category");
-			headerNames.add("categories");
-			headerNames.add("threads");
-			headerNames.add("posts");
-			headerNames.add(StringPool.BLANK);
-
-			SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", SearchContainer.DEFAULT_DELTA, portletURL, headerNames, "you-are-not-subscribed-to-any-categories");
-
-			int total = MBCategoryLocalServiceUtil.getSubscribedCategoriesCount(scopeGroupId, user.getUserId());
-
-			searchContainer.setTotal(total);
-
-			totalCategories = total;
-
-			List results = MBCategoryLocalServiceUtil.getSubscribedCategories(scopeGroupId, user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-
-			searchContainer.setResults(results);
-
-			List resultRows = searchContainer.getResultRows();
-
-			for (int i = 0; i < results.size(); i++) {
-				MBCategory curCategory = (MBCategory)results.get(i);
-
-				curCategory = curCategory.toEscapedModel();
-
-				ResultRow row = new ResultRow(new Object[] {curCategory, categorySubscriptionClassPKs}, curCategory.getCategoryId(), i);
-
-				boolean restricted = !MBCategoryPermission.contains(permissionChecker, curCategory, ActionKeys.VIEW);
-
-				row.setRestricted(restricted);
-
-				PortletURL rowURL = renderResponse.createRenderURL();
-
-				rowURL.setParameter("struts_action", "/message_boards/view");
-				rowURL.setParameter("mbCategoryId", String.valueOf(curCategory.getCategoryId()));
-
-				// Name and description
-
-				StringBuilder sb = new StringBuilder();
-
-				if (!restricted) {
-					sb.append("<a href=\"");
-					sb.append(rowURL);
-					sb.append("\">");
-				}
-
-				sb.append("<b>");
-				sb.append(curCategory.getName());
-				sb.append("</b>");
-
-				if (Validator.isNotNull(curCategory.getDescription())) {
-					sb.append("<br />");
-					sb.append(curCategory.getDescription());
-				}
-
-				row.addText(sb.toString());
-
-				// Statistics
-
-				int categoriesCount = categoryDisplay.getSubcategoriesCount(curCategory);
-				int threadsCount = categoryDisplay.getSubcategoriesThreadsCount(curCategory);
-				int messagesCount = categoryDisplay.getSubcategoriesMessagesCount(curCategory);
-
-				row.addText(String.valueOf(categoriesCount), rowURL);
-				row.addText(String.valueOf(threadsCount), rowURL);
-				row.addText(String.valueOf(messagesCount), rowURL);
-
-				// Action
-
-				if (restricted) {
-					row.addText(StringPool.BLANK);
-				}
-				else {
-					row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/message_boards/category_action.jsp");
-				}
-
-				// Add result row
-
-				resultRows.add(row);
+			if (topLink.equals("my-posts")) {
+				emptyResultsMessage = "you-do-not-have-any-posts";
 			}
+			else if (topLink.equals("my-subscriptions")) {
+				emptyResultsMessage = "you-are-not-subscribed-to-any-threads";
+			}
+			else if (topLink.equals("recent-posts")) {
+				emptyResultsMessage = "there-are-no-recent-posts";
+			}
+
+			searchContainer.setEmptyResultsMessage(emptyResultsMessage);
 			%>
 
-			<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
-		</c:if>
+			<liferay-ui:search-container-results>
 
-		<%
-		List<String> headerNames = new ArrayList<String>();
-
-		headerNames.add("thread");
-		headerNames.add("started-by");
-		headerNames.add("posts");
-		headerNames.add("views");
-		headerNames.add("last-post");
-		headerNames.add(StringPool.BLANK);
-
-		String emptyResultsMessage = null;
-
-		if (topLink.equals("my-posts")) {
-			emptyResultsMessage = "you-do-not-have-any-posts";
-		}
-		else if (topLink.equals("my-subscriptions")) {
-			emptyResultsMessage = "you-are-not-subscribed-to-any-threads";
-		}
-		else if (topLink.equals("recent-posts")) {
-			emptyResultsMessage = "there-are-no-recent-posts";
-		}
-
-		SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, headerNames, emptyResultsMessage);
-
-		List results = null;
-
-		if (topLink.equals("my-posts")) {
-			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED);
-
-			searchContainer.setTotal(total);
-
-			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd());
-
-			searchContainer.setResults(results);
-		}
-		else if (topLink.equals("my-subscriptions")) {
-			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, true);
-
-			searchContainer.setTotal(total);
-
-			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, true, searchContainer.getStart(), searchContainer.getEnd());
-
-			searchContainer.setResults(results);
-		}
-		else if (topLink.equals("recent-posts")) {
-			int total = MBThreadLocalServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, false, false);
-
-			searchContainer.setTotal(total);
-
-			results = MBThreadLocalServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, false, false, searchContainer.getStart(), searchContainer.getEnd());
-
-			searchContainer.setResults(results);
-		}
-
-		List resultRows = searchContainer.getResultRows();
-
-		for (int i = 0; i < results.size(); i++) {
-			MBThread thread = (MBThread)results.get(i);
-
-			MBMessage message = MBMessageLocalServiceUtil.getMessage(thread.getRootMessageId());
-
-			message = message.toEscapedModel();
-
-			boolean readThread = MBMessageFlagLocalServiceUtil.hasReadFlag(themeDisplay.getUserId(), thread);
-
-			ResultRow row = new ResultRow(new Object[] {message, threadSubscriptionClassPKs}, thread.getThreadId(), i, !readThread);
-
-			row.setRestricted(!MBMessagePermission.contains(permissionChecker, message, ActionKeys.VIEW));
-
-			PortletURL rowURL = renderResponse.createRenderURL();
-
-			rowURL.setParameter("struts_action", "/message_boards/view_message");
-			rowURL.setParameter("messageId", String.valueOf(message.getMessageId()));
-
-			// Thread
-
-			StringBuilder sb = new StringBuilder();
-
-			String[] threadPriority = MBUtil.getThreadPriority(preferences, themeDisplay.getLanguageId(), thread.getPriority(), themeDisplay);
-
-			if ((threadPriority != null) && (thread.getPriority() > 0)) {
-				sb.append("<img align=\"left\" alt=\"");
-				sb.append(threadPriority[0]);
-				sb.append("\" border=\"0\" src=\"");
-				sb.append(threadPriority[1]);
-				sb.append("\" title=\"");
-				sb.append(threadPriority[0]);
-				sb.append("\" />");
-			}
-
-			sb.append(message.getSubject());
-
-			row.addText(sb.toString(), rowURL);
-
-			// Started by
-
-			if (message.isAnonymous()) {
-				row.addText(LanguageUtil.get(pageContext, "anonymous"), rowURL);
-			}
-			else {
-				String userName = PortalUtil.getUserName(message.getUserId(), message.getUserName());
-
-				row.addText(HtmlUtil.escape(userName), rowURL);
-			}
-
-			// Number of posts
-
-			row.addText(String.valueOf(thread.getMessageCount()), rowURL);
-
-			// Number of views
-
-			row.addText(String.valueOf(thread.getViewCount()), rowURL);
-
-			// Last post
-
-			if (thread.getLastPostDate() == null) {
-				row.addText(LanguageUtil.get(pageContext, "none"), rowURL);
-			}
-			else {
-				sb = new StringBuilder();
-
-				sb.append(LanguageUtil.get(pageContext, "date"));
-				sb.append(": ");
-				sb.append(dateFormatDateTime.format(thread.getLastPostDate()));
-
-				String lastPostByUserName = PortalUtil.getUserName(thread.getLastPostByUserId(), StringPool.BLANK);
-
-				if (Validator.isNotNull(lastPostByUserName)) {
-					sb.append("<br />");
-					sb.append(LanguageUtil.get(pageContext, "by"));
-					sb.append(": ");
-					sb.append(HtmlUtil.escape(lastPostByUserName));
+				<%
+				if (topLink.equals("my-posts")) {
+					results = MBThreadServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd());
+					total = MBThreadServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_ANY);
+				}
+				else if (topLink.equals("my-subscriptions")) {
+					results = MBThreadServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, true, searchContainer.getStart(), searchContainer.getEnd());
+					total = MBThreadServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, true);
+				}
+				else if (topLink.equals("recent-posts")) {
+					results = MBThreadServiceUtil.getGroupThreads(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, false, false, searchContainer.getStart(), searchContainer.getEnd());
+					total = MBThreadServiceUtil.getGroupThreadsCount(scopeGroupId, groupThreadsUserId, WorkflowConstants.STATUS_APPROVED, false, false);
 				}
 
-				row.addText(sb.toString(), rowURL);
-			}
+				pageContext.setAttribute("results", results);
+				pageContext.setAttribute("total", total);
+				%>
 
-			// Action
+			</liferay-ui:search-container-results>
 
-			row.addJSP("right", SearchEntry.DEFAULT_VALIGN, "/html/portlet/message_boards/message_action.jsp");
+			<liferay-ui:search-container-row
+				className="com.liferay.portlet.messageboards.model.MBThread"
+				keyProperty="threadId"
+				modelVar="thread"
+			>
 
-			// Add result row
+				<%
+				MBMessage message = null;
 
-			resultRows.add(row);
-		}
-		%>
+				try {
+					message = MBMessageLocalServiceUtil.getMessage(thread.getRootMessageId());
+				}
+				catch (NoSuchMessageException nsme) {
+					_log.error("Thread requires missing root message id " + thread.getRootMessageId());
 
-		<c:if test='<%= topLink.equals("my-subscriptions") %>'>
-			<br />
-		</c:if>
+					continue;
+				}
 
-		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
+				message = message.toEscapedModel();
+
+				boolean readThread = MBMessageFlagLocalServiceUtil.hasReadFlag(themeDisplay.getUserId(), thread);
+
+				row.setBold(!readThread);
+				row.setObject(new Object[] {message, threadSubscriptionClassPKs});
+				row.setRestricted(!MBMessagePermission.contains(permissionChecker, message, ActionKeys.VIEW));
+				%>
+
+				<liferay-portlet:renderURL varImpl="rowURL">
+					<portlet:param name="struts_action" value="/message_boards/view_message" />
+					<portlet:param name="messageId" value="<%= String.valueOf(message.getMessageId()) %>" />
+				</liferay-portlet:renderURL>
+
+				<liferay-ui:search-container-column-text
+					buffer="buffer"
+					href="<%= rowURL %>"
+					name="thread"
+				>
+
+					<%
+					String[] threadPriority = MBUtil.getThreadPriority(preferences, themeDisplay.getLanguageId(), thread.getPriority(), themeDisplay);
+
+					if ((threadPriority != null) && (thread.getPriority() > 0)) {
+						buffer.append("<img class=\"thread-priority\" alt=\"");
+						buffer.append(threadPriority[0]);
+						buffer.append("\" src=\"");
+						buffer.append(threadPriority[1]);
+						buffer.append("\" title=\"");
+						buffer.append(threadPriority[0]);
+						buffer.append("\" />");
+					}
+
+					buffer.append(message.getSubject());
+					%>
+
+				</liferay-ui:search-container-column-text>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="started-by"
+					value='<%= message.isAnonymous() ? LanguageUtil.get(pageContext, "anonymous") : HtmlUtil.escape(PortalUtil.getUserName(message.getUserId(), message.getUserName())) %>'
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="posts"
+					value="<%= String.valueOf(thread.getMessageCount()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="views"
+					value="<%= String.valueOf(thread.getViewCount()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					buffer="buffer"
+					href="<%= rowURL %>"
+					name="last-post"
+				>
+
+					<%
+					if (thread.getLastPostDate() == null) {
+						buffer.append(LanguageUtil.get(pageContext, "none"));
+					}
+					else {
+						buffer.append(LanguageUtil.get(pageContext, "date"));
+						buffer.append(": ");
+						buffer.append(dateFormatDateTime.format(thread.getLastPostDate()));
+
+						String lastPostByUserName = HtmlUtil.escape(PortalUtil.getUserName(thread.getLastPostByUserId(), StringPool.BLANK));
+
+						if (Validator.isNotNull(lastPostByUserName)) {
+							buffer.append("<br />");
+							buffer.append(LanguageUtil.get(pageContext, "by"));
+							buffer.append(": ");
+							buffer.append(lastPostByUserName);
+						}
+					}
+					%>
+
+				</liferay-ui:search-container-column-text>
+
+				<c:if test='<%= topLink.equals("my-posts") %>'>
+					<liferay-ui:search-container-column-text
+						href="<%= rowURL %>"
+						name="status"
+						value="<%= LanguageUtil.get(pageContext, WorkflowConstants.toLabel(message.getStatus())) %>"
+					/>
+				</c:if>
+
+				<liferay-ui:search-container-column-jsp
+					align="right"
+					path="/html/portlet/message_boards/message_action.jsp"
+				/>
+			</liferay-ui:search-container-row>
+
+			<liferay-ui:search-iterator />
+		</liferay-ui:search-container>
 
 		<c:if test='<%= topLink.equals("recent-posts") %>'>
 
@@ -760,11 +708,11 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 				<td>
 					<liferay-ui:icon
 						image="rss"
+						label="<%= true %>"
 						message="subscribe-to-recent-posts"
-						url="<%= rssURL %>"
 						method="get"
 						target="_blank"
-						label="<%= true %>"
+						url="<%= rssURL %>"
 					/>
 				</td>
 			</tr>
@@ -778,6 +726,8 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 	</c:when>
 	<c:when test='<%= topLink.equals("statistics") %>'>
+		<liferay-ui:header title="statistics" />
+
 		<liferay-ui:panel-container cssClass="statistics-panel" extended="<%= false %>" id="messageBoardsStatisticsPanelContainer" persistState="<%= true %>">
 			<liferay-ui:panel collapsible="<%= true %>" cssClass="statistics-panel-content" extended="<%= true %>" id="messageBoardsGeneralStatisticsPanel" persistState="<%= true %>" title="general">
 				<dl>
@@ -834,6 +784,8 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 	</c:when>
 	<c:when test='<%= topLink.equals("banned-users") %>'>
+		<liferay-ui:header title="banned-users" />
+
 		<liferay-ui:search-container
 			emptyResultsMessage="there-are-no-banned-users"
 			headerNames="banned-user,banned-by,ban-date"
@@ -887,3 +839,7 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 	</c:when>
 </c:choose>
+
+<%!
+private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.portlet.message_boards.view_jsp");
+%>
