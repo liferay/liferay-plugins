@@ -23,4 +23,4 @@
 
 <liferay-ui:header title="manage-wikis" />
 
-<liferay-util:include page="/html/portlet/wiki/view_nodes.portal.jsp" />
+<liferay-util:include page="/html/portlet/wiki/view_nodes.jsp" useCustomPage="<%= false %>" />
