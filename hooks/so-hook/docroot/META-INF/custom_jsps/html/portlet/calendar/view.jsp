@@ -34,12 +34,6 @@ portletURL.setParameter("tabs1", tabs1);
 
 <form method="post" name="<portlet:namespace />fm">
 
-<script type="text/javascript">
-	function <portlet:namespace />updateCalendar(month, day, year) {
-		location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="eventType" value="<%= eventType %>" /></portlet:renderURL>&<portlet:namespace />month=' + month + '&<portlet:namespace />day=' + day + '&<portlet:namespace />year=' + year;
-	}
-</script>
-
 <%
 Set data = new HashSet();
 
@@ -112,7 +106,7 @@ for (int i = 1; i <= selCal.getActualMaximum(Calendar.DATE); i++) {
 	<form method="post" name="<portlet:namespace />fm1">
 
 	<div class="export-import-calendar<%= className %>">
-		<input type="hidden" name="exportFileName" type="text" value="<%= layout.getGroup().getName() %>.ics">
+		<input name="exportFileName" type="text" value="<%= layout.getGroup().getName() %>.ics" />
 
 		<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_EVENT) %>">
 			<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/calendar/view" /><portlet:param name="tabs1" value="export-import" /></portlet:renderURL>"><liferay-ui:message key="import" /></a>
@@ -138,6 +132,10 @@ for (int i = 1; i <= selCal.getActualMaximum(Calendar.DATE); i++) {
 </c:if>
 
 <aui:script use="aui-dialog">
+	function <portlet:namespace />updateCalendar(month, day, year) {
+		location.href = '<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="eventType" value="<%= eventType %>" /></portlet:renderURL>&<portlet:namespace />month=' + month + '&<portlet:namespace />day=' + day + '&<portlet:namespace />year=' + year;
+	}
+
 	Liferay.namespace('SO');
 
 	Liferay.SO.Calendar = {
