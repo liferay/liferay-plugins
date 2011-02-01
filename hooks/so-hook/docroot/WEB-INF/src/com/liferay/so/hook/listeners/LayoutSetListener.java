@@ -45,6 +45,7 @@ import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.so.util.PortletPropsKeys;
 import com.liferay.so.util.PortletPropsValues;
@@ -189,6 +190,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 			if (portletId.equals("1_WAR_wysiwygportlet")) {
 				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
+			}
+			else if (portletId.equals(PortletKeys.ALERTS)) {
+				updatePortletTitle(layout, PortletKeys.ALERTS, "Announcements");
 			}
 		}
 	}

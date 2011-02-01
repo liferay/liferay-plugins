@@ -218,6 +218,9 @@ public class InstanceUtil {
 			if (portletId.equals("1_WAR_wysiwygportlet")) {
 				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
 			}
+			else if (portletId.equals(PortletKeys.ALERTS)) {
+				updatePortletTitle(layout, PortletKeys.ALERTS, "Announcements");
+			}
 		}
 	}
 
