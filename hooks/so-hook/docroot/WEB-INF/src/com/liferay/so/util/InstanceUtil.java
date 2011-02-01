@@ -397,8 +397,6 @@ public class InstanceUtil {
 
 		addPortlets(group, layout, "/calendar");
 
-		removePortletBorder(layout, PortletKeys.CALENDAR);
-
 		updatePermissions(layout, true);
 
 		// Documents
@@ -406,8 +404,6 @@ public class InstanceUtil {
 		layout = addLayout(group, "Documents", "/documents", "2_columns_iii");
 
 		addPortlets(group, layout, "/documents");
-
-		removePortletBorder(layout, PortletKeys.DOCUMENT_LIBRARY);
 
 		configureAssetPublisher(layout);
 
@@ -418,8 +414,6 @@ public class InstanceUtil {
 		layout = addLayout(group, "Forums", "/forums", "2_columns_iii");
 
 		addPortlets(group, layout, "/forums");
-
-		removePortletBorder(layout, PortletKeys.MESSAGE_BOARDS);
 
 		configureAssetPublisher(layout);
 		configureMessageBoards(layout);
@@ -432,8 +426,6 @@ public class InstanceUtil {
 
 		addPortlets(group, layout, "/blog");
 
-		removePortletBorder(layout, PortletKeys.BLOGS);
-
 		configureAssetPublisher(layout);
 
 		updatePermissions(layout, true);
@@ -443,8 +435,6 @@ public class InstanceUtil {
 		layout = addLayout(group, "Wiki", "/wiki", "2_columns_iii");
 
 		addPortlets(group, layout, "/wiki");
-
-		removePortletBorder(layout, PortletKeys.WIKI);
 
 		configureAssetPublisher(layout);
 

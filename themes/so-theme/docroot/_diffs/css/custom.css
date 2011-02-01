@@ -424,10 +424,10 @@ a:active {
 
 /* Sidebar */
 
-.portlet-blogs .portlet-borderless-container,
-.portlet-document-library .portlet-borderless-container,
-.portlet-message-boards .portlet-borderless-container,
-.portlet-wiki .portlet-borderless-container {
+.portlet-blogs .portlet-body,
+.portlet-document-library .portlet-body,
+.portlet-message-boards .portlet-body,
+.portlet-wiki .portlet-body {
 	margin-left: 250px;
 	position: relative;
 }

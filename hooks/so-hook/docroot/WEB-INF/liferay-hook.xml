@@ -38,6 +38,7 @@
 	<language-properties>content/Language_zh_CN.properties</language-properties>
 	<language-properties>content/Language_zh_TW.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<custom-jsp-global>false</custom-jsp-global>
 	<service>
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
 		<service-impl>com.liferay.so.hook.service.impl.CompanyLocalServiceImpl</service-impl>

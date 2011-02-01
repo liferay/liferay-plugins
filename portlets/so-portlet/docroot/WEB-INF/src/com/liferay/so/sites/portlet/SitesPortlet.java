@@ -21,12 +21,12 @@ import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -59,6 +59,18 @@ public class SitesPortlet extends MVCPortlet {
 		ExpandoBridge expandoBridge = group.getExpandoBridge();
 
 		expandoBridge.setAttribute("socialOfficeEnabled", Boolean.TRUE);
+
+		String customJspServletContextName = ParamUtil.getString(
+			actionRequest, "customJspServletContextName");
+
+		UnicodeProperties typeSettingsProperties =
+			group.getTypeSettingsProperties();
+
+		typeSettingsProperties.setProperty(
+			"customJspServletContextName", "so-hook");
+
+		group = GroupServiceUtil.updateGroup(
+			group.getGroupId(), typeSettingsProperties.toString());
 
 		long publicLayoutSetPrototypeId = ParamUtil.getLong(
 			actionRequest, "publicLayoutSetPrototypeId");
