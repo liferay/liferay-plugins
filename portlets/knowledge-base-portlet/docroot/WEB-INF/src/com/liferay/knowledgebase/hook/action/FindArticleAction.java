@@ -317,7 +317,8 @@ public class FindArticleAction extends BaseStrutsAction {
 	}
 
 	private static final boolean _PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED =
-		GetterUtil.getBoolean(PropsUtil.get(
-			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED));
+		GetterUtil.getBoolean(
+			PropsUtil.get(
+				PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED));
 
 }
