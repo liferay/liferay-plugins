@@ -21,6 +21,4 @@
 
 <liferay-util:include page="/html/portlet/blogs/sidebar.jsp" />
 
-<liferay-ui:header title="blogs" />
-
 <liferay-util:include page="/html/portlet/blogs/view.jsp" useCustomPage="<%= false %>" />

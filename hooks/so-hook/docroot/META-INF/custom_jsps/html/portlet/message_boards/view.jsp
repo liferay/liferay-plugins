@@ -74,7 +74,9 @@ portletURL.setParameter("mbCategoryId", String.valueOf(categoryId));
 
 <c:choose>
 	<c:when test='<%= topLink.equals("message-boards-home") %>'>
-		<liferay-ui:header title='<%= (category != null) ? category.getName() : "forums" %>' />
+		<c:if test="<%= category != null %>">
+			<liferay-ui:header title="<%= category.getName() %>" />
+		</c:if>
 
 		<c:if test="<%= showCategories || categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID %>">
 			<form action="<%= searchURL %>" method="get" name="<portlet:namespace />fm1" onSubmit="submitForm(this); return false;">

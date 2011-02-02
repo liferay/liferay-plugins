@@ -22,6 +22,12 @@
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
 
+tabs1Names = "month,week,day";
+
+if (CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.EXPORT_ALL_EVENTS) || CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_EVENT)) {
+	tabs1Names += ",export-import";
+}
+
 PortletURL tabs1URL = renderResponse.createRenderURL();
 
 tabs1URL.setParameter("struts_action", "/calendar/view");
@@ -30,26 +36,8 @@ tabs1URL.setParameter("day", String.valueOf(selDay));
 tabs1URL.setParameter("year", String.valueOf(selYear));
 %>
 
-<div class="calendar-tabs">
-	<h1 class="title">
-		<liferay-ui:message key="calendar" />
-	</h1>
-
-	<%
-	tabs1URL.setParameter("tabs1", "month");
-	%>
-
-	<a class="month <%= tabs1.equals("month") ? "selected" : "" %>" href="<%= tabs1URL.toString() %>"><liferay-ui:message key="month" /></a>
-
-	<%
-	tabs1URL.setParameter("tabs1", "week");
-	%>
-
-	<a class="week <%= tabs1.equals("week") ? "selected" : "" %>" href="<%= tabs1URL.toString() %>"><liferay-ui:message key="week" /></a>
-
-	<%
-	tabs1URL.setParameter("tabs1", "day");
-	%>
-
-	<a class="day <%= tabs1.equals("day") ? "selected" : "" %>" href="<%= tabs1URL.toString() %>"><liferay-ui:message key="day" /></a>
-</div>
+<liferay-ui:tabs
+	names="<%= tabs1Names %>"
+	url="<%= tabs1URL.toString() %>"
+	value="<%= tabs1 %>"
+/>

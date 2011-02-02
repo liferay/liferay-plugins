@@ -106,7 +106,7 @@ for (int i = 1; i <= selCal.getActualMaximum(Calendar.DATE); i++) {
 	<form method="post" name="<portlet:namespace />fm1">
 
 	<div class="export-import-calendar<%= className %>">
-		<input name="exportFileName" type="text" value="<%= layout.getGroup().getName() %>.ics" />
+		<input name="exportFileName" type="hidden" value="<%= layout.getGroup().getName() %>.ics" />
 
 		<c:if test="<%= CalendarPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_EVENT) %>">
 			<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/calendar/view" /><portlet:param name="tabs1" value="export-import" /></portlet:renderURL>"><liferay-ui:message key="import" /></a>
