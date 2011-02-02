@@ -31,7 +31,7 @@ String content = BeanParamUtil.getString(article, request, "content", BeanProper
 long priority = BeanParamUtil.getLong(article, request, "priority");
 int status = BeanParamUtil.getInteger(article, request, "status", WorkflowConstants.STATUS_DRAFT);
 
-int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelperUtil.getHumanPriority(scopeGroupId, resourcePrimKey, parentResourcePrimKey, priority));
+int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelper.getHumanPriority(scopeGroupId, resourcePrimKey, parentResourcePrimKey, priority));
 String dirName = ParamUtil.getString(request, "dirName");
 %>
 

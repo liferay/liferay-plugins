@@ -23,7 +23,7 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 
-int maxHumanPriority = PriorityHelperUtil.getMaxHumanPriority(scopeGroupId, parentResourcePrimKey, article);
+int maxHumanPriority = PriorityHelper.getMaxHumanPriority(scopeGroupId, parentResourcePrimKey, article);
 
 int humanPriority = ParamUtil.getInteger(request, "humanPriority", maxHumanPriority);
 %>

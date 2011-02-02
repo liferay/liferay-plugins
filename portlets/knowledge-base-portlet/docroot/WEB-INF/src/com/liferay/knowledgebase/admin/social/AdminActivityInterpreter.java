@@ -88,7 +88,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		// Link
 
 		String link = KnowledgeBaseUtil.getArticleURL(
-			article.getResourcePrimKey(), themeDisplay.getPlid(),
+			themeDisplay.getPlid(), article.getResourcePrimKey(),
 			themeDisplay.getPortalURL());
 
 		// Title
@@ -139,7 +139,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		if (article != null) {
 			link = KnowledgeBaseUtil.getArticleURL(
-				article.getResourcePrimKey(), themeDisplay.getPlid(),
+				themeDisplay.getPlid(), article.getResourcePrimKey(),
 				themeDisplay.getPortalURL());
 		}
 		else if (template != null) {

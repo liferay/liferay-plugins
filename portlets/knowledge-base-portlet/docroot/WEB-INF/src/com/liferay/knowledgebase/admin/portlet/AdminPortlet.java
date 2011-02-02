@@ -26,7 +26,7 @@ import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.TemplateContentException;
 import com.liferay.knowledgebase.TemplateTitleException;
-import com.liferay.knowledgebase.admin.util.PriorityHelperUtil;
+import com.liferay.knowledgebase.admin.util.PriorityHelper;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.model.Template;
@@ -351,7 +351,7 @@ public class AdminPortlet extends MVCPortlet {
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
 
-		long priority = PriorityHelperUtil.getPriority(
+		long priority = PriorityHelper.getPriority(
 			themeDisplay.getScopeGroupId(), resourcePrimKey,
 			parentResourcePrimKey, humanPriority);
 

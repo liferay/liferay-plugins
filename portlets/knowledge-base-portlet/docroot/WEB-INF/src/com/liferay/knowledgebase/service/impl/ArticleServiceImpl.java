@@ -213,7 +213,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		String description = HtmlUtil.escape(article.getTitle());
 
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			resourcePrimKey, themeDisplay.getPlid(),
+			themeDisplay.getPlid(), resourcePrimKey,
 			themeDisplay.getPortalURL());
 
 		List<Article> articles = Collections.emptyList();
@@ -471,7 +471,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			author = HtmlUtil.escape(userName);
 
 			String link = KnowledgeBaseUtil.getArticleURL(
-				article.getResourcePrimKey(), themeDisplay.getPlid(),
+				themeDisplay.getPlid(), article.getResourcePrimKey(),
 				themeDisplay.getPortalURL());
 
 			SyndContent syndContent = new SyndContentImpl();

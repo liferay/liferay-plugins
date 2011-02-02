@@ -63,6 +63,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FindArticleAction extends BaseStrutsAction {
 
+	public static final String PORTLET_ID =
+		PortletKeys.KNOWLEDGE_BASE_DISPLAY +
+			PortletConstants.INSTANCE_SEPARATOR + "0000";
+
 	public String execute(
 			StrutsAction originalStrutsAction, HttpServletRequest request,
 			HttpServletResponse response)
@@ -71,11 +75,11 @@ public class FindArticleAction extends BaseStrutsAction {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		long plid = ParamUtil.getLong(request, "plid");
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
-		long selPlid = ParamUtil.getLong(request, "selPlid");
 
-		if (!isValidPlid(selPlid)) {
-			selPlid = themeDisplay.getPlid();
+		if (!isValidPlid(plid)) {
+			plid = themeDisplay.getPlid();
 		}
 
 		String redirect = null;
@@ -83,15 +87,15 @@ public class FindArticleAction extends BaseStrutsAction {
 		Article article = getArticle(resourcePrimKey, themeDisplay);
 
 		if (article == null) {
-			redirect = getDisplayPortletURL(resourcePrimKey, selPlid, request);
+			redirect = getDisplayPortletURL(resourcePrimKey, plid, request);
 		}
 
 		if (redirect == null) {
-			redirect = getArticleURL(false, selPlid, article, themeDisplay);
+			redirect = getArticleURL(false, plid, article, themeDisplay);
 		}
 
 		if (redirect == null) {
-			redirect = getArticleURL(true, selPlid, article, themeDisplay);
+			redirect = getArticleURL(true, plid, article, themeDisplay);
 		}
 
 		if (redirect == null) {
@@ -99,7 +103,7 @@ public class FindArticleAction extends BaseStrutsAction {
 		}
 
 		if (redirect == null) {
-			redirect = getDisplayPortletURL(resourcePrimKey, selPlid, request);
+			redirect = getDisplayPortletURL(resourcePrimKey, plid, request);
 		}
 
 		response.sendRedirect(redirect);
@@ -161,34 +165,34 @@ public class FindArticleAction extends BaseStrutsAction {
 	}
 
 	protected String getArticleURL(
-			long resourcePrimKey, long selPlid, String selPortletId,
+			long resourcePrimKey, long plid, String portletId,
 			ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Layout selLayout = LayoutLocalServiceUtil.getLayout(selPlid);
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		String selLayoutActualURL = PortalUtil.getLayoutActualURL(selLayout);
+		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
 
-		String articleURL = themeDisplay.getPortalURL() + selLayoutActualURL;
+		String articleURL = themeDisplay.getPortalURL() + layoutActualURL;
 
-		String namespace = PortalUtil.getPortletNamespace(selPortletId);
+		String namespace = PortalUtil.getPortletNamespace(portletId);
 
-		articleURL = HttpUtil.setParameter(articleURL, "p_p_id", selPortletId);
+		articleURL = HttpUtil.setParameter(articleURL, "p_p_id", portletId);
 		articleURL = HttpUtil.setParameter(
 			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
 
 		PortletPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortletSetup(
-				selLayout, selPortletId, StringPool.BLANK);
+				layout, portletId, StringPool.BLANK);
 
 		Map<String, String> preferencesMap =
 			KnowledgeBaseUtil.initPortletPreferencesMap(
-				selPortletId, preferences);
+				portletId, preferences);
 
 		String p_p_state = null;
 		String jspPage = null;
 
-		String rootPortletId = PortletConstants.getRootPortletId(selPortletId);
+		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
 			p_p_state = preferencesMap.get("articleWindowState");
@@ -215,14 +219,14 @@ public class FindArticleAction extends BaseStrutsAction {
 	}
 
 	protected String getArticleURL(
-			boolean privateLayout, long selPlid, Article article,
+			boolean privateLayout, long plid, Article article,
 			ThemeDisplay themeDisplay)
 		throws Exception {
 
-		Layout selLayout = LayoutLocalServiceUtil.getLayout(selPlid);
-
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			article.getGroupId(), privateLayout, LayoutConstants.TYPE_PORTLET);
+
+		Layout selLayout = LayoutLocalServiceUtil.getLayout(plid);
 
 		if ((selLayout.getGroupId() == article.getGroupId()) &&
 			(selLayout.isTypePortlet())) {
@@ -264,39 +268,32 @@ public class FindArticleAction extends BaseStrutsAction {
 	}
 
 	protected String getDisplayPortletURL(
-			long resourcePrimKey, long selPlid, HttpServletRequest request)
+			long resourcePrimKey, long plid, HttpServletRequest request)
 		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String selPortletId =
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY +
-				PortletConstants.INSTANCE_SEPARATOR + "0000";
-
 		String articleURL = getArticleURL(
-			resourcePrimKey, selPlid, selPortletId, themeDisplay);
+			resourcePrimKey, plid, PORTLET_ID, themeDisplay);
 
 		articleURL = HttpUtil.setParameter(
 			articleURL, "p_p_state", WindowState.MAXIMIZED.toString());
 
-		String portletAddDefaultResourceCheckEnabled = PropsUtil.get(
-			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED);
-
-		if (!GetterUtil.getBoolean(portletAddDefaultResourceCheckEnabled)) {
+		if (!_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
 			return articleURL;
 		}
 
 		articleURL = HttpUtil.setParameter(
 			articleURL, "p_p_auth",
-			AuthTokenUtil.getToken(request, selPlid, selPortletId));
+			AuthTokenUtil.getToken(request, plid, PORTLET_ID));
 
 		return articleURL;
 	}
 
-	protected boolean isValidPlid(long selPlid) throws Exception {
+	protected boolean isValidPlid(long plid) throws Exception {
 		try {
-			LayoutLocalServiceUtil.getLayout(selPlid);
+			LayoutLocalServiceUtil.getLayout(plid);
 		}
 		catch (NoSuchLayoutException nsle) {
 			return false;
@@ -304,5 +301,9 @@ public class FindArticleAction extends BaseStrutsAction {
 
 		return true;
 	}
+
+	private static final boolean _PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED =
+		GetterUtil.getBoolean(PropsUtil.get(
+			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED));
 
 }

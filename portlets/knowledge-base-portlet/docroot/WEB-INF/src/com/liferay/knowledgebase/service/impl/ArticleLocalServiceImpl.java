@@ -22,7 +22,7 @@ import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
-import com.liferay.knowledgebase.admin.util.PriorityHelperUtil;
+import com.liferay.knowledgebase.admin.util.PriorityHelper;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
@@ -875,14 +875,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		int total = getSiblingArticlesCount(
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-		int pages = total / PriorityHelperUtil.INTERVAL_SIZE;
+		int pages = total / PriorityHelper.INTERVAL_SIZE;
 
 		long newPriority = 0;
 		long value = 0;
 
 		for (int i = 0; i <= pages; i++) {
-			int start = (i * PriorityHelperUtil.INTERVAL_SIZE);
-			int end = start + PriorityHelperUtil.INTERVAL_SIZE;
+			int start = (i * PriorityHelper.INTERVAL_SIZE);
+			int end = start + PriorityHelper.INTERVAL_SIZE;
 
 			List<Article> articles = getSiblingArticles(
 				groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
@@ -901,12 +901,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			}
 
 			for (Article article : articles) {
-				value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+				value = value + PriorityHelper.MINIMUM_INCREMENT_SIZE;
 
 				if (article.getPriority() == priority) {
 					newPriority = value;
 
-					value = value + PriorityHelperUtil.MINIMUM_INCREMENT_SIZE;
+					value = value + PriorityHelper.MINIMUM_INCREMENT_SIZE;
 				}
 
 				if (article.getResourcePrimKey() != resourcePrimKey) {

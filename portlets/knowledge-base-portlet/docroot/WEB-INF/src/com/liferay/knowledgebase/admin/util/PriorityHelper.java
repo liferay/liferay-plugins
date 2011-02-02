@@ -28,7 +28,7 @@ import java.util.List;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class PriorityHelperUtil {
+public class PriorityHelper {
 
 	public static final int INTERVAL_SIZE = 200;
 

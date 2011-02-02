@@ -14,7 +14,7 @@
 
 package com.liferay.knowledgebase.hook.events;
 
-import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.hook.action.FindArticleAction;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.auth.AuthTokenUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -55,10 +54,7 @@ public class ServicePreAction extends Action {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String portletAddDefaultResourceCheckEnabled = PropsUtil.get(
-			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED);
-
-		if (!GetterUtil.getBoolean(portletAddDefaultResourceCheckEnabled)) {
+		if (!_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
 			return;
 		}
 
@@ -72,11 +68,7 @@ public class ServicePreAction extends Action {
 			return;
 		}
 
-		String displayPortletId =
-			PortletKeys.KNOWLEDGE_BASE_DISPLAY +
-				PortletConstants.INSTANCE_SEPARATOR + "0000";
-
-		if (!portletId.equals(displayPortletId)) {
+		if (!portletId.equals(FindArticleAction.PORTLET_ID)) {
 			return;
 		}
 
@@ -101,6 +93,10 @@ public class ServicePreAction extends Action {
 
 		response.sendRedirect(redirect);
 	}
+
+	private static final boolean _PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED =
+		GetterUtil.getBoolean(PropsUtil.get(
+			PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED));
 
 	private static Log _log = LogFactoryUtil.getLog(ServicePreAction.class);
 

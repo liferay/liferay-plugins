@@ -65,7 +65,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 				<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
 
 					<%
-					int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+					int[] pageDeltaValues = SEARCH_CONTAINER_PAGE_DELTA_VALUES;
 
 					Arrays.sort(pageDeltaValues);
 
@@ -144,3 +144,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
+
+<%!
+public static final int[] SEARCH_CONTAINER_PAGE_DELTA_VALUES = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+%>

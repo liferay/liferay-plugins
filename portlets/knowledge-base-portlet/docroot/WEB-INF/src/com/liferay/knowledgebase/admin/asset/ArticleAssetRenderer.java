@@ -84,7 +84,7 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 				WebKeys.THEME_DISPLAY);
 
 		return KnowledgeBaseUtil.getArticleURL(
-			_article.getResourcePrimKey(), themeDisplay.getPlid(),
+			themeDisplay.getPlid(), _article.getResourcePrimKey(),
 			themeDisplay.getPortalURL());
 	}
 

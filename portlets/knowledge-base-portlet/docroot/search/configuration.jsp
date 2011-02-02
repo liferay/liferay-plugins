@@ -47,7 +47,7 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 				<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
 
 					<%
-					int[] pageDeltaValues = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+					int[] pageDeltaValues = SEARCH_CONTAINER_PAGE_DELTA_VALUES;
 
 					Arrays.sort(pageDeltaValues);
 
@@ -244,3 +244,7 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 		<portlet:namespace />updateSelectionMethod("<%= selectionMethod %>");
 	</aui:script>
 </c:if>
+
+<%!
+public static final int[] SEARCH_CONTAINER_PAGE_DELTA_VALUES = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
+%>

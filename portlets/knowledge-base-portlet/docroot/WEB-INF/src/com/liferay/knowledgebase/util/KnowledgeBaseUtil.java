@@ -71,15 +71,15 @@ import javax.portlet.WindowState;
 public class KnowledgeBaseUtil {
 
 	public static String getArticleURL(
-		long resourcePrimKey, long selPlid, String portalURL) {
+		long plid, long resourcePrimKey, String portalURL) {
 
 		String articleURL =
 			portalURL + PortalUtil.getPathMain() +
 				"/portal/knowledge_base/find_article";
 
+		articleURL = HttpUtil.setParameter(articleURL, "plid", plid);
 		articleURL = HttpUtil.setParameter(
 			articleURL, "resourcePrimKey", resourcePrimKey);
-		articleURL = HttpUtil.setParameter(articleURL, "selPlid", selPlid);
 
 		return articleURL;
 	}

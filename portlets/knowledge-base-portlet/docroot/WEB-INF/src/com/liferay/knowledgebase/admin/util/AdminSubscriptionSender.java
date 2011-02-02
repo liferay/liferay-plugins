@@ -125,7 +125,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 
 		String articleAttachments = getEmailArticleAttachments(locale);
 		String articleURL = KnowledgeBaseUtil.getArticleURL(
-			_article.getResourcePrimKey(), _serviceContext.getPlid(),
+			_serviceContext.getPlid(), _article.getResourcePrimKey(),
 			_serviceContext.getPortalURL());
 		String articleVersion = LanguageUtil.format(
 			locale, "version-x", String.valueOf(_article.getVersion()));

@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.admin.lar;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
-import com.liferay.knowledgebase.admin.util.PriorityHelperUtil;
+import com.liferay.knowledgebase.admin.util.PriorityHelper;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.model.Comment;
@@ -463,7 +463,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					assetTagNames, articleElement);
 			}
 			else {
-				long priority = PriorityHelperUtil.getPriority(
+				long priority = PriorityHelper.getPriority(
 					existingArticle.getGroupId(),
 					existingArticle.getResourcePrimKey(), parentResourcePrimKey,
 					humanPriority);
@@ -556,7 +556,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Article importedArticle = null;
 
-		long priority = PriorityHelperUtil.getPriority(
+		long priority = PriorityHelper.getPriority(
 			portletDataContext.getScopeGroupId(), 0, parentResourcePrimKey, 0);
 
 		for (Element curArticleElement : articleElements) {
