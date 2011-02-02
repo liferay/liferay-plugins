@@ -37,7 +37,7 @@ request.setAttribute("view_user.jsp-user", user2);
 request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 %>
 
-<c:if test='<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>'>
+<c:if test="<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>">
 	<liferay-util:include page="/contacts_center/top_links.jsp" portletId="<%= portletDisplay.getId() %>" />
 </c:if>
 

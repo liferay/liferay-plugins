@@ -45,7 +45,6 @@ Group group = themeDisplay.getScopeGroup();
 			<c:when test="<%= users.size() > 0 %>">
 				<aui:layout>
 					<aui:column columnWidth="<%= 25 %>" cssClass="group-members" first="<%= true %>">
-
 						<div style="margin-bottom: 1em;">
 							<aui:input id="filter" label="filter-members" name="filter" type="text" />
 						</div>
