@@ -118,6 +118,10 @@ a:active {
 	overflow: visible;
 }
 
+.controls-hidden #navigation .delete-tab {
+	display: none;
+}
+
 #navigation .child-menu {
 	display: none;
 }
@@ -424,12 +428,16 @@ a:active {
 
 /* Sidebar */
 
-.portlet-blogs .portlet-body,
+.portlet-calendar .portlet-body,
 .portlet-document-library .portlet-body,
 .portlet-message-boards .portlet-body,
 .portlet-wiki .portlet-body {
 	margin-left: 250px;
 	position: relative;
+}
+
+.portlet-calendar .portlet-body {
+	margin-left: 225px;
 }
 
 .sidebar {
@@ -673,11 +681,6 @@ a:active {
 }
 
 /* Calendar */
-
-.portlet-calendar .portlet-borderless-container {
-	margin-left: 225px;
-	position: relative;
-}
 
 .portlet-calendar h1.title {
 	border-bottom: none;
