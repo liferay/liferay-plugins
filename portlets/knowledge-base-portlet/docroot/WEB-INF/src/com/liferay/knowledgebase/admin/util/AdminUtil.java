@@ -17,19 +17,14 @@ package com.liferay.knowledgebase.admin.util;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.RSSUtil;
 import com.liferay.util.portlet.PortletProps;
@@ -140,26 +135,6 @@ public class AdminUtil {
 		return outputDocument.toString();
 	}
 
-	public static String getArticleURL(long groupId, long resourcePrimKey)
-		throws PortalException, SystemException {
-
-		String articleURL = PortalUtil.getControlPanelFullURL(
-			groupId, PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
-
-		articleURL = HttpUtil.setParameter(
-			articleURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		String namespace = PortalUtil.getPortletNamespace(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + "jspPage", "/admin/view_article.jsp");
-		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
-
-		return articleURL;
-	}
-
 	public static String getEmailArticleAddedBody(
 		PortletPreferences preferences) {
 
@@ -252,26 +227,6 @@ public class AdminUtil {
 	public static String getEmailFromName(PortletPreferences preferences) {
 		return preferences.getValue(
 			"emailFromName", PortletProps.get("admin.email.from.name"));
-	}
-
-	public static String getTemplateURL(long groupId, long templateId)
-		throws PortalException, SystemException {
-
-		String templateURL = PortalUtil.getControlPanelFullURL(
-			groupId, PortletKeys.KNOWLEDGE_BASE_ADMIN, null);
-
-		templateURL = HttpUtil.setParameter(
-			templateURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		String namespace = PortalUtil.getPortletNamespace(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		templateURL = HttpUtil.setParameter(
-			templateURL, namespace + "jspPage", "/admin/view_template.jsp");
-		templateURL = HttpUtil.setParameter(
-			templateURL, namespace + "templateId", templateId);
-
-		return templateURL;
 	}
 
 	public static Map<String, String> initPortletPreferencesMap(

@@ -15,26 +15,26 @@
 package com.liferay.knowledgebase.hook.action;
 
 import com.liferay.knowledgebase.NoSuchArticleException;
-import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.NoSuchLayoutException;
+import com.liferay.portal.kernel.portlet.WindowStateFactory;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
@@ -42,17 +42,23 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.auth.AuthTokenUtil;
 import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.ControlPanelEntry;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.util.List;
 import java.util.Map;
 
+import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
 import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
@@ -82,41 +88,44 @@ public class FindArticleAction extends BaseStrutsAction {
 			plid = themeDisplay.getPlid();
 		}
 
-		String redirect = null;
+		PortletURL portletURL = null;
 
-		Article article = getArticle(resourcePrimKey, themeDisplay);
+		Article article = getArticle(resourcePrimKey);
 
 		if (article == null) {
-			redirect = getDisplayPortletURL(resourcePrimKey, plid, request);
+			portletURL = getDisplayPortletURL(plid, request);
 		}
 
-		if (redirect == null) {
-			redirect = getArticleURL(false, plid, article, themeDisplay);
+		if (portletURL == null) {
+			portletURL = getArticleURL(plid, false, article, request);
 		}
 
-		if (redirect == null) {
-			redirect = getArticleURL(true, plid, article, themeDisplay);
+		if (portletURL == null) {
+			portletURL = getArticleURL(plid, true, article, request);
 		}
 
-		if (redirect == null) {
-			redirect = getAdminPortletURL(article, themeDisplay);
+		if (portletURL == null) {
+			portletURL = getAdminPortletURL(article, request);
 		}
 
-		if (redirect == null) {
-			redirect = getDisplayPortletURL(resourcePrimKey, plid, request);
+		if (portletURL == null) {
+			portletURL = getDisplayPortletURL(plid, request);
 		}
 
-		response.sendRedirect(redirect);
+		response.sendRedirect(portletURL.toString());
 
 		return null;
 	}
 
-	protected String getAdminPortletURL(
-			Article article, ThemeDisplay themeDisplay)
+	protected PortletURL getAdminPortletURL(
+			Article article, HttpServletRequest request)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			themeDisplay.getCompanyId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			article.getCompanyId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
 		ControlPanelEntry controlPanelEntry =
 			portlet.getControlPanelEntryInstance();
@@ -136,14 +145,27 @@ public class FindArticleAction extends BaseStrutsAction {
 			return null;
 		}
 
-		return AdminUtil.getArticleURL(
-			article.getGroupId(), article.getResourcePrimKey());
+		Group controlPanelGroup = GroupLocalServiceUtil.getGroup(
+			article.getCompanyId(), GroupConstants.CONTROL_PANEL);
+
+		long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(
+			controlPanelGroup.getGroupId(), true);
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, portlet.getPortletId(), controlPanelPlid,
+			PortletRequest.RENDER_PHASE);
+
+		portletURL.setWindowState(WindowState.MAXIMIZED);
+		portletURL.setPortletMode(PortletMode.VIEW);
+
+		portletURL.setParameter("jspPage", "/admin/view_article.jsp");
+		portletURL.setParameter(
+			"resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
+
+		return portletURL;
 	}
 
-	protected Article getArticle(
-			long resourcePrimKey, ThemeDisplay themeDisplay)
-		throws Exception {
-
+	protected Article getArticle(long resourcePrimKey) throws Exception {
 		Article article = null;
 
 		try {
@@ -154,9 +176,11 @@ public class FindArticleAction extends BaseStrutsAction {
 			return null;
 		}
 
+		PermissionChecker permissionChecker =
+			PermissionThreadLocal.getPermissionChecker();
+
 		if (!ArticlePermission.contains(
-				themeDisplay.getPermissionChecker(), article,
-				ActionKeys.VIEW)) {
+				permissionChecker, article, ActionKeys.VIEW)) {
 
 			return null;
 		}
@@ -164,63 +188,60 @@ public class FindArticleAction extends BaseStrutsAction {
 		return article;
 	}
 
-	protected String getArticleURL(
-			long resourcePrimKey, long plid, String portletId,
-			ThemeDisplay themeDisplay)
+	protected PortletURL getArticleURL(
+			long plid, String portletId, HttpServletRequest request)
 		throws Exception {
 
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
-
-		String articleURL = themeDisplay.getPortalURL() + layoutActualURL;
-
-		String namespace = PortalUtil.getPortletNamespace(portletId);
-
-		articleURL = HttpUtil.setParameter(articleURL, "p_p_id", portletId);
-		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + "resourcePrimKey", resourcePrimKey);
+		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(
-				layout, portletId, StringPool.BLANK);
+			PortletPreferencesFactoryUtil.getPortletSetup(request, portletId);
 
 		Map<String, String> preferencesMap =
-			KnowledgeBaseUtil.initPortletPreferencesMap(
-				portletId, preferences);
+			KnowledgeBaseUtil.initPortletPreferencesMap(portletId, preferences);
 
-		String p_p_state = null;
+		WindowState windowState = null;
 		String jspPage = null;
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			p_p_state = preferencesMap.get("articleWindowState");
+			String name = preferencesMap.get("articleWindowState");
+
+			windowState = WindowStateFactory.getWindowState(name);
 			jspPage = "/aggregator/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			p_p_state = WindowState.NORMAL.toString();
+			windowState = WindowState.NORMAL;
 			jspPage = "/display/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
-			p_p_state = preferencesMap.get("articleWindowState");
+			String name = preferencesMap.get("articleWindowState");
+
+			windowState = WindowStateFactory.getWindowState(name);
 			jspPage = "/list/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
-			p_p_state = WindowState.MAXIMIZED.toString();
+			windowState = WindowState.MAXIMIZED;
 			jspPage = "/search/view_article.jsp";
 		}
 
-		articleURL = HttpUtil.setParameter(articleURL, "p_p_state", p_p_state);
-		articleURL = HttpUtil.setParameter(
-			articleURL, namespace + "jspPage", jspPage);
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, portletId, plid, PortletRequest.RENDER_PHASE);
 
-		return articleURL;
+		portletURL.setWindowState(windowState);
+		portletURL.setPortletMode(PortletMode.VIEW);
+
+		portletURL.setParameter("jspPage", jspPage);
+		portletURL.setParameter(
+			"resourcePrimKey", String.valueOf(resourcePrimKey));
+
+		return portletURL;
 	}
 
-	protected String getArticleURL(
-			boolean privateLayout, long plid, Article article,
-			ThemeDisplay themeDisplay)
+	protected PortletURL getArticleURL(
+			long plid, boolean privateLayout, Article article,
+			HttpServletRequest request)
 		throws Exception {
 
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
@@ -258,8 +279,7 @@ public class FindArticleAction extends BaseStrutsAction {
 						article.getResourcePrimKey())) {
 
 					return getArticleURL(
-						article.getResourcePrimKey(), layout.getPlid(),
-						portlet.getPortletId(), themeDisplay);
+						layout.getPlid(), portlet.getPortletId(), request);
 				}
 			}
 		}
@@ -267,28 +287,22 @@ public class FindArticleAction extends BaseStrutsAction {
 		return null;
 	}
 
-	protected String getDisplayPortletURL(
-			long resourcePrimKey, long plid, HttpServletRequest request)
+	protected PortletURL getDisplayPortletURL(
+			long plid, HttpServletRequest request)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		PortletURL portletURL = getArticleURL(plid, PORTLET_ID, request);
 
-		String articleURL = getArticleURL(
-			resourcePrimKey, plid, PORTLET_ID, themeDisplay);
-
-		articleURL = HttpUtil.setParameter(
-			articleURL, "p_p_state", WindowState.MAXIMIZED.toString());
+		portletURL.setWindowState(WindowState.MAXIMIZED);
 
 		if (!_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
-			return articleURL;
+			return portletURL;
 		}
 
-		articleURL = HttpUtil.setParameter(
-			articleURL, "p_p_auth",
-			AuthTokenUtil.getToken(request, plid, PORTLET_ID));
+		portletURL.setParameter(
+			"p_p_auth", AuthTokenUtil.getToken(request, plid, PORTLET_ID));
 
-		return articleURL;
+		return portletURL;
 	}
 
 	protected boolean isValidPlid(long plid) throws Exception {

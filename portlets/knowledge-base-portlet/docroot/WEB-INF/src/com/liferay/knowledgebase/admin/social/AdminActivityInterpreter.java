@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.admin.social;
 
-import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.model.Template;
@@ -35,10 +34,14 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.ControlPanelEntry;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -243,7 +246,19 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		return AdminUtil.getTemplateURL(groupId, templateId);
+		Map<String, String[]> params = new HashMap<String, String[]>();
+
+		String namespace = PortalUtil.getPortletNamespace(
+			PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+		params.put(
+			namespace + "jspPage", new String[] {"/admin/view_template.jsp"});
+		params.put(
+			namespace + "templateId",
+			new String[] {String.valueOf(templateId)});
+
+		return PortalUtil.getControlPanelFullURL(
+			groupId, PortletKeys.KNOWLEDGE_BASE_ADMIN, params);
 	}
 
 	protected String getTitle(
