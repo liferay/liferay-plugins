@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
+import com.liferay.portal.kernel.portlet.PortletResource;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -550,8 +551,11 @@ public class WSRPConsumerPortletLocalServiceImpl
 		return portlet;
 	}
 
-	protected String getProxyURL(String url) {
-		return "/proxy?url=" + HttpUtil.encodeURL(url);
+	protected PortletResource getProxyURL(String url) {
+		PortletResource portletResource = new PortletResource(
+			"/proxy?url=" + HttpUtil.encodeURL(url), false);
+
+		return portletResource;
 	}
 
 	protected com.liferay.portal.kernel.xml.QName getQName(QName qName) {
