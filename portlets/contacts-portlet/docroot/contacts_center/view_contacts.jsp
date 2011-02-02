@@ -135,6 +135,13 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 					</c:if>
 
 					<%
+					PortletURL viewUserURL = renderResponse.createRenderURL();
+
+					viewUserURL.setParameter("jspPage", "/contacts_center/view_user.jsp");
+					viewUserURL.setParameter("backURL", currentURL);
+
+					request.setAttribute(WebKeys.CONTACTS_URL, viewUserURL);
+
 					int friendUsersCount = UserLocalServiceUtil.getSocialUsersCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
 					%>
 
@@ -144,7 +151,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							<%
 							List<User> friendUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, 0, usersPerSection, new UserLoginDateComparator());
 
-							request.setAttribute("view_contacts.jsp-users", friendUsers);
+							request.setAttribute(WebKeys.CONTACTS_USERS, friendUsers);
 							%>
 
 							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
@@ -169,7 +176,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							<%
 							List<User> coworkerUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, 0, usersPerSection, new UserLoginDateComparator());
 
-							request.setAttribute("view_contacts.jsp-users", coworkerUsers);
+							request.setAttribute(WebKeys.CONTACTS_USERS, coworkerUsers);
 							%>
 
 							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
@@ -194,7 +201,7 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 							<%
 							List<User> followingUsers = UserLocalServiceUtil.getSocialUsers(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, 0, usersPerSection, new UserLoginDateComparator());
 
-							request.setAttribute("view_contacts.jsp-users", followingUsers);
+							request.setAttribute(WebKeys.CONTACTS_USERS, followingUsers);
 							%>
 
 							<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />

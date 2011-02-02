@@ -21,7 +21,14 @@ String backURL = ParamUtil.getString(request, "backURL");
 
 long userId = ParamUtil.getLong(request, "userId");
 
-User user2 = UserLocalServiceUtil.getUser(userId);
+User user2 = null;
+
+if (userId > 0) {
+	user2 = UserLocalServiceUtil.getUser(userId);
+}
+else {
+	user2 = (User)request.getAttribute(WebKeys.CONTACTS_USER);
+}
 
 user2 = user2.toEscapedModel();
 
@@ -30,7 +37,9 @@ request.setAttribute("view_user.jsp-user", user2);
 request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 %>
 
-<liferay-util:include page="/contacts_center/top_links.jsp" portletId="<%= portletDisplay.getId() %>" />
+<c:if test='<%= portletName.equals(PortletKeys.CONTACTS_CENTER) %>'>
+	<liferay-util:include page="/contacts_center/top_links.jsp" portletId="<%= portletDisplay.getId() %>" />
+</c:if>
 
 <liferay-ui:header
 	backURL="<%= backURL.toString() %>"

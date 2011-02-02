@@ -17,7 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List<User> users = (List<User>)request.getAttribute("view_contacts.jsp-users");
+List<User> users = (List<User>)request.getAttribute(WebKeys.CONTACTS_USERS);
+
+PortletURL portletURL = (PortletURL)request.getAttribute(WebKeys.CONTACTS_URL);
 %>
 
 <c:if test="<%= users != null %>">
@@ -25,18 +27,13 @@ List<User> users = (List<User>)request.getAttribute("view_contacts.jsp-users");
 		<ul class="lfr-user-grid">
 
 			<%
-			PortletURL userURL = renderResponse.createRenderURL();
-
-			userURL.setParameter("jspPage", "/contacts_center/view_user.jsp");
-			userURL.setParameter("backURL", currentURL);
-
 			for (User user2 : users) {
-				userURL.setParameter("userId", String.valueOf(user2.getUserId()));
+				portletURL.setParameter("userId", String.valueOf(user2.getUserId()));
 			%>
 
 				<li class="lfr-user-grid-item">
 					<div class="lfr-user-thumb">
-						<a href="<%= userURL.toString() %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
+						<a href="<%= portletURL.toString() %>"><img alt="<%= HtmlUtil.escape(user2.getFullName()) %>" src="<%= user2.getPortraitURL(themeDisplay) %>" /></a>
 					</div>
 
 					<div class="lfr-user-info">

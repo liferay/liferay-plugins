@@ -24,6 +24,9 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
+<%@ page import="com.liferay.contacts.util.PortletKeys" %>
+<%@ page import="com.liferay.contacts.util.WebKeys" %>
+<%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.DisplayTerms" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
@@ -35,11 +38,11 @@
 <%@ page import="com.liferay.portal.kernel.util.PrefsParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 <%@ page import="com.liferay.portal.model.Address" %>
 <%@ page import="com.liferay.portal.model.Contact" %>
 <%@ page import="com.liferay.portal.model.EmailAddress" %>
+<%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.model.Phone" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.model.Website" %>

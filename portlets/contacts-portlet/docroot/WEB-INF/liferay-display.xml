@@ -5,4 +5,7 @@
 	<category name="category.collaboration">
 		<portlet id="1" />
 	</category>
+	<category name="category.social">
+		<portlet id="2" />
+	</category>
 </display>
