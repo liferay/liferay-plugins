@@ -23,22 +23,22 @@
 					</then>
 				</if>
 
-				<property name="ext.full.dir" value="${ext.parent.dir}/${ext.name}-ext" />
+				<property name="ext.plugin.dir" value="${ext.parent.dir}/${ext.name}-ext" />
 
 				<if>
-					<available file="${ext.full.dir}" />
+					<available file="${ext.plugin.dir}" />
 					<then>
 						<fail message="${ext.name}-ext already exists." />
 					</then>
 				</if>
 
-				<copy todir="${ext.full.dir}">
+				<copy todir="${ext.plugin.dir}">
 					<fileset
 						dir="${project.dir}/tools/ext_tmpl"
 					/>
 				</copy>
 
-				<replace dir="${ext.full.dir}">
+				<replace dir="${ext.plugin.dir}">
 					<replacefilter token="@ext.name@" value="${ext.name}" />
 					<replacefilter token="@ext.display.name@" value="${ext.display.name}" />
 				</replace>
