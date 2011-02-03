@@ -199,10 +199,6 @@ a:active {
 	height: 0;
 }
 
-.portlet-borderless-bar {
-	display: none;
-}
-
 .portlet-title {
 	border-bottom: 4px solid #7F80A4;
 	color: #8F0920;
@@ -237,10 +233,6 @@ a:active {
 	position: absolute;
 	right: 0;
 	top: -32px;
-}
-
-.page-maximized .portlet-content .so-portlet-configuration {
-	display: none;
 }
 
 /* ---------- Layout ---------- */
@@ -360,7 +352,7 @@ a:active {
 .taglib-header h1.header-title {
 	border: none;
 	color: #8F0920;
-	font-size: 2.5em;
+	font-size: 2em;
 	font-weight: bold;
 	line-height: 1em;
 	margin: 0 0 .5em;
@@ -428,8 +420,8 @@ a:active {
 
 /* Sidebar */
 
+.portlet-blogs .portlet-body,
 .portlet-calendar .portlet-body,
-.portlet-document-library .portlet-body,
 .portlet-message-boards .portlet-body,
 .portlet-wiki .portlet-body {
 	margin-left: 250px;
@@ -580,33 +572,32 @@ a:active {
 	border-top: none;
 }
 
-.taglib-social-activities .activity-body {
-	border-bottom: 1px solid #DBDBDB;
+.activity-data .activity-body {
 	font-size: 9px;
 }
 
-.taglib-social-activities .activity-body a {
+.activity-data .activity-body a {
 	background: url(../images/custom/bullet.png) no-repeat 3px 50%;
 	padding-left: 10px;
 }
 
-.taglib-social-activities .user {
+.activity-data .user {
 	color: #3C6696;
 	font-size: 11px;
 	font-weight: bold;
 }
 
-.taglib-social-activities a.group {
+.activity-data a.group {
 	color: #740B2B;
 	font-weight: bold;
 }
 
-.taglib-social-activities .activity-title {
+.activity-data .activity-title {
 	color: #413739;
 	font-size: 11px;
 }
 
-.taglib-social-activities .time {
+.activity-data .time {
 	color: #848484;
 }
 
@@ -1151,6 +1142,12 @@ table.calendar {
 
 .portlet-message-boards .category-current {
 	font-weight: bold;
+}
+
+/* Microblogs */
+
+.microblogs-portlet .taglib-header h1.header-title {
+	margin-bottom: 0;
 }
 
 /* Recent Documents */
