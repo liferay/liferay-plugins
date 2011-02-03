@@ -190,8 +190,6 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 
 		getBuddies(pollerRequest, pollerResponse);
 		getEntries(pollerRequest, pollerResponse);
-
-		pollerResponse.close();
 	}
 
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
