@@ -16,8 +16,8 @@ package com.liferay.wsrp.bind;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.PortletResource;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Portlet;
@@ -226,84 +226,96 @@ public class V2ServiceDescriptionServiceImpl
 
 		long timestamp = portlet.getTimestamp();
 
-		for (PortletResource footerPortalCss : portlet.getHeaderPortalCss()) {
-			String url = PortalUtil.getStaticResourceURL(
-				request, PortalUtil.getPathContext(), footerPortalCss,
-				timestamp);
+		for (String footerPortalCss : portlet.getHeaderPortalCss()) {
+			if (!HttpUtil.hasProtocol(footerPortalCss)) {
+				footerPortalCss =
+					portalPath + footerPortalCss + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "footer-portal-css", url);
+				messageElements, "footer-portal-css", footerPortalCss);
 		}
 
-		for (PortletResource footerPortalJavaScript :
+		for (String footerPortalJavaScript :
 				portlet.getHeaderPortalJavaScript()) {
 
-			String url = PortalUtil.getStaticResourceURL(
-				request, PortalUtil.getPathContext(), footerPortalJavaScript,
-				timestamp);
+			if (!HttpUtil.hasProtocol(footerPortalJavaScript)) {
+				footerPortalJavaScript =
+					portalPath + footerPortalJavaScript + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "footer-portal-javascript", url);
+				messageElements, "footer-portal-javascript",
+				footerPortalJavaScript);
 		}
 
-		for (PortletResource footerPortletCss : portlet.getHeaderPortletCss()) {
-			String url = PortalUtil.getStaticResourceURL(
-				request, portlet.getStaticResourcePath(), footerPortletCss,
-				timestamp);
+		for (String footerPortletCss : portlet.getHeaderPortletCss()) {
+			if (!HttpUtil.hasProtocol(footerPortletCss)) {
+				footerPortletCss =
+					portletPath + footerPortletCss + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "footer-portlet-css", url);
+				messageElements, "footer-portlet-css", footerPortletCss);
 		}
 
-		for (PortletResource footerPortletJavaScript :
+		for (String footerPortletJavaScript :
 				portlet.getHeaderPortletJavaScript()) {
 
-			String url = PortalUtil.getStaticResourceURL(
-				request, portlet.getStaticResourcePath(),
-				footerPortletJavaScript, timestamp);
+			if (!HttpUtil.hasProtocol(footerPortletJavaScript)) {
+				footerPortletJavaScript =
+					portletPath + footerPortletJavaScript + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "footer-portlet-javascript", url);
+				messageElements, "footer-portlet-javascript",
+				footerPortletJavaScript);
 		}
 
-		for (PortletResource headerPortalCss : portlet.getHeaderPortalCss()) {
-			String url = PortalUtil.getStaticResourceURL(
-				request, PortalUtil.getPathContext(), headerPortalCss,
-				timestamp);
+		for (String headerPortalCss : portlet.getHeaderPortalCss()) {
+			if (!HttpUtil.hasProtocol(headerPortalCss)) {
+				headerPortalCss =
+					portalPath + headerPortalCss + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "header-portal-css", url);
+				messageElements, "header-portal-css", headerPortalCss);
 		}
 
-		for (PortletResource headerPortalJavaScript :
+		for (String headerPortalJavaScript :
 				portlet.getHeaderPortalJavaScript()) {
 
-			String url = PortalUtil.getStaticResourceURL(
-				request, PortalUtil.getPathContext(), headerPortalJavaScript,
-				timestamp);
+			if (!HttpUtil.hasProtocol(headerPortalJavaScript)) {
+				headerPortalJavaScript =
+					portalPath + headerPortalJavaScript + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "header-portal-javascript",url);
+				messageElements, "header-portal-javascript",
+				headerPortalJavaScript);
 		}
 
-		for (PortletResource headerPortletCss : portlet.getHeaderPortletCss()) {
-			String url = PortalUtil.getStaticResourceURL(
-				request, portlet.getStaticResourcePath(), headerPortletCss,
-				timestamp);
+		for (String headerPortletCss : portlet.getHeaderPortletCss()) {
+			if (!HttpUtil.hasProtocol(headerPortletCss)) {
+				headerPortletCss =
+					portletPath + headerPortletCss + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "header-portlet-css", url);
+				messageElements, "header-portlet-css", headerPortletCss);
 		}
 
-		for (PortletResource headerPortletJavaScript :
+		for (String headerPortletJavaScript :
 				portlet.getHeaderPortletJavaScript()) {
 
-			String url = PortalUtil.getStaticResourceURL(
-				request, portlet.getStaticResourcePath(),
-				headerPortletJavaScript, timestamp);
+			if (!HttpUtil.hasProtocol(headerPortletJavaScript)) {
+				headerPortletJavaScript =
+					portletPath + headerPortletJavaScript + "?t=" + timestamp;
+			}
 
 			ExtensionUtil.addMessageElement(
-				messageElements, "header-portlet-javascript", url);
+				messageElements, "header-portlet-javascript",
+				headerPortletJavaScript);
 		}
 
 		portletDescription.setExtensions(
