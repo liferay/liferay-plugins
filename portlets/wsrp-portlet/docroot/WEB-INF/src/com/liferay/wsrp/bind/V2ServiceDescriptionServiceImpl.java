@@ -224,7 +224,9 @@ public class V2ServiceDescriptionServiceImpl
 		String portalPath = portalURL + PortalUtil.getPathContext();
 		String portletPath = portalURL + portlet.getContextPath();
 
-		long timestamp = portlet.getTimestamp();
+		Portlet rootPortlet = portlet.getRootPortlet();
+
+		long timestamp = rootPortlet.getTimestamp();
 
 		for (String footerPortalCss : portlet.getHeaderPortalCss()) {
 			if (!HttpUtil.hasProtocol(footerPortalCss)) {
