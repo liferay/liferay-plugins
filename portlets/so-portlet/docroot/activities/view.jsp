@@ -20,69 +20,79 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "my-sites");
+String tabs1 = ParamUtil.getString(request, "tabs1", "friends");
 
-Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
+Group group = themeDisplay.getScopeGroup();
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 
 List<SocialActivity> activities = null;
 int total = 0;
-
-User curUser = null;
-
-if (group.isUser()) {
-	curUser = UserLocalServiceUtil.getUserById(group.getClassPK());
-}
-else {
-	curUser = user;
-}
-
-if (group.isCommunity()) {
-	activities = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-	total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
-}
-else if (tabs1.equals("my-sites")) {
-	activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-	total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(curUser.getUserId());
-}
-else if (tabs1.equals("my-friends")) {
-	activities = SocialActivityLocalServiceUtil.getRelationActivities(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, searchContainer.getStart(), searchContainer.getEnd());
-	total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(curUser.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
-}
-else {
-	activities = SocialActivityLocalServiceUtil.getUserActivities(curUser.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-	total = SocialActivityLocalServiceUtil.getUserActivitiesCount(curUser.getUserId());
-}
-
-searchContainer.setTotal(total);
-
-PortletURL rssURL = renderResponse.createRenderURL();
-
-rssURL.setParameter("rss", "1");
 %>
 
-<c:if test="<%= group.isUser() && (themeDisplay.getUserId() == curUser.getUserId()) %>">
-	<liferay-ui:tabs
-		names="my-sites,my-friends,me"
-		url="<%= portletURL.toString() %>"
-	/>
-</c:if>
-
-<liferay-ui:social-activities
-	activities="<%= activities %>"
-	feedEnabled="<%= false %>"
-/>
-
-<c:if test="<%= (!activities.isEmpty()) && !themeDisplay.isStateExclusive() %>">
-	<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchActivities">
-		<liferay-ui:search-paginator
-			searchContainer="<%= searchContainer %>"
-			type="article"
+<c:choose>
+	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) %>">
+		<liferay-ui:tabs
+			names="friends,coworkers,following,my-communities,me"
+			url="<%= portletURL.toString() %>"
 		/>
-	</div>
+
+		<%
+		if (tabs1.equals("friends")) {
+			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND);
+		}
+		else if (tabs1.equals("coworkers")) {
+			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER);
+		}
+		else if (tabs1.equals("following")) {
+			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+		}
+		else if (tabs1.equals("my-communities")) {
+			activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(user.getUserId());
+		}
+		else {
+			activities = SocialActivityLocalServiceUtil.getUserActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(user.getUserId());
+		}
+
+		searchContainer.setTotal(total);
+		%>
+
+		<%@ include file="/activities/view_activities.jspf" %>
+	</c:when>
+	<c:otherwise>
+
+		<%
+		if (group.isUser()) {
+			activities = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+		}
+		else {
+			activities = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+			total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+		}
+
+		searchContainer.setTotal(total);
+		%>
+
+		<liferay-ui:social-activities
+			activities="<%= activities %>"
+			feedEnabled="<%= false %>"
+		/>
+	</c:otherwise>
+</c:choose>
+
+<c:if test="<%= (!activities.isEmpty()) %>">
+	<liferay-ui:search-paginator
+		searchContainer="<%= searchContainer %>"
+		type="article"
+	/>
 </c:if>

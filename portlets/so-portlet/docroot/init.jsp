@@ -48,6 +48,7 @@
 <%@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.CalendarUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
+<%@ page import="com.liferay.portal.kernel.util.DateUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
@@ -69,6 +70,7 @@
 <%@ page import="com.liferay.portal.model.ListType" %>
 <%@ page import="com.liferay.portal.model.PasswordPolicy" %>
 <%@ page import="com.liferay.portal.model.Phone" %>
+<%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.model.Role" %>
 <%@ page import="com.liferay.portal.model.RoleConstants" %>
 <%@ page import="com.liferay.portal.model.Team" %>
@@ -84,6 +86,7 @@
 <%@ page import="com.liferay.portal.service.ListTypeServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PasswordPolicyLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.PhoneLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.RegionServiceUtil" %>
 <%@ page import="com.liferay.portal.service.RoleLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.TeamLocalServiceUtil" %>
@@ -102,10 +105,12 @@
 <%@ page import="com.liferay.portlet.asset.service.AssetTagLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.enterpriseadmin.util.EnterpriseAdminUtil" %>
 <%@ page import="com.liferay.portlet.social.model.SocialActivity" %>
+<%@ page import="com.liferay.portlet.social.model.SocialActivityFeedEntry" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRequest" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRequestConstants" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRequestFeedEntry" %>
+<%@ page import="com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
@@ -142,4 +147,5 @@
 String currentURL = PortalUtil.getCurrentURL(request);
 
 Format dateFormatDate = FastDateFormatFactoryUtil.getSimpleDateFormat("MMM yyyy", locale, timeZone);
+Format timeFormatDate = FastDateFormatFactoryUtil.getTime(locale, timeZone);
 %>
