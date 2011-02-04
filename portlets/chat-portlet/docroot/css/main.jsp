@@ -112,7 +112,6 @@ html body {
 .chat-bar div ul li .panel-trigger .unread {
 	background: url(<%= request.getContextPath() %>/images/unread-messages.png);
 	color: #fff;
-	display: none;
 	font: bold 10px/16px Arial, Helvetica, sans-serif;
 	height: 16px;
 	position: absolute;
