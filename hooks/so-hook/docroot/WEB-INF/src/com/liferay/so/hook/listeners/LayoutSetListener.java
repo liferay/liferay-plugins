@@ -32,6 +32,7 @@ import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
+import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
@@ -40,6 +41,7 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
+import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -93,15 +95,20 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		// Home
 
 		Layout layout = addLayout(
-			group, "Home", "/home", PortletPropsValues.USER_LAYOUT_TEMPLATE);
+			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
+			PortletPropsValues.USER_LAYOUT_TEMPLATE);
 
 		addPortlets(group, layout, "/home");
 
 		updatePermissions(layout, false);
 
+		addApplications(group, layout.getLayoutId());
+
 		// Profile
 
-		layout = addLayout(group, "Profile", "/profile", "2_columns_ii");
+		layout = addLayout(
+			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
+			"2_columns_ii");
 
 		addResources(layout, "1_WAR_soportlet");
 		addResources(layout, "4_WAR_soportlet");
@@ -112,16 +119,57 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		// Mail
 
-		layout = addLayout(group, "Mail", "/mail", "1_column");
+		layout = addLayout(
+			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Mail",
+			"1_column");
 
 		addResources(layout, "1_WAR_mailportlet");
 
 		updatePermissions(layout, false);
 	}
 
+	protected void addApplications(Group group, long parentLayoutId)
+		throws Exception {
+
+		for (String portletId : PortletPropsValues.USER_APPLICATIONS) {
+			Layout layout = null;
+
+			try {
+				Portlet portlet = PortletLocalServiceUtil.getPortletById(
+					group.getCompanyId(), portletId);
+
+				layout = addLayout(
+					group, parentLayoutId, portlet.getDisplayName(),
+					"2_columns_ii");
+
+				LayoutTypePortlet layoutTypePortlet =
+					(LayoutTypePortlet)layout.getLayoutType();
+
+				layoutTypePortlet.setPortletIds("column-1", "71_INSTANCE_abcd");
+				layoutTypePortlet.setPortletIds("column-2", portletId);
+
+				LayoutLocalServiceUtil.updateLayout(
+					layout.getGroupId(), layout.isPrivateLayout(),
+					layout.getLayoutId(), layout.getTypeSettings());
+
+				addResources(layout, "71_INSTANCE_abcd");
+				addResources(layout, portletId);
+
+				configureNavigation(layout, "71_INSTANCE_abcd");
+
+				updatePermissions(layout, false);
+			}
+			catch (Exception e) {
+				if (layout != null) {
+					LayoutLocalServiceUtil.deleteLayout(layout);
+				}
+			}
+		}
+	}
+
 	protected Layout addLayout(
-			Group group, String name, String friendlyURL,
-			String layouteTemplateId)
+			Group group, long parentLayoutId, String name,
+			String layoutTemplateId)
 		throws Exception {
 
 		boolean privateLayout = false;
@@ -134,14 +182,13 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
 			group.getCreatorUserId(), group.getGroupId(), privateLayout,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, StringPool.BLANK,
-			StringPool.BLANK, LayoutConstants.TYPE_PORTLET, false, friendlyURL,
-			serviceContext);
+			parentLayoutId, name, StringPool.BLANK, StringPool.BLANK,
+			LayoutConstants.TYPE_PORTLET, false, null, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
-		layoutTypePortlet.setLayoutTemplateId(0, layouteTemplateId, false);
+		layoutTypePortlet.setLayoutTemplateId(0, layoutTemplateId, false);
 
 		return LayoutLocalServiceUtil.updateLayout(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
@@ -191,6 +238,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			if (portletId.equals("1_WAR_wysiwygportlet")) {
 				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
 			}
+			else if (portletId.startsWith("71_INSTANCE_")) {
+				configureNavigation(layout, portletId);
+			}
 			else if (portletId.equals(PortletKeys.ALERTS)) {
 				updatePortletTitle(layout, PortletKeys.ALERTS, "Announcements");
 			}
@@ -208,6 +258,18 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		ResourceLocalServiceUtil.addResources(
 			layout.getCompanyId(), layout.getGroupId(), 0, rootPortletId,
 			portletPrimaryKey, true, true, true);
+	}
+
+	protected static void configureNavigation(Layout layout, String portletId)
+		throws Exception {
+
+		PortletPreferences portletSetup =
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
+
+		portletSetup.setValue("displayStyle", "from-level-1");
+
+		portletSetup.store();
 	}
 
 	protected void removePortletBorder(Layout layout, String portletId)

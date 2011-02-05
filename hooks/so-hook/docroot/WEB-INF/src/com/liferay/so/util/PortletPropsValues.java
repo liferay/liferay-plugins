@@ -38,6 +38,9 @@ import com.liferay.util.portlet.PortletProps;
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.SITE_PROTOTYPE_LAYOUT_TEMPLATE));
 
+	public static final String[] USER_APPLICATIONS =
+		PortletProps.getArray(PortletPropsKeys.USER_APPLICATIONS);
+
 	public static final String USER_LAYOUT_TEMPLATE = GetterUtil.getString(
 		PortletProps.get(PortletPropsKeys.USER_LAYOUT_TEMPLATE));
 
