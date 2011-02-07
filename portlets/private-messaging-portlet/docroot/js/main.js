@@ -7,7 +7,7 @@ AUI().add(
 
 				instance.namespace = params.namespace;
 
-				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace);
+				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .portlet-content');
 
 				instance._assignEvents();
 			},

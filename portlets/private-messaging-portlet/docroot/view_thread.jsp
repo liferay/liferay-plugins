@@ -182,7 +182,7 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 							<%
 							for (int j = 0; j < attachmentsFiles.length; j++) {
 								String fileName = FileUtil.getShortFileName(attachmentsFiles[j]);
-								long fileSize = DLServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, attachmentsFiles[j]);
+								long fileSize = DLLocalServiceUtil.getFileSize(company.getCompanyId(), CompanyConstants.SYSTEM, attachmentsFiles[j]);
 							%>
 
 								<a href="<liferay-portlet:actionURL name="getMessageAttachment" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" /><portlet:param name="attachment" value="<%= fileName %>" /></liferay-portlet:actionURL>"><%= fileName %></a> (<%= TextFormatter.formatKB(fileSize, locale) %>k)<%= (j < (attachmentsFiles.length - 1)) ? ", " : "" %>
