@@ -116,16 +116,6 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		removePortletBorder(layout, "4_WAR_soportlet");
 
 		updatePermissions(layout, true);
-
-		// Mail
-
-		layout = addLayout(
-			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Mail",
-			"1_column");
-
-		addResources(layout, "1_WAR_mailportlet");
-
-		updatePermissions(layout, false);
 	}
 
 	protected void addApplications(Group group, long parentLayoutId)
