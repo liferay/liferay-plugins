@@ -283,11 +283,16 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	/**
 	* Sets the localized title of this kaleo definition.
 	*
-	* @param locale the locale to set the localized title for
 	* @param title the localized title of this kaleo definition
+	* @param locale the locale to set the localized title for
 	*/
-	public void setTitle(java.util.Locale locale, java.lang.String title) {
-		_kaleoDefinition.setTitle(locale, title);
+	public void setTitle(java.lang.String title, java.util.Locale locale) {
+		_kaleoDefinition.setTitle(title, locale);
+	}
+
+	public void setTitle(java.lang.String title, java.util.Locale locale,
+		java.util.Locale defaultLocale) {
+		_kaleoDefinition.setTitle(title, locale, defaultLocale);
 	}
 
 	/**
@@ -298,6 +303,12 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 	public void setTitleMap(
 		java.util.Map<java.util.Locale, java.lang.String> titleMap) {
 		_kaleoDefinition.setTitleMap(titleMap);
+	}
+
+	public void setTitleMap(
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Locale defaultLocale) {
+		_kaleoDefinition.setTitleMap(titleMap, defaultLocale);
 	}
 
 	/**

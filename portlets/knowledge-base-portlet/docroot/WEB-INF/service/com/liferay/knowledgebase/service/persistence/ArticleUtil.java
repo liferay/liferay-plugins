@@ -1096,6 +1096,31 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Filters the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByG_L_PrevAndNext(
+		long articleId, long groupId, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L_PrevAndNext(articleId, groupId, latest,
+			orderByComparator);
+	}
+
+	/**
 	* Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63;.
 	*
 	* <p>
@@ -1827,6 +1852,32 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByG_P_L_PrevAndNext(
+		long articleId, long groupId, long parentResourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_PrevAndNext(articleId, groupId,
+			parentResourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
 	* Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
 	*
 	* <p>
@@ -2155,6 +2206,32 @@ public class ArticleUtil {
 		return getPersistence()
 				   .filterFindByG_L_S(groupId, latest, status, start, end,
 			orderByComparator);
+	}
+
+	/**
+	* Filters the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByG_L_S_PrevAndNext(
+		long articleId, long groupId, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_L_S_PrevAndNext(articleId, groupId, latest,
+			status, orderByComparator);
 	}
 
 	/**
@@ -2725,6 +2802,34 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Filters the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByR_G_P_L_PrevAndNext(
+		long articleId, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_PrevAndNext(articleId, resourcePrimKey,
+			groupId, parentResourcePrimKey, latest, orderByComparator);
+	}
+
+	/**
 	* Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
 	*
 	* <p>
@@ -3090,6 +3195,34 @@ public class ArticleUtil {
 		return getPersistence()
 				   .filterFindByG_P_L_S(groupId, parentResourcePrimKey, latest,
 			status, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByG_P_L_S_PrevAndNext(
+		long articleId, long groupId, long parentResourcePrimKey, int latest,
+		int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_P_L_S_PrevAndNext(articleId, groupId,
+			parentResourcePrimKey, latest, status, orderByComparator);
 	}
 
 	/**
@@ -3479,6 +3612,36 @@ public class ArticleUtil {
 	}
 
 	/**
+	* Filters the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param latest the latest to search with
+	* @param status the status to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByR_G_P_L_S_PrevAndNext(
+		long articleId, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByR_G_P_L_S_PrevAndNext(articleId,
+			resourcePrimKey, groupId, parentResourcePrimKey, latest, status,
+			orderByComparator);
+	}
+
+	/**
 	* Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
 	*
 	* <p>
@@ -3789,6 +3952,36 @@ public class ArticleUtil {
 		return getPersistence()
 				   .filterFindByNotR_G_P_P_L(resourcePrimKey, groupId,
 			parentResourcePrimKey, priority, latest, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters the articles before and after the current article in the ordered set where resourcePrimKey &ne; &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and priority = &#63; and latest = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param articleId the primary key of the current article
+	* @param resourcePrimKey the resource prim key to search with
+	* @param groupId the group ID to search with
+	* @param parentResourcePrimKey the parent resource prim key to search with
+	* @param priority the priority to search with
+	* @param latest the latest to search with
+	* @param orderByComparator the comparator to order the set by
+	* @return the previous, current, and next article
+	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.knowledgebase.model.Article[] filterFindByNotR_G_P_P_L_PrevAndNext(
+		long articleId, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, long priority, int latest,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.knowledgebase.NoSuchArticleException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByNotR_G_P_P_L_PrevAndNext(articleId,
+			resourcePrimKey, groupId, parentResourcePrimKey, priority, latest,
 			orderByComparator);
 	}
 

@@ -2141,6 +2141,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -2161,6 +2163,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -3031,6 +3035,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -3227,6 +3233,199 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param latest the latest to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_L_PrevAndNext(long articleId, long groupId,
+		int latest, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_L_PrevAndNext(articleId, groupId, latest,
+				orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_L_PrevAndNext(session, article, groupId,
+					latest, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_L_PrevAndNext(session, article, groupId,
+					latest, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_L_PrevAndNext(Session session,
+		Article article, long groupId, int latest,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_L_LATEST_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(latest);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63;.
 	 *
 	 * <p>
@@ -3312,6 +3511,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -3831,6 +4032,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_C_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -4359,6 +4562,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -4379,6 +4584,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -4932,6 +5139,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -4952,6 +5161,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -5163,6 +5374,205 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param latest the latest to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_P_L_PrevAndNext(long articleId,
+		long groupId, long parentResourcePrimKey, int latest,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_P_L_PrevAndNext(articleId, groupId,
+				parentResourcePrimKey, latest, orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_P_L_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, latest, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_P_L_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, latest, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_P_L_PrevAndNext(Session session,
+		Article article, long groupId, long parentResourcePrimKey, int latest,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_G_P_L_LATEST_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(latest);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
 	 *
 	 * <p>
@@ -5256,6 +5666,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -5276,6 +5688,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -5824,6 +6238,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -6039,6 +6455,205 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param latest the latest to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_L_S_PrevAndNext(long articleId,
+		long groupId, int latest, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_L_S_PrevAndNext(articleId, groupId, latest, status,
+				orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_L_S_PrevAndNext(session, article, groupId,
+					latest, status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_L_S_PrevAndNext(session, article, groupId,
+					latest, status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_L_S_PrevAndNext(Session session,
+		Article article, long groupId, int latest, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
+
+		query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(latest);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -6128,6 +6743,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -6682,6 +7299,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_C_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -7257,6 +7876,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -7286,6 +7907,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -7306,6 +7929,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -7530,6 +8155,213 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param latest the latest to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByR_G_P_L_PrevAndNext(long articleId,
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByR_G_P_L_PrevAndNext(articleId, resourcePrimKey,
+				groupId, parentResourcePrimKey, latest, orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByR_G_P_L_PrevAndNext(session, article,
+					resourcePrimKey, groupId, parentResourcePrimKey, latest,
+					orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByR_G_P_L_PrevAndNext(session, article,
+					resourcePrimKey, groupId, parentResourcePrimKey, latest,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByR_G_P_L_PrevAndNext(Session session,
+		Article article, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_LATEST_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(resourcePrimKey);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(latest);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
 	 *
 	 * <p>
@@ -7618,6 +8450,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				long resourcePrimKey = resourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -7647,6 +8481,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -7667,6 +8503,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -8255,6 +9093,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -8275,6 +9115,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -8504,6 +9346,212 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param latest the latest to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_P_L_S_PrevAndNext(long articleId,
+		long groupId, long parentResourcePrimKey, int latest, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_P_L_S_PrevAndNext(articleId, groupId,
+				parentResourcePrimKey, latest, status, orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_P_L_S_PrevAndNext(session, article,
+					groupId, parentResourcePrimKey, latest, status,
+					orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_P_L_S_PrevAndNext(session, article,
+					groupId, parentResourcePrimKey, latest, status,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_P_L_S_PrevAndNext(Session session,
+		Article article, long groupId, long parentResourcePrimKey, int latest,
+		int status, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
+
+		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(latest);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -8600,6 +9648,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -8620,6 +9670,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -9234,6 +10286,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -9263,6 +10317,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -9283,6 +10339,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -9526,6 +10584,219 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param latest the latest to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByR_G_P_L_S_PrevAndNext(long articleId,
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		int latest, int status, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByR_G_P_L_S_PrevAndNext(articleId, resourcePrimKey,
+				groupId, parentResourcePrimKey, latest, status,
+				orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByR_G_P_L_S_PrevAndNext(session, article,
+					resourcePrimKey, groupId, parentResourcePrimKey, latest,
+					status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByR_G_P_L_S_PrevAndNext(session, article,
+					resourcePrimKey, groupId, parentResourcePrimKey, latest,
+					status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByR_G_P_L_S_PrevAndNext(Session session,
+		Article article, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, int latest, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_2);
+
+		query.append(_FINDER_COLUMN_R_G_P_L_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(resourcePrimKey);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(latest);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
 	 *
 	 * <p>
@@ -9619,6 +10890,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				long resourcePrimKey = resourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -9648,6 +10921,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -9668,6 +10943,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -10351,6 +11628,219 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 		finally {
 			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the articles before and after the current article in the ordered set where resourcePrimKey &ne; &#63; and groupId = &#63; and parentResourcePrimKey = &#63; and priority = &#63; and latest = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param priority the priority to search with
+	 * @param latest the latest to search with
+	 * @param orderByComparator the comparator to order the set by
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByNotR_G_P_P_L_PrevAndNext(long articleId,
+		long resourcePrimKey, long groupId, long parentResourcePrimKey,
+		long priority, int latest, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByNotR_G_P_P_L_PrevAndNext(articleId, resourcePrimKey,
+				groupId, parentResourcePrimKey, priority, latest,
+				orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByNotR_G_P_P_L_PrevAndNext(session, article,
+					resourcePrimKey, groupId, parentResourcePrimKey, priority,
+					latest, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByNotR_G_P_P_L_PrevAndNext(session, article,
+					resourcePrimKey, groupId, parentResourcePrimKey, priority,
+					latest, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByNotR_G_P_P_L_PrevAndNext(Session session,
+		Article article, long resourcePrimKey, long groupId,
+		long parentResourcePrimKey, long priority, int latest,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_NOTR_G_P_P_L_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_NOTR_G_P_P_L_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_NOTR_G_P_P_L_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_NOTR_G_P_P_L_PRIORITY_2);
+
+		query.append(_FINDER_COLUMN_NOTR_G_P_P_L_LATEST_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(resourcePrimKey);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(priority);
+
+		qPos.add(latest);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
@@ -11054,6 +12544,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -11074,6 +12566,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -11280,6 +12774,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -11419,6 +12915,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -11561,6 +13059,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_C_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -11708,6 +13208,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -11728,6 +13230,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -11898,6 +13402,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -11918,6 +13424,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -12068,6 +13576,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -12088,6 +13598,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -12243,6 +13755,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -12398,6 +13912,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -12559,6 +14075,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_C_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -12726,6 +14244,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -12755,6 +14275,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -12775,6 +14297,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -12929,6 +14453,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				long resourcePrimKey = resourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -12958,6 +14484,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -12978,6 +14506,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -13147,6 +14677,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -13167,6 +14699,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -13335,6 +14869,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -13355,6 +14891,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -13530,6 +15068,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					long resourcePrimKey = resourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -13559,6 +15099,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -13579,6 +15121,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
+					int latest = latests[i];
+
 					query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -13750,6 +15294,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				long resourcePrimKey = resourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -13779,6 +15325,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				long parentResourcePrimKey = parentResourcePrimKeies[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -13799,6 +15347,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
+				int latest = latests[i];
+
 				query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {

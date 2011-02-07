@@ -248,10 +248,12 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	/**
 	 * Sets the localized title of this kaleo definition.
 	 *
-	 * @param locale the locale to set the localized title for
 	 * @param title the localized title of this kaleo definition
+	 * @param locale the locale to set the localized title for
 	 */
-	public void setTitle(Locale locale, String title);
+	public void setTitle(String title, Locale locale);
+
+	public void setTitle(String title, Locale locale, Locale defaultLocale);
 
 	/**
 	 * Sets the localized titles of this kaleo definition from the map of locales and localized titles.
@@ -259,6 +261,8 @@ public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
 	 * @param titleMap the locales and localized titles of this kaleo definition
 	 */
 	public void setTitleMap(Map<Locale, String> titleMap);
+
+	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale);
 
 	/**
 	 * Gets the description of this kaleo definition.

@@ -100,120 +100,7 @@ public class ClpSerializer {
 		String oldModelClassName = oldModelClass.getName();
 
 		if (oldModelClassName.equals(FooClp.class.getName())) {
-			FooClp oldCplModel = (FooClp)oldModel;
-
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					Class<?> newModelClass = Class.forName("com.liferay.sampleservicebuilder.model.impl.FooImpl",
-							true, _classLoader);
-
-					Object newModel = newModelClass.newInstance();
-
-					Method method0 = newModelClass.getMethod("setUuid",
-							new Class[] { String.class });
-
-					String value0 = oldCplModel.getUuid();
-
-					method0.invoke(newModel, value0);
-
-					Method method1 = newModelClass.getMethod("setFooId",
-							new Class[] { Long.TYPE });
-
-					Long value1 = new Long(oldCplModel.getFooId());
-
-					method1.invoke(newModel, value1);
-
-					Method method2 = newModelClass.getMethod("setGroupId",
-							new Class[] { Long.TYPE });
-
-					Long value2 = new Long(oldCplModel.getGroupId());
-
-					method2.invoke(newModel, value2);
-
-					Method method3 = newModelClass.getMethod("setCompanyId",
-							new Class[] { Long.TYPE });
-
-					Long value3 = new Long(oldCplModel.getCompanyId());
-
-					method3.invoke(newModel, value3);
-
-					Method method4 = newModelClass.getMethod("setUserId",
-							new Class[] { Long.TYPE });
-
-					Long value4 = new Long(oldCplModel.getUserId());
-
-					method4.invoke(newModel, value4);
-
-					Method method5 = newModelClass.getMethod("setUserName",
-							new Class[] { String.class });
-
-					String value5 = oldCplModel.getUserName();
-
-					method5.invoke(newModel, value5);
-
-					Method method6 = newModelClass.getMethod("setCreateDate",
-							new Class[] { Date.class });
-
-					Date value6 = oldCplModel.getCreateDate();
-
-					method6.invoke(newModel, value6);
-
-					Method method7 = newModelClass.getMethod("setModifiedDate",
-							new Class[] { Date.class });
-
-					Date value7 = oldCplModel.getModifiedDate();
-
-					method7.invoke(newModel, value7);
-
-					Method method8 = newModelClass.getMethod("setField1",
-							new Class[] { String.class });
-
-					String value8 = oldCplModel.getField1();
-
-					method8.invoke(newModel, value8);
-
-					Method method9 = newModelClass.getMethod("setField2",
-							new Class[] { Boolean.TYPE });
-
-					Boolean value9 = new Boolean(oldCplModel.getField2());
-
-					method9.invoke(newModel, value9);
-
-					Method method10 = newModelClass.getMethod("setField3",
-							new Class[] { Integer.TYPE });
-
-					Integer value10 = new Integer(oldCplModel.getField3());
-
-					method10.invoke(newModel, value10);
-
-					Method method11 = newModelClass.getMethod("setField4",
-							new Class[] { Date.class });
-
-					Date value11 = oldCplModel.getField4();
-
-					method11.invoke(newModel, value11);
-
-					Method method12 = newModelClass.getMethod("setField5",
-							new Class[] { String.class });
-
-					String value12 = oldCplModel.getField5();
-
-					method12.invoke(newModel, value12);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
+			return translateInputFoo(oldModel);
 		}
 
 		return oldModel;
@@ -229,6 +116,126 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputFoo(BaseModel<?> oldModel) {
+		FooClp oldCplModel = (FooClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.sampleservicebuilder.model.impl.FooImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setUuid",
+						new Class[] { String.class });
+
+				String value0 = oldCplModel.getUuid();
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setFooId",
+						new Class[] { Long.TYPE });
+
+				Long value1 = new Long(oldCplModel.getFooId());
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value2 = new Long(oldCplModel.getGroupId());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value3 = new Long(oldCplModel.getCompanyId());
+
+				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value4 = new Long(oldCplModel.getUserId());
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setUserName",
+						new Class[] { String.class });
+
+				String value5 = oldCplModel.getUserName();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value6 = oldCplModel.getCreateDate();
+
+				method6.invoke(newModel, value6);
+
+				Method method7 = newModelClass.getMethod("setModifiedDate",
+						new Class[] { Date.class });
+
+				Date value7 = oldCplModel.getModifiedDate();
+
+				method7.invoke(newModel, value7);
+
+				Method method8 = newModelClass.getMethod("setField1",
+						new Class[] { String.class });
+
+				String value8 = oldCplModel.getField1();
+
+				method8.invoke(newModel, value8);
+
+				Method method9 = newModelClass.getMethod("setField2",
+						new Class[] { Boolean.TYPE });
+
+				Boolean value9 = new Boolean(oldCplModel.getField2());
+
+				method9.invoke(newModel, value9);
+
+				Method method10 = newModelClass.getMethod("setField3",
+						new Class[] { Integer.TYPE });
+
+				Integer value10 = new Integer(oldCplModel.getField3());
+
+				method10.invoke(newModel, value10);
+
+				Method method11 = newModelClass.getMethod("setField4",
+						new Class[] { Date.class });
+
+				Date value11 = oldCplModel.getField4();
+
+				method11.invoke(newModel, value11);
+
+				Method method12 = newModelClass.getMethod("setField5",
+						new Class[] { String.class });
+
+				String value12 = oldCplModel.getField5();
+
+				method12.invoke(newModel, value12);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
 	}
 
 	public static Object translateInput(Object obj) {
@@ -250,109 +257,7 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(
 					"com.liferay.sampleservicebuilder.model.impl.FooImpl")) {
-			ClassLoader contextClassLoader = Thread.currentThread()
-												   .getContextClassLoader();
-
-			try {
-				Thread.currentThread().setContextClassLoader(_classLoader);
-
-				try {
-					FooClp newModel = new FooClp();
-
-					Method method0 = oldModelClass.getMethod("getUuid");
-
-					String value0 = (String)method0.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setUuid(value0);
-
-					Method method1 = oldModelClass.getMethod("getFooId");
-
-					Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
-
-					newModel.setFooId(value1);
-
-					Method method2 = oldModelClass.getMethod("getGroupId");
-
-					Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
-
-					newModel.setGroupId(value2);
-
-					Method method3 = oldModelClass.getMethod("getCompanyId");
-
-					Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
-
-					newModel.setCompanyId(value3);
-
-					Method method4 = oldModelClass.getMethod("getUserId");
-
-					Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
-
-					newModel.setUserId(value4);
-
-					Method method5 = oldModelClass.getMethod("getUserName");
-
-					String value5 = (String)method5.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setUserName(value5);
-
-					Method method6 = oldModelClass.getMethod("getCreateDate");
-
-					Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
-
-					newModel.setCreateDate(value6);
-
-					Method method7 = oldModelClass.getMethod("getModifiedDate");
-
-					Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
-
-					newModel.setModifiedDate(value7);
-
-					Method method8 = oldModelClass.getMethod("getField1");
-
-					String value8 = (String)method8.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setField1(value8);
-
-					Method method9 = oldModelClass.getMethod("getField2");
-
-					Boolean value9 = (Boolean)method9.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setField2(value9);
-
-					Method method10 = oldModelClass.getMethod("getField3");
-
-					Integer value10 = (Integer)method10.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setField3(value10);
-
-					Method method11 = oldModelClass.getMethod("getField4");
-
-					Date value11 = (Date)method11.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setField4(value11);
-
-					Method method12 = oldModelClass.getMethod("getField5");
-
-					String value12 = (String)method12.invoke(oldModel,
-							(Object[])null);
-
-					newModel.setField5(value12);
-
-					return newModel;
-				}
-				catch (Exception e) {
-					_log.error(e, e);
-				}
-			}
-			finally {
-				Thread.currentThread().setContextClassLoader(contextClassLoader);
-			}
+			return translateOutputFoo(oldModel);
 		}
 
 		return oldModel;
@@ -380,6 +285,113 @@ public class ClpSerializer {
 		else {
 			return obj;
 		}
+	}
+
+	public static Object translateOutputFoo(BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				FooClp newModel = new FooClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod("getUuid");
+
+				String value0 = (String)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setUuid(value0);
+
+				Method method1 = oldModelClass.getMethod("getFooId");
+
+				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setFooId(value1);
+
+				Method method2 = oldModelClass.getMethod("getGroupId");
+
+				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value2);
+
+				Method method3 = oldModelClass.getMethod("getCompanyId");
+
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value3);
+
+				Method method4 = oldModelClass.getMethod("getUserId");
+
+				Long value4 = (Long)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value4);
+
+				Method method5 = oldModelClass.getMethod("getUserName");
+
+				String value5 = (String)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setUserName(value5);
+
+				Method method6 = oldModelClass.getMethod("getCreateDate");
+
+				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value6);
+
+				Method method7 = oldModelClass.getMethod("getModifiedDate");
+
+				Date value7 = (Date)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setModifiedDate(value7);
+
+				Method method8 = oldModelClass.getMethod("getField1");
+
+				String value8 = (String)method8.invoke(oldModel, (Object[])null);
+
+				newModel.setField1(value8);
+
+				Method method9 = oldModelClass.getMethod("getField2");
+
+				Boolean value9 = (Boolean)method9.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setField2(value9);
+
+				Method method10 = oldModelClass.getMethod("getField3");
+
+				Integer value10 = (Integer)method10.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setField3(value10);
+
+				Method method11 = oldModelClass.getMethod("getField4");
+
+				Date value11 = (Date)method11.invoke(oldModel, (Object[])null);
+
+				newModel.setField4(value11);
+
+				Method method12 = oldModelClass.getMethod("getField5");
+
+				String value12 = (String)method12.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setField5(value12);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(ClpSerializer.class);

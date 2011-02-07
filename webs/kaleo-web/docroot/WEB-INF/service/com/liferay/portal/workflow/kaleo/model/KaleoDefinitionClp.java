@@ -173,12 +173,17 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		_title = title;
 	}
 
-	public void setTitle(Locale locale, String title) {
+	public void setTitle(String title, Locale locale) {
+		setTitle(title, locale, LocaleUtil.getDefault());
+	}
+
+	public void setTitle(String title, Locale locale, Locale defaultLocale) {
 		String languageId = LocaleUtil.toLanguageId(locale);
+		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
 		if (Validator.isNotNull(title)) {
 			setTitle(LocalizationUtil.updateLocalization(getTitle(), "Title",
-					title, languageId));
+					title, languageId, defaultLanguageId));
 		}
 		else {
 			setTitle(LocalizationUtil.removeLocalization(getTitle(), "Title",
@@ -187,6 +192,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void setTitleMap(Map<Locale, String> titleMap) {
+		setTitleMap(titleMap, LocaleUtil.getDefault());
+	}
+
+	public void setTitleMap(Map<Locale, String> titleMap, Locale defaultLocale) {
 		if (titleMap == null) {
 			return;
 		}
@@ -207,7 +216,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 			for (Locale locale : locales) {
 				String title = titleMap.get(locale);
 
-				setTitle(locale, title);
+				setTitle(title, locale, defaultLocale);
 			}
 		}
 		finally {
