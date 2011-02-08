@@ -122,38 +122,33 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 		throws Exception {
 
 		for (String portletId : PortletPropsValues.USER_APPLICATIONS) {
-			Layout layout = null;
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(
+				group.getCompanyId(), portletId);
 
-			try {
-				Portlet portlet = PortletLocalServiceUtil.getPortletById(
-					group.getCompanyId(), portletId);
-
-				layout = addLayout(
-					group, parentLayoutId, portlet.getDisplayName(),
-					"2_columns_ii");
-
-				LayoutTypePortlet layoutTypePortlet =
-					(LayoutTypePortlet)layout.getLayoutType();
-
-				layoutTypePortlet.setPortletIds("column-1", "71_INSTANCE_abcd");
-				layoutTypePortlet.setPortletIds("column-2", portletId);
-
-				LayoutLocalServiceUtil.updateLayout(
-					layout.getGroupId(), layout.isPrivateLayout(),
-					layout.getLayoutId(), layout.getTypeSettings());
-
-				addResources(layout, "71_INSTANCE_abcd");
-				addResources(layout, portletId);
-
-				configureNavigation(layout, "71_INSTANCE_abcd");
-
-				updatePermissions(layout, false);
+			if (portlet == null) {
+				continue;
 			}
-			catch (Exception e) {
-				if (layout != null) {
-					LayoutLocalServiceUtil.deleteLayout(layout);
-				}
-			}
+
+			Layout layout = addLayout(
+				group, parentLayoutId, portlet.getDisplayName(),
+				"2_columns_ii");
+
+			LayoutTypePortlet layoutTypePortlet =
+				(LayoutTypePortlet)layout.getLayoutType();
+
+			layoutTypePortlet.setPortletIds("column-1", "71_INSTANCE_abcd");
+			layoutTypePortlet.setPortletIds("column-2", portletId);
+
+			LayoutLocalServiceUtil.updateLayout(
+				layout.getGroupId(), layout.isPrivateLayout(),
+				layout.getLayoutId(), layout.getTypeSettings());
+
+			addResources(layout, "71_INSTANCE_abcd");
+			addResources(layout, portletId);
+
+			configureNavigation(layout, "71_INSTANCE_abcd");
+
+			updatePermissions(layout, false);
 		}
 	}
 
