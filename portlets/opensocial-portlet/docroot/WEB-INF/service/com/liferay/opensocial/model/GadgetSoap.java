@@ -37,6 +37,7 @@ public class GadgetSoap implements Serializable {
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setName(model.getName());
 		soapModel.setUrl(model.getUrl());
+		soapModel.setCategories(model.getCategories());
 
 		return soapModel;
 	}
@@ -145,6 +146,14 @@ public class GadgetSoap implements Serializable {
 		_url = url;
 	}
 
+	public String getCategories() {
+		return _categories;
+	}
+
+	public void setCategories(String categories) {
+		_categories = categories;
+	}
+
 	private String _uuid;
 	private long _gadgetId;
 	private long _companyId;
@@ -152,4 +161,5 @@ public class GadgetSoap implements Serializable {
 	private Date _modifiedDate;
 	private String _name;
 	private String _url;
+	private String _categories;
 }

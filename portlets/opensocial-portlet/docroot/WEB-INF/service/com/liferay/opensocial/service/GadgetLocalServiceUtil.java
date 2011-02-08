@@ -231,11 +231,11 @@ public class GadgetLocalServiceUtil {
 	}
 
 	public static com.liferay.opensocial.model.Gadget addGadget(
-		long companyId, java.lang.String url,
+		long companyId, java.lang.String url, java.lang.String categories,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().addGadget(companyId, url, serviceContext);
+		return getService().addGadget(companyId, url, categories, serviceContext);
 	}
 
 	public static void destroyGadget(java.lang.String uuid, long companyId,
@@ -277,16 +277,23 @@ public class GadgetLocalServiceUtil {
 	}
 
 	public static void initGadget(java.lang.String uuid, long companyId,
-		long gadgetId, java.lang.String name)
+		long gadgetId, java.lang.String name, java.lang.String categories)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().initGadget(uuid, companyId, gadgetId, name);
+		getService().initGadget(uuid, companyId, gadgetId, name, categories);
 	}
 
 	public static void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().initGadgets();
+	}
+
+	public static com.liferay.opensocial.model.Gadget updateGadget(
+		long gadgetId, java.lang.String categories)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateGadget(gadgetId, categories);
 	}
 
 	public static void clearService() {

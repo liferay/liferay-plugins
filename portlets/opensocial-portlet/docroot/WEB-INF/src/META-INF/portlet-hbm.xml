@@ -16,6 +16,7 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="url" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="categories" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="com.liferay.opensocial.model.impl.OAuthConsumerImpl" table="OpenSocial_OAuthConsumer">
 		<cache usage="read-write" />

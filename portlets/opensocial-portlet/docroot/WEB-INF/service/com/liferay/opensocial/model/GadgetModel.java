@@ -159,6 +159,21 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	 */
 	public void setUrl(String url);
 
+	/**
+	 * Gets the categories of this gadget.
+	 *
+	 * @return the categories of this gadget
+	 */
+	@AutoEscape
+	public String getCategories();
+
+	/**
+	 * Sets the categories of this gadget.
+	 *
+	 * @param categories the categories of this gadget
+	 */
+	public void setCategories(String categories);
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

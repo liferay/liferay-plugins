@@ -63,9 +63,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "name", Types.VARCHAR },
-			{ "url", Types.VARCHAR }
+			{ "url", Types.VARCHAR },
+			{ "categories", Types.CLOB }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,categories TEXT null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_Gadget.name ASC";
@@ -185,6 +186,19 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return GetterUtil.getString(_originalUrl);
 	}
 
+	public String getCategories() {
+		if (_categories == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _categories;
+		}
+	}
+
+	public void setCategories(String categories) {
+		_categories = categories;
+	}
+
 	public Gadget toEscapedModel() {
 		if (isEscapedModel()) {
 			return (Gadget)this;
@@ -218,6 +232,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setUrl(getUrl());
+		clone.setCategories(getCategories());
 
 		return clone;
 	}
@@ -263,7 +278,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -279,13 +294,15 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		sb.append(getName());
 		sb.append(", url=");
 		sb.append(getUrl());
+		sb.append(", categories=");
+		sb.append(getCategories());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.Gadget");
@@ -319,6 +336,10 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			"<column><column-name>url</column-name><column-value><![CDATA[");
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categories</column-name><column-value><![CDATA[");
+		sb.append(getCategories());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -335,5 +356,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _name;
 	private String _url;
 	private String _originalUrl;
+	private String _categories;
 	private transient ExpandoBridge _expandoBridge;
 }

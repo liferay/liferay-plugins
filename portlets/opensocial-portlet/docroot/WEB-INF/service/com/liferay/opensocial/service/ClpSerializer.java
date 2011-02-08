@@ -193,6 +193,13 @@ public class ClpSerializer {
 
 				method6.invoke(newModel, value6);
 
+				Method method7 = newModelClass.getMethod("setCategories",
+						new Class[] { String.class });
+
+				String value7 = oldCplModel.getCategories();
+
+				method7.invoke(newModel, value7);
+
 				return newModel;
 			}
 			catch (Exception e) {
@@ -538,6 +545,12 @@ public class ClpSerializer {
 				String value6 = (String)method6.invoke(oldModel, (Object[])null);
 
 				newModel.setUrl(value6);
+
+				Method method7 = oldModelClass.getMethod("getCategories");
+
+				String value7 = (String)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setCategories(value7);
 
 				return newModel;
 			}

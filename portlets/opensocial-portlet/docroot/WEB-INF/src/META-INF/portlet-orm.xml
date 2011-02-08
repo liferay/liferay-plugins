@@ -22,6 +22,7 @@
 			</basic>
 			<basic name="name" />
 			<basic name="url" />
+			<basic name="categories" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>

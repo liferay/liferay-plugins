@@ -172,6 +172,24 @@ public class GadgetWrapper implements Gadget {
 		_gadget.setUrl(url);
 	}
 
+	/**
+	* Gets the categories of this gadget.
+	*
+	* @return the categories of this gadget
+	*/
+	public java.lang.String getCategories() {
+		return _gadget.getCategories();
+	}
+
+	/**
+	* Sets the categories of this gadget.
+	*
+	* @param categories the categories of this gadget
+	*/
+	public void setCategories(java.lang.String categories) {
+		_gadget.setCategories(categories);
+	}
+
 	public boolean isNew() {
 		return _gadget.isNew();
 	}

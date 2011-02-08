@@ -99,6 +99,14 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		_url = url;
 	}
 
+	public String getCategories() {
+		return _categories;
+	}
+
+	public void setCategories(String categories) {
+		_categories = categories;
+	}
+
 	public Gadget toEscapedModel() {
 		if (isEscapedModel()) {
 			return this;
@@ -119,6 +127,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setUrl(getUrl());
+		clone.setCategories(getCategories());
 
 		return clone;
 	}
@@ -164,7 +173,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -180,13 +189,15 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		sb.append(getName());
 		sb.append(", url=");
 		sb.append(getUrl());
+		sb.append(", categories=");
+		sb.append(getCategories());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.opensocial.model.Gadget");
@@ -220,6 +231,10 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 			"<column><column-name>url</column-name><column-value><![CDATA[");
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>categories</column-name><column-value><![CDATA[");
+		sb.append(getCategories());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -233,4 +248,5 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	private Date _modifiedDate;
 	private String _name;
 	private String _url;
+	private String _categories;
 }
