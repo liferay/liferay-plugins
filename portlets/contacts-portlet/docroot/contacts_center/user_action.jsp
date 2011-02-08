@@ -48,103 +48,145 @@ else {
 		/>
 	</c:if>
 
+	<%
+	boolean viewRelationActions = true;
+
+	if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK)) {
+		viewRelationActions = false;
+	}
+	else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK)) {
+		viewRelationActions = false;
+	}
+	%>
+
+	<c:if test="<%= viewRelationActions %>">
+		<c:choose>
+			<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+				<portlet:actionURL name="deleteSocialRelation" var="removeFriendURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+					<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
+				</portlet:actionURL>
+
+				<liferay-ui:icon
+					image="../social/remove_friend"
+					message="remove-as-friend"
+					url="<%= removeFriendURL %>"
+				/>
+			</c:when>
+			<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+				<liferay-ui:icon
+					cssClass="disabled"
+					image="../social/friend"
+					message="friend-requested"
+				/>
+			</c:when>
+			<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+				<portlet:actionURL name="requestSocialRelation" var="addFriendURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+					<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
+				</portlet:actionURL>
+
+				<liferay-ui:icon
+					image="../social/add_friend"
+					message="add-as-friend"
+					url="<%= addFriendURL %>"
+				/>
+			</c:when>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER) %>">
+				<portlet:actionURL name="deleteSocialRelation" var="removeCoworkerURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+					<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_COWORKER) %>" />
+				</portlet:actionURL>
+
+				<liferay-ui:icon
+					image="../social/remove_coworker"
+					message="remove-as-coworker"
+					url="<%= removeCoworkerURL %>"
+				/>
+			</c:when>
+			<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+				<liferay-ui:icon
+					cssClass="disabled"
+					image="../social/coworker"
+					message="coworker-requested"
+				/>
+			</c:when>
+			<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER) %>">
+				<portlet:actionURL name="requestSocialRelation" var="addCoworkerURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+					<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_COWORKER) %>" />
+				</portlet:actionURL>
+
+				<liferay-ui:icon
+					image="../social/add_coworker"
+					message="add-as-coworker"
+					url="<%= addCoworkerURL %>"
+				/>
+			</c:when>
+		</c:choose>
+
+		<c:choose>
+			<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
+				<portlet:actionURL name="deleteSocialRelation" var="unfollowURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+					<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
+				</portlet:actionURL>
+
+				<liferay-ui:icon
+					image="../social/unfollow"
+					message="unfollow"
+					url="<%= unfollowURL %>"
+				/>
+			</c:when>
+			<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
+				<portlet:actionURL name="addSocialRelation" var="followURL">
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+					<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
+				</portlet:actionURL>
+
+				<liferay-ui:icon
+					image="../social/follow"
+					message="follow"
+					url="<%= followURL %>"
+				/>
+			</c:when>
+		</c:choose>
+	</c:if>
+
 	<c:choose>
-		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
-			<portlet:actionURL name="deleteSocialRelation" var="friendURL">
+		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK) %>">
+			<portlet:actionURL name="deleteSocialRelation" var="unblockURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
+				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_BLOCK) %>" />
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="../social/remove_friend"
-				message="remove-as-friend"
-				url="<%= friendURL %>"
+				image="../social/unblock"
+				message="unblock"
+				url="<%= unblockURL %>"
 			/>
 		</c:when>
-		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-			<liferay-ui:icon
-				cssClass="disabled"
-				image="../social/friend"
-				message="friend-requested"
-			/>
-		</c:when>
-		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
-			<portlet:actionURL name="requestSocialRelation" var="friendURL">
+		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK) %>">
+			<portlet:actionURL name="addSocialRelation" var="blockURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_FRIEND) %>" />
+				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_BLOCK) %>" />
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="../social/add_friend"
-				message="add-as-friend"
-				url="<%= friendURL %>"
-			/>
-		</c:when>
-	</c:choose>
-
-	<c:choose>
-		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER) %>">
-			<portlet:actionURL name="deleteSocialRelation" var="friendURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_COWORKER) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon
-				image="../social/remove_coworker"
-				message="remove-as-coworker"
-				url="<%= friendURL %>"
-			/>
-		</c:when>
-		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-			<liferay-ui:icon
-				cssClass="disabled"
-				image="../social/coworker"
-				message="coworker-requested"
-			/>
-		</c:when>
-		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_COWORKER) %>">
-			<portlet:actionURL name="requestSocialRelation" var="friendURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_COWORKER) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon
-				image="../social/add_coworker"
-				message="add-as-coworker"
-				url="<%= friendURL %>"
-			/>
-		</c:when>
-	</c:choose>
-
-	<c:choose>
-		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
-			<portlet:actionURL name="deleteSocialRelation" var="friendURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon
-				image="../social/unfollow"
-				message="unfollow"
-				url="<%= friendURL %>"
-			/>
-		</c:when>
-		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER) %>">
-			<portlet:actionURL name="addSocialRelation" var="followURL">
-				<portlet:param name="redirect" value="<%= currentURL %>" />
-				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" />
-			</portlet:actionURL>
-
-			<liferay-ui:icon
-				image="../social/follow"
-				message="follow"
-				url="<%= followURL %>"
+				image="../social/block"
+				message="block"
+				url="<%= blockURL %>"
 			/>
 		</c:when>
 	</c:choose>
