@@ -51,10 +51,10 @@ else {
 	<%
 	boolean viewRelationActions = true;
 
-	if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK)) {
+	if (SocialRelationLocalServiceUtil.hasRelation(user2.getUserId(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
 		viewRelationActions = false;
 	}
-	else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK)) {
+	else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY)) {
 		viewRelationActions = false;
 	}
 	%>
@@ -163,11 +163,11 @@ else {
 	</c:if>
 
 	<c:choose>
-		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK) %>">
+		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
 			<portlet:actionURL name="deleteSocialRelation" var="unblockURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_BLOCK) %>" />
+				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" />
 			</portlet:actionURL>
 
 			<liferay-ui:icon
@@ -176,11 +176,11 @@ else {
 				url="<%= unblockURL %>"
 			/>
 		</c:when>
-		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_BLOCK) %>">
+		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(themeDisplay.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY) %>">
 			<portlet:actionURL name="addSocialRelation" var="blockURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
 				<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_BLOCK) %>" />
+				<portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" />
 			</portlet:actionURL>
 
 			<liferay-ui:icon
