@@ -16,6 +16,7 @@ package com.liferay.opensocial.service.impl;
 
 import com.liferay.opensocial.DuplicateGadgetURLException;
 import com.liferay.opensocial.GadgetURLException;
+import com.liferay.opensocial.MissingCategoryException;
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.gadget.portlet.GadgetPortlet;
 import com.liferay.opensocial.model.Gadget;
@@ -28,6 +29,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
@@ -59,12 +62,13 @@ import org.apache.shindig.gadgets.spec.ModulePrefs;
 public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	public Gadget addGadget(
-			long companyId, String url, ServiceContext serviceContext)
+			long companyId, String url, String categories,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
 
-		validate(companyId, url);
+		validate(companyId, url, categories);
 
 		long gadgetId = counterLocalService.increment();
 
@@ -88,11 +92,13 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadget.setName(modulePrefs.getTitle());
 		gadget.setUrl(url);
+		gadget.setCategories(categories);
 
 		gadgetPersistence.update(gadget, false);
 
 		gadgetLocalService.initGadget(
-			gadget.getUuid(), companyId, gadgetId, gadget.getName());
+			gadget.getUuid(), companyId, gadgetId, gadget.getName(),
+			gadget.getCategories());
 
 		return gadget;
 	}
@@ -182,14 +188,17 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	@Clusterable
 	public void initGadget(
-			String uuid, long companyId, long gadgetId, String name)
+			String uuid, long companyId, long gadgetId, String name,
+			String categories)
 		throws PortalException, SystemException {
 
 		try {
 			Portlet portlet = getPortlet(uuid, companyId, name);
 
+			String[] categoriesArray = categories.split(StringPool.COMMA);
+
 			PortletLocalServiceUtil.deployRemotePortlet(
-				portlet, _OPENSOCIAL_CATEGORY);
+				portlet, categoriesArray);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -210,8 +219,26 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		for (Gadget gadget : gadgets) {
 			initGadget(
 				gadget.getUuid(), gadget.getCompanyId(), gadget.getGadgetId(),
-				gadget.getName());
+				gadget.getName(), gadget.getCategories());
 		}
+	}
+
+	public Gadget updateGadget(long gadgetId, String categories)
+		throws PortalException, SystemException {
+
+		validate(categories);
+
+		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
+
+		gadget.setCategories(categories);
+
+		gadgetPersistence.update(gadget, false);
+
+		gadgetLocalService.initGadget(
+			gadget.getUuid(), gadget.getCompanyId(), gadgetId,
+			gadget.getName(), gadget.getCategories());
+
+		return gadget;
 	}
 
 	protected void addPortletExtraInfo(
@@ -288,7 +315,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return portlet;
 	}
 
-	protected void validate(long companyId, String url)
+	protected void validate(long companyId, String url, String categories)
 		throws PortalException, SystemException {
 
 		Gadget gadget = gadgetPersistence.fetchByC_U(companyId, url);
@@ -296,13 +323,21 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		if (gadget != null) {
 			throw new DuplicateGadgetURLException();
 		}
+
+		validate(categories);
+	}
+
+	protected void validate(String categories)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(categories)) {
+			throw new MissingCategoryException();
+		}
 	}
 
 	private static final String _GADGET_PORTLET_ID = "2_WAR_opensocialportlet";
 
 	private static final String _GADGET_PORTLET_NAME = "2";
-
-	private static final String _OPENSOCIAL_CATEGORY = "category.opensocial";
 
 	private static Map<String, Portlet> _portletsPool =
 		new ConcurrentHashMap<String, Portlet>();

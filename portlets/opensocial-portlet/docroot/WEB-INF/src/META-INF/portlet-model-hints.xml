@@ -11,6 +11,9 @@
 		<field name="url" type="String">
 			<hint name="max-length">4000</hint>
 		</field>
+		<field name="categories" type="String">
+			<hint-collection name="CLOB" />
+		</field>
 	</model>
 	<model name="com.liferay.opensocial.model.OAuthConsumer">
 		<field name="oAuthConsumerId" type="long" />

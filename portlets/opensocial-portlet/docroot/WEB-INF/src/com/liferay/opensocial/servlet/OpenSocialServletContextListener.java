@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
@@ -67,22 +68,35 @@ public class OpenSocialServletContextListener
 	}
 
 	protected void doPortalInit() throws Exception {
-		verifyUuid();
+		verify();
+
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		for (Company company : companies) {
+			PortletLocalServiceUtil.addPortletCategory(
+				company.getCompanyId(), _OPENSOCIAL_CATEGORY);
+		}
 
 		GadgetLocalServiceUtil.initGadgets();
 
 		checkExpando();
 	}
 
-	protected void verifyUuid() throws Exception {
+	protected void verify() throws Exception {
 		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 		for (Gadget gadget : gadgets) {
-			if (Validator.isNull(gadget.getUuid())) {
+			if (Validator.isNull(gadget.getUuid()) ||
+				Validator.isNull(gadget.getCategories())) {
+
+				gadget.setCategories(_OPENSOCIAL_CATEGORY);
+
 				GadgetLocalServiceUtil.updateGadget(gadget);
 			}
 		}
 	}
+
+	private static final String _OPENSOCIAL_CATEGORY = "category.gadgets";
 
 }

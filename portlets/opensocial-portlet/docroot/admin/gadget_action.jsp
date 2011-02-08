@@ -36,6 +36,14 @@ catch (Exception e) {
 %>
 
 <liferay-ui:icon-menu>
+	<portlet:renderURL var="updateGadgetURL">
+		<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="gadgetId" value="<%= String.valueOf(gadget.getGadgetId()) %>" />
+	</portlet:renderURL>
+
+	<liferay-ui:icon image="edit" url="<%= updateGadgetURL %>" />
+
 	<c:if test="<%= (oAuthServices != null) && (oAuthServices.size() > 0) %>">
 		<portlet:renderURL var="configureOAuthURL">
 			<portlet:param name="jspPage" value="/admin/view_oauth_consumers.jsp" />

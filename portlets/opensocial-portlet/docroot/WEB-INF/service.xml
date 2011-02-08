@@ -18,6 +18,7 @@
 
 		<column name="name" type="String" />
 		<column name="url" type="String" />
+		<column name="categories" type="String" />
 
 		<!-- Order -->
 
@@ -113,5 +114,6 @@
 	<exceptions>
 		<exception>DuplicateGadgetURL</exception>
 		<exception>GadgetURL</exception>
+		<exception>MissingCategory</exception>
 	</exceptions>
 </service-builder>

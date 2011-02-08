@@ -25,6 +25,7 @@
 
 <%@ page import="com.liferay.opensocial.DuplicateGadgetURLException" %>
 <%@ page import="com.liferay.opensocial.GadgetURLException" %>
+<%@ page import="com.liferay.opensocial.MissingCategoryException" %>
 <%@ page import="com.liferay.opensocial.NoSuchGadgetException" %>
 <%@ page import="com.liferay.opensocial.NoSuchOAuthConsumerException" %>
 <%@ page import="com.liferay.opensocial.model.Gadget" %>
@@ -45,6 +46,9 @@
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.StringPool" %>
+<%@ page import="com.liferay.portal.kernel.util.TreeNodeView" %>
+<%@ page import="com.liferay.portal.kernel.util.TreeView" %>
+<%@ page import="com.liferay.portal.kernel.util.UnicodeFormatter" %>
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>

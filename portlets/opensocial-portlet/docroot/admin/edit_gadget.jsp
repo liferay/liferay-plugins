@@ -23,11 +23,16 @@ long gadgetId = ParamUtil.getLong(request, "gadgetId");
 
 Gadget gadget = null;
 
+String categories = null;
+
 try {
 	gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
+
+	categories = gadget.getCategories();
 }
 catch (NoSuchGadgetException nsge) {
 }
+
 %>
 
 <liferay-ui:header
@@ -35,33 +40,152 @@ catch (NoSuchGadgetException nsge) {
 	title='<%= (gadget != null) ? gadget.getName() : "new-gadget" %>'
 />
 
-<form action="<portlet:actionURL name="updateGadget"><portlet:param name="jspPage" value="/admin/edit_gadget.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></portlet:actionURL>" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveGadget(); return false;">
-<input name="<portlet:namespace />gadgetId" type="hidden" value="<%= gadgetId %>" />
+<portlet:actionURL name="updateGadget" var="updateGadgetURL">
+	<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
+	<porltet:param name="redirect" value="<%= redirect %>" />
+</portlet:actionURL>
 
-<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
-<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
+<aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
+	<aui:input name="<%= Constants.CMD %>" type="hidden" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<liferay-ui:input-field model="<%= Gadget.class %>" bean="<%= gadget %>" field="url" />
-	</td>
-</tr>
-</table>
+	<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
+	<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
+	<liferay-ui:error exception="<%= MissingCategoryException.class %>" message="select-at-least-one-category" />
 
-<br />
+	<aui:model-context bean="<%= gadget %>" model="<%= Gadget.class %>" />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+	<aui:fieldset>
+		<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
 
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" />
+		<c:if test="<%= gadget != null %>">
+			<aui:field-wrapper label="url">
+				<aui:a href='<%= gadget.getUrl() %>' label='<%= gadget.getUrl() %>' />
+			</aui:field-wrapper>
+		</c:if>
 
-</form>
+		<c:choose>
+			<c:when test="<%= gadget != null %>">
+				<aui:input name="url" type="hidden" />
+			</c:when>
+			<c:otherwise>
+				<aui:input name="url" />
+			</c:otherwise>
+		</c:choose>
+
+		<aui:field-wrapper label="category" />
+
+		<aui:input name="categories" type="hidden" value="<%= categories %>" />
+
+		<div class="category-treeview" id="<portlet:namespace />categoryTreeView"></div>
+
+		<aui:button-row>
+			<aui:button type="submit" />
+
+			<aui:button onClick="<%= redirect %>" type="cancel" />
+		</aui:button-row>
+	</aui:fieldset>
+
+</aui:form>
+
+<aui:script use="aui-tree-view">
+	var selectedCategoriesEl = A.one('#<portlet:namespace />categories');
+
+	var categories = selectedCategoriesEl.getAttribute("value");
+
+	var selectedCategories;
+
+	if (categories == "") {
+		selectedCategories = new Array();
+	}
+	else {
+		selectedCategories = selectedCategoriesEl.getAttribute("value").split(',');
+	}
+
+	var CategoryTreeNode = A.Component.create(
+		{
+			ATTRS: {
+				category: {
+					value: ''
+				}
+			},
+
+			EXTENDS: A.TreeNodeCheck,
+
+			NAME: 'CategoryTreeNode'
+		}
+	);
+
+	var treeView = new A.TreeView(
+		{
+			boundingBox: '#<portlet:namespace />categoryTreeView',
+			type: 'normal'
+		}
+	).render();
+
+	var isNewGadget = <%= gadget == null %>;
+
+	<%
+	TreeView treeView = PortalUtil.getCategoryTreeView(user);
+
+	for (TreeNodeView treeNodeView : treeView.getList()) {
+	%>
+
+		var category = '<%= treeNodeView.getObjId() %>';
+
+		var checked;
+
+		if (isNewGadget) {
+			checked = category == "root//category.gadgets";
+		}
+		else {
+			checked = A.Array.indexOf(selectedCategories, category) > -1;
+		}
+
+		var categoryTreeNode = new CategoryTreeNode(
+			{
+				alwaysShowHitArea: false,
+				checked: checked,
+				category: category,
+				id: '<%= treeNodeView.getId() %>',
+				label: '<%= UnicodeFormatter.toString(LanguageUtil.get(user.getLocale(), treeNodeView.getName())) %>',
+				leaf: false,
+				on: {
+					check: function(event) {
+						var category = event.target.get('category')
+
+						if (A.Array.indexOf(selectedCategories, category) == -1) {
+							selectedCategories.push(category);
+
+							selectedCategoriesEl.setAttribute("value", selectedCategories.join(','));
+						};
+					},
+
+					uncheck: function(event) {
+						var category = event.target.get('category')
+
+						A.Array.removeItem(selectedCategories, category);
+
+						selectedCategoriesEl.setAttribute("value", selectedCategories.join(','));
+					}
+				}
+			}
+		);
+
+		var parentNode = treeView.getNodeById('<%= treeNodeView.getParentId() %>') || treeView;
+
+		parentNode.appendChild(categoryTreeNode);
+
+	<%
+	}
+	%>
+
+	treeView.expandAll();
+</aui:script>
 
 <aui:script>
 	function <portlet:namespace />saveGadget() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>";
 		submitForm(document.<portlet:namespace />fm);
 	}
 
@@ -69,5 +193,10 @@ catch (NoSuchGadgetException nsge) {
 </aui:script>
 
 <%
-PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
+if (gadget == null) {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "add-gadget"), currentURL);
+}
+else {
+	PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "edit"), currentURL);
+}
 %>
