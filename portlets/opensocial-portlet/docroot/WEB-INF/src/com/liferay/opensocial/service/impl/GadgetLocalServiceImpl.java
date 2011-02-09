@@ -15,7 +15,7 @@
 package com.liferay.opensocial.service.impl;
 
 import com.liferay.opensocial.DuplicateGadgetURLException;
-import com.liferay.opensocial.GadgetPortletCategoryNames;
+import com.liferay.opensocial.GadgetPortletCategoryNamesException;
 import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.gadget.portlet.GadgetPortlet;
@@ -333,7 +333,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		if (Validator.isNull(portletCategoryNames)) {
-			throw new GadgetPortletCategoryNames();
+			throw new GadgetPortletCategoryNamesException();
 		}
 	}
 

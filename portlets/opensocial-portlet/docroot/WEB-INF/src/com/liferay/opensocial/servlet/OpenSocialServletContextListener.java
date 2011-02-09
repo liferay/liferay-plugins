@@ -88,9 +88,9 @@ public class OpenSocialServletContextListener
 
 		for (Gadget gadget : gadgets) {
 			if (Validator.isNull(gadget.getUuid()) ||
-				Validator.isNull(gadget.getCategories())) {
+				Validator.isNull(gadget.getPortletCategoryNames())) {
 
-				gadget.setCategories(_GADGETS_CATEGORY);
+				gadget.setPortletCategoryNames(_GADGETS_CATEGORY);
 
 				GadgetLocalServiceUtil.updateGadget(gadget);
 			}

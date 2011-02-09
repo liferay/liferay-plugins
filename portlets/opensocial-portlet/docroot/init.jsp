@@ -24,7 +24,7 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.opensocial.DuplicateGadgetURLException" %>
-<%@ page import="com.liferay.opensocial.GadgetPortletCategoryNames" %>
+<%@ page import="com.liferay.opensocial.GadgetPortletCategoryNamesException" %>
 <%@ page import="com.liferay.opensocial.GadgetURLException" %>
 <%@ page import="com.liferay.opensocial.NoSuchGadgetException" %>
 <%@ page import="com.liferay.opensocial.NoSuchOAuthConsumerException" %>

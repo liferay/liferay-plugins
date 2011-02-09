@@ -53,7 +53,7 @@ if (gadget != null) {
 	<aui:input name="portletCategoryNames" type="hidden" value="<%= portletCategoryNames %>" />
 
 	<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
-	<liferay-ui:error exception="<%= GadgetPortletCategoryNames.class %>" message="select-at-least-one-category" />
+	<liferay-ui:error exception="<%= GadgetPortletCategoryNamesException.class %>" message="select-at-least-one-category" />
 	<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
 	<aui:model-context bean="<%= gadget %>" model="<%= Gadget.class %>" />
