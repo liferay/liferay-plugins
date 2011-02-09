@@ -148,7 +148,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			importedGadget.setName(gadget.getName());
 			importedGadget.setUrl(gadget.getUrl());
-			importedGadget.setCategories(gadget.getCategories());
+			importedGadget.setPortletCategoryNames(
+				gadget.getPortletCategoryNames());
 
 			GadgetLocalServiceUtil.updateGadget(importedGadget, false);
 		}
@@ -159,7 +160,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			GadgetLocalServiceUtil.addGadget(
 				portletDataContext.getCompanyId(), gadget.getUrl(),
-				gadget.getCategories(), serviceContext);
+				gadget.getPortletCategoryNames(), serviceContext);
 		}
 	}
 

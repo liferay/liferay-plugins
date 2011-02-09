@@ -19,21 +19,21 @@ import com.liferay.portal.kernel.exception.PortalException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class MissingCategoryException extends PortalException {
+public class GadgetPortletCategoryNamesException extends PortalException {
 
-	public MissingCategoryException() {
+	public GadgetPortletCategoryNamesException() {
 		super();
 	}
 
-	public MissingCategoryException(String msg) {
+	public GadgetPortletCategoryNamesException(String msg) {
 		super(msg);
 	}
 
-	public MissingCategoryException(String msg, Throwable cause) {
+	public GadgetPortletCategoryNamesException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public MissingCategoryException(Throwable cause) {
+	public GadgetPortletCategoryNamesException(Throwable cause) {
 		super(cause);
 	}
 

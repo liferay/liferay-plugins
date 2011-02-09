@@ -15,8 +15,8 @@
 package com.liferay.opensocial.service.impl;
 
 import com.liferay.opensocial.DuplicateGadgetURLException;
+import com.liferay.opensocial.GadgetPortletCategoryNames;
 import com.liferay.opensocial.GadgetURLException;
-import com.liferay.opensocial.MissingCategoryException;
 import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.gadget.portlet.GadgetPortlet;
 import com.liferay.opensocial.model.Gadget;
@@ -29,7 +29,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Portlet;
@@ -62,13 +62,13 @@ import org.apache.shindig.gadgets.spec.ModulePrefs;
 public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 	public Gadget addGadget(
-			long companyId, String url, String categories,
+			long companyId, String url, String portletCategoryNames,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		Date now = new Date();
 
-		validate(companyId, url, categories);
+		validate(companyId, url, portletCategoryNames);
 
 		long gadgetId = counterLocalService.increment();
 
@@ -92,13 +92,13 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		gadget.setName(modulePrefs.getTitle());
 		gadget.setUrl(url);
-		gadget.setCategories(categories);
+		gadget.setPortletCategoryNames(portletCategoryNames);
 
 		gadgetPersistence.update(gadget, false);
 
 		gadgetLocalService.initGadget(
 			gadget.getUuid(), companyId, gadgetId, gadget.getName(),
-			gadget.getCategories());
+			gadget.getPortletCategoryNames());
 
 		return gadget;
 	}
@@ -189,16 +189,17 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	@Clusterable
 	public void initGadget(
 			String uuid, long companyId, long gadgetId, String name,
-			String categories)
+			String portletCategoryNames)
 		throws PortalException, SystemException {
 
 		try {
 			Portlet portlet = getPortlet(uuid, companyId, name);
 
-			String[] categoriesArray = categories.split(StringPool.COMMA);
+			String[] portletCategoryNamesArray = StringUtil.split(
+				portletCategoryNames);
 
 			PortletLocalServiceUtil.deployRemotePortlet(
-				portlet, categoriesArray);
+				portlet, portletCategoryNamesArray);
 		}
 		catch (PortalException pe) {
 			throw pe;
@@ -219,24 +220,24 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		for (Gadget gadget : gadgets) {
 			initGadget(
 				gadget.getUuid(), gadget.getCompanyId(), gadget.getGadgetId(),
-				gadget.getName(), gadget.getCategories());
+				gadget.getName(), gadget.getPortletCategoryNames());
 		}
 	}
 
-	public Gadget updateGadget(long gadgetId, String categories)
+	public Gadget updateGadget(long gadgetId, String portletCategoryNames)
 		throws PortalException, SystemException {
 
-		validate(categories);
+		validate(portletCategoryNames);
 
 		Gadget gadget = gadgetPersistence.findByPrimaryKey(gadgetId);
 
-		gadget.setCategories(categories);
+		gadget.setPortletCategoryNames(portletCategoryNames);
 
 		gadgetPersistence.update(gadget, false);
 
 		gadgetLocalService.initGadget(
 			gadget.getUuid(), gadget.getCompanyId(), gadgetId,
-			gadget.getName(), gadget.getCategories());
+			gadget.getName(), gadget.getPortletCategoryNames());
 
 		return gadget;
 	}
@@ -315,7 +316,8 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return portlet;
 	}
 
-	protected void validate(long companyId, String url, String categories)
+	protected void validate(
+			long companyId, String url, String portletCategoryNames)
 		throws PortalException, SystemException {
 
 		Gadget gadget = gadgetPersistence.fetchByC_U(companyId, url);
@@ -324,14 +326,14 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 			throw new DuplicateGadgetURLException();
 		}
 
-		validate(categories);
+		validate(portletCategoryNames);
 	}
 
-	protected void validate(String categories)
+	protected void validate(String portletCategoryNames)
 		throws PortalException, SystemException {
 
-		if (Validator.isNull(categories)) {
-			throw new MissingCategoryException();
+		if (Validator.isNull(portletCategoryNames)) {
+			throw new GadgetPortletCategoryNames();
 		}
 	}
 

@@ -23,16 +23,17 @@ long gadgetId = ParamUtil.getLong(request, "gadgetId");
 
 Gadget gadget = null;
 
-String categories = null;
-
 try {
 	gadget = GadgetLocalServiceUtil.getGadget(gadgetId);
-
-	categories = gadget.getCategories();
 }
 catch (NoSuchGadgetException nsge) {
 }
 
+String portletCategoryNames = StringPool.BLANK;
+
+if (gadget != null) {
+	portletCategoryNames = gadget.getPortletCategoryNames();
+}
 %>
 
 <liferay-ui:header
@@ -48,36 +49,32 @@ catch (NoSuchGadgetException nsge) {
 <aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
+	<aui:input name="portletCategoryNames" type="hidden" value="<%= portletCategoryNames %>" />
 
 	<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
+	<liferay-ui:error exception="<%= GadgetPortletCategoryNames.class %>" message="select-at-least-one-category" />
 	<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
-	<liferay-ui:error exception="<%= MissingCategoryException.class %>" message="select-at-least-one-category" />
 
 	<aui:model-context bean="<%= gadget %>" model="<%= Gadget.class %>" />
 
 	<aui:fieldset>
-		<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
-
-		<c:if test="<%= gadget != null %>">
-			<aui:field-wrapper label="url">
-				<aui:a href='<%= gadget.getUrl() %>' label='<%= gadget.getUrl() %>' />
-			</aui:field-wrapper>
-		</c:if>
-
 		<c:choose>
 			<c:when test="<%= gadget != null %>">
 				<aui:input name="url" type="hidden" />
+
+				<aui:field-wrapper label="url">
+					<aui:a href="<%= gadget.getUrl() %>" label="<%= gadget.getUrl() %>" />
+				</aui:field-wrapper>
 			</c:when>
 			<c:otherwise>
 				<aui:input name="url" />
 			</c:otherwise>
 		</c:choose>
 
-		<aui:field-wrapper label="category" />
+		<h3>category</h3>
 
-		<aui:input name="categories" type="hidden" value="<%= categories %>" />
-
-		<div class="category-treeview" id="<portlet:namespace />categoryTreeView"></div>
+		<div class="category-treeview" id="<portlet:namespace />categoryTreeView" />
 
 		<aui:button-row>
 			<aui:button type="submit" />
@@ -85,21 +82,27 @@ catch (NoSuchGadgetException nsge) {
 			<aui:button onClick="<%= redirect %>" type="cancel" />
 		</aui:button-row>
 	</aui:fieldset>
-
 </aui:form>
 
 <aui:script use="aui-tree-view">
-	var selectedCategoriesEl = A.one('#<portlet:namespace />categories');
+	function <portlet:namespace />saveGadget() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
+		submitForm(document.<portlet:namespace />fm);
+	}
 
-	var categories = selectedCategoriesEl.getAttribute("value");
+	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 
-	var selectedCategories;
+	var selectedPortletCategoryNamesEl = A.one('#<portlet:namespace />portletCategoryNames');
 
-	if (categories == "") {
-		selectedCategories = new Array();
+	var portletCategoryNames = selectedPortletCategoryNamesEl.getAttribute('value');
+
+	var selectedPortletCategoryNames = null;
+
+	if (portletCategoryNames == '') {
+		selectedPortletCategoryNames = new Array();
 	}
 	else {
-		selectedCategories = selectedCategoriesEl.getAttribute("value").split(',');
+		selectedPortletCategoryNames = selectedPortletCategoryNamesEl.getAttribute('value').split(',');
 	}
 
 	var CategoryTreeNode = A.Component.create(
@@ -123,8 +126,6 @@ catch (NoSuchGadgetException nsge) {
 		}
 	).render();
 
-	var isNewGadget = <%= gadget == null %>;
-
 	<%
 	TreeView treeView = PortalUtil.getCategoryTreeView(user);
 
@@ -133,13 +134,17 @@ catch (NoSuchGadgetException nsge) {
 
 		var category = '<%= treeNodeView.getObjId() %>';
 
-		var checked;
+		var checked = false;
 
-		if (isNewGadget) {
-			checked = category == "root//category.gadgets";
+		if (<%= gadget == null %>) {
+			if (category == 'root//category.gadgets') {
+				checked = true;
+			}
 		}
 		else {
-			checked = A.Array.indexOf(selectedCategories, category) > -1;
+			if (A.Array.indexOf(selectedPortletCategoryNames, category) > -1) {
+				checked = true;
+			}
 		}
 
 		var categoryTreeNode = new CategoryTreeNode(
@@ -154,19 +159,19 @@ catch (NoSuchGadgetException nsge) {
 					check: function(event) {
 						var category = event.target.get('category')
 
-						if (A.Array.indexOf(selectedCategories, category) == -1) {
-							selectedCategories.push(category);
+						if (A.Array.indexOf(selectedPortletCategoryNames, category) == -1) {
+							selectedPortletCategoryNames.push(category);
 
-							selectedCategoriesEl.setAttribute("value", selectedCategories.join(','));
+							selectedPortletCategoryNamesEl.setAttribute('value', selectedPortletCategoryNames.join(','));
 						};
 					},
 
 					uncheck: function(event) {
 						var category = event.target.get('category')
 
-						A.Array.removeItem(selectedCategories, category);
+						A.Array.removeItem(selectedPortletCategoryNames, category);
 
-						selectedCategoriesEl.setAttribute("value", selectedCategories.join(','));
+						selectedPortletCategoryNamesEl.setAttribute('value', selectedPortletCategoryNames.join(','));
 					}
 				}
 			}
@@ -181,15 +186,6 @@ catch (NoSuchGadgetException nsge) {
 	%>
 
 	treeView.expandAll();
-</aui:script>
-
-<aui:script>
-	function <portlet:namespace />saveGadget() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>";
-		submitForm(document.<portlet:namespace />fm);
-	}
-
-	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
 
 <%

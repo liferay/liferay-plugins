@@ -68,13 +68,13 @@ public class OpenSocialServletContextListener
 	}
 
 	protected void doPortalInit() throws Exception {
-		verify();
+		verifyGadgets();
 
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
 			PortletLocalServiceUtil.addPortletCategory(
-				company.getCompanyId(), _GADGET_CATEGORY);
+				company.getCompanyId(), _GADGETS_CATEGORY);
 		}
 
 		GadgetLocalServiceUtil.initGadgets();
@@ -82,7 +82,7 @@ public class OpenSocialServletContextListener
 		checkExpando();
 	}
 
-	protected void verify() throws Exception {
+	protected void verifyGadgets() throws Exception {
 		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
@@ -90,13 +90,13 @@ public class OpenSocialServletContextListener
 			if (Validator.isNull(gadget.getUuid()) ||
 				Validator.isNull(gadget.getCategories())) {
 
-				gadget.setCategories(_GADGET_CATEGORY);
+				gadget.setCategories(_GADGETS_CATEGORY);
 
 				GadgetLocalServiceUtil.updateGadget(gadget);
 			}
 		}
 	}
 
-	private static final String _GADGET_CATEGORY = "category.gadgets";
+	private static final String _GADGETS_CATEGORY = "category.gadgets";
 
 }
