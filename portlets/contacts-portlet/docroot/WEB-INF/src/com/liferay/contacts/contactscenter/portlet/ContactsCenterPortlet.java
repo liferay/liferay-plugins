@@ -14,20 +14,34 @@
 
 package com.liferay.contacts.contactscenter.portlet;
 
+import com.liferay.contacts.util.ContactsUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.servlet.ServletResponseUtil;
+
+import java.io.IOException;
+
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
@@ -79,6 +93,49 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			themeDisplay.getUserId(), userId, type);
 	}
 
+	public void exportVCard(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long userId = ParamUtil.getLong(resourceRequest, "userId");
+
+		User user = UserLocalServiceUtil.getUserById(userId);
+
+		String vCard = ContactsUtil.getVCard(user);
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			resourceRequest);
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			resourceResponse);
+
+		ServletResponseUtil.sendFile(
+			request, response, user.getFullName() + ".vcf",
+			vCard.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
+	}
+
+	public void exportVCards(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		long userId = ParamUtil.getLong(resourceRequest, "userId");
+		int socialRelationType = ParamUtil.getInteger(
+			resourceRequest, "socialRelationType");
+
+		List<User> users = UserLocalServiceUtil.getSocialUsers(
+			userId, socialRelationType, -1, -1, null);
+
+		String vCards = ContactsUtil.getVCards(users);
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			resourceRequest);
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			resourceResponse);
+
+		ServletResponseUtil.sendFile(
+			request, response, "vcards.vcf",
+			vCards.getBytes(StringPool.UTF8), "text/x-vcard; charset=UTF-8");
+	}
+
 	public void requestSocialRelation(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -99,6 +156,28 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		SocialRequestLocalServiceUtil.addRequest(
 			themeDisplay.getUserId(), 0, User.class.getName(),
 			themeDisplay.getUserId(), type, StringPool.BLANK, userId);
+	}
+
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		String id = resourceRequest.getResourceID();
+
+		try {
+			if (id.equals("exportVCard")) {
+				exportVCard(resourceRequest, resourceResponse);
+			}
+			else if (id.equals("exportVCards")) {
+				exportVCards(resourceRequest, resourceResponse);
+			}
+			else {
+				super.serveResource(resourceRequest, resourceResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
 	}
 
 	public void updateSocialRequest(

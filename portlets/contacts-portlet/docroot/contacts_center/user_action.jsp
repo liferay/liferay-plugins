@@ -190,4 +190,14 @@ else {
 			/>
 		</c:when>
 	</c:choose>
+
+	<portlet:resourceURL id="exportVCard" var="exportURL">
+		<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+	</portlet:resourceURL>
+
+	<liferay-ui:icon
+		image="export"
+		message="export-vcard"
+		url="<%= exportURL %>"
+	/>
 </liferay-ui:icon-menu>

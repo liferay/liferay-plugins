@@ -26,13 +26,16 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("jspPage", "/contacts_center/view.jsp");
 portletURL.setParameter("topLink", topLink);
 portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType));
+
+String title = StringPool.BLANK;
 %>
 
 <c:if test="<%= socialRelationType > 0 %>">
 
 	<%
-	String title = "friends";
-
+	if (socialRelationType == SocialRelationConstants.TYPE_BI_FRIEND) {
+		title = "friends";
+	}
 	if (socialRelationType == SocialRelationConstants.TYPE_BI_COWORKER) {
 		title = "coworkers";
 	}
@@ -113,6 +116,24 @@ portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType)
 						<liferay-ui:search-iterator />
 					</liferay-ui:search-container>
 				</aui:form>
+
+				<div class="export-group">
+					<portlet:resourceURL id="exportVCards" var="exportURL">
+						<portlet:param name="userId" value="<%= String.valueOf(user.getUserId()) %>" />
+						<portlet:param name="socialRelationType" value="<%= String.valueOf(socialRelationType) %>" />
+					</portlet:resourceURL>
+
+					<%
+					String taglibExportMessage = LanguageUtil.format(pageContext, "export-my-as-vcards", title, true);
+					%>
+
+					<liferay-ui:icon
+						image="export"
+						label="<%= true %>"
+						message="<%= taglibExportMessage %>"
+						url="<%= exportURL %>"
+					/>
+				</div>
 			</c:when>
 			<c:otherwise>
 				<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">

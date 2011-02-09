@@ -33,6 +33,10 @@
 	background: url(<%= themeImagesPath %>/common/add_user.png) no-repeat 0 50%;
 }
 
+.contacts-portlet .export-group {
+	margin-top: 1em;
+}
+
 .contacts-portlet .lfr-user-grid {
 	list-style: none;
 	margin: 0;
