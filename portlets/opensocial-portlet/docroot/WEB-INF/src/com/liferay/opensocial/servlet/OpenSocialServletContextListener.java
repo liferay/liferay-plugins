@@ -74,7 +74,7 @@ public class OpenSocialServletContextListener
 
 		for (Company company : companies) {
 			PortletLocalServiceUtil.addPortletCategory(
-				company.getCompanyId(), _OPENSOCIAL_CATEGORY);
+				company.getCompanyId(), _GADGET_CATEGORY);
 		}
 
 		GadgetLocalServiceUtil.initGadgets();
@@ -90,13 +90,13 @@ public class OpenSocialServletContextListener
 			if (Validator.isNull(gadget.getUuid()) ||
 				Validator.isNull(gadget.getCategories())) {
 
-				gadget.setCategories(_OPENSOCIAL_CATEGORY);
+				gadget.setCategories(_GADGET_CATEGORY);
 
 				GadgetLocalServiceUtil.updateGadget(gadget);
 			}
 		}
 	}
 
-	private static final String _OPENSOCIAL_CATEGORY = "category.gadgets";
+	private static final String _GADGET_CATEGORY = "category.gadgets";
 
 }
