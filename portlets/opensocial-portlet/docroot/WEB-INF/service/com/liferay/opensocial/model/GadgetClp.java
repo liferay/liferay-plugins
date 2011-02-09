@@ -99,12 +99,12 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		_url = url;
 	}
 
-	public String getCategories() {
-		return _categories;
+	public String getPortletCategoryNames() {
+		return _portletCategoryNames;
 	}
 
-	public void setCategories(String categories) {
-		_categories = categories;
+	public void setPortletCategoryNames(String portletCategoryNames) {
+		_portletCategoryNames = portletCategoryNames;
 	}
 
 	public Gadget toEscapedModel() {
@@ -127,7 +127,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setUrl(getUrl());
-		clone.setCategories(getCategories());
+		clone.setPortletCategoryNames(getPortletCategoryNames());
 
 		return clone;
 	}
@@ -189,8 +189,8 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		sb.append(getName());
 		sb.append(", url=");
 		sb.append(getUrl());
-		sb.append(", categories=");
-		sb.append(getCategories());
+		sb.append(", portletCategoryNames=");
+		sb.append(getPortletCategoryNames());
 		sb.append("}");
 
 		return sb.toString();
@@ -232,8 +232,8 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>categories</column-name><column-value><![CDATA[");
-		sb.append(getCategories());
+			"<column><column-name>portletCategoryNames</column-name><column-value><![CDATA[");
+		sb.append(getPortletCategoryNames());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -248,5 +248,5 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	private Date _modifiedDate;
 	private String _name;
 	private String _url;
-	private String _categories;
+	private String _portletCategoryNames;
 }

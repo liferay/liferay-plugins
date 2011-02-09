@@ -22,7 +22,7 @@
 			</basic>
 			<basic name="name" />
 			<basic name="url" />
-			<basic name="categories" />
+			<basic name="portletCategoryNames" />
 			<transient name="primaryKey" />
 		</attributes>
 	</mapped-superclass>

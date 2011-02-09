@@ -64,9 +64,9 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "name", Types.VARCHAR },
 			{ "url", Types.VARCHAR },
-			{ "categories", Types.CLOB }
+			{ "portletCategoryNames", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,categories TEXT null)";
+	public static final String TABLE_SQL_CREATE = "create table OpenSocial_Gadget (uuid_ VARCHAR(75) null,gadgetId LONG not null primary key,companyId LONG,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,portletCategoryNames STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table OpenSocial_Gadget";
 	public static final String ORDER_BY_JPQL = " ORDER BY gadget.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY OpenSocial_Gadget.name ASC";
@@ -186,17 +186,17 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return GetterUtil.getString(_originalUrl);
 	}
 
-	public String getCategories() {
-		if (_categories == null) {
+	public String getPortletCategoryNames() {
+		if (_portletCategoryNames == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _categories;
+			return _portletCategoryNames;
 		}
 	}
 
-	public void setCategories(String categories) {
-		_categories = categories;
+	public void setPortletCategoryNames(String portletCategoryNames) {
+		_portletCategoryNames = portletCategoryNames;
 	}
 
 	public Gadget toEscapedModel() {
@@ -232,7 +232,7 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		clone.setModifiedDate(getModifiedDate());
 		clone.setName(getName());
 		clone.setUrl(getUrl());
-		clone.setCategories(getCategories());
+		clone.setPortletCategoryNames(getPortletCategoryNames());
 
 		return clone;
 	}
@@ -294,8 +294,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		sb.append(getName());
 		sb.append(", url=");
 		sb.append(getUrl());
-		sb.append(", categories=");
-		sb.append(getCategories());
+		sb.append(", portletCategoryNames=");
+		sb.append(getPortletCategoryNames());
 		sb.append("}");
 
 		return sb.toString();
@@ -337,8 +337,8 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		sb.append(getUrl());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>categories</column-name><column-value><![CDATA[");
-		sb.append(getCategories());
+			"<column><column-name>portletCategoryNames</column-name><column-value><![CDATA[");
+		sb.append(getPortletCategoryNames());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -356,6 +356,6 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	private String _name;
 	private String _url;
 	private String _originalUrl;
-	private String _categories;
+	private String _portletCategoryNames;
 	private transient ExpandoBridge _expandoBridge;
 }

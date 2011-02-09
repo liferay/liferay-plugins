@@ -160,19 +160,19 @@ public interface GadgetModel extends BaseModel<Gadget> {
 	public void setUrl(String url);
 
 	/**
-	 * Gets the categories of this gadget.
+	 * Gets the portlet category names of this gadget.
 	 *
-	 * @return the categories of this gadget
+	 * @return the portlet category names of this gadget
 	 */
 	@AutoEscape
-	public String getCategories();
+	public String getPortletCategoryNames();
 
 	/**
-	 * Sets the categories of this gadget.
+	 * Sets the portlet category names of this gadget.
 	 *
-	 * @param categories the categories of this gadget
+	 * @param portletCategoryNames the portlet category names of this gadget
 	 */
-	public void setCategories(String categories);
+	public void setPortletCategoryNames(String portletCategoryNames);
 
 	public boolean isNew();
 

@@ -474,7 +474,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
-		java.lang.String url, java.lang.String categories,
+		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -482,7 +482,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 
 		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey13,
 				companyId, ClpSerializer.translateInput(url),
-				ClpSerializer.translateInput(categories),
+				ClpSerializer.translateInput(portletCategoryNames),
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -687,13 +687,14 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public void initGadget(java.lang.String uuid, long companyId,
-		long gadgetId, java.lang.String name, java.lang.String categories)
+		long gadgetId, java.lang.String name,
+		java.lang.String portletCategoryNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_initGadgetMethodKey20,
 				ClpSerializer.translateInput(uuid), companyId, gadgetId,
 				ClpSerializer.translateInput(name),
-				ClpSerializer.translateInput(categories));
+				ClpSerializer.translateInput(portletCategoryNames));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -745,13 +746,13 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	public com.liferay.opensocial.model.Gadget updateGadget(long gadgetId,
-		java.lang.String categories)
+		java.lang.String portletCategoryNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey22,
-				gadgetId, ClpSerializer.translateInput(categories));
+				gadgetId, ClpSerializer.translateInput(portletCategoryNames));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

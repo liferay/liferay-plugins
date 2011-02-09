@@ -173,21 +173,21 @@ public class GadgetWrapper implements Gadget {
 	}
 
 	/**
-	* Gets the categories of this gadget.
+	* Gets the portlet category names of this gadget.
 	*
-	* @return the categories of this gadget
+	* @return the portlet category names of this gadget
 	*/
-	public java.lang.String getCategories() {
-		return _gadget.getCategories();
+	public java.lang.String getPortletCategoryNames() {
+		return _gadget.getPortletCategoryNames();
 	}
 
 	/**
-	* Sets the categories of this gadget.
+	* Sets the portlet category names of this gadget.
 	*
-	* @param categories the categories of this gadget
+	* @param portletCategoryNames the portlet category names of this gadget
 	*/
-	public void setCategories(java.lang.String categories) {
-		_gadget.setCategories(categories);
+	public void setPortletCategoryNames(java.lang.String portletCategoryNames) {
+		_gadget.setPortletCategoryNames(portletCategoryNames);
 	}
 
 	public boolean isNew() {

@@ -193,10 +193,10 @@ public class ClpSerializer {
 
 				method6.invoke(newModel, value6);
 
-				Method method7 = newModelClass.getMethod("setCategories",
+				Method method7 = newModelClass.getMethod("setPortletCategoryNames",
 						new Class[] { String.class });
 
-				String value7 = oldCplModel.getCategories();
+				String value7 = oldCplModel.getPortletCategoryNames();
 
 				method7.invoke(newModel, value7);
 
@@ -546,11 +546,12 @@ public class ClpSerializer {
 
 				newModel.setUrl(value6);
 
-				Method method7 = oldModelClass.getMethod("getCategories");
+				Method method7 = oldModelClass.getMethod(
+						"getPortletCategoryNames");
 
 				String value7 = (String)method7.invoke(oldModel, (Object[])null);
 
-				newModel.setCategories(value7);
+				newModel.setPortletCategoryNames(value7);
 
 				return newModel;
 			}
