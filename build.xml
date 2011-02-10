@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="plugins" basedir="." default="all">
+<project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks">
 	<property name="project.dir" value="." />
 
 	<import file="build-common.xml" />
@@ -8,6 +8,82 @@
 	<target name="all">
 		<antcall target="clean" />
 		<antcall target="deploy" />
+	</target>
+
+	<target name="all-ear">
+		<antcall target="clean-ear" />
+		<antcall target="build-ear" />
+	</target>
+
+	<target name="build-ear">
+		<copy todir="dist" overwrite="yes">
+			<fileset
+				dir="${project.dir}/tools/ear_tmpl"
+			/>
+		</copy>
+
+		<copy todir="dist/modules/APP-INF/lib">
+			<fileset dir="${app.server.lib.global.dir}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+
+		<fileset dir="dist/modules" id="ear.dependency.libraries">
+			<include name="APP-INF/lib/*.jar"/>
+		</fileset>
+
+		<pathconvert property="jars.for.application" pathsep=" " refid="ear.dependency.libraries">
+			<mapper>
+				<chainedmapper>
+					<flattenmapper/>
+					<globmapper from="*.jar" to="APP-INF/lib/*.jar"/>
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+
+		<war
+			basedir="${app.server.portal.dir}"
+			destfile="dist/modules/liferay-portal.war"
+		>
+			<manifest>
+				<attribute name="Class-Path" value="${jars.for.application}" />
+			</manifest>
+		</war>
+
+		<antcall target="build-wars-to-ear" />
+
+		<fileset dir="dist/modules" id="ear.wars">
+			<include name="*.war"/>
+		</fileset>
+
+		<pathconvert property="wars.for.application" pathsep="," refid="ear.wars">
+			<mapper>
+				<chainedmapper>
+					<flattenmapper/>
+				</chainedmapper>
+			</mapper>
+		</pathconvert>
+
+		<java
+			classname="com.liferay.portal.tools.EARBuilder"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
+			<arg value="${basedir}/dist/modules/META-INF/application.xml" />
+			<arg value="${wars.for.application}" />
+		</java>
+
+		<ear
+			appxml="dist/modules/META-INF/application.xml"
+			basedir="dist/modules"
+			destfile="dist/liferay-portal.ear"
+			excludes="META-INF/application.xml"
+			includes="**/*.jar,*.war,META-INF/*.xml"
+		/>
+
+		<delete dir="dist/modules" />
 	</target>
 
 	<target name="build-service">
@@ -41,12 +117,39 @@
 		</java>
 	</target>
 
+	<target name="build-wars-to-ear">
+		<for param="module.full.path">
+			<path>
+				<dirset dir="${app.server.deploy.dir}" includes="${plugins.ear.includes}" excludes="${plugins.ear.excludes}" />
+			</path>
+
+			<sequential>
+				<antelope:stringutil string="@{module.full.path}" property="module.full.path.unix">
+					<antelope:replace regex="\\" replacement="/" />
+				</antelope:stringutil>
+
+				<antelope:grep in="${module.full.path.unix}" regex="(.*/)(.*)" group="2" property="module.name" />
+
+				<war
+					basedir="@{module.full.path}"
+					destfile="dist/modules/${module.name}.war"
+				/>
+			</sequential>
+		</for>
+	</target>
+
 	<target name="clean">
 		<ant dir="hooks" target="clean" inheritAll="false" />
 		<ant dir="layouttpl" target="clean" inheritAll="false" />
 		<ant dir="portlets" target="clean" inheritAll="false" />
 		<ant dir="themes" target="clean" inheritAll="false" />
 		<ant dir="webs" target="clean" inheritAll="false" />
+		<ant target="clean-ear" inheritAll="false" />
+	</target>
+
+	<target name="clean-ear">
+		<delete dir="dist/modules" />
+		<delete dir="dist/liferay-portal.ear" />
 	</target>
 
 	<target name="compile">
