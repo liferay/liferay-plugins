@@ -47,6 +47,7 @@ public class UserDirectory extends BaseDirectory {
 			"modifyTimestamp", _format.format(_user.getModifiedDate()));
 		addAttribute("sn", _user.getLastName());
 		addAttribute("objectclass", "inetOrgPerson");
+		addAttribute("objectclass", "liferayPerson");
 		addAttribute("objectclass", "top");
 		addAttribute("uid", String.valueOf(_user.getUserId()));
 		addAttribute("uuid", _user.getUuid());

@@ -14,9 +14,11 @@
 
 package com.liferay.vldap.servlet;
 
+import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.vldap.server.VLDAPServer;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
@@ -29,9 +31,17 @@ public class VLDAPContextListener
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		portalDestroy();
+
+		ServletContextPool.remove(_servletContextName);
 	}
 
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		ServletContext servletContext = servletContextEvent.getServletContext();
+
+		_servletContextName = servletContext.getServletContextName();
+
+		ServletContextPool.put(_servletContextName, servletContext);
+
 		registerPortalLifecycle();
 	}
 
@@ -42,9 +52,10 @@ public class VLDAPContextListener
 	protected void doPortalInit() throws Exception {
 		_vldapServer = new VLDAPServer();
 
-		_vldapServer.init();
+		_vldapServer.init(_servletContextName);
 	}
 
+	private String _servletContextName;
 	private VLDAPServer _vldapServer;
 
 }

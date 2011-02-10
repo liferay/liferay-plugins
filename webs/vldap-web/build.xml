@@ -24,87 +24,16 @@
 					<mapper type="flatten" />
 				</unzip>
 
-				<tstamp>
-					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
-				</tstamp>
-
-				<unzip
-					dest="${tstamp.value}"
-					src="shared-ldap-schema-0.9.19-sources.jar"
-				>
-					<patternset
-						includes="**/ResourceMap.java"
-					/>
-				</unzip>
-
-				<move
-					file="${tstamp.value}/org/apache/directory/shared/ldap/schema/ldif/extractor/impl/ResourceMap.java"
-					tofile="${tstamp.value}/org/apache/directory/shared/ldap/schema/ldif/extractor/impl/DynamicResourceMap.java"
-				/>
-
-				<replace file="${tstamp.value}/org/apache/directory/shared/ldap/schema/ldif/extractor/impl/DynamicResourceMap.java">
-					<replacefilter token="ResourceMap" value="DynamicResourceMap" />
-				</replace>
-
-				<replace file="${tstamp.value}/org/apache/directory/shared/ldap/schema/ldif/extractor/impl/DynamicResourceMap.java">
-					<replacetoken><![CDATA[String classPath = System.getProperty( "java.class.path", "." );]]></replacetoken>
-					<replacevalue>
-						<![CDATA[
-							com.liferay.portal.kernel.util.StringBundler sb = new com.liferay.portal.kernel.util.StringBundler(5);
-
-							sb.append(com.liferay.portal.kernel.servlet.WebDirDetector.getLibDir(ResourceMap.class.getClassLoader()));
-							sb.append("/shared-ldap-schema-0.9.19.jar");
-							sb.append(File.pathSeparator);
-							sb.append(com.liferay.portal.kernel.servlet.WebDirDetector.getRootDir(ResourceMap.class.getClassLoader()));
-							sb.append("/WEB-INF/classes");
-
-							String classPath = sb.toString();
-						]]>
-					</replacevalue>
-				</replace>
-
-				<unzip
-					dest="${tstamp.value}"
-					src="shared-ldap-schema-loader-0.9.19-sources.jar"
-				>
-					<patternset
-						includes="**/JarLdifSchemaLoader.java"
-					/>
-				</unzip>
-
-				<move
-					file="${tstamp.value}/org/apache/directory/shared/ldap/schema/loader/ldif/JarLdifSchemaLoader.java"
-					tofile="${tstamp.value}/org/apache/directory/shared/ldap/schema/loader/ldif/DynamicJarLdifSchemaLoader.java"
-				/>
-
-				<replace file="${tstamp.value}/org/apache/directory/shared/ldap/schema/loader/ldif/DynamicJarLdifSchemaLoader.java">
-					<replacefilter token="JarLdifSchemaLoader" value="DynamicJarLdifSchemaLoader" />
-					<replacefilter token="ResourceMap" value="DynamicResourceMap" />
-				</replace>
-
 				<mkdir dir="docroot/WEB-INF/classes" />
 
-				<copy todir="docroot/WEB-INF/lib">
-					<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
-				</copy>
-
-				<path id="plugin-lib.classpath">
-					<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-					<pathelement location="docroot/WEB-INF/classes" />
-				</path>
-
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="plugin.classpath" />
-					<param name="javac.destdir" value="${tstamp.value}" />
-					<param name="javac.srcdir" value="${tstamp.value}" />
-					<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-				</antcall>
-
-				<zip destfile="docroot/WEB-INF/lib/shared-ldap-patches.jar">
-					<fileset dir="${tstamp.value}" />
-				</zip>
-
-				<delete dir="${tstamp.value}" />
+				<unzip
+					dest="docroot/WEB-INF/classes"
+					src="docroot/WEB-INF/lib/shared-ldap-schema-0.9.19.jar"
+				>
+					<patternset
+						includes="schema/**/*.*"
+					/>
+				</unzip>
 			</then>
 		</if>
 
