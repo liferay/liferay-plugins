@@ -43,7 +43,7 @@ if (gadget != null) {
 
 <portlet:actionURL name="updateGadget" var="updateGadgetURL">
 	<portlet:param name="jspPage" value="/admin/edit_gadget.jsp" />
-	<porltet:param name="redirect" value="<%= redirect %>" />
+	<portlet:param name="redirect" value="<%= redirect %>" />
 </portlet:actionURL>
 
 <aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
@@ -72,9 +72,9 @@ if (gadget != null) {
 			</c:otherwise>
 		</c:choose>
 
-		<h3>category</h3>
+		<h4><liferay-ui:message key="category" /></h4>
 
-		<div class="category-treeview" id="<portlet:namespace />categoryTreeView" />
+		<div class="category-treeview" id="<portlet:namespace />categoryTreeView" ></div>
 
 		<aui:button-row>
 			<aui:button type="submit" />
@@ -85,11 +85,6 @@ if (gadget != null) {
 </aui:form>
 
 <aui:script use="aui-tree-view">
-	function <portlet:namespace />saveGadget() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
-		submitForm(document.<portlet:namespace />fm);
-	}
-
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 
 	var selectedPortletCategoryNamesEl = A.one('#<portlet:namespace />portletCategoryNames');
@@ -186,6 +181,13 @@ if (gadget != null) {
 	%>
 
 	treeView.expandAll();
+</aui:script>
+
+<aui:script>
+	function <portlet:namespace />saveGadget() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
+		submitForm(document.<portlet:namespace />fm);
+	}
 </aui:script>
 
 <%

@@ -19,8 +19,3 @@
 .opensocial-portlet-admin .category-treeview .aui-tree-label:hover {
 	color: #06c;
 }
-
-.opensocial-portlet-admin .category-treeview .aui-tree-node-selected .aui-tree-label {
-	background-color: #6F7D83;
-	color: #FFF;
-}
