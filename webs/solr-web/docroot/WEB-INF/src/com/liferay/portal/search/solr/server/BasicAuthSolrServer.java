@@ -66,6 +66,8 @@ public class BasicAuthSolrServer extends SolrServer {
 			httpState.setCredentials(
 				authScope,
 				new UsernamePasswordCredentials(_username, _password));
+
+			httpClient.getParams().setAuthenticationPreemptive(true);
 		}
 
 		_server = new CommonsHttpSolrServer(url, httpClient);
