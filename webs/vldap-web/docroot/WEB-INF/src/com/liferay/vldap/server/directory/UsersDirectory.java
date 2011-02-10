@@ -15,6 +15,7 @@
 package com.liferay.vldap.server.directory;
 
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
@@ -103,7 +104,7 @@ public class UsersDirectory extends BaseDirectory {
 		String lastName = null;
 		String screenName = getScreenName();
 		String emailAddress = null;
-		Boolean active = Boolean.TRUE;
+		int status = WorkflowConstants.STATUS_APPROVED;
 		LinkedHashMap<String, Object> params =
 			new LinkedHashMap<String, Object>();
 		boolean andSearch = true;
@@ -132,7 +133,7 @@ public class UsersDirectory extends BaseDirectory {
 
 		List<User> users = UserLocalServiceUtil.search(
 			companyId, firstName, middleName, lastName, screenName,
-			emailAddress, active, params, andSearch, start, end,
+			emailAddress, status, params, andSearch, start, end,
 			orderByComparator);
 
 		for (User user : users) {
