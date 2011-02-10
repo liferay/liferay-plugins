@@ -23,6 +23,7 @@ import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
 import org.apache.commons.httpclient.auth.AuthScope;
+import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.solr.client.solrj.ResponseParser;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
@@ -67,7 +68,9 @@ public class BasicAuthSolrServer extends SolrServer {
 				authScope,
 				new UsernamePasswordCredentials(_username, _password));
 
-			httpClient.getParams().setAuthenticationPreemptive(true);
+			HttpClientParams httpClientParams = httpClient.getParams();
+
+			httpClientParams.setAuthenticationPreemptive(true);
 		}
 
 		_server = new CommonsHttpSolrServer(url, httpClient);
