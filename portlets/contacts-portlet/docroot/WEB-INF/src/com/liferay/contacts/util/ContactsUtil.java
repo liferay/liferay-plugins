@@ -14,6 +14,7 @@
 
 package com.liferay.contacts.util;
 
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Address;
@@ -33,8 +34,6 @@ import com.liferay.portal.service.PhoneLocalServiceUtil;
 import com.liferay.portal.service.RegionServiceUtil;
 import com.liferay.portal.service.WebsiteLocalServiceUtil;
 
-import java.lang.StringBuilder;
-
 import java.util.List;
 
 /**
@@ -43,106 +42,40 @@ import java.util.List;
 public class ContactsUtil {
 
 	public static String getVCard(User user) throws Exception {
+		StringBundler sb = new StringBundler();
+
+		sb.append(_getHeader());
+
 		Contact contact = user.getContact();
 
-		StringBuilder sb = new StringBuilder();
+		sb.append(_getName(user, contact));
+		sb.append(_getJobTitle(user));
+		sb.append(_getEmailAddresses(user));
+		sb.append(_getPhones(user));
+		sb.append(_getAddresses(user));
+		sb.append(_getWebsites(user));
+		sb.append(_getInstantMessaging(contact));
+		sb.append(_getFooter());
 
-		// Heading
+		return sb.toString();
+	}
 
-		sb.append("BEGIN:VCARD\nVERSION:3.0\n");
+	public static String getVCards(List<User> users) throws Exception {
+		StringBundler sb = new StringBundler(users.size());
 
-		// Name
-
-		sb.append("N:");
-		sb.append(user.getLastName());
-		sb.append(StringPool.SEMICOLON);
-		sb.append(user.getFirstName());
-		sb.append(StringPool.SEMICOLON);
-		sb.append(user.getMiddleName());
-		sb.append(StringPool.SEMICOLON);
-
-		int prefixId = contact.getPrefixId();
-
-		if (prefixId > 0) {
-			ListType listType = ListTypeServiceUtil.getListType(prefixId);
-
-			sb.append(listType.getName());
+		for (User user : users) {
+			sb.append(getVCard(user));
 		}
 
-		sb.append(StringPool.SEMICOLON);
+		return sb.toString();
+	}
 
-		int suffixId = contact.getSuffixId();
-
-		if (suffixId > 0) {
-			ListType listType = ListTypeServiceUtil.getListType(suffixId);
-
-			sb.append(listType.getName());
-		}
-
-		sb.append(StringPool.NEW_LINE);
-
-		sb.append("FN:");
-		sb.append(user.getFullName());
-		sb.append(StringPool.NEW_LINE);
-
-		// Job Title
-
-		String jobTitle = user.getJobTitle();
-
-		if (Validator.isNotNull(jobTitle)) {
-			sb.append("TITLE:");
-			sb.append(jobTitle);
-			sb.append(StringPool.NEW_LINE);
-		}
-
-		// Email
-
-		sb.append("EMAIL;TYPE=INTERNET;TYPE=HOME:");
-		sb.append(user.getEmailAddress());
-		sb.append(StringPool.NEW_LINE);
-
-		List<EmailAddress> emailAddresses =
-			EmailAddressLocalServiceUtil.getEmailAddresses(
-				user.getCompanyId(), Contact.class.getName(),
-				contact.getContactId());
-
-		for (EmailAddress emailAddress : emailAddresses) {
-			sb.append("EMAIL;TYPE=INTERNET;TYPE=");
-
-			ListType listType = emailAddress.getType();
-
-			sb.append(listType.getName().toUpperCase());
-			sb.append(StringPool.COLON);
-			sb.append(emailAddress.getAddress());
-
-			sb.append(StringPool.NEW_LINE);
-		}
-
-		// Phones
-
-		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
-			user.getCompanyId(), Contact.class.getName(),
-			contact.getContactId());
-
-		for (Phone phone : phones) {
-			sb.append("TEL;TYPE=");
-
-			ListType listType = phone.getType();
-
-			sb.append(listType.getName().toUpperCase());
-			sb.append(StringPool.COLON);
-			sb.append(phone.getNumber());
-			sb.append(StringPool.SPACE);
-			sb.append(phone.getExtension());
-
-			sb.append(StringPool.NEW_LINE);
-		}
-
-		// Addresses
-
+	private static String _getAddresses(User user) throws Exception {
 		List<Address> addresses = AddressLocalServiceUtil.getAddresses(
 			user.getCompanyId(), Contact.class.getName(),
-			contact.getContactId());
+			user.getContactId());
+
+		StringBundler sb = new StringBundler(addresses.size() * 19);
 
 		for (Address address: addresses) {
 			sb.append("ADR;TYPE=");
@@ -150,6 +83,7 @@ public class ContactsUtil {
 			ListType listType = address.getType();
 
 			sb.append(listType.getName().toUpperCase());
+
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.SEMICOLON);
 			sb.append(StringPool.SEMICOLON);
@@ -203,27 +137,46 @@ public class ContactsUtil {
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		// Websites
+		return sb.toString();
+	}
 
-		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
-			user.getCompanyId(), Contact.class.getName(),
-			contact.getContactId());
+	private static String _getEmailAddresses(User user) throws Exception {
+		List<EmailAddress> emailAddresses =
+			EmailAddressLocalServiceUtil.getEmailAddresses(
+				user.getCompanyId(), Contact.class.getName(),
+				user.getContactId());
 
-		for (Website website: websites) {
-			sb.append("URL;TYPE=");
+		StringBundler sb = new StringBundler(3 + (emailAddresses.size() * 5));
 
-			ListType listType = website.getType();
+		sb.append("EMAIL;TYPE=INTERNET;TYPE=HOME:");
+		sb.append(user.getEmailAddress());
+		sb.append(StringPool.NEW_LINE);
+
+		for (EmailAddress emailAddress : emailAddresses) {
+			sb.append("EMAIL;TYPE=INTERNET;TYPE=");
+
+			ListType listType = emailAddress.getType();
 
 			sb.append(listType.getName().toUpperCase());
+
 			sb.append(StringPool.COLON);
-
-			String url = website.getUrl();
-
-			sb.append(url.replaceAll(StringPool.COLON, "\\:"));
+			sb.append(emailAddress.getAddress());
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		// Instant Messaging
+		return sb.toString();
+	}
+
+	private static String _getFooter() {
+		return "END:VCARD\n";
+	}
+
+	private static String _getHeader() {
+		return "BEGIN:VCARD\nVERSION:3.0\n";
+	}
+
+	private static String _getInstantMessaging(Contact contact) {
+		StringBundler sb = new StringBundler(18);
 
 		if (Validator.isNotNull(contact.getAimSn())) {
 			sb.append("X-AIM;type=OTHER;type=pref:");
@@ -261,18 +214,103 @@ public class ContactsUtil {
 			sb.append(StringPool.NEW_LINE);
 		}
 
-		// Footing
+		return sb.toString();
+	}
 
-		sb.append("END:VCARD\n");
+	private static String _getJobTitle(User user) {
+		String jobTitle = user.getJobTitle();
+
+		if (Validator.isNotNull(jobTitle)) {
+			return "TITLE:".concat(jobTitle).concat(StringPool.NEW_LINE);
+		}
+
+		return StringPool.BLANK;
+	}
+
+	private static String _getName(User user, Contact contact)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(14);
+
+		sb.append("N:");
+		sb.append(user.getLastName());
+		sb.append(StringPool.SEMICOLON);
+		sb.append(user.getFirstName());
+		sb.append(StringPool.SEMICOLON);
+		sb.append(user.getMiddleName());
+		sb.append(StringPool.SEMICOLON);
+
+		int prefixId = contact.getPrefixId();
+
+		if (prefixId > 0) {
+			ListType listType = ListTypeServiceUtil.getListType(prefixId);
+
+			sb.append(listType.getName());
+		}
+
+		sb.append(StringPool.SEMICOLON);
+
+		int suffixId = contact.getSuffixId();
+
+		if (suffixId > 0) {
+			ListType listType = ListTypeServiceUtil.getListType(suffixId);
+
+			sb.append(listType.getName());
+		}
+
+		sb.append(StringPool.NEW_LINE);
+		sb.append("FN:");
+		sb.append(user.getFullName());
+		sb.append(StringPool.NEW_LINE);
 
 		return sb.toString();
 	}
 
-	public static String getVCards(List<User> users) throws Exception {
-		StringBuilder sb = new StringBuilder();
+	private static String _getPhones(User user) throws Exception {
+		List<Phone> phones = PhoneLocalServiceUtil.getPhones(
+			user.getCompanyId(), Contact.class.getName(),
+			user.getContactId());
 
-		for (User user : users) {
-			sb.append(getVCard(user));
+		StringBundler sb = new StringBundler(phones.size() * 7);
+
+		for (Phone phone : phones) {
+			sb.append("TEL;TYPE=");
+
+			ListType listType = phone.getType();
+
+			sb.append(listType.getName().toUpperCase());
+
+			sb.append(StringPool.COLON);
+			sb.append(phone.getNumber());
+			sb.append(StringPool.SPACE);
+			sb.append(phone.getExtension());
+			sb.append(StringPool.NEW_LINE);
+		}
+
+		return sb.toString();
+	}
+
+	private static String _getWebsites(User user) throws Exception {
+		List<Website> websites = WebsiteLocalServiceUtil.getWebsites(
+			user.getCompanyId(), Contact.class.getName(),
+			user.getContactId());
+
+		StringBundler sb = new StringBundler(websites.size() * 5);
+
+		for (Website website: websites) {
+			sb.append("URL;TYPE=");
+
+			ListType listType = website.getType();
+
+			sb.append(listType.getName().toUpperCase());
+
+			sb.append(StringPool.COLON);
+
+			String url = website.getUrl();
+
+			sb.append(url.replaceAll(StringPool.COLON, "\\:"));
+
+			sb.append(StringPool.NEW_LINE);
 		}
 
 		return sb.toString();

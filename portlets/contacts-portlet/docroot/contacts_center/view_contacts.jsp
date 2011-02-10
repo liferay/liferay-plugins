@@ -19,31 +19,28 @@
 <%
 String topLink = ParamUtil.getString(request, "topLink", "contacts-home");
 
-int socialRelationType = ParamUtil.getInteger(request, "socialRelationType", 0);
+int socialRelationType = ParamUtil.getInteger(request, "socialRelationType");
+
+String socialRelationTypeDescriptiveKey = StringPool.BLANK;
+
+if (socialRelationType == SocialRelationConstants.TYPE_BI_COWORKER) {
+	socialRelationTypeDescriptiveKey = "coworkers";
+}
+else if (socialRelationType == SocialRelationConstants.TYPE_BI_FRIEND) {
+	socialRelationTypeDescriptiveKey = "friends";
+}
+else if (socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
+	socialRelationTypeDescriptiveKey = "following";
+}
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("jspPage", "/contacts_center/view.jsp");
 portletURL.setParameter("topLink", topLink);
 portletURL.setParameter("socialRelationType", String.valueOf(socialRelationType));
-
-String title = StringPool.BLANK;
 %>
 
 <c:if test="<%= socialRelationType > 0 %>">
-
-	<%
-	if (socialRelationType == SocialRelationConstants.TYPE_BI_FRIEND) {
-		title = "friends";
-	}
-	if (socialRelationType == SocialRelationConstants.TYPE_BI_COWORKER) {
-		title = "coworkers";
-	}
-	else if (socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER) {
-		title = "following";
-	}
-	%>
-
 	<portlet:renderURL var="backURL">
 		<portlet:param name="jspPage" value="/contacts_center/view.jsp" />
 		<portlet:param name="topLink" value="contacts-home" />
@@ -51,7 +48,7 @@ String title = StringPool.BLANK;
 
 	<liferay-ui:header
 		backURL="<%= backURL.toString() %>"
-		title="<%= title %>"
+		title="<%= socialRelationTypeDescriptiveKey %>"
 	/>
 </c:if>
 
@@ -124,7 +121,7 @@ String title = StringPool.BLANK;
 					</portlet:resourceURL>
 
 					<%
-					String taglibExportMessage = LanguageUtil.format(pageContext, "export-my-as-vcards", title, true);
+					String taglibExportMessage = LanguageUtil.format(pageContext, "export-my-as-vcards", socialRelationTypeDescriptiveKey, true);
 					%>
 
 					<liferay-ui:icon

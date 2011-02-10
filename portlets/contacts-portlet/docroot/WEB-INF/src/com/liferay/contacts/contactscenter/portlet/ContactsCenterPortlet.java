@@ -15,6 +15,7 @@
 package com.liferay.contacts.contactscenter.portlet;
 
 import com.liferay.contacts.util.ContactsUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -29,8 +30,6 @@ import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.ServletResponseUtil;
-
-import java.io.IOException;
 
 import java.util.List;
 
@@ -122,7 +121,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			resourceRequest, "socialRelationType");
 
 		List<User> users = UserLocalServiceUtil.getSocialUsers(
-			userId, socialRelationType, -1, -1, null);
+			userId, socialRelationType, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 
 		String vCards = ContactsUtil.getVCards(users);
 
@@ -160,7 +160,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws IOException, PortletException {
+		throws PortletException {
 
 		String id = resourceRequest.getResourceID();
 
