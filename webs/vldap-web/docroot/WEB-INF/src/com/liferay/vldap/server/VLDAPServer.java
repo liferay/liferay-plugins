@@ -108,16 +108,18 @@ public class VLDAPServer {
 	}
 
 	protected void initSchemaManager() throws Exception {
-		String realPath = WebDirDetector.getRootDir(
-			this.getClass().getClassLoader());
+		ClassLoader classLoader = getClass().getClassLoader();
 
-		realPath = realPath.concat("/WEB-INF/classes/schema");
+		String webDir = WebDirDetector.getRootDir(classLoader);
 
 		if (_log.isDebugEnabled()) {
-			_log.debug(realPath);
+			_log.debug(webDir);
 		}
 
-		SchemaLoader schemaLoader = new LdifSchemaLoader(new File(realPath));
+		File baseDirectory = new File(
+			webDir.concat("/WEB-INF/classes/schema"));
+
+		SchemaLoader schemaLoader = new LdifSchemaLoader(baseDirectory);
 
 		_schemaManager = new DefaultSchemaManager(schemaLoader);
 
