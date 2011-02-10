@@ -84,6 +84,15 @@ if (gadget != null) {
 	</aui:fieldset>
 </aui:form>
 
+<aui:script>
+	function <portlet:namespace />saveGadget() {
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
+		submitForm(document.<portlet:namespace />fm);
+	}
+	
+	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
+</aui:script>
+
 <aui:script use="aui-tree-view">
 	var selectedPortletCategoryNamesEl = A.one('#<portlet:namespace />portletCategoryNames');
 
@@ -179,15 +188,6 @@ if (gadget != null) {
 	%>
 
 	treeView.expandAll();
-</aui:script>
-
-<aui:script>
-	function <portlet:namespace />saveGadget() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
-		submitForm(document.<portlet:namespace />fm);
-	}
-	
-	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
 
 <%
