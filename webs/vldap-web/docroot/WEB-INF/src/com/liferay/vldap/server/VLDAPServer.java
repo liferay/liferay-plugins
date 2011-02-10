@@ -17,6 +17,7 @@ package com.liferay.vldap.server;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
+import com.liferay.portal.kernel.servlet.ServletContextUtil;
 import com.liferay.vldap.server.codec.LdapCodecFactory;
 import com.liferay.vldap.util.PortletPropsValues;
 
@@ -114,7 +115,8 @@ public class VLDAPServer {
 		ServletContext servletContext = ServletContextPool.get(
 			_servletContextName);
 
-		String realPath = servletContext.getRealPath("WEB-INF/classes/schema");
+		String realPath = ServletContextUtil.getRealPath(
+			servletContext, "WEB-INF/classes/schema");
 
 		SchemaLoader schemaLoader = new LdifSchemaLoader(new File(realPath));
 

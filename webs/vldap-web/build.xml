@@ -31,7 +31,7 @@
 					src="docroot/WEB-INF/lib/shared-ldap-schema-0.9.19.jar"
 				>
 					<patternset
-						includes="schema/**/*.*"
+						includes="schema/**"
 					/>
 				</unzip>
 			</then>
