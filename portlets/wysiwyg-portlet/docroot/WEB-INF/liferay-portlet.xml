@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
+		<instanceable>true</instanceable>
 		<css-class-wrapper>wysiwyg-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
