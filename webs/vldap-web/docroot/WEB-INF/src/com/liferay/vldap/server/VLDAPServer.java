@@ -16,8 +16,7 @@ package com.liferay.vldap.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.servlet.ServletContextUtil;
+import com.liferay.portal.kernel.servlet.WebDirDetector;
 import com.liferay.vldap.server.codec.LdapCodecFactory;
 import com.liferay.vldap.util.PortletPropsValues;
 
@@ -25,8 +24,6 @@ import java.io.File;
 
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
-
-import javax.servlet.ServletContext;
 
 import org.apache.directory.shared.ldap.schema.SchemaManager;
 import org.apache.directory.shared.ldap.schema.loader.ldif.LdifSchemaLoader;
@@ -43,6 +40,7 @@ import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 /**
  * @author Jonathan Potter
  * @author Brian Wing Shun Chan
+ * @author Raymond Augé
  */
 public class VLDAPServer {
 
@@ -54,9 +52,7 @@ public class VLDAPServer {
 		return _schemaManager;
 	}
 
-	public void init(String servletContextName) throws Exception {
-		_servletContextName = servletContextName;
-
+	public void init() throws Exception {
 		initSchemaManager();
 		initIoAcceptor();
 	}
@@ -112,11 +108,14 @@ public class VLDAPServer {
 	}
 
 	protected void initSchemaManager() throws Exception {
-		ServletContext servletContext = ServletContextPool.get(
-			_servletContextName);
+		String realPath = WebDirDetector.getRootDir(
+			this.getClass().getClassLoader());
 
-		String realPath = ServletContextUtil.getRealPath(
-			servletContext, "WEB-INF/classes/schema");
+		realPath = realPath.concat("/WEB-INF/classes/schema");
+
+		if (_log.isDebugEnabled()) {
+			_log.debug(realPath);
+		}
 
 		SchemaLoader schemaLoader = new LdifSchemaLoader(new File(realPath));
 
@@ -130,6 +129,5 @@ public class VLDAPServer {
 
 	private IoAcceptor _ioAcceptor;
 	private SchemaManager _schemaManager;
-	private String _servletContextName;
 
 }
