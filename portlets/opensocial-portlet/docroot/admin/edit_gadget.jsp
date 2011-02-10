@@ -85,8 +85,6 @@ if (gadget != null) {
 </aui:form>
 
 <aui:script use="aui-tree-view">
-	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
-
 	var selectedPortletCategoryNamesEl = A.one('#<portlet:namespace />portletCategoryNames');
 
 	var portletCategoryNames = selectedPortletCategoryNamesEl.getAttribute('value');
@@ -188,6 +186,8 @@ if (gadget != null) {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
 		submitForm(document.<portlet:namespace />fm);
 	}
+	
+	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
 
 <%
