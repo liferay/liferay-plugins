@@ -89,22 +89,19 @@ if (gadget != null) {
 		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>';
 		submitForm(document.<portlet:namespace />fm);
 	}
-	
+
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 </aui:script>
 
 <aui:script use="aui-tree-view">
-	var selectedPortletCategoryNamesEl = A.one('#<portlet:namespace />portletCategoryNames');
+	var selectedPortletCategoryNamesNode = A.one('#<portlet:namespace />portletCategoryNames');
 
-	var portletCategoryNames = selectedPortletCategoryNamesEl.getAttribute('value');
+	var portletCategoryNames = selectedPortletCategoryNamesNode.val();
 
-	var selectedPortletCategoryNames = null;
+	var selectedPortletCategoryNames = [];
 
-	if (portletCategoryNames == '') {
-		selectedPortletCategoryNames = new Array();
-	}
-	else {
-		selectedPortletCategoryNames = selectedPortletCategoryNamesEl.getAttribute('value').split(',');
+	if (portletCategoryNames) {
+		selectedPortletCategoryNames = portletCategoryNames.split(',');
 	}
 
 	var CategoryTreeNode = A.Component.create(
@@ -128,6 +125,24 @@ if (gadget != null) {
 		}
 	).render();
 
+	var setSelectedPortlet = function(event) {
+		var category = event.target.get('category')
+
+		if (A.Array.indexOf(selectedPortletCategoryNames, category) == -1) {
+			selectedPortletCategoryNames.push(category);
+
+			selectedPortletCategoryNamesNode.val(selectedPortletCategoryNames.join());
+		}
+	};
+
+	var setUnselectedPortlet = function(event) {
+		var category = event.target.get('category')
+
+		A.Array.removeItem(selectedPortletCategoryNames, category);
+
+		selectedPortletCategoryNamesNode.val(selectedPortletCategoryNames.join());
+	};
+
 	<%
 	PortletLister portletLister = PortletListerFactoryUtil.getPortletLister();
 
@@ -141,18 +156,8 @@ if (gadget != null) {
 
 		var category = '<%= treeNodeView.getObjId() %>';
 
-		var checked = false;
-
-		if (<%= gadget == null %>) {
-			if (category == 'root//category.gadgets') {
-				checked = true;
-			}
-		}
-		else {
-			if (A.Array.indexOf(selectedPortletCategoryNames, category) > -1) {
-				checked = true;
-			}
-		}
+		var checked = ((<%= gadget == null %> && category == 'root//category.gadgets') ||
+			A.Array.indexOf(selectedPortletCategoryNames, category) > -1);
 
 		var categoryTreeNode = new CategoryTreeNode(
 			{
@@ -163,23 +168,8 @@ if (gadget != null) {
 				label: '<%= UnicodeFormatter.toString(LanguageUtil.get(user.getLocale(), treeNodeView.getName())) %>',
 				leaf: false,
 				on: {
-					check: function(event) {
-						var category = event.target.get('category')
-
-						if (A.Array.indexOf(selectedPortletCategoryNames, category) == -1) {
-							selectedPortletCategoryNames.push(category);
-
-							selectedPortletCategoryNamesEl.setAttribute('value', selectedPortletCategoryNames.join(','));
-						};
-					},
-
-					uncheck: function(event) {
-						var category = event.target.get('category')
-
-						A.Array.removeItem(selectedPortletCategoryNames, category);
-
-						selectedPortletCategoryNamesEl.setAttribute('value', selectedPortletCategoryNames.join(','));
-					}
+					check: setSelectedPortlet,
+					uncheck: setUnselectedPortlet
 				}
 			}
 		);
