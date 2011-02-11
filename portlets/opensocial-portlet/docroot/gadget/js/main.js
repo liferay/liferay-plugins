@@ -131,10 +131,10 @@ AUI().add(
 					        			}
 						        	},
 						        	IframeContainer: {
+						        		iframeAttrs: iframeAttrs,
 						        		parent: instance.get('contentBox'),
-						        		uri: instance.get('iframeUrl'),
 						        		tunnelURI: shindig.uri(instance.get('serverBase') + instance.get('rpcRelay')).resolve(shindig.uri(window.location.href)),
-						        		iframeAttrs: iframeAttrs
+						        		uri: instance.get('iframeUrl')
 						        	}
 						        }
 					        );
@@ -182,18 +182,18 @@ AUI().add(
 					        }
 					    };
 
-					    var url = '/opensocial-portlet/gadgets/metadata?st=' + secureToken;
+					    var url = themeDisplay.getPathContext() + '/opensocial-portlet/gadgets/metadata?st=' + secureToken;
 
 					    var request = {
 					        context: {
+					            container: 'default',
 					            country: 'default',
 					            language: 'default',
-					            view: 'default',
-					            container: 'default'
+					            view: 'default'
 					        },
 					        gadgets: [{
-					            url: instance.get('specUrl'),
-					            moduleId: 1
+					            moduleId: 1,
+					            url: instance.get('specUrl')
 					        }]
 					    };
 
