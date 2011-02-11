@@ -129,7 +129,12 @@ if (gadget != null) {
 	).render();
 
 	<%
-	TreeView treeView = PortalUtil.getCategoryTreeView(user);
+	PortletLister portletLister = PortletListerFactoryUtil.getPortletLister();
+
+	portletLister.setIteratePortlets(false);
+	portletLister.setUser(user);
+
+	TreeView treeView = portletLister.getTreeView();
 
 	for (TreeNodeView treeNodeView : treeView.getList()) {
 	%>

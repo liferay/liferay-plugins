@@ -53,6 +53,8 @@
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
+<%@ page import="com.liferay.portal.util.PortletLister" %>
+<%@ page import="com.liferay.portal.util.PortletListerFactoryUtil" %>
 <%@ page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %>
 
 <%@ page import="java.util.ArrayList" %>
