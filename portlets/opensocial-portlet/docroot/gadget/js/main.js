@@ -1,3 +1,18 @@
+gadgets.pubsub2router.init(
+	{
+		onSubscribe: function(topic, container) {
+			return true;
+	    },
+
+	    onUnsubscribe: function(topic, container) {
+		},
+
+		onPublish: function(topic, data, pcont, scont) {
+			return true;
+		}
+	}
+);
+
 AUI().add(
 	'liferay-open-social-gadget',
 	function(A) {
@@ -87,25 +102,108 @@ AUI().add(
 
 						var height = instance.get('height');
 						var iframeId = instance.get('iframeId');
+						var secureToken = instance.get('secureToken');
 						var width = instance.get('width');
 
-						var iframe = A.substitute(
-							TPL_IFRAME,
-							{
-								height: (height ? 'height="' + height + '"' : ''),
-								iframeId: iframeId,
-								width: (width ? 'width="' + width + '"' : '')
-							}
-						);
+						var createOpenAjaxHubIframe = function() {
+						    var iframeAttrs = {
+						    	className: CSS_CLASS_GADGET,
+							    frameborder: 'no',
+							    scrolling: 'no'
+						    };
 
-						var iframeNode = A.Node.create(iframe);
+						    if (height) {
+						    	iframeAttrs.height = height;
+						    }
 
-						instance.get('contentBox').appendChild(iframeNode);
+						    if (width) {
+						    	iframeAttrs.width = width;
+						    }
 
-						instance._iframe = iframeNode;
+						    new OpenAjax.hub.IframeContainer(
+						        gadgets.pubsub2router.hub,
+						        iframeId,
+						        {
+						        	Container: {
+						        		onSecurityAlert: function(source, alertType) {
+						        			gadgets.error('Security error for container ' + source.getClientID() + ' : ' + alertType);
+						        			source.getIframe().src = 'about:blank';
+					        			}
+						        	},
+						        	IframeContainer: {
+						        		parent: instance.get('contentBox'),
+						        		uri: instance.get('iframeUrl'),
+						        		tunnelURI: shindig.uri(instance.get('serverBase') + instance.get('rpcRelay')).resolve(shindig.uri(window.location.href)),
+						        		iframeAttrs: iframeAttrs
+						        	}
+						        }
+					        );
+						    
+						    instance._iframe = document.getElementById(iframeId);
+					    };
+						
+						var createStandardIframe = function() {
+					    	var iframe = A.substitute(
+								TPL_IFRAME,
+								{
+									height: (height ? 'height="' + height + '"' : ''),
+									iframeId: iframeId,
+									width: (width ? 'width="' + width + '"' : '')
+								}
+							);
 
-						gadgets.rpc.setRelayUrl(iframeId, instance.get('serverBase') + instance.get('rpcRelay'));
-						gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
+							var iframeNode = A.Node.create(iframe);
+
+							instance.get('contentBox').appendChild(iframeNode);
+
+							instance._iframe = iframeNode;
+
+							gadgets.rpc.setRelayUrl(iframeId, instance.get('serverBase') + instance.get('rpcRelay'));
+							gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
+					    };
+
+					    var findPubSub2Feature = function(obj) {
+					        var arr = obj.data.gadgets[0].features;
+
+					        var requiresPubSub2 = false;
+
+					        for (var i = 0; i < arr.length; i++) {
+					            if (arr[i] === 'pubsub-2') {
+					            	requiresPubSub2 = true;
+					            	break;
+					            }
+					        }
+
+					        if (requiresPubSub2) {
+					        	createOpenAjaxHubIframe();
+					        }
+					        else {
+					        	createStandardIframe();
+					        }
+					    };
+
+					    var url = '/opensocial-portlet/gadgets/metadata?st=' + secureToken;
+
+					    var request = {
+					        context: {
+					            country: 'default',
+					            language: 'default',
+					            view: 'default',
+					            container: 'default'
+					        },
+					        gadgets: [{
+					            url: instance.get('specUrl'),
+					            moduleId: 1
+					        }]
+					    };
+
+						var makeRequestParams = {
+					        'CONTENT_TYPE': 'JSON',
+					        'METHOD': 'POST',
+					        'POST_DATA': gadgets.json.stringify(request)
+					    };
+
+					    gadgets.io.makeNonProxiedRequest(url, findPubSub2Feature, makeRequestParams, 'application/javascript');
 					},
 
 					bindUI: function() {
@@ -268,7 +366,9 @@ AUI().add(
 					_uiSetIframeUrl: function(value) {
 						var instance = this;
 
-						instance._iframe.set('src', value);
+						if (instance._iframe && instance._iframe.set) {
+							instance._iframe.set('src', value);
+						}
 					},
 
 					_uiSetIframeWidth: function(value) {
