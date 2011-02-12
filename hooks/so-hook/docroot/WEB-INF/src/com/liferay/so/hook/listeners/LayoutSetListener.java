@@ -96,7 +96,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 		Layout layout = addLayout(
 			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Home",
-			PortletPropsValues.USER_LAYOUT_TEMPLATE);
+			"2_columns_ii");
 
 		addPortlets(group, layout, "/home");
 
@@ -110,10 +110,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			group, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, "Profile",
 			"2_columns_ii");
 
-		addResources(layout, "1_WAR_soportlet");
-		addResources(layout, "4_WAR_soportlet");
-
-		removePortletBorder(layout, "4_WAR_soportlet");
+		addPortlets(group, layout, "/profile");
 
 		updatePermissions(layout, true);
 	}
@@ -125,7 +122,7 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			Portlet portlet = PortletLocalServiceUtil.getPortletById(
 				group.getCompanyId(), portletId);
 
-			if (portlet == null) {
+			if ((portlet == null) || portlet.isUndeployedPortlet()) {
 				continue;
 			}
 
@@ -222,6 +219,9 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 			if (portletId.equals("1_WAR_wysiwygportlet")) {
 				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
+			}
+			else if (portletId.equals("2_WAR_microblogsportlet")) {
+				removePortletBorder(layout, "2_WAR_microblogsportlet");
 			}
 			else if (portletId.startsWith("71_INSTANCE_")) {
 				configureNavigation(layout, portletId);

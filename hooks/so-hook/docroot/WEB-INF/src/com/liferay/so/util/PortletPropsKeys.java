@@ -22,10 +22,6 @@ package com.liferay.so.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String APPLICATIONS_ALLOWED = "applications.allowed";
-
-	public static final String CONTROL_PANEL_ITEMS = "control.panel.items";
-
 	public static final String SITE_AUTO_CREATE_TEAM_NAMES =
 		"site.auto.create.team.names";
 
@@ -38,7 +34,5 @@ public interface PortletPropsKeys {
 	public static final String USER_APPLICATIONS = "user.applications";
 
 	public static final String USER_LAYOUT_PORTLETS = "user.layout.portlets.";
-
-	public static final String USER_LAYOUT_TEMPLATE = "user.layout.template";
 
 }

@@ -25,12 +25,6 @@ import com.liferay.util.portlet.PortletProps;
  */
  public class PortletPropsValues {
 
-	public static final String[] APPLICATIONS_ALLOWED = PortletProps.getArray(
-		PortletPropsKeys.APPLICATIONS_ALLOWED);
-
-	public static final String[] CONTROL_PANEL_ITEMS = PortletProps.getArray(
-		PortletPropsKeys.CONTROL_PANEL_ITEMS);
-
 	public static final String[] SITE_AUTO_CREATE_TEAM_NAMES =
 		PortletProps.getArray(PortletPropsKeys.SITE_AUTO_CREATE_TEAM_NAMES);
 
@@ -40,8 +34,5 @@ import com.liferay.util.portlet.PortletProps;
 
 	public static final String[] USER_APPLICATIONS = PortletProps.getArray(
 		PortletPropsKeys.USER_APPLICATIONS);
-
-	public static final String USER_LAYOUT_TEMPLATE = GetterUtil.getString(
-		PortletProps.get(PortletPropsKeys.USER_LAYOUT_TEMPLATE));
 
 }
