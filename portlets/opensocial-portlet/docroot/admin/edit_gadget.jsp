@@ -156,8 +156,7 @@ if (gadget != null) {
 
 		var category = '<%= treeNodeView.getObjId() %>';
 
-		var checked = ((<%= gadget == null %> && category == 'root//category.gadgets') ||
-			A.Array.indexOf(selectedPortletCategoryNames, category) > -1);
+		var checked = ((<%= gadget == null %> && category == 'root//category.gadgets') || A.Array.indexOf(selectedPortletCategoryNames, category) > -1);
 
 		var categoryTreeNode = new CategoryTreeNode(
 			{
