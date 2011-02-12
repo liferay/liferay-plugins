@@ -24,25 +24,36 @@ Group group = themeDisplay.getScopeGroup();
 	<c:when test="<%= group.isUser() %>">
 
 		<%
-		User user2 = UserLocalServiceUtil.getUserById(group.getClassPK());
+		List<User> users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), 0, 30, new UserLoginDateComparator());
 
-		request.setAttribute(WebKeys.CONTACTS_USER, user2);
-		%>
+		PortletURL portletURL = renderResponse.createRenderURL();
 
-		<liferay-util:include page="/contacts_center/view_user.jsp" portletId="<%= portletDisplay.getId() %>" />
-	</c:when>
-	<c:otherwise>
+		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 
-		<%
-		LinkedHashMap param = new LinkedHashMap();
+		portletURL.setParameter("jspPage", "/my_contacts/view.jsp");
 
-		param.put("usersGroups", new Long(group.getGroupId()));
-
-		List<User> users = UserLocalServiceUtil.search(company.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, param, 0, 30, new UserLoginDateComparator());
+		request.setAttribute(WebKeys.CONTACTS_URL, portletURL);
+		request.setAttribute(WebKeys.CONTACTS_USERS, users);
 		%>
 
 		<c:choose>
-			<c:when test="<%= users.size() > 0 %>">
+			<c:when test="<%= !windowState.equals(WindowState.MAXIMIZED) %>">
+				<div class="group-members">
+					<div class="filter-input">
+						<aui:input id="filter" label="filter-members" name="filter" type="text" />
+					</div>
+
+					<%
+					request.setAttribute(WebKeys.CONTACTS_URL, portletURL);
+					request.setAttribute(WebKeys.CONTACTS_USERS, users);
+					%>
+
+					<div class="group-user-container">
+						<liferay-util:include page="/contacts_center/view_users.jsp" portletId="<%= portletDisplay.getId() %>" />
+					</div>
+				</div>
+			</c:when>
+			<c:otherwise>
 				<aui:layout>
 					<aui:column columnWidth="<%= 25 %>" cssClass="group-members" first="<%= true %>">
 						<div class="filter-input">
@@ -50,10 +61,6 @@ Group group = themeDisplay.getScopeGroup();
 						</div>
 
 						<%
-						PortletURL portletURL = renderResponse.createRenderURL();
-
-						portletURL.setParameter("jspPage", "/profile/view.jsp");
-
 						request.setAttribute(WebKeys.CONTACTS_URL, portletURL);
 						request.setAttribute(WebKeys.CONTACTS_USERS, users);
 						%>
@@ -74,7 +81,7 @@ Group group = themeDisplay.getScopeGroup();
 							user2 = UserLocalServiceUtil.getUserById(userId);
 						}
 						else {
-							user2 = users.get(0);
+							user2 =UserLocalServiceUtil.getUserById(group.getClassPK());
 						}
 
 						request.setAttribute(WebKeys.CONTACTS_USER, user2);
@@ -83,11 +90,6 @@ Group group = themeDisplay.getScopeGroup();
 						<liferay-util:include page="/contacts_center/view_user.jsp" portletId="<%= portletDisplay.getId() %>" />
 					</aui:column>
 				</aui:layout>
-			</c:when>
-			<c:otherwise>
-				<div class="portlet-msg-error">
-					<liferay-ui:message key="this-site-has-no-members" />
-				</div>
 			</c:otherwise>
 		</c:choose>
 
@@ -124,5 +126,10 @@ Group group = themeDisplay.getScopeGroup();
 				}
 			);
 		</aui:script>
+	</c:when>
+	<c:otherwise>
+		<div class="portlet-msg-error">
+			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
+		</div>
 	</c:otherwise>
 </c:choose>

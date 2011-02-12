@@ -26,7 +26,6 @@
 
 <%@ page import="com.liferay.contacts.util.PortletKeys" %>
 <%@ page import="com.liferay.contacts.util.WebKeys" %>
-<%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.DisplayTerms" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
@@ -76,6 +75,8 @@
 <liferay-theme:defineObjects />
 
 <%
+WindowState windowState = renderRequest.getWindowState();
+
 PortletPreferences preferences = renderRequest.getPreferences();
 
 String portletResource = ParamUtil.getString(request, "portletResource");
