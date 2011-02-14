@@ -20,6 +20,8 @@ package com.liferay.so.util;
 import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -88,6 +90,7 @@ public class InstanceUtil {
 			setInitialized(companyId);
 		}
 		catch (Exception e) {
+			_log.error(e);
 		}
 		finally {
 			PortletPreferencesThreadLocal.setStrict(true);
@@ -534,5 +537,7 @@ public class InstanceUtil {
 
 		portletSetup.store();
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(InstanceUtil.class);
 
 }

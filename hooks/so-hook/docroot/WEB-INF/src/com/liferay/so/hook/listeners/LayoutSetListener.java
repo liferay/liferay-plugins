@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
@@ -154,17 +153,11 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			String layoutTemplateId)
 		throws Exception {
 
-		boolean privateLayout = false;
-
-		if (group.getType() == GroupConstants.TYPE_COMMUNITY_PRIVATE) {
-			privateLayout = true;
-		}
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		Layout layout = LayoutLocalServiceUtil.addLayout(
-			group.getCreatorUserId(), group.getGroupId(), privateLayout,
-			parentLayoutId, name, StringPool.BLANK, StringPool.BLANK,
+			group.getCreatorUserId(), group.getGroupId(), false, parentLayoutId,
+			name, StringPool.BLANK, StringPool.BLANK,
 			LayoutConstants.TYPE_PORTLET, false, null, serviceContext);
 
 		LayoutTypePortlet layoutTypePortlet =
