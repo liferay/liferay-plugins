@@ -1,4 +1,4 @@
-#!/bin/sh test
+#!/bin/sh
 
 #set -x
 
