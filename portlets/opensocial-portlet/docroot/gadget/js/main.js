@@ -1,18 +1,3 @@
-gadgets.pubsub2router.init(
-	{
-		onSubscribe: function(topic, container) {
-			return true;
-	    },
-
-	    onUnsubscribe: function(topic, container) {
-		},
-
-		onPublish: function(topic, data, pcont, scont) {
-			return true;
-		}
-	}
-);
-
 AUI().add(
 	'liferay-open-social-gadget',
 	function(A) {
@@ -500,6 +485,21 @@ AUI().add(
 
 			return _instances[id];
 		};
+
+		gadgets.pubsub2router.init(
+			{
+				onSubscribe: function(topic, container) {
+					return true;
+				},
+
+				onUnsubscribe: function(topic, container) {
+				},
+
+				onPublish: function(topic, data, pcont, scont) {
+					return true;
+				}
+			}
+		);
 
 		gadgets.rpc.register(
 			'resize_iframe',
