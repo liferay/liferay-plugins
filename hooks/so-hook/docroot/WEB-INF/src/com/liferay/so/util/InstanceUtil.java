@@ -90,7 +90,7 @@ public class InstanceUtil {
 			setInitialized(companyId);
 		}
 		catch (Exception e) {
-			_log.error(e);
+			_log.error(e, e);
 		}
 		finally {
 			PortletPreferencesThreadLocal.setStrict(true);
