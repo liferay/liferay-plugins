@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.BaseSocialRequestInterpreter;
+import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
@@ -38,9 +39,24 @@ public class ContactsCenterRequestInterpreter
 			SocialRequest request, ThemeDisplay themeDisplay)
 		throws Exception {
 
+		String creatorUserName = getUserName(request.getUserId(), themeDisplay);
+
+		int requestType = request.getType();
+
 		// Title
 
 		String title = StringPool.BLANK;
+
+		if (requestType == SocialRelationConstants.TYPE_BI_COWORKER) {
+			title = themeDisplay.translate(
+				"request-social-networking-summary-add-coworker",
+				new Object[] {creatorUserName});
+		}
+		else if (requestType == SocialRelationConstants.TYPE_BI_FRIEND) {
+			title = themeDisplay.translate(
+				"request-social-networking-summary-add-friend",
+				new Object[] {creatorUserName});
+		}
 
 		// Body
 
