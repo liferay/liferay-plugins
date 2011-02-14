@@ -123,13 +123,13 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
-			_originalCompanyId = companyId;
+			_originalCompanyId = _companyId;
 		}
+
+		_companyId = companyId;
 	}
 
 	public long getOriginalCompanyId() {
@@ -175,11 +175,11 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public void setUrl(String url) {
-		_url = url;
-
 		if (_originalUrl == null) {
-			_originalUrl = url;
+			_originalUrl = _url;
 		}
+
+		_url = url;
 	}
 
 	public String getOriginalUrl() {

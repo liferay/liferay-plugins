@@ -124,13 +124,13 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
-
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
-			_originalUserId = userId;
+			_originalUserId = _userId;
 		}
+
+		_userId = userId;
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -179,13 +179,13 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setGadgetId(long gadgetId) {
-		_gadgetId = gadgetId;
-
 		if (!_setOriginalGadgetId) {
 			_setOriginalGadgetId = true;
 
-			_originalGadgetId = gadgetId;
+			_originalGadgetId = _gadgetId;
 		}
+
+		_gadgetId = gadgetId;
 	}
 
 	public long getOriginalGadgetId() {
@@ -202,11 +202,11 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setServiceName(String serviceName) {
-		_serviceName = serviceName;
-
 		if (_originalServiceName == null) {
-			_originalServiceName = serviceName;
+			_originalServiceName = _serviceName;
 		}
+
+		_serviceName = serviceName;
 	}
 
 	public String getOriginalServiceName() {
@@ -218,13 +218,13 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setModuleId(long moduleId) {
-		_moduleId = moduleId;
-
 		if (!_setOriginalModuleId) {
 			_setOriginalModuleId = true;
 
-			_originalModuleId = moduleId;
+			_originalModuleId = _moduleId;
 		}
+
+		_moduleId = moduleId;
 	}
 
 	public long getOriginalModuleId() {
@@ -254,11 +254,11 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public void setTokenName(String tokenName) {
-		_tokenName = tokenName;
-
 		if (_originalTokenName == null) {
-			_originalTokenName = tokenName;
+			_originalTokenName = _tokenName;
 		}
+
+		_tokenName = tokenName;
 	}
 
 	public String getOriginalTokenName() {

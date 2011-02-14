@@ -108,11 +108,11 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	}
 
 	public void setUrl(String url) {
-		_url = url;
-
 		if (_originalUrl == null) {
-			_originalUrl = url;
+			_originalUrl = _url;
 		}
+
+		_url = url;
 	}
 
 	public String getOriginalUrl() {

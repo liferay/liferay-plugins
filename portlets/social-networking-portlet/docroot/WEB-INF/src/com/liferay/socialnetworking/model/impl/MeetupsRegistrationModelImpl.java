@@ -122,13 +122,13 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
-
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
-			_originalUserId = userId;
+			_originalUserId = _userId;
 		}
+
+		_userId = userId;
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -177,13 +177,13 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public void setMeetupsEntryId(long meetupsEntryId) {
-		_meetupsEntryId = meetupsEntryId;
-
 		if (!_setOriginalMeetupsEntryId) {
 			_setOriginalMeetupsEntryId = true;
 
-			_originalMeetupsEntryId = meetupsEntryId;
+			_originalMeetupsEntryId = _meetupsEntryId;
 		}
+
+		_meetupsEntryId = meetupsEntryId;
 	}
 
 	public long getOriginalMeetupsEntryId() {

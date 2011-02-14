@@ -143,11 +143,11 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public void setKey(String key) {
-		_key = key;
-
 		if (_originalKey == null) {
-			_originalKey = key;
+			_originalKey = _key;
 		}
+
+		_key = key;
 	}
 
 	public String getOriginalKey() {

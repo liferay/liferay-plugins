@@ -108,13 +108,13 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
-
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
-			_originalUserId = userId;
+			_originalUserId = _userId;
 		}
+
+		_userId = userId;
 	}
 
 	public String getUserUuid() throws SystemException {

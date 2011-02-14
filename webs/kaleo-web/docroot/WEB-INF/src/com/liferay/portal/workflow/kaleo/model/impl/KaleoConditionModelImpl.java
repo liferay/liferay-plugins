@@ -181,11 +181,11 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void setClassName(String className) {
-		_className = className;
-
 		if (_originalClassName == null) {
-			_originalClassName = className;
+			_originalClassName = _className;
 		}
+
+		_className = className;
 	}
 
 	public String getOriginalClassName() {
@@ -197,13 +197,13 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public void setClassPK(long classPK) {
-		_classPK = classPK;
-
 		if (!_setOriginalClassPK) {
 			_setOriginalClassPK = true;
 
-			_originalClassPK = classPK;
+			_originalClassPK = _classPK;
 		}
+
+		_classPK = classPK;
 	}
 
 	public long getOriginalClassPK() {

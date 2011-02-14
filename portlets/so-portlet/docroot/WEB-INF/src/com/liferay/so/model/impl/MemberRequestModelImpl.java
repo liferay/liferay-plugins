@@ -117,13 +117,13 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setGroupId(long groupId) {
-		_groupId = groupId;
-
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
-			_originalGroupId = groupId;
+			_originalGroupId = _groupId;
 		}
+
+		_groupId = groupId;
 	}
 
 	public long getOriginalGroupId() {
@@ -193,11 +193,11 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setKey(String key) {
-		_key = key;
-
 		if (_originalKey == null) {
-			_originalKey = key;
+			_originalKey = _key;
 		}
+
+		_key = key;
 	}
 
 	public String getOriginalKey() {
@@ -209,13 +209,13 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setReceiverUserId(long receiverUserId) {
-		_receiverUserId = receiverUserId;
-
 		if (!_setOriginalReceiverUserId) {
 			_setOriginalReceiverUserId = true;
 
-			_originalReceiverUserId = receiverUserId;
+			_originalReceiverUserId = _receiverUserId;
 		}
+
+		_receiverUserId = receiverUserId;
 	}
 
 	public String getReceiverUserUuid() throws SystemException {
@@ -252,13 +252,13 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public void setStatus(int status) {
-		_status = status;
-
 		if (!_setOriginalStatus) {
 			_setOriginalStatus = true;
 
-			_originalStatus = status;
+			_originalStatus = _status;
 		}
+
+		_status = status;
 	}
 
 	public int getOriginalStatus() {

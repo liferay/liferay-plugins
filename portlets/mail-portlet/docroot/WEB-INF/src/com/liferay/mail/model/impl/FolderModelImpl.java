@@ -167,13 +167,13 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	public void setAccountId(long accountId) {
-		_accountId = accountId;
-
 		if (!_setOriginalAccountId) {
 			_setOriginalAccountId = true;
 
-			_originalAccountId = accountId;
+			_originalAccountId = _accountId;
 		}
+
+		_accountId = accountId;
 	}
 
 	public long getOriginalAccountId() {
@@ -190,11 +190,11 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	public void setFullName(String fullName) {
-		_fullName = fullName;
-
 		if (_originalFullName == null) {
-			_originalFullName = fullName;
+			_originalFullName = _fullName;
 		}
+
+		_fullName = fullName;
 	}
 
 	public String getOriginalFullName() {

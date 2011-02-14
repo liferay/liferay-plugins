@@ -188,13 +188,13 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	}
 
 	public void setKaleoNodeId(long kaleoNodeId) {
-		_kaleoNodeId = kaleoNodeId;
-
 		if (!_setOriginalKaleoNodeId) {
 			_setOriginalKaleoNodeId = true;
 
-			_originalKaleoNodeId = kaleoNodeId;
+			_originalKaleoNodeId = _kaleoNodeId;
 		}
+
+		_kaleoNodeId = kaleoNodeId;
 	}
 
 	public long getOriginalKaleoNodeId() {
@@ -211,11 +211,11 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	}
 
 	public void setName(String name) {
-		_name = name;
-
 		if (_originalName == null) {
-			_originalName = name;
+			_originalName = _name;
 		}
+
+		_name = name;
 	}
 
 	public String getOriginalName() {
@@ -286,13 +286,13 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	}
 
 	public void setDefaultTransition(boolean defaultTransition) {
-		_defaultTransition = defaultTransition;
-
 		if (!_setOriginalDefaultTransition) {
 			_setOriginalDefaultTransition = true;
 
-			_originalDefaultTransition = defaultTransition;
+			_originalDefaultTransition = _defaultTransition;
 		}
+
+		_defaultTransition = defaultTransition;
 	}
 
 	public boolean getOriginalDefaultTransition() {

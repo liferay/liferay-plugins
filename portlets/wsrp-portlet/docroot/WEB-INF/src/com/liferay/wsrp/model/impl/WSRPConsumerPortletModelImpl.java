@@ -147,13 +147,13 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public void setWsrpConsumerId(long wsrpConsumerId) {
-		_wsrpConsumerId = wsrpConsumerId;
-
 		if (!_setOriginalWsrpConsumerId) {
 			_setOriginalWsrpConsumerId = true;
 
-			_originalWsrpConsumerId = wsrpConsumerId;
+			_originalWsrpConsumerId = _wsrpConsumerId;
 		}
+
+		_wsrpConsumerId = wsrpConsumerId;
 	}
 
 	public long getOriginalWsrpConsumerId() {
@@ -183,11 +183,11 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public void setPortletHandle(String portletHandle) {
-		_portletHandle = portletHandle;
-
 		if (_originalPortletHandle == null) {
-			_originalPortletHandle = portletHandle;
+			_originalPortletHandle = _portletHandle;
 		}
+
+		_portletHandle = portletHandle;
 	}
 
 	public String getOriginalPortletHandle() {

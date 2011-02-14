@@ -2141,8 +2141,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -2163,8 +2161,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -3035,8 +3031,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -3511,8 +3505,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -4032,8 +4024,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_C_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -4562,8 +4552,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -4584,8 +4572,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -5139,8 +5125,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -5161,8 +5145,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -5666,8 +5648,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -5688,8 +5668,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -6238,8 +6216,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -6743,8 +6719,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -7299,8 +7273,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_C_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -7876,8 +7848,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -7907,8 +7877,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -7929,8 +7897,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -8450,8 +8416,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
-				long resourcePrimKey = resourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -8481,8 +8445,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -8503,8 +8465,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -9093,8 +9053,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -9115,8 +9073,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -9648,8 +9604,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -9670,8 +9624,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -10286,8 +10238,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -10317,8 +10267,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -10339,8 +10287,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -10890,8 +10836,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
-				long resourcePrimKey = resourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -10921,8 +10865,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -10943,8 +10885,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -12544,8 +12484,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -12566,8 +12504,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -12774,8 +12710,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -12915,8 +12849,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -13059,8 +12991,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_C_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -13208,8 +13138,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -13230,8 +13158,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -13402,8 +13328,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -13424,8 +13348,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -13576,8 +13498,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -13598,8 +13518,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -13755,8 +13673,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -13912,8 +13828,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -14075,8 +13989,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_C_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -14244,8 +14156,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -14275,8 +14185,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -14297,8 +14205,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -14453,8 +14359,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
-				long resourcePrimKey = resourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -14484,8 +14388,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -14506,8 +14408,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -14677,8 +14577,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -14699,8 +14597,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -14869,8 +14765,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -14891,8 +14785,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {
@@ -15068,8 +14960,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					long resourcePrimKey = resourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 					if ((i + 1) < resourcePrimKeies.length) {
@@ -15099,8 +14989,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 					if ((i + 1) < parentResourcePrimKeies.length) {
@@ -15121,8 +15009,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(StringPool.OPEN_PARENTHESIS);
 
 				for (int i = 0; i < latests.length; i++) {
-					int latest = latests[i];
-
 					query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 					if ((i + 1) < latests.length) {
@@ -15294,8 +15180,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < resourcePrimKeies.length; i++) {
-				long resourcePrimKey = resourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_S_RESOURCEPRIMKEY_5);
 
 				if ((i + 1) < resourcePrimKeies.length) {
@@ -15325,8 +15209,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				long parentResourcePrimKey = parentResourcePrimKeies[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
@@ -15347,8 +15229,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < latests.length; i++) {
-				int latest = latests[i];
-
 				query.append(_FINDER_COLUMN_R_G_P_L_S_LATEST_5);
 
 				if ((i + 1) < latests.length) {

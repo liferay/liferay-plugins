@@ -176,11 +176,11 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public void setUuid(String uuid) {
-		_uuid = uuid;
-
 		if (_originalUuid == null) {
-			_originalUuid = uuid;
+			_originalUuid = _uuid;
 		}
+
+		_uuid = uuid;
 	}
 
 	public String getOriginalUuid() {
@@ -200,13 +200,13 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public void setResourcePrimKey(long resourcePrimKey) {
-		_resourcePrimKey = resourcePrimKey;
-
 		if (!_setOriginalResourcePrimKey) {
 			_setOriginalResourcePrimKey = true;
 
-			_originalResourcePrimKey = resourcePrimKey;
+			_originalResourcePrimKey = _resourcePrimKey;
 		}
+
+		_resourcePrimKey = resourcePrimKey;
 	}
 
 	public long getOriginalResourcePrimKey() {
@@ -218,13 +218,13 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public void setGroupId(long groupId) {
-		_groupId = groupId;
-
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
-			_originalGroupId = groupId;
+			_originalGroupId = _groupId;
 		}
+
+		_groupId = groupId;
 	}
 
 	public long getOriginalGroupId() {
@@ -297,13 +297,13 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public void setVersion(int version) {
-		_version = version;
-
 		if (!_setOriginalVersion) {
 			_setOriginalVersion = true;
 
-			_originalVersion = version;
+			_originalVersion = _version;
 		}
+
+		_version = version;
 	}
 
 	public int getOriginalVersion() {

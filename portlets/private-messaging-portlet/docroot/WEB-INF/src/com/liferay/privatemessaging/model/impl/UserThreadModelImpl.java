@@ -121,13 +121,13 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
-
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
-			_originalUserId = userId;
+			_originalUserId = _userId;
 		}
+
+		_userId = userId;
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -163,13 +163,13 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public void setMbThreadId(long mbThreadId) {
-		_mbThreadId = mbThreadId;
-
 		if (!_setOriginalMbThreadId) {
 			_setOriginalMbThreadId = true;
 
-			_originalMbThreadId = mbThreadId;
+			_originalMbThreadId = _mbThreadId;
 		}
+
+		_mbThreadId = mbThreadId;
 	}
 
 	public long getOriginalMbThreadId() {

@@ -185,13 +185,13 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setFolderId(long folderId) {
-		_folderId = folderId;
-
 		if (!_setOriginalFolderId) {
 			_setOriginalFolderId = true;
 
-			_originalFolderId = folderId;
+			_originalFolderId = _folderId;
 		}
+
+		_folderId = folderId;
 	}
 
 	public long getOriginalFolderId() {
@@ -323,13 +323,13 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public void setRemoteMessageId(long remoteMessageId) {
-		_remoteMessageId = remoteMessageId;
-
 		if (!_setOriginalRemoteMessageId) {
 			_setOriginalRemoteMessageId = true;
 
-			_originalRemoteMessageId = remoteMessageId;
+			_originalRemoteMessageId = _remoteMessageId;
 		}
+
+		_remoteMessageId = remoteMessageId;
 	}
 
 	public long getOriginalRemoteMessageId() {

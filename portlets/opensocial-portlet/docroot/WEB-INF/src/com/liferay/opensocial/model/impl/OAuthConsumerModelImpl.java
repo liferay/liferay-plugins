@@ -135,13 +135,13 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public void setGadgetId(long gadgetId) {
-		_gadgetId = gadgetId;
-
 		if (!_setOriginalGadgetId) {
 			_setOriginalGadgetId = true;
 
-			_originalGadgetId = gadgetId;
+			_originalGadgetId = _gadgetId;
 		}
+
+		_gadgetId = gadgetId;
 	}
 
 	public long getOriginalGadgetId() {
@@ -158,11 +158,11 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public void setServiceName(String serviceName) {
-		_serviceName = serviceName;
-
 		if (_originalServiceName == null) {
-			_originalServiceName = serviceName;
+			_originalServiceName = _serviceName;
 		}
+
+		_serviceName = serviceName;
 	}
 
 	public String getOriginalServiceName() {

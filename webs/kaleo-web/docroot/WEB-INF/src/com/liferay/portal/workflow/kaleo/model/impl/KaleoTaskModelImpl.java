@@ -185,13 +185,13 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	}
 
 	public void setKaleoNodeId(long kaleoNodeId) {
-		_kaleoNodeId = kaleoNodeId;
-
 		if (!_setOriginalKaleoNodeId) {
 			_setOriginalKaleoNodeId = true;
 
-			_originalKaleoNodeId = kaleoNodeId;
+			_originalKaleoNodeId = _kaleoNodeId;
 		}
+
+		_kaleoNodeId = kaleoNodeId;
 	}
 
 	public long getOriginalKaleoNodeId() {

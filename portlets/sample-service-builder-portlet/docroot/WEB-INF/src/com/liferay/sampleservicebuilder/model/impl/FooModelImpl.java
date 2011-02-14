@@ -159,11 +159,11 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setUuid(String uuid) {
-		_uuid = uuid;
-
 		if (_originalUuid == null) {
-			_originalUuid = uuid;
+			_originalUuid = _uuid;
 		}
+
+		_uuid = uuid;
 	}
 
 	public String getOriginalUuid() {
@@ -183,13 +183,13 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public void setGroupId(long groupId) {
-		_groupId = groupId;
-
 		if (!_setOriginalGroupId) {
 			_setOriginalGroupId = true;
 
-			_originalGroupId = groupId;
+			_originalGroupId = _groupId;
 		}
+
+		_groupId = groupId;
 	}
 
 	public long getOriginalGroupId() {

@@ -138,13 +138,13 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public void setUserId(long userId) {
-		_userId = userId;
-
 		if (!_setOriginalUserId) {
 			_setOriginalUserId = true;
 
-			_originalUserId = userId;
+			_originalUserId = _userId;
 		}
+
+		_userId = userId;
 	}
 
 	public String getUserUuid() throws SystemException {
@@ -198,11 +198,11 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public void setAddress(String address) {
-		_address = address;
-
 		if (_originalAddress == null) {
-			_originalAddress = address;
+			_originalAddress = _address;
 		}
+
+		_address = address;
 	}
 
 	public String getOriginalAddress() {

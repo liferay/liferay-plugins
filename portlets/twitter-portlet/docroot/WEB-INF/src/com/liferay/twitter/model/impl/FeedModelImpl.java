@@ -110,13 +110,13 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
-			_originalCompanyId = companyId;
+			_originalCompanyId = _companyId;
 		}
+
+		_companyId = companyId;
 	}
 
 	public long getOriginalCompanyId() {
@@ -173,13 +173,13 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public void setTwitterUserId(long twitterUserId) {
-		_twitterUserId = twitterUserId;
-
 		if (!_setOriginalTwitterUserId) {
 			_setOriginalTwitterUserId = true;
 
-			_originalTwitterUserId = twitterUserId;
+			_originalTwitterUserId = _twitterUserId;
 		}
+
+		_twitterUserId = twitterUserId;
 	}
 
 	public String getTwitterUserUuid() throws SystemException {
@@ -205,11 +205,11 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public void setTwitterScreenName(String twitterScreenName) {
-		_twitterScreenName = twitterScreenName;
-
 		if (_originalTwitterScreenName == null) {
-			_originalTwitterScreenName = twitterScreenName;
+			_originalTwitterScreenName = _twitterScreenName;
 		}
+
+		_twitterScreenName = twitterScreenName;
 	}
 
 	public String getOriginalTwitterScreenName() {

@@ -131,13 +131,13 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void setCompanyId(long companyId) {
-		_companyId = companyId;
-
 		if (!_setOriginalCompanyId) {
 			_setOriginalCompanyId = true;
 
-			_originalCompanyId = companyId;
+			_originalCompanyId = _companyId;
 		}
+
+		_companyId = companyId;
 	}
 
 	public long getOriginalCompanyId() {
@@ -199,11 +199,11 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void setName(String name) {
-		_name = name;
-
 		if (_originalName == null) {
-			_originalName = name;
+			_originalName = _name;
 		}
+
+		_name = name;
 	}
 
 	public String getOriginalName() {
@@ -316,13 +316,13 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public void setVersion(int version) {
-		_version = version;
-
 		if (!_setOriginalVersion) {
 			_setOriginalVersion = true;
 
-			_originalVersion = version;
+			_originalVersion = _version;
 		}
+
+		_version = version;
 	}
 
 	public int getOriginalVersion() {
