@@ -496,14 +496,14 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				articleModelImpl.getOriginalUuid(),
-				new Long(articleModelImpl.getOriginalGroupId())
+				articleModelImpl.getUuid(),
+				new Long(articleModelImpl.getGroupId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
-				new Long(articleModelImpl.getOriginalResourcePrimKey()),
-				new Integer(articleModelImpl.getOriginalVersion())
+				new Long(articleModelImpl.getResourcePrimKey()),
+				new Integer(articleModelImpl.getVersion())
 			});
 
 		EntityCacheUtil.removeResult(ArticleModelImpl.ENTITY_CACHE_ENABLED,

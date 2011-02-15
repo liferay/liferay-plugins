@@ -260,9 +260,9 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
 			new Object[] {
-				new Long(accountModelImpl.getOriginalUserId()),
+				new Long(accountModelImpl.getUserId()),
 				
-			accountModelImpl.getOriginalAddress()
+			accountModelImpl.getAddress()
 			});
 
 		EntityCacheUtil.removeResult(AccountModelImpl.ENTITY_CACHE_ENABLED,

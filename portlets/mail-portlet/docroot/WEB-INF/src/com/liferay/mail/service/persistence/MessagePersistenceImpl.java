@@ -276,8 +276,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 			new Object[] {
-				new Long(messageModelImpl.getOriginalFolderId()),
-				new Long(messageModelImpl.getOriginalRemoteMessageId())
+				new Long(messageModelImpl.getFolderId()),
+				new Long(messageModelImpl.getRemoteMessageId())
 			});
 
 		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,

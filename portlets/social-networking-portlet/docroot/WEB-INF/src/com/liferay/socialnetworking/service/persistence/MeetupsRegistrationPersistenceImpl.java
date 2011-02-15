@@ -283,8 +283,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
 			new Object[] {
-				new Long(meetupsRegistrationModelImpl.getOriginalUserId()),
-				new Long(meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
+				new Long(meetupsRegistrationModelImpl.getUserId()),
+				new Long(meetupsRegistrationModelImpl.getMeetupsEntryId())
 			});
 
 		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,

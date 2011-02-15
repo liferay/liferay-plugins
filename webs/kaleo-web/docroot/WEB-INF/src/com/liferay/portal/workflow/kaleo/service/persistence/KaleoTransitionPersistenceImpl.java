@@ -318,16 +318,15 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 			new Object[] {
-				new Long(kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
+				new Long(kaleoTransitionModelImpl.getKaleoNodeId()),
 				
-			kaleoTransitionModelImpl.getOriginalName()
+			kaleoTransitionModelImpl.getName()
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
 			new Object[] {
-				new Long(kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
-				Boolean.valueOf(
-					kaleoTransitionModelImpl.getOriginalDefaultTransition())
+				new Long(kaleoTransitionModelImpl.getKaleoNodeId()),
+				Boolean.valueOf(kaleoTransitionModelImpl.getDefaultTransition())
 			});
 
 		EntityCacheUtil.removeResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,

@@ -260,9 +260,9 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 			new Object[] {
-				new Long(folderModelImpl.getOriginalAccountId()),
+				new Long(folderModelImpl.getAccountId()),
 				
-			folderModelImpl.getOriginalFullName()
+			folderModelImpl.getFullName()
 			});
 
 		EntityCacheUtil.removeResult(FolderModelImpl.ENTITY_CACHE_ENABLED,

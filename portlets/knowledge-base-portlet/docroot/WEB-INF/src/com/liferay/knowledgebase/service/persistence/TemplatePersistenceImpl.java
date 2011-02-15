@@ -281,8 +281,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				templateModelImpl.getOriginalUuid(),
-				new Long(templateModelImpl.getOriginalGroupId())
+				templateModelImpl.getUuid(),
+				new Long(templateModelImpl.getGroupId())
 			});
 
 		EntityCacheUtil.removeResult(TemplateModelImpl.ENTITY_CACHE_ENABLED,

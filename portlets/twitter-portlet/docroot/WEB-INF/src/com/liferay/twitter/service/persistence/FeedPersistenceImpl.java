@@ -270,15 +270,15 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
-				new Long(feedModelImpl.getOriginalCompanyId()),
-				new Long(feedModelImpl.getOriginalTwitterUserId())
+				new Long(feedModelImpl.getCompanyId()),
+				new Long(feedModelImpl.getTwitterUserId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
 			new Object[] {
-				new Long(feedModelImpl.getOriginalCompanyId()),
+				new Long(feedModelImpl.getCompanyId()),
 				
-			feedModelImpl.getOriginalTwitterScreenName()
+			feedModelImpl.getTwitterScreenName()
 			});
 
 		EntityCacheUtil.removeResult(FeedModelImpl.ENTITY_CACHE_ENABLED,

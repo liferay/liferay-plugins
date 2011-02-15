@@ -280,7 +280,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { new Long(statusModelImpl.getOriginalUserId()) });
+			new Object[] { new Long(statusModelImpl.getUserId()) });
 
 		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey());

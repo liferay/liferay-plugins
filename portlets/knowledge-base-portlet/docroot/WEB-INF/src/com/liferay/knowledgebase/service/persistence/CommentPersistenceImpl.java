@@ -331,15 +331,15 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				commentModelImpl.getOriginalUuid(),
-				new Long(commentModelImpl.getOriginalGroupId())
+				commentModelImpl.getUuid(),
+				new Long(commentModelImpl.getGroupId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
 			new Object[] {
-				new Long(commentModelImpl.getOriginalUserId()),
-				new Long(commentModelImpl.getOriginalClassNameId()),
-				new Long(commentModelImpl.getOriginalClassPK())
+				new Long(commentModelImpl.getUserId()),
+				new Long(commentModelImpl.getClassNameId()),
+				new Long(commentModelImpl.getClassPK())
 			});
 
 		EntityCacheUtil.removeResult(CommentModelImpl.ENTITY_CACHE_ENABLED,

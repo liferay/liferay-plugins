@@ -273,9 +273,9 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
 			new Object[] {
-				new Long(oAuthConsumerModelImpl.getOriginalGadgetId()),
+				new Long(oAuthConsumerModelImpl.getGadgetId()),
 				
-			oAuthConsumerModelImpl.getOriginalServiceName()
+			oAuthConsumerModelImpl.getServiceName()
 			});
 
 		EntityCacheUtil.removeResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,

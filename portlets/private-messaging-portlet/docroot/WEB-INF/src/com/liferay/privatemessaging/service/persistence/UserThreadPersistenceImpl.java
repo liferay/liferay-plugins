@@ -307,8 +307,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] {
-				new Long(userThreadModelImpl.getOriginalUserId()),
-				new Long(userThreadModelImpl.getOriginalMbThreadId())
+				new Long(userThreadModelImpl.getUserId()),
+				new Long(userThreadModelImpl.getMbThreadId())
 			});
 
 		EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,

@@ -283,13 +283,13 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
-				new Long(oAuthTokenModelImpl.getOriginalUserId()),
-				new Long(oAuthTokenModelImpl.getOriginalGadgetId()),
+				new Long(oAuthTokenModelImpl.getUserId()),
+				new Long(oAuthTokenModelImpl.getGadgetId()),
 				
-			oAuthTokenModelImpl.getOriginalServiceName(),
-				new Long(oAuthTokenModelImpl.getOriginalModuleId()),
+			oAuthTokenModelImpl.getServiceName(),
+				new Long(oAuthTokenModelImpl.getModuleId()),
 				
-			oAuthTokenModelImpl.getOriginalTokenName()
+			oAuthTokenModelImpl.getTokenName()
 			});
 
 		EntityCacheUtil.removeResult(OAuthTokenModelImpl.ENTITY_CACHE_ENABLED,

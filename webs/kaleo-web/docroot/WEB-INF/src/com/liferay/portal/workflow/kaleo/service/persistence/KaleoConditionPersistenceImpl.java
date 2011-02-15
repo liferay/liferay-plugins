@@ -270,8 +270,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
-				kaleoConditionModelImpl.getOriginalClassName(),
-				new Long(kaleoConditionModelImpl.getOriginalClassPK())
+				kaleoConditionModelImpl.getClassName(),
+				new Long(kaleoConditionModelImpl.getClassPK())
 			});
 
 		EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,

@@ -276,8 +276,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				fooModelImpl.getOriginalUuid(),
-				new Long(fooModelImpl.getOriginalGroupId())
+				fooModelImpl.getUuid(), new Long(fooModelImpl.getGroupId())
 			});
 
 		EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,

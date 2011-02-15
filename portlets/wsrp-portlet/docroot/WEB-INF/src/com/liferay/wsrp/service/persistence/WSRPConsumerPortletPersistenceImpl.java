@@ -291,9 +291,9 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
-				new Long(wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()),
+				new Long(wsrpConsumerPortletModelImpl.getWsrpConsumerId()),
 				
-			wsrpConsumerPortletModelImpl.getOriginalPortletHandle()
+			wsrpConsumerPortletModelImpl.getPortletHandle()
 			});
 
 		EntityCacheUtil.removeResult(WSRPConsumerPortletModelImpl.ENTITY_CACHE_ENABLED,

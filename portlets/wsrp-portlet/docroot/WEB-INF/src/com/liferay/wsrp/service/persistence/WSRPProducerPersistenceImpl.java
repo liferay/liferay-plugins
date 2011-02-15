@@ -286,8 +286,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				wsrpProducerModelImpl.getOriginalUuid(),
-				new Long(wsrpProducerModelImpl.getOriginalGroupId())
+				wsrpProducerModelImpl.getUuid(),
+				new Long(wsrpProducerModelImpl.getGroupId())
 			});
 
 		EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,

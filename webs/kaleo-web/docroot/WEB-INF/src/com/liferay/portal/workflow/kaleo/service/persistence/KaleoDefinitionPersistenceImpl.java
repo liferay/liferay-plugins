@@ -325,10 +325,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
 			new Object[] {
-				new Long(kaleoDefinitionModelImpl.getOriginalCompanyId()),
+				new Long(kaleoDefinitionModelImpl.getCompanyId()),
 				
-			kaleoDefinitionModelImpl.getOriginalName(),
-				new Integer(kaleoDefinitionModelImpl.getOriginalVersion())
+			kaleoDefinitionModelImpl.getName(),
+				new Integer(kaleoDefinitionModelImpl.getVersion())
 			});
 
 		EntityCacheUtil.removeResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,

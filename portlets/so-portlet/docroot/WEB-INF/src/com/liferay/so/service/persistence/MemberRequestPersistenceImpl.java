@@ -308,13 +308,13 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequest;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KEY,
-			new Object[] { memberRequestModelImpl.getOriginalKey() });
+			new Object[] { memberRequestModelImpl.getKey() });
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
 			new Object[] {
-				new Long(memberRequestModelImpl.getOriginalGroupId()),
-				new Long(memberRequestModelImpl.getOriginalReceiverUserId()),
-				new Integer(memberRequestModelImpl.getOriginalStatus())
+				new Long(memberRequestModelImpl.getGroupId()),
+				new Long(memberRequestModelImpl.getReceiverUserId()),
+				new Integer(memberRequestModelImpl.getStatus())
 			});
 
 		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,

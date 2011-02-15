@@ -277,9 +277,9 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
 			new Object[] {
-				new Long(gadgetModelImpl.getOriginalCompanyId()),
+				new Long(gadgetModelImpl.getCompanyId()),
 				
-			gadgetModelImpl.getOriginalUrl()
+			gadgetModelImpl.getUrl()
 			});
 
 		EntityCacheUtil.removeResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,

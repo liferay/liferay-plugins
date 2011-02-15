@@ -251,7 +251,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepository;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_URL,
-			new Object[] { svnRepositoryModelImpl.getOriginalUrl() });
+			new Object[] { svnRepositoryModelImpl.getUrl() });
 
 		EntityCacheUtil.removeResult(SVNRepositoryModelImpl.ENTITY_CACHE_ENABLED,
 			SVNRepositoryImpl.class, svnRepository.getPrimaryKey());
