@@ -44,7 +44,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<display-name>Profile</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/profile/view.jsp</value>
@@ -75,7 +75,7 @@
 	<portlet>
 		<portlet-name>3</portlet-name>
 		<display-name>My Contacts</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
+		<portlet-class>com.liferay.contacts.contactscenter.portlet.ContactsCenterPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/my_contacts/view.jsp</value>
