@@ -95,7 +95,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 			</div>
 		</c:if>
 
-		<c:if test="<%= UserPermissionUtil.contains(permissionChecker, userId, ActionKeys.VIEW) %>">
+		<c:if test="<%= UserPermissionUtil.contains(permissionChecker, themeDisplay.getUserId(), ActionKeys.VIEW) %>">
 			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 				<c:if test="<%= showUsersInformation %>">
 					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="information">
