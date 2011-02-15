@@ -212,6 +212,10 @@ public abstract class BaseDirectory implements Directory {
 			return directory;
 		}
 
+		if (!name.isChildOf(directory.getName())) {
+			return null;
+		}
+
 		for (Directory curDirectory : directory.getDirectories()) {
 			Directory resultDirectory = findBase(name, curDirectory);
 
