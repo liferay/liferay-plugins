@@ -39,6 +39,12 @@
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<css-class-wrapper>so-portlet-sites</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>6</portlet-name>
+		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
+		<css-class-wrapper>so-portlet-notifications</css-class-wrapper>
+		<system>true</system>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

@@ -114,6 +114,7 @@
 <%@ page import="com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialRelationLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.social.service.SocialRequestInterpreterLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.social.service.SocialRequestLocalServiceUtil" %>
 <%@ page import="com.liferay.so.invitemembers.util.InviteMembersConstants" %>
 <%@ page import="com.liferay.so.model.MemberRequest" %>
