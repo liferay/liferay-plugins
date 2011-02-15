@@ -17,11 +17,9 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ include file="/activities/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "friends");
-
 Group group = themeDisplay.getScopeGroup();
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -39,6 +37,7 @@ int total = 0;
 		<liferay-ui:tabs
 			names="friends,coworkers,following,my-communities,me"
 			url="<%= portletURL.toString() %>"
+			value="<%= tabs1 %>"
 		/>
 
 		<%
