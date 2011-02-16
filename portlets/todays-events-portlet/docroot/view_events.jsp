@@ -74,7 +74,9 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 
 			<div class="event">
 				<div>
-					<span class="event-name"><a href="<%= eventHREF %>"><%= StringUtil.shorten(event.getTitle(), 40) %></a></span>
+					<span class="event-name">
+						<a href="<%= eventHREF %>"><%= StringUtil.shorten(event.getTitle(), 40) %></a>
+					</span>
 
 					<c:if test="<%= !event.isAllDay() %>">
 						<span class="event-time">
@@ -92,10 +94,14 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 
 				<div>
 					<c:if test="<%= group.isUser() %>">
-						<span class="event-community"><a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName() %></a></span>
+						<span class="event-community">
+							<a href="<%= groupURL.toString() %>"><%= group.getDescriptiveName() %></a>
+						</span>
 					</c:if>
 
-					<span class="event-type"><%= LanguageUtil.get(pageContext, event.getType()) %></span>
+					<span class="event-type">
+						<%= LanguageUtil.get(pageContext, event.getType()) %>
+					</span>
 				</div>
 			</div>
 		</liferay-ui:search-container-column-text>

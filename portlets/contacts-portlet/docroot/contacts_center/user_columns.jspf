@@ -31,7 +31,9 @@
 		</div>
 
 		<div class="lfr-user-data-extra">
-			<span class="lfr-user-data-email"><%= user2.getEmailAddress() %></span>
+			<span class="lfr-user-data-email">
+				<%= user2.getEmailAddress() %>
+			</span>
 		</div>
 	</div>
 </liferay-ui:search-container-column-text>

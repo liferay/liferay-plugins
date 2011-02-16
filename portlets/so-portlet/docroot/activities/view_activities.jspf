@@ -69,9 +69,13 @@
 			%>
 
 			<div class="user-portrait">
-				<span class="avatar"><img alt="<%= curUser.getFullName() %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" /></span>
+				<span class="avatar">
+					<img alt="<%= curUser.getFullName() %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" />
+				</span>
 
-				<span class="icon"><liferay-portlet:icon-portlet portlet="<%= portlet %>" /></span>
+				<span class="icon">
+					<liferay-portlet:icon-portlet portlet="<%= portlet %>" />
+				</span>
 			</div>
 
 			<div class="activity-data">
@@ -80,7 +84,9 @@
 				</div>
 
 				<div class="activity-body">
-					<span class="time"><%= timeFormatDate.format(activity.getCreateDate()) %></span>
+					<span class="time">
+						<%= timeFormatDate.format(activity.getCreateDate()) %>
+					</span>
 
 					<%= activityFeedEntry.getBody() %>
 				</div>

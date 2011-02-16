@@ -46,7 +46,9 @@ PortletURL portletURL = (PortletURL)request.getAttribute(WebKeys.CONTACTS_URL);
 						</div>
 
 						<div class="lfr-user-data-extra">
-							<span class="lfr-user-data-email"><%= HtmlUtil.escape(user2.getEmailAddress()) %></span>
+							<span class="lfr-user-data-email">
+								<%= HtmlUtil.escape(user2.getEmailAddress()) %>
+							</span>
 						</div>
 					</div>
 				</li>

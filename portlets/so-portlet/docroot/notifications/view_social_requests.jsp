@@ -72,7 +72,9 @@ for (SocialRequest socialRequest : socialRequests) {
 						<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_CONFIRM) %>" />
 					</portlet:actionURL >
 
-					<span class="lfr-user-action-item lfr-user-action-confirm"><a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a></span>
+					<span class="lfr-user-action-item lfr-user-action-confirm">
+						<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
+					</span>
 
 					<portlet:actionURL name="updateSocialRequest" var="ignoreURL">
 						<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -80,7 +82,9 @@ for (SocialRequest socialRequest : socialRequests) {
 						<portlet:param name="status" value="<%= String.valueOf(SocialRequestConstants.STATUS_IGNORE) %>" />
 					</portlet:actionURL >
 
-					<span class="lfr-user-action-item lfr-user-action-ignore"><a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a></span>
+					<span class="lfr-user-action-item lfr-user-action-ignore">
+						<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
+					</span>
 				</div>
 			</div>
 		</c:otherwise>

@@ -574,7 +574,11 @@ if (curUser != null) {
 									</div>
 
 									<div class="project-footer">
-										<span><liferay-ui:message key="other-members" />:</span><%= projectsEntry.getData() %>
+										<span>
+											<liferay-ui:message key="other-members" />:
+										</span>
+
+										<%= projectsEntry.getData() %>
 									</div>
 								</div>
 

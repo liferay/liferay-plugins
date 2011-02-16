@@ -74,7 +74,9 @@ for (MemberRequest memberRequest : memberRequests) {
 				<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_ACCEPTED) %>" />
 			</portlet:actionURL>
 
-			<span class="lfr-user-action-item lfr-user-action-confirm"><a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a></span>
+			<span class="lfr-user-action-item lfr-user-action-confirm">
+				<a href="<%= confirmURL %>"><liferay-ui:message key="confirm" /></a>
+			</span>
 
 			<portlet:actionURL name="updateMemberRequest" var="ignoreURL">
 				<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -82,7 +84,9 @@ for (MemberRequest memberRequest : memberRequests) {
 				<portlet:param name="status" value="<%= String.valueOf(InviteMembersConstants.STATUS_DECLINED) %>" />
 			</portlet:actionURL>
 
-			<span class="lfr-user-action-item lfr-user-action-ignore"><a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a></span>
+			<span class="lfr-user-action-item lfr-user-action-ignore">
+				<a href="<%= ignoreURL %>"><liferay-ui:message key="ignore" /></a>
+			</span>
 		</div>
 	</div>
 
