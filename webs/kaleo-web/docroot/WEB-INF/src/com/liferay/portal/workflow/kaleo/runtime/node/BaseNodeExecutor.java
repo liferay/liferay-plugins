@@ -27,7 +27,6 @@ import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 import com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
 import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
-import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 import java.util.List;
 
@@ -56,9 +55,8 @@ public abstract class BaseNodeExecutor
 			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
 			executionContext);
 
-		List<KaleoTimer> kaleoTimers =
-			KaleoTimerLocalServiceUtil.getKaleoTimers(
-				currentKaleoNode.getKaleoNodeId());
+		List<KaleoTimer> kaleoTimers = kaleoTimerLocalService.getKaleoTimers(
+			currentKaleoNode.getKaleoNodeId());
 
 		kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceTokens(
 			executionContext.getKaleoInstanceToken(), kaleoTimers,
@@ -68,22 +66,22 @@ public abstract class BaseNodeExecutor
 
 	public void execute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
 		if (ExecutionUtil.isKaleoInstanceBlocked(executionContext)) {
 			return;
 		}
 
-		doExecute(currentKaleoNode, executionContext, remainingPathElement);
+		doExecute(currentKaleoNode, executionContext, remainingPathElements);
 	}
 
 	public void exit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
-		doExit(currentKaleoNode, executionContext, remainingPathElement);
+		doExit(currentKaleoNode, executionContext, remainingPathElements);
 
 		ActionExecutorUtil.executeKaleoActions(
 			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
@@ -108,12 +106,12 @@ public abstract class BaseNodeExecutor
 
 	protected abstract void doExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException;
 
 	protected abstract void doExit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException;
 
 	protected TransitionSelector transitionSelector;

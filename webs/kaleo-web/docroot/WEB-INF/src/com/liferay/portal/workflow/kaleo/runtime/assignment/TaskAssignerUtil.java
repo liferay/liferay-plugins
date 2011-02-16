@@ -24,6 +24,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Marcellus Tavares
@@ -35,7 +36,7 @@ public class TaskAssignerUtil {
 			ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
-		Collection<KaleoTaskAssignment> kaleoTaskReassignments =
+		List<KaleoTaskAssignment> kaleoTaskReassignments =
 			KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
 				kaleoNodeId, parentKaleoNodeId);
 
@@ -43,7 +44,7 @@ public class TaskAssignerUtil {
 			return;
 		}
 
-		Collection<KaleoTaskAssignment> kaleoTaskAssignments =
+		List<KaleoTaskAssignment> kaleoTaskAssignments =
 			new ArrayList<KaleoTaskAssignment>();
 
 		for (KaleoTaskAssignment kaleoTaskReassignment :

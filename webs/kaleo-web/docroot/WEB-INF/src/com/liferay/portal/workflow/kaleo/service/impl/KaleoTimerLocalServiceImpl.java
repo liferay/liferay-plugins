@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.Timer;
@@ -38,7 +39,7 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 			Timer timer, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Kaleo task
+		// Kaleo timer
 
 		User user = userPersistence.findByPrimaryKey(
 			serviceContext.getUserId());
@@ -85,11 +86,11 @@ public class KaleoTimerLocalServiceImpl extends KaleoTimerLocalServiceBaseImpl {
 		List<KaleoTimer> kaleoTimers = kaleoTimerPersistence.findByPKNI_DT(
 			parentKaleoNodeId, true);
 
-		if (kaleoTimers.size() > 0) {
+		if (!kaleoTimers.isEmpty()) {
 			return kaleoTimers.get(0);
 		}
 
-		return null;
+		throw new NoSuchTimerException();
 	}
 
 	public List<KaleoTimer> getKaleoTimers(long parentKaleoNodeId)

@@ -585,13 +585,13 @@
 		<finder name="KaleoTaskId" return-type="Collection">
 			<finder-column name="kaleoTaskId" />
 		</finder>
-		<finder name="ACN_KTI" return-type="Collection">
-			<finder-column name="assigneeClassName" />
-			<finder-column name="kaleoTaskId" />
-		</finder>
 		<finder name="KNI_KTI" return-type="Collection">
 			<finder-column name="kaleoNodeId" />
 			<finder-column name="kaleoTaskId" />
+		</finder>
+		<finder name="KTI_ACN" return-type="Collection">
+			<finder-column name="kaleoTaskId" />
+			<finder-column name="assigneeClassName" />
 		</finder>
 
 		<!-- References -->
@@ -710,6 +710,7 @@
 		</finder>
 	</entity>
 	<entity name="KaleoTimer" local-service="true" remote-service="false">
+
 		<!-- PK fields -->
 
 		<column name="kaleoTimerId" type="long" primary="true" />

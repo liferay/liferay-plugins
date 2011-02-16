@@ -122,13 +122,13 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 				com.liferay.portal.service.ServiceContext.class);
 
 		_getKaleoTaskInstanceTokensMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKaleoTaskInstanceTokens", long.class, long.class);
-
-		_getKaleoTaskInstanceTokensMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskInstanceTokens", long.class,
 				java.lang.Boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class,
 				com.liferay.portal.service.ServiceContext.class);
+
+		_getKaleoTaskInstanceTokensMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getKaleoTaskInstanceTokens", long.class, long.class);
 
 		_getKaleoTaskInstanceTokensMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskInstanceTokens", java.lang.String.class,
@@ -870,13 +870,45 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken>)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
+		long kaleoInstanceId, java.lang.Boolean completed, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskInstanceTokensMethodKey23,
+				kaleoInstanceId, ClpSerializer.translateInput(completed),
+				start, end, ClpSerializer.translateInput(orderByComparator),
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
 		long kaleoInstanceId, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskInstanceTokensMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskInstanceTokensMethodKey24,
 				kaleoInstanceId, kaleoTaskId);
 
 		try {
@@ -901,38 +933,6 @@ public class KaleoTaskInstanceTokenLocalServiceClp
 		}
 
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
-		long kaleoInstanceId, java.lang.Boolean completed, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskInstanceTokensMethodKey24,
-				kaleoInstanceId, ClpSerializer.translateInput(completed),
-				start, end, ClpSerializer.translateInput(orderByComparator),
-				ClpSerializer.translateInput(serviceContext));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(

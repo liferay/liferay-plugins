@@ -16,14 +16,12 @@ package com.liferay.portal.workflow.kaleo.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.scheduler.CronText;
 import com.liferay.portal.kernel.scheduler.CronTrigger;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
 import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
@@ -57,11 +55,11 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		User user = userPersistence.findByPrimaryKey(
+			serviceContext.getUserId());
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoInstanceTokenPersistence.findByPrimaryKey(
 				kaleoInstanceTokenId);
-		User user = userPersistence.findByPrimaryKey(
-			serviceContext.getUserId());
 		Date now = new Date();
 
 		long kaleoTimerInstanceTokenId = counterLocalService.increment();
@@ -86,7 +84,8 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		kaleoTimerInstanceToken.setWorkflowContext(
 			WorkflowContextUtil.convert(workflowContext));
 
-		// TBD Do we need another instance token or is the timer sufficient?
+		// TODO Do we need another instance token or is the timer sufficient?
+
 		KaleoInstanceToken childKaleoInstanceToken =
 			kaleoInstanceTokenLocalService.addKaleoInstanceToken(
 				kaleoInstanceToken.getKaleoInstanceTokenId(), workflowContext,
@@ -94,7 +93,6 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 		kaleoTimerInstanceToken.setKaleoInstanceTokenId(
 			childKaleoInstanceToken.getKaleoInstanceTokenId());
-		//end TBD
 
 		kaleoTimerInstanceTokenPersistence.update(
 			kaleoTimerInstanceToken, false);
@@ -205,10 +203,9 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 	protected String getSchedulerGroupName(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken) {
 
-		//TBD
-		//return DestinationNames.WORKFLOW_TIMER.concat(StringPool.SLASH).concat(
-	//		String.valueOf(
-//				kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()));
+		// TODO
+
+		//return DestinationNames.WORKFLOW_TIMER.concat(StringPool.SLASH).concat(String.valueOf(kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()));
 		return null;
 	}
 
@@ -218,7 +215,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 		deleteTimer(kaleoTimerInstanceToken);
 
-		Calendar startDate = CalendarFactoryUtil.getCalendar();
+		String groupName = getSchedulerGroupName(kaleoTimerInstanceToken);
 
 		KaleoTimer kaleoTimer = kaleoTimerPersistence.findByPrimaryKey(
 			kaleoTimerInstanceToken.getKaleoTimerId());
@@ -229,18 +226,16 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 		DueDateCalculator dueDateCalculator = new DefaultDueDateCalculator();
 
-		Date dueDate = dueDateCalculator.getDueDate(
-			new Date(), delayDuration);
+		Date dueDate = dueDateCalculator.getDueDate(new Date(), delayDuration);
 
-		startDate.setTime(dueDate);
+		Calendar dueDateCalendar = CalendarFactoryUtil.getCalendar();
 
-		CronText cronText = new CronText(startDate);
+		dueDateCalendar.setTime(dueDate);
 
-		String groupName = getSchedulerGroupName(kaleoTimerInstanceToken);
+		CronText cronText = new CronText(dueDateCalendar);
 
 		Trigger trigger = new CronTrigger(
-			groupName, groupName, startDate.getTime(), null,
-			cronText.toString());
+			groupName, groupName, dueDate, null, cronText.toString());
 
 		Message message = new Message();
 
@@ -248,10 +243,12 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			"kaleoTimerInstanceTokenId",
 			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId());
 
-		//TBD May be able to put into the default scheduler
-		// event destination instead of using a dedicated...
-		//SchedulerEngineUtil.schedule(
-		//	trigger, null, DestinationNames.WORKFLOW_TIMER, message);
+		// TODO
+
+		// May be able to put into the default scheduler event destination
+		// instead of using a dedicated...
+
+		//SchedulerEngineUtil.schedule(trigger, null, DestinationNames.WORKFLOW_TIMER, message);
 	}
 
 }

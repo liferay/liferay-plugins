@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
@@ -270,14 +271,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoTaskInstanceTokenQuery);
 	}
 
-	public KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
-			long kaleoInstanceId, long kaleoTaskId)
-		throws PortalException, SystemException {
-
-		return kaleoTaskInstanceTokenPersistence.findByKII_KTI(
-			kaleoInstanceId, kaleoTaskId);
-	}
-
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 			long kaleoInstanceId, Boolean completed, int start, int end,
 			OrderByComparator orderByComparator, ServiceContext serviceContext)
@@ -308,6 +301,14 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			return kaleoTaskInstanceTokenFinder.findKaleoTaskInstanceTokens(
 				kaleoTaskInstanceTokenQuery);
 		}
+	}
+
+	public KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
+			long kaleoInstanceId, long kaleoTaskId)
+		throws PortalException, SystemException {
+
+		return kaleoTaskInstanceTokenPersistence.findByKII_KTI(
+			kaleoInstanceId, kaleoTaskId);
 	}
 
 	public List<KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
@@ -534,8 +535,14 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskInstanceTokenPersistence.update(kaleoTaskInstance, false);
 
-		KaleoTimer kaleoTimer = kaleoTimerLocalService.getDefaultKaleoTimer(
-			kaleoTaskInstance.getKaleoTaskId());
+		KaleoTimer kaleoTimer = null;
+
+		try {
+			kaleoTimer = kaleoTimerLocalService.getDefaultKaleoTimer(
+				kaleoTaskInstance.getKaleoTaskId());
+		}
+		catch (NoSuchTimerException nste) {
+		}
 
 		if (kaleoTimer != null) {
 			kaleoTimerInstanceTokenLocalService.deleteKaleoTimerInstanceToken(
@@ -546,7 +553,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 				WorkflowContextUtil.convert(
 					kaleoTaskInstance.getWorkflowContext());
 
-			kaleoTimerInstanceTokenLocalService.addKaleoTimerInstaceToken(
+			kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceToken(
 				kaleoTaskInstance.getKaleoInstanceTokenId(),
 				kaleoTimer.getKaleoTimerId(), kaleoTimer.getName(),
 				workflowContext, serviceContext);

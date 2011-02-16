@@ -95,14 +95,14 @@ public class KaleoTaskAssignmentLocalServiceClp
 				"getKaleoTaskAssignments", long.class, long.class);
 
 		_getKaleoTaskAssignmentsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKaleoTaskAssignments", java.lang.String.class, long.class);
+				"getKaleoTaskAssignments", long.class, java.lang.String.class);
 
 		_getKaleoTaskAssignmentsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTaskAssignmentsCount", long.class);
 
 		_getKaleoTaskAssignmentsCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getKaleoTaskAssignmentsCount", java.lang.String.class,
-				long.class);
+				"getKaleoTaskAssignmentsCount", long.class,
+				java.lang.String.class);
 	}
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment addKaleoTaskAssignment(
@@ -611,12 +611,12 @@ public class KaleoTaskAssignmentLocalServiceClp
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
-		java.lang.String assigneeClassName, long kaleoTaskId)
+		long kaleoTaskId, java.lang.String assigneeClassName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsMethodKey18,
-				ClpSerializer.translateInput(assigneeClassName), kaleoTaskId);
+				kaleoTaskId, ClpSerializer.translateInput(assigneeClassName));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -665,13 +665,13 @@ public class KaleoTaskAssignmentLocalServiceClp
 		return ((Integer)returnObj).intValue();
 	}
 
-	public int getKaleoTaskAssignmentsCount(
-		java.lang.String assigneeClassName, long kaleoTaskId)
+	public int getKaleoTaskAssignmentsCount(long kaleoTaskId,
+		java.lang.String assigneeClassName)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getKaleoTaskAssignmentsCountMethodKey20,
-				ClpSerializer.translateInput(assigneeClassName), kaleoTaskId);
+				kaleoTaskId, ClpSerializer.translateInput(assigneeClassName));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

@@ -22,7 +22,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
-import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
 
 import java.io.Serializable;
 
@@ -36,14 +35,12 @@ import java.util.Map;
 public class ForkNodeExecutor extends BaseNodeExecutor {
 
 	protected void doEnter(
-			KaleoNode currentKaleoNode, ExecutionContext executionContext)
-		throws PortalException, SystemException {
-
+		KaleoNode currentKaleoNode, ExecutionContext executionContext) {
 	}
 
 	protected void doExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
 		Map<String, Serializable> workflowContext =
@@ -81,13 +78,13 @@ public class ForkNodeExecutor extends BaseNodeExecutor {
 				currentKaleoNode, kaleoTransition.getTargetKaleoNode(),
 				forkedExecutionContext);
 
-			remainingPathElement.add(pathElement);
+			remainingPathElements.add(pathElement);
 		}
 	}
 
 	protected void doExit(
 		KaleoNode currentKaleoNode, ExecutionContext executionContext,
-		List<PathElement> remainingPathElement) {
+		List<PathElement> remainingPathElements) {
 	}
 
 }

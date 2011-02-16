@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.workflow.kaleo.NoSuchTimerException;
 import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
@@ -60,20 +61,25 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 
 	protected Date calculateDueDate(KaleoTask kaleoTask)
 		throws PortalException, SystemException {
-		Date dueDate = null;
 
-		KaleoTimer defaultTimer = kaleoTimerLocalService.getDefaultKaleoTimer(
-			kaleoTask.getKaleoTaskId());
+		KaleoTimer kaleoTimer = null;
 
-		if (defaultTimer != null) {
-			DelayDuration delayDuration = new DelayDuration(
-				defaultTimer.getDuration(),
-				DurationScale.parse(defaultTimer.getScale()));
-
-			dueDate = _dueDateCalculator.getDueDate(new Date(), delayDuration);
+		try {
+			kaleoTimer = kaleoTimerLocalService.getDefaultKaleoTimer(
+				kaleoTask.getKaleoTaskId());
+		}
+		catch (NoSuchTimerException nste) {
 		}
 
-		return dueDate;
+		if (kaleoTimer == null) {
+			return null;
+		}
+
+		DelayDuration delayDuration = new DelayDuration(
+			kaleoTimer.getDuration(),
+			DurationScale.parse(kaleoTimer.getScale()));
+
+		return _dueDateCalculator.getDueDate(new Date(), delayDuration);
 	}
 
 	protected KaleoTaskInstanceToken createTaskInstanceToken(
@@ -115,6 +121,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
+
 		KaleoTask kaleoTask = kaleoTaskLocalService.getKaleoNodeKaleoTask(
 			currentKaleoNode.getKaleoNodeId());
 
@@ -140,14 +147,13 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 	}
 
 	protected void doExecute(
-			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
-		throws PortalException, SystemException {
+		KaleoNode currentKaleoNode, ExecutionContext executionContext,
+		List<PathElement> remainingPathElements) {
 	}
 
 	protected void doExit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException {
 
 		Map<String, Serializable> workflowContext =
@@ -174,7 +180,7 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		PathElement pathElement = new PathElement(
 			null, kaleoTransition.getTargetKaleoNode(), newExecutionContext);
 
-		remainingPathElement.add(pathElement);
+		remainingPathElements.add(pathElement);
 	}
 
 	private DueDateCalculator _dueDateCalculator;

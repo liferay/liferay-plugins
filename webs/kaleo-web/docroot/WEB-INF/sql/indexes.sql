@@ -45,11 +45,11 @@ create index IX_E1F8B23D on KaleoTask (companyId);
 create index IX_3FFA633 on KaleoTask (kaleoDefinitionId);
 create index IX_77B3F1A2 on KaleoTask (kaleoNodeId);
 
-create index IX_81225C04 on KaleoTaskAssignment (assigneeClassName, kaleoTaskId);
 create index IX_611732B0 on KaleoTaskAssignment (companyId);
 create index IX_575C03A6 on KaleoTaskAssignment (kaleoDefinitionId);
 create index IX_BDB2F39B on KaleoTaskAssignment (kaleoNodeId, kaleoTaskId);
 create index IX_4DD12F58 on KaleoTaskAssignment (kaleoTaskId);
+create index IX_24D83D6C on KaleoTaskAssignment (kaleoTaskId, assigneeClassName);
 
 create index IX_6E3CDA1B on KaleoTaskAssignmentInstance (companyId);
 create index IX_C851011 on KaleoTaskAssignmentInstance (kaleoDefinitionId);
@@ -61,18 +61,11 @@ create index IX_608E9519 on KaleoTaskInstanceToken (kaleoDefinitionId);
 create index IX_2CE1159B on KaleoTaskInstanceToken (kaleoInstanceId);
 create index IX_B857A115 on KaleoTaskInstanceToken (kaleoInstanceId, kaleoTaskId);
 
-create index IX_243F9A7D on KaleoTimer (companyId);
-create index IX_B5FA4E73 on KaleoTimer (kaleoDefinitionId);
-create index IX_43E1C9E2 on KaleoTimer (kaleoNodeId);
-create index IX_E87ED7E5 on KaleoTimer (kaleoTaskId);
-create index IX_2F35BD9D on KaleoTimer (kaleoTaskId, defaultTimer);
 create index IX_9EA53B18 on KaleoTimer (parentKaleoNodeId);
 create index IX_EBA90B90 on KaleoTimer (parentKaleoNodeId, defaultTimer);
 
 create index IX_DB96C55B on KaleoTimerInstanceToken (kaleoInstanceId);
-create index IX_AEDB1B00 on KaleoTimerInstanceToken (kaleoInstanceId, completed);
 create index IX_FC60EA2F on KaleoTimerInstanceToken (kaleoInstanceId, kaleoTimerId);
-create index IX_DB279423 on KaleoTimerInstanceToken (kaleoInstanceTokenId, completed);
 
 create index IX_41D6C6D on KaleoTransition (companyId);
 create index IX_479F3063 on KaleoTransition (kaleoDefinitionId);

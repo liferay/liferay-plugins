@@ -61,11 +61,11 @@ public class BaseKaleoBean {
 	@BeanReference(type = KaleoTaskLocalService.class)
 	protected KaleoTaskLocalService kaleoTaskLocalService;
 
-	@BeanReference(type = KaleoTimerLocalService.class)
-	protected KaleoTimerLocalService kaleoTimerLocalService;
-
 	@BeanReference(type = KaleoTimerInstanceTokenLocalService.class)
 	protected KaleoTimerInstanceTokenLocalService
 		kaleoTimerInstanceTokenLocalService;
+
+	@BeanReference(type = KaleoTimerLocalService.class)
+	protected KaleoTimerLocalService kaleoTimerLocalService;
 
 }

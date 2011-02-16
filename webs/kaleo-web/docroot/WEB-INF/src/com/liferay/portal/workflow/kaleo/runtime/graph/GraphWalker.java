@@ -28,7 +28,7 @@ public interface GraphWalker {
 
 	public void follow(
 			KaleoNode sourceKaleoNode, KaleoNode targetKaleoNode,
-			List<PathElement> remainingPathElement,
+			List<PathElement> remainingPathElements,
 			ExecutionContext executionContext)
 		throws PortalException, SystemException;
 

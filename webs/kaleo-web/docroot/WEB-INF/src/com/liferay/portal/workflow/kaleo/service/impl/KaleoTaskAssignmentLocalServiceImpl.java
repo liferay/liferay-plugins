@@ -99,11 +99,11 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	}
 
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
-			String assigneeClassName, long kaleoTaskId)
+			long kaleoTaskId, String assigneeClassName)
 		throws SystemException {
 
-		return kaleoTaskAssignmentPersistence.findByACN_KTI(
-			assigneeClassName, kaleoTaskId);
+		return kaleoTaskAssignmentPersistence.findByKTI_ACN(
+			kaleoTaskId, assigneeClassName);
 	}
 
 	public int getKaleoTaskAssignmentsCount(long kaleoTaskId)
@@ -113,11 +113,11 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	}
 
 	public int getKaleoTaskAssignmentsCount(
-			String assigneeClassName, long kaleoTaskId)
+			long kaleoTaskId, String assigneeClassName)
 		throws SystemException {
 
-		return kaleoTaskAssignmentPersistence.countByACN_KTI(
-			assigneeClassName, kaleoTaskId);
+		return kaleoTaskAssignmentPersistence.countByKTI_ACN(
+			kaleoTaskId, assigneeClassName);
 	}
 
 	protected void setAssignee(

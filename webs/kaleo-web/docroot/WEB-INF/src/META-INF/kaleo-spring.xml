@@ -124,6 +124,9 @@
 			</map>
 		</property>
 	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil" class="com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil">
+		<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" />
+	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" class="com.liferay.portal.workflow.kaleo.runtime.condition.MultiLanguageConditionEvaluator">
 		<property name="conditionEvaluators">
 			<map>
@@ -214,9 +217,6 @@
 				</entry>
 			</map>
 		</property>
-	</bean>
-	<bean id="com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil" class="com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil">
-		<property name="taskAssignmentSelector" ref="com.liferay.portal.workflow.kaleo.runtime.assignment.CompositeTaskAssignmentSelector" />
 	</bean>
 
 	<!-- Parser -->

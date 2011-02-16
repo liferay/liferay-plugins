@@ -473,10 +473,9 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Element reassignmentsElement = timerElement.element(
 			"reassignments");
 
-		Set<Assignment> reassignments = parseAssignments(
-			reassignmentsElement);
+		Set<Assignment> assignments = parseAssignments(reassignmentsElement);
 
-		timer.setReassignments(reassignments);
+		timer.setReassignments(assignments);
 
 		Element delayElement = timerElement.element("delay");
 

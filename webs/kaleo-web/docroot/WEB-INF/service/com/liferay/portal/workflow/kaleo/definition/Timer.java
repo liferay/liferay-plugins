@@ -28,36 +28,36 @@ public class Timer extends Node {
 		super(NodeType.TIMER, name, description);
 
 		_default = defaultValue;
-		//_required = required;
-	}
-
-	public Set<Assignment> getReassignments() {
-		return _reassignments;
+		_required = required;
 	}
 
 	public DelayDuration getDelayDuration() {
 		return _delayDuration;
 	}
 
+	public Set<Assignment> getReassignments() {
+		return _reassignments;
+	}
+
 	public boolean isDefault() {
 		return _default;
 	}
 
-	//public boolean isRequired() {
-	//	return _required;
-	//}
-
-	public void setReassignments(Set<Assignment> reassignments) {
-		_reassignments = reassignments;
+	public boolean isRequired() {
+		return _required;
 	}
 
 	public void setDelayDuration(DelayDuration delayDuration) {
 		_delayDuration = delayDuration;
 	}
 
+	public void setReassignments(Set<Assignment> reassignments) {
+		_reassignments = reassignments;
+	}
+
 	private boolean _default;
-	//private boolean _required;
 	private DelayDuration _delayDuration;
 	private Set<Assignment> _reassignments;
+	private boolean _required;
 
 }

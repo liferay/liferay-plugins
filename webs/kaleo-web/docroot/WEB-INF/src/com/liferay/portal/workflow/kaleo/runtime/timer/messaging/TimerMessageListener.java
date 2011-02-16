@@ -35,6 +35,7 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalSer
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
+
 import java.util.Map;
 
 /**
@@ -86,7 +87,6 @@ public class TimerMessageListener extends BaseMessageListener {
 		}
 
 		_kaleoSignaler.signalExecute(currentKaleoNode, executionContext);
-
 	}
 
 	protected KaleoTimerInstanceToken getKaleoTimerInstanceToken(

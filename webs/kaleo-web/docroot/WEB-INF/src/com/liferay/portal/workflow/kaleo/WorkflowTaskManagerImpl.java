@@ -140,7 +140,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 
 			List<KaleoTaskAssignment> kaleoTaskAssignments =
 				KaleoTaskAssignmentLocalServiceUtil.getKaleoTaskAssignments(
-					Role.class.getName(), kaleoTask.getKaleoTaskId());
+					kaleoTask.getKaleoTaskId(), Role.class.getName());
 
 			PrimitiveLongSet pooledActors = new PrimitiveLongSet();
 

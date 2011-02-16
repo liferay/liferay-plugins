@@ -27,45 +27,18 @@ import java.util.List;
  */
 public interface NodeExecutor {
 
-	/**
-	 * Provide any specific logic to be handle for entry into a node
-	 *
-	 * @param currentKaleoNode
-	 * @param executionContext
-	 * @throws PortalException
-	 * @throws SystemException
-	 */
 	public void enter(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException;
 
-	/**
-	 * Provide logic to be executed while in the node.  This includes
-	 * calculating the paths to take (if any) for exiting the node.
-	 *
-	 * @param currentKaleoNode
-	 * @param executionContext
-	 * @param remainingPathElement
-	 * @throws PortalException
-	 * @throws SystemException
-	 */
 	public void execute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException;
 
-	/**
-	 * Perform any actions necessary to exit a node.
-	 *
-	 * @param currentKaleoNode
-	 * @param executionContext
-	 * @param remainingPathElement
-	 * @throws PortalException
-	 * @throws SystemException
-	 */
 	public void exit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException;
 
 }
