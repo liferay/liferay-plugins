@@ -309,7 +309,7 @@ public class CommentModelImpl extends BaseModelImpl<Comment>
 	public Object clone() {
 		CommentImpl commentImpl = new CommentImpl();
 
-		CommentModelImpl commentModelImpl = (CommentModelImpl)commentImpl;
+		CommentModelImpl commentModelImpl = commentImpl;
 
 		commentImpl.setUuid(getUuid());
 

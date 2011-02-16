@@ -271,7 +271,7 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 	public Object clone() {
 		KaleoTaskImpl kaleoTaskImpl = new KaleoTaskImpl();
 
-		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTaskImpl;
+		KaleoTaskModelImpl kaleoTaskModelImpl = kaleoTaskImpl;
 
 		kaleoTaskImpl.setKaleoTaskId(getKaleoTaskId());
 

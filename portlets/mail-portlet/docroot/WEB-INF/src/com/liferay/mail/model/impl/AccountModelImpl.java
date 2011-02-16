@@ -447,7 +447,7 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	public Object clone() {
 		AccountImpl accountImpl = new AccountImpl();
 
-		AccountModelImpl accountModelImpl = (AccountModelImpl)accountImpl;
+		AccountModelImpl accountModelImpl = accountImpl;
 
 		accountImpl.setAccountId(getAccountId());
 

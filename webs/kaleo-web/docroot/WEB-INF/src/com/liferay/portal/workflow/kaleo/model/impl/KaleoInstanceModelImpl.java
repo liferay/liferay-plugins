@@ -293,7 +293,7 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	public Object clone() {
 		KaleoInstanceImpl kaleoInstanceImpl = new KaleoInstanceImpl();
 
-		KaleoInstanceModelImpl kaleoInstanceModelImpl = (KaleoInstanceModelImpl)kaleoInstanceImpl;
+		KaleoInstanceModelImpl kaleoInstanceModelImpl = kaleoInstanceImpl;
 
 		kaleoInstanceImpl.setKaleoInstanceId(getKaleoInstanceId());
 

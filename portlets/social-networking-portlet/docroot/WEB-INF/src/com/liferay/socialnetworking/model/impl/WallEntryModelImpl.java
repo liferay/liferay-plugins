@@ -208,7 +208,7 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	public Object clone() {
 		WallEntryImpl wallEntryImpl = new WallEntryImpl();
 
-		WallEntryModelImpl wallEntryModelImpl = (WallEntryModelImpl)wallEntryImpl;
+		WallEntryModelImpl wallEntryModelImpl = wallEntryImpl;
 
 		wallEntryImpl.setWallEntryId(getWallEntryId());
 

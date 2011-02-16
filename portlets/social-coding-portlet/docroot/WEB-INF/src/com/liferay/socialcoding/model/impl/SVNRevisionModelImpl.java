@@ -180,7 +180,7 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	public Object clone() {
 		SVNRevisionImpl svnRevisionImpl = new SVNRevisionImpl();
 
-		SVNRevisionModelImpl svnRevisionModelImpl = (SVNRevisionModelImpl)svnRevisionImpl;
+		SVNRevisionModelImpl svnRevisionModelImpl = svnRevisionImpl;
 
 		svnRevisionImpl.setSvnRevisionId(getSvnRevisionId());
 

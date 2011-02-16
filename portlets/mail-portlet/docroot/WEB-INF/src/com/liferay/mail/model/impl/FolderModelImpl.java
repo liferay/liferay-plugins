@@ -248,7 +248,7 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	public Object clone() {
 		FolderImpl folderImpl = new FolderImpl();
 
-		FolderModelImpl folderModelImpl = (FolderModelImpl)folderImpl;
+		FolderModelImpl folderModelImpl = folderImpl;
 
 		folderImpl.setFolderId(getFolderId());
 

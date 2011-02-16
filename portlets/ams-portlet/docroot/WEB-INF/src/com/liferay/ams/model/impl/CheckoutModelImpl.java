@@ -218,7 +218,7 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	public Object clone() {
 		CheckoutImpl checkoutImpl = new CheckoutImpl();
 
-		CheckoutModelImpl checkoutModelImpl = (CheckoutModelImpl)checkoutImpl;
+		CheckoutModelImpl checkoutModelImpl = checkoutImpl;
 
 		checkoutImpl.setCheckoutId(getCheckoutId());
 

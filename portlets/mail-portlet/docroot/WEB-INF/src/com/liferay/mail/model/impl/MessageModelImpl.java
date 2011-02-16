@@ -362,7 +362,7 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	public Object clone() {
 		MessageImpl messageImpl = new MessageImpl();
 
-		MessageModelImpl messageModelImpl = (MessageModelImpl)messageImpl;
+		MessageModelImpl messageModelImpl = messageImpl;
 
 		messageImpl.setMessageId(getMessageId());
 

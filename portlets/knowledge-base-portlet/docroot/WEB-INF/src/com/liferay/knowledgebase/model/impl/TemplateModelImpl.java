@@ -312,7 +312,7 @@ public class TemplateModelImpl extends BaseModelImpl<Template>
 	public Object clone() {
 		TemplateImpl templateImpl = new TemplateImpl();
 
-		TemplateModelImpl templateModelImpl = (TemplateModelImpl)templateImpl;
+		TemplateModelImpl templateModelImpl = templateImpl;
 
 		templateImpl.setUuid(getUuid());
 

@@ -439,7 +439,7 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	public Object clone() {
 		KaleoLogImpl kaleoLogImpl = new KaleoLogImpl();
 
-		KaleoLogModelImpl kaleoLogModelImpl = (KaleoLogModelImpl)kaleoLogImpl;
+		KaleoLogModelImpl kaleoLogModelImpl = kaleoLogImpl;
 
 		kaleoLogImpl.setKaleoLogId(getKaleoLogId());
 

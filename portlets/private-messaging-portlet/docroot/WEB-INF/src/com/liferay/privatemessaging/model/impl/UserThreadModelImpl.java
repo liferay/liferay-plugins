@@ -235,7 +235,7 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public Object clone() {
 		UserThreadImpl userThreadImpl = new UserThreadImpl();
 
-		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThreadImpl;
+		UserThreadModelImpl userThreadModelImpl = userThreadImpl;
 
 		userThreadImpl.setUserThreadId(getUserThreadId());
 

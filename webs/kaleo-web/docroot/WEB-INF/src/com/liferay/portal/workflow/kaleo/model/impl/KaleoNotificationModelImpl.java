@@ -309,7 +309,7 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	public Object clone() {
 		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
 
-		KaleoNotificationModelImpl kaleoNotificationModelImpl = (KaleoNotificationModelImpl)kaleoNotificationImpl;
+		KaleoNotificationModelImpl kaleoNotificationModelImpl = kaleoNotificationImpl;
 
 		kaleoNotificationImpl.setKaleoNotificationId(getKaleoNotificationId());
 

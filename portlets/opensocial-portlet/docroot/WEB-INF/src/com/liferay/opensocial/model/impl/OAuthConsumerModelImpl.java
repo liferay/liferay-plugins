@@ -235,7 +235,7 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public Object clone() {
 		OAuthConsumerImpl oAuthConsumerImpl = new OAuthConsumerImpl();
 
-		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumerImpl;
+		OAuthConsumerModelImpl oAuthConsumerModelImpl = oAuthConsumerImpl;
 
 		oAuthConsumerImpl.setOAuthConsumerId(getOAuthConsumerId());
 

@@ -292,7 +292,7 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public Object clone() {
 		MemberRequestImpl memberRequestImpl = new MemberRequestImpl();
 
-		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequestImpl;
+		MemberRequestModelImpl memberRequestModelImpl = memberRequestImpl;
 
 		memberRequestImpl.setMemberRequestId(getMemberRequestId());
 

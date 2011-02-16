@@ -226,7 +226,7 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	public Object clone() {
 		AssetImpl assetImpl = new AssetImpl();
 
-		AssetModelImpl assetModelImpl = (AssetModelImpl)assetImpl;
+		AssetModelImpl assetModelImpl = assetImpl;
 
 		assetImpl.setAssetId(getAssetId());
 

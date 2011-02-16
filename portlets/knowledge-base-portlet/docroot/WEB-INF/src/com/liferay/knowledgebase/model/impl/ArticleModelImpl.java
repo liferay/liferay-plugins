@@ -480,7 +480,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	public Object clone() {
 		ArticleImpl articleImpl = new ArticleImpl();
 
-		ArticleModelImpl articleModelImpl = (ArticleModelImpl)articleImpl;
+		ArticleModelImpl articleModelImpl = articleImpl;
 
 		articleImpl.setUuid(getUuid());
 

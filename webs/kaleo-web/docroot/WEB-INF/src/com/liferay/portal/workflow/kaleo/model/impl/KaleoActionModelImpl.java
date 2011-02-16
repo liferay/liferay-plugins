@@ -304,7 +304,7 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	public Object clone() {
 		KaleoActionImpl kaleoActionImpl = new KaleoActionImpl();
 
-		KaleoActionModelImpl kaleoActionModelImpl = (KaleoActionModelImpl)kaleoActionImpl;
+		KaleoActionModelImpl kaleoActionModelImpl = kaleoActionImpl;
 
 		kaleoActionImpl.setKaleoActionId(getKaleoActionId());
 

@@ -258,7 +258,7 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	public Object clone() {
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
-		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssueImpl;
+		JIRAIssueModelImpl jiraIssueModelImpl = jiraIssueImpl;
 
 		jiraIssueImpl.setJiraIssueId(getJiraIssueId());
 

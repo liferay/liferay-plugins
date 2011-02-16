@@ -246,7 +246,7 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	public Object clone() {
 		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
 
-		ProjectsEntryModelImpl projectsEntryModelImpl = (ProjectsEntryModelImpl)projectsEntryImpl;
+		ProjectsEntryModelImpl projectsEntryModelImpl = projectsEntryImpl;
 
 		projectsEntryImpl.setProjectsEntryId(getProjectsEntryId());
 

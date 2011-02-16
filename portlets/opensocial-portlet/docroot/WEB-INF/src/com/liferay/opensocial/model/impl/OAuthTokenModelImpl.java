@@ -326,7 +326,7 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	public Object clone() {
 		OAuthTokenImpl oAuthTokenImpl = new OAuthTokenImpl();
 
-		OAuthTokenModelImpl oAuthTokenModelImpl = (OAuthTokenModelImpl)oAuthTokenImpl;
+		OAuthTokenModelImpl oAuthTokenModelImpl = oAuthTokenImpl;
 
 		oAuthTokenImpl.setOAuthTokenId(getOAuthTokenId());
 

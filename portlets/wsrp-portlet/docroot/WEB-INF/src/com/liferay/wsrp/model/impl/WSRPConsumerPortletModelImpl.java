@@ -221,7 +221,7 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	public Object clone() {
 		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
 
-		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortletImpl;
+		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = wsrpConsumerPortletImpl;
 
 		wsrpConsumerPortletImpl.setUuid(getUuid());
 

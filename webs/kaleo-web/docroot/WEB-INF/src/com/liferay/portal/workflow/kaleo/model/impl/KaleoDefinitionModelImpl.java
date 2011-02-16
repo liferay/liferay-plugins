@@ -376,7 +376,7 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	public Object clone() {
 		KaleoDefinitionImpl kaleoDefinitionImpl = new KaleoDefinitionImpl();
 
-		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = (KaleoDefinitionModelImpl)kaleoDefinitionImpl;
+		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = kaleoDefinitionImpl;
 
 		kaleoDefinitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
