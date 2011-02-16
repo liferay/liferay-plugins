@@ -296,43 +296,46 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	}
 
 	public Object clone() {
-		KaleoTaskAssignmentInstanceModelImpl clone = new KaleoTaskAssignmentInstanceImpl();
+		KaleoTaskAssignmentInstanceImpl kaleoTaskAssignmentInstanceImpl = new KaleoTaskAssignmentInstanceImpl();
 
-		clone._kaleoTaskAssignmentInstanceId = _kaleoTaskAssignmentInstanceId;
+		KaleoTaskAssignmentInstanceModelImpl kaleoTaskAssignmentInstanceModelImpl =
+			(KaleoTaskAssignmentInstanceModelImpl)kaleoTaskAssignmentInstanceImpl;
 
-		clone._groupId = _groupId;
+		kaleoTaskAssignmentInstanceImpl.setKaleoTaskAssignmentInstanceId(getKaleoTaskAssignmentInstanceId());
 
-		clone._companyId = _companyId;
+		kaleoTaskAssignmentInstanceImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoTaskAssignmentInstanceImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoTaskAssignmentInstanceImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoTaskAssignmentInstanceImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoTaskAssignmentInstanceImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoTaskAssignmentInstanceImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoInstanceId = _kaleoInstanceId;
+		kaleoTaskAssignmentInstanceImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+		kaleoTaskAssignmentInstanceImpl.setKaleoInstanceId(getKaleoInstanceId());
 
-		clone._kaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+		kaleoTaskAssignmentInstanceImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 
-		clone._kaleoTaskId = _kaleoTaskId;
+		kaleoTaskAssignmentInstanceImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
 
-		clone._kaleoTaskName = _kaleoTaskName;
+		kaleoTaskAssignmentInstanceImpl.setKaleoTaskId(getKaleoTaskId());
 
-		clone._assigneeClassName = _assigneeClassName;
+		kaleoTaskAssignmentInstanceImpl.setKaleoTaskName(getKaleoTaskName());
 
-		clone._assigneeClassPK = _assigneeClassPK;
+		kaleoTaskAssignmentInstanceImpl.setAssigneeClassName(getAssigneeClassName());
 
-		clone._completed = _completed;
+		kaleoTaskAssignmentInstanceImpl.setAssigneeClassPK(getAssigneeClassPK());
 
-		clone._completionDate = _completionDate;
+		kaleoTaskAssignmentInstanceImpl.setCompleted(getCompleted());
 
-		return clone;
+		kaleoTaskAssignmentInstanceImpl.setCompletionDate(getCompletionDate());
+
+		return kaleoTaskAssignmentInstanceImpl;
 	}
 
 	public int compareTo(

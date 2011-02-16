@@ -360,45 +360,56 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public Object clone() {
-		MessageModelImpl clone = new MessageImpl();
+		MessageImpl messageImpl = new MessageImpl();
 
-		clone._messageId = _messageId;
+		MessageModelImpl messageModelImpl = (MessageModelImpl)messageImpl;
 
-		clone._companyId = _companyId;
+		messageImpl.setMessageId(getMessageId());
 
-		clone._userId = _userId;
+		messageImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		messageImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		messageImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		messageImpl.setCreateDate(getCreateDate());
 
-		clone._accountId = _accountId;
-		clone._originalFolderId = clone._folderId = _folderId;
+		messageImpl.setModifiedDate(getModifiedDate());
 
-		clone._sender = _sender;
+		messageImpl.setAccountId(getAccountId());
 
-		clone._to = _to;
+		messageImpl.setFolderId(getFolderId());
 
-		clone._cc = _cc;
+		messageModelImpl._originalFolderId = messageModelImpl._folderId;
 
-		clone._bcc = _bcc;
+		messageModelImpl._setOriginalFolderId = false;
+		messageImpl.setSender(getSender());
 
-		clone._sentDate = _sentDate;
+		messageImpl.setTo(getTo());
 
-		clone._subject = _subject;
+		messageImpl.setCc(getCc());
 
-		clone._preview = _preview;
+		messageImpl.setBcc(getBcc());
 
-		clone._body = _body;
+		messageImpl.setSentDate(getSentDate());
 
-		clone._flags = _flags;
+		messageImpl.setSubject(getSubject());
 
-		clone._size = _size;
-		clone._originalRemoteMessageId = clone._remoteMessageId = _remoteMessageId;
+		messageImpl.setPreview(getPreview());
 
-		return clone;
+		messageImpl.setBody(getBody());
+
+		messageImpl.setFlags(getFlags());
+
+		messageImpl.setSize(getSize());
+
+		messageImpl.setRemoteMessageId(getRemoteMessageId());
+
+		messageModelImpl._originalRemoteMessageId = messageModelImpl._remoteMessageId;
+
+		messageModelImpl._setOriginalRemoteMessageId = false;
+
+		return messageImpl;
 	}
 
 	public int compareTo(Message message) {

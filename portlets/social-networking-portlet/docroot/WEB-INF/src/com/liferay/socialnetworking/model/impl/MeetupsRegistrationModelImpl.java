@@ -236,25 +236,35 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public Object clone() {
-		MeetupsRegistrationModelImpl clone = new MeetupsRegistrationImpl();
+		MeetupsRegistrationImpl meetupsRegistrationImpl = new MeetupsRegistrationImpl();
 
-		clone._meetupsRegistrationId = _meetupsRegistrationId;
+		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = (MeetupsRegistrationModelImpl)meetupsRegistrationImpl;
 
-		clone._companyId = _companyId;
-		clone._originalUserId = clone._userId = _userId;
+		meetupsRegistrationImpl.setMeetupsRegistrationId(getMeetupsRegistrationId());
 
-		clone._userName = _userName;
+		meetupsRegistrationImpl.setCompanyId(getCompanyId());
 
-		clone._createDate = _createDate;
+		meetupsRegistrationImpl.setUserId(getUserId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalMeetupsEntryId = clone._meetupsEntryId = _meetupsEntryId;
+		meetupsRegistrationModelImpl._originalUserId = meetupsRegistrationModelImpl._userId;
 
-		clone._status = _status;
+		meetupsRegistrationModelImpl._setOriginalUserId = false;
+		meetupsRegistrationImpl.setUserName(getUserName());
 
-		clone._comments = _comments;
+		meetupsRegistrationImpl.setCreateDate(getCreateDate());
 
-		return clone;
+		meetupsRegistrationImpl.setModifiedDate(getModifiedDate());
+
+		meetupsRegistrationImpl.setMeetupsEntryId(getMeetupsEntryId());
+
+		meetupsRegistrationModelImpl._originalMeetupsEntryId = meetupsRegistrationModelImpl._meetupsEntryId;
+
+		meetupsRegistrationModelImpl._setOriginalMeetupsEntryId = false;
+		meetupsRegistrationImpl.setStatus(getStatus());
+
+		meetupsRegistrationImpl.setComments(getComments());
+
+		return meetupsRegistrationImpl;
 	}
 
 	public int compareTo(MeetupsRegistration meetupsRegistration) {

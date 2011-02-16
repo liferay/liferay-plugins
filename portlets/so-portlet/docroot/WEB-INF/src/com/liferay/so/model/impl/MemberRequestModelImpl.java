@@ -290,29 +290,47 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public Object clone() {
-		MemberRequestModelImpl clone = new MemberRequestImpl();
+		MemberRequestImpl memberRequestImpl = new MemberRequestImpl();
 
-		clone._memberRequestId = _memberRequestId;
-		clone._originalGroupId = clone._groupId = _groupId;
+		MemberRequestModelImpl memberRequestModelImpl = (MemberRequestModelImpl)memberRequestImpl;
 
-		clone._companyId = _companyId;
+		memberRequestImpl.setMemberRequestId(getMemberRequestId());
 
-		clone._userId = _userId;
+		memberRequestImpl.setGroupId(getGroupId());
 
-		clone._userName = _userName;
+		memberRequestModelImpl._originalGroupId = memberRequestModelImpl._groupId;
 
-		clone._createDate = _createDate;
+		memberRequestModelImpl._setOriginalGroupId = false;
+		memberRequestImpl.setCompanyId(getCompanyId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalKey = clone._key = _key;
-		clone._originalReceiverUserId = clone._receiverUserId = _receiverUserId;
+		memberRequestImpl.setUserId(getUserId());
 
-		clone._invitedRoleId = _invitedRoleId;
+		memberRequestImpl.setUserName(getUserName());
 
-		clone._invitedTeamId = _invitedTeamId;
-		clone._originalStatus = clone._status = _status;
+		memberRequestImpl.setCreateDate(getCreateDate());
 
-		return clone;
+		memberRequestImpl.setModifiedDate(getModifiedDate());
+
+		memberRequestImpl.setKey(getKey());
+
+		memberRequestModelImpl._originalKey = memberRequestModelImpl._key;
+
+		memberRequestImpl.setReceiverUserId(getReceiverUserId());
+
+		memberRequestModelImpl._originalReceiverUserId = memberRequestModelImpl._receiverUserId;
+
+		memberRequestModelImpl._setOriginalReceiverUserId = false;
+		memberRequestImpl.setInvitedRoleId(getInvitedRoleId());
+
+		memberRequestImpl.setInvitedTeamId(getInvitedTeamId());
+
+		memberRequestImpl.setStatus(getStatus());
+
+		memberRequestModelImpl._originalStatus = memberRequestModelImpl._status;
+
+		memberRequestModelImpl._setOriginalStatus = false;
+
+		return memberRequestImpl;
 	}
 
 	public int compareTo(MemberRequest memberRequest) {

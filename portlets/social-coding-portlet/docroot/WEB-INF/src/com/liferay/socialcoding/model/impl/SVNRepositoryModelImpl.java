@@ -152,14 +152,19 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	}
 
 	public Object clone() {
-		SVNRepositoryModelImpl clone = new SVNRepositoryImpl();
+		SVNRepositoryImpl svnRepositoryImpl = new SVNRepositoryImpl();
 
-		clone._svnRepositoryId = _svnRepositoryId;
-		clone._originalUrl = clone._url = _url;
+		SVNRepositoryModelImpl svnRepositoryModelImpl = (SVNRepositoryModelImpl)svnRepositoryImpl;
 
-		clone._revisionNumber = _revisionNumber;
+		svnRepositoryImpl.setSvnRepositoryId(getSvnRepositoryId());
 
-		return clone;
+		svnRepositoryImpl.setUrl(getUrl());
+
+		svnRepositoryModelImpl._originalUrl = svnRepositoryModelImpl._url;
+
+		svnRepositoryImpl.setRevisionNumber(getRevisionNumber());
+
+		return svnRepositoryImpl;
 	}
 
 	public int compareTo(SVNRepository svnRepository) {

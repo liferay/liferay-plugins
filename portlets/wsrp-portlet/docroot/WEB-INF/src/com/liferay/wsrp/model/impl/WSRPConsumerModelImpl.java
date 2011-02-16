@@ -249,31 +249,33 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public Object clone() {
-		WSRPConsumerModelImpl clone = new WSRPConsumerImpl();
+		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
 
-		clone._uuid = _uuid;
+		WSRPConsumerModelImpl wsrpConsumerModelImpl = (WSRPConsumerModelImpl)wsrpConsumerImpl;
 
-		clone._wsrpConsumerId = _wsrpConsumerId;
+		wsrpConsumerImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
+		wsrpConsumerImpl.setWsrpConsumerId(getWsrpConsumerId());
 
-		clone._createDate = _createDate;
+		wsrpConsumerImpl.setCompanyId(getCompanyId());
 
-		clone._modifiedDate = _modifiedDate;
+		wsrpConsumerImpl.setCreateDate(getCreateDate());
 
-		clone._name = _name;
+		wsrpConsumerImpl.setModifiedDate(getModifiedDate());
 
-		clone._url = _url;
+		wsrpConsumerImpl.setName(getName());
 
-		clone._wsdl = _wsdl;
+		wsrpConsumerImpl.setUrl(getUrl());
 
-		clone._registrationContextString = _registrationContextString;
+		wsrpConsumerImpl.setWsdl(getWsdl());
 
-		clone._registrationPropertiesString = _registrationPropertiesString;
+		wsrpConsumerImpl.setRegistrationContextString(getRegistrationContextString());
 
-		clone._forwardCookies = _forwardCookies;
+		wsrpConsumerImpl.setRegistrationPropertiesString(getRegistrationPropertiesString());
 
-		return clone;
+		wsrpConsumerImpl.setForwardCookies(getForwardCookies());
+
+		return wsrpConsumerImpl;
 	}
 
 	public int compareTo(WSRPConsumer wsrpConsumer) {

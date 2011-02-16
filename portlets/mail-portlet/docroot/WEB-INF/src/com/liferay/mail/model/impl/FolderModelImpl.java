@@ -246,27 +246,36 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	}
 
 	public Object clone() {
-		FolderModelImpl clone = new FolderImpl();
+		FolderImpl folderImpl = new FolderImpl();
 
-		clone._folderId = _folderId;
+		FolderModelImpl folderModelImpl = (FolderModelImpl)folderImpl;
 
-		clone._companyId = _companyId;
+		folderImpl.setFolderId(getFolderId());
 
-		clone._userId = _userId;
+		folderImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		folderImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		folderImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalAccountId = clone._accountId = _accountId;
-		clone._originalFullName = clone._fullName = _fullName;
+		folderImpl.setCreateDate(getCreateDate());
 
-		clone._displayName = _displayName;
+		folderImpl.setModifiedDate(getModifiedDate());
 
-		clone._remoteMessageCount = _remoteMessageCount;
+		folderImpl.setAccountId(getAccountId());
 
-		return clone;
+		folderModelImpl._originalAccountId = folderModelImpl._accountId;
+
+		folderModelImpl._setOriginalAccountId = false;
+		folderImpl.setFullName(getFullName());
+
+		folderModelImpl._originalFullName = folderModelImpl._fullName;
+
+		folderImpl.setDisplayName(getDisplayName());
+
+		folderImpl.setRemoteMessageCount(getRemoteMessageCount());
+
+		return folderImpl;
 	}
 
 	public int compareTo(Folder folder) {

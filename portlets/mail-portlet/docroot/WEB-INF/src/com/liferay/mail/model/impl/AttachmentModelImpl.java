@@ -211,27 +211,29 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	}
 
 	public Object clone() {
-		AttachmentModelImpl clone = new AttachmentImpl();
+		AttachmentImpl attachmentImpl = new AttachmentImpl();
 
-		clone._attachmentId = _attachmentId;
+		AttachmentModelImpl attachmentModelImpl = (AttachmentModelImpl)attachmentImpl;
 
-		clone._companyId = _companyId;
+		attachmentImpl.setAttachmentId(getAttachmentId());
 
-		clone._userId = _userId;
+		attachmentImpl.setCompanyId(getCompanyId());
 
-		clone._accountId = _accountId;
+		attachmentImpl.setUserId(getUserId());
 
-		clone._folderId = _folderId;
+		attachmentImpl.setAccountId(getAccountId());
 
-		clone._messageId = _messageId;
+		attachmentImpl.setFolderId(getFolderId());
 
-		clone._contentPath = _contentPath;
+		attachmentImpl.setMessageId(getMessageId());
 
-		clone._fileName = _fileName;
+		attachmentImpl.setContentPath(getContentPath());
 
-		clone._size = _size;
+		attachmentImpl.setFileName(getFileName());
 
-		return clone;
+		attachmentImpl.setSize(getSize());
+
+		return attachmentImpl;
 	}
 
 	public int compareTo(Attachment attachment) {

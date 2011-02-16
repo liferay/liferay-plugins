@@ -310,30 +310,38 @@ public class TemplateModelImpl extends BaseModelImpl<Template>
 	}
 
 	public Object clone() {
-		TemplateModelImpl clone = new TemplateImpl();
+		TemplateImpl templateImpl = new TemplateImpl();
 
-		clone._originalUuid = clone._uuid = _uuid;
+		TemplateModelImpl templateModelImpl = (TemplateModelImpl)templateImpl;
 
-		clone._templateId = _templateId;
-		clone._originalGroupId = clone._groupId = _groupId;
+		templateImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
+		templateModelImpl._originalUuid = templateModelImpl._uuid;
 
-		clone._userId = _userId;
+		templateImpl.setTemplateId(getTemplateId());
 
-		clone._userName = _userName;
+		templateImpl.setGroupId(getGroupId());
 
-		clone._createDate = _createDate;
+		templateModelImpl._originalGroupId = templateModelImpl._groupId;
 
-		clone._modifiedDate = _modifiedDate;
+		templateModelImpl._setOriginalGroupId = false;
+		templateImpl.setCompanyId(getCompanyId());
 
-		clone._title = _title;
+		templateImpl.setUserId(getUserId());
 
-		clone._content = _content;
+		templateImpl.setUserName(getUserName());
 
-		clone._description = _description;
+		templateImpl.setCreateDate(getCreateDate());
 
-		return clone;
+		templateImpl.setModifiedDate(getModifiedDate());
+
+		templateImpl.setTitle(getTitle());
+
+		templateImpl.setContent(getContent());
+
+		templateImpl.setDescription(getDescription());
+
+		return templateImpl;
 	}
 
 	public int compareTo(Template template) {

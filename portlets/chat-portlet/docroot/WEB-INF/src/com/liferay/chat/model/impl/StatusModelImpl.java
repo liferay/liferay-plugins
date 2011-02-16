@@ -223,24 +223,30 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	}
 
 	public Object clone() {
-		StatusModelImpl clone = new StatusImpl();
+		StatusImpl statusImpl = new StatusImpl();
 
-		clone._statusId = _statusId;
-		clone._originalUserId = clone._userId = _userId;
+		StatusModelImpl statusModelImpl = (StatusModelImpl)statusImpl;
 
-		clone._modifiedDate = _modifiedDate;
+		statusImpl.setStatusId(getStatusId());
 
-		clone._online = _online;
+		statusImpl.setUserId(getUserId());
 
-		clone._awake = _awake;
+		statusModelImpl._originalUserId = statusModelImpl._userId;
 
-		clone._activePanelId = _activePanelId;
+		statusModelImpl._setOriginalUserId = false;
+		statusImpl.setModifiedDate(getModifiedDate());
 
-		clone._message = _message;
+		statusImpl.setOnline(getOnline());
 
-		clone._playSound = _playSound;
+		statusImpl.setAwake(getAwake());
 
-		return clone;
+		statusImpl.setActivePanelId(getActivePanelId());
+
+		statusImpl.setMessage(getMessage());
+
+		statusImpl.setPlaySound(getPlaySound());
+
+		return statusImpl;
 	}
 
 	public int compareTo(Status status) {

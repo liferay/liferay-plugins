@@ -324,32 +324,52 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public Object clone() {
-		OAuthTokenModelImpl clone = new OAuthTokenImpl();
+		OAuthTokenImpl oAuthTokenImpl = new OAuthTokenImpl();
 
-		clone._oAuthTokenId = _oAuthTokenId;
+		OAuthTokenModelImpl oAuthTokenModelImpl = (OAuthTokenModelImpl)oAuthTokenImpl;
 
-		clone._companyId = _companyId;
-		clone._originalUserId = clone._userId = _userId;
+		oAuthTokenImpl.setOAuthTokenId(getOAuthTokenId());
 
-		clone._userName = _userName;
+		oAuthTokenImpl.setCompanyId(getCompanyId());
 
-		clone._createDate = _createDate;
+		oAuthTokenImpl.setUserId(getUserId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalGadgetId = clone._gadgetId = _gadgetId;
-		clone._originalServiceName = clone._serviceName = _serviceName;
-		clone._originalModuleId = clone._moduleId = _moduleId;
+		oAuthTokenModelImpl._originalUserId = oAuthTokenModelImpl._userId;
 
-		clone._accessToken = _accessToken;
-		clone._originalTokenName = clone._tokenName = _tokenName;
+		oAuthTokenModelImpl._setOriginalUserId = false;
+		oAuthTokenImpl.setUserName(getUserName());
 
-		clone._tokenSecret = _tokenSecret;
+		oAuthTokenImpl.setCreateDate(getCreateDate());
 
-		clone._sessionHandle = _sessionHandle;
+		oAuthTokenImpl.setModifiedDate(getModifiedDate());
 
-		clone._expiration = _expiration;
+		oAuthTokenImpl.setGadgetId(getGadgetId());
 
-		return clone;
+		oAuthTokenModelImpl._originalGadgetId = oAuthTokenModelImpl._gadgetId;
+
+		oAuthTokenModelImpl._setOriginalGadgetId = false;
+		oAuthTokenImpl.setServiceName(getServiceName());
+
+		oAuthTokenModelImpl._originalServiceName = oAuthTokenModelImpl._serviceName;
+
+		oAuthTokenImpl.setModuleId(getModuleId());
+
+		oAuthTokenModelImpl._originalModuleId = oAuthTokenModelImpl._moduleId;
+
+		oAuthTokenModelImpl._setOriginalModuleId = false;
+		oAuthTokenImpl.setAccessToken(getAccessToken());
+
+		oAuthTokenImpl.setTokenName(getTokenName());
+
+		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
+
+		oAuthTokenImpl.setTokenSecret(getTokenSecret());
+
+		oAuthTokenImpl.setSessionHandle(getSessionHandle());
+
+		oAuthTokenImpl.setExpiration(getExpiration());
+
+		return oAuthTokenImpl;
 	}
 
 	public int compareTo(OAuthToken oAuthToken) {

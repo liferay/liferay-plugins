@@ -256,30 +256,35 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public Object clone() {
-		JIRAIssueModelImpl clone = new JIRAIssueImpl();
+		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
-		clone._jiraIssueId = _jiraIssueId;
+		JIRAIssueModelImpl jiraIssueModelImpl = (JIRAIssueModelImpl)jiraIssueImpl;
 
-		clone._createDate = _createDate;
+		jiraIssueImpl.setJiraIssueId(getJiraIssueId());
 
-		clone._modifiedDate = _modifiedDate;
+		jiraIssueImpl.setCreateDate(getCreateDate());
 
-		clone._projectId = _projectId;
-		clone._originalKey = clone._key = _key;
+		jiraIssueImpl.setModifiedDate(getModifiedDate());
 
-		clone._summary = _summary;
+		jiraIssueImpl.setProjectId(getProjectId());
 
-		clone._description = _description;
+		jiraIssueImpl.setKey(getKey());
 
-		clone._reporterJiraUserId = _reporterJiraUserId;
+		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
 
-		clone._assigneeJiraUserId = _assigneeJiraUserId;
+		jiraIssueImpl.setSummary(getSummary());
 
-		clone._resolution = _resolution;
+		jiraIssueImpl.setDescription(getDescription());
 
-		clone._status = _status;
+		jiraIssueImpl.setReporterJiraUserId(getReporterJiraUserId());
 
-		return clone;
+		jiraIssueImpl.setAssigneeJiraUserId(getAssigneeJiraUserId());
+
+		jiraIssueImpl.setResolution(getResolution());
+
+		jiraIssueImpl.setStatus(getStatus());
+
+		return jiraIssueImpl;
 	}
 
 	public int compareTo(JIRAIssue jiraIssue) {

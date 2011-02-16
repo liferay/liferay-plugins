@@ -445,59 +445,68 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public Object clone() {
-		AccountModelImpl clone = new AccountImpl();
+		AccountImpl accountImpl = new AccountImpl();
 
-		clone._accountId = _accountId;
+		AccountModelImpl accountModelImpl = (AccountModelImpl)accountImpl;
 
-		clone._companyId = _companyId;
-		clone._originalUserId = clone._userId = _userId;
+		accountImpl.setAccountId(getAccountId());
 
-		clone._userName = _userName;
+		accountImpl.setCompanyId(getCompanyId());
 
-		clone._createDate = _createDate;
+		accountImpl.setUserId(getUserId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalAddress = clone._address = _address;
+		accountModelImpl._originalUserId = accountModelImpl._userId;
 
-		clone._personalName = _personalName;
+		accountModelImpl._setOriginalUserId = false;
+		accountImpl.setUserName(getUserName());
 
-		clone._protocol = _protocol;
+		accountImpl.setCreateDate(getCreateDate());
 
-		clone._incomingHostName = _incomingHostName;
+		accountImpl.setModifiedDate(getModifiedDate());
 
-		clone._incomingPort = _incomingPort;
+		accountImpl.setAddress(getAddress());
 
-		clone._incomingSecure = _incomingSecure;
+		accountModelImpl._originalAddress = accountModelImpl._address;
 
-		clone._outgoingHostName = _outgoingHostName;
+		accountImpl.setPersonalName(getPersonalName());
 
-		clone._outgoingPort = _outgoingPort;
+		accountImpl.setProtocol(getProtocol());
 
-		clone._outgoingSecure = _outgoingSecure;
+		accountImpl.setIncomingHostName(getIncomingHostName());
 
-		clone._login = _login;
+		accountImpl.setIncomingPort(getIncomingPort());
 
-		clone._password = _password;
+		accountImpl.setIncomingSecure(getIncomingSecure());
 
-		clone._savePassword = _savePassword;
+		accountImpl.setOutgoingHostName(getOutgoingHostName());
 
-		clone._signature = _signature;
+		accountImpl.setOutgoingPort(getOutgoingPort());
 
-		clone._useSignature = _useSignature;
+		accountImpl.setOutgoingSecure(getOutgoingSecure());
 
-		clone._folderPrefix = _folderPrefix;
+		accountImpl.setLogin(getLogin());
 
-		clone._inboxFolderId = _inboxFolderId;
+		accountImpl.setPassword(getPassword());
 
-		clone._draftFolderId = _draftFolderId;
+		accountImpl.setSavePassword(getSavePassword());
 
-		clone._sentFolderId = _sentFolderId;
+		accountImpl.setSignature(getSignature());
 
-		clone._trashFolderId = _trashFolderId;
+		accountImpl.setUseSignature(getUseSignature());
 
-		clone._defaultSender = _defaultSender;
+		accountImpl.setFolderPrefix(getFolderPrefix());
 
-		return clone;
+		accountImpl.setInboxFolderId(getInboxFolderId());
+
+		accountImpl.setDraftFolderId(getDraftFolderId());
+
+		accountImpl.setSentFolderId(getSentFolderId());
+
+		accountImpl.setTrashFolderId(getTrashFolderId());
+
+		accountImpl.setDefaultSender(getDefaultSender());
+
+		return accountImpl;
 	}
 
 	public int compareTo(Account account) {

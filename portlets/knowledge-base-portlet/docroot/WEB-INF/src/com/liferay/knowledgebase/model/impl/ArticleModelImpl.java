@@ -478,46 +478,62 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public Object clone() {
-		ArticleModelImpl clone = new ArticleImpl();
+		ArticleImpl articleImpl = new ArticleImpl();
 
-		clone._originalUuid = clone._uuid = _uuid;
+		ArticleModelImpl articleModelImpl = (ArticleModelImpl)articleImpl;
 
-		clone._articleId = _articleId;
-		clone._originalResourcePrimKey = clone._resourcePrimKey = _resourcePrimKey;
-		clone._originalGroupId = clone._groupId = _groupId;
+		articleImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
+		articleModelImpl._originalUuid = articleModelImpl._uuid;
 
-		clone._userId = _userId;
+		articleImpl.setArticleId(getArticleId());
 
-		clone._userName = _userName;
+		articleImpl.setResourcePrimKey(getResourcePrimKey());
 
-		clone._createDate = _createDate;
+		articleModelImpl._originalResourcePrimKey = articleModelImpl._resourcePrimKey;
 
-		clone._modifiedDate = _modifiedDate;
+		articleModelImpl._setOriginalResourcePrimKey = false;
+		articleImpl.setGroupId(getGroupId());
 
-		clone._parentResourcePrimKey = _parentResourcePrimKey;
-		clone._originalVersion = clone._version = _version;
+		articleModelImpl._originalGroupId = articleModelImpl._groupId;
 
-		clone._title = _title;
+		articleModelImpl._setOriginalGroupId = false;
+		articleImpl.setCompanyId(getCompanyId());
 
-		clone._content = _content;
+		articleImpl.setUserId(getUserId());
 
-		clone._description = _description;
+		articleImpl.setUserName(getUserName());
 
-		clone._priority = _priority;
+		articleImpl.setCreateDate(getCreateDate());
 
-		clone._latest = _latest;
+		articleImpl.setModifiedDate(getModifiedDate());
 
-		clone._status = _status;
+		articleImpl.setParentResourcePrimKey(getParentResourcePrimKey());
 
-		clone._statusByUserId = _statusByUserId;
+		articleImpl.setVersion(getVersion());
 
-		clone._statusByUserName = _statusByUserName;
+		articleModelImpl._originalVersion = articleModelImpl._version;
 
-		clone._statusDate = _statusDate;
+		articleModelImpl._setOriginalVersion = false;
+		articleImpl.setTitle(getTitle());
 
-		return clone;
+		articleImpl.setContent(getContent());
+
+		articleImpl.setDescription(getDescription());
+
+		articleImpl.setPriority(getPriority());
+
+		articleImpl.setLatest(getLatest());
+
+		articleImpl.setStatus(getStatus());
+
+		articleImpl.setStatusByUserId(getStatusByUserId());
+
+		articleImpl.setStatusByUserName(getStatusByUserName());
+
+		articleImpl.setStatusDate(getStatusDate());
+
+		return articleImpl;
 	}
 
 	public int compareTo(Article article) {

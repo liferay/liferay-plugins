@@ -223,23 +223,32 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public Object clone() {
-		GadgetModelImpl clone = new GadgetImpl();
+		GadgetImpl gadgetImpl = new GadgetImpl();
 
-		clone._uuid = _uuid;
+		GadgetModelImpl gadgetModelImpl = (GadgetModelImpl)gadgetImpl;
 
-		clone._gadgetId = _gadgetId;
-		clone._originalCompanyId = clone._companyId = _companyId;
+		gadgetImpl.setUuid(getUuid());
 
-		clone._createDate = _createDate;
+		gadgetImpl.setGadgetId(getGadgetId());
 
-		clone._modifiedDate = _modifiedDate;
+		gadgetImpl.setCompanyId(getCompanyId());
 
-		clone._name = _name;
-		clone._originalUrl = clone._url = _url;
+		gadgetModelImpl._originalCompanyId = gadgetModelImpl._companyId;
 
-		clone._portletCategoryNames = _portletCategoryNames;
+		gadgetModelImpl._setOriginalCompanyId = false;
+		gadgetImpl.setCreateDate(getCreateDate());
 
-		return clone;
+		gadgetImpl.setModifiedDate(getModifiedDate());
+
+		gadgetImpl.setName(getName());
+
+		gadgetImpl.setUrl(getUrl());
+
+		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
+
+		gadgetImpl.setPortletCategoryNames(getPortletCategoryNames());
+
+		return gadgetImpl;
 	}
 
 	public int compareTo(Gadget gadget) {

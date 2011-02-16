@@ -233,26 +233,34 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public Object clone() {
-		WSRPProducerModelImpl clone = new WSRPProducerImpl();
+		WSRPProducerImpl wsrpProducerImpl = new WSRPProducerImpl();
 
-		clone._originalUuid = clone._uuid = _uuid;
+		WSRPProducerModelImpl wsrpProducerModelImpl = (WSRPProducerModelImpl)wsrpProducerImpl;
 
-		clone._wsrpProducerId = _wsrpProducerId;
-		clone._originalGroupId = clone._groupId = _groupId;
+		wsrpProducerImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
+		wsrpProducerModelImpl._originalUuid = wsrpProducerModelImpl._uuid;
 
-		clone._createDate = _createDate;
+		wsrpProducerImpl.setWsrpProducerId(getWsrpProducerId());
 
-		clone._modifiedDate = _modifiedDate;
+		wsrpProducerImpl.setGroupId(getGroupId());
 
-		clone._name = _name;
+		wsrpProducerModelImpl._originalGroupId = wsrpProducerModelImpl._groupId;
 
-		clone._version = _version;
+		wsrpProducerModelImpl._setOriginalGroupId = false;
+		wsrpProducerImpl.setCompanyId(getCompanyId());
 
-		clone._portletIds = _portletIds;
+		wsrpProducerImpl.setCreateDate(getCreateDate());
 
-		return clone;
+		wsrpProducerImpl.setModifiedDate(getModifiedDate());
+
+		wsrpProducerImpl.setName(getName());
+
+		wsrpProducerImpl.setVersion(getVersion());
+
+		wsrpProducerImpl.setPortletIds(getPortletIds());
+
+		return wsrpProducerImpl;
 	}
 
 	public int compareTo(WSRPProducer wsrpProducer) {

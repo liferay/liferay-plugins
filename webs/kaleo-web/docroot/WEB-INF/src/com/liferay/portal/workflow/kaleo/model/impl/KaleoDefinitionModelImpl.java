@@ -374,32 +374,45 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	}
 
 	public Object clone() {
-		KaleoDefinitionModelImpl clone = new KaleoDefinitionImpl();
+		KaleoDefinitionImpl kaleoDefinitionImpl = new KaleoDefinitionImpl();
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = (KaleoDefinitionModelImpl)kaleoDefinitionImpl;
 
-		clone._groupId = _groupId;
-		clone._originalCompanyId = clone._companyId = _companyId;
+		kaleoDefinitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._userId = _userId;
+		kaleoDefinitionImpl.setGroupId(getGroupId());
 
-		clone._userName = _userName;
+		kaleoDefinitionImpl.setCompanyId(getCompanyId());
 
-		clone._createDate = _createDate;
+		kaleoDefinitionModelImpl._originalCompanyId = kaleoDefinitionModelImpl._companyId;
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalName = clone._name = _name;
+		kaleoDefinitionModelImpl._setOriginalCompanyId = false;
+		kaleoDefinitionImpl.setUserId(getUserId());
 
-		clone._title = _title;
+		kaleoDefinitionImpl.setUserName(getUserName());
 
-		clone._description = _description;
-		clone._originalVersion = clone._version = _version;
+		kaleoDefinitionImpl.setCreateDate(getCreateDate());
 
-		clone._active = _active;
+		kaleoDefinitionImpl.setModifiedDate(getModifiedDate());
 
-		clone._startKaleoNodeId = _startKaleoNodeId;
+		kaleoDefinitionImpl.setName(getName());
 
-		return clone;
+		kaleoDefinitionModelImpl._originalName = kaleoDefinitionModelImpl._name;
+
+		kaleoDefinitionImpl.setTitle(getTitle());
+
+		kaleoDefinitionImpl.setDescription(getDescription());
+
+		kaleoDefinitionImpl.setVersion(getVersion());
+
+		kaleoDefinitionModelImpl._originalVersion = kaleoDefinitionModelImpl._version;
+
+		kaleoDefinitionModelImpl._setOriginalVersion = false;
+		kaleoDefinitionImpl.setActive(getActive());
+
+		kaleoDefinitionImpl.setStartKaleoNodeId(getStartKaleoNodeId());
+
+		return kaleoDefinitionImpl;
 	}
 
 	public int compareTo(KaleoDefinition kaleoDefinition) {

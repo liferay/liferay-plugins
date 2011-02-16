@@ -283,39 +283,41 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 	}
 
 	public Object clone() {
-		KaleoTaskAssignmentModelImpl clone = new KaleoTaskAssignmentImpl();
+		KaleoTaskAssignmentImpl kaleoTaskAssignmentImpl = new KaleoTaskAssignmentImpl();
 
-		clone._kaleoTaskAssignmentId = _kaleoTaskAssignmentId;
+		KaleoTaskAssignmentModelImpl kaleoTaskAssignmentModelImpl = (KaleoTaskAssignmentModelImpl)kaleoTaskAssignmentImpl;
 
-		clone._groupId = _groupId;
+		kaleoTaskAssignmentImpl.setKaleoTaskAssignmentId(getKaleoTaskAssignmentId());
 
-		clone._companyId = _companyId;
+		kaleoTaskAssignmentImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoTaskAssignmentImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoTaskAssignmentImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoTaskAssignmentImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoTaskAssignmentImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoTaskAssignmentImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoNodeId = _kaleoNodeId;
+		kaleoTaskAssignmentImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoTaskId = _kaleoTaskId;
+		kaleoTaskAssignmentImpl.setKaleoNodeId(getKaleoNodeId());
 
-		clone._assigneeClassName = _assigneeClassName;
+		kaleoTaskAssignmentImpl.setKaleoTaskId(getKaleoTaskId());
 
-		clone._assigneeClassPK = _assigneeClassPK;
+		kaleoTaskAssignmentImpl.setAssigneeClassName(getAssigneeClassName());
 
-		clone._assigneeActionId = _assigneeActionId;
+		kaleoTaskAssignmentImpl.setAssigneeClassPK(getAssigneeClassPK());
 
-		clone._assigneeScript = _assigneeScript;
+		kaleoTaskAssignmentImpl.setAssigneeActionId(getAssigneeActionId());
 
-		clone._assigneeScriptLanguage = _assigneeScriptLanguage;
+		kaleoTaskAssignmentImpl.setAssigneeScript(getAssigneeScript());
 
-		return clone;
+		kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(getAssigneeScriptLanguage());
+
+		return kaleoTaskAssignmentImpl;
 	}
 
 	public int compareTo(KaleoTaskAssignment kaleoTaskAssignment) {

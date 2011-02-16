@@ -254,35 +254,37 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	}
 
 	public Object clone() {
-		DefinitionModelImpl clone = new DefinitionImpl();
+		DefinitionImpl definitionImpl = new DefinitionImpl();
 
-		clone._definitionId = _definitionId;
+		DefinitionModelImpl definitionModelImpl = (DefinitionModelImpl)definitionImpl;
 
-		clone._groupId = _groupId;
+		definitionImpl.setDefinitionId(getDefinitionId());
 
-		clone._companyId = _companyId;
+		definitionImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		definitionImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		definitionImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		definitionImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		definitionImpl.setCreateDate(getCreateDate());
 
-		clone._typeId = _typeId;
+		definitionImpl.setModifiedDate(getModifiedDate());
 
-		clone._manufacturer = _manufacturer;
+		definitionImpl.setTypeId(getTypeId());
 
-		clone._model = _model;
+		definitionImpl.setManufacturer(getManufacturer());
 
-		clone._orderDate = _orderDate;
+		definitionImpl.setModel(getModel());
 
-		clone._quantity = _quantity;
+		definitionImpl.setOrderDate(getOrderDate());
 
-		clone._price = _price;
+		definitionImpl.setQuantity(getQuantity());
 
-		return clone;
+		definitionImpl.setPrice(getPrice());
+
+		return definitionImpl;
 	}
 
 	public int compareTo(Definition definition) {

@@ -156,17 +156,19 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	}
 
 	public Object clone() {
-		JIRAChangeGroupModelImpl clone = new JIRAChangeGroupImpl();
+		JIRAChangeGroupImpl jiraChangeGroupImpl = new JIRAChangeGroupImpl();
 
-		clone._jiraChangeGroupId = _jiraChangeGroupId;
+		JIRAChangeGroupModelImpl jiraChangeGroupModelImpl = (JIRAChangeGroupModelImpl)jiraChangeGroupImpl;
 
-		clone._jiraUserId = _jiraUserId;
+		jiraChangeGroupImpl.setJiraChangeGroupId(getJiraChangeGroupId());
 
-		clone._createDate = _createDate;
+		jiraChangeGroupImpl.setJiraUserId(getJiraUserId());
 
-		clone._jiraIssueId = _jiraIssueId;
+		jiraChangeGroupImpl.setCreateDate(getCreateDate());
 
-		return clone;
+		jiraChangeGroupImpl.setJiraIssueId(getJiraIssueId());
+
+		return jiraChangeGroupImpl;
 	}
 
 	public int compareTo(JIRAChangeGroup jiraChangeGroup) {

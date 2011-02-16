@@ -244,31 +244,33 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public Object clone() {
-		ProjectsEntryModelImpl clone = new ProjectsEntryImpl();
+		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
 
-		clone._projectsEntryId = _projectsEntryId;
+		ProjectsEntryModelImpl projectsEntryModelImpl = (ProjectsEntryModelImpl)projectsEntryImpl;
 
-		clone._companyId = _companyId;
+		projectsEntryImpl.setProjectsEntryId(getProjectsEntryId());
 
-		clone._userId = _userId;
+		projectsEntryImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		projectsEntryImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		projectsEntryImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		projectsEntryImpl.setCreateDate(getCreateDate());
 
-		clone._title = _title;
+		projectsEntryImpl.setModifiedDate(getModifiedDate());
 
-		clone._description = _description;
+		projectsEntryImpl.setTitle(getTitle());
 
-		clone._startDate = _startDate;
+		projectsEntryImpl.setDescription(getDescription());
 
-		clone._endDate = _endDate;
+		projectsEntryImpl.setStartDate(getStartDate());
 
-		clone._data = _data;
+		projectsEntryImpl.setEndDate(getEndDate());
 
-		return clone;
+		projectsEntryImpl.setData(getData());
+
+		return projectsEntryImpl;
 	}
 
 	public int compareTo(ProjectsEntry projectsEntry) {

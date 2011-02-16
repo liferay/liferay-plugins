@@ -327,34 +327,42 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public Object clone() {
-		FooModelImpl clone = new FooImpl();
+		FooImpl fooImpl = new FooImpl();
 
-		clone._originalUuid = clone._uuid = _uuid;
+		FooModelImpl fooModelImpl = (FooModelImpl)fooImpl;
 
-		clone._fooId = _fooId;
-		clone._originalGroupId = clone._groupId = _groupId;
+		fooImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
+		fooModelImpl._originalUuid = fooModelImpl._uuid;
 
-		clone._userId = _userId;
+		fooImpl.setFooId(getFooId());
 
-		clone._userName = _userName;
+		fooImpl.setGroupId(getGroupId());
 
-		clone._createDate = _createDate;
+		fooModelImpl._originalGroupId = fooModelImpl._groupId;
 
-		clone._modifiedDate = _modifiedDate;
+		fooModelImpl._setOriginalGroupId = false;
+		fooImpl.setCompanyId(getCompanyId());
 
-		clone._field1 = _field1;
+		fooImpl.setUserId(getUserId());
 
-		clone._field2 = _field2;
+		fooImpl.setUserName(getUserName());
 
-		clone._field3 = _field3;
+		fooImpl.setCreateDate(getCreateDate());
 
-		clone._field4 = _field4;
+		fooImpl.setModifiedDate(getModifiedDate());
 
-		clone._field5 = _field5;
+		fooImpl.setField1(getField1());
 
-		return clone;
+		fooImpl.setField2(getField2());
+
+		fooImpl.setField3(getField3());
+
+		fooImpl.setField4(getField4());
+
+		fooImpl.setField5(getField5());
+
+		return fooImpl;
 	}
 
 	public int compareTo(Foo foo) {

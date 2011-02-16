@@ -302,41 +302,43 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public Object clone() {
-		KaleoActionModelImpl clone = new KaleoActionImpl();
+		KaleoActionImpl kaleoActionImpl = new KaleoActionImpl();
 
-		clone._kaleoActionId = _kaleoActionId;
+		KaleoActionModelImpl kaleoActionModelImpl = (KaleoActionModelImpl)kaleoActionImpl;
 
-		clone._groupId = _groupId;
+		kaleoActionImpl.setKaleoActionId(getKaleoActionId());
 
-		clone._companyId = _companyId;
+		kaleoActionImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoActionImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoActionImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoActionImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoActionImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoActionImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoNodeId = _kaleoNodeId;
+		kaleoActionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoNodeName = _kaleoNodeName;
+		kaleoActionImpl.setKaleoNodeId(getKaleoNodeId());
 
-		clone._name = _name;
+		kaleoActionImpl.setKaleoNodeName(getKaleoNodeName());
 
-		clone._description = _description;
+		kaleoActionImpl.setName(getName());
 
-		clone._executionType = _executionType;
+		kaleoActionImpl.setDescription(getDescription());
 
-		clone._script = _script;
+		kaleoActionImpl.setExecutionType(getExecutionType());
 
-		clone._scriptLanguage = _scriptLanguage;
+		kaleoActionImpl.setScript(getScript());
 
-		clone._priority = _priority;
+		kaleoActionImpl.setScriptLanguage(getScriptLanguage());
 
-		return clone;
+		kaleoActionImpl.setPriority(getPriority());
+
+		return kaleoActionImpl;
 	}
 
 	public int compareTo(KaleoAction kaleoAction) {

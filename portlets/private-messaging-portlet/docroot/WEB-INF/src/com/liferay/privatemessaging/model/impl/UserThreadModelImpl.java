@@ -233,25 +233,35 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public Object clone() {
-		UserThreadModelImpl clone = new UserThreadImpl();
+		UserThreadImpl userThreadImpl = new UserThreadImpl();
 
-		clone._userThreadId = _userThreadId;
+		UserThreadModelImpl userThreadModelImpl = (UserThreadModelImpl)userThreadImpl;
 
-		clone._companyId = _companyId;
-		clone._originalUserId = clone._userId = _userId;
+		userThreadImpl.setUserThreadId(getUserThreadId());
 
-		clone._createDate = _createDate;
+		userThreadImpl.setCompanyId(getCompanyId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalMbThreadId = clone._mbThreadId = _mbThreadId;
+		userThreadImpl.setUserId(getUserId());
 
-		clone._topMBMessageId = _topMBMessageId;
+		userThreadModelImpl._originalUserId = userThreadModelImpl._userId;
 
-		clone._read = _read;
+		userThreadModelImpl._setOriginalUserId = false;
+		userThreadImpl.setCreateDate(getCreateDate());
 
-		clone._deleted = _deleted;
+		userThreadImpl.setModifiedDate(getModifiedDate());
 
-		return clone;
+		userThreadImpl.setMbThreadId(getMbThreadId());
+
+		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
+
+		userThreadModelImpl._setOriginalMbThreadId = false;
+		userThreadImpl.setTopMBMessageId(getTopMBMessageId());
+
+		userThreadImpl.setRead(getRead());
+
+		userThreadImpl.setDeleted(getDeleted());
+
+		return userThreadImpl;
 	}
 
 	public int compareTo(UserThread userThread) {

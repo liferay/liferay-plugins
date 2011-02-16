@@ -178,19 +178,21 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	public Object clone() {
-		EntryModelImpl clone = new EntryImpl();
+		EntryImpl entryImpl = new EntryImpl();
 
-		clone._entryId = _entryId;
+		EntryModelImpl entryModelImpl = (EntryModelImpl)entryImpl;
 
-		clone._createDate = _createDate;
+		entryImpl.setEntryId(getEntryId());
 
-		clone._fromUserId = _fromUserId;
+		entryImpl.setCreateDate(getCreateDate());
 
-		clone._toUserId = _toUserId;
+		entryImpl.setFromUserId(getFromUserId());
 
-		clone._content = _content;
+		entryImpl.setToUserId(getToUserId());
 
-		return clone;
+		entryImpl.setContent(getContent());
+
+		return entryImpl;
 	}
 
 	public int compareTo(Entry entry) {

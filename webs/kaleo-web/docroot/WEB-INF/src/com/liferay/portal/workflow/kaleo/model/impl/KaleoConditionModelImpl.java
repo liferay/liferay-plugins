@@ -274,31 +274,40 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public Object clone() {
-		KaleoConditionModelImpl clone = new KaleoConditionImpl();
+		KaleoConditionImpl kaleoConditionImpl = new KaleoConditionImpl();
 
-		clone._kaleoConditionId = _kaleoConditionId;
+		KaleoConditionModelImpl kaleoConditionModelImpl = (KaleoConditionModelImpl)kaleoConditionImpl;
 
-		clone._groupId = _groupId;
+		kaleoConditionImpl.setKaleoConditionId(getKaleoConditionId());
 
-		clone._companyId = _companyId;
+		kaleoConditionImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoConditionImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoConditionImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoConditionImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalClassName = clone._className = _className;
-		clone._originalClassPK = clone._classPK = _classPK;
+		kaleoConditionImpl.setCreateDate(getCreateDate());
 
-		clone._description = _description;
+		kaleoConditionImpl.setModifiedDate(getModifiedDate());
 
-		clone._script = _script;
+		kaleoConditionImpl.setClassName(getClassName());
 
-		clone._scriptLanguage = _scriptLanguage;
+		kaleoConditionModelImpl._originalClassName = kaleoConditionModelImpl._className;
 
-		return clone;
+		kaleoConditionImpl.setClassPK(getClassPK());
+
+		kaleoConditionModelImpl._originalClassPK = kaleoConditionModelImpl._classPK;
+
+		kaleoConditionModelImpl._setOriginalClassPK = false;
+		kaleoConditionImpl.setDescription(getDescription());
+
+		kaleoConditionImpl.setScript(getScript());
+
+		kaleoConditionImpl.setScriptLanguage(getScriptLanguage());
+
+		return kaleoConditionImpl;
 	}
 
 	public int compareTo(KaleoCondition kaleoCondition) {

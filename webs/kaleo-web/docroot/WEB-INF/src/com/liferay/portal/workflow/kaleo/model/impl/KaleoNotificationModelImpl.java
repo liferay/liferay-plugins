@@ -307,41 +307,43 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public Object clone() {
-		KaleoNotificationModelImpl clone = new KaleoNotificationImpl();
+		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
 
-		clone._kaleoNotificationId = _kaleoNotificationId;
+		KaleoNotificationModelImpl kaleoNotificationModelImpl = (KaleoNotificationModelImpl)kaleoNotificationImpl;
 
-		clone._groupId = _groupId;
+		kaleoNotificationImpl.setKaleoNotificationId(getKaleoNotificationId());
 
-		clone._companyId = _companyId;
+		kaleoNotificationImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoNotificationImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoNotificationImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoNotificationImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoNotificationImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoNotificationImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoNodeId = _kaleoNodeId;
+		kaleoNotificationImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoNodeName = _kaleoNodeName;
+		kaleoNotificationImpl.setKaleoNodeId(getKaleoNodeId());
 
-		clone._name = _name;
+		kaleoNotificationImpl.setKaleoNodeName(getKaleoNodeName());
 
-		clone._description = _description;
+		kaleoNotificationImpl.setName(getName());
 
-		clone._executionType = _executionType;
+		kaleoNotificationImpl.setDescription(getDescription());
 
-		clone._template = _template;
+		kaleoNotificationImpl.setExecutionType(getExecutionType());
 
-		clone._templateLanguage = _templateLanguage;
+		kaleoNotificationImpl.setTemplate(getTemplate());
 
-		clone._notificationTypes = _notificationTypes;
+		kaleoNotificationImpl.setTemplateLanguage(getTemplateLanguage());
 
-		return clone;
+		kaleoNotificationImpl.setNotificationTypes(getNotificationTypes());
+
+		return kaleoNotificationImpl;
 	}
 
 	public int compareTo(KaleoNotification kaleoNotification) {

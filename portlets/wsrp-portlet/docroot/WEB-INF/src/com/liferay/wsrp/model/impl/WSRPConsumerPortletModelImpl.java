@@ -219,23 +219,32 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public Object clone() {
-		WSRPConsumerPortletModelImpl clone = new WSRPConsumerPortletImpl();
+		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
 
-		clone._uuid = _uuid;
+		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = (WSRPConsumerPortletModelImpl)wsrpConsumerPortletImpl;
 
-		clone._wsrpConsumerPortletId = _wsrpConsumerPortletId;
+		wsrpConsumerPortletImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
+		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
 
-		clone._createDate = _createDate;
+		wsrpConsumerPortletImpl.setCompanyId(getCompanyId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalWsrpConsumerId = clone._wsrpConsumerId = _wsrpConsumerId;
+		wsrpConsumerPortletImpl.setCreateDate(getCreateDate());
 
-		clone._name = _name;
-		clone._originalPortletHandle = clone._portletHandle = _portletHandle;
+		wsrpConsumerPortletImpl.setModifiedDate(getModifiedDate());
 
-		return clone;
+		wsrpConsumerPortletImpl.setWsrpConsumerId(getWsrpConsumerId());
+
+		wsrpConsumerPortletModelImpl._originalWsrpConsumerId = wsrpConsumerPortletModelImpl._wsrpConsumerId;
+
+		wsrpConsumerPortletModelImpl._setOriginalWsrpConsumerId = false;
+		wsrpConsumerPortletImpl.setName(getName());
+
+		wsrpConsumerPortletImpl.setPortletHandle(getPortletHandle());
+
+		wsrpConsumerPortletModelImpl._originalPortletHandle = wsrpConsumerPortletModelImpl._portletHandle;
+
+		return wsrpConsumerPortletImpl;
 	}
 
 	public int compareTo(WSRPConsumerPortlet wsrpConsumerPortlet) {

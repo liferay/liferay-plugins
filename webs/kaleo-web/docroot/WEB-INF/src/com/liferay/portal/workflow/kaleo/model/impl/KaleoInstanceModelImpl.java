@@ -291,41 +291,43 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 	}
 
 	public Object clone() {
-		KaleoInstanceModelImpl clone = new KaleoInstanceImpl();
+		KaleoInstanceImpl kaleoInstanceImpl = new KaleoInstanceImpl();
 
-		clone._kaleoInstanceId = _kaleoInstanceId;
+		KaleoInstanceModelImpl kaleoInstanceModelImpl = (KaleoInstanceModelImpl)kaleoInstanceImpl;
 
-		clone._groupId = _groupId;
+		kaleoInstanceImpl.setKaleoInstanceId(getKaleoInstanceId());
 
-		clone._companyId = _companyId;
+		kaleoInstanceImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoInstanceImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoInstanceImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoInstanceImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoInstanceImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoInstanceImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoDefinitionName = _kaleoDefinitionName;
+		kaleoInstanceImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoDefinitionVersion = _kaleoDefinitionVersion;
+		kaleoInstanceImpl.setKaleoDefinitionName(getKaleoDefinitionName());
 
-		clone._rootKaleoInstanceTokenId = _rootKaleoInstanceTokenId;
+		kaleoInstanceImpl.setKaleoDefinitionVersion(getKaleoDefinitionVersion());
 
-		clone._className = _className;
+		kaleoInstanceImpl.setRootKaleoInstanceTokenId(getRootKaleoInstanceTokenId());
 
-		clone._classPK = _classPK;
+		kaleoInstanceImpl.setClassName(getClassName());
 
-		clone._completed = _completed;
+		kaleoInstanceImpl.setClassPK(getClassPK());
 
-		clone._completionDate = _completionDate;
+		kaleoInstanceImpl.setCompleted(getCompleted());
 
-		clone._workflowContext = _workflowContext;
+		kaleoInstanceImpl.setCompletionDate(getCompletionDate());
 
-		return clone;
+		kaleoInstanceImpl.setWorkflowContext(getWorkflowContext());
+
+		return kaleoInstanceImpl;
 	}
 
 	public int compareTo(KaleoInstance kaleoInstance) {

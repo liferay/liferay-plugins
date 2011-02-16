@@ -267,35 +267,37 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	}
 
 	public Object clone() {
-		KaleoNodeModelImpl clone = new KaleoNodeImpl();
+		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
 
-		clone._kaleoNodeId = _kaleoNodeId;
+		KaleoNodeModelImpl kaleoNodeModelImpl = (KaleoNodeModelImpl)kaleoNodeImpl;
 
-		clone._groupId = _groupId;
+		kaleoNodeImpl.setKaleoNodeId(getKaleoNodeId());
 
-		clone._companyId = _companyId;
+		kaleoNodeImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoNodeImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoNodeImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoNodeImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoNodeImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoNodeImpl.setModifiedDate(getModifiedDate());
 
-		clone._name = _name;
+		kaleoNodeImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._description = _description;
+		kaleoNodeImpl.setName(getName());
 
-		clone._type = _type;
+		kaleoNodeImpl.setDescription(getDescription());
 
-		clone._initial = _initial;
+		kaleoNodeImpl.setType(getType());
 
-		clone._terminal = _terminal;
+		kaleoNodeImpl.setInitial(getInitial());
 
-		return clone;
+		kaleoNodeImpl.setTerminal(getTerminal());
+
+		return kaleoNodeImpl;
 	}
 
 	public int compareTo(KaleoNode kaleoNode) {

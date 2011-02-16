@@ -206,25 +206,27 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	}
 
 	public Object clone() {
-		WallEntryModelImpl clone = new WallEntryImpl();
+		WallEntryImpl wallEntryImpl = new WallEntryImpl();
 
-		clone._wallEntryId = _wallEntryId;
+		WallEntryModelImpl wallEntryModelImpl = (WallEntryModelImpl)wallEntryImpl;
 
-		clone._groupId = _groupId;
+		wallEntryImpl.setWallEntryId(getWallEntryId());
 
-		clone._companyId = _companyId;
+		wallEntryImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		wallEntryImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		wallEntryImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		wallEntryImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		wallEntryImpl.setCreateDate(getCreateDate());
 
-		clone._comments = _comments;
+		wallEntryImpl.setModifiedDate(getModifiedDate());
 
-		return clone;
+		wallEntryImpl.setComments(getComments());
+
+		return wallEntryImpl;
 	}
 
 	public int compareTo(WallEntry wallEntry) {

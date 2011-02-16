@@ -286,41 +286,43 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	}
 
 	public Object clone() {
-		KaleoInstanceTokenModelImpl clone = new KaleoInstanceTokenImpl();
+		KaleoInstanceTokenImpl kaleoInstanceTokenImpl = new KaleoInstanceTokenImpl();
 
-		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+		KaleoInstanceTokenModelImpl kaleoInstanceTokenModelImpl = (KaleoInstanceTokenModelImpl)kaleoInstanceTokenImpl;
 
-		clone._groupId = _groupId;
+		kaleoInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 
-		clone._companyId = _companyId;
+		kaleoInstanceTokenImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoInstanceTokenImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoInstanceTokenImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoInstanceTokenImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoInstanceTokenImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoInstanceTokenImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoInstanceId = _kaleoInstanceId;
+		kaleoInstanceTokenImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._parentKaleoInstanceTokenId = _parentKaleoInstanceTokenId;
+		kaleoInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
 
-		clone._currentKaleoNodeId = _currentKaleoNodeId;
+		kaleoInstanceTokenImpl.setParentKaleoInstanceTokenId(getParentKaleoInstanceTokenId());
 
-		clone._currentKaleoNodeName = _currentKaleoNodeName;
+		kaleoInstanceTokenImpl.setCurrentKaleoNodeId(getCurrentKaleoNodeId());
 
-		clone._className = _className;
+		kaleoInstanceTokenImpl.setCurrentKaleoNodeName(getCurrentKaleoNodeName());
 
-		clone._classPK = _classPK;
+		kaleoInstanceTokenImpl.setClassName(getClassName());
 
-		clone._completed = _completed;
+		kaleoInstanceTokenImpl.setClassPK(getClassPK());
 
-		clone._completionDate = _completionDate;
+		kaleoInstanceTokenImpl.setCompleted(getCompleted());
 
-		return clone;
+		kaleoInstanceTokenImpl.setCompletionDate(getCompletionDate());
+
+		return kaleoInstanceTokenImpl;
 	}
 
 	public int compareTo(KaleoInstanceToken kaleoInstanceToken) {

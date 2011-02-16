@@ -198,23 +198,25 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public Object clone() {
-		JIRAChangeItemModelImpl clone = new JIRAChangeItemImpl();
+		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
 
-		clone._jiraChangeItemId = _jiraChangeItemId;
+		JIRAChangeItemModelImpl jiraChangeItemModelImpl = (JIRAChangeItemModelImpl)jiraChangeItemImpl;
 
-		clone._jiraChangeGroupId = _jiraChangeGroupId;
+		jiraChangeItemImpl.setJiraChangeItemId(getJiraChangeItemId());
 
-		clone._field = _field;
+		jiraChangeItemImpl.setJiraChangeGroupId(getJiraChangeGroupId());
 
-		clone._oldValue = _oldValue;
+		jiraChangeItemImpl.setField(getField());
 
-		clone._oldString = _oldString;
+		jiraChangeItemImpl.setOldValue(getOldValue());
 
-		clone._newValue = _newValue;
+		jiraChangeItemImpl.setOldString(getOldString());
 
-		clone._newString = _newString;
+		jiraChangeItemImpl.setNewValue(getNewValue());
 
-		return clone;
+		jiraChangeItemImpl.setNewString(getNewString());
+
+		return jiraChangeItemImpl;
 	}
 
 	public int compareTo(JIRAChangeItem jiraChangeItem) {

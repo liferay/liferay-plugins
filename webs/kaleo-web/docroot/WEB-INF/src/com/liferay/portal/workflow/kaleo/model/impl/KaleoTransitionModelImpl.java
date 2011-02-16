@@ -324,38 +324,52 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	}
 
 	public Object clone() {
-		KaleoTransitionModelImpl clone = new KaleoTransitionImpl();
+		KaleoTransitionImpl kaleoTransitionImpl = new KaleoTransitionImpl();
 
-		clone._kaleoTransitionId = _kaleoTransitionId;
+		KaleoTransitionModelImpl kaleoTransitionModelImpl = (KaleoTransitionModelImpl)kaleoTransitionImpl;
 
-		clone._groupId = _groupId;
+		kaleoTransitionImpl.setKaleoTransitionId(getKaleoTransitionId());
 
-		clone._companyId = _companyId;
+		kaleoTransitionImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoTransitionImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoTransitionImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoTransitionImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoTransitionImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
-		clone._originalKaleoNodeId = clone._kaleoNodeId = _kaleoNodeId;
-		clone._originalName = clone._name = _name;
+		kaleoTransitionImpl.setModifiedDate(getModifiedDate());
 
-		clone._description = _description;
+		kaleoTransitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._sourceKaleoNodeId = _sourceKaleoNodeId;
+		kaleoTransitionImpl.setKaleoNodeId(getKaleoNodeId());
 
-		clone._sourceKaleoNodeName = _sourceKaleoNodeName;
+		kaleoTransitionModelImpl._originalKaleoNodeId = kaleoTransitionModelImpl._kaleoNodeId;
 
-		clone._targetKaleoNodeId = _targetKaleoNodeId;
+		kaleoTransitionModelImpl._setOriginalKaleoNodeId = false;
+		kaleoTransitionImpl.setName(getName());
 
-		clone._targetKaleoNodeName = _targetKaleoNodeName;
-		clone._originalDefaultTransition = clone._defaultTransition = _defaultTransition;
+		kaleoTransitionModelImpl._originalName = kaleoTransitionModelImpl._name;
 
-		return clone;
+		kaleoTransitionImpl.setDescription(getDescription());
+
+		kaleoTransitionImpl.setSourceKaleoNodeId(getSourceKaleoNodeId());
+
+		kaleoTransitionImpl.setSourceKaleoNodeName(getSourceKaleoNodeName());
+
+		kaleoTransitionImpl.setTargetKaleoNodeId(getTargetKaleoNodeId());
+
+		kaleoTransitionImpl.setTargetKaleoNodeName(getTargetKaleoNodeName());
+
+		kaleoTransitionImpl.setDefaultTransition(getDefaultTransition());
+
+		kaleoTransitionModelImpl._originalDefaultTransition = kaleoTransitionModelImpl._defaultTransition;
+
+		kaleoTransitionModelImpl._setOriginalDefaultTransition = false;
+
+		return kaleoTransitionImpl;
 	}
 
 	public int compareTo(KaleoTransition kaleoTransition) {

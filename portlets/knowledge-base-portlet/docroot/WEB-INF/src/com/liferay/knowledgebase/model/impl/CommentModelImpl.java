@@ -307,29 +307,49 @@ public class CommentModelImpl extends BaseModelImpl<Comment>
 	}
 
 	public Object clone() {
-		CommentModelImpl clone = new CommentImpl();
+		CommentImpl commentImpl = new CommentImpl();
 
-		clone._originalUuid = clone._uuid = _uuid;
+		CommentModelImpl commentModelImpl = (CommentModelImpl)commentImpl;
 
-		clone._commentId = _commentId;
-		clone._originalGroupId = clone._groupId = _groupId;
+		commentImpl.setUuid(getUuid());
 
-		clone._companyId = _companyId;
-		clone._originalUserId = clone._userId = _userId;
+		commentModelImpl._originalUuid = commentModelImpl._uuid;
 
-		clone._userName = _userName;
+		commentImpl.setCommentId(getCommentId());
 
-		clone._createDate = _createDate;
+		commentImpl.setGroupId(getGroupId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalClassNameId = clone._classNameId = _classNameId;
-		clone._originalClassPK = clone._classPK = _classPK;
+		commentModelImpl._originalGroupId = commentModelImpl._groupId;
 
-		clone._content = _content;
+		commentModelImpl._setOriginalGroupId = false;
+		commentImpl.setCompanyId(getCompanyId());
 
-		clone._helpful = _helpful;
+		commentImpl.setUserId(getUserId());
 
-		return clone;
+		commentModelImpl._originalUserId = commentModelImpl._userId;
+
+		commentModelImpl._setOriginalUserId = false;
+		commentImpl.setUserName(getUserName());
+
+		commentImpl.setCreateDate(getCreateDate());
+
+		commentImpl.setModifiedDate(getModifiedDate());
+
+		commentImpl.setClassNameId(getClassNameId());
+
+		commentModelImpl._originalClassNameId = commentModelImpl._classNameId;
+
+		commentModelImpl._setOriginalClassNameId = false;
+		commentImpl.setClassPK(getClassPK());
+
+		commentModelImpl._originalClassPK = commentModelImpl._classPK;
+
+		commentModelImpl._setOriginalClassPK = false;
+		commentImpl.setContent(getContent());
+
+		commentImpl.setHelpful(getHelpful());
+
+		return commentImpl;
 	}
 
 	public int compareTo(Comment comment) {

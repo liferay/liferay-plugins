@@ -437,67 +437,69 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public Object clone() {
-		KaleoLogModelImpl clone = new KaleoLogImpl();
+		KaleoLogImpl kaleoLogImpl = new KaleoLogImpl();
 
-		clone._kaleoLogId = _kaleoLogId;
+		KaleoLogModelImpl kaleoLogModelImpl = (KaleoLogModelImpl)kaleoLogImpl;
 
-		clone._groupId = _groupId;
+		kaleoLogImpl.setKaleoLogId(getKaleoLogId());
 
-		clone._companyId = _companyId;
+		kaleoLogImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoLogImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoLogImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoLogImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoLogImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoLogImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoInstanceId = _kaleoInstanceId;
+		kaleoLogImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+		kaleoLogImpl.setKaleoInstanceId(getKaleoInstanceId());
 
-		clone._kaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+		kaleoLogImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 
-		clone._kaleoNodeId = _kaleoNodeId;
+		kaleoLogImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
 
-		clone._kaleoNodeName = _kaleoNodeName;
+		kaleoLogImpl.setKaleoNodeId(getKaleoNodeId());
 
-		clone._terminalKaleoNode = _terminalKaleoNode;
+		kaleoLogImpl.setKaleoNodeName(getKaleoNodeName());
 
-		clone._kaleoActionId = _kaleoActionId;
+		kaleoLogImpl.setTerminalKaleoNode(getTerminalKaleoNode());
 
-		clone._kaleoActionName = _kaleoActionName;
+		kaleoLogImpl.setKaleoActionId(getKaleoActionId());
 
-		clone._kaleoActionDescription = _kaleoActionDescription;
+		kaleoLogImpl.setKaleoActionName(getKaleoActionName());
 
-		clone._previousKaleoNodeId = _previousKaleoNodeId;
+		kaleoLogImpl.setKaleoActionDescription(getKaleoActionDescription());
 
-		clone._previousKaleoNodeName = _previousKaleoNodeName;
+		kaleoLogImpl.setPreviousKaleoNodeId(getPreviousKaleoNodeId());
 
-		clone._previousAssigneeClassName = _previousAssigneeClassName;
+		kaleoLogImpl.setPreviousKaleoNodeName(getPreviousKaleoNodeName());
 
-		clone._previousAssigneeClassPK = _previousAssigneeClassPK;
+		kaleoLogImpl.setPreviousAssigneeClassName(getPreviousAssigneeClassName());
 
-		clone._currentAssigneeClassName = _currentAssigneeClassName;
+		kaleoLogImpl.setPreviousAssigneeClassPK(getPreviousAssigneeClassPK());
 
-		clone._currentAssigneeClassPK = _currentAssigneeClassPK;
+		kaleoLogImpl.setCurrentAssigneeClassName(getCurrentAssigneeClassName());
 
-		clone._type = _type;
+		kaleoLogImpl.setCurrentAssigneeClassPK(getCurrentAssigneeClassPK());
 
-		clone._comment = _comment;
+		kaleoLogImpl.setType(getType());
 
-		clone._startDate = _startDate;
+		kaleoLogImpl.setComment(getComment());
 
-		clone._endDate = _endDate;
+		kaleoLogImpl.setStartDate(getStartDate());
 
-		clone._duration = _duration;
+		kaleoLogImpl.setEndDate(getEndDate());
 
-		clone._workflowContext = _workflowContext;
+		kaleoLogImpl.setDuration(getDuration());
 
-		return clone;
+		kaleoLogImpl.setWorkflowContext(getWorkflowContext());
+
+		return kaleoLogImpl;
 	}
 
 	public int compareTo(KaleoLog kaleoLog) {

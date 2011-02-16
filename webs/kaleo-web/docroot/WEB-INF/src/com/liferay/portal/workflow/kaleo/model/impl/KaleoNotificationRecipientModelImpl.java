@@ -256,35 +256,37 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public Object clone() {
-		KaleoNotificationRecipientModelImpl clone = new KaleoNotificationRecipientImpl();
+		KaleoNotificationRecipientImpl kaleoNotificationRecipientImpl = new KaleoNotificationRecipientImpl();
 
-		clone._kaleoNotificationRecipientId = _kaleoNotificationRecipientId;
+		KaleoNotificationRecipientModelImpl kaleoNotificationRecipientModelImpl = (KaleoNotificationRecipientModelImpl)kaleoNotificationRecipientImpl;
 
-		clone._groupId = _groupId;
+		kaleoNotificationRecipientImpl.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
 
-		clone._companyId = _companyId;
+		kaleoNotificationRecipientImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoNotificationRecipientImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoNotificationRecipientImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoNotificationRecipientImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoNotificationRecipientImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoNotificationRecipientImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoNotificationId = _kaleoNotificationId;
+		kaleoNotificationRecipientImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._recipientClassName = _recipientClassName;
+		kaleoNotificationRecipientImpl.setKaleoNotificationId(getKaleoNotificationId());
 
-		clone._recipientClassPK = _recipientClassPK;
+		kaleoNotificationRecipientImpl.setRecipientClassName(getRecipientClassName());
 
-		clone._recipientRoleType = _recipientRoleType;
+		kaleoNotificationRecipientImpl.setRecipientClassPK(getRecipientClassPK());
 
-		clone._address = _address;
+		kaleoNotificationRecipientImpl.setRecipientRoleType(getRecipientRoleType());
 
-		return clone;
+		kaleoNotificationRecipientImpl.setAddress(getAddress());
+
+		return kaleoNotificationRecipientImpl;
 	}
 
 	public int compareTo(KaleoNotificationRecipient kaleoNotificationRecipient) {

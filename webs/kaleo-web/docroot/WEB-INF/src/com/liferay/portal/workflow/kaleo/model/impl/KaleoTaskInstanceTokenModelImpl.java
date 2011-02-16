@@ -327,47 +327,49 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public Object clone() {
-		KaleoTaskInstanceTokenModelImpl clone = new KaleoTaskInstanceTokenImpl();
+		KaleoTaskInstanceTokenImpl kaleoTaskInstanceTokenImpl = new KaleoTaskInstanceTokenImpl();
 
-		clone._kaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = (KaleoTaskInstanceTokenModelImpl)kaleoTaskInstanceTokenImpl;
 
-		clone._groupId = _groupId;
+		kaleoTaskInstanceTokenImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
 
-		clone._companyId = _companyId;
+		kaleoTaskInstanceTokenImpl.setGroupId(getGroupId());
 
-		clone._userId = _userId;
+		kaleoTaskInstanceTokenImpl.setCompanyId(getCompanyId());
 
-		clone._userName = _userName;
+		kaleoTaskInstanceTokenImpl.setUserId(getUserId());
 
-		clone._createDate = _createDate;
+		kaleoTaskInstanceTokenImpl.setUserName(getUserName());
 
-		clone._modifiedDate = _modifiedDate;
+		kaleoTaskInstanceTokenImpl.setCreateDate(getCreateDate());
 
-		clone._kaleoDefinitionId = _kaleoDefinitionId;
+		kaleoTaskInstanceTokenImpl.setModifiedDate(getModifiedDate());
 
-		clone._kaleoInstanceId = _kaleoInstanceId;
+		kaleoTaskInstanceTokenImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
-		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+		kaleoTaskInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
 
-		clone._kaleoTaskId = _kaleoTaskId;
+		kaleoTaskInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 
-		clone._kaleoTaskName = _kaleoTaskName;
+		kaleoTaskInstanceTokenImpl.setKaleoTaskId(getKaleoTaskId());
 
-		clone._className = _className;
+		kaleoTaskInstanceTokenImpl.setKaleoTaskName(getKaleoTaskName());
 
-		clone._classPK = _classPK;
+		kaleoTaskInstanceTokenImpl.setClassName(getClassName());
 
-		clone._completionUserId = _completionUserId;
+		kaleoTaskInstanceTokenImpl.setClassPK(getClassPK());
 
-		clone._completed = _completed;
+		kaleoTaskInstanceTokenImpl.setCompletionUserId(getCompletionUserId());
 
-		clone._completionDate = _completionDate;
+		kaleoTaskInstanceTokenImpl.setCompleted(getCompleted());
 
-		clone._dueDate = _dueDate;
+		kaleoTaskInstanceTokenImpl.setCompletionDate(getCompletionDate());
 
-		clone._workflowContext = _workflowContext;
+		kaleoTaskInstanceTokenImpl.setDueDate(getDueDate());
 
-		return clone;
+		kaleoTaskInstanceTokenImpl.setWorkflowContext(getWorkflowContext());
+
+		return kaleoTaskInstanceTokenImpl;
 	}
 
 	public int compareTo(KaleoTaskInstanceToken kaleoTaskInstanceToken) {

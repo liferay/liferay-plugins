@@ -207,25 +207,27 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public Object clone() {
-		JIRAActionModelImpl clone = new JIRAActionImpl();
+		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
 
-		clone._jiraActionId = _jiraActionId;
+		JIRAActionModelImpl jiraActionModelImpl = (JIRAActionModelImpl)jiraActionImpl;
 
-		clone._jiraUserId = _jiraUserId;
+		jiraActionImpl.setJiraActionId(getJiraActionId());
 
-		clone._createDate = _createDate;
+		jiraActionImpl.setJiraUserId(getJiraUserId());
 
-		clone._modifiedDate = _modifiedDate;
+		jiraActionImpl.setCreateDate(getCreateDate());
 
-		clone._jiraIssueId = _jiraIssueId;
+		jiraActionImpl.setModifiedDate(getModifiedDate());
 
-		clone._type = _type;
+		jiraActionImpl.setJiraIssueId(getJiraIssueId());
 
-		clone._body = _body;
+		jiraActionImpl.setType(getType());
 
-		clone._jiraGroupName = _jiraGroupName;
+		jiraActionImpl.setBody(getBody());
 
-		return clone;
+		jiraActionImpl.setJiraGroupName(getJiraGroupName());
+
+		return jiraActionImpl;
 	}
 
 	public int compareTo(JIRAAction jiraAction) {

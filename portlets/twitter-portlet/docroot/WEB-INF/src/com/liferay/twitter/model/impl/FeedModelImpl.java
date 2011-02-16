@@ -248,24 +248,37 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public Object clone() {
-		FeedModelImpl clone = new FeedImpl();
+		FeedImpl feedImpl = new FeedImpl();
 
-		clone._feedId = _feedId;
-		clone._originalCompanyId = clone._companyId = _companyId;
+		FeedModelImpl feedModelImpl = (FeedModelImpl)feedImpl;
 
-		clone._userId = _userId;
+		feedImpl.setFeedId(getFeedId());
 
-		clone._userName = _userName;
+		feedImpl.setCompanyId(getCompanyId());
 
-		clone._createDate = _createDate;
+		feedModelImpl._originalCompanyId = feedModelImpl._companyId;
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalTwitterUserId = clone._twitterUserId = _twitterUserId;
-		clone._originalTwitterScreenName = clone._twitterScreenName = _twitterScreenName;
+		feedModelImpl._setOriginalCompanyId = false;
+		feedImpl.setUserId(getUserId());
 
-		clone._lastStatusId = _lastStatusId;
+		feedImpl.setUserName(getUserName());
 
-		return clone;
+		feedImpl.setCreateDate(getCreateDate());
+
+		feedImpl.setModifiedDate(getModifiedDate());
+
+		feedImpl.setTwitterUserId(getTwitterUserId());
+
+		feedModelImpl._originalTwitterUserId = feedModelImpl._twitterUserId;
+
+		feedModelImpl._setOriginalTwitterUserId = false;
+		feedImpl.setTwitterScreenName(getTwitterScreenName());
+
+		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
+
+		feedImpl.setLastStatusId(getLastStatusId());
+
+		return feedImpl;
 	}
 
 	public int compareTo(Feed feed) {

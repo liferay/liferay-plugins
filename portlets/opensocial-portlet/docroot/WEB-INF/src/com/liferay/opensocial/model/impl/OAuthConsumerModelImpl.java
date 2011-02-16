@@ -233,25 +233,34 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public Object clone() {
-		OAuthConsumerModelImpl clone = new OAuthConsumerImpl();
+		OAuthConsumerImpl oAuthConsumerImpl = new OAuthConsumerImpl();
 
-		clone._oAuthConsumerId = _oAuthConsumerId;
+		OAuthConsumerModelImpl oAuthConsumerModelImpl = (OAuthConsumerModelImpl)oAuthConsumerImpl;
 
-		clone._companyId = _companyId;
+		oAuthConsumerImpl.setOAuthConsumerId(getOAuthConsumerId());
 
-		clone._createDate = _createDate;
+		oAuthConsumerImpl.setCompanyId(getCompanyId());
 
-		clone._modifiedDate = _modifiedDate;
-		clone._originalGadgetId = clone._gadgetId = _gadgetId;
-		clone._originalServiceName = clone._serviceName = _serviceName;
+		oAuthConsumerImpl.setCreateDate(getCreateDate());
 
-		clone._consumerKey = _consumerKey;
+		oAuthConsumerImpl.setModifiedDate(getModifiedDate());
 
-		clone._consumerSecret = _consumerSecret;
+		oAuthConsumerImpl.setGadgetId(getGadgetId());
 
-		clone._keyType = _keyType;
+		oAuthConsumerModelImpl._originalGadgetId = oAuthConsumerModelImpl._gadgetId;
 
-		return clone;
+		oAuthConsumerModelImpl._setOriginalGadgetId = false;
+		oAuthConsumerImpl.setServiceName(getServiceName());
+
+		oAuthConsumerModelImpl._originalServiceName = oAuthConsumerModelImpl._serviceName;
+
+		oAuthConsumerImpl.setConsumerKey(getConsumerKey());
+
+		oAuthConsumerImpl.setConsumerSecret(getConsumerSecret());
+
+		oAuthConsumerImpl.setKeyType(getKeyType());
+
+		return oAuthConsumerImpl;
 	}
 
 	public int compareTo(OAuthConsumer oAuthConsumer) {
