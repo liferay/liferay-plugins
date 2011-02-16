@@ -213,8 +213,6 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 	public Object clone() {
 		AttachmentImpl attachmentImpl = new AttachmentImpl();
 
-		AttachmentModelImpl attachmentModelImpl = attachmentImpl;
-
 		attachmentImpl.setAttachmentId(getAttachmentId());
 
 		attachmentImpl.setCompanyId(getCompanyId());

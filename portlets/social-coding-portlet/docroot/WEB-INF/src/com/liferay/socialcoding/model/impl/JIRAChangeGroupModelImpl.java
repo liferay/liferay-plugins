@@ -158,8 +158,6 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 	public Object clone() {
 		JIRAChangeGroupImpl jiraChangeGroupImpl = new JIRAChangeGroupImpl();
 
-		JIRAChangeGroupModelImpl jiraChangeGroupModelImpl = jiraChangeGroupImpl;
-
 		jiraChangeGroupImpl.setJiraChangeGroupId(getJiraChangeGroupId());
 
 		jiraChangeGroupImpl.setJiraUserId(getJiraUserId());

@@ -329,9 +329,9 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	public Object clone() {
 		FooImpl fooImpl = new FooImpl();
 
-		FooModelImpl fooModelImpl = fooImpl;
-
 		fooImpl.setUuid(getUuid());
+
+		FooModelImpl fooModelImpl = fooImpl;
 
 		fooModelImpl._originalUuid = fooModelImpl._uuid;
 

@@ -250,11 +250,11 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public Object clone() {
 		FeedImpl feedImpl = new FeedImpl();
 
-		FeedModelImpl feedModelImpl = feedImpl;
-
 		feedImpl.setFeedId(getFeedId());
 
 		feedImpl.setCompanyId(getCompanyId());
+
+		FeedModelImpl feedModelImpl = feedImpl;
 
 		feedModelImpl._originalCompanyId = feedModelImpl._companyId;
 

@@ -225,13 +225,13 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public Object clone() {
 		GadgetImpl gadgetImpl = new GadgetImpl();
 
-		GadgetModelImpl gadgetModelImpl = gadgetImpl;
-
 		gadgetImpl.setUuid(getUuid());
 
 		gadgetImpl.setGadgetId(getGadgetId());
 
 		gadgetImpl.setCompanyId(getCompanyId());
+
+		GadgetModelImpl gadgetModelImpl = gadgetImpl;
 
 		gadgetModelImpl._originalCompanyId = gadgetModelImpl._companyId;
 

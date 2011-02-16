@@ -209,8 +209,6 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	public Object clone() {
 		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
 
-		JIRAActionModelImpl jiraActionModelImpl = jiraActionImpl;
-
 		jiraActionImpl.setJiraActionId(getJiraActionId());
 
 		jiraActionImpl.setJiraUserId(getJiraUserId());

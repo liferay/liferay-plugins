@@ -251,8 +251,6 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	public Object clone() {
 		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
 
-		WSRPConsumerModelImpl wsrpConsumerModelImpl = wsrpConsumerImpl;
-
 		wsrpConsumerImpl.setUuid(getUuid());
 
 		wsrpConsumerImpl.setWsrpConsumerId(getWsrpConsumerId());

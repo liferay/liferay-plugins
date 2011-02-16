@@ -362,8 +362,6 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	public Object clone() {
 		MessageImpl messageImpl = new MessageImpl();
 
-		MessageModelImpl messageModelImpl = messageImpl;
-
 		messageImpl.setMessageId(getMessageId());
 
 		messageImpl.setCompanyId(getCompanyId());
@@ -379,6 +377,8 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		messageImpl.setAccountId(getAccountId());
 
 		messageImpl.setFolderId(getFolderId());
+
+		MessageModelImpl messageModelImpl = messageImpl;
 
 		messageModelImpl._originalFolderId = messageModelImpl._folderId;
 

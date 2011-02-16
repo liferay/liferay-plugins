@@ -180,8 +180,6 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	public Object clone() {
 		EntryImpl entryImpl = new EntryImpl();
 
-		EntryModelImpl entryModelImpl = entryImpl;
-
 		entryImpl.setEntryId(getEntryId());
 
 		entryImpl.setCreateDate(getCreateDate());

@@ -200,8 +200,6 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	public Object clone() {
 		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
 
-		JIRAChangeItemModelImpl jiraChangeItemModelImpl = jiraChangeItemImpl;
-
 		jiraChangeItemImpl.setJiraChangeItemId(getJiraChangeItemId());
 
 		jiraChangeItemImpl.setJiraChangeGroupId(getJiraChangeGroupId());

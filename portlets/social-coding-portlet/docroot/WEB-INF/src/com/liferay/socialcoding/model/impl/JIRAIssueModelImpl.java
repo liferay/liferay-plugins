@@ -258,8 +258,6 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	public Object clone() {
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
-		JIRAIssueModelImpl jiraIssueModelImpl = jiraIssueImpl;
-
 		jiraIssueImpl.setJiraIssueId(getJiraIssueId());
 
 		jiraIssueImpl.setCreateDate(getCreateDate());
@@ -269,6 +267,8 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		jiraIssueImpl.setProjectId(getProjectId());
 
 		jiraIssueImpl.setKey(getKey());
+
+		JIRAIssueModelImpl jiraIssueModelImpl = jiraIssueImpl;
 
 		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
 

@@ -248,8 +248,6 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 	public Object clone() {
 		FolderImpl folderImpl = new FolderImpl();
 
-		FolderModelImpl folderModelImpl = folderImpl;
-
 		folderImpl.setFolderId(getFolderId());
 
 		folderImpl.setCompanyId(getCompanyId());
@@ -263,6 +261,8 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		folderImpl.setModifiedDate(getModifiedDate());
 
 		folderImpl.setAccountId(getAccountId());
+
+		FolderModelImpl folderModelImpl = folderImpl;
 
 		folderModelImpl._originalAccountId = folderModelImpl._accountId;
 

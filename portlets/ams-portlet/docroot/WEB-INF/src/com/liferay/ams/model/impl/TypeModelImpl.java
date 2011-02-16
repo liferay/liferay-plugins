@@ -144,8 +144,6 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	public Object clone() {
 		TypeImpl typeImpl = new TypeImpl();
 
-		TypeModelImpl typeModelImpl = typeImpl;
-
 		typeImpl.setTypeId(getTypeId());
 
 		typeImpl.setGroupId(getGroupId());

@@ -225,11 +225,11 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	public Object clone() {
 		StatusImpl statusImpl = new StatusImpl();
 
-		StatusModelImpl statusModelImpl = statusImpl;
-
 		statusImpl.setStatusId(getStatusId());
 
 		statusImpl.setUserId(getUserId());
+
+		StatusModelImpl statusModelImpl = statusImpl;
 
 		statusModelImpl._originalUserId = statusModelImpl._userId;
 

@@ -256,8 +256,6 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	public Object clone() {
 		DefinitionImpl definitionImpl = new DefinitionImpl();
 
-		DefinitionModelImpl definitionModelImpl = definitionImpl;
-
 		definitionImpl.setDefinitionId(getDefinitionId());
 
 		definitionImpl.setGroupId(getGroupId());

@@ -221,8 +221,6 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	public Object clone() {
 		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
 
-		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = wsrpConsumerPortletImpl;
-
 		wsrpConsumerPortletImpl.setUuid(getUuid());
 
 		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
@@ -234,6 +232,8 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		wsrpConsumerPortletImpl.setModifiedDate(getModifiedDate());
 
 		wsrpConsumerPortletImpl.setWsrpConsumerId(getWsrpConsumerId());
+
+		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = wsrpConsumerPortletImpl;
 
 		wsrpConsumerPortletModelImpl._originalWsrpConsumerId = wsrpConsumerPortletModelImpl._wsrpConsumerId;
 

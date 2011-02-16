@@ -235,8 +235,6 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	public Object clone() {
 		OAuthConsumerImpl oAuthConsumerImpl = new OAuthConsumerImpl();
 
-		OAuthConsumerModelImpl oAuthConsumerModelImpl = oAuthConsumerImpl;
-
 		oAuthConsumerImpl.setOAuthConsumerId(getOAuthConsumerId());
 
 		oAuthConsumerImpl.setCompanyId(getCompanyId());
@@ -246,6 +244,8 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		oAuthConsumerImpl.setModifiedDate(getModifiedDate());
 
 		oAuthConsumerImpl.setGadgetId(getGadgetId());
+
+		OAuthConsumerModelImpl oAuthConsumerModelImpl = oAuthConsumerImpl;
 
 		oAuthConsumerModelImpl._originalGadgetId = oAuthConsumerModelImpl._gadgetId;
 

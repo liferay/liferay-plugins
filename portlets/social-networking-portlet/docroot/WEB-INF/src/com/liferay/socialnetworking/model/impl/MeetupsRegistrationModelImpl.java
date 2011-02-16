@@ -238,13 +238,13 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	public Object clone() {
 		MeetupsRegistrationImpl meetupsRegistrationImpl = new MeetupsRegistrationImpl();
 
-		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = meetupsRegistrationImpl;
-
 		meetupsRegistrationImpl.setMeetupsRegistrationId(getMeetupsRegistrationId());
 
 		meetupsRegistrationImpl.setCompanyId(getCompanyId());
 
 		meetupsRegistrationImpl.setUserId(getUserId());
+
+		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = meetupsRegistrationImpl;
 
 		meetupsRegistrationModelImpl._originalUserId = meetupsRegistrationModelImpl._userId;
 
