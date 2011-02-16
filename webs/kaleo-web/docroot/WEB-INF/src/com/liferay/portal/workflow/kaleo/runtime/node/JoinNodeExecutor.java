@@ -22,6 +22,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
+import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
 
 import java.io.Serializable;
 
@@ -34,6 +35,19 @@ import java.util.Map;
 public class JoinNodeExecutor extends BaseNodeExecutor {
 
 	protected void doEnter(
+			KaleoNode currentKaleoNode, ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
+		KaleoInstanceToken kaleoInstanceToken =
+			executionContext.getKaleoInstanceToken();
+
+		kaleoInstanceToken =
+			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
+				kaleoInstanceToken.getKaleoInstanceTokenId());
+
+	}
+
+	protected void doExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException {
@@ -44,10 +58,6 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
-
-		kaleoInstanceToken =
-			kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
-				kaleoInstanceToken.getKaleoInstanceTokenId());
 
 		KaleoInstanceToken parentKaleoInstanceToken =
 			kaleoInstanceToken.getParentKaleoInstanceToken();

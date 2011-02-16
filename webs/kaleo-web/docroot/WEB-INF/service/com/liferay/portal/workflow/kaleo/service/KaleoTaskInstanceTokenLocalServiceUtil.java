@@ -322,6 +322,14 @@ public class KaleoTaskInstanceTokenLocalServiceUtil {
 			orderByComparator, serviceContext);
 	}
 
+	public static com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
+		long kaleoInstanceId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKaleoTaskInstanceTokens(kaleoInstanceId, kaleoTaskId);
+	}
+
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		long kaleoInstanceId, java.lang.Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,

@@ -277,8 +277,6 @@
 			<basic name="kaleoNodeId" />
 			<basic name="name" />
 			<basic name="description" />
-			<basic name="dueDateDuration" />
-			<basic name="dueDateScale" />
 			<transient name="primaryKey" />
 			<transient name="userUuid" />
 		</attributes>
@@ -371,6 +369,60 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerModelImpl">
+		<attributes>
+			<id name="kaleoTimerId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoNodeId" />
+			<basic name="parentKaleoNodeId" />
+			<basic name="name" />
+			<basic name="defaultTimer" />
+			<basic name="description" />
+			<basic name="duration" />
+			<basic name="scale" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerInstanceTokenModelImpl">
+		<attributes>
+			<id name="kaleoTimerInstanceTokenId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="kaleoDefinitionId" />
+			<basic name="kaleoInstanceId" />
+			<basic name="kaleoInstanceTokenId" />
+			<basic name="kaleoTimerId" />
+			<basic name="kaleoTimerName" />
+			<basic name="completionUserId" />
+			<basic name="completed" />
+			<basic name="completionDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="workflowContext" />
+			<transient name="completionUserUuid" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionModelImpl">
 		<attributes>
 			<id name="kaleoTransitionId" />
@@ -449,6 +501,14 @@
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl" name="KaleoTaskInstanceToken">
 		<table name="KaleoTaskInstanceToken" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerImpl" name="KaleoTimer">
+		<table name="KaleoTimer" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerInstanceTokenImpl" name="KaleoTimerInstanceToken">
+		<table name="KaleoTimerInstanceToken" />
 		<attributes />
 	</entity>
 	<entity class="com.liferay.portal.workflow.kaleo.model.impl.KaleoTransitionImpl" name="KaleoTransition">

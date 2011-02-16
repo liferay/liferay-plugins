@@ -420,6 +420,44 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
 
 	/**
+	* Finds the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException} if it could not be found.
+	*
+	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoTaskId the kaleo task ID to search with
+	* @return the matching kaleo task instance token
+	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken findByKII_KTI(
+		long kaleoInstanceId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
+
+	/**
+	* Finds the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoTaskId the kaleo task ID to search with
+	* @return the matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchByKII_KTI(
+		long kaleoInstanceId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Finds the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoTaskId the kaleo task ID to search with
+	* @return the matching kaleo task instance token, or <code>null</code> if a matching kaleo task instance token could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchByKII_KTI(
+		long kaleoInstanceId, long kaleoTaskId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Finds all the kaleo task instance tokens.
 	*
 	* @return the kaleo task instance tokens
@@ -490,6 +528,17 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Removes the kaleo task instance token where kaleoInstanceId = &#63; and kaleoTaskId = &#63; from the database.
+	*
+	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoTaskId the kaleo task ID to search with
+	* @throws SystemException if a system exception occurred
+	*/
+	public void removeByKII_KTI(long kaleoInstanceId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException;
+
+	/**
 	* Removes all the kaleo task instance tokens from the database.
 	*
 	* @throws SystemException if a system exception occurred
@@ -525,6 +574,17 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* @throws SystemException if a system exception occurred
 	*/
 	public int countByKaleoInstanceId(long kaleoInstanceId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Counts all the kaleo task instance tokens where kaleoInstanceId = &#63; and kaleoTaskId = &#63;.
+	*
+	* @param kaleoInstanceId the kaleo instance ID to search with
+	* @param kaleoTaskId the kaleo task ID to search with
+	* @return the number of matching kaleo task instance tokens
+	* @throws SystemException if a system exception occurred
+	*/
+	public int countByKII_KTI(long kaleoInstanceId, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

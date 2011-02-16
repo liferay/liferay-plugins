@@ -91,6 +91,14 @@ public class KaleoTaskAssignmentLocalServiceImpl
 	}
 
 	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
+			long kaleoNodeId, long kaleoTaskId)
+		throws SystemException {
+
+		return kaleoTaskAssignmentPersistence.findByKNI_KTI(
+			kaleoNodeId, kaleoTaskId);
+	}
+
+	public List<KaleoTaskAssignment> getKaleoTaskAssignments(
 			String assigneeClassName, long kaleoTaskId)
 		throws SystemException {
 

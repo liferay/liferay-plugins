@@ -67,6 +67,16 @@
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoTimerLocalServiceImpl" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil">
+		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService" />
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoTimerInstanceTokenLocalServiceImpl" />
+	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil">
+		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService" />
+	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerInstanceTokenPersistence" class="com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerInstanceTokenPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService" class="com.liferay.portal.workflow.kaleo.service.impl.KaleoTransitionLocalServiceImpl" />
 	<bean id="com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalServiceUtil" class="com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalServiceUtil">
 		<property name="service" ref="com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService" />

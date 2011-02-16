@@ -269,6 +269,12 @@ public interface KaleoTaskInstanceTokenLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken getKaleoTaskInstanceTokens(
+		long kaleoInstanceId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> getKaleoTaskInstanceTokens(
 		long kaleoInstanceId, java.lang.Boolean completed, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator,

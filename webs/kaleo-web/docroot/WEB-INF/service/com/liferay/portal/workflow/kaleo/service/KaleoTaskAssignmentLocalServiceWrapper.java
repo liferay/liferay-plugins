@@ -253,6 +253,13 @@ public class KaleoTaskAssignmentLocalServiceWrapper
 	}
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		long kaleoNodeId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(kaleoNodeId,
+			kaleoTaskId);
+	}
+
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kaleoTaskAssignmentLocalService.getKaleoTaskAssignments(assigneeClassName,

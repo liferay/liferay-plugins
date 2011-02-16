@@ -191,7 +191,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public void setKaleoInstanceId(long kaleoInstanceId) {
+		if (!_setOriginalKaleoInstanceId) {
+			_setOriginalKaleoInstanceId = true;
+
+			_originalKaleoInstanceId = _kaleoInstanceId;
+		}
+
 		_kaleoInstanceId = kaleoInstanceId;
+	}
+
+	public long getOriginalKaleoInstanceId() {
+		return _originalKaleoInstanceId;
 	}
 
 	public long getKaleoInstanceTokenId() {
@@ -207,7 +217,17 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public void setKaleoTaskId(long kaleoTaskId) {
+		if (!_setOriginalKaleoTaskId) {
+			_setOriginalKaleoTaskId = true;
+
+			_originalKaleoTaskId = _kaleoTaskId;
+		}
+
 		_kaleoTaskId = kaleoTaskId;
+	}
+
+	public long getOriginalKaleoTaskId() {
+		return _originalKaleoTaskId;
 	}
 
 	public String getKaleoTaskName() {
@@ -329,8 +349,6 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	public Object clone() {
 		KaleoTaskInstanceTokenImpl kaleoTaskInstanceTokenImpl = new KaleoTaskInstanceTokenImpl();
 
-		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = kaleoTaskInstanceTokenImpl;
-
 		kaleoTaskInstanceTokenImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
 
 		kaleoTaskInstanceTokenImpl.setGroupId(getGroupId());
@@ -349,10 +367,18 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
 
+		KaleoTaskInstanceTokenModelImpl kaleoTaskInstanceTokenModelImpl = kaleoTaskInstanceTokenImpl;
+
+		kaleoTaskInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTaskInstanceTokenModelImpl._kaleoInstanceId;
+
+		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
 		kaleoTaskInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 
 		kaleoTaskInstanceTokenImpl.setKaleoTaskId(getKaleoTaskId());
 
+		kaleoTaskInstanceTokenModelImpl._originalKaleoTaskId = kaleoTaskInstanceTokenModelImpl._kaleoTaskId;
+
+		kaleoTaskInstanceTokenModelImpl._setOriginalKaleoTaskId = false;
 		kaleoTaskInstanceTokenImpl.setKaleoTaskName(getKaleoTaskName());
 
 		kaleoTaskInstanceTokenImpl.setClassName(getClassName());
@@ -566,8 +592,12 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	private Date _modifiedDate;
 	private long _kaleoDefinitionId;
 	private long _kaleoInstanceId;
+	private long _originalKaleoInstanceId;
+	private boolean _setOriginalKaleoInstanceId;
 	private long _kaleoInstanceTokenId;
 	private long _kaleoTaskId;
+	private long _originalKaleoTaskId;
+	private boolean _setOriginalKaleoTaskId;
 	private String _kaleoTaskName;
 	private String _className;
 	private long _classPK;

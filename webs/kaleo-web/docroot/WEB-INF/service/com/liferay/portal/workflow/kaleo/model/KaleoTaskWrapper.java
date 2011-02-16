@@ -264,42 +264,6 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask.setDescription(description);
 	}
 
-	/**
-	* Gets the due date duration of this kaleo task.
-	*
-	* @return the due date duration of this kaleo task
-	*/
-	public double getDueDateDuration() {
-		return _kaleoTask.getDueDateDuration();
-	}
-
-	/**
-	* Sets the due date duration of this kaleo task.
-	*
-	* @param dueDateDuration the due date duration of this kaleo task
-	*/
-	public void setDueDateDuration(double dueDateDuration) {
-		_kaleoTask.setDueDateDuration(dueDateDuration);
-	}
-
-	/**
-	* Gets the due date scale of this kaleo task.
-	*
-	* @return the due date scale of this kaleo task
-	*/
-	public java.lang.String getDueDateScale() {
-		return _kaleoTask.getDueDateScale();
-	}
-
-	/**
-	* Sets the due date scale of this kaleo task.
-	*
-	* @param dueDateScale the due date scale of this kaleo task
-	*/
-	public void setDueDateScale(java.lang.String dueDateScale) {
-		_kaleoTask.setDueDateScale(dueDateScale);
-	}
-
 	public boolean isNew() {
 		return _kaleoTask.isNew();
 	}

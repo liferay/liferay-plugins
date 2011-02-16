@@ -376,13 +376,13 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 	public Object clone() {
 		KaleoDefinitionImpl kaleoDefinitionImpl = new KaleoDefinitionImpl();
 
-		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = kaleoDefinitionImpl;
-
 		kaleoDefinitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
 		kaleoDefinitionImpl.setGroupId(getGroupId());
 
 		kaleoDefinitionImpl.setCompanyId(getCompanyId());
+
+		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = kaleoDefinitionImpl;
 
 		kaleoDefinitionModelImpl._originalCompanyId = kaleoDefinitionModelImpl._companyId;
 

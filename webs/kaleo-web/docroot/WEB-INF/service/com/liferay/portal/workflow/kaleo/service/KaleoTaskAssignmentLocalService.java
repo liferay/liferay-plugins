@@ -231,6 +231,11 @@ public interface KaleoTaskAssignmentLocalService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
+		long kaleoNodeId, long kaleoTaskId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> getKaleoTaskAssignments(
 		java.lang.String assigneeClassName, long kaleoTaskId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

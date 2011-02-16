@@ -326,8 +326,6 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 	public Object clone() {
 		KaleoTransitionImpl kaleoTransitionImpl = new KaleoTransitionImpl();
 
-		KaleoTransitionModelImpl kaleoTransitionModelImpl = kaleoTransitionImpl;
-
 		kaleoTransitionImpl.setKaleoTransitionId(getKaleoTransitionId());
 
 		kaleoTransitionImpl.setGroupId(getGroupId());
@@ -345,6 +343,8 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		kaleoTransitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
 
 		kaleoTransitionImpl.setKaleoNodeId(getKaleoNodeId());
+
+		KaleoTransitionModelImpl kaleoTransitionModelImpl = kaleoTransitionImpl;
 
 		kaleoTransitionModelImpl._originalKaleoNodeId = kaleoTransitionModelImpl._kaleoNodeId;
 

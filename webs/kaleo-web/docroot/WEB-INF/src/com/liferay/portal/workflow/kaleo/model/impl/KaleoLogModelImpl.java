@@ -439,8 +439,6 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	public Object clone() {
 		KaleoLogImpl kaleoLogImpl = new KaleoLogImpl();
 
-		KaleoLogModelImpl kaleoLogModelImpl = kaleoLogImpl;
-
 		kaleoLogImpl.setKaleoLogId(getKaleoLogId());
 
 		kaleoLogImpl.setGroupId(getGroupId());

@@ -41,6 +41,29 @@
 			</transition>
 		</transitions>
 	</task>
+	<state>
+		<name>delay</name>
+		<timers>
+			<timer>
+				<name>test</name>
+				<default>true</default>
+				<delay>
+					<duration>10</duration>
+					<scale>minute</scale>
+				</delay>
+				<actions><notification>
+					<name>test1</name>
+					<execution-type>onTimer</execution-type>
+					<template>asdfasdfasdfasdf</template>
+					<template-language>text</template-language>
+					<notification-type>email</notification-type>
+				</notification></actions>
+				<reassignments>
+					<roles></roles>
+				</reassignments>
+			</timer>
+		</timers>
+	</state>
 	<task>
 		<name>review</name>
 		<actions>

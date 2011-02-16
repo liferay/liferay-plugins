@@ -255,8 +255,6 @@
 		<field name="kaleoNodeId" type="long" />
 		<field name="name" type="String" />
 		<field name="description" type="String" />
-		<field name="dueDateDuration" type="double" />
-		<field name="dueDateScale" type="String" />
 	</model>
 	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment">
 		<field name="kaleoTaskAssignmentId" type="long" />
@@ -323,6 +321,49 @@
 		<field name="completed" type="boolean" />
 		<field name="completionDate" type="Date" />
 		<field name="dueDate" type="Date" />
+		<field name="workflowContext" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTimer">
+		<field name="kaleoTimerId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoNodeId" type="long" />
+		<field name="parentKaleoNodeId" type="long" />
+		<field name="name" type="String" />
+		<field name="defaultTimer" type="boolean" />
+		<field name="description" type="String" />
+		<field name="duration" type="double" />
+		<field name="scale" type="String" />
+	</model>
+	<model name="com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken">
+		<field name="kaleoTimerInstanceTokenId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="kaleoDefinitionId" type="long" />
+		<field name="kaleoInstanceId" type="long" />
+		<field name="kaleoInstanceTokenId" type="long" />
+		<field name="kaleoTimerId" type="long" />
+		<field name="kaleoTimerName" type="String">
+			<hint name="max-length">200</hint>
+		</field>
+		<field name="completionUserId" type="long" />
+		<field name="completed" type="boolean" />
+		<field name="completionDate" type="Date" />
 		<field name="workflowContext" type="String">
 			<hint-collection name="CLOB" />
 		</field>

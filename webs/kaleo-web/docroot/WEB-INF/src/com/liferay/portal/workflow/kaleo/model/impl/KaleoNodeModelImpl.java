@@ -269,8 +269,6 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 	public Object clone() {
 		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
 
-		KaleoNodeModelImpl kaleoNodeModelImpl = kaleoNodeImpl;
-
 		kaleoNodeImpl.setKaleoNodeId(getKaleoNodeId());
 
 		kaleoNodeImpl.setGroupId(getGroupId());

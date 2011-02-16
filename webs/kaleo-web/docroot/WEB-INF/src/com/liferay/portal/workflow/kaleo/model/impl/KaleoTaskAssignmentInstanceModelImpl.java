@@ -298,9 +298,6 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	public Object clone() {
 		KaleoTaskAssignmentInstanceImpl kaleoTaskAssignmentInstanceImpl = new KaleoTaskAssignmentInstanceImpl();
 
-		KaleoTaskAssignmentInstanceModelImpl kaleoTaskAssignmentInstanceModelImpl =
-			kaleoTaskAssignmentInstanceImpl;
-
 		kaleoTaskAssignmentInstanceImpl.setKaleoTaskAssignmentInstanceId(getKaleoTaskAssignmentInstanceId());
 
 		kaleoTaskAssignmentInstanceImpl.setGroupId(getGroupId());

@@ -43,6 +43,8 @@ import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLoca
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalService;
+import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalService;
 import com.liferay.portal.workflow.kaleo.service.KaleoTransitionLocalService;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoActionPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoConditionPersistence;
@@ -58,6 +60,8 @@ import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskAssignment
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskPersistence;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerInstanceTokenPersistence;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTimerPersistence;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTransitionPersistence;
 
 import java.util.List;
@@ -780,6 +784,82 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the kaleo timer local service.
+	 *
+	 * @return the kaleo timer local service
+	 */
+	public KaleoTimerLocalService getKaleoTimerLocalService() {
+		return kaleoTimerLocalService;
+	}
+
+	/**
+	 * Sets the kaleo timer local service.
+	 *
+	 * @param kaleoTimerLocalService the kaleo timer local service
+	 */
+	public void setKaleoTimerLocalService(
+		KaleoTimerLocalService kaleoTimerLocalService) {
+		this.kaleoTimerLocalService = kaleoTimerLocalService;
+	}
+
+	/**
+	 * Gets the kaleo timer persistence.
+	 *
+	 * @return the kaleo timer persistence
+	 */
+	public KaleoTimerPersistence getKaleoTimerPersistence() {
+		return kaleoTimerPersistence;
+	}
+
+	/**
+	 * Sets the kaleo timer persistence.
+	 *
+	 * @param kaleoTimerPersistence the kaleo timer persistence
+	 */
+	public void setKaleoTimerPersistence(
+		KaleoTimerPersistence kaleoTimerPersistence) {
+		this.kaleoTimerPersistence = kaleoTimerPersistence;
+	}
+
+	/**
+	 * Gets the kaleo timer instance token local service.
+	 *
+	 * @return the kaleo timer instance token local service
+	 */
+	public KaleoTimerInstanceTokenLocalService getKaleoTimerInstanceTokenLocalService() {
+		return kaleoTimerInstanceTokenLocalService;
+	}
+
+	/**
+	 * Sets the kaleo timer instance token local service.
+	 *
+	 * @param kaleoTimerInstanceTokenLocalService the kaleo timer instance token local service
+	 */
+	public void setKaleoTimerInstanceTokenLocalService(
+		KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService) {
+		this.kaleoTimerInstanceTokenLocalService = kaleoTimerInstanceTokenLocalService;
+	}
+
+	/**
+	 * Gets the kaleo timer instance token persistence.
+	 *
+	 * @return the kaleo timer instance token persistence
+	 */
+	public KaleoTimerInstanceTokenPersistence getKaleoTimerInstanceTokenPersistence() {
+		return kaleoTimerInstanceTokenPersistence;
+	}
+
+	/**
+	 * Sets the kaleo timer instance token persistence.
+	 *
+	 * @param kaleoTimerInstanceTokenPersistence the kaleo timer instance token persistence
+	 */
+	public void setKaleoTimerInstanceTokenPersistence(
+		KaleoTimerInstanceTokenPersistence kaleoTimerInstanceTokenPersistence) {
+		this.kaleoTimerInstanceTokenPersistence = kaleoTimerInstanceTokenPersistence;
+	}
+
+	/**
 	 * Gets the kaleo transition local service.
 	 *
 	 * @return the kaleo transition local service
@@ -1017,6 +1097,14 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenFinder.class)
 	protected KaleoTaskInstanceTokenFinder kaleoTaskInstanceTokenFinder;
+	@BeanReference(type = KaleoTimerLocalService.class)
+	protected KaleoTimerLocalService kaleoTimerLocalService;
+	@BeanReference(type = KaleoTimerPersistence.class)
+	protected KaleoTimerPersistence kaleoTimerPersistence;
+	@BeanReference(type = KaleoTimerInstanceTokenLocalService.class)
+	protected KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService;
+	@BeanReference(type = KaleoTimerInstanceTokenPersistence.class)
+	protected KaleoTimerInstanceTokenPersistence kaleoTimerInstanceTokenPersistence;
 	@BeanReference(type = KaleoTransitionLocalService.class)
 	protected KaleoTransitionLocalService kaleoTransitionLocalService;
 	@BeanReference(type = KaleoTransitionPersistence.class)

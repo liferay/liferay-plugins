@@ -276,8 +276,6 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	public Object clone() {
 		KaleoConditionImpl kaleoConditionImpl = new KaleoConditionImpl();
 
-		KaleoConditionModelImpl kaleoConditionModelImpl = kaleoConditionImpl;
-
 		kaleoConditionImpl.setKaleoConditionId(getKaleoConditionId());
 
 		kaleoConditionImpl.setGroupId(getGroupId());
@@ -293,6 +291,8 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		kaleoConditionImpl.setModifiedDate(getModifiedDate());
 
 		kaleoConditionImpl.setClassName(getClassName());
+
+		KaleoConditionModelImpl kaleoConditionModelImpl = kaleoConditionImpl;
 
 		kaleoConditionModelImpl._originalClassName = kaleoConditionModelImpl._className;
 

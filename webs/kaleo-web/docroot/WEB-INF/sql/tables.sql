@@ -180,9 +180,7 @@ create table KaleoTask (
 	kaleoDefinitionId LONG,
 	kaleoNodeId LONG,
 	name VARCHAR(75) null,
-	description VARCHAR(75) null,
-	dueDateDuration DOUBLE,
-	dueDateScale VARCHAR(75) null
+	description VARCHAR(75) null
 );
 
 create table KaleoTaskAssignment (
@@ -242,6 +240,43 @@ create table KaleoTaskInstanceToken (
 	completed BOOLEAN,
 	completionDate DATE null,
 	dueDate DATE null,
+	workflowContext TEXT null
+);
+
+create table KaleoTimer (
+	kaleoTimerId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(200) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	kaleoDefinitionId LONG,
+	kaleoNodeId LONG,
+	parentKaleoNodeId LONG,
+	name VARCHAR(75) null,
+	defaultTimer BOOLEAN,
+	description VARCHAR(75) null,
+	duration DOUBLE,
+	scale VARCHAR(75) null
+);
+
+create table KaleoTimerInstanceToken (
+	kaleoTimerInstanceTokenId LONG not null primary key,
+	groupId LONG,
+	companyId LONG,
+	userId LONG,
+	userName VARCHAR(200) null,
+	createDate DATE null,
+	modifiedDate DATE null,
+	kaleoDefinitionId LONG,
+	kaleoInstanceId LONG,
+	kaleoInstanceTokenId LONG,
+	kaleoTimerId LONG,
+	kaleoTimerName VARCHAR(200) null,
+	completionUserId LONG,
+	completed BOOLEAN,
+	completionDate DATE null,
 	workflowContext TEXT null
 );
 

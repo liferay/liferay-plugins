@@ -2847,6 +2847,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 	protected KaleoTaskAssignmentInstancePersistence kaleoTaskAssignmentInstancePersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
+	@BeanReference(type = KaleoTimerPersistence.class)
+	protected KaleoTimerPersistence kaleoTimerPersistence;
+	@BeanReference(type = KaleoTimerInstanceTokenPersistence.class)
+	protected KaleoTimerInstanceTokenPersistence kaleoTimerInstanceTokenPersistence;
 	@BeanReference(type = KaleoTransitionPersistence.class)
 	protected KaleoTransitionPersistence kaleoTransitionPersistence;
 	@BeanReference(type = ResourcePersistence.class)

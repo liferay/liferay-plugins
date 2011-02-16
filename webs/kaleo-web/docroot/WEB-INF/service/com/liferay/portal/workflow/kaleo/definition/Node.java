@@ -24,6 +24,7 @@ import java.util.Set;
 
 /**
  * @author Michael C. Han
+ * @author Marcellus Tavares
  */
 public abstract class Node {
 
@@ -83,6 +84,14 @@ public abstract class Node {
 		return _notifications;
 	}
 
+	public Set<Timer> getTimers() {
+		if (_timers == null) {
+			return Collections.emptySet();
+		}
+
+		return _timers;
+	}
+
 	public Map<String, Transition> getTransitions() {
 		return _transitions;
 	}
@@ -103,11 +112,16 @@ public abstract class Node {
 		_notifications = notifications;
 	}
 
+	public void setTimers(Set<Timer> timers) {
+		_timers = timers;
+	}
+
 	private Set<Action> _actions;
 	private String _description;
 	private String _name;
 	private NodeType _nodeType;
 	private Set<Notification> _notifications;
+	private Set<Timer> _timers;
 	private Map<String, Transition> _transitions =
 		new HashMap<String, Transition>();
 

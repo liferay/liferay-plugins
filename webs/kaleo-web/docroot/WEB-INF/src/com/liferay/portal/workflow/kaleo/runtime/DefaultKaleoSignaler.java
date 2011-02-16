@@ -20,11 +20,18 @@ import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.sender.DefaultSingleDestinationMessageSender;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
+import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
+import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutor;
+import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory;
+import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Michael C. Han
@@ -33,7 +40,7 @@ public class DefaultKaleoSignaler
 	extends BaseKaleoBean implements KaleoSignaler {
 
 	public void signalEntry(
-		String transitionName, ExecutionContext executionContext)
+			String transitionName, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -50,6 +57,26 @@ public class DefaultKaleoSignaler
 			null, kaleoStartNode, executionContext);
 
 		_singleDestinationMessageSender.send(startPathElement);
+	}
+
+	public void signalExecute(
+			KaleoNode currentKaleoNode, ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
+		NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
+			NodeType.valueOf(currentKaleoNode.getType()));
+
+		List<PathElement> remainingPathElements = new ArrayList<PathElement>();
+
+		nodeExecutor.execute(
+			currentKaleoNode, executionContext, remainingPathElements);
+
+		ExecutionUtil.checkKaleoInstanceComplete(executionContext);
+
+		for (PathElement remainingPathElement : remainingPathElements) {
+			_singleDestinationMessageSender.send(remainingPathElement);
+		}
+
 	}
 
 	public void signalExit(

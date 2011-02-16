@@ -15,7 +15,7 @@
 package com.liferay.portal.workflow.kaleo.runtime.calendar;
 
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
+import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 
 import java.util.Calendar;
@@ -26,14 +26,14 @@ import java.util.Date;
  */
 public class DefaultDueDateCalculator implements DueDateCalculator {
 
-	public Date getDueDate(Date startDate, DueDateDuration dueDateDuration) {
+	public Date getDueDate(Date startDate, DelayDuration delayDuration) {
 		Calendar cal = CalendarFactoryUtil.getCalendar();
 
 		cal.setTime(startDate);
 
-		DurationScale durationScale = dueDateDuration.getDurationScale();
+		DurationScale durationScale = delayDuration.getDurationScale();
 
-		int duration = (int)Math.round(dueDateDuration.getDuration());
+		int duration = (int)Math.round(delayDuration.getDuration());
 
 		if (durationScale.equals(DurationScale.SECOND)) {
 			cal.add(Calendar.SECOND, duration);

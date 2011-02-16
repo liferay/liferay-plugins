@@ -231,35 +231,6 @@ public interface KaleoTaskModel extends BaseModel<KaleoTask> {
 	 */
 	public void setDescription(String description);
 
-	/**
-	 * Gets the due date duration of this kaleo task.
-	 *
-	 * @return the due date duration of this kaleo task
-	 */
-	public double getDueDateDuration();
-
-	/**
-	 * Sets the due date duration of this kaleo task.
-	 *
-	 * @param dueDateDuration the due date duration of this kaleo task
-	 */
-	public void setDueDateDuration(double dueDateDuration);
-
-	/**
-	 * Gets the due date scale of this kaleo task.
-	 *
-	 * @return the due date scale of this kaleo task
-	 */
-	@AutoEscape
-	public String getDueDateScale();
-
-	/**
-	 * Sets the due date scale of this kaleo task.
-	 *
-	 * @param dueDateScale the due date scale of this kaleo task
-	 */
-	public void setDueDateScale(String dueDateScale);
-
 	public boolean isNew();
 
 	public void setNew(boolean n);

@@ -17,9 +17,9 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public class DueDateDuration {
+public class DelayDuration {
 
-	public DueDateDuration(double duration, DurationScale durationScale) {
+	public DelayDuration(double duration, DurationScale durationScale) {
 		_duration = duration;
 		_durationScale = durationScale;
 	}

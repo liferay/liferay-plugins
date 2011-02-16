@@ -19,7 +19,8 @@ package com.liferay.portal.workflow.kaleo.definition;
  */
 public enum ExecutionType {
 
-	ON_ASSIGNMENT("onAssignment"), ON_ENTRY("onEntry"), ON_EXIT("onExit");
+	ON_ASSIGNMENT("onAssignment"), ON_ENTRY("onEntry"), ON_EXIT("onExit"),
+	ON_TIMER("onTimer");
 
 	public static ExecutionType parse(String value) {
 		if (ON_ASSIGNMENT.getValue().equals(value)) {
@@ -30,6 +31,9 @@ public enum ExecutionType {
 		}
 		else if (ON_EXIT.getValue().equals(value)) {
 			return ON_EXIT;
+		}
+		else if (ON_TIMER.getValue().equals(value)) {
+			return ON_TIMER;
 		}
 		else {
 			throw new IllegalArgumentException("Invalid value " + value);

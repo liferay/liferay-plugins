@@ -17,11 +17,17 @@ package com.liferay.portal.workflow.kaleo.runtime.node;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
+import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
 import com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector;
+import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
+import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 import java.util.List;
 
@@ -32,8 +38,7 @@ public abstract class BaseNodeExecutor
 	extends BaseKaleoBean implements NodeExecutor {
 
 	public void enter(
-			KaleoNode currentKaleoNode, ExecutionContext executionContext,
-			List<PathElement> remainingPathElement)
+			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
@@ -41,7 +46,36 @@ public abstract class BaseNodeExecutor
 
 		kaleoInstanceToken.setCurrentKaleoNode(currentKaleoNode);
 
-		doEnter(currentKaleoNode, executionContext, remainingPathElement);
+		doEnter(currentKaleoNode, executionContext);
+
+		ActionExecutorUtil.executeKaleoActions(
+			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
+			executionContext);
+
+		NotificationUtil.sendKaleoNotifications(
+			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
+			executionContext);
+
+		List<KaleoTimer> kaleoTimers =
+			KaleoTimerLocalServiceUtil.getKaleoTimers(
+				currentKaleoNode.getKaleoNodeId());
+
+		kaleoTimerInstanceTokenLocalService.addKaleoTimerInstanceTokens(
+			executionContext.getKaleoInstanceToken(), kaleoTimers,
+			executionContext.getWorkflowContext(),
+			executionContext.getServiceContext());
+	}
+
+	public void execute(
+			KaleoNode currentKaleoNode, ExecutionContext executionContext,
+			List<PathElement> remainingPathElement)
+		throws PortalException, SystemException {
+
+		if (ExecutionUtil.isKaleoInstanceBlocked(executionContext)) {
+			return;
+		}
+
+		doExecute(currentKaleoNode, executionContext, remainingPathElement);
 	}
 
 	public void exit(
@@ -50,6 +84,14 @@ public abstract class BaseNodeExecutor
 		throws PortalException, SystemException {
 
 		doExit(currentKaleoNode, executionContext, remainingPathElement);
+
+		ActionExecutorUtil.executeKaleoActions(
+			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
+			executionContext);
+
+		NotificationUtil.sendKaleoNotifications(
+			currentKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
+			executionContext);
 	}
 
 	public TransitionSelector getTransitionSelector() {
@@ -61,6 +103,10 @@ public abstract class BaseNodeExecutor
 	}
 
 	protected abstract void doEnter(
+			KaleoNode currentKaleoNode, ExecutionContext executionContext)
+		throws PortalException, SystemException;
+
+	protected abstract void doExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElement)
 		throws PortalException, SystemException;

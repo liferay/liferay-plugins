@@ -25,7 +25,7 @@ import com.liferay.portal.workflow.kaleo.definition.AddressRecipient;
 import com.liferay.portal.workflow.kaleo.definition.Assignment;
 import com.liferay.portal.workflow.kaleo.definition.Condition;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
-import com.liferay.portal.workflow.kaleo.definition.DueDateDuration;
+import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.Fork;
 import com.liferay.portal.workflow.kaleo.definition.Join;
@@ -37,6 +37,7 @@ import com.liferay.portal.workflow.kaleo.definition.RoleRecipient;
 import com.liferay.portal.workflow.kaleo.definition.ScriptAssignment;
 import com.liferay.portal.workflow.kaleo.definition.State;
 import com.liferay.portal.workflow.kaleo.definition.Task;
+import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.definition.Transition;
 import com.liferay.portal.workflow.kaleo.definition.UserAssignment;
 import com.liferay.portal.workflow.kaleo.definition.UserRecipient;
@@ -50,6 +51,7 @@ import java.util.Set;
 
 /**
  * @author Michael C. Han
+ * @author Marcellus Tavares
  */
 public class XMLWorkflowModelParser implements WorkflowModelParser {
 
@@ -287,6 +289,19 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		}
 	}
 
+	protected DelayDuration parseDelay(Element delayElement) {
+		if (delayElement == null) {
+			return null;
+		}
+
+		double duration = GetterUtil.getDouble(
+			delayElement.elementText("duration"));
+		DurationScale durationScale = DurationScale.parse(
+			delayElement.elementText("scale"));
+
+		return new DelayDuration(duration, durationScale);
+	}
+
 	protected Fork parseFork(Element forkElement) {
 		String name = forkElement.elementText("name");
 		String description = forkElement.elementText("description");
@@ -297,6 +312,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		if (actionsElement != null) {
 			parseActions(actionsElement, fork);
+		}
+
+		Element timersElement = forkElement.element("timers");
+
+		if (timersElement != null) {
+			parseTimers(timersElement, fork);
 		}
 
 		return fork;
@@ -312,6 +333,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		if (actionsElement != null) {
 			parseActions(actionsElement, join);
+		}
+
+		Element timersElement = joinElement.element("timers");
+
+		if (timersElement != null) {
+			parseTimers(timersElement, join);
 		}
 
 		return join;
@@ -391,6 +418,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			parseActions(actionsElement, state);
 		}
 
+		Element timersElement = stateElement.element("timers");
+
+		if (timersElement != null) {
+			parseTimers(timersElement, state);
+		}
+
 		return state;
 	}
 
@@ -399,19 +432,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		String description = taskElement.elementText("description");
 
 		Task task = new Task(name, description);
-
-		double dueDateDuration = GetterUtil.getDouble(
-			taskElement.elementText("due-date-duration"));
-
-		if (dueDateDuration > 0) {
-			DurationScale dueDateScale = DurationScale.parse(
-				taskElement.elementText("due-date-scale"));
-
-			DueDateDuration dueDateDurationModel = new DueDateDuration(
-				dueDateDuration, dueDateScale);
-
-			task.setDueDateDuration(dueDateDurationModel);
-		}
 
 		Element actionsElement = taskElement.element("actions");
 
@@ -427,7 +447,58 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			task.setAssignments(assignments);
 		}
 
+		Element timersElement = taskElement.element("timers");
+
+		if (timersElement != null) {
+			parseTimers(timersElement, task);
+		}
+
 		return task;
+	}
+
+	protected Timer parseTimer(Element timerElement) {
+		String name = timerElement.elementText("name");
+		String description = timerElement.elementText("description");
+		boolean defaultValue = GetterUtil.getBoolean(
+			timerElement.elementText("default"));
+		boolean required = GetterUtil.getBoolean(
+			timerElement.elementText("required"));
+
+		Timer timer = new Timer(name, description, defaultValue, required);
+
+		Element actionsElement = timerElement.element("actions");
+
+		parseActions(actionsElement, timer);
+
+		Element reassignmentsElement = timerElement.element(
+			"reassignments");
+
+		Set<Assignment> reassignments = parseAssignments(
+			reassignmentsElement);
+
+		timer.setReassignments(reassignments);
+
+		Element delayElement = timerElement.element("delay");
+
+		DelayDuration delayDuration = parseDelay(delayElement);
+
+		timer.setDelayDuration(delayDuration);
+
+		return timer;
+	}
+
+	protected void parseTimers(Element timersElement, Node node) {
+		List<Element> timerElements = timersElement.elements("timer");
+
+		Set<Timer> timers = new HashSet<Timer>();
+
+		for (Element timerElement : timerElements) {
+			Timer timer = parseTimer(timerElement);
+
+			timers.add(timer);
+		}
+
+		node.setTimers(timers);
 	}
 
 	protected void parseTransition(Definition definition, Element nodeElement)

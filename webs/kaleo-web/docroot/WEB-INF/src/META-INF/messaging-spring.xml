@@ -16,6 +16,9 @@
 	<bean id="destination.workflow_definition_link" class="com.liferay.portal.kernel.messaging.ParallelDestination">
 		<property name="name" value="liferay/workflow_definition_link" />
 	</bean>
+	<bean id="destination.workflow_timer" class="com.liferay.portal.kernel.messaging.ParallelDestination">
+		<property name="name" value="liferay/workflow_timer" />
+	</bean>
 
 	<!-- Listeners -->
 
@@ -41,6 +44,14 @@
 	<bean id="messageListener.workflow_task" class="com.liferay.portal.kernel.messaging.proxy.ProxyMessageListener">
 		<property name="manager" ref="com.liferay.portal.kernel.workflow.WorkflowTaskManager" />
 	</bean>
+	<bean id="messageListener.workflow_timer" class="com.liferay.portal.kernel.scheduler.messaging.SchedulerEventMessageListenerWrapper">
+		<property name="className" value="com.liferay.portal.workflow.kaleo.runtime.messaging.SchedulerMessageListener" />
+		<property name="messageListener">
+			<bean class="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener">
+				<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
+			</bean>
+		</property>
+	</bean>
 
 	<!-- Configurator -->
 
@@ -49,6 +60,7 @@
 			<list>
 				<ref bean="destination.kaleo_graph_walker" />
 				<ref bean="destination.workflow_definition_link" />
+				<ref bean="destination.workflow_timer" />
 			</list>
 		</property>
 		<property name="messageListeners">
@@ -94,6 +106,11 @@
 				<entry key="liferay/workflow_task">
 					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
 						<ref bean="messageListener.workflow_task" />
+					</list>
+				</entry>
+				<entry key="liferay/workflow_timer">
+					<list value-type="com.liferay.portal.kernel.messaging.MessageListener">
+						<ref bean="messageListener.workflow_timer" />
 					</list>
 				</entry>
 			</map>

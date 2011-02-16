@@ -309,8 +309,6 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	public Object clone() {
 		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
 
-		KaleoNotificationModelImpl kaleoNotificationModelImpl = kaleoNotificationImpl;
-
 		kaleoNotificationImpl.setKaleoNotificationId(getKaleoNotificationId());
 
 		kaleoNotificationImpl.setGroupId(getGroupId());

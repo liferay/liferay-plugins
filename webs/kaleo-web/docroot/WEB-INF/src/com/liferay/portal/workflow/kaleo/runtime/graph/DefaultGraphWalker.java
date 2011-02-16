@@ -22,14 +22,16 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutor;
 import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory;
 import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
+import com.liferay.portal.workflow.kaleo.runtime.util.ExecutionUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
 import java.util.List;
 
@@ -53,14 +55,6 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 
 			nodeExecutor.exit(
 				sourceKaleoNode, executionContext, remainingPathElement);
-
-			ActionExecutorUtil.executeKaleoActions(
-				sourceKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
-				executionContext);
-
-			NotificationUtil.sendKaleoNotifications(
-				sourceKaleoNode.getKaleoNodeId(), ExecutionType.ON_EXIT,
-				executionContext);
 		}
 
 		if (targetKaleoNode != null) {
@@ -68,42 +62,16 @@ public class DefaultGraphWalker extends BaseKaleoBean implements GraphWalker {
 				executionContext.getKaleoInstanceToken(), sourceKaleoNode,
 				targetKaleoNode, executionContext.getServiceContext());
 
-			ActionExecutorUtil.executeKaleoActions(
-				targetKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
-				executionContext);
-
 			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
 				NodeType.valueOf(targetKaleoNode.getType()));
 
-			nodeExecutor.enter(
+			nodeExecutor.enter(targetKaleoNode, executionContext);
+
+			nodeExecutor.execute(
 				targetKaleoNode, executionContext, remainingPathElement);
-
-			NotificationUtil.sendKaleoNotifications(
-				targetKaleoNode.getKaleoNodeId(), ExecutionType.ON_ENTRY,
-				executionContext);
 		}
 
-		checkKaleoInstanceComplete(executionContext);
-	}
-
-	protected void checkKaleoInstanceComplete(ExecutionContext executionContext)
-		throws PortalException, SystemException {
-
-		KaleoInstanceToken kaleoInstanceToken =
-			executionContext.getKaleoInstanceToken();
-
-		if (!kaleoInstanceToken.isCompleted()) {
-			return;
-		}
-
-		KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
-
-		if (!kaleoInstance.isCompleted()) {
-			return;
-		}
-
-		kaleoLogLocalService.addWorkflowInstanceEndKaleoLog(
-			kaleoInstanceToken, executionContext.getServiceContext());
+		ExecutionUtil.checkKaleoInstanceComplete(executionContext);
 	}
 
 }

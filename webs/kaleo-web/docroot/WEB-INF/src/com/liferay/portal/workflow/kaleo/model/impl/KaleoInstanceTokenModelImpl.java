@@ -288,8 +288,6 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 	public Object clone() {
 		KaleoInstanceTokenImpl kaleoInstanceTokenImpl = new KaleoInstanceTokenImpl();
 
-		KaleoInstanceTokenModelImpl kaleoInstanceTokenModelImpl = kaleoInstanceTokenImpl;
-
 		kaleoInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
 
 		kaleoInstanceTokenImpl.setGroupId(getGroupId());

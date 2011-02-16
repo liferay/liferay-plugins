@@ -348,8 +348,6 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		kaleoTaskImpl.setKaleoNodeId(kaleoTask.getKaleoNodeId());
 		kaleoTaskImpl.setName(kaleoTask.getName());
 		kaleoTaskImpl.setDescription(kaleoTask.getDescription());
-		kaleoTaskImpl.setDueDateDuration(kaleoTask.getDueDateDuration());
-		kaleoTaskImpl.setDueDateScale(kaleoTask.getDueDateScale());
 
 		return kaleoTaskImpl;
 	}
@@ -1894,6 +1892,10 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 	protected KaleoTaskAssignmentInstancePersistence kaleoTaskAssignmentInstancePersistence;
 	@BeanReference(type = KaleoTaskInstanceTokenPersistence.class)
 	protected KaleoTaskInstanceTokenPersistence kaleoTaskInstanceTokenPersistence;
+	@BeanReference(type = KaleoTimerPersistence.class)
+	protected KaleoTimerPersistence kaleoTimerPersistence;
+	@BeanReference(type = KaleoTimerInstanceTokenPersistence.class)
+	protected KaleoTimerInstanceTokenPersistence kaleoTimerInstanceTokenPersistence;
 	@BeanReference(type = KaleoTransitionPersistence.class)
 	protected KaleoTransitionPersistence kaleoTransitionPersistence;
 	@BeanReference(type = ResourcePersistence.class)

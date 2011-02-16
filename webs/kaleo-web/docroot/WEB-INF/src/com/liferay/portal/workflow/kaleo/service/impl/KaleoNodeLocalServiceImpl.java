@@ -23,6 +23,7 @@ import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.State;
+import com.liferay.portal.workflow.kaleo.definition.Timer;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.service.base.KaleoNodeLocalServiceBaseImpl;
 
@@ -93,6 +94,19 @@ public class KaleoNodeLocalServiceImpl extends KaleoNodeLocalServiceBaseImpl {
 			kaleoNotificationLocalService.addKaleoNotification(
 				kaleoDefinitionId, kaleoNodeId, node.getName(), notification,
 				serviceContext);
+		}
+
+		// Kaleo timers
+
+		Set<Timer> timers = node.getTimers();
+
+		for (Timer timer : timers) {
+			KaleoNode timerNode = addKaleoNode(
+				kaleoDefinitionId, timer, serviceContext);
+
+			kaleoTimerLocalService.addKaleoTimer(
+				kaleoDefinitionId, timerNode.getKaleoNodeId(), kaleoNodeId,
+				timer, serviceContext);
 		}
 
 		return kaleoNode;

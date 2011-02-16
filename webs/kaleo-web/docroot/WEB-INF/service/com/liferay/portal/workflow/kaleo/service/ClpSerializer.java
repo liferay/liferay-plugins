@@ -32,6 +32,8 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstanceClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceTokenClp;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerClp;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceTokenClp;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransitionClp;
 
 import java.lang.reflect.Method;
@@ -163,6 +165,14 @@ public class ClpSerializer {
 
 		if (oldModelClassName.equals(KaleoTaskInstanceTokenClp.class.getName())) {
 			return translateInputKaleoTaskInstanceToken(oldModel);
+		}
+
+		if (oldModelClassName.equals(KaleoTimerClp.class.getName())) {
+			return translateInputKaleoTimer(oldModel);
+		}
+
+		if (oldModelClassName.equals(KaleoTimerInstanceTokenClp.class.getName())) {
+			return translateInputKaleoTimerInstanceToken(oldModel);
 		}
 
 		if (oldModelClassName.equals(KaleoTransitionClp.class.getName())) {
@@ -1547,20 +1557,6 @@ public class ClpSerializer {
 
 				method10.invoke(newModel, value10);
 
-				Method method11 = newModelClass.getMethod("setDueDateDuration",
-						new Class[] { Double.TYPE });
-
-				Double value11 = new Double(oldCplModel.getDueDateDuration());
-
-				method11.invoke(newModel, value11);
-
-				Method method12 = newModelClass.getMethod("setDueDateScale",
-						new Class[] { String.class });
-
-				String value12 = oldCplModel.getDueDateScale();
-
-				method12.invoke(newModel, value12);
-
 				return newModel;
 			}
 			catch (Exception e) {
@@ -2021,6 +2017,282 @@ public class ClpSerializer {
 		return oldModel;
 	}
 
+	public static Object translateInputKaleoTimer(BaseModel<?> oldModel) {
+		KaleoTimerClp oldCplModel = (KaleoTimerClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setKaleoTimerId",
+						new Class[] { Long.TYPE });
+
+				Long value0 = new Long(oldCplModel.getKaleoTimerId());
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value1 = new Long(oldCplModel.getGroupId());
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value2 = new Long(oldCplModel.getCompanyId());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value3 = new Long(oldCplModel.getUserId());
+
+				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setUserName",
+						new Class[] { String.class });
+
+				String value4 = oldCplModel.getUserName();
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value5 = oldCplModel.getCreateDate();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setModifiedDate",
+						new Class[] { Date.class });
+
+				Date value6 = oldCplModel.getModifiedDate();
+
+				method6.invoke(newModel, value6);
+
+				Method method7 = newModelClass.getMethod("setKaleoDefinitionId",
+						new Class[] { Long.TYPE });
+
+				Long value7 = new Long(oldCplModel.getKaleoDefinitionId());
+
+				method7.invoke(newModel, value7);
+
+				Method method8 = newModelClass.getMethod("setKaleoNodeId",
+						new Class[] { Long.TYPE });
+
+				Long value8 = new Long(oldCplModel.getKaleoNodeId());
+
+				method8.invoke(newModel, value8);
+
+				Method method9 = newModelClass.getMethod("setParentKaleoNodeId",
+						new Class[] { Long.TYPE });
+
+				Long value9 = new Long(oldCplModel.getParentKaleoNodeId());
+
+				method9.invoke(newModel, value9);
+
+				Method method10 = newModelClass.getMethod("setName",
+						new Class[] { String.class });
+
+				String value10 = oldCplModel.getName();
+
+				method10.invoke(newModel, value10);
+
+				Method method11 = newModelClass.getMethod("setDefaultTimer",
+						new Class[] { Boolean.TYPE });
+
+				Boolean value11 = new Boolean(oldCplModel.getDefaultTimer());
+
+				method11.invoke(newModel, value11);
+
+				Method method12 = newModelClass.getMethod("setDescription",
+						new Class[] { String.class });
+
+				String value12 = oldCplModel.getDescription();
+
+				method12.invoke(newModel, value12);
+
+				Method method13 = newModelClass.getMethod("setDuration",
+						new Class[] { Double.TYPE });
+
+				Double value13 = new Double(oldCplModel.getDuration());
+
+				method13.invoke(newModel, value13);
+
+				Method method14 = newModelClass.getMethod("setScale",
+						new Class[] { String.class });
+
+				String value14 = oldCplModel.getScale();
+
+				method14.invoke(newModel, value14);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateInputKaleoTimerInstanceToken(
+		BaseModel<?> oldModel) {
+		KaleoTimerInstanceTokenClp oldCplModel = (KaleoTimerInstanceTokenClp)oldModel;
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				Class<?> newModelClass = Class.forName("com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerInstanceTokenImpl",
+						true, _classLoader);
+
+				Object newModel = newModelClass.newInstance();
+
+				Method method0 = newModelClass.getMethod("setKaleoTimerInstanceTokenId",
+						new Class[] { Long.TYPE });
+
+				Long value0 = new Long(oldCplModel.getKaleoTimerInstanceTokenId());
+
+				method0.invoke(newModel, value0);
+
+				Method method1 = newModelClass.getMethod("setGroupId",
+						new Class[] { Long.TYPE });
+
+				Long value1 = new Long(oldCplModel.getGroupId());
+
+				method1.invoke(newModel, value1);
+
+				Method method2 = newModelClass.getMethod("setCompanyId",
+						new Class[] { Long.TYPE });
+
+				Long value2 = new Long(oldCplModel.getCompanyId());
+
+				method2.invoke(newModel, value2);
+
+				Method method3 = newModelClass.getMethod("setUserId",
+						new Class[] { Long.TYPE });
+
+				Long value3 = new Long(oldCplModel.getUserId());
+
+				method3.invoke(newModel, value3);
+
+				Method method4 = newModelClass.getMethod("setUserName",
+						new Class[] { String.class });
+
+				String value4 = oldCplModel.getUserName();
+
+				method4.invoke(newModel, value4);
+
+				Method method5 = newModelClass.getMethod("setCreateDate",
+						new Class[] { Date.class });
+
+				Date value5 = oldCplModel.getCreateDate();
+
+				method5.invoke(newModel, value5);
+
+				Method method6 = newModelClass.getMethod("setModifiedDate",
+						new Class[] { Date.class });
+
+				Date value6 = oldCplModel.getModifiedDate();
+
+				method6.invoke(newModel, value6);
+
+				Method method7 = newModelClass.getMethod("setKaleoDefinitionId",
+						new Class[] { Long.TYPE });
+
+				Long value7 = new Long(oldCplModel.getKaleoDefinitionId());
+
+				method7.invoke(newModel, value7);
+
+				Method method8 = newModelClass.getMethod("setKaleoInstanceId",
+						new Class[] { Long.TYPE });
+
+				Long value8 = new Long(oldCplModel.getKaleoInstanceId());
+
+				method8.invoke(newModel, value8);
+
+				Method method9 = newModelClass.getMethod("setKaleoInstanceTokenId",
+						new Class[] { Long.TYPE });
+
+				Long value9 = new Long(oldCplModel.getKaleoInstanceTokenId());
+
+				method9.invoke(newModel, value9);
+
+				Method method10 = newModelClass.getMethod("setKaleoTimerId",
+						new Class[] { Long.TYPE });
+
+				Long value10 = new Long(oldCplModel.getKaleoTimerId());
+
+				method10.invoke(newModel, value10);
+
+				Method method11 = newModelClass.getMethod("setKaleoTimerName",
+						new Class[] { String.class });
+
+				String value11 = oldCplModel.getKaleoTimerName();
+
+				method11.invoke(newModel, value11);
+
+				Method method12 = newModelClass.getMethod("setCompletionUserId",
+						new Class[] { Long.TYPE });
+
+				Long value12 = new Long(oldCplModel.getCompletionUserId());
+
+				method12.invoke(newModel, value12);
+
+				Method method13 = newModelClass.getMethod("setCompleted",
+						new Class[] { Boolean.TYPE });
+
+				Boolean value13 = new Boolean(oldCplModel.getCompleted());
+
+				method13.invoke(newModel, value13);
+
+				Method method14 = newModelClass.getMethod("setCompletionDate",
+						new Class[] { Date.class });
+
+				Date value14 = oldCplModel.getCompletionDate();
+
+				method14.invoke(newModel, value14);
+
+				Method method15 = newModelClass.getMethod("setWorkflowContext",
+						new Class[] { String.class });
+
+				String value15 = oldCplModel.getWorkflowContext();
+
+				method15.invoke(newModel, value15);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
 	public static Object translateInputKaleoTransition(BaseModel<?> oldModel) {
 		KaleoTransitionClp oldCplModel = (KaleoTransitionClp)oldModel;
 
@@ -2242,6 +2514,16 @@ public class ClpSerializer {
 		if (oldModelClassName.equals(
 					"com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenImpl")) {
 			return translateOutputKaleoTaskInstanceToken(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerImpl")) {
+			return translateOutputKaleoTimer(oldModel);
+		}
+
+		if (oldModelClassName.equals(
+					"com.liferay.portal.workflow.kaleo.model.impl.KaleoTimerInstanceTokenImpl")) {
+			return translateOutputKaleoTimerInstanceToken(oldModel);
 		}
 
 		if (oldModelClassName.equals(
@@ -3517,20 +3799,6 @@ public class ClpSerializer {
 
 				newModel.setDescription(value10);
 
-				Method method11 = oldModelClass.getMethod("getDueDateDuration");
-
-				Double value11 = (Double)method11.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDueDateDuration(value11);
-
-				Method method12 = oldModelClass.getMethod("getDueDateScale");
-
-				String value12 = (String)method12.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setDueDateScale(value12);
-
 				return newModel;
 			}
 			catch (Exception e) {
@@ -3937,6 +4205,255 @@ public class ClpSerializer {
 						(Object[])null);
 
 				newModel.setWorkflowContext(value18);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateOutputKaleoTimer(BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				KaleoTimerClp newModel = new KaleoTimerClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod("getKaleoTimerId");
+
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoTimerId(value0);
+
+				Method method1 = oldModelClass.getMethod("getGroupId");
+
+				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value1);
+
+				Method method2 = oldModelClass.getMethod("getCompanyId");
+
+				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value2);
+
+				Method method3 = oldModelClass.getMethod("getUserId");
+
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value3);
+
+				Method method4 = oldModelClass.getMethod("getUserName");
+
+				String value4 = (String)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setUserName(value4);
+
+				Method method5 = oldModelClass.getMethod("getCreateDate");
+
+				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value5);
+
+				Method method6 = oldModelClass.getMethod("getModifiedDate");
+
+				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setModifiedDate(value6);
+
+				Method method7 = oldModelClass.getMethod("getKaleoDefinitionId");
+
+				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoDefinitionId(value7);
+
+				Method method8 = oldModelClass.getMethod("getKaleoNodeId");
+
+				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoNodeId(value8);
+
+				Method method9 = oldModelClass.getMethod("getParentKaleoNodeId");
+
+				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
+
+				newModel.setParentKaleoNodeId(value9);
+
+				Method method10 = oldModelClass.getMethod("getName");
+
+				String value10 = (String)method10.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setName(value10);
+
+				Method method11 = oldModelClass.getMethod("getDefaultTimer");
+
+				Boolean value11 = (Boolean)method11.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setDefaultTimer(value11);
+
+				Method method12 = oldModelClass.getMethod("getDescription");
+
+				String value12 = (String)method12.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setDescription(value12);
+
+				Method method13 = oldModelClass.getMethod("getDuration");
+
+				Double value13 = (Double)method13.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setDuration(value13);
+
+				Method method14 = oldModelClass.getMethod("getScale");
+
+				String value14 = (String)method14.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setScale(value14);
+
+				return newModel;
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
+		finally {
+			currentThread.setContextClassLoader(contextClassLoader);
+		}
+
+		return oldModel;
+	}
+
+	public static Object translateOutputKaleoTimerInstanceToken(
+		BaseModel<?> oldModel) {
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(_classLoader);
+
+			try {
+				KaleoTimerInstanceTokenClp newModel = new KaleoTimerInstanceTokenClp();
+
+				Class<?> oldModelClass = oldModel.getClass();
+
+				Method method0 = oldModelClass.getMethod(
+						"getKaleoTimerInstanceTokenId");
+
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoTimerInstanceTokenId(value0);
+
+				Method method1 = oldModelClass.getMethod("getGroupId");
+
+				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+
+				newModel.setGroupId(value1);
+
+				Method method2 = oldModelClass.getMethod("getCompanyId");
+
+				Long value2 = (Long)method2.invoke(oldModel, (Object[])null);
+
+				newModel.setCompanyId(value2);
+
+				Method method3 = oldModelClass.getMethod("getUserId");
+
+				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);
+
+				newModel.setUserId(value3);
+
+				Method method4 = oldModelClass.getMethod("getUserName");
+
+				String value4 = (String)method4.invoke(oldModel, (Object[])null);
+
+				newModel.setUserName(value4);
+
+				Method method5 = oldModelClass.getMethod("getCreateDate");
+
+				Date value5 = (Date)method5.invoke(oldModel, (Object[])null);
+
+				newModel.setCreateDate(value5);
+
+				Method method6 = oldModelClass.getMethod("getModifiedDate");
+
+				Date value6 = (Date)method6.invoke(oldModel, (Object[])null);
+
+				newModel.setModifiedDate(value6);
+
+				Method method7 = oldModelClass.getMethod("getKaleoDefinitionId");
+
+				Long value7 = (Long)method7.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoDefinitionId(value7);
+
+				Method method8 = oldModelClass.getMethod("getKaleoInstanceId");
+
+				Long value8 = (Long)method8.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoInstanceId(value8);
+
+				Method method9 = oldModelClass.getMethod(
+						"getKaleoInstanceTokenId");
+
+				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoInstanceTokenId(value9);
+
+				Method method10 = oldModelClass.getMethod("getKaleoTimerId");
+
+				Long value10 = (Long)method10.invoke(oldModel, (Object[])null);
+
+				newModel.setKaleoTimerId(value10);
+
+				Method method11 = oldModelClass.getMethod("getKaleoTimerName");
+
+				String value11 = (String)method11.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setKaleoTimerName(value11);
+
+				Method method12 = oldModelClass.getMethod("getCompletionUserId");
+
+				Long value12 = (Long)method12.invoke(oldModel, (Object[])null);
+
+				newModel.setCompletionUserId(value12);
+
+				Method method13 = oldModelClass.getMethod("getCompleted");
+
+				Boolean value13 = (Boolean)method13.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setCompleted(value13);
+
+				Method method14 = oldModelClass.getMethod("getCompletionDate");
+
+				Date value14 = (Date)method14.invoke(oldModel, (Object[])null);
+
+				newModel.setCompletionDate(value14);
+
+				Method method15 = oldModelClass.getMethod("getWorkflowContext");
+
+				String value15 = (String)method15.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setWorkflowContext(value15);
 
 				return newModel;
 			}
