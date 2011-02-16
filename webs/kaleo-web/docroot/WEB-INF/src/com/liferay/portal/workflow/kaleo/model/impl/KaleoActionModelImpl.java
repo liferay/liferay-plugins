@@ -302,24 +302,39 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 	}
 
 	public Object clone() {
-		KaleoActionImpl clone = new KaleoActionImpl();
+		KaleoActionModelImpl clone = new KaleoActionImpl();
 
-		clone.setKaleoActionId(getKaleoActionId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setKaleoNodeId(getKaleoNodeId());
-		clone.setKaleoNodeName(getKaleoNodeName());
-		clone.setName(getName());
-		clone.setDescription(getDescription());
-		clone.setExecutionType(getExecutionType());
-		clone.setScript(getScript());
-		clone.setScriptLanguage(getScriptLanguage());
-		clone.setPriority(getPriority());
+		clone._kaleoActionId = _kaleoActionId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._kaleoDefinitionId = _kaleoDefinitionId;
+
+		clone._kaleoNodeId = _kaleoNodeId;
+
+		clone._kaleoNodeName = _kaleoNodeName;
+
+		clone._name = _name;
+
+		clone._description = _description;
+
+		clone._executionType = _executionType;
+
+		clone._script = _script;
+
+		clone._scriptLanguage = _scriptLanguage;
+
+		clone._priority = _priority;
 
 		return clone;
 	}

@@ -207,16 +207,23 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 	}
 
 	public Object clone() {
-		JIRAActionImpl clone = new JIRAActionImpl();
+		JIRAActionModelImpl clone = new JIRAActionImpl();
 
-		clone.setJiraActionId(getJiraActionId());
-		clone.setJiraUserId(getJiraUserId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setJiraIssueId(getJiraIssueId());
-		clone.setType(getType());
-		clone.setBody(getBody());
-		clone.setJiraGroupName(getJiraGroupName());
+		clone._jiraActionId = _jiraActionId;
+
+		clone._jiraUserId = _jiraUserId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._jiraIssueId = _jiraIssueId;
+
+		clone._type = _type;
+
+		clone._body = _body;
+
+		clone._jiraGroupName = _jiraGroupName;
 
 		return clone;
 	}

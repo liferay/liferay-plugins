@@ -233,17 +233,23 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 	}
 
 	public Object clone() {
-		OAuthConsumerImpl clone = new OAuthConsumerImpl();
+		OAuthConsumerModelImpl clone = new OAuthConsumerImpl();
 
-		clone.setOAuthConsumerId(getOAuthConsumerId());
-		clone.setCompanyId(getCompanyId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setGadgetId(getGadgetId());
-		clone.setServiceName(getServiceName());
-		clone.setConsumerKey(getConsumerKey());
-		clone.setConsumerSecret(getConsumerSecret());
-		clone.setKeyType(getKeyType());
+		clone._oAuthConsumerId = _oAuthConsumerId;
+
+		clone._companyId = _companyId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalGadgetId = clone._gadgetId = _gadgetId;
+		clone._originalServiceName = clone._serviceName = _serviceName;
+
+		clone._consumerKey = _consumerKey;
+
+		clone._consumerSecret = _consumerSecret;
+
+		clone._keyType = _keyType;
 
 		return clone;
 	}

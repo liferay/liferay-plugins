@@ -266,22 +266,35 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 	}
 
 	public Object clone() {
-		MeetupsEntryImpl clone = new MeetupsEntryImpl();
+		MeetupsEntryModelImpl clone = new MeetupsEntryImpl();
 
-		clone.setMeetupsEntryId(getMeetupsEntryId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setTitle(getTitle());
-		clone.setDescription(getDescription());
-		clone.setStartDate(getStartDate());
-		clone.setEndDate(getEndDate());
-		clone.setTotalAttendees(getTotalAttendees());
-		clone.setMaxAttendees(getMaxAttendees());
-		clone.setPrice(getPrice());
-		clone.setThumbnailId(getThumbnailId());
+		clone._meetupsEntryId = _meetupsEntryId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._title = _title;
+
+		clone._description = _description;
+
+		clone._startDate = _startDate;
+
+		clone._endDate = _endDate;
+
+		clone._totalAttendees = _totalAttendees;
+
+		clone._maxAttendees = _maxAttendees;
+
+		clone._price = _price;
+
+		clone._thumbnailId = _thumbnailId;
 
 		return clone;
 	}

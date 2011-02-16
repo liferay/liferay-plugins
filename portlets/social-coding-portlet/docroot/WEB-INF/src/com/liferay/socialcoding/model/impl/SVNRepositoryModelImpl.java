@@ -152,11 +152,12 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	}
 
 	public Object clone() {
-		SVNRepositoryImpl clone = new SVNRepositoryImpl();
+		SVNRepositoryModelImpl clone = new SVNRepositoryImpl();
 
-		clone.setSvnRepositoryId(getSvnRepositoryId());
-		clone.setUrl(getUrl());
-		clone.setRevisionNumber(getRevisionNumber());
+		clone._svnRepositoryId = _svnRepositoryId;
+		clone._originalUrl = clone._url = _url;
+
+		clone._revisionNumber = _revisionNumber;
 
 		return clone;
 	}

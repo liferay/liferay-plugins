@@ -249,19 +249,29 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 	}
 
 	public Object clone() {
-		WSRPConsumerImpl clone = new WSRPConsumerImpl();
+		WSRPConsumerModelImpl clone = new WSRPConsumerImpl();
 
-		clone.setUuid(getUuid());
-		clone.setWsrpConsumerId(getWsrpConsumerId());
-		clone.setCompanyId(getCompanyId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setName(getName());
-		clone.setUrl(getUrl());
-		clone.setWsdl(getWsdl());
-		clone.setRegistrationContextString(getRegistrationContextString());
-		clone.setRegistrationPropertiesString(getRegistrationPropertiesString());
-		clone.setForwardCookies(getForwardCookies());
+		clone._uuid = _uuid;
+
+		clone._wsrpConsumerId = _wsrpConsumerId;
+
+		clone._companyId = _companyId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._name = _name;
+
+		clone._url = _url;
+
+		clone._wsdl = _wsdl;
+
+		clone._registrationContextString = _registrationContextString;
+
+		clone._registrationPropertiesString = _registrationPropertiesString;
+
+		clone._forwardCookies = _forwardCookies;
 
 		return clone;
 	}

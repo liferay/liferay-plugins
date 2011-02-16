@@ -360,27 +360,43 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 	}
 
 	public Object clone() {
-		MessageImpl clone = new MessageImpl();
+		MessageModelImpl clone = new MessageImpl();
 
-		clone.setMessageId(getMessageId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setAccountId(getAccountId());
-		clone.setFolderId(getFolderId());
-		clone.setSender(getSender());
-		clone.setTo(getTo());
-		clone.setCc(getCc());
-		clone.setBcc(getBcc());
-		clone.setSentDate(getSentDate());
-		clone.setSubject(getSubject());
-		clone.setPreview(getPreview());
-		clone.setBody(getBody());
-		clone.setFlags(getFlags());
-		clone.setSize(getSize());
-		clone.setRemoteMessageId(getRemoteMessageId());
+		clone._messageId = _messageId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._accountId = _accountId;
+		clone._originalFolderId = clone._folderId = _folderId;
+
+		clone._sender = _sender;
+
+		clone._to = _to;
+
+		clone._cc = _cc;
+
+		clone._bcc = _bcc;
+
+		clone._sentDate = _sentDate;
+
+		clone._subject = _subject;
+
+		clone._preview = _preview;
+
+		clone._body = _body;
+
+		clone._flags = _flags;
+
+		clone._size = _size;
+		clone._originalRemoteMessageId = clone._remoteMessageId = _remoteMessageId;
 
 		return clone;
 	}

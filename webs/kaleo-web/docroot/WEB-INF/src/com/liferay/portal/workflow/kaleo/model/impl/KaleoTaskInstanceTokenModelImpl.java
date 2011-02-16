@@ -327,27 +327,45 @@ public class KaleoTaskInstanceTokenModelImpl extends BaseModelImpl<KaleoTaskInst
 	}
 
 	public Object clone() {
-		KaleoTaskInstanceTokenImpl clone = new KaleoTaskInstanceTokenImpl();
+		KaleoTaskInstanceTokenModelImpl clone = new KaleoTaskInstanceTokenImpl();
 
-		clone.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setKaleoInstanceId(getKaleoInstanceId());
-		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-		clone.setKaleoTaskId(getKaleoTaskId());
-		clone.setKaleoTaskName(getKaleoTaskName());
-		clone.setClassName(getClassName());
-		clone.setClassPK(getClassPK());
-		clone.setCompletionUserId(getCompletionUserId());
-		clone.setCompleted(getCompleted());
-		clone.setCompletionDate(getCompletionDate());
-		clone.setDueDate(getDueDate());
-		clone.setWorkflowContext(getWorkflowContext());
+		clone._kaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._kaleoDefinitionId = _kaleoDefinitionId;
+
+		clone._kaleoInstanceId = _kaleoInstanceId;
+
+		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+
+		clone._kaleoTaskId = _kaleoTaskId;
+
+		clone._kaleoTaskName = _kaleoTaskName;
+
+		clone._className = _className;
+
+		clone._classPK = _classPK;
+
+		clone._completionUserId = _completionUserId;
+
+		clone._completed = _completed;
+
+		clone._completionDate = _completionDate;
+
+		clone._dueDate = _dueDate;
+
+		clone._workflowContext = _workflowContext;
 
 		return clone;
 	}

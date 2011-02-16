@@ -198,15 +198,21 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 	}
 
 	public Object clone() {
-		JIRAChangeItemImpl clone = new JIRAChangeItemImpl();
+		JIRAChangeItemModelImpl clone = new JIRAChangeItemImpl();
 
-		clone.setJiraChangeItemId(getJiraChangeItemId());
-		clone.setJiraChangeGroupId(getJiraChangeGroupId());
-		clone.setField(getField());
-		clone.setOldValue(getOldValue());
-		clone.setOldString(getOldString());
-		clone.setNewValue(getNewValue());
-		clone.setNewString(getNewString());
+		clone._jiraChangeItemId = _jiraChangeItemId;
+
+		clone._jiraChangeGroupId = _jiraChangeGroupId;
+
+		clone._field = _field;
+
+		clone._oldValue = _oldValue;
+
+		clone._oldString = _oldString;
+
+		clone._newValue = _newValue;
+
+		clone._newString = _newString;
 
 		return clone;
 	}

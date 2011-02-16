@@ -437,37 +437,65 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 	}
 
 	public Object clone() {
-		KaleoLogImpl clone = new KaleoLogImpl();
+		KaleoLogModelImpl clone = new KaleoLogImpl();
 
-		clone.setKaleoLogId(getKaleoLogId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setKaleoInstanceId(getKaleoInstanceId());
-		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-		clone.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-		clone.setKaleoNodeId(getKaleoNodeId());
-		clone.setKaleoNodeName(getKaleoNodeName());
-		clone.setTerminalKaleoNode(getTerminalKaleoNode());
-		clone.setKaleoActionId(getKaleoActionId());
-		clone.setKaleoActionName(getKaleoActionName());
-		clone.setKaleoActionDescription(getKaleoActionDescription());
-		clone.setPreviousKaleoNodeId(getPreviousKaleoNodeId());
-		clone.setPreviousKaleoNodeName(getPreviousKaleoNodeName());
-		clone.setPreviousAssigneeClassName(getPreviousAssigneeClassName());
-		clone.setPreviousAssigneeClassPK(getPreviousAssigneeClassPK());
-		clone.setCurrentAssigneeClassName(getCurrentAssigneeClassName());
-		clone.setCurrentAssigneeClassPK(getCurrentAssigneeClassPK());
-		clone.setType(getType());
-		clone.setComment(getComment());
-		clone.setStartDate(getStartDate());
-		clone.setEndDate(getEndDate());
-		clone.setDuration(getDuration());
-		clone.setWorkflowContext(getWorkflowContext());
+		clone._kaleoLogId = _kaleoLogId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._kaleoDefinitionId = _kaleoDefinitionId;
+
+		clone._kaleoInstanceId = _kaleoInstanceId;
+
+		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+
+		clone._kaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+
+		clone._kaleoNodeId = _kaleoNodeId;
+
+		clone._kaleoNodeName = _kaleoNodeName;
+
+		clone._terminalKaleoNode = _terminalKaleoNode;
+
+		clone._kaleoActionId = _kaleoActionId;
+
+		clone._kaleoActionName = _kaleoActionName;
+
+		clone._kaleoActionDescription = _kaleoActionDescription;
+
+		clone._previousKaleoNodeId = _previousKaleoNodeId;
+
+		clone._previousKaleoNodeName = _previousKaleoNodeName;
+
+		clone._previousAssigneeClassName = _previousAssigneeClassName;
+
+		clone._previousAssigneeClassPK = _previousAssigneeClassPK;
+
+		clone._currentAssigneeClassName = _currentAssigneeClassName;
+
+		clone._currentAssigneeClassPK = _currentAssigneeClassPK;
+
+		clone._type = _type;
+
+		clone._comment = _comment;
+
+		clone._startDate = _startDate;
+
+		clone._endDate = _endDate;
+
+		clone._duration = _duration;
+
+		clone._workflowContext = _workflowContext;
 
 		return clone;
 	}

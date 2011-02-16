@@ -256,21 +256,33 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 	}
 
 	public Object clone() {
-		KaleoNotificationRecipientImpl clone = new KaleoNotificationRecipientImpl();
+		KaleoNotificationRecipientModelImpl clone = new KaleoNotificationRecipientImpl();
 
-		clone.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setKaleoNotificationId(getKaleoNotificationId());
-		clone.setRecipientClassName(getRecipientClassName());
-		clone.setRecipientClassPK(getRecipientClassPK());
-		clone.setRecipientRoleType(getRecipientRoleType());
-		clone.setAddress(getAddress());
+		clone._kaleoNotificationRecipientId = _kaleoNotificationRecipientId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._kaleoDefinitionId = _kaleoDefinitionId;
+
+		clone._kaleoNotificationId = _kaleoNotificationId;
+
+		clone._recipientClassName = _recipientClassName;
+
+		clone._recipientClassPK = _recipientClassPK;
+
+		clone._recipientRoleType = _recipientRoleType;
+
+		clone._address = _address;
 
 		return clone;
 	}

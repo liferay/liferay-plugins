@@ -310,19 +310,28 @@ public class TemplateModelImpl extends BaseModelImpl<Template>
 	}
 
 	public Object clone() {
-		TemplateImpl clone = new TemplateImpl();
+		TemplateModelImpl clone = new TemplateImpl();
 
-		clone.setUuid(getUuid());
-		clone.setTemplateId(getTemplateId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setTitle(getTitle());
-		clone.setContent(getContent());
-		clone.setDescription(getDescription());
+		clone._originalUuid = clone._uuid = _uuid;
+
+		clone._templateId = _templateId;
+		clone._originalGroupId = clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._title = _title;
+
+		clone._content = _content;
+
+		clone._description = _description;
 
 		return clone;
 	}

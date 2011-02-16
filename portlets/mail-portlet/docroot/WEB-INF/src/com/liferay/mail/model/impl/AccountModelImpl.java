@@ -445,34 +445,57 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 	}
 
 	public Object clone() {
-		AccountImpl clone = new AccountImpl();
+		AccountModelImpl clone = new AccountImpl();
 
-		clone.setAccountId(getAccountId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setAddress(getAddress());
-		clone.setPersonalName(getPersonalName());
-		clone.setProtocol(getProtocol());
-		clone.setIncomingHostName(getIncomingHostName());
-		clone.setIncomingPort(getIncomingPort());
-		clone.setIncomingSecure(getIncomingSecure());
-		clone.setOutgoingHostName(getOutgoingHostName());
-		clone.setOutgoingPort(getOutgoingPort());
-		clone.setOutgoingSecure(getOutgoingSecure());
-		clone.setLogin(getLogin());
-		clone.setPassword(getPassword());
-		clone.setSavePassword(getSavePassword());
-		clone.setSignature(getSignature());
-		clone.setUseSignature(getUseSignature());
-		clone.setFolderPrefix(getFolderPrefix());
-		clone.setInboxFolderId(getInboxFolderId());
-		clone.setDraftFolderId(getDraftFolderId());
-		clone.setSentFolderId(getSentFolderId());
-		clone.setTrashFolderId(getTrashFolderId());
-		clone.setDefaultSender(getDefaultSender());
+		clone._accountId = _accountId;
+
+		clone._companyId = _companyId;
+		clone._originalUserId = clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalAddress = clone._address = _address;
+
+		clone._personalName = _personalName;
+
+		clone._protocol = _protocol;
+
+		clone._incomingHostName = _incomingHostName;
+
+		clone._incomingPort = _incomingPort;
+
+		clone._incomingSecure = _incomingSecure;
+
+		clone._outgoingHostName = _outgoingHostName;
+
+		clone._outgoingPort = _outgoingPort;
+
+		clone._outgoingSecure = _outgoingSecure;
+
+		clone._login = _login;
+
+		clone._password = _password;
+
+		clone._savePassword = _savePassword;
+
+		clone._signature = _signature;
+
+		clone._useSignature = _useSignature;
+
+		clone._folderPrefix = _folderPrefix;
+
+		clone._inboxFolderId = _inboxFolderId;
+
+		clone._draftFolderId = _draftFolderId;
+
+		clone._sentFolderId = _sentFolderId;
+
+		clone._trashFolderId = _trashFolderId;
+
+		clone._defaultSender = _defaultSender;
 
 		return clone;
 	}

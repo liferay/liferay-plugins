@@ -224,18 +224,27 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 	}
 
 	public Object clone() {
-		AssetImpl clone = new AssetImpl();
+		AssetModelImpl clone = new AssetImpl();
 
-		clone.setAssetId(getAssetId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setDefinitionId(getDefinitionId());
-		clone.setSerialNumber(getSerialNumber());
-		clone.setInactiveDate(getInactiveDate());
-		clone.setActive(getActive());
+		clone._assetId = _assetId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._definitionId = _definitionId;
+
+		clone._serialNumber = _serialNumber;
+
+		clone._inactiveDate = _inactiveDate;
+
+		clone._active = _active;
 
 		return clone;
 	}

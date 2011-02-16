@@ -296,25 +296,41 @@ public class KaleoTaskAssignmentInstanceModelImpl extends BaseModelImpl<KaleoTas
 	}
 
 	public Object clone() {
-		KaleoTaskAssignmentInstanceImpl clone = new KaleoTaskAssignmentInstanceImpl();
+		KaleoTaskAssignmentInstanceModelImpl clone = new KaleoTaskAssignmentInstanceImpl();
 
-		clone.setKaleoTaskAssignmentInstanceId(getKaleoTaskAssignmentInstanceId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setKaleoInstanceId(getKaleoInstanceId());
-		clone.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-		clone.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-		clone.setKaleoTaskId(getKaleoTaskId());
-		clone.setKaleoTaskName(getKaleoTaskName());
-		clone.setAssigneeClassName(getAssigneeClassName());
-		clone.setAssigneeClassPK(getAssigneeClassPK());
-		clone.setCompleted(getCompleted());
-		clone.setCompletionDate(getCompletionDate());
+		clone._kaleoTaskAssignmentInstanceId = _kaleoTaskAssignmentInstanceId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._kaleoDefinitionId = _kaleoDefinitionId;
+
+		clone._kaleoInstanceId = _kaleoInstanceId;
+
+		clone._kaleoInstanceTokenId = _kaleoInstanceTokenId;
+
+		clone._kaleoTaskInstanceTokenId = _kaleoTaskInstanceTokenId;
+
+		clone._kaleoTaskId = _kaleoTaskId;
+
+		clone._kaleoTaskName = _kaleoTaskName;
+
+		clone._assigneeClassName = _assigneeClassName;
+
+		clone._assigneeClassPK = _assigneeClassPK;
+
+		clone._completed = _completed;
+
+		clone._completionDate = _completionDate;
 
 		return clone;
 	}

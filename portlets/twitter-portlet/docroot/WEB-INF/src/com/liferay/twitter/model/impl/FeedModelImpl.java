@@ -248,17 +248,22 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	}
 
 	public Object clone() {
-		FeedImpl clone = new FeedImpl();
+		FeedModelImpl clone = new FeedImpl();
 
-		clone.setFeedId(getFeedId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setTwitterUserId(getTwitterUserId());
-		clone.setTwitterScreenName(getTwitterScreenName());
-		clone.setLastStatusId(getLastStatusId());
+		clone._feedId = _feedId;
+		clone._originalCompanyId = clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalTwitterUserId = clone._twitterUserId = _twitterUserId;
+		clone._originalTwitterScreenName = clone._twitterScreenName = _twitterScreenName;
+
+		clone._lastStatusId = _lastStatusId;
 
 		return clone;
 	}

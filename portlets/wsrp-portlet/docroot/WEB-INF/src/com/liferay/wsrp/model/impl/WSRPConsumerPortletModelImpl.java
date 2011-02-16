@@ -219,16 +219,21 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 	}
 
 	public Object clone() {
-		WSRPConsumerPortletImpl clone = new WSRPConsumerPortletImpl();
+		WSRPConsumerPortletModelImpl clone = new WSRPConsumerPortletImpl();
 
-		clone.setUuid(getUuid());
-		clone.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
-		clone.setCompanyId(getCompanyId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setWsrpConsumerId(getWsrpConsumerId());
-		clone.setName(getName());
-		clone.setPortletHandle(getPortletHandle());
+		clone._uuid = _uuid;
+
+		clone._wsrpConsumerPortletId = _wsrpConsumerPortletId;
+
+		clone._companyId = _companyId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalWsrpConsumerId = clone._wsrpConsumerId = _wsrpConsumerId;
+
+		clone._name = _name;
+		clone._originalPortletHandle = clone._portletHandle = _portletHandle;
 
 		return clone;
 	}

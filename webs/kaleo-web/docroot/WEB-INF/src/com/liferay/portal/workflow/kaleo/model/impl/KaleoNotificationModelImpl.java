@@ -307,24 +307,39 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 	}
 
 	public Object clone() {
-		KaleoNotificationImpl clone = new KaleoNotificationImpl();
+		KaleoNotificationModelImpl clone = new KaleoNotificationImpl();
 
-		clone.setKaleoNotificationId(getKaleoNotificationId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKaleoDefinitionId(getKaleoDefinitionId());
-		clone.setKaleoNodeId(getKaleoNodeId());
-		clone.setKaleoNodeName(getKaleoNodeName());
-		clone.setName(getName());
-		clone.setDescription(getDescription());
-		clone.setExecutionType(getExecutionType());
-		clone.setTemplate(getTemplate());
-		clone.setTemplateLanguage(getTemplateLanguage());
-		clone.setNotificationTypes(getNotificationTypes());
+		clone._kaleoNotificationId = _kaleoNotificationId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._kaleoDefinitionId = _kaleoDefinitionId;
+
+		clone._kaleoNodeId = _kaleoNodeId;
+
+		clone._kaleoNodeName = _kaleoNodeName;
+
+		clone._name = _name;
+
+		clone._description = _description;
+
+		clone._executionType = _executionType;
+
+		clone._template = _template;
+
+		clone._templateLanguage = _templateLanguage;
+
+		clone._notificationTypes = _notificationTypes;
 
 		return clone;
 	}

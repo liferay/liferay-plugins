@@ -290,20 +290,27 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	}
 
 	public Object clone() {
-		MemberRequestImpl clone = new MemberRequestImpl();
+		MemberRequestModelImpl clone = new MemberRequestImpl();
 
-		clone.setMemberRequestId(getMemberRequestId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setKey(getKey());
-		clone.setReceiverUserId(getReceiverUserId());
-		clone.setInvitedRoleId(getInvitedRoleId());
-		clone.setInvitedTeamId(getInvitedTeamId());
-		clone.setStatus(getStatus());
+		clone._memberRequestId = _memberRequestId;
+		clone._originalGroupId = clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalKey = clone._key = _key;
+		clone._originalReceiverUserId = clone._receiverUserId = _receiverUserId;
+
+		clone._invitedRoleId = _invitedRoleId;
+
+		clone._invitedTeamId = _invitedTeamId;
+		clone._originalStatus = clone._status = _status;
 
 		return clone;
 	}

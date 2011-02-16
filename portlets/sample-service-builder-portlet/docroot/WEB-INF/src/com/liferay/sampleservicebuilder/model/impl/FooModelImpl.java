@@ -327,21 +327,32 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 	}
 
 	public Object clone() {
-		FooImpl clone = new FooImpl();
+		FooModelImpl clone = new FooImpl();
 
-		clone.setUuid(getUuid());
-		clone.setFooId(getFooId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setField1(getField1());
-		clone.setField2(getField2());
-		clone.setField3(getField3());
-		clone.setField4(getField4());
-		clone.setField5(getField5());
+		clone._originalUuid = clone._uuid = _uuid;
+
+		clone._fooId = _fooId;
+		clone._originalGroupId = clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._field1 = _field1;
+
+		clone._field2 = _field2;
+
+		clone._field3 = _field3;
+
+		clone._field4 = _field4;
+
+		clone._field5 = _field5;
 
 		return clone;
 	}

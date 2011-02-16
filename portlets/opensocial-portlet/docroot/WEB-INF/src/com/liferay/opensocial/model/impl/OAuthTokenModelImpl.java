@@ -324,22 +324,30 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 	}
 
 	public Object clone() {
-		OAuthTokenImpl clone = new OAuthTokenImpl();
+		OAuthTokenModelImpl clone = new OAuthTokenImpl();
 
-		clone.setOAuthTokenId(getOAuthTokenId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setGadgetId(getGadgetId());
-		clone.setServiceName(getServiceName());
-		clone.setModuleId(getModuleId());
-		clone.setAccessToken(getAccessToken());
-		clone.setTokenName(getTokenName());
-		clone.setTokenSecret(getTokenSecret());
-		clone.setSessionHandle(getSessionHandle());
-		clone.setExpiration(getExpiration());
+		clone._oAuthTokenId = _oAuthTokenId;
+
+		clone._companyId = _companyId;
+		clone._originalUserId = clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalGadgetId = clone._gadgetId = _gadgetId;
+		clone._originalServiceName = clone._serviceName = _serviceName;
+		clone._originalModuleId = clone._moduleId = _moduleId;
+
+		clone._accessToken = _accessToken;
+		clone._originalTokenName = clone._tokenName = _tokenName;
+
+		clone._tokenSecret = _tokenSecret;
+
+		clone._sessionHandle = _sessionHandle;
+
+		clone._expiration = _expiration;
 
 		return clone;
 	}

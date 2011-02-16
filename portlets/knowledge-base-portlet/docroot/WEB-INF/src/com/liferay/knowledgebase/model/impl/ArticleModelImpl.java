@@ -478,28 +478,44 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public Object clone() {
-		ArticleImpl clone = new ArticleImpl();
+		ArticleModelImpl clone = new ArticleImpl();
 
-		clone.setUuid(getUuid());
-		clone.setArticleId(getArticleId());
-		clone.setResourcePrimKey(getResourcePrimKey());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setParentResourcePrimKey(getParentResourcePrimKey());
-		clone.setVersion(getVersion());
-		clone.setTitle(getTitle());
-		clone.setContent(getContent());
-		clone.setDescription(getDescription());
-		clone.setPriority(getPriority());
-		clone.setLatest(getLatest());
-		clone.setStatus(getStatus());
-		clone.setStatusByUserId(getStatusByUserId());
-		clone.setStatusByUserName(getStatusByUserName());
-		clone.setStatusDate(getStatusDate());
+		clone._originalUuid = clone._uuid = _uuid;
+
+		clone._articleId = _articleId;
+		clone._originalResourcePrimKey = clone._resourcePrimKey = _resourcePrimKey;
+		clone._originalGroupId = clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._parentResourcePrimKey = _parentResourcePrimKey;
+		clone._originalVersion = clone._version = _version;
+
+		clone._title = _title;
+
+		clone._content = _content;
+
+		clone._description = _description;
+
+		clone._priority = _priority;
+
+		clone._latest = _latest;
+
+		clone._status = _status;
+
+		clone._statusByUserId = _statusByUserId;
+
+		clone._statusByUserName = _statusByUserName;
+
+		clone._statusDate = _statusDate;
 
 		return clone;
 	}

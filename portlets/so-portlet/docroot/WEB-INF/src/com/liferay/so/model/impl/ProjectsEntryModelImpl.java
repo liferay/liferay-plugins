@@ -244,19 +244,29 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 	}
 
 	public Object clone() {
-		ProjectsEntryImpl clone = new ProjectsEntryImpl();
+		ProjectsEntryModelImpl clone = new ProjectsEntryImpl();
 
-		clone.setProjectsEntryId(getProjectsEntryId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setTitle(getTitle());
-		clone.setDescription(getDescription());
-		clone.setStartDate(getStartDate());
-		clone.setEndDate(getEndDate());
-		clone.setData(getData());
+		clone._projectsEntryId = _projectsEntryId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._title = _title;
+
+		clone._description = _description;
+
+		clone._startDate = _startDate;
+
+		clone._endDate = _endDate;
+
+		clone._data = _data;
 
 		return clone;
 	}

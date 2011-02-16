@@ -236,17 +236,23 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 	}
 
 	public Object clone() {
-		MeetupsRegistrationImpl clone = new MeetupsRegistrationImpl();
+		MeetupsRegistrationModelImpl clone = new MeetupsRegistrationImpl();
 
-		clone.setMeetupsRegistrationId(getMeetupsRegistrationId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setMeetupsEntryId(getMeetupsEntryId());
-		clone.setStatus(getStatus());
-		clone.setComments(getComments());
+		clone._meetupsRegistrationId = _meetupsRegistrationId;
+
+		clone._companyId = _companyId;
+		clone._originalUserId = clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalMeetupsEntryId = clone._meetupsEntryId = _meetupsEntryId;
+
+		clone._status = _status;
+
+		clone._comments = _comments;
 
 		return clone;
 	}

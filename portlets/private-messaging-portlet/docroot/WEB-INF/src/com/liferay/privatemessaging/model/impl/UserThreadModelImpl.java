@@ -233,17 +233,23 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	}
 
 	public Object clone() {
-		UserThreadImpl clone = new UserThreadImpl();
+		UserThreadModelImpl clone = new UserThreadImpl();
 
-		clone.setUserThreadId(getUserThreadId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setMbThreadId(getMbThreadId());
-		clone.setTopMBMessageId(getTopMBMessageId());
-		clone.setRead(getRead());
-		clone.setDeleted(getDeleted());
+		clone._userThreadId = _userThreadId;
+
+		clone._companyId = _companyId;
+		clone._originalUserId = clone._userId = _userId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalMbThreadId = clone._mbThreadId = _mbThreadId;
+
+		clone._topMBMessageId = _topMBMessageId;
+
+		clone._read = _read;
+
+		clone._deleted = _deleted;
 
 		return clone;
 	}

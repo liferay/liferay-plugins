@@ -163,14 +163,14 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 			CommentImpl.class, comment.getPrimaryKey(), comment);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { comment.getUuid(), new Long(comment.getGroupId()) },
+			new Object[] { comment.getUuid(), Long.valueOf(comment.getGroupId()) },
 			comment);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C,
 			new Object[] {
-				new Long(comment.getUserId()),
-				new Long(comment.getClassNameId()),
-				new Long(comment.getClassPK())
+				Long.valueOf(comment.getUserId()),
+				Long.valueOf(comment.getClassNameId()),
+				Long.valueOf(comment.getClassPK())
 			}, comment);
 	}
 
@@ -215,13 +215,13 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 			CommentImpl.class, comment.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { comment.getUuid(), new Long(comment.getGroupId()) });
+			new Object[] { comment.getUuid(), Long.valueOf(comment.getGroupId()) });
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
 			new Object[] {
-				new Long(comment.getUserId()),
-				new Long(comment.getClassNameId()),
-				new Long(comment.getClassPK())
+				Long.valueOf(comment.getUserId()),
+				Long.valueOf(comment.getClassNameId()),
+				Long.valueOf(comment.getClassPK())
 			});
 	}
 
@@ -273,7 +273,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 			session = openSession();
 
 			Comment comment = (Comment)session.get(CommentImpl.class,
-					new Long(commentId));
+					Long.valueOf(commentId));
 
 			if (comment == null) {
 				if (_log.isWarnEnabled()) {
@@ -332,14 +332,14 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				commentModelImpl.getUuid(),
-				new Long(commentModelImpl.getGroupId())
+				Long.valueOf(commentModelImpl.getGroupId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
 			new Object[] {
-				new Long(commentModelImpl.getUserId()),
-				new Long(commentModelImpl.getClassNameId()),
-				new Long(commentModelImpl.getClassPK())
+				Long.valueOf(commentModelImpl.getUserId()),
+				Long.valueOf(commentModelImpl.getClassNameId()),
+				Long.valueOf(commentModelImpl.getClassPK())
 			});
 
 		EntityCacheUtil.removeResult(CommentModelImpl.ENTITY_CACHE_ENABLED,
@@ -390,7 +390,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					commentModelImpl.getOriginalUuid(),
-					new Long(commentModelImpl.getOriginalGroupId())
+					Long.valueOf(commentModelImpl.getOriginalGroupId())
 				});
 		}
 
@@ -399,8 +399,9 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 					commentModelImpl.getOriginalUuid()) ||
 				(comment.getGroupId() != commentModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] { comment.getUuid(), new Long(comment.getGroupId()) },
-				comment);
+				new Object[] {
+					comment.getUuid(), Long.valueOf(comment.getGroupId())
+				}, comment);
 		}
 
 		if (!isNew &&
@@ -409,9 +410,9 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 				(comment.getClassPK() != commentModelImpl.getOriginalClassPK()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
 				new Object[] {
-					new Long(commentModelImpl.getOriginalUserId()),
-					new Long(commentModelImpl.getOriginalClassNameId()),
-					new Long(commentModelImpl.getOriginalClassPK())
+					Long.valueOf(commentModelImpl.getOriginalUserId()),
+					Long.valueOf(commentModelImpl.getOriginalClassNameId()),
+					Long.valueOf(commentModelImpl.getOriginalClassPK())
 				});
 		}
 
@@ -421,9 +422,9 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 				(comment.getClassPK() != commentModelImpl.getOriginalClassPK()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C,
 				new Object[] {
-					new Long(comment.getUserId()),
-					new Long(comment.getClassNameId()),
-					new Long(comment.getClassPK())
+					Long.valueOf(comment.getUserId()),
+					Long.valueOf(comment.getClassNameId()),
+					Long.valueOf(comment.getClassPK())
 				}, comment);
 		}
 
@@ -523,7 +524,7 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 				session = openSession();
 
 				comment = (Comment)session.get(CommentImpl.class,
-						new Long(commentId));
+						Long.valueOf(commentId));
 			}
 			catch (Exception e) {
 				throw processException(e);

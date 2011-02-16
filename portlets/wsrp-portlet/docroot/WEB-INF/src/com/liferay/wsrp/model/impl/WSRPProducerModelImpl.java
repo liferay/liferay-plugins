@@ -233,17 +233,24 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	}
 
 	public Object clone() {
-		WSRPProducerImpl clone = new WSRPProducerImpl();
+		WSRPProducerModelImpl clone = new WSRPProducerImpl();
 
-		clone.setUuid(getUuid());
-		clone.setWsrpProducerId(getWsrpProducerId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setName(getName());
-		clone.setVersion(getVersion());
-		clone.setPortletIds(getPortletIds());
+		clone._originalUuid = clone._uuid = _uuid;
+
+		clone._wsrpProducerId = _wsrpProducerId;
+		clone._originalGroupId = clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._name = _name;
+
+		clone._version = _version;
+
+		clone._portletIds = _portletIds;
 
 		return clone;
 	}

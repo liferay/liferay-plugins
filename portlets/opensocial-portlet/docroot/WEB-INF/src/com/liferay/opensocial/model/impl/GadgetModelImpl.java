@@ -223,16 +223,21 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	}
 
 	public Object clone() {
-		GadgetImpl clone = new GadgetImpl();
+		GadgetModelImpl clone = new GadgetImpl();
 
-		clone.setUuid(getUuid());
-		clone.setGadgetId(getGadgetId());
-		clone.setCompanyId(getCompanyId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setName(getName());
-		clone.setUrl(getUrl());
-		clone.setPortletCategoryNames(getPortletCategoryNames());
+		clone._uuid = _uuid;
+
+		clone._gadgetId = _gadgetId;
+		clone._originalCompanyId = clone._companyId = _companyId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._name = _name;
+		clone._originalUrl = clone._url = _url;
+
+		clone._portletCategoryNames = _portletCategoryNames;
 
 		return clone;
 	}

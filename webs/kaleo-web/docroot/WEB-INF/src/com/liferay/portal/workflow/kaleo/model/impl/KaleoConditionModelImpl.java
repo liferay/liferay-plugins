@@ -274,20 +274,29 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 	}
 
 	public Object clone() {
-		KaleoConditionImpl clone = new KaleoConditionImpl();
+		KaleoConditionModelImpl clone = new KaleoConditionImpl();
 
-		clone.setKaleoConditionId(getKaleoConditionId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setClassName(getClassName());
-		clone.setClassPK(getClassPK());
-		clone.setDescription(getDescription());
-		clone.setScript(getScript());
-		clone.setScriptLanguage(getScriptLanguage());
+		clone._kaleoConditionId = _kaleoConditionId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalClassName = clone._className = _className;
+		clone._originalClassPK = clone._classPK = _classPK;
+
+		clone._description = _description;
+
+		clone._script = _script;
+
+		clone._scriptLanguage = _scriptLanguage;
 
 		return clone;
 	}

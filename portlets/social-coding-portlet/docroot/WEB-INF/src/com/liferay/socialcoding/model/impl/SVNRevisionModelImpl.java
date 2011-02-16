@@ -178,14 +178,19 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 	}
 
 	public Object clone() {
-		SVNRevisionImpl clone = new SVNRevisionImpl();
+		SVNRevisionModelImpl clone = new SVNRevisionImpl();
 
-		clone.setSvnRevisionId(getSvnRevisionId());
-		clone.setSvnUserId(getSvnUserId());
-		clone.setCreateDate(getCreateDate());
-		clone.setSvnRepositoryId(getSvnRepositoryId());
-		clone.setRevisionNumber(getRevisionNumber());
-		clone.setComments(getComments());
+		clone._svnRevisionId = _svnRevisionId;
+
+		clone._svnUserId = _svnUserId;
+
+		clone._createDate = _createDate;
+
+		clone._svnRepositoryId = _svnRepositoryId;
+
+		clone._revisionNumber = _revisionNumber;
+
+		clone._comments = _comments;
 
 		return clone;
 	}

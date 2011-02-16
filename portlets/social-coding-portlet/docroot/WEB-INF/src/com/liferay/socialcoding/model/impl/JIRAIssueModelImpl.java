@@ -256,19 +256,28 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 	}
 
 	public Object clone() {
-		JIRAIssueImpl clone = new JIRAIssueImpl();
+		JIRAIssueModelImpl clone = new JIRAIssueImpl();
 
-		clone.setJiraIssueId(getJiraIssueId());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setProjectId(getProjectId());
-		clone.setKey(getKey());
-		clone.setSummary(getSummary());
-		clone.setDescription(getDescription());
-		clone.setReporterJiraUserId(getReporterJiraUserId());
-		clone.setAssigneeJiraUserId(getAssigneeJiraUserId());
-		clone.setResolution(getResolution());
-		clone.setStatus(getStatus());
+		clone._jiraIssueId = _jiraIssueId;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._projectId = _projectId;
+		clone._originalKey = clone._key = _key;
+
+		clone._summary = _summary;
+
+		clone._description = _description;
+
+		clone._reporterJiraUserId = _reporterJiraUserId;
+
+		clone._assigneeJiraUserId = _assigneeJiraUserId;
+
+		clone._resolution = _resolution;
+
+		clone._status = _status;
 
 		return clone;
 	}

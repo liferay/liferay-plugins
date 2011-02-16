@@ -307,20 +307,27 @@ public class CommentModelImpl extends BaseModelImpl<Comment>
 	}
 
 	public Object clone() {
-		CommentImpl clone = new CommentImpl();
+		CommentModelImpl clone = new CommentImpl();
 
-		clone.setUuid(getUuid());
-		clone.setCommentId(getCommentId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setClassNameId(getClassNameId());
-		clone.setClassPK(getClassPK());
-		clone.setContent(getContent());
-		clone.setHelpful(getHelpful());
+		clone._originalUuid = clone._uuid = _uuid;
+
+		clone._commentId = _commentId;
+		clone._originalGroupId = clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+		clone._originalUserId = clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+		clone._originalClassNameId = clone._classNameId = _classNameId;
+		clone._originalClassPK = clone._classPK = _classPK;
+
+		clone._content = _content;
+
+		clone._helpful = _helpful;
 
 		return clone;
 	}

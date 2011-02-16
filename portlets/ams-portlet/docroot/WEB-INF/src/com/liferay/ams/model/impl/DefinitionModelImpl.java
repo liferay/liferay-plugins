@@ -254,21 +254,33 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	}
 
 	public Object clone() {
-		DefinitionImpl clone = new DefinitionImpl();
+		DefinitionModelImpl clone = new DefinitionImpl();
 
-		clone.setDefinitionId(getDefinitionId());
-		clone.setGroupId(getGroupId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setTypeId(getTypeId());
-		clone.setManufacturer(getManufacturer());
-		clone.setModel(getModel());
-		clone.setOrderDate(getOrderDate());
-		clone.setQuantity(getQuantity());
-		clone.setPrice(getPrice());
+		clone._definitionId = _definitionId;
+
+		clone._groupId = _groupId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._typeId = _typeId;
+
+		clone._manufacturer = _manufacturer;
+
+		clone._model = _model;
+
+		clone._orderDate = _orderDate;
+
+		clone._quantity = _quantity;
+
+		clone._price = _price;
 
 		return clone;
 	}

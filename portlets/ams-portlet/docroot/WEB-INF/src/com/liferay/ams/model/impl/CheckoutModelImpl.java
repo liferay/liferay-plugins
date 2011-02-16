@@ -216,18 +216,27 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	}
 
 	public Object clone() {
-		CheckoutImpl clone = new CheckoutImpl();
+		CheckoutModelImpl clone = new CheckoutImpl();
 
-		clone.setCheckoutId(getCheckoutId());
-		clone.setCompanyId(getCompanyId());
-		clone.setUserId(getUserId());
-		clone.setUserName(getUserName());
-		clone.setCreateDate(getCreateDate());
-		clone.setModifiedDate(getModifiedDate());
-		clone.setAssetId(getAssetId());
-		clone.setCheckOutDate(getCheckOutDate());
-		clone.setExpectedCheckInDate(getExpectedCheckInDate());
-		clone.setActualCheckInDate(getActualCheckInDate());
+		clone._checkoutId = _checkoutId;
+
+		clone._companyId = _companyId;
+
+		clone._userId = _userId;
+
+		clone._userName = _userName;
+
+		clone._createDate = _createDate;
+
+		clone._modifiedDate = _modifiedDate;
+
+		clone._assetId = _assetId;
+
+		clone._checkOutDate = _checkOutDate;
+
+		clone._expectedCheckInDate = _expectedCheckInDate;
+
+		clone._actualCheckInDate = _actualCheckInDate;
 
 		return clone;
 	}

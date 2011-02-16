@@ -127,8 +127,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 			TemplateImpl.class, template.getPrimaryKey(), template);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { template.getUuid(), new Long(template.getGroupId()) },
-			template);
+			new Object[] { template.getUuid(), Long.valueOf(
+					template.getGroupId()) }, template);
 	}
 
 	/**
@@ -172,7 +172,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 			TemplateImpl.class, template.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { template.getUuid(), new Long(template.getGroupId()) });
+			new Object[] { template.getUuid(), Long.valueOf(
+					template.getGroupId()) });
 	}
 
 	/**
@@ -223,7 +224,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 			session = openSession();
 
 			Template template = (Template)session.get(TemplateImpl.class,
-					new Long(templateId));
+					Long.valueOf(templateId));
 
 			if (template == null) {
 				if (_log.isWarnEnabled()) {
@@ -282,7 +283,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				templateModelImpl.getUuid(),
-				new Long(templateModelImpl.getGroupId())
+				Long.valueOf(templateModelImpl.getGroupId())
 			});
 
 		EntityCacheUtil.removeResult(TemplateModelImpl.ENTITY_CACHE_ENABLED,
@@ -334,7 +335,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					templateModelImpl.getOriginalUuid(),
-					new Long(templateModelImpl.getOriginalGroupId())
+					Long.valueOf(templateModelImpl.getOriginalGroupId())
 				});
 		}
 
@@ -343,8 +344,9 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 					templateModelImpl.getOriginalUuid()) ||
 				(template.getGroupId() != templateModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] { template.getUuid(), new Long(
-						template.getGroupId()) }, template);
+				new Object[] {
+					template.getUuid(), Long.valueOf(template.getGroupId())
+				}, template);
 		}
 
 		return template;
@@ -443,7 +445,7 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 				session = openSession();
 
 				template = (Template)session.get(TemplateImpl.class,
-						new Long(templateId));
+						Long.valueOf(templateId));
 			}
 			catch (Exception e) {
 				throw processException(e);
