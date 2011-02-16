@@ -47,7 +47,6 @@ import javax.portlet.RenderResponse;
 /**
  * @author Jonathan Lee
  */
-
 public class NotificationsPortlet extends MVCPortlet {
 
 	public void doView(
