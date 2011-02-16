@@ -221,7 +221,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 			session = openSession();
 
 			KaleoNotificationRecipient kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
-					new Long(kaleoNotificationRecipientId));
+					Long.valueOf(kaleoNotificationRecipientId));
 
 			if (kaleoNotificationRecipient == null) {
 				if (_log.isWarnEnabled()) {
@@ -417,7 +417,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 				session = openSession();
 
 				kaleoNotificationRecipient = (KaleoNotificationRecipient)session.get(KaleoNotificationRecipientImpl.class,
-						new Long(kaleoNotificationRecipientId));
+						Long.valueOf(kaleoNotificationRecipientId));
 			}
 			catch (Exception e) {
 				throw processException(e);

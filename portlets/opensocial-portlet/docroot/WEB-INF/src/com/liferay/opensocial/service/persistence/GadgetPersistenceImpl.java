@@ -123,7 +123,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
-			new Object[] { new Long(gadget.getCompanyId()), gadget.getUrl() },
+			new Object[] { Long.valueOf(gadget.getCompanyId()), gadget.getUrl() },
 			gadget);
 	}
 
@@ -168,7 +168,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			GadgetImpl.class, gadget.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
-			new Object[] { new Long(gadget.getCompanyId()), gadget.getUrl() });
+			new Object[] { Long.valueOf(gadget.getCompanyId()), gadget.getUrl() });
 	}
 
 	/**
@@ -219,7 +219,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			session = openSession();
 
 			Gadget gadget = (Gadget)session.get(GadgetImpl.class,
-					new Long(gadgetId));
+					Long.valueOf(gadgetId));
 
 			if (gadget == null) {
 				if (_log.isWarnEnabled()) {
@@ -277,7 +277,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
 			new Object[] {
-				new Long(gadgetModelImpl.getCompanyId()),
+				Long.valueOf(gadgetModelImpl.getCompanyId()),
 				
 			gadgetModelImpl.getUrl()
 			});
@@ -329,7 +329,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 					gadgetModelImpl.getOriginalUrl()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_U,
 				new Object[] {
-					new Long(gadgetModelImpl.getOriginalCompanyId()),
+					Long.valueOf(gadgetModelImpl.getOriginalCompanyId()),
 					
 				gadgetModelImpl.getOriginalUrl()
 				});
@@ -340,8 +340,11 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				!Validator.equals(gadget.getUrl(),
 					gadgetModelImpl.getOriginalUrl()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
-				new Object[] { new Long(gadget.getCompanyId()), gadget.getUrl() },
-				gadget);
+				new Object[] {
+					Long.valueOf(gadget.getCompanyId()),
+					
+				gadget.getUrl()
+				}, gadget);
 		}
 
 		return gadget;
@@ -436,7 +439,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 				session = openSession();
 
 				gadget = (Gadget)session.get(GadgetImpl.class,
-						new Long(gadgetId));
+						Long.valueOf(gadgetId));
 			}
 			catch (Exception e) {
 				throw processException(e);

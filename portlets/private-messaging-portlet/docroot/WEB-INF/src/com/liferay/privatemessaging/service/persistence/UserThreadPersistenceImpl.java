@@ -152,8 +152,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] {
-				new Long(userThread.getUserId()),
-				new Long(userThread.getMbThreadId())
+				Long.valueOf(userThread.getUserId()),
+				Long.valueOf(userThread.getMbThreadId())
 			}, userThread);
 	}
 
@@ -199,8 +199,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] {
-				new Long(userThread.getUserId()),
-				new Long(userThread.getMbThreadId())
+				Long.valueOf(userThread.getUserId()),
+				Long.valueOf(userThread.getMbThreadId())
 			});
 	}
 
@@ -248,7 +248,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 			session = openSession();
 
 			UserThread userThread = (UserThread)session.get(UserThreadImpl.class,
-					new Long(userThreadId));
+					Long.valueOf(userThreadId));
 
 			if (userThread == null) {
 				if (_log.isWarnEnabled()) {
@@ -307,8 +307,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 			new Object[] {
-				new Long(userThreadModelImpl.getUserId()),
-				new Long(userThreadModelImpl.getMbThreadId())
+				Long.valueOf(userThreadModelImpl.getUserId()),
+				Long.valueOf(userThreadModelImpl.getMbThreadId())
 			});
 
 		EntityCacheUtil.removeResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
@@ -352,8 +352,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				(userThread.getMbThreadId() != userThreadModelImpl.getOriginalMbThreadId()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_M,
 				new Object[] {
-					new Long(userThreadModelImpl.getOriginalUserId()),
-					new Long(userThreadModelImpl.getOriginalMbThreadId())
+					Long.valueOf(userThreadModelImpl.getOriginalUserId()),
+					Long.valueOf(userThreadModelImpl.getOriginalMbThreadId())
 				});
 		}
 
@@ -362,8 +362,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				(userThread.getMbThreadId() != userThreadModelImpl.getOriginalMbThreadId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_M,
 				new Object[] {
-					new Long(userThread.getUserId()),
-					new Long(userThread.getMbThreadId())
+					Long.valueOf(userThread.getUserId()),
+					Long.valueOf(userThread.getMbThreadId())
 				}, userThread);
 		}
 
@@ -461,7 +461,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				session = openSession();
 
 				userThread = (UserThread)session.get(UserThreadImpl.class,
-						new Long(userThreadId));
+						Long.valueOf(userThreadId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -233,7 +233,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 			session = openSession();
 
 			KaleoInstance kaleoInstance = (KaleoInstance)session.get(KaleoInstanceImpl.class,
-					new Long(kaleoInstanceId));
+					Long.valueOf(kaleoInstanceId));
 
 			if (kaleoInstance == null) {
 				if (_log.isWarnEnabled()) {
@@ -424,7 +424,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 				session = openSession();
 
 				kaleoInstance = (KaleoInstance)session.get(KaleoInstanceImpl.class,
-						new Long(kaleoInstanceId));
+						Long.valueOf(kaleoInstanceId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -169,7 +169,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		try {
 			session = openSession();
 
-			Type type = (Type)session.get(TypeImpl.class, new Long(typeId));
+			Type type = (Type)session.get(TypeImpl.class, Long.valueOf(typeId));
 
 			if (type == null) {
 				if (_log.isWarnEnabled()) {
@@ -340,7 +340,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			try {
 				session = openSession();
 
-				type = (Type)session.get(TypeImpl.class, new Long(typeId));
+				type = (Type)session.get(TypeImpl.class, Long.valueOf(typeId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -266,7 +266,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		try {
 			session = openSession();
 
-			Entry entry = (Entry)session.get(EntryImpl.class, new Long(entryId));
+			Entry entry = (Entry)session.get(EntryImpl.class,
+					Long.valueOf(entryId));
 
 			if (entry == null) {
 				if (_log.isWarnEnabled()) {
@@ -439,7 +440,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 			try {
 				session = openSession();
 
-				entry = (Entry)session.get(EntryImpl.class, new Long(entryId));
+				entry = (Entry)session.get(EntryImpl.class,
+						Long.valueOf(entryId));
 			}
 			catch (Exception e) {
 				throw processException(e);

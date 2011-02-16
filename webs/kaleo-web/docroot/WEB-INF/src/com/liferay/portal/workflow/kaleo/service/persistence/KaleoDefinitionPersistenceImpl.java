@@ -165,9 +165,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_N_V,
 			new Object[] {
-				new Long(kaleoDefinition.getCompanyId()),
+				Long.valueOf(kaleoDefinition.getCompanyId()),
 				
-			kaleoDefinition.getName(), new Integer(kaleoDefinition.getVersion())
+			kaleoDefinition.getName(),
+				Integer.valueOf(kaleoDefinition.getVersion())
 			}, kaleoDefinition);
 	}
 
@@ -214,9 +215,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
 			new Object[] {
-				new Long(kaleoDefinition.getCompanyId()),
+				Long.valueOf(kaleoDefinition.getCompanyId()),
 				
-			kaleoDefinition.getName(), new Integer(kaleoDefinition.getVersion())
+			kaleoDefinition.getName(),
+				Integer.valueOf(kaleoDefinition.getVersion())
 			});
 	}
 
@@ -264,7 +266,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			session = openSession();
 
 			KaleoDefinition kaleoDefinition = (KaleoDefinition)session.get(KaleoDefinitionImpl.class,
-					new Long(kaleoDefinitionId));
+					Long.valueOf(kaleoDefinitionId));
 
 			if (kaleoDefinition == null) {
 				if (_log.isWarnEnabled()) {
@@ -325,10 +327,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
 			new Object[] {
-				new Long(kaleoDefinitionModelImpl.getCompanyId()),
+				Long.valueOf(kaleoDefinitionModelImpl.getCompanyId()),
 				
 			kaleoDefinitionModelImpl.getName(),
-				new Integer(kaleoDefinitionModelImpl.getVersion())
+				Integer.valueOf(kaleoDefinitionModelImpl.getVersion())
 			});
 
 		EntityCacheUtil.removeResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
@@ -375,10 +377,12 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				(kaleoDefinition.getVersion() != kaleoDefinitionModelImpl.getOriginalVersion()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_N_V,
 				new Object[] {
-					new Long(kaleoDefinitionModelImpl.getOriginalCompanyId()),
+					Long.valueOf(
+						kaleoDefinitionModelImpl.getOriginalCompanyId()),
 					
 				kaleoDefinitionModelImpl.getOriginalName(),
-					new Integer(kaleoDefinitionModelImpl.getOriginalVersion())
+					Integer.valueOf(
+						kaleoDefinitionModelImpl.getOriginalVersion())
 				});
 		}
 
@@ -389,10 +393,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				(kaleoDefinition.getVersion() != kaleoDefinitionModelImpl.getOriginalVersion()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_N_V,
 				new Object[] {
-					new Long(kaleoDefinition.getCompanyId()),
+					Long.valueOf(kaleoDefinition.getCompanyId()),
 					
 				kaleoDefinition.getName(),
-					new Integer(kaleoDefinition.getVersion())
+					Integer.valueOf(kaleoDefinition.getVersion())
 				}, kaleoDefinition);
 		}
 
@@ -494,7 +498,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 				session = openSession();
 
 				kaleoDefinition = (KaleoDefinition)session.get(KaleoDefinitionImpl.class,
-						new Long(kaleoDefinitionId));
+						Long.valueOf(kaleoDefinitionId));
 			}
 			catch (Exception e) {
 				throw processException(e);

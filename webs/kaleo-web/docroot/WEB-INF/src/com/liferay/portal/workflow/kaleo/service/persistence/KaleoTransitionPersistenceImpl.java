@@ -146,14 +146,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_N,
 			new Object[] {
-				new Long(kaleoTransition.getKaleoNodeId()),
+				Long.valueOf(kaleoTransition.getKaleoNodeId()),
 				
 			kaleoTransition.getName()
 			}, kaleoTransition);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
 			new Object[] {
-				new Long(kaleoTransition.getKaleoNodeId()),
+				Long.valueOf(kaleoTransition.getKaleoNodeId()),
 				Boolean.valueOf(kaleoTransition.getDefaultTransition())
 			}, kaleoTransition);
 	}
@@ -201,14 +201,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 			new Object[] {
-				new Long(kaleoTransition.getKaleoNodeId()),
+				Long.valueOf(kaleoTransition.getKaleoNodeId()),
 				
 			kaleoTransition.getName()
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
 			new Object[] {
-				new Long(kaleoTransition.getKaleoNodeId()),
+				Long.valueOf(kaleoTransition.getKaleoNodeId()),
 				Boolean.valueOf(kaleoTransition.getDefaultTransition())
 			});
 	}
@@ -257,7 +257,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 			session = openSession();
 
 			KaleoTransition kaleoTransition = (KaleoTransition)session.get(KaleoTransitionImpl.class,
-					new Long(kaleoTransitionId));
+					Long.valueOf(kaleoTransitionId));
 
 			if (kaleoTransition == null) {
 				if (_log.isWarnEnabled()) {
@@ -318,14 +318,14 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 			new Object[] {
-				new Long(kaleoTransitionModelImpl.getKaleoNodeId()),
+				Long.valueOf(kaleoTransitionModelImpl.getKaleoNodeId()),
 				
 			kaleoTransitionModelImpl.getName()
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
 			new Object[] {
-				new Long(kaleoTransitionModelImpl.getKaleoNodeId()),
+				Long.valueOf(kaleoTransitionModelImpl.getKaleoNodeId()),
 				Boolean.valueOf(kaleoTransitionModelImpl.getDefaultTransition())
 			});
 
@@ -372,7 +372,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					kaleoTransitionModelImpl.getOriginalName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_N,
 				new Object[] {
-					new Long(kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
+					Long.valueOf(
+						kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
 					
 				kaleoTransitionModelImpl.getOriginalName()
 				});
@@ -384,7 +385,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 					kaleoTransitionModelImpl.getOriginalName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_N,
 				new Object[] {
-					new Long(kaleoTransition.getKaleoNodeId()),
+					Long.valueOf(kaleoTransition.getKaleoNodeId()),
 					
 				kaleoTransition.getName()
 				}, kaleoTransition);
@@ -395,7 +396,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				(kaleoTransition.getDefaultTransition() != kaleoTransitionModelImpl.getOriginalDefaultTransition()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KNI_DT,
 				new Object[] {
-					new Long(kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
+					Long.valueOf(
+						kaleoTransitionModelImpl.getOriginalKaleoNodeId()),
 					Boolean.valueOf(
 						kaleoTransitionModelImpl.getOriginalDefaultTransition())
 				});
@@ -406,7 +408,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				(kaleoTransition.getDefaultTransition() != kaleoTransitionModelImpl.getOriginalDefaultTransition()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KNI_DT,
 				new Object[] {
-					new Long(kaleoTransition.getKaleoNodeId()),
+					Long.valueOf(kaleoTransition.getKaleoNodeId()),
 					Boolean.valueOf(kaleoTransition.getDefaultTransition())
 				}, kaleoTransition);
 		}
@@ -512,7 +514,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				session = openSession();
 
 				kaleoTransition = (KaleoTransition)session.get(KaleoTransitionImpl.class,
-						new Long(kaleoTransitionId));
+						Long.valueOf(kaleoTransitionId));
 			}
 			catch (Exception e) {
 				throw processException(e);

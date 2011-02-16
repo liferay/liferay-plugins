@@ -113,7 +113,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
 				kaleoCondition.getClassName(),
-				new Long(kaleoCondition.getClassPK())
+				Long.valueOf(kaleoCondition.getClassPK())
 			}, kaleoCondition);
 	}
 
@@ -161,7 +161,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
 				kaleoCondition.getClassName(),
-				new Long(kaleoCondition.getClassPK())
+				Long.valueOf(kaleoCondition.getClassPK())
 			});
 	}
 
@@ -209,7 +209,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			session = openSession();
 
 			KaleoCondition kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-					new Long(kaleoConditionId));
+					Long.valueOf(kaleoConditionId));
 
 			if (kaleoCondition == null) {
 				if (_log.isWarnEnabled()) {
@@ -271,7 +271,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 			new Object[] {
 				kaleoConditionModelImpl.getClassName(),
-				new Long(kaleoConditionModelImpl.getClassPK())
+				Long.valueOf(kaleoConditionModelImpl.getClassPK())
 			});
 
 		EntityCacheUtil.removeResult(KaleoConditionModelImpl.ENTITY_CACHE_ENABLED,
@@ -318,7 +318,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
 					kaleoConditionModelImpl.getOriginalClassName(),
-					new Long(kaleoConditionModelImpl.getOriginalClassPK())
+					Long.valueOf(kaleoConditionModelImpl.getOriginalClassPK())
 				});
 		}
 
@@ -329,7 +329,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_C,
 				new Object[] {
 					kaleoCondition.getClassName(),
-					new Long(kaleoCondition.getClassPK())
+					Long.valueOf(kaleoCondition.getClassPK())
 				}, kaleoCondition);
 		}
 
@@ -430,7 +430,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				session = openSession();
 
 				kaleoCondition = (KaleoCondition)session.get(KaleoConditionImpl.class,
-						new Long(kaleoConditionId));
+						Long.valueOf(kaleoConditionId));
 			}
 			catch (Exception e) {
 				throw processException(e);

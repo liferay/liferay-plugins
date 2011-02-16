@@ -211,7 +211,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			session = openSession();
 
 			WallEntry wallEntry = (WallEntry)session.get(WallEntryImpl.class,
-					new Long(wallEntryId));
+					Long.valueOf(wallEntryId));
 
 			if (wallEntry == null) {
 				if (_log.isWarnEnabled()) {
@@ -391,7 +391,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 				session = openSession();
 
 				wallEntry = (WallEntry)session.get(WallEntryImpl.class,
-						new Long(wallEntryId));
+						Long.valueOf(wallEntryId));
 			}
 			catch (Exception e) {
 				throw processException(e);

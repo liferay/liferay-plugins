@@ -202,7 +202,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			session = openSession();
 
 			JIRAChangeGroup jiraChangeGroup = (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
-					new Long(jiraChangeGroupId));
+					Long.valueOf(jiraChangeGroupId));
 
 			if (jiraChangeGroup == null) {
 				if (_log.isWarnEnabled()) {
@@ -381,7 +381,7 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 				session = openSession();
 
 				jiraChangeGroup = (JIRAChangeGroup)session.get(JIRAChangeGroupImpl.class,
-						new Long(jiraChangeGroupId));
+						Long.valueOf(jiraChangeGroupId));
 			}
 			catch (Exception e) {
 				throw processException(e);

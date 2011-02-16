@@ -125,8 +125,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
 			new Object[] {
-				new Long(meetupsRegistration.getUserId()),
-				new Long(meetupsRegistration.getMeetupsEntryId())
+				Long.valueOf(meetupsRegistration.getUserId()),
+				Long.valueOf(meetupsRegistration.getMeetupsEntryId())
 			}, meetupsRegistration);
 	}
 
@@ -173,8 +173,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
 			new Object[] {
-				new Long(meetupsRegistration.getUserId()),
-				new Long(meetupsRegistration.getMeetupsEntryId())
+				Long.valueOf(meetupsRegistration.getUserId()),
+				Long.valueOf(meetupsRegistration.getMeetupsEntryId())
 			});
 	}
 
@@ -222,7 +222,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			session = openSession();
 
 			MeetupsRegistration meetupsRegistration = (MeetupsRegistration)session.get(MeetupsRegistrationImpl.class,
-					new Long(meetupsRegistrationId));
+					Long.valueOf(meetupsRegistrationId));
 
 			if (meetupsRegistration == null) {
 				if (_log.isWarnEnabled()) {
@@ -283,8 +283,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
 			new Object[] {
-				new Long(meetupsRegistrationModelImpl.getUserId()),
-				new Long(meetupsRegistrationModelImpl.getMeetupsEntryId())
+				Long.valueOf(meetupsRegistrationModelImpl.getUserId()),
+				Long.valueOf(meetupsRegistrationModelImpl.getMeetupsEntryId())
 			});
 
 		EntityCacheUtil.removeResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
@@ -329,8 +329,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				(meetupsRegistration.getMeetupsEntryId() != meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_ME,
 				new Object[] {
-					new Long(meetupsRegistrationModelImpl.getOriginalUserId()),
-					new Long(meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
+					Long.valueOf(
+						meetupsRegistrationModelImpl.getOriginalUserId()),
+					Long.valueOf(
+						meetupsRegistrationModelImpl.getOriginalMeetupsEntryId())
 				});
 		}
 
@@ -339,8 +341,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				(meetupsRegistration.getMeetupsEntryId() != meetupsRegistrationModelImpl.getOriginalMeetupsEntryId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_ME,
 				new Object[] {
-					new Long(meetupsRegistration.getUserId()),
-					new Long(meetupsRegistration.getMeetupsEntryId())
+					Long.valueOf(meetupsRegistration.getUserId()),
+					Long.valueOf(meetupsRegistration.getMeetupsEntryId())
 				}, meetupsRegistration);
 		}
 
@@ -440,7 +442,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				session = openSession();
 
 				meetupsRegistration = (MeetupsRegistration)session.get(MeetupsRegistrationImpl.class,
-						new Long(meetupsRegistrationId));
+						Long.valueOf(meetupsRegistrationId));
 			}
 			catch (Exception e) {
 				throw processException(e);

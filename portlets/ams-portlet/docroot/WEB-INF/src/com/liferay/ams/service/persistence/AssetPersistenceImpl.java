@@ -170,7 +170,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		try {
 			session = openSession();
 
-			Asset asset = (Asset)session.get(AssetImpl.class, new Long(assetId));
+			Asset asset = (Asset)session.get(AssetImpl.class,
+					Long.valueOf(assetId));
 
 			if (asset == null) {
 				if (_log.isWarnEnabled()) {
@@ -348,7 +349,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			try {
 				session = openSession();
 
-				asset = (Asset)session.get(AssetImpl.class, new Long(assetId));
+				asset = (Asset)session.get(AssetImpl.class,
+						Long.valueOf(assetId));
 			}
 			catch (Exception e) {
 				throw processException(e);

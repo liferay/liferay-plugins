@@ -110,8 +110,11 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			FolderImpl.class, folder.getPrimaryKey(), folder);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
-			new Object[] { new Long(folder.getAccountId()), folder.getFullName() },
-			folder);
+			new Object[] {
+				Long.valueOf(folder.getAccountId()),
+				
+			folder.getFullName()
+			}, folder);
 	}
 
 	/**
@@ -155,7 +158,11 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			FolderImpl.class, folder.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
-			new Object[] { new Long(folder.getAccountId()), folder.getFullName() });
+			new Object[] {
+				Long.valueOf(folder.getAccountId()),
+				
+			folder.getFullName()
+			});
 	}
 
 	/**
@@ -202,7 +209,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 			session = openSession();
 
 			Folder folder = (Folder)session.get(FolderImpl.class,
-					new Long(folderId));
+					Long.valueOf(folderId));
 
 			if (folder == null) {
 				if (_log.isWarnEnabled()) {
@@ -260,7 +267,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 			new Object[] {
-				new Long(folderModelImpl.getAccountId()),
+				Long.valueOf(folderModelImpl.getAccountId()),
 				
 			folderModelImpl.getFullName()
 			});
@@ -306,7 +313,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 					folderModelImpl.getOriginalFullName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_A_F,
 				new Object[] {
-					new Long(folderModelImpl.getOriginalAccountId()),
+					Long.valueOf(folderModelImpl.getOriginalAccountId()),
 					
 				folderModelImpl.getOriginalFullName()
 				});
@@ -318,7 +325,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 					folderModelImpl.getOriginalFullName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_A_F,
 				new Object[] {
-					new Long(folder.getAccountId()),
+					Long.valueOf(folder.getAccountId()),
 					
 				folder.getFullName()
 				}, folder);
@@ -418,7 +425,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				session = openSession();
 
 				folder = (Folder)session.get(FolderImpl.class,
-						new Long(folderId));
+						Long.valueOf(folderId));
 			}
 			catch (Exception e) {
 				throw processException(e);

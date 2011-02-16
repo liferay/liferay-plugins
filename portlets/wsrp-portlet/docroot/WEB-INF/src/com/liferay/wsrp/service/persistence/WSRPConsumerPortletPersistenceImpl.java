@@ -127,7 +127,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
-				new Long(wsrpConsumerPortlet.getWsrpConsumerId()),
+				Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
 				
 			wsrpConsumerPortlet.getPortletHandle()
 			}, wsrpConsumerPortlet);
@@ -176,7 +176,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
-				new Long(wsrpConsumerPortlet.getWsrpConsumerId()),
+				Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
 				
 			wsrpConsumerPortlet.getPortletHandle()
 			});
@@ -230,7 +230,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 			session = openSession();
 
 			WSRPConsumerPortlet wsrpConsumerPortlet = (WSRPConsumerPortlet)session.get(WSRPConsumerPortletImpl.class,
-					new Long(wsrpConsumerPortletId));
+					Long.valueOf(wsrpConsumerPortletId));
 
 			if (wsrpConsumerPortlet == null) {
 				if (_log.isWarnEnabled()) {
@@ -291,7 +291,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 			new Object[] {
-				new Long(wsrpConsumerPortletModelImpl.getWsrpConsumerId()),
+				Long.valueOf(wsrpConsumerPortletModelImpl.getWsrpConsumerId()),
 				
 			wsrpConsumerPortletModelImpl.getPortletHandle()
 			});
@@ -345,7 +345,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_W_P,
 				new Object[] {
-					new Long(wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()),
+					Long.valueOf(
+						wsrpConsumerPortletModelImpl.getOriginalWsrpConsumerId()),
 					
 				wsrpConsumerPortletModelImpl.getOriginalPortletHandle()
 				});
@@ -357,7 +358,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 					wsrpConsumerPortletModelImpl.getOriginalPortletHandle()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_W_P,
 				new Object[] {
-					new Long(wsrpConsumerPortlet.getWsrpConsumerId()),
+					Long.valueOf(wsrpConsumerPortlet.getWsrpConsumerId()),
 					
 				wsrpConsumerPortlet.getPortletHandle()
 				}, wsrpConsumerPortlet);
@@ -458,7 +459,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				session = openSession();
 
 				wsrpConsumerPortlet = (WSRPConsumerPortlet)session.get(WSRPConsumerPortletImpl.class,
-						new Long(wsrpConsumerPortletId));
+						Long.valueOf(wsrpConsumerPortletId));
 			}
 			catch (Exception e) {
 				throw processException(e);

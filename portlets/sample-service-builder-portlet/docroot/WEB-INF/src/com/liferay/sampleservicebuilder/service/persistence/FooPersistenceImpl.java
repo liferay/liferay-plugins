@@ -126,7 +126,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FooImpl.class, foo.getPrimaryKey(), foo);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { foo.getUuid(), new Long(foo.getGroupId()) }, foo);
+			new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) }, foo);
 	}
 
 	/**
@@ -169,7 +169,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FooImpl.class, foo.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { foo.getUuid(), new Long(foo.getGroupId()) });
+			new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) });
 	}
 
 	/**
@@ -218,7 +218,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		try {
 			session = openSession();
 
-			Foo foo = (Foo)session.get(FooImpl.class, new Long(fooId));
+			Foo foo = (Foo)session.get(FooImpl.class, Long.valueOf(fooId));
 
 			if (foo == null) {
 				if (_log.isWarnEnabled()) {
@@ -276,7 +276,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				fooModelImpl.getUuid(), new Long(fooModelImpl.getGroupId())
+				fooModelImpl.getUuid(), Long.valueOf(fooModelImpl.getGroupId())
 			});
 
 		EntityCacheUtil.removeResult(FooModelImpl.ENTITY_CACHE_ENABLED,
@@ -326,7 +326,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					fooModelImpl.getOriginalUuid(),
-					new Long(fooModelImpl.getOriginalGroupId())
+					Long.valueOf(fooModelImpl.getOriginalGroupId())
 				});
 		}
 
@@ -334,7 +334,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 				(!Validator.equals(foo.getUuid(), fooModelImpl.getOriginalUuid()) ||
 				(foo.getGroupId() != fooModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] { foo.getUuid(), new Long(foo.getGroupId()) }, foo);
+				new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) },
+				foo);
 		}
 
 		return foo;
@@ -433,7 +434,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 			try {
 				session = openSession();
 
-				foo = (Foo)session.get(FooImpl.class, new Long(fooId));
+				foo = (Foo)session.get(FooImpl.class, Long.valueOf(fooId));
 			}
 			catch (Exception e) {
 				throw processException(e);

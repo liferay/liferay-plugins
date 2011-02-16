@@ -228,7 +228,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			session = openSession();
 
 			KaleoTaskAssignment kaleoTaskAssignment = (KaleoTaskAssignment)session.get(KaleoTaskAssignmentImpl.class,
-					new Long(kaleoTaskAssignmentId));
+					Long.valueOf(kaleoTaskAssignmentId));
 
 			if (kaleoTaskAssignment == null) {
 				if (_log.isWarnEnabled()) {
@@ -420,7 +420,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 				session = openSession();
 
 				kaleoTaskAssignment = (KaleoTaskAssignment)session.get(KaleoTaskAssignmentImpl.class,
-						new Long(kaleoTaskAssignmentId));
+						Long.valueOf(kaleoTaskAssignmentId));
 			}
 			catch (Exception e) {
 				throw processException(e);

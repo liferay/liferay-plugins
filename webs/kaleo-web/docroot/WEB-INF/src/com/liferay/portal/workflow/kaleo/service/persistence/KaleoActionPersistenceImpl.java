@@ -210,7 +210,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 			session = openSession();
 
 			KaleoAction kaleoAction = (KaleoAction)session.get(KaleoActionImpl.class,
-					new Long(kaleoActionId));
+					Long.valueOf(kaleoActionId));
 
 			if (kaleoAction == null) {
 				if (_log.isWarnEnabled()) {
@@ -399,7 +399,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 				session = openSession();
 
 				kaleoAction = (KaleoAction)session.get(KaleoActionImpl.class,
-						new Long(kaleoActionId));
+						Long.valueOf(kaleoActionId));
 			}
 			catch (Exception e) {
 				throw processException(e);

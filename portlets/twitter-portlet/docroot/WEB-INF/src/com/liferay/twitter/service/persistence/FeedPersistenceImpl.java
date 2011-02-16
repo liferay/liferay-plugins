@@ -107,12 +107,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
-				new Long(feed.getCompanyId()), new Long(feed.getTwitterUserId())
+				Long.valueOf(feed.getCompanyId()),
+				Long.valueOf(feed.getTwitterUserId())
 			}, feed);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
 			new Object[] {
-				new Long(feed.getCompanyId()),
+				Long.valueOf(feed.getCompanyId()),
 				
 			feed.getTwitterScreenName()
 			}, feed);
@@ -159,12 +160,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
-				new Long(feed.getCompanyId()), new Long(feed.getTwitterUserId())
+				Long.valueOf(feed.getCompanyId()),
+				Long.valueOf(feed.getTwitterUserId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
 			new Object[] {
-				new Long(feed.getCompanyId()),
+				Long.valueOf(feed.getCompanyId()),
 				
 			feed.getTwitterScreenName()
 			});
@@ -212,7 +214,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		try {
 			session = openSession();
 
-			Feed feed = (Feed)session.get(FeedImpl.class, new Long(feedId));
+			Feed feed = (Feed)session.get(FeedImpl.class, Long.valueOf(feedId));
 
 			if (feed == null) {
 				if (_log.isWarnEnabled()) {
@@ -270,13 +272,13 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 			new Object[] {
-				new Long(feedModelImpl.getCompanyId()),
-				new Long(feedModelImpl.getTwitterUserId())
+				Long.valueOf(feedModelImpl.getCompanyId()),
+				Long.valueOf(feedModelImpl.getTwitterUserId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
 			new Object[] {
-				new Long(feedModelImpl.getCompanyId()),
+				Long.valueOf(feedModelImpl.getCompanyId()),
 				
 			feedModelImpl.getTwitterScreenName()
 			});
@@ -321,8 +323,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TWUI,
 				new Object[] {
-					new Long(feedModelImpl.getOriginalCompanyId()),
-					new Long(feedModelImpl.getOriginalTwitterUserId())
+					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
+					Long.valueOf(feedModelImpl.getOriginalTwitterUserId())
 				});
 		}
 
@@ -331,8 +333,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				(feed.getTwitterUserId() != feedModelImpl.getOriginalTwitterUserId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TWUI,
 				new Object[] {
-					new Long(feed.getCompanyId()),
-					new Long(feed.getTwitterUserId())
+					Long.valueOf(feed.getCompanyId()),
+					Long.valueOf(feed.getTwitterUserId())
 				}, feed);
 		}
 
@@ -342,7 +344,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					feedModelImpl.getOriginalTwitterScreenName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_C_TSN,
 				new Object[] {
-					new Long(feedModelImpl.getOriginalCompanyId()),
+					Long.valueOf(feedModelImpl.getOriginalCompanyId()),
 					
 				feedModelImpl.getOriginalTwitterScreenName()
 				});
@@ -354,7 +356,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 					feedModelImpl.getOriginalTwitterScreenName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_TSN,
 				new Object[] {
-					new Long(feed.getCompanyId()),
+					Long.valueOf(feed.getCompanyId()),
 					
 				feed.getTwitterScreenName()
 				}, feed);
@@ -452,7 +454,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			try {
 				session = openSession();
 
-				feed = (Feed)session.get(FeedImpl.class, new Long(feedId));
+				feed = (Feed)session.get(FeedImpl.class, Long.valueOf(feedId));
 			}
 			catch (Exception e) {
 				throw processException(e);

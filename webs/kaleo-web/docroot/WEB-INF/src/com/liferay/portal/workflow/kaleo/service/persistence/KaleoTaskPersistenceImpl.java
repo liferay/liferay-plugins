@@ -122,7 +122,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey(), kaleoTask);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { new Long(kaleoTask.getKaleoNodeId()) }, kaleoTask);
+			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) }, kaleoTask);
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { new Long(kaleoTask.getKaleoNodeId()) });
+			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) });
 	}
 
 	/**
@@ -213,7 +213,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			session = openSession();
 
 			KaleoTask kaleoTask = (KaleoTask)session.get(KaleoTaskImpl.class,
-					new Long(kaleoTaskId));
+					Long.valueOf(kaleoTaskId));
 
 			if (kaleoTask == null) {
 				if (_log.isWarnEnabled()) {
@@ -271,7 +271,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		KaleoTaskModelImpl kaleoTaskModelImpl = (KaleoTaskModelImpl)kaleoTask;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-			new Object[] { new Long(kaleoTaskModelImpl.getKaleoNodeId()) });
+			new Object[] { Long.valueOf(kaleoTaskModelImpl.getKaleoNodeId()) });
 
 		EntityCacheUtil.removeResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskImpl.class, kaleoTask.getPrimaryKey());
@@ -313,14 +313,15 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 				(kaleoTask.getKaleoNodeId() != kaleoTaskModelImpl.getOriginalKaleoNodeId())) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 				new Object[] {
-					new Long(kaleoTaskModelImpl.getOriginalKaleoNodeId())
+					Long.valueOf(kaleoTaskModelImpl.getOriginalKaleoNodeId())
 				});
 		}
 
 		if (isNew ||
 				(kaleoTask.getKaleoNodeId() != kaleoTaskModelImpl.getOriginalKaleoNodeId())) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
-				new Object[] { new Long(kaleoTask.getKaleoNodeId()) }, kaleoTask);
+				new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) },
+				kaleoTask);
 		}
 
 		return kaleoTask;
@@ -421,7 +422,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 				session = openSession();
 
 				kaleoTask = (KaleoTask)session.get(KaleoTaskImpl.class,
-						new Long(kaleoTaskId));
+						Long.valueOf(kaleoTaskId));
 			}
 			catch (Exception e) {
 				throw processException(e);

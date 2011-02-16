@@ -199,7 +199,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 			session = openSession();
 
 			MeetupsEntry meetupsEntry = (MeetupsEntry)session.get(MeetupsEntryImpl.class,
-					new Long(meetupsEntryId));
+					Long.valueOf(meetupsEntryId));
 
 			if (meetupsEntry == null) {
 				if (_log.isWarnEnabled()) {
@@ -387,7 +387,7 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 				session = openSession();
 
 				meetupsEntry = (MeetupsEntry)session.get(MeetupsEntryImpl.class,
-						new Long(meetupsEntryId));
+						Long.valueOf(meetupsEntryId));
 			}
 			catch (Exception e) {
 				throw processException(e);

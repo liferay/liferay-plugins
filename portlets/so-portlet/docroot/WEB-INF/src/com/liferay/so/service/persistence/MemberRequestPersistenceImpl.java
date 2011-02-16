@@ -146,9 +146,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S,
 			new Object[] {
-				new Long(memberRequest.getGroupId()),
-				new Long(memberRequest.getReceiverUserId()),
-				new Integer(memberRequest.getStatus())
+				Long.valueOf(memberRequest.getGroupId()),
+				Long.valueOf(memberRequest.getReceiverUserId()),
+				Integer.valueOf(memberRequest.getStatus())
 			}, memberRequest);
 	}
 
@@ -198,9 +198,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
 			new Object[] {
-				new Long(memberRequest.getGroupId()),
-				new Long(memberRequest.getReceiverUserId()),
-				new Integer(memberRequest.getStatus())
+				Long.valueOf(memberRequest.getGroupId()),
+				Long.valueOf(memberRequest.getReceiverUserId()),
+				Integer.valueOf(memberRequest.getStatus())
 			});
 	}
 
@@ -248,7 +248,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 			session = openSession();
 
 			MemberRequest memberRequest = (MemberRequest)session.get(MemberRequestImpl.class,
-					new Long(memberRequestId));
+					Long.valueOf(memberRequestId));
 
 			if (memberRequest == null) {
 				if (_log.isWarnEnabled()) {
@@ -312,9 +312,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
 			new Object[] {
-				new Long(memberRequestModelImpl.getGroupId()),
-				new Long(memberRequestModelImpl.getReceiverUserId()),
-				new Integer(memberRequestModelImpl.getStatus())
+				Long.valueOf(memberRequestModelImpl.getGroupId()),
+				Long.valueOf(memberRequestModelImpl.getReceiverUserId()),
+				Integer.valueOf(memberRequestModelImpl.getStatus())
 			});
 
 		EntityCacheUtil.removeResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
@@ -374,9 +374,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				(memberRequest.getStatus() != memberRequestModelImpl.getOriginalStatus()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_R_S,
 				new Object[] {
-					new Long(memberRequestModelImpl.getOriginalGroupId()),
-					new Long(memberRequestModelImpl.getOriginalReceiverUserId()),
-					new Integer(memberRequestModelImpl.getOriginalStatus())
+					Long.valueOf(memberRequestModelImpl.getOriginalGroupId()),
+					Long.valueOf(
+						memberRequestModelImpl.getOriginalReceiverUserId()),
+					Integer.valueOf(memberRequestModelImpl.getOriginalStatus())
 				});
 		}
 
@@ -386,9 +387,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				(memberRequest.getStatus() != memberRequestModelImpl.getOriginalStatus()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_R_S,
 				new Object[] {
-					new Long(memberRequest.getGroupId()),
-					new Long(memberRequest.getReceiverUserId()),
-					new Integer(memberRequest.getStatus())
+					Long.valueOf(memberRequest.getGroupId()),
+					Long.valueOf(memberRequest.getReceiverUserId()),
+					Integer.valueOf(memberRequest.getStatus())
 				}, memberRequest);
 		}
 
@@ -489,7 +490,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				session = openSession();
 
 				memberRequest = (MemberRequest)session.get(MemberRequestImpl.class,
-						new Long(memberRequestId));
+						Long.valueOf(memberRequestId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -186,7 +186,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 			session = openSession();
 
 			Attachment attachment = (Attachment)session.get(AttachmentImpl.class,
-					new Long(attachmentId));
+					Long.valueOf(attachmentId));
 
 			if (attachment == null) {
 				if (_log.isWarnEnabled()) {
@@ -366,7 +366,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 				session = openSession();
 
 				attachment = (Attachment)session.get(AttachmentImpl.class,
-						new Long(attachmentId));
+						Long.valueOf(attachmentId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -332,7 +332,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 			session = openSession();
 
 			JIRAIssue jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
-					new Long(jiraIssueId));
+					Long.valueOf(jiraIssueId));
 
 			if (jiraIssue == null) {
 				if (_log.isWarnEnabled()) {
@@ -538,7 +538,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 				session = openSession();
 
 				jiraIssue = (JIRAIssue)session.get(JIRAIssueImpl.class,
-						new Long(jiraIssueId));
+						Long.valueOf(jiraIssueId));
 			}
 			catch (Exception e) {
 				throw processException(e);

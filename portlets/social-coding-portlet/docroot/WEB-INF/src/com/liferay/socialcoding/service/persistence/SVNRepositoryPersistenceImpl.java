@@ -191,7 +191,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 			session = openSession();
 
 			SVNRepository svnRepository = (SVNRepository)session.get(SVNRepositoryImpl.class,
-					new Long(svnRepositoryId));
+					Long.valueOf(svnRepositoryId));
 
 			if (svnRepository == null) {
 				if (_log.isWarnEnabled()) {
@@ -392,7 +392,7 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 				session = openSession();
 
 				svnRepository = (SVNRepository)session.get(SVNRepositoryImpl.class,
-						new Long(svnRepositoryId));
+						Long.valueOf(svnRepositoryId));
 			}
 			catch (Exception e) {
 				throw processException(e);

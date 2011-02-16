@@ -244,7 +244,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			session = openSession();
 
 			KaleoInstanceToken kaleoInstanceToken = (KaleoInstanceToken)session.get(KaleoInstanceTokenImpl.class,
-					new Long(kaleoInstanceTokenId));
+					Long.valueOf(kaleoInstanceTokenId));
 
 			if (kaleoInstanceToken == null) {
 				if (_log.isWarnEnabled()) {
@@ -437,7 +437,7 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 				session = openSession();
 
 				kaleoInstanceToken = (KaleoInstanceToken)session.get(KaleoInstanceTokenImpl.class,
-						new Long(kaleoInstanceTokenId));
+						Long.valueOf(kaleoInstanceTokenId));
 			}
 			catch (Exception e) {
 				throw processException(e);

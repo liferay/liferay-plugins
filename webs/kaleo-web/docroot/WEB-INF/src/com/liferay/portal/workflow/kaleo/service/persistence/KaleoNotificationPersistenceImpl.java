@@ -218,7 +218,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			session = openSession();
 
 			KaleoNotification kaleoNotification = (KaleoNotification)session.get(KaleoNotificationImpl.class,
-					new Long(kaleoNotificationId));
+					Long.valueOf(kaleoNotificationId));
 
 			if (kaleoNotification == null) {
 				if (_log.isWarnEnabled()) {
@@ -411,7 +411,7 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 				session = openSession();
 
 				kaleoNotification = (KaleoNotification)session.get(KaleoNotificationImpl.class,
-						new Long(kaleoNotificationId));
+						Long.valueOf(kaleoNotificationId));
 			}
 			catch (Exception e) {
 				throw processException(e);

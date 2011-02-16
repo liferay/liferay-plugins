@@ -113,7 +113,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,
 			new Object[] {
-				new Long(oAuthConsumer.getGadgetId()),
+				Long.valueOf(oAuthConsumer.getGadgetId()),
 				
 			oAuthConsumer.getServiceName()
 			}, oAuthConsumer);
@@ -162,7 +162,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
 			new Object[] {
-				new Long(oAuthConsumer.getGadgetId()),
+				Long.valueOf(oAuthConsumer.getGadgetId()),
 				
 			oAuthConsumer.getServiceName()
 			});
@@ -212,7 +212,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 			session = openSession();
 
 			OAuthConsumer oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
-					new Long(oAuthConsumerId));
+					Long.valueOf(oAuthConsumerId));
 
 			if (oAuthConsumer == null) {
 				if (_log.isWarnEnabled()) {
@@ -273,7 +273,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
 			new Object[] {
-				new Long(oAuthConsumerModelImpl.getGadgetId()),
+				Long.valueOf(oAuthConsumerModelImpl.getGadgetId()),
 				
 			oAuthConsumerModelImpl.getServiceName()
 			});
@@ -321,7 +321,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 					oAuthConsumerModelImpl.getOriginalServiceName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_G_S,
 				new Object[] {
-					new Long(oAuthConsumerModelImpl.getOriginalGadgetId()),
+					Long.valueOf(oAuthConsumerModelImpl.getOriginalGadgetId()),
 					
 				oAuthConsumerModelImpl.getOriginalServiceName()
 				});
@@ -333,7 +333,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 					oAuthConsumerModelImpl.getOriginalServiceName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_G_S,
 				new Object[] {
-					new Long(oAuthConsumer.getGadgetId()),
+					Long.valueOf(oAuthConsumer.getGadgetId()),
 					
 				oAuthConsumer.getServiceName()
 				}, oAuthConsumer);
@@ -433,7 +433,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				session = openSession();
 
 				oAuthConsumer = (OAuthConsumer)session.get(OAuthConsumerImpl.class,
-						new Long(oAuthConsumerId));
+						Long.valueOf(oAuthConsumerId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -210,7 +210,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			session = openSession();
 
 			JIRAAction jiraAction = (JIRAAction)session.get(JIRAActionImpl.class,
-					new Long(jiraActionId));
+					Long.valueOf(jiraActionId));
 
 			if (jiraAction == null) {
 				if (_log.isWarnEnabled()) {
@@ -390,7 +390,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 				session = openSession();
 
 				jiraAction = (JIRAAction)session.get(JIRAActionImpl.class,
-						new Long(jiraActionId));
+						Long.valueOf(jiraActionId));
 			}
 			catch (Exception e) {
 				throw processException(e);

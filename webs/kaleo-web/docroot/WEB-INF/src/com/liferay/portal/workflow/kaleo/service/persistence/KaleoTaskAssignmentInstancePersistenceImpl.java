@@ -236,7 +236,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			session = openSession();
 
 			KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstance)session.get(KaleoTaskAssignmentInstanceImpl.class,
-					new Long(kaleoTaskAssignmentInstanceId));
+					Long.valueOf(kaleoTaskAssignmentInstanceId));
 
 			if (kaleoTaskAssignmentInstance == null) {
 				if (_log.isWarnEnabled()) {
@@ -436,7 +436,7 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 				session = openSession();
 
 				kaleoTaskAssignmentInstance = (KaleoTaskAssignmentInstance)session.get(KaleoTaskAssignmentInstanceImpl.class,
-						new Long(kaleoTaskAssignmentInstanceId));
+						Long.valueOf(kaleoTaskAssignmentInstanceId));
 			}
 			catch (Exception e) {
 				throw processException(e);

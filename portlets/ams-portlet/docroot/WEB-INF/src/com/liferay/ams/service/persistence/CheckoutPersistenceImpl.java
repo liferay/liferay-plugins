@@ -172,7 +172,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			session = openSession();
 
 			Checkout checkout = (Checkout)session.get(CheckoutImpl.class,
-					new Long(checkoutId));
+					Long.valueOf(checkoutId));
 
 			if (checkout == null) {
 				if (_log.isWarnEnabled()) {
@@ -352,7 +352,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 				session = openSession();
 
 				checkout = (Checkout)session.get(CheckoutImpl.class,
-						new Long(checkoutId));
+						Long.valueOf(checkoutId));
 			}
 			catch (Exception e) {
 				throw processException(e);

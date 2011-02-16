@@ -122,8 +122,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
 			new Object[] {
-				new Long(message.getFolderId()),
-				new Long(message.getRemoteMessageId())
+				Long.valueOf(message.getFolderId()),
+				Long.valueOf(message.getRemoteMessageId())
 			}, message);
 	}
 
@@ -169,8 +169,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 			new Object[] {
-				new Long(message.getFolderId()),
-				new Long(message.getRemoteMessageId())
+				Long.valueOf(message.getFolderId()),
+				Long.valueOf(message.getRemoteMessageId())
 			});
 	}
 
@@ -218,7 +218,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 			session = openSession();
 
 			Message message = (Message)session.get(MessageImpl.class,
-					new Long(messageId));
+					Long.valueOf(messageId));
 
 			if (message == null) {
 				if (_log.isWarnEnabled()) {
@@ -276,8 +276,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 			new Object[] {
-				new Long(messageModelImpl.getFolderId()),
-				new Long(messageModelImpl.getRemoteMessageId())
+				Long.valueOf(messageModelImpl.getFolderId()),
+				Long.valueOf(messageModelImpl.getRemoteMessageId())
 			});
 
 		EntityCacheUtil.removeResult(MessageModelImpl.ENTITY_CACHE_ENABLED,
@@ -320,8 +320,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				(message.getRemoteMessageId() != messageModelImpl.getOriginalRemoteMessageId()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_F_R,
 				new Object[] {
-					new Long(messageModelImpl.getOriginalFolderId()),
-					new Long(messageModelImpl.getOriginalRemoteMessageId())
+					Long.valueOf(messageModelImpl.getOriginalFolderId()),
+					Long.valueOf(messageModelImpl.getOriginalRemoteMessageId())
 				});
 		}
 
@@ -330,8 +330,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				(message.getRemoteMessageId() != messageModelImpl.getOriginalRemoteMessageId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_F_R,
 				new Object[] {
-					new Long(message.getFolderId()),
-					new Long(message.getRemoteMessageId())
+					Long.valueOf(message.getFolderId()),
+					Long.valueOf(message.getRemoteMessageId())
 				}, message);
 		}
 
@@ -438,7 +438,7 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				session = openSession();
 
 				message = (Message)session.get(MessageImpl.class,
-						new Long(messageId));
+						Long.valueOf(messageId));
 			}
 			catch (Exception e) {
 				throw processException(e);

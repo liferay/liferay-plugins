@@ -253,7 +253,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			session = openSession();
 
 			KaleoLog kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class,
-					new Long(kaleoLogId));
+					Long.valueOf(kaleoLogId));
 
 			if (kaleoLog == null) {
 				if (_log.isWarnEnabled()) {
@@ -453,7 +453,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 				session = openSession();
 
 				kaleoLog = (KaleoLog)session.get(KaleoLogImpl.class,
-						new Long(kaleoLogId));
+						Long.valueOf(kaleoLogId));
 			}
 			catch (Exception e) {
 				throw processException(e);

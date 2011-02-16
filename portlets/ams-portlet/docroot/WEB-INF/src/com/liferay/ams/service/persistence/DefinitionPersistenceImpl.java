@@ -172,7 +172,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			session = openSession();
 
 			Definition definition = (Definition)session.get(DefinitionImpl.class,
-					new Long(definitionId));
+					Long.valueOf(definitionId));
 
 			if (definition == null) {
 				if (_log.isWarnEnabled()) {
@@ -356,7 +356,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 				session = openSession();
 
 				definition = (Definition)session.get(DefinitionImpl.class,
-						new Long(definitionId));
+						Long.valueOf(definitionId));
 			}
 			catch (Exception e) {
 				throw processException(e);

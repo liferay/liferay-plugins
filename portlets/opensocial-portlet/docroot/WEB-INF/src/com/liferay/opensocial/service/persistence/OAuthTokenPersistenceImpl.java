@@ -120,10 +120,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
-				new Long(oAuthToken.getUserId()),
-				new Long(oAuthToken.getGadgetId()),
+				Long.valueOf(oAuthToken.getUserId()),
+				Long.valueOf(oAuthToken.getGadgetId()),
 				
-			oAuthToken.getServiceName(), new Long(oAuthToken.getModuleId()),
+			oAuthToken.getServiceName(), Long.valueOf(oAuthToken.getModuleId()),
 				
 			oAuthToken.getTokenName()
 			}, oAuthToken);
@@ -171,10 +171,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
-				new Long(oAuthToken.getUserId()),
-				new Long(oAuthToken.getGadgetId()),
+				Long.valueOf(oAuthToken.getUserId()),
+				Long.valueOf(oAuthToken.getGadgetId()),
 				
-			oAuthToken.getServiceName(), new Long(oAuthToken.getModuleId()),
+			oAuthToken.getServiceName(), Long.valueOf(oAuthToken.getModuleId()),
 				
 			oAuthToken.getTokenName()
 			});
@@ -224,7 +224,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 			session = openSession();
 
 			OAuthToken oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
-					new Long(oAuthTokenId));
+					Long.valueOf(oAuthTokenId));
 
 			if (oAuthToken == null) {
 				if (_log.isWarnEnabled()) {
@@ -283,11 +283,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 			new Object[] {
-				new Long(oAuthTokenModelImpl.getUserId()),
-				new Long(oAuthTokenModelImpl.getGadgetId()),
+				Long.valueOf(oAuthTokenModelImpl.getUserId()),
+				Long.valueOf(oAuthTokenModelImpl.getGadgetId()),
 				
 			oAuthTokenModelImpl.getServiceName(),
-				new Long(oAuthTokenModelImpl.getModuleId()),
+				Long.valueOf(oAuthTokenModelImpl.getModuleId()),
 				
 			oAuthTokenModelImpl.getTokenName()
 			});
@@ -338,11 +338,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 					oAuthTokenModelImpl.getOriginalTokenName()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
-					new Long(oAuthTokenModelImpl.getOriginalUserId()),
-					new Long(oAuthTokenModelImpl.getOriginalGadgetId()),
+					Long.valueOf(oAuthTokenModelImpl.getOriginalUserId()),
+					Long.valueOf(oAuthTokenModelImpl.getOriginalGadgetId()),
 					
 				oAuthTokenModelImpl.getOriginalServiceName(),
-					new Long(oAuthTokenModelImpl.getOriginalModuleId()),
+					Long.valueOf(oAuthTokenModelImpl.getOriginalModuleId()),
 					
 				oAuthTokenModelImpl.getOriginalTokenName()
 				});
@@ -358,10 +358,11 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 					oAuthTokenModelImpl.getOriginalTokenName()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_G_S_M_T,
 				new Object[] {
-					new Long(oAuthToken.getUserId()),
-					new Long(oAuthToken.getGadgetId()),
+					Long.valueOf(oAuthToken.getUserId()),
+					Long.valueOf(oAuthToken.getGadgetId()),
 					
-				oAuthToken.getServiceName(), new Long(oAuthToken.getModuleId()),
+				oAuthToken.getServiceName(),
+					Long.valueOf(oAuthToken.getModuleId()),
 					
 				oAuthToken.getTokenName()
 				}, oAuthToken);
@@ -466,7 +467,7 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				session = openSession();
 
 				oAuthToken = (OAuthToken)session.get(OAuthTokenImpl.class,
-						new Long(oAuthTokenId));
+						Long.valueOf(oAuthTokenId));
 			}
 			catch (Exception e) {
 				throw processException(e);

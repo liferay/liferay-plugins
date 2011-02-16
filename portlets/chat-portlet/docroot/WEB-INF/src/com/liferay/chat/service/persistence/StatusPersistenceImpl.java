@@ -132,7 +132,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusImpl.class, status.getPrimaryKey(), status);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { new Long(status.getUserId()) }, status);
+			new Object[] { Long.valueOf(status.getUserId()) }, status);
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			StatusImpl.class, status.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { new Long(status.getUserId()) });
+			new Object[] { Long.valueOf(status.getUserId()) });
 	}
 
 	/**
@@ -223,7 +223,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 			session = openSession();
 
 			Status status = (Status)session.get(StatusImpl.class,
-					new Long(statusId));
+					Long.valueOf(statusId));
 
 			if (status == null) {
 				if (_log.isWarnEnabled()) {
@@ -280,7 +280,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		StatusModelImpl statusModelImpl = (StatusModelImpl)status;
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-			new Object[] { new Long(statusModelImpl.getUserId()) });
+			new Object[] { Long.valueOf(statusModelImpl.getUserId()) });
 
 		EntityCacheUtil.removeResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
 			StatusImpl.class, status.getPrimaryKey());
@@ -320,13 +320,13 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		if (!isNew &&
 				(status.getUserId() != statusModelImpl.getOriginalUserId())) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_USERID,
-				new Object[] { new Long(statusModelImpl.getOriginalUserId()) });
+				new Object[] { Long.valueOf(statusModelImpl.getOriginalUserId()) });
 		}
 
 		if (isNew ||
 				(status.getUserId() != statusModelImpl.getOriginalUserId())) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
-				new Object[] { new Long(status.getUserId()) }, status);
+				new Object[] { Long.valueOf(status.getUserId()) }, status);
 		}
 
 		return status;
@@ -421,7 +421,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 				session = openSession();
 
 				status = (Status)session.get(StatusImpl.class,
-						new Long(statusId));
+						Long.valueOf(statusId));
 			}
 			catch (Exception e) {
 				throw processException(e);

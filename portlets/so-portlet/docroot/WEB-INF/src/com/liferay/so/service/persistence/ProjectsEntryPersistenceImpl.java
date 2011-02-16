@@ -189,7 +189,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			session = openSession();
 
 			ProjectsEntry projectsEntry = (ProjectsEntry)session.get(ProjectsEntryImpl.class,
-					new Long(projectsEntryId));
+					Long.valueOf(projectsEntryId));
 
 			if (projectsEntry == null) {
 				if (_log.isWarnEnabled()) {
@@ -375,7 +375,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 				session = openSession();
 
 				projectsEntry = (ProjectsEntry)session.get(ProjectsEntryImpl.class,
-						new Long(projectsEntryId));
+						Long.valueOf(projectsEntryId));
 			}
 			catch (Exception e) {
 				throw processException(e);

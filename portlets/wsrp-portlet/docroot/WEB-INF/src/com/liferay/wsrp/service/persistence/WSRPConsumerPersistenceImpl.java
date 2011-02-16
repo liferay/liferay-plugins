@@ -205,7 +205,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 			session = openSession();
 
 			WSRPConsumer wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
-					new Long(wsrpConsumerId));
+					Long.valueOf(wsrpConsumerId));
 
 			if (wsrpConsumer == null) {
 				if (_log.isWarnEnabled()) {
@@ -396,7 +396,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 				session = openSession();
 
 				wsrpConsumer = (WSRPConsumer)session.get(WSRPConsumerImpl.class,
-						new Long(wsrpConsumerId));
+						Long.valueOf(wsrpConsumerId));
 			}
 			catch (Exception e) {
 				throw processException(e);

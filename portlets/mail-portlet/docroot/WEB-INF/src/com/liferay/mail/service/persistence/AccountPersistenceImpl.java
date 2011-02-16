@@ -110,7 +110,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			AccountImpl.class, account.getPrimaryKey(), account);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
-			new Object[] { new Long(account.getUserId()), account.getAddress() },
+			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() },
 			account);
 	}
 
@@ -155,7 +155,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			AccountImpl.class, account.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
-			new Object[] { new Long(account.getUserId()), account.getAddress() });
+			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() });
 	}
 
 	/**
@@ -202,7 +202,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			session = openSession();
 
 			Account account = (Account)session.get(AccountImpl.class,
-					new Long(accountId));
+					Long.valueOf(accountId));
 
 			if (account == null) {
 				if (_log.isWarnEnabled()) {
@@ -260,7 +260,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
 			new Object[] {
-				new Long(accountModelImpl.getUserId()),
+				Long.valueOf(accountModelImpl.getUserId()),
 				
 			accountModelImpl.getAddress()
 			});
@@ -306,7 +306,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 					accountModelImpl.getOriginalAddress()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_A,
 				new Object[] {
-					new Long(accountModelImpl.getOriginalUserId()),
+					Long.valueOf(accountModelImpl.getOriginalUserId()),
 					
 				accountModelImpl.getOriginalAddress()
 				});
@@ -317,8 +317,11 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				!Validator.equals(account.getAddress(),
 					accountModelImpl.getOriginalAddress()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
-				new Object[] { new Long(account.getUserId()), account.getAddress() },
-				account);
+				new Object[] {
+					Long.valueOf(account.getUserId()),
+					
+				account.getAddress()
+				}, account);
 		}
 
 		return account;
@@ -431,7 +434,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 				session = openSession();
 
 				account = (Account)session.get(AccountImpl.class,
-						new Long(accountId));
+						Long.valueOf(accountId));
 			}
 			catch (Exception e) {
 				throw processException(e);

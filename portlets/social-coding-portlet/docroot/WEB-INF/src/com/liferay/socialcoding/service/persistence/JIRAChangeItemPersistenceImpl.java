@@ -189,7 +189,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			session = openSession();
 
 			JIRAChangeItem jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-					new Long(jiraChangeItemId));
+					Long.valueOf(jiraChangeItemId));
 
 			if (jiraChangeItem == null) {
 				if (_log.isWarnEnabled()) {
@@ -371,7 +371,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 				session = openSession();
 
 				jiraChangeItem = (JIRAChangeItem)session.get(JIRAChangeItemImpl.class,
-						new Long(jiraChangeItemId));
+						Long.valueOf(jiraChangeItemId));
 			}
 			catch (Exception e) {
 				throw processException(e);

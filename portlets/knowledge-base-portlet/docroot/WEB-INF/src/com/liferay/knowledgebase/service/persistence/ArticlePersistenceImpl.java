@@ -330,13 +330,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			ArticleImpl.class, article.getPrimaryKey(), article);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { article.getUuid(), new Long(article.getGroupId()) },
+			new Object[] { article.getUuid(), Long.valueOf(article.getGroupId()) },
 			article);
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
-				new Long(article.getResourcePrimKey()),
-				new Integer(article.getVersion())
+				Long.valueOf(article.getResourcePrimKey()),
+				Integer.valueOf(article.getVersion())
 			}, article);
 	}
 
@@ -381,12 +381,12 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			ArticleImpl.class, article.getPrimaryKey());
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
-			new Object[] { article.getUuid(), new Long(article.getGroupId()) });
+			new Object[] { article.getUuid(), Long.valueOf(article.getGroupId()) });
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
-				new Long(article.getResourcePrimKey()),
-				new Integer(article.getVersion())
+				Long.valueOf(article.getResourcePrimKey()),
+				Integer.valueOf(article.getVersion())
 			});
 	}
 
@@ -438,7 +438,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			session = openSession();
 
 			Article article = (Article)session.get(ArticleImpl.class,
-					new Long(articleId));
+					Long.valueOf(articleId));
 
 			if (article == null) {
 				if (_log.isWarnEnabled()) {
@@ -497,13 +497,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				articleModelImpl.getUuid(),
-				new Long(articleModelImpl.getGroupId())
+				Long.valueOf(articleModelImpl.getGroupId())
 			});
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 			new Object[] {
-				new Long(articleModelImpl.getResourcePrimKey()),
-				new Integer(articleModelImpl.getVersion())
+				Long.valueOf(articleModelImpl.getResourcePrimKey()),
+				Integer.valueOf(articleModelImpl.getVersion())
 			});
 
 		EntityCacheUtil.removeResult(ArticleModelImpl.ENTITY_CACHE_ENABLED,
@@ -554,7 +554,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					articleModelImpl.getOriginalUuid(),
-					new Long(articleModelImpl.getOriginalGroupId())
+					Long.valueOf(articleModelImpl.getOriginalGroupId())
 				});
 		}
 
@@ -563,8 +563,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					articleModelImpl.getOriginalUuid()) ||
 				(article.getGroupId() != articleModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
-				new Object[] { article.getUuid(), new Long(article.getGroupId()) },
-				article);
+				new Object[] {
+					article.getUuid(), Long.valueOf(article.getGroupId())
+				}, article);
 		}
 
 		if (!isNew &&
@@ -572,8 +573,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				(article.getVersion() != articleModelImpl.getOriginalVersion()))) {
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_R_V,
 				new Object[] {
-					new Long(articleModelImpl.getOriginalResourcePrimKey()),
-					new Integer(articleModelImpl.getOriginalVersion())
+					Long.valueOf(articleModelImpl.getOriginalResourcePrimKey()),
+					Integer.valueOf(articleModelImpl.getOriginalVersion())
 				});
 		}
 
@@ -582,8 +583,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				(article.getVersion() != articleModelImpl.getOriginalVersion()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_V,
 				new Object[] {
-					new Long(article.getResourcePrimKey()),
-					new Integer(article.getVersion())
+					Long.valueOf(article.getResourcePrimKey()),
+					Integer.valueOf(article.getVersion())
 				}, article);
 		}
 
@@ -691,7 +692,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				session = openSession();
 
 				article = (Article)session.get(ArticleImpl.class,
-						new Long(articleId));
+						Long.valueOf(articleId));
 			}
 			catch (Exception e) {
 				throw processException(e);

@@ -126,7 +126,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				wsrpProducer.getUuid(), new Long(wsrpProducer.getGroupId())
+				wsrpProducer.getUuid(), Long.valueOf(wsrpProducer.getGroupId())
 			}, wsrpProducer);
 	}
 
@@ -173,7 +173,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
-				wsrpProducer.getUuid(), new Long(wsrpProducer.getGroupId())
+				wsrpProducer.getUuid(), Long.valueOf(wsrpProducer.getGroupId())
 			});
 	}
 
@@ -225,7 +225,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			session = openSession();
 
 			WSRPProducer wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
-					new Long(wsrpProducerId));
+					Long.valueOf(wsrpProducerId));
 
 			if (wsrpProducer == null) {
 				if (_log.isWarnEnabled()) {
@@ -287,7 +287,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] {
 				wsrpProducerModelImpl.getUuid(),
-				new Long(wsrpProducerModelImpl.getGroupId())
+				Long.valueOf(wsrpProducerModelImpl.getGroupId())
 			});
 
 		EntityCacheUtil.removeResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
@@ -339,7 +339,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
 					wsrpProducerModelImpl.getOriginalUuid(),
-					new Long(wsrpProducerModelImpl.getOriginalGroupId())
+					Long.valueOf(wsrpProducerModelImpl.getOriginalGroupId())
 				});
 		}
 
@@ -349,7 +349,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				(wsrpProducer.getGroupId() != wsrpProducerModelImpl.getOriginalGroupId()))) {
 			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 				new Object[] {
-					wsrpProducer.getUuid(), new Long(wsrpProducer.getGroupId())
+					wsrpProducer.getUuid(),
+					Long.valueOf(wsrpProducer.getGroupId())
 				}, wsrpProducer);
 		}
 
@@ -447,7 +448,7 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 				session = openSession();
 
 				wsrpProducer = (WSRPProducer)session.get(WSRPProducerImpl.class,
-						new Long(wsrpProducerId));
+						Long.valueOf(wsrpProducerId));
 			}
 			catch (Exception e) {
 				throw processException(e);
