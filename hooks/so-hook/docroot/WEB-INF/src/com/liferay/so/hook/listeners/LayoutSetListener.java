@@ -132,14 +132,14 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
 
-			String[] commonPortlets = PortletProps.getArray(
+			String[] commonPortletIds = PortletProps.getArray(
 				PortletPropsKeys.USER_LAYOUT_PORTLETS + "column-1",
 				new Filter("/home"));
 
 			String portletIds = StringPool.BLANK;
 
-			for (String commonPortlet : commonPortlets) {
-				portletIds = StringUtil.add(portletIds, commonPortlet);
+			for (String commonPortletId : commonPortletIds) {
+				portletIds = StringUtil.add(portletIds, commonPortletId);
 			}
 
 			layoutTypePortlet.setPortletIds("column-1", portletIds);
@@ -151,12 +151,12 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 
 			addResources(layout, portletId);
 
-			for (String commonPortlet : commonPortlets) {
-				addResources(layout, commonPortlet);
+			for (String commonPortletId : commonPortletIds) {
+				addResources(layout, commonPortletId);
 
-				if (commonPortlet.startsWith("71_INSTANCE_")) {
-					removePortletBorder(layout, commonPortlet);
-					configureNavigation(layout, commonPortlet);
+				if (commonPortletId.startsWith("71_INSTANCE_")) {
+					removePortletBorder(layout, commonPortletId);
+					configureNavigation(layout, commonPortletId);
 				}
 			}
 
