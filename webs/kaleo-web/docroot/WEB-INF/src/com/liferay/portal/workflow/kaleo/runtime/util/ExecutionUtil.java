@@ -53,12 +53,15 @@ public class ExecutionUtil {
 
 	public static boolean isKaleoInstanceBlocked(
 			ExecutionContext executionContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		//TBD instead of iterating through each node, be better to create a custom query...
+		// TODO
+
+		// Instead of iterating through each node, use custom query
+
 		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
 			KaleoTimerInstanceTokenLocalServiceUtil.getKaleoTimerInstanceTokens(
 				kaleoInstanceToken.getKaleoInstanceId());
