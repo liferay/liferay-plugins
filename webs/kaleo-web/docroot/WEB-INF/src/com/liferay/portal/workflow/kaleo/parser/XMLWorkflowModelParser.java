@@ -466,6 +466,12 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		Timer timer = new Timer(name, description, defaultValue, required);
 
+		Element delayElement = timerElement.element("delay");
+
+		DelayDuration delayDuration = parseDelay(delayElement);
+
+		timer.setDelayDuration(delayDuration);
+
 		Element actionsElement = timerElement.element("actions");
 
 		parseActions(actionsElement, timer);
@@ -476,12 +482,6 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		Set<Assignment> assignments = parseAssignments(reassignmentsElement);
 
 		timer.setReassignments(assignments);
-
-		Element delayElement = timerElement.element("delay");
-
-		DelayDuration delayDuration = parseDelay(delayElement);
-
-		timer.setDelayDuration(delayDuration);
 
 		return timer;
 	}
