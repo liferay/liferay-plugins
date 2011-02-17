@@ -132,17 +132,33 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
 
-			layoutTypePortlet.setPortletIds("column-1", "71_INSTANCE_abcd");
+			String[] commonPortlets = PortletProps.getArray(
+				PortletPropsKeys.USER_LAYOUT_PORTLETS + "column-1",
+				new Filter("/home"));
+
+			String portletIds = StringPool.BLANK;
+
+			for (String commonPortlet : commonPortlets) {
+				portletIds = StringUtil.add(portletIds, commonPortlet);
+			}
+
+			layoutTypePortlet.setPortletIds("column-1", portletIds);
 			layoutTypePortlet.setPortletIds("column-2", portletId);
 
 			LayoutLocalServiceUtil.updateLayout(
 				layout.getGroupId(), layout.isPrivateLayout(),
 				layout.getLayoutId(), layout.getTypeSettings());
 
-			addResources(layout, "71_INSTANCE_abcd");
 			addResources(layout, portletId);
 
-			configureNavigation(layout, "71_INSTANCE_abcd");
+			for (String commonPortlet : commonPortlets) {
+				addResources(layout, commonPortlet);
+
+				if (commonPortlet.startsWith("71_INSTANCE_")) {
+					removePortletBorder(layout, commonPortlet);
+					configureNavigation(layout, commonPortlet);
+				}
+			}
 
 			updatePermissions(layout, false);
 		}
@@ -211,16 +227,17 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			addResources(layout, portletId);
 
 			if (portletId.equals("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
+				updatePortletTitle(layout, portletId, "Welcome");
 			}
 			else if (portletId.equals("2_WAR_microblogsportlet")) {
-				removePortletBorder(layout, "2_WAR_microblogsportlet");
+				removePortletBorder(layout, portletId);
 			}
 			else if (portletId.startsWith("71_INSTANCE_")) {
+				removePortletBorder(layout, portletId);
 				configureNavigation(layout, portletId);
 			}
 			else if (portletId.equals(PortletKeys.ALERTS)) {
-				updatePortletTitle(layout, PortletKeys.ALERTS, "Announcements");
+				updatePortletTitle(layout, portletId, "Announcements");
 			}
 		}
 	}
@@ -245,7 +262,12 @@ public class LayoutSetListener extends BaseModelListener<LayoutSet> {
 			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 				layout, portletId);
 
-		portletSetup.setValue("displayStyle", "from-level-1");
+		portletSetup.setValue("displayStyle", "[custom]");
+		portletSetup.setValue("bulletStyle", StringPool.BLANK);
+		portletSetup.setValue("headerType", "none");
+		portletSetup.setValue("includedLayouts", "auto");
+		portletSetup.setValue("nestedChildren", "0");
+		portletSetup.setValue("rootLayoutLevel", "0");
 
 		portletSetup.store();
 	}

@@ -1150,6 +1150,45 @@ table.calendar {
 	margin-bottom: 0;
 }
 
+/* Navigation */
+
+.portlet-navigation .portlet-borderless-container .nav-menu {
+	background: #E8EFF4;
+	border: 1px solid #C8C9CA;
+	margin-bottom: 1em;
+}
+
+.portlet-navigation .portlet-borderless-container ul {
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-navigation .portlet-borderless-container li {
+	font-weight: bold;
+	list-style: none;
+	margin: 4px;
+}
+
+.portlet-navigation .portlet-borderless-container a {
+	border: 1px solid #E8EFF4;
+	display: block;
+	padding: 3px 10px;
+}
+
+.portlet-navigation .portlet-borderless-container a:hover,
+.portlet-navigation .portlet-borderless-container a.selected {
+	background: #FFF;
+	border: 1px solid #C8C9CA;
+}
+
+.portlet-navigation .portlet-borderless-container .nav-menu,
+.portlet-navigation .portlet-borderless-container a:hover,
+.portlet-navigation .portlet-borderless-container a.selected {
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
 /* Recent Documents */
 
 .portlet-recent-documents td {
