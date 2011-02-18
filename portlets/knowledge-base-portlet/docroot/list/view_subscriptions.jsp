@@ -30,11 +30,10 @@
 		<%
 		List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), Article.class.getName());
 
-		long[] classPKs = StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L);
-		long[] viewableParentResourcePrimKeys = ArticleServiceUtil.getViewableParentResourcePrimKeys(scopeGroupId, WorkflowConstants.STATUS_APPROVED);
+		List<Article> articles = ArticleServiceUtil.getArticles(StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, new ArticleModifiedDateComparator());
 
-		pageContext.setAttribute("results", ArticleServiceUtil.getArticles(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()));
-		pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(scopeGroupId, classPKs, WorkflowConstants.STATUS_APPROVED, viewableParentResourcePrimKeys));
+		pageContext.setAttribute("results", ListUtil.subList(articles, searchContainer.getStart(), searchContainer.getEnd()));
+		pageContext.setAttribute("total", articles.size());
 		%>
 
 	</liferay-ui:search-container-results>

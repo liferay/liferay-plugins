@@ -22,7 +22,7 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
-import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.knowledgebase.util.PortletPreferencesHelper;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
@@ -50,7 +51,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -272,13 +272,11 @@ public class DisplayPortlet extends MVCPortlet {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, Object> preferencesArticlesMap =
-			KnowledgeBaseUtil.getPortletPreferencesArticlesMap(
-				themeDisplay.getScopeGroupId(), portletId, categoryId, tag, 0,
-				1, portletDisplay.getPortletSetup());
+		Tuple articlesTuple = PortletPreferencesHelper.getArticlesTuple(
+			themeDisplay.getScopeGroupId(), portletId, categoryId, tag, 0,
+			1, portletDisplay.getPortletSetup());
 
-		List<Article> articles = (List<Article>)preferencesArticlesMap.get(
-			"articles");
+		List<Article> articles = (List<Article>)articlesTuple.getObject(0);
 
 		if (articles.isEmpty()) {
 			return null;

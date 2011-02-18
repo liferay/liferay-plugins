@@ -19,9 +19,7 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, articles);
+List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, null);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -89,6 +87,7 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 
 				<aui:select name="preferences--selectionMethod--" onChange="<%= taglibOnChange %>">
 					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
+					<aui:option label="filter" selected='<%= selectionMethod.equals("filter") %>' />
 					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
 				</aui:select>
 
@@ -124,11 +123,6 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 
 				<div id="<portlet:namespace />filterOptions">
 					<aui:field-wrapper label="filter">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryContains--">
-							<aui:option label="contains" selected="<%= assetEntryQueryContains %>" value="<%= true %>" />
-							<aui:option label="does-not-contain" selected="<%= !assetEntryQueryContains %>" value="<%= false %>" />
-						</aui:select>
-
 						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryAndOperator--">
 							<aui:option label="all" selected="<%= assetEntryQueryAndOperator %>" value="<%= true %>" />
 							<aui:option label="any" selected="<%= !assetEntryQueryAndOperator %>" value="<%= false %>" />
@@ -234,9 +228,13 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "";
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
 			}
-			else if (value == "group") {
+			else if (value == "filter") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
+			}
+			else if (value == "group") {
+				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
+				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
 			}
 		}
 

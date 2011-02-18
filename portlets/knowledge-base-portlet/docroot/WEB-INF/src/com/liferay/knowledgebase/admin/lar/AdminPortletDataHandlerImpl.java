@@ -38,8 +38,11 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -54,6 +57,7 @@ import com.liferay.portal.util.PortalUtil;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,8 +88,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			ArticleLocalServiceUtil.deleteGroupArticles(
 				portletDataContext.getScopeGroupId());
-
-			CommentUtil.removeByGroupId(portletDataContext.getScopeGroupId());
 
 			TemplateLocalServiceUtil.deleteGroupTemplates(
 				portletDataContext.getScopeGroupId());
@@ -375,31 +377,60 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		List<Article> articles = new ArrayList<Article>();
 
-		long groupId = portletDataContext.getScopeGroupId();
-		long[] parentResourcePrimKeys = {
+		List<Article> siblingArticles = new ArrayList<Article>();
+
+		long[] parentResourcePrimKeys = new long[] {
 			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
 		};
 
 		while (parentResourcePrimKeys.length > 0) {
-			List<Article> curArticles = ArticleUtil.findByG_P_L_S(
-				groupId, parentResourcePrimKeys, ArticleConstants.LATEST_ANY,
-				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+			long[] curParentResourcePrimKeys = null;
 
-			List<Article> filteredArticles = new ArrayList<Article>();
+			if (parentResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
+				curParentResourcePrimKeys = new long[_SQL_DATA_MAX_PARAMETERS];
+
+				System.arraycopy(
+					parentResourcePrimKeys, 0, curParentResourcePrimKeys, 0,
+					_SQL_DATA_MAX_PARAMETERS);
+
+				long[] array = new long[
+					parentResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS];
+
+				System.arraycopy(
+					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS, array, 0,
+					parentResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS);
+
+				parentResourcePrimKeys = array;
+			}
+			else {
+				curParentResourcePrimKeys = parentResourcePrimKeys.clone();
+
+				parentResourcePrimKeys = new long[0];
+			}
+
+			List<Article> curArticles = ArticleUtil.findByG_P_L_S(
+				portletDataContext.getScopeGroupId(), curParentResourcePrimKeys,
+				ArticleConstants.LATEST_ANY, WorkflowConstants.STATUS_APPROVED);
 
 			for (Article curArticle : curArticles) {
 				if (portletDataContext.isWithinDateRange(
 						curArticle.getModifiedDate())) {
 
-					filteredArticles.add(curArticle);
+					siblingArticles.add(curArticle);
 				}
 			}
 
-			articles.addAll(filteredArticles);
+			if (parentResourcePrimKeys.length == 0) {
+				Collections.sort(
+					siblingArticles, new ArticlePriorityComparator(true));
 
-			parentResourcePrimKeys = StringUtil.split(
-				ListUtil.toString(filteredArticles, "resourcePrimKey"), 0L);
+				articles.addAll(siblingArticles);
+
+				parentResourcePrimKeys = StringUtil.split(
+					ListUtil.toString(siblingArticles, "resourcePrimKey"), 0L);
+
+				siblingArticles = new ArrayList<Article>();
+			}
 		}
 
 		return articles;
@@ -803,6 +834,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
 
 	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
+
+	private static final int _SQL_DATA_MAX_PARAMETERS =
+		GetterUtil.getInteger(PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
 	private static PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {

@@ -67,12 +67,6 @@ public class ArticlePermission {
 			String actionId)
 		throws PortalException, SystemException {
 
-		if (resourcePrimKey ==
-				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-			return true;
-		}
-
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 

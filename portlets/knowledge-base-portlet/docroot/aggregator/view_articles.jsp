@@ -30,10 +30,10 @@ String tag = ParamUtil.getString(request, "tag");
 	<liferay-ui:search-container-results>
 
 		<%
-		Map<String, Object> preferencesArticlesMap = KnowledgeBaseUtil.getPortletPreferencesArticlesMap(scopeGroupId, portletDisplay.getId(), categoryId, tag, searchContainer.getStart(), searchContainer.getEnd(), preferences);
+		Tuple articlesTuple = PortletPreferencesHelper.getArticlesTuple(scopeGroupId, portletDisplay.getId(), categoryId, tag, searchContainer.getStart(), searchContainer.getEnd(), preferences);
 
-		pageContext.setAttribute("results", preferencesArticlesMap.get("articles"));
-		pageContext.setAttribute("total", preferencesArticlesMap.get("count"));
+		pageContext.setAttribute("results", articlesTuple.getObject(0));
+		pageContext.setAttribute("total", articlesTuple.getObject(1));
 		%>
 
 	</liferay-ui:search-container-results>

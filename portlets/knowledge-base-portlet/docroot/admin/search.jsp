@@ -75,7 +75,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 				long[] indexerResourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeyToUidMap.keySet()), 0L);
 
-				List<Article> articles = ArticleLocalServiceUtil.getArticles(indexerResourcePrimKeys, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				List<Article> articles = ArticleLocalServiceUtil.getArticles(indexerResourcePrimKeys, WorkflowConstants.STATUS_ANY, new ArticleModifiedDateComparator(true));
 
 				for (Article article : articles) {
 					resourcePrimKeyToUidMap.remove(article.getResourcePrimKey());

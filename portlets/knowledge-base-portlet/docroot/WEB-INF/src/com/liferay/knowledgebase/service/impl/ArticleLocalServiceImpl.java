@@ -39,7 +39,11 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -59,6 +63,7 @@ import com.liferay.portlet.asset.model.AssetEntry;
 
 import java.io.InputStream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
@@ -251,8 +256,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Child articles
 
 		List<Article> articles = getSiblingArticles(
-			article.getGroupId(), article.getResourcePrimKey(),
-			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			article.getGroupId(), resourcePrimKey, WorkflowConstants.STATUS_ANY,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
 		for (Article curArticle : articles) {
@@ -318,7 +323,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public List<Article> getArticles(
-			long[] resourcePrimKeys, int status, int start, int end,
+			long[] resourcePrimKeys, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
@@ -326,15 +331,69 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			return Collections.emptyList();
 		}
 
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.findByR_L(
-				resourcePrimKeys, new int[] {ArticleConstants.LATEST_VERSION},
-				start, end, orderByComparator);
+		List<Article> articles = new ArrayList<Article>();
+
+		long[] selResourcePrimKeys = resourcePrimKeys.clone();
+
+		while (selResourcePrimKeys.length > 0) {
+			long[] curResourcePrimKeys = null;
+
+			if (selResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
+				curResourcePrimKeys = new long[_SQL_DATA_MAX_PARAMETERS];
+
+				System.arraycopy(
+					selResourcePrimKeys, 0, curResourcePrimKeys, 0,
+					_SQL_DATA_MAX_PARAMETERS);
+
+				long[] array = new long[
+					selResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS];
+
+				System.arraycopy(
+					selResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS, array, 0,
+					selResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS);
+
+				selResourcePrimKeys = array;
+			}
+			else {
+				curResourcePrimKeys = selResourcePrimKeys.clone();
+
+				selResourcePrimKeys = new long[0];
+			}
+
+			List<Article> curArticles = null;
+
+			if (status == WorkflowConstants.STATUS_ANY) {
+				curArticles = articlePersistence.findByR_L(
+					curResourcePrimKeys,
+					new int[] {ArticleConstants.LATEST_VERSION});
+			}
+			else {
+				curArticles = articlePersistence.findByR_L_S(
+					curResourcePrimKeys, ArticleConstants.LATEST_ANY, status);
+			}
+
+			articles.addAll(curArticles);
 		}
 
-		return articlePersistence.findByR_L_S(
-			resourcePrimKeys, ArticleConstants.LATEST_ANY, status, start, end,
-			orderByComparator);
+		if (orderByComparator != null) {
+			return ListUtil.sort(articles, orderByComparator);
+		}
+
+		Map<Long, Article> map = new HashMap<Long, Article>();
+
+		for (Article article : articles) {
+			map.put(article.getResourcePrimKey(), article);
+		}
+
+		articles = new ArrayList<Article>();
+
+		for (long resourcePrimKey : resourcePrimKeys) {
+			if (map.containsKey(resourcePrimKey)) {
+				articles.add(map.get(resourcePrimKey));
+			}
+		}
+
+		return articles;
 	}
 
 	public int getArticlesCount(long resourcePrimKey, int status)
@@ -345,22 +404,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		return articlePersistence.countByR_S(resourcePrimKey, status);
-	}
-
-	public int getArticlesCount(long[] resourcePrimKeys, int status)
-		throws SystemException {
-
-		if ((resourcePrimKeys == null) || (resourcePrimKeys.length == 0)) {
-			return 0;
-		}
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.countByR_L(
-				resourcePrimKeys, new int[] {ArticleConstants.LATEST_VERSION});
-		}
-
-		return articlePersistence.countByR_L_S(
-			resourcePrimKeys, ArticleConstants.LATEST_ANY, status);
 	}
 
 	public List<Article> getCompanyArticles(
@@ -1070,6 +1113,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			throw new ArticleContentException();
 		}
 	}
+
+	private static final int _SQL_DATA_MAX_PARAMETERS =
+		GetterUtil.getInteger(PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ArticleLocalServiceImpl.class);

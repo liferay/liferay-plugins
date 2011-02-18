@@ -26,7 +26,11 @@
 	margin: 0 0 15px;
 }
 
-.knowledge-base-portlet-search .kb-search-input-text-container input {
+.knowledge-base-portlet-search .kb-search-input-text-container .aui-field-content {
+	margin: 0;
+}
+
+.knowledge-base-portlet-search .kb-search-input-text-container .aui-field-input {
 	width: 100%;
 }
 

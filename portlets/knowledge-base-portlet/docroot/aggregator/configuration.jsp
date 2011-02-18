@@ -19,9 +19,7 @@
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 
-List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, articles);
+List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, null);
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
@@ -102,6 +100,7 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 
 				<aui:select name="preferences--selectionMethod--" onChange="<%= taglibOnChange %>">
 					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
+					<aui:option label="filter" selected='<%= selectionMethod.equals("filter") %>' />
 					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
 				</aui:select>
 
@@ -135,34 +134,8 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 					</aui:field-wrapper>
 				</div>
 
-				<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
-					<aui:field-wrapper label="options">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--allArticles--">
-							<aui:option label="all-articles" selected="<%= allArticles %>" value="<%= true %>" />
-							<aui:option label="root-articles" selected="<%= !allArticles %>" value="<%= false %>" />
-						</aui:select>
-
-						<aui:select inlineField="<%= true %>" inlineLabel="left" label="order-by" name="preferences--orderByColumn--">
-							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
-							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
-							<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
-							<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
-						</aui:select>
-
-						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByAscending--">
-							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
-							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
-						</aui:select>
-					</aui:field-wrapper>
-				</div>
-
 				<div id="<portlet:namespace />filterOptions">
 					<aui:field-wrapper label="filter">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryContains--">
-							<aui:option label="contains" selected="<%= assetEntryQueryContains %>" value="<%= true %>" />
-							<aui:option label="does-not-contain" selected="<%= !assetEntryQueryContains %>" value="<%= false %>" />
-						</aui:select>
-
 						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryAndOperator--">
 							<aui:option label="all" selected="<%= assetEntryQueryAndOperator %>" value="<%= true %>" />
 							<aui:option label="any" selected="<%= !assetEntryQueryAndOperator %>" value="<%= false %>" />
@@ -191,6 +164,22 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 							hiddenInput="assetTagNames"
 						/>
 					</div>
+				</div>
+
+				<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
+					<aui:field-wrapper label="order-by">
+						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByColumn--">
+							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
+							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
+							<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
+							<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
+						</aui:select>
+
+						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByAscending--">
+							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
+							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
+						</aui:select>
+					</aui:field-wrapper>
 				</div>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
@@ -269,9 +258,14 @@ articles = KnowledgeBaseUtil.sortPortletPreferencesArticles(resourcePrimKeys, ar
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
 			}
-			else if (value == "group") {
+			else if (value == "filter") {
 				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
+				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
+			}
+			else if (value == "group") {
+				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
+				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
 				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
 			}
 		}

@@ -23,10 +23,9 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-Map<String, String> preferencesMap = KnowledgeBaseUtil.initPortletPreferencesMap(rootPortletId, preferences);
+Map<String, String> preferencesMap = PortletPreferencesHelper.initPreferencesMap(rootPortletId, preferences);
 
 String articlesTitle = preferencesMap.get("articlesTitle");
-boolean allArticles = GetterUtil.getBoolean(preferencesMap.get("allArticles"));
 String orderByColumn = preferencesMap.get("orderByColumn");
 boolean orderByAscending = GetterUtil.getBoolean(preferencesMap.get("orderByAscending"));
 int articlesDelta = GetterUtil.getInteger(preferencesMap.get("articlesDelta"));

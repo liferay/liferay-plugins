@@ -47,33 +47,33 @@
 	display: none;
 }
 
-.knowledge-base-portlet .kb-article-tree {
+.knowledge-base-portlet .kb-article-siblings {
 	border: 1px solid #CCC;
 	margin: 10px -7px 0;
 }
 
-.knowledge-base-portlet .kb-article-tree .kb-element-body {
+.knowledge-base-portlet .kb-article-siblings .kb-element-body {
 	margin: 0 0 0 20px;
 }
 
-.knowledge-base-portlet .kb-article-tree .kb-element-body .kb-article-icons {
+.knowledge-base-portlet .kb-article-siblings .kb-element-body .kb-article-icons {
 	padding: 4px 0;
 }
 
-.knowledge-base-portlet .kb-article-tree .kb-element-header {
+.knowledge-base-portlet .kb-article-siblings .kb-element-header {
 	margin: 8px 0 0;
 }
 
-.knowledge-base-portlet .kb-article-tree .kb-element-header a {
+.knowledge-base-portlet .kb-article-siblings .kb-element-header a {
 	display: block;
 	font-weight: bold;
 }
 
-.knowledge-base-portlet .kb-article-tree .kb-elements {
+.knowledge-base-portlet .kb-article-siblings .kb-elements {
 	margin: 8px;
 }
 
-.knowledge-base-portlet .kb-article-tree .kb-title-only {
+.knowledge-base-portlet .kb-article-siblings .kb-title-only {
 	margin: 4px 0 0;
 }
 

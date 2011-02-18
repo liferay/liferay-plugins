@@ -40,18 +40,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 				<%
 				SearchContext searchContext = SearchContextFactory.getInstance(request);
 
+				searchContext.setAttribute("params", PortletPreferencesHelper.getSearchContextAttribute(scopeGroupId, rootPortletId, preferences));
 				searchContext.setEnd(searchContainer.getEnd());
 				searchContext.setKeywords(keywords);
 				searchContext.setScopeStrict(false);
 				searchContext.setStart(searchContainer.getStart());
-
-				searchContext.setAttribute("assetEntryQueryAndOperator", assetEntryQueryAndOperator);
-				searchContext.setAttribute("assetEntryQueryContains", assetEntryQueryContains);
-				searchContext.setAttribute("assetEntryQueryName", assetEntryQueryName);
-				searchContext.setAttribute("assetCategoryIds", assetCategoryIds);
-				searchContext.setAttribute("assetTagNames", assetTagNames);
-				searchContext.setAttribute("resourcePrimKeys", resourcePrimKeys);
-				searchContext.setAttribute("selectionMethod", selectionMethod);
 
 				Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
 
@@ -87,7 +80,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 				long[] indexerResourcePrimKeys = StringUtil.split(StringUtil.merge(resourcePrimKeyToUidMap.keySet()), 0L);
 
-				List<Article> articles = ArticleLocalServiceUtil.getArticles(indexerResourcePrimKeys, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+				List<Article> articles = ArticleLocalServiceUtil.getArticles(indexerResourcePrimKeys, WorkflowConstants.STATUS_ANY, new ArticleModifiedDateComparator(true));
 
 				for (Article article : articles) {
 					resourcePrimKeyToUidMap.remove(article.getResourcePrimKey());

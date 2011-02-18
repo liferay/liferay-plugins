@@ -23,7 +23,7 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-Map<String, String> preferencesMap = KnowledgeBaseUtil.initPortletPreferencesMap(rootPortletId, preferences);
+Map<String, String> preferencesMap = PortletPreferencesHelper.initPreferencesMap(rootPortletId, preferences);
 
 String childArticlesDisplayStyle = preferencesMap.get("childArticlesDisplayStyle");
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetCategories"));
@@ -34,10 +34,8 @@ boolean showArticleComments = GetterUtil.getBoolean(preferencesMap.get("showArti
 
 String selectionMethod = preferencesMap.get("selectionMethod");
 long[] resourcePrimKeys = StringUtil.split(preferencesMap.get("resourcePrimKeys"), 0L);
-boolean allArticles = GetterUtil.getBoolean(preferencesMap.get("allArticles"));
 String orderByColumn = preferencesMap.get("orderByColumn");
 boolean orderByAscending = GetterUtil.getBoolean(preferencesMap.get("orderByAscending"));
-boolean assetEntryQueryContains = GetterUtil.getBoolean(preferencesMap.get("assetEntryQueryContains"));
 boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(preferencesMap.get("assetEntryQueryAndOperator"));
 String assetEntryQueryName = preferencesMap.get("assetEntryQueryName");
 long[] assetCategoryIds = StringUtil.split(preferencesMap.get("assetCategoryIds"), 0L);

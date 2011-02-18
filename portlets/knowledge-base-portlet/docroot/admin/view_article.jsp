@@ -50,7 +50,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
 
-	<liferay-util:include page="/admin/article_tree.jsp" servletContext="<%= application %>" />
+	<liferay-util:include page="/admin/article_siblings.jsp" servletContext="<%= application %>" />
 
 	<liferay-util:include page="/admin/article_comments.jsp" servletContext="<%= application %>" />
 </div>

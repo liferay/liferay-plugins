@@ -16,7 +16,7 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.ArticleServiceUtil;
+import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BaseIndexer;
@@ -39,16 +39,18 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
-import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.portlet.PortletURL;
@@ -107,123 +109,62 @@ public class AdminIndexer extends BaseIndexer {
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
-		String selectionMethod = (String)searchContext.getAttribute(
-			"selectionMethod");
+		HashMap<String, Object> params =
+			(HashMap<String, Object>)searchContext.getAttribute("params");
 
-		if (Validator.isNull(selectionMethod)) {
-			return;
-		}
+		String selectionMethod = (String)params.get("selectionMethod");
+		Long[] resourcePrimKeys = (Long[])params.get("resourcePrimKeys");
+		Boolean assetEntryQueryAndOperator =
+			(Boolean)params.get("assetEntryQueryAndOperator");
+		String assetEntryQueryName = (String)params.get("assetEntryQueryName");
+		Long[] assetCategoryIds = (Long[])params.get("assetCategoryIds");
+		String[] assetTagNames = (String[])params.get("assetTagNames");
 
 		if (selectionMethod.equals("articles")) {
 			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
 
-			long[] resourcePrimKeys = (long[])searchContext.getAttribute(
-				"resourcePrimKeys");
-
 			for (long resourcePrimKey : resourcePrimKeys) {
-				booleanQuery.addExactTerm(
-					Field.ENTRY_CLASS_PK, resourcePrimKey);
-			}
+				String value = String.valueOf(resourcePrimKey);
 
-			if (resourcePrimKeys.length == 0) {
-				booleanQuery.addExactTerm(Field.ENTRY_CLASS_PK, new Long(0));
+				booleanQuery.addExactTerm(Field.ENTRY_CLASS_PK, value);
 			}
 
 			contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
-
-			return;
 		}
+		else if (selectionMethod.equals("filter")) {
+			List<Tuple> tuples = new ArrayList<Tuple>();
 
-		Boolean assetEntryQueryAndOperator =
-			(Boolean)searchContext.getAttribute("assetEntryQueryAndOperator");
-		Boolean assetEntryQueryContains = (Boolean)searchContext.getAttribute(
-			"assetEntryQueryContains");
-		String assetEntryQueryName = (String)searchContext.getAttribute(
-			"assetEntryQueryName");
-		long[] assetCategoryIds = (long[])searchContext.getAttribute(
-			"assetCategoryIds");
-		String[] assetTagNames = (String[])searchContext.getAttribute(
-			"assetTagNames");
+			if (assetEntryQueryName.equals("asset-categories")) {
+				for (long assetCategoryId : assetCategoryIds) {
+					String value = String.valueOf(assetCategoryId);
 
-		BooleanQuery booleanQuery = null;
-
-		if ((assetEntryQueryName.equals("asset-categories")) &&
-			(assetCategoryIds.length > 0)) {
-
-			booleanQuery = BooleanQueryFactoryUtil.create();
-
-			for (long assetCategoryId : assetCategoryIds) {
-				if (searchContext.getUserId() > 0) {
-					try {
-						AssetCategoryServiceUtil.getCategory(assetCategoryId);
-					}
-					catch (Exception e) {
-						continue;
-					}
-				}
-
-				if (assetEntryQueryAndOperator) {
-					TermQuery termQuery = TermQueryFactoryUtil.create(
-						Field.ASSET_CATEGORY_IDS, assetCategoryId);
-
-					booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
-				}
-				else {
-					booleanQuery.addExactTerm(
-						Field.ASSET_CATEGORY_IDS, assetCategoryId);
+					tuples.add(new Tuple(Field.ASSET_CATEGORY_IDS, value));
 				}
 			}
-		}
-
-		if ((assetEntryQueryName.equals("asset-tags")) &&
-			(assetTagNames.length > 0)) {
-
-			booleanQuery = BooleanQueryFactoryUtil.create();
-
-			for (String assetTagName : assetTagNames) {
-				if (assetEntryQueryAndOperator) {
-					TermQuery termQuery = TermQueryFactoryUtil.create(
-						Field.ASSET_TAG_NAMES, assetTagName);
-
-					booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
-				}
-				else {
-					booleanQuery.addExactTerm(
-						Field.ASSET_TAG_NAMES, assetTagName);
+			else if (assetEntryQueryName.equals("asset-tags")) {
+				for (String assetTagName : assetTagNames) {
+					tuples.add(new Tuple(Field.ASSET_TAG_NAMES, assetTagName));
 				}
 			}
-		}
 
-		if (booleanQuery == null) {
-			return;
-		}
+			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
 
-		if (assetEntryQueryContains) {
+			for (Tuple tuple : tuples) {
+				String field = (String)tuple.getObject(0);
+				String value = (String)tuple.getObject(1);
+
+				if (assetEntryQueryAndOperator) {
+					TermQuery query = TermQueryFactoryUtil.create(field, value);
+
+					booleanQuery.add(query, BooleanClauseOccur.MUST);
+				}
+				else {
+					booleanQuery.addExactTerm(field, value);
+				}
+			}
+
 			contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
 		}
-		else {
-			contextQuery.add(booleanQuery, BooleanClauseOccur.MUST_NOT);
-		}
-	}
-
-	protected void addViewableParentResourcePrimKeys(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
-
-		for (long groupId : searchContext.getGroupIds()) {
-			long[] viewableParentResourcePrimKeys =
-				ArticleServiceUtil.getViewableParentResourcePrimKeys(
-					groupId, WorkflowConstants.STATUS_APPROVED);
-
-			for (long parentResourcePrimKey : viewableParentResourcePrimKeys) {
-				booleanQuery.addExactTerm(
-					"parentResourcePrimKey", parentResourcePrimKey);
-			}
-		}
-
-		contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
 	}
 
 	protected void doDelete(Object obj) throws Exception {
@@ -312,12 +253,24 @@ public class AdminIndexer extends BaseIndexer {
 		return PORTLET_ID;
 	}
 
+	protected boolean hasPermission(
+			PermissionChecker permissionChecker, long entryClassPK,
+			String actionId)
+		throws Exception {
+
+		return ArticlePermission.contains(
+			permissionChecker, entryClassPK, actionId);
+	}
+
+	protected boolean isFilterSearch() {
+		return _FILTER_SEARCH;
+	}
+
 	protected void postProcessContextQuery(
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
 		addPortletPreferences(contextQuery, searchContext);
-		addViewableParentResourcePrimKeys(contextQuery, searchContext);
 	}
 
 	protected void postProcessSearchQuery(
@@ -399,5 +352,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		return keywordsList.toArray(new String[keywordsList.size()]);
 	}
+
+	private static final boolean _FILTER_SEARCH = true;
 
 }

@@ -23,7 +23,7 @@ if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-Map<String, String> preferencesMap = KnowledgeBaseUtil.initPortletPreferencesMap(rootPortletId, preferences);
+Map<String, String> preferencesMap = PortletPreferencesHelper.initPreferencesMap(rootPortletId, preferences);
 
 int articlesDelta = GetterUtil.getInteger(preferencesMap.get("articlesDelta"));
 String articlesDisplayStyle = preferencesMap.get("articlesDisplayStyle");

@@ -90,20 +90,7 @@
 			<finder-column name="latest" arrayable-operator="OR" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="R_G_P_L" return-type="Collection">
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="groupId" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="latest" arrayable-operator="OR" />
-		</finder>
 		<finder name="G_P_L_S" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="latest" arrayable-operator="OR" />
-			<finder-column name="status" />
-		</finder>
-		<finder name="R_G_P_L_S" return-type="Collection">
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="groupId" />
 			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="latest" arrayable-operator="OR" />

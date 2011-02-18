@@ -18,8 +18,8 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
-import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
+import com.liferay.knowledgebase.util.PortletPreferencesHelper;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.portlet.WindowStateFactory;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
@@ -198,7 +198,7 @@ public class FindArticleAction extends BaseStrutsAction {
 			PortletPreferencesFactoryUtil.getPortletSetup(request, portletId);
 
 		Map<String, String> preferencesMap =
-			KnowledgeBaseUtil.initPortletPreferencesMap(portletId, preferences);
+			PortletPreferencesHelper.initPreferencesMap(portletId, preferences);
 
 		WindowState windowState = null;
 		String jspPage = null;
@@ -274,7 +274,7 @@ public class FindArticleAction extends BaseStrutsAction {
 					continue;
 				}
 
-				if (KnowledgeBaseUtil.hasPortletPreferencesArticle(
+				if (PortletPreferencesHelper.hasArticle(
 						layout.getPlid(), portlet.getPortletId(),
 						article.getResourcePrimKey())) {
 
