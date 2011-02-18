@@ -93,44 +93,44 @@ AUI().add(
 						var width = instance.get('width');
 
 						var createOpenAjaxHubIframe = function() {
-						    var iframeAttrs = {
-						    	className: CSS_CLASS_GADGET,
-							    frameborder: 'no',
-							    scrolling: 'no'
-						    };
+							var iframeAttrs = {
+								className: CSS_CLASS_GADGET,
+								frameborder: 'no',
+								scrolling: 'no'
+							};
 
-						    if (height) {
-						    	iframeAttrs.height = height;
-						    }
+							if (height) {
+								iframeAttrs.height = height;
+							}
 
-						    if (width) {
-						    	iframeAttrs.width = width;
-						    }
+							if (width) {
+								iframeAttrs.width = width;
+							}
 
-						    var container = new OpenAjax.hub.IframeContainer(
-						        gadgets.pubsub2router.hub,
-						        iframeId,
-						        {
-						        	Container: {
-						        		onSecurityAlert: function(source, alertType) {
-						        			gadgets.error('Security error for container ' + source.getClientID() + ' : ' + alertType);
-						        			source.getIframe().src = 'about:blank';
-					        			}
-						        	},
-						        	IframeContainer: {
-						        		iframeAttrs: iframeAttrs,
-						        		parent: instance.get('contentBox'),
-						        		tunnelURI: shindig.uri(instance.get('serverBase') + instance.get('rpcRelay')).resolve(shindig.uri(window.location.href)),
-						        		uri: instance.get('iframeUrl')
-						        	}
-						        }
-					        );
+							var container = new OpenAjax.hub.IframeContainer(
+								gadgets.pubsub2router.hub,
+								iframeId,
+								{
+									Container: {
+										onSecurityAlert: function(source, alertType) {
+											gadgets.error('Security error for container ' + source.getClientID() + ' : ' + alertType);
+											source.getIframe().src = 'about:blank';
+										}
+									},
+									IframeContainer: {
+										iframeAttrs: iframeAttrs,
+										parent: instance.get('contentBox'),
+										tunnelURI: shindig.uri(instance.get('serverBase') + instance.get('rpcRelay')).resolve(shindig.uri(window.location.href)),
+										uri: instance.get('iframeUrl')
+									}
+								}
+							);
 
 							instance._iframe = container.getIframe();
-					    };
+						};
 						
 						var createStandardIframe = function() {
-					    	var iframe = A.substitute(
+							var iframe = A.substitute(
 								TPL_IFRAME,
 								{
 									height: (height ? 'height="' + height + '"' : ''),
@@ -152,7 +152,7 @@ AUI().add(
 
 							gadgets.rpc.setRelayUrl(iframeId, instance.get('serverBase') + instance.get('rpcRelay'));
 							gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
-					    };
+						};
 
 						if (requiresPubsub == 'true') {
 							createOpenAjaxHubIframe();
@@ -402,13 +402,13 @@ AUI().add(
 						var instance = this;
 
 						var serviceParameterTypes = [
-						    'long',
-	                        'java.lang.String',
-	                        'java.lang.String',
-	                        'java.lang.String',
-	                        'long',
-	                        'java.lang.String'
-	                    ];
+							'long',
+							'java.lang.String',
+							'java.lang.String',
+							'java.lang.String',
+							'long',
+							'java.lang.String'
+						];
 
 						return Liferay.Service.Expando.ExpandoValue.addValue(
 							{
@@ -457,7 +457,7 @@ AUI().add(
 			return _instances[id];
 		};
 
-		gadgets.pubsub2router.init(
+		var managedHub = new OpenAjax.hub.ManagedHub(
 			{
 				onSubscribe: function(topic, container) {
 					return true;
@@ -469,6 +469,33 @@ AUI().add(
 				onPublish: function(topic, data, pcont, scont) {
 					return true;
 				}
+			}
+		);
+
+		var inlineContainer = new OpenAjax.hub.InlineContainer(managedHub , "liferay",
+			{
+			  	Container: {
+					onSecurityAlert: function(source, alertType) {},
+					onConnect: function(container) {},
+					onDisconnect: function(container) {}
+			  	}
+			}
+		);
+
+		var hubClient = new OpenAjax.hub.InlineHubClient(
+			{
+				HubClient: {
+					onSecurityAlert: function(source, alertType) {}
+				},
+				InlineHubClient: {
+					container: inlineContainer
+				}
+			}
+		);
+
+		gadgets.pubsub2router.init(
+			{
+				hub: managedHub
 			}
 		);
 
