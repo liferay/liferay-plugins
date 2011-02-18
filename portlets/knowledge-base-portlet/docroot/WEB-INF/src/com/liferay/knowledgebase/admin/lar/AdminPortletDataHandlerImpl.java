@@ -379,7 +379,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		List<Article> siblingArticles = new ArrayList<Article>();
 
-		long[] parentResourcePrimKeys = new long[] {
+		long[] parentResourcePrimKeys = {
 			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
 		};
 

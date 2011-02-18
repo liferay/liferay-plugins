@@ -462,7 +462,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			articles.add(article);
 		}
 
-		long[] parentResourcePrimKeys = new long[] {parentResourcePrimKey};
+		long[] parentResourcePrimKeys = {parentResourcePrimKey};
 
 		while (parentResourcePrimKeys.length > 0) {
 			long[] curParentResourcePrimKeys = null;

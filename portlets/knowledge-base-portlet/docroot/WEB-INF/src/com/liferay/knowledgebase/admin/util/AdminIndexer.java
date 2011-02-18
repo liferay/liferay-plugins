@@ -114,8 +114,8 @@ public class AdminIndexer extends BaseIndexer {
 
 		String selectionMethod = (String)params.get("selectionMethod");
 		Long[] resourcePrimKeys = (Long[])params.get("resourcePrimKeys");
-		Boolean assetEntryQueryAndOperator =
-			(Boolean)params.get("assetEntryQueryAndOperator");
+		Boolean assetEntryQueryAndOperator = (Boolean)params.get(
+			"assetEntryQueryAndOperator");
 		String assetEntryQueryName = (String)params.get("assetEntryQueryName");
 		Long[] assetCategoryIds = (Long[])params.get("assetCategoryIds");
 		String[] assetTagNames = (String[])params.get("assetTagNames");
@@ -154,9 +154,10 @@ public class AdminIndexer extends BaseIndexer {
 				String value = (String)tuple.getObject(1);
 
 				if (assetEntryQueryAndOperator) {
-					TermQuery query = TermQueryFactoryUtil.create(field, value);
+					TermQuery termQuery = TermQueryFactoryUtil.create(
+						field, value);
 
-					booleanQuery.add(query, BooleanClauseOccur.MUST);
+					booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
 				}
 				else {
 					booleanQuery.addExactTerm(field, value);
