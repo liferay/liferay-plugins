@@ -24,7 +24,7 @@ String ownerId = ShindigUtil.getOwnerId(layout);
 String appId = gadget.getUrl();
 String gadgetUrl = gadget.getUrl();
 long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
-boolean requiresPubsub = ShindigUtil.requiresPubsub(gadgetUrl);
+boolean requiresPubsub = ShindigUtil.isRequiresPublisherSubscriber(gadgetUrl);
 
 String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), appId, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, currentURL);
 %>

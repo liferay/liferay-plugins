@@ -154,7 +154,7 @@ AUI().add(
 							gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
 					    };
 
-						if (requiresPubsub == "true") {
+						if (requiresPubsub == 'true') {
 							createOpenAjaxHubIframe();
 						}
 						else {
