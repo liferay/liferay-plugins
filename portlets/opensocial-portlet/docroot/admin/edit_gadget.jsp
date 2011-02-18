@@ -74,7 +74,7 @@ if (gadget != null) {
 
 		<h4><liferay-ui:message key="category" /></h4>
 
-		<div class="category-treeview" id="<portlet:namespace />categoryTreeView" ></div>
+		<div class="category-treeview" id="<portlet:namespace />categoryTreeView"></div>
 
 		<aui:button-row>
 			<aui:button type="submit" />
