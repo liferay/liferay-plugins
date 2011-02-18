@@ -16,6 +16,7 @@ package com.liferay.opensocial.shindig.util;
 
 import com.google.inject.Inject;
 
+import com.liferay.opensocial.GadgetURLException;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -48,6 +49,7 @@ import org.apache.shindig.config.ContainerConfig;
 import org.apache.shindig.gadgets.Gadget;
 import org.apache.shindig.gadgets.process.Processor;
 import org.apache.shindig.gadgets.servlet.JsonRpcGadgetContext;
+import org.apache.shindig.gadgets.spec.Feature;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.ModulePrefs;
 import org.apache.shindig.gadgets.spec.OAuthService;
@@ -220,7 +222,7 @@ public class ShindigUtil {
 			throw new GadgetURLException(e);
 		}
 
-		Map<String, Feature> features = 
+		Map<String, Feature> features =
 			gadgetSpec.getModulePrefs().getFeatures();
 
 		return features.containsKey("pubsub-2");
