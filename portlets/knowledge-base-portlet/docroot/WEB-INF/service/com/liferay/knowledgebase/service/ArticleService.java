@@ -79,20 +79,15 @@ public interface ArticleService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long groupId, long[] resourcePrimKeys, int status,
-		long[] viewableParentResourcePrimKeys, int start, int end,
+		long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCount(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getArticlesCount(long groupId, long[] resourcePrimKeys,
-		int status, long[] viewableParentResourcePrimKeys)
-		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
@@ -101,18 +96,6 @@ public interface ArticleService {
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
-		long groupId, int status, long[] viewableParentResourcePrimKeys,
-		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupArticlesCount(long groupId, int status,
-		long[] viewableParentResourcePrimKeys)
-		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getGroupArticlesRSS(int status, int rssDelta,
@@ -140,10 +123,6 @@ public interface ArticleService {
 		long parentResourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public long[] getViewableParentResourcePrimKeys(long groupId, int status)
-		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void subscribeArticle(long groupId, long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,

@@ -324,22 +324,16 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long[] resourcePrimKeys, int status, int start, int end,
+		long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getArticles(resourcePrimKeys, status, start, end,
-			orderByComparator);
+				   .getArticles(resourcePrimKeys, status, orderByComparator);
 	}
 
 	public static int getArticlesCount(long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getArticlesCount(resourcePrimKey, status);
-	}
-
-	public static int getArticlesCount(long[] resourcePrimKeys, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getArticlesCount(resourcePrimKeys, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
