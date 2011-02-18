@@ -95,26 +95,24 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 			</div>
 		</c:if>
 
-		<c:if test="<%= UserPermissionUtil.contains(permissionChecker, themeDisplay.getUserId(), ActionKeys.VIEW) %>">
-			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
-				<c:if test="<%= showUsersInformation %>">
-					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="information">
-						<div class="lfr-user-info-container">
-							<liferay-util:include page="/contacts_center/view_user_information.jsp" portletId="<%= portletDisplay.getId() %>" />
-						</div>
-					</liferay-ui:panel>
-				</c:if>
+		<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
+			<c:if test="<%= showUsersInformation && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.VIEW) %>">
+				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="information">
+					<div class="lfr-user-info-container">
+						<liferay-util:include page="/contacts_center/view_user_information.jsp" portletId="<%= portletDisplay.getId() %>" />
+					</div>
+				</liferay-ui:panel>
+			</c:if>
 
-				<c:if test="<%= showUsersRecentActivity %>">
-					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="recent-activity">
-						<liferay-ui:social-activities
-							activities="<%= SocialActivityLocalServiceUtil.getUserActivities(user2.getUserId(), 0, 10) %>"
-							feedEnabled="<%= false %>"
-						/>
-					</liferay-ui:panel>
-				</c:if>
-			</liferay-ui:panel-container>
-		</c:if>
+			<c:if test="<%= showUsersRecentActivity %>">
+				<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="recent-activity">
+					<liferay-ui:social-activities
+						activities="<%= SocialActivityLocalServiceUtil.getUserActivities(user2.getUserId(), 0, 10) %>"
+						feedEnabled="<%= false %>"
+					/>
+				</liferay-ui:panel>
+			</c:if>
+		</liferay-ui:panel-container>
 	</aui:column>
 
 	<aui:column columnWidth="<%= 25 %>" cssClass="lfr-asset-column lfr-asset-column-actions" last="<%= true %>">
