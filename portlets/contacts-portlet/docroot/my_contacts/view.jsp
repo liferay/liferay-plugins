@@ -39,7 +39,7 @@ Group group = themeDisplay.getScopeGroup();
 		<c:choose>
 			<c:when test="<%= users.isEmpty() %>">
 				<div class="portlet-msg-info">
-					<liferay-ui:message arguments="<%= user.getFullName() %>" key="x-has-no-contacts" />
+					<liferay-ui:message arguments="<%= PortalUtil.getUserName(group.getClassPK(), StringPool.BLANK) %>" key="x-has-no-contacts" />
 				</div>
 			</c:when>
 			<c:when test="<%= !windowState.equals(WindowState.MAXIMIZED) %>">
