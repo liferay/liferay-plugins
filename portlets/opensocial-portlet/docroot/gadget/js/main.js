@@ -139,7 +139,12 @@ AUI().add(
 
 							var iframeNode = A.Node.create(iframe);
 
-							instance.get('contentBox').appendChild(iframeNode);
+							if (instance._iframe) {
+								instance.get('contentBox').replaceChild(iframeNode, instance._iframe);
+							}
+							else {
+								instance.get('contentBox').appendChild(iframeNode);
+							}
 
 							instance._iframe = iframeNode;
 
