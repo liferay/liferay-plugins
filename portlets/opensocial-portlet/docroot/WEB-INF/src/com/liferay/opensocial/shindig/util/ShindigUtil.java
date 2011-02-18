@@ -208,6 +208,24 @@ public class ShindigUtil {
 		return _TABLE_OPEN_SOCIAL;
 	}
 
+	public static boolean requiresPubsub(String url)
+		throws GadgetURLException {
+
+		GadgetSpec gadgetSpec = null;
+
+		try {
+			gadgetSpec = ShindigUtil.getGadgetSpec(url);
+		}
+		catch (Exception e) {
+			throw new GadgetURLException(e);
+		}
+
+		Map<String, Feature> features = 
+			gadgetSpec.getModulePrefs().getFeatures();
+
+		return features.containsKey("pubsub-2");
+	}
+
 	public static void setHost(String host) {
 		_host.set(host);
 	}

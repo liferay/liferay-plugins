@@ -24,6 +24,7 @@ String ownerId = ShindigUtil.getOwnerId(layout);
 String appId = gadget.getUrl();
 String gadgetUrl = gadget.getUrl();
 long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
+boolean requiresPubsub = ShindigUtil.requiresPubsub(gadgetUrl);
 
 String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), appId, PortalUtil.getPortalURL(themeDisplay), gadgetUrl, moduleId, currentURL);
 %>
@@ -38,6 +39,7 @@ String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUs
 			moduleId: '<%= moduleId %>',
 			nocache: '<%= PortletPropsValues.SHINDIG_NO_CACHE %>',
 			portletId: '<%= portletDisplay.getId() %>',
+			requiresPubsub: '<%= requiresPubsub %>',
 			secureToken: '<%= secureToken %>',
 			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
 			specUrl: '<%= gadgetUrl %>',

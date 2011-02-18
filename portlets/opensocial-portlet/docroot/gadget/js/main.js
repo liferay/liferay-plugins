@@ -49,6 +49,7 @@ AUI().add(
 						setter: '_setParentUrl'
 					},
 					portletId:{},
+					requiresPubsub:{},
 					rpcRelay: {},
 					rpcToken: {
 						value: Math.round(0x7FFFFFFF * Math.random())
@@ -87,6 +88,7 @@ AUI().add(
 
 						var height = instance.get('height');
 						var iframeId = instance.get('iframeId');
+						var requiresPubsub = instance.get('requiresPubsub');
 						var secureToken = instance.get('secureToken');
 						var width = instance.get('width');
 
@@ -105,7 +107,7 @@ AUI().add(
 						    	iframeAttrs.width = width;
 						    }
 
-						    new OpenAjax.hub.IframeContainer(
+						    var container = new OpenAjax.hub.IframeContainer(
 						        gadgets.pubsub2router.hub,
 						        iframeId,
 						        {
@@ -123,8 +125,8 @@ AUI().add(
 						        	}
 						        }
 					        );
-						    
-						    instance._iframe = document.getElementById(iframeId);
+
+							instance._iframe = container.getIframe();
 					    };
 						
 						var createStandardIframe = function() {
@@ -152,48 +154,12 @@ AUI().add(
 							gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
 					    };
 
-					    var findPubSub2Feature = function(obj) {
-					        var arr = obj.data.gadgets[0].features;
-
-					        var requiresPubSub2 = false;
-
-					        for (var i = 0; i < arr.length; i++) {
-					            if (arr[i] === 'pubsub-2') {
-					            	requiresPubSub2 = true;
-					            	break;
-					            }
-					        }
-
-					        if (requiresPubSub2) {
-					        	createOpenAjaxHubIframe();
-					        }
-					        else {
-					        	createStandardIframe();
-					        }
-					    };
-
-					    var url = themeDisplay.getPathContext() + '/opensocial-portlet/gadgets/metadata?st=' + secureToken;
-
-					    var request = {
-					        context: {
-					            container: 'default',
-					            country: 'default',
-					            language: 'default',
-					            view: 'default'
-					        },
-					        gadgets: [{
-					            moduleId: 1,
-					            url: instance.get('specUrl')
-					        }]
-					    };
-
-						var makeRequestParams = {
-					        'CONTENT_TYPE': 'JSON',
-					        'METHOD': 'POST',
-					        'POST_DATA': gadgets.json.stringify(request)
-					    };
-
-					    gadgets.io.makeNonProxiedRequest(url, findPubSub2Feature, makeRequestParams, 'application/javascript');
+						if (requiresPubsub == "true") {
+							createOpenAjaxHubIframe();
+						}
+						else {
+							createStandardIframe();
+						}
 					},
 
 					bindUI: function() {
