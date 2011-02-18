@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -387,20 +388,12 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			long[] curParentResourcePrimKeys = null;
 
 			if (parentResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
-				curParentResourcePrimKeys = new long[_SQL_DATA_MAX_PARAMETERS];
+				curParentResourcePrimKeys = ArrayUtil.subArray(
+					parentResourcePrimKeys, 0, _SQL_DATA_MAX_PARAMETERS);
 
-				System.arraycopy(
-					parentResourcePrimKeys, 0, curParentResourcePrimKeys, 0,
-					_SQL_DATA_MAX_PARAMETERS);
-
-				long[] array = new long[
-					parentResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS];
-
-				System.arraycopy(
-					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS, array, 0,
-					parentResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS);
-
-				parentResourcePrimKeys = array;
+				parentResourcePrimKeys = ArrayUtil.subArray(
+					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS,
+					parentResourcePrimKeys.length);
 			}
 			else {
 				curParentResourcePrimKeys = parentResourcePrimKeys.clone();

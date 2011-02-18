@@ -468,20 +468,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			long[] curParentResourcePrimKeys = null;
 
 			if (parentResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
-				curParentResourcePrimKeys = new long[_SQL_DATA_MAX_PARAMETERS];
+				curParentResourcePrimKeys = ArrayUtil.subArray(
+					parentResourcePrimKeys, 0, _SQL_DATA_MAX_PARAMETERS);
 
-				System.arraycopy(
-					parentResourcePrimKeys, 0, curParentResourcePrimKeys, 0,
-					_SQL_DATA_MAX_PARAMETERS);
-
-				long[] array = new long[
-					parentResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS];
-
-				System.arraycopy(
-					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS, array, 0,
-					parentResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS);
-
-				parentResourcePrimKeys = array;
+				parentResourcePrimKeys = ArrayUtil.subArray(
+					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS,
+					parentResourcePrimKeys.length);
 			}
 			else {
 				curParentResourcePrimKeys = parentResourcePrimKeys.clone();

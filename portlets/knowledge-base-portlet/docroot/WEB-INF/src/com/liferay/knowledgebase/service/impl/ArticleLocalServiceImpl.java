@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -339,20 +340,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long[] curResourcePrimKeys = null;
 
 			if (selResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
-				curResourcePrimKeys = new long[_SQL_DATA_MAX_PARAMETERS];
+				curResourcePrimKeys = ArrayUtil.subArray(
+					selResourcePrimKeys, 0, _SQL_DATA_MAX_PARAMETERS);
 
-				System.arraycopy(
-					selResourcePrimKeys, 0, curResourcePrimKeys, 0,
-					_SQL_DATA_MAX_PARAMETERS);
-
-				long[] array = new long[
-					selResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS];
-
-				System.arraycopy(
-					selResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS, array, 0,
-					selResourcePrimKeys.length - _SQL_DATA_MAX_PARAMETERS);
-
-				selResourcePrimKeys = array;
+				selResourcePrimKeys = ArrayUtil.subArray(
+					selResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS,
+					selResourcePrimKeys.length);
 			}
 			else {
 				curResourcePrimKeys = selResourcePrimKeys.clone();
