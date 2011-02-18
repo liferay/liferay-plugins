@@ -106,11 +106,8 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void addPortletPreferences(
-			BooleanQuery contextQuery, SearchContext searchContext)
+			BooleanQuery contextQuery, HashMap<String, Object> params)
 		throws Exception {
-
-		HashMap<String, Object> params =
-			(HashMap<String, Object>)searchContext.getAttribute("params");
 
 		String selectionMethod = (String)params.get("selectionMethod");
 		Long[] resourcePrimKeys = (Long[])params.get("resourcePrimKeys");
@@ -271,7 +268,12 @@ public class AdminIndexer extends BaseIndexer {
 			BooleanQuery contextQuery, SearchContext searchContext)
 		throws Exception {
 
-		addPortletPreferences(contextQuery, searchContext);
+		HashMap<String, Object> params =
+			(HashMap<String, Object>)searchContext.getAttribute("params");
+
+		if (params != null) {
+			addPortletPreferences(contextQuery, params);
+		}
 	}
 
 	protected void postProcessSearchQuery(

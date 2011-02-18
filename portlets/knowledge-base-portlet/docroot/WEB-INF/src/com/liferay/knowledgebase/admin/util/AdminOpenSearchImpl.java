@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
 import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
 
 /**
  * @author Peter Shin
@@ -53,9 +54,18 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 		long resourcePrimKey = GetterUtil.getLong(
 			result.get(Field.ENTRY_CLASS_PK));
 
-		return KnowledgeBaseUtil.getArticleURL(
-			themeDisplay.getPlid(), resourcePrimKey,
-			themeDisplay.getPortalURL());
+		WindowState windowState = portletURL.getWindowState();
+
+		if (windowState.equals(WindowState.MAXIMIZED)) {
+			return KnowledgeBaseUtil.getArticleURL(
+				themeDisplay.getPlid(), resourcePrimKey,
+				themeDisplay.getPortalURL(), true);
+		}
+		else {
+			return KnowledgeBaseUtil.getArticleURL(
+				themeDisplay.getPlid(), resourcePrimKey,
+				themeDisplay.getPortalURL(), false);
+		}
 	}
 
 }

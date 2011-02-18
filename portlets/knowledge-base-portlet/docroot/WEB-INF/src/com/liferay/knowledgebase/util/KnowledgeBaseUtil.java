@@ -26,9 +26,9 @@ import com.liferay.portal.util.PortalUtil;
 public class KnowledgeBaseUtil {
 
 	public static String getArticleURL(
-		long plid, long resourcePrimKey, String portalURL) {
+		long plid, long resourcePrimKey, String portalURL, boolean maximized) {
 
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathMain());
@@ -41,6 +41,10 @@ public class KnowledgeBaseUtil {
 		sb.append("resourcePrimKey");
 		sb.append(StringPool.EQUAL);
 		sb.append(HttpUtil.encodeURL(String.valueOf(resourcePrimKey)));
+		sb.append(StringPool.AMPERSAND);
+		sb.append("maximized");
+		sb.append(StringPool.EQUAL);
+		sb.append(HttpUtil.encodeURL(String.valueOf(maximized)));
 
 		return sb.toString();
 	}

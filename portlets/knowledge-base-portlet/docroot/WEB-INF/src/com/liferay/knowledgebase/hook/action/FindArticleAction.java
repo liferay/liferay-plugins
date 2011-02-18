@@ -83,6 +83,7 @@ public class FindArticleAction extends BaseStrutsAction {
 
 		long plid = ParamUtil.getLong(request, "plid");
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+		boolean maximized = ParamUtil.getBoolean(request, "maximized");
 
 		if (!isValidPlid(plid)) {
 			plid = themeDisplay.getPlid();
@@ -110,6 +111,10 @@ public class FindArticleAction extends BaseStrutsAction {
 
 		if (portletURL == null) {
 			portletURL = getDisplayPortletURL(plid, request);
+		}
+
+		if (maximized) {
+			portletURL.setWindowState(WindowState.MAXIMIZED);
 		}
 
 		response.sendRedirect(portletURL.toString());

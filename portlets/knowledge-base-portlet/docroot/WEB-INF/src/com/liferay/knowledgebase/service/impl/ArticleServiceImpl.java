@@ -193,7 +193,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		String feedURL = KnowledgeBaseUtil.getArticleURL(
 			themeDisplay.getPlid(), resourcePrimKey,
-			themeDisplay.getPortalURL());
+			themeDisplay.getPortalURL(), false);
 
 		List<Article> articles = Collections.emptyList();
 
@@ -407,7 +407,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			String link = KnowledgeBaseUtil.getArticleURL(
 				themeDisplay.getPlid(), article.getResourcePrimKey(),
-				themeDisplay.getPortalURL());
+				themeDisplay.getPortalURL(), false);
 
 			SyndContent syndContent = new SyndContentImpl();
 

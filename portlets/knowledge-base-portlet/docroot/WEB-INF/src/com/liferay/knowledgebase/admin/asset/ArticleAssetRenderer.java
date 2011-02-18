@@ -85,7 +85,7 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 
 		return KnowledgeBaseUtil.getArticleURL(
 			themeDisplay.getPlid(), _article.getResourcePrimKey(),
-			themeDisplay.getPortalURL());
+			themeDisplay.getPortalURL(), false);
 	}
 
 	public long getUserId() {
