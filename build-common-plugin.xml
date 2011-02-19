@@ -654,6 +654,7 @@ Please find a solution that does not require portal-impl.jar.
 			</not>
 			<then>
 				<junit dir="${project.dir}" fork="on" forkmode="once" printsummary="on">
+					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
@@ -667,6 +668,7 @@ Please find a solution that does not require portal-impl.jar.
 			</then>
 			<else>
 				<junit dir="${project.dir}" fork="on" forkmode="once" printsummary="on">
+					<jvmarg line="${junit.debug.jpda}" />
 					<jvmarg value="-Xmx256m" />
 					<jvmarg value="-Duser.timezone=GMT" />
 					<jvmarg value="-Dexternal-properties=${test.properties}" />
@@ -683,6 +685,7 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="test-class" depends="compile,compile-test" if="class">
 		<junit dir="${project.dir}" fork="on" forkmode="once" outputtoformatters="false" printsummary="on" showoutput="true">
+			<jvmarg line="${junit.debug.jpda}" />
 			<jvmarg value="-Xmx512m" />
 			<jvmarg value="-XX:MaxPermSize=128m" />
 			<jvmarg value="-Duser.timezone=GMT" />
