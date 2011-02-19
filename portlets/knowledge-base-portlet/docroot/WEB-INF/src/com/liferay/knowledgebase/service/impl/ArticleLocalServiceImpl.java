@@ -340,10 +340,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long[] curResourcePrimKeys = null;
 
 			if (selResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
-				curResourcePrimKeys = ArrayUtil.subArray(
+				curResourcePrimKeys = ArrayUtil.subset(
 					selResourcePrimKeys, 0, _SQL_DATA_MAX_PARAMETERS);
 
-				selResourcePrimKeys = ArrayUtil.subArray(
+				selResourcePrimKeys = ArrayUtil.subset(
 					selResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS,
 					selResourcePrimKeys.length);
 			}

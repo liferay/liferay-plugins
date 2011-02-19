@@ -388,10 +388,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			long[] curParentResourcePrimKeys = null;
 
 			if (parentResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
-				curParentResourcePrimKeys = ArrayUtil.subArray(
+				curParentResourcePrimKeys = ArrayUtil.subset(
 					parentResourcePrimKeys, 0, _SQL_DATA_MAX_PARAMETERS);
 
-				parentResourcePrimKeys = ArrayUtil.subArray(
+				parentResourcePrimKeys = ArrayUtil.subset(
 					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS,
 					parentResourcePrimKeys.length);
 			}
