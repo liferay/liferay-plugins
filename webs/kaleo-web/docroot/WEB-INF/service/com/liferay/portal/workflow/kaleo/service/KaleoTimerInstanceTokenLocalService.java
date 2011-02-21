@@ -250,7 +250,8 @@ public interface KaleoTimerInstanceTokenLocalService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceId)
+	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceId,
+		java.lang.Boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

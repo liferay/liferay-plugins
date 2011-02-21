@@ -294,10 +294,13 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 				   .getKaleoTimerInstanceToken(kaleoInstanceId, kaleoTimerId);
 	}
 
-	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceId)
+	public static int getKaleoTimerInstanceTokensCount(long kaleoInstanceId,
+		java.lang.Boolean completed,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getKaleoTimerInstanceTokens(kaleoInstanceId);
+		return getService()
+				   .getKaleoTimerInstanceTokensCount(kaleoInstanceId,
+			completed, serviceContext);
 	}
 
 	public static void clearService() {
