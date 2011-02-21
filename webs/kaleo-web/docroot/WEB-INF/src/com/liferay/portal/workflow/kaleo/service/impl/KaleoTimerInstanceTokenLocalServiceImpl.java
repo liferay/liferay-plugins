@@ -14,6 +14,9 @@
 
 package com.liferay.portal.workflow.kaleo.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.Message;
@@ -184,12 +187,45 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			kaleoInstanceId, kaleoTimerId);
 	}
 
-	public List<KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-			long kaleoInstanceId)
+	public int getKaleoTimerInstanceTokensCount(
+			long kaleoInstanceId, Boolean completed,
+			ServiceContext serviceContext)
 		throws SystemException {
 
-		return kaleoTimerInstanceTokenPersistence.findByKaleoInstanceId(
-			kaleoInstanceId);
+		DynamicQuery dynamicQuery = buildDynamicQuery(
+			kaleoInstanceId, completed, serviceContext);
+
+		return (int)dynamicQueryCount(dynamicQuery);
+	}
+
+	protected void addCompletedCriterion(
+		DynamicQuery dynamicQuery, Boolean completed) {
+
+		if (completed == null) {
+			return;
+		}
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("completed").eq(completed));
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		long kaleoInstanceId, Boolean completed,
+		ServiceContext serviceContext) {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			KaleoTimerInstanceToken.class, getClass().getClassLoader());
+
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("companyId").eq(
+				serviceContext.getCompanyId()));
+		dynamicQuery.add(
+			PropertyFactoryUtil.forName("kaleoInstanceId").eq(
+				kaleoInstanceId));
+
+		addCompletedCriterion(dynamicQuery, completed);
+
+		return dynamicQuery;
 	}
 
 	protected void deleteTimer(KaleoTimerInstanceToken kaleoTimerInstanceToken)

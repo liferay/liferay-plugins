@@ -18,12 +18,9 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
-import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
-
-import java.util.List;
 
 /**
  * @author Marcellus Tavares
@@ -58,20 +55,14 @@ public class ExecutionUtil {
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		// TODO
+		int kaleoTimerInstanceTokensCount =
+			KaleoTimerInstanceTokenLocalServiceUtil.
+				getKaleoTimerInstanceTokensCount(
+					kaleoInstanceToken.getKaleoInstanceId(), false,
+					executionContext.getServiceContext());
 
-		// Instead of iterating through each node, use custom query
-
-		List<KaleoTimerInstanceToken> kaleoTimerInstanceTokens =
-			KaleoTimerInstanceTokenLocalServiceUtil.getKaleoTimerInstanceTokens(
-				kaleoInstanceToken.getKaleoInstanceId());
-
-		for (KaleoTimerInstanceToken kaleoTimerInstanceToken :
-			kaleoTimerInstanceTokens) {
-
-			if (!kaleoTimerInstanceToken.isCompleted()){
-				return true;
-			}
+		if (kaleoTimerInstanceTokensCount > 0) {
+			return true;
 		}
 
 		return false;
