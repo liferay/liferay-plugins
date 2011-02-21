@@ -258,6 +258,20 @@
 		/>
 
 		<delete dir="${tstamp.value}" />
+
+		<!-- OpenAjax Hub -->
+
+		<if>
+			<not>
+				<available file="tmp/gadget/js/OpenAjax_Hub_2.0.5_r1293" />
+			</not>
+			<then>
+				<unzip
+					src="OpenAjax_Hub_2.0.5_r1293.zip"
+					dest="tmp/gadget/js"
+				/>
+			</then>
+		</if>
 	</target>
 
 	<target name="merge-backup-file">
