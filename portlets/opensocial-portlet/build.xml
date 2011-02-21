@@ -208,8 +208,8 @@
 			</not>
 			<then>
 				<unzip
-					src="tmp/WEB-INF/lib/shindig-common-2.0.2.jar"
 					dest="tmp/WEB-INF/classes"
+					src="tmp/WEB-INF/lib/shindig-common-2.0.2.jar"
 				>
 					<patternset
 						includes="**/shindig.properties"
@@ -267,8 +267,8 @@
 			</not>
 			<then>
 				<unzip
-					src="OpenAjax_Hub_2.0.5_r1293.zip"
 					dest="tmp/gadget/js"
+					src="OpenAjax_Hub_2.0.5_r1293.zip"
 				/>
 			</then>
 		</if>
