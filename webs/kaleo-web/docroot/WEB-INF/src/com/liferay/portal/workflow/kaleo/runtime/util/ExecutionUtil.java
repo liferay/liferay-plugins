@@ -55,13 +55,13 @@ public class ExecutionUtil {
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
 
-		int kaleoTimerInstanceTokensCount =
+		int count =
 			KaleoTimerInstanceTokenLocalServiceUtil.
 				getKaleoTimerInstanceTokensCount(
 					kaleoInstanceToken.getKaleoInstanceId(), false,
 					executionContext.getServiceContext());
 
-		if (kaleoTimerInstanceTokensCount > 0) {
+		if (count > 0) {
 			return true;
 		}
 
