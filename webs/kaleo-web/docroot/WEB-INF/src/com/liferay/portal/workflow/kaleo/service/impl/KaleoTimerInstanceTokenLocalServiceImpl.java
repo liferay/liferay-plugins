@@ -235,8 +235,9 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		KaleoTimerInstanceToken kaleoTimerInstanceToken) {
 
 		return DestinationNames.SCHEDULER_DISPATCH.concat(
-			StringPool.SLASH).concat(String.valueOf(
-				kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()));
+			StringPool.SLASH).concat(
+				String.valueOf(
+					kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId()));
 	}
 
 	protected SchedulerEventMessageListenerWrapper registerMessageListener(
@@ -246,7 +247,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 			new SchedulerEventMessageListenerWrapper();
 
 		schedulerEventListenerWrapper.setClassName(groupName);
-		schedulerEventListenerWrapper.setMessageListener(_timerMessageListener);
+		schedulerEventListenerWrapper.setMessageListener(timerMessageListener);
 
 		schedulerEventListenerWrapper.afterPropertiesSet();
 
@@ -301,6 +302,6 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 	}
 
 	@BeanReference(type = TimerMessageListener.class)
-	private TimerMessageListener _timerMessageListener;
+	protected TimerMessageListener timerMessageListener;
 
 }
