@@ -329,8 +329,8 @@ public class LiferayAlbumService implements AlbumService {
 				GetterUtil.getLong(albumId));
 
 			DLAppServiceUtil.updateFolder(
-				folder.getFolderId(), folder.getParentFolderId(),
-				album.getTitle(), album.getDescription(), serviceContext);
+				folder.getFolderId(), album.getTitle(), album.getDescription(),
+				serviceContext);
 		}
 	}
 
