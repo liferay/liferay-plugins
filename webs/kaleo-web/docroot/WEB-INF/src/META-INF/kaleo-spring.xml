@@ -182,6 +182,9 @@
 			</map>
 		</property>
 	</bean>
+	<bean id="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener" class="com.liferay.portal.workflow.kaleo.runtime.timer.messaging.TimerMessageListener">
+		<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
+	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.runtime.node.transition.TransitionSelector" class="com.liferay.portal.workflow.kaleo.runtime.node.transition.DefaultTransitionSelector">
 		<property name="conditionEvaluator" ref="com.liferay.portal.workflow.kaleo.runtime.condition.ConditionEvaluator" />
 	</bean>

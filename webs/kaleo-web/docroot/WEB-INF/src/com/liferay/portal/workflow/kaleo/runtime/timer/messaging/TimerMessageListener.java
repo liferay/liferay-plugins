@@ -63,8 +63,7 @@ public class TimerMessageListener extends BaseMessageListener {
 			WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
 		ExecutionContext executionContext = new ExecutionContext(
-			kaleoInstanceToken.getParentKaleoInstanceToken(), workflowContext,
-			serviceContext);
+			kaleoInstanceToken, workflowContext, serviceContext);
 
 		KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceToken(
 			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
