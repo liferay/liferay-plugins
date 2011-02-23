@@ -447,13 +447,20 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			task.setAssignments(assignments);
 		}
 
-		Element timersElement = taskElement.element("timers");
+		Element timersElement = taskElement.element("task-timers");
 
 		if (timersElement != null) {
-			parseTimers(timersElement, task);
+			parseTaskTimers(timersElement, task);
 		}
 
 		return task;
+	}
+
+	protected void parseTaskTimers(Element taskTimersElement, Node node) {
+		List<Element> taskTimerElements = taskTimersElement.elements(
+			"task-timer");
+
+		parseTimers(taskTimerElements, node);
 	}
 
 	protected Timer parseTimer(Element timerElement) {
@@ -461,10 +468,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		String description = timerElement.elementText("description");
 		boolean defaultValue = GetterUtil.getBoolean(
 			timerElement.elementText("default"));
-		boolean required = GetterUtil.getBoolean(
-			timerElement.elementText("required"));
 
-		Timer timer = new Timer(name, description, defaultValue, required);
+		Timer timer = new Timer(name, description, defaultValue);
 
 		Element delayElement = timerElement.element("delay");
 
@@ -489,6 +494,10 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	protected void parseTimers(Element timersElement, Node node) {
 		List<Element> timerElements = timersElement.elements("timer");
 
+		parseTimers(timerElements, node);
+	}
+
+	protected void parseTimers(List<Element> timerElements, Node node) {
 		Set<Timer> timers = new HashSet<Timer>();
 
 		for (Element timerElement : timerElements) {

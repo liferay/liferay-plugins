@@ -22,13 +22,11 @@ import java.util.Set;
 public class Timer extends Node {
 
 	public Timer(
-		String name, String description, boolean defaultValue,
-		boolean required) {
+		String name, String description, boolean defaultValue) {
 
 		super(NodeType.TIMER, name, description);
 
 		_default = defaultValue;
-		_required = required;
 	}
 
 	public DelayDuration getDelayDuration() {
@@ -43,10 +41,6 @@ public class Timer extends Node {
 		return _default;
 	}
 
-	public boolean isRequired() {
-		return _required;
-	}
-
 	public void setDelayDuration(DelayDuration delayDuration) {
 		_delayDuration = delayDuration;
 	}
@@ -58,6 +52,5 @@ public class Timer extends Node {
 	private boolean _default;
 	private DelayDuration _delayDuration;
 	private Set<Assignment> _reassignments;
-	private boolean _required;
 
 }
