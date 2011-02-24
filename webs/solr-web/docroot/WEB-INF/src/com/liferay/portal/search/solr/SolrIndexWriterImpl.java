@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.util.Validator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.common.SolrInputDocument;
@@ -175,12 +177,31 @@ public class SolrIndexWriterImpl implements IndexWriter {
 			String name = field.getName();
 			float boost = field.getBoost();
 
-			for (String value : field.getValues()) {
-				if (Validator.isNull(value)) {
-					continue;
-				}
+			if (!field.isLocalized()) {
+				for (String value : field.getValues()) {
+					if (Validator.isNull(value)) {
+						continue;
+					}
 
-				solrInputDocument.addField(name, value.trim(), boost);
+					solrInputDocument.addField(name, value.trim(), boost);
+				}
+			}
+			else {
+				for (Map.Entry<Locale, String> entry :
+						field.getLocalizedValues().entrySet()) {
+
+					Locale locale = entry.getKey();
+					String value = entry.getValue();
+
+					if (Validator.isNull(value)) {
+						continue;
+					}
+
+					name = name.concat(StringPool.UNDERLINE).concat(
+						locale.getDisplayName());
+
+					solrInputDocument.addField(name, value.trim(), boost);
+				}
 			}
 		}
 
