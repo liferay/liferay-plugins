@@ -187,8 +187,11 @@ public class SolrIndexWriterImpl implements IndexWriter {
 				}
 			}
 			else {
+				Map<Locale, String> localizedValues =
+					field.getLocalizedValues();
+
 				for (Map.Entry<Locale, String> entry :
-						field.getLocalizedValues().entrySet()) {
+						localizedValues.entrySet()) {
 
 					Locale locale = entry.getKey();
 					String value = entry.getValue();
