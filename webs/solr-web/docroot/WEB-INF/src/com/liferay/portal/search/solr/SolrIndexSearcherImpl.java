@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -138,7 +139,7 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			return subset(solrQuery, queryConfig, queryResponse, false);
 		}
 
-		float maxScore = 1f;
+		float maxScore = 1;
 
 		if (queryConfig.isScoreEnabled()) {
 			maxScore = results.getMaxScore();
@@ -157,10 +158,6 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		Set<String> queryTerms = new HashSet<String>();
 
-		boolean highlightEnabled = queryConfig.isHighlightEnabled();
-
-		boolean scoringEnabled = queryConfig.isScoreEnabled();
-
 		for (SolrDocument solrDocument : results) {
 			Document document = new DocumentImpl();
 
@@ -173,17 +170,16 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				document.add(field);
 			}
 
-			float score = 1f;
+			float score = 1;
 
-			if (scoringEnabled) {
-				score = Float.valueOf(
+			if (queryConfig.isScoreEnabled()) {
+				score = GetterUtil.getFloat(
 					solrDocument.getFieldValue("score").toString());
 			}
 
-
 			subsetDocs[j] = document;
 
-			if (highlightEnabled) {
+			if (queryConfig.isHighlightEnabled()) {
 				subsetSnippets[j] = getSnippet(
 					solrDocument, queryTerms, highlights);
 			}
