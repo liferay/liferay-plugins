@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.search.IndexSearcher;
 import com.liferay.portal.kernel.search.Query;
+import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -69,7 +70,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				allResults = true;
 			}
 
-			return subset(solrQuery, queryResponse, allResults);
+			return subset(
+				solrQuery, query.getQueryConfig(), queryResponse, allResults);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -116,8 +118,8 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 	}
 
 	protected Hits subset(
-			SolrQuery solrQuery, QueryResponse queryResponse,
-			boolean allResults)
+			SolrQuery solrQuery, QueryConfig queryConfig,
+			QueryResponse queryResponse, boolean allResults)
 		throws Exception {
 
 		long startTime = System.currentTimeMillis();
@@ -133,10 +135,14 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			queryResponse = _solrServer.query(solrQuery);
 
-			return subset(solrQuery, queryResponse, false);
+			return subset(solrQuery, queryConfig, queryResponse, false);
 		}
 
-		float maxScore = results.getMaxScore();
+		float maxScore = 1f;
+
+		if (queryConfig.isScoreEnabled()) {
+			maxScore = results.getMaxScore();
+		}
 
 		int subsetTotal = results.size();
 
@@ -151,6 +157,10 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		Set<String> queryTerms = new HashSet<String>();
 
+		boolean highlightEnabled = queryConfig.isHighlightEnabled();
+
+		boolean scoringEnabled = queryConfig.isScoreEnabled();
+
 		for (SolrDocument solrDocument : results) {
 			Document document = new DocumentImpl();
 
@@ -163,12 +173,24 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 				document.add(field);
 			}
 
-			float score = Float.valueOf(
-				solrDocument.getFieldValue("score").toString());
+			float score = 1f;
+
+			if (scoringEnabled) {
+				score = Float.valueOf(
+					solrDocument.getFieldValue("score").toString());
+			}
+
 
 			subsetDocs[j] = document;
-			subsetSnippets[j] = getSnippet(
-				solrDocument, queryTerms, highlights);
+
+			if (highlightEnabled) {
+				subsetSnippets[j] = getSnippet(
+					solrDocument, queryTerms, highlights);
+			}
+			else {
+				subsetSnippets[j] = StringPool.BLANK;
+			}
+
 			subsetScores[j] = score / maxScore;
 
 			j++;
@@ -206,12 +228,17 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 			sb.append(StringPool.COLON);
 			sb.append(companyId);
 
+			QueryConfig queryConfig = query.getQueryConfig();
+
 			SolrQuery solrQuery = new SolrQuery();
 
-			solrQuery.setHighlight(true);
-			solrQuery.setHighlightFragsize(80);
-			solrQuery.setHighlightSnippets(3);
-			solrQuery.setIncludeScore(true);
+			solrQuery.setHighlight(queryConfig.isHighlightEnabled());
+			solrQuery.setHighlightFragsize(
+				queryConfig.getHighlightFragmentSize());
+			solrQuery.setHighlightSnippets(
+				queryConfig.getHighlightSnippetSize());
+			solrQuery.setIncludeScore(queryConfig.isScoreEnabled());
+
 			solrQuery.setQuery(sb.toString());
 
 			if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS)) {
