@@ -141,7 +141,9 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		float maxScore = 1;
 
-		if (queryConfig.isScoreEnabled()) {
+		boolean scoreEnabled = queryConfig.isScoreEnabled();
+
+		if (scoreEnabled) {
 			maxScore = results.getMaxScore();
 		}
 
@@ -153,10 +155,12 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 		int j = 0;
 
-		Map<String, Map<String, List<String>>> highlights =
-			queryResponse.getHighlighting();
+		boolean highlightEnabled = queryConfig.isHighlightEnabled();
 
 		Set<String> queryTerms = new HashSet<String>();
+
+		Map<String, Map<String, List<String>>> highlights =
+			queryResponse.getHighlighting();
 
 		for (SolrDocument solrDocument : results) {
 			Document document = new DocumentImpl();
@@ -172,14 +176,14 @@ public class SolrIndexSearcherImpl implements IndexSearcher {
 
 			float score = 1;
 
-			if (queryConfig.isScoreEnabled()) {
+			if (scoreEnabled) {
 				score = GetterUtil.getFloat(
 					solrDocument.getFieldValue("score").toString());
 			}
 
 			subsetDocs[j] = document;
 
-			if (queryConfig.isHighlightEnabled()) {
+			if (highlightEnabled) {
 				subsetSnippets[j] = getSnippet(
 					solrDocument, queryTerms, highlights);
 			}
