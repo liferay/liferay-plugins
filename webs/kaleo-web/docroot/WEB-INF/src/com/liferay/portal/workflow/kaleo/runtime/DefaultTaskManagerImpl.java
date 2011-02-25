@@ -223,10 +223,6 @@ public class DefaultTaskManagerImpl
 			kaleoInstanceTokenLocalService.getKaleoInstanceToken(
 				kaleoTaskInstanceToken.getKaleoInstanceTokenId());
 
-		KaleoInstanceToken parentKaleoInstanceToken =
-			kaleoInstanceTokenLocalService.getKaleoInstanceToken(
-				kaleoInstanceToken.getParentKaleoInstanceTokenId());
-
 		kaleoLogLocalService.addTaskCompletionKaleoLog(
 			kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
 
@@ -236,7 +232,7 @@ public class DefaultTaskManagerImpl
 		}
 
 		ExecutionContext executionContext = new ExecutionContext(
-			parentKaleoInstanceToken, workflowContext, serviceContext);
+			kaleoInstanceToken, workflowContext, serviceContext);
 
 		_kaleoSignaler.signalExit(transitionName, executionContext);
 

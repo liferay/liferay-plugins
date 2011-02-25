@@ -81,14 +81,7 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			kaleoInstanceToken.getKaleoDefinitionId());
 		kaleoTaskInstanceToken.setKaleoInstanceId(
 			kaleoInstanceToken.getKaleoInstanceId());
-
-		KaleoInstanceToken childKaleoInstanceToken =
-			kaleoInstanceTokenLocalService.addKaleoInstanceToken(
-				kaleoInstanceToken.getKaleoInstanceTokenId(), workflowContext,
-				serviceContext);
-
-		kaleoTaskInstanceToken.setKaleoInstanceTokenId(
-			childKaleoInstanceToken.getKaleoInstanceTokenId());
+		kaleoTaskInstanceToken.setKaleoInstanceTokenId(kaleoInstanceTokenId);
 
 		kaleoTaskInstanceToken.setKaleoTaskId(kaleoTaskId);
 		kaleoTaskInstanceToken.setKaleoTaskName(kaleoTaskName);
@@ -165,11 +158,6 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 
 		kaleoTaskAssignmentInstanceLocalService.completeKaleoTaskInstanceToken(
 			kaleoTaskInstanceTokenId, serviceContext);
-
-		// Kaleo instance
-
-		kaleoInstanceTokenLocalService.completeKaleoInstanceToken(
-			kaleoTaskInstanceToken.getKaleoInstanceTokenId());
 
 		// Kaleo timers
 
