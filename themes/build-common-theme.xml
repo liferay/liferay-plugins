@@ -22,7 +22,7 @@
 	</target>
 
 	<target name="build-css-cmd">
-		<loadfile property="css.content" srcFile="${css.file}" />
+		<loadfile property="css.content" srcfile="${css.file}" />
 
 		<antelope:post
 			append="false"
