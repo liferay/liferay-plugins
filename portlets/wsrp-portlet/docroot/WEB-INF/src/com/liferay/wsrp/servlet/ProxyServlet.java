@@ -43,7 +43,9 @@ public class ProxyServlet extends HttpServlet {
 		try {
 			String url = ParamUtil.getString(request, "url");
 
-			proxyURL(request, response, new URL(url));
+			if (!url.startsWith("file:/")) {
+				proxyURL(request, response, new URL(url));
+			}
 		}
 		catch (Exception e) {
 			_log.error(e, e);
