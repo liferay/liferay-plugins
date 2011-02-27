@@ -236,7 +236,7 @@ public class MessageUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -256,7 +256,7 @@ public class MessageUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	* @throws SystemException if a system exception occurred
@@ -278,7 +278,7 @@ public class MessageUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	* @throws SystemException if a system exception occurred
@@ -301,7 +301,7 @@ public class MessageUtil {
 	*
 	* @param messageId the primary key of the current message
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -358,7 +358,7 @@ public class MessageUtil {
 	* @param folderId the folder ID to search with
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching messages
 	* @throws SystemException if a system exception occurred
 	*/
@@ -378,7 +378,7 @@ public class MessageUtil {
 	* </p>
 	*
 	* @param folderId the folder ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	* @throws SystemException if a system exception occurred
@@ -399,7 +399,7 @@ public class MessageUtil {
 	* </p>
 	*
 	* @param folderId the folder ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
 	* @throws SystemException if a system exception occurred
@@ -421,7 +421,7 @@ public class MessageUtil {
 	*
 	* @param messageId the primary key of the current message
 	* @param folderId the folder ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -519,7 +519,7 @@ public class MessageUtil {
 	*
 	* @param start the lower bound of the range of messages to return
 	* @param end the upper bound of the range of messages to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of messages
 	* @throws SystemException if a system exception occurred
 	*/

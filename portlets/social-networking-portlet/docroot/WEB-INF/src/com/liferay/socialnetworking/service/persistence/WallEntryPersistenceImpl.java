@@ -453,7 +453,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param groupId the group ID to search with
 	 * @param start the lower bound of the range of wall entries to return
 	 * @param end the upper bound of the range of wall entries to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -539,7 +539,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
@@ -574,7 +574,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
@@ -613,7 +613,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param wallEntryId the primary key of the current wall entry
 	 * @param groupId the group ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -791,7 +791,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param userId the user ID to search with
 	 * @param start the lower bound of the range of wall entries to return
 	 * @param end the upper bound of the range of wall entries to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -877,7 +877,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * </p>
 	 *
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
@@ -912,7 +912,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * </p>
 	 *
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
@@ -951,7 +951,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param wallEntryId the primary key of the current wall entry
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1134,7 +1134,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param userId the user ID to search with
 	 * @param start the lower bound of the range of wall entries to return
 	 * @param end the upper bound of the range of wall entries to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching wall entries
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1225,7 +1225,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1265,7 +1265,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1308,7 +1308,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 * @param wallEntryId the primary key of the current wall entry
 	 * @param groupId the group ID to search with
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next wall entry
 	 * @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1487,7 +1487,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	 *
 	 * @param start the lower bound of the range of wall entries to return
 	 * @param end the upper bound of the range of wall entries to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of wall entries
 	 * @throws SystemException if a system exception occurred
 	 */

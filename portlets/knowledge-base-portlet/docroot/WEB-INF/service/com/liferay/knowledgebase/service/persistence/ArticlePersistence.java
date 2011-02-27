@@ -139,7 +139,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param uuid the uuid to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -156,7 +156,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,7 +175,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -195,7 +195,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param articleId the primary key of the current article
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param resourcePrimKey the resource prim key to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -299,7 +299,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* </p>
 	*
 	* @param resourcePrimKey the resource prim key to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -318,7 +318,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* </p>
 	*
 	* @param resourcePrimKey the resource prim key to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -338,7 +338,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param articleId the primary key of the current article
 	* @param resourcePrimKey the resource prim key to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -428,7 +428,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -446,7 +446,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param resourcePrimKey the resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -466,7 +466,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param resourcePrimKey the resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -487,7 +487,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param articleId the primary key of the current article
 	* @param resourcePrimKey the resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -543,7 +543,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latests the latests to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -593,7 +593,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -611,7 +611,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param resourcePrimKey the resource prim key to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -631,7 +631,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param resourcePrimKey the resource prim key to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -652,7 +652,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param articleId the primary key of the current article
 	* @param resourcePrimKey the resource prim key to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -704,7 +704,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -722,7 +722,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -742,7 +742,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -763,7 +763,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param articleId the primary key of the current article
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -819,7 +819,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latests the latests to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -869,7 +869,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -888,7 +888,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param articleId the primary key of the current article
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -944,7 +944,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latests the latests to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -994,7 +994,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1012,7 +1012,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param companyId the company ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1032,7 +1032,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param companyId the company ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1053,7 +1053,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param articleId the primary key of the current article
 	* @param companyId the company ID to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1109,7 +1109,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latests the latests to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1162,7 +1162,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1181,7 +1181,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param resourcePrimKey the resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1202,7 +1202,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param resourcePrimKey the resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1224,7 +1224,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param resourcePrimKey the resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1283,7 +1283,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1337,7 +1337,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1357,7 +1357,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1378,7 +1378,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1400,7 +1400,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1459,7 +1459,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latests the latests to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1513,7 +1513,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1534,7 +1534,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1593,7 +1593,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latests the latests to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1647,7 +1647,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1666,7 +1666,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1687,7 +1687,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1709,7 +1709,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1768,7 +1768,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1821,7 +1821,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1841,7 +1841,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param groupId the group ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1900,7 +1900,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1953,7 +1953,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1972,7 +1972,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param companyId the company ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -1993,7 +1993,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param companyId the company ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -2015,7 +2015,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param companyId the company ID to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -2074,7 +2074,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2131,7 +2131,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2152,7 +2152,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -2174,7 +2174,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -2197,7 +2197,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -2261,7 +2261,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2319,7 +2319,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2341,7 +2341,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param latest the latest to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -2405,7 +2405,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param status the status to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2467,7 +2467,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2489,7 +2489,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param priority the priority to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -2513,7 +2513,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param priority the priority to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	* @throws SystemException if a system exception occurred
@@ -2538,7 +2538,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param priority the priority to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -2602,7 +2602,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param latest the latest to search with
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching articles that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -2625,7 +2625,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	* @param parentResourcePrimKey the parent resource prim key to search with
 	* @param priority the priority to search with
 	* @param latest the latest to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next article
 	* @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -2671,7 +2671,7 @@ public interface ArticlePersistence extends BasePersistence<Article> {
 	*
 	* @param start the lower bound of the range of articles to return
 	* @param end the upper bound of the range of articles to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of articles
 	* @throws SystemException if a system exception occurred
 	*/

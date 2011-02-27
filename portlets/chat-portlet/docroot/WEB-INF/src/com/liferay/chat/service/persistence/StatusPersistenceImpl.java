@@ -610,7 +610,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @param modifiedDate the modified date to search with
 	 * @param start the lower bound of the range of statuses to return
 	 * @param end the upper bound of the range of statuses to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching statuses
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -691,7 +691,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * </p>
 	 *
 	 * @param modifiedDate the modified date to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching status
 	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -727,7 +727,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * </p>
 	 *
 	 * @param modifiedDate the modified date to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching status
 	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -766,7 +766,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 *
 	 * @param statusId the primary key of the current status
 	 * @param modifiedDate the modified date to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next status
 	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -940,7 +940,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @param online the online to search with
 	 * @param start the lower bound of the range of statuses to return
 	 * @param end the upper bound of the range of statuses to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching statuses
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1021,7 +1021,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * </p>
 	 *
 	 * @param online the online to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching status
 	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1056,7 +1056,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * </p>
 	 *
 	 * @param online the online to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching status
 	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1095,7 +1095,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 *
 	 * @param statusId the primary key of the current status
 	 * @param online the online to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next status
 	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1273,7 +1273,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @param online the online to search with
 	 * @param start the lower bound of the range of statuses to return
 	 * @param end the upper bound of the range of statuses to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching statuses
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1359,7 +1359,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 *
 	 * @param modifiedDate the modified date to search with
 	 * @param online the online to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching status
 	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1399,7 +1399,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 *
 	 * @param modifiedDate the modified date to search with
 	 * @param online the online to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching status
 	 * @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1442,7 +1442,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 * @param statusId the primary key of the current status
 	 * @param modifiedDate the modified date to search with
 	 * @param online the online to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next status
 	 * @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1616,7 +1616,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	 *
 	 * @param start the lower bound of the range of statuses to return
 	 * @param end the upper bound of the range of statuses to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of statuses
 	 * @throws SystemException if a system exception occurred
 	 */

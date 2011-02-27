@@ -240,7 +240,7 @@ public class OAuthConsumerUtil {
 	* @param gadgetId the gadget ID to search with
 	* @param start the lower bound of the range of o auth consumers to return
 	* @param end the upper bound of the range of o auth consumers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class OAuthConsumerUtil {
 	* </p>
 	*
 	* @param gadgetId the gadget ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
@@ -281,7 +281,7 @@ public class OAuthConsumerUtil {
 	* </p>
 	*
 	* @param gadgetId the gadget ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public class OAuthConsumerUtil {
 	*
 	* @param oAuthConsumerId the primary key of the current o auth consumer
 	* @param gadgetId the gadget ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -401,7 +401,7 @@ public class OAuthConsumerUtil {
 	*
 	* @param start the lower bound of the range of o auth consumers to return
 	* @param end the upper bound of the range of o auth consumers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth consumers
 	* @throws SystemException if a system exception occurred
 	*/

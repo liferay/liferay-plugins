@@ -240,7 +240,7 @@ public class JIRAActionUtil {
 	* @param jiraUserId the jira user ID to search with
 	* @param start the lower bound of the range of j i r a actions to return
 	* @param end the upper bound of the range of j i r a actions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a actions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class JIRAActionUtil {
 	* </p>
 	*
 	* @param jiraUserId the jira user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public class JIRAActionUtil {
 	* </p>
 	*
 	* @param jiraUserId the jira user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
 	* @throws SystemException if a system exception occurred
@@ -305,7 +305,7 @@ public class JIRAActionUtil {
 	*
 	* @param jiraActionId the primary key of the current j i r a action
 	* @param jiraUserId the jira user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -362,7 +362,7 @@ public class JIRAActionUtil {
 	* @param jiraIssueId the jira issue ID to search with
 	* @param start the lower bound of the range of j i r a actions to return
 	* @param end the upper bound of the range of j i r a actions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a actions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -382,7 +382,7 @@ public class JIRAActionUtil {
 	* </p>
 	*
 	* @param jiraIssueId the jira issue ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
 	* @throws SystemException if a system exception occurred
@@ -404,7 +404,7 @@ public class JIRAActionUtil {
 	* </p>
 	*
 	* @param jiraIssueId the jira issue ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
 	* @throws SystemException if a system exception occurred
@@ -427,7 +427,7 @@ public class JIRAActionUtil {
 	*
 	* @param jiraActionId the primary key of the current j i r a action
 	* @param jiraIssueId the jira issue ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -484,7 +484,7 @@ public class JIRAActionUtil {
 	* @param type the type to search with
 	* @param start the lower bound of the range of j i r a actions to return
 	* @param end the upper bound of the range of j i r a actions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a actions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -503,7 +503,7 @@ public class JIRAActionUtil {
 	* </p>
 	*
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
 	* @throws SystemException if a system exception occurred
@@ -524,7 +524,7 @@ public class JIRAActionUtil {
 	* </p>
 	*
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
 	* @throws SystemException if a system exception occurred
@@ -546,7 +546,7 @@ public class JIRAActionUtil {
 	*
 	* @param jiraActionId the primary key of the current j i r a action
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -598,7 +598,7 @@ public class JIRAActionUtil {
 	*
 	* @param start the lower bound of the range of j i r a actions to return
 	* @param end the upper bound of the range of j i r a actions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a actions
 	* @throws SystemException if a system exception occurred
 	*/

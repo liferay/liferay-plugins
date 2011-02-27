@@ -143,7 +143,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	* @param jiraChangeGroupId the jira change group ID to search with
 	* @param start the lower bound of the range of j i r a change items to return
 	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,7 +160,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	* </p>
 	*
 	* @param jiraChangeGroupId the jira change group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a matching j i r a change item could not be found
 	* @throws SystemException if a system exception occurred
@@ -179,7 +179,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	* </p>
 	*
 	* @param jiraChangeGroupId the jira change group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a matching j i r a change item could not be found
 	* @throws SystemException if a system exception occurred
@@ -199,7 +199,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	*
 	* @param jiraChangeItemId the primary key of the current j i r a change item
 	* @param jiraChangeGroupId the jira change group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a change item
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeItemException if a j i r a change item with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -244,7 +244,7 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	*
 	* @param start the lower bound of the range of j i r a change items to return
 	* @param end the upper bound of the range of j i r a change items to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a change items
 	* @throws SystemException if a system exception occurred
 	*/

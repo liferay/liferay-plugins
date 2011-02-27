@@ -521,7 +521,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * @param uuid the uuid to search with
 	 * @param start the lower bound of the range of w s r p consumer portlets to return
 	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching w s r p consumer portlets
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -619,7 +619,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * </p>
 	 *
 	 * @param uuid the uuid to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching w s r p consumer portlet
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
 	 * @throws SystemException if a system exception occurred
@@ -655,7 +655,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * </p>
 	 *
 	 * @param uuid the uuid to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching w s r p consumer portlet
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
 	 * @throws SystemException if a system exception occurred
@@ -694,7 +694,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 *
 	 * @param wsrpConsumerPortletId the primary key of the current w s r p consumer portlet
 	 * @param uuid the uuid to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next w s r p consumer portlet
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -887,7 +887,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * @param wsrpConsumerId the wsrp consumer ID to search with
 	 * @param start the lower bound of the range of w s r p consumer portlets to return
 	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching w s r p consumer portlets
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -974,7 +974,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * </p>
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching w s r p consumer portlet
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1010,7 +1010,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 * </p>
 	 *
 	 * @param wsrpConsumerId the wsrp consumer ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching w s r p consumer portlet
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1049,7 +1049,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 *
 	 * @param wsrpConsumerPortletId the primary key of the current w s r p consumer portlet
 	 * @param wsrpConsumerId the wsrp consumer ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next w s r p consumer portlet
 	 * @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1384,7 +1384,7 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	 *
 	 * @param start the lower bound of the range of w s r p consumer portlets to return
 	 * @param end the upper bound of the range of w s r p consumer portlets to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of w s r p consumer portlets
 	 * @throws SystemException if a system exception occurred
 	 */

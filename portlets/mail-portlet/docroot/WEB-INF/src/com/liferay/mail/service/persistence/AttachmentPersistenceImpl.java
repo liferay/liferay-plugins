@@ -429,7 +429,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * @param messageId the message ID to search with
 	 * @param start the lower bound of the range of attachments to return
 	 * @param end the upper bound of the range of attachments to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching attachments
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -511,7 +511,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * </p>
 	 *
 	 * @param messageId the message ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching attachment
 	 * @throws com.liferay.mail.NoSuchAttachmentException if a matching attachment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -547,7 +547,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 * </p>
 	 *
 	 * @param messageId the message ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching attachment
 	 * @throws com.liferay.mail.NoSuchAttachmentException if a matching attachment could not be found
 	 * @throws SystemException if a system exception occurred
@@ -586,7 +586,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 *
 	 * @param attachmentId the primary key of the current attachment
 	 * @param messageId the message ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next attachment
 	 * @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -757,7 +757,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 	 *
 	 * @param start the lower bound of the range of attachments to return
 	 * @param end the upper bound of the range of attachments to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of attachments
 	 * @throws SystemException if a system exception occurred
 	 */

@@ -240,7 +240,7 @@ public class SVNRevisionUtil {
 	* @param svnUserId the svn user ID to search with
 	* @param start the lower bound of the range of s v n revisions to return
 	* @param end the upper bound of the range of s v n revisions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s v n revisions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class SVNRevisionUtil {
 	* </p>
 	*
 	* @param svnUserId the svn user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public class SVNRevisionUtil {
 	* </p>
 	*
 	* @param svnUserId the svn user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
 	* @throws SystemException if a system exception occurred
@@ -305,7 +305,7 @@ public class SVNRevisionUtil {
 	*
 	* @param svnRevisionId the primary key of the current s v n revision
 	* @param svnUserId the svn user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -363,7 +363,7 @@ public class SVNRevisionUtil {
 	* @param svnRepositoryId the svn repository ID to search with
 	* @param start the lower bound of the range of s v n revisions to return
 	* @param end the upper bound of the range of s v n revisions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s v n revisions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -384,7 +384,7 @@ public class SVNRevisionUtil {
 	* </p>
 	*
 	* @param svnRepositoryId the svn repository ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
 	* @throws SystemException if a system exception occurred
@@ -407,7 +407,7 @@ public class SVNRevisionUtil {
 	* </p>
 	*
 	* @param svnRepositoryId the svn repository ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
 	* @throws SystemException if a system exception occurred
@@ -431,7 +431,7 @@ public class SVNRevisionUtil {
 	*
 	* @param svnRevisionId the primary key of the current s v n revision
 	* @param svnRepositoryId the svn repository ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -492,7 +492,7 @@ public class SVNRevisionUtil {
 	* @param svnRepositoryId the svn repository ID to search with
 	* @param start the lower bound of the range of s v n revisions to return
 	* @param end the upper bound of the range of s v n revisions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching s v n revisions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -514,7 +514,7 @@ public class SVNRevisionUtil {
 	*
 	* @param svnUserId the svn user ID to search with
 	* @param svnRepositoryId the svn repository ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
 	* @throws SystemException if a system exception occurred
@@ -538,7 +538,7 @@ public class SVNRevisionUtil {
 	*
 	* @param svnUserId the svn user ID to search with
 	* @param svnRepositoryId the svn repository ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a matching s v n revision could not be found
 	* @throws SystemException if a system exception occurred
@@ -563,7 +563,7 @@ public class SVNRevisionUtil {
 	* @param svnRevisionId the primary key of the current s v n revision
 	* @param svnUserId the svn user ID to search with
 	* @param svnRepositoryId the svn repository ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next s v n revision
 	* @throws com.liferay.socialcoding.NoSuchSVNRevisionException if a s v n revision with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -616,7 +616,7 @@ public class SVNRevisionUtil {
 	*
 	* @param start the lower bound of the range of s v n revisions to return
 	* @param end the upper bound of the range of s v n revisions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of s v n revisions
 	* @throws SystemException if a system exception occurred
 	*/

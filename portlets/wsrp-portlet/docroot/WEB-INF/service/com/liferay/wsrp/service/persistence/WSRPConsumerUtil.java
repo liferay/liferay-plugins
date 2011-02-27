@@ -240,7 +240,7 @@ public class WSRPConsumerUtil {
 	* @param uuid the uuid to search with
 	* @param start the lower bound of the range of w s r p consumers to return
 	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -259,7 +259,7 @@ public class WSRPConsumerUtil {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
 	* @throws SystemException if a system exception occurred
@@ -280,7 +280,7 @@ public class WSRPConsumerUtil {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
 	* @throws SystemException if a system exception occurred
@@ -302,7 +302,7 @@ public class WSRPConsumerUtil {
 	*
 	* @param wsrpConsumerId the primary key of the current w s r p consumer
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -359,7 +359,7 @@ public class WSRPConsumerUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of w s r p consumers to return
 	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -379,7 +379,7 @@ public class WSRPConsumerUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
 	* @throws SystemException if a system exception occurred
@@ -401,7 +401,7 @@ public class WSRPConsumerUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a matching w s r p consumer could not be found
 	* @throws SystemException if a system exception occurred
@@ -424,7 +424,7 @@ public class WSRPConsumerUtil {
 	*
 	* @param wsrpConsumerId the primary key of the current w s r p consumer
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer
 	* @throws com.liferay.wsrp.NoSuchConsumerException if a w s r p consumer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -477,7 +477,7 @@ public class WSRPConsumerUtil {
 	*
 	* @param start the lower bound of the range of w s r p consumers to return
 	* @param end the upper bound of the range of w s r p consumers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p consumers
 	* @throws SystemException if a system exception occurred
 	*/

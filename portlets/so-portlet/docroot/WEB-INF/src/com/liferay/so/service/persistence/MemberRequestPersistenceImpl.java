@@ -694,7 +694,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID to search with
 	 * @param start the lower bound of the range of member requests to return
 	 * @param end the upper bound of the range of member requests to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching member requests
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -781,7 +781,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * </p>
 	 *
 	 * @param receiverUserId the receiver user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
 	 * @throws SystemException if a system exception occurred
@@ -817,7 +817,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * </p>
 	 *
 	 * @param receiverUserId the receiver user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
 	 * @throws SystemException if a system exception occurred
@@ -856,7 +856,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param memberRequestId the primary key of the current member request
 	 * @param receiverUserId the receiver user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1040,7 +1040,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param status the status to search with
 	 * @param start the lower bound of the range of member requests to return
 	 * @param end the upper bound of the range of member requests to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching member requests
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1132,7 +1132,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param receiverUserId the receiver user ID to search with
 	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1172,7 +1172,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param receiverUserId the receiver user ID to search with
 	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1215,7 +1215,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param memberRequestId the primary key of the current member request
 	 * @param receiverUserId the receiver user ID to search with
 	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1546,7 +1546,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param start the lower bound of the range of member requests to return
 	 * @param end the upper bound of the range of member requests to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of member requests
 	 * @throws SystemException if a system exception occurred
 	 */

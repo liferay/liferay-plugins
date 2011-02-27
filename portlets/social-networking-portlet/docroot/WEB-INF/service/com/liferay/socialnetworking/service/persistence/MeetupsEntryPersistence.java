@@ -143,7 +143,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of meetups entries to return
 	* @param end the upper bound of the range of meetups entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching meetups entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,7 +160,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -179,7 +179,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -199,7 +199,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	*
 	* @param meetupsEntryId the primary key of the current meetups entry
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* @param userId the user ID to search with
 	* @param start the lower bound of the range of meetups entries to return
 	* @param end the upper bound of the range of meetups entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching meetups entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -264,7 +264,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* </p>
 	*
 	* @param userId the user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	* </p>
 	*
 	* @param userId the user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	*
 	* @param meetupsEntryId the primary key of the current meetups entry
 	* @param userId the user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -348,7 +348,7 @@ public interface MeetupsEntryPersistence extends BasePersistence<MeetupsEntry> {
 	*
 	* @param start the lower bound of the range of meetups entries to return
 	* @param end the upper bound of the range of meetups entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of meetups entries
 	* @throws SystemException if a system exception occurred
 	*/

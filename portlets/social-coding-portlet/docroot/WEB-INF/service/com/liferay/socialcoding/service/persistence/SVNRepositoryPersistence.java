@@ -174,7 +174,7 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	*
 	* @param start the lower bound of the range of s v n repositories to return
 	* @param end the upper bound of the range of s v n repositories to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of s v n repositories
 	* @throws SystemException if a system exception occurred
 	*/

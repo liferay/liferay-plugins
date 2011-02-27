@@ -240,7 +240,7 @@ public class UserThreadUtil {
 	* @param mbThreadId the mb thread ID to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param mbThreadId the mb thread ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param mbThreadId the mb thread ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -305,7 +305,7 @@ public class UserThreadUtil {
 	*
 	* @param userThreadId the primary key of the current user thread
 	* @param mbThreadId the mb thread ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -361,7 +361,7 @@ public class UserThreadUtil {
 	* @param userId the user ID to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -381,7 +381,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param userId the user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -402,7 +402,7 @@ public class UserThreadUtil {
 	* </p>
 	*
 	* @param userId the user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -424,7 +424,7 @@ public class UserThreadUtil {
 	*
 	* @param userThreadId the primary key of the current user thread
 	* @param userId the user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -528,7 +528,7 @@ public class UserThreadUtil {
 	* @param deleted the deleted to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -549,7 +549,7 @@ public class UserThreadUtil {
 	*
 	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -572,7 +572,7 @@ public class UserThreadUtil {
 	*
 	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -596,7 +596,7 @@ public class UserThreadUtil {
 	* @param userThreadId the primary key of the current user thread
 	* @param userId the user ID to search with
 	* @param deleted the deleted to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -659,7 +659,7 @@ public class UserThreadUtil {
 	* @param deleted the deleted to search with
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
 	* @throws SystemException if a system exception occurred
 	*/
@@ -682,7 +682,7 @@ public class UserThreadUtil {
 	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -706,7 +706,7 @@ public class UserThreadUtil {
 	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
 	* @throws SystemException if a system exception occurred
@@ -731,7 +731,7 @@ public class UserThreadUtil {
 	* @param userId the user ID to search with
 	* @param read the read to search with
 	* @param deleted the deleted to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -784,7 +784,7 @@ public class UserThreadUtil {
 	*
 	* @param start the lower bound of the range of user threads to return
 	* @param end the upper bound of the range of user threads to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of user threads
 	* @throws SystemException if a system exception occurred
 	*/

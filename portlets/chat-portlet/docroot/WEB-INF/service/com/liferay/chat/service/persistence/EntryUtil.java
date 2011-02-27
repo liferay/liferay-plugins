@@ -233,7 +233,7 @@ public class EntryUtil {
 	* @param createDate the create date to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -253,7 +253,7 @@ public class EntryUtil {
 	* </p>
 	*
 	* @param createDate the create date to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -275,7 +275,7 @@ public class EntryUtil {
 	* </p>
 	*
 	* @param createDate the create date to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -298,7 +298,7 @@ public class EntryUtil {
 	*
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -355,7 +355,7 @@ public class EntryUtil {
 	* @param fromUserId the from user ID to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -375,7 +375,7 @@ public class EntryUtil {
 	* </p>
 	*
 	* @param fromUserId the from user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -397,7 +397,7 @@ public class EntryUtil {
 	* </p>
 	*
 	* @param fromUserId the from user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -420,7 +420,7 @@ public class EntryUtil {
 	*
 	* @param entryId the primary key of the current entry
 	* @param fromUserId the from user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -477,7 +477,7 @@ public class EntryUtil {
 	* @param toUserId the to user ID to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -497,7 +497,7 @@ public class EntryUtil {
 	* </p>
 	*
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -518,7 +518,7 @@ public class EntryUtil {
 	* </p>
 	*
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -540,7 +540,7 @@ public class EntryUtil {
 	*
 	* @param entryId the primary key of the current entry
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -600,7 +600,7 @@ public class EntryUtil {
 	* @param fromUserId the from user ID to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -622,7 +622,7 @@ public class EntryUtil {
 	*
 	* @param createDate the create date to search with
 	* @param fromUserId the from user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -645,7 +645,7 @@ public class EntryUtil {
 	*
 	* @param createDate the create date to search with
 	* @param fromUserId the from user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -669,7 +669,7 @@ public class EntryUtil {
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date to search with
 	* @param fromUserId the from user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -729,7 +729,7 @@ public class EntryUtil {
 	* @param toUserId the to user ID to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -751,7 +751,7 @@ public class EntryUtil {
 	*
 	* @param createDate the create date to search with
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -774,7 +774,7 @@ public class EntryUtil {
 	*
 	* @param createDate the create date to search with
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -798,7 +798,7 @@ public class EntryUtil {
 	* @param entryId the primary key of the current entry
 	* @param createDate the create date to search with
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -862,7 +862,7 @@ public class EntryUtil {
 	* @param toUserId the to user ID to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -885,7 +885,7 @@ public class EntryUtil {
 	* @param createDate the create date to search with
 	* @param fromUserId the from user ID to search with
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -910,7 +910,7 @@ public class EntryUtil {
 	* @param createDate the create date to search with
 	* @param fromUserId the from user ID to search with
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -936,7 +936,7 @@ public class EntryUtil {
 	* @param createDate the create date to search with
 	* @param fromUserId the from user ID to search with
 	* @param toUserId the to user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1000,7 +1000,7 @@ public class EntryUtil {
 	* @param content the content to search with
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1024,7 +1024,7 @@ public class EntryUtil {
 	* @param fromUserId the from user ID to search with
 	* @param toUserId the to user ID to search with
 	* @param content the content to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -1049,7 +1049,7 @@ public class EntryUtil {
 	* @param fromUserId the from user ID to search with
 	* @param toUserId the to user ID to search with
 	* @param content the content to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
 	* @throws SystemException if a system exception occurred
@@ -1075,7 +1075,7 @@ public class EntryUtil {
 	* @param fromUserId the from user ID to search with
 	* @param toUserId the to user ID to search with
 	* @param content the content to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -1128,7 +1128,7 @@ public class EntryUtil {
 	*
 	* @param start the lower bound of the range of entries to return
 	* @param end the upper bound of the range of entries to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of entries
 	* @throws SystemException if a system exception occurred
 	*/

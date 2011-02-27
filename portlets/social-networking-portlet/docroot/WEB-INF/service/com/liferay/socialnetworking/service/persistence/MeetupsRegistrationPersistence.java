@@ -143,7 +143,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	* @param meetupsEntryId the meetups entry ID to search with
 	* @param start the lower bound of the range of meetups registrations to return
 	* @param end the upper bound of the range of meetups registrations to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching meetups registrations
 	* @throws SystemException if a system exception occurred
 	*/
@@ -160,7 +160,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	* </p>
 	*
 	* @param meetupsEntryId the meetups entry ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups registration
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	* @throws SystemException if a system exception occurred
@@ -179,7 +179,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	* </p>
 	*
 	* @param meetupsEntryId the meetups entry ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups registration
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	* @throws SystemException if a system exception occurred
@@ -199,7 +199,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*
 	* @param meetupsRegistrationId the primary key of the current meetups registration
 	* @param meetupsEntryId the meetups entry ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next meetups registration
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -289,7 +289,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	* @param status the status to search with
 	* @param start the lower bound of the range of meetups registrations to return
 	* @param end the upper bound of the range of meetups registrations to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching meetups registrations
 	* @throws SystemException if a system exception occurred
 	*/
@@ -307,7 +307,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*
 	* @param meetupsEntryId the meetups entry ID to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups registration
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	* @throws SystemException if a system exception occurred
@@ -327,7 +327,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*
 	* @param meetupsEntryId the meetups entry ID to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups registration
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a matching meetups registration could not be found
 	* @throws SystemException if a system exception occurred
@@ -348,7 +348,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	* @param meetupsRegistrationId the primary key of the current meetups registration
 	* @param meetupsEntryId the meetups entry ID to search with
 	* @param status the status to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next meetups registration
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsRegistrationException if a meetups registration with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -393,7 +393,7 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	*
 	* @param start the lower bound of the range of meetups registrations to return
 	* @param end the upper bound of the range of meetups registrations to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of meetups registrations
 	* @throws SystemException if a system exception occurred
 	*/

@@ -239,7 +239,7 @@ public class TemplateUtil {
 	* @param uuid the uuid to search with
 	* @param start the lower bound of the range of templates to return
 	* @param end the upper bound of the range of templates to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -258,7 +258,7 @@ public class TemplateUtil {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching template could not be found
 	* @throws SystemException if a system exception occurred
@@ -279,7 +279,7 @@ public class TemplateUtil {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching template could not be found
 	* @throws SystemException if a system exception occurred
@@ -301,7 +301,7 @@ public class TemplateUtil {
 	*
 	* @param templateId the primary key of the current template
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -401,7 +401,7 @@ public class TemplateUtil {
 	* @param groupId the group ID to search with
 	* @param start the lower bound of the range of templates to return
 	* @param end the upper bound of the range of templates to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching templates
 	* @throws SystemException if a system exception occurred
 	*/
@@ -421,7 +421,7 @@ public class TemplateUtil {
 	* </p>
 	*
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching template could not be found
 	* @throws SystemException if a system exception occurred
@@ -442,7 +442,7 @@ public class TemplateUtil {
 	* </p>
 	*
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching template could not be found
 	* @throws SystemException if a system exception occurred
@@ -464,7 +464,7 @@ public class TemplateUtil {
 	*
 	* @param templateId the primary key of the current template
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -521,7 +521,7 @@ public class TemplateUtil {
 	* @param groupId the group ID to search with
 	* @param start the lower bound of the range of templates to return
 	* @param end the upper bound of the range of templates to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching templates that the user has permission to view
 	* @throws SystemException if a system exception occurred
 	*/
@@ -542,7 +542,7 @@ public class TemplateUtil {
 	*
 	* @param templateId the primary key of the current template
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next template
 	* @throws com.liferay.knowledgebase.NoSuchTemplateException if a template with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -595,7 +595,7 @@ public class TemplateUtil {
 	*
 	* @param start the lower bound of the range of templates to return
 	* @param end the upper bound of the range of templates to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of templates
 	* @throws SystemException if a system exception occurred
 	*/

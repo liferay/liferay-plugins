@@ -139,7 +139,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* @param uuid the uuid to search with
 	* @param start the lower bound of the range of comments to return
 	* @param end the upper bound of the range of comments to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching comments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -156,7 +156,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -175,7 +175,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -195,7 +195,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param commentId the primary key of the current comment
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* @param groupId the group ID to search with
 	* @param start the lower bound of the range of comments to return
 	* @param end the upper bound of the range of comments to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching comments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -299,7 +299,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* </p>
 	*
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -318,7 +318,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* </p>
 	*
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -338,7 +338,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param commentId the primary key of the current comment
 	* @param groupId the group ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -390,7 +390,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* @param classNameId the class name ID to search with
 	* @param start the lower bound of the range of comments to return
 	* @param end the upper bound of the range of comments to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching comments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -408,7 +408,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param groupId the group ID to search with
 	* @param classNameId the class name ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -428,7 +428,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param groupId the group ID to search with
 	* @param classNameId the class name ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -449,7 +449,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* @param commentId the primary key of the current comment
 	* @param groupId the group ID to search with
 	* @param classNameId the class name ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -501,7 +501,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* @param classPK the class p k to search with
 	* @param start the lower bound of the range of comments to return
 	* @param end the upper bound of the range of comments to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching comments
 	* @throws SystemException if a system exception occurred
 	*/
@@ -519,7 +519,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param classNameId the class name ID to search with
 	* @param classPK the class p k to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -539,7 +539,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param classNameId the class name ID to search with
 	* @param classPK the class p k to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a matching comment could not be found
 	* @throws SystemException if a system exception occurred
@@ -560,7 +560,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	* @param commentId the primary key of the current comment
 	* @param classNameId the class name ID to search with
 	* @param classPK the class p k to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next comment
 	* @throws com.liferay.knowledgebase.NoSuchCommentException if a comment with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -646,7 +646,7 @@ public interface CommentPersistence extends BasePersistence<Comment> {
 	*
 	* @param start the lower bound of the range of comments to return
 	* @param end the upper bound of the range of comments to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of comments
 	* @throws SystemException if a system exception occurred
 	*/

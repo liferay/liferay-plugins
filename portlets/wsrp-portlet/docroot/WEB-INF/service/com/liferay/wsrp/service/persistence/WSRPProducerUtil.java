@@ -240,7 +240,7 @@ public class WSRPProducerUtil {
 	* @param uuid the uuid to search with
 	* @param start the lower bound of the range of w s r p producers to return
 	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -259,7 +259,7 @@ public class WSRPProducerUtil {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
@@ -280,7 +280,7 @@ public class WSRPProducerUtil {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
@@ -302,7 +302,7 @@ public class WSRPProducerUtil {
 	*
 	* @param wsrpProducerId the primary key of the current w s r p producer
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -403,7 +403,7 @@ public class WSRPProducerUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of w s r p producers to return
 	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -423,7 +423,7 @@ public class WSRPProducerUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
@@ -445,7 +445,7 @@ public class WSRPProducerUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
 	* @throws SystemException if a system exception occurred
@@ -468,7 +468,7 @@ public class WSRPProducerUtil {
 	*
 	* @param wsrpProducerId the primary key of the current w s r p producer
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -521,7 +521,7 @@ public class WSRPProducerUtil {
 	*
 	* @param start the lower bound of the range of w s r p producers to return
 	* @param end the upper bound of the range of w s r p producers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p producers
 	* @throws SystemException if a system exception occurred
 	*/

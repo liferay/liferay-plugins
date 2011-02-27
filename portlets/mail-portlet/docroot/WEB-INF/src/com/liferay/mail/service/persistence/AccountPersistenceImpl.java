@@ -495,7 +495,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 * @param userId the user ID to search with
 	 * @param start the lower bound of the range of accounts to return
 	 * @param end the upper bound of the range of accounts to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching accounts
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -580,7 +580,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 * </p>
 	 *
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching account
 	 * @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
 	 * @throws SystemException if a system exception occurred
@@ -615,7 +615,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 * </p>
 	 *
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching account
 	 * @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
 	 * @throws SystemException if a system exception occurred
@@ -654,7 +654,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 *
 	 * @param accountId the primary key of the current account
 	 * @param userId the user ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next account
 	 * @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -980,7 +980,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 	 *
 	 * @param start the lower bound of the range of accounts to return
 	 * @param end the upper bound of the range of accounts to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of accounts
 	 * @throws SystemException if a system exception occurred
 	 */

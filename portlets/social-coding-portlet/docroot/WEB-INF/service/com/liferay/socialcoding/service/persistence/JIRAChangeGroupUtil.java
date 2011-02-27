@@ -241,7 +241,7 @@ public class JIRAChangeGroupUtil {
 	* @param jiraUserId the jira user ID to search with
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/
@@ -261,7 +261,7 @@ public class JIRAChangeGroupUtil {
 	* </p>
 	*
 	* @param jiraUserId the jira user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public class JIRAChangeGroupUtil {
 	* </p>
 	*
 	* @param jiraUserId the jira user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
 	* @throws SystemException if a system exception occurred
@@ -306,7 +306,7 @@ public class JIRAChangeGroupUtil {
 	*
 	* @param jiraChangeGroupId the primary key of the current j i r a change group
 	* @param jiraUserId the jira user ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -363,7 +363,7 @@ public class JIRAChangeGroupUtil {
 	* @param jiraIssueId the jira issue ID to search with
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/
@@ -383,7 +383,7 @@ public class JIRAChangeGroupUtil {
 	* </p>
 	*
 	* @param jiraIssueId the jira issue ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
 	* @throws SystemException if a system exception occurred
@@ -405,7 +405,7 @@ public class JIRAChangeGroupUtil {
 	* </p>
 	*
 	* @param jiraIssueId the jira issue ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
 	* @throws SystemException if a system exception occurred
@@ -428,7 +428,7 @@ public class JIRAChangeGroupUtil {
 	*
 	* @param jiraChangeGroupId the primary key of the current j i r a change group
 	* @param jiraIssueId the jira issue ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -481,7 +481,7 @@ public class JIRAChangeGroupUtil {
 	*
 	* @param start the lower bound of the range of j i r a change groups to return
 	* @param end the upper bound of the range of j i r a change groups to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a change groups
 	* @throws SystemException if a system exception occurred
 	*/

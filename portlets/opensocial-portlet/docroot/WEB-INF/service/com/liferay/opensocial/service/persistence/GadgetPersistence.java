@@ -137,7 +137,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid to search with
 	* @param start the lower bound of the range of gadgets to return
 	* @param end the upper bound of the range of gadgets to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -154,7 +154,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -173,7 +173,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* </p>
 	*
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -193,7 +193,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*
 	* @param gadgetId the primary key of the current gadget
 	* @param uuid the uuid to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -242,7 +242,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of gadgets to return
 	* @param end the upper bound of the range of gadgets to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
 	* @throws SystemException if a system exception occurred
 	*/
@@ -259,7 +259,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -278,7 +278,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
 	* @throws SystemException if a system exception occurred
@@ -298,7 +298,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*
 	* @param gadgetId the primary key of the current gadget
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -381,7 +381,7 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*
 	* @param start the lower bound of the range of gadgets to return
 	* @param end the upper bound of the range of gadgets to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of gadgets
 	* @throws SystemException if a system exception occurred
 	*/
