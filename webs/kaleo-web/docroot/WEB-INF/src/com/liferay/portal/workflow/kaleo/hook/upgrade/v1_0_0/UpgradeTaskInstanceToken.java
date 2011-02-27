@@ -34,22 +34,22 @@ import java.util.Set;
 public class UpgradeTaskInstanceToken extends UpgradeProcess {
 
 	protected void deleteKaleoInstanceTokens() throws Exception {
-		if (kaleoInstanceTokenIds.size() == 0) {
+		if (_kaleoInstanceTokenIds.isEmpty()) {
 			return;
 		}
 
 		StringBundler sb = new StringBundler();
 
-		sb.append("delete from kaleoInstanceToken where ");
+		sb.append("delete from KaleoInstanceToken where ");
 
-		Iterator<Long> it = kaleoInstanceTokenIds.iterator();
+		Iterator<Long> itr = _kaleoInstanceTokenIds.iterator();
 
-		while (it.hasNext()) {
+		while (itr.hasNext()) {
 			sb.append("(kaleoInstanceTokenId = ");
-			sb.append(it.next());
+			sb.append(itr.next());
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			if (it.hasNext()) {
+			if (itr.hasNext()) {
 				sb.append(" OR ");
 			}
 		}
@@ -68,8 +68,8 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 			con = DataAccess.getConnection();
 
 			ps = con.prepareStatement(
-				"select kaleoTaskInstanceTokenId, kaleoInstanceTokenId " +
-				"from kaleoTaskInstanceToken");
+				"select kaleoTaskInstanceTokenId, kaleoInstanceTokenId from " +
+					"KaleoTaskInstanceToken");
 
 			rs = ps.executeQuery();
 
@@ -88,8 +88,8 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 
 				StringBundler sb = new StringBundler();
 
-				sb.append("update KaleoTaskInstanceToken ");
-				sb.append("set kaleoInstanceTokenId = ");
+				sb.append("update KaleoTaskInstanceToken set ");
+				sb.append("kaleoInstanceTokenId = ");
 				sb.append(newKaleoInstanceTokenId);
 				sb.append(" where kaleoTaskInstanceTokenId = ");
 				sb.append(kaleoTaskInstanceTokenId);
@@ -107,28 +107,25 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 	}
 
 	protected long getKaleoInstanceTokenId(long kaleoInstanceTokenId)
-		throws Exception{
+		throws Exception {
 
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-
-		long parentKaleoInstanceTokenId = 0;
 
 		try {
 			con = DataAccess.getConnection();
 
 			StringBundler sb = new StringBundler();
 
-			sb.append("select kaleoNode.type_, ");
-			sb.append("kaleoInstanceToken.kaleoInstanceTokenId ");
-			sb.append("from kaleoNode inner join kaleoInstanceToken on ");
-			sb.append("(kaleonode.kaleonodeId = ");
-			sb.append("kaleoInstanceToken.currentKaleoNodeId) ");
-			sb.append("where kaleoInstanceToken.kaleoInstanceTokenId = ");
-			sb.append("(select parentKaleoInstanceTokenId ");
-			sb.append("from kaleoInstanceToken ");
-			sb.append("where kaleoInstanceTokenId = ? )");
+			sb.append("select KaleoNode.type_, ");
+			sb.append("KaleoInstanceToken.kaleoInstanceTokenId ");
+			sb.append("from KaleoNode inner join KaleoInstanceToken on ");
+			sb.append("(Kaleonode.kaleoNodeId = ");
+			sb.append("KaleoInstanceToken.currentKaleoNodeId) ");
+			sb.append("where KaleoInstanceToken.kaleoInstanceTokenId = ");
+			sb.append("(select parentKaleoInstanceTokenId from ");
+			sb.append("KaleoInstanceToken where KaleoInstanceTokenId = ?)");
 
 			String sql = sb.toString();
 
@@ -139,15 +136,18 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				String nodeType = rs.getString("type_");
-				parentKaleoInstanceTokenId = rs.getLong(
-					"kaleoInstanceTokenId");
+				String type = rs.getString("type_");
 
-				if (!nodeType.equals(NodeType.TASK.toString())) {
+				if (!type.equals(NodeType.TASK.toString())) {
 					return kaleoInstanceTokenId;
 				}
 
-				kaleoInstanceTokenIds.add(kaleoInstanceTokenId);
+				long parentKaleoInstanceTokenId = rs.getLong(
+					"kaleoInstanceTokenId");
+
+				_kaleoInstanceTokenIds.add(kaleoInstanceTokenId);
+
+				return getKaleoInstanceTokenId(parentKaleoInstanceTokenId);
 			}
 			else {
 				return kaleoInstanceTokenId;
@@ -156,10 +156,8 @@ public class UpgradeTaskInstanceToken extends UpgradeProcess {
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-
-		return getKaleoInstanceTokenId(parentKaleoInstanceTokenId);
 	}
 
-	protected Set<Long> kaleoInstanceTokenIds = new HashSet<Long>();
+	private Set<Long> _kaleoInstanceTokenIds = new HashSet<Long>();
 
 }
