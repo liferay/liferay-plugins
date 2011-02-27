@@ -142,7 +142,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo nodes to return
 	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo nodes
 	* @throws SystemException if a system exception occurred
 	*/
@@ -159,7 +159,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	* @throws SystemException if a system exception occurred
@@ -178,7 +178,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @param kaleoNodeId the primary key of the current kaleo node
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo nodes to return
 	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo nodes
 	* @throws SystemException if a system exception occurred
 	*/
@@ -264,7 +264,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @param kaleoNodeId the primary key of the current kaleo node
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -355,7 +355,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo nodes to return
 	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo nodes
 	* @throws SystemException if a system exception occurred
 	*/
@@ -373,7 +373,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @param companyId the company ID to search with
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	* @throws SystemException if a system exception occurred
@@ -393,7 +393,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @param companyId the company ID to search with
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a matching kaleo node could not be found
 	* @throws SystemException if a system exception occurred
@@ -414,7 +414,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param kaleoNodeId the primary key of the current kaleo node
 	* @param companyId the company ID to search with
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo node
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNodeException if a kaleo node with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -459,7 +459,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	*
 	* @param start the lower bound of the range of kaleo nodes to return
 	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo nodes
 	* @throws SystemException if a system exception occurred
 	*/
@@ -581,7 +581,7 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	* @param pk the primary key of the kaleo node to get the associated kaleo actions for
 	* @param start the lower bound of the range of kaleo nodes to return
 	* @param end the upper bound of the range of kaleo nodes to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo actions associated with the kaleo node
 	* @throws SystemException if a system exception occurred
 	*/

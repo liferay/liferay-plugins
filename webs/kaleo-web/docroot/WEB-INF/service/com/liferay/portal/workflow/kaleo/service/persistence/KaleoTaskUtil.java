@@ -240,7 +240,7 @@ public class KaleoTaskUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo tasks to return
 	* @param end the upper bound of the range of kaleo tasks to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo tasks
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class KaleoTaskUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public class KaleoTaskUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	* @throws SystemException if a system exception occurred
@@ -305,7 +305,7 @@ public class KaleoTaskUtil {
 	*
 	* @param kaleoTaskId the primary key of the current kaleo task
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -363,7 +363,7 @@ public class KaleoTaskUtil {
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo tasks to return
 	* @param end the upper bound of the range of kaleo tasks to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo tasks
 	* @throws SystemException if a system exception occurred
 	*/
@@ -384,7 +384,7 @@ public class KaleoTaskUtil {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	* @throws SystemException if a system exception occurred
@@ -407,7 +407,7 @@ public class KaleoTaskUtil {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
 	* @throws SystemException if a system exception occurred
@@ -431,7 +431,7 @@ public class KaleoTaskUtil {
 	*
 	* @param kaleoTaskId the primary key of the current kaleo task
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -526,7 +526,7 @@ public class KaleoTaskUtil {
 	*
 	* @param start the lower bound of the range of kaleo tasks to return
 	* @param end the upper bound of the range of kaleo tasks to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo tasks
 	* @throws SystemException if a system exception occurred
 	*/
@@ -669,7 +669,7 @@ public class KaleoTaskUtil {
 	* @param pk the primary key of the kaleo task to get the associated kaleo task assignments for
 	* @param start the lower bound of the range of kaleo tasks to return
 	* @param end the upper bound of the range of kaleo tasks to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo task assignments associated with the kaleo task
 	* @throws SystemException if a system exception occurred
 	*/

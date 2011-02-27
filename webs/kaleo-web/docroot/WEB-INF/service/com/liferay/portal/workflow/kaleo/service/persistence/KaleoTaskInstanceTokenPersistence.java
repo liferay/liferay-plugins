@@ -142,7 +142,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo task instance tokens to return
 	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -159,7 +159,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -178,7 +178,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo task instance tokens to return
 	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -264,7 +264,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -352,7 +352,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* @param kaleoInstanceId the kaleo instance ID to search with
 	* @param start the lower bound of the range of kaleo task instance tokens to return
 	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -369,7 +369,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -388,7 +388,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a matching kaleo task instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -408,7 +408,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	*
 	* @param kaleoTaskInstanceTokenId the primary key of the current kaleo task instance token
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskInstanceTokenException if a kaleo task instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -491,7 +491,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	*
 	* @param start the lower bound of the range of kaleo task instance tokens to return
 	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo task instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -633,7 +633,7 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	* @param pk the primary key of the kaleo task instance token to get the associated kaleo task assignment instances for
 	* @param start the lower bound of the range of kaleo task instance tokens to return
 	* @param end the upper bound of the range of kaleo task instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo task assignment instances associated with the kaleo task instance token
 	* @throws SystemException if a system exception occurred
 	*/

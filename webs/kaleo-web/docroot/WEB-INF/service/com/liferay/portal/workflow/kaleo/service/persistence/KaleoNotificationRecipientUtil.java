@@ -245,7 +245,7 @@ public class KaleoNotificationRecipientUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo notification recipients to return
 	* @param end the upper bound of the range of kaleo notification recipients to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo notification recipients
 	* @throws SystemException if a system exception occurred
 	*/
@@ -265,7 +265,7 @@ public class KaleoNotificationRecipientUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	* @throws SystemException if a system exception occurred
@@ -287,7 +287,7 @@ public class KaleoNotificationRecipientUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	* @throws SystemException if a system exception occurred
@@ -310,7 +310,7 @@ public class KaleoNotificationRecipientUtil {
 	*
 	* @param kaleoNotificationRecipientId the primary key of the current kaleo notification recipient
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -368,7 +368,7 @@ public class KaleoNotificationRecipientUtil {
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo notification recipients to return
 	* @param end the upper bound of the range of kaleo notification recipients to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo notification recipients
 	* @throws SystemException if a system exception occurred
 	*/
@@ -389,7 +389,7 @@ public class KaleoNotificationRecipientUtil {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	* @throws SystemException if a system exception occurred
@@ -412,7 +412,7 @@ public class KaleoNotificationRecipientUtil {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	* @throws SystemException if a system exception occurred
@@ -436,7 +436,7 @@ public class KaleoNotificationRecipientUtil {
 	*
 	* @param kaleoNotificationRecipientId the primary key of the current kaleo notification recipient
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -494,7 +494,7 @@ public class KaleoNotificationRecipientUtil {
 	* @param kaleoNotificationId the kaleo notification ID to search with
 	* @param start the lower bound of the range of kaleo notification recipients to return
 	* @param end the upper bound of the range of kaleo notification recipients to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo notification recipients
 	* @throws SystemException if a system exception occurred
 	*/
@@ -515,7 +515,7 @@ public class KaleoNotificationRecipientUtil {
 	* </p>
 	*
 	* @param kaleoNotificationId the kaleo notification ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	* @throws SystemException if a system exception occurred
@@ -538,7 +538,7 @@ public class KaleoNotificationRecipientUtil {
 	* </p>
 	*
 	* @param kaleoNotificationId the kaleo notification ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a matching kaleo notification recipient could not be found
 	* @throws SystemException if a system exception occurred
@@ -562,7 +562,7 @@ public class KaleoNotificationRecipientUtil {
 	*
 	* @param kaleoNotificationRecipientId the primary key of the current kaleo notification recipient
 	* @param kaleoNotificationId the kaleo notification ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo notification recipient
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationRecipientException if a kaleo notification recipient with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -615,7 +615,7 @@ public class KaleoNotificationRecipientUtil {
 	*
 	* @param start the lower bound of the range of kaleo notification recipients to return
 	* @param end the upper bound of the range of kaleo notification recipients to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo notification recipients
 	* @throws SystemException if a system exception occurred
 	*/

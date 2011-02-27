@@ -462,7 +462,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @param companyId the company ID to search with
 	 * @param start the lower bound of the range of kaleo actions to return
 	 * @param end the upper bound of the range of kaleo actions to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo actions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -548,7 +548,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * </p>
 	 *
 	 * @param companyId the company ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	 * @throws SystemException if a system exception occurred
@@ -584,7 +584,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * </p>
 	 *
 	 * @param companyId the company ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	 * @throws SystemException if a system exception occurred
@@ -623,7 +623,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param kaleoActionId the primary key of the current kaleo action
 	 * @param companyId the company ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -803,7 +803,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @param kaleoDefinitionId the kaleo definition ID to search with
 	 * @param start the lower bound of the range of kaleo actions to return
 	 * @param end the upper bound of the range of kaleo actions to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo actions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -890,7 +890,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	 * @throws SystemException if a system exception occurred
@@ -926,7 +926,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * </p>
 	 *
 	 * @param kaleoDefinitionId the kaleo definition ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	 * @throws SystemException if a system exception occurred
@@ -965,7 +965,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param kaleoActionId the primary key of the current kaleo action
 	 * @param kaleoDefinitionId the kaleo definition ID to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1149,7 +1149,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @param executionType the execution type to search with
 	 * @param start the lower bound of the range of kaleo actions to return
 	 * @param end the upper bound of the range of kaleo actions to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching kaleo actions
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -1253,7 +1253,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param kaleoNodeId the kaleo node ID to search with
 	 * @param executionType the execution type to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1293,7 +1293,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param kaleoNodeId the kaleo node ID to search with
 	 * @param executionType the execution type to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a matching kaleo action could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1336,7 +1336,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 * @param kaleoActionId the primary key of the current kaleo action
 	 * @param kaleoNodeId the kaleo node ID to search with
 	 * @param executionType the execution type to search with
-	 * @param orderByComparator the comparator to order the set by
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next kaleo action
 	 * @throws com.liferay.portal.workflow.kaleo.NoSuchActionException if a kaleo action with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
@@ -1528,7 +1528,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	 *
 	 * @param start the lower bound of the range of kaleo actions to return
 	 * @param end the upper bound of the range of kaleo actions to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of kaleo actions
 	 * @throws SystemException if a system exception occurred
 	 */

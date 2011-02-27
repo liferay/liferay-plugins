@@ -241,7 +241,7 @@ public class KaleoTimerUtil {
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
 	* @param start the lower bound of the range of kaleo timers to return
 	* @param end the upper bound of the range of kaleo timers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo timers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -262,7 +262,7 @@ public class KaleoTimerUtil {
 	* </p>
 	*
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo timer
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	* @throws SystemException if a system exception occurred
@@ -285,7 +285,7 @@ public class KaleoTimerUtil {
 	* </p>
 	*
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo timer
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	* @throws SystemException if a system exception occurred
@@ -309,7 +309,7 @@ public class KaleoTimerUtil {
 	*
 	* @param kaleoTimerId the primary key of the current kaleo timer
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo timer
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -370,7 +370,7 @@ public class KaleoTimerUtil {
 	* @param defaultTimer the default timer to search with
 	* @param start the lower bound of the range of kaleo timers to return
 	* @param end the upper bound of the range of kaleo timers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo timers
 	* @throws SystemException if a system exception occurred
 	*/
@@ -392,7 +392,7 @@ public class KaleoTimerUtil {
 	*
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
 	* @param defaultTimer the default timer to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo timer
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	* @throws SystemException if a system exception occurred
@@ -416,7 +416,7 @@ public class KaleoTimerUtil {
 	*
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
 	* @param defaultTimer the default timer to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo timer
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a matching kaleo timer could not be found
 	* @throws SystemException if a system exception occurred
@@ -441,7 +441,7 @@ public class KaleoTimerUtil {
 	* @param kaleoTimerId the primary key of the current kaleo timer
 	* @param parentKaleoNodeId the parent kaleo node ID to search with
 	* @param defaultTimer the default timer to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo timer
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerException if a kaleo timer with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -494,7 +494,7 @@ public class KaleoTimerUtil {
 	*
 	* @param start the lower bound of the range of kaleo timers to return
 	* @param end the upper bound of the range of kaleo timers to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo timers
 	* @throws SystemException if a system exception occurred
 	*/

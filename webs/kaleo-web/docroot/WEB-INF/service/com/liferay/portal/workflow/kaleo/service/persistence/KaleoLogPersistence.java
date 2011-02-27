@@ -141,7 +141,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -158,7 +158,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -177,7 +177,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -197,7 +197,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -246,7 +246,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -263,7 +263,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -302,7 +302,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -351,7 +351,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoInstanceId the kaleo instance ID to search with
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -368,7 +368,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -387,7 +387,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -407,7 +407,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -456,7 +456,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -473,7 +473,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -492,7 +492,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -512,7 +512,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param kaleoLogId the primary key of the current kaleo log
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -564,7 +564,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param type the type to search with
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -582,7 +582,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -602,7 +602,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -623,7 +623,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoLogId the primary key of the current kaleo log
 	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -679,7 +679,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param type the type to search with
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/
@@ -699,7 +699,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -720,7 +720,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a matching kaleo log could not be found
 	* @throws SystemException if a system exception occurred
@@ -742,7 +742,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	* @param kaleoInstanceTokenId the kaleo instance token ID to search with
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param type the type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo log
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchLogException if a kaleo log with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -788,7 +788,7 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	*
 	* @param start the lower bound of the range of kaleo logs to return
 	* @param end the upper bound of the range of kaleo logs to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo logs
 	* @throws SystemException if a system exception occurred
 	*/

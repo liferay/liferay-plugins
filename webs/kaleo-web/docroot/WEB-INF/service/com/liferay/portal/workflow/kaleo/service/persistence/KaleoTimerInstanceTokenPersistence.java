@@ -142,7 +142,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	* @param kaleoInstanceId the kaleo instance ID to search with
 	* @param start the lower bound of the range of kaleo timer instance tokens to return
 	* @param end the upper bound of the range of kaleo timer instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo timer instance tokens
 	* @throws SystemException if a system exception occurred
 	*/
@@ -159,7 +159,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo timer instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -178,7 +178,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo timer instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a matching kaleo timer instance token could not be found
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	*
 	* @param kaleoTimerInstanceTokenId the primary key of the current kaleo timer instance token
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo timer instance token
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTimerInstanceTokenException if a kaleo timer instance token with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -281,7 +281,7 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	*
 	* @param start the lower bound of the range of kaleo timer instance tokens to return
 	* @param end the upper bound of the range of kaleo timer instance tokens to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo timer instance tokens
 	* @throws SystemException if a system exception occurred
 	*/

@@ -240,7 +240,7 @@ public class KaleoDefinitionUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo definitions to return
 	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class KaleoDefinitionUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public class KaleoDefinitionUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -305,7 +305,7 @@ public class KaleoDefinitionUtil {
 	*
 	* @param kaleoDefinitionId the primary key of the current kaleo definition
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -365,7 +365,7 @@ public class KaleoDefinitionUtil {
 	* @param name the name to search with
 	* @param start the lower bound of the range of kaleo definitions to return
 	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -386,7 +386,7 @@ public class KaleoDefinitionUtil {
 	*
 	* @param companyId the company ID to search with
 	* @param name the name to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -409,7 +409,7 @@ public class KaleoDefinitionUtil {
 	*
 	* @param companyId the company ID to search with
 	* @param name the name to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -433,7 +433,7 @@ public class KaleoDefinitionUtil {
 	* @param kaleoDefinitionId the primary key of the current kaleo definition
 	* @param companyId the company ID to search with
 	* @param name the name to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -493,7 +493,7 @@ public class KaleoDefinitionUtil {
 	* @param active the active to search with
 	* @param start the lower bound of the range of kaleo definitions to return
 	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -514,7 +514,7 @@ public class KaleoDefinitionUtil {
 	*
 	* @param companyId the company ID to search with
 	* @param active the active to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -537,7 +537,7 @@ public class KaleoDefinitionUtil {
 	*
 	* @param companyId the company ID to search with
 	* @param active the active to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -561,7 +561,7 @@ public class KaleoDefinitionUtil {
 	* @param kaleoDefinitionId the primary key of the current kaleo definition
 	* @param companyId the company ID to search with
 	* @param active the active to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -673,7 +673,7 @@ public class KaleoDefinitionUtil {
 	* @param active the active to search with
 	* @param start the lower bound of the range of kaleo definitions to return
 	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -697,7 +697,7 @@ public class KaleoDefinitionUtil {
 	* @param companyId the company ID to search with
 	* @param name the name to search with
 	* @param active the active to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -721,7 +721,7 @@ public class KaleoDefinitionUtil {
 	* @param companyId the company ID to search with
 	* @param name the name to search with
 	* @param active the active to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a matching kaleo definition could not be found
 	* @throws SystemException if a system exception occurred
@@ -746,7 +746,7 @@ public class KaleoDefinitionUtil {
 	* @param companyId the company ID to search with
 	* @param name the name to search with
 	* @param active the active to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo definition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchDefinitionException if a kaleo definition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -800,7 +800,7 @@ public class KaleoDefinitionUtil {
 	*
 	* @param start the lower bound of the range of kaleo definitions to return
 	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo definitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -1004,7 +1004,7 @@ public class KaleoDefinitionUtil {
 	* @param pk the primary key of the kaleo definition to get the associated kaleo nodes for
 	* @param start the lower bound of the range of kaleo definitions to return
 	* @param end the upper bound of the range of kaleo definitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo nodes associated with the kaleo definition
 	* @throws SystemException if a system exception occurred
 	*/

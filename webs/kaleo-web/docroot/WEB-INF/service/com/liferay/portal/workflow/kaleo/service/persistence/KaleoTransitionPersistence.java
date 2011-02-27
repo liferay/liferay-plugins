@@ -142,7 +142,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo transitions to return
 	* @param end the upper bound of the range of kaleo transitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo transitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -159,7 +159,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
@@ -178,7 +178,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoTransitionId the primary key of the current kaleo transition
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo transitions to return
 	* @param end the upper bound of the range of kaleo transitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo transitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -264,7 +264,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoTransitionId the primary key of the current kaleo transition
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -352,7 +352,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param start the lower bound of the range of kaleo transitions to return
 	* @param end the upper bound of the range of kaleo transitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo transitions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -369,7 +369,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* </p>
 	*
 	* @param kaleoNodeId the kaleo node ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
@@ -388,7 +388,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	* </p>
 	*
 	* @param kaleoNodeId the kaleo node ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a matching kaleo transition could not be found
 	* @throws SystemException if a system exception occurred
@@ -408,7 +408,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param kaleoTransitionId the primary key of the current kaleo transition
 	* @param kaleoNodeId the kaleo node ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo transition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTransitionException if a kaleo transition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -529,7 +529,7 @@ public interface KaleoTransitionPersistence extends BasePersistence<KaleoTransit
 	*
 	* @param start the lower bound of the range of kaleo transitions to return
 	* @param end the upper bound of the range of kaleo transitions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo transitions
 	* @throws SystemException if a system exception occurred
 	*/

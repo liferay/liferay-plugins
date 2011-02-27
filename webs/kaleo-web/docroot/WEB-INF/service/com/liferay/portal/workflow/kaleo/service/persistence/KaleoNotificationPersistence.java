@@ -142,7 +142,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo notifications to return
 	* @param end the upper bound of the range of kaleo notifications to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo notifications
 	* @throws SystemException if a system exception occurred
 	*/
@@ -159,7 +159,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
 	* @throws SystemException if a system exception occurred
@@ -178,7 +178,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	*
 	* @param kaleoNotificationId the primary key of the current kaleo notification
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo notifications to return
 	* @param end the upper bound of the range of kaleo notifications to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo notifications
 	* @throws SystemException if a system exception occurred
 	*/
@@ -264,7 +264,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	*
 	* @param kaleoNotificationId the primary key of the current kaleo notification
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -355,7 +355,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* @param executionType the execution type to search with
 	* @param start the lower bound of the range of kaleo notifications to return
 	* @param end the upper bound of the range of kaleo notifications to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo notifications
 	* @throws SystemException if a system exception occurred
 	*/
@@ -373,7 +373,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	*
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param executionType the execution type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
 	* @throws SystemException if a system exception occurred
@@ -393,7 +393,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	*
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param executionType the execution type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a matching kaleo notification could not be found
 	* @throws SystemException if a system exception occurred
@@ -414,7 +414,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* @param kaleoNotificationId the primary key of the current kaleo notification
 	* @param kaleoNodeId the kaleo node ID to search with
 	* @param executionType the execution type to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo notification
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchNotificationException if a kaleo notification with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -460,7 +460,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	*
 	* @param start the lower bound of the range of kaleo notifications to return
 	* @param end the upper bound of the range of kaleo notifications to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo notifications
 	* @throws SystemException if a system exception occurred
 	*/
@@ -582,7 +582,7 @@ public interface KaleoNotificationPersistence extends BasePersistence<KaleoNotif
 	* @param pk the primary key of the kaleo notification to get the associated kaleo notification recipients for
 	* @param start the lower bound of the range of kaleo notifications to return
 	* @param end the upper bound of the range of kaleo notifications to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo notification recipients associated with the kaleo notification
 	* @throws SystemException if a system exception occurred
 	*/

@@ -240,7 +240,7 @@ public class KaleoConditionUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo conditions to return
 	* @param end the upper bound of the range of kaleo conditions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo conditions
 	* @throws SystemException if a system exception occurred
 	*/
@@ -260,7 +260,7 @@ public class KaleoConditionUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo condition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
@@ -282,7 +282,7 @@ public class KaleoConditionUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo condition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a matching kaleo condition could not be found
 	* @throws SystemException if a system exception occurred
@@ -305,7 +305,7 @@ public class KaleoConditionUtil {
 	*
 	* @param kaleoConditionId the primary key of the current kaleo condition
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo condition
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchConditionException if a kaleo condition with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -402,7 +402,7 @@ public class KaleoConditionUtil {
 	*
 	* @param start the lower bound of the range of kaleo conditions to return
 	* @param end the upper bound of the range of kaleo conditions to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo conditions
 	* @throws SystemException if a system exception occurred
 	*/

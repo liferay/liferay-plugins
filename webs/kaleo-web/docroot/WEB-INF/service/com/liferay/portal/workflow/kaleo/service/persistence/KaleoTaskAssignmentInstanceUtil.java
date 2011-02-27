@@ -245,7 +245,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo task assignment instances to return
 	* @param end the upper bound of the range of kaleo task assignment instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -265,7 +265,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -287,7 +287,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -310,7 +310,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	*
 	* @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -368,7 +368,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo task assignment instances to return
 	* @param end the upper bound of the range of kaleo task assignment instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -389,7 +389,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -412,7 +412,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -436,7 +436,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	*
 	* @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -494,7 +494,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* @param kaleoInstanceId the kaleo instance ID to search with
 	* @param start the lower bound of the range of kaleo task assignment instances to return
 	* @param end the upper bound of the range of kaleo task assignment instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -515,7 +515,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -538,7 +538,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -562,7 +562,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	*
 	* @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	* @param kaleoInstanceId the kaleo instance ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -622,7 +622,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
 	* @param start the lower bound of the range of kaleo task assignment instances to return
 	* @param end the upper bound of the range of kaleo task assignment instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -643,7 +643,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -666,7 +666,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	* </p>
 	*
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a matching kaleo task assignment instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -690,7 +690,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	*
 	* @param kaleoTaskAssignmentInstanceId the primary key of the current kaleo task assignment instance
 	* @param kaleoTaskInstanceTokenId the kaleo task instance token ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task assignment instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskAssignmentInstanceException if a kaleo task assignment instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -743,7 +743,7 @@ public class KaleoTaskAssignmentInstanceUtil {
 	*
 	* @param start the lower bound of the range of kaleo task assignment instances to return
 	* @param end the upper bound of the range of kaleo task assignment instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo task assignment instances
 	* @throws SystemException if a system exception occurred
 	*/

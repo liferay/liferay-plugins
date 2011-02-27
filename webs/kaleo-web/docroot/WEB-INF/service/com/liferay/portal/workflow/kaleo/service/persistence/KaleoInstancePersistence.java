@@ -142,7 +142,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param companyId the company ID to search with
 	* @param start the lower bound of the range of kaleo instances to return
 	* @param end the upper bound of the range of kaleo instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -159,7 +159,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -178,7 +178,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* </p>
 	*
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -198,7 +198,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param companyId the company ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -247,7 +247,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param start the lower bound of the range of kaleo instances to return
 	* @param end the upper bound of the range of kaleo instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -264,7 +264,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -283,7 +283,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* </p>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -303,7 +303,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param kaleoDefinitionId the kaleo definition ID to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -355,7 +355,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param completed the completed to search with
 	* @param start the lower bound of the range of kaleo instances to return
 	* @param end the upper bound of the range of kaleo instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -373,7 +373,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param completed the completed to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -393,7 +393,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param completed the completed to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -414,7 +414,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param kaleoInstanceId the primary key of the current kaleo instance
 	* @param kaleoDefinitionId the kaleo definition ID to search with
 	* @param completed the completed to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -474,7 +474,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param completionDate the completion date to search with
 	* @param start the lower bound of the range of kaleo instances to return
 	* @param end the upper bound of the range of kaleo instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo instances
 	* @throws SystemException if a system exception occurred
 	*/
@@ -496,7 +496,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param kaleoDefinitionName the kaleo definition name to search with
 	* @param kaleoDefinitionVersion the kaleo definition version to search with
 	* @param completionDate the completion date to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -519,7 +519,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param kaleoDefinitionName the kaleo definition name to search with
 	* @param kaleoDefinitionVersion the kaleo definition version to search with
 	* @param completionDate the completion date to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a matching kaleo instance could not be found
 	* @throws SystemException if a system exception occurred
@@ -543,7 +543,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	* @param kaleoDefinitionName the kaleo definition name to search with
 	* @param kaleoDefinitionVersion the kaleo definition version to search with
 	* @param completionDate the completion date to search with
-	* @param orderByComparator the comparator to order the set by
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo instance
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchInstanceException if a kaleo instance with the primary key could not be found
 	* @throws SystemException if a system exception occurred
@@ -590,7 +590,7 @@ public interface KaleoInstancePersistence extends BasePersistence<KaleoInstance>
 	*
 	* @param start the lower bound of the range of kaleo instances to return
 	* @param end the upper bound of the range of kaleo instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo instances
 	* @throws SystemException if a system exception occurred
 	*/
