@@ -11,7 +11,8 @@ out << "<br />";
 if (params['type'] && (params['type'][0] == 'user')) {
 	if (userInfo != null) {
 	   out << LiferayPortlet.showUserDetails(userInfo);
-	} else {
+	}
+	else {
 	   out << "You are not signed in<br />";
 	}
 }
