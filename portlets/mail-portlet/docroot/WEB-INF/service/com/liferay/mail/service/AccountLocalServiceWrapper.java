@@ -218,6 +218,24 @@ public class AccountLocalServiceWrapper implements AccountLocalService {
 		return _accountLocalService.updateAccount(account, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _accountLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_accountLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.mail.model.Account addAccount(long userId,
 		java.lang.String address, java.lang.String personalName,
 		java.lang.String protocol, java.lang.String incomingHostName,

@@ -226,6 +226,24 @@ public class KaleoTaskAssignmentInstanceLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoTaskAssignmentInstanceLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoTaskAssignmentInstanceLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance addKaleoTaskAssignmentInstance(
 		com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		java.lang.String assigneeClassName, long assigneeClassPK,

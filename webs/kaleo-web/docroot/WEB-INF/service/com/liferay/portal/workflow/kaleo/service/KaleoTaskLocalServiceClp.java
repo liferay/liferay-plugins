@@ -76,18 +76,24 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 				com.liferay.portal.workflow.kaleo.model.KaleoTask.class,
 				boolean.class);
 
-		_addKaleoTaskMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addKaleoTaskMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoTask", long.class, long.class,
 				com.liferay.portal.workflow.kaleo.definition.Task.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteCompanyKaleoTasksMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCompanyKaleoTasksMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteCompanyKaleoTasks", long.class);
 
-		_deleteKaleoDefinitionKaleoTasksMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKaleoDefinitionKaleoTasksMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKaleoDefinitionKaleoTasks", long.class);
 
-		_getKaleoNodeKaleoTaskMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoNodeKaleoTaskMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoNodeKaleoTask", long.class);
 	}
 
@@ -456,6 +462,45 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTask)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask addKaleoTask(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Task task,
@@ -464,7 +509,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKaleoTaskMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addKaleoTaskMethodKey15,
 				kaleoDefinitionId, kaleoNodeId,
 				ClpSerializer.translateInput(task),
 				ClpSerializer.translateInput(serviceContext));
@@ -495,7 +540,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 
 	public void deleteCompanyKaleoTasks(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoTasksMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoTasksMethodKey16,
 				companyId);
 
 		try {
@@ -518,7 +563,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 
 	public void deleteKaleoDefinitionKaleoTasks(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoTasksMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoTasksMethodKey17,
 				kaleoDefinitionId);
 
 		try {
@@ -545,7 +590,7 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoNodeKaleoTaskMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoNodeKaleoTaskMethodKey18,
 				kaleoNodeId);
 
 		try {
@@ -590,8 +635,10 @@ public class KaleoTaskLocalServiceClp implements KaleoTaskLocalService {
 	private MethodKey _getKaleoTasksCountMethodKey10;
 	private MethodKey _updateKaleoTaskMethodKey11;
 	private MethodKey _updateKaleoTaskMethodKey12;
-	private MethodKey _addKaleoTaskMethodKey13;
-	private MethodKey _deleteCompanyKaleoTasksMethodKey14;
-	private MethodKey _deleteKaleoDefinitionKaleoTasksMethodKey15;
-	private MethodKey _getKaleoNodeKaleoTaskMethodKey16;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addKaleoTaskMethodKey15;
+	private MethodKey _deleteCompanyKaleoTasksMethodKey16;
+	private MethodKey _deleteKaleoDefinitionKaleoTasksMethodKey17;
+	private MethodKey _getKaleoNodeKaleoTaskMethodKey18;
 }

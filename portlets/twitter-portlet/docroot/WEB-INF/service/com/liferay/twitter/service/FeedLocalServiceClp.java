@@ -72,13 +72,19 @@ public class FeedLocalServiceClp implements FeedLocalService {
 				"updateFeed", com.liferay.twitter.model.Feed.class,
 				boolean.class);
 
-		_updateFeedMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_updateFeedMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeed", long.class);
 
-		_updateFeedsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeeds");
 
-		_updateFeedsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFeedsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFeeds", long.class);
 	}
 
@@ -442,10 +448,49 @@ public class FeedLocalServiceClp implements FeedLocalService {
 		return (com.liferay.twitter.model.Feed)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public void updateFeed(long userId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_updateFeedMethodKey15,
 				userId);
 
 		try {
@@ -473,7 +518,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public void updateFeeds()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey14);
+		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey16);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -500,7 +545,7 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	public void updateFeeds(long companyId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_updateFeedsMethodKey17,
 				companyId);
 
 		try {
@@ -543,7 +588,9 @@ public class FeedLocalServiceClp implements FeedLocalService {
 	private MethodKey _getFeedsCountMethodKey10;
 	private MethodKey _updateFeedMethodKey11;
 	private MethodKey _updateFeedMethodKey12;
-	private MethodKey _updateFeedMethodKey13;
-	private MethodKey _updateFeedsMethodKey14;
-	private MethodKey _updateFeedsMethodKey15;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _updateFeedMethodKey15;
+	private MethodKey _updateFeedsMethodKey16;
+	private MethodKey _updateFeedsMethodKey17;
 }

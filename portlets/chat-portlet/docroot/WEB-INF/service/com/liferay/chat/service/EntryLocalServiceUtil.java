@@ -227,6 +227,24 @@ public class EntryLocalServiceUtil {
 		return getService().updateEntry(entry, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
 	public static com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException {

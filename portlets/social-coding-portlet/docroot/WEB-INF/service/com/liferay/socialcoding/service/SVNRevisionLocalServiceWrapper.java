@@ -220,6 +220,24 @@ public class SVNRevisionLocalServiceWrapper implements SVNRevisionLocalService {
 		return _svnRevisionLocalService.updateSVNRevision(svnRevision, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _svnRevisionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_svnRevisionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.socialcoding.model.SVNRevision addSVNRevision(
 		java.lang.String svnUserId, java.util.Date createDate,
 		long svnRepositoryId, long revisionNumber, java.lang.String comments)

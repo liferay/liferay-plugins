@@ -224,6 +224,24 @@ public class KaleoDefinitionLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoDefinitionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoDefinitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public void activateKaleoDefinition(long kaleoDefinitionId,
 		long startKaleoNodeId,
 		com.liferay.portal.service.ServiceContext serviceContext)

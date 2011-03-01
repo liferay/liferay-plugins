@@ -77,29 +77,35 @@ public class KaleoTransitionLocalServiceClp
 				com.liferay.portal.workflow.kaleo.model.KaleoTransition.class,
 				boolean.class);
 
-		_addKaleoTransitionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addKaleoTransitionMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoTransition", long.class, long.class,
 				com.liferay.portal.workflow.kaleo.definition.Transition.class,
 				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
 				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteCompanyKaleoTransitionsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCompanyKaleoTransitionsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteCompanyKaleoTransitions", long.class);
 
-		_deleteKaleoDefinitionKaleoTransitionsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKaleoDefinitionKaleoTransitionsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKaleoDefinitionKaleoTransitions", long.class);
 
-		_getDefaultKaleoTransitionMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getDefaultKaleoTransitionMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getDefaultKaleoTransition", long.class);
 
-		_getKaleoTransitionMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTransitionMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTransition", long.class, java.lang.String.class);
 
-		_getKaleoTransitionsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTransitionsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTransitions", long.class);
 
-		_getKaleoTransitionsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoTransitionsCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoTransitionsCount", long.class);
 	}
 
@@ -468,6 +474,45 @@ public class KaleoTransitionLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoTransition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Transition transition,
@@ -478,7 +523,7 @@ public class KaleoTransitionLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKaleoTransitionMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addKaleoTransitionMethodKey15,
 				kaleoDefinitionId, kaleoNodeId,
 				ClpSerializer.translateInput(transition),
 				ClpSerializer.translateInput(sourceKaleoNode),
@@ -511,7 +556,7 @@ public class KaleoTransitionLocalServiceClp
 
 	public void deleteCompanyKaleoTransitions(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoTransitionsMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoTransitionsMethodKey16,
 				companyId);
 
 		try {
@@ -534,7 +579,7 @@ public class KaleoTransitionLocalServiceClp
 
 	public void deleteKaleoDefinitionKaleoTransitions(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoTransitionsMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoTransitionsMethodKey17,
 				kaleoDefinitionId);
 
 		try {
@@ -561,7 +606,7 @@ public class KaleoTransitionLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getDefaultKaleoTransitionMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getDefaultKaleoTransitionMethodKey18,
 				kaleoNodeId);
 
 		try {
@@ -594,7 +639,7 @@ public class KaleoTransitionLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTransitionMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTransitionMethodKey19,
 				kaleoNodeId, ClpSerializer.translateInput(name));
 
 		try {
@@ -626,7 +671,7 @@ public class KaleoTransitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTransitionsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTransitionsMethodKey20,
 				kaleoNodeId);
 
 		try {
@@ -653,7 +698,7 @@ public class KaleoTransitionLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoTransitionsCountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoTransitionsCountMethodKey21,
 				kaleoNodeId);
 
 		try {
@@ -694,11 +739,13 @@ public class KaleoTransitionLocalServiceClp
 	private MethodKey _getKaleoTransitionsCountMethodKey10;
 	private MethodKey _updateKaleoTransitionMethodKey11;
 	private MethodKey _updateKaleoTransitionMethodKey12;
-	private MethodKey _addKaleoTransitionMethodKey13;
-	private MethodKey _deleteCompanyKaleoTransitionsMethodKey14;
-	private MethodKey _deleteKaleoDefinitionKaleoTransitionsMethodKey15;
-	private MethodKey _getDefaultKaleoTransitionMethodKey16;
-	private MethodKey _getKaleoTransitionMethodKey17;
-	private MethodKey _getKaleoTransitionsMethodKey18;
-	private MethodKey _getKaleoTransitionsCountMethodKey19;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addKaleoTransitionMethodKey15;
+	private MethodKey _deleteCompanyKaleoTransitionsMethodKey16;
+	private MethodKey _deleteKaleoDefinitionKaleoTransitionsMethodKey17;
+	private MethodKey _getDefaultKaleoTransitionMethodKey18;
+	private MethodKey _getKaleoTransitionMethodKey19;
+	private MethodKey _getKaleoTransitionsMethodKey20;
+	private MethodKey _getKaleoTransitionsCountMethodKey21;
 }

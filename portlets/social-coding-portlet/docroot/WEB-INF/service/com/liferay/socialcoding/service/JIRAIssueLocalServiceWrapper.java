@@ -220,6 +220,24 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService {
 		return _jiraIssueLocalService.updateJIRAIssue(jiraIssue, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _jiraIssueLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_jiraIssueLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getAssigneeJIRAIssues(
 		long projectId, java.lang.String assigneeJiraUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

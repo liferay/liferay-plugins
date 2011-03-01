@@ -224,6 +224,24 @@ public class KaleoInstanceTokenLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoInstanceTokenLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoInstanceTokenLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken addKaleoInstanceToken(
 		long parentKaleoInstanceTokenId,
 		java.util.Map<java.lang.String, java.io.Serializable> workflowContext,

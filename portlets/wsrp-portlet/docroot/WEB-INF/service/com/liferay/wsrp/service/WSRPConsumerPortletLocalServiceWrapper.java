@@ -227,6 +227,24 @@ public class WSRPConsumerPortletLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _wsrpConsumerPortletLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_wsrpConsumerPortletLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
 		java.lang.String portletHandle, java.lang.String userToken,

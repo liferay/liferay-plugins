@@ -78,18 +78,24 @@ public class KaleoNotificationRecipientLocalServiceClp
 				com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient.class,
 				boolean.class);
 
-		_addKaleoNotificationRecipientMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addKaleoNotificationRecipientMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoNotificationRecipient", long.class, long.class,
 				com.liferay.portal.workflow.kaleo.definition.Recipient.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteCompanyKaleoNotificationRecipientsMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCompanyKaleoNotificationRecipientsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteCompanyKaleoNotificationRecipients", long.class);
 
-		_deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKaleoDefinitionKaleoNotificationRecipients", long.class);
 
-		_getKaleoNotificationRecipientsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoNotificationRecipientsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoNotificationRecipients", long.class);
 	}
 
@@ -459,6 +465,45 @@ public class KaleoNotificationRecipientLocalServiceClp
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoDefinitionId, long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,
@@ -467,7 +512,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKaleoNotificationRecipientMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addKaleoNotificationRecipientMethodKey15,
 				kaleoDefinitionId, kaleoNotificationId,
 				ClpSerializer.translateInput(recipient),
 				ClpSerializer.translateInput(serviceContext));
@@ -498,7 +543,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 
 	public void deleteCompanyKaleoNotificationRecipients(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoNotificationRecipientsMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoNotificationRecipientsMethodKey16,
 				companyId);
 
 		try {
@@ -522,7 +567,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 	public void deleteKaleoDefinitionKaleoNotificationRecipients(
 		long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey17,
 				kaleoDefinitionId);
 
 		try {
@@ -548,7 +593,7 @@ public class KaleoNotificationRecipientLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoNotificationRecipientsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoNotificationRecipientsMethodKey18,
 				kaleoNotificationId);
 
 		try {
@@ -589,8 +634,10 @@ public class KaleoNotificationRecipientLocalServiceClp
 	private MethodKey _getKaleoNotificationRecipientsCountMethodKey10;
 	private MethodKey _updateKaleoNotificationRecipientMethodKey11;
 	private MethodKey _updateKaleoNotificationRecipientMethodKey12;
-	private MethodKey _addKaleoNotificationRecipientMethodKey13;
-	private MethodKey _deleteCompanyKaleoNotificationRecipientsMethodKey14;
-	private MethodKey _deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey15;
-	private MethodKey _getKaleoNotificationRecipientsMethodKey16;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addKaleoNotificationRecipientMethodKey15;
+	private MethodKey _deleteCompanyKaleoNotificationRecipientsMethodKey16;
+	private MethodKey _deleteKaleoDefinitionKaleoNotificationRecipientsMethodKey17;
+	private MethodKey _getKaleoNotificationRecipientsMethodKey18;
 }

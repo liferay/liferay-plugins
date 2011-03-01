@@ -208,6 +208,20 @@ public interface MessageLocalService {
 		com.liferay.mail.model.Message message, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.mail.model.Message addMessage(long userId,
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,

@@ -220,6 +220,24 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService {
 		return _wallEntryLocalService.updateWallEntry(wallEntry, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _wallEntryLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_wallEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
 		long groupId, long userId, java.lang.String comments,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)

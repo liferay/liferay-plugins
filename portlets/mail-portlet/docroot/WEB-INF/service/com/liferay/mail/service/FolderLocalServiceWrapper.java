@@ -217,6 +217,24 @@ public class FolderLocalServiceWrapper implements FolderLocalService {
 		return _folderLocalService.updateFolder(folder, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _folderLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_folderLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,
 		java.lang.String fullName, java.lang.String displayName,
 		int remoteMessageCount)

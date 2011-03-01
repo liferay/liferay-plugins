@@ -76,13 +76,19 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 				com.liferay.portal.workflow.kaleo.model.KaleoCondition.class,
 				boolean.class);
 
-		_addKaleoConditionMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addKaleoConditionMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoCondition",
 				com.liferay.portal.workflow.kaleo.definition.Condition.class,
 				java.lang.String.class, long.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getKaleoConditionMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getKaleoConditionMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getKaleoCondition", java.lang.String.class, long.class);
 	}
 
@@ -451,6 +457,45 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 		return (com.liferay.portal.workflow.kaleo.model.KaleoCondition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition addKaleoCondition(
 		com.liferay.portal.workflow.kaleo.definition.Condition condition,
 		java.lang.String className, long classPK,
@@ -459,7 +504,7 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKaleoConditionMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addKaleoConditionMethodKey15,
 				ClpSerializer.translateInput(condition),
 				ClpSerializer.translateInput(className), classPK,
 				ClpSerializer.translateInput(serviceContext));
@@ -494,7 +539,7 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getKaleoConditionMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_getKaleoConditionMethodKey16,
 				ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -539,6 +584,8 @@ public class KaleoConditionLocalServiceClp implements KaleoConditionLocalService
 	private MethodKey _getKaleoConditionsCountMethodKey10;
 	private MethodKey _updateKaleoConditionMethodKey11;
 	private MethodKey _updateKaleoConditionMethodKey12;
-	private MethodKey _addKaleoConditionMethodKey13;
-	private MethodKey _getKaleoConditionMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addKaleoConditionMethodKey15;
+	private MethodKey _getKaleoConditionMethodKey16;
 }

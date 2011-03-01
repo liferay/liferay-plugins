@@ -220,6 +220,24 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService {
 		return _jiraActionLocalService.updateJIRAAction(jiraAction, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _jiraActionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_jiraActionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public JIRAActionLocalService getWrappedJIRAActionLocalService() {
 		return _jiraActionLocalService;
 	}

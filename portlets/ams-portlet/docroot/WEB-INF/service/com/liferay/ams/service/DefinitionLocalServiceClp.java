@@ -71,6 +71,12 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		_updateDefinitionMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateDefinition", com.liferay.ams.model.Definition.class,
 				boolean.class);
+
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
 	}
 
 	public com.liferay.ams.model.Definition addDefinition(
@@ -434,6 +440,45 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 		return (com.liferay.ams.model.Definition)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -452,4 +497,6 @@ public class DefinitionLocalServiceClp implements DefinitionLocalService {
 	private MethodKey _getDefinitionsCountMethodKey10;
 	private MethodKey _updateDefinitionMethodKey11;
 	private MethodKey _updateDefinitionMethodKey12;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
 }

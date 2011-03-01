@@ -229,6 +229,24 @@ public class AccountLocalServiceUtil {
 		return getService().updateAccount(account, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
 	public static com.liferay.mail.model.Account addAccount(long userId,
 		java.lang.String address, java.lang.String personalName,
 		java.lang.String protocol, java.lang.String incomingHostName,

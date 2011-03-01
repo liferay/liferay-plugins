@@ -217,6 +217,24 @@ public class DefinitionLocalServiceWrapper implements DefinitionLocalService {
 		return _definitionLocalService.updateDefinition(definition, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _definitionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_definitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public DefinitionLocalService getWrappedDefinitionLocalService() {
 		return _definitionLocalService;
 	}

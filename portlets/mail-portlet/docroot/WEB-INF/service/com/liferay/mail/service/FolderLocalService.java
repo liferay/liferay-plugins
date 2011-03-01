@@ -207,6 +207,20 @@ public interface FolderLocalService {
 		com.liferay.mail.model.Folder folder, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,
 		java.lang.String fullName, java.lang.String displayName,
 		int remoteMessageCount)

@@ -76,27 +76,33 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 				"updateWSRPProducer",
 				com.liferay.wsrp.model.WSRPProducer.class, boolean.class);
 
-		_addWSRPProducerMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addWSRPProducerMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPProducer", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_addWSRPProducerMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addWSRPProducerMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPProducer", long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_getWSRPProducerMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPProducerMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPProducer", java.lang.String.class);
 
-		_getWSRPProducersMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPProducersMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPProducers", long.class, int.class, int.class);
 
-		_getWSRPProducersCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPProducersCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPProducersCount", long.class);
 
-		_updateWSRPProducerMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateWSRPProducerMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWSRPProducer", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class);
 	}
@@ -503,6 +509,45 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		return (com.liferay.wsrp.model.WSRPProducer)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
 		java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
@@ -511,7 +556,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey16,
 				userId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(portletIds),
@@ -549,7 +594,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_addWSRPProducerMethodKey17,
 				userId, groupId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(portletIds),
@@ -585,7 +630,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducerMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPProducerMethodKey18,
 				ClpSerializer.translateInput(wsrpProducerUuid));
 
 		try {
@@ -617,7 +662,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersMethodKey19,
 				companyId, start, end);
 
 		try {
@@ -644,7 +689,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersCountMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPProducersCountMethodKey20,
 				companyId);
 
 		try {
@@ -674,7 +719,7 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_updateWSRPProducerMethodKey21,
 				wsrpProducerId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(version),
 				ClpSerializer.translateInput(portletIds));
@@ -722,10 +767,12 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	private MethodKey _getWSRPProducersCountMethodKey11;
 	private MethodKey _updateWSRPProducerMethodKey12;
 	private MethodKey _updateWSRPProducerMethodKey13;
-	private MethodKey _addWSRPProducerMethodKey14;
-	private MethodKey _addWSRPProducerMethodKey15;
-	private MethodKey _getWSRPProducerMethodKey16;
-	private MethodKey _getWSRPProducersMethodKey17;
-	private MethodKey _getWSRPProducersCountMethodKey18;
-	private MethodKey _updateWSRPProducerMethodKey19;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addWSRPProducerMethodKey16;
+	private MethodKey _addWSRPProducerMethodKey17;
+	private MethodKey _getWSRPProducerMethodKey18;
+	private MethodKey _getWSRPProducersMethodKey19;
+	private MethodKey _getWSRPProducersCountMethodKey20;
+	private MethodKey _updateWSRPProducerMethodKey21;
 }

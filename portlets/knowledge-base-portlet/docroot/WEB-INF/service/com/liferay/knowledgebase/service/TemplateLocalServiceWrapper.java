@@ -237,6 +237,24 @@ public class TemplateLocalServiceWrapper implements TemplateLocalService {
 		return _templateLocalService.updateTemplate(template, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _templateLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_templateLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.knowledgebase.model.Template addTemplate(long userId,
 		java.lang.String title, java.lang.String content,
 		java.lang.String description,

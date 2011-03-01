@@ -234,6 +234,24 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.updateArticle(article, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _articleLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_articleLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.knowledgebase.model.Article addArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
 		java.lang.String content, java.lang.String description, long priority,

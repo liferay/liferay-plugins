@@ -220,6 +220,24 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService {
 		return _kaleoLogLocalService.updateKaleoLog(kaleoLog, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoLogLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoLogLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addActionExecutionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction,

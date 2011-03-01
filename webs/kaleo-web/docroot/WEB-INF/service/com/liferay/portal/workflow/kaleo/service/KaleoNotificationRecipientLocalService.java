@@ -211,6 +211,20 @@ public interface KaleoNotificationRecipientLocalService {
 		boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient addKaleoNotificationRecipient(
 		long kaleoDefinitionId, long kaleoNotificationId,
 		com.liferay.portal.workflow.kaleo.definition.Recipient recipient,

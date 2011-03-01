@@ -76,20 +76,26 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 				com.liferay.socialnetworking.model.MeetupsEntry.class,
 				boolean.class);
 
-		_addMeetupsEntryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addMeetupsEntryMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addMeetupsEntry", long.class, java.lang.String.class,
 				java.lang.String.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, int.class, double.class,
 				byte[].class);
 
-		_getMeetupsEntriesByCompanyMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsEntriesByCompanyMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsEntriesByCompany", long.class);
 
-		_getMeetupsEntriesByUserMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMeetupsEntriesByUserMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMeetupsEntriesByUser", long.class);
 
-		_updateMeetupsEntryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateMeetupsEntryMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMeetupsEntry", long.class, long.class,
 				java.lang.String.class, java.lang.String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class,
@@ -462,6 +468,45 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		return (com.liferay.socialnetworking.model.MeetupsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
 		long userId, java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,
@@ -472,7 +517,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addMeetupsEntryMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addMeetupsEntryMethodKey15,
 				userId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(description), startDateMonth,
 				startDateDay, startDateYear, startDateHour, startDateMinute,
@@ -509,7 +554,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesByCompanyMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesByCompanyMethodKey16,
 				companyId);
 
 		try {
@@ -536,7 +581,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 		long userId) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesByUserMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_getMeetupsEntriesByUserMethodKey17,
 				userId);
 
 		try {
@@ -570,7 +615,7 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_updateMeetupsEntryMethodKey18,
 				userId, meetupsEntryId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(description), startDateMonth,
 				startDateDay, startDateYear, startDateHour, startDateMinute,
@@ -620,8 +665,10 @@ public class MeetupsEntryLocalServiceClp implements MeetupsEntryLocalService {
 	private MethodKey _getMeetupsEntriesCountMethodKey10;
 	private MethodKey _updateMeetupsEntryMethodKey11;
 	private MethodKey _updateMeetupsEntryMethodKey12;
-	private MethodKey _addMeetupsEntryMethodKey13;
-	private MethodKey _getMeetupsEntriesByCompanyMethodKey14;
-	private MethodKey _getMeetupsEntriesByUserMethodKey15;
-	private MethodKey _updateMeetupsEntryMethodKey16;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addMeetupsEntryMethodKey15;
+	private MethodKey _getMeetupsEntriesByCompanyMethodKey16;
+	private MethodKey _getMeetupsEntriesByUserMethodKey17;
+	private MethodKey _updateMeetupsEntryMethodKey18;
 }

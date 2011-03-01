@@ -17,6 +17,7 @@ package com.liferay.sampleservicebuilder.service.base;
 import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -58,7 +59,8 @@ import javax.sql.DataSource;
  * @see com.liferay.sampleservicebuilder.service.FooLocalServiceUtil
  * @generated
  */
-public abstract class FooLocalServiceBaseImpl implements FooLocalService {
+public abstract class FooLocalServiceBaseImpl implements FooLocalService,
+	IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -546,6 +548,24 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 	}
 
 	/**
+	 * Gets the Spring bean ID for this bean.
+	 *
+	 * @return the Spring bean ID for this bean
+	 */
+	public String getBeanIdentifier() {
+		return _beanIdentifier;
+	}
+
+	/**
+	 * Sets the Spring bean ID for this bean.
+	 *
+	 * @param beanIdentifier the Spring bean ID for this bean
+	 */
+	public void setBeanIdentifier(String beanIdentifier) {
+		_beanIdentifier = beanIdentifier;
+	}
+
+	/**
 	 * Performs an SQL query.
 	 *
 	 * @param sql the sql query to perform
@@ -596,4 +616,5 @@ public abstract class FooLocalServiceBaseImpl implements FooLocalService {
 	protected AssetTagService assetTagService;
 	@BeanReference(type = AssetTagPersistence.class)
 	protected AssetTagPersistence assetTagPersistence;
+	private String _beanIdentifier;
 }

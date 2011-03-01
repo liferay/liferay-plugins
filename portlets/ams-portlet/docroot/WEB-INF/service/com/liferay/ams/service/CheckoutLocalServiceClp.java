@@ -71,6 +71,12 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		_updateCheckoutMethodKey12 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCheckout", com.liferay.ams.model.Checkout.class,
 				boolean.class);
+
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
 	}
 
 	public com.liferay.ams.model.Checkout addCheckout(
@@ -434,6 +440,45 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 		return (com.liferay.ams.model.Checkout)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -452,4 +497,6 @@ public class CheckoutLocalServiceClp implements CheckoutLocalService {
 	private MethodKey _getCheckoutsCountMethodKey10;
 	private MethodKey _updateCheckoutMethodKey11;
 	private MethodKey _updateCheckoutMethodKey12;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
 }

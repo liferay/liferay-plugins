@@ -224,6 +224,24 @@ public class KaleoTransitionLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoTransitionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoTransitionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoTransition addKaleoTransition(
 		long kaleoDefinitionId, long kaleoNodeId,
 		com.liferay.portal.workflow.kaleo.definition.Transition transition,

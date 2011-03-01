@@ -214,6 +214,24 @@ public class TypeLocalServiceWrapper implements TypeLocalService {
 		return _typeLocalService.updateType(type, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _typeLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_typeLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public TypeLocalService getWrappedTypeLocalService() {
 		return _typeLocalService;
 	}

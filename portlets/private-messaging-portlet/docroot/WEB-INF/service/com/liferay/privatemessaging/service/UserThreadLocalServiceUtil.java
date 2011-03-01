@@ -230,6 +230,24 @@ public class UserThreadLocalServiceUtil {
 		return getService().updateUserThread(userThread, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
 	public static com.liferay.portlet.messageboards.model.MBMessage addPrivateMessage(
 		long userId, long mbThreadId, java.lang.String to,
 		java.lang.String subject, java.lang.String body,

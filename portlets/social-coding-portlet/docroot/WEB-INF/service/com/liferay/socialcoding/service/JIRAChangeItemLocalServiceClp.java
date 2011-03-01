@@ -76,7 +76,13 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 				com.liferay.socialcoding.model.JIRAChangeItem.class,
 				boolean.class);
 
-		_getJIRAChangeItemsMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_getJIRAChangeItemsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getJIRAChangeItems", long.class);
 	}
 
@@ -445,12 +451,51 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 		return (com.liferay.socialcoding.model.JIRAChangeItem)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
 		long jiraChangeGroupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_getJIRAChangeItemsMethodKey15,
 				jiraChangeGroupId);
 
 		try {
@@ -491,5 +536,7 @@ public class JIRAChangeItemLocalServiceClp implements JIRAChangeItemLocalService
 	private MethodKey _getJIRAChangeItemsCountMethodKey10;
 	private MethodKey _updateJIRAChangeItemMethodKey11;
 	private MethodKey _updateJIRAChangeItemMethodKey12;
-	private MethodKey _getJIRAChangeItemsMethodKey13;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _getJIRAChangeItemsMethodKey15;
 }

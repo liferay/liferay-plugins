@@ -205,6 +205,20 @@ public interface EntryLocalService {
 		com.liferay.chat.model.Entry entry, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.chat.model.Entry addEntry(long fromUserId,
 		long toUserId, java.lang.String content)
 		throws com.liferay.portal.kernel.exception.SystemException;

@@ -221,6 +221,24 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService {
 		return _kaleoActionLocalService.updateKaleoAction(kaleoAction, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _kaleoActionLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_kaleoActionLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction addKaleoAction(
 		long kaleoDefinitionId, long kaleoNodeId,
 		java.lang.String kaleoNodeName,

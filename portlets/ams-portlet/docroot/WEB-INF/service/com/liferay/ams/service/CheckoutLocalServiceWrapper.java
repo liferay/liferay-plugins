@@ -217,6 +217,24 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService {
 		return _checkoutLocalService.updateCheckout(checkout, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _checkoutLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_checkoutLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public CheckoutLocalService getWrappedCheckoutLocalService() {
 		return _checkoutLocalService;
 	}

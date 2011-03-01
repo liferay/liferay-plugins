@@ -222,6 +222,24 @@ public class OAuthConsumerLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _oAuthConsumerLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_oAuthConsumerLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,

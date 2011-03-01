@@ -221,6 +221,24 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		return _meetupsEntryLocalService.updateMeetupsEntry(meetupsEntry, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _meetupsEntryLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_meetupsEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
 		long userId, java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,

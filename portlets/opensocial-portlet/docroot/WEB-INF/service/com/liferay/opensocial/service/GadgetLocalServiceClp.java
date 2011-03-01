@@ -72,38 +72,44 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 				"updateGadget", com.liferay.opensocial.model.Gadget.class,
 				boolean.class);
 
-		_addGadgetMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addGadgetMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addGadget", long.class, java.lang.String.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_destroyGadgetMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_destroyGadgetMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"destroyGadget", java.lang.String.class, long.class,
 				java.lang.String.class);
 
-		_destroyGadgetsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_destroyGadgetsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"destroyGadgets");
 
-		_getGadgetMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGadgetMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGadget", java.lang.String.class);
 
-		_getGadgetMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGadgetMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGadget", long.class, java.lang.String.class);
 
-		_getGadgetsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGadgetsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGadgets", long.class, int.class, int.class);
 
-		_getGadgetsCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGadgetsCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGadgetsCount", long.class);
 
-		_initGadgetMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_initGadgetMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initGadget", java.lang.String.class, long.class, long.class,
 				java.lang.String.class, java.lang.String.class);
 
-		_initGadgetsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_initGadgetsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initGadgets");
 
-		_updateGadgetMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateGadgetMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateGadget", long.class, java.lang.String.class);
 	}
 
@@ -473,6 +479,45 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		return (com.liferay.opensocial.model.Gadget)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.opensocial.model.Gadget addGadget(long companyId,
 		java.lang.String url, java.lang.String portletCategoryNames,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -480,7 +525,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addGadgetMethodKey15,
 				companyId, ClpSerializer.translateInput(url),
 				ClpSerializer.translateInput(portletCategoryNames),
 				ClpSerializer.translateInput(serviceContext));
@@ -513,7 +558,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_destroyGadgetMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_destroyGadgetMethodKey16,
 				ClpSerializer.translateInput(uuid), companyId,
 				ClpSerializer.translateInput(name));
 
@@ -542,7 +587,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_destroyGadgetsMethodKey15);
+		MethodHandler methodHandler = new MethodHandler(_destroyGadgetsMethodKey17);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -571,7 +616,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey18,
 				ClpSerializer.translateInput(uuid));
 
 		try {
@@ -604,7 +649,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getGadgetMethodKey19,
 				companyId, ClpSerializer.translateInput(url));
 
 		try {
@@ -636,7 +681,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGadgetsMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getGadgetsMethodKey20,
 				companyId, start, end);
 
 		try {
@@ -663,7 +708,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGadgetsCountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getGadgetsCountMethodKey21,
 				companyId);
 
 		try {
@@ -691,7 +736,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		java.lang.String portletCategoryNames)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_initGadgetMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_initGadgetMethodKey22,
 				ClpSerializer.translateInput(uuid), companyId, gadgetId,
 				ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(portletCategoryNames));
@@ -721,7 +766,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void initGadgets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_initGadgetsMethodKey21);
+		MethodHandler methodHandler = new MethodHandler(_initGadgetsMethodKey23);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -751,7 +796,7 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_updateGadgetMethodKey24,
 				gadgetId, ClpSerializer.translateInput(portletCategoryNames));
 
 		try {
@@ -796,14 +841,16 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	private MethodKey _getGadgetsCountMethodKey10;
 	private MethodKey _updateGadgetMethodKey11;
 	private MethodKey _updateGadgetMethodKey12;
-	private MethodKey _addGadgetMethodKey13;
-	private MethodKey _destroyGadgetMethodKey14;
-	private MethodKey _destroyGadgetsMethodKey15;
-	private MethodKey _getGadgetMethodKey16;
-	private MethodKey _getGadgetMethodKey17;
-	private MethodKey _getGadgetsMethodKey18;
-	private MethodKey _getGadgetsCountMethodKey19;
-	private MethodKey _initGadgetMethodKey20;
-	private MethodKey _initGadgetsMethodKey21;
-	private MethodKey _updateGadgetMethodKey22;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addGadgetMethodKey15;
+	private MethodKey _destroyGadgetMethodKey16;
+	private MethodKey _destroyGadgetsMethodKey17;
+	private MethodKey _getGadgetMethodKey18;
+	private MethodKey _getGadgetMethodKey19;
+	private MethodKey _getGadgetsMethodKey20;
+	private MethodKey _getGadgetsCountMethodKey21;
+	private MethodKey _initGadgetMethodKey22;
+	private MethodKey _initGadgetsMethodKey23;
+	private MethodKey _updateGadgetMethodKey24;
 }

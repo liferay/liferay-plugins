@@ -209,6 +209,20 @@ public interface OAuthConsumerLocalService {
 		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.opensocial.model.OAuthConsumer addOAuthConsumer(
 		long companyId, long gadgetId, java.lang.String serviceName,
 		java.lang.String consumerKey, java.lang.String consumerSecret,

@@ -215,6 +215,24 @@ public class AssetLocalServiceWrapper implements AssetLocalService {
 		return _assetLocalService.updateAsset(asset, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _assetLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_assetLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public AssetLocalService getWrappedAssetLocalService() {
 		return _assetLocalService;
 	}

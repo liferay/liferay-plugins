@@ -218,6 +218,24 @@ public class MessageLocalServiceWrapper implements MessageLocalService {
 		return _messageLocalService.updateMessage(message, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _messageLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_messageLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.mail.model.Message addMessage(long userId,
 		long folderId, java.lang.String sender, java.lang.String to,
 		java.lang.String cc, java.lang.String bcc, java.util.Date sentDate,

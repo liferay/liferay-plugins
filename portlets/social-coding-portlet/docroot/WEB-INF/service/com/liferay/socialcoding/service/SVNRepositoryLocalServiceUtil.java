@@ -231,6 +231,24 @@ public class SVNRepositoryLocalServiceUtil {
 		return getService().updateSVNRepository(svnRepository, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
 	public static com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,

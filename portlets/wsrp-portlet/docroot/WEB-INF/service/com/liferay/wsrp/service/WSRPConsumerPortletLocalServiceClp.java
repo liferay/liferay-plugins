@@ -76,54 +76,60 @@ public class WSRPConsumerPortletLocalServiceClp
 				"updateWSRPConsumerPortlet",
 				com.liferay.wsrp.model.WSRPConsumerPortlet.class, boolean.class);
 
-		_addWSRPConsumerPortletMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addWSRPConsumerPortletMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPConsumerPortlet", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_addWSRPConsumerPortletMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_addWSRPConsumerPortletMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addWSRPConsumerPortlet", java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteWSRPConsumerPortletMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteWSRPConsumerPortletMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteWSRPConsumerPortlet", java.lang.String.class);
 
-		_deleteWSRPConsumerPortletsMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteWSRPConsumerPortletsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteWSRPConsumerPortlets", long.class);
 
-		_destroyWSRPConsumerPortletMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_destroyWSRPConsumerPortletMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"destroyWSRPConsumerPortlet", long.class,
 				java.lang.String.class, java.lang.String.class);
 
-		_destroyWSRPConsumerPortletsMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_destroyWSRPConsumerPortletsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"destroyWSRPConsumerPortlets");
 
-		_getWSRPConsumerPortletMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPConsumerPortletMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPConsumerPortlet", java.lang.String.class);
 
-		_getWSRPConsumerPortletMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPConsumerPortletMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPConsumerPortlet", long.class, java.lang.String.class);
 
-		_getWSRPConsumerPortletsMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPConsumerPortletsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPConsumerPortlets", long.class, int.class, int.class);
 
-		_getWSRPConsumerPortletsCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getWSRPConsumerPortletsCountMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getWSRPConsumerPortletsCount", long.class);
 
-		_initFailedWSRPConsumerPortletsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_initFailedWSRPConsumerPortletsMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initFailedWSRPConsumerPortlets");
 
-		_initWSRPConsumerPortletMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_initWSRPConsumerPortletMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initWSRPConsumerPortlet", long.class, long.class, long.class,
 				java.lang.String.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class);
 
-		_initWSRPConsumerPortletsMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
+		_initWSRPConsumerPortletsMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"initWSRPConsumerPortlets");
 
-		_updateWSRPConsumerPortletMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateWSRPConsumerPortletMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateWSRPConsumerPortlet", long.class, java.lang.String.class);
 	}
 
@@ -497,6 +503,45 @@ public class WSRPConsumerPortletLocalServiceClp
 		return (com.liferay.wsrp.model.WSRPConsumerPortlet)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.wsrp.model.WSRPConsumerPortlet addWSRPConsumerPortlet(
 		long wsrpConsumerId, java.lang.String name,
 		java.lang.String portletHandle, java.lang.String userToken,
@@ -505,7 +550,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerPortletMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerPortletMethodKey15,
 				wsrpConsumerId, ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(portletHandle),
 				ClpSerializer.translateInput(userToken),
@@ -543,7 +588,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerPortletMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_addWSRPConsumerPortletMethodKey16,
 				ClpSerializer.translateInput(wsrpConsumerUuid),
 				ClpSerializer.translateInput(name),
 				ClpSerializer.translateInput(portletHandle),
@@ -578,7 +623,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		java.lang.String wsrpConsumerPortletUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteWSRPConsumerPortletMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_deleteWSRPConsumerPortletMethodKey17,
 				ClpSerializer.translateInput(wsrpConsumerPortletUuid));
 
 		try {
@@ -606,7 +651,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	public void deleteWSRPConsumerPortlets(long wsrpConsumerId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteWSRPConsumerPortletsMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_deleteWSRPConsumerPortletsMethodKey18,
 				wsrpConsumerId);
 
 		try {
@@ -633,7 +678,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public void destroyWSRPConsumerPortlet(long wsrpConsumerPortletId,
 		java.lang.String wsrpConsumerPortletUuid, java.lang.String url) {
-		MethodHandler methodHandler = new MethodHandler(_destroyWSRPConsumerPortletMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_destroyWSRPConsumerPortletMethodKey19,
 				wsrpConsumerPortletId,
 				ClpSerializer.translateInput(wsrpConsumerPortletUuid),
 				ClpSerializer.translateInput(url));
@@ -655,7 +700,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	public void destroyWSRPConsumerPortlets()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_destroyWSRPConsumerPortletsMethodKey18);
+		MethodHandler methodHandler = new MethodHandler(_destroyWSRPConsumerPortletsMethodKey20);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -685,7 +730,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletMethodKey21,
 				ClpSerializer.translateInput(wsrpConsumerPortletUuid));
 
 		try {
@@ -718,7 +763,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletMethodKey22,
 				wsrpConsumerId, ClpSerializer.translateInput(portletHandle));
 
 		try {
@@ -750,7 +795,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletsMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletsMethodKey23,
 				wsrpConsumerId, start, end);
 
 		try {
@@ -777,7 +822,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletsCountMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_getWSRPConsumerPortletsCountMethodKey24,
 				wsrpConsumerId);
 
 		try {
@@ -801,7 +846,7 @@ public class WSRPConsumerPortletLocalServiceClp
 	}
 
 	public void initFailedWSRPConsumerPortlets() {
-		MethodHandler methodHandler = new MethodHandler(_initFailedWSRPConsumerPortletsMethodKey23);
+		MethodHandler methodHandler = new MethodHandler(_initFailedWSRPConsumerPortletsMethodKey25);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -823,7 +868,7 @@ public class WSRPConsumerPortletLocalServiceClp
 		java.lang.String userToken)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_initWSRPConsumerPortletMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_initWSRPConsumerPortletMethodKey26,
 				companyId, wsrpConsumerId, wsrpConsumerPortletId,
 				ClpSerializer.translateInput(wsrpConsumerPortletUuid),
 				ClpSerializer.translateInput(name),
@@ -854,7 +899,7 @@ public class WSRPConsumerPortletLocalServiceClp
 
 	public void initWSRPConsumerPortlets()
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_initWSRPConsumerPortletsMethodKey25);
+		MethodHandler methodHandler = new MethodHandler(_initWSRPConsumerPortletsMethodKey27);
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
@@ -880,7 +925,7 @@ public class WSRPConsumerPortletLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerPortletMethodKey26,
+		MethodHandler methodHandler = new MethodHandler(_updateWSRPConsumerPortletMethodKey28,
 				wsrpConsumerPortletId, ClpSerializer.translateInput(name));
 
 		try {
@@ -925,18 +970,20 @@ public class WSRPConsumerPortletLocalServiceClp
 	private MethodKey _getWSRPConsumerPortletsCountMethodKey10;
 	private MethodKey _updateWSRPConsumerPortletMethodKey11;
 	private MethodKey _updateWSRPConsumerPortletMethodKey12;
-	private MethodKey _addWSRPConsumerPortletMethodKey13;
-	private MethodKey _addWSRPConsumerPortletMethodKey14;
-	private MethodKey _deleteWSRPConsumerPortletMethodKey15;
-	private MethodKey _deleteWSRPConsumerPortletsMethodKey16;
-	private MethodKey _destroyWSRPConsumerPortletMethodKey17;
-	private MethodKey _destroyWSRPConsumerPortletsMethodKey18;
-	private MethodKey _getWSRPConsumerPortletMethodKey19;
-	private MethodKey _getWSRPConsumerPortletMethodKey20;
-	private MethodKey _getWSRPConsumerPortletsMethodKey21;
-	private MethodKey _getWSRPConsumerPortletsCountMethodKey22;
-	private MethodKey _initFailedWSRPConsumerPortletsMethodKey23;
-	private MethodKey _initWSRPConsumerPortletMethodKey24;
-	private MethodKey _initWSRPConsumerPortletsMethodKey25;
-	private MethodKey _updateWSRPConsumerPortletMethodKey26;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addWSRPConsumerPortletMethodKey15;
+	private MethodKey _addWSRPConsumerPortletMethodKey16;
+	private MethodKey _deleteWSRPConsumerPortletMethodKey17;
+	private MethodKey _deleteWSRPConsumerPortletsMethodKey18;
+	private MethodKey _destroyWSRPConsumerPortletMethodKey19;
+	private MethodKey _destroyWSRPConsumerPortletsMethodKey20;
+	private MethodKey _getWSRPConsumerPortletMethodKey21;
+	private MethodKey _getWSRPConsumerPortletMethodKey22;
+	private MethodKey _getWSRPConsumerPortletsMethodKey23;
+	private MethodKey _getWSRPConsumerPortletsCountMethodKey24;
+	private MethodKey _initFailedWSRPConsumerPortletsMethodKey25;
+	private MethodKey _initWSRPConsumerPortletMethodKey26;
+	private MethodKey _initWSRPConsumerPortletsMethodKey27;
+	private MethodKey _updateWSRPConsumerPortletMethodKey28;
 }

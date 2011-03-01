@@ -28,6 +28,7 @@ import com.liferay.knowledgebase.service.persistence.CommentPersistence;
 import com.liferay.knowledgebase.service.persistence.TemplatePersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -75,7 +76,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class ArticleServiceBaseImpl extends PrincipalBean
-	implements ArticleService {
+	implements ArticleService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -762,6 +763,24 @@ public abstract class ArticleServiceBaseImpl extends PrincipalBean
 	}
 
 	/**
+	 * Gets the Spring bean ID for this bean.
+	 *
+	 * @return the Spring bean ID for this bean
+	 */
+	public String getBeanIdentifier() {
+		return _beanIdentifier;
+	}
+
+	/**
+	 * Sets the Spring bean ID for this bean.
+	 *
+	 * @param beanIdentifier the Spring bean ID for this bean
+	 */
+	public void setBeanIdentifier(String beanIdentifier) {
+		_beanIdentifier = beanIdentifier;
+	}
+
+	/**
 	 * Performs an SQL query.
 	 *
 	 * @param sql the sql query to perform
@@ -854,4 +873,5 @@ public abstract class ArticleServiceBaseImpl extends PrincipalBean
 	protected SocialActivityLocalService socialActivityLocalService;
 	@BeanReference(type = SocialActivityPersistence.class)
 	protected SocialActivityPersistence socialActivityPersistence;
+	private String _beanIdentifier;
 }

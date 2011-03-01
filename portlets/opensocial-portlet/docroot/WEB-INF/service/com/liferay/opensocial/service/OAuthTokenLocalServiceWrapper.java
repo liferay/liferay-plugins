@@ -220,6 +220,24 @@ public class OAuthTokenLocalServiceWrapper implements OAuthTokenLocalService {
 		return _oAuthTokenLocalService.updateOAuthToken(oAuthToken, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _oAuthTokenLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_oAuthTokenLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.opensocial.model.OAuthToken addOAuthToken(long userId,
 		long gadgetId, java.lang.String serviceName, long moduleId,
 		java.lang.String accessToken, java.lang.String tokenName,

@@ -227,6 +227,24 @@ public class StatusLocalServiceUtil {
 		return getService().updateStatus(status, merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public static java.lang.String getBeanIdentifier() {
+		return getService().getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public static void setBeanIdentifier(java.lang.String beanIdentifier) {
+		getService().setBeanIdentifier(beanIdentifier);
+	}
+
 	public static java.util.List<java.lang.Object[]> getAllStatuses(
 		long companyId, long userId, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

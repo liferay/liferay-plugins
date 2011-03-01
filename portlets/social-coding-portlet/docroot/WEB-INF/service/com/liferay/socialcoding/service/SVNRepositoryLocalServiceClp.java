@@ -76,10 +76,16 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 				com.liferay.socialcoding.model.SVNRepository.class,
 				boolean.class);
 
-		_getSVNRepositoryMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_getSVNRepositoryMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getSVNRepository", java.lang.String.class);
 
-		_updateSVNRepositoryMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateSVNRepositoryMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateSVNRepository", java.lang.String.class);
 	}
 
@@ -448,13 +454,52 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 		return (com.liferay.socialcoding.model.SVNRepository)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.socialcoding.model.SVNRepository getSVNRepository(
 		java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoryMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_getSVNRepositoryMethodKey15,
 				ClpSerializer.translateInput(url));
 
 		try {
@@ -484,7 +529,7 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	public void updateSVNRepository(java.lang.String url)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_updateSVNRepositoryMethodKey16,
 				ClpSerializer.translateInput(url));
 
 		try {
@@ -527,6 +572,8 @@ public class SVNRepositoryLocalServiceClp implements SVNRepositoryLocalService {
 	private MethodKey _getSVNRepositoriesCountMethodKey10;
 	private MethodKey _updateSVNRepositoryMethodKey11;
 	private MethodKey _updateSVNRepositoryMethodKey12;
-	private MethodKey _getSVNRepositoryMethodKey13;
-	private MethodKey _updateSVNRepositoryMethodKey14;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _getSVNRepositoryMethodKey15;
+	private MethodKey _updateSVNRepositoryMethodKey16;
 }

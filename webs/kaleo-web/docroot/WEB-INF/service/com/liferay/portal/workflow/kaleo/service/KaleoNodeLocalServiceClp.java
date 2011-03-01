@@ -76,15 +76,21 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 				com.liferay.portal.workflow.kaleo.model.KaleoNode.class,
 				boolean.class);
 
-		_addKaleoNodeMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addKaleoNodeMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addKaleoNode", long.class,
 				com.liferay.portal.workflow.kaleo.definition.Node.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteCompanyKaleoNodesMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCompanyKaleoNodesMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteCompanyKaleoNodes", long.class);
 
-		_deleteKaleoDefinitionKaleoNodesMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteKaleoDefinitionKaleoNodesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteKaleoDefinitionKaleoNodes", long.class);
 	}
 
@@ -453,6 +459,45 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 		return (com.liferay.portal.workflow.kaleo.model.KaleoNode)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode addKaleoNode(
 		long kaleoDefinitionId,
 		com.liferay.portal.workflow.kaleo.definition.Node node,
@@ -461,7 +506,7 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addKaleoNodeMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addKaleoNodeMethodKey15,
 				kaleoDefinitionId, ClpSerializer.translateInput(node),
 				ClpSerializer.translateInput(serviceContext));
 
@@ -491,7 +536,7 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 
 	public void deleteCompanyKaleoNodes(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoNodesMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_deleteCompanyKaleoNodesMethodKey16,
 				companyId);
 
 		try {
@@ -514,7 +559,7 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 
 	public void deleteKaleoDefinitionKaleoNodes(long kaleoDefinitionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoNodesMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_deleteKaleoDefinitionKaleoNodesMethodKey17,
 				kaleoDefinitionId);
 
 		try {
@@ -553,7 +598,9 @@ public class KaleoNodeLocalServiceClp implements KaleoNodeLocalService {
 	private MethodKey _getKaleoNodesCountMethodKey10;
 	private MethodKey _updateKaleoNodeMethodKey11;
 	private MethodKey _updateKaleoNodeMethodKey12;
-	private MethodKey _addKaleoNodeMethodKey13;
-	private MethodKey _deleteCompanyKaleoNodesMethodKey14;
-	private MethodKey _deleteKaleoDefinitionKaleoNodesMethodKey15;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addKaleoNodeMethodKey15;
+	private MethodKey _deleteCompanyKaleoNodesMethodKey16;
+	private MethodKey _deleteKaleoDefinitionKaleoNodesMethodKey17;
 }

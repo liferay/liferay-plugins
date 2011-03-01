@@ -27,6 +27,7 @@ import com.liferay.ams.service.persistence.TypePersistence;
 import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -57,7 +58,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class CheckoutLocalServiceBaseImpl
-	implements CheckoutLocalService {
+	implements CheckoutLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -517,6 +518,24 @@ public abstract class CheckoutLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the Spring bean ID for this bean.
+	 *
+	 * @return the Spring bean ID for this bean
+	 */
+	public String getBeanIdentifier() {
+		return _beanIdentifier;
+	}
+
+	/**
+	 * Sets the Spring bean ID for this bean.
+	 *
+	 * @param beanIdentifier the Spring bean ID for this bean
+	 */
+	public void setBeanIdentifier(String beanIdentifier) {
+		_beanIdentifier = beanIdentifier;
+	}
+
+	/**
 	 * Performs an SQL query.
 	 *
 	 * @param sql the sql query to perform
@@ -565,4 +584,5 @@ public abstract class CheckoutLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private String _beanIdentifier;
 }

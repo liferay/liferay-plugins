@@ -75,26 +75,32 @@ public class CommentLocalServiceClp implements CommentLocalService {
 				"updateComment", com.liferay.knowledgebase.model.Comment.class,
 				boolean.class);
 
-		_addCommentMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addCommentMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addComment", long.class, long.class, long.class,
 				java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_deleteCommentsMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteCommentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteComments", java.lang.String.class, long.class);
 
-		_getCommentMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCommentMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getComment", long.class, java.lang.String.class, long.class);
 
-		_getCommentsMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCommentsMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getComments", java.lang.String.class, long.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getCommentsCountMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getCommentsCountMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getCommentsCount", java.lang.String.class, long.class);
 
-		_updateCommentMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCommentMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateComment", long.class, long.class, long.class,
 				java.lang.String.class, boolean.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -494,6 +500,45 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		return (com.liferay.knowledgebase.model.Comment)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey14);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey15,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.knowledgebase.model.Comment addComment(long userId,
 		long classNameId, long classPK, java.lang.String content,
 		boolean helpful,
@@ -502,7 +547,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addCommentMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_addCommentMethodKey16,
 				userId, classNameId, classPK,
 				ClpSerializer.translateInput(content), helpful,
 				ClpSerializer.translateInput(serviceContext));
@@ -533,7 +578,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 
 	public void deleteComments(java.lang.String className, long classPK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteCommentsMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_deleteCommentsMethodKey17,
 				ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -560,7 +605,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCommentMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getCommentMethodKey18,
 				userId, ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -593,7 +638,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCommentsMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getCommentsMethodKey19,
 				ClpSerializer.translateInput(className), classPK, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -621,7 +666,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getCommentsCountMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getCommentsCountMethodKey20,
 				ClpSerializer.translateInput(className), classPK);
 
 		try {
@@ -652,7 +697,7 @@ public class CommentLocalServiceClp implements CommentLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_updateCommentMethodKey21,
 				commentId, classNameId, classPK,
 				ClpSerializer.translateInput(content), helpful,
 				ClpSerializer.translateInput(serviceContext));
@@ -700,10 +745,12 @@ public class CommentLocalServiceClp implements CommentLocalService {
 	private MethodKey _getCommentsCountMethodKey11;
 	private MethodKey _updateCommentMethodKey12;
 	private MethodKey _updateCommentMethodKey13;
-	private MethodKey _addCommentMethodKey14;
-	private MethodKey _deleteCommentsMethodKey15;
-	private MethodKey _getCommentMethodKey16;
-	private MethodKey _getCommentsMethodKey17;
-	private MethodKey _getCommentsCountMethodKey18;
-	private MethodKey _updateCommentMethodKey19;
+	private MethodKey _getBeanIdentifierMethodKey14;
+	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addCommentMethodKey16;
+	private MethodKey _deleteCommentsMethodKey17;
+	private MethodKey _getCommentMethodKey18;
+	private MethodKey _getCommentsMethodKey19;
+	private MethodKey _getCommentsCountMethodKey20;
+	private MethodKey _updateCommentMethodKey21;
 }

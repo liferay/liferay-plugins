@@ -209,6 +209,20 @@ public interface KaleoLogLocalService {
 		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addActionExecutionKaleoLog(
 		com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken kaleoInstanceToken,
 		com.liferay.portal.workflow.kaleo.model.KaleoAction kaleoAction,

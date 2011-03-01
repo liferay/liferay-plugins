@@ -222,6 +222,24 @@ public class ProjectsEntryLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _projectsEntryLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_projectsEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.so.model.ProjectsEntry addProjectsEntry(long userId,
 		java.lang.String title, java.lang.String description,
 		int startDateMonth, int startDateDay, int startDateYear,

@@ -72,29 +72,35 @@ public class FolderLocalServiceClp implements FolderLocalService {
 				"updateFolder", com.liferay.mail.model.Folder.class,
 				boolean.class);
 
-		_addFolderMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getBeanIdentifierMethodKey13 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getBeanIdentifier");
+
+		_setBeanIdentifierMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+				"setBeanIdentifier", java.lang.String.class);
+
+		_addFolderMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addFolder", long.class, long.class, java.lang.String.class,
 				java.lang.String.class, int.class);
 
-		_deleteFoldersMethodKey14 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteFoldersMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteFolders", long.class);
 
-		_getFolderMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFolderMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFolder", long.class, java.lang.String.class);
 
-		_getFoldersMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getFoldersMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getFolders", long.class);
 
-		_getLocalPageCountMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getLocalPageCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getLocalPageCount", long.class, int.class);
 
-		_getPercentDownloadedMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getPercentDownloadedMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getPercentDownloaded", long.class);
 
-		_getRemotePageCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getRemotePageCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getRemotePageCount", long.class, int.class);
 
-		_updateFolderMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateFolderMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateFolder", long.class, java.lang.String.class,
 				java.lang.String.class, int.class);
 	}
@@ -464,6 +470,45 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		return (com.liferay.mail.model.Folder)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getBeanIdentifier() {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getBeanIdentifierMethodKey13);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		MethodHandler methodHandler = new MethodHandler(_setBeanIdentifierMethodKey14,
+				ClpSerializer.translateInput(beanIdentifier));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public com.liferay.mail.model.Folder addFolder(long userId, long accountId,
 		java.lang.String fullName, java.lang.String displayName,
 		int remoteMessageCount)
@@ -471,7 +516,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addFolderMethodKey13,
+		MethodHandler methodHandler = new MethodHandler(_addFolderMethodKey15,
 				userId, accountId, ClpSerializer.translateInput(fullName),
 				ClpSerializer.translateInput(displayName), remoteMessageCount);
 
@@ -502,7 +547,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	public void deleteFolders(long accountId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_deleteFoldersMethodKey14,
+		MethodHandler methodHandler = new MethodHandler(_deleteFoldersMethodKey16,
 				accountId);
 
 		try {
@@ -533,7 +578,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFolderMethodKey15,
+		MethodHandler methodHandler = new MethodHandler(_getFolderMethodKey17,
 				accountId, ClpSerializer.translateInput(fullName));
 
 		try {
@@ -565,7 +610,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getFoldersMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_getFoldersMethodKey18,
 				accountId);
 
 		try {
@@ -592,7 +637,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getLocalPageCountMethodKey17,
+		MethodHandler methodHandler = new MethodHandler(_getLocalPageCountMethodKey19,
 				folderId, messagesPerPage);
 
 		try {
@@ -620,7 +665,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getPercentDownloadedMethodKey18,
+		MethodHandler methodHandler = new MethodHandler(_getPercentDownloadedMethodKey20,
 				folderId);
 
 		try {
@@ -652,7 +697,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getRemotePageCountMethodKey19,
+		MethodHandler methodHandler = new MethodHandler(_getRemotePageCountMethodKey21,
 				folderId, messagesPerPage);
 
 		try {
@@ -686,7 +731,7 @@ public class FolderLocalServiceClp implements FolderLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateFolderMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_updateFolderMethodKey22,
 				folderId, ClpSerializer.translateInput(fullName),
 				ClpSerializer.translateInput(displayName), remoteMessageCount);
 
@@ -732,12 +777,14 @@ public class FolderLocalServiceClp implements FolderLocalService {
 	private MethodKey _getFoldersCountMethodKey10;
 	private MethodKey _updateFolderMethodKey11;
 	private MethodKey _updateFolderMethodKey12;
-	private MethodKey _addFolderMethodKey13;
-	private MethodKey _deleteFoldersMethodKey14;
-	private MethodKey _getFolderMethodKey15;
-	private MethodKey _getFoldersMethodKey16;
-	private MethodKey _getLocalPageCountMethodKey17;
-	private MethodKey _getPercentDownloadedMethodKey18;
-	private MethodKey _getRemotePageCountMethodKey19;
-	private MethodKey _updateFolderMethodKey20;
+	private MethodKey _getBeanIdentifierMethodKey13;
+	private MethodKey _setBeanIdentifierMethodKey14;
+	private MethodKey _addFolderMethodKey15;
+	private MethodKey _deleteFoldersMethodKey16;
+	private MethodKey _getFolderMethodKey17;
+	private MethodKey _getFoldersMethodKey18;
+	private MethodKey _getLocalPageCountMethodKey19;
+	private MethodKey _getPercentDownloadedMethodKey20;
+	private MethodKey _getRemotePageCountMethodKey21;
+	private MethodKey _updateFolderMethodKey22;
 }

@@ -226,6 +226,20 @@ public interface WSRPProducerLocalService {
 		com.liferay.wsrp.model.WSRPProducer wsrpProducer, boolean merge)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier();
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
 	public com.liferay.wsrp.model.WSRPProducer addWSRPProducer(long userId,
 		java.lang.String name, java.lang.String version,
 		java.lang.String portletIds,
