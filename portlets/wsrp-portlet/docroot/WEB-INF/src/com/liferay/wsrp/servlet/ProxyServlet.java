@@ -18,7 +18,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.servlet.ServletResponseUtil;
+import com.liferay.wsrp.util.PortletPropsValues;
 import com.liferay.wsrp.util.WebKeys;
 
 import java.io.IOException;
@@ -43,7 +45,7 @@ public class ProxyServlet extends HttpServlet {
 		try {
 			String url = ParamUtil.getString(request, "url");
 
-			if (!url.startsWith("file:/")) {
+			if (isAllowedURL(url)) {
 				proxyURL(request, response, new URL(url));
 			}
 		}
@@ -76,6 +78,28 @@ public class ProxyServlet extends HttpServlet {
 
 		ServletResponseUtil.write(response, urlConnection.getInputStream());
 	}
+
+	protected boolean isAllowedURL(String url)
+		throws Exception {
+
+		if (PortletPropsValues.PROXY_URL_IPS_ALLOWED.length == 0) {
+			return true;
+		}
+		else {
+			String serverIp = PortalUtil.getComputerAddress();
+
+			for (String ip : PortletPropsValues.PROXY_URL_IPS_ALLOWED) {
+				if ((ip.equals(_SERVER_IP) && url.contains(serverIp)) ||
+					url.contains(ip)) {
+
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private static final String _SERVER_IP = "SERVER_IP";
 
 	private static Log _log = LogFactoryUtil.getLog(ProxyServlet.class);
 

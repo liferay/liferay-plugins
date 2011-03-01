@@ -22,6 +22,8 @@ public class PortletPropsKeys {
 	public static final String CONSUMER_REQUEST_EXTENSIONS =
 		"consumer.request.extensions";
 
+	public static final String PROXY_URL_IPS_ALLOWED = "proxy.url.ips.allowed";
+
 	public static final String SECURE_RESOURCE_URLS_ENABLED =
 		"secure.resource.urls.enabled";
 
