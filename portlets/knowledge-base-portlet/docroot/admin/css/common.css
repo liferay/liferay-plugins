@@ -1,5 +1,13 @@
 /* ---------- Configuration ---------- */
 
+.portlet-configuration .kb-field-wrapper {
+	margin: 10px 0;
+}
+
+.portlet-configuration .kb-field-wrapper .aui-field-wrapper-content {
+	margin: 0;
+}
+
 .portlet-configuration .kb-submit-buttons {
 	margin: 0;
 	padding: 10px 0 0;
@@ -8,7 +16,7 @@
 /* ---------- Portal ---------- */
 
 .knowledge-base-portlet .aui-fieldset {
-	padding: 0px;
+	padding: 0;
 }
 
 .knowledge-base-portlet .aui-fieldset .aui-field-text .aui-field-element {
@@ -191,6 +199,6 @@
 }
 
 .knowledge-base-portlet .kb-submit-buttons {
-	margin: 0;
-	padding: 10px 0 0;
+	margin-top: 0;
+	padding-top: 10px;
 }

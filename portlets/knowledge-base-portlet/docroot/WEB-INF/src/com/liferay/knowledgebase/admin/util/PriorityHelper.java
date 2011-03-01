@@ -30,9 +30,9 @@ import java.util.List;
  */
 public class PriorityHelper {
 
-	public static final int INTERVAL_SIZE = 200;
+	public static final int INTERVAL = 200;
 
-	public static final long MINIMUM_INCREMENT_SIZE = 1000;
+	public static final long MINIMUM_INCREMENT = 1000;
 
 	public static int getHumanPriority(
 			long groupId, long resourcePrimKey, long parentResourcePrimKey,
@@ -49,7 +49,7 @@ public class PriorityHelper {
 		int start = 0;
 		int end = count;
 
-		while ((end - start) > INTERVAL_SIZE) {
+		while ((end - start) > INTERVAL) {
 			int mid = (end - start) / 2;
 
 			List<Article> articles = ArticleServiceUtil.getSiblingArticles(
@@ -109,12 +109,12 @@ public class PriorityHelper {
 				1, new ArticlePriorityComparator());
 
 			if (articles.isEmpty()) {
-				return MINIMUM_INCREMENT_SIZE;
+				return MINIMUM_INCREMENT;
 			}
 
 			Article article = articles.get(0);
 
-			return article.getPriority() + MINIMUM_INCREMENT_SIZE;
+			return article.getPriority() + MINIMUM_INCREMENT;
 		}
 
 		if (nextArticle.getResourcePrimKey() == resourcePrimKey) {
@@ -170,7 +170,7 @@ public class PriorityHelper {
 		int start = 0;
 		int end = count;
 
-		while ((end - start) > INTERVAL_SIZE) {
+		while ((end - start) > INTERVAL) {
 			int mid = (end - start) / 2;
 
 			List<Article> articles = ArticleLocalServiceUtil.getSiblingArticles(

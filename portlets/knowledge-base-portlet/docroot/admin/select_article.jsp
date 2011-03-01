@@ -62,11 +62,9 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				</portlet:renderURL>
 
 				<%
-				List<Article> articles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, curArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY, 0, 1, null);
-
 				String titleHREF = null;
 
-				if ((curArticle.getResourcePrimKey() != resourcePrimKey) && !articles.isEmpty()) {
+				if ((curArticle.getResourcePrimKey() != resourcePrimKey) && (ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, curArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY) > 0)) {
 					titleHREF = rowURL;
 				}
 				%>

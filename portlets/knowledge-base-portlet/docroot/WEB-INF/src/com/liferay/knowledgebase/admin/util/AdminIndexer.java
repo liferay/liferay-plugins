@@ -46,6 +46,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
+import com.liferay.util.UniqueList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -323,20 +324,14 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected String[] splitKeywords(String keywords) {
-		keywords = keywords.trim();
-
-		if (Validator.isNull(keywords)) {
-			return new String[0];
-		}
-
-		List<String> keywordsList = new ArrayList<String>();
+		List<String> list = new UniqueList<String>();
 
 		StringBundler sb = new StringBundler();
 
 		for (char c : keywords.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					keywordsList.add(sb.toString());
+					list.add(sb.toString());
 
 					sb = new StringBundler();
 				}
@@ -345,15 +340,15 @@ public class AdminIndexer extends BaseIndexer {
 				sb.append(c);
 			}
 			else {
-				return new String[0];
+				return new String[] {keywords};
 			}
 		}
 
 		if (sb.length() > 0) {
-			keywordsList.add(sb.toString());
+			list.add(sb.toString());
 		}
 
-		return keywordsList.toArray(new String[keywordsList.size()]);
+		return StringUtil.split(StringUtil.merge(list));
 	}
 
 	private static final boolean _FILTER_SEARCH = true;

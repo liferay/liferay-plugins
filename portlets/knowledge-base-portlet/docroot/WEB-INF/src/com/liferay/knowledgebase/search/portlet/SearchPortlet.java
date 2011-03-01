@@ -18,7 +18,6 @@ import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.CommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
-import com.liferay.knowledgebase.admin.portlet.AdminPortlet;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
@@ -37,6 +36,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.IOException;
@@ -54,7 +54,7 @@ import javax.portlet.ResourceResponse;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class SearchPortlet extends AdminPortlet {
+public class SearchPortlet extends MVCPortlet {
 
 	public void deleteComment(
 			ActionRequest actionRequest, ActionResponse actionResponse)

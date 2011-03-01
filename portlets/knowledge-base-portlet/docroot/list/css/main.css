@@ -1,13 +1,3 @@
-/* ---------- Configuration ---------- */
-
-.portlet-configuration .aui-field-wrapper-content {
-	margin: 0;
-}
-
-.portlet-configuration .kb-field-wrapper {
-	margin: 10px 0;
-}
-
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-list .kb-articles-panel .lfr-panel-titlebar {

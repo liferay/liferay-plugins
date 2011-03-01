@@ -911,14 +911,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		int total = getSiblingArticlesCount(
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-		int pages = total / PriorityHelper.INTERVAL_SIZE;
+		int pages = total / PriorityHelper.INTERVAL;
 
 		long newPriority = 0;
 		long value = 0;
 
 		for (int i = 0; i <= pages; i++) {
-			int start = (i * PriorityHelper.INTERVAL_SIZE);
-			int end = start + PriorityHelper.INTERVAL_SIZE;
+			int start = (i * PriorityHelper.INTERVAL);
+			int end = start + PriorityHelper.INTERVAL;
 
 			List<Article> articles = getSiblingArticles(
 				groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY,
@@ -937,12 +937,12 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			}
 
 			for (Article article : articles) {
-				value = value + PriorityHelper.MINIMUM_INCREMENT_SIZE;
+				value = value + PriorityHelper.MINIMUM_INCREMENT;
 
 				if (article.getPriority() == priority) {
 					newPriority = value;
 
-					value = value + PriorityHelper.MINIMUM_INCREMENT_SIZE;
+					value = value + PriorityHelper.MINIMUM_INCREMENT;
 				}
 
 				if (article.getResourcePrimKey() != resourcePrimKey) {

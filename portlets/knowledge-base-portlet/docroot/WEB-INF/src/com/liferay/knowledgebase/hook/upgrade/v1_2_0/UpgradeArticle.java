@@ -63,14 +63,14 @@ public class UpgradeArticle extends UpgradeProcess {
 				long curParentResourcePrimKey = rs.getLong(
 					"parentResourcePrimKey");
 
-				priority = priority + _MINIMUM_INCREMENT_SIZE;
+				priority = priority + _MINIMUM_INCREMENT;
 
 				if ((curGroupId != groupId) ||
 					(curParentResourcePrimKey != parentResourcePrimKey)) {
 
 					groupId = curGroupId;
 					parentResourcePrimKey = curParentResourcePrimKey;
-					priority = _MINIMUM_INCREMENT_SIZE;
+					priority = _MINIMUM_INCREMENT;
 				}
 
 				sb = new StringBundler(4);
@@ -90,6 +90,6 @@ public class UpgradeArticle extends UpgradeProcess {
 
 	private static final int _LATEST_VERSION = 1;
 
-	private static final long _MINIMUM_INCREMENT_SIZE = 1000;
+	private static final long _MINIMUM_INCREMENT = 1000;
 
 }

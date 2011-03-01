@@ -41,21 +41,19 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
 				<aui:input cssClass="lfr-input-text-container" label="title" name="preferences--articlesTitle--" value="<%= articlesTitle %>" />
 
-				<div class="kb-field-wrapper">
-					<aui:field-wrapper label="order-by">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByColumn--">
-							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
-							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
-							<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
-							<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
-						</aui:select>
+				<aui:field-wrapper cssClass="kb-field-wrapper" label="order-by">
+					<aui:select inlineField="<%= true %>" label="" name="preferences--orderByColumn--">
+						<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
+						<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
+						<aui:option label="priority" selected='<%= orderByColumn.equals("priority") %>' />
+						<aui:option label="title" selected='<%= orderByColumn.equals("title") %>' />
+					</aui:select>
 
-						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByAscending--">
-							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
-							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
-						</aui:select>
-					</aui:field-wrapper>
-				</div>
+					<aui:select inlineField="<%= true %>" label="" name="preferences--orderByAscending--">
+						<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
+						<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
+					</aui:select>
+				</aui:field-wrapper>
 
 				<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
 

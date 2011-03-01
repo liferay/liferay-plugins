@@ -121,7 +121,7 @@ List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, W
 					</aui:field-wrapper>
 				</div>
 
-				<div id="<portlet:namespace />filterOptions">
+				<div class="kb-field-wrapper" id="<portlet:namespace />filterOptions">
 					<aui:field-wrapper label="filter">
 						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryAndOperator--">
 							<aui:option label="all" selected="<%= assetEntryQueryAndOperator %>" value="<%= true %>" />

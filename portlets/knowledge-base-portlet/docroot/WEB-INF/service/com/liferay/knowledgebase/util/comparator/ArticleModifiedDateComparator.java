@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
 /**
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class ArticleModifiedDateComparator extends OrderByComparator {

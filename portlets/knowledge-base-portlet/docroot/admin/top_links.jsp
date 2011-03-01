@@ -25,7 +25,7 @@ String path = GetterUtil.getString(request.getPathInfo());
 <c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 	<div class="top-links-container">
 		<div class="top-links">
-			<c:if test='<%= AdminPermission.contains(permissionChecker, scopeGroupId, "VIEW_TEMPLATES") %>'>
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_TEMPLATES) %>">
 				<div class="top-links-navigation">
 					<portlet:renderURL var="homeURL">
 						<portlet:param name="jspPage" value="/admin/view.jsp" />
