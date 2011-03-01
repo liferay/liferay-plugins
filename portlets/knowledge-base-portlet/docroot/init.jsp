@@ -37,6 +37,8 @@
 <%@ page import="com.liferay.knowledgebase.NoSuchTemplateException" %>
 <%@ page import="com.liferay.knowledgebase.TemplateContentException" %>
 <%@ page import="com.liferay.knowledgebase.TemplateTitleException" %>
+<%@ page import="com.liferay.knowledgebase.admin.search.ArticleSearch" %>
+<%@ page import="com.liferay.knowledgebase.admin.search.TemplateSearch" %>
 <%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
 <%@ page import="com.liferay.knowledgebase.admin.util.PriorityHelper" %>
 <%@ page import="com.liferay.knowledgebase.model.Article" %>
@@ -61,6 +63,7 @@
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanPropertiesUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
+<%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
@@ -121,6 +124,8 @@
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
+<%@ page import="org.apache.commons.lang.time.FastDateFormat" %>
+
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />
@@ -146,5 +151,5 @@ if (Validator.isNotNull(portletResource)) {
 	jspPath = selPortletConfig.getInitParameter("jsp-path");
 }
 
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
+Format dateFormatDateTime = FastDateFormat.getDateTimeInstance(FastDateFormat.LONG, FastDateFormat.SHORT, timeZone, locale);
 %>

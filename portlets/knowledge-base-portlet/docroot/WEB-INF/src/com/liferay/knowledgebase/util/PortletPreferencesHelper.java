@@ -314,9 +314,6 @@ public class PortletPreferencesHelper {
 		Map<String, Object> defaultPreferences = new HashMap<String, Object>();
 
 		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-			defaultPreferences.put("articlesDelta", 5);
-			defaultPreferences.put("articlesDisplayStyle", "full-content");
-
 			defaultPreferences.put("childArticlesDisplayStyle", "abstract");
 			defaultPreferences.put("enableArticleDescription", false);
 			defaultPreferences.put("enableArticleAssetCategories", true);
@@ -325,16 +322,9 @@ public class PortletPreferencesHelper {
 			defaultPreferences.put("enableArticleComments", true);
 			defaultPreferences.put("showArticleComments", true);
 
-			defaultPreferences.put("templatesDelta", 5);
-			defaultPreferences.put("templatesDisplayStyle", "full-content");
 			defaultPreferences.put("enableTemplateDescription", false);
 			defaultPreferences.put("enableTemplateComments", true);
 			defaultPreferences.put("showTemplateComments", true);
-
-			defaultPreferences.put("rssDelta", SearchContainer.DEFAULT_DELTA);
-			defaultPreferences.put(
-				"rssDisplayStyle", RSSUtil.DISPLAY_STYLE_FULL_CONTENT);
-			defaultPreferences.put("rssFormat", "atom10");
 		}
 		else {
 			defaultPreferences.put("articlesTitle", StringPool.BLANK);

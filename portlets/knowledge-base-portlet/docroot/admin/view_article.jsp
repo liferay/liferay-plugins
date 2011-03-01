@@ -20,7 +20,7 @@
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
 <liferay-util:include page="/admin/article_breadcrumbs.jsp" servletContext="<%= application %>" />
 

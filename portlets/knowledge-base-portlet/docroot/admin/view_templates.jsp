@@ -16,98 +16,111 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
-	<div class="float-container kb-results-header">
-		<div class="kb-buttons">
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
-				<portlet:renderURL var="addTemplateURL">
-					<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</portlet:renderURL>
+<portlet:actionURL name="deleteTemplates" var="deleteTemplatesURL">
+	<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:actionURL>
 
-				<aui:button onClick="<%= addTemplateURL %>" value="add-template" />
-			</c:if>
+<aui:form action="<%= deleteTemplatesURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "deleteTemplates();" %>'>
+	<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<aui:input name="templateIds" type="hidden" />
 
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
-				<liferay-security:permissionsURL
-					modelResource="com.liferay.knowledgebase.admin"
-					modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-					resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-					var="permissionsURL"
-				/>
-
-				<aui:button onClick="<%= permissionsURL %>" value="permissions" />
-			</c:if>
-		</div>
-	</div>
-</c:if>
-
-<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "TemplatesPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "TemplatesPanel" %>' persistState="<%= true %>" title="templates">
+	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
-			<portlet:param name="topLink" value="templates" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
-			delta="<%= templatesDelta %>"
-			iteratorURL="<%= iteratorURL %>"
+			rowChecker="<%= permissionChecker.isCommunityAdmin(scopeGroupId) ? new RowChecker(renderResponse) : null %>"
+			searchContainer="<%= new TemplateSearch(renderRequest, iteratorURL) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= TemplateServiceUtil.getGroupTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), null) %>"
+				results="<%= TemplateServiceUtil.getGroupTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 				total="<%= TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId) %>"
 			/>
 
-			<div class="kb-results-body">
+			<liferay-ui:search-container-row
+				className="com.liferay.knowledgebase.model.Template"
+				keyProperty="templateId"
+				modelVar="template"
+			>
+				<liferay-ui:search-container-column-text
+					orderable="<%= true %>"
+					property="title"
+				/>
 
-				<%
-				for (Template template : (List<Template>)results) {
-				%>
+				<liferay-ui:search-container-column-text
+					name="author"
+					orderable="<%= true %>"
+					orderableProperty="user-name"
+					property="userName"
+				/>
 
-					<div class="kb-title">
-						<portlet:renderURL var="viewTemplateURL">
-							<portlet:param name="jspPage" value="/admin/view_template.jsp" />
-							<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
+				<liferay-ui:search-container-column-text
+					name="create-date"
+					orderable="<%= true %>"
+					value="<%= dateFormatDateTime.format(template.getCreateDate()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					name="modified-date"
+					orderable="<%= true %>"
+					value="<%= dateFormatDateTime.format(template.getModifiedDate()) %>"
+				/>
+
+				<liferay-ui:search-container-column-jsp
+					align="right"
+					path="/admin/template_action.jsp"
+				/>
+			</liferay-ui:search-container-row>
+
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
+				<aui:button-row>
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
+						<portlet:renderURL var="addTemplateURL">
+							<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:renderURL>
 
-						<liferay-ui:icon
-							image="../trees/page"
-							label="<%= true %>"
-							message="<%= template.getTitle() %>"
-							method="get"
-							url="<%= viewTemplateURL %>"
+						<aui:button onClick="<%= addTemplateURL %>" value="add-template" />
+					</c:if>
+
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+						<liferay-security:permissionsURL
+							modelResource="com.liferay.knowledgebase.admin"
+							modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+							resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+							var="permissionsURL"
 						/>
-					</div>
 
-					<%
-					request.setAttribute("template_icons.jsp-template", template);
-					%>
+						<aui:button onClick="<%= permissionsURL %>" value="permissions" />
+					</c:if>
+				</aui:button-row>
 
-					<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
+				<div class="separator"><!-- --></div>
+			</c:if>
 
-					<c:choose>
-						<c:when test='<%= templatesDisplayStyle.equals("full-content") %>'>
-							<%= template.getContent() %>
-						</c:when>
-						<c:when test='<%= (templatesDisplayStyle.equals("abstract") && Validator.isNotNull(template.getDescription())) %>'>
-							<%= template.getDescription() %>
-						</c:when>
-						<c:when test='<%= templatesDisplayStyle.equals("abstract") %>'>
-							<%= StringUtil.shorten(HtmlUtil.extractText(template.getContent()), 500) %>
-						</c:when>
-					</c:choose>
+			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !results.isEmpty() %>">
+				<aui:button-row>
+					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteTemplates();" %>' value="delete" />
+				</aui:button-row>
+			</c:if>
 
-				<%
-				}
-				%>
-
-			</div>
-
-			<div class="taglib-search-iterator-page-iterator-bottom">
-				<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-			</div>
+			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
-	</liferay-ui:panel>
-</liferay-ui:panel-container>
+	</aui:fieldset>
+</aui:form>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />deleteTemplates',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace />templateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+			submitForm(document.<portlet:namespace />fm);
+		},
+		['liferay-util-list-fields']
+	);
+</aui:script>

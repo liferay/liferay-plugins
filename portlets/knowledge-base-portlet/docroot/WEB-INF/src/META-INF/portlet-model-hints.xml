@@ -14,16 +14,13 @@
 		<field name="parentResourcePrimKey" type="long" />
 		<field name="version" type="int" />
 		<field name="title" type="String">
-			<hint name="display-width">98%</hint>
-			<hint name="max-length">150</hint>
+			<hint name="max-length">4000</hint>
 		</field>
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
-			<hint name="display-height">40</hint>
-			<hint name="display-width">98%</hint>
 		</field>
 		<field name="priority" type="long" />
 		<field name="latest" type="int" />
@@ -45,7 +42,6 @@
 		<field name="classPK" type="long" />
 		<field name="content" type="String">
 			<hint-collection name="TEXTAREA" />
-			<hint name="display-width">100%</hint>
 		</field>
 		<field name="helpful" type="boolean">
 			<hint name="default-value">true</hint>
@@ -61,16 +57,13 @@
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="title" type="String">
-			<hint name="display-width">98%</hint>
-			<hint name="max-length">150</hint>
+			<hint name="max-length">4000</hint>
 		</field>
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />
 		</field>
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
-			<hint name="display-height">40</hint>
-			<hint name="display-width">98%</hint>
 		</field>
 	</model>
 </model-hints>

@@ -23,22 +23,24 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 <div class="kb-article-tools">
 	<table class="lfr-table">
 	<tr>
-		<td>
-			<portlet:resourceURL id="articleRSS" var="articleRSSURL">
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-				<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
-				<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
-				<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-			</portlet:resourceURL>
+		<c:if test="<%= !rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+			<td>
+				<portlet:resourceURL id="articleRSS" var="articleRSSURL">
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+					<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
+					<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
+					<portlet:param name="rssFormat" value="<%= rssFormat %>" />
+				</portlet:resourceURL>
 
-			<liferay-ui:icon
-				image="rss"
-				label="<%= true %>"
-				method="get"
-				target="_blank"
-				url="<%= articleRSSURL %>"
-			/>
-		</td>
+				<liferay-ui:icon
+					image="rss"
+					label="<%= true %>"
+					method="get"
+					target="_blank"
+					url="<%= articleRSSURL %>"
+				/>
+			</td>
+		</c:if>
 
 		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 			<td>

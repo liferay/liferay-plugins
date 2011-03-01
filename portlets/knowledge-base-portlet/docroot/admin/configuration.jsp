@@ -50,7 +50,7 @@ else if (tabs2.equals("article-updated-email")) {
 </liferay-portlet:renderURL>
 
 <liferay-ui:tabs
-	names="email-from,article-added-email,article-updated-email,display-settings,rss"
+	names="email-from,article-added-email,article-updated-email,display-settings"
 	param="tabs2"
 	url="<%= portletURL %>"
 />
@@ -276,33 +276,6 @@ else if (tabs2.equals("article-updated-email")) {
 
 				<c:choose>
 					<c:when test='<%= tabs3.equals("article") %>'>
-						<aui:select label="maximum-items-to-display" name="preferences--articlesDelta--">
-
-							<%
-							int[] pageDeltaValues = SEARCH_CONTAINER_PAGE_DELTA_VALUES;
-
-							Arrays.sort(pageDeltaValues);
-
-							for (int pageDeltaValue : pageDeltaValues) {
-								if (pageDeltaValue > SearchContainer.MAX_DELTA) {
-									break;
-								}
-							%>
-
-								<aui:option label="<%= pageDeltaValue %>" selected="<%= articlesDelta == pageDeltaValue %>" />
-
-							<%
-							}
-							%>
-
-						</aui:select>
-
-						<aui:select label="display-style" name="preferences--articlesDisplayStyle--">
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= articlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
-						</aui:select>
-
 						<aui:select name="preferences--childArticlesDisplayStyle--">
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
 							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
@@ -322,33 +295,6 @@ else if (tabs2.equals("article-updated-email")) {
 						<aui:input inlineLabel="left" label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:select label="maximum-items-to-display" name="preferences--templatesDelta--">
-
-							<%
-							int[] pageDeltaValues = SEARCH_CONTAINER_PAGE_DELTA_VALUES;
-
-							Arrays.sort(pageDeltaValues);
-
-							for (int pageDeltaValue : pageDeltaValues) {
-								if (pageDeltaValue > SearchContainer.MAX_DELTA) {
-									break;
-								}
-							%>
-
-								<aui:option label="<%= pageDeltaValue %>" selected="<%= templatesDelta == pageDeltaValue %>" />
-
-							<%
-							}
-							%>
-
-						</aui:select>
-
-						<aui:select label="display-style" name="preferences--templatesDisplayStyle--">
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= templatesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= templatesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= templatesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
-						</aui:select>
-
 						<aui:input inlineLabel="left" label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
 
 						<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
@@ -357,39 +303,6 @@ else if (tabs2.equals("article-updated-email")) {
 					</c:when>
 				</c:choose>
 			</c:when>
-			<c:when test='<%= tabs2.equals("rss") %>'>
-				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
-					<aui:option label="1" selected="<%= rssDelta == 1 %>" />
-					<aui:option label="2" selected="<%= rssDelta == 2 %>" />
-					<aui:option label="3" selected="<%= rssDelta == 3 %>" />
-					<aui:option label="4" selected="<%= rssDelta == 4 %>" />
-					<aui:option label="5" selected="<%= rssDelta == 5 %>" />
-					<aui:option label="10" selected="<%= rssDelta == 10 %>" />
-					<aui:option label="15" selected="<%= rssDelta == 15 %>" />
-					<aui:option label="20" selected="<%= rssDelta == 20 %>" />
-					<aui:option label="25" selected="<%= rssDelta == 25 %>" />
-					<aui:option label="30" selected="<%= rssDelta == 30 %>" />
-					<aui:option label="40" selected="<%= rssDelta == 40 %>" />
-					<aui:option label="50" selected="<%= rssDelta == 50 %>" />
-					<aui:option label="60" selected="<%= rssDelta == 60 %>" />
-					<aui:option label="70" selected="<%= rssDelta == 70 %>" />
-					<aui:option label="80" selected="<%= rssDelta == 80 %>" />
-					<aui:option label="90" selected="<%= rssDelta == 90 %>" />
-					<aui:option label="100" selected="<%= rssDelta == 100 %>" />
-				</aui:select>
-
-				<aui:select label="display-style" name="preferences--rssDisplayStyle--">
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= rssDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
-				</aui:select>
-
-				<aui:select label="format" name="preferences--rssFormat--">
-					<aui:option label="RSS 1.0" selected='<%= rssFormat.equals("rss10") %>' value="rss10" />
-					<aui:option label="RSS 2.0" selected='<%= rssFormat.equals("rss20") %>' value="rss20" />
-					<aui:option label="Atom 1.0" selected='<%= rssFormat.equals("atom10") %>' value="atom10" />
-				</aui:select>
-			</c:when>
 		</c:choose>
 
 		<aui:button-row cssClass="kb-submit-buttons">
@@ -397,7 +310,3 @@ else if (tabs2.equals("article-updated-email")) {
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
-
-<%!
-public static final int[] SEARCH_CONTAINER_PAGE_DELTA_VALUES = GetterUtil.getIntegerValues(PropsUtil.getArray(PropsKeys.SEARCH_CONTAINER_PAGE_DELTA_VALUES));
-%>

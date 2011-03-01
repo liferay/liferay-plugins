@@ -38,12 +38,11 @@ import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -105,6 +104,18 @@ public class AdminPortlet extends MVCPortlet {
 		ArticleServiceUtil.deleteArticle(resourcePrimKey);
 	}
 
+	public void deleteArticles(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long[] resourcePrimKeys = StringUtil.split(
+			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
+
+		for (long resourcePrimKey : resourcePrimKeys) {
+			ArticleServiceUtil.deleteArticle(resourcePrimKey);
+		}
+	}
+
 	public void deleteAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -145,6 +156,18 @@ public class AdminPortlet extends MVCPortlet {
 		long templateId = ParamUtil.getLong(actionRequest, "templateId");
 
 		TemplateServiceUtil.deleteTemplate(templateId);
+	}
+
+	public void deleteTemplates(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long[] templateIds = StringUtil.split(
+			ParamUtil.getString(actionRequest, "templateIds"), 0L);
+
+		for (long templateId : templateIds) {
+			TemplateServiceUtil.deleteTemplate(templateId);
+		}
 	}
 
 	public void render(
@@ -190,30 +213,6 @@ public class AdminPortlet extends MVCPortlet {
 		super.render(renderRequest, renderResponse);
 	}
 
-	public void serveArticleRSS(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			resourceRequest, "resourcePrimKey");
-
-		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
-		String rssDisplayStyle = ParamUtil.getString(
-			resourceRequest, "rssDisplayStyle");
-		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
-
-		String rss = ArticleServiceUtil.getArticleRSS(
-			resourcePrimKey, _STATUS, rssDelta, rssDisplayStyle, rssFormat,
-			themeDisplay);
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null,
-			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
-	}
-
 	public void serveAttachment(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -230,26 +229,6 @@ public class AdminPortlet extends MVCPortlet {
 			resourceRequest, resourceResponse, shortFileName, is, contentType);
 	}
 
-	public void serveGroupArticlesRSS(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		int rssDelta = ParamUtil.getInteger(resourceRequest, "rssDelta");
-		String rssDisplayStyle = ParamUtil.getString(
-			resourceRequest, "rssDisplayStyle");
-		String rssFormat = ParamUtil.getString(resourceRequest, "rssFormat");
-
-		String rss = ArticleServiceUtil.getGroupArticlesRSS(
-			_STATUS, rssDelta, rssDisplayStyle, rssFormat, themeDisplay);
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null,
-			rss.getBytes(StringPool.UTF8), ContentTypes.TEXT_XML_UTF8);
-	}
-
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
@@ -259,12 +238,6 @@ public class AdminPortlet extends MVCPortlet {
 
 			if (resourceID.equals("attachment")) {
 				serveAttachment(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("articleRSS")) {
-				serveArticleRSS(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("groupArticlesRSS")) {
-				serveGroupArticlesRSS(resourceRequest, resourceResponse);
 			}
 		}
 		catch (IOException ioe) {

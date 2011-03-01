@@ -80,7 +80,6 @@ long templateId = ParamUtil.getLong(request, "templateId");
 				<td>
 					<portlet:renderURL var="templatesURL">
 						<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
-						<portlet:param name="topLink" value="templates" />
 					</portlet:renderURL>
 
 					<portlet:actionURL name="deleteTemplate" var="deleteURL">

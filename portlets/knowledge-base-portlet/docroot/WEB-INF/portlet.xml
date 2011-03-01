@@ -8,7 +8,7 @@
 >
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<display-name>Knowledge Base Admin</display-name>
+		<display-name>Knowledge Base</display-name>
 		<portlet-class>com.liferay.knowledgebase.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
@@ -31,9 +31,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Knowledge Base Admin</title>
-			<short-title>Knowledge Base Admin</short-title>
-			<keywords>Knowledge Base Admin</keywords>
+			<title>Knowledge Base</title>
+			<short-title>Knowledge Base</short-title>
+			<keywords>Knowledge Base</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

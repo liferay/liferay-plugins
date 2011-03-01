@@ -80,7 +80,6 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				<td>
 					<portlet:renderURL var="homeURL">
 						<portlet:param name="jspPage" value="/admin/view.jsp" />
-						<portlet:param name="topLink" value="home" />
 					</portlet:renderURL>
 
 					<portlet:actionURL name="deleteArticle" var="deleteURL">

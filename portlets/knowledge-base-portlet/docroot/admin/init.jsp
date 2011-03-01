@@ -25,9 +25,6 @@ if (Validator.isNotNull(portletResource)) {
 
 Map<String, String> preferencesMap = PortletPreferencesHelper.initPreferencesMap(rootPortletId, preferences);
 
-int articlesDelta = GetterUtil.getInteger(preferencesMap.get("articlesDelta"));
-String articlesDisplayStyle = preferencesMap.get("articlesDisplayStyle");
-
 String childArticlesDisplayStyle = preferencesMap.get("childArticlesDisplayStyle");
 boolean enableArticleDescription = GetterUtil.getBoolean(preferencesMap.get("enableArticleDescription"));
 boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetCategories"));
@@ -36,8 +33,6 @@ boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableA
 boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
 boolean showArticleComments = GetterUtil.getBoolean(preferencesMap.get("showArticleComments"));
 
-int templatesDelta = GetterUtil.getInteger(preferencesMap.get("templatesDelta"));
-String templatesDisplayStyle = preferencesMap.get("templatesDisplayStyle");
 boolean enableTemplateDescription = GetterUtil.getBoolean(preferencesMap.get("enableTemplateDescription"));
 boolean enableTemplateComments = GetterUtil.getBoolean(preferencesMap.get("enableTemplateComments"));
 boolean showTemplateComments = GetterUtil.getBoolean(preferencesMap.get("showTemplateComments"));

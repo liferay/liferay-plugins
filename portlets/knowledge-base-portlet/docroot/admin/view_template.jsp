@@ -20,7 +20,7 @@
 Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">

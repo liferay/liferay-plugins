@@ -16,149 +16,176 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<%
+long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+%>
 
-<div class="float-container kb-results-header">
-	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
-		<div class="kb-buttons">
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
-				<portlet:renderURL var="addArticleURL">
-					<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
-				</portlet:renderURL>
+<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-				<aui:button onClick="<%= addArticleURL %>" value="add-article" />
-			</c:if>
+<portlet:actionURL name="deleteArticles" var="deleteArticlesURL">
+	<portlet:param name="jspPage" value="/admin/view.jsp" />
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:actionURL>
 
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
-				<liferay-security:permissionsURL
-					modelResource="com.liferay.knowledgebase.admin"
-					modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-					resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-					var="permissionsURL"
-				/>
+<aui:form action="<%= deleteArticlesURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "deleteArticles();" %>'>
+	<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<aui:input name="resourcePrimKeys" type="hidden" />
 
-				<aui:button onClick="<%= permissionsURL %>" value="permissions" />
-			</c:if>
-		</div>
-	</c:if>
-
-	<div class="kb-tools">
-		<table class="lfr-table">
-		<tr>
-			<td>
-				<portlet:resourceURL id="groupArticlesRSS" var="groupArticlesRSSURL">
-					<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
-					<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
-					<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-				</portlet:resourceURL>
-
-				<liferay-ui:icon
-					image="rss"
-					label="<%= true %>"
-					method="get"
-					target="_blank"
-					url="<%= groupArticlesRSSURL %>"
-				/>
-			</td>
-
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
-				<td>
-					<c:choose>
-						<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
-							<portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
-								<portlet:param name="redirect" value="<%= currentURL %>" />
-							</portlet:actionURL>
-
-							<liferay-ui:icon
-								image="unsubscribe"
-								label="<%= true %>"
-								url="<%= unsubscribeGroupArticlesURL %>"
-							/>
-						</c:when>
-						<c:otherwise>
-							<portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
-								<portlet:param name="redirect" value="<%= currentURL %>" />
-							</portlet:actionURL>
-
-							<liferay-ui:icon
-								image="subscribe"
-								label="<%= true %>"
-								url="<%= subscribeGroupArticlesURL %>"
-							/>
-						</c:otherwise>
-					</c:choose>
-				</td>
-			</c:if>
-		</tr>
-		</table>
-	</div>
-</div>
-
-<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "ArticlesPanelContainer" %>' persistState="<%= true %>">
-	<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "ArticlesPanel" %>' persistState="<%= true %>" title="articles">
+	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view.jsp" />
-			<portlet:param name="topLink" value="home" />
+			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
-			delta="<%= articlesDelta %>"
-			iteratorURL="<%= iteratorURL %>"
+			rowChecker="<%= permissionChecker.isCommunityAdmin(scopeGroupId) ? new RowChecker(renderResponse) : null %>"
+			searchContainer="<%= new ArticleSearch(renderRequest, iteratorURL) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), new ArticleModifiedDateComparator()) %>"
-				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_ANY) %>"
+				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY) %>"
 			/>
 
-			<div class="kb-results-body">
+			<liferay-ui:search-container-row
+				className="com.liferay.knowledgebase.model.Article"
+				keyProperty="resourcePrimKey"
+				modelVar="article"
+			>
+				<liferay-portlet:renderURL varImpl="rowURL">
+					<portlet:param name="jspPage" value="/admin/view.jsp" />
+					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+				</liferay-portlet:renderURL>
 
 				<%
-				for (Article article : (List<Article>)results) {
-				%>
-
-					<div class="kb-title">
-						<portlet:renderURL var="viewArticleURL">
-							<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
-							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						</portlet:renderURL>
-
-						<liferay-ui:icon
-							image="../trees/page"
-							label="<%= true %>"
-							message="<%= article.getTitle() %>"
-							method="get"
-							url="<%= viewArticleURL %>"
-						/>
-					</div>
-
-					<%
-					request.setAttribute("article_icons.jsp-article", article);
-					%>
-
-					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
-
-					<c:choose>
-						<c:when test='<%= articlesDisplayStyle.equals("full-content") %>'>
-							<%= article.getContent() %>
-						</c:when>
-						<c:when test='<%= (articlesDisplayStyle.equals("abstract") && Validator.isNotNull(article.getDescription())) %>'>
-							<%= article.getDescription() %>
-						</c:when>
-						<c:when test='<%= articlesDisplayStyle.equals("abstract") %>'>
-							<%= StringUtil.shorten(HtmlUtil.extractText(article.getContent()), 500) %>
-						</c:when>
-					</c:choose>
-
-				<%
+				if (ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, article.getResourcePrimKey(), WorkflowConstants.STATUS_ANY) == 0) {
+					rowURL = null;
 				}
 				%>
 
-			</div>
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="priority"
+					orderable="<%= true %>"
+					value="<%= String.valueOf(PriorityHelper.getHumanPriority(article.getGroupId(), article.getResourcePrimKey(), article.getParentResourcePrimKey(), article.getPriority())) %>"
+				/>
 
-			<div class="taglib-search-iterator-page-iterator-bottom">
-				<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" />
-			</div>
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					orderable="<%= true %>"
+					property="title"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="author"
+					orderable="<%= true %>"
+					orderableProperty="user-name"
+					property="userName"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="create-date"
+					orderable="<%= true %>"
+					value="<%= dateFormatDateTime.format(article.getCreateDate()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="modified-date"
+					orderable="<%= true %>"
+					value="<%= dateFormatDateTime.format(article.getModifiedDate()) %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowURL %>"
+					name="status"
+					orderable="<%= true %>"
+					value='<%= article.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(article.getStatus())) + ")" %>'
+				/>
+
+				<liferay-ui:search-container-column-jsp
+					align="right"
+					path="/admin/article_action.jsp"
+				/>
+			</liferay-ui:search-container-row>
+
+			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE)) %>">
+				<aui:button-row cssClass="float-container">
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
+						<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+							<portlet:renderURL var="addArticleURL">
+								<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+							</portlet:renderURL>
+
+							<aui:button onClick="<%= addArticleURL %>" value="add-article" />
+						</c:if>
+
+						<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+							<liferay-security:permissionsURL
+								modelResource="com.liferay.knowledgebase.admin"
+								modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+								resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+								var="permissionsURL"
+							/>
+
+							<aui:button onClick="<%= permissionsURL %>" value="permissions" />
+						</c:if>
+					</c:if>
+
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
+						<div class="kb-admin-tools">
+							<c:choose>
+								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
+									<portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+									</portlet:actionURL>
+
+									<liferay-ui:icon
+										image="unsubscribe"
+										label="<%= true %>"
+										url="<%= unsubscribeGroupArticlesURL %>"
+									/>
+								</c:when>
+								<c:otherwise>
+									<portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+									</portlet:actionURL>
+
+									<liferay-ui:icon
+										image="subscribe"
+										label="<%= true %>"
+										url="<%= subscribeGroupArticlesURL %>"
+									/>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</c:if>
+				</aui:button-row>
+
+				<div class="separator"><!-- --></div>
+			</c:if>
+
+			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !results.isEmpty() %>">
+				<aui:button-row>
+					<aui:button type="submit" value="delete" />
+				</aui:button-row>
+			</c:if>
+
+			<liferay-ui:search-iterator />
 		</liferay-ui:search-container>
-	</liferay-ui:panel>
-</liferay-ui:panel-container>
+	</aui:fieldset>
+</aui:form>
+
+<aui:script>
+	Liferay.provide(
+		window,
+		'<portlet:namespace />deleteArticles',
+		function() {
+			document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+			submitForm(document.<portlet:namespace />fm);
+		},
+		['liferay-util-list-fields']
+	);
+</aui:script>

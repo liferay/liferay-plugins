@@ -1,10 +1,24 @@
 /* ---------- Portal ---------- */
 
-.knowledge-base-portlet-admin .top-links-container .article-search {
-	float: right;
+#main-content .knowledge-base-portlet-admin .lfr-panel-container .lfr-panel,
+#main-content .knowledge-base-portlet-admin .lfr-panel-container .lfr-panel .lfr-panel-content {
+	background: none;
+}
+
+#main-content .knowledge-base-portlet-admin .lfr-panel-container .lfr-panel .lfr-panel-titlebar {
+	border-bottom: none;
+}
+
+.knowledge-base-portlet-admin .aui-field-assetcategories .aui-field-content {
+	margin: 10px 0 20px;
 }
 
 /* ---------- Portlet ---------- */
+
+.knowledge-base-portlet-admin .kb-admin-tools {
+	float: right;
+	padding: 5px 5px 0 0;
+}
 
 .knowledge-base-portlet-admin .kb-attachments {
 	margin: 5px 0 0;

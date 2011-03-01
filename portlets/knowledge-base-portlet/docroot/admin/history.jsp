@@ -23,7 +23,7 @@ int sourceVersion = ParamUtil.getInteger(request, "sourceVersion", article.getVe
 int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVersion());
 %>
 
-<liferay-util:include page="/admin/top_links.jsp" servletContext="<%= application %>" />
+<liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
 	<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
