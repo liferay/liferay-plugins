@@ -389,6 +389,17 @@ public class ArticleLocalServiceUtil {
 			status);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.Article> search(
+		long groupId, java.lang.String title, java.lang.String content,
+		int status, java.util.Date startDate, java.util.Date endDate,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(groupId, title, content, status, startDate, endDate,
+			andOperator, start, end, orderByComparator);
+	}
+
 	public static void subscribeArticle(long userId, long groupId,
 		long resourcePrimKey)
 		throws com.liferay.portal.kernel.exception.PortalException,

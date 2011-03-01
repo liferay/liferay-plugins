@@ -103,6 +103,18 @@ public class ArticleServiceWrapper implements ArticleService {
 			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
+	public com.liferay.knowledgebase.model.ArticleSearchDisplay getArticleSearchDisplay(
+		long groupId, java.lang.String title, java.lang.String content,
+		int status, java.util.Date startDate, java.util.Date endDate,
+		boolean andOperator, int[] curStartValues, int cur, int delta,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticleSearchDisplay(groupId, title, content,
+			status, startDate, endDate, andOperator, curStartValues, cur,
+			delta, orderByComparator);
+	}
+
 	public java.lang.String getGroupArticlesRSS(int status, int rssDelta,
 		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)

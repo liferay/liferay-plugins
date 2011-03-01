@@ -259,6 +259,14 @@ public interface TemplateLocalService {
 	public int getGroupTemplatesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.Template> search(
+		long groupId, java.lang.String title, java.lang.String content,
+		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		long templateId, java.lang.String title, java.lang.String content,
 		java.lang.String description,

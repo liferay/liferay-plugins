@@ -43,7 +43,14 @@ public class TemplateServiceClp implements TemplateService {
 		_getTemplateMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getTemplate", long.class);
 
-		_updateTemplateMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getTemplateSearchDisplayMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getTemplateSearchDisplay", long.class, java.lang.String.class,
+				java.lang.String.class, java.util.Date.class,
+				java.util.Date.class, boolean.class, int[].class, int.class,
+				int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_updateTemplateMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTemplate", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
@@ -204,6 +211,47 @@ public class TemplateServiceClp implements TemplateService {
 		return (com.liferay.knowledgebase.model.Template)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public com.liferay.knowledgebase.model.TemplateSearchDisplay getTemplateSearchDisplay(
+		long groupId, java.lang.String title, java.lang.String content,
+		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
+		int[] curStartValues, int cur, int delta,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getTemplateSearchDisplayMethodKey5,
+				groupId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(startDate),
+				ClpSerializer.translateInput(endDate), andOperator,
+				ClpSerializer.translateInput(curStartValues), cur, delta,
+				ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.knowledgebase.model.TemplateSearchDisplay)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		long templateId, java.lang.String title, java.lang.String content,
 		java.lang.String description,
@@ -212,7 +260,7 @@ public class TemplateServiceClp implements TemplateService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey5,
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey6,
 				templateId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description),
@@ -252,5 +300,6 @@ public class TemplateServiceClp implements TemplateService {
 	private MethodKey _getGroupTemplatesMethodKey2;
 	private MethodKey _getGroupTemplatesCountMethodKey3;
 	private MethodKey _getTemplateMethodKey4;
-	private MethodKey _updateTemplateMethodKey5;
+	private MethodKey _getTemplateSearchDisplayMethodKey5;
+	private MethodKey _updateTemplateMethodKey6;
 }

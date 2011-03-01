@@ -101,12 +101,18 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		_getGroupTemplatesCountMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupTemplatesCount", long.class);
 
-		_updateTemplateMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"search", long.class, java.lang.String.class,
+				java.lang.String.class, java.util.Date.class,
+				java.util.Date.class, boolean.class, int.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_updateTemplateMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTemplate", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateTemplateResourcesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTemplateResourcesMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTemplateResources",
 				com.liferay.knowledgebase.model.Template.class,
 				java.lang.String[].class, java.lang.String[].class);
@@ -700,6 +706,41 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.Template> search(
+		long groupId, java.lang.String title, java.lang.String content,
+		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey20,
+				groupId, ClpSerializer.translateInput(title),
+				ClpSerializer.translateInput(content),
+				ClpSerializer.translateInput(startDate),
+				ClpSerializer.translateInput(endDate), andOperator, start, end,
+				ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Template>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		long templateId, java.lang.String title, java.lang.String content,
 		java.lang.String description,
@@ -708,7 +749,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey21,
 				templateId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description),
@@ -744,7 +785,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateTemplateResourcesMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateResourcesMethodKey22,
 				ClpSerializer.translateInput(template),
 				ClpSerializer.translateInput(communityPermissions),
 				ClpSerializer.translateInput(guestPermissions));
@@ -796,6 +837,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	private MethodKey _deleteGroupTemplatesMethodKey17;
 	private MethodKey _getGroupTemplatesMethodKey18;
 	private MethodKey _getGroupTemplatesCountMethodKey19;
-	private MethodKey _updateTemplateMethodKey20;
-	private MethodKey _updateTemplateResourcesMethodKey21;
+	private MethodKey _searchMethodKey20;
+	private MethodKey _updateTemplateMethodKey21;
+	private MethodKey _updateTemplateResourcesMethodKey22;
 }

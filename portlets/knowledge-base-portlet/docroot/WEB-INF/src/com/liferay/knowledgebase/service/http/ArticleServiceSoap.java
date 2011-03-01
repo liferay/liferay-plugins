@@ -175,6 +175,26 @@ public class ArticleServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.ArticleSearchDisplay getArticleSearchDisplay(
+		long groupId, java.lang.String title, java.lang.String content,
+		int status, java.util.Date startDate, java.util.Date endDate,
+		boolean andOperator, int[] curStartValues, int cur, int delta,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.ArticleSearchDisplay returnValue = ArticleServiceUtil.getArticleSearchDisplay(groupId,
+					title, content, status, startDate, endDate, andOperator,
+					curStartValues, cur, delta, orderByComparator);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.ArticleSoap getLatestArticle(
 		long resourcePrimKey, int status) throws RemoteException {
 		try {

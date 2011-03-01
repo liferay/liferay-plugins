@@ -63,6 +63,18 @@ public class TemplateServiceWrapper implements TemplateService {
 		return _templateService.getTemplate(templateId);
 	}
 
+	public com.liferay.knowledgebase.model.TemplateSearchDisplay getTemplateSearchDisplay(
+		long groupId, java.lang.String title, java.lang.String content,
+		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
+		int[] curStartValues, int cur, int delta,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _templateService.getTemplateSearchDisplay(groupId, title,
+			content, startDate, endDate, andOperator, curStartValues, cur,
+			delta, orderByComparator);
+	}
+
 	public com.liferay.knowledgebase.model.Template updateTemplate(
 		long templateId, java.lang.String title, java.lang.String content,
 		java.lang.String description,

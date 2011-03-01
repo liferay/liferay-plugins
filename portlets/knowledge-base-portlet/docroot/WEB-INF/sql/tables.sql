@@ -10,7 +10,7 @@ create table KB_Article (
 	modifiedDate DATE null,
 	parentResourcePrimKey LONG,
 	version INTEGER,
-	title VARCHAR(150) null,
+	title STRING null,
 	content TEXT null,
 	description STRING null,
 	priority LONG,
@@ -45,7 +45,7 @@ create table KB_Template (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	title VARCHAR(150) null,
+	title STRING null,
 	content TEXT null,
 	description STRING null
 );

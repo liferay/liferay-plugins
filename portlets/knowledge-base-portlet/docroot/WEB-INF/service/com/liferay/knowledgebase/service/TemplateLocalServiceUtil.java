@@ -299,6 +299,17 @@ public class TemplateLocalServiceUtil {
 		return getService().getGroupTemplatesCount(groupId);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.Template> search(
+		long groupId, java.lang.String title, java.lang.String content,
+		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
+		int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .search(groupId, title, content, startDate, endDate,
+			andOperator, start, end, orderByComparator);
+	}
+
 	public static com.liferay.knowledgebase.model.Template updateTemplate(
 		long templateId, java.lang.String title, java.lang.String content,
 		java.lang.String description,

@@ -9,6 +9,7 @@ Liferay.Service.registerClass(
 		getArticle: true,
 		getArticles: true,
 		getArticlesCount: true,
+		getArticleSearchDisplay: true,
 		getLatestArticle: true,
 		getSiblingArticles: true,
 		getSiblingArticlesCount: true,
@@ -29,6 +30,7 @@ Liferay.Service.registerClass(
 		getGroupTemplates: true,
 		getGroupTemplatesCount: true,
 		getTemplate: true,
+		getTemplateSearchDisplay: true,
 		updateTemplate: true
 	}
 );

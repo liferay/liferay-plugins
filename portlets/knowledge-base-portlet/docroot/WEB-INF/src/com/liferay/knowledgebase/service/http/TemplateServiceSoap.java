@@ -141,6 +141,26 @@ public class TemplateServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.TemplateSearchDisplay getTemplateSearchDisplay(
+		long groupId, java.lang.String title, java.lang.String content,
+		java.util.Date startDate, java.util.Date endDate, boolean andOperator,
+		int[] curStartValues, int cur, int delta,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.TemplateSearchDisplay returnValue = TemplateServiceUtil.getTemplateSearchDisplay(groupId,
+					title, content, startDate, endDate, andOperator,
+					curStartValues, cur, delta, orderByComparator);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.TemplateSoap updateTemplate(
 		long templateId, java.lang.String title, java.lang.String content,
 		java.lang.String description,
