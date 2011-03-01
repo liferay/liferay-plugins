@@ -54,14 +54,14 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static String[] splitKeywords(String keywords) {
-		List<String> list = new UniqueList<String>();
+		List<String> keywordsList = new UniqueList<String>();
 
 		StringBundler sb = new StringBundler();
 
 		for (char c : keywords.toCharArray()) {
 			if (Character.isWhitespace(c)) {
 				if (sb.length() > 0) {
-					list.add(sb.toString());
+					keywordsList.add(sb.toString());
 
 					sb = new StringBundler();
 				}
@@ -75,10 +75,10 @@ public class KnowledgeBaseUtil {
 		}
 
 		if (sb.length() > 0) {
-			list.add(sb.toString());
+			keywordsList.add(sb.toString());
 		}
 
-		return StringUtil.split(StringUtil.merge(list));
+		return StringUtil.split(StringUtil.merge(keywordsList));
 	}
 
 }
