@@ -22,7 +22,6 @@ import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleStatusComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleTitleComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleUserNameComparator;
-import com.liferay.portal.kernel.dao.search.DisplayTerms;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -71,22 +70,61 @@ public class ArticleSearch extends SearchContainer<Article> {
 		PortletRequest portletRequest, PortletURL iteratorURL) {
 
 		super(
-			portletRequest, new DisplayTerms(portletRequest),
-			new DisplayTerms(portletRequest), DEFAULT_CUR_PARAM, DEFAULT_DELTA,
-			iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
+			portletRequest, new ArticleDisplayTerms(portletRequest),
+			new ArticleSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
+			DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
+
+		ArticleDisplayTerms displayTerms =
+			(ArticleDisplayTerms)getDisplayTerms();
+
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.ANYTIME,
+			String.valueOf(displayTerms.isAnytime()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.CONTENT, displayTerms.getContent());
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.END_DATE_DAY,
+			String.valueOf(displayTerms.getEndDateDay()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.END_DATE_MONTH,
+			String.valueOf(displayTerms.getEndDateMonth()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.END_DATE_YEAR,
+			String.valueOf(displayTerms.getEndDateYear()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.START_DATE_DAY,
+			String.valueOf(displayTerms.getStartDateDay()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.START_DATE_MONTH,
+			String.valueOf(displayTerms.getStartDateMonth()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.START_DATE_YEAR,
+			String.valueOf(displayTerms.getStartDateYear()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.STATUS,
+			String.valueOf(displayTerms.getStatus()));
+		iteratorURL.setParameter(
+			ArticleDisplayTerms.TITLE, displayTerms.getTitle());
 
 		try {
 			PortalPreferences preferences =
 				PortletPreferencesFactoryUtil.getPortalPreferences(
 					portletRequest);
 
-			String orderByCol = ParamUtil.getString(
-				portletRequest, "orderByCol");
-			String orderByType = ParamUtil.getString(
-				portletRequest, "orderByType");
+			String oldOrderByCol = preferences.getValue(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-col",
+				"modified-date");
+			String oldOrderByType = preferences.getValue(
+				PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-type",
+				"desc");
 
-			if (Validator.isNotNull(orderByCol) &&
-				Validator.isNotNull(orderByType)) {
+			String orderByCol = ParamUtil.getString(
+				portletRequest, "orderByCol", oldOrderByCol);
+			String orderByType = ParamUtil.getString(
+				portletRequest, "orderByType", oldOrderByType);
+
+			if (!Validator.equals(orderByCol, oldOrderByCol) ||
+				!Validator.equals(orderByType, oldOrderByType)) {
 
 				preferences.setValue(
 					PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-col",
@@ -94,14 +132,11 @@ public class ArticleSearch extends SearchContainer<Article> {
 				preferences.setValue(
 					PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-type",
 					orderByType);
-			}
-			else {
-				orderByCol = preferences.getValue(
-					PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-col",
-					"modified-date");
-				orderByType = preferences.getValue(
-					PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-type",
-					"desc");
+
+				ArticleSearchTerms searchTerms =
+					(ArticleSearchTerms)getSearchTerms();
+
+				searchTerms.setCurStartValues(new int[0]);
 			}
 
 			boolean orderByAsc = false;

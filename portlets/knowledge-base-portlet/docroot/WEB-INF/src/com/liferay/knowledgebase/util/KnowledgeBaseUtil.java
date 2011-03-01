@@ -17,7 +17,11 @@ package com.liferay.knowledgebase.util;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.util.UniqueList;
+
+import java.util.List;
 
 /**
  * @author Peter Shin
@@ -47,6 +51,34 @@ public class KnowledgeBaseUtil {
 		sb.append(HttpUtil.encodeURL(String.valueOf(maximized)));
 
 		return sb.toString();
+	}
+
+	public static String[] splitKeywords(String keywords) {
+		List<String> list = new UniqueList<String>();
+
+		StringBundler sb = new StringBundler();
+
+		for (char c : keywords.toCharArray()) {
+			if (Character.isWhitespace(c)) {
+				if (sb.length() > 0) {
+					list.add(sb.toString());
+
+					sb = new StringBundler();
+				}
+			}
+			else if (Character.isLetterOrDigit(c)) {
+				sb.append(c);
+			}
+			else {
+				return new String[] {keywords};
+			}
+		}
+
+		if (sb.length() > 0) {
+			list.add(sb.toString());
+		}
+
+		return StringUtil.split(StringUtil.merge(list));
 	}
 
 }

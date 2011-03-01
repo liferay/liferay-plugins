@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.admin.util;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BaseIndexer;
@@ -37,7 +38,6 @@ import com.liferay.portal.kernel.search.TermQueryFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
@@ -46,7 +46,6 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
-import com.liferay.util.UniqueList;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -98,8 +97,10 @@ public class AdminIndexer extends BaseIndexer {
 
 		String[] queryTerms = hits.getQueryTerms();
 
+		String keywords = searchContext.getKeywords();
+
 		queryTerms = ArrayUtil.append(
-			queryTerms, splitKeywords(searchContext.getKeywords()));
+			queryTerms, KnowledgeBaseUtil.splitKeywords(keywords));
 
 		hits.setQueryTerms(queryTerms);
 
@@ -281,7 +282,10 @@ public class AdminIndexer extends BaseIndexer {
 			BooleanQuery searchQuery, SearchContext searchContext)
 		throws Exception {
 
-		for (String value : splitKeywords(searchContext.getKeywords())) {
+		String[] values = KnowledgeBaseUtil.splitKeywords(
+			searchContext.getKeywords());
+
+		for (String value : values) {
 			searchQuery.addTerm(Field.TITLE, value, true);
 			searchQuery.addTerm(Field.CONTENT, value, true);
 		}
@@ -321,34 +325,6 @@ public class AdminIndexer extends BaseIndexer {
 		}
 
 		SearchEngineUtil.updateDocuments(companyId, documents);
-	}
-
-	protected String[] splitKeywords(String keywords) {
-		List<String> list = new UniqueList<String>();
-
-		StringBundler sb = new StringBundler();
-
-		for (char c : keywords.toCharArray()) {
-			if (Character.isWhitespace(c)) {
-				if (sb.length() > 0) {
-					list.add(sb.toString());
-
-					sb = new StringBundler();
-				}
-			}
-			else if (Character.isLetterOrDigit(c)) {
-				sb.append(c);
-			}
-			else {
-				return new String[] {keywords};
-			}
-		}
-
-		if (sb.length() > 0) {
-			list.add(sb.toString());
-		}
-
-		return StringUtil.split(StringUtil.merge(list));
 	}
 
 	private static final boolean _FILTER_SEARCH = true;

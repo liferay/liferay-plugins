@@ -19,6 +19,15 @@ import com.liferay.knowledgebase.TemplateTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.base.TemplateLocalServiceBaseImpl;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Disjunction;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -169,6 +178,18 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 		return templatePersistence.countByGroupId(groupId);
 	}
 
+	public List<Template> search(
+			long groupId, String title, String content, Date startDate,
+			Date endDate, boolean andOperator, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = buildDynamicQuery(
+			groupId, title, content, startDate, endDate, andOperator);
+
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
 	public Template updateTemplate(
 			long templateId, String title, String content, String description,
 			ServiceContext serviceContext)
@@ -216,6 +237,75 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 			template.getCompanyId(), template.getGroupId(),
 			Template.class.getName(), template.getTemplateId(),
 			communityPermissions, guestPermissions);
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		long groupId, String title, String content, Date startDate,
+		Date endDate, boolean andOperator) {
+
+		Junction junction = null;
+
+		if (andOperator) {
+			junction = RestrictionsFactoryUtil.conjunction();
+		}
+		else {
+			junction = RestrictionsFactoryUtil.disjunction();
+		}
+
+		if (Validator.isNotNull(title)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			for (String s : KnowledgeBaseUtil.splitKeywords(title)) {
+				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+
+				disjunction.add(RestrictionsFactoryUtil.ilike("title", value));
+			}
+
+			junction.add(disjunction);
+		}
+
+		if (Validator.isNotNull(content)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			for (String s : KnowledgeBaseUtil.splitKeywords(content)) {
+				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+
+				disjunction.add(
+					RestrictionsFactoryUtil.ilike("content", value));
+			}
+
+			junction.add(disjunction);
+		}
+
+		if ((endDate != null) && (startDate != null)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			String[] propertyNames = {"createDate", "modifiedDate"};
+
+			for (String propertyName : propertyNames) {
+				Property property = PropertyFactoryUtil.forName(propertyName);
+
+				Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
+
+				conjunction.add(property.gt(startDate));
+				conjunction.add(property.lt(endDate));
+
+				disjunction.add(conjunction);
+			}
+
+			junction.add(disjunction);
+		}
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Template.class, getClass().getClassLoader());
+
+		if (groupId > 0) {
+			Property property = PropertyFactoryUtil.forName("groupId");
+
+			dynamicQuery.add(property.eq(groupId));
+		}
+
+		return dynamicQuery.add(junction);
 	}
 
 	protected void validate(String title, String content)

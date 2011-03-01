@@ -22,12 +22,11 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-<portlet:actionURL name="deleteArticles" var="deleteArticlesURL">
+<portlet:renderURL var="searchURL">
 	<portlet:param name="jspPage" value="/admin/view.jsp" />
-	<portlet:param name="redirect" value="<%= currentURL %>" />
-</portlet:actionURL>
+</portlet:renderURL>
 
-<aui:form action="<%= deleteArticlesURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "deleteArticles();" %>'>
+<aui:form action="<%= searchURL %>" method="get" name="fm">
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
 	<aui:input name="resourcePrimKeys" type="hidden" />
 
@@ -41,10 +40,18 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			rowChecker="<%= permissionChecker.isCommunityAdmin(scopeGroupId) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new ArticleSearch(renderRequest, iteratorURL) %>"
 		>
-			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY) %>"
+			<liferay-ui:search-form
+				page="/admin/article_search.jsp"
+				servletContext="<%= application %>"
 			/>
+
+			<%
+			ArticleSearchTerms searchTerms = (ArticleSearchTerms)searchContainer.getSearchTerms();
+			%>
+
+			<liferay-ui:search-container-results>
+				<%@ include file="/admin/article_search_results.jspf" %>
+			</liferay-ui:search-container-results>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.Article"
@@ -169,11 +176,11 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !results.isEmpty() %>">
 				<aui:button-row>
-					<aui:button type="submit" value="delete" />
+					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteArticles();" %>' value="delete" />
 				</aui:button-row>
 			</c:if>
 
-			<liferay-ui:search-iterator />
+			<liferay-ui:search-iterator type='<%= searchTerms.hasSearchTerms() ? "more" : "regular" %>' />
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
@@ -183,8 +190,9 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		window,
 		'<portlet:namespace />deleteArticles',
 		function() {
+			document.<portlet:namespace />fm.method = "post";
 			document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm);
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteArticles"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		},
 		['liferay-util-list-fields']
 	);

@@ -18,12 +18,11 @@
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-<portlet:actionURL name="deleteTemplates" var="deleteTemplatesURL">
+<portlet:renderURL var="searchURL">
 	<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
-	<portlet:param name="redirect" value="<%= currentURL %>" />
-</portlet:actionURL>
+</portlet:renderURL>
 
-<aui:form action="<%= deleteTemplatesURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "deleteTemplates();" %>'>
+<aui:form action="<%= searchURL %>" method="get" name="fm">
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
 	<aui:input name="templateIds" type="hidden" />
 
@@ -36,10 +35,18 @@
 			rowChecker="<%= permissionChecker.isCommunityAdmin(scopeGroupId) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new TemplateSearch(renderRequest, iteratorURL) %>"
 		>
-			<liferay-ui:search-container-results
-				results="<%= TemplateServiceUtil.getGroupTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-				total="<%= TemplateServiceUtil.getGroupTemplatesCount(scopeGroupId) %>"
+			<liferay-ui:search-form
+				page="/admin/template_search.jsp"
+				servletContext="<%= application %>"
 			/>
+
+			<%
+			TemplateSearchTerms searchTerms = (TemplateSearchTerms)searchContainer.getSearchTerms();
+			%>
+
+			<liferay-ui:search-container-results>
+				<%@ include file="/admin/template_search_results.jspf" %>
+			</liferay-ui:search-container-results>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.Template"
@@ -108,7 +115,7 @@
 				</aui:button-row>
 			</c:if>
 
-			<liferay-ui:search-iterator />
+			<liferay-ui:search-iterator type='<%= searchTerms.hasSearchTerms() ? "more" : "regular" %>' />
 		</liferay-ui:search-container>
 	</aui:fieldset>
 </aui:form>
@@ -118,8 +125,9 @@
 		window,
 		'<portlet:namespace />deleteTemplates',
 		function() {
+			document.<portlet:namespace />fm.method = "post";
 			document.<portlet:namespace />fm.<portlet:namespace />templateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-			submitForm(document.<portlet:namespace />fm);
+			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteTemplates"><portlet:param name="jspPage" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
 		},
 		['liferay-util-list-fields']
 	);

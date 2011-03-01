@@ -28,6 +28,14 @@
 	margin: 5px 0 0;
 }
 
+.knowledge-base-portlet-admin .kb-search-toggle .aui-fieldset label {
+	display: block;
+}
+
+.knowledge-base-portlet-admin .kb-search-toggle .kb-date-field {
+	float: left;
+}
+
 .knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
 	margin: 0 0 5px;
 }

@@ -26,11 +26,20 @@ import com.liferay.knowledgebase.admin.util.PriorityHelper;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.base.ArticleLocalServiceBaseImpl;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
+import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Disjunction;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Junction;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -498,6 +507,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			ArticleConstants.LATEST_ANY, status);
 	}
 
+	public List<Article> search(
+			long groupId, String title, String content, int status,
+			Date startDate, Date endDate, boolean andOperator, int start,
+			int end, OrderByComparator orderByComparator)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = buildDynamicQuery(
+			groupId, title, content, status, startDate, endDate, andOperator);
+
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
+	}
+
 	public void subscribeArticle(
 			long userId, long groupId, long resourcePrimKey)
 		throws PortalException, SystemException {
@@ -792,6 +813,85 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				_log.error("File already exists for " + dfe.getMessage());
 			}
 		}
+	}
+
+	protected DynamicQuery buildDynamicQuery(
+		long groupId, String title, String content, int status,
+		Date startDate, Date endDate, boolean andOperator) {
+
+		Junction junction = null;
+
+		if (andOperator) {
+			junction = RestrictionsFactoryUtil.conjunction();
+		}
+		else {
+			junction = RestrictionsFactoryUtil.disjunction();
+		}
+
+		if (Validator.isNotNull(title)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			for (String s : KnowledgeBaseUtil.splitKeywords(title)) {
+				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+
+				disjunction.add(RestrictionsFactoryUtil.ilike("title", value));
+			}
+
+			junction.add(disjunction);
+		}
+
+		if (Validator.isNotNull(content)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			for (String s : KnowledgeBaseUtil.splitKeywords(content)) {
+				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+
+				disjunction.add(
+					RestrictionsFactoryUtil.ilike("content", value));
+			}
+
+			junction.add(disjunction);
+		}
+
+		if (status != WorkflowConstants.STATUS_ANY) {
+			Property property = PropertyFactoryUtil.forName("status");
+
+			junction.add(property.eq(status));
+		}
+
+		if ((endDate != null) && (startDate != null)) {
+			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
+
+			String[] propertyNames = {"createDate", "modifiedDate"};
+
+			for (String propertyName : propertyNames) {
+				Property property = PropertyFactoryUtil.forName(propertyName);
+
+				Conjunction conjunction = RestrictionsFactoryUtil.conjunction();
+
+				conjunction.add(property.gt(startDate));
+				conjunction.add(property.lt(endDate));
+
+				disjunction.add(conjunction);
+			}
+
+			junction.add(disjunction);
+		}
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Article.class, getClass().getClassLoader());
+
+		Property latestProperty = PropertyFactoryUtil.forName("latest");
+
+		dynamicQuery.add(latestProperty.eq(ArticleConstants.LATEST_VERSION));
+
+		if (groupId > 0) {
+			Property property = PropertyFactoryUtil.forName("groupId");
+
+			dynamicQuery.add(property.eq(groupId));
+		}
+
+		return dynamicQuery.add(junction);
 	}
 
 	protected void checkAttachments(long companyId)

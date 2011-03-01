@@ -16,6 +16,8 @@ package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.ArticleConstants;
+import com.liferay.knowledgebase.model.ArticleSearchDisplay;
+import com.liferay.knowledgebase.model.impl.ArticleSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.ArticleServiceBaseImpl;
 import com.liferay.knowledgebase.service.permission.AdminPermission;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
@@ -23,6 +25,7 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -54,6 +57,7 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -207,6 +211,77 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return exportToRSS(
 			rssDisplayStyle, rssFormat, name, description, feedURL, articles,
 			themeDisplay);
+	}
+
+	public ArticleSearchDisplay getArticleSearchDisplay(
+			long groupId, String title, String content, int status,
+			Date startDate, Date endDate, boolean andOperator,
+			int[] curStartValues, int cur, int delta,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		// See LPS-9546
+
+		int start = 0;
+
+		if (curStartValues.length > (cur - SearchContainer.DEFAULT_CUR)) {
+			start = curStartValues[cur - SearchContainer.DEFAULT_CUR];
+
+			curStartValues = ArrayUtil.subset(
+				curStartValues, 0, cur - SearchContainer.DEFAULT_CUR + 1);
+		}
+		else {
+			cur = SearchContainer.DEFAULT_CUR;
+
+			curStartValues = new int[] {0};
+		}
+
+		int end = start + _INTERVAL;
+
+		List<Article> articles = new ArrayList<Article>();
+
+		int curStartValue = 0;
+
+		while (curStartValue == 0) {
+			List<Article> curArticles = articleLocalService.search(
+				groupId, title, content, status, startDate, endDate,
+				andOperator, start, end, orderByComparator);
+
+			if (curArticles.isEmpty()) {
+				break;
+			}
+
+			for (int i = 0; i < curArticles.size(); i++) {
+				Article curArticle = curArticles.get(i);
+
+				if (!ArticlePermission.contains(
+						getPermissionChecker(), curArticle, ActionKeys.VIEW)) {
+
+					continue;
+				}
+
+				if (articles.size() == delta) {
+					curStartValue = start + i;
+
+					break;
+				}
+
+				articles.add(curArticle);
+			}
+
+			start = start + _INTERVAL;
+			end = start + _INTERVAL;
+		}
+
+		int total = ((cur - 1) * delta) + articles.size();
+
+		if (curStartValue > 0) {
+			curStartValues = ArrayUtil.append(curStartValues, curStartValue);
+
+			total = total + 1;
+		}
+
+		return new ArticleSearchDisplayImpl(articles, total, curStartValues);
 	}
 
 	public String getGroupArticlesRSS(
@@ -507,6 +582,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		return ListUtil.subList(articles, 0, rssDelta);
 	}
+
+	private static final int _INTERVAL = 200;
 
 	private static final int _SQL_DATA_MAX_PARAMETERS =
 		GetterUtil.getInteger(PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
