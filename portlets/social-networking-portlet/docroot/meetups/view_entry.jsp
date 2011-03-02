@@ -1,4 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
@@ -203,7 +202,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 	</c:when>
 	<c:otherwise>
 		<div>
-			<%= LanguageUtil.format(pageContext, "you-have-to-be-signed-in-to-register-for-this-meetup-please-sign-in-or-create-an-account-if-you-do-not-already-have-one", new Object[] {themeDisplay.getURLSignIn(), themeDisplay.getURLCreateAccount()}) %>
+			<liferay-ui:message arguments="<%= new Object[] {themeDisplay.getURLSignIn(), themeDisplay.getURLCreateAccount()} %>" key="you-have-to-be-signed-in-to-register-for-this-meetup" />
 		</div>
 	</c:otherwise>
 </c:choose>
