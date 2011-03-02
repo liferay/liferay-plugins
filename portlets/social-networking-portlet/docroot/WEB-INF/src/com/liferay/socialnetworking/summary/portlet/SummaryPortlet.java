@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
@@ -116,7 +117,8 @@ public class SummaryPortlet extends MVCPortlet {
 				new Long(role.getRoleId())});
 
 			List<User> users = UserLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
+				themeDisplay.getCompanyId(), null,
+				WorkflowConstants.STATUS_APPROVED, userParams,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
 
 			for (User user : users) {
@@ -153,7 +155,8 @@ public class SummaryPortlet extends MVCPortlet {
 			new Long(role.getRoleId())});
 
 		List<User> users = UserLocalServiceUtil.search(
-			themeDisplay.getCompanyId(), null, Boolean.TRUE, userParams,
+			themeDisplay.getCompanyId(), null,
+			WorkflowConstants.STATUS_APPROVED, userParams,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator) null);
 
 		for (User user : users) {
