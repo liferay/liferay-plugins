@@ -79,9 +79,7 @@ public class ProxyServlet extends HttpServlet {
 		ServletResponseUtil.write(response, urlConnection.getInputStream());
 	}
 
-	protected boolean isAllowedURL(URL url)
-		throws Exception {
-
+	protected boolean isAllowedURL(URL url) throws Exception {
 		if (PortletPropsValues.PROXY_URL_IPS_ALLOWED.length == 0) {
 			return true;
 		}
@@ -89,8 +87,8 @@ public class ProxyServlet extends HttpServlet {
 			String serverIp = PortalUtil.getComputerAddress();
 
 			for (String ip : PortletPropsValues.PROXY_URL_IPS_ALLOWED) {
-				if ((ip.equals(_SERVER_IP) && url.getHost().equals(serverIp)) 
-					|| url.getHost().equals(ip)) {
+				if ((ip.equals(_SERVER_IP) && url.getHost().equals(serverIp)) ||
+					url.getHost().equals(ip)) {
 
 					return true;
 				}
