@@ -1,3 +1,4 @@
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
@@ -38,7 +39,7 @@ catch (NoSuchMeetupsEntryException nsmee) {
 %>
 
 	<span class="portlet-msg-error">
-		The meetup could not be found.
+		<liferay-ui:message key="the-meetup-could-not-be-found" />
 	</span>
 
 <%
@@ -202,7 +203,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 	</c:when>
 	<c:otherwise>
 		<div>
-			You have to be signed in to register for this meetup. Please <a href="<%= themeDisplay.getURLSignIn() %>">sign in</a> or <a href="<%= themeDisplay.getURLCreateAccount() %>">create an account</a> if you do not already have one.
+			<%= LanguageUtil.format(pageContext, "you-have-to-be-signed-in-to-register-for-this-meetup-please-sign-in-or-create-an-account-if-you-do-not-already-have-one", new Object[] {themeDisplay.getURLSignIn(), themeDisplay.getURLCreateAccount()}) %>
 		</div>
 	</c:otherwise>
 </c:choose>

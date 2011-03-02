@@ -206,6 +206,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Meetups</title>
 			<short-title>Meetups</short-title>
