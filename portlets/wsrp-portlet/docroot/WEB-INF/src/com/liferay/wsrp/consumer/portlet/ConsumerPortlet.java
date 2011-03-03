@@ -1552,6 +1552,16 @@ public class ConsumerPortlet extends GenericPortlet {
 		ResourceContext resourceContext =
 			wsrpResourceResponse.getResourceContext();
 
+		CacheControl cacheControl = resourceContext.getCacheControl();
+
+		if (cacheControl != null) {
+			if (cacheControl.getExpires() == 0) {
+				resourceResponse.setProperty(
+					HttpHeaders.CACHE_CONTROL,
+					HttpHeaders.CACHE_CONTROL_NO_CACHE_NO_STORE_VALUE);
+			}
+		}
+
 		NamedString[] clientAttributes = resourceContext.getClientAttributes();
 
 		if (clientAttributes != null) {
@@ -1565,16 +1575,6 @@ public class ConsumerPortlet extends GenericPortlet {
 
 					break;
 				}
-			}
-		}
-
-		CacheControl cacheControl = resourceContext.getCacheControl();
-
-		if (cacheControl != null) {
-			if (cacheControl.getExpires() == 0) {
-				resourceResponse.setProperty(
-					HttpHeaders.CACHE_CONTROL,
-					HttpHeaders.CACHE_CONTROL_NO_CACHE_NO_STORE_VALUE);
 			}
 		}
 
