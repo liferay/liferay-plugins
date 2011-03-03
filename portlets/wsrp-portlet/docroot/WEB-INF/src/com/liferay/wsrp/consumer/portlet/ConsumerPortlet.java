@@ -98,6 +98,7 @@ import javax.xml.namespace.QName;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
 import oasis.names.tc.wsrp.v2.types.BlockingInteractionResponse;
+import oasis.names.tc.wsrp.v2.types.CacheControl;
 import oasis.names.tc.wsrp.v2.types.ClientData;
 import oasis.names.tc.wsrp.v2.types.Contact;
 import oasis.names.tc.wsrp.v2.types.CookieProtocol;
@@ -1564,6 +1565,16 @@ public class ConsumerPortlet extends GenericPortlet {
 
 					break;
 				}
+			}
+		}
+
+		CacheControl cacheControl = resourceContext.getCacheControl();
+
+		if (cacheControl != null) {
+			if (cacheControl.getExpires() == 0) {
+				resourceResponse.setProperty(
+					HttpHeaders.CACHE_CONTROL,
+					HttpHeaders.CACHE_CONTROL_NO_CACHE_NO_STORE_VALUE);
 			}
 		}
 
