@@ -73,6 +73,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
+			{ "rootResourcePrimKey", Types.BIGINT },
 			{ "parentResourcePrimKey", Types.BIGINT },
 			{ "version", Types.INTEGER },
 			{ "title", Types.VARCHAR },
@@ -85,7 +86,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,priority LONG,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,priority LONG,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";
 	public static final String ORDER_BY_JPQL = " ORDER BY article.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.modifiedDate DESC";
@@ -117,6 +118,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setRootResourcePrimKey(soapModel.getRootResourcePrimKey());
 		model.setParentResourcePrimKey(soapModel.getParentResourcePrimKey());
 		model.setVersion(soapModel.getVersion());
 		model.setTitle(soapModel.getTitle());
@@ -282,6 +284,14 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	public long getRootResourcePrimKey() {
+		return _rootResourcePrimKey;
+	}
+
+	public void setRootResourcePrimKey(long rootResourcePrimKey) {
+		_rootResourcePrimKey = rootResourcePrimKey;
 	}
 
 	public long getParentResourcePrimKey() {
@@ -508,6 +518,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 
 		articleImpl.setModifiedDate(getModifiedDate());
 
+		articleImpl.setRootResourcePrimKey(getRootResourcePrimKey());
+
 		articleImpl.setParentResourcePrimKey(getParentResourcePrimKey());
 
 		articleImpl.setVersion(getVersion());
@@ -579,7 +591,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(41);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -599,6 +611,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", rootResourcePrimKey=");
+		sb.append(getRootResourcePrimKey());
 		sb.append(", parentResourcePrimKey=");
 		sb.append(getParentResourcePrimKey());
 		sb.append(", version=");
@@ -627,7 +641,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(64);
+		StringBundler sb = new StringBundler(67);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.Article");
@@ -668,6 +682,10 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>rootResourcePrimKey</column-name><column-value><![CDATA[");
+		sb.append(getRootResourcePrimKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>parentResourcePrimKey</column-name><column-value><![CDATA[");
@@ -734,6 +752,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _rootResourcePrimKey;
 	private long _parentResourcePrimKey;
 	private int _version;
 	private int _originalVersion;

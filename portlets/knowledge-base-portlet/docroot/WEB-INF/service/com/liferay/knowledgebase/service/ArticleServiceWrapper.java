@@ -30,13 +30,13 @@ public class ArticleServiceWrapper implements ArticleService {
 
 	public com.liferay.knowledgebase.model.Article addArticle(
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, long priority,
+		java.lang.String content, java.lang.String description,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.addArticle(parentResourcePrimKey, title,
-			content, description, priority, dirName, serviceContext);
+			content, description, dirName, serviceContext);
 	}
 
 	public void addAttachment(long companyId, long groupId,
@@ -70,27 +70,32 @@ public class ArticleServiceWrapper implements ArticleService {
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int status, int start, int end,
+		long groupId, long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticles(resourcePrimKey, status, start, end,
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticles(groupId, resourcePrimKey, status,
 			orderByComparator);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long[] resourcePrimKeys, int status,
+		long groupId, long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticles(resourcePrimKeys, status,
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticles(groupId, resourcePrimKeys, status,
 			orderByComparator);
 	}
 
-	public int getArticlesCount(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticlesCount(resourcePrimKey, status);
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long groupId, long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticles(groupId, resourcePrimKey, status,
+			start, end, orderByComparator);
+	}
+
+	public int getArticlesCount(long groupId, long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticlesCount(groupId, resourcePrimKey, status);
 	}
 
 	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
@@ -115,6 +120,19 @@ public class ArticleServiceWrapper implements ArticleService {
 			delta, orderByComparator);
 	}
 
+	public java.util.List<com.liferay.knowledgebase.model.Article> getGroupArticles(
+		long groupId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getGroupArticles(groupId, status, start, end,
+			orderByComparator);
+	}
+
+	public int getGroupArticlesCount(long groupId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getGroupArticlesCount(groupId, status);
+	}
+
 	public java.lang.String getGroupArticlesRSS(int status, int rssDelta,
 		java.lang.String rssDisplayStyle, java.lang.String rssFormat,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
@@ -135,18 +153,24 @@ public class ArticleServiceWrapper implements ArticleService {
 		long groupId, long parentResourcePrimKey, int status, int start,
 		int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getSiblingArticles(groupId,
 			parentResourcePrimKey, status, start, end, orderByComparator);
 	}
 
 	public int getSiblingArticlesCount(long groupId,
 		long parentResourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getSiblingArticlesCount(groupId,
 			parentResourcePrimKey, status);
+	}
+
+	public com.liferay.knowledgebase.model.Article moveArticle(long groupId,
+		long resourcePrimKey, long parentResourcePrimKey, long priority)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.moveArticle(groupId, resourcePrimKey,
+			parentResourcePrimKey, priority);
 	}
 
 	public void subscribeArticle(long groupId, long resourcePrimKey)
@@ -175,15 +199,13 @@ public class ArticleServiceWrapper implements ArticleService {
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(
-		long resourcePrimKey, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, long priority, java.lang.String dirName,
+		long resourcePrimKey, java.lang.String title, java.lang.String content,
+		java.lang.String description, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.updateArticle(resourcePrimKey,
-			parentResourcePrimKey, title, content, description, priority,
-			dirName, serviceContext);
+		return _articleService.updateArticle(resourcePrimKey, title, content,
+			description, dirName, serviceContext);
 	}
 
 	public java.lang.String updateAttachments(long companyId, long groupId,

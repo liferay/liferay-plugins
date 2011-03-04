@@ -229,6 +229,24 @@ public class ArticleWrapper implements Article {
 	}
 
 	/**
+	* Gets the root resource prim key of this article.
+	*
+	* @return the root resource prim key of this article
+	*/
+	public long getRootResourcePrimKey() {
+		return _article.getRootResourcePrimKey();
+	}
+
+	/**
+	* Sets the root resource prim key of this article.
+	*
+	* @param rootResourcePrimKey the root resource prim key of this article
+	*/
+	public void setRootResourcePrimKey(long rootResourcePrimKey) {
+		_article.setRootResourcePrimKey(rootResourcePrimKey);
+	}
+
+	/**
 	* Gets the parent resource prim key of this article.
 	*
 	* @return the parent resource prim key of this article
@@ -562,6 +580,14 @@ public class ArticleWrapper implements Article {
 
 	public long getClassPK() {
 		return _article.getClassPK();
+	}
+
+	public boolean isFirstVersion() {
+		return _article.isFirstVersion();
+	}
+
+	public boolean isRoot() {
+		return _article.isRoot();
 	}
 
 	public Article getWrappedArticle() {

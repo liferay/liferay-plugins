@@ -11,6 +11,7 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="rootResourcePrimKey" type="long" />
 		<field name="parentResourcePrimKey" type="long" />
 		<field name="version" type="int" />
 		<field name="title" type="String">

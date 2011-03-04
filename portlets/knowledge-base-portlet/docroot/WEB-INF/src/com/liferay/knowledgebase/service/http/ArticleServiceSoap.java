@@ -67,14 +67,13 @@ import java.rmi.RemoteException;
 public class ArticleServiceSoap {
 	public static com.liferay.knowledgebase.model.ArticleSoap addArticle(
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, long priority,
+		java.lang.String content, java.lang.String description,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.Article returnValue = ArticleServiceUtil.addArticle(parentResourcePrimKey,
-					title, content, description, priority, dirName,
-					serviceContext);
+					title, content, description, dirName, serviceContext);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModel(returnValue);
 		}
@@ -127,12 +126,12 @@ public class ArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticles(
-		long resourcePrimKey, int status, int start, int end,
+		long groupId, long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
 		try {
-			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(resourcePrimKey,
-					status, start, end, orderByComparator);
+			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(groupId,
+					resourcePrimKey, status, orderByComparator);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
 		}
@@ -144,12 +143,12 @@ public class ArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticles(
-		long[] resourcePrimKeys, int status,
+		long groupId, long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
 		try {
-			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(resourcePrimKeys,
-					status, orderByComparator);
+			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(groupId,
+					resourcePrimKeys, status, orderByComparator);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
 		}
@@ -160,11 +159,28 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static int getArticlesCount(long resourcePrimKey, int status)
+	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticles(
+		long groupId, long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
 		try {
-			int returnValue = ArticleServiceUtil.getArticlesCount(resourcePrimKey,
-					status);
+			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(groupId,
+					resourcePrimKey, status, start, end, orderByComparator);
+
+			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getArticlesCount(long groupId, long resourcePrimKey,
+		int status) throws RemoteException {
+		try {
+			int returnValue = ArticleServiceUtil.getArticlesCount(groupId,
+					resourcePrimKey, status);
 
 			return returnValue;
 		}
@@ -185,6 +201,38 @@ public class ArticleServiceSoap {
 			com.liferay.knowledgebase.model.ArticleSearchDisplay returnValue = ArticleServiceUtil.getArticleSearchDisplay(groupId,
 					title, content, status, startDate, endDate, andOperator,
 					curStartValues, cur, delta, orderByComparator);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.ArticleSoap[] getGroupArticles(
+		long groupId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getGroupArticles(groupId,
+					status, start, end, orderByComparator);
+
+			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getGroupArticlesCount(long groupId, int status)
+		throws RemoteException {
+		try {
+			int returnValue = ArticleServiceUtil.getGroupArticlesCount(groupId,
+					status);
 
 			return returnValue;
 		}
@@ -243,6 +291,22 @@ public class ArticleServiceSoap {
 		}
 	}
 
+	public static com.liferay.knowledgebase.model.ArticleSoap moveArticle(
+		long groupId, long resourcePrimKey, long parentResourcePrimKey,
+		long priority) throws RemoteException {
+		try {
+			com.liferay.knowledgebase.model.Article returnValue = ArticleServiceUtil.moveArticle(groupId,
+					resourcePrimKey, parentResourcePrimKey, priority);
+
+			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void subscribeArticle(long groupId, long resourcePrimKey)
 		throws RemoteException {
 		try {
@@ -292,15 +356,13 @@ public class ArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSoap updateArticle(
-		long resourcePrimKey, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, long priority, java.lang.String dirName,
+		long resourcePrimKey, java.lang.String title, java.lang.String content,
+		java.lang.String description, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
 			com.liferay.knowledgebase.model.Article returnValue = ArticleServiceUtil.updateArticle(resourcePrimKey,
-					parentResourcePrimKey, title, content, description,
-					priority, dirName, serviceContext);
+					title, content, description, dirName, serviceContext);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModel(returnValue);
 		}

@@ -24,6 +24,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="rootResourcePrimKey" />
 			<basic name="parentResourcePrimKey" />
 			<basic name="version" />
 			<basic name="title" />

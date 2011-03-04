@@ -40,6 +40,7 @@ public class ArticleSoap implements Serializable {
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setRootResourcePrimKey(model.getRootResourcePrimKey());
 		soapModel.setParentResourcePrimKey(model.getParentResourcePrimKey());
 		soapModel.setVersion(model.getVersion());
 		soapModel.setTitle(model.getTitle());
@@ -175,6 +176,14 @@ public class ArticleSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getRootResourcePrimKey() {
+		return _rootResourcePrimKey;
+	}
+
+	public void setRootResourcePrimKey(long rootResourcePrimKey) {
+		_rootResourcePrimKey = rootResourcePrimKey;
+	}
+
 	public long getParentResourcePrimKey() {
 		return _parentResourcePrimKey;
 	}
@@ -272,6 +281,7 @@ public class ArticleSoap implements Serializable {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _rootResourcePrimKey;
 	private long _parentResourcePrimKey;
 	private int _version;
 	private String _title;

@@ -8,6 +8,7 @@ create table KB_Article (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
+	rootResourcePrimKey LONG,
 	parentResourcePrimKey LONG,
 	version INTEGER,
 	title STRING null,

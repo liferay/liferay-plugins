@@ -127,6 +127,14 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		_modifiedDate = modifiedDate;
 	}
 
+	public long getRootResourcePrimKey() {
+		return _rootResourcePrimKey;
+	}
+
+	public void setRootResourcePrimKey(long rootResourcePrimKey) {
+		_rootResourcePrimKey = rootResourcePrimKey;
+	}
+
 	public long getParentResourcePrimKey() {
 		return _parentResourcePrimKey;
 	}
@@ -236,6 +244,14 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		throw new UnsupportedOperationException();
 	}
 
+	public boolean isFirstVersion() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isRoot() {
+		throw new UnsupportedOperationException();
+	}
+
 	/**
 	 * @deprecated {@link #isApproved}
 	 */
@@ -301,6 +317,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		clone.setUserName(getUserName());
 		clone.setCreateDate(getCreateDate());
 		clone.setModifiedDate(getModifiedDate());
+		clone.setRootResourcePrimKey(getRootResourcePrimKey());
 		clone.setParentResourcePrimKey(getParentResourcePrimKey());
 		clone.setVersion(getVersion());
 		clone.setTitle(getTitle());
@@ -359,7 +376,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(41);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -379,6 +396,8 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", rootResourcePrimKey=");
+		sb.append(getRootResourcePrimKey());
 		sb.append(", parentResourcePrimKey=");
 		sb.append(getParentResourcePrimKey());
 		sb.append(", version=");
@@ -407,7 +426,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(64);
+		StringBundler sb = new StringBundler(67);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.Article");
@@ -448,6 +467,10 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>rootResourcePrimKey</column-name><column-value><![CDATA[");
+		sb.append(getRootResourcePrimKey());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>parentResourcePrimKey</column-name><column-value><![CDATA[");
@@ -509,6 +532,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _rootResourcePrimKey;
 	private long _parentResourcePrimKey;
 	private int _version;
 	private String _title;

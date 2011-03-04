@@ -36,4 +36,8 @@ public interface Article extends ArticleModel {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public long getClassPK();
+
+	public boolean isFirstVersion();
+
+	public boolean isRoot();
 }

@@ -59,6 +59,7 @@ public class ArticleJSONSerializer {
 		}
 
 		jsonObject.put("modifiedDate", modifiedDateJSON);
+		jsonObject.put("rootResourcePrimKey", model.getRootResourcePrimKey());
 		jsonObject.put("parentResourcePrimKey", model.getParentResourcePrimKey());
 		jsonObject.put("version", model.getVersion());
 		jsonObject.put("title", model.getTitle());

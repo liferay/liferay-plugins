@@ -254,13 +254,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 
 	public com.liferay.knowledgebase.model.Article addArticle(long userId,
 		long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description, long priority,
+		java.lang.String content, java.lang.String description,
 		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.addArticle(userId, parentResourcePrimKey,
-			title, content, description, priority, dirName, serviceContext);
+			title, content, description, dirName, serviceContext);
 	}
 
 	public void addArticleResources(
@@ -316,11 +316,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int status, int start, int end,
+		long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getArticles(resourcePrimKey, status, start,
-			end, orderByComparator);
+		return _articleLocalService.getArticles(resourcePrimKey, status,
+			orderByComparator);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
@@ -329,6 +329,14 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticles(resourcePrimKeys, status,
 			orderByComparator);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticles(resourcePrimKey, status, start,
+			end, orderByComparator);
 	}
 
 	public int getArticlesCount(long resourcePrimKey, int status)
@@ -385,6 +393,15 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			parentResourcePrimKey, status);
 	}
 
+	public com.liferay.knowledgebase.model.Article moveArticle(long userId,
+		long groupId, long resourcePrimKey, long parentResourcePrimKey,
+		long priority)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.moveArticle(userId, groupId,
+			resourcePrimKey, parentResourcePrimKey, priority);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> search(
 		long groupId, java.lang.String title, java.lang.String content,
 		int status, java.util.Date startDate, java.util.Date endDate,
@@ -420,15 +437,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	}
 
 	public com.liferay.knowledgebase.model.Article updateArticle(long userId,
-		long resourcePrimKey, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, long priority, java.lang.String dirName,
+		long resourcePrimKey, java.lang.String title, java.lang.String content,
+		java.lang.String description, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.updateArticle(userId, resourcePrimKey,
-			parentResourcePrimKey, title, content, description, priority,
-			dirName, serviceContext);
+			title, content, description, dirName, serviceContext);
 	}
 
 	public void updateArticleResources(

@@ -203,6 +203,20 @@ public interface ArticleModel extends BaseModel<Article> {
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Gets the root resource prim key of this article.
+	 *
+	 * @return the root resource prim key of this article
+	 */
+	public long getRootResourcePrimKey();
+
+	/**
+	 * Sets the root resource prim key of this article.
+	 *
+	 * @param rootResourcePrimKey the root resource prim key of this article
+	 */
+	public void setRootResourcePrimKey(long rootResourcePrimKey);
+
+	/**
 	 * Gets the parent resource prim key of this article.
 	 *
 	 * @return the parent resource prim key of this article
