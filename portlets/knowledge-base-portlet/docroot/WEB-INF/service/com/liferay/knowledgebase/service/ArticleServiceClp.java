@@ -46,26 +46,26 @@ public class ArticleServiceClp implements ArticleService {
 		_getArticleMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getArticle", long.class, int.class);
 
-		_getArticlesMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticles", long.class, long.class, int.class,
-				com.liferay.portal.kernel.util.OrderByComparator.class);
+		_getArticleRSSMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticleRSS", long.class, int.class, int.class,
+				java.lang.String.class, java.lang.String.class,
+				com.liferay.portal.theme.ThemeDisplay.class);
 
 		_getArticlesMethodKey6 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticles", long.class, long[].class, int.class,
-				com.liferay.portal.kernel.util.OrderByComparator.class);
-
-		_getArticlesMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getArticles", long.class, long.class, int.class, int.class,
 				int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getArticlesCountMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticlesCount", long.class, long.class, int.class);
+		_getArticlesMethodKey7 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", long.class, long.class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getArticleRSSMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticleRSS", long.class, int.class, int.class,
-				java.lang.String.class, java.lang.String.class,
-				com.liferay.portal.theme.ThemeDisplay.class);
+		_getArticlesMethodKey8 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticles", long.class, long[].class, int.class,
+				com.liferay.portal.kernel.util.OrderByComparator.class);
+
+		_getArticlesCountMethodKey9 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getArticlesCount", long.class, long.class, int.class);
 
 		_getArticleSearchDisplayMethodKey10 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getArticleSearchDisplay", long.class, java.lang.String.class,
@@ -288,13 +288,81 @@ public class ArticleServiceClp implements ArticleService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
+		int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getArticleRSSMethodKey5,
+				resourcePrimKey, status, rssDelta,
+				ClpSerializer.translateInput(rssDisplayStyle),
+				ClpSerializer.translateInput(rssFormat),
+				ClpSerializer.translateInput(themeDisplay));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long groupId, long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey6,
+				groupId, resourcePrimKey, status, start, end,
+				ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		long groupId, long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey5,
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey7,
 				groupId, resourcePrimKey, status,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -324,39 +392,9 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey6,
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey8,
 				groupId, ClpSerializer.translateInput(resourcePrimKeys),
 				status, ClpSerializer.translateInput(orderByComparator));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long groupId, long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey7,
-				groupId, resourcePrimKey, status, start, end,
-				ClpSerializer.translateInput(orderByComparator));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -382,7 +420,7 @@ public class ArticleServiceClp implements ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticlesCountMethodKey8,
+		MethodHandler methodHandler = new MethodHandler(_getArticlesCountMethodKey9,
 				groupId, resourcePrimKey, status);
 
 		try {
@@ -403,44 +441,6 @@ public class ArticleServiceClp implements ArticleService {
 		}
 
 		return ((Integer)returnObj).intValue();
-	}
-
-	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
-		int rssDelta, java.lang.String rssDisplayStyle,
-		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getArticleRSSMethodKey9,
-				resourcePrimKey, status, rssDelta,
-				ClpSerializer.translateInput(rssDisplayStyle),
-				ClpSerializer.translateInput(rssFormat),
-				ClpSerializer.translateInput(themeDisplay));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.knowledgebase.model.ArticleSearchDisplay getArticleSearchDisplay(
@@ -899,11 +899,11 @@ public class ArticleServiceClp implements ArticleService {
 	private MethodKey _deleteArticleMethodKey2;
 	private MethodKey _deleteAttachmentMethodKey3;
 	private MethodKey _getArticleMethodKey4;
-	private MethodKey _getArticlesMethodKey5;
+	private MethodKey _getArticleRSSMethodKey5;
 	private MethodKey _getArticlesMethodKey6;
 	private MethodKey _getArticlesMethodKey7;
-	private MethodKey _getArticlesCountMethodKey8;
-	private MethodKey _getArticleRSSMethodKey9;
+	private MethodKey _getArticlesMethodKey8;
+	private MethodKey _getArticlesCountMethodKey9;
 	private MethodKey _getArticleSearchDisplayMethodKey10;
 	private MethodKey _getGroupArticlesMethodKey11;
 	private MethodKey _getGroupArticlesCountMethodKey12;

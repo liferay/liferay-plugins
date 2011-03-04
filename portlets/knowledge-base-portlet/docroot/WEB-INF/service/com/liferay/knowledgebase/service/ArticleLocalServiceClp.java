@@ -114,15 +114,15 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 				"getArticle", long.class, int.class);
 
 		_getArticlesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticles", long.class, int.class,
+				"getArticles", long.class, int.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_getArticlesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticles", long[].class, int.class,
+				"getArticles", long.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_getArticlesMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getArticles", long.class, int.class, int.class, int.class,
+				"getArticles", long[].class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
 		_getArticlesCountMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
@@ -893,12 +893,42 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int status,
+		long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey24,
+				resourcePrimKey, status, start, end,
+				ClpSerializer.translateInput(orderByComparator));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long resourcePrimKey, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey25,
 				resourcePrimKey, status,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -928,38 +958,8 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey25,
-				ClpSerializer.translateInput(resourcePrimKeys), status,
-				ClpSerializer.translateInput(orderByComparator));
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.knowledgebase.model.Article>)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		MethodHandler methodHandler = new MethodHandler(_getArticlesMethodKey26,
-				resourcePrimKey, status, start, end,
+				ClpSerializer.translateInput(resourcePrimKeys), status,
 				ClpSerializer.translateInput(orderByComparator));
 
 		try {

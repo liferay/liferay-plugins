@@ -69,6 +69,24 @@ public class ArticleServiceWrapper implements ArticleService {
 		return _articleService.getArticle(resourcePrimKey, version);
 	}
 
+	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
+		int rssDelta, java.lang.String rssDisplayStyle,
+		java.lang.String rssFormat,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticleRSS(resourcePrimKey, status, rssDelta,
+			rssDisplayStyle, rssFormat, themeDisplay);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long groupId, long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleService.getArticles(groupId, resourcePrimKey, status,
+			start, end, orderByComparator);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		long groupId, long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -85,27 +103,9 @@ public class ArticleServiceWrapper implements ArticleService {
 			orderByComparator);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long groupId, long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticles(groupId, resourcePrimKey, status,
-			start, end, orderByComparator);
-	}
-
 	public int getArticlesCount(long groupId, long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.getArticlesCount(groupId, resourcePrimKey, status);
-	}
-
-	public java.lang.String getArticleRSS(long resourcePrimKey, int status,
-		int rssDelta, java.lang.String rssDisplayStyle,
-		java.lang.String rssFormat,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.getArticleRSS(resourcePrimKey, status, rssDelta,
-			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
 	public com.liferay.knowledgebase.model.ArticleSearchDisplay getArticleSearchDisplay(

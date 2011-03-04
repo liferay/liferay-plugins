@@ -333,6 +333,15 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+		long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getArticles(resourcePrimKey, status, start, end,
+			orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
 		long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -346,15 +355,6 @@ public class ArticleLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getArticles(resourcePrimKeys, status, orderByComparator);
-	}
-
-	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .getArticles(resourcePrimKey, status, start, end,
-			orderByComparator);
 	}
 
 	public static int getArticlesCount(long resourcePrimKey, int status)
