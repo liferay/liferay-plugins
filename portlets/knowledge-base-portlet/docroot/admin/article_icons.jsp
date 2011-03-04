@@ -26,7 +26,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 	<div class="kb-article-icons">
 		<table class="lfr-table">
 		<tr>
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && ((article.getStatus() == WorkflowConstants.STATUS_APPROVED) || (article.getVersion() != ArticleConstants.DEFAULT_VERSION)) %>">
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
 				<td>
 					<portlet:renderURL var="addArticleURL">
 						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
@@ -59,7 +59,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</td>
 			</c:if>
 
-			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
+			<c:if test="<%= article.isRoot() && ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
 				<td>
 					<liferay-security:permissionsURL
 						modelResource="<%= Article.class.getName() %>"
@@ -72,6 +72,24 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 						image="permissions"
 						label="<%= true %>"
 						url="<%= permissionsURL %>"
+					/>
+				</td>
+			</c:if>
+
+			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.MOVE_ARTICLE) %>">
+				<td>
+					<portlet:renderURL var="moveURL">
+						<portlet:param name="jspPage" value="/admin/move_article.jsp" />
+						<portlet:param name="redirect" value="<%= currentURL %>" />
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+						<portlet:param name="humanPriority" value="<%= String.valueOf(PriorityHelper.getHumanPriority(scopeGroupId, article.getResourcePrimKey(), article.getParentResourcePrimKey(), article.getPriority())) %>" />
+					</portlet:renderURL>
+
+					<liferay-ui:icon
+						image="forward"
+						label="<%= true %>"
+						message="move"
+						url="<%= moveURL %>"
 					/>
 				</td>
 			</c:if>

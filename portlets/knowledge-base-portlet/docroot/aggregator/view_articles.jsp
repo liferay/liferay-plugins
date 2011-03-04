@@ -64,7 +64,7 @@ String tag = ParamUtil.getString(request, "tag");
 				<c:when test='<%= articlesDisplayStyle.equals("full-content") %>'>
 					<%= article.getContent() %>
 				</c:when>
-				<c:when test='<%= (articlesDisplayStyle.equals("abstract") && Validator.isNotNull(article.getDescription())) %>'>
+				<c:when test='<%= articlesDisplayStyle.equals("abstract") && Validator.isNotNull(article.getDescription()) %>'>
 					<%= article.getDescription() %>
 				</c:when>
 				<c:when test='<%= articlesDisplayStyle.equals("abstract") %>'>

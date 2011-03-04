@@ -30,7 +30,7 @@
 		<%
 		List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), Article.class.getName());
 
-		List<Article> articles = ArticleServiceUtil.getArticles(StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, new ArticleModifiedDateComparator());
+		List<Article> articles = ArticleServiceUtil.getArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, new ArticleModifiedDateComparator());
 
 		pageContext.setAttribute("results", ListUtil.subList(articles, searchContainer.getStart(), searchContainer.getEnd()));
 		pageContext.setAttribute("total", articles.size());

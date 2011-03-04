@@ -28,10 +28,15 @@ int maxHumanPriority = PriorityHelper.getMaxHumanPriority(scopeGroupId, parentRe
 int humanPriority = ParamUtil.getInteger(request, "humanPriority", maxHumanPriority);
 %>
 
-<div class="kb-priority">
-	<c:if test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
-		<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") %>
-	</c:if>
+<div class="kb-new-parent">
+	<c:choose>
+		<c:when test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
+			<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") %>
+		</c:when>
+		<c:otherwise>
+			(<liferay-ui:message key="none" />)
+		</c:otherwise>
+	</c:choose>
 
 	<aui:select ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="" name="humanPriority">
 
@@ -58,6 +63,6 @@ int humanPriority = ParamUtil.getInteger(request, "humanPriority", maxHumanPrior
 	%>
 
 	<div class="kb-edit-link">
-		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-parent-article" /> &raquo;</aui:a>
+		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-article" /> &raquo;</aui:a>
 	</div>
 </div>

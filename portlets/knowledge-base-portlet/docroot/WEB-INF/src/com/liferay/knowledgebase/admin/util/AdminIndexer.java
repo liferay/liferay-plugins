@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
-import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
@@ -42,7 +41,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
@@ -187,7 +185,7 @@ public class AdminIndexer extends BaseIndexer {
 		long userId = article.getUserId();
 		String userName = PortalUtil.getUserName(userId, article.getUserName());
 		long resourcePrimKey = article.getResourcePrimKey();
-		long parentResourcePrimKey = article.getParentResourcePrimKey();
+		long rootResourcePrimKey = article.getRootResourcePrimKey();
 		String title = article.getTitle();
 		String content = HtmlUtil.extractText(article.getContent());
 		String description = article.getDescription();
@@ -223,8 +221,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
-
-		document.addKeyword("parentResourcePrimKey", parentResourcePrimKey);
+		document.addKeyword(Field.ROOT_ENTRY_CLASS_PK, rootResourcePrimKey);
 
 		return document;
 	}
@@ -240,7 +237,7 @@ public class AdminIndexer extends BaseIndexer {
 		Article article = ArticleLocalServiceUtil.getLatestArticle(
 			classPK, WorkflowConstants.STATUS_APPROVED);
 
-		doReindex(article);
+		reindexArticles(article);
 	}
 
 	protected void doReindex(String[] ids) throws Exception {
@@ -251,19 +248,6 @@ public class AdminIndexer extends BaseIndexer {
 
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
-	}
-
-	protected boolean hasPermission(
-			PermissionChecker permissionChecker, long entryClassPK,
-			String actionId)
-		throws Exception {
-
-		return ArticlePermission.contains(
-			permissionChecker, entryClassPK, actionId);
-	}
-
-	protected boolean isFilterSearch() {
-		return _FILTER_SEARCH;
 	}
 
 	protected void postProcessContextQuery(
@@ -289,6 +273,23 @@ public class AdminIndexer extends BaseIndexer {
 			searchQuery.addTerm(Field.TITLE, value, true);
 			searchQuery.addTerm(Field.CONTENT, value, true);
 		}
+	}
+
+	protected void reindexArticles(Article article) throws Exception {
+
+		// See ArticlePermission#contains
+
+		List<Article> articles = ArticleLocalServiceUtil.getArticles(
+			article.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED,
+			null);
+
+ 		Collection<Document> documents = new ArrayList<Document>();
+
+		for (Article curArticle : articles) {
+			documents.add(getDocument(curArticle));
+		}
+
+		SearchEngineUtil.updateDocuments(article.getCompanyId(), documents);
 	}
 
 	protected void reindexArticles(long companyId) throws Exception {
@@ -326,7 +327,5 @@ public class AdminIndexer extends BaseIndexer {
 
 		SearchEngineUtil.updateDocuments(companyId, documents);
 	}
-
-	private static final boolean _FILTER_SEARCH = true;
 
 }

@@ -56,7 +56,7 @@ List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroup
 						<c:when test='<%= childArticlesDisplayStyle.equals("full-content") %>'>
 							<%= siblingArticle.getContent() %>
 						</c:when>
-						<c:when test='<%= (childArticlesDisplayStyle.equals("abstract") && Validator.isNotNull(siblingArticle.getDescription())) %>'>
+						<c:when test='<%= childArticlesDisplayStyle.equals("abstract") && Validator.isNotNull(siblingArticle.getDescription()) %>'>
 							<%= siblingArticle.getDescription() %>
 						</c:when>
 						<c:when test='<%= childArticlesDisplayStyle.equals("abstract") %>'>

@@ -170,6 +170,30 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	public void moveArticle(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			actionRequest, "resourcePrimKey");
+
+		long parentResourcePrimKey = ParamUtil.getLong(
+			actionRequest, "parentResourcePrimKey");
+		int humanPriority = ParamUtil.getInteger(
+			actionRequest, "humanPriority");
+
+		long priority = PriorityHelper.getPriority(
+			themeDisplay.getScopeGroupId(), resourcePrimKey,
+			parentResourcePrimKey, humanPriority);
+
+		ArticleServiceUtil.moveArticle(
+			themeDisplay.getScopeGroupId(), resourcePrimKey,
+			parentResourcePrimKey, priority);
+	}
+
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws PortletException, IOException {
@@ -318,15 +342,9 @@ public class AdminPortlet extends MVCPortlet {
 		String title = ParamUtil.getString(actionRequest, "title");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
-		int humanPriority = ParamUtil.getInteger(
-			actionRequest, "humanPriority");
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 		int workflowAction = ParamUtil.getInteger(
 			actionRequest, "workflowAction", WorkflowConstants.ACTION_PUBLISH);
-
-		long priority = PriorityHelper.getPriority(
-			themeDisplay.getScopeGroupId(), resourcePrimKey,
-			parentResourcePrimKey, humanPriority);
 
 		Article article = null;
 
@@ -335,13 +353,13 @@ public class AdminPortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			article = ArticleServiceUtil.addArticle(
-				parentResourcePrimKey, title, content, description, priority,
-				dirName, serviceContext);
+				parentResourcePrimKey, title, content, description, dirName,
+				serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			article = ArticleServiceUtil.updateArticle(
-				resourcePrimKey, parentResourcePrimKey, title, content,
-				description, priority, dirName, serviceContext);
+				resourcePrimKey, title, content, description, dirName,
+				serviceContext);
 		}
 
 		if (!cmd.equals(Constants.ADD) && !cmd.equals(Constants.UPDATE)) {

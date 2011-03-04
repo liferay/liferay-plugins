@@ -63,6 +63,24 @@ public class ArticleImpl extends ArticleModelImpl implements Article {
 		return getPrimaryKey();
 	}
 
+	public boolean isFirstVersion() {
+		if (getVersion() == ArticleConstants.DEFAULT_VERSION) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public boolean isRoot() {
+		if (getParentResourcePrimKey() ==
+				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(ArticleImpl.class);
 
 }

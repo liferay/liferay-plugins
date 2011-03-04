@@ -26,6 +26,8 @@ public class AdminActivityKeys {
 
 	public static final int ADD_TEMPLATE = 2;
 
+	public static final int MOVE_ARTICLE = 7;
+
 	public static final int UPDATE_ARTICLE = 3;
 
 	public static final int UPDATE_COMMENT = 6;

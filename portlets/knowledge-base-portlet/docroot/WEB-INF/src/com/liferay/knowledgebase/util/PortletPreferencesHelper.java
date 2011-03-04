@@ -95,7 +95,8 @@ public class PortletPreferencesHelper {
 			}
 
 			List<Article> articles = ArticleServiceUtil.getArticles(
-				resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, null);
+				groupId, resourcePrimKeys, WorkflowConstants.STATUS_APPROVED,
+				null);
 
 			return new Tuple(
 				ListUtil.subList(articles, start, end), articles.size());
@@ -105,7 +106,7 @@ public class PortletPreferencesHelper {
 				groupId, assetCategoryId, assetTagName, preferencesMap);
 
 			List<Article> articles = ArticleServiceUtil.getArticles(
-				classPKs, WorkflowConstants.STATUS_APPROVED,
+				groupId, classPKs, WorkflowConstants.STATUS_APPROVED,
 				getOrderByComparator(orderByColumn, orderByAscending));
 
 			return new Tuple(
@@ -117,7 +118,7 @@ public class PortletPreferencesHelper {
 					groupId, assetCategoryId, assetTagName, preferencesMap);
 
 				List<Article> articles = ArticleServiceUtil.getArticles(
-					classPKs, WorkflowConstants.STATUS_APPROVED,
+					groupId, classPKs, WorkflowConstants.STATUS_APPROVED,
 					getOrderByComparator(orderByColumn, orderByAscending));
 
 				return new Tuple(
@@ -251,14 +252,16 @@ public class PortletPreferencesHelper {
 
 		if (selectionMethod.equals("articles")) {
 			articles = ArticleServiceUtil.getArticles(
-				resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, null);
+				article.getGroupId(), resourcePrimKeys,
+				WorkflowConstants.STATUS_APPROVED, null);
 		}
 		else if (selectionMethod.equals("filter")) {
 			long[] classPKs = getAssetEntriesClassPKs(
 				article.getGroupId(), 0, null, preferencesMap);
 
 			articles = ArticleServiceUtil.getArticles(
-				classPKs, WorkflowConstants.STATUS_APPROVED,
+				article.getGroupId(), classPKs,
+				WorkflowConstants.STATUS_APPROVED,
 				getOrderByComparator(orderByColumn, orderByAscending));
 		}
 		else if (selectionMethod.equals("group")) {
@@ -277,32 +280,12 @@ public class PortletPreferencesHelper {
 
 		// Users can navigate to the root article. See article_breadcrumbs.jsp.
 
-		long[] rootResourcePrimKeys = new long[0];
+		long rootResourcePrimKey = article.getRootResourcePrimKey();
 
 		for (Article curArticle : articles) {
-			while (curArticle.getParentResourcePrimKey() !=
-						ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-				curArticle = ArticleServiceUtil.getLatestArticle(
-					curArticle.getParentResourcePrimKey(),
-					WorkflowConstants.STATUS_APPROVED);
-			}
-
-			rootResourcePrimKeys = ArrayUtil.append(
-				rootResourcePrimKeys, curArticle.getResourcePrimKey());
-		}
-
-		while (resourcePrimKey !=
-					ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-			if (ArrayUtil.contains(rootResourcePrimKeys, resourcePrimKey)) {
+			if (curArticle.getRootResourcePrimKey() == rootResourcePrimKey) {
 				return true;
 			}
-
-			Article curArticle = ArticleServiceUtil.getLatestArticle(
-				resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-			resourcePrimKey = curArticle.getParentResourcePrimKey();
 		}
 
 		return false;

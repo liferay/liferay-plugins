@@ -14,14 +14,21 @@
 
 package com.liferay.knowledgebase.util;
 
+import com.liferay.knowledgebase.model.Article;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.UniqueList;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -53,6 +60,41 @@ public class KnowledgeBaseUtil {
 		return sb.toString();
 	}
 
+	public static Long[][] getParams(Long[] params) {
+		if ((params == null) || (params.length == 0)) {
+			return null;
+		}
+
+		if (params.length <= _SQL_DATA_MAX_PARAMETERS) {
+			return new Long[][] {new Long[0], params};
+		}
+
+		return new Long[][] {
+			ArrayUtil.subset(params, _SQL_DATA_MAX_PARAMETERS, params.length),
+			ArrayUtil.subset(params, 0, _SQL_DATA_MAX_PARAMETERS)
+		};
+	}
+
+	public static List<Article> sort(
+		long[] resourcePrimKeys, List<Article> articles) {
+
+		Map<Long, Article> map = new HashMap<Long, Article>();
+
+		for (Article article : articles) {
+			map.put(article.getResourcePrimKey(), article);
+		}
+
+		articles.clear();
+
+		for (long resourcePrimKey : resourcePrimKeys) {
+			if (map.containsKey(resourcePrimKey)) {
+				articles.add(map.get(resourcePrimKey));
+			}
+		}
+
+		return articles;
+	}
+
 	public static String[] splitKeywords(String keywords) {
 		List<String> keywordsList = new UniqueList<String>();
 
@@ -80,5 +122,8 @@ public class KnowledgeBaseUtil {
 
 		return StringUtil.split(StringUtil.merge(keywordsList));
 	}
+
+	private static final int _SQL_DATA_MAX_PARAMETERS =
+		GetterUtil.getInteger(PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
 }

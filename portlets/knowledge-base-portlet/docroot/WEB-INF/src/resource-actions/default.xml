@@ -27,6 +27,7 @@
 			<supports>
 				<action-key>ADD_ARTICLE</action-key>
 				<action-key>ADD_TEMPLATE</action-key>
+				<action-key>MOVE_ARTICLE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>VIEW_TEMPLATES</action-key>
@@ -38,6 +39,7 @@
 			<guest-unsupported>
 				<action-key>ADD_ARTICLE</action-key>
 				<action-key>ADD_TEMPLATE</action-key>
+				<action-key>MOVE_ARTICLE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>VIEW_TEMPLATES</action-key>

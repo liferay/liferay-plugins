@@ -27,6 +27,7 @@ import com.liferay.knowledgebase.service.TemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.ArticleUtil;
 import com.liferay.knowledgebase.service.persistence.CommentUtil;
 import com.liferay.knowledgebase.service.persistence.TemplateUtil;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
@@ -380,29 +381,14 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		List<Article> siblingArticles = new ArrayList<Article>();
 
-		long[] parentResourcePrimKeys = {
-			ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY
+		Long[][] params = new Long[][] {
+			new Long[] {ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY}
 		};
 
-		while (parentResourcePrimKeys.length > 0) {
-			long[] curParentResourcePrimKeys = null;
-
-			if (parentResourcePrimKeys.length > _SQL_DATA_MAX_PARAMETERS) {
-				curParentResourcePrimKeys = ArrayUtil.subset(
-					parentResourcePrimKeys, 0, _SQL_DATA_MAX_PARAMETERS);
-
-				parentResourcePrimKeys = ArrayUtil.subset(
-					parentResourcePrimKeys, _SQL_DATA_MAX_PARAMETERS,
-					parentResourcePrimKeys.length);
-			}
-			else {
-				curParentResourcePrimKeys = parentResourcePrimKeys.clone();
-
-				parentResourcePrimKeys = new long[0];
-			}
-
+		while ((params = KnowledgeBaseUtil.getParams(params[0])) != null) {
 			List<Article> curArticles = ArticleUtil.findByG_P_L_S(
-				portletDataContext.getScopeGroupId(), curParentResourcePrimKeys,
+				portletDataContext.getScopeGroupId(),
+				ArrayUtil.toArray(params[1]),
 				ArticleConstants.LATEST_ANY, WorkflowConstants.STATUS_APPROVED);
 
 			for (Article curArticle : curArticles) {
@@ -413,16 +399,17 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				}
 			}
 
-			if (parentResourcePrimKeys.length == 0) {
+			if (params[0].length == 0) {
 				Collections.sort(
 					siblingArticles, new ArticlePriorityComparator(true));
 
 				articles.addAll(siblingArticles);
 
-				parentResourcePrimKeys = StringUtil.split(
+				long[] resourcePrimKeys = StringUtil.split(
 					ListUtil.toString(siblingArticles, "resourcePrimKey"), 0L);
 
 				siblingArticles = new ArrayList<Article>();
+				params[0] = ArrayUtil.toArray(resourcePrimKeys);
 			}
 		}
 
@@ -476,6 +463,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Article importedArticle = null;
 
+		long priority = 0;
+
 		if (portletDataContext.isDataStrategyMirror()) {
 			Article existingArticle = ArticleUtil.fetchByUUID_G(
 				article.getUuid(), portletDataContext.getScopeGroupId());
@@ -485,25 +474,37 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					portletDataContext, article.getUuid(),
 					parentResourcePrimKey, dirName, assetCategoryIds,
 					assetTagNames, articleElement);
+
+				priority = PriorityHelper.getPriority(
+					portletDataContext.getScopeGroupId(), 0,
+					parentResourcePrimKey, 0);
 			}
 			else {
-				long priority = PriorityHelper.getPriority(
+				importedArticle = ArticleLocalServiceUtil.updateArticle(
+					userId, existingArticle.getResourcePrimKey(),
+					article.getTitle(), article.getContent(),
+					article.getDescription(), dirName, serviceContext);
+
+				priority = PriorityHelper.getPriority(
 					existingArticle.getGroupId(),
 					existingArticle.getResourcePrimKey(), parentResourcePrimKey,
 					humanPriority);
-
-				importedArticle = ArticleLocalServiceUtil.updateArticle(
-					userId, existingArticle.getResourcePrimKey(),
-					parentResourcePrimKey, article.getTitle(),
-					article.getContent(), article.getDescription(), priority,
-					dirName, serviceContext);
 			}
 		}
 		else {
 			importedArticle = importArticleVersions(
 				portletDataContext, null, parentResourcePrimKey, dirName,
 				assetCategoryIds, assetTagNames, articleElement);
+
+			priority = PriorityHelper.getPriority(
+				portletDataContext.getScopeGroupId(), 0, parentResourcePrimKey,
+				0);
 		}
+
+		importedArticle = ArticleLocalServiceUtil.moveArticle(
+			userId, portletDataContext.getScopeGroupId(),
+			importedArticle.getResourcePrimKey(), parentResourcePrimKey,
+			priority);
 
 		resourcePrimKeys.put(
 			article.getResourcePrimKey(), importedArticle.getResourcePrimKey());
@@ -580,9 +581,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Article importedArticle = null;
 
-		long priority = PriorityHelper.getPriority(
-			portletDataContext.getScopeGroupId(), 0, parentResourcePrimKey, 0);
-
 		for (Element curArticleElement : articleElements) {
 			Article curArticle =
 				(Article)portletDataContext.getZipEntryAsObject(
@@ -620,14 +618,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				importedArticle = ArticleLocalServiceUtil.addArticle(
 					userId, parentResourcePrimKey, curArticle.getTitle(),
 					curArticle.getContent(), curArticle.getDescription(),
-					priority, curDirName, serviceContext);
+					curDirName, serviceContext);
 			}
 			else {
 				importedArticle = ArticleLocalServiceUtil.updateArticle(
 					userId, importedArticle.getResourcePrimKey(),
-					parentResourcePrimKey, curArticle.getTitle(),
-					curArticle.getContent(), curArticle.getDescription(),
-					priority, curDirName, serviceContext);
+					curArticle.getTitle(), curArticle.getContent(),
+					curArticle.getDescription(), curDirName, serviceContext);
 			}
 		}
 

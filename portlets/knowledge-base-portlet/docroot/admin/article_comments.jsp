@@ -34,7 +34,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 
 <c:if test="<%= (enableArticleComments || showArticleComments) && layoutTypePortlet.hasPortletId(portletDisplay.getId()) %>">
 	<div class="kb-article-comments">
-		<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() && (article.isApproved() || (article.getVersion() > ArticleConstants.DEFAULT_VERSION)) %>">
+		<c:if test="<%= enableArticleComments && themeDisplay.isSignedIn() && (article.isApproved() || !article.isFirstVersion()) %>">
 			<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
 				<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + article.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
 					<c:if test="<%= comment != null %>">

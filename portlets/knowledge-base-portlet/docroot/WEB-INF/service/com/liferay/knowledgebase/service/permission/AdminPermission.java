@@ -19,6 +19,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
+ * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
 public class AdminPermission {

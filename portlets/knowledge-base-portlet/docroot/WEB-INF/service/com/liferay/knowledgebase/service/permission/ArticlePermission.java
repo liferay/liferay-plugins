@@ -15,13 +15,11 @@
 package com.liferay.knowledgebase.service.permission;
 
 import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
@@ -33,7 +31,7 @@ public class ArticlePermission {
 	public static void check(
 			PermissionChecker permissionChecker, Article article,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, article, actionId)) {
 			throw new PrincipalException();
@@ -51,15 +49,19 @@ public class ArticlePermission {
 	}
 
 	public static boolean contains(
-			PermissionChecker permissionChecker, Article article,
-			String actionId)
-		throws PortalException, SystemException {
+		PermissionChecker permissionChecker, Article article, String actionId) {
 
-		if (actionId.equals(ActionKeys.VIEW)) {
-			return _hasPermission(permissionChecker, article);
+		if (permissionChecker.hasOwnerPermission(
+				article.getCompanyId(), Article.class.getName(),
+				article.getRootResourcePrimKey(), article.getUserId(),
+				actionId)) {
+
+			return true;
 		}
 
-		return _hasPermission(permissionChecker, article, actionId);
+		return permissionChecker.hasPermission(
+			article.getGroupId(), Article.class.getName(),
+			article.getRootResourcePrimKey(), actionId);
 	}
 
 	public static boolean contains(
@@ -71,62 +73,6 @@ public class ArticlePermission {
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		return contains(permissionChecker, article, actionId);
-	}
-
-	private static boolean _hasPermission(
-			PermissionChecker permissionChecker, Article article)
-		throws PortalException, SystemException {
-
-		if (!permissionChecker.hasOwnerPermission(
-				article.getCompanyId(), Article.class.getName(),
-				article.getResourcePrimKey(), article.getUserId(),
-				ActionKeys.VIEW) &&
-			!permissionChecker.hasPermission(
-				article.getGroupId(), Article.class.getName(),
-				article.getResourcePrimKey(), ActionKeys.VIEW)) {
-
-			return false;
-		}
-
-		if (article.getParentResourcePrimKey() !=
-				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-			article = ArticleLocalServiceUtil.getLatestArticle(
-				article.getParentResourcePrimKey(),
-				WorkflowConstants.STATUS_ANY);
-
-			return _hasPermission(permissionChecker, article);
-		}
-
-		return true;
-	}
-
-	private static boolean _hasPermission(
-			PermissionChecker permissionChecker, Article article,
-			String actionId)
-		throws PortalException, SystemException {
-
-		if (permissionChecker.hasOwnerPermission(
-				article.getCompanyId(), Article.class.getName(),
-				article.getResourcePrimKey(), article.getUserId(), actionId) ||
-			permissionChecker.hasPermission(
-				article.getGroupId(), Article.class.getName(),
-				article.getResourcePrimKey(), actionId)) {
-
-			return true;
-		}
-
-		if (article.getParentResourcePrimKey() !=
-				ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-
-			article = ArticleLocalServiceUtil.getLatestArticle(
-				article.getParentResourcePrimKey(),
-				WorkflowConstants.STATUS_ANY);
-
-			return _hasPermission(permissionChecker, article, actionId);
-		}
-
-		return false;
 	}
 
 }

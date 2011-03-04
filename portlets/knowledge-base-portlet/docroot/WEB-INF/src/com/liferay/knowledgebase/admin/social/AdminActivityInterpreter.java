@@ -101,6 +101,9 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		if (activity.getType() == AdminActivityKeys.ADD_ARTICLE) {
 			key = "activity-knowledge-base-admin-add-article";
 		}
+		else if (activity.getType() == AdminActivityKeys.MOVE_ARTICLE) {
+			key = "activity-knowledge-base-admin-move-article";
+		}
 		else if (activity.getType() == AdminActivityKeys.UPDATE_ARTICLE) {
 			key = "activity-knowledge-base-admin-update-article";
 		}

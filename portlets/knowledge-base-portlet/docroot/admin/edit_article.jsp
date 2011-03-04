@@ -28,10 +28,8 @@ long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey"
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
 int version = BeanParamUtil.getInteger(article, request, "version", ArticleConstants.DEFAULT_VERSION);
 String content = BeanParamUtil.getString(article, request, "content", BeanPropertiesUtil.getString(template, "content"));
-long priority = BeanParamUtil.getLong(article, request, "priority");
 int status = BeanParamUtil.getInteger(article, request, "status", WorkflowConstants.STATUS_DRAFT);
 
-int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelper.getHumanPriority(scopeGroupId, resourcePrimKey, parentResourcePrimKey, priority));
 String dirName = ParamUtil.getString(request, "dirName");
 %>
 
@@ -88,14 +86,6 @@ String dirName = ParamUtil.getString(request, "dirName");
 			<aui:input name="description" />
 		</c:if>
 
-		<aui:field-wrapper label="display-order">
-			<div id="<portlet:namespace />priority">
-				<liferay-util:include page="/admin/priority.jsp" servletContext="<%= application %>">
-					<liferay-util:param name="humanPriority" value="<%= String.valueOf(humanPriority) %>" />
-				</liferay-util:include>
-			</div>
-		</aui:field-wrapper>
-
 		<aui:field-wrapper label="attachments">
 			<div id="<portlet:namespace />attachments">
 				<liferay-util:include page="/admin/attachments.jsp" portletId="<%= portletDisplay.getId() %>">
@@ -113,7 +103,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 		</c:if>
 
 		<c:if test="<%= article == null %>">
-			<aui:field-wrapper label="permissions">
+			<aui:field-wrapper cssClass='<%= (parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "aui-helper-hidden" : StringPool.BLANK %>' label="permissions">
 				<liferay-ui:input-permissions
 					modelName="<%= Article.class.getName() %>"
 				/>
@@ -140,11 +130,6 @@ String dirName = ParamUtil.getString(request, "dirName");
 	function <portlet:namespace />publishArticle() {
 		document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = "<%= WorkflowConstants.ACTION_PUBLISH %>";
 		<portlet:namespace />updateArticle();
-	}
-
-	function <portlet:namespace />selectArticle(parentResourcePrimKey, html) {
-		document.<portlet:namespace />fm.<portlet:namespace />parentResourcePrimKey.value = parentResourcePrimKey;
-		document.getElementById("<portlet:namespace />priority").innerHTML = html;
 	}
 
 	function <portlet:namespace />updateArticle() {

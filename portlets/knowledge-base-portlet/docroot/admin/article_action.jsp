@@ -48,7 +48,7 @@ Article article = (Article)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
+	<c:if test="<%= article.isRoot() && ArticlePermission.contains(permissionChecker, article, ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
 			modelResource="<%= Article.class.getName() %>"
 			modelResourceDescription="<%= article.getTitle() %>"
@@ -59,6 +59,21 @@ Article article = (Article)row.getObject();
 		<liferay-ui:icon
 			image="permissions"
 			url="<%= permissionsURL %>"
+		/>
+	</c:if>
+
+	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.MOVE_ARTICLE) %>">
+		<portlet:renderURL var="moveURL">
+			<portlet:param name="jspPage" value="/admin/move_article.jsp" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="humanPriority" value="<%= String.valueOf(PriorityHelper.getHumanPriority(scopeGroupId, article.getResourcePrimKey(), article.getParentResourcePrimKey(), article.getPriority())) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:icon
+			image="forward"
+			message="move"
+			url="<%= moveURL %>"
 		/>
 	</c:if>
 

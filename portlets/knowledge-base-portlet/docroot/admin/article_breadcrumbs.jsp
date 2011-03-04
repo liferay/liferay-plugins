@@ -20,7 +20,7 @@
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
-<c:if test="<%= article.getParentResourcePrimKey() != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
+<c:if test="<%= !article.isRoot() %>">
 	<div class="kb-article-breadcrumbs">
 
 		<%

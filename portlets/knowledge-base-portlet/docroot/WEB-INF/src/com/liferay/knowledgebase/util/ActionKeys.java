@@ -21,6 +21,8 @@ package com.liferay.knowledgebase.util;
 public class ActionKeys
 	extends com.liferay.portal.security.permission.ActionKeys {
 
+	public static final String MOVE_ARTICLE = "MOVE_ARTICLE";
+
 	public static final String VIEW_TEMPLATES = "VIEW_TEMPLATES";
 
 }

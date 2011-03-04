@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.ArticleServiceUtil;
 import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
@@ -37,7 +36,7 @@ public class PriorityHelper {
 	public static int getHumanPriority(
 			long groupId, long resourcePrimKey, long parentResourcePrimKey,
 			long priority)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		if (resourcePrimKey <= 0) {
 			return getMaxHumanPriority(groupId, parentResourcePrimKey, null);
@@ -81,7 +80,7 @@ public class PriorityHelper {
 
 	public static int getMaxHumanPriority(
 			long groupId, long parentResourcePrimKey, Article article)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		int count = ArticleServiceUtil.getSiblingArticlesCount(
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
@@ -98,7 +97,7 @@ public class PriorityHelper {
 	public static long getPriority(
 			long groupId, long resourcePrimKey, long parentResourcePrimKey,
 			int humanPriority)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Article nextArticle = getNextArticle(
 			groupId, parentResourcePrimKey, humanPriority);
@@ -141,7 +140,7 @@ public class PriorityHelper {
 
 	protected static Article getNextArticle(
 			long groupId, long parentResourcePrimKey, int humanPriority)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		if (humanPriority <= 0) {
 			return null;

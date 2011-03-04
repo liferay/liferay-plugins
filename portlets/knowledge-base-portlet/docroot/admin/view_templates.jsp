@@ -109,7 +109,7 @@
 				<div class="separator"><!-- --></div>
 			</c:if>
 
-			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !results.isEmpty() %>">
+			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !searchContainer.getResultRows().isEmpty() %>">
 				<aui:button-row>
 					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteTemplates();" %>' value="delete" />
 				</aui:button-row>

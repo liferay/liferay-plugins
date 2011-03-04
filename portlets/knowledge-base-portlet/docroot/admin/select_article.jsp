@@ -78,7 +78,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					align="right"
 				>
 					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
+						<liferay-util:include page="/admin/new_parent.jsp" portletId="<%= portletDisplay.getId() %>">
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
@@ -87,7 +87,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					String taglibOnClick = "opener." + renderResponse.getNamespace() + "selectArticle('" + curArticle.getResourcePrimKey() + "', '" + UnicodeFormatter.toString(html) + "'); window.close();";
 					%>
 
-					<aui:button disabled="<%= (curArticle.getResourcePrimKey() == resourcePrimKey) || (curArticle.getResourcePrimKey() == oldParentResourcePrimKey) || ((curArticle.getStatus() != WorkflowConstants.STATUS_APPROVED) && (curArticle.getVersion() == ArticleConstants.DEFAULT_VERSION)) %>" onClick="<%= taglibOnClick %>" value="choose" />
+					<aui:button disabled="<%= (curArticle.getResourcePrimKey() == resourcePrimKey) || (curArticle.getResourcePrimKey() == oldParentResourcePrimKey) %>" onClick="<%= taglibOnClick %>" value="choose" />
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
@@ -96,7 +96,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 					<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title") %>
 
 					<liferay-util:buffer var="html">
-						<liferay-util:include page="/admin/priority.jsp" portletId="<%= portletDisplay.getId() %>">
+						<liferay-util:include page="/admin/new_parent.jsp" portletId="<%= portletDisplay.getId() %>">
 							<liferay-util:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 						</liferay-util:include>
 					</liferay-util:buffer>
@@ -107,6 +107,8 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 
 					<aui:button onClick="<%= taglibOnClick %>" value="remove" />
 				</aui:button-row>
+
+				<div class="separator"><!-- --></div>
 			</c:if>
 
 			<div class="kb-select-article-breadcrumbs">

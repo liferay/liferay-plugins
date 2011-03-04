@@ -174,7 +174,40 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<div class="separator"><!-- --></div>
 			</c:if>
 
-			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !results.isEmpty() %>">
+			<c:if test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
+
+				<%
+				searchContainer.setEmptyResultsMessage(null);
+				%>
+
+				<div class="portlet-msg-info">
+					<portlet:renderURL var="viewArticleURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
+					</portlet:renderURL>
+
+					<%
+					StringBundler sb = new StringBundler(5);
+
+					sb.append("<a href=\"");
+					sb.append(viewArticleURL);
+					sb.append("\">");
+					sb.append(BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, WorkflowConstants.STATUS_ANY), "title"));
+					sb.append("</a>");
+					%>
+
+					<c:choose>
+						<c:when test="<%= !searchContainer.getResultRows().isEmpty() %>">
+							<%= LanguageUtil.format(pageContext, "showing-child-articles-for-x", sb.toString(), false) %>
+						</c:when>
+						<c:otherwise>
+							<%= LanguageUtil.format(pageContext, "there-are-no-child-articles-for-x", sb.toString(), false) %>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:if>
+
+			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !searchContainer.getResultRows().isEmpty() %>">
 				<aui:button-row>
 					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteArticles();" %>' value="delete" />
 				</aui:button-row>
