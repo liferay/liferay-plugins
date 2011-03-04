@@ -322,6 +322,20 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public List<Article> getArticles(
+			long resourcePrimKey, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.findByResourcePrimKey(
+				resourcePrimKey, start, end, orderByComparator);
+		}
+
+		return articlePersistence.findByR_S(
+			resourcePrimKey, status, start, end, orderByComparator);
+	}
+
+	public List<Article> getArticles(
 			long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -397,20 +411,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		return new UnmodifiableList<Article>(articles);
-	}
-
-	public List<Article> getArticles(
-			long resourcePrimKey, int status, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.findByResourcePrimKey(
-				resourcePrimKey, start, end, orderByComparator);
-		}
-
-		return articlePersistence.findByR_S(
-			resourcePrimKey, status, start, end, orderByComparator);
 	}
 
 	public int getArticlesCount(long resourcePrimKey, int status)
@@ -1234,49 +1234,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		subscriptionSender.flushNotificationsAsync();
 	}
 
-	protected void updatePermissionFields(
-			long resourcePrimKey, long parentResourcePrimKey)
-		throws PortalException, SystemException {
-
-		// See ArticlePermission#contains
-
-		Article article = getLatestArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
-		if (article.getParentResourcePrimKey() == parentResourcePrimKey) {
-			return;
-		}
-
-		long rootResourcePrimKey = getRootResourcePrimKey(
-			resourcePrimKey, parentResourcePrimKey);
-
-		if (article.getRootResourcePrimKey() == rootResourcePrimKey) {
-			return;
-		}
-
-		// Sync database filter-primary column
-
-		List<Article> articles = getArticles(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
-
-		for (Article article1 : articles) {
-			List<Article> curArticles = getArticles(
-				article1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-
-			for (Article article2 : curArticles) {
-				article2.setRootResourcePrimKey(rootResourcePrimKey);
-
-				articlePersistence.update(article2, false);
-			}
-		}
-
-		// Sync indexed permission fields
-
-		SearchEngineUtil.updatePermissionFields(
-			Article.class.getName(), String.valueOf(resourcePrimKey));
-	}
-
 	protected void updateAttachments(
 			Article article, int oldStatus, String dirName)
 		throws PortalException, SystemException {
@@ -1298,6 +1255,49 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			addAttachments(article, dirName);
 		}
+	}
+
+	protected void updatePermissionFields(
+			long resourcePrimKey, long parentResourcePrimKey)
+		throws PortalException, SystemException {
+
+		// See ArticlePermission#contains
+
+		Article article = getLatestArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		if (article.getParentResourcePrimKey() == parentResourcePrimKey) {
+			return;
+		}
+
+		long rootResourcePrimKey = getRootResourcePrimKey(
+			resourcePrimKey, parentResourcePrimKey);
+
+		if (article.getRootResourcePrimKey() == rootResourcePrimKey) {
+			return;
+		}
+
+		// Sync database
+
+		List<Article> articles = getArticles(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
+
+		for (Article article1 : articles) {
+			List<Article> curArticles = getArticles(
+				article1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+			for (Article article2 : curArticles) {
+				article2.setRootResourcePrimKey(rootResourcePrimKey);
+
+				articlePersistence.update(article2, false);
+			}
+		}
+
+		// Sync indexed permission fields
+
+		SearchEngineUtil.updatePermissionFields(
+			Article.class.getName(), String.valueOf(resourcePrimKey));
 	}
 
 	protected void validate(String title, String content)

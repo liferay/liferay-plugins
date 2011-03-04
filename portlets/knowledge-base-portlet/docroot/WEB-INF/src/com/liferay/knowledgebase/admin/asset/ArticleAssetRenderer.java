@@ -20,8 +20,6 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -96,16 +94,12 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 		return _article.getUuid();
 	}
 
-	public boolean hasEditPermission(PermissionChecker permissionChecker)
-		throws PortalException, SystemException {
-
+	public boolean hasEditPermission(PermissionChecker permissionChecker) {
 		return ArticlePermission.contains(
 			permissionChecker, _article, ActionKeys.UPDATE);
 	}
 
-	public boolean hasViewPermission(PermissionChecker permissionChecker)
-		throws PortalException, SystemException {
-
+	public boolean hasViewPermission(PermissionChecker permissionChecker) {
 		return ArticlePermission.contains(
 			permissionChecker, _article, ActionKeys.VIEW);
 	}

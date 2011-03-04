@@ -40,11 +40,8 @@ import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -824,9 +821,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 	private static final String _NAMESPACE_ARTICLE = "knowledge_base_article";
 
 	private static final String _NAMESPACE_TEMPLATE = "knowledge_base_template";
-
-	private static final int _SQL_DATA_MAX_PARAMETERS =
-		GetterUtil.getInteger(PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
 
 	private static PortletDataHandlerControl[] _articleOptions =
 		new PortletDataHandlerControl[] {

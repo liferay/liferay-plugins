@@ -197,8 +197,7 @@ public class PortletPreferencesHelper {
 
 		params.put("selectionMethod", selectionMethod);
 		params.put("resourcePrimKeys", ArrayUtil.toArray(resourcePrimKeys));
-		params.put(
-			"assetEntryQueryAndOperator", (Boolean)assetEntryQueryAndOperator);
+		params.put("assetEntryQueryAndOperator", assetEntryQueryAndOperator);
 		params.put("assetEntryQueryName", assetEntryQueryName);
 		params.put("assetCategoryIds", ArrayUtil.toArray(selAssetCategoryIds));
 		params.put("assetTagNames", selAssetTagNames);

@@ -129,6 +129,46 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articleLocalService.getArticle(resourcePrimKey, version);
 	}
 
+	public String getArticleRSS(
+			long resourcePrimKey, int status, int rssDelta,
+			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		Article article = articleLocalService.getLatestArticle(
+			resourcePrimKey, status);
+
+		String name = HtmlUtil.escape(article.getTitle());
+		String description = HtmlUtil.escape(article.getTitle());
+
+		String feedURL = KnowledgeBaseUtil.getArticleURL(
+			themeDisplay.getPlid(), resourcePrimKey,
+			themeDisplay.getPortalURL(), false);
+
+		List<Article> articles = getArticles(
+			article.getGroupId(), resourcePrimKey, status,
+			new ArticleModifiedDateComparator());
+
+		return exportToRSS(
+			rssDisplayStyle, rssFormat, name, description, feedURL,
+			ListUtil.subList(articles, 0, rssDelta), themeDisplay);
+	}
+
+	public List<Article> getArticles(
+			long groupId, long resourcePrimKey, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.filterFindByG_R_L(
+				groupId, resourcePrimKey, ArticleConstants.LATEST_VERSION,
+				start, end, orderByComparator);
+		}
+
+		return articlePersistence.filterFindByG_R_L_S(
+			groupId, new long[] {resourcePrimKey}, ArticleConstants.LATEST_ANY,
+			status, start, end, orderByComparator);
+	}
+
 	public List<Article> getArticles(
 			long groupId, long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
@@ -207,22 +247,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return new UnmodifiableList<Article>(articles);
 	}
 
-	public List<Article> getArticles(
-			long groupId, long resourcePrimKey, int status, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.filterFindByG_R_L(
-				groupId, resourcePrimKey, ArticleConstants.LATEST_VERSION,
-				start, end, orderByComparator);
-		}
-
-		return articlePersistence.filterFindByG_R_L_S(
-			groupId, new long[] {resourcePrimKey}, ArticleConstants.LATEST_ANY,
-			status, start, end, orderByComparator);
-	}
-
 	public int getArticlesCount(long groupId, long resourcePrimKey, int status)
 		throws SystemException {
 
@@ -234,30 +258,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articlePersistence.filterCountByG_R_L_S(
 			groupId, new long[] {resourcePrimKey}, ArticleConstants.LATEST_ANY,
 			status);
-	}
-
-	public String getArticleRSS(
-			long resourcePrimKey, int status, int rssDelta,
-			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
-
-		Article article = articleLocalService.getLatestArticle(
-			resourcePrimKey, status);
-
-		String name = HtmlUtil.escape(article.getTitle());
-		String description = HtmlUtil.escape(article.getTitle());
-
-		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			themeDisplay.getPlid(), resourcePrimKey,
-			themeDisplay.getPortalURL(), false);
-
-		List<Article> articles = getArticles(
-			article.getGroupId(), resourcePrimKey, status,
-			new ArticleModifiedDateComparator());
-
-		return exportToRSS(
-			rssDisplayStyle, rssFormat, name, description, feedURL,
-			ListUtil.subList(articles, 0, rssDelta), themeDisplay);
 	}
 
 	public ArticleSearchDisplay getArticleSearchDisplay(
