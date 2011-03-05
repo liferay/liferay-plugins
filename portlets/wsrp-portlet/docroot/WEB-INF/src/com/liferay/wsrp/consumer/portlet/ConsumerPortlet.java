@@ -52,6 +52,7 @@ import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
+import com.liferay.wsrp.servlet.ServiceHolder;
 import com.liferay.wsrp.util.ConsumerRequestExtensionsHelper;
 import com.liferay.wsrp.util.ExtensionUtil;
 import com.liferay.wsrp.util.PortletPropsValues;
@@ -124,6 +125,7 @@ import oasis.names.tc.wsrp.v2.types.PersonName;
 import oasis.names.tc.wsrp.v2.types.PortletContext;
 import oasis.names.tc.wsrp.v2.types.PortletDescription;
 import oasis.names.tc.wsrp.v2.types.Postal;
+import oasis.names.tc.wsrp.v2.types.RegistrationContext;
 import oasis.names.tc.wsrp.v2.types.ResourceContext;
 import oasis.names.tc.wsrp.v2.types.ResourceParams;
 import oasis.names.tc.wsrp.v2.types.RuntimeContext;
@@ -316,15 +318,18 @@ public class ConsumerPortlet extends GenericPortlet {
 		performBlockingInteraction.setRuntimeContext(runtimeContext);
 		performBlockingInteraction.setUserContext(userContext);
 
-		WSRP_v2_Markup_PortType markupService = getMarkupService(
+		ServiceHolder serviceHolder = getServiceHolder(
 			actionRequest, wsrpConsumerManager, wsrpConsumer);
+
+		WSRP_v2_Markup_PortType markupService =
+			serviceHolder.getMarkupService();
 
 		BlockingInteractionResponse blockingInteractionResponse =
 			markupService.performBlockingInteraction(
 				performBlockingInteraction);
 
 		processBlockingInteractionResponse(
-			actionRequest, actionResponse, wsrpConsumerManager,
+			actionRequest, actionResponse, wsrpConsumerManager, serviceHolder,
 			blockingInteractionResponse);
 	}
 
@@ -365,14 +370,17 @@ public class ConsumerPortlet extends GenericPortlet {
 		handleEvents.setRuntimeContext(runtimeContext);
 		handleEvents.setUserContext(userContext);
 
-		WSRP_v2_Markup_PortType markupService = getMarkupService(
+		ServiceHolder serviceHolder = getServiceHolder(
 			eventRequest, wsrpConsumerManager, wsrpConsumer);
+
+		WSRP_v2_Markup_PortType markupService =
+			serviceHolder.getMarkupService();
 
 		HandleEventsResponse handleEventsResponse =
 			markupService.handleEvents(handleEvents);
 
 		processHandleEventsResponse(
-			eventRequest, eventResponse, wsrpConsumerManager,
+			eventRequest, eventResponse, wsrpConsumerManager, serviceHolder,
 			handleEventsResponse);
 	}
 
@@ -529,8 +537,11 @@ public class ConsumerPortlet extends GenericPortlet {
 		getMarkup.setRuntimeContext(runtimeContext);
 		getMarkup.setUserContext(userContext);
 
-		WSRP_v2_Markup_PortType markupService = getMarkupService(
+		ServiceHolder serviceHolder = getServiceHolder(
 			portletRequest, wsrpConsumerManager, wsrpConsumer);
+
+		WSRP_v2_Markup_PortType markupService =
+			serviceHolder.getMarkupService();
 
 		MarkupResponse markupResponse = null;
 
@@ -545,75 +556,10 @@ public class ConsumerPortlet extends GenericPortlet {
 			markupResponse = markupService.getMarkup(getMarkup);
 		}
 
-		processMarkupResponse(portletRequest, portletResponse, markupResponse);
+		processMarkupResponse(
+			portletRequest, portletResponse, serviceHolder, markupResponse);
 
 		return markupResponse;
-	}
-
-	protected WSRP_v2_Markup_PortType getMarkupService(
-			PortletRequest portletRequest,
-			WSRPConsumerManager wsrpConsumerManager, WSRPConsumer wsrpConsumer)
-		throws Exception {
-
-		PortletSession portletSession = portletRequest.getPortletSession();
-
-		String markupServiceKey = getSessionKey(
-			WebKeys.MARKUP_SERVICE, portletRequest, wsrpConsumer);
-
-		TransientValue<WSRP_v2_Markup_PortType> markupServiceTransientValue =
-			(TransientValue<WSRP_v2_Markup_PortType>)
-				portletSession.getAttribute(
-					markupServiceKey, PortletSession.APPLICATION_SCOPE);
-
-		if ((markupServiceTransientValue == null) ||
-			(markupServiceTransientValue.isNull())) {
-
-			WSRP_v2_Markup_PortType markupService =
-				wsrpConsumerManager.getMarkupService();
-
-			markupServiceTransientValue =
-				new TransientValue<WSRP_v2_Markup_PortType>(markupService);
-
-			ServiceDescription serviceDescription =
-				wsrpConsumerManager.getServiceDescription();
-
-			String cookieKey = getSessionKey(
-				WebKeys.COOKIE, portletRequest, wsrpConsumer);
-
-			String cookie = (String)portletSession.getAttribute(
-				cookieKey, PortletSession.APPLICATION_SCOPE);
-
-			CookieProtocol cookieProtocol =
-				serviceDescription.getRequiresInitCookie();
-
-			if ((cookie == null) &&
-				(cookieProtocol != null)) {
-
-				String cookieProtocolValue = cookieProtocol.getValue();
-
-				if (cookieProtocolValue.equals(CookieProtocol._perGroup) ||
-					cookieProtocolValue.equals(CookieProtocol._perUser)) {
-
-					InitCookie initCookie = new InitCookie();
-
-					initCookie.setRegistrationContext(
-						wsrpConsumer.getRegistrationContext());
-
-					markupService.initCookie(initCookie);
-
-					cookie = WSRPHTTPSender.getCurrentCookie();
-
-					portletSession.setAttribute(
-						cookieKey, cookie, PortletSession.APPLICATION_SCOPE);
-				}
-			}
-
-			portletSession.setAttribute(
-				markupServiceKey, markupServiceTransientValue,
-				PortletSession.APPLICATION_SCOPE);
-		}
-
-		return markupServiceTransientValue.getValue();
 	}
 
 	protected Online getOnline(User user, String listTypeName)
@@ -796,15 +742,92 @@ public class ConsumerPortlet extends GenericPortlet {
 		getResource.setRuntimeContext(runtimeContext);
 		getResource.setUserContext(userContext);
 
-		WSRP_v2_Markup_PortType markupService = getMarkupService(
+		ServiceHolder serviceHolder = getServiceHolder(
 			resourceRequest, wsrpConsumerManager, wsrpConsumer);
+
+		WSRP_v2_Markup_PortType markupService =
+			serviceHolder.getMarkupService();
 
 		oasis.names.tc.wsrp.v2.types.ResourceResponse wsrpResourceResponse =
 			markupService.getResource(getResource);
 
 		processResourceResponse(
 			resourceRequest, resourceResponse, wsrpConsumerManager,
-			wsrpResourceResponse);
+			serviceHolder, wsrpResourceResponse);
+	}
+
+	protected ServiceHolder getServiceHolder(
+			PortletRequest portletRequest,
+			WSRPConsumerManager wsrpConsumerManager, WSRPConsumer wsrpConsumer)
+		throws Exception {
+
+		PortletSession portletSession = portletRequest.getPortletSession();
+
+		String markupServiceKey = getSessionKey(
+			WebKeys.MARKUP_SERVICE, portletRequest, wsrpConsumer);
+
+		TransientValue<ServiceHolder> serviceHolderTransientValue =
+			(TransientValue<ServiceHolder>)
+				portletSession.getAttribute(
+					markupServiceKey, PortletSession.APPLICATION_SCOPE);
+
+		if ((serviceHolderTransientValue == null) ||
+			(serviceHolderTransientValue.isNull())) {
+
+			WSRP_v2_Markup_PortType markupService =
+				wsrpConsumerManager.getMarkupService();
+
+			ServiceHolder serviceHolder = new ServiceHolder();
+
+			serviceHolder.setMarkupService(markupService);
+
+			RegistrationContext registrationContext =
+				wsrpConsumer.getRegistrationContext();
+
+			serviceHolder.setRegistrationContext(registrationContext);
+
+			serviceHolderTransientValue =
+				new TransientValue<ServiceHolder>(serviceHolder);
+
+			portletSession.setAttribute(
+				markupServiceKey, serviceHolderTransientValue,
+				PortletSession.APPLICATION_SCOPE);
+
+			ServiceDescription serviceDescription =
+				wsrpConsumerManager.getServiceDescription();
+
+			String cookieKey = getSessionKey(
+				WebKeys.COOKIE, portletRequest, wsrpConsumer);
+
+			String cookie = (String)portletSession.getAttribute(
+				cookieKey, PortletSession.APPLICATION_SCOPE);
+
+			CookieProtocol cookieProtocol =
+				serviceDescription.getRequiresInitCookie();
+
+			if ((cookie == null) &&
+				(cookieProtocol != null)) {
+
+				String cookieProtocolValue = cookieProtocol.getValue();
+
+				if (cookieProtocolValue.equals(CookieProtocol._perGroup) ||
+					cookieProtocolValue.equals(CookieProtocol._perUser)) {
+
+					InitCookie initCookie = new InitCookie();
+
+					initCookie.setRegistrationContext(registrationContext);
+
+					markupService.initCookie(initCookie);
+
+					cookie = WSRPHTTPSender.getCurrentCookie();
+
+					portletSession.setAttribute(
+						cookieKey, cookie, PortletSession.APPLICATION_SCOPE);
+				}
+			}
+		}
+
+		return serviceHolderTransientValue.getValue();
 	}
 
 	protected String getSessionKey(
@@ -1233,6 +1256,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected void processBlockingInteractionResponse(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			WSRPConsumerManager wsrpConsumerManager,
+			ServiceHolder serviceHolder,
 			BlockingInteractionResponse blockingInteractionResponse)
 		throws Exception {
 
@@ -1245,7 +1269,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		}
 
 		processUpdateResponse(
-			actionRequest, actionResponse, wsrpConsumerManager,
+			actionRequest, actionResponse, wsrpConsumerManager, serviceHolder,
 			blockingInteractionResponse.getUpdateResponse());
 	}
 
@@ -1336,26 +1360,24 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected void processHandleEventsResponse(
 			EventRequest eventRequest, EventResponse eventResponse,
 			WSRPConsumerManager wsrpConsumerManager,
+			ServiceHolder serviceHolder,
 			HandleEventsResponse handleEventsResponse)
 		throws Exception {
 
 		processUpdateResponse(
-			eventRequest, eventResponse, wsrpConsumerManager,
+			eventRequest, eventResponse, wsrpConsumerManager, serviceHolder,
 			handleEventsResponse.getUpdateResponse());
 	}
 
 	protected void processMarkupResponse(
 		PortletRequest portletRequest, PortletResponse portletResponse,
-		MarkupResponse markupResponse) {
+		ServiceHolder serviceHolder, MarkupResponse markupResponse) {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
 
 		SessionContext sessionContext = markupResponse.getSessionContext();
 
-		if (sessionContext != null) {
-			portletSession.setAttribute(
-				WebKeys.SESSION_CONTEXT, sessionContext);
-		}
+		updateSessionContext(portletSession, serviceHolder, sessionContext);
 	}
 
 	protected void processMimeResponse(
@@ -1528,6 +1550,7 @@ public class ConsumerPortlet extends GenericPortlet {
 	protected void processResourceResponse(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
 			WSRPConsumerManager wsrpConsumerManager,
+			ServiceHolder serviceHolder,
 			oasis.names.tc.wsrp.v2.types.ResourceResponse wsrpResourceResponse)
 		throws Exception {
 
@@ -1544,10 +1567,7 @@ public class ConsumerPortlet extends GenericPortlet {
 		SessionContext sessionContext =
 			wsrpResourceResponse.getSessionContext();
 
-		if (sessionContext != null) {
-			portletSession.setAttribute(
-				WebKeys.SESSION_CONTEXT, sessionContext);
-		}
+		updateSessionContext(portletSession, serviceHolder, sessionContext);
 
 		ResourceContext resourceContext =
 			wsrpResourceResponse.getResourceContext();
@@ -1585,7 +1605,7 @@ public class ConsumerPortlet extends GenericPortlet {
 			PortletRequest portletRequest,
 			StateAwareResponse stateAwareResponse,
 			WSRPConsumerManager wsrpConsumerManager,
-			UpdateResponse updateResponse)
+			ServiceHolder serviceHolder, UpdateResponse updateResponse)
 		throws Exception {
 
 		PortletSession portletSession = portletRequest.getPortletSession();
@@ -1638,10 +1658,7 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		SessionContext sessionContext = updateResponse.getSessionContext();
 
-		if (sessionContext != null) {
-			portletSession.setAttribute(
-				WebKeys.SESSION_CONTEXT, sessionContext);
-		}
+		updateSessionContext(portletSession, serviceHolder, sessionContext);
 
 		String portletMode = updateResponse.getNewMode();
 
@@ -1954,6 +1971,21 @@ public class ConsumerPortlet extends GenericPortlet {
 		redirectURL = rewriteURLs(actionRequest, actionResponse, redirectURL);
 
 		actionResponse.sendRedirect(redirectURL);
+	}
+
+	protected void updateSessionContext(
+		PortletSession portletSession, ServiceHolder serviceHolder,
+		SessionContext sessionContext) {
+
+		if (sessionContext == null) {
+			return;
+		}
+
+		portletSession.setAttribute(
+			WebKeys.SESSION_CONTEXT, sessionContext);
+
+		serviceHolder.setSessionContext(sessionContext);
+
 	}
 
 	private static final String _BLOCKING_ACTION_TEMPLATE =

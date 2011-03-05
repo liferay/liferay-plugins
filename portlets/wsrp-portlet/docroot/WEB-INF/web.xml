@@ -62,6 +62,9 @@
 	<listener>
 		<listener-class>com.liferay.wsrp.servlet.WSRPServletContextListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.liferay.wsrp.servlet.WSRPSessionListener</listener-class>
+	</listener>
 	<servlet>
 		<servlet-name>Axis Servlet</servlet-name>
 		<servlet-class>com.liferay.util.axis.AxisServlet</servlet-class>
