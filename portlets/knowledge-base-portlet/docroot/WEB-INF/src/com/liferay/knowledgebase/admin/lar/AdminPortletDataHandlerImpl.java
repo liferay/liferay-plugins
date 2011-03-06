@@ -55,6 +55,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -170,7 +171,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		article.setUserUuid(article.getUserUuid());
 
-		portletDataContext.addZipEntry(path, article);
+		portletDataContext.addZipEntry(path, articleElement, article);
 
 		portletDataContext.addPermissions(
 			Article.class, article.getResourcePrimKey());
@@ -335,7 +336,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		template.setUserUuid(template.getUserUuid());
 
-		portletDataContext.addZipEntry(path, template);
+		portletDataContext.addZipEntry(path, templateElement, template);
 
 		portletDataContext.addPermissions(
 			Template.class, template.getTemplateId());
@@ -448,6 +449,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				Article.class, article.getResourcePrimKey());
 		}
 
+		Map<String, Serializable> expandoAttributes = getExpandoAttributes(
+			portletDataContext, articleElement);
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
@@ -457,6 +461,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setCreateDate(article.getCreateDate());
 		serviceContext.setModifiedDate(article.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
+
+		if ((expandoAttributes != null) && !expandoAttributes.isEmpty()) {
+			serviceContext.setExpandoBridgeAttributes(expandoAttributes);
+		}
 
 		Article importedArticle = null;
 
@@ -746,7 +754,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void importTemplate(
 			PortletDataContext portletDataContext, Map<Long, Long> templateIds,
-			Template template)
+			Template template, Map<String, Serializable> expandoAttributes)
 		throws Exception {
 
 		long userId = portletDataContext.getUserId(template.getUserUuid());
@@ -758,6 +766,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setCreateDate(template.getCreateDate());
 		serviceContext.setModifiedDate(template.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
+
+		if ((expandoAttributes != null) && !expandoAttributes.isEmpty()) {
+			serviceContext.setExpandoBridgeAttributes(expandoAttributes);
+		}
 
 		Template importedTemplate = null;
 
@@ -809,7 +821,11 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Template template =
 				(Template)portletDataContext.getZipEntryAsObject(path);
 
-			importTemplate(portletDataContext, templateIds, template);
+			Map<String, Serializable> expandoAttributes = getExpandoAttributes(
+				portletDataContext, templateElement);
+
+			importTemplate(
+				portletDataContext, templateIds, template, expandoAttributes);
 		}
 
 		importComments(
