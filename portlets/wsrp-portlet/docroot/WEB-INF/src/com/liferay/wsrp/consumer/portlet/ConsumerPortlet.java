@@ -767,17 +767,16 @@ public class ConsumerPortlet extends GenericPortlet {
 			WebKeys.MARKUP_SERVICE, portletRequest, wsrpConsumer);
 
 		TransientValue<ServiceHolder> serviceHolderTransientValue =
-			(TransientValue<ServiceHolder>)
-				portletSession.getAttribute(
-					markupServiceKey, PortletSession.APPLICATION_SCOPE);
+			(TransientValue<ServiceHolder>)portletSession.getAttribute(
+				markupServiceKey, PortletSession.APPLICATION_SCOPE);
 
 		if ((serviceHolderTransientValue == null) ||
 			(serviceHolderTransientValue.isNull())) {
 
+			ServiceHolder serviceHolder = new ServiceHolder();
+
 			WSRP_v2_Markup_PortType markupService =
 				wsrpConsumerManager.getMarkupService();
-
-			ServiceHolder serviceHolder = new ServiceHolder();
 
 			serviceHolder.setMarkupService(markupService);
 
@@ -786,8 +785,8 @@ public class ConsumerPortlet extends GenericPortlet {
 
 			serviceHolder.setRegistrationContext(registrationContext);
 
-			serviceHolderTransientValue =
-				new TransientValue<ServiceHolder>(serviceHolder);
+			serviceHolderTransientValue = new TransientValue<ServiceHolder>(
+				serviceHolder);
 
 			portletSession.setAttribute(
 				markupServiceKey, serviceHolderTransientValue,

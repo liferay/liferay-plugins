@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.wsrp.servlet;
 
 import com.liferay.portal.kernel.log.Log;
@@ -43,6 +44,7 @@ public class WSRPSessionListener implements HttpSessionListener {
 
 		while (enu.hasMoreElements()) {
 			String name = enu.nextElement();
+
 			Object value = session.getAttribute(name);
 
 			if (value instanceof TransientValue) {
@@ -62,7 +64,7 @@ public class WSRPSessionListener implements HttpSessionListener {
 
 		SessionContext sessionContext = serviceHolder.getSessionContext();
 
-		if (sessionContext == null ||
+		if ((sessionContext == null) ||
 			Validator.isNull(sessionContext.getSessionID())) {
 
 			return;

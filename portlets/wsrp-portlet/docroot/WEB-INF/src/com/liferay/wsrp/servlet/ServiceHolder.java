@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.wsrp.servlet;
 
 import oasis.names.tc.wsrp.v2.intf.WSRP_v2_Markup_PortType;
