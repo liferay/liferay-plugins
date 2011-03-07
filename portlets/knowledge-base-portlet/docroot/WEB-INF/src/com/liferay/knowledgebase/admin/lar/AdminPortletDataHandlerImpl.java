@@ -101,6 +101,10 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
+		portletDataContext.addExpandoColumns(Article.class.getName());
+
+		portletDataContext.addExpandoColumns(Template.class.getName());
+
 		portletDataContext.addPermissions(
 			"com.liferay.knowledgebase.admin",
 			portletDataContext.getScopeGroupId());
