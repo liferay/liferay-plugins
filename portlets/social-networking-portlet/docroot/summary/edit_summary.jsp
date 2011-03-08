@@ -20,8 +20,10 @@
 String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "SN", "aboutMe", user2.getUserId(), StringPool.BLANK));
 %>
 
+<portlet:renderURL var="redirectURL" windowState="<%= WindowState.NORMAL.toString() %>" />
+
 <form action="<portlet:actionURL name="updateSummary" />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />" />
+<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirectURL %>" />
 
 <div class="portlet-msg-info">
 	Use <a href="<%= themeDisplay.getURLMyAccount() %>">My Account</a> to change regular account settings like profile picture or password.
@@ -49,6 +51,7 @@ String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class
 <br />
 
 <input type="submit" value="<liferay-ui:message key="save" />" />
-<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';" />
+
+<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<%= redirectURL %>';" />
 
 </form>
