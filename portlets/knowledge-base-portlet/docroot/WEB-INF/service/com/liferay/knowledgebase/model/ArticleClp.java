@@ -175,11 +175,11 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		_description = description;
 	}
 
-	public long getPriority() {
+	public double getPriority() {
 		return _priority;
 	}
 
-	public void setPriority(long priority) {
+	public void setPriority(double priority) {
 		_priority = priority;
 	}
 
@@ -538,7 +538,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	private String _title;
 	private String _content;
 	private String _description;
-	private long _priority;
+	private double _priority;
 	private int _latest;
 	private int _status;
 	private long _statusByUserId;

@@ -23,7 +23,7 @@
 		<field name="description" type="String">
 			<hint-collection name="TEXTAREA" />
 		</field>
-		<field name="priority" type="long" />
+		<field name="priority" type="double" />
 		<field name="latest" type="int" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />

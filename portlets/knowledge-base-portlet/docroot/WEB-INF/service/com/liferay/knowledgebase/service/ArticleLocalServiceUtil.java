@@ -417,7 +417,7 @@ public class ArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.Article moveArticle(
 		long userId, long groupId, long resourcePrimKey,
-		long parentResourcePrimKey, long priority)
+		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
@@ -499,6 +499,13 @@ public class ArticleLocalServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateAttachments(companyId, resourcePrimKey, dirName);
+	}
+
+	public static void updatePriorities(
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().updatePriorities(resourcePrimKeyToPriorityMap);
 	}
 
 	public static com.liferay.knowledgebase.model.Article updateStatus(

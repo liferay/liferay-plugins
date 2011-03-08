@@ -145,7 +145,7 @@ public interface ArticleService {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.knowledgebase.model.Article moveArticle(long groupId,
-		long resourcePrimKey, long parentResourcePrimKey, long priority)
+		long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -175,6 +175,11 @@ public interface ArticleService {
 
 	public java.lang.String updateAttachments(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updatePriorities(long groupId,
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

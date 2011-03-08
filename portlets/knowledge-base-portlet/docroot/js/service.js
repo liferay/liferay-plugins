@@ -21,7 +21,8 @@ Liferay.Service.registerClass(
 		unsubscribeArticle: true,
 		unsubscribeGroupArticles: true,
 		updateArticle: true,
-		updateAttachments: true
+		updateAttachments: true,
+		updatePriorities: true
 	}
 );
 

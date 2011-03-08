@@ -343,7 +343,7 @@ public interface ArticleLocalService {
 
 	public com.liferay.knowledgebase.model.Article moveArticle(long userId,
 		long groupId, long resourcePrimKey, long parentResourcePrimKey,
-		long priority)
+		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -393,6 +393,11 @@ public interface ArticleLocalService {
 
 	public java.lang.String updateAttachments(long companyId,
 		long resourcePrimKey, java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updatePriorities(
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

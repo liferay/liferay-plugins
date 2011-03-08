@@ -166,7 +166,7 @@ public class ArticleServiceWrapper implements ArticleService {
 	}
 
 	public com.liferay.knowledgebase.model.Article moveArticle(long groupId,
-		long resourcePrimKey, long parentResourcePrimKey, long priority)
+		long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.moveArticle(groupId, resourcePrimKey,
@@ -214,6 +214,13 @@ public class ArticleServiceWrapper implements ArticleService {
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleService.updateAttachments(companyId, groupId,
 			resourcePrimKey, dirName);
+	}
+
+	public void updatePriorities(long groupId,
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleService.updatePriorities(groupId, resourcePrimKeyToPriorityMap);
 	}
 
 	public ArticleService getWrappedArticleService() {

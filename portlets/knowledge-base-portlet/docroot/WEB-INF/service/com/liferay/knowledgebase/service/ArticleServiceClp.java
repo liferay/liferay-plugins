@@ -99,7 +99,7 @@ public class ArticleServiceClp implements ArticleService {
 				"getSiblingArticlesCount", long.class, long.class, int.class);
 
 		_moveArticleMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
-				"moveArticle", long.class, long.class, long.class, long.class);
+				"moveArticle", long.class, long.class, long.class, double.class);
 
 		_subscribeArticleMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
 				"subscribeArticle", long.class, long.class);
@@ -122,6 +122,9 @@ public class ArticleServiceClp implements ArticleService {
 		_updateAttachmentsMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateAttachments", long.class, long.class, long.class,
 				java.lang.String.class);
+
+		_updatePrioritiesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updatePriorities", long.class, java.util.Map.class);
 	}
 
 	public com.liferay.knowledgebase.model.Article addArticle(
@@ -671,7 +674,7 @@ public class ArticleServiceClp implements ArticleService {
 	}
 
 	public com.liferay.knowledgebase.model.Article moveArticle(long groupId,
-		long resourcePrimKey, long parentResourcePrimKey, long priority)
+		long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -889,6 +892,36 @@ public class ArticleServiceClp implements ArticleService {
 		return (java.lang.String)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void updatePriorities(long groupId,
+		java.util.Map<java.lang.Long, java.lang.Double> resourcePrimKeyToPriorityMap)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_updatePrioritiesMethodKey24,
+				groupId,
+				ClpSerializer.translateInput(resourcePrimKeyToPriorityMap));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -918,4 +951,5 @@ public class ArticleServiceClp implements ArticleService {
 	private MethodKey _unsubscribeGroupArticlesMethodKey21;
 	private MethodKey _updateArticleMethodKey22;
 	private MethodKey _updateAttachmentsMethodKey23;
+	private MethodKey _updatePrioritiesMethodKey24;
 }

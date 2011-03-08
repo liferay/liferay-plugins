@@ -24,7 +24,7 @@
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="latest" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="statusByUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
