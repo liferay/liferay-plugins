@@ -66,6 +66,18 @@ a:active {
 	padding-top: 15px;
 }
 
+/* ---------- Search ---------- */
+
+#page-search {
+	position: absolute;
+	right: 0;
+	top: 25px;
+}
+
+#page-search select {
+	display: none;
+}
+
 /* ---------- Navigation ---------- */
 
 #navigation {
