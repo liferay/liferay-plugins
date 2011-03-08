@@ -114,12 +114,11 @@ int targetVersion = ParamUtil.getInteger(request, "targetVersion", article.getVe
 							<portlet:actionURL name="updateArticle" var="revertURL">
 								<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 								<portlet:param name="redirect" value="<%= historyURL %>" />
+								<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" />
 								<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-								<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getParentResourcePrimKey()) %>" />
 								<portlet:param name="title" value="<%= curArticle.getTitle() %>" />
 								<portlet:param name="content" value="<%= curArticle.getContent() %>" />
 								<portlet:param name="description" value="<%= curArticle.getDescription() %>" />
-								<portlet:param name="priority" value="<%= String.valueOf(article.getPriority()) %>" />
 							</portlet:actionURL>
 
 							<liferay-ui:icon

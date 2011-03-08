@@ -232,6 +232,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		deleteAssets(article);
 
+		// Ratings
+
+		ratingsStatsLocalService.deleteStats(
+			Article.class.getName(), article.getResourcePrimKey());
+
 		// Social
 
 		socialActivityLocalService.deleteActivities(
@@ -1279,15 +1284,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Sync database
 
-		List<Article> articles = getArticles(
+		List<Article> articles1 = getArticles(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
 
-		for (Article article1 : articles) {
-			List<Article> curArticles = getArticles(
+		for (Article article1 : articles1) {
+			List<Article> articles2 = getArticles(
 				article1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-			for (Article article2 : curArticles) {
+			for (Article article2 : articles2) {
 				article2.setRootResourcePrimKey(rootResourcePrimKey);
 
 				articlePersistence.update(article2, false);

@@ -54,10 +54,9 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
-
 import java.io.Serializable;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -273,7 +272,13 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext portletDataContext, Element rootElement)
 		throws PortalException, SystemException {
 
-		for (Article article : filterArticles(portletDataContext)) {
+		for (Article article : getArticles(portletDataContext)) {
+			if (!portletDataContext.isWithinDateRange(
+					article.getModifiedDate())) {
+
+				continue;
+			}
+
 			String path =
 				getPortletPath(portletDataContext) + "/articles/" +
 					article.getResourcePrimKey() + ".xml";
@@ -314,7 +319,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			if (!portletDataContext.isWithinDateRange(
 					comment.getModifiedDate())) {
 
-				return;
+				continue;
 			}
 
 			String path =
@@ -372,8 +377,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 	}
 
-	protected List<Article> filterArticles(
-			PortletDataContext portletDataContext)
+	protected List<Article> getArticles(PortletDataContext portletDataContext)
 		throws SystemException {
 
 		// Sort articles to simplify import code. Order articles by depth and
@@ -390,29 +394,23 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		while ((params = KnowledgeBaseUtil.getParams(params[0])) != null) {
 			List<Article> curArticles = ArticleUtil.findByG_P_L_S(
 				portletDataContext.getScopeGroupId(),
-				ArrayUtil.toArray(params[1]),
-				ArticleConstants.LATEST_ANY, WorkflowConstants.STATUS_APPROVED);
+				ArrayUtil.toArray(params[1]), ArticleConstants.LATEST_ANY,
+				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 
-			for (Article curArticle : curArticles) {
-				if (portletDataContext.isWithinDateRange(
-						curArticle.getModifiedDate())) {
+			siblingArticles.addAll(curArticles);
 
-					siblingArticles.add(curArticle);
-				}
+			if (params[0].length > 0) {
+				continue;
 			}
 
-			if (params[0].length == 0) {
-				Collections.sort(
-					siblingArticles, new ArticlePriorityComparator(true));
+			long[] siblingArticlesResourcePrimKeys = StringUtil.split(
+				ListUtil.toString(siblingArticles, "resourcePrimKey"), 0L);
 
-				articles.addAll(siblingArticles);
+			params[0] = ArrayUtil.toArray(siblingArticlesResourcePrimKeys);
 
-				long[] resourcePrimKeys = StringUtil.split(
-					ListUtil.toString(siblingArticles, "resourcePrimKey"), 0L);
-
-				siblingArticles = new ArrayList<Article>();
-				params[0] = ArrayUtil.toArray(resourcePrimKeys);
-			}
+			articles.addAll(siblingArticles);
+			siblingArticles.clear();
 		}
 
 		return articles;

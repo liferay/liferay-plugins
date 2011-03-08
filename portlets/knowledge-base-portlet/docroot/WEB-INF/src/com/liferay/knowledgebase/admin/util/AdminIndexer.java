@@ -313,10 +313,6 @@ public class AdminIndexer extends BaseIndexer {
 			companyId, WorkflowConstants.STATUS_APPROVED, start, end,
 			new ArticleModifiedDateComparator());
 
-		if (articles.isEmpty()) {
-			return;
-		}
-
 		Collection<Document> documents = new ArrayList<Document>();
 
 		for (Article article : articles) {
