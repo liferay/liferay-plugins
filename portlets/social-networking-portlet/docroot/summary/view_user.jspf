@@ -14,216 +14,179 @@
  */
 --%>
 
-<c:choose>
-	<c:when test="<%= windowState.equals(WindowState.NORMAL) || !UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-		<div class="summary-container">
-			<h2>
-				<%= HtmlUtil.escape(user2.getFullName()) %>
-			</h2>
+<div class="summary-container">
+	<h2>
+		<%= HtmlUtil.escape(user2.getFullName()) %>
+	</h2>
 
-			<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
+	<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
 
-			<c:choose>
-				<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
+	<c:choose>
+		<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
 
-					<%
-					PortletURL removeFriendURL = renderResponse.createActionURL();
+			<%
+			PortletURL removeFriendURL = renderResponse.createActionURL();
 
-					removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
-					removeFriendURL.setParameter("redirect", currentURL);
+			removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
+			removeFriendURL.setParameter("redirect", currentURL);
 
-					String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
-					%>
+			String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
+			%>
 
-					<p class="remove-friend">
-						<liferay-ui:icon
-							image="join"
-							label="<%= true %>"
-							message="remove-friend"
-							url="<%= removeFriendHREF %>"
-						/>
-					</p>
-				</c:when>
-				<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-					<div class="portlet-msg-info add-as-friend pending">
-						<liferay-ui:message key="friend-requested" />
-					</div>
-				</c:when>
-				<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
-
-					<%
-					PortletURL addAsFriendURL = renderResponse.createActionURL();
-
-					addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
-					addAsFriendURL.setParameter("redirect", currentURL);
-					%>
-
-					<p class="add-as-friend">
-						<liferay-ui:icon
-							image="join"
-							label="<%= true %>"
-							message="add-as-friend"
-							url="<%= addAsFriendURL.toString() %>"
-						/>
-					</p>
-				</c:when>
-			</c:choose>
-
-			<p>
-				<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
-
-				<%= HtmlUtil.escape(user2.getContact().getJobTitle()) %>
+			<p class="remove-friend">
+				<liferay-ui:icon
+					image="join"
+					label="<%= true %>"
+					message="remove-friend"
+					url="<%= removeFriendHREF %>"
+				/>
 			</p>
+		</c:when>
+		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
+			<div class="portlet-msg-info add-as-friend pending">
+				<liferay-ui:message key="friend-requested" />
+			</div>
+		</c:when>
+		<c:when test="<%= SocialRelationLocalServiceUtil.isRelatable(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
 
 			<%
-			String twitterSn = user2.getContact().getTwitterSn();
+			PortletURL addAsFriendURL = renderResponse.createActionURL();
+
+			addAsFriendURL.setParameter(ActionRequest.ACTION_NAME, "addFriend");
+			addAsFriendURL.setParameter("redirect", currentURL);
 			%>
 
-			<c:if test="<%= Validator.isNotNull(twitterSn) %>">
-				<p>
-					<span class="user-twitter-sn"><liferay-ui:message key="twitter" /></span>
+			<p class="add-as-friend">
+				<liferay-ui:icon
+					image="join"
+					label="<%= true %>"
+					message="add-as-friend"
+					url="<%= addAsFriendURL.toString() %>"
+				/>
+			</p>
+		</c:when>
+	</c:choose>
 
-					<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
-				</p>
-			</c:if>
+	<p>
+		<span class="user-job-title"><liferay-ui:message key="job-title" /></span>
 
-			<%
-			String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(company.getCompanyId(), User.class.getName(), "SN", "aboutMe", user2.getUserId(), StringPool.BLANK));
-			%>
+		<%= HtmlUtil.escape(user2.getContact().getJobTitle()) %>
+	</p>
 
-			<c:if test="<%= Validator.isNotNull(aboutMe) %>">
-				<p>
-					<span class="user-about"><liferay-ui:message key="about-me" /></span>
+	<%
+	String twitterSn = user2.getContact().getTwitterSn();
+	%>
 
-					<%= aboutMe %>
-				</p>
-			</c:if>
+	<c:if test="<%= Validator.isNotNull(twitterSn) %>">
+		<p>
+			<span class="user-twitter-sn"><liferay-ui:message key="twitter" /></span>
 
-			<%
-			int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(guestGroup.getGroupId(), user2.getUserId()).getMessageCount();
-			int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
-			%>
+			<a class="user-twitter-link" href="http://twitter.com/<%= HtmlUtil.escapeAttribute(twitterSn) %>"><%= HtmlUtil.escape(twitterSn) %></a>
+		</p>
+	</c:if>
 
-			<c:if test="<%= (mbMessagesCount > 0) || (blogsEntriesCount > 0) %>">
-				<span class="user-about"><liferay-ui:message key="activity-details" /></span>
+	<%
+	String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(company.getCompanyId(), User.class.getName(), "SN", "aboutMe", user2.getUserId(), StringPool.BLANK));
+	%>
 
-				<table class="lfr-table">
+	<c:if test="<%= Validator.isNotNull(aboutMe) %>">
+		<p>
+			<span class="user-about"><liferay-ui:message key="about-me" /></span>
 
-				<c:if test="<%= mbMessagesCount > 0 %>">
-					<c:choose>
-						<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
-							<tr>
-								<td>
-									<liferay-ui:icon
-										image="view"
-										label="<%= true %>"
-										message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
-										url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
-									/>
-								</td>
-								<td>
-									<liferay-ui:icon
-										image="rss"
-										url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
-									/>
-								</td>
-							</tr>
-						</c:when>
-						<c:otherwise>
-							<tr>
-								<td>
-									<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>
-								</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
+			<%= aboutMe %>
+		</p>
+	</c:if>
 
-				<c:if test="<%= blogsEntriesCount > 0 %>">
-					<c:choose>
-						<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
-							<tr>
-								<td>
-									<liferay-ui:icon
-										image="view"
-										label="<%= true %>"
-										message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
-										url="<%= blogsFriendlyURL %>"
-									/>
-								</td>
-								<td>
-									<liferay-ui:icon
-										image="rss"
-										url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
-									/>
-								</td>
-							</tr>
-						</c:when>
-						<c:otherwise>
-							<tr>
-								<td>
-									<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>
-								</td>
-							</tr>
-						</c:otherwise>
-					</c:choose>
-				</c:if>
+	<%
+	int mbMessagesCount = MBStatsUserLocalServiceUtil.getStatsUser(guestGroup.getGroupId(), user2.getUserId()).getMessageCount();
+	int blogsEntriesCount = BlogsStatsUserLocalServiceUtil.getStatsUser(group.getGroupId(), user2.getUserId()).getEntryCount();
+	%>
 
-				</table>
-			</c:if>
-
-		</div>
-
-		<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
-			<br />
-
-			<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="editURL" />
-
-			<liferay-ui:icon
-				image="edit"
-				label="<%= true %>"
-				url="<%= editURL %>"
-			/>
-		</c:if>
-	</c:when>
-	<c:otherwise>
-
-		<%
-		String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class.getName(), "SN", "aboutMe", user2.getUserId(), StringPool.BLANK));
-		%>
-
-		<form action="<portlet:actionURL name="updateSummary" />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
-
-		<div class="portlet-msg-info">
-			Use <a href="<%= themeDisplay.getURLMyAccount() %>">My Account</a> to change regular account settings like profile picture or password.
-		</div>
+	<c:if test="<%= (mbMessagesCount > 0) || (blogsEntriesCount > 0) %>">
+		<span class="user-about"><liferay-ui:message key="activity-details" /></span>
 
 		<table class="lfr-table">
-		<tr>
-			<td>
-				<liferay-ui:message key="job-title" />
-			</td>
-			<td>
-				<liferay-ui:input-field model="<%= Contact.class %>" bean="<%= user2.getContact() %>" field="jobTitle" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="about-me" />
-			</td>
-			<td>
-				<liferay-ui:input-textarea param="aboutMe" defaultValue="<%= aboutMe %>" />
-			</td>
-		</tr>
+
+		<c:if test="<%= mbMessagesCount > 0 %>">
+			<c:choose>
+				<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
+					<tr>
+						<td>
+							<liferay-ui:icon
+								image="view"
+								label="<%= true %>"
+								message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
+								url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
+							/>
+						</td>
+						<td>
+							<liferay-ui:icon
+								image="rss"
+								url='<%= themeDisplay.getPathMain() + "/message_boards/rss?p_l_id=" + mbPlid + "&groupId=" + guestGroup.getGroupId() + "&userId=" + user2.getUserId() %>'
+							/>
+						</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>
+							<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+
+		<c:if test="<%= blogsEntriesCount > 0 %>">
+			<c:choose>
+				<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
+					<tr>
+						<td>
+							<liferay-ui:icon
+								image="view"
+								label="<%= true %>"
+								message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
+								url="<%= blogsFriendlyURL %>"
+							/>
+						</td>
+						<td>
+							<liferay-ui:icon
+								image="rss"
+								url='<%= blogsFriendlyURL + "/-/blogs/rss" %>'
+							/>
+						</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<tr>
+						<td>
+							<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>
+						</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
+		</c:if>
+
 		</table>
+	</c:if>
 
-		<br />
+</div>
 
-		<input type="submit" value="<liferay-ui:message key="save" />" />
+<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
+	<br />
 
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';" />
+	<%
+	PortletURL editSummaryURL = renderResponse.createRenderURL();
 
-		</form>
-	</c:otherwise>
-</c:choose>
+	editSummaryURL.setWindowState(WindowState.MAXIMIZED);
+
+	editSummaryURL.setParameter("jspPage", "/summary/edit_summary.jsp");
+	%>
+
+	<liferay-ui:icon
+		image="edit"
+		label="<%= true %>"
+		url="<%= editSummaryURL.toString() %>"
+	/>
+
+</c:if>
