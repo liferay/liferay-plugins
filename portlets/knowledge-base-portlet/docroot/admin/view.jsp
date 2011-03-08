@@ -30,6 +30,8 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
 	<aui:input name="resourcePrimKeys" type="hidden" />
 
+	<liferay-ui:error exception="<%= ArticlePriorityException.class %>" message='<%= LanguageUtil.format(pageContext, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
+
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
 			<portlet:param name="jspPage" value="/admin/view.jsp" />
@@ -70,11 +72,18 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				%>
 
 				<liferay-ui:search-container-column-text
-					href="<%= rowURL %>"
 					name="priority"
 					orderable="<%= true %>"
-					value="<%= String.valueOf(PriorityHelper.getHumanPriority(article.getGroupId(), article.getResourcePrimKey(), article.getParentResourcePrimKey(), article.getPriority())) %>"
-				/>
+				>
+					<c:choose>
+						<c:when test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) %>">
+							<aui:input label="" name='<%= "priority" + article.getResourcePrimKey() %>' size="5" type="text" value="<%= BigDecimal.valueOf(article.getPriority()).toPlainString() %>" />
+						</c:when>
+						<c:otherwise>
+							<%= BigDecimal.valueOf(article.getPriority()).toPlainString() %>
+						</c:otherwise>
+					</c:choose>
+				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-text
 					href="<%= rowURL %>"
@@ -210,6 +219,8 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !searchContainer.getResultRows().isEmpty() %>">
 				<aui:button-row>
 					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteArticles();" %>' value="delete" />
+
+					<aui:button onClick='<%= renderResponse.getNamespace() + "updatePriorities();" %>' value="save" />
 				</aui:button-row>
 			</c:if>
 
@@ -219,6 +230,11 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 </aui:form>
 
 <aui:script>
+	function <portlet:namespace />updatePriorities() {
+		document.<portlet:namespace />fm.method = "post";
+		submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updatePriorities"><portlet:param name="jspPage" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+	}
+
 	Liferay.provide(
 		window,
 		'<portlet:namespace />deleteArticles',

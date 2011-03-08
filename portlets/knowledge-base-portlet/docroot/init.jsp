@@ -30,6 +30,7 @@
 <%@ page import="com.liferay.documentlibrary.NoSuchFileException" %>
 <%@ page import="com.liferay.documentlibrary.service.DLLocalServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.ArticleContentException" %>
+<%@ page import="com.liferay.knowledgebase.ArticlePriorityException" %>
 <%@ page import="com.liferay.knowledgebase.ArticleTitleException" %>
 <%@ page import="com.liferay.knowledgebase.CommentContentException" %>
 <%@ page import="com.liferay.knowledgebase.NoSuchArticleException" %>
@@ -44,7 +45,6 @@
 <%@ page import="com.liferay.knowledgebase.admin.search.TemplateSearch" %>
 <%@ page import="com.liferay.knowledgebase.admin.search.TemplateSearchTerms" %>
 <%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
-<%@ page import="com.liferay.knowledgebase.admin.util.PriorityHelper" %>
 <%@ page import="com.liferay.knowledgebase.model.Article" %>
 <%@ page import="com.liferay.knowledgebase.model.Comment" %>
 <%@ page import="com.liferay.knowledgebase.model.Template" %>
@@ -118,6 +118,8 @@
 <%@ page import="com.liferay.portlet.PortletConfigFactoryUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
+
+<%@ page import="java.math.BigDecimal" %>
 
 <%@ page import="java.text.Format" %>
 

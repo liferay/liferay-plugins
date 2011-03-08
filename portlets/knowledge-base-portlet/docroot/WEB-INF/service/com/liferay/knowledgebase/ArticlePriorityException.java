@@ -12,22 +12,29 @@
  * details.
  */
 
-package com.liferay.knowledgebase.hook.upgrade;
+package com.liferay.knowledgebase;
 
-import com.liferay.knowledgebase.hook.upgrade.v1_2_0.UpgradeArticle;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
- * @author Peter Shin
+ * @author Brian Wing Shun Chan
  */
-public class UpgradeProcess_1_2_0 extends UpgradeProcess {
+public class ArticlePriorityException extends PortalException {
 
-	public int getThreshold() {
-		return 120;
+	public ArticlePriorityException() {
+		super();
 	}
 
-	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeArticle.class);
+	public ArticlePriorityException(String msg) {
+		super(msg);
+	}
+
+	public ArticlePriorityException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public ArticlePriorityException(Throwable cause) {
+		super(cause);
 	}
 
 }

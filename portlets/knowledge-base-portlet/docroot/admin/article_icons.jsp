@@ -82,7 +82,6 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 						<portlet:param name="jspPage" value="/admin/move_article.jsp" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						<portlet:param name="humanPriority" value="<%= String.valueOf(PriorityHelper.getHumanPriority(scopeGroupId, article.getResourcePrimKey(), article.getParentResourcePrimKey(), article.getPriority())) %>" />
 					</portlet:renderURL>
 
 					<liferay-ui:icon

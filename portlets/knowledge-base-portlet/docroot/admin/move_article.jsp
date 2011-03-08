@@ -24,9 +24,6 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
 long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey");
-long priority = BeanParamUtil.getLong(article, request, "priority");
-
-int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelper.getHumanPriority(scopeGroupId, resourcePrimKey, parentResourcePrimKey, priority));
 %>
 
 <liferay-ui:header
@@ -43,6 +40,8 @@ int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelpe
 	<aui:input name="resourcePrimKey" type="hidden" value="<%= resourcePrimKey %>" />
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 
+	<liferay-ui:error exception="<%= ArticlePriorityException.class %>" message='<%= LanguageUtil.format(pageContext, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
+
 	<aui:fieldset>
 		<aui:field-wrapper label="current-parent">
 			<c:choose>
@@ -53,13 +52,13 @@ int humanPriority = ParamUtil.getInteger(request, "humanPriority", PriorityHelpe
 					(<liferay-ui:message key="none" />)
 				</c:otherwise>
 			</c:choose>
+
+			<span class="kb-priority"><%= BigDecimal.valueOf(article.getPriority()).toPlainString() %></span>
 		</aui:field-wrapper>
 
 		<aui:field-wrapper label="new-parent">
 			<div id="<portlet:namespace />newParent">
-				<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
-					<liferay-util:param name="humanPriority" value="<%= String.valueOf(humanPriority) %>" />
-				</liferay-util:include>
+				<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>" />
 			</div>
 		</aui:field-wrapper>
 

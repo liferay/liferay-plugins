@@ -19,6 +19,7 @@ import com.liferay.documentlibrary.FileSizeException;
 import com.liferay.documentlibrary.NoSuchFileException;
 import com.liferay.documentlibrary.service.DLLocalServiceUtil;
 import com.liferay.knowledgebase.ArticleContentException;
+import com.liferay.knowledgebase.ArticlePriorityException;
 import com.liferay.knowledgebase.ArticleTitleException;
 import com.liferay.knowledgebase.CommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
@@ -26,7 +27,6 @@ import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.TemplateContentException;
 import com.liferay.knowledgebase.TemplateTitleException;
-import com.liferay.knowledgebase.admin.util.PriorityHelper;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.model.Template;
@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -57,6 +58,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -182,12 +187,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
-		int humanPriority = ParamUtil.getInteger(
-			actionRequest, "humanPriority");
-
-		long priority = PriorityHelper.getPriority(
-			themeDisplay.getScopeGroupId(), resourcePrimKey,
-			parentResourcePrimKey, humanPriority);
+		double priority = ParamUtil.getDouble(actionRequest, "priority");
 
 		ArticleServiceUtil.moveArticle(
 			themeDisplay.getScopeGroupId(), resourcePrimKey,
@@ -445,6 +445,37 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
+	public void updatePriorities(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Enumeration<String> enu = actionRequest.getParameterNames();
+
+		Map<Long, Double> resourcePrimKeyToPriorityMap =
+			new HashMap<Long, Double>();
+
+		while (enu.hasMoreElements()) {
+			String name = enu.nextElement();
+
+			if (!name.startsWith("priority")) {
+				continue;
+			}
+
+			double priority = ParamUtil.getDouble(actionRequest, name);
+
+			long resourcePrimKey = GetterUtil.getLong(
+				name.substring(8, name.length()));
+
+			resourcePrimKeyToPriorityMap.put(resourcePrimKey, priority);
+		}
+
+		ArticleServiceUtil.updatePriorities(
+			themeDisplay.getScopeGroupId(), resourcePrimKeyToPriorityMap);
+	}
+
 	public void updateTemplate(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -505,6 +536,7 @@ public class AdminPortlet extends MVCPortlet {
 
 	protected boolean isSessionErrorException(Throwable cause) {
 		if (cause instanceof ArticleContentException ||
+			cause instanceof ArticlePriorityException ||
 			cause instanceof ArticleTitleException ||
 			cause instanceof CommentContentException ||
 			cause instanceof DuplicateFileException ||

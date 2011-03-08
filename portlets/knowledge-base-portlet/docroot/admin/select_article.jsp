@@ -41,7 +41,7 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 
 		<liferay-ui:search-container
 			emptyResultsMessage="there-are-no-articles"
-			headerNames="title"
+			headerNames="priority,title"
 			iteratorURL="<%= iteratorURL %>"
 		>
 			<liferay-ui:search-container-results
@@ -62,15 +62,21 @@ long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePri
 				</portlet:renderURL>
 
 				<%
-				String titleHREF = null;
+				String rowHREF = null;
 
 				if ((curArticle.getResourcePrimKey() != resourcePrimKey) && (ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, curArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY) > 0)) {
-					titleHREF = rowURL;
+					rowHREF = rowURL;
 				}
 				%>
 
 				<liferay-ui:search-container-column-text
-					href="<%= titleHREF %>"
+					href="<%= rowHREF %>"
+					name="priority"
+					value="<%= BigDecimal.valueOf(curArticle.getPriority()).toPlainString() %>"
+				/>
+
+				<liferay-ui:search-container-column-text
+					href="<%= rowHREF %>"
 					property="title"
 				/>
 

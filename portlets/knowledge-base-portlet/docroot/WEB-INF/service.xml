@@ -33,7 +33,7 @@
 		<column name="title" type="String" />
 		<column name="content" type="String" />
 		<column name="description" type="String" />
-		<column name="priority" type="long" />
+		<column name="priority" type="double" />
 		<column name="latest" type="int" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
@@ -116,13 +116,6 @@
 			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="latest" arrayable-operator="OR" />
 			<finder-column name="status" />
-		</finder>
-		<finder name="NotR_G_P_P_L" return-type="Collection" db-index="false">
-			<finder-column name="resourcePrimKey" comparator="!=" />
-			<finder-column name="groupId" />
-			<finder-column name="parentResourcePrimKey" />
-			<finder-column name="priority" />
-			<finder-column name="latest" />
 		</finder>
 
 		<!-- References -->
@@ -234,6 +227,7 @@
 	</entity>
 	<exceptions>
 		<exception>ArticleContent</exception>
+		<exception>ArticlePriority</exception>
 		<exception>ArticleTitle</exception>
 		<exception>CommentContent</exception>
 		<exception>TemplateContent</exception>

@@ -21,11 +21,8 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 long resourcePrimKey = BeanParamUtil.getLong(article, request, "resourcePrimKey");
 
-long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey", ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-
-int maxHumanPriority = PriorityHelper.getMaxHumanPriority(scopeGroupId, parentResourcePrimKey, article);
-
-int humanPriority = ParamUtil.getInteger(request, "humanPriority", maxHumanPriority);
+long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentResourcePrimKey");
+double priority = BeanParamUtil.getDouble(article, request, "priority");
 %>
 
 <div class="kb-new-parent">
@@ -38,19 +35,7 @@ int humanPriority = ParamUtil.getInteger(request, "humanPriority", maxHumanPrior
 		</c:otherwise>
 	</c:choose>
 
-	<aui:select ignoreRequestValue="<%= true %>" inlineField="<%= true %>" label="" name="humanPriority">
-
-		<%
-		for (int i = 1; i <= maxHumanPriority; i++) {
-		%>
-
-			<aui:option label="<%= i %>" selected="<%= humanPriority == i %>" />
-
-		<%
-		}
-		%>
-
-	</aui:select>
+	<aui:input cssClass="kb-priority" inlineField="<%= true %>" label="" name="priority" size="5" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 
 	<portlet:renderURL var="selectArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 		<portlet:param name="jspPage" value="/admin/select_article.jsp" />

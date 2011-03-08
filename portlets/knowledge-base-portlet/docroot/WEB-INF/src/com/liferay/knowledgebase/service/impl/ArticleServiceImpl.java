@@ -56,6 +56,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -424,7 +425,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public Article moveArticle(
 			long groupId, long resourcePrimKey, long parentResourcePrimKey,
-			long priority)
+			double priority)
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
@@ -504,6 +505,16 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		return articleLocalService.updateAttachments(
 			companyId, resourcePrimKey, dirName);
+	}
+
+	public void updatePriorities(
+			long groupId, Map<Long, Double> resourcePrimKeyToPriorityMap)
+		throws PortalException, SystemException {
+
+		AdminPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.MOVE_ARTICLE);
+
+		articleLocalService.updatePriorities(resourcePrimKeyToPriorityMap);
 	}
 
 	protected String exportToRSS(
