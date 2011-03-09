@@ -306,13 +306,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Articles
 
-		List<Article> siblingArticles = getSiblingArticles(
+		List<Article> articles = getSiblingArticles(
 			groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
-		for (Article siblingArticle : siblingArticles) {
-			deleteArticle(siblingArticle);
+		for (Article article : articles) {
+			deleteArticle(article);
 		}
 
 		// Subscriptions
@@ -1082,15 +1082,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	protected double getPriority(long groupId, long parentResourcePrimKey)
 		throws SystemException {
 
-		List<Article> siblingArticles = getSiblingArticles(
+		List<Article> articles = getSiblingArticles(
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, 0, 1,
 			new ArticlePriorityComparator());
 
-		if (siblingArticles.isEmpty()) {
+		if (articles.isEmpty()) {
 			return ArticleConstants.DEFAULT_PRIORITY;
 		}
 
-		Article article = siblingArticles.get(0);
+		Article article = articles.get(0);
 
 		return Math.floor(article.getPriority()) + 1;
 	}
