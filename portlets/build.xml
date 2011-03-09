@@ -77,7 +77,8 @@
 					<then>
 						<echo file="${portlet.dir}/docroot/WEB-INF/liferay-plugin-package.properties" append="true">
 
-portal-dependency-jars=log4j.jar,slf4j-api.jar,slf4j-log4j12.jar</echo>
+portal-dependency-jars=commons-beanutils.jar,commons-collections.jar,commons-digester.jar,commons-lang.jar,commons-logging.jar,log4j.jar
+</echo>
 
 						<replace file="${portlet.dir}/docroot/WEB-INF/portlet.xml">
 							<replacetoken><![CDATA[<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>]]></replacetoken>

@@ -13,4 +13,7 @@
 			<var>i18n</var>
 		</resource-bundle>
 	</application>
+	<lifecycle>
+		<phase-listener>org.portletfaces.liferay.faces.lifecycle.DebugPhaseListener</phase-listener>
+	</lifecycle>
 </faces-config>
