@@ -212,6 +212,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteArticle(Article article)
 		throws PortalException, SystemException {
 
+		// Child articles
+
+		List<Article> siblingArticles = getSiblingArticles(
+			article.getGroupId(), article.getResourcePrimKey(),
+			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new ArticlePriorityComparator());
+
+		for (Article siblingArticle : siblingArticles) {
+			deleteArticle(siblingArticle);
+		}
+
 		// Resources
 
 		resourceLocalService.deleteResource(
@@ -266,21 +277,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	public void deleteArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 
-		// Article
-
 		Article article = getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
-
-		// Child articles
-
-		List<Article> articles = getSiblingArticles(
-			article.getGroupId(), resourcePrimKey, WorkflowConstants.STATUS_ANY,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new ArticlePriorityComparator());
-
-		for (Article curArticle : articles) {
-			deleteArticle(curArticle.getResourcePrimKey());
-		}
 
 		deleteArticle(article);
 	}
@@ -298,13 +296,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Articles
 
-		List<Article> articles = getSiblingArticles(
+		List<Article> siblingArticles = getSiblingArticles(
 			groupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticlePriorityComparator());
 
-		for (Article article : articles) {
-			deleteArticle(article.getResourcePrimKey());
+		for (Article siblingArticle : siblingArticles) {
+			deleteArticle(siblingArticle);
 		}
 
 		// Subscriptions
@@ -1083,15 +1081,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	protected double getPriority(long groupId, long parentResourcePrimKey)
 		throws SystemException {
 
-		List<Article> articles = getSiblingArticles(
+		List<Article> siblingArticles = getSiblingArticles(
 			groupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, 0, 1,
 			new ArticlePriorityComparator());
 
-		if (articles.isEmpty()) {
+		if (siblingArticles.isEmpty()) {
 			return ArticleConstants.DEFAULT_PRIORITY;
 		}
 
-		Article article = articles.get(0);
+		Article article = siblingArticles.get(0);
 
 		return Math.floor(article.getPriority()) + 1;
 	}
