@@ -62,7 +62,7 @@ Article article = (Article)row.getObject();
 		/>
 	</c:if>
 
-	<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.MOVE_ARTICLE) %>">
+	<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.MOVE) %>">
 		<portlet:renderURL var="moveURL">
 			<portlet:param name="jspPage" value="/admin/move_article.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />

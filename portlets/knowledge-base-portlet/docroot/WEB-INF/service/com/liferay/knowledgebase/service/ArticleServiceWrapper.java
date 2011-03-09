@@ -54,6 +54,12 @@ public class ArticleServiceWrapper implements ArticleService {
 		_articleService.deleteArticle(resourcePrimKey);
 	}
 
+	public void deleteArticles(long groupId, long[] resourcePrimKeys)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleService.deleteArticles(groupId, resourcePrimKeys);
+	}
+
 	public void deleteAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -165,11 +171,11 @@ public class ArticleServiceWrapper implements ArticleService {
 			parentResourcePrimKey, status);
 	}
 
-	public com.liferay.knowledgebase.model.Article moveArticle(long groupId,
+	public com.liferay.knowledgebase.model.Article moveArticle(
 		long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.moveArticle(groupId, resourcePrimKey,
+		return _articleService.moveArticle(resourcePrimKey,
 			parentResourcePrimKey, priority);
 	}
 

@@ -96,6 +96,18 @@ public class ArticleServiceSoap {
 		}
 	}
 
+	public static void deleteArticles(long groupId, long[] resourcePrimKeys)
+		throws RemoteException {
+		try {
+			ArticleServiceUtil.deleteArticles(groupId, resourcePrimKeys);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void deleteAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String fileName)
 		throws RemoteException {
@@ -292,11 +304,11 @@ public class ArticleServiceSoap {
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSoap moveArticle(
-		long groupId, long resourcePrimKey, long parentResourcePrimKey,
-		double priority) throws RemoteException {
+		long resourcePrimKey, long parentResourcePrimKey, double priority)
+		throws RemoteException {
 		try {
-			com.liferay.knowledgebase.model.Article returnValue = ArticleServiceUtil.moveArticle(groupId,
-					resourcePrimKey, parentResourcePrimKey, priority);
+			com.liferay.knowledgebase.model.Article returnValue = ArticleServiceUtil.moveArticle(resourcePrimKey,
+					parentResourcePrimKey, priority);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModel(returnValue);
 		}

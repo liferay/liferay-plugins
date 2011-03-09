@@ -296,6 +296,12 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		_articleLocalService.checkAttachments();
 	}
 
+	public void deleteArticles(long[] resourcePrimKeys)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.deleteArticles(resourcePrimKeys);
+	}
+
 	public void deleteAttachment(long companyId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -394,12 +400,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	}
 
 	public com.liferay.knowledgebase.model.Article moveArticle(long userId,
-		long groupId, long resourcePrimKey, long parentResourcePrimKey,
-		double priority)
+		long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.moveArticle(userId, groupId,
-			resourcePrimKey, parentResourcePrimKey, priority);
+		return _articleLocalService.moveArticle(userId, resourcePrimKey,
+			parentResourcePrimKey, priority);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> search(

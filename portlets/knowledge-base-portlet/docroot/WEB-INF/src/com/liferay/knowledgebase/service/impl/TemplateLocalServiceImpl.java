@@ -14,6 +14,7 @@
 
 package com.liferay.knowledgebase.service.impl;
 
+import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.TemplateContentException;
 import com.liferay.knowledgebase.TemplateTitleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
@@ -126,9 +127,7 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 	public void deleteGroupTemplates(long groupId)
 		throws PortalException, SystemException {
 
-		List<Template> templates = templatePersistence.findByGroupId(groupId);
-
-		for (Template template : templates) {
+		for (Template template : templatePersistence.findByGroupId(groupId)) {
 			deleteTemplate(template);
 		}
 	}
@@ -163,6 +162,23 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 		socialActivityLocalService.deleteActivities(
 			Template.class.getName(), template.getTemplateId());
+	}
+
+	public void deleteTemplates(long[] templateIds)
+		throws PortalException, SystemException {
+
+		for (long templateId : templateIds) {
+			Template template = null;
+
+			try {
+				template = templatePersistence.findByPrimaryKey(templateId);
+			}
+			catch (NoSuchTemplateException nste) {
+				continue;
+			}
+
+			deleteTemplate(template);
+		}
 	}
 
 	public List<Template> getGroupTemplates(

@@ -312,6 +312,12 @@ public class ArticleLocalServiceUtil {
 		getService().checkAttachments();
 	}
 
+	public static void deleteArticles(long[] resourcePrimKeys)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteArticles(resourcePrimKeys);
+	}
+
 	public static void deleteAttachment(long companyId,
 		java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -416,13 +422,13 @@ public class ArticleLocalServiceUtil {
 	}
 
 	public static com.liferay.knowledgebase.model.Article moveArticle(
-		long userId, long groupId, long resourcePrimKey,
-		long parentResourcePrimKey, double priority)
+		long userId, long resourcePrimKey, long parentResourcePrimKey,
+		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .moveArticle(userId, groupId, resourcePrimKey,
-			parentResourcePrimKey, priority);
+				   .moveArticle(userId, resourcePrimKey, parentResourcePrimKey,
+			priority);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> search(

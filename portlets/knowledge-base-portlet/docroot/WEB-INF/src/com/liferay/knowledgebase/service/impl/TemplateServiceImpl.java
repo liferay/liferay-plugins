@@ -60,6 +60,15 @@ public class TemplateServiceImpl extends TemplateServiceBaseImpl {
 		templateLocalService.deleteTemplate(templateId);
 	}
 
+	public void deleteTemplates(long groupId, long[] templateIds)
+		throws PortalException, SystemException {
+
+		AdminPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.DELETE_TEMPLATES);
+
+		templateLocalService.deleteTemplates(templateIds);
+	}
+
 	public List<Template> getGroupTemplates(
 			long groupId, int start, int end,
 			OrderByComparator orderByComparator)

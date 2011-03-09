@@ -54,6 +54,12 @@ public class TemplateServiceUtil {
 		getService().deleteTemplate(templateId);
 	}
 
+	public static void deleteTemplates(long groupId, long[] templateIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteTemplates(groupId, templateIds);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.Template> getGroupTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)

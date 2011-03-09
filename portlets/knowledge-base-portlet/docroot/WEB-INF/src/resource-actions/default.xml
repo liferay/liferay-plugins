@@ -27,9 +27,11 @@
 			<supports>
 				<action-key>ADD_ARTICLE</action-key>
 				<action-key>ADD_TEMPLATE</action-key>
-				<action-key>MOVE_ARTICLE</action-key>
+				<action-key>DELETE_ARTICLES</action-key>
+				<action-key>DELETE_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE_ARTICLES_PRIORITIES</action-key>
 				<action-key>VIEW_TEMPLATES</action-key>
 			</supports>
 			<community-defaults>
@@ -39,9 +41,11 @@
 			<guest-unsupported>
 				<action-key>ADD_ARTICLE</action-key>
 				<action-key>ADD_TEMPLATE</action-key>
-				<action-key>MOVE_ARTICLE</action-key>
+				<action-key>DELETE_ARTICLES</action-key>
+				<action-key>DELETE_TEMPLATES</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
+				<action-key>UPDATE_ARTICLES_PRIORITIES</action-key>
 				<action-key>VIEW_TEMPLATES</action-key>
 			</guest-unsupported>
 		</permissions>
@@ -54,6 +58,7 @@
 		<permissions>
 			<supports>
 				<action-key>DELETE</action-key>
+				<action-key>MOVE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE</action-key>
@@ -68,6 +73,7 @@
 			</guest-defaults>
 			<guest-unsupported>
 				<action-key>DELETE</action-key>
+				<action-key>MOVE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>SUBSCRIBE</action-key>
 				<action-key>UPDATE</action-key>

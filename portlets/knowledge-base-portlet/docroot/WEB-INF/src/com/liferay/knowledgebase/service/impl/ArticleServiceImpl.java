@@ -105,6 +105,15 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		articleLocalService.deleteArticle(resourcePrimKey);
 	}
 
+	public void deleteArticles(long groupId, long[] resourcePrimKeys)
+		throws PortalException, SystemException {
+
+		AdminPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.DELETE_ARTICLES);
+
+		articleLocalService.deleteArticles(resourcePrimKeys);
+	}
+
 	public void deleteAttachment(
 			long companyId, long groupId, long resourcePrimKey, String fileName)
 		throws PortalException, SystemException {
@@ -424,16 +433,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public Article moveArticle(
-			long groupId, long resourcePrimKey, long parentResourcePrimKey,
-			double priority)
+			long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws PortalException, SystemException {
 
-		AdminPermission.check(
-			getPermissionChecker(), groupId, ActionKeys.MOVE_ARTICLE);
+		ArticlePermission.check(
+			getPermissionChecker(), resourcePrimKey, ActionKeys.MOVE);
 
 		return articleLocalService.moveArticle(
-			getUserId(), groupId, resourcePrimKey, parentResourcePrimKey,
-			priority);
+			getUserId(), resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
 	public void subscribeArticle(long groupId, long resourcePrimKey)
@@ -512,7 +519,8 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		AdminPermission.check(
-			getPermissionChecker(), groupId, ActionKeys.MOVE_ARTICLE);
+			getPermissionChecker(), groupId,
+			ActionKeys.UPDATE_ARTICLES_PRIORITIES);
 
 		articleLocalService.updatePriorities(resourcePrimKeyToPriorityMap);
 	}

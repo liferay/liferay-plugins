@@ -76,7 +76,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 				</td>
 			</c:if>
 
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.MOVE_ARTICLE) %>">
+			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.MOVE) %>">
 				<td>
 					<portlet:renderURL var="moveURL">
 						<portlet:param name="jspPage" value="/admin/move_article.jsp" />

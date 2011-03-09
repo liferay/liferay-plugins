@@ -113,12 +113,14 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long[] resourcePrimKeys = StringUtil.split(
 			ParamUtil.getString(actionRequest, "resourcePrimKeys"), 0L);
 
-		for (long resourcePrimKey : resourcePrimKeys) {
-			ArticleServiceUtil.deleteArticle(resourcePrimKey);
-		}
+		ArticleServiceUtil.deleteArticles(
+			themeDisplay.getScopeGroupId(), resourcePrimKeys);
 	}
 
 	public void deleteAttachment(
@@ -167,20 +169,19 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long[] templateIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "templateIds"), 0L);
 
-		for (long templateId : templateIds) {
-			TemplateServiceUtil.deleteTemplate(templateId);
-		}
+		TemplateServiceUtil.deleteTemplates(
+			themeDisplay.getScopeGroupId(), templateIds);
 	}
 
 	public void moveArticle(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		long resourcePrimKey = ParamUtil.getLong(
 			actionRequest, "resourcePrimKey");
@@ -190,8 +191,7 @@ public class AdminPortlet extends MVCPortlet {
 		double priority = ParamUtil.getDouble(actionRequest, "priority");
 
 		ArticleServiceUtil.moveArticle(
-			themeDisplay.getScopeGroupId(), resourcePrimKey,
-			parentResourcePrimKey, priority);
+			resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
 	public void render(

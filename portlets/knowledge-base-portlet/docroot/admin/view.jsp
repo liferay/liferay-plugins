@@ -39,7 +39,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
-			rowChecker="<%= permissionChecker.isCommunityAdmin(scopeGroupId) ? new RowChecker(renderResponse) : null %>"
+			rowChecker="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_ARTICLES) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new ArticleSearch(renderRequest, iteratorURL) %>"
 		>
 			<liferay-ui:search-form
@@ -76,7 +76,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					orderable="<%= true %>"
 				>
 					<c:choose>
-						<c:when test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) %>">
+						<c:when test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES) %>">
 							<aui:input label="" name='<%= "priority" + article.getResourcePrimKey() %>' size="5" type="text" value="<%= BigDecimal.valueOf(article.getPriority()).toPlainString() %>" />
 						</c:when>
 						<c:otherwise>
@@ -216,11 +216,15 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				</div>
 			</c:if>
 
-			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !searchContainer.getResultRows().isEmpty() %>">
+			<c:if test="<%= !searchContainer.getResultRows().isEmpty() && (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES)) %>">
 				<aui:button-row>
-					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteArticles();" %>' value="delete" />
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_ARTICLES) %>">
+						<aui:button onClick='<%= renderResponse.getNamespace() + "deleteArticles();" %>' value="delete" />
+					</c:if>
 
-					<aui:button onClick='<%= renderResponse.getNamespace() + "updatePriorities();" %>' value="save" />
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES) %>">
+						<aui:button onClick='<%= renderResponse.getNamespace() + "updatePriorities();" %>' value="save" />
+					</c:if>
 				</aui:button-row>
 			</c:if>
 

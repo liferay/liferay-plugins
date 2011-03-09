@@ -290,6 +290,12 @@ public class TemplateLocalServiceWrapper implements TemplateLocalService {
 		_templateLocalService.deleteGroupTemplates(groupId);
 	}
 
+	public void deleteTemplates(long[] templateIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_templateLocalService.deleteTemplates(templateIds);
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Template> getGroupTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)

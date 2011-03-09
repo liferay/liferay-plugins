@@ -95,6 +95,18 @@ public class TemplateServiceSoap {
 		}
 	}
 
+	public static void deleteTemplates(long groupId, long[] templateIds)
+		throws RemoteException {
+		try {
+			TemplateServiceUtil.deleteTemplates(groupId, templateIds);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.knowledgebase.model.TemplateSoap[] getGroupTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)

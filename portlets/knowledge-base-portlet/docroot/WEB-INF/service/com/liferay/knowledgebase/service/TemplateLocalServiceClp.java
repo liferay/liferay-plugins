@@ -100,25 +100,28 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		_deleteGroupTemplatesMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteGroupTemplates", long.class);
 
-		_getGroupTemplatesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+		_deleteTemplatesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"deleteTemplates", long[].class);
+
+		_getGroupTemplatesMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupTemplates", long.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_getGroupTemplatesCountMethodKey21 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getGroupTemplatesCountMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getGroupTemplatesCount", long.class);
 
-		_searchMethodKey22 = new MethodKey(_classLoaderProxy.getClassName(),
+		_searchMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
 				"search", long.class, java.lang.String.class,
 				java.lang.String.class, java.util.Date.class,
 				java.util.Date.class, boolean.class, int.class, int.class,
 				com.liferay.portal.kernel.util.OrderByComparator.class);
 
-		_updateTemplateMethodKey23 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTemplateMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTemplate", long.class, java.lang.String.class,
 				java.lang.String.class, java.lang.String.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateTemplateResourcesMethodKey24 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateTemplateResourcesMethodKey25 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateTemplateResources",
 				com.liferay.knowledgebase.model.Template.class,
 				java.lang.String[].class, java.lang.String[].class);
@@ -694,13 +697,41 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		}
 	}
 
+	public void deleteTemplates(long[] templateIds)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_deleteTemplatesMethodKey20,
+				ClpSerializer.translateInput(templateIds));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public java.util.List<com.liferay.knowledgebase.model.Template> getGroupTemplates(
 		long groupId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesMethodKey20,
+		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesMethodKey21,
 				groupId, start, end,
 				ClpSerializer.translateInput(orderByComparator));
 
@@ -728,7 +759,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesCountMethodKey21,
+		MethodHandler methodHandler = new MethodHandler(_getGroupTemplatesCountMethodKey22,
 				groupId);
 
 		try {
@@ -759,7 +790,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_searchMethodKey22,
+		MethodHandler methodHandler = new MethodHandler(_searchMethodKey23,
 				groupId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(startDate),
@@ -794,7 +825,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey23,
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateMethodKey24,
 				templateId, ClpSerializer.translateInput(title),
 				ClpSerializer.translateInput(content),
 				ClpSerializer.translateInput(description),
@@ -830,7 +861,7 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 		java.lang.String[] guestPermissions)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateTemplateResourcesMethodKey24,
+		MethodHandler methodHandler = new MethodHandler(_updateTemplateResourcesMethodKey25,
 				ClpSerializer.translateInput(template),
 				ClpSerializer.translateInput(communityPermissions),
 				ClpSerializer.translateInput(guestPermissions));
@@ -882,9 +913,10 @@ public class TemplateLocalServiceClp implements TemplateLocalService {
 	private MethodKey _addTemplateResourcesMethodKey17;
 	private MethodKey _addTemplateResourcesMethodKey18;
 	private MethodKey _deleteGroupTemplatesMethodKey19;
-	private MethodKey _getGroupTemplatesMethodKey20;
-	private MethodKey _getGroupTemplatesCountMethodKey21;
-	private MethodKey _searchMethodKey22;
-	private MethodKey _updateTemplateMethodKey23;
-	private MethodKey _updateTemplateResourcesMethodKey24;
+	private MethodKey _deleteTemplatesMethodKey20;
+	private MethodKey _getGroupTemplatesMethodKey21;
+	private MethodKey _getGroupTemplatesCountMethodKey22;
+	private MethodKey _searchMethodKey23;
+	private MethodKey _updateTemplateMethodKey24;
+	private MethodKey _updateTemplateResourcesMethodKey25;
 }

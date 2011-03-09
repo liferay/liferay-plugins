@@ -474,9 +474,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					article.getDescription(), dirName, serviceContext);
 
 				importedArticle = ArticleLocalServiceUtil.moveArticle(
-					userId, portletDataContext.getScopeGroupId(),
-					existingArticle.getResourcePrimKey(), parentResourcePrimKey,
-					article.getPriority());
+					userId, existingArticle.getResourcePrimKey(),
+					parentResourcePrimKey, article.getPriority());
 			}
 		}
 		else {

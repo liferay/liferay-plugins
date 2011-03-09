@@ -59,6 +59,10 @@ public interface ArticleService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteArticles(long groupId, long[] resourcePrimKeys)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void deleteAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -144,7 +148,7 @@ public interface ArticleService {
 		long parentResourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.knowledgebase.model.Article moveArticle(long groupId,
+	public com.liferay.knowledgebase.model.Article moveArticle(
 		long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

@@ -20,7 +20,6 @@ import com.liferay.documentlibrary.NoSuchDirectoryException;
 import com.liferay.knowledgebase.ArticleContentException;
 import com.liferay.knowledgebase.ArticlePriorityException;
 import com.liferay.knowledgebase.ArticleTitleException;
-import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
@@ -283,6 +282,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		deleteArticle(article);
 	}
 
+	public void deleteArticles(long[] resourcePrimKeys)
+		throws PortalException, SystemException {
+
+		List<Article> articles = getArticles(
+			resourcePrimKeys, WorkflowConstants.STATUS_ANY, null);
+
+		for (Article article : articles) {
+			deleteArticle(article);
+		}
+	}
+
 	public void deleteAttachment(long companyId, String fileName)
 		throws PortalException, SystemException {
 
@@ -526,8 +536,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public Article moveArticle(
-			long userId, long groupId, long resourcePrimKey,
-			long parentResourcePrimKey, double priority)
+			long userId, long resourcePrimKey, long parentResourcePrimKey,
+			double priority)
 		throws PortalException, SystemException {
 
 		// Article
@@ -547,8 +557,9 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		// Social
 
 		socialActivityLocalService.addActivity(
-			userId, groupId, Article.class.getName(), resourcePrimKey,
-			AdminActivityKeys.MOVE_ARTICLE, StringPool.BLANK, 0);
+			userId, article.getGroupId(), Article.class.getName(),
+			resourcePrimKey, AdminActivityKeys.MOVE_ARTICLE, StringPool.BLANK,
+			0);
 
 		return article;
 	}
@@ -754,21 +765,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			validate(priority);
 		}
 
-		List<Article> articles = new ArrayList<Article>();
+		long[] resourcePrimKeys = StringUtil.split(
+			StringUtil.merge(resourcePrimKeyToPriorityMap.keySet()), 0L);
 
-		for (long resourcePrimKey : resourcePrimKeyToPriorityMap.keySet()) {
-			Article article = null;
-
-			try {
-				article = getLatestArticle(
-					resourcePrimKey, WorkflowConstants.STATUS_ANY);
-			}
-			catch (NoSuchArticleException nsae) {
-				continue;
-			}
-
-			articles.add(article);
-		}
+		List<Article> articles = getArticles(
+			resourcePrimKeys, WorkflowConstants.STATUS_ANY, null);
 
 		for (Article article : articles) {
 			double priority = resourcePrimKeyToPriorityMap.get(

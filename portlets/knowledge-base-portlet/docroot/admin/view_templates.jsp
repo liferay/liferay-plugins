@@ -32,7 +32,7 @@
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
-			rowChecker="<%= permissionChecker.isCommunityAdmin(scopeGroupId) ? new RowChecker(renderResponse) : null %>"
+			rowChecker="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_TEMPLATES) ? new RowChecker(renderResponse) : null %>"
 			searchContainer="<%= new TemplateSearch(renderRequest, iteratorURL) %>"
 		>
 			<liferay-ui:search-form
@@ -109,7 +109,7 @@
 				<div class="separator"><!-- --></div>
 			</c:if>
 
-			<c:if test="<%= permissionChecker.isCommunityAdmin(scopeGroupId) && !searchContainer.getResultRows().isEmpty() %>">
+			<c:if test="<%= !searchContainer.getResultRows().isEmpty() && AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_TEMPLATES) %>">
 				<aui:button-row>
 					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteTemplates();" %>' value="delete" />
 				</aui:button-row>

@@ -5,6 +5,7 @@ Liferay.Service.registerClass(
 	{
 		addArticle: true,
 		deleteArticle: true,
+		deleteArticles: true,
 		deleteAttachment: true,
 		getArticle: true,
 		getArticles: true,
@@ -31,6 +32,7 @@ Liferay.Service.registerClass(
 	{
 		addTemplate: true,
 		deleteTemplate: true,
+		deleteTemplates: true,
 		getGroupTemplates: true,
 		getGroupTemplatesCount: true,
 		getTemplate: true,
