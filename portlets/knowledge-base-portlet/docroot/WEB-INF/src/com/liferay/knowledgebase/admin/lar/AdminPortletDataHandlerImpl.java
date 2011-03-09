@@ -53,7 +53,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.InputStream;
-import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,10 +97,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
 		throws Exception {
-
-		portletDataContext.addExpandoColumns(Article.class.getName());
-
-		portletDataContext.addExpandoColumns(Template.class.getName());
 
 		portletDataContext.addPermissions(
 			"com.liferay.knowledgebase.admin",
@@ -173,7 +168,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		article.setUserUuid(article.getUserUuid());
 
-		portletDataContext.addZipEntry(path, articleElement, article);
+		portletDataContext.addZipEntry(path, article);
 
 		portletDataContext.addPermissions(
 			Article.class, article.getResourcePrimKey());
@@ -344,7 +339,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		template.setUserUuid(template.getUserUuid());
 
-		portletDataContext.addZipEntry(path, templateElement, template);
+		portletDataContext.addZipEntry(path, template);
 
 		portletDataContext.addPermissions(
 			Template.class, template.getTemplateId());
@@ -450,9 +445,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 				Article.class, article.getResourcePrimKey());
 		}
 
-		Map<String, Serializable> expandoAttributes = getExpandoAttributes(
-			portletDataContext, articleElement);
-
 		ServiceContext serviceContext = new ServiceContext();
 
 		serviceContext.setAddCommunityPermissions(true);
@@ -462,10 +454,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setCreateDate(article.getCreateDate());
 		serviceContext.setModifiedDate(article.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
-
-		if ((expandoAttributes != null) && !expandoAttributes.isEmpty()) {
-			serviceContext.setExpandoBridgeAttributes(expandoAttributes);
-		}
 
 		Article importedArticle = null;
 
@@ -738,7 +726,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 
 	protected void importTemplate(
 			PortletDataContext portletDataContext, Map<Long, Long> templateIds,
-			Template template, Map<String, Serializable> expandoAttributes)
+			Template template)
 		throws Exception {
 
 		long userId = portletDataContext.getUserId(template.getUserUuid());
@@ -750,10 +738,6 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		serviceContext.setCreateDate(template.getCreateDate());
 		serviceContext.setModifiedDate(template.getModifiedDate());
 		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
-
-		if ((expandoAttributes != null) && !expandoAttributes.isEmpty()) {
-			serviceContext.setExpandoBridgeAttributes(expandoAttributes);
-		}
 
 		Template importedTemplate = null;
 
@@ -805,11 +789,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			Template template =
 				(Template)portletDataContext.getZipEntryAsObject(path);
 
-			Map<String, Serializable> expandoAttributes = getExpandoAttributes(
-				portletDataContext, templateElement);
-
-			importTemplate(
-				portletDataContext, templateIds, template, expandoAttributes);
+			importTemplate(portletDataContext, templateIds, template);
 		}
 
 		importComments(
