@@ -13,6 +13,9 @@
 		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
 		<param-value>true</param-value>
 	</context-param>
+	<listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class> 
+	</listener> 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
