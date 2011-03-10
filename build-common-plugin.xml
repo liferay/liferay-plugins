@@ -290,6 +290,17 @@
 				<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
 					<sequential>
 						<if>
+							<available file="${project.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+							<then>
+								<copy
+									file="${project.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+									todir="docroot/WEB-INF/lib"
+									overwrite="true"
+								/>
+							</then>
+						</if>
+
+						<if>
 							<available file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
 							<then>
 								<copy
