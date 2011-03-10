@@ -1,53 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<f:view xmlns:aui="http://portletfaces.org/alloyfaces/aui"
-	xmlns:aui-cc="http://portletfaces.org/alloyfaces/aui-cc"
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ice="http://www.icesoft.com/icefaces/component"
-	xmlns:icecore="http://www.icefaces.org/icefaces/core"
-	xmlns:liferay-ui="http://portletfaces.org/liferayfaces/liferay-ui"
-	xmlns:liferay-util="http://portletfaces.org/liferayfaces/liferay-util"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 	<h:head />
 	<h:body>
-		<h:form id="f1" styleClass="aui-form">
-			<aui-cc:messages globalOnly="true" layout="table" />
-			<aui:layout>
-				<aui:column>
-					<aui:fieldset label="#{i18n['compose-email']}">
-						<aui-cc:input inlineMessage="true" label="#{i18n['email-from']}"
-							required="true"
-							validatorMessage="#{i18n['please-enter-a-valid-email-address']}"
-							value="#{emailModelBean.fromEmailAddress}">
-							<f:validateRegex for="inputText" pattern=".+[@].+[.].+" />
-						</aui-cc:input>
-						<aui-cc:input inlineMessage="true" label="#{i18n['email-to']}"
-							required="true"
-							validatorMessage="#{i18n['please-enter-a-valid-email-address']}"
-							value="#{emailModelBean.recipientEmailAddress}">
-							<f:validateRegex for="inputText" pattern=".+[@].+[.].+" />
-						</aui-cc:input>
-						<aui-cc:input inlineMessage="true"
-							label="#{i18n['email-subject']}" required="true"
-							value="#{emailModelBean.subject}" />
-						<aui:field label="#{i18n['email-body']}">
-							<liferay-ui:input-editor inlineMessage="true" height="354"
-								label="#{i18n['email-body']}" maxLength="500"
-								toolbarSet="edit-in-place" required="true"
-								value="#{emailModelBean.body}">
-								<liferay-util:validateRichTextLength for="inputText"
-									maximum="500" />
-							</liferay-ui:input-editor>
-						</aui:field>
-					</aui:fieldset>
-				</aui:column>
-				<div class="separator" />
-				<aui:button-row>
-					<h:commandButton actionListener="#{emailBackingBean.sendMessage}"
-						value="#{i18n['send']}" />
-				</aui:button-row>
-			</aui:layout>
-		</h:form>
+		<p>
+			#{i18n['hello-world']}
+		</p>
 	</h:body>
 </f:view>

@@ -6,29 +6,25 @@
 		<param-value>org.jboss.el.ExpressionFactoryImpl</param-value>
 	</context-param>
 	<context-param>
-		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
-		<param-value>true</param-value>
-	</context-param>
-	<!-- Instruct ICEfaces to abstain from adding a random query parameter to resource URLs (which it does by default -->
-	<!-- in order to prevent caching of JavaScript resources like bridge.js in a servlet-based webapp). -->
-	<context-param>
 		<param-name>org.icefaces.uniqueResourceURLs</param-name>
 		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+		<param-value>true</param-value>
 	</context-param>
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- BEGIN: Compatibility with ICEfaces 1.8 components -->
 	<servlet>
-		<servlet-name>Resource Servlet</servlet-name>
+		<servlet-name>ICEfaces Compatibility Resource Servlet</servlet-name>
 		<servlet-class>com.icesoft.faces.webapp.CompatResourceServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Resource Servlet</servlet-name>
+		<servlet-name>ICEfaces Compatibility Resource Servlet</servlet-name>
 		<url-pattern>/xmlhttp/*</url-pattern>
 	</servlet-mapping>
-	<!-- END: Compatibility with ICEfaces 1.8 components -->
 </web-app>
