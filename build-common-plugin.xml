@@ -424,7 +424,6 @@ Please find a solution that does not require portal-impl.jar.
 					<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 					<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 					<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-					<jvmarg value="-Ddeployer.deployment.context.base.dir=${project.dir}" />
 
 					<!-- Optional Arguments -->
 
@@ -454,7 +453,6 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-						<jvmarg value="-Ddeployer.deployment.context.base.dir=${project.dir}" />
 
 						<!-- Optional Arguments -->
 
@@ -485,7 +483,6 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.app.server.type=${app.server.type}" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-						<jvmarg value="-Ddeployer.deployment.context.base.dir=${project.dir}" />
 					</java>
 				</then>
 			</elseif>
@@ -516,8 +513,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.custom.portlet.xml=${auto.deploy.custom.portlet.xml}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-						<jvmarg value="-Ddeployer.deployment.context.base.dir=${project.dir}" />
-						
+
 						<!-- Optional Arguments -->
 
 						<jvmarg value="-Ddeployer.tomcat.lib.dir=${app.server.tomcat.lib.global.dir}" />
@@ -551,7 +547,6 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
 						<jvmarg value="-Ddeployer.unpack.war=${auto.deploy.unpack.war}" />
 						<jvmarg value="-Ddeployer.file.pattern=${plugin.name}-*.war" />
-						<jvmarg value="-Ddeployer.deployment.context.base.dir=${project.dir}" />
 
 						<!-- Optional Arguments -->
 
