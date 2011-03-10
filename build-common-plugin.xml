@@ -7,9 +7,8 @@
 		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
 		<then>
 			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
-			<property name="plugin.version" value="${plugin-package.module-incremental-version}" />
 
-			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+			<property name="plugin.version" value="${plugin-package.module-incremental-version}" />
 
 			<if>
 				<isset property="plugin-package.portal-dependency-jars" />
@@ -20,8 +19,6 @@
 					<property name="plugin.jars" value="${plugin-package.portal.dependency.jars}" />
 				</else>
 			</if>
-
-			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
 
 			<if>
 				<isset property="plugin-package.portal-dependency-tlds" />
