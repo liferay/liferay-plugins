@@ -284,6 +284,37 @@
 			<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
 		</copy>
 
+		<if>
+			<isset property="plugin-package.required-deployment-contexts" />
+			<then>
+				<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
+					<sequential>
+						<if>
+							<available file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+							<then>
+								<copy
+									file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+									todir="docroot/WEB-INF/lib"
+									overwrite="true"
+								/>
+							</then>
+						</if>
+
+						<if>
+							<available file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+							<then>
+								<copy
+									file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+									todir="docroot/WEB-INF/lib"
+									overwrite="true"
+								/>
+							</then>
+						</if>
+					</sequential>
+				</for>
+			</then>
+		</if>
+
 		<copy todir="docroot/WEB-INF/tld">
 			<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
 		</copy>
