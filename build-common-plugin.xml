@@ -298,28 +298,26 @@
 									overwrite="true"
 								/>
 							</then>
-						</if>
-
-						<if>
-							<available file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
-							<then>
-								<copy
-									file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-									todir="docroot/WEB-INF/lib"
-									overwrite="true"
-								/>
-							</then>
-						</if>
-
-						<if>
-							<available file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
-							<then>
-								<copy
-									file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-									todir="docroot/WEB-INF/lib"
-									overwrite="true"
-								/>
-							</then>
+							<elseif>
+								<available file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+								<then>
+									<copy
+										file="${project.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+										todir="docroot/WEB-INF/lib"
+										overwrite="true"
+									/>
+								</then>
+							</elseif>
+							<elseif>
+								<available file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+								<then>
+									<copy
+										file="${project.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+										todir="docroot/WEB-INF/lib"
+										overwrite="true"
+									/>
+								</then>
+							</elseif>
 						</if>
 					</sequential>
 				</for>
