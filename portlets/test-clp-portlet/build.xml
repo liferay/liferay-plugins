@@ -4,8 +4,6 @@
 	<import file="../build-common-portlet.xml" />
 
 	<target name="compile">
-		<copy file="../chat-portlet/docroot/WEB-INF/lib/chat-portlet-service.jar" todir="docroot/WEB-INF/lib" overwrite="true" />
-
 		<antcall target="build-common-plugin.compile" />
 	</target>
 </project>
