@@ -70,7 +70,7 @@ List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, W
 				<aui:select name="preferences--selectionMethod--" onChange="<%= taglibOnChange %>">
 					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
 					<aui:option label="filter" selected='<%= selectionMethod.equals("filter") %>' />
-					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "community") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
+					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "site") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
 				</aui:select>
 
 				<div class="kb-field-wrapper" id="<portlet:namespace />articlesSelectionOptions">

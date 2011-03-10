@@ -102,7 +102,7 @@ else if (tabs2.equals("article-updated-email")) {
 							[$COMMUNITY_NAME$]
 						</dt>
 						<dd>
-							<liferay-ui:message key="the-community-name-associated-with-the-article" />
+							<liferay-ui:message key="the-site-name-associated-with-the-article" />
 						</dd>
 						<dt>
 							[$COMPANY_ID$]
@@ -214,7 +214,7 @@ else if (tabs2.equals("article-updated-email")) {
 							[$COMMUNITY_NAME$]
 						</dt>
 						<dd>
-							<liferay-ui:message key="the-community-name-associated-with-the-article" />
+							<liferay-ui:message key="the-site-name-associated-with-the-article" />
 						</dd>
 						<dt>
 							[$COMPANY_ID$]
