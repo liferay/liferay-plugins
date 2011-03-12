@@ -230,7 +230,7 @@ AUI().use(
 			instance._unreadMessages = 0;
 			instance._originalPageTitle = document.title;
 
-			instance._stopTypingTask = new A.DelayedTask(instance.setTyping, instance, [false]);
+			instance._stopTypingTask = A.debounce(instance.setTyping, instance._typingDelay, instance, false);
 
 			instance._heightMonitor = A.Node.create('<pre class="chat-height-monitor" />');
 			instance._heightMonitor.appendTo(document.body);
@@ -333,7 +333,7 @@ AUI().use(
 						else {
 							instance.setTyping(true);
 
-							instance._stopTypingTask.delay(instance._typingDelay);
+							instance._stopTypingTask();
 						}
 					}
 
@@ -542,16 +542,14 @@ AUI().use(
 
 				instance._myStatus = instance._chatContainer.one('.status-message');
 
-				instance._sendTask = new A.DelayedTask(instance.send, instance);
-				instance._saveSettingsDelay = 100;
+				instance._sendTask = A.debounce(instance.send, 100, instance);
 
 				instance._sound = new SWFObject('/chat-portlet/alert.swf', 'alertsound', '0', '0', '8');
 				instance._soundContainer = instance._chatContainer.one('.chat-sound');
 
-				instance._updatePresenceTask = new A.DelayedTask(instance._updatePresence, instance);
-				instance._updatePresenceDelay = 30000;
+				instance._updatePresenceTask = A.debounce(instance._updatePresence, 30000, instance);
 
-				instance._updatePresenceTask.delay();
+				instance._updatePresenceTask.delay(0);
 
 				Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
 
@@ -597,7 +595,7 @@ AUI().use(
 
 				Liferay.Poller.submitRequest(instance._portletId, options, id);
 
-				instance._updatePresenceTask.delay(instance._updatePresenceDelay);
+				instance._updatePresenceTask();
 			},
 
 			show: function(panelName) {
@@ -929,7 +927,7 @@ AUI().use(
 			_saveSettings: function() {
 				var instance = this;
 
-				instance._sendTask.delay(instance._saveSettingsDelay, null, null, [instance._getSettings()]);
+				instance._sendTask(instance._getSettings());
 			},
 
 			_updateBuddies: function(buddies) {

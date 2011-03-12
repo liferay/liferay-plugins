@@ -1,29 +1,24 @@
 AUI().ready(
 	'aui-base',
 	function(A) {
-		var hideTask = new A.DelayedTask(
+		var toggleTask = A.debounce(
 			function(event) {
 				var childMenu = this.one('.child-menu');
 
 				if (childMenu) {
-					childMenu.setStyle('display', 'none');
+					childMenu.toggle(event.type == 'mouseenter');
 				}
-			}
+			},
+			25
 		);
 
 		A.all('#navigation li').on(
 			{
 				mouseenter: function(event) {
-					var childMenu = this.one('.child-menu');
-
-					if (childMenu) {
-						childMenu.setStyle('display', 'block');
-					}
+					toggleTask.delay(0, event);
 				},
-				
-				mouseleave: function(event) {
-					hideTask.delay(25, null, this, event);
-				}
+
+				mouseleave: hideTask
 			}
 		);
 	}
