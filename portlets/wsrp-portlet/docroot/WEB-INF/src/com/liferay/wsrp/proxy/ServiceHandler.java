@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.wsrp.axis.WSRPHTTPSender;
 import com.liferay.wsrp.client.PasswordCallback;
+import com.liferay.wsrp.util.PortletPropsValues;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
@@ -36,6 +37,7 @@ import org.apache.axis.SimpleChain;
 import org.apache.axis.SimpleTargetedChain;
 import org.apache.axis.client.Service;
 import org.apache.axis.configuration.SimpleProvider;
+import org.apache.axis.handlers.LogHandler;
 import org.apache.axis.transport.http.HTTPSender;
 import org.apache.axis.transport.http.HTTPTransport;
 import org.apache.commons.beanutils.ConstructorUtils;
@@ -157,7 +159,13 @@ public class ServiceHandler implements InvocationHandler {
 	protected EngineConfiguration getEngineConfiguration(
 		String forwardCookies, String userToken) {
 
-		SimpleChain simpleChain = new SimpleChain();
+		SimpleChain requestChain = new SimpleChain();
+
+		Handler logHandler = new LogHandler();
+
+		if (PortletPropsValues.WSRP_DEBUG) {
+			requestChain.addHandler(logHandler);
+		}
 
 		if (Validator.isNotNull(userToken)) {
 			Handler handler = new WSDoAllSender();
@@ -170,7 +178,13 @@ public class ServiceHandler implements InvocationHandler {
 				PasswordCallback.class.getName());
 			handler.setOption(WSHandlerConstants.USER, userToken);
 
-			simpleChain.addHandler(handler);
+			requestChain.addHandler(handler);
+		}
+
+		SimpleChain responseChain = new SimpleChain();
+
+		if (PortletPropsValues.WSRP_DEBUG) {
+			responseChain.addHandler(logHandler);
 		}
 
 		SimpleProvider simpleProvider = new SimpleProvider();
@@ -179,7 +193,7 @@ public class ServiceHandler implements InvocationHandler {
 
 		simpleProvider.deployTransport(
 			HTTPTransport.DEFAULT_TRANSPORT_NAME,
-			new SimpleTargetedChain(simpleChain, httpSender, null));
+			new SimpleTargetedChain(requestChain, httpSender, responseChain));
 
 		return simpleProvider;
 	}
