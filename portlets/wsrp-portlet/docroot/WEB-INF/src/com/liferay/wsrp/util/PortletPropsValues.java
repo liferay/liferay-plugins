@@ -35,4 +35,7 @@ public class PortletPropsValues {
 	public static final String[] SECURE_RESOURCE_URLS_SALT =
 		PortletProps.getArray(PortletPropsKeys.SECURE_RESOURCE_URLS_SALT);
 
+	public static final boolean SOAP_DEBUG = GetterUtil.getBoolean(
+		PortletProps.get(PortletPropsKeys.SOAP_DEBUG));
+
 }

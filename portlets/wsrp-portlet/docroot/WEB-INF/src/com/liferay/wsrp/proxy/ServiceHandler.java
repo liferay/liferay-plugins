@@ -159,32 +159,35 @@ public class ServiceHandler implements InvocationHandler {
 	protected EngineConfiguration getEngineConfiguration(
 		String forwardCookies, String userToken) {
 
-		SimpleChain requestChain = new SimpleChain();
+		SimpleChain requestSimpleChain = new SimpleChain();
 
 		Handler logHandler = new LogHandler();
 
-		if (PortletPropsValues.WSRP_DEBUG) {
-			requestChain.addHandler(logHandler);
+		if (PortletPropsValues.SOAP_DEBUG) {
+			requestSimpleChain.addHandler(logHandler);
 		}
 
 		if (Validator.isNotNull(userToken)) {
-			Handler handler = new WSDoAllSender();
+			Handler wsDoAllSenderHandler = new WSDoAllSender();
 
-			handler.setOption(WSHandlerConstants.ACTION, "UsernameToken");
-			handler.setOption(WSHandlerConstants.MUST_UNDERSTAND, "false");
-			handler.setOption(UsernameToken.PASSWORD_TYPE, WSConstants.PW_NONE);
-			handler.setOption(
+			wsDoAllSenderHandler.setOption(
+				WSHandlerConstants.ACTION, "UsernameToken");
+			wsDoAllSenderHandler.setOption(
+				WSHandlerConstants.MUST_UNDERSTAND, "false");
+			wsDoAllSenderHandler.setOption(
+				UsernameToken.PASSWORD_TYPE, WSConstants.PW_NONE);
+			wsDoAllSenderHandler.setOption(
 				WSHandlerConstants.PW_CALLBACK_CLASS,
 				PasswordCallback.class.getName());
-			handler.setOption(WSHandlerConstants.USER, userToken);
+			wsDoAllSenderHandler.setOption(WSHandlerConstants.USER, userToken);
 
-			requestChain.addHandler(handler);
+			requestSimpleChain.addHandler(wsDoAllSenderHandler);
 		}
 
-		SimpleChain responseChain = new SimpleChain();
+		SimpleChain responseSimpleChain = new SimpleChain();
 
-		if (PortletPropsValues.WSRP_DEBUG) {
-			responseChain.addHandler(logHandler);
+		if (PortletPropsValues.SOAP_DEBUG) {
+			responseSimpleChain.addHandler(logHandler);
 		}
 
 		SimpleProvider simpleProvider = new SimpleProvider();
@@ -193,7 +196,8 @@ public class ServiceHandler implements InvocationHandler {
 
 		simpleProvider.deployTransport(
 			HTTPTransport.DEFAULT_TRANSPORT_NAME,
-			new SimpleTargetedChain(requestChain, httpSender, responseChain));
+			new SimpleTargetedChain(
+				requestSimpleChain, httpSender, responseSimpleChain));
 
 		return simpleProvider;
 	}

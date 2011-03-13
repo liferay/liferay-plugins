@@ -30,4 +30,6 @@ public class PortletPropsKeys {
 	public static final String SECURE_RESOURCE_URLS_SALT =
 		"secure.resource.urls.salt";
 
+	public static final String SOAP_DEBUG = "soap.debug";
+
 }
