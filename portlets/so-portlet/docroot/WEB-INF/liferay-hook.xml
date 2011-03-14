@@ -5,7 +5,7 @@
 	<portal-properties>portal.properties</portal-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<indexer-post-processor>
-		<indexer-model-name>com.liferay.portal.model.User</indexer-model-name>
+		<indexer-class-name>com.liferay.portal.model.User</indexer-class-name>
 		<indexer-post-processor-impl>com.liferay.so.hook.indexer.UserIndexerPostProcessor</indexer-post-processor-impl>
 	</indexer-post-processor>
 	<struts-action>
