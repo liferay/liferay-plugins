@@ -14,6 +14,9 @@
 
 package com.liferay.wsrp.util;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +29,22 @@ import org.apache.axis.message.MessageElement;
  */
 public class ExtensionUtil {
 
+	public static final String NAME = "name";
+
 	public static void addMessageElement(
-		List<MessageElement> messageElements, String localPart, String value) {
+			List<MessageElement> messageElements, String name,
+			String value) {
 
 		MessageElement messageElement = new MessageElement(
-			"http://www.liferay.com/wsrp", localPart);
+			"http://www.liferay.com/wsrp", "extension");
+
+		try {
+			messageElement.addAttribute(
+				"http://www.liferay.com/wsrp", NAME, name);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
 
 		messageElement.setValue(value);
 
@@ -57,10 +71,10 @@ public class ExtensionUtil {
 		return extensions;
 	}
 
-	public static Extension[] getExtensions(String localPart, String value) {
+	public static Extension[] getExtensions(String name, String value) {
 		List<MessageElement> messageElements = new ArrayList<MessageElement>();
 
-		addMessageElement(messageElements, localPart, value);
+		addMessageElement(messageElements, name, value);
 
 		return getExtensions(messageElements);
 	}
@@ -83,5 +97,7 @@ public class ExtensionUtil {
 
 		return messageElements;
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(ExtensionUtil.class);
 
 }

@@ -568,7 +568,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 	protected void setExtension(
 		Portlet portlet, MessageElement messageElement) {
 
-		String name = messageElement.getName();
+		String name = messageElement.getAttribute(ExtensionUtil.NAME);
 		String value = messageElement.getValue();
 
 		if (name.equals("css-class-wrapper")) {

@@ -211,7 +211,7 @@ public class V2MarkupServiceImpl
 		}
 
 		for (MessageElement clientAttribute : clientAttributes) {
-			String name = clientAttribute.getName();
+			String name = clientAttribute.getAttribute(ExtensionUtil.NAME);
 			String value = clientAttribute.getValue();
 
 			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
@@ -755,7 +755,11 @@ public class V2MarkupServiceImpl
 
 				for (MessageElement formParameter : formParameters) {
 					sb.append(StringPool.AMPERSAND);
-					sb.append(namespace + formParameter.getName());
+
+					String name = namespace + formParameter.getAttribute(
+						ExtensionUtil.NAME);
+
+					sb.append(name);
 					sb.append(StringPool.EQUAL);
 					sb.append(HttpUtil.encodeURL(formParameter.getValue()));
 				}
