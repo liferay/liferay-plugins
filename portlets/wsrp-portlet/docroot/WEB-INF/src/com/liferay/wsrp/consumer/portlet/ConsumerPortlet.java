@@ -1135,7 +1135,9 @@ public class ConsumerPortlet extends GenericPortlet {
 
 		mimeRequest.setNavigationalContext(navigationalContext);
 
-		processFormParameters(portletRequest, portletResponse, mimeRequest);
+		if (mimeRequest instanceof MarkupParams) {
+			processFormParameters(portletRequest, portletResponse, mimeRequest);
+		}
 
 		// Portlet context
 
