@@ -67,29 +67,6 @@ public class AdminIndexer extends BaseIndexer {
 		return CLASS_NAMES;
 	}
 
-	public Summary getSummary(
-		Document document, String snippet, PortletURL portletURL) {
-
-		String title = document.get(Field.TITLE);
-
-		String content = snippet;
-
-		if (Validator.isNull(snippet)) {
-			content = document.get(Field.DESCRIPTION);
-
-			if (Validator.isNull(content)) {
-				content = StringUtil.shorten(document.get(Field.CONTENT), 200);
-			}
-		}
-
-		String resourcePrimKey = document.get(Field.ENTRY_CLASS_PK);
-
-		portletURL.setParameter("jspPage", "/admin/view_article.jsp");
-		portletURL.setParameter("resourcePrimKey", resourcePrimKey);
-
-		return new Summary(title, content, portletURL);
-	}
-
 	public Hits search(SearchContext searchContext) throws SearchException {
 		Hits hits = super.search(searchContext);
 
@@ -224,6 +201,29 @@ public class AdminIndexer extends BaseIndexer {
 		document.addKeyword(Field.ROOT_ENTRY_CLASS_PK, rootResourcePrimKey);
 
 		return document;
+	}
+
+	protected Summary doGetSummary(
+		Document document, String snippet, PortletURL portletURL) {
+
+		String title = document.get(Field.TITLE);
+
+		String content = snippet;
+
+		if (Validator.isNull(snippet)) {
+			content = document.get(Field.DESCRIPTION);
+
+			if (Validator.isNull(content)) {
+				content = StringUtil.shorten(document.get(Field.CONTENT), 200);
+			}
+		}
+
+		String resourcePrimKey = document.get(Field.ENTRY_CLASS_PK);
+
+		portletURL.setParameter("jspPage", "/admin/view_article.jsp");
+		portletURL.setParameter("resourcePrimKey", resourcePrimKey);
+
+		return new Summary(title, content, portletURL);
 	}
 
 	protected void doReindex(Object obj) throws Exception {

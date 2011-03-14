@@ -56,12 +56,6 @@ public class MessageIndexer extends BaseIndexer {
 		return CLASS_NAMES;
 	}
 
-	public Summary getSummary(
-		Document doc, String snippet, PortletURL portletURL) {
-
-		return null;
-	}
-
 	protected void doDelete(Object obj) throws Exception {
 		if (obj instanceof Account) {
 			Account account = (Account)obj;
@@ -158,6 +152,12 @@ public class MessageIndexer extends BaseIndexer {
 		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
 
 		return document;
+	}
+
+	protected Summary doGetSummary(
+		Document doc, String snippet, PortletURL portletURL) {
+
+		return null;
 	}
 
 	protected void doReindex(Object obj) throws Exception {
