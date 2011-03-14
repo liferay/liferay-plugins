@@ -52,10 +52,10 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		User user = PortalUtil.getSelectedUser(actionRequest);
 
-		String indexes = ParamUtil.getString(
+		String projectsEntriesIndexesString = ParamUtil.getString(
 			actionRequest, "projectsEntriesIndexes");
 
-		if (Validator.isNull(indexes)) {
+		if (Validator.isNull(projectsEntriesIndexesString)) {
 			originalStrutsPortletAction.processAction(
 				portletConfig, actionRequest, actionResponse);
 
@@ -64,7 +64,8 @@ public class EditUserAction extends BaseStrutsPortletAction {
 
 		Set<Long> projectsEntryIds = new HashSet<Long>();
 
-		int[] projectsEntriesIndexes = StringUtil.split(indexes, 0);
+		int[] projectsEntriesIndexes = StringUtil.split(
+			projectsEntriesIndexesString, 0);
 
 		for (int projectsEntriesIndex : projectsEntriesIndexes) {
 			long projectsEntryId = ParamUtil.getLong(
@@ -72,33 +73,33 @@ public class EditUserAction extends BaseStrutsPortletAction {
 			String title = ParamUtil.getString(
 				actionRequest, "projectsEntryTitle" + projectsEntriesIndex);
 			String description = ParamUtil.getString(
-				actionRequest, "projectsEntryDescription" +
-					projectsEntriesIndex);
+				actionRequest,
+				"projectsEntryDescription" + projectsEntriesIndex);
 
 			if (Validator.isNull(title)) {
 				continue;
 			}
 
 			int startDateMonth = ParamUtil.getInteger(
-				actionRequest, "projectsEntryStartDateMonth" +
-					projectsEntriesIndex);
+				actionRequest,
+				"projectsEntryStartDateMonth" + projectsEntriesIndex);
 			int startDateDay = 1;
 			int startDateYear = ParamUtil.getInteger(
-				actionRequest, "projectsEntryStartDateYear" +
-					projectsEntriesIndex);
+				actionRequest,
+				"projectsEntryStartDateYear" + projectsEntriesIndex);
 			int endDateMonth = ParamUtil.getInteger(
-				actionRequest, "projectsEntryEndDateMonth" +
-					projectsEntriesIndex);
+				actionRequest,
+				"projectsEntryEndDateMonth" + projectsEntriesIndex);
 			int endDateDay = 1;
 			int endDateYear = ParamUtil.getInteger(
-				actionRequest, "projectsEntryEndDateYear" +
-					projectsEntriesIndex);
+				actionRequest,
+				"projectsEntryEndDateYear" + projectsEntriesIndex);
 
 			boolean current = ParamUtil.getBoolean(
 				actionRequest, "projectsEntryCurrent" + projectsEntriesIndex);
 			String otherMembers = ParamUtil.getString(
-				actionRequest, "projectsEntryOtherMembers" +
-					projectsEntriesIndex);
+				actionRequest,
+				"projectsEntryOtherMembers" + projectsEntriesIndex);
 
 			if (projectsEntryId <= 0) {
 				ProjectsEntry projectsEntry =
