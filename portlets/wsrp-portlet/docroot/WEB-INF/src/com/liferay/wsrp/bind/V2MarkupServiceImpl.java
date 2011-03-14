@@ -756,8 +756,8 @@ public class V2MarkupServiceImpl
 				for (MessageElement formParameter : formParameters) {
 					sb.append(StringPool.AMPERSAND);
 
-					String name = namespace + formParameter.getAttribute(
-						ExtensionUtil.NAME);
+					String name = namespace.concat(
+						formParameter.getAttribute(ExtensionUtil.NAME));
 
 					sb.append(name);
 					sb.append(StringPool.EQUAL);
