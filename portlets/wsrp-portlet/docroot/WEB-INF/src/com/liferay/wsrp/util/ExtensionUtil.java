@@ -32,8 +32,7 @@ public class ExtensionUtil {
 	public static final String NAME = "name";
 
 	public static void addMessageElement(
-			List<MessageElement> messageElements, String name,
-			String value) {
+		List<MessageElement> messageElements, String name, String value) {
 
 		MessageElement messageElement = new MessageElement(
 			"http://www.liferay.com/wsrp", "extension");
