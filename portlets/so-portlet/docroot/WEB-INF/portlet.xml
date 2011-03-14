@@ -103,21 +103,17 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<display-name>Profiles</display-name>
-		<portlet-class>com.liferay.so.profiles.portlet.ProfilesPortlet</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/profiles/view.jsp</value>
-		</init-param>
+		<display-name>Expertise</display-name>
+		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
 		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>Profiles</title>
-			<short-title>Profiles</short-title>
-			<keywords>Profiles</keywords>
+			<title>Expertise</title>
+			<short-title>Expertise</short-title>
+			<keywords>Expertise</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>

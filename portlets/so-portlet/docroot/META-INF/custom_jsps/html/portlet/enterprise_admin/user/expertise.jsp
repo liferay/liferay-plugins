@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -14,14 +15,8 @@
  * You should have received a copy of the GNU General Public License along with
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
+--%>
 
-package com.liferay.so.profiles.social;
+<%@ include file="/html/portlet/enterprise_admin/init.jsp" %>
 
-/**
- * @author Brian Wing Shun Chan
- */
-public class ProfilesRequestKeys {
-
-	public static final int ADD_FRIEND = 1;
-
-}
+<liferay-util:include page="/expertise/edit_projects.jsp" portletId="4_WAR_soportlet" />

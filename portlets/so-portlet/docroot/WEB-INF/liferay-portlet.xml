@@ -24,13 +24,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>profiles</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/so/profiles/portlet/profiles-friendly-url-routes.xml</friendly-url-routes>
-		<social-request-interpreter-class>com.liferay.so.profiles.social.ProfilesRequestInterpreter</social-request-interpreter-class>
-		<header-portlet-javascript>/profiles/javascript.js</header-portlet-javascript>
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
-		<css-class-wrapper>so-portlet-profiles</css-class-wrapper>
 		<system>true</system>
 	</portlet>
 	<portlet>
