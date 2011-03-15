@@ -1,0 +1,97 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.tms.tasks.social;
+
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
+import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+import com.liferay.tms.model.TasksEntry;
+import com.liferay.tms.service.TasksEntryLocalServiceUtil;
+
+/**
+ * @author Ryan Park
+ */
+public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
+
+	public String[] getClassNames() {
+		return _CLASS_NAMES;
+	}
+
+	protected SocialActivityFeedEntry doInterpret(
+			SocialActivity activity, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(
+			activity.getClassPK());
+
+		long userId = activity.getUserId();
+		long receiverUserId = activity.getReceiverUserId();
+
+		int activityType = activity.getType();
+
+		// Link
+
+		String link = StringPool.BLANK;
+
+		// Title
+
+		String titlePattern = null;
+
+		if (activityType == TasksActivityKeys.ADD_TASK) {
+			titlePattern = "activity-tasks-add-entry";
+		}
+		else if (activityType == TasksActivityKeys.REOPEN_TASK) {
+			titlePattern = "activity-tasks-reopened-entry";
+		}
+		else if (activityType == TasksActivityKeys.RESOLVE_TASK) {
+			titlePattern = "activity-tasks-resolved-entry";
+
+			userId = tasksEntry.getResolverUserId();
+			receiverUserId = tasksEntry.getUserId();
+		}
+		else if (activityType == TasksActivityKeys.UPDATE_TASK) {
+			titlePattern = "activity-tasks-update-entry";
+		}
+
+		if ((userId != receiverUserId) && (receiverUserId != 0)) {
+			titlePattern += "-for";
+		}
+
+		String creatorUserName = getUserName(userId, themeDisplay);
+		String receiverUserName = getUserName(receiverUserId, themeDisplay);
+
+		Object[] titleArguments =
+			new Object[] {creatorUserName, receiverUserName};
+
+		String title = themeDisplay.translate(titlePattern, titleArguments);
+
+		// Body
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(cleanContent(tasksEntry.getTitle()));
+
+		String body = sb.toString();
+
+		return new SocialActivityFeedEntry(link, title, body);
+	}
+
+	private static final String[] _CLASS_NAMES = new String[] {
+		TasksEntry.class.getName()
+	};
+
+}

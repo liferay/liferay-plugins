@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.tms.service.persistence.TasksEntryFinder.findByC_T">
+		SELECT
+			DISTINCT AssetEntry.classPK
+		FROM
+			AssetEntry
+		INNER JOIN
+			AssetEntries_AssetTags ON
+				(AssetEntry.entryId = AssetEntries_AssetTags.entryId)
+		WHERE
+			(AssetEntry.classNameId = ?) AND
+			(AssetEntries_AssetTags.tagId = ?)
+
+	</sql>
+</custom-sql>
