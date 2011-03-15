@@ -24,7 +24,7 @@
 				<column name="TYPE_" />
 			</basic>
 			<basic name="receiverUserId" />
-			<basic name="receiverEntryId" />
+			<basic name="receiverMicroblogsEntryId" />
 			<basic name="socialRelationType" />
 			<transient name="primaryKey" />
 			<transient name="receiverUserUuid" />
@@ -32,7 +32,7 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.microblogs.model.impl.MicroblogsEntryImpl" name="MicroblogsEntry">
-		<table name="Microblogs_MicroblogsEntry" />
+		<table name="MicroblogsEntry" />
 		<attributes />
 	</entity>
 </entity-mappings>

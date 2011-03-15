@@ -62,7 +62,7 @@ public class MicroblogsEntryPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker,
 			MicroblogsEntry microblogsEntry, String actionId)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		if (permissionChecker.getUserId() == microblogsEntry.getUserId()) {
 			return true;

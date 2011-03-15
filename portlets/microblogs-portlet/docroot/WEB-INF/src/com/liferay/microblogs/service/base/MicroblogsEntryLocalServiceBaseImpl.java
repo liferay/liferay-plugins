@@ -23,6 +23,7 @@ import com.liferay.microblogs.service.persistence.MicroblogsEntryFinder;
 import com.liferay.microblogs.service.persistence.MicroblogsEntryPersistence;
 
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.bean.IdentifiableBean;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -53,7 +54,7 @@ import javax.sql.DataSource;
  * @generated
  */
 public abstract class MicroblogsEntryLocalServiceBaseImpl
-	implements MicroblogsEntryLocalService {
+	implements MicroblogsEntryLocalService, IdentifiableBean {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -151,7 +152,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query to search with
 	 * @param start the lower bound of the range of model instances to return
 	 * @param end the upper bound of the range of model instances to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -448,6 +449,24 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the Spring bean ID for this bean.
+	 *
+	 * @return the Spring bean ID for this bean
+	 */
+	public String getBeanIdentifier() {
+		return _beanIdentifier;
+	}
+
+	/**
+	 * Sets the Spring bean ID for this bean.
+	 *
+	 * @param beanIdentifier the Spring bean ID for this bean
+	 */
+	public void setBeanIdentifier(String beanIdentifier) {
+		_beanIdentifier = beanIdentifier;
+	}
+
+	/**
 	 * Performs an SQL query.
 	 *
 	 * @param sql the sql query to perform
@@ -488,4 +507,5 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	protected UserService userService;
 	@BeanReference(type = UserPersistence.class)
 	protected UserPersistence userPersistence;
+	private String _beanIdentifier;
 }

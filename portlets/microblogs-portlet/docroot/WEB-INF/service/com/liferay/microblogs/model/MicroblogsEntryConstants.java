@@ -12,17 +12,17 @@
  * details.
  */
 
-package com.liferay.microblogs.util;
+package com.liferay.microblogs.model;
 
 /**
  * @author Jonathan Lee
  */
 public class MicroblogsEntryConstants {
 
-	public static final int EVERYONE = 0;
+	public static final int TYPE_EVERYONE = 0;
 
-	public static final int REPLY = 1;
+	public static final int TYPE_REPLY = 1;
 
-	public static final int REPOST = 2;
+	public static final int TYPE_REPOST = 2;
 
 }

@@ -15,9 +15,9 @@
 package com.liferay.microblogs.social;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
-import com.liferay.microblogs.util.MicroblogsEntryConstants;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -54,10 +54,10 @@ public class MicroblogsActivityInterpreter
 			return null;
 		}
 
-		int activityType = activity.getType();
-
-		long userId = activity.getUserId();
-		long receiverUserId = activity.getReceiverUserId();
+		String creatorUserName = getUserName(
+			activity.getUserId(), themeDisplay);
+		String receiverUserName = getUserName(
+			activity.getReceiverUserId(), themeDisplay);
 
 		// Link
 
@@ -65,20 +65,18 @@ public class MicroblogsActivityInterpreter
 
 		// Title
 
-		String receiverUserName = getUserName(receiverUserId, themeDisplay);
-
 		StringBundler sb = new StringBundler(4);
 
-		if (receiverUserId > 0) {
+		if (activity.getReceiverUserId() > 0) {
 			if (microblogsEntry.getType() ==
-					MicroblogsEntryConstants.REPLY) {
+					MicroblogsEntryConstants.TYPE_REPLY) {
 
 				sb.append("@");
 				sb.append(receiverUserName);
 				sb.append(": ");
 			}
 			else if (microblogsEntry.getType() ==
-						MicroblogsEntryConstants.REPOST) {
+						MicroblogsEntryConstants.TYPE_REPOST) {
 
 				sb.append(themeDisplay.translate("repost-from"));
 				sb.append(receiverUserName);
@@ -92,7 +90,7 @@ public class MicroblogsActivityInterpreter
 
 		// Body
 
-		String body = getUserName(userId, themeDisplay);
+		String body = creatorUserName;
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}

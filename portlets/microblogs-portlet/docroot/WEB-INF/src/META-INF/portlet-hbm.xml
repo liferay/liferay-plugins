@@ -3,7 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.microblogs.model.MicroblogsEntry" />
-	<class name="com.liferay.microblogs.model.impl.MicroblogsEntryImpl" table="Microblogs_MicroblogsEntry">
+	<class name="com.liferay.microblogs.model.impl.MicroblogsEntryImpl" table="MicroblogsEntry">
 		<cache usage="read-write" />
 		<id name="microblogsEntryId" type="long">
 			<generator class="assigned" />
@@ -16,7 +16,7 @@
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="type" column="type_" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="receiverUserId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="receiverEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="receiverMicroblogsEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="socialRelationType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 </hibernate-mapping>

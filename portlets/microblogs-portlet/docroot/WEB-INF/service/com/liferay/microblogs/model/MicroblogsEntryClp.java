@@ -136,12 +136,12 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		_receiverUserUuid = receiverUserUuid;
 	}
 
-	public long getReceiverEntryId() {
-		return _receiverEntryId;
+	public long getReceiverMicroblogsEntryId() {
+		return _receiverMicroblogsEntryId;
 	}
 
-	public void setReceiverEntryId(long receiverEntryId) {
-		_receiverEntryId = receiverEntryId;
+	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
+		_receiverMicroblogsEntryId = receiverMicroblogsEntryId;
 	}
 
 	public int getSocialRelationType() {
@@ -175,7 +175,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		clone.setContent(getContent());
 		clone.setType(getType());
 		clone.setReceiverUserId(getReceiverUserId());
-		clone.setReceiverEntryId(getReceiverEntryId());
+		clone.setReceiverMicroblogsEntryId(getReceiverMicroblogsEntryId());
 		clone.setSocialRelationType(getSocialRelationType());
 
 		return clone;
@@ -245,8 +245,8 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		sb.append(getType());
 		sb.append(", receiverUserId=");
 		sb.append(getReceiverUserId());
-		sb.append(", receiverEntryId=");
-		sb.append(getReceiverEntryId());
+		sb.append(", receiverMicroblogsEntryId=");
+		sb.append(getReceiverMicroblogsEntryId());
 		sb.append(", socialRelationType=");
 		sb.append(getSocialRelationType());
 		sb.append("}");
@@ -298,8 +298,8 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		sb.append(getReceiverUserId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>receiverEntryId</column-name><column-value><![CDATA[");
-		sb.append(getReceiverEntryId());
+			"<column><column-name>receiverMicroblogsEntryId</column-name><column-value><![CDATA[");
+		sb.append(getReceiverMicroblogsEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>socialRelationType</column-name><column-value><![CDATA[");
@@ -322,6 +322,6 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	private int _type;
 	private long _receiverUserId;
 	private String _receiverUserUuid;
-	private long _receiverEntryId;
+	private long _receiverMicroblogsEntryId;
 	private int _socialRelationType;
 }

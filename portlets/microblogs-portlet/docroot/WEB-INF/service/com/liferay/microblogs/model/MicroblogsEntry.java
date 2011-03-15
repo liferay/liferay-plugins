@@ -15,7 +15,7 @@
 package com.liferay.microblogs.model;
 
 /**
- * The model interface for the MicroblogsEntry service. Represents a row in the &quot;Microblogs_MicroblogsEntry&quot; database table, with each column mapped to a property of this class.
+ * The model interface for the MicroblogsEntry service. Represents a row in the &quot;MicroblogsEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see MicroblogsEntryModel

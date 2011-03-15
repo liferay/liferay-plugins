@@ -126,7 +126,7 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param dynamicQuery the dynamic query to search with
 	* @param start the lower bound of the range of model instances to return
 	* @param end the upper bound of the range of model instances to return (not inclusive)
-	* @param orderByComparator the comparator to order the results by
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
 	* @throws SystemException if a system exception occurred
 	*/
@@ -226,15 +226,33 @@ public class MicroblogsEntryLocalServiceWrapper
 			merge);
 	}
 
+	/**
+	* Gets the Spring bean ID for this bean.
+	*
+	* @return the Spring bean ID for this bean
+	*/
+	public java.lang.String getBeanIdentifier() {
+		return _microblogsEntryLocalService.getBeanIdentifier();
+	}
+
+	/**
+	* Sets the Spring bean ID for this bean.
+	*
+	* @param beanIdentifier the Spring bean ID for this bean
+	*/
+	public void setBeanIdentifier(java.lang.String beanIdentifier) {
+		_microblogsEntryLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
 		long userId, java.lang.String content, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType,
+		long receiverMicroblogsEntryId, int socialRelationType,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryLocalService.addMicroblogsEntry(userId, content,
-			type, receiverUserId, receiverEntryId, socialRelationType,
-			serviceContext);
+			type, receiverUserId, receiverMicroblogsEntryId,
+			socialRelationType, serviceContext);
 	}
 
 	public void addMicroblogsEntryResources(
@@ -252,92 +270,67 @@ public class MicroblogsEntryLocalServiceWrapper
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getCompanyMicroblogsEntries(
 		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryLocalService.getCompanyMicroblogsEntries(companyId,
 			start, end);
 	}
 
 	public int getCompanyMicroblogsEntriesCount(long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryLocalService.getCompanyMicroblogsEntriesCount(companyId);
 	}
 
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getEntryMicroblogsEntriesByType(
-		int type, long receiverEntryId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getEntryMicroblogsEntriesByType(type,
-			receiverEntryId, start, end);
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
+		int type, long receiverMicroblogsEntryId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getReceiverMicroblogsEntryMicroblogsEntries(type,
+			receiverMicroblogsEntryId, start, end);
 	}
 
-	public int getEntryMicroblogsEntriesCountByType(int type,
-		long receiverEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getEntryMicroblogsEntriesCountByType(type,
-			receiverEntryId);
+	public int getReceiverMicroblogsEntryMicroblogsEntriesCount(int type,
+		long receiverMicroblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getReceiverMicroblogsEntryMicroblogsEntriesCount(type,
+			receiverMicroblogsEntryId);
 	}
 
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntriesByType(
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverUserMicroblogsEntries(
 		int type, long receiverUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getReceiverMicroblogsEntriesByType(type,
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getReceiverUserMicroblogsEntries(type,
 			receiverUserId, start, end);
 	}
 
-	public int getRecieverMicroblogsEntriesCountByType(int type,
+	public int getReceiverUserMicroblogsEntriesCount(int type,
 		long receiverUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getRecieverMicroblogsEntriesCountByType(type,
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getReceiverUserMicroblogsEntriesCount(type,
 			receiverUserId);
 	}
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
 		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryLocalService.getUserMicroblogsEntries(userId,
 			start, end);
 	}
 
-	public int getUserMicroblogsEntriesCount(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getUserMicroblogsEntriesCount(userId);
-	}
-
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntriesByType(
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUserMicroblogsEntries(
 		long userId, int type, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getUserMicroblogsEntriesByType(userId,
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getUserMicroblogsEntries(userId,
 			type, start, end);
 	}
 
-	public int getUserMicroblogsEntriesCountByType(long userId, int type)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getUserMicroblogsEntriesCountByType(userId,
+	public int getUserMicroblogsEntriesCount(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getUserMicroblogsEntriesCount(userId);
+	}
+
+	public int getUserMicroblogsEntriesCount(long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getUserMicroblogsEntriesCount(userId,
 			type);
-	}
-
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getUsersMicroblogsEntries(
-		long[] userIds, long viewerUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getUsersMicroblogsEntries(userIds,
-			viewerUserId, start, end);
-	}
-
-	public int getUsersMicroblogsEntriesCount(long[] userIds, long viewerUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryLocalService.getUsersMicroblogsEntriesCount(userIds,
-			viewerUserId);
 	}
 
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(

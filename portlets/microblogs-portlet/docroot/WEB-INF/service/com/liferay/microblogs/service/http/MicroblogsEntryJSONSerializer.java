@@ -59,7 +59,8 @@ public class MicroblogsEntryJSONSerializer {
 		jsonObject.put("content", model.getContent());
 		jsonObject.put("type", model.getType());
 		jsonObject.put("receiverUserId", model.getReceiverUserId());
-		jsonObject.put("receiverEntryId", model.getReceiverEntryId());
+		jsonObject.put("receiverMicroblogsEntryId",
+			model.getReceiverMicroblogsEntryId());
 		jsonObject.put("socialRelationType", model.getSocialRelationType());
 
 		return jsonObject;

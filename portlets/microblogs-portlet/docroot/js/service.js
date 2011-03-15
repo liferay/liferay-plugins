@@ -6,12 +6,6 @@ Liferay.Service.registerClass(
 		addMicroblogsEntry: true,
 		deleteMicroblogsEntry: true,
 		getMicroblogsEntry: true,
-		getMicroblogsEntries: true,
-		getMicroblogsEntriesCount: true,
-		getMicroblogsEntriesByTag: true,
-		getMicroblogsEntriesCountByTag: true,
-		getMicroblogsEntriesByTags: true,
-		getMicroblogsEntriesCountByTags: true,
 		updateMicroblogsEntry: true
 	}
 );

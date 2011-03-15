@@ -18,21 +18,4 @@ package com.liferay.microblogs.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface MicroblogsEntryFinder {
-	public int countByC_U_T_RU_RE_S_V(long companyId, long[] userIds, int type,
-		long receiverUserId, long receiverEntryId, int socialRelationType,
-		long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public int countByT_V(java.lang.String[] tagNames, long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByC_U_T_RU_RE_S_V(
-		long companyId, long[] userIds, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType, long viewerUserId,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByT_V(
-		java.lang.String[] tagNames, long viewerUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
 }

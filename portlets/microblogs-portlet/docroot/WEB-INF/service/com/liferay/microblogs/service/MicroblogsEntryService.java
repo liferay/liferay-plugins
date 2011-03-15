@@ -54,57 +54,9 @@ public interface MicroblogsEntryService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.microblogs.model.MicroblogsEntry getMicroblogsEntry(
-		long microblogsEntryId, long viewerUserId)
+		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long companyId, long[] userIds, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType, long viewerUserId,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getMicroblogsEntriesCount(long companyId, long userId, int type,
-		long receiverUserId, long receiverEntryId, int socialRelationType,
-		long viewerUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getMicroblogsEntriesCount(long companyId, long[] userIds,
-		int type, long receiverUserId, long receiverEntryId,
-		int socialRelationType, long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long companyId, long userId, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType, long viewerUserId,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntriesByTag(
-		java.lang.String tagName, long viewerUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getMicroblogsEntriesCountByTag(java.lang.String tagName,
-		long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntriesByTags(
-		java.lang.String[] tagNames, long viewerUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getMicroblogsEntriesCountByTags(java.lang.String[] tagNames,
-		long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
 		long microblogsEntryId, java.lang.String content,

@@ -197,10 +197,10 @@ public class ClpSerializer {
 
 				method8.invoke(newModel, value8);
 
-				Method method9 = newModelClass.getMethod("setReceiverEntryId",
+				Method method9 = newModelClass.getMethod("setReceiverMicroblogsEntryId",
 						new Class[] { Long.TYPE });
 
-				Long value9 = new Long(oldCplModel.getReceiverEntryId());
+				Long value9 = new Long(oldCplModel.getReceiverMicroblogsEntryId());
 
 				method9.invoke(newModel, value9);
 
@@ -341,11 +341,12 @@ public class ClpSerializer {
 
 				newModel.setReceiverUserId(value8);
 
-				Method method9 = oldModelClass.getMethod("getReceiverEntryId");
+				Method method9 = oldModelClass.getMethod(
+						"getReceiverMicroblogsEntryId");
 
 				Long value9 = (Long)method9.invoke(oldModel, (Object[])null);
 
-				newModel.setReceiverEntryId(value9);
+				newModel.setReceiverMicroblogsEntryId(value9);
 
 				Method method10 = oldModelClass.getMethod(
 						"getSocialRelationType");

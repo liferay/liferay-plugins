@@ -1,4 +1,4 @@
-create table Microblogs_MicroblogsEntry (
+create table MicroblogsEntry (
 	microblogsEntryId LONG not null primary key,
 	companyId LONG,
 	userId LONG,
@@ -8,6 +8,6 @@ create table Microblogs_MicroblogsEntry (
 	content STRING null,
 	type_ INTEGER,
 	receiverUserId LONG,
-	receiverEntryId LONG,
+	receiverMicroblogsEntryId LONG,
 	socialRelationType INTEGER
 );

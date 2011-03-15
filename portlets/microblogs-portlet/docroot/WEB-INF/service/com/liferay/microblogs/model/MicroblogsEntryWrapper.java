@@ -249,21 +249,21 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 	}
 
 	/**
-	* Gets the receiver entry ID of this microblogs entry.
+	* Gets the receiver microblogs entry ID of this microblogs entry.
 	*
-	* @return the receiver entry ID of this microblogs entry
+	* @return the receiver microblogs entry ID of this microblogs entry
 	*/
-	public long getReceiverEntryId() {
-		return _microblogsEntry.getReceiverEntryId();
+	public long getReceiverMicroblogsEntryId() {
+		return _microblogsEntry.getReceiverMicroblogsEntryId();
 	}
 
 	/**
-	* Sets the receiver entry ID of this microblogs entry.
+	* Sets the receiver microblogs entry ID of this microblogs entry.
 	*
-	* @param receiverEntryId the receiver entry ID of this microblogs entry
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID of this microblogs entry
 	*/
-	public void setReceiverEntryId(long receiverEntryId) {
-		_microblogsEntry.setReceiverEntryId(receiverEntryId);
+	public void setReceiverMicroblogsEntryId(long receiverMicroblogsEntryId) {
+		_microblogsEntry.setReceiverMicroblogsEntryId(receiverMicroblogsEntryId);
 	}
 
 	/**

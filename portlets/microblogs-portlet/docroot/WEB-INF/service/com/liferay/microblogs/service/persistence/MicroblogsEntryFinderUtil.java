@@ -21,37 +21,6 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class MicroblogsEntryFinderUtil {
-	public static int countByC_U_T_RU_RE_S_V(long companyId, long[] userIds,
-		int type, long receiverUserId, long receiverEntryId,
-		int socialRelationType, long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .countByC_U_T_RU_RE_S_V(companyId, userIds, type,
-			receiverUserId, receiverEntryId, socialRelationType, viewerUserId);
-	}
-
-	public static int countByT_V(java.lang.String[] tagNames, long viewerUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().countByT_V(tagNames, viewerUserId);
-	}
-
-	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByC_U_T_RU_RE_S_V(
-		long companyId, long[] userIds, int type, long receiverUserId,
-		long receiverEntryId, int socialRelationType, long viewerUserId,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .findByC_U_T_RU_RE_S_V(companyId, userIds, type,
-			receiverUserId, receiverEntryId, socialRelationType, viewerUserId,
-			start, end);
-	}
-
-	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByT_V(
-		java.lang.String[] tagNames, long viewerUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().findByT_V(tagNames, viewerUserId, start, end);
-	}
-
 	public static MicroblogsEntryFinder getFinder() {
 		if (_finder == null) {
 			_finder = (MicroblogsEntryFinder)PortletBeanLocatorUtil.locate(com.liferay.microblogs.service.ClpSerializer.getServletContextName(),
