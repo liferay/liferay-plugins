@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.microblogs.model.MicroblogsEntry">
+		<field name="microblogsEntryId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="content" type="String">
+			<hint-collection name="TEXTAREA" />
+			<validator name="required" />
+		</field>
+		<field name="type" type="int" />
+		<field name="receiverUserId" type="long" />
+		<field name="receiverEntryId" type="long" />
+		<field name="socialRelationType" type="int" />
+	</model>
+</model-hints>

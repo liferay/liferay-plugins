@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.1.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_1_0.dtd">
+
+<service-builder package-path="com.liferay.microblogs">
+	<namespace>Microblogs</namespace>
+	<entity name="MicroblogsEntry" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="microblogsEntryId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="content" type="String" />
+		<column name="type" type="int" />
+		<column name="receiverUserId" type="long" />
+		<column name="receiverEntryId" type="long" />
+		<column name="socialRelationType" type="int" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+		
+		<!-- Finder methods -->
+
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="T_RU" return-type="Collection">
+			<finder-column name="type"/>
+			<finder-column name="receiverUserId"/>
+		</finder>
+		<finder name="T_RE" return-type="Collection">
+			<finder-column name="type"/>
+			<finder-column name="receiverEntryId"/>
+		</finder>
+		<finder name="U_T" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="type" />
+		</finder>
+	</entity>
+</service-builder>
