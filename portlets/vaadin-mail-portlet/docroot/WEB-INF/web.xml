@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+	<context-param>
+		<param-name>portalContextConfigLocation</param-name>
+		<param-value>/WEB-INF/classes/META-INF/messaging-spring.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>productionMode</param-name>
+		<param-value>true</param-value>
+	</context-param>
+</web-app>

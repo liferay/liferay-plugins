@@ -1,0 +1,144 @@
+/**
+ * Copyright (c) 2000-2010 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+.mail-portlet #controlContainer {
+	background-color: #D7F1FF;
+	border: 1px solid #88C5D9;
+	padding: 0.7em;
+}
+
+.mail-portlet #messageContentContainer {
+	background-color: #FFF;
+	border: 1px solid #C8C9CA;
+	margin: 1em 0;
+	min-height: 2em;
+	overflow: auto;
+	padding: 1em;
+}
+
+.ie6 .mail-portlet #messageContentContainer {
+	height: 2em;
+}
+
+.mail-portlet #messagesContainer .pagination,
+.mail-portlet #messagesContainer .search {
+	float: right;
+}
+
+.mail-portlet .folder-list {
+	min-width: 40%
+}
+
+.mail-portlet .folder-list .action {
+	text-align: right;
+}
+
+.mail-portlet .message-list {
+	width: 100%;
+}
+
+.mail-portlet .message-list thead tr {
+	background-color: #D1D6DC;
+}
+
+.mail-portlet .message-list th {
+	padding: 5px 0;
+}
+
+.mail-portlet .message-list .check {
+	width: 5%;
+}
+
+.mail-portlet .message-list .address {
+	width: 20%;
+}
+
+.mail-portlet .message-list .subject {
+	width: 55%;
+}
+
+.mail-portlet .message-list .date {
+	width: 15%;
+}
+
+.mail-portlet .message-list .attachments {
+	width: 5%;
+}
+
+.mail-portlet .message-list tr.results-row.no-hover td {
+	padding: 1px 0;
+}
+
+.mail-portlet .message-list tr.unread {
+	font-weight: bold;
+}
+
+.mail-portlet .message-list tr.important {
+	color: #A00;
+	font-weight: normal;
+}
+
+.mail-portlet .message-list td div {
+	height: 18px;
+	overflow: hidden;
+}
+
+.mail-portlet .draft-link,
+.mail-portlet .message-link {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.mail-portlet .compose-message-container {
+	margin-right: 1em;
+}
+
+.mail-portlet .no-subject {
+	color: #777;
+	font-style: italic;
+}
+
+.mail-portlet .message-count {
+	float: right;
+}
+
+.mail-portlet .message-header {
+	margin: 1em 0;
+	border: 1px solid #C8C9CA;
+}
+
+.mail-portlet .message-header td {
+	padding: 2px 1em;
+}
+
+.mail-portlet .message-header .message-hearder-label {
+	background-color: #D1D6DC;
+	padding-left: 3em;
+	text-align: right;
+}
+
+.mail-portlet .recipient-fields .aui-field-input {
+	width: 95%;
+}
+
+.mail-portlet .email-container .folder-container .column-sorter:hover {
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.mail-portlet .add-folder-container .aui-field-content,
+.mail-portlet .search .aui-field-content {
+	display: inline-block;
+}

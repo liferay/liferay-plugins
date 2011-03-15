@@ -1,0 +1,297 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.mail.model;
+
+/**
+ * <p>
+ * This class is a wrapper for {@link Attachment}.
+ * </p>
+ *
+ * @author    Brian Wing Shun Chan
+ * @see       Attachment
+ * @generated
+ */
+public class AttachmentWrapper implements Attachment {
+	public AttachmentWrapper(Attachment attachment) {
+		_attachment = attachment;
+	}
+
+	/**
+	* Gets the primary key of this attachment.
+	*
+	* @return the primary key of this attachment
+	*/
+	public long getPrimaryKey() {
+		return _attachment.getPrimaryKey();
+	}
+
+	/**
+	* Sets the primary key of this attachment
+	*
+	* @param pk the primary key of this attachment
+	*/
+	public void setPrimaryKey(long pk) {
+		_attachment.setPrimaryKey(pk);
+	}
+
+	/**
+	* Gets the attachment ID of this attachment.
+	*
+	* @return the attachment ID of this attachment
+	*/
+	public long getAttachmentId() {
+		return _attachment.getAttachmentId();
+	}
+
+	/**
+	* Sets the attachment ID of this attachment.
+	*
+	* @param attachmentId the attachment ID of this attachment
+	*/
+	public void setAttachmentId(long attachmentId) {
+		_attachment.setAttachmentId(attachmentId);
+	}
+
+	/**
+	* Gets the company ID of this attachment.
+	*
+	* @return the company ID of this attachment
+	*/
+	public long getCompanyId() {
+		return _attachment.getCompanyId();
+	}
+
+	/**
+	* Sets the company ID of this attachment.
+	*
+	* @param companyId the company ID of this attachment
+	*/
+	public void setCompanyId(long companyId) {
+		_attachment.setCompanyId(companyId);
+	}
+
+	/**
+	* Gets the user ID of this attachment.
+	*
+	* @return the user ID of this attachment
+	*/
+	public long getUserId() {
+		return _attachment.getUserId();
+	}
+
+	/**
+	* Sets the user ID of this attachment.
+	*
+	* @param userId the user ID of this attachment
+	*/
+	public void setUserId(long userId) {
+		_attachment.setUserId(userId);
+	}
+
+	/**
+	* Gets the user uuid of this attachment.
+	*
+	* @return the user uuid of this attachment
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.lang.String getUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _attachment.getUserUuid();
+	}
+
+	/**
+	* Sets the user uuid of this attachment.
+	*
+	* @param userUuid the user uuid of this attachment
+	*/
+	public void setUserUuid(java.lang.String userUuid) {
+		_attachment.setUserUuid(userUuid);
+	}
+
+	/**
+	* Gets the account ID of this attachment.
+	*
+	* @return the account ID of this attachment
+	*/
+	public long getAccountId() {
+		return _attachment.getAccountId();
+	}
+
+	/**
+	* Sets the account ID of this attachment.
+	*
+	* @param accountId the account ID of this attachment
+	*/
+	public void setAccountId(long accountId) {
+		_attachment.setAccountId(accountId);
+	}
+
+	/**
+	* Gets the folder ID of this attachment.
+	*
+	* @return the folder ID of this attachment
+	*/
+	public long getFolderId() {
+		return _attachment.getFolderId();
+	}
+
+	/**
+	* Sets the folder ID of this attachment.
+	*
+	* @param folderId the folder ID of this attachment
+	*/
+	public void setFolderId(long folderId) {
+		_attachment.setFolderId(folderId);
+	}
+
+	/**
+	* Gets the message ID of this attachment.
+	*
+	* @return the message ID of this attachment
+	*/
+	public long getMessageId() {
+		return _attachment.getMessageId();
+	}
+
+	/**
+	* Sets the message ID of this attachment.
+	*
+	* @param messageId the message ID of this attachment
+	*/
+	public void setMessageId(long messageId) {
+		_attachment.setMessageId(messageId);
+	}
+
+	/**
+	* Gets the content path of this attachment.
+	*
+	* @return the content path of this attachment
+	*/
+	public java.lang.String getContentPath() {
+		return _attachment.getContentPath();
+	}
+
+	/**
+	* Sets the content path of this attachment.
+	*
+	* @param contentPath the content path of this attachment
+	*/
+	public void setContentPath(java.lang.String contentPath) {
+		_attachment.setContentPath(contentPath);
+	}
+
+	/**
+	* Gets the file name of this attachment.
+	*
+	* @return the file name of this attachment
+	*/
+	public java.lang.String getFileName() {
+		return _attachment.getFileName();
+	}
+
+	/**
+	* Sets the file name of this attachment.
+	*
+	* @param fileName the file name of this attachment
+	*/
+	public void setFileName(java.lang.String fileName) {
+		_attachment.setFileName(fileName);
+	}
+
+	/**
+	* Gets the size of this attachment.
+	*
+	* @return the size of this attachment
+	*/
+	public long getSize() {
+		return _attachment.getSize();
+	}
+
+	/**
+	* Sets the size of this attachment.
+	*
+	* @param size the size of this attachment
+	*/
+	public void setSize(long size) {
+		_attachment.setSize(size);
+	}
+
+	public boolean isNew() {
+		return _attachment.isNew();
+	}
+
+	public void setNew(boolean n) {
+		_attachment.setNew(n);
+	}
+
+	public boolean isCachedModel() {
+		return _attachment.isCachedModel();
+	}
+
+	public void setCachedModel(boolean cachedModel) {
+		_attachment.setCachedModel(cachedModel);
+	}
+
+	public boolean isEscapedModel() {
+		return _attachment.isEscapedModel();
+	}
+
+	public void setEscapedModel(boolean escapedModel) {
+		_attachment.setEscapedModel(escapedModel);
+	}
+
+	public java.io.Serializable getPrimaryKeyObj() {
+		return _attachment.getPrimaryKeyObj();
+	}
+
+	public com.liferay.portlet.expando.model.ExpandoBridge getExpandoBridge() {
+		return _attachment.getExpandoBridge();
+	}
+
+	public void setExpandoBridgeAttributes(
+		com.liferay.portal.service.ServiceContext serviceContext) {
+		_attachment.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	public java.lang.Object clone() {
+		return new AttachmentWrapper((Attachment)_attachment.clone());
+	}
+
+	public int compareTo(com.liferay.mail.model.Attachment attachment) {
+		return _attachment.compareTo(attachment);
+	}
+
+	public int hashCode() {
+		return _attachment.hashCode();
+	}
+
+	public com.liferay.mail.model.Attachment toEscapedModel() {
+		return new AttachmentWrapper(_attachment.toEscapedModel());
+	}
+
+	public java.lang.String toString() {
+		return _attachment.toString();
+	}
+
+	public java.lang.String toXmlString() {
+		return _attachment.toXmlString();
+	}
+
+	public Attachment getWrappedAttachment() {
+		return _attachment;
+	}
+
+	private Attachment _attachment;
+}
