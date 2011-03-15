@@ -54,7 +54,7 @@ public class TasksEntryFinderImpl
 
 			StringBuilder sb = new StringBuilder();
 
-			sb.append("SELECT COUNT(DISTINCT TasksEntryId) AS COUNT_VALUE ");
+			sb.append("SELECT COUNT(DISTINCT tasksEntryId) AS COUNT_VALUE ");
 			sb.append("FROM TMS_TasksEntry WHERE");
 
 			if (groupId > 0) {
