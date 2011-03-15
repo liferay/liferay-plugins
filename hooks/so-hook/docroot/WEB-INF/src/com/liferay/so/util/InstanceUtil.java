@@ -177,9 +177,12 @@ public class InstanceUtil {
 		boolean active = true;
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
+		ServiceContext serviceContext = new ServiceContext();
+
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-			defaultUserId, companyId, localeNamesMap, description, active);
+			defaultUserId, companyId, localeNamesMap, description, active,
+			serviceContext);
 
 		return layoutSetPrototype;
 	}
