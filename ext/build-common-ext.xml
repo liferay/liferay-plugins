@@ -122,11 +122,11 @@ then "app.server.dir" should point to
 			<param name="module.name" value="service" />
 		</antcall>
 
-		<antcall target="compile-with-global-class-loader">
+		<antcall target="compile-with-portal-class-loader">
 			<param name="module.name" value="util-bridges" />
 		</antcall>
 
-		<antcall target="compile-with-global-class-loader">
+		<antcall target="compile-with-portal-class-loader">
 			<param name="module.name" value="util-java" />
 		</antcall>
 
@@ -179,7 +179,10 @@ loader.
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
 			<pathelement location="docroot/WEB-INF/ext-service/classes" />
-			<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
+			<pathelement location="docroot/WEB-INF/ext-util-bridges/classes" />
+			<pathelement location="docroot/WEB-INF/ext-util-java/classes" />
+			<pathelement location="docroot/WEB-INF/ext-util-taglib/classes" />
+			<pathelement location="docroot/WEB-INF/ext-impl/classes" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 		</path>
 
