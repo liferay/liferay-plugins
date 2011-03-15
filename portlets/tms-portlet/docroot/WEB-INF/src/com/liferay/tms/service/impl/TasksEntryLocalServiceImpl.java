@@ -88,7 +88,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, groupId, TasksEntry.class.getName(), tasksEntryId,
-			TasksActivityKeys.ADD_TASK, StringPool.BLANK, assigneeUserId);
+			TasksActivityKeys.ADD_ENTRY, StringPool.BLANK, assigneeUserId);
 
 		return tasksEntry;
 	}
@@ -301,13 +301,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		// Social
 
-		int activity = TasksActivityKeys.UPDATE_TASK;
+		int activity = TasksActivityKeys.UPDATE_ENTRY;
 
 		if (status == TasksEntryConstants.STATUS_RESOLVED) {
-			activity = TasksActivityKeys.RESOLVE_TASK;
+			activity = TasksActivityKeys.RESOLVE_ENTRY;
 		}
 		else if (status == TasksEntryConstants.STATUS_REOPENED) {
-			activity = TasksActivityKeys.REOPEN_TASK;
+			activity = TasksActivityKeys.REOPEN_ENTRY;
 		}
 
 		SocialActivityLocalServiceUtil.addActivity(

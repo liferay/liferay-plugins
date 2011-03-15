@@ -19,12 +19,12 @@ package com.liferay.tms.tasks.social;
  */
 public class TasksActivityKeys {
 
-	public static final int ADD_TASK = 1;
+	public static final int ADD_ENTRY = 1;
 
-	public static final int REOPEN_TASK = 4;
+	public static final int REOPEN_ENTRY = 4;
 
-	public static final int RESOLVE_TASK = 3;
+	public static final int RESOLVE_ENTRY = 3;
 
-	public static final int UPDATE_TASK = 2;
+	public static final int UPDATE_ENTRY = 2;
 
 }

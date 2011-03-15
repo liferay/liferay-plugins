@@ -51,19 +51,19 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		String titlePattern = null;
 
-		if (activityType == TasksActivityKeys.ADD_TASK) {
+		if (activityType == TasksActivityKeys.ADD_ENTRY) {
 			titlePattern = "activity-tasks-add-entry";
 		}
-		else if (activityType == TasksActivityKeys.REOPEN_TASK) {
+		else if (activityType == TasksActivityKeys.REOPEN_ENTRY) {
 			titlePattern = "activity-tasks-reopened-entry";
 		}
-		else if (activityType == TasksActivityKeys.RESOLVE_TASK) {
+		else if (activityType == TasksActivityKeys.RESOLVE_ENTRY) {
 			titlePattern = "activity-tasks-resolved-entry";
 
 			userId = tasksEntry.getResolverUserId();
 			receiverUserId = tasksEntry.getUserId();
 		}
-		else if (activityType == TasksActivityKeys.UPDATE_TASK) {
+		else if (activityType == TasksActivityKeys.UPDATE_ENTRY) {
 			titlePattern = "activity-tasks-update-entry";
 		}
 
