@@ -143,7 +143,7 @@
 				<isset property="service.input.file" />
 			</not>
 		    	<then>
-		    		<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml"/>
+		    		<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml" />
 			</then>
 		</if>
 
