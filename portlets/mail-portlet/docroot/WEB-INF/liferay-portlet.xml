@@ -13,13 +13,6 @@
 		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>mail-portlet</css-class-wrapper>
 	</portlet>
-	<portlet>
-		<portlet-name>2</portlet-name>
-		<icon>/icon.png</icon>
-		<ajaxable>false</ajaxable>
-		<header-portlet-css>/css/vaadin.css</header-portlet-css>
-		<css-class-wrapper>mail-portlet-vaadin</css-class-wrapper>
-	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

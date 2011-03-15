@@ -37,33 +37,4 @@
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
-	<portlet>
-		<portlet-name>2</portlet-name>
-		<display-name>Mail - Vaadin</display-name>
-		<portlet-class>com.liferay.mail.vaadin.MailPortlet</portlet-class>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>edit</portlet-mode>
-		</supports>
-		<supported-locale>en_US</supported-locale>
-		<resource-bundle>content.Language</resource-bundle>
-		<portlet-info>
-			<title>Mail - Vaadin</title>
-			<short-title>Mail - Vaadin</short-title>
-			<keywords>Mail - Vaadin</keywords>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>administrator</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>guest</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>power-user</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
 </portlet-app>
