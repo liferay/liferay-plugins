@@ -31,7 +31,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.NORMAL);
 
-portletURL.setParameter("jspPage", "/status-update/view.jsp");
+portletURL.setParameter("jspPage", "/status_update/view.jsp");
 %>
 
 <c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (userId == themeDisplay.getUserId()) %>">
@@ -56,7 +56,7 @@ portletURL.setParameter("jspPage", "/status-update/view.jsp");
 		function() {
 			Liferay.Microblogs.init(
 				{
-					microblogsEntriesURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/status-update/view.jsp" /></portlet:renderURL>'
+					microblogsEntriesURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/status_update/view.jsp" /></portlet:renderURL>'
 				}
 			);
 		}

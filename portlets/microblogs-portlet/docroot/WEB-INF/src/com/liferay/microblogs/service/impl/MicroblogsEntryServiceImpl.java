@@ -67,7 +67,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 	}
 
 	public List<MicroblogsEntry> getMicroblogsEntries(
-			long companyId, long[]userIds, int type, long receiverUserId,
+			long companyId, long[] userIds, int type, long receiverUserId,
 			long receiverEntryId, int socialRelationType, long viewerUserId,
 			int start, int end)
 		throws SystemException {
@@ -90,7 +90,7 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 	}
 
 	public int getMicroblogsEntriesCount(
-			long companyId, long[]userIds, int type, long receiverUserId,
+			long companyId, long[] userIds, int type, long receiverUserId,
 			long receiverEntryId, int socialRelationType, long viewerUserId)
 		throws SystemException {
 
