@@ -283,7 +283,7 @@ public interface TasksEntryLocalService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tms.model.TasksEntry> getTasksEntries(
 		long groupId, int priority, long assigneeUserId, long reporterUserId,
-		int status, long[] tagsEntryIds, long[] notTagsEntryIds, int start,
+		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

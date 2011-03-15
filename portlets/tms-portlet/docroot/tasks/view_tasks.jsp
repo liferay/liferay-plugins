@@ -46,7 +46,7 @@ taskListURL.setParameter("tabs2", tabs2);
 >
 
 	<%
-	if (isCommunity) {
+	if (group.isCommunity()) {
 		groupId = group.getGroupId();
 	}
 
@@ -56,14 +56,14 @@ taskListURL.setParameter("tabs2", tabs2);
 	if (tabs1.equals("assigned-to-me")) {
 		assigneeUserId = user.getUserId();
 	}
-	else if (tabs1.equals("ive-created")) {
+	else if (tabs1.equals("i-have-created")) {
 		reporterUserId = user.getUserId();
 	}
 
-	int status = TasksConstants.STATUS_ALL;
+	int status = TasksEntryConstants.STATUS_ALL;
 
 	if (tabs2.equals("open")) {
-		status = TasksConstants.STATUS_OPEN;
+		status = TasksEntryConstants.STATUS_OPEN;
 	}
 	%>
 
@@ -124,7 +124,7 @@ taskListURL.setParameter("tabs2", tabs2);
 				</c:choose>
 			</div>
 			<div class="result-data">
-				<c:if test="<%= isUser %>">
+				<c:if test="<%= group.isUser() %>">
 
 					<%
 					Group curGroup = null;
@@ -145,7 +145,7 @@ taskListURL.setParameter("tabs2", tabs2);
 					<span><liferay-ui:message key="assignee" />: <%= HtmlUtil.escape(tasksEntry.getAssigneeFullName()) %></span>
 				</c:if>
 
-				<c:if test='<%= !tabs1.equals("ive-created") %>'>
+				<c:if test='<%= !tabs1.equals("i-have-created") %>'>
 					<span><liferay-ui:message key="reporter" />: <%= HtmlUtil.escape(tasksEntry.getReporterFullName()) %></span>
 				</c:if>
 			</div>
@@ -164,19 +164,19 @@ taskListURL.setParameter("tabs2", tabs2);
 
 				int curStatus = tasksEntry.getStatus();
 
-				if (curStatus == TasksConstants.STATUS_PERCENT_TWENTY) {
+				if (curStatus == TasksEntryConstants.STATUS_PERCENT_TWENTY) {
 					buffer.append("20%");
 				}
-				else if (curStatus == TasksConstants.STATUS_PERCENT_FORTY) {
+				else if (curStatus == TasksEntryConstants.STATUS_PERCENT_FORTY) {
 					buffer.append("40%");
 				}
-				else if (curStatus == TasksConstants.STATUS_PERCENT_SIXTY) {
+				else if (curStatus == TasksEntryConstants.STATUS_PERCENT_SIXTY) {
 					buffer.append("60%");
 				}
-				else if (curStatus == TasksConstants.STATUS_PERCENT_EIGHTY) {
+				else if (curStatus == TasksEntryConstants.STATUS_PERCENT_EIGHTY) {
 					buffer.append("80%");
 				}
-				else if (curStatus == TasksConstants.STATUS_RESOLVED) {
+				else if (curStatus == TasksEntryConstants.STATUS_RESOLVED) {
 					buffer.append("100%");
 				}
 				else {
@@ -201,7 +201,7 @@ taskListURL.setParameter("tabs2", tabs2);
 
 				buffer.append("\">");
 
-				for (int i = 2; i <= 6; i++) {
+				for (int i = TasksEntryConstants.STATUS_PERCENT_TWENTY; i <= TasksEntryConstants.STATUS_RESOLVED; i++) {
 			%>
 
 					<portlet:actionURL windowState="<%= WindowState.MAXIMIZED.toString() %>" var="statusURL" name="updateTasksEntryStatus">
@@ -240,19 +240,19 @@ taskListURL.setParameter("tabs2", tabs2);
 		>
 
 			<%
-			List<AssetTag> tags = AssetTagLocalServiceUtil.getTags(TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
+			List<AssetTag> assetTags = AssetTagLocalServiceUtil.getTags(TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
-			if (tags.size() > 0) {
+			if (!assetTags.isEmpty()) {
 				buffer.append("<div class=\"tags-wrapper\"><div class=\"icon\"><!-- --></div><div class=\"tags aui-helper-hidden\">");
 			}
 
-			Iterator itr = tags.iterator();
+			Iterator<AssetTag> itr = assetTags.iterator();
 
 			while (itr.hasNext()) {
-				AssetTag tag = (AssetTag)itr.next();
+				AssetTag assetTag = itr.next();
 
 				buffer.append("<nobr>");
-				buffer.append(tag.getName());
+				buffer.append(assetTag.getName());
 				buffer.append("</nobr>");
 
 				if (itr.hasNext()) {
@@ -260,7 +260,7 @@ taskListURL.setParameter("tabs2", tabs2);
 				}
 			}
 
-			if (tags.size() > 0) {
+			if (!assetTags.isEmpty()) {
 				buffer.append("</div></div>");
 			}
 			%>

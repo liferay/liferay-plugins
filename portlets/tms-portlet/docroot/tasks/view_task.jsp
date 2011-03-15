@@ -24,10 +24,11 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.getTasksEntry(tasksEntryId);
 tasksEntry = tasksEntry.toEscapedModel();
 
 Calendar dueDate = CalendarFactoryUtil.getCalendar(timeZone, locale);
+
 boolean neverDue = true;
 %>
 
-<liferay-ui:header title='<%= HtmlUtil.unescape(tasksEntry.getTitle()) %>' />
+<liferay-ui:header title="<%= HtmlUtil.unescape(tasksEntry.getTitle()) %>" />
 
 <div class="task-data-container">
 	<c:if test="<%= tasksEntry.getAssigneeUserId() > 0 %>">
@@ -39,6 +40,7 @@ boolean neverDue = true;
 	<div class="task-data reporter">
 		<liferay-ui:message arguments="<%= PortalUtil.getUserName(tasksEntry.getUserId(), tasksEntry.getReporterFullName(), request) %>" key="created-by-x" />
 	</div>
+
 	<div class="task-data last modified-date">
 		<liferay-ui:message arguments="<%= dateFormatDateTime.format(tasksEntry.getModifiedDate()) %>" key="modified-on-x" />
 	</div>
@@ -50,37 +52,8 @@ boolean neverDue = true;
 		<liferay-ui:message key="status" />
 	</td>
 	<td>
-
-		<%
-		String status = StringPool.BLANK;
-
-		switch (tasksEntry.getStatus()) {
-			case 1:
-				status = "open";
-				break;
-			case 2:
-				status = "20-percent-complete";
-				break;
-			case 3:
-				status = "40-percent-complete";
-				break;
-			case 4:
-				status = "60-percent-complete";
-				break;
-			case 5:
-				status = "80-percent-complete";
-				break;
-			case 6:
-				status = "resolved";
-				break;
-			case 7:
-				status = "reopened";
-				break;
-		}
-		%>
-
 		<div class="task-data status">
-			<liferay-ui:message key="<%= status %>" />
+			<liferay-ui:message key="<%= tasksEntry.getStatusLabel() %>" />
 		</div>
 	</td>
 </tr>
@@ -89,20 +62,8 @@ boolean neverDue = true;
 		<liferay-ui:message key="priority" />
 	</td>
 	<td>
-
-		<%
-		String priority = "low";
-
-		if (tasksEntry.getPriority() == 1) {
-			priority = "high";
-		}
-		else if (tasksEntry.getPriority() == 2) {
-			priority = "normal";
-		}
-		%>
-
-		<div class="task-data <%= priority %>">
-			<liferay-ui:message key="<%= priority %>" />
+		<div class="task-data <%= tasksEntry.getPriorityLabel() %>">
+			<liferay-ui:message key="<%= tasksEntry.getPriorityLabel() %>" />
 		</div>
 	</td>
 </tr>
@@ -142,10 +103,10 @@ boolean neverDue = true;
 	<c:if test="<%= TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE) %>">
 
 		<%
-		boolean resolved = (tasksEntry.getStatus() == TasksConstants.STATUS_RESOLVED);
+		boolean resolved = (tasksEntry.getStatus() == TasksEntryConstants.STATUS_RESOLVED);
 		%>
 
-		<input type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksConstants.STATUS_REOPENED : TasksConstants.STATUS_RESOLVED %>)" />
+		<input type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED %>)" />
 
 		<input type="button" value="<liferay-ui:message key="edit" />" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/tasks/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
 

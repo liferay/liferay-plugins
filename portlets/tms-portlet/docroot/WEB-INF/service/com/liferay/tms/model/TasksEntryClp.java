@@ -189,7 +189,15 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		throw new UnsupportedOperationException();
 	}
 
+	public java.lang.String getPriorityLabel() {
+		throw new UnsupportedOperationException();
+	}
+
 	public java.lang.String getReporterFullName() {
+		throw new UnsupportedOperationException();
+	}
+
+	public java.lang.String getStatusLabel() {
 		throw new UnsupportedOperationException();
 	}
 

@@ -423,8 +423,16 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.getAssigneeFullName();
 	}
 
+	public java.lang.String getPriorityLabel() {
+		return _tasksEntry.getPriorityLabel();
+	}
+
 	public java.lang.String getReporterFullName() {
 		return _tasksEntry.getReporterFullName();
+	}
+
+	public java.lang.String getStatusLabel() {
+		return _tasksEntry.getStatusLabel();
 	}
 
 	public TasksEntry getWrappedTasksEntry() {

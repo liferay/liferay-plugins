@@ -320,11 +320,11 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService {
 
 	public java.util.List<com.liferay.tms.model.TasksEntry> getTasksEntries(
 		long groupId, int priority, long assigneeUserId, long reporterUserId,
-		int status, long[] tagsEntryIds, long[] notTagsEntryIds, int start,
+		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return _tasksEntryLocalService.getTasksEntries(groupId, priority,
-			assigneeUserId, reporterUserId, status, tagsEntryIds,
-			notTagsEntryIds, start, end);
+			assigneeUserId, reporterUserId, status, assetTagIds,
+			notAssetTagIds, start, end);
 	}
 
 	public int getTasksEntriesCount(long groupId)

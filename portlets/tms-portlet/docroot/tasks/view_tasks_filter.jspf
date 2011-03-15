@@ -21,7 +21,7 @@
 	<%
 	List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(themeDisplay.getScopeGroupId());
 
-	if (assetTags.size() > 0) {
+	if (!assetTags.isEmpty()) {
 		for (AssetTag assetTag : assetTags) {
 			AssetTagStats assetTagStats = AssetTagStatsLocalServiceUtil.getTagStats(assetTag.getTagId(), PortalUtil.getClassNameId(TasksEntry.class));
 
@@ -51,7 +51,7 @@
 List<Group> groups = user.getGroups();
 %>
 
-<c:if test="<%= isUser && !groups.isEmpty() %>">
+<c:if test="<%= group.isUser() && !groups.isEmpty() %>">
 	<h3><liferay-ui:message key="filter-by-place" /></h3>
 
 	<div class="filter-container group-filter">

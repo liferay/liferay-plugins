@@ -31,5 +31,9 @@ public interface TasksEntry extends TasksEntryModel {
 	 */
 	public java.lang.String getAssigneeFullName();
 
+	public java.lang.String getPriorityLabel();
+
 	public java.lang.String getReporterFullName();
+
+	public java.lang.String getStatusLabel();
 }

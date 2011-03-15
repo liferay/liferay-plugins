@@ -903,14 +903,14 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	public java.util.List<com.liferay.tms.model.TasksEntry> getTasksEntries(
 		long groupId, int priority, long assigneeUserId, long reporterUserId,
-		int status, long[] tagsEntryIds, long[] notTagsEntryIds, int start,
+		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getTasksEntriesMethodKey27,
 				groupId, priority, assigneeUserId, reporterUserId, status,
-				ClpSerializer.translateInput(tagsEntryIds),
-				ClpSerializer.translateInput(notTagsEntryIds), start, end);
+				ClpSerializer.translateInput(assetTagIds),
+				ClpSerializer.translateInput(notAssetTagIds), start, end);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);

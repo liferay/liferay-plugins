@@ -105,12 +105,6 @@ List<MBMessage> messages = treeWalker.getMessages();
 </form>
 
 <aui:script>
-	function <portlet:namespace />postReply() {
-		document.<portlet:namespace />fm2.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.ADD %>";
-
-		<portlet:namespace />submitCommentForm();
-	}
-
 	function <portlet:namespace />deletePost(messageId) {
 		document.<portlet:namespace />fm2.<portlet:namespace /><%=  Constants.CMD %>.value = "<%= Constants.DELETE %>";
 		document.<portlet:namespace />fm2.<portlet:namespace />messageId.value = messageId;
@@ -131,6 +125,12 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 		form.show();
 		control.hide();
+	}
+
+	function <portlet:namespace />postReply() {
+		document.<portlet:namespace />fm2.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.ADD %>";
+
+		<portlet:namespace />submitCommentForm();
 	}
 
 	function <portlet:namespace />submitCommentForm() {

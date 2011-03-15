@@ -27,9 +27,9 @@ import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.tms.TasksEntryDueDateException;
 import com.liferay.tms.model.TasksEntry;
+import com.liferay.tms.model.TasksEntryConstants;
 import com.liferay.tms.service.base.TasksEntryLocalServiceBaseImpl;
 import com.liferay.tms.tasks.social.TasksActivityKeys;
-import com.liferay.tms.tasks.util.TasksConstants;
 
 import java.util.Date;
 import java.util.List;
@@ -45,7 +45,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			int dueDateMinute, boolean neverDue, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Entry
+		// Tasks entry
 
 		User user = UserLocalServiceUtil.getUserById(userId);
 		long groupId = serviceContext.getScopeGroupId();
@@ -74,21 +74,21 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		tasksEntry.setPriority(priority);
 		tasksEntry.setAssigneeUserId(assigneeUserId);
 		tasksEntry.setDueDate(dueDate);
-		tasksEntry.setStatus(TasksConstants.STATUS_OPEN);
+		tasksEntry.setStatus(TasksEntryConstants.STATUS_OPEN);
 
 		tasksEntryPersistence.update(tasksEntry, false);
+
+		// Asset
+
+		updateAsset(
+			userId, tasksEntry, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
 
 		// Social
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, groupId, TasksEntry.class.getName(), tasksEntryId,
 			TasksActivityKeys.ADD_TASK, StringPool.BLANK, assigneeUserId);
-
-		// Tags
-
-		updateAsset(
-			userId, tasksEntry, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames());
 
 		return tasksEntry;
 	}
@@ -105,14 +105,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	public void deleteTasksEntry(TasksEntry tasksEntry)
 		throws PortalException, SystemException {
 
-		// Tags
+		// Tasks entry
+
+		tasksEntryPersistence.remove(tasksEntry);
+
+		// Asset
 
 		AssetEntryLocalServiceUtil.deleteEntry(
-			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
-
-		// Social
-
-		SocialActivityLocalServiceUtil.deleteActivities(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
 		// Message boards
@@ -120,9 +119,10 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		MBMessageLocalServiceUtil.deleteDiscussionMessages(
 			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 
-		// Entry
+		// Social
 
-		tasksEntryPersistence.remove(tasksEntry);
+		SocialActivityLocalServiceUtil.deleteActivities(
+			TasksEntry.class.getName(), tasksEntry.getTasksEntryId());
 	}
 
 	public List<TasksEntry> getAssigneeTasksEntries(
@@ -198,13 +198,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 	public List<TasksEntry> getTasksEntries(
 			long groupId, int priority, long assigneeUserId,
-			long reporterUserId, int status, long[] tagsEntryIds,
-			long[] notTagsEntryIds, int start, int end)
+			long reporterUserId, int status, long[] assetTagIds,
+			long[] notAssetTagIds, int start, int end)
 		throws SystemException {
 
 		return tasksEntryFinder.findByG_P_A_R_S_T_N(
 			groupId, priority, assigneeUserId, reporterUserId, status,
-			tagsEntryIds, notTagsEntryIds, start, end);
+			assetTagIds, notAssetTagIds, start, end);
 	}
 
 	public int getTasksEntriesCount(long groupId) throws SystemException {
@@ -255,7 +255,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			boolean neverDue, int status, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		// Entry
+		// Tasks entry
 
 		Date now = new Date();
 
@@ -279,7 +279,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		tasksEntry.setAssigneeUserId(assigneeUserId);
 		tasksEntry.setDueDate(dueDate);
 
-		if (status == TasksConstants.STATUS_RESOLVED) {
+		if (status == TasksEntryConstants.STATUS_RESOLVED) {
 			tasksEntry.setResolverUserId(resolverUserId);
 			tasksEntry.setFinishDate(now);
 		}
@@ -292,14 +292,21 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		tasksEntryPersistence.update(tasksEntry, false);
 
+		// Asset
+
+		updateAsset(
+			tasksEntry.getUserId(), tasksEntry,
+			serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames());
+
 		// Social
 
 		int activity = TasksActivityKeys.UPDATE_TASK;
 
-		if (status == TasksConstants.STATUS_RESOLVED) {
+		if (status == TasksEntryConstants.STATUS_RESOLVED) {
 			activity = TasksActivityKeys.RESOLVE_TASK;
 		}
-		else if (status == TasksConstants.STATUS_REOPENED) {
+		else if (status == TasksEntryConstants.STATUS_REOPENED) {
 			activity = TasksActivityKeys.REOPEN_TASK;
 		}
 
@@ -307,13 +314,6 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			serviceContext.getUserId(), tasksEntry.getGroupId(),
 			TasksEntry.class.getName(), tasksEntryId, activity,
 			StringPool.BLANK, assigneeUserId);
-
-		// Tags
-
-		updateAsset(
-			tasksEntry.getUserId(), tasksEntry,
-			serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames());
 
 		return tasksEntry;
 	}
@@ -330,7 +330,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		tasksEntry.setModifiedDate(now);
 
-		if (status == TasksConstants.STATUS_RESOLVED) {
+		if (status == TasksEntryConstants.STATUS_RESOLVED) {
 			tasksEntry.setResolverUserId(resolverUserId);
 			tasksEntry.setFinishDate(now);
 		}

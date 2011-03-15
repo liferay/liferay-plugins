@@ -30,31 +30,22 @@ try {
 catch (NoSuchTasksEntryException nstee) {
 }
 
-Calendar dueDate = CalendarFactoryUtil.getCalendar(timeZone, locale);
-boolean neverDue = true;
+long priority = BeanParamUtil.getLong(tasksEntry, request, "priority", TasksEntryConstants.PRIORITY_NORMAL);
+long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId");
 
-int priority = 2;
-long assigneeUserId = 0;
-int status = 1;
+Calendar dueDate = CalendarFactoryUtil.getCalendar(timeZone, locale);
+
+boolean neverDue = true;
 
 if (tasksEntry != null) {
 	if (tasksEntry.getDueDate() != null) {
 		dueDate.setTime(tasksEntry.getDueDate());
+
 		neverDue = false;
 	}
-
-	if (tasksEntry.getPriority() > 0) {
-		priority = tasksEntry.getPriority();
-	}
-
-	if (tasksEntry.getAssigneeUserId() > 0) {
-		assigneeUserId = tasksEntry.getAssigneeUserId();
-	}
-
-	if (tasksEntry.getStatus() > 0) {
-		status = tasksEntry.getStatus();
-	}
 }
+
+int status = BeanParamUtil.getLong(tasksEntry, request, "status", TasksEntryConstants.STATUS_ALL);
 
 long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
 %>
@@ -89,7 +80,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 	<td>
 		<select name="<portlet:namespace />assigneeUserId">
 			<c:choose>
-				<c:when test="<%= isUser %>">
+				<c:when test="<%= group.isUser() %>">
 					<option <%= (assigneeUserId == user.getUserId()) ? "selected" : StringPool.BLANK %> value="<%= user.getUserId() %>"><%= HtmlUtil.escape(user.getFullName()) %></option>
 
 					<optgroup label="<liferay-ui:message key="friends" />">
@@ -110,7 +101,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 			<%
 			List<User> users = null;
 
-			if (isUser) {
+			if (group.isUser()) {
 				users = UserLocalServiceUtil.getSocialUsers(group.getClassPK(), SocialRelationConstants.TYPE_BI_FRIEND, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ContactFirstNameComparator(true));
 			}
 			else {
@@ -188,13 +179,17 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 		</td>
 		<td>
 			<select name="<portlet:namespace />status">
-				<option value="1" <%= (status == 1) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="open" /></option>
-				<option value="2" <%= (status == 2) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="20-percent-complete" /></option>
-				<option value="3" <%= (status == 3) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="40-percent-complete" /></option>
-				<option value="4" <%= (status == 4) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="60-percent-complete" /></option>
-				<option value="5" <%= (status == 5) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="80-percent-complete" /></option>
-				<option value="6" <%= (status == 6) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="resolved" /></option>
-				<option value="7" <%= (status == 7) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="reopened" /></option>
+
+				<%
+				for (int curStatus : TasksEntryConstants.STATUSES) {
+				%>
+
+					<option value="<%= curStatus %>" <%= (status == curStatus) ? "selected" : StringPool.BLANK %>><liferay-ui:message key="<%= TasksEntryConstants.getStatusLabel(curStatus) %>" /></option>
+
+				<%
+				}
+				%>
+
 			</select>
 		</td>
 	</tr>
@@ -227,7 +222,6 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 
 	</td>
 </tr>
-
 </table>
 
 <div class="task-action">

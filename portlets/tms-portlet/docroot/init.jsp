@@ -27,6 +27,7 @@
 
 <%@ page import="com.liferay.portal.NoSuchGroupException" %>
 <%@ page import="com.liferay.portal.NoSuchUserException" %>
+<%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
@@ -63,10 +64,10 @@
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 <%@ page import="com.liferay.tms.NoSuchTasksEntryException" %>
 <%@ page import="com.liferay.tms.model.TasksEntry" %>
+<%@ page import="com.liferay.tms.model.TasksEntryConstants" %>
 <%@ page import="com.liferay.tms.service.TasksEntryLocalServiceUtil" %>
 <%@ page import="com.liferay.tms.service.permission.TasksEntryPermission" %>
 <%@ page import="com.liferay.tms.service.permission.TasksPermission" %>
-<%@ page import="com.liferay.tms.tasks.util.TasksConstants" %>
 
 <%@ page import="java.text.Format" %>
 
@@ -88,12 +89,9 @@ String currentURL = PortalUtil.getCurrentURL(request);
 
 Group group = themeDisplay.getScopeGroup();
 
-boolean isCommunity = group.isCommunity();
-boolean isUser = group.isUser();
-
 String tabs1Default = "assigned-to-me";
 
-if (isCommunity) {
+if (group.isCommunity()) {
 	tabs1Default = "all-tasks";
 }
 

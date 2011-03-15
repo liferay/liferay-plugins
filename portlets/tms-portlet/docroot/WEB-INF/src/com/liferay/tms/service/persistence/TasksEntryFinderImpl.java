@@ -25,8 +25,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.tms.model.TasksEntry;
+import com.liferay.tms.model.TasksEntryConstants;
 import com.liferay.tms.model.impl.TasksEntryImpl;
-import com.liferay.tms.tasks.util.TasksConstants;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
@@ -73,9 +73,9 @@ public class TasksEntryFinderImpl
 				sb.append(" AND TMS_TasksEntry.userId = ?");
 			}
 
-			if (status == TasksConstants.STATUS_ALL) {
+			if (status == TasksEntryConstants.STATUS_ALL) {
 			}
-			else if (status == TasksConstants.STATUS_RESOLVED) {
+			else if (status == TasksEntryConstants.STATUS_RESOLVED) {
 				sb.append(" AND TMS_TasksEntry.finishDate IS NOT NULL");
 			}
 			else {
@@ -195,9 +195,9 @@ public class TasksEntryFinderImpl
 				sb.append(" AND TMS_TasksEntry.userId = ?");
 			}
 
-			if (status == TasksConstants.STATUS_ALL) {
+			if (status == TasksEntryConstants.STATUS_ALL) {
 			}
-			else if (status == TasksConstants.STATUS_RESOLVED) {
+			else if (status == TasksEntryConstants.STATUS_RESOLVED) {
 				sb.append(" AND TMS_TasksEntry.finishDate IS NOT NULL");
 			}
 			else {

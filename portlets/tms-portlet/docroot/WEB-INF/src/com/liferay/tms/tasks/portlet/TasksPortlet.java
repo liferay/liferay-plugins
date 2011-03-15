@@ -103,12 +103,9 @@ public class TasksPortlet extends MVCPortlet {
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		long groupId = PortalUtil.getScopeGroupId(actionRequest);
-
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-
 		long messageId = ParamUtil.getLong(actionRequest, "messageId");
-
 		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		long parentMessageId = ParamUtil.getLong(
 			actionRequest, "parentMessageId");
@@ -146,9 +143,7 @@ public class TasksPortlet extends MVCPortlet {
 		long tasksEntryId = ParamUtil.getLong(actionRequest, "tasksEntryId");
 
 		String title = ParamUtil.getString(actionRequest, "title");
-
 		int priority = ParamUtil.getInteger(actionRequest, "priority");
-
 		long assigneeUserId = ParamUtil.getLong(
 			actionRequest, "assigneeUserId");
 		long resolverUserId = ParamUtil.getLong(
@@ -161,12 +156,12 @@ public class TasksPortlet extends MVCPortlet {
 		int dueDateMinute = ParamUtil.getInteger(
 			actionRequest, "dueDateMinute");
 		int dueDateAmPm = ParamUtil.getInteger(actionRequest, "dueDateAmPm");
-		boolean neverDue = ParamUtil.getBoolean(actionRequest, "neverDue");
 
 		if (dueDateAmPm == Calendar.PM) {
 			dueDateHour += 12;
 		}
 
+		boolean neverDue = ParamUtil.getBoolean(actionRequest, "neverDue");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(

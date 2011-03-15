@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.tms.model.TasksEntry;
+import com.liferay.tms.model.TasksEntryConstants;
 
 /**
  * @author Ryan Park
@@ -31,8 +32,16 @@ public class TasksEntryImpl extends TasksEntryModelImpl implements TasksEntry {
 		return getUserFullName(getAssigneeUserId());
 	}
 
+	public String getPriorityLabel() {
+		return TasksEntryConstants.getPriorityLabel(getPriority());
+	}
+
 	public String getReporterFullName() {
 		return getUserFullName(getUserId());
+	}
+
+	public String getStatusLabel() {
+		return TasksEntryConstants.getStatusLabel(getStatus());
 	}
 
 	protected String getUserFullName(long userId) {

@@ -18,11 +18,11 @@
 
 String tabs1Names = "all-tasks";
 
-if (isUser) {
-	tabs1Names = "assigned-to-me,ive-created";
+if (group.isUser()) {
+	tabs1Names = "assigned-to-me,i-have-created";
 }
 else if (themeDisplay.isSignedIn()) {
-	tabs1Names = tabs1Names + ",assigned-to-me,ive-created";
+	tabs1Names = tabs1Names + ",assigned-to-me,i-have-created";
 }
 %>
 
