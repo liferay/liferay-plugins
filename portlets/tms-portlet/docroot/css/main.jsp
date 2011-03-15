@@ -143,13 +143,13 @@
 }
 
 .tms-portlet-tasks .asset-tag-filter .asset-tag {
-	background: url(<%= request.getContextPath() %>/tasks/images/unselected.png) no-repeat 0% 50%;
+	background: url(<%= request.getContextPath() %>/images/unselected.png) no-repeat 0% 50%;
 	padding-left: 16px;
 	margin-right: 0.5em;
 }
 
 .tms-portlet-tasks .asset-tag-filter .asset-tag.selected {
-	background-image: url(<%= request.getContextPath() %>/tasks/images/selected.png);
+	background-image: url(<%= request.getContextPath() %>/images/selected.png);
 	font-weight: bold;
 }
 
@@ -164,15 +164,15 @@
 }
 
 .tms-portlet-tasks .tasks-title.high {
-	background: url(<%= request.getContextPath() %>/tasks/images/priority_high.png) no-repeat;
+	background: url(<%= request.getContextPath() %>/images/priority_high.png) no-repeat;
 }
 
 .tms-portlet-tasks .tasks-title.low {
-	background: url(<%= request.getContextPath() %>/tasks/images/priority_low.png) no-repeat;
+	background: url(<%= request.getContextPath() %>/images/priority_low.png) no-repeat;
 }
 
 .tms-portlet-tasks .tasks-title.normal {
-	background: url(<%= request.getContextPath() %>/tasks/images/priority_normal.png) no-repeat;
+	background: url(<%= request.getContextPath() %>/images/priority_normal.png) no-repeat;
 }
 
 /* ---------- Progress ---------- */
@@ -328,15 +328,15 @@
 }
 
 .tasks-dialog .task-data-table .high {
-	background: url(<%= request.getContextPath() %>/tasks/images/priority_high.png) no-repeat 0 50%;
+	background: url(<%= request.getContextPath() %>/images/priority_high.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-table .normal {
-	background: url(<%= request.getContextPath() %>/tasks/images/priority_normal.png) no-repeat 0 50%;
+	background: url(<%= request.getContextPath() %>/images/priority_normal.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-table .low {
-	background: url(<%= request.getContextPath() %>/tasks/images/priority_low.png) no-repeat 0 50%;
+	background: url(<%= request.getContextPath() %>/images/priority_low.png) no-repeat 0 50%;
 }
 
 .tasks-dialog .task-data-table .due-date {

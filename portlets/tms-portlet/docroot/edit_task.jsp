@@ -45,7 +45,7 @@ if (tasksEntry != null) {
 	}
 }
 
-int status = BeanParamUtil.getLong(tasksEntry, request, "status", TasksEntryConstants.STATUS_ALL);
+int status = BeanParamUtil.getInteger(tasksEntry, request, "status", TasksEntryConstants.STATUS_ALL);
 
 long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/html/js/", true);
 %>
@@ -228,7 +228,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 	<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="save" />" />
 
 	<c:if test="<%= tasksEntryId > 0 %>">
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/tasks/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
 	</c:if>
 
 	<div class="task-action-close">

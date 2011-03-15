@@ -28,11 +28,11 @@ portletURL.setParameter("tabs1", tabs1);
 portletURL.setParameter("tabs2", tabs2);
 %>
 
-<%@ include file="/tasks/tabs1.jspf" %>
+<%@ include file="/tabs1.jspf" %>
 
 <div class="control-wrapper">
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_ENTRY) %>">
-		<a class="add-task" href="javascript:;" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/tasks/edit_task.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /></portlet:renderURL>', 'Tasks');"><liferay-ui:message key="add-task" /></a>
+		<a class="add-task" href="javascript:;" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/edit_task.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /></portlet:renderURL>', 'Tasks');"><liferay-ui:message key="add-task" /></a>
 	</c:if>
 
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PERMISSIONS) %>">
@@ -52,11 +52,11 @@ portletURL.setParameter("tabs2", tabs2);
 </div>
 
 <div class="filter-wrapper aui-helper-hidden">
-	<%@ include file="/tasks/view_tasks_filter.jspf" %>
+	<%@ include file="/view_tasks_filter.jspf" %>
 </div>
 
 <div class="list-wrapper">
-	<liferay-util:include page="/tasks/view_tasks.jsp" portletId="<%= portletDisplay.getId() %>" />
+	<liferay-util:include page="/view_tasks.jsp" portletId="<%= portletDisplay.getId() %>" />
 </div>
 
 <div class="tasks-options">
@@ -78,7 +78,7 @@ portletURL.setParameter("tabs2", tabs2);
 			Liferay.TMS.Tasks.init(
 				{
 					currentTab: '<%= tabs1 %>',
-					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/tasks/view_tasks.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /></portlet:renderURL>'
+					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_tasks.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /></portlet:renderURL>'
 				}
 			);
 		}

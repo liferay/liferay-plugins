@@ -108,7 +108,7 @@ boolean neverDue = true;
 
 		<input type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED %>)" />
 
-		<input type="button" value="<liferay-ui:message key="edit" />" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/tasks/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
+		<input type="button" value="<liferay-ui:message key="edit" />" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
 
 		<aui:script use="aui-io">
 			Liferay.provide(
@@ -144,4 +144,4 @@ boolean neverDue = true;
 
 <liferay-ui:tabs names="comments" />
 
-<%@ include file="/tasks/view_comments.jsp" %>
+<%@ include file="/view_comments.jsp" %>

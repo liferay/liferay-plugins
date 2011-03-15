@@ -34,7 +34,7 @@ PortletURL taskListURL = renderResponse.createRenderURL();
 
 taskListURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-taskListURL.setParameter("jspPage", "/tasks/view_tasks.jsp");
+taskListURL.setParameter("jspPage", "/view_tasks.jsp");
 taskListURL.setParameter("tabs1", tabs1);
 taskListURL.setParameter("tabs2", tabs2);
 %>
@@ -87,7 +87,7 @@ taskListURL.setParameter("tabs2", tabs2);
 
 			rowURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-			rowURL.setParameter("jspPage", "/tasks/view_task.jsp");
+			rowURL.setParameter("jspPage", "/view_task.jsp");
 			rowURL.setParameter("redirect", currentURL);
 			rowURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
 
