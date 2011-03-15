@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<project name="mail-portlet" basedir="." default="deploy">
+<project name="vaadin-mail-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 	
 	<target name="build-lang">
