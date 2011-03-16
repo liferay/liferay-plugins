@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.liferay.tms.model.TasksEntry">
+	<model name="com.liferay.tasks.model.TasksEntry">
 		<field name="tasksEntryId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />

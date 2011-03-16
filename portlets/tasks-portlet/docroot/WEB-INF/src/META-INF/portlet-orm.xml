@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.liferay.tms.model.impl.TasksEntryModelImpl">
+	<mapped-superclass class="com.liferay.tasks.model.impl.TasksEntryModelImpl">
 		<attributes>
 			<id name="tasksEntryId" />
 			<basic name="groupId" />
@@ -37,7 +37,7 @@
 			<transient name="userUuid" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.liferay.tms.model.impl.TasksEntryImpl" name="TasksEntry">
+	<entity class="com.liferay.tasks.model.impl.TasksEntryImpl" name="TasksEntry">
 		<table name="TMS_TasksEntry" />
 		<attributes />
 	</entity>

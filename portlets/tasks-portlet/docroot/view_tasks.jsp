@@ -73,7 +73,7 @@ taskListURL.setParameter("tabs2", tabs2);
 	/>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.tms.model.TasksEntry"
+		className="com.liferay.tasks.model.TasksEntry"
 		escapedModel="<%= true %>"
 		keyProperty="tasksEntryId"
 		modelVar="tasksEntry"

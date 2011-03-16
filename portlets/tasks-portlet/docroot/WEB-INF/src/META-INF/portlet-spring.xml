@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
-	<bean id="com.liferay.tms.service.TasksEntryLocalService" class="com.liferay.tms.service.impl.TasksEntryLocalServiceImpl" />
-	<bean id="com.liferay.tms.service.TasksEntryLocalServiceUtil" class="com.liferay.tms.service.TasksEntryLocalServiceUtil">
-		<property name="service" ref="com.liferay.tms.service.TasksEntryLocalService" />
+	<bean id="com.liferay.tasks.service.TasksEntryLocalService" class="com.liferay.tasks.service.impl.TasksEntryLocalServiceImpl" />
+	<bean id="com.liferay.tasks.service.TasksEntryLocalServiceUtil" class="com.liferay.tasks.service.TasksEntryLocalServiceUtil">
+		<property name="service" ref="com.liferay.tasks.service.TasksEntryLocalService" />
 	</bean>
-	<bean id="com.liferay.tms.service.TasksEntryService" class="com.liferay.tms.service.impl.TasksEntryServiceImpl" />
-	<bean id="com.liferay.tms.service.TasksEntryServiceUtil" class="com.liferay.tms.service.TasksEntryServiceUtil">
-		<property name="service" ref="com.liferay.tms.service.TasksEntryService" />
+	<bean id="com.liferay.tasks.service.TasksEntryService" class="com.liferay.tasks.service.impl.TasksEntryServiceImpl" />
+	<bean id="com.liferay.tasks.service.TasksEntryServiceUtil" class="com.liferay.tasks.service.TasksEntryServiceUtil">
+		<property name="service" ref="com.liferay.tasks.service.TasksEntryService" />
 	</bean>
-	<bean id="com.liferay.tms.service.persistence.TasksEntryPersistence" class="com.liferay.tms.service.persistence.TasksEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.tms.service.persistence.TasksEntryFinder" class="com.liferay.tms.service.persistence.TasksEntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.tasks.service.persistence.TasksEntryPersistence" class="com.liferay.tasks.service.persistence.TasksEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.tasks.service.persistence.TasksEntryFinder" class="com.liferay.tasks.service.persistence.TasksEntryFinderImpl" parent="basePersistence" />
 </beans>

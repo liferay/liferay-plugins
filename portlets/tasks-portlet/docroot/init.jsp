@@ -62,12 +62,12 @@
 <%@ page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %>
 <%@ page import="com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator" %>
 <%@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
-<%@ page import="com.liferay.tms.NoSuchTasksEntryException" %>
-<%@ page import="com.liferay.tms.model.TasksEntry" %>
-<%@ page import="com.liferay.tms.model.TasksEntryConstants" %>
-<%@ page import="com.liferay.tms.service.TasksEntryLocalServiceUtil" %>
-<%@ page import="com.liferay.tms.service.permission.TasksEntryPermission" %>
-<%@ page import="com.liferay.tms.service.permission.TasksPermission" %>
+<%@ page import="com.liferay.tasks.NoSuchTasksEntryException" %>
+<%@ page import="com.liferay.tasks.model.TasksEntry" %>
+<%@ page import="com.liferay.tasks.model.TasksEntryConstants" %>
+<%@ page import="com.liferay.tasks.service.TasksEntryLocalServiceUtil" %>
+<%@ page import="com.liferay.tasks.service.permission.TasksEntryPermission" %>
+<%@ page import="com.liferay.tasks.service.permission.TasksPermission" %>
 
 <%@ page import="java.text.Format" %>
 

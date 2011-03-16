@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.tms.service.persistence.TasksEntryFinder.findByC_T">
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.findByC_T">
 		SELECT
 			DISTINCT AssetEntry.classPK
 		FROM
