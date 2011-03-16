@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.tms.tasks.social;
+package com.liferay.tms.social;
 
 /**
  * @author Ryan Park

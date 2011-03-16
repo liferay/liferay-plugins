@@ -29,7 +29,7 @@ import com.liferay.tms.TasksEntryDueDateException;
 import com.liferay.tms.model.TasksEntry;
 import com.liferay.tms.model.TasksEntryConstants;
 import com.liferay.tms.service.base.TasksEntryLocalServiceBaseImpl;
-import com.liferay.tms.tasks.social.TasksActivityKeys;
+import com.liferay.tms.social.TasksActivityKeys;
 
 import java.util.Date;
 import java.util.List;

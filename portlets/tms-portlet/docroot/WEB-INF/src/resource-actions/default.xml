@@ -17,7 +17,7 @@
 		</permissions>
 	</portlet-resource>
 	<model-resource>
-		<model-name>com.liferay.tms.tasks</model-name>
+		<model-name>com.liferay.tms</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
 		</portlet-ref>

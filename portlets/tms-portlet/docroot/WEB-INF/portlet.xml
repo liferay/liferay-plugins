@@ -9,7 +9,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Tasks</display-name>
-		<portlet-class>com.liferay.tms.tasks.portlet.TasksPortlet</portlet-class>
+		<portlet-class>com.liferay.tms.portlet.TasksPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>

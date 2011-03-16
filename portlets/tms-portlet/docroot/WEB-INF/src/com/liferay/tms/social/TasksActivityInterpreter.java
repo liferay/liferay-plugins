@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.tms.tasks.social;
+package com.liferay.tms.social;
 
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.theme.ThemeDisplay;

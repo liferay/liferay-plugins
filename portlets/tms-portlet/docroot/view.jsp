@@ -37,7 +37,7 @@ portletURL.setParameter("tabs2", tabs2);
 
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PERMISSIONS) %>">
 		<liferay-security:permissionsURL
-			modelResource="com.liferay.tms.tasks"
+			modelResource="com.liferay.tms"
 			modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
 			resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 			var="permissionsURL"

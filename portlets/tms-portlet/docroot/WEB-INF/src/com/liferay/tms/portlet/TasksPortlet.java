@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.tms.tasks.portlet;
+package com.liferay.tms.portlet;
 
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.SessionErrors;

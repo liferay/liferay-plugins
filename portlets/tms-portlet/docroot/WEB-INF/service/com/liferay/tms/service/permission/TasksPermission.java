@@ -39,6 +39,6 @@ public class TasksPermission {
 			groupId, _NAME, groupId, actionId);
 	}
 
-	private static final String _NAME = "com.liferay.tms.tasks";
+	private static final String _NAME = "com.liferay.tms";
 
 }
