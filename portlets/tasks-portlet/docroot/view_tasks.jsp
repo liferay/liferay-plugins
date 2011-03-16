@@ -116,7 +116,7 @@ taskListURL.setParameter("tabs2", tabs2);
 			<div class="result-title">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(rowHREF) %>">
-						<a class="<%= cssClass %>" href="javascript:;" onClick="Liferay.TMS.Tasks.displayPopup('<%= rowHREF %>', 'TasksEntry');"><%= tasksEntry.getTitle() %></a>
+						<a class="<%= cssClass %>" href="<%= rowHREF %>"><%= tasksEntry.getTitle() %></a>
 					</c:when>
 					<c:otherwise>
 						<span class="<%= cssClass %>"><%= tasksEntry.getTitle() %></span>
@@ -214,9 +214,9 @@ taskListURL.setParameter("tabs2", tabs2);
 			<%
 					buffer.append("<a class=\"progress-");
 					buffer.append((i - 1) * 20);
-					buffer.append("\" href=\"javascript:;\" onClick=\"Liferay.TMS.Tasks.displayPopup('");
+					buffer.append("\" href=\"");
 					buffer.append(statusURL);
-					buffer.append("', 'Status');\">");
+					buffer.append("\">");
 					buffer.append("<!-- -->");
 					buffer.append("</a>");
 				}

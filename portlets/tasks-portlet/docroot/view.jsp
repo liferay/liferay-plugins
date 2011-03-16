@@ -32,7 +32,7 @@ portletURL.setParameter("tabs2", tabs2);
 
 <div class="control-wrapper">
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_ENTRY) %>">
-		<a class="add-task" href="javascript:;" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/edit_task.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /></portlet:renderURL>', 'Tasks');"><liferay-ui:message key="add-task" /></a>
+		<a class="add-task" href="javascript:;" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/edit_task.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /><portlet:param name="tabs2" value="<%= tabs2 %>" /></portlet:renderURL>', 'Tasks');"><liferay-ui:message key="add-task" /></a>
 	</c:if>
 
 	<c:if test="<%= TasksPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.PERMISSIONS) %>">
@@ -46,7 +46,7 @@ portletURL.setParameter("tabs2", tabs2);
 		<a class="permission-tasks" href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
 	</c:if>
 
-	<a class="filter-tasks" href="javascript:;" onClick="Liferay.TMS.Tasks.toggleTasksFilter();"><liferay-ui:message key="filter" /></a>
+	<a class="filter-tasks" href="javascript:;" onClick="Liferay.Tasks.toggleTasksFilter();"><liferay-ui:message key="filter" /></a>
 
 	<div style="clear: both;"><!-- --></div>
 </div>
@@ -63,7 +63,7 @@ portletURL.setParameter("tabs2", tabs2);
 	<table>
 	<tr>
 		<td>
-			<input type="checkbox" name="all-tasks" onclick="Liferay.TMS.Tasks.updateTaskList(null, this.checked);" <%= (tabs2.equals("all") ? "checked" : StringPool.BLANK) %>/>
+			<input type="checkbox" name="all-tasks" onclick="Liferay.Tasks.updateTaskList(null, this.checked);" <%= (tabs2.equals("all") ? "checked" : StringPool.BLANK) %>/>
 		</td>
 		<td>
 			<liferay-ui:message key="show-completed-tasks" />
@@ -75,7 +75,7 @@ portletURL.setParameter("tabs2", tabs2);
 <aui:script>
 	AUI().ready(
 		function() {
-			Liferay.TMS.Tasks.init(
+			Liferay.Tasks.init(
 				{
 					currentTab: '<%= tabs1 %>',
 					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_tasks.jsp" /><portlet:param name="tabs1" value="<%= tabs1 %>" /></portlet:renderURL>'

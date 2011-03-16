@@ -73,5 +73,5 @@ List<Group> groups = user.getGroups();
 </c:if>
 
 <div class="filter-container filter-control-container">
-	<span class="clear-asset-tag"><a href="javascript:;" onClick="Liferay.TMS.Tasks.clearFilters();"><liferay-ui:message key="clear-all" /></a></span>
+	<span class="clear-asset-tag"><a href="javascript:;" onClick="Liferay.Tasks.clearFilters();"><liferay-ui:message key="clear-all" /></a></span>
 </div>

@@ -3,9 +3,9 @@ AUI().use(
 	'aui-dialog',
 	'aui-io-plugin',
 	function(A) {
-		Liferay.namespace('TMS');
+		Liferay.namespace('Tasks');
 
-		Liferay.TMS.Tasks = {
+		Liferay.Tasks = {
 			init: function(param) {
 				var instance = this;
 
@@ -21,15 +21,15 @@ AUI().use(
 			clearFilters: function() {
 				var instance = this;
 
-				A.all('.tms-portlet-tasks .asset-tag-filter .asset-tag.selected').toggle('selected');
+				A.all('.tasks-portlet .asset-tag-filter .asset-tag.selected').toggle('selected');
 
-				var groupFilter = A.one('.tms-portlet-tasks .group-filter select');
+				var groupFilter = A.one('.tasks-portlet .group-filter select');
 
 				if (groupFilter) {
 					groupFilter.set('value', 0);
 				}
 
-				var showAll = A.one('.tms-portlet-tasks input[name="all-tasks"]').get('checked');
+				var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
 
 				instance.updateTaskList(null, showAll);
 			},
@@ -89,13 +89,13 @@ AUI().use(
 			},
 
 			toggleTasksFilter: function() {
-				A.one('.tms-portlet-tasks .filter-wrapper').toggle();
+				A.one('.tasks-portlet .filter-wrapper').toggle();
 			},
 
 			updateTaskList: function(url, showAll) {
 				var instance = this;
 
-				instance._taskList = A.one('.tms-portlet-tasks .list-wrapper');
+				instance._taskList = A.one('.tasks-portlet .list-wrapper');
 
 				if (!instance._taskList.io) {
 					instance._taskList.plug(
@@ -125,7 +125,7 @@ AUI().use(
 			_getAssetTagIds: function() {
 				var assetTagIds = [];
 
-				A.all('.tms-portlet-tasks .asset-tag-filter .asset-tag.selected').each(
+				A.all('.tasks-portlet .asset-tag-filter .asset-tag.selected').each(
 					function(assetTag, index, collection) {
 						assetTagIds.push(assetTag.attr('data-assetTagId'));
 					}
@@ -135,7 +135,7 @@ AUI().use(
 			},
 
 			_getGroupId: function() {
-				var groupSelect = A.one('.tms-portlet-tasks .group-filter select');
+				var groupSelect = A.one('.tasks-portlet .group-filter select');
 
 				if (!groupSelect) {
 					return 0;
@@ -147,24 +147,24 @@ AUI().use(
 			_setupFilter: function() {
 				var instance = this;
 
-				A.one('.tms-portlet-tasks .asset-tag-filter').delegate(
+				A.one('.tasks-portlet .asset-tag-filter').delegate(
 					'click',
 					function(event) {
 						var assetTag = event.currentTarget;
 
 						assetTag.toggle('selected');
 
-						var showAll = A.one('.tms-portlet-tasks input[name="all-tasks"]').get('checked');
+						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
 
 						instance.updateTaskList(null, showAll);
 					},
 					'.asset-tag'
 				);
 
-				A.all('.tms-portlet-tasks .group-filter select').on(
+				A.all('.tasks-portlet .group-filter select').on(
 					'change',
 					function(event) {
-						var showAll = A.one('.tms-portlet-tasks input[name="all-tasks"]').get('checked');
+						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
 
 						instance.updateTaskList(null, showAll);
 					}
@@ -172,7 +172,7 @@ AUI().use(
 			},
 
 			_setupTagsPopup: function() {
-				var container = A.one('.tms-portlet-tasks');
+				var container = A.one('.tasks-portlet');
 
 				container.delegate(
 					'mouseover',
@@ -194,7 +194,7 @@ AUI().use(
 			_setupPopup: function() {
 				var instance = this;
 
-				A.one('.tms-portlet-tasks').delegate(
+				A.one('.tasks-portlet').delegate(
 					'click',
 					function(event) {
 						event.halt();
@@ -212,7 +212,7 @@ AUI().use(
 			_setupProgressBar: function() {
 				var instance = this;
 
-				var portlet = A.one('.tms-portlet-tasks');
+				var portlet = A.one('.tasks-portlet');
 
 				portlet.delegate(
 					'mouseover',

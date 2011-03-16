@@ -228,11 +228,11 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 	<input id="<portlet:namespace />submit" type="submit" value="<liferay-ui:message key="save" />" />
 
 	<c:if test="<%= tasksEntryId > 0 %>">
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.TMS.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
 	</c:if>
 
 	<div class="task-action-close">
-		<input type="button" value="<liferay-ui:message key="close" />" onClick="Liferay.TMS.Tasks.closePopup();" />
+		<input type="button" value="<liferay-ui:message key="close" />" onClick="Liferay.Tasks.closePopup();" />
 	</div>
 </div>
 
@@ -263,7 +263,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 		function(event) {
 			event.preventDefault();
 
-			var popup = Liferay.TMS.Tasks.getPopup();
+			var popup = Liferay.Tasks.getPopup();
 
 			popup.io.set('form', {id: form.getDOM()});
 			popup.io.set('uri', form.getAttribute('action'));
@@ -271,7 +271,7 @@ long javaScriptLastModified = ServletContextUtil.getLastModified(application, "/
 			popup.io.once(
 				'success',
 				function() {
-					Liferay.TMS.Tasks.updateTaskList();
+					Liferay.Tasks.updateTaskList();
 				}
 			);
 

@@ -88,7 +88,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 <div class="add-comment">
 	<div class="control">
-		<liferay-ui:icon image="reply" message="add-comment" url="javascript:Liferay.TMS.Tasks.toggleCommentForm();" label="<%= true %>" />
+		<liferay-ui:icon image="reply" message="add-comment" url="javascript:Liferay.Tasks.toggleCommentForm();" label="<%= true %>" />
 	</div>
 
 	<div class="form aui-helper-hidden">
@@ -98,7 +98,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 
 		<input disabled id="<portlet:namespace />postButton" type="button" value="<liferay-ui:message key="post" />" onClick="<portlet:namespace />postReply();" />
 
-		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.<portlet:namespace />fm2.<portlet:namespace />messageId.value = '';document.<portlet:namespace />fm2.<portlet:namespace />body.value = '';Liferay.TMS.Tasks.toggleCommentForm();" />
+		<input type="button" value="<liferay-ui:message key="cancel" />" onClick="document.<portlet:namespace />fm2.<portlet:namespace />messageId.value = '';document.<portlet:namespace />fm2.<portlet:namespace />body.value = '';Liferay.Tasks.toggleCommentForm();" />
 	</div>
 </div>
 
@@ -136,7 +136,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 	function <portlet:namespace />submitCommentForm() {
 		var form = AUI().one(document.<portlet:namespace />fm2);
 
-		var popup = Liferay.TMS.Tasks.getPopup();
+		var popup = Liferay.Tasks.getPopup();
 
 		popup.io.set('form', {id: form.getDOM()});
 		popup.io.set('uri', form.getAttribute('action'));

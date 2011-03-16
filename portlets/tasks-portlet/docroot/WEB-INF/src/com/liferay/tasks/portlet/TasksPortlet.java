@@ -183,7 +183,7 @@ public class TasksPortlet extends MVCPortlet {
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			PortalUtil.getHttpServletRequest(actionRequest), "1_WAR_tmsportlet",
+			PortalUtil.getHttpServletRequest(actionRequest), "1_WAR_tasksportlet",
 			themeDisplay.getLayout().getPlid(), PortletRequest.RENDER_PHASE);
 
 		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
