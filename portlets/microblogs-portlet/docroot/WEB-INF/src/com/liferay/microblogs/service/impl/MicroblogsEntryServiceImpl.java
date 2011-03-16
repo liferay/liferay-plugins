@@ -24,6 +24,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.List;
+
 /**
  * @author Jonathan Lee
  */
@@ -44,6 +46,12 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			socialRelationType, serviceContext);
 	 }
 
+	 public int getMicroblogsEntriesCount(long viewUserId)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.countByU_VU(getUserId(), viewUserId);
+	}
+
 	public void deleteMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 
@@ -61,6 +69,14 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 
 		return MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 			microblogsEntryId);
+	}
+
+	public List<MicroblogsEntry> getMicroblogsEntries(
+			long viewUserId, int start, int end)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.findByU_VU(
+			getUserId(), viewUserId, start, end);
 	}
 
 	public MicroblogsEntry updateMicroblogsEntry(
