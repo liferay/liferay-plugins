@@ -157,14 +157,13 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		try {
 			return DLAppLocalServiceUtil.addFileEntry(
-				userId, groupId, folderId, title, description,
-				StringPool.BLANK, bytes, serviceContext);
+				userId, groupId, folderId, title, description, StringPool.BLANK,
+				bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLAppLocalServiceUtil.updateFileEntry(
-				userId, groupId, name, title, description,
-				StringPool.BLANK, true, bytes,
-				serviceContext);
+				userId, groupId, name, title, description, StringPool.BLANK,
+				true, bytes, serviceContext);
 		}
 	}
 
