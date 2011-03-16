@@ -79,7 +79,8 @@ public class SitesPortlet extends MVCPortlet {
 
 		PortalClassInvoker.invoke(
 			true, _applyLayoutSetPrototypesMethodKey, group,
-			publicLayoutSetPrototypeId, privateLayoutSetPrototypeId);
+			publicLayoutSetPrototypeId, privateLayoutSetPrototypeId,
+			serviceContext);
 	}
 
 	private static final String _CLASS_NAME =
@@ -87,6 +88,6 @@ public class SitesPortlet extends MVCPortlet {
 
 	private static MethodKey _applyLayoutSetPrototypesMethodKey = new MethodKey(
 		_CLASS_NAME, "applyLayoutSetPrototypes", Group.class, long.class,
-		long.class);
+		long.class, ServiceContext.class);
 
 }
