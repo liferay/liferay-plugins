@@ -181,8 +181,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 			PortletLocalServiceUtil.destroyRemotePortlet(portlet);
 
-			PortletInstanceFactoryUtil.destroy(portlet);
-
 			_failedWSRPConsumerPortlets.remove(wsrpConsumerPortletId);
 		}
 		catch (Exception e) {
