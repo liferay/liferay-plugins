@@ -16,6 +16,8 @@ package com.liferay.sevencogs.hook.upgrade.v1_0_0;
 
 import com.liferay.documentlibrary.DuplicateFileException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -61,8 +63,6 @@ import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.blogs.service.BlogsEntryLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.imagegallery.model.IGFolder;
 import com.liferay.portlet.imagegallery.model.IGImage;
@@ -115,7 +115,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		titleMap.put(Locale.US, title);
 
 		return AssetCategoryLocalServiceUtil.addCategory(
-			userId, parentCategoryId, titleMap, vocabularyId, null,
+			userId, parentCategoryId, titleMap, null, vocabularyId, null,
 			serviceContext);
 	}
 
@@ -139,11 +139,12 @@ public class UpgradeCompany extends UpgradeProcess {
 		String content = getString(fileName);
 
 		return BlogsEntryLocalServiceUtil.addEntry(
-			userId, title, content, 1, 1, 2008, 0, 0, false, false,
-			new String[0], serviceContext);
+			userId, title, StringPool.BLANK, content, 1, 1, 2008, 0, 0, false,
+			false, new String[0], false, StringPool.BLANK, null,
+			serviceContext);
 	}
 
-	protected DLFileEntry addDLFileEntry(
+	protected FileEntry addFileEntry(
 			long userId, long groupId, long folderId, String fileName,
 			String name, String title, String description,
 			ServiceContext serviceContext)
@@ -156,18 +157,18 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		try {
 			return DLAppLocalServiceUtil.addFileEntry(
-				userId, groupId, folderId, name, title, description,
-				StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
+				userId, groupId, folderId, title, description,
+				StringPool.BLANK, bytes, serviceContext);
 		}
 		catch (DuplicateFileException dfe) {
 			return DLAppLocalServiceUtil.updateFileEntry(
-				userId, groupId, folderId, name, null, title, description,
-				StringPool.BLANK, true, StringPool.BLANK, bytes,
+				userId, groupId, name, title, description,
+				StringPool.BLANK, true, bytes,
 				serviceContext);
 		}
 	}
 
-	protected DLFolder addDLFolder(
+	protected Folder addFolder(
 			long userId, long groupId, String name, String description)
 		throws Exception {
 
@@ -213,14 +214,17 @@ public class UpgradeCompany extends UpgradeProcess {
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
+		Map<Locale, String> titleMap = new HashMap<Locale, String>();
+
+		titleMap.put(Locale.US, title);
+
 		JournalArticle journalArticle =
 			JournalArticleLocalServiceUtil.addArticle(
 				userId, groupId, StringPool.BLANK, true,
-				JournalArticleConstants.DEFAULT_VERSION, title,
-				StringPool.BLANK, content, "general", structureId, templateId,
-				1, 1, 2008, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
-				true, false, StringPool.BLANK, null, null, StringPool.BLANK,
-				serviceContext);
+				JournalArticleConstants.DEFAULT_VERSION, titleMap, null,
+				content, "general", structureId, templateId, 1, 1, 2008, 0, 0,
+				0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true, true, false,
+				StringPool.BLANK, null, null, StringPool.BLANK, serviceContext);
 
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
@@ -294,11 +298,10 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		return MBCategoryLocalServiceUtil.addCategory(
 			userId, 0, name, description, StringPool.BLANK, StringPool.BLANK,
-			StringPool.BLANK, 0, false, StringPool.BLANK, StringPool.BLANK, 1,
-			StringPool.BLANK, false, StringPool.BLANK, 0, false,
-			StringPool.BLANK, StringPool.BLANK, false, serviceContext);
+			StringPool.BLANK, StringPool.BLANK, 0, false, StringPool.BLANK,
+			StringPool.BLANK, 1, StringPool.BLANK, false, StringPool.BLANK, 0,
+			false, StringPool.BLANK, StringPool.BLANK, false, serviceContext);
 	}
-
 	protected MBMessage addMBMessage(
 			long userId, String userName, long groupId, long categoryId,
 			long threadId, long parentMessageId, String subject,
@@ -309,8 +312,9 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		return MBMessageLocalServiceUtil.addMessage(
 			userId, userName, groupId, categoryId, threadId, parentMessageId,
-			subject, body, new ArrayList<ObjectValuePair<String, byte[]>>(),
-			false, -1.0, false, serviceContext);
+			subject, body, StringPool.BLANK,
+			new ArrayList<ObjectValuePair<String, byte[]>>(), false, -1.0,
+			false, serviceContext);
 	}
 
 	protected String addPortletId(
@@ -959,8 +963,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Organization organization =
 			OrganizationLocalServiceUtil.addOrganization(
-				userId, parentOrganizationId, name, type, recursable, regionId,
-				countryId, statusId, comments, serviceContext);
+				userId, parentOrganizationId, name, type, 0, recursable,
+				regionId, countryId, statusId, comments, serviceContext);
 
 		// Group
 
@@ -1616,7 +1620,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		name = "7Cogs, Inc. Mobile";
 
 		organization = OrganizationLocalServiceUtil.addOrganization(
-			userId, parentOrganizationId, name, type, recursable, regionId,
+			userId, parentOrganizationId, name, type, 0, recursable, regionId,
 			countryId, statusId, comments, serviceContext);
 
 		// Group
@@ -1872,53 +1876,50 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Document library
 
-		DLFolder dlFolder = addDLFolder(
+		Folder Folder = addFolder(
 			brunoUser.getUserId(), brunoUser.getGroup().getGroupId(),
 			"Important Documents", "Documents related with the company");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"document", "budget", "2009"});
 
-		addDLFileEntry(
-			brunoUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), "/users/document_library/Budget.xls",
-			"Budget.xls", "Budget", "Budgets for the current year",
-			serviceContext);
+		addFileEntry(
+			brunoUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
+			"/users/document_library/Budget.xls", "Budget.xls", "Budget",
+			"Budgets for the current year", serviceContext);
 
-		addDLFolder(
+		addFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
 			"My Documents", "Personal docs");
 
-		dlFolder = addDLFolder(
+		Folder = addFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
 			"Work Documents", "Works docs");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"document", "notes", "meeting"});
 
-		addDLFileEntry(
-			michelleUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(),
+		addFileEntry(
+			michelleUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
 			"/users/document_library/Notes from the last meeting.doc",
 			"Notes from the last meeting.doc", "Notes from the last meeting",
 			"Important notes", serviceContext);
 
-		addDLFolder(
+		addFolder(
 			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
 			"Documentation", StringPool.BLANK);
 
-		dlFolder = addDLFolder(
+		Folder = addFolder(
 			richardUser.getUserId(),richardUser.getGroup().getGroupId(),
 			"Innovation", "New things");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "features", "2009"});
 
-		addDLFileEntry(
-			richardUser.getUserId(), dlFolder.getGroupId(),
-			dlFolder.getFolderId(), "/users/document_library/New Features.ppt",
-			"New Features.ppt", "New Features",
-			"Features for the current year", serviceContext);
+		addFileEntry(
+			richardUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
+			"/users/document_library/New Features.ppt", "New Features.ppt",
+			"New Features", "Features for the current year", serviceContext);
 
 		// Message boards
 
