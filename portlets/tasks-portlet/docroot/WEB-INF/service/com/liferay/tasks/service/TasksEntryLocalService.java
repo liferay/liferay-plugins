@@ -59,7 +59,8 @@ public interface TasksEntryLocalService {
 	* @param tasksEntryId the primary key for the new tasks entry
 	* @return the new tasks entry
 	*/
-	public com.liferay.tasks.model.TasksEntry createTasksEntry(long tasksEntryId);
+	public com.liferay.tasks.model.TasksEntry createTasksEntry(
+		long tasksEntryId);
 
 	/**
 	* Deletes the tasks entry with the primary key from the database. Also notifies the appropriate model listeners.

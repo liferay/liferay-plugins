@@ -85,7 +85,8 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.tasks.model.TasksEntry findByPrimaryKey(long tasksEntryId)
+	public com.liferay.tasks.model.TasksEntry findByPrimaryKey(
+		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.tasks.NoSuchTasksEntryException;
 
@@ -96,7 +97,8 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @return the tasks entry, or <code>null</code> if a tasks entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.tasks.model.TasksEntry fetchByPrimaryKey(long tasksEntryId)
+	public com.liferay.tasks.model.TasksEntry fetchByPrimaryKey(
+		long tasksEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
@@ -159,7 +161,8 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.tasks.model.TasksEntry findByGroupId_First(long groupId,
+	public com.liferay.tasks.model.TasksEntry findByGroupId_First(
+		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.tasks.NoSuchTasksEntryException;
@@ -1148,8 +1151,9 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @return the range of tasks entries
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.tasks.model.TasksEntry> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.tasks.model.TasksEntry> findAll(
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Finds an ordered range of all the tasks entries.
@@ -1164,8 +1168,8 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	* @return the ordered range of tasks entries
 	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.tasks.model.TasksEntry> findAll(int start,
-		int end,
+	public java.util.List<com.liferay.tasks.model.TasksEntry> findAll(
+		int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

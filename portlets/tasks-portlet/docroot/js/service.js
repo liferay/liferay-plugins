@@ -1,4 +1,4 @@
-Liferay.Service.register("Liferay.Service.TMS", "com.liferay.tms.service", "tms-portlet");
+Liferay.Service.register("Liferay.Service.TMS", "com.liferay.tasks.service", "tasks-portlet");
 
 Liferay.Service.registerClass(
 	Liferay.Service.TMS, "TasksEntry",

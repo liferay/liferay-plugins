@@ -123,7 +123,8 @@ public class TasksEntryUtil {
 	*
 	* @param tasksEntry the tasks entry to cache
 	*/
-	public static void cacheResult(com.liferay.tasks.model.TasksEntry tasksEntry) {
+	public static void cacheResult(
+		com.liferay.tasks.model.TasksEntry tasksEntry) {
 		getPersistence().cacheResult(tasksEntry);
 	}
 

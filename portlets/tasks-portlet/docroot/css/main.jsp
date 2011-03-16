@@ -18,30 +18,30 @@
 
 /* ---------- All Tasks Toggle ---------- */
 
-.tms-portlet-tasks .taglib-search-iterator-page-iterator-bottom {
+.tasks-portlet .taglib-search-iterator-page-iterator-bottom {
 	padding: 0;
 }
 
-.tms-portlet-tasks .taglib-search-iterator-page-iterator-bottom .search-results,
-.tms-portlet-tasks .taglib-search-iterator-page-iterator-bottom .delta-selector {
+.tasks-portlet .taglib-search-iterator-page-iterator-bottom .search-results,
+.tasks-portlet .taglib-search-iterator-page-iterator-bottom .delta-selector {
 	display: none;
 }
 
-.tms-portlet-tasks .taglib-search-iterator-page-iterator-bottom .search-pages {
+.tasks-portlet .taglib-search-iterator-page-iterator-bottom .search-pages {
 	padding-top: 5px;
 }
 
-.tms-portlet-tasks .tasks-options {
+.tasks-portlet .tasks-options {
 	height: 1em;
 	margin-top: 5px;
 	opacity: .6;
 }
 
-.tms-portlet-tasks .tasks-options table {
+.tasks-portlet .tasks-options table {
 	float: right;
 }
 
-.tms-portlet-tasks .tasks-options td {
+.tasks-portlet .tasks-options td {
 	padding-left: 5px;
 }
 
@@ -77,7 +77,7 @@
 
 /* ---------- Controls ---------- */
 
-.tms-portlet-tasks .control-wrapper {
+.tasks-portlet .control-wrapper {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	border: 1px solid #C8C9CA;
@@ -86,28 +86,28 @@
 	padding: 6px;
 }
 
-.tms-portlet-tasks .control-wrapper a {
+.tasks-portlet .control-wrapper a {
 	background: no-repeat 0% 50%;
 	padding: 1px 10px 1px 20px;
 }
 
-.tms-portlet-tasks .control-wrapper .add-task {
+.tasks-portlet .control-wrapper .add-task {
 	background-image: url(<%= themeImagesPath %>/common/add.png);
 }
 
-.tms-portlet-tasks .control-wrapper .filter-tasks {
+.tasks-portlet .control-wrapper .filter-tasks {
 	background-image: url(<%= themeImagesPath %>/common/tag.png);
 	padding-right: 0;
 	float: right;
 }
 
-.tms-portlet-tasks .control-wrapper .permission-tasks {
+.tasks-portlet .control-wrapper .permission-tasks {
 	background-image: url(<%= themeImagesPath %>/common/permissions.png);
 }
 
 /* ---------- Filter ---------- */
 
-.tms-portlet-tasks .filter-wrapper {
+.tasks-portlet .filter-wrapper {
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
 	background: #DFF4FF;
@@ -117,7 +117,7 @@
 	margin: 0 0 1em;
 }
 
-.tms-portlet-tasks .filter-wrapper:after {
+.tasks-portlet .filter-wrapper:after {
 	border: 10px solid;
 	border-color: transparent transparent #A7CEDF;
 	content: "";
@@ -126,58 +126,58 @@
 	right: 10px;
 }
 
-.tms-portlet-tasks .filter-wrapper h3 {
+.tasks-portlet .filter-wrapper h3 {
 	background: #A7CEDF;
 	font-size: 11px;
 	margin: 0;
 	padding: 2px 5px;
 }
 
-.tms-portlet-tasks .filter-container {
+.tasks-portlet .filter-container {
 	padding: 0.2em 0.5em;
 }
 
-.tms-portlet-tasks .filter-control-container {
+.tasks-portlet .filter-control-container {
 	padding-top: 0;
 	text-align: right;
 }
 
-.tms-portlet-tasks .asset-tag-filter .asset-tag {
+.tasks-portlet .asset-tag-filter .asset-tag {
 	background: url(<%= request.getContextPath() %>/images/unselected.png) no-repeat 0% 50%;
 	padding-left: 16px;
 	margin-right: 0.5em;
 }
 
-.tms-portlet-tasks .asset-tag-filter .asset-tag.selected {
+.tasks-portlet .asset-tag-filter .asset-tag.selected {
 	background-image: url(<%= request.getContextPath() %>/images/selected.png);
 	font-weight: bold;
 }
 
-.tms-portlet-tasks .group-filter select {
+.tasks-portlet .group-filter select {
 	min-width: 175px;
 }
 
 /* ---------- Priority ---------- */
 
-.tms-portlet-tasks .tasks-title {
+.tasks-portlet .tasks-title {
 	padding: 1px 0 1px 20px;
 }
 
-.tms-portlet-tasks .tasks-title.high {
+.tasks-portlet .tasks-title.high {
 	background: url(<%= request.getContextPath() %>/images/priority_high.png) no-repeat;
 }
 
-.tms-portlet-tasks .tasks-title.low {
+.tasks-portlet .tasks-title.low {
 	background: url(<%= request.getContextPath() %>/images/priority_low.png) no-repeat;
 }
 
-.tms-portlet-tasks .tasks-title.normal {
+.tasks-portlet .tasks-title.normal {
 	background: url(<%= request.getContextPath() %>/images/priority_normal.png) no-repeat;
 }
 
 /* ---------- Progress ---------- */
 
-.tms-portlet-tasks .progress-wrapper {
+.tasks-portlet .progress-wrapper {
 	background: #FFF;
 	border: 1px solid #CCC;
 	font-size: 11px;
@@ -186,17 +186,17 @@
 	width: 100px;
 }
 
-.tms-portlet-tasks .progress {
+.tasks-portlet .progress {
 	background: #E8EFF4;
 	height: 100%;
 }
 
-.tms-portlet-tasks .progress-wrapper div {
+.tasks-portlet .progress-wrapper div {
 	height: 15px;
 	width: 100px;
 }
 
-.tms-portlet-tasks .progress-wrapper .new-progress {
+.tasks-portlet .progress-wrapper .new-progress {
 	background: #E8EFF4;
 	left: 0;
 	position: absolute;
@@ -205,7 +205,7 @@
 	z-index: 9;
 }
 
-.tms-portlet-tasks .due-date {
+.tasks-portlet .due-date {
 	left: 0;
 	position: absolute;
 	text-align: center;
@@ -213,7 +213,7 @@
 	z-index: 10;
 }
 
-.tms-portlet-tasks .progress-indicator {
+.tasks-portlet .progress-indicator {
 	left: 0;
 	position: absolute;
 	text-align: center;
@@ -221,7 +221,7 @@
 	z-index: 11;
 }
 
-.tms-portlet-tasks .progress-selector {
+.tasks-portlet .progress-selector {
 	background: url(<%= themeImagesPath %>/spacer.png);
 	left: 0;
 	position: absolute;
@@ -229,7 +229,7 @@
 	z-index: 12;
 }
 
-.tms-portlet-tasks .progress-selector a {
+.tasks-portlet .progress-selector a {
 	display: block;
 	float: left;
 	height: 100%;
@@ -238,39 +238,39 @@
 
 /* ---------- Result Style ---------- */
 
-.tms-portlet-tasks .result-data {
+.tasks-portlet .result-data {
 	color: #777;
 }
 
-.tms-portlet-tasks .result-data span {
+.tasks-portlet .result-data span {
 	margin-right: 1em;
 	white-space: nowrap;
 }
 
 /* ---------- Table Style ---------- */
 
-.tms-portlet-tasks .list-wrapper .col-2 {
+.tasks-portlet .list-wrapper .col-2 {
 	width: 105px;
 }
 
-.tms-portlet-tasks .list-wrapper .col-3 {
+.tasks-portlet .list-wrapper .col-3 {
 	width: 16px;
 }
 
 /* ---------- Tags ---------- */
 
-.tms-portlet-tasks .tags-wrapper {
+.tasks-portlet .tags-wrapper {
 	position: relative;
 	width: 16px;
 }
 
-.tms-portlet-tasks .tags-wrapper .icon {
+.tasks-portlet .tags-wrapper .icon {
 	background: url(<%= themeImagesPath %>/common/tag.png) no-repeat;
 	height: 16px;
 	width: 16px;
 }
 
-.tms-portlet-tasks .tags {
+.tasks-portlet .tags {
 	background: #E5F6FF;
 	border: 1px solid #B5D7E5;
 	max-width: 350px;
@@ -282,7 +282,7 @@
 	z-index:20;
 }
 
-.ie6 .tms-portlet-tasks .tags {
+.ie6 .tasks-portlet .tags {
 	widht: 250px;
 }
 

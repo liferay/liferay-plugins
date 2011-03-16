@@ -250,8 +250,8 @@ public class TasksEntryLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static com.liferay.tasks.model.TasksEntry addTasksEntry(long userId,
-		java.lang.String title, int priority, long assigneeUserId,
+	public static com.liferay.tasks.model.TasksEntry addTasksEntry(
+		long userId, java.lang.String title, int priority, long assigneeUserId,
 		int dueDateMonth, int dueDateDay, int dueDateYear, int dueDateHour,
 		int dueDateMinute, boolean neverDue,
 		com.liferay.portal.service.ServiceContext serviceContext)

@@ -329,8 +329,9 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		return tasksEntry;
 	}
 
-	public TasksEntry updateImpl(com.liferay.tasks.model.TasksEntry tasksEntry,
-		boolean merge) throws SystemException {
+	public TasksEntry updateImpl(
+		com.liferay.tasks.model.TasksEntry tasksEntry, boolean merge)
+		throws SystemException {
 		tasksEntry = toUnwrappedModel(tasksEntry);
 
 		Session session = null;

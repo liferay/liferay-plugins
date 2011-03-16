@@ -48,7 +48,8 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService {
 	* @param tasksEntryId the primary key for the new tasks entry
 	* @return the new tasks entry
 	*/
-	public com.liferay.tasks.model.TasksEntry createTasksEntry(long tasksEntryId) {
+	public com.liferay.tasks.model.TasksEntry createTasksEntry(
+		long tasksEntryId) {
 		return _tasksEntryLocalService.createTasksEntry(tasksEntryId);
 	}
 

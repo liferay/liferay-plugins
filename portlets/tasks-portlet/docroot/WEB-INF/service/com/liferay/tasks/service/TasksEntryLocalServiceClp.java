@@ -182,7 +182,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		return (com.liferay.tasks.model.TasksEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public com.liferay.tasks.model.TasksEntry createTasksEntry(long tasksEntryId) {
+	public com.liferay.tasks.model.TasksEntry createTasksEntry(
+		long tasksEntryId) {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_createTasksEntryMethodKey1,
