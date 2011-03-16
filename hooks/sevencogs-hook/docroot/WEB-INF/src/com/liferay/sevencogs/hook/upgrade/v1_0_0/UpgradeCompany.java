@@ -144,7 +144,7 @@ public class UpgradeCompany extends UpgradeProcess {
 			serviceContext);
 	}
 
-	protected FileEntry addFileEntry(
+	protected FileEntry addDLFileEntry(
 			long userId, long groupId, long folderId, String fileName,
 			String name, String title, String description,
 			ServiceContext serviceContext)
@@ -167,7 +167,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		}
 	}
 
-	protected Folder addFolder(
+	protected Folder addDLFolder(
 			long userId, long groupId, String name, String description)
 		throws Exception {
 
@@ -1875,47 +1875,47 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		// Document library
 
-		Folder Folder = addFolder(
+		Folder Folder = addDLFolder(
 			brunoUser.getUserId(), brunoUser.getGroup().getGroupId(),
 			"Important Documents", "Documents related with the company");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"document", "budget", "2009"});
 
-		addFileEntry(
+		addDLFileEntry(
 			brunoUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
 			"/users/document_library/Budget.xls", "Budget.xls", "Budget",
 			"Budgets for the current year", serviceContext);
 
-		addFolder(
+		addDLFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
 			"My Documents", "Personal docs");
 
-		Folder = addFolder(
+		Folder = addDLFolder(
 			michelleUser.getUserId(), michelleUser.getGroup().getGroupId(),
 			"Work Documents", "Works docs");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"document", "notes", "meeting"});
 
-		addFileEntry(
+		addDLFileEntry(
 			michelleUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
 			"/users/document_library/Notes from the last meeting.doc",
 			"Notes from the last meeting.doc", "Notes from the last meeting",
 			"Important notes", serviceContext);
 
-		addFolder(
+		addDLFolder(
 			richardUser.getUserId(), richardUser.getGroup().getGroupId(),
 			"Documentation", StringPool.BLANK);
 
-		Folder = addFolder(
+		Folder = addDLFolder(
 			richardUser.getUserId(),richardUser.getGroup().getGroupId(),
 			"Innovation", "New things");
 
 		serviceContext.setAssetTagNames(
 			new String[] {"new", "features", "2009"});
 
-		addFileEntry(
+		addDLFileEntry(
 			richardUser.getUserId(), Folder.getGroupId(), Folder.getFolderId(),
 			"/users/document_library/New Features.ppt", "New Features.ppt",
 			"New Features", "Features for the current year", serviceContext);
