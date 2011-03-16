@@ -18,6 +18,7 @@ import com.liferay.counter.service.CounterLocalService;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalService;
+import com.liferay.opensocial.service.GadgetService;
 import com.liferay.opensocial.service.OAuthConsumerLocalService;
 import com.liferay.opensocial.service.OAuthTokenLocalService;
 import com.liferay.opensocial.service.persistence.GadgetPersistence;
@@ -259,6 +260,24 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
 	 */
 	public void setGadgetLocalService(GadgetLocalService gadgetLocalService) {
 		this.gadgetLocalService = gadgetLocalService;
+	}
+
+	/**
+	 * Gets the gadget remote service.
+	 *
+	 * @return the gadget remote service
+	 */
+	public GadgetService getGadgetService() {
+		return gadgetService;
+	}
+
+	/**
+	 * Sets the gadget remote service.
+	 *
+	 * @param gadgetService the gadget remote service
+	 */
+	public void setGadgetService(GadgetService gadgetService) {
+		this.gadgetService = gadgetService;
 	}
 
 	/**
@@ -521,6 +540,8 @@ public abstract class GadgetLocalServiceBaseImpl implements GadgetLocalService,
 
 	@BeanReference(type = GadgetLocalService.class)
 	protected GadgetLocalService gadgetLocalService;
+	@BeanReference(type = GadgetService.class)
+	protected GadgetService gadgetService;
 	@BeanReference(type = GadgetPersistence.class)
 	protected GadgetPersistence gadgetPersistence;
 	@BeanReference(type = OAuthConsumerLocalService.class)

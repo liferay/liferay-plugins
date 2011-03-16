@@ -16,6 +16,7 @@ package com.liferay.opensocial.service.messaging;
 
 import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.service.GadgetServiceUtil;
 import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 
@@ -38,6 +39,7 @@ public class ClpMessageListener extends BaseMessageListener {
 				servletContextName.equals(getServletContextName())) {
 			GadgetLocalServiceUtil.clearService();
 
+			GadgetServiceUtil.clearService();
 			OAuthConsumerLocalServiceUtil.clearService();
 
 			OAuthTokenLocalServiceUtil.clearService();

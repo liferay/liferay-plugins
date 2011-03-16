@@ -21,9 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.opensocial.service.http.GadgetServiceSoap}.
  *
  * @author    Brian Wing Shun Chan
+ * @see       com.liferay.opensocial.service.http.GadgetServiceSoap
  * @generated
  */
 public class GadgetSoap implements Serializable {

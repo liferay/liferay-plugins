@@ -19,6 +19,15 @@
 		<footer-portlet-javascript>/gadget/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>opensocial-portlet-gadget</css-class-wrapper>
 	</portlet>
+	<portlet>
+		<portlet-name>3</portlet-name>
+		<use-default-template>false</use-default-template>
+		<header-portlet-javascript>/add_gadget/js/main.js</header-portlet-javascript>
+		<footer-portlet-javascript>/js/service.js</footer-portlet-javascript>
+		<css-class-wrapper>opensocial-portlet-add-gadget</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
+		<system>true</system>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>

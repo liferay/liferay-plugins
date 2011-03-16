@@ -16,6 +16,7 @@ package com.liferay.opensocial.model.impl;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.model.GadgetModel;
+import com.liferay.opensocial.model.GadgetSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -33,7 +34,9 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * The base model implementation for the Gadget service. Represents a row in the &quot;OpenSocial_Gadget&quot; database table, with each column mapped to a property of this class.
@@ -79,6 +82,44 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.opensocial.model.Gadget"),
 			true);
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static Gadget toModel(GadgetSoap soapModel) {
+		Gadget model = new GadgetImpl();
+
+		model.setUuid(soapModel.getUuid());
+		model.setGadgetId(soapModel.getGadgetId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setCreateDate(soapModel.getCreateDate());
+		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setName(soapModel.getName());
+		model.setUrl(soapModel.getUrl());
+		model.setPortletCategoryNames(soapModel.getPortletCategoryNames());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<Gadget> toModels(GadgetSoap[] soapModels) {
+		List<Gadget> models = new ArrayList<Gadget>(soapModels.length);
+
+		for (GadgetSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.Gadget"));
 
