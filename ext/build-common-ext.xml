@@ -124,18 +124,22 @@ then "app.server.dir" should point to
 
 		<antcall target="compile-with-portal-class-loader">
 			<param name="module.name" value="util-bridges" />
+			<param name="class.path" value="docroot/WEB-INF/ext-service/classes" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
 			<param name="module.name" value="util-java" />
+			<param name="class.path" value="docroot/WEB-INF/ext-service/classes;docroot/WEB-INF/ext-util-bridges/classes" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
 			<param name="module.name" value="util-taglib" />
+			<param name="class.path" value="docroot/WEB-INF/ext-service/classes;docroot/WEB-INF/ext-util-bridges/classes;docroot/WEB-INF/ext-util-java/classes" />
 		</antcall>
 
 		<antcall target="compile-with-portal-class-loader">
 			<param name="module.name" value="impl" />
+			<param name="class.path" value="docroot/WEB-INF/ext-service/classes;docroot/WEB-INF/ext-util-bridges/classes;docroot/WEB-INF/ext-util-java/classes;docroot/WEB-INF/ext-util-taglib/classes" />
 		</antcall>
 
 		<delete>
@@ -178,11 +182,7 @@ loader.
 		<path id="plugin-lib.classpath">
 			<fileset dir="docroot/WEB-INF/ext-lib/global" includes="*.jar" />
 			<fileset dir="docroot/WEB-INF/ext-lib/portal" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/ext-service/classes" />
-			<pathelement location="docroot/WEB-INF/ext-util-bridges/classes" />
-			<pathelement location="docroot/WEB-INF/ext-util-java/classes" />
-			<pathelement location="docroot/WEB-INF/ext-util-taglib/classes" />
-			<pathelement location="docroot/WEB-INF/ext-impl/classes" />
+			<pathelement path="${class.path}" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 		</path>
 
