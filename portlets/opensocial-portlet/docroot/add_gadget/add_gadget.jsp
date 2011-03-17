@@ -20,7 +20,7 @@
 	<div id="<portlet:namespace />error"></div>
 
 	<aui:fieldset>
-		<aui:input name="url" model="<%= Gadget.class %>" />
+		<aui:input model="<%= Gadget.class %>" name="url" />
 
 		<aui:button-row>
 			<aui:button name="submit" value="submit" />
@@ -37,10 +37,12 @@
 			var placeHolder = A.Node.create('<div class="loading-animation" />');
 
 			var layoutOptions = Layout.options;
+
 			var firstColumn = A.one(layoutOptions.dropNodes);
 
 			if (firstColumn) {
 				var dropColumn = firstColumn.one(layoutOptions.dropContainer);
+
 				var referencePortlet = Layout.findReferencePortlet(dropColumn);
 
 				if (referencePortlet) {
@@ -56,9 +58,9 @@
 			Liferay.Service.OpenSocial.Gadget.addGadget(
 				{
 					companyId: themeDisplay.getCompanyId(),
-					url: A.one('#<portlet:namespace />url').get('value'),
 					portletCategoryNames: 'category.gadgets',
-					serviceContext: A.JSON.stringify({})
+					serviceContext: A.JSON.stringify({}),
+					url: A.one('#<portlet:namespace />url').get('value')
 				},
 				function(response) {
 					if (response.exception) {
@@ -90,9 +92,9 @@
 							Layout.syncDraggableClassUI();
 							Layout.updatePortletDropZones(portletBoundary);
 						},
+						placeHolder: placeHolder,
 						plid: themeDisplay.getPlid(),
-						portletId: portletId,
-						placeHolder: placeHolder
+						portletId: portletId
 					};
 
 					Liferay.Portlet.add(portletOptions);

@@ -21,18 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 
 /**
- * The implementation of the gadget remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.opensocial.service.GadgetService} interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see com.liferay.opensocial.service.base.GadgetServiceBaseImpl
- * @see com.liferay.opensocial.service.GadgetServiceUtil
  */
 public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 
