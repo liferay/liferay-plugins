@@ -322,6 +322,85 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Filters by the user's permissions and finds all the microblogs entries where companyId = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @return the matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByCompanyId(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByCompanyId(companyId);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the microblogs entries where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @return the range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByCompanyId(
+		long companyId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByCompanyId(companyId, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param companyId the company ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByCompanyId(
+		long companyId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByCompanyId(companyId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where companyId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param microblogsEntryId the primary key of the current microblogs entry
+	* @param companyId the company ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next microblogs entry
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByCompanyId_PrevAndNext(
+		long microblogsEntryId, long companyId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByCompanyId_PrevAndNext(microblogsEntryId,
+			companyId, orderByComparator);
+	}
+
+	/**
 	* Finds all the microblogs entries where userId = &#63;.
 	*
 	* @param userId the user ID to search with
@@ -437,6 +516,83 @@ public class MicroblogsEntryUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(microblogsEntryId, userId,
+			orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the microblogs entries where userId = &#63;.
+	*
+	* @param userId the user ID to search with
+	* @return the matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByUserId(
+		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByUserId(userId);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the microblogs entries where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @return the range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByUserId(userId, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByUserId(
+		long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByUserId(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param microblogsEntryId the primary key of the current microblogs entry
+	* @param userId the user ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next microblogs entry
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByUserId_PrevAndNext(
+		long microblogsEntryId, long userId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByUserId_PrevAndNext(microblogsEntryId, userId,
 			orderByComparator);
 	}
 
@@ -567,6 +723,88 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Filters by the user's permissions and finds all the microblogs entries where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID to search with
+	* @param type the type to search with
+	* @return the matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByU_T(
+		long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByU_T(userId, type);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the microblogs entries where userId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID to search with
+	* @param type the type to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @return the range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByU_T(
+		long userId, int type, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByU_T(userId, type, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where userId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param userId the user ID to search with
+	* @param type the type to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByU_T(
+		long userId, int type, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByU_T(userId, type, start, end, orderByComparator);
+	}
+
+	/**
+	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param microblogsEntryId the primary key of the current microblogs entry
+	* @param userId the user ID to search with
+	* @param type the type to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next microblogs entry
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByU_T_PrevAndNext(
+		long microblogsEntryId, long userId, int type,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByU_T_PrevAndNext(microblogsEntryId, userId,
+			type, orderByComparator);
+	}
+
+	/**
 	* Finds all the microblogs entries where type = &#63; and receiverUserId = &#63;.
 	*
 	* @param type the type to search with
@@ -692,6 +930,89 @@ public class MicroblogsEntryUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
 				   .findByT_R_PrevAndNext(microblogsEntryId, type,
+			receiverUserId, orderByComparator);
+	}
+
+	/**
+	* Filters by the user's permissions and finds all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	*
+	* @param type the type to search with
+	* @param receiverUserId the receiver user ID to search with
+	* @return the matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_R(
+		int type, long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByT_R(type, receiverUserId);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param type the type to search with
+	* @param receiverUserId the receiver user ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @return the range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_R(
+		int type, long receiverUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByT_R(type, receiverUserId, start, end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param type the type to search with
+	* @param receiverUserId the receiver user ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_R(
+		int type, long receiverUserId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByT_R(type, receiverUserId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverUserId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param microblogsEntryId the primary key of the current microblogs entry
+	* @param type the type to search with
+	* @param receiverUserId the receiver user ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next microblogs entry
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByT_R_PrevAndNext(
+		long microblogsEntryId, int type, long receiverUserId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByT_R_PrevAndNext(microblogsEntryId, type,
 			receiverUserId, orderByComparator);
 	}
 
@@ -828,6 +1149,92 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Filters by the user's permissions and finds all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* @param type the type to search with
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @return the matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_RMEI(
+		int type, long receiverMicroblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByT_RMEI(type, receiverMicroblogsEntryId);
+	}
+
+	/**
+	* Filters by the user's permissions and finds a range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param type the type to search with
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @return the range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_RMEI(
+		int type, long receiverMicroblogsEntryId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByT_RMEI(type, receiverMicroblogsEntryId, start,
+			end);
+	}
+
+	/**
+	* Filters by the user's permissions and finds an ordered range of all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param type the type to search with
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param start the lower bound of the range of microblogs entries to return
+	* @param end the upper bound of the range of microblogs entries to return (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> filterFindByT_RMEI(
+		int type, long receiverMicroblogsEntryId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByT_RMEI(type, receiverMicroblogsEntryId, start,
+			end, orderByComparator);
+	}
+
+	/**
+	* Filters the microblogs entries before and after the current microblogs entry in the ordered set where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	* </p>
+	*
+	* @param microblogsEntryId the primary key of the current microblogs entry
+	* @param type the type to search with
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next microblogs entry
+	* @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.microblogs.model.MicroblogsEntry[] filterFindByT_RMEI_PrevAndNext(
+		long microblogsEntryId, int type, long receiverMicroblogsEntryId,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.microblogs.NoSuchEntryException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByT_RMEI_PrevAndNext(microblogsEntryId, type,
+			receiverMicroblogsEntryId, orderByComparator);
+	}
+
+	/**
 	* Finds all the microblogs entries.
 	*
 	* @return the microblogs entries
@@ -957,6 +1364,18 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Filters by the user's permissions and counts all the microblogs entries where companyId = &#63;.
+	*
+	* @param companyId the company ID to search with
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByCompanyId(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByCompanyId(companyId);
+	}
+
+	/**
 	* Counts all the microblogs entries where userId = &#63;.
 	*
 	* @param userId the user ID to search with
@@ -966,6 +1385,18 @@ public class MicroblogsEntryUtil {
 	public static int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByUserId(userId);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the microblogs entries where userId = &#63;.
+	*
+	* @param userId the user ID to search with
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByUserId(userId);
 	}
 
 	/**
@@ -982,6 +1413,19 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Filters by the user's permissions and counts all the microblogs entries where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID to search with
+	* @param type the type to search with
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByU_T(long userId, int type)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByU_T(userId, type);
+	}
+
+	/**
 	* Counts all the microblogs entries where type = &#63; and receiverUserId = &#63;.
 	*
 	* @param type the type to search with
@@ -995,6 +1439,19 @@ public class MicroblogsEntryUtil {
 	}
 
 	/**
+	* Filters by the user's permissions and counts all the microblogs entries where type = &#63; and receiverUserId = &#63;.
+	*
+	* @param type the type to search with
+	* @param receiverUserId the receiver user ID to search with
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByT_R(int type, long receiverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByT_R(type, receiverUserId);
+	}
+
+	/**
 	* Counts all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
 	*
 	* @param type the type to search with
@@ -1005,6 +1462,21 @@ public class MicroblogsEntryUtil {
 	public static int countByT_RMEI(int type, long receiverMicroblogsEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByT_RMEI(type, receiverMicroblogsEntryId);
+	}
+
+	/**
+	* Filters by the user's permissions and counts all the microblogs entries where type = &#63; and receiverMicroblogsEntryId = &#63;.
+	*
+	* @param type the type to search with
+	* @param receiverMicroblogsEntryId the receiver microblogs entry ID to search with
+	* @return the number of matching microblogs entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByT_RMEI(int type,
+		long receiverMicroblogsEntryId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByT_RMEI(type, receiverMicroblogsEntryId);
 	}
 
 	/**
