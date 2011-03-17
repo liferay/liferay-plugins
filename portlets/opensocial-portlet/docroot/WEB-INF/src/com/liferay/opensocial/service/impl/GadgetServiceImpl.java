@@ -16,8 +16,10 @@ package com.liferay.opensocial.service.impl;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.base.GadgetServiceBaseImpl;
+import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 
 /**
@@ -29,6 +31,10 @@ public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 			long companyId, String url, String portletCategoryNames,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		GadgetPermission.check(
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_ENTRY);
 
 		return gadgetLocalService.addGadget(
 			companyId, url, portletCategoryNames, serviceContext);
