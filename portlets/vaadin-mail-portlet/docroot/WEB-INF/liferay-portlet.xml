@@ -5,8 +5,10 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
+		<indexer-class>com.liferay.mail.util.MessageIndexer</indexer-class>
 		<ajaxable>false</ajaxable>
 		<header-portlet-css>/css/vaadin.css</header-portlet-css>
+		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>mail-portlet-vaadin</css-class-wrapper>
 	</portlet>
 	<role-mapper>
