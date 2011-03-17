@@ -4,10 +4,8 @@ Liferay.Service.registerClass(
 	Liferay.Service.Microblogs, "MicroblogsEntry",
 	{
 		addMicroblogsEntry: true,
-		getMicroblogsEntriesCount: true,
 		deleteMicroblogsEntry: true,
 		getMicroblogsEntry: true,
-		getMicroblogsEntries: true,
 		updateMicroblogsEntry: true
 	}
 );
