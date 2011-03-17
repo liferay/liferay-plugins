@@ -104,7 +104,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 				</liferay-ui:panel>
 
 				<%
-				String[] fileNames = FileUtil.listFiles(_PORTAL_WEB_DIR + _CONTACTS_CENTER_EXT_DIR);
+				String[] fileNames = FileUtil.listFiles(PortalUtil.getPortalWebDir() + "/html/portlet/enterprise_admin/contacts_center/");
 
 				for (String fileName : fileNames) {
 					if (!fileName.endsWith(".jsp")) {
@@ -120,7 +120,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 
 					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="<%= title %>">
 						<div class="<%= cssClass %>">
-							<liferay-util:include page="<%= _CONTACTS_CENTER_EXT_DIR + fileName %>" />
+							<liferay-util:include page="<%= "/html/portlet/enterprise_admin/contacts_center/" + fileName %>" />
 						</div>
 					</liferay-ui:panel>
 
@@ -157,9 +157,3 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 		<liferay-util:include page="/contacts_center/user_action.jsp" portletId="<%= portletDisplay.getId() %>" />
 	</aui:column>
 </aui:layout>
-
-<%!
-private static final String _CONTACTS_CENTER_EXT_DIR = "/html/portlet/enterprise_admin/contacts_center/";
-
-private static final String _PORTAL_WEB_DIR = PortalUtil.getPortalWebDir();
-%>
