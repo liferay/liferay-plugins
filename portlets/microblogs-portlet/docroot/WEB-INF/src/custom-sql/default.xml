@@ -13,11 +13,10 @@
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
-					(MicroblogsEntry.socialRelationType = ?) OR
-					(SocialRelation.userId1 = ?)
-				) AND
-				(
-					(MicroblogsEntry.userId = ?) OR
+					(
+						(MicroblogsEntry.socialRelationType = ?) OR
+						(SocialRelation.userId1 = ?)
+					) AND
 					(
 						MicroblogsEntry.userId IN
 						(
@@ -28,7 +27,8 @@
 							[$JOIN_BY_SOCIAL_RELATION$]
 						)
 					)
-				)
+				) OR
+				(MicroblogsEntry.userId = ?)
 			GROUP BY
 				MicroblogsEntry.microblogsEntryId
 		]]>
@@ -45,11 +45,10 @@
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
 				(
-					(MicroblogsEntry.socialRelationType = ?) OR
-					(SocialRelation.userId1 = ?)
-				) AND
-				(
-					(MicroblogsEntry.userId = ?) OR
+					(
+						(MicroblogsEntry.socialRelationType = ?) OR
+						(SocialRelation.userId1 = ?)
+					) AND
 					(
 						MicroblogsEntry.userId IN
 						(
@@ -60,7 +59,8 @@
 							[$JOIN_BY_SOCIAL_RELATION$]
 						)
 					)
-				)
+				) OR
+				(MicroblogsEntry.userId = ?)
 			GROUP BY
 				MicroblogsEntry.microblogsEntryId
 			ORDER BY
