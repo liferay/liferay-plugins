@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_VU">
+		<![CDATA[
+			SELECT
+				COUNT(*) AS COUNT_VALUE
+			FROM
+				MicroblogsEntry
+			LEFT JOIN
+				SocialRelation ON
+					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
+			WHERE
+			(
+				(MicroblogsEntry.socialRelationType = ?) OR
+				(SocialRelation.userId1 = ?)
+			) AND
+			(
+				MicroblogsEntry.userId IN
+				(
+					SELECT
+						User_.userId
+					FROM
+						User_
+					[$JOIN_BY_SOCIAL_RELATION$]
+				)
+			) OR
+			(MicroblogsEntry.userId = ?)
+		]]>
+	</sql>
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByU_VU">
+		<![CDATA[
+			SELECT
+				*
+			FROM
+				MicroblogsEntry
+			LEFT JOIN
+				SocialRelation ON
+					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
+					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
+			WHERE
+			(
+				(MicroblogsEntry.socialRelationType = ?) OR
+				(SocialRelation.userId1 = ?)
+			) AND
+			(
+				MicroblogsEntry.userId IN
+				(
+					SELECT
+						User_.userId
+					FROM
+						User_
+					[$JOIN_BY_SOCIAL_RELATION$]
+				)
+			) OR
+			(MicroblogsEntry.userId = ?)
+		]]>
+	</sql>
+</custom-sql>
