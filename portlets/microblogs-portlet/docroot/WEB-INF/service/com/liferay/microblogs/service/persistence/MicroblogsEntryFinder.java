@@ -18,10 +18,10 @@ package com.liferay.microblogs.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface MicroblogsEntryFinder {
-	public int countByU_VU(long userId, long viewUserId)
+	public int countByU_MU(long userId, long microblogsEntryUserId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_VU(
-		long userId, long viewUserId, int start, int end)
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_MU(
+		long userId, long microblogsEntryUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -36,11 +36,11 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		_deleteMicroblogsEntryMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteMicroblogsEntry", long.class);
 
-		_getMicroblogsEntryMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getMicroblogsEntry", long.class);
-
-		_getMicroblogsEntriesMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMicroblogsEntriesMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMicroblogsEntries", long.class, int.class, int.class);
+
+		_getMicroblogsEntryMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMicroblogsEntry", long.class);
 
 		_updateMicroblogsEntryMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateMicroblogsEntry", long.class, java.lang.String.class,
@@ -84,13 +84,13 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		return (com.liferay.microblogs.model.MicroblogsEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getMicroblogsEntriesCount(long viewUserId)
+	public int getMicroblogsEntriesCount(long microblogsEntryUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesCountMethodKey1,
-				viewUserId);
+				microblogsEntryUserId);
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
@@ -144,13 +144,46 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		}
 	}
 
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long microblogsEntryUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesMethodKey3,
+				microblogsEntryUserId, start, end);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.microblogs.model.MicroblogsEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public com.liferay.microblogs.model.MicroblogsEntry getMicroblogsEntry(
 		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntryMethodKey3,
+		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntryMethodKey4,
 				microblogsEntryId);
 
 		try {
@@ -175,39 +208,6 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		}
 
 		return (com.liferay.microblogs.model.MicroblogsEntry)ClpSerializer.translateOutput(returnObj);
-	}
-
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long viewUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesMethodKey4,
-				viewUserId, start, end);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (java.util.List<com.liferay.microblogs.model.MicroblogsEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
@@ -254,7 +254,7 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	private MethodKey _addMicroblogsEntryMethodKey0;
 	private MethodKey _getMicroblogsEntriesCountMethodKey1;
 	private MethodKey _deleteMicroblogsEntryMethodKey2;
-	private MethodKey _getMicroblogsEntryMethodKey3;
-	private MethodKey _getMicroblogsEntriesMethodKey4;
+	private MethodKey _getMicroblogsEntriesMethodKey3;
+	private MethodKey _getMicroblogsEntryMethodKey4;
 	private MethodKey _updateMicroblogsEntryMethodKey5;
 }

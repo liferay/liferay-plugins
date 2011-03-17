@@ -40,10 +40,10 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService {
 			serviceContext);
 	}
 
-	public int getMicroblogsEntriesCount(long viewUserId)
+	public int getMicroblogsEntriesCount(long microblogsEntryUserId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryService.getMicroblogsEntriesCount(viewUserId);
+		return _microblogsEntryService.getMicroblogsEntriesCount(microblogsEntryUserId);
 	}
 
 	public void deleteMicroblogsEntry(long microblogsEntryId)
@@ -52,19 +52,19 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService {
 		_microblogsEntryService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
+		long microblogsEntryUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryService.getMicroblogsEntries(microblogsEntryUserId,
+			start, end);
+	}
+
 	public com.liferay.microblogs.model.MicroblogsEntry getMicroblogsEntry(
 		long microblogsEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryService.getMicroblogsEntry(microblogsEntryId);
-	}
-
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		long viewUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryService.getMicroblogsEntries(viewUserId, start,
-			end);
 	}
 
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
