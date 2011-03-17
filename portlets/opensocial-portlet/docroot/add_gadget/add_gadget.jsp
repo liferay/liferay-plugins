@@ -58,9 +58,9 @@
 			Liferay.Service.OpenSocial.Gadget.addGadget(
 				{
 					companyId: themeDisplay.getCompanyId(),
+					url: A.one('#<portlet:namespace />url').get('value'),
 					portletCategoryNames: 'category.gadgets',
-					serviceContext: A.JSON.stringify({}),
-					url: A.one('#<portlet:namespace />url').get('value')
+					serviceContext: A.JSON.stringify({})
 				},
 				function(response) {
 					if (response.exception) {
