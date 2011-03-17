@@ -26,7 +26,7 @@ String aboutMe = HtmlUtil.escape(ExpandoValueLocalServiceUtil.getData(User.class
 <input name="<portlet:namespace />redirect" type="hidden" value="<%= redirectURL %>" />
 
 <div class="portlet-msg-info">
-	Use <a href="<%= themeDisplay.getURLMyAccount() %>">My Account</a> to change regular account settings like profile picture or password.
+	<liferay-ui:message arguments="<%= new Object[] {themeDisplay.getURLMyAccount()} %>" key="use-my-account-to-change-regular-account-settings" />
 </div>
 
 <table class="lfr-table">
