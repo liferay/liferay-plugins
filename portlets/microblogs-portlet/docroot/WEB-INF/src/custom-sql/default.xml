@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_VU">
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_MU">
 		<![CDATA[
 			SELECT
 				COUNT(*) AS COUNT_VALUE
@@ -12,24 +12,28 @@
 					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
-			(
-				(MicroblogsEntry.socialRelationType = ?) OR
-				(SocialRelation.userId1 = ?)
-			) AND
-			(
-				MicroblogsEntry.userId IN
 				(
-					SELECT
-						User_.userId
-					FROM
-						User_
-					[$JOIN_BY_SOCIAL_RELATION$]
+					(MicroblogsEntry.socialRelationType = ?) OR
+					(SocialRelation.userId1 = ?)
+				) AND
+				(
+					(MicroblogsEntry.userId = ?) OR
+					(
+						MicroblogsEntry.userId IN
+						(
+							SELECT
+								User_.userId
+							FROM
+								User_
+							[$JOIN_BY_SOCIAL_RELATION$]
+						)
+					)
 				)
-			) OR
-			(MicroblogsEntry.userId = ?)
+			GROUP BY
+				MicroblogsEntry.microblogsEntryId
 		]]>
 	</sql>
-	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByU_VU">
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByU_MU">
 		<![CDATA[
 			SELECT
 				*
@@ -40,21 +44,27 @@
 					(MicroblogsEntry.receiverUserId = SocialRelation.userId2) AND
 					(MicroblogsEntry.socialRelationType = SocialRelation.type_)
 			WHERE
-			(
-				(MicroblogsEntry.socialRelationType = ?) OR
-				(SocialRelation.userId1 = ?)
-			) AND
-			(
-				MicroblogsEntry.userId IN
 				(
-					SELECT
-						User_.userId
-					FROM
-						User_
-					[$JOIN_BY_SOCIAL_RELATION$]
+					(MicroblogsEntry.socialRelationType = ?) OR
+					(SocialRelation.userId1 = ?)
+				) AND
+				(
+					(MicroblogsEntry.userId = ?) OR
+					(
+						MicroblogsEntry.userId IN
+						(
+							SELECT
+								User_.userId
+							FROM
+								User_
+							[$JOIN_BY_SOCIAL_RELATION$]
+						)
+					)
 				)
-			) OR
-			(MicroblogsEntry.userId = ?)
+			GROUP BY
+				MicroblogsEntry.microblogsEntryId
+			ORDER BY
+				MicroblogsEntry.createDate DESC
 		]]>
 	</sql>
 </custom-sql>

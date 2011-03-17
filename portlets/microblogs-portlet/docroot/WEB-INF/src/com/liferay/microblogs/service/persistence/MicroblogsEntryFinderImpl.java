@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortalClassInvoker;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
@@ -41,25 +40,28 @@ import java.util.List;
 public class MicroblogsEntryFinderImpl
 	extends BasePersistenceImpl implements MicroblogsEntryFinder {
 
+	public static String COUNT_BY_U_MU =
+		MicroblogsEntryFinder.class.getName() + ".countByU_MU";
+
+	public static String FIND_BY_U_MU =
+		MicroblogsEntryFinder.class.getName() + ".findByU_MU";
+
 	public MicroblogsEntryFinderImpl() {
 		try {
+			MethodKey methodKey = new MethodKey(
+				"com.liferay.util.dao.orm.CustomSQL", "get", String.class);
+
 			_joinBySocialRelationSQL = (String)PortalClassInvoker.invoke(
-				true, _getMethodKey,
+				true, methodKey,
 				"com.liferay.portal.service.persistence." +
 					"UserFinder.joinBySocialRelation");
 		}
 		catch (Exception e) {
-			_log.error(e,e);
+			_log.error(e, e);
 		}
 	}
 
-	public static String COUNT_BY_U_VU =
-		MicroblogsEntryFinder.class.getName() + ".countByU_VU";
-
-	public static String FIND_BY_U_VU =
-		MicroblogsEntryFinder.class.getName() + ".findByU_VU";
-
-	public int countByU_VU(long userId, long viewUserId)
+	public int countByU_MU(long userId, long microblogsEntryUserId)
 		throws SystemException {
 
 		Session session = null;
@@ -67,14 +69,7 @@ public class MicroblogsEntryFinderImpl
 		try {
 			session = openSession();
 
-			StringBundler sb = new StringBundler(3);
-
-			sb.append(CustomSQLUtil.get(COUNT_BY_U_VU));
-
-			sb.append(" GROUP BY");
-			sb.append(" MicroblogsEntry.microblogsEntryId");
-
-			String sql = sb.toString();
+			String sql = CustomSQLUtil.get(COUNT_BY_U_MU);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY_SOCIAL_RELATION$]", _joinBySocialRelationSQL);
@@ -86,9 +81,9 @@ public class MicroblogsEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(viewUserId);
+			qPos.add(microblogsEntryUserId);
 			qPos.add(userId);
-			qPos.add(viewUserId);
+			qPos.add(microblogsEntryUserId);
 
 			Iterator<Long> itr = q.list().iterator();
 
@@ -110,8 +105,8 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public List<MicroblogsEntry> findByU_VU(
-			long userId, long viewUserId, int start, int end)
+	public List<MicroblogsEntry> findByU_MU(
+			long userId, long microblogsEntryUserId, int start, int end)
 		throws SystemException {
 
 		Session session = null;
@@ -119,16 +114,7 @@ public class MicroblogsEntryFinderImpl
 		try {
 			session = openSession();
 
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(CustomSQLUtil.get(FIND_BY_U_VU));
-
-			sb.append(" GROUP BY");
-			sb.append(" MicroblogsEntry.microblogsEntryId");
-			sb.append(" ORDER BY");
-			sb.append(" MicroblogsEntry.createDate DESC ");
-
-			String sql = sb.toString();
+			String sql = CustomSQLUtil.get(FIND_BY_U_MU);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY_SOCIAL_RELATION$]", _joinBySocialRelationSQL);
@@ -140,9 +126,9 @@ public class MicroblogsEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(viewUserId);
+			qPos.add(microblogsEntryUserId);
 			qPos.add(userId);
-			qPos.add(viewUserId);
+			qPos.add(microblogsEntryUserId);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -155,12 +141,9 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	private String _joinBySocialRelationSQL;
-
-	private static MethodKey _getMethodKey = new MethodKey(
-		"com.liferay.util.dao.orm.CustomSQL", "get", String.class);
-
 	private static Log _log = LogFactoryUtil.getLog(
 		MicroblogsEntryFinderImpl.class);
+
+	private String _joinBySocialRelationSQL;
 
 }

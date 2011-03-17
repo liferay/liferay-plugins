@@ -46,10 +46,11 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 			socialRelationType, serviceContext);
 	 }
 
-	 public int getMicroblogsEntriesCount(long viewUserId)
+	 public int getMicroblogsEntriesCount(long microblogsEntryUserId)
 		throws PortalException, SystemException {
 
-		return microblogsEntryFinder.countByU_VU(getUserId(), viewUserId);
+		return microblogsEntryFinder.countByU_MU(
+			getUserId(), microblogsEntryUserId);
 	}
 
 	public void deleteMicroblogsEntry(long microblogsEntryId)
@@ -61,6 +62,14 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
+	public List<MicroblogsEntry> getMicroblogsEntries(
+			long microblogsEntryUserId, int start, int end)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.findByU_MU(
+			getUserId(), microblogsEntryUserId, start, end);
+	}
+
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
 		throws PortalException, SystemException {
 
@@ -69,14 +78,6 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 
 		return MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 			microblogsEntryId);
-	}
-
-	public List<MicroblogsEntry> getMicroblogsEntries(
-			long viewUserId, int start, int end)
-		throws PortalException, SystemException {
-
-		return microblogsEntryFinder.findByU_VU(
-			getUserId(), viewUserId, start, end);
 	}
 
 	public MicroblogsEntry updateMicroblogsEntry(
