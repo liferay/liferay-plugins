@@ -21,6 +21,17 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class MicroblogsEntryFinderUtil {
+	public static int countByU_VU(long userId, long viewUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().countByU_VU(userId, viewUserId);
+	}
+
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_VU(
+		long userId, long viewUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByU_VU(userId, viewUserId, start, end);
+	}
+
 	public static MicroblogsEntryFinder getFinder() {
 		if (_finder == null) {
 			_finder = (MicroblogsEntryFinder)PortletBeanLocatorUtil.locate(com.liferay.microblogs.service.ClpSerializer.getServletContextName(),
