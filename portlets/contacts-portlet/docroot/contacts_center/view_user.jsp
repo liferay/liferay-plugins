@@ -102,6 +102,32 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 						<liferay-util:include page="/contacts_center/view_user_information.jsp" portletId="<%= portletDisplay.getId() %>" />
 					</div>
 				</liferay-ui:panel>
+
+				<%
+				String[] fileNames = FileUtil.listFiles(_PORTAL_WEB_DIR + _CONTACTS_CENTER_EXT_DIR);
+
+				for (String fileName : fileNames) {
+					if (!fileName.endsWith(".jsp")) {
+						continue;
+					}
+
+					String title = fileName.substring(0, fileName.lastIndexOf(StringPool.PERIOD));
+
+					title = title.replace(CharPool.UNDERLINE, CharPool.DASH);
+
+					String cssClass = "lfr-" + title + "-container";
+				%>
+
+					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="<%= title %>">
+						<div class="<%= cssClass %>">
+							<liferay-util:include page="<%= _CONTACTS_CENTER_EXT_DIR + fileName %>" />
+						</div>
+					</liferay-ui:panel>
+
+				<%
+				}
+				%>
+
 			</c:if>
 
 			<c:if test="<%= showUsersRecentActivity %>">
@@ -131,3 +157,9 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 		<liferay-util:include page="/contacts_center/user_action.jsp" portletId="<%= portletDisplay.getId() %>" />
 	</aui:column>
 </aui:layout>
+
+<%!
+private static final String _CONTACTS_CENTER_EXT_DIR = "/html/portlet/enterprise_admin/contacts_center/";
+
+private static final String _PORTAL_WEB_DIR = PortalUtil.getPortalWebDir();
+%>
