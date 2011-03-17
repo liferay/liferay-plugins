@@ -399,7 +399,7 @@ public class TasksEntryWrapper implements TasksEntry {
 		return new TasksEntryWrapper((TasksEntry)_tasksEntry.clone());
 	}
 
-	public int compareTo(TasksEntry tasksEntry) {
+	public int compareTo(com.liferay.tasks.model.TasksEntry tasksEntry) {
 		return _tasksEntry.compareTo(tasksEntry);
 	}
 
@@ -407,7 +407,7 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry.hashCode();
 	}
 
-	public TasksEntry toEscapedModel() {
+	public com.liferay.tasks.model.TasksEntry toEscapedModel() {
 		return new TasksEntryWrapper(_tasksEntry.toEscapedModel());
 	}
 
