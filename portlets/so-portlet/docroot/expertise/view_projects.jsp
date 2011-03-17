@@ -33,8 +33,8 @@ if (user2 != null) {
 
 	<%
 	for (ProjectsEntry projectsEntry : projectsEntries) {
-
 		String startDate = dateFormatDate.format(projectsEntry.getStartDate());
+
 		String endDate = null;
 
 		if (projectsEntry.getEndDate() != null) {
