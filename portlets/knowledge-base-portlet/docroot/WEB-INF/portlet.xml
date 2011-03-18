@@ -206,19 +206,19 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<display-name>Knowledge Base Display</display-name>
-		<portlet-class>com.liferay.knowledgebase.display.portlet.DisplayPortlet</portlet-class>
+		<display-name>Knowledge Base Article</display-name>
+		<portlet-class>com.liferay.knowledgebase.article.portlet.ArticlePortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
-			<value>/display/configuration.jsp</value>
+			<value>/article/configuration.jsp</value>
 		</init-param>
 		<init-param>
 			<name>jsp-path</name>
-			<value>/display/</value>
+			<value>/article/</value>
 		</init-param>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/display/view.jsp</value>
+			<value>/article/view.jsp</value>
 		</init-param>
 		<init-param>
 			<name>copy-request-parameters</name>
@@ -229,10 +229,56 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Knowledge Base Display</title>
-			<short-title>Knowledge Base Display</short-title>
-			<keywords>Knowledge Base Display</keywords>
+			<title>Knowledge Base Article</title>
+			<short-title>Knowledge Base Article</short-title>
+			<keywords>Knowledge Base Article</keywords>
 		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>resourcePrimKey</name>
+				<value>0</value>
+			</preference>
+			<preference>
+				<name>enableArticleDescription</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableArticleAssetCategories</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleAssetTags</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleRatings</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableArticleComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showArticleComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleViewCountIncrement</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>rssDelta</name>
+				<value>20</value>
+			</preference>
+			<preference>
+				<name>rssDisplayStyle</name>
+				<value>full-content</value>
+			</preference>
+			<preference>
+				<name>rssFormat</name>
+				<value>atom10</value>
+			</preference>
+		</portlet-preferences>
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>
@@ -245,96 +291,6 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
-		<supported-public-render-parameter>tag</supported-public-render-parameter>
-	</portlet>
-	<portlet>
-		<portlet-name>4</portlet-name>
-		<display-name>Knowledge Base Search</display-name>
-		<portlet-class>com.liferay.knowledgebase.search.portlet.SearchPortlet</portlet-class>
-		<init-param>
-			<name>config-jsp</name>
-			<value>/search/configuration.jsp</value>
-		</init-param>
-		<init-param>
-			<name>jsp-path</name>
-			<value>/search/</value>
-		</init-param>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/search/view.jsp</value>
-		</init-param>
-		<init-param>
-			<name>copy-request-parameters</name>
-			<value>true</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-		</supports>
-		<portlet-info>
-			<title>Knowledge Base Search</title>
-			<short-title>Knowledge Base Search</short-title>
-			<keywords>Knowledge Base Search</keywords>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>administrator</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>guest</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>power-user</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
-		<supported-public-render-parameter>tag</supported-public-render-parameter>
-	</portlet>
-	<portlet>
-		<portlet-name>5</portlet-name>
-		<display-name>Knowledge Base List</display-name>
-		<portlet-class>com.liferay.knowledgebase.list.portlet.ListPortlet</portlet-class>
-		<init-param>
-			<name>config-jsp</name>
-			<value>/list/configuration.jsp</value>
-		</init-param>
-		<init-param>
-			<name>jsp-path</name>
-			<value>/list/</value>
-		</init-param>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/list/view.jsp</value>
-		</init-param>
-		<init-param>
-			<name>copy-request-parameters</name>
-			<value>true</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-		</supports>
-		<portlet-info>
-			<title>Knowledge Base List</title>
-			<short-title>Knowledge Base List</short-title>
-			<keywords>Knowledge Base List</keywords>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>administrator</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>guest</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>power-user</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
-		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
 	<public-render-parameter>
 		<identifier>categoryId</identifier>

@@ -46,38 +46,16 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<icon>/icons/display.png</icon>
-		<configuration-action-class>com.liferay.knowledgebase.display.action.ConfigurationActionImpl</configuration-action-class>
-		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>knowledge_base_display</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/knowledgebase/display/portlet/display-friendly-url-routes.xml</friendly-url-routes>
-		<instanceable>true</instanceable>
-		<header-portlet-css>/admin/css/common.css</header-portlet-css>
-		<header-portlet-css>/display/css/main.css</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-display</css-class-wrapper>
-		<add-default-resource>true</add-default-resource>
-	</portlet>
-	<portlet>
-		<portlet-name>4</portlet-name>
-		<icon>/icons/search.png</icon>
-		<configuration-action-class>com.liferay.knowledgebase.search.action.ConfigurationActionImpl</configuration-action-class>
-		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>knowledge_base_search</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/knowledgebase/search/portlet/search-friendly-url-routes.xml</friendly-url-routes>
-		<header-portlet-css>/admin/css/common.css</header-portlet-css>
-		<header-portlet-css>/search/css/main.css</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-search</css-class-wrapper>
-	</portlet>
-	<portlet>
-		<portlet-name>5</portlet-name>
-		<icon>/icons/list.png</icon>
+		<icon>/icons/article.png</icon>
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>knowledge_base_list</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/knowledgebase/list/portlet/list-friendly-url-routes.xml</friendly-url-routes>
+		<friendly-url-mapping>knowledge_base_article</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/knowledgebase/article/portlet/article-friendly-url-routes.xml</friendly-url-routes>
+		<instanceable>true</instanceable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
-		<header-portlet-css>/list/css/main.css</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-list</css-class-wrapper>
+		<header-portlet-css>/article/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-article</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
