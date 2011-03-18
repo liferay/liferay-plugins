@@ -23,6 +23,8 @@ if (enableArticleViewCountIncrement) {
 	Article latestArticle = ArticleLocalServiceUtil.getLatestArticle(article.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
 
 	ArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), article.getResourcePrimKey(), latestArticle.getViewCount() + 1);
+
+	AssetEntryServiceUtil.incrementViewCounter(Article.class.getName(), article.getResourcePrimKey());
 }
 %>
 

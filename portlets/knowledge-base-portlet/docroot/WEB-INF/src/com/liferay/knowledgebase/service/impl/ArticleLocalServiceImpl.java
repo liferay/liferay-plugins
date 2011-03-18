@@ -888,8 +888,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			long userId, long resourcePrimKey, int viewCount)
 		throws PortalException, SystemException {
 
-		// Article
-
 		Article article = getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
@@ -897,19 +895,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		articlePersistence.update(article, false);
 
-		if (!article.isApproved() && !article.isFirstVersion()) {
-			article = getLatestArticle(
-				resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
-
-			article.setViewCount(viewCount);
-
-			articlePersistence.update(article, false);
+		if (article.isApproved() || article.isFirstVersion()) {
+			return;
 		}
 
-		// Asset
+		article = getLatestArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-		assetEntryLocalService.incrementViewCounter(
-			userId, Article.class.getName(), article.getClassPK());
+		article.setViewCount(viewCount);
+
+		articlePersistence.update(article, false);
 	}
 
 	protected void addAttachments(Article article, String dirName)
