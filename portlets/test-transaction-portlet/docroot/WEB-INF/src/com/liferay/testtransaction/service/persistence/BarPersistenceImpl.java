@@ -1,0 +1,1485 @@
+/**
+ * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.testtransaction.service.persistence;
+
+import com.liferay.portal.NoSuchModelException;
+import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.cache.CacheRegistryUtil;
+import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
+import com.liferay.portal.kernel.dao.orm.Query;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.InstanceFactory;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.service.persistence.BatchSessionUtil;
+import com.liferay.portal.service.persistence.ClassNamePersistence;
+import com.liferay.portal.service.persistence.ResourcePersistence;
+import com.liferay.portal.service.persistence.UserPersistence;
+import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+
+import com.liferay.testtransaction.NoSuchBarException;
+import com.liferay.testtransaction.model.Bar;
+import com.liferay.testtransaction.model.impl.BarImpl;
+import com.liferay.testtransaction.model.impl.BarModelImpl;
+
+import java.io.Serializable;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * The persistence implementation for the bar service.
+ *
+ * <p>
+ * Caching information and settings can be found in <code>portal.properties</code>
+ * </p>
+ *
+ * @author Brian Wing Shun Chan
+ * @see BarPersistence
+ * @see BarUtil
+ * @generated
+ */
+public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
+	implements BarPersistence {
+	/*
+	 * NOTE FOR DEVELOPERS:
+	 *
+	 * Never modify or reference this class directly. Always use {@link BarUtil} to access the bar persistence. Modify <code>service.xml</code> and rerun ServiceBuilder to regenerate this class.
+	 */
+	public static final String FINDER_CLASS_NAME_ENTITY = BarImpl.class.getName();
+	public static final String FINDER_CLASS_NAME_LIST = FINDER_CLASS_NAME_ENTITY +
+		".List";
+	public static final FinderPath FINDER_PATH_FIND_BY_UUID = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByUuid",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_UUID = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByUuid", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByText",
+			new String[] {
+				String.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_TEXT = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByText", new String[] { String.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findAll", new String[0]);
+	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countAll", new String[0]);
+
+	/**
+	 * Caches the bar in the entity cache if it is enabled.
+	 *
+	 * @param bar the bar to cache
+	 */
+	public void cacheResult(Bar bar) {
+		EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarImpl.class, bar.getPrimaryKey(), bar);
+	}
+
+	/**
+	 * Caches the bars in the entity cache if it is enabled.
+	 *
+	 * @param bars the bars to cache
+	 */
+	public void cacheResult(List<Bar> bars) {
+		for (Bar bar : bars) {
+			if (EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+						BarImpl.class, bar.getPrimaryKey(), this) == null) {
+				cacheResult(bar);
+			}
+		}
+	}
+
+	/**
+	 * Clears the cache for all bars.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	public void clearCache() {
+		if (_HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
+			CacheRegistryUtil.clear(BarImpl.class.getName());
+		}
+
+		EntityCacheUtil.clearCache(BarImpl.class.getName());
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+	}
+
+	/**
+	 * Clears the cache for the bar.
+	 *
+	 * <p>
+	 * The {@link com.liferay.portal.kernel.dao.orm.EntityCache} and {@link com.liferay.portal.kernel.dao.orm.FinderCache} are both cleared by this method.
+	 * </p>
+	 */
+	public void clearCache(Bar bar) {
+		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarImpl.class, bar.getPrimaryKey());
+	}
+
+	/**
+	 * Creates a new bar with the primary key. Does not add the bar to the database.
+	 *
+	 * @param barId the primary key for the new bar
+	 * @return the new bar
+	 */
+	public Bar create(long barId) {
+		Bar bar = new BarImpl();
+
+		bar.setNew(true);
+		bar.setPrimaryKey(barId);
+
+		String uuid = PortalUUIDUtil.generate();
+
+		bar.setUuid(uuid);
+
+		return bar;
+	}
+
+	/**
+	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param primaryKey the primary key of the bar to remove
+	 * @return the bar that was removed
+	 * @throws com.liferay.portal.NoSuchModelException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar remove(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return remove(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Removes the bar with the primary key from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param barId the primary key of the bar to remove
+	 * @return the bar that was removed
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar remove(long barId) throws NoSuchBarException, SystemException {
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Bar bar = (Bar)session.get(BarImpl.class, Long.valueOf(barId));
+
+			if (bar == null) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + barId);
+				}
+
+				throw new NoSuchBarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+					barId);
+			}
+
+			return barPersistence.remove(bar);
+		}
+		catch (NoSuchBarException nsee) {
+			throw nsee;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Removes the bar from the database. Also notifies the appropriate model listeners.
+	 *
+	 * @param bar the bar to remove
+	 * @return the bar that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar remove(Bar bar) throws SystemException {
+		return super.remove(bar);
+	}
+
+	protected Bar removeImpl(Bar bar) throws SystemException {
+		bar = toUnwrappedModel(bar);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			BatchSessionUtil.delete(session, bar);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.removeResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarImpl.class, bar.getPrimaryKey());
+
+		return bar;
+	}
+
+	public Bar updateImpl(com.liferay.testtransaction.model.Bar bar,
+		boolean merge) throws SystemException {
+		bar = toUnwrappedModel(bar);
+
+		if (Validator.isNull(bar.getUuid())) {
+			String uuid = PortalUUIDUtil.generate();
+
+			bar.setUuid(uuid);
+		}
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			BatchSessionUtil.update(session, bar, merge);
+
+			bar.setNew(false);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST);
+
+		EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+			BarImpl.class, bar.getPrimaryKey(), bar);
+
+		return bar;
+	}
+
+	protected Bar toUnwrappedModel(Bar bar) {
+		if (bar instanceof BarImpl) {
+			return bar;
+		}
+
+		BarImpl barImpl = new BarImpl();
+
+		barImpl.setNew(bar.isNew());
+		barImpl.setPrimaryKey(bar.getPrimaryKey());
+
+		barImpl.setUuid(bar.getUuid());
+		barImpl.setBarId(bar.getBarId());
+		barImpl.setText(bar.getText());
+
+		return barImpl;
+	}
+
+	/**
+	 * Finds the bar with the primary key or throws a {@link com.liferay.portal.NoSuchModelException} if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the bar to find
+	 * @return the bar
+	 * @throws com.liferay.portal.NoSuchModelException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar findByPrimaryKey(Serializable primaryKey)
+		throws NoSuchModelException, SystemException {
+		return findByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Finds the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
+	 *
+	 * @param barId the primary key of the bar to find
+	 * @return the bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar findByPrimaryKey(long barId)
+		throws NoSuchBarException, SystemException {
+		Bar bar = fetchByPrimaryKey(barId);
+
+		if (bar == null) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY + barId);
+			}
+
+			throw new NoSuchBarException(_NO_SUCH_ENTITY_WITH_PRIMARY_KEY +
+				barId);
+		}
+
+		return bar;
+	}
+
+	/**
+	 * Finds the bar with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param primaryKey the primary key of the bar to find
+	 * @return the bar, or <code>null</code> if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar fetchByPrimaryKey(Serializable primaryKey)
+		throws SystemException {
+		return fetchByPrimaryKey(((Long)primaryKey).longValue());
+	}
+
+	/**
+	 * Finds the bar with the primary key or returns <code>null</code> if it could not be found.
+	 *
+	 * @param barId the primary key of the bar to find
+	 * @return the bar, or <code>null</code> if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar fetchByPrimaryKey(long barId) throws SystemException {
+		Bar bar = (Bar)EntityCacheUtil.getResult(BarModelImpl.ENTITY_CACHE_ENABLED,
+				BarImpl.class, barId, this);
+
+		if (bar == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				bar = (Bar)session.get(BarImpl.class, Long.valueOf(barId));
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (bar != null) {
+					cacheResult(bar);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return bar;
+	}
+
+	/**
+	 * Finds all the bars where uuid = &#63;.
+	 *
+	 * @param uuid the uuid to search with
+	 * @return the matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findByUuid(String uuid) throws SystemException {
+		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the bars where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param start the lower bound of the range of bars to return
+	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @return the range of matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findByUuid(String uuid, int start, int end)
+		throws SystemException {
+		return findByUuid(uuid, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the bars where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param start the lower bound of the range of bars to return
+	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findByUuid(String uuid, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				uuid,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Bar> list = (List<Bar>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_UUID,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_BAR_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(BarModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				list = (List<Bar>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_UUID,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_UUID,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first bar in the ordered set where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar findByUuid_First(String uuid, OrderByComparator orderByComparator)
+		throws NoSuchBarException, SystemException {
+		List<Bar> list = findByUuid(uuid, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("uuid=");
+			msg.append(uuid);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchBarException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last bar in the ordered set where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param uuid the uuid to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar findByUuid_Last(String uuid, OrderByComparator orderByComparator)
+		throws NoSuchBarException, SystemException {
+		int count = countByUuid(uuid);
+
+		List<Bar> list = findByUuid(uuid, count - 1, count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("uuid=");
+			msg.append(uuid);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchBarException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the bars before and after the current bar in the ordered set where uuid = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param barId the primary key of the current bar
+	 * @param uuid the uuid to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar[] findByUuid_PrevAndNext(long barId, String uuid,
+		OrderByComparator orderByComparator)
+		throws NoSuchBarException, SystemException {
+		Bar bar = findByPrimaryKey(barId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Bar[] array = new BarImpl[3];
+
+			array[0] = getByUuid_PrevAndNext(session, bar, uuid,
+					orderByComparator, true);
+
+			array[1] = bar;
+
+			array[2] = getByUuid_PrevAndNext(session, bar, uuid,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Bar getByUuid_PrevAndNext(Session session, Bar bar, String uuid,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_BAR_WHERE);
+
+		if (uuid == null) {
+			query.append(_FINDER_COLUMN_UUID_UUID_1);
+		}
+		else {
+			if (uuid.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_UUID_UUID_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_UUID_UUID_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(BarModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (uuid != null) {
+			qPos.add(uuid);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(bar);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Bar> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the bars where text = &#63;.
+	 *
+	 * @param text the text to search with
+	 * @return the matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findByText(String text) throws SystemException {
+		return findByText(text, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the bars where text = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param text the text to search with
+	 * @param start the lower bound of the range of bars to return
+	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @return the range of matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findByText(String text, int start, int end)
+		throws SystemException {
+		return findByText(text, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the bars where text = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param text the text to search with
+	 * @param start the lower bound of the range of bars to return
+	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findByText(String text, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				text,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Bar> list = (List<Bar>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_TEXT,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(3 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(3);
+			}
+
+			query.append(_SQL_SELECT_BAR_WHERE);
+
+			if (text == null) {
+				query.append(_FINDER_COLUMN_TEXT_TEXT_1);
+			}
+			else {
+				if (text.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_TEXT_TEXT_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_TEXT_TEXT_2);
+				}
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(BarModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (text != null) {
+					qPos.add(text);
+				}
+
+				list = (List<Bar>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_TEXT,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_TEXT,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first bar in the ordered set where text = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param text the text to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar findByText_First(String text, OrderByComparator orderByComparator)
+		throws NoSuchBarException, SystemException {
+		List<Bar> list = findByText(text, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("text=");
+			msg.append(text);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchBarException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last bar in the ordered set where text = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param text the text to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar findByText_Last(String text, OrderByComparator orderByComparator)
+		throws NoSuchBarException, SystemException {
+		int count = countByText(text);
+
+		List<Bar> list = findByText(text, count - 1, count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(4);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("text=");
+			msg.append(text);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchBarException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the bars before and after the current bar in the ordered set where text = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param barId the primary key of the current bar
+	 * @param text the text to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next bar
+	 * @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Bar[] findByText_PrevAndNext(long barId, String text,
+		OrderByComparator orderByComparator)
+		throws NoSuchBarException, SystemException {
+		Bar bar = findByPrimaryKey(barId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Bar[] array = new BarImpl[3];
+
+			array[0] = getByText_PrevAndNext(session, bar, text,
+					orderByComparator, true);
+
+			array[1] = bar;
+
+			array[2] = getByText_PrevAndNext(session, bar, text,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Bar getByText_PrevAndNext(Session session, Bar bar, String text,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_BAR_WHERE);
+
+		if (text == null) {
+			query.append(_FINDER_COLUMN_TEXT_TEXT_1);
+		}
+		else {
+			if (text.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_TEXT_TEXT_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_TEXT_TEXT_2);
+			}
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(BarModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		if (text != null) {
+			qPos.add(text);
+		}
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(bar);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Bar> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the bars.
+	 *
+	 * @return the bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findAll() throws SystemException {
+		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the bars.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of bars to return
+	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @return the range of bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findAll(int start, int end) throws SystemException {
+		return findAll(start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the bars.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param start the lower bound of the range of bars to return
+	 * @param end the upper bound of the range of bars to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Bar> findAll(int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Bar> list = (List<Bar>)FinderCacheUtil.getResult(FINDER_PATH_FIND_ALL,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+			String sql = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(2 +
+						(orderByComparator.getOrderByFields().length * 3));
+
+				query.append(_SQL_SELECT_BAR);
+
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+
+				sql = query.toString();
+			}
+			else {
+				sql = _SQL_SELECT_BAR.concat(BarModelImpl.ORDER_BY_JPQL);
+			}
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				if (orderByComparator == null) {
+					list = (List<Bar>)QueryUtil.list(q, getDialect(), start,
+							end, false);
+
+					Collections.sort(list);
+				}
+				else {
+					list = (List<Bar>)QueryUtil.list(q, getDialect(), start, end);
+				}
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_ALL,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_ALL, finderArgs,
+						list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Removes all the bars where uuid = &#63; from the database.
+	 *
+	 * @param uuid the uuid to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByUuid(String uuid) throws SystemException {
+		for (Bar bar : findByUuid(uuid)) {
+			barPersistence.remove(bar);
+		}
+	}
+
+	/**
+	 * Removes all the bars where text = &#63; from the database.
+	 *
+	 * @param text the text to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByText(String text) throws SystemException {
+		for (Bar bar : findByText(text)) {
+			barPersistence.remove(bar);
+		}
+	}
+
+	/**
+	 * Removes all the bars from the database.
+	 *
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeAll() throws SystemException {
+		for (Bar bar : findAll()) {
+			barPersistence.remove(bar);
+		}
+	}
+
+	/**
+	 * Counts all the bars where uuid = &#63;.
+	 *
+	 * @param uuid the uuid to search with
+	 * @return the number of matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByUuid(String uuid) throws SystemException {
+		Object[] finderArgs = new Object[] { uuid };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_UUID,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_BAR_WHERE);
+
+			if (uuid == null) {
+				query.append(_FINDER_COLUMN_UUID_UUID_1);
+			}
+			else {
+				if (uuid.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_UUID_UUID_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_UUID_UUID_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (uuid != null) {
+					qPos.add(uuid);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the bars where text = &#63;.
+	 *
+	 * @param text the text to search with
+	 * @return the number of matching bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByText(String text) throws SystemException {
+		Object[] finderArgs = new Object[] { text };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_TEXT,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(2);
+
+			query.append(_SQL_COUNT_BAR_WHERE);
+
+			if (text == null) {
+				query.append(_FINDER_COLUMN_TEXT_TEXT_1);
+			}
+			else {
+				if (text.equals(StringPool.BLANK)) {
+					query.append(_FINDER_COLUMN_TEXT_TEXT_3);
+				}
+				else {
+					query.append(_FINDER_COLUMN_TEXT_TEXT_2);
+				}
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (text != null) {
+					qPos.add(text);
+				}
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TEXT,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the bars.
+	 *
+	 * @return the number of bars
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countAll() throws SystemException {
+		Object[] finderArgs = new Object[0];
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
+				finderArgs, this);
+
+		if (count == null) {
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(_SQL_COUNT_BAR);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_ALL, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Initializes the bar persistence.
+	 */
+	public void afterPropertiesSet() {
+		String[] listenerClassNames = StringUtil.split(GetterUtil.getString(
+					com.liferay.util.service.ServiceProps.get(
+						"value.object.listener.com.liferay.testtransaction.model.Bar")));
+
+		if (listenerClassNames.length > 0) {
+			try {
+				List<ModelListener<Bar>> listenersList = new ArrayList<ModelListener<Bar>>();
+
+				for (String listenerClassName : listenerClassNames) {
+					listenersList.add((ModelListener<Bar>)InstanceFactory.newInstance(
+							listenerClassName));
+				}
+
+				listeners = listenersList.toArray(new ModelListener[listenersList.size()]);
+			}
+			catch (Exception e) {
+				_log.error(e);
+			}
+		}
+	}
+
+	public void destroy() {
+		EntityCacheUtil.removeCache(BarImpl.class.getName());
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_ENTITY);
+		FinderCacheUtil.removeCache(FINDER_CLASS_NAME_LIST);
+	}
+
+	@BeanReference(type = BarPersistence.class)
+	protected BarPersistence barPersistence;
+	@BeanReference(type = ClassNamePersistence.class)
+	protected ClassNamePersistence classNamePersistence;
+	@BeanReference(type = ResourcePersistence.class)
+	protected ResourcePersistence resourcePersistence;
+	@BeanReference(type = UserPersistence.class)
+	protected UserPersistence userPersistence;
+	private static final String _SQL_SELECT_BAR = "SELECT bar FROM Bar bar";
+	private static final String _SQL_SELECT_BAR_WHERE = "SELECT bar FROM Bar bar WHERE ";
+	private static final String _SQL_COUNT_BAR = "SELECT COUNT(bar) FROM Bar bar";
+	private static final String _SQL_COUNT_BAR_WHERE = "SELECT COUNT(bar) FROM Bar bar WHERE ";
+	private static final String _FINDER_COLUMN_UUID_UUID_1 = "bar.uuid IS NULL";
+	private static final String _FINDER_COLUMN_UUID_UUID_2 = "bar.uuid = ?";
+	private static final String _FINDER_COLUMN_UUID_UUID_3 = "(bar.uuid IS NULL OR bar.uuid = ?)";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_1 = "bar.text IS NULL";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_2 = "bar.text = ?";
+	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text IS NULL OR bar.text = ?)";
+	private static final String _ORDER_BY_ENTITY_ALIAS = "bar.";
+	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Bar exists with the primary key ";
+	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Bar exists with the key {";
+	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(
+				PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
+	private static Log _log = LogFactoryUtil.getLog(BarPersistenceImpl.class);
+}
