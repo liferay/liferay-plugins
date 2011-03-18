@@ -24,7 +24,7 @@ if (enableArticleViewCountIncrement) {
 
 	ArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), article.getResourcePrimKey(), latestArticle.getViewCount() + 1);
 
-	AssetEntryServiceUtil.incrementViewCounter(Article.class.getName(), article.getResourcePrimKey());
+	AssetEntryServiceUtil.incrementViewCounter(Article.class.getName(), article.getClassPK());
 }
 %>
 
