@@ -120,7 +120,7 @@ request.setAttribute("view_user.jsp-viewUser", Boolean.TRUE.toString());
 
 					<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" persistState="<%= true %>" title="<%= title %>">
 						<div class="<%= cssClass %>">
-							<liferay-util:include page="<%= "/html/portlet/enterprise_admin/contacts_center/" + fileName %>" />
+							<liferay-util:include page='<%= "/html/portlet/enterprise_admin/contacts_center/" + fileName %>' />
 						</div>
 					</liferay-ui:panel>
 
