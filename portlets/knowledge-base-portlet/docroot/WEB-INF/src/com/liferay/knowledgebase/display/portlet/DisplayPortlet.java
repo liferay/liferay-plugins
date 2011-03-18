@@ -170,13 +170,8 @@ public class DisplayPortlet extends MVCPortlet {
 		throws PortletException, IOException {
 
 		try {
-			Integer status = WorkflowConstants.STATUS_APPROVED;
-
-			String s = ParamUtil.getString(renderRequest, "status");
-
-			if (Validator.isNotNull(s)) {
-				status = GetterUtil.getInteger(s);
-			}
+			String statusString = ParamUtil.getInteger(
+				renderRequest, "status", WorkflowConstants.STATUS_APPROVED);
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
 
@@ -187,7 +182,7 @@ public class DisplayPortlet extends MVCPortlet {
 
 			if (resourcePrimKey > 0) {
 				article = ArticleServiceUtil.getLatestArticle(
-					resourcePrimKey, status.intValue());
+					resourcePrimKey, status);
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);

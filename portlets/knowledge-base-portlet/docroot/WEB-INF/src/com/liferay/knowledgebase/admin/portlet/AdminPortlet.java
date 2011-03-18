@@ -200,7 +200,7 @@ public class AdminPortlet extends MVCPortlet {
 		throws PortletException, IOException {
 
 		try {
-			Integer status = WorkflowConstants.STATUS_ANY;
+			int status = WorkflowConstants.STATUS_ANY;
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
 
@@ -211,7 +211,7 @@ public class AdminPortlet extends MVCPortlet {
 
 			if (resourcePrimKey > 0) {
 				article = ArticleServiceUtil.getLatestArticle(
-					resourcePrimKey, status.intValue());
+					resourcePrimKey, status);
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
