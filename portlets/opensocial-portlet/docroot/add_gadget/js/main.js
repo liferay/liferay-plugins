@@ -13,7 +13,7 @@
 
 			var gadget = Liferay.Language.get('gadget');
 
-			var addGadgetNode = A.Node.create('<li><a href="javascript:;"><span><img alt="' + gadget + '" class="icon" src="/opensocial-portlet/icon.png" title="' + gadget + '"></span> ' + gadget + '</a></li>');
+			var addGadgetNode = A.Node.create('<li class="aui-menu-item"><a href="javascript:;"><span><img alt="' + gadget + '" class="icon" src="/opensocial-portlet/icon.png" title="' + gadget + '"></span> ' + gadget + '</a></li>');
 
 			addGadgetNode.on(
 				'click',
@@ -23,6 +23,8 @@
 			);
 
 			moreApplicationsNode.placeBefore(addGadgetNode);
+
+			Liferay.Dockbar.addContent.get('contentBox').focusManager.refresh();
 		},
 		['aui-base', 'liferay-language']
 	);
