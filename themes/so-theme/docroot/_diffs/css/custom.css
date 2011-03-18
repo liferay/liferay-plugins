@@ -74,13 +74,13 @@ a:active {
 	top: 25px;
 }
 
-#page-search select {
-	display: none;
+#page-search input {
+	float: left;
+	margin-left: 3px;
 }
 
-#page-search input[type="image"] {
-	float: right;
-	margin-left: 3px;
+#page-search select {
+	display: none;
 }
 
 /* ---------- Navigation ---------- */
