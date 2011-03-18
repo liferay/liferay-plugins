@@ -116,14 +116,6 @@ public class CommentLocalServiceImpl extends CommentLocalServiceBaseImpl {
 		return commentPersistence.findByU_C_C(userId, classNameId, classPK);
 	}
 
-	public Comment getCommentSilent(long userId, String className, long classPK)
-		throws SystemException {
-
-		long classNameId = PortalUtil.getClassNameId(className);
-
-		return commentPersistence.fetchByU_C_C(userId, classNameId, classPK);
-	}
-
 	public List<Comment> getComments(
 			String className, long classPK, int start, int end,
 			OrderByComparator orderByComparator)

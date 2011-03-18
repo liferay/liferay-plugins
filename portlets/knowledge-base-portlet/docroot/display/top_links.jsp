@@ -19,8 +19,8 @@
 <%
 String jspPage = ParamUtil.getString(request, "jspPage", "/display/view.jsp");
 
-long categoryId = ParamUtil.getLong(request, "categoryId");
-String tag = ParamUtil.getString(request, "tag");
+long assetCategoryId = ParamUtil.getLong(request, "categoryId");
+String assetTagName = ParamUtil.getString(request, "tag");
 %>
 
 <div class="top-links-container">
@@ -30,12 +30,12 @@ String tag = ParamUtil.getString(request, "tag");
 			<%
 			String viewURL = StringPool.BLANK;
 
-			if (!jspPage.equals("/display/view.jsp") || (categoryId > 0) || Validator.isNotNull(tag)) {
+			if (!jspPage.equals("/display/view.jsp") || (assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
 				PortletURL portletURL = renderResponse.createRenderURL();
 
 				portletURL.setParameter("jspPage", "/display/view.jsp");
 
-				if ((categoryId > 0) || Validator.isNotNull(tag)) {
+				if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
 					portletURL.setParameter("categoryId", StringPool.BLANK);
 					portletURL.setParameter("tag", StringPool.BLANK);
 				}
@@ -144,25 +144,25 @@ String tag = ParamUtil.getString(request, "tag");
 	</div>
 </div>
 
-<c:if test='<%= !jspPage.equals("/display/view.jsp") && ((categoryId > 0) || Validator.isNotNull(tag)) %>'>
+<c:if test='<%= !jspPage.equals("/display/view.jsp") && ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) %>'>
 	<div class="portlet-msg-info">
-		<portlet:renderURL var="viewPRPArticlesURL">
+		<liferay-portlet:renderURL var="viewPRPArticlesURL">
 			<portlet:param name="jspPage" value="/display/view.jsp" />
-		</portlet:renderURL>
+		</liferay-portlet:renderURL>
 
 		<aui:a href="<%= viewPRPArticlesURL %>">
 			<c:choose>
-				<c:when test="<%= categoryId > 0 %>">
+				<c:when test="<%= assetCategoryId > 0 %>">
 
 					<%
-					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(categoryId);
+					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
 
 					AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
 					%>
 
 					<c:choose>
-						<c:when test="<%= Validator.isNotNull(tag) %>">
-							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), tag}, false) %>
+						<c:when test="<%= Validator.isNotNull(assetTagName) %>">
+							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), assetTagName}, false) %>
 						</c:when>
 						<c:otherwise>
 							<%= LanguageUtil.format(pageContext, "view-articles-with-x-x", new String[] {assetVocabulary.getName(), assetCategory.getName()}, false) %>
@@ -170,7 +170,7 @@ String tag = ParamUtil.getString(request, "tag");
 					</c:choose>
 				</c:when>
 				<c:otherwise>
-					<%= LanguageUtil.format(pageContext, "view-articles-with-tag-x", tag, false) %>
+					<%= LanguageUtil.format(pageContext, "view-articles-with-tag-x", assetTagName, false) %>
 				</c:otherwise>
 			</c:choose>
 		</aui:a>

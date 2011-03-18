@@ -110,10 +110,10 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	<aui:button-row cssClass="float-container">
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
-			<portlet:renderURL var="addArticleURL">
+			<liferay-portlet:renderURL var="addArticleURL">
 				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:renderURL>
+			</liferay-portlet:renderURL>
 
 			<aui:button onClick="<%= addArticleURL %>" value="add-article" />
 		</c:if>
@@ -133,11 +133,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			<table class="lfr-table">
 			<tr>
 				<td>
-					<portlet:resourceURL id="groupArticlesRSS" var="groupArticlesRSSURL">
+					<liferay-portlet:resourceURL id="groupArticlesRSS" var="groupArticlesRSSURL">
 						<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
 						<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
 						<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-					</portlet:resourceURL>
+					</liferay-portlet:resourceURL>
 
 					<liferay-ui:icon
 						image="rss"
@@ -152,9 +152,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<td>
 						<c:choose>
 							<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
-								<portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
+								<liferay-portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
 									<portlet:param name="redirect" value="<%= currentURL %>" />
-								</portlet:actionURL>
+								</liferay-portlet:actionURL>
 
 								<liferay-ui:icon
 									image="unsubscribe"
@@ -163,9 +163,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 								/>
 							</c:when>
 							<c:otherwise>
-								<portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
+								<liferay-portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
 									<portlet:param name="redirect" value="<%= currentURL %>" />
-								</portlet:actionURL>
+								</liferay-portlet:actionURL>
 
 								<liferay-ui:icon
 									image="subscribe"

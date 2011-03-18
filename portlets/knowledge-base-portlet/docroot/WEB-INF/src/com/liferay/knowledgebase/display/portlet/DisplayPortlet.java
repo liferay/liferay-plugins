@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -170,7 +169,7 @@ public class DisplayPortlet extends MVCPortlet {
 		throws PortletException, IOException {
 
 		try {
-			String statusString = ParamUtil.getInteger(
+			int status = ParamUtil.getInteger(
 				renderRequest, "status", WorkflowConstants.STATUS_APPROVED);
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
@@ -518,11 +517,11 @@ public class DisplayPortlet extends MVCPortlet {
 
 		String jspPage = ParamUtil.getString(renderRequest, "jspPage", viewJSP);
 
-		long categoryId = ParamUtil.getLong(renderRequest, "categoryId");
-		String tag = ParamUtil.getString(renderRequest, "tag");
+		long assetCategoryId = ParamUtil.getLong(renderRequest, "categoryId");
+		String assetTagName = ParamUtil.getString(renderRequest, "tag");
 
-		if ((jspPage.equals(viewJSP) && (categoryId > 0)) ||
-			(jspPage.equals(viewJSP) && Validator.isNotNull(tag))) {
+		if ((jspPage.equals(viewJSP) && (assetCategoryId > 0)) ||
+			(jspPage.equals(viewJSP) && Validator.isNotNull(assetTagName))) {
 
 			String path = jspPath + "view_prp_articles.jsp";
 

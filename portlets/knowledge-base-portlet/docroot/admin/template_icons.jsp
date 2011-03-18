@@ -28,11 +28,11 @@ long templateId = ParamUtil.getLong(request, "templateId");
 		<tr>
 			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
-					<portlet:renderURL var="checkURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_article.jsp" %>' />
+					<liferay-portlet:renderURL var="checkURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
-					</portlet:renderURL>
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="../aui/check"
@@ -46,11 +46,11 @@ long templateId = ParamUtil.getLong(request, "templateId");
 
 			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
 				<td>
-					<portlet:renderURL var="editURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_template.jsp" %>' />
+					<liferay-portlet:renderURL var="editURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
-					</portlet:renderURL>
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="edit"
@@ -81,15 +81,15 @@ long templateId = ParamUtil.getLong(request, "templateId");
 
 			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) %>">
 				<td>
-					<portlet:renderURL var="homeURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view-jsp" %>' />
-					</portlet:renderURL>
+					<liferay-portlet:renderURL var="homeURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view-jsp" %>' />
+					</liferay-portlet:renderURL>
 
-					<portlet:actionURL name="deleteTemplate" var="deleteURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_template.jsp" %>' />
+					<liferay-portlet:actionURL name="deleteTemplate" var="deleteURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
 						<portlet:param name="redirect" value="<%= (template.getTemplateId() == templateId) ? homeURL : currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
-					</portlet:actionURL>
+					</liferay-portlet:actionURL>
 
 					<liferay-ui:icon-delete
 						label="<%= true %>"

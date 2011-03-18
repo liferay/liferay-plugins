@@ -27,9 +27,8 @@ public class UpgradePortletPreferences
 	}
 
 	private static final String[] _PORTLET_IDS = new String[] {
-		"1_WAR_knowledgebaseportlet", "%2_WAR_knowledgebaseportlet_INSTANCE_%",
-		"%3_WAR_knowledgebaseportlet_INSTANCE_%", "4_WAR_knowledgebaseportlet",
-		"5_WAR_knowledgebaseportlet"
+		"1_WAR_knowledgebaseportlet", "2_WAR_knowledgebaseportlet",
+		"%3_WAR_knowledgebaseportlet_INSTANCE_%"
 	};
 
 }

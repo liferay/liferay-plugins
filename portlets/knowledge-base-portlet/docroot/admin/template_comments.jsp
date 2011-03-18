@@ -19,7 +19,13 @@
 <%
 Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
 
-Comment comment = CommentLocalServiceUtil.getCommentSilent(user.getUserId(), Template.class.getName(), template.getTemplateId());
+Comment comment = null;
+
+try {
+	comment = CommentLocalServiceUtil.getComment(user.getUserId(), Template.class.getName(), template.getTemplateId());
+}
+catch (NoSuchCommentException nsce) {
+}
 
 long commentId = BeanParamUtil.getLong(comment, request, "commentId");
 
@@ -70,7 +76,7 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 
 				<c:if test="<%= showTemplateComments %>">
 					<liferay-portlet:renderURL varImpl="iteratorURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_template.jsp" %>' />
+						<portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</liferay-portlet:renderURL>
 
@@ -114,12 +120,12 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 	<aui:script>
 		function <portlet:namespace />deleteComment(commentId) {
 			document.<portlet:namespace />fm.<portlet:namespace />commentId.value = commentId;
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></liferay-portlet:actionURL>");
 		}
 
 		function <portlet:namespace />updateComment() {
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (comment == null) ? Constants.ADD : Constants.UPDATE %>";
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_template.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" /></liferay-portlet:actionURL>");
 		}
 	</aui:script>
 </c:if>

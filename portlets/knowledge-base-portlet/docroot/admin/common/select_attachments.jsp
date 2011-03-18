@@ -67,10 +67,10 @@ String[] fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), Com
 				modelVar="fileName"
 				stringKey="<%= true %>"
 			>
-				<portlet:resourceURL id="attachment" var="rowURL">
+				<liferay-portlet:resourceURL id="attachment" var="rowURL">
 					<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
 					<portlet:param name="fileName" value="<%= fileName %>" />
-				</portlet:resourceURL>
+				</liferay-portlet:resourceURL>
 
 				<liferay-ui:search-container-column-text
 					name="attachment"
@@ -117,12 +117,12 @@ String[] fileNames = DLLocalServiceUtil.getFileNames(company.getCompanyId(), Com
 <aui:script>
 	function <portlet:namespace />addAttachment() {
 		document.<portlet:namespace />fm.enctype = "<%= ContentTypes.MULTIPART_FORM_DATA %>";
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="addAttachment"><portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="addAttachment"><portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
 	}
 
 	function <portlet:namespace />deleteAttachment(fileName) {
 		document.<portlet:namespace />fm.<portlet:namespace />fileName.value = fileName;
-		submitForm(document.<portlet:namespace />fm, '<portlet:actionURL name="deleteAttachment"><portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></portlet:actionURL>');
+		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteAttachment"><portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' /><portlet:param name="redirect" value="<%= redirect %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" /><portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" /><portlet:param name="dirName" value="<%= dirName %>" /></liferay-portlet:actionURL>');
 	}
 
 	opener.<portlet:namespace />updateAttachments("<%= UnicodeFormatter.toString(dirName) %>", "<%= UnicodeFormatter.toString(html) %>");

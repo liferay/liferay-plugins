@@ -20,22 +20,18 @@ import com.liferay.knowledgebase.service.ArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.PortletPreferencesHelper;
 import com.liferay.portal.NoSuchLayoutException;
-import com.liferay.portal.kernel.portlet.WindowStateFactory;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.struts.StrutsAction;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutTypePortlet;
@@ -44,22 +40,17 @@ import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.security.auth.AuthTokenUtil;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.ControlPanelEntry;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.portlet.PortletMode;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
-import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,7 +61,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FindArticleAction extends BaseStrutsAction {
 
 	public static final String PORTLET_ID =
-		PortletKeys.KNOWLEDGE_BASE_DISPLAY +
+		PortletKeys.KNOWLEDGE_BASE_ARTICLE +
 			PortletConstants.INSTANCE_SEPARATOR + "0000";
 
 	public String execute(
@@ -106,68 +97,16 @@ public class FindArticleAction extends BaseStrutsAction {
 		}
 
 		if (portletURL == null) {
-			portletURL = getAdminPortletURL(article, request);
-		}
-
-		if (portletURL == null) {
 			portletURL = getDisplayPortletURL(plid, request);
 		}
 
 		if (maximized) {
-			portletURL.setWindowState(WindowState.MAXIMIZED);
+			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 		}
 
 		response.sendRedirect(portletURL.toString());
 
 		return null;
-	}
-
-	protected PortletURL getAdminPortletURL(
-			Article article, HttpServletRequest request)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Portlet portlet = PortletLocalServiceUtil.getPortletById(
-			article.getCompanyId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		ControlPanelEntry controlPanelEntry =
-			portlet.getControlPanelEntryInstance();
-
-		if (controlPanelEntry == null) {
-			controlPanelEntry = (ControlPanelEntry)PortalClassInvoker.invoke(
-				false, "com.liferay.portlet.DefaultControlPanelEntryFactory",
-				"getInstance", new String[0]);
-		}
-
-		String controlPanelEntryCategory =
-			portlet.getControlPanelEntryCategory();
-
-		if (!controlPanelEntry.isVisible(
-				portlet, controlPanelEntryCategory, themeDisplay)) {
-
-			return null;
-		}
-
-		Group controlPanelGroup = GroupLocalServiceUtil.getGroup(
-			article.getCompanyId(), GroupConstants.CONTROL_PANEL);
-
-		long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(
-			controlPanelGroup.getGroupId(), true);
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, portlet.getPortletId(), controlPanelPlid,
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setWindowState(WindowState.MAXIMIZED);
-		portletURL.setPortletMode(PortletMode.VIEW);
-
-		portletURL.setParameter("jspPage", "/admin/view_article.jsp");
-		portletURL.setParameter(
-			"resourcePrimKey", String.valueOf(article.getResourcePrimKey()));
-
-		return portletURL;
 	}
 
 	protected Article getArticle(long resourcePrimKey) throws Exception {
@@ -199,42 +138,21 @@ public class FindArticleAction extends BaseStrutsAction {
 
 		long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
-		PortletPreferences preferences =
-			PortletPreferencesFactoryUtil.getPortletSetup(request, portletId);
-
-		Map<String, String> preferencesMap =
-			PortletPreferencesHelper.initPreferencesMap(portletId, preferences);
-
-		WindowState windowState = null;
 		String jspPage = null;
 
 		String rootPortletId = PortletConstants.getRootPortletId(portletId);
 
-		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_AGGREGATOR)) {
-			String name = preferencesMap.get("articleWindowState");
-
-			windowState = WindowStateFactory.getWindowState(name);
-			jspPage = "/aggregator/view_article.jsp";
+		if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
+			jspPage = "/article/view_article.jsp";
 		}
 		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-			windowState = WindowState.NORMAL;
 			jspPage = "/display/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_LIST)) {
-			String name = preferencesMap.get("articleWindowState");
-
-			windowState = WindowStateFactory.getWindowState(name);
-			jspPage = "/list/view_article.jsp";
-		}
-		else if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_SEARCH)) {
-			windowState = WindowState.MAXIMIZED;
-			jspPage = "/search/view_article.jsp";
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			request, portletId, plid, PortletRequest.RENDER_PHASE);
 
-		portletURL.setWindowState(windowState);
+		portletURL.setWindowState(LiferayWindowState.NORMAL);
 		portletURL.setPortletMode(PortletMode.VIEW);
 
 		portletURL.setParameter("jspPage", jspPage);
@@ -263,8 +181,6 @@ public class FindArticleAction extends BaseStrutsAction {
 			layouts.add(0, selLayout);
 		}
 
-		String[] rootPortletIds = PortletKeys.KNOWLEDGE_BASE_PORTLETS;
-
 		for (Layout layout : layouts) {
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
@@ -275,14 +191,35 @@ public class FindArticleAction extends BaseStrutsAction {
 				String rootPortletId = PortletConstants.getRootPortletId(
 					portlet.getPortletId());
 
-				if (!ArrayUtil.contains(rootPortletIds, rootPortletId)) {
+				if (rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+					return getArticleURL(
+						layout.getPlid(), portlet.getPortletId(), request);
+				}
+
+				if (!rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
 					continue;
 				}
 
-				if (PortletPreferencesHelper.hasArticle(
-						layout.getPlid(), portlet.getPortletId(),
-						article.getResourcePrimKey())) {
+				PortletPreferences preferences =
+					PortletPreferencesFactoryUtil.getPortletSetup(
+						layout, portlet.getPortletId(), StringPool.BLANK);
 
+				long resourcePrimKey = GetterUtil.getLong(
+					preferences.getValue("resourcePrimKey", null));
+
+				Article selArticle = null;
+
+				try {
+					selArticle = ArticleLocalServiceUtil.getLatestArticle(
+						resourcePrimKey, WorkflowConstants.STATUS_ANY);
+				}
+				catch (NoSuchArticleException nsae) {
+					continue;
+				}
+
+				long rootResourcePrimKey = selArticle.getRootResourcePrimKey();
+
+				if (article.getRootResourcePrimKey() == rootResourcePrimKey) {
 					return getArticleURL(
 						layout.getPlid(), portlet.getPortletId(), request);
 				}
@@ -298,7 +235,7 @@ public class FindArticleAction extends BaseStrutsAction {
 
 		PortletURL portletURL = getArticleURL(plid, PORTLET_ID, request);
 
-		portletURL.setWindowState(WindowState.MAXIMIZED);
+		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 
 		if (!_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_ENABLED) {
 			return portletURL;

@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.admin.util;
 
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
+import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.HitsOpenSearchImpl;
@@ -55,7 +56,7 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 
 		WindowState windowState = portletURL.getWindowState();
 
-		if (windowState.equals(WindowState.MAXIMIZED)) {
+		if (windowState.equals(LiferayWindowState.MAXIMIZED)) {
 			return KnowledgeBaseUtil.getArticleURL(
 				themeDisplay.getPlid(), resourcePrimKey,
 				themeDisplay.getPortalURL(), true);

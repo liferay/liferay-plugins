@@ -17,11 +17,11 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), status.intValue(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 %>
 
 <c:if test="<%= !siblingArticles.isEmpty() %>">
@@ -33,11 +33,11 @@ List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroup
 			%>
 
 				<div class="kb-element-header">
-					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
+					<liferay-portlet:renderURL var="viewArticleURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(siblingArticle.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-					</portlet:renderURL>
+						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="../trees/page"

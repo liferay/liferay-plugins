@@ -38,13 +38,6 @@
 <%@ page import="com.liferay.knowledgebase.NoSuchTemplateException" %>
 <%@ page import="com.liferay.knowledgebase.TemplateContentException" %>
 <%@ page import="com.liferay.knowledgebase.TemplateTitleException" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.ArticleDisplayTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.ArticleSearch" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.ArticleSearchTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.TemplateDisplayTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.TemplateSearch" %>
-<%@ page import="com.liferay.knowledgebase.admin.search.TemplateSearchTerms" %>
-<%@ page import="com.liferay.knowledgebase.admin.util.AdminUtil" %>
 <%@ page import="com.liferay.knowledgebase.model.Article" %>
 <%@ page import="com.liferay.knowledgebase.model.Comment" %>
 <%@ page import="com.liferay.knowledgebase.model.Template" %>
@@ -57,33 +50,29 @@
 <%@ page import="com.liferay.knowledgebase.service.TemplateServiceUtil" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.AdminPermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.ArticlePermission" %>
+<%@ page import="com.liferay.knowledgebase.service.permission.DisplayPermission" %>
 <%@ page import="com.liferay.knowledgebase.service.permission.TemplatePermission" %>
 <%@ page import="com.liferay.knowledgebase.util.ActionKeys" %>
+<%@ page import="com.liferay.knowledgebase.util.KnowledgeBaseUtil" %>
 <%@ page import="com.liferay.knowledgebase.util.PortletKeys" %>
-<%@ page import="com.liferay.knowledgebase.util.PortletPreferencesHelper" %>
 <%@ page import="com.liferay.knowledgebase.util.WebKeys" %>
-<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator" %>
 <%@ page import="com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator" %>
-<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleTitleComparator" %>
-<%@ page import="com.liferay.knowledgebase.util.comparator.ArticleVersionComparator" %>
+<%@ page import="com.liferay.portal.NoSuchSubscriptionException" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.bean.BeanPropertiesUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.ResultRow" %>
 <%@ page import="com.liferay.portal.kernel.dao.search.RowChecker" %>
-<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %>
-<%@ page import="com.liferay.portal.kernel.search.Document" %>
 <%@ page import="com.liferay.portal.kernel.search.Field" %>
 <%@ page import="com.liferay.portal.kernel.search.Hits" %>
 <%@ page import="com.liferay.portal.kernel.search.Indexer" %>
+<%@ page import="com.liferay.portal.kernel.search.IndexerRegistryUtil" %>
 <%@ page import="com.liferay.portal.kernel.search.SearchContext" %>
 <%@ page import="com.liferay.portal.kernel.search.SearchContextFactory" %>
-<%@ page import="com.liferay.portal.kernel.search.SearchEngineUtil" %>
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
-<%@ page import="com.liferay.portal.kernel.util.ArrayUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
 <%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
@@ -105,18 +94,21 @@
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %>
 <%@ page import="com.liferay.portal.model.CompanyConstants" %>
-<%@ page import="com.liferay.portal.model.Layout" %>
-<%@ page import="com.liferay.portal.model.Portlet" %>
-<%@ page import="com.liferay.portal.model.PortletConstants" %>
 <%@ page import="com.liferay.portal.model.Subscription" %>
 <%@ page import="com.liferay.portal.security.auth.PrincipalException" %>
-<%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.SubscriptionLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.WorkflowDefinitionLinkLocalServiceUtil" %>
 <%@ page import="com.liferay.portal.service.permission.GroupPermissionUtil" %>
+<%@ page import="com.liferay.portal.service.permission.PortletPermissionUtil" %>
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
-<%@ page import="com.liferay.portlet.PortletConfigFactoryUtil" %>
 <%@ page import="com.liferay.portlet.PortletPreferencesFactoryUtil" %>
+<%@ page import="com.liferay.portlet.asset.model.AssetCategory" %>
+<%@ page import="com.liferay.portlet.asset.model.AssetEntry" %>
+<%@ page import="com.liferay.portlet.asset.model.AssetVocabulary" %>
+<%@ page import="com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.asset.service.AssetEntryServiceUtil" %>
+<%@ page import="com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil" %>
+<%@ page import="com.liferay.portlet.asset.service.persistence.AssetEntryQuery" %>
 <%@ page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.math.BigDecimal" %>
@@ -124,17 +116,15 @@
 <%@ page import="java.text.Format" %>
 
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.Map" %>
 
-<%@ page import="javax.portlet.PortletConfig" %>
 <%@ page import="javax.portlet.PortletPreferences" %>
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
 <%@ page import="org.apache.commons.lang.time.FastDateFormat" %>
+
+<%@ page import="org.apache.commons.math.util.MathUtils" %>
 
 <portlet:defineObjects />
 
@@ -145,21 +135,10 @@ WindowState windowState = renderRequest.getWindowState();
 
 String currentURL = PortalUtil.getCurrentURL(request);
 
-String rootPortletId = portletDisplay.getRootPortletId();
-
 String jspPath = portletConfig.getInitParameter("jsp-path");
 
-String portletResource = ParamUtil.getString(request, "portletResource");
+Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale, timeZone);
 
-if (Validator.isNotNull(portletResource)) {
-	Portlet selPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletResource);
-
-	PortletConfig selPortletConfig = PortletConfigFactoryUtil.create(selPortlet, application);
-
-	rootPortletId = selPortlet.getPluginId();
-
-	jspPath = selPortletConfig.getInitParameter("jsp-path");
-}
-
+Format dateFormatDate = FastDateFormat.getDateInstance(FastDateFormat.LONG, timeZone, locale);
 Format dateFormatDateTime = FastDateFormat.getDateTimeInstance(FastDateFormat.LONG, FastDateFormat.SHORT, timeZone, locale);
 %>

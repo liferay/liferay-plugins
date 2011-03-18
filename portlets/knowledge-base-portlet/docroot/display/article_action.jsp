@@ -17,7 +17,7 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
 
@@ -26,12 +26,12 @@ Article article = (Article)row.getObject();
 
 <liferay-ui:icon-menu cssClass="kb-article-action">
 	<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
-		<portlet:renderURL var="editURL">
+		<liferay-portlet:renderURL var="editURL">
 			<portlet:param name="jspPage" value="/display/edit_article.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 			<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
-		</portlet:renderURL>
+		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
 			image="edit"
@@ -56,12 +56,12 @@ Article article = (Article)row.getObject();
 	</c:if>
 
 	<c:if test="<%= article.isApproved() || !article.isFirstVersion() %>">
-		<portlet:resourceURL id="articleRSS" var="articleRSSURL">
+		<liferay-portlet:resourceURL id="articleRSS" var="articleRSSURL">
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 			<portlet:param name="rssDelta" value="<%= String.valueOf(rssDelta) %>" />
 			<portlet:param name="rssDisplayStyle" value="<%= rssDisplayStyle %>" />
 			<portlet:param name="rssFormat" value="<%= rssFormat %>" />
-		</portlet:resourceURL>
+		</liferay-portlet:resourceURL>
 
 		<liferay-ui:icon
 			image="rss"
@@ -74,10 +74,10 @@ Article article = (Article)row.getObject();
 	<c:if test="<%= (article.isApproved() || !article.isFirstVersion()) && ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey()) %>">
-				<portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
+				<liferay-portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-				</portlet:actionURL>
+				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon
 					image="unsubscribe"
@@ -85,10 +85,10 @@ Article article = (Article)row.getObject();
 				/>
 			</c:when>
 			<c:otherwise>
-				<portlet:actionURL name="subscribeArticle" var="subscribeArticleURL">
+				<liferay-portlet:actionURL name="subscribeArticle" var="subscribeArticleURL">
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-				</portlet:actionURL>
+				</liferay-portlet:actionURL>
 
 				<liferay-ui:icon
 					image="subscribe"
@@ -99,12 +99,12 @@ Article article = (Article)row.getObject();
 	</c:if>
 
 	<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.MOVE) %>">
-		<portlet:renderURL var="moveURL">
+		<liferay-portlet:renderURL var="moveURL">
 			<portlet:param name="jspPage" value="/display/move_article.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-		</portlet:renderURL>
+			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+		</liferay-portlet:renderURL>
 
 		<liferay-ui:icon
 			image="forward"
@@ -115,10 +115,10 @@ Article article = (Article)row.getObject();
 	</c:if>
 
 	<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="deleteArticle" var="deleteURL">
+		<liferay-portlet:actionURL name="deleteArticle" var="deleteURL">
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-		</portlet:actionURL>
+		</liferay-portlet:actionURL>
 
 		<liferay-ui:icon-delete
 			url="<%= deleteURL %>"

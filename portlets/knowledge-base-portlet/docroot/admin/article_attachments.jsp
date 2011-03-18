@@ -30,10 +30,10 @@ String[] fileNames = article.getAttachmentsFileNames();
 		%>
 
 			<div>
-				<portlet:resourceURL id="attachment" var="clipURL">
+				<liferay-portlet:resourceURL id="attachment" var="clipURL">
 					<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
 					<portlet:param name="fileName" value="<%= fileName %>" />
-				</portlet:resourceURL>
+				</liferay-portlet:resourceURL>
 
 				<liferay-ui:icon
 					image="clip"

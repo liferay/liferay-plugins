@@ -29,19 +29,19 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 <c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
 	<aui:button-row>
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
-			<portlet:renderURL var="addArticleURL">
+			<liferay-portlet:renderURL var="addArticleURL">
 				<portlet:param name="jspPage" value="/display/edit_article.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:renderURL>
+			</liferay-portlet:renderURL>
 
 			<aui:button onClick="<%= addArticleURL %>" value="add-article" />
 		</c:if>
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
-			<portlet:renderURL var="addTemplateURL">
+			<liferay-portlet:renderURL var="addTemplateURL">
 				<portlet:param name="jspPage" value="/display/edit_template.jsp" />
 				<portlet:param name="redirect" value="<%= currentURL %>" />
-			</portlet:renderURL>
+			</liferay-portlet:renderURL>
 
 			<aui:button onClick="<%= addTemplateURL %>" value="add-template" />
 		</c:if>

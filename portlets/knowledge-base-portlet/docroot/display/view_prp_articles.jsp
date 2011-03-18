@@ -17,16 +17,16 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
-long categoryId = ParamUtil.getLong(request, "categoryId");
-String tag = ParamUtil.getString(request, "tag");
+long assetCategoryId = ParamUtil.getLong(request, "categoryId");
+String assetTagName = ParamUtil.getString(request, "tag");
 %>
 
 <liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
 	<portlet:param name="jspPage" value="/display/view.jsp" />
-	<portlet:param name="categoryId" value="<%= String.valueOf(categoryId) %>" />
-	<portlet:param name="tag" value="<%= tag %>" />
+	<portlet:param name="categoryId" value="<%= String.valueOf(assetCategoryId) %>" />
+	<portlet:param name="tag" value="<%= assetTagName %>" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
@@ -114,25 +114,25 @@ String tag = ParamUtil.getString(request, "tag");
 		/>
 	</liferay-ui:search-container-row>
 
-	<c:if test="<%= (categoryId > 0) || Validator.isNotNull(tag) %>">
+	<c:if test="<%= (assetCategoryId > 0) || Validator.isNotNull(assetTagName) %>">
 		<div class="portlet-msg-info">
 			<c:choose>
-				<c:when test="<%= categoryId > 0 %>">
+				<c:when test="<%= assetCategoryId > 0 %>">
 
 					<%
-					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(categoryId);
+					AssetCategory assetCategory = AssetCategoryLocalServiceUtil.getAssetCategory(assetCategoryId);
 
 					AssetVocabulary assetVocabulary = AssetVocabularyLocalServiceUtil.getAssetVocabulary(assetCategory.getVocabularyId());
 					%>
 
 					<c:choose>
-						<c:when test="<%= Validator.isNotNull(tag) %>">
+						<c:when test="<%= Validator.isNotNull(assetTagName) %>">
 							<c:choose>
 								<c:when test="<%= total > 0 %>">
-									<%= LanguageUtil.format(pageContext, "articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), tag}, false) %>
+									<%= LanguageUtil.format(pageContext, "articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), assetTagName}, false) %>
 								</c:when>
 								<c:otherwise>
-									<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), tag}, false) %>
+									<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-x-x-and-tag-x", new String[] {assetVocabulary.getName(), assetCategory.getName(), assetTagName}, false) %>
 								</c:otherwise>
 							</c:choose>
 						</c:when>
@@ -151,10 +151,10 @@ String tag = ParamUtil.getString(request, "tag");
 				<c:otherwise>
 					<c:choose>
 						<c:when test="<%= total > 0 %>">
-							<%= LanguageUtil.format(pageContext, "articles-with-tag-x", tag, false) %>
+							<%= LanguageUtil.format(pageContext, "articles-with-tag-x", assetTagName, false) %>
 						</c:when>
 						<c:otherwise>
-							<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-tag-x", tag, false) %>
+							<%= LanguageUtil.format(pageContext, "there-are-no-articles-with-tag-x", assetTagName, false) %>
 						</c:otherwise>
 					</c:choose>
 				</c:otherwise>

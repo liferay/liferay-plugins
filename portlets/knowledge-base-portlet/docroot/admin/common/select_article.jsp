@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
@@ -28,7 +28,7 @@ long parentResourcePrimKey = BeanParamUtil.getLong(article, request, "parentReso
 long oldParentResourcePrimKey = ParamUtil.getLong(request, "oldParentResourcePrimKey");
 
 String orderByCol = ParamUtil.getString(request, "orderByCol", "priority");
-String orderByType = ParamUtil.getString(request, "orderByType", "asc");
+String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
 
 <liferay-ui:header
@@ -38,11 +38,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 <aui:form method="post" name="fm">
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-			<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_article.jsp" %>' />
+			<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 			<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 			<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
-			<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
@@ -53,8 +53,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 			orderByType="<%= orderByType %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, parentResourcePrimKey, status.intValue(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, status.intValue()) %>"
+				results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, parentResourcePrimKey, status, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+				total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, parentResourcePrimKey, status) %>"
 			/>
 
 			<liferay-ui:search-container-row
@@ -62,16 +62,16 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 				keyProperty="resourcePrimKey"
 				modelVar="curArticle"
 			>
-				<portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_article.jsp" %>' />
+				<liferay-portlet:renderURL var="rowURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
-					<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-				</portlet:renderURL>
+					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+				</liferay-portlet:renderURL>
 
 				<%
-				if ((curArticle.getResourcePrimKey() == resourcePrimKey) || (ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, curArticle.getResourcePrimKey(), status.intValue()) == 0)) {
+				if ((curArticle.getResourcePrimKey() == resourcePrimKey) || (ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, curArticle.getResourcePrimKey(), status) == 0)) {
 					rowURL = null;
 				}
 				%>
@@ -117,7 +117,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
 			<c:if test="<%= oldParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
 				<aui:button-row>
-					<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey, status.intValue()), "title") %>
+					<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(oldParentResourcePrimKey, status), "title") %>
 
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">
@@ -136,13 +136,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 			</c:if>
 
 			<div class="kb-select-article-breadcrumbs">
-				<portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_article.jsp" %>' />
+				<liferay-portlet:renderURL var="breadcrumbURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 					<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
 					<portlet:param name="oldParentResourcePrimKey" value="<%= String.valueOf(oldParentResourcePrimKey) %>" />
-					<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-				</portlet:renderURL>
+					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+				</liferay-portlet:renderURL>
 
 				<aui:a href="<%= breadcrumbURL %>"><liferay-ui:message key="home" /></aui:a> &raquo;
 
@@ -154,7 +154,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 					long selParentResourcePrimKey = parentResourcePrimKey;
 
 					while (selParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-						Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status.intValue());
+						Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status);
 
 						selArticles.add(selArticle);
 

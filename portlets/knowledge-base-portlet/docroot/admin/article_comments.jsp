@@ -17,11 +17,17 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-Comment comment = CommentLocalServiceUtil.getCommentSilent(user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
+Comment comment = null;
+
+try {
+	comment = CommentLocalServiceUtil.getComment(user.getUserId(), Article.class.getName(), article.getResourcePrimKey());
+}
+catch (NoSuchCommentException nsce) {
+}
 
 long commentId = BeanParamUtil.getLong(comment, request, "commentId");
 
@@ -72,9 +78,9 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 
 				<c:if test="<%= showArticleComments %>">
 					<liferay-portlet:renderURL varImpl="iteratorURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:search-container
@@ -117,12 +123,12 @@ boolean helpful = BeanParamUtil.getBoolean(comment, request, "helpful", true);
 	<aui:script>
 		function <portlet:namespace />deleteComment(commentId) {
 			document.<portlet:namespace />fm.<portlet:namespace />commentId.value = commentId;
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status) %>" /></liferay-portlet:actionURL>");
 		}
 
 		function <portlet:namespace />updateComment() {
 			document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (comment == null) ? Constants.ADD : Constants.UPDATE %>";
-			submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" /></portlet:actionURL>");
+			submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="updateComment"><portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" /><portlet:param name="status" value="<%= String.valueOf(status) %>" /></liferay-portlet:actionURL>");
 		}
 	</aui:script>
 </c:if>

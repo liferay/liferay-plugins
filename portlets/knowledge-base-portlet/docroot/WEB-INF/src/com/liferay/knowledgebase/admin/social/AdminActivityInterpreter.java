@@ -14,7 +14,6 @@
 
 package com.liferay.knowledgebase.admin.social;
 
-import com.liferay.knowledgebase.admin.util.AdminUtil;
 import com.liferay.knowledgebase.model.Article;
 import com.liferay.knowledgebase.model.Comment;
 import com.liferay.knowledgebase.model.Template;
@@ -25,20 +24,15 @@ import com.liferay.knowledgebase.service.permission.ArticlePermission;
 import com.liferay.knowledgebase.service.permission.TemplatePermission;
 import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
-import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author Peter Shin
@@ -145,10 +139,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 				themeDisplay.getPlid(), article.getResourcePrimKey(),
 				themeDisplay.getPortalURL(), false);
 		}
-		else if (template != null) {
-			link = getTemplateURL(
-				template.getGroupId(), template.getTemplateId(), themeDisplay);
-		}
 
 		// Title
 
@@ -197,8 +187,7 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		// Link
 
-		String link = getTemplateURL(
-			template.getGroupId(), template.getTemplateId(), themeDisplay);
+		String link = StringPool.BLANK;
 
 		// Title
 
@@ -219,29 +208,6 @@ public class AdminActivityInterpreter extends BaseSocialActivityInterpreter {
 		String body = StringPool.BLANK;
 
 		return new SocialActivityFeedEntry(link, title, body);
-	}
-
-	protected String getTemplateURL(
-			long groupId, long templateId, ThemeDisplay themeDisplay)
-		throws Exception {
-
-		if (!AdminUtil.isVisible(themeDisplay)) {
-			return StringPool.BLANK;
-		}
-
-		Map<String, String[]> params = new HashMap<String, String[]>();
-
-		String namespace = PortalUtil.getPortletNamespace(
-			PortletKeys.KNOWLEDGE_BASE_ADMIN);
-
-		params.put(
-			namespace + "jspPage", new String[] {"/admin/view_template.jsp"});
-		params.put(
-			namespace + "templateId",
-			new String[] {String.valueOf(templateId)});
-
-		return PortalUtil.getControlPanelFullURL(
-			groupId, PortletKeys.KNOWLEDGE_BASE_ADMIN, params);
 	}
 
 	protected String getTitle(

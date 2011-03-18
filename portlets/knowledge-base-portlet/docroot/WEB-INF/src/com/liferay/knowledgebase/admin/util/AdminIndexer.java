@@ -115,7 +115,7 @@ public class AdminIndexer extends BaseIndexer {
 
 		document.addUID(PORTLET_ID, resourcePrimKey);
 
-		document.addDate("create", createDate);
+		document.addDate("createDate", createDate);
 		document.addDate(Field.MODIFIED, modifiedDate);
 
 		document.addKeyword(Field.COMPANY_ID, companyId);

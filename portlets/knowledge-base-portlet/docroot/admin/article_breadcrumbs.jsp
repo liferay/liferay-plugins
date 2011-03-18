@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
@@ -31,7 +31,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 		long selParentResourcePrimKey = article.getResourcePrimKey();
 
 		while (selParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status.intValue());
+			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status);
 
 			selArticles.add(selArticle);
 
@@ -42,10 +42,10 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			Article selArticle = selArticles.get(i - 1);
 		%>
 
-			<portlet:renderURL var="viewArticleURL">
-				<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
+			<liferay-portlet:renderURL var="viewArticleURL">
+				<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selArticle.getResourcePrimKey()) %>" />
-			</portlet:renderURL>
+			</liferay-portlet:renderURL>
 
 			<c:choose>
 				<c:when test="<%= article.equals(selArticle) %>">

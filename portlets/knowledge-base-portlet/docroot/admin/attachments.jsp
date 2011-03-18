@@ -37,10 +37,10 @@ if (Validator.isNotNull(dirName)) {
 	%>
 
 		<div>
-			<portlet:resourceURL id="attachment" var="clipURL">
+			<liferay-portlet:resourceURL id="attachment" var="clipURL">
 				<portlet:param name="companyId" value="<%= String.valueOf(company.getCompanyId()) %>" />
 				<portlet:param name="fileName" value="<%= fileName %>" />
-			</portlet:resourceURL>
+			</liferay-portlet:resourceURL>
 
 			<liferay-ui:icon
 				image="clip"
@@ -55,16 +55,16 @@ if (Validator.isNotNull(dirName)) {
 	}
 	%>
 
-	<portlet:renderURL var="selectAttachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_attachments.jsp" %>' />
+	<liferay-portlet:renderURL var="selectAttachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+		<portlet:param name="jspPage" value='<%= jspPath + "select_attachments.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 		<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
-	</portlet:renderURL>
+	</liferay-portlet:renderURL>
 
-	<portlet:actionURL name="updateAttachments" var="updateAttachmentsURL">
+	<liferay-portlet:actionURL name="updateAttachments" var="updateAttachmentsURL">
 		<portlet:param name="redirect" value="<%= selectAttachmentsURL %>" />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-	</portlet:actionURL>
+	</liferay-portlet:actionURL>
 
 	<%
 	String taglibOnClick = "var selectAttachmentsWindow = window.open('" + updateAttachmentsURL + "&" + renderResponse.getNamespace() + "dirName=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "dirName.value, 'selectAttachments', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectAttachmentsWindow.focus();";

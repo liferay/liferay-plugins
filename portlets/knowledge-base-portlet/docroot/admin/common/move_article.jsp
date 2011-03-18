@@ -19,7 +19,7 @@
 <%
 String redirect = ParamUtil.getString(request, "redirect");
 
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
@@ -34,12 +34,12 @@ double priority = BeanParamUtil.getDouble(article, request, "priority");
 	title="<%= article.getTitle() %>"
 />
 
-<portlet:actionURL name="moveArticle" var="moveArticleURL">
-	<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "move_article.jsp" %>' />
+<liferay-portlet:actionURL name="moveArticle" var="moveArticleURL">
+	<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-	<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-</portlet:actionURL>
+	<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+</liferay-portlet:actionURL>
 
 <aui:form action="<%= moveArticleURL %>" method="post" name="fm">
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
@@ -50,7 +50,7 @@ double priority = BeanParamUtil.getDouble(article, request, "priority");
 		<aui:field-wrapper label="current-parent">
 			<c:choose>
 				<c:when test="<%= !article.isRoot() %>">
-					<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(article.getParentResourcePrimKey(), status.intValue()), "title") %>
+					<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(article.getParentResourcePrimKey(), status), "title") %>
 				</c:when>
 				<c:otherwise>
 					(<liferay-ui:message key="none" />)

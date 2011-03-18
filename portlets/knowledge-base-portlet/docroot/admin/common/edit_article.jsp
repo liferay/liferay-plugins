@@ -36,11 +36,11 @@ String dirName = ParamUtil.getString(request, "dirName");
 	title='<%= (article != null) ? article.getTitle() : "new-article" %>'
 />
 
-<portlet:actionURL name="updateArticle" var="updateArticleURL">
-	<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_article.jsp" %>' />
+<liferay-portlet:actionURL name="updateArticle" var="updateArticleURL">
+	<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
-</portlet:actionURL>
+</liferay-portlet:actionURL>
 
 <aui:form action="<%= updateArticleURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateArticle();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />

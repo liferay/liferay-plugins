@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute("article_icons.jsp-article");
 
@@ -30,11 +30,11 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 		<tr>
 			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
-					<portlet:renderURL var="addArticleURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_article.jsp" %>' />
+					<liferay-portlet:renderURL var="addArticleURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-					</portlet:renderURL>
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="add_article"
@@ -48,12 +48,12 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) %>">
 				<td>
-					<portlet:renderURL var="editURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_article.jsp" %>' />
+					<liferay-portlet:renderURL var="editURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
-					</portlet:renderURL>
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="edit"
@@ -84,12 +84,12 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.MOVE) %>">
 				<td>
-					<portlet:renderURL var="moveURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "move_article.jsp" %>' />
+					<liferay-portlet:renderURL var="moveURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "move_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-					</portlet:renderURL>
+						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="forward"
@@ -103,16 +103,16 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 			<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.DELETE) %>">
 				<td>
-					<portlet:renderURL var="homeURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view-jsp" %>' />
-					</portlet:renderURL>
+					<liferay-portlet:renderURL var="homeURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view-jsp" %>' />
+					</liferay-portlet:renderURL>
 
-					<portlet:actionURL name="deleteArticle" var="deleteURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
+					<liferay-portlet:actionURL name="deleteArticle" var="deleteURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= (article.getResourcePrimKey() == resourcePrimKey) ? homeURL : currentURL %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-					</portlet:actionURL>
+						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+					</liferay-portlet:actionURL>
 
 					<liferay-ui:icon-delete
 						label="<%= true %>"

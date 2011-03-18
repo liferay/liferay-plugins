@@ -112,10 +112,10 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
-						<portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
+						<liferay-portlet:actionURL name="unsubscribeArticle" var="unsubscribeArticleURL">
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						</portlet:actionURL>
+						</liferay-portlet:actionURL>
 
 						<liferay-ui:icon
 							image="unsubscribe"

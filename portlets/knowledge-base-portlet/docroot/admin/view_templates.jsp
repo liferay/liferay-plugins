@@ -88,10 +88,10 @@
 			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
 				<aui:button-row>
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
-						<portlet:renderURL var="addTemplateURL">
-							<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_template.jsp" %>' />
+						<liferay-portlet:renderURL var="addTemplateURL">
+							<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
-						</portlet:renderURL>
+						</liferay-portlet:renderURL>
 
 						<aui:button onClick="<%= addTemplateURL %>" value="add-template" />
 					</c:if>
@@ -130,7 +130,7 @@
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-templates") %>')) {
 				document.<portlet:namespace />fm.method = "post";
 				document.<portlet:namespace />fm.<portlet:namespace />templateIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				submitForm(document.<portlet:namespace />fm, "<portlet:actionURL name="deleteTemplates"><portlet:param name="jspPage" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:actionURL>");
+				submitForm(document.<portlet:namespace />fm, "<liferay-portlet:actionURL name="deleteTemplates"><portlet:param name="jspPage" value="/admin/view_templates.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>");
 			}
 		},
 		['liferay-util-list-fields']

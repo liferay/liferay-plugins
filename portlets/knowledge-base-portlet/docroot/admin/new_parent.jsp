@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
@@ -30,7 +30,7 @@ double priority = BeanParamUtil.getDouble(article, request, "priority");
 <div class="kb-new-parent">
 	<c:choose>
 		<c:when test="<%= parentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
-			<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, status.intValue()), "title") %>
+			<%= BeanPropertiesUtil.getString(ArticleServiceUtil.getLatestArticle(parentResourcePrimKey, status), "title") %>
 		</c:when>
 		<c:otherwise>
 			(<liferay-ui:message key="none" />)
@@ -39,12 +39,12 @@ double priority = BeanParamUtil.getDouble(article, request, "priority");
 
 	<aui:input cssClass="kb-priority" inlineField="<%= true %>" label="" name="priority" size="5" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 
-	<portlet:renderURL var="selectArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_article.jsp" %>' />
+	<liferay-portlet:renderURL var="selectArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+		<portlet:param name="jspPage" value='<%= jspPath + "select_article.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 		<portlet:param name="parentResourcePrimKey" value="<%= String.valueOf(ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>" />
-		<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-	</portlet:renderURL>
+		<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+	</liferay-portlet:renderURL>
 
 	<%
 	String taglibOnClick = "var selectArticleWindow = window.open('" + selectArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value, 'selectArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticleWindow.focus();";

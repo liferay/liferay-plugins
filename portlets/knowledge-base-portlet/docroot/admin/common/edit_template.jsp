@@ -31,11 +31,11 @@ String content = BeanParamUtil.getString(template, request, "content");
 	title='<%= (template != null) ? template.getTitle() : "new-template" %>'
 />
 
-<portlet:actionURL name="updateTemplate" var="updateTemplateURL">
-	<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_template.jsp" %>' />
+<liferay-portlet:actionURL name="updateTemplate" var="updateTemplateURL">
+	<portlet:param name="jspPage" value='<%= jspPath + "edit_template.jsp" %>' />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="templateId" value="<%= String.valueOf(templateId) %>" />
-</portlet:actionURL>
+</liferay-portlet:actionURL>
 
 <aui:form action="<%= updateTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateTemplate();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />

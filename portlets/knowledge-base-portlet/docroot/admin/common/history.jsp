@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
@@ -29,9 +29,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
 
 <liferay-portlet:renderURL varImpl="compareVersionsURL">
-	<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "history.jsp" %>' />
+	<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-	<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+	<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= compareVersionsURL %>" method="get" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "compare();" %>'>
@@ -41,9 +41,9 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "history.jsp" %>' />
+			<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 		</liferay-portlet:renderURL>
 
 		<%
@@ -63,7 +63,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			<liferay-ui:search-container-results>
 
 				<%
-				int selStatus = ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) ? WorkflowConstants.STATUS_ANY : status.intValue();
+				int selStatus = ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) ? WorkflowConstants.STATUS_ANY : status;
 
 				pageContext.setAttribute("results", ArticleServiceUtil.getArticles(scopeGroupId, article.getResourcePrimKey(), selStatus, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()));
 				pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(scopeGroupId, article.getResourcePrimKey(), selStatus));
@@ -80,13 +80,13 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				keyProperty="version"
 				modelVar="curArticle"
 			>
-				<portlet:renderURL var="rowURL">
-					<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "history.jsp" %>' />
+				<liferay-portlet:renderURL var="rowURL">
+					<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(curArticle.getResourcePrimKey()) %>" />
-					<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+					<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					<portlet:param name="sourceVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
 					<portlet:param name="targetVersion" value="<%= String.valueOf(curArticle.getVersion()) %>" />
-				</portlet:renderURL>
+				</liferay-portlet:renderURL>
 
 				<liferay-ui:search-container-column-text
 					cssClass="kb-column-no-wrap"
@@ -126,7 +126,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					value='<%= dateFormatDate.format(curArticle.getModifiedDate()) + "<br />" + dateFormatTime.format(curArticle.getModifiedDate()) %>'
 				/>
 
-				<c:if test="<%= (status.intValue() == WorkflowConstants.STATUS_ANY) || update %>">
+				<c:if test="<%= (status == WorkflowConstants.STATUS_ANY) || update %>">
 					<liferay-ui:search-container-column-text
 						cssClass="kb-column-no-wrap"
 						href="<%= rowURL %>"
@@ -136,20 +136,29 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 					/>
 				</c:if>
 
+				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
+					href="<%= rowURL %>"
+					name="views"
+					orderable="<%= true %>"
+					orderableProperty="view-count"
+					property="viewCount"
+				/>
+
 				<c:if test="<%= update %>">
 					<liferay-ui:search-container-column-text
 						align="right"
 					>
-						<portlet:actionURL name="updateArticle" var="revertURL">
-							<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "history.jsp" %>' />
+						<liferay-portlet:actionURL name="updateArticle" var="revertURL">
+							<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 							<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-							<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+							<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 							<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.UPDATE %>" />
 							<portlet:param name="title" value="<%= curArticle.getTitle() %>" />
 							<portlet:param name="content" value="<%= curArticle.getContent() %>" />
 							<portlet:param name="description" value="<%= curArticle.getDescription() %>" />
-						</portlet:actionURL>
+						</liferay-portlet:actionURL>
 
 						<liferay-ui:icon
 							image="undo"
@@ -167,11 +176,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</div>
 
 				<div class="kb-tools">
-					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
+					<liferay-portlet:renderURL var="viewArticleURL">
+						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
-					</portlet:renderURL>
+						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="../common/page"
