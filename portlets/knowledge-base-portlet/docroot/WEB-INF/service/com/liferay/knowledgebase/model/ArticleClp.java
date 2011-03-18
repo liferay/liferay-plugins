@@ -183,6 +183,14 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		_priority = priority;
 	}
 
+	public int getViewCount() {
+		return _viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		_viewCount = viewCount;
+	}
+
 	public int getLatest() {
 		return _latest;
 	}
@@ -324,6 +332,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
 		clone.setPriority(getPriority());
+		clone.setViewCount(getViewCount());
 		clone.setLatest(getLatest());
 		clone.setStatus(getStatus());
 		clone.setStatusByUserId(getStatusByUserId());
@@ -376,7 +385,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(45);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -410,6 +419,8 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		sb.append(getDescription());
 		sb.append(", priority=");
 		sb.append(getPriority());
+		sb.append(", viewCount=");
+		sb.append(getViewCount());
 		sb.append(", latest=");
 		sb.append(getLatest());
 		sb.append(", status=");
@@ -426,7 +437,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(70);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.Article");
@@ -497,6 +508,10 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>viewCount</column-name><column-value><![CDATA[");
+		sb.append(getViewCount());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>latest</column-name><column-value><![CDATA[");
 		sb.append(getLatest());
 		sb.append("]]></column-value></column>");
@@ -539,6 +554,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	private String _content;
 	private String _description;
 	private double _priority;
+	private int _viewCount;
 	private int _latest;
 	private int _status;
 	private long _statusByUserId;

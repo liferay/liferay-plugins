@@ -193,12 +193,12 @@ public class ArticleServiceUtil {
 			status);
 	}
 
-	public static com.liferay.knowledgebase.model.Article moveArticle(
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
+	public static void moveArticle(long resourcePrimKey,
+		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .moveArticle(resourcePrimKey, parentResourcePrimKey, priority);
+		getService()
+			.moveArticle(resourcePrimKey, parentResourcePrimKey, priority);
 	}
 
 	public static void subscribeArticle(long groupId, long resourcePrimKey)

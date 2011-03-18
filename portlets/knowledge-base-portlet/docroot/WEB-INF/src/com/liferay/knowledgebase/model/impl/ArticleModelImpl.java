@@ -80,13 +80,14 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 			{ "content", Types.CLOB },
 			{ "description", Types.VARCHAR },
 			{ "priority", Types.DOUBLE },
+			{ "viewCount", Types.INTEGER },
 			{ "latest", Types.INTEGER },
 			{ "status", Types.INTEGER },
 			{ "statusByUserId", Types.BIGINT },
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,priority DOUBLE,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KB_Article (uuid_ VARCHAR(75) null,articleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,priority DOUBLE,viewCount INTEGER,latest INTEGER,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KB_Article";
 	public static final String ORDER_BY_JPQL = " ORDER BY article.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KB_Article.modifiedDate DESC";
@@ -125,6 +126,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
 		model.setPriority(soapModel.getPriority());
+		model.setViewCount(soapModel.getViewCount());
 		model.setLatest(soapModel.getLatest());
 		model.setStatus(soapModel.getStatus());
 		model.setStatusByUserId(soapModel.getStatusByUserId());
@@ -367,6 +369,14 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		_priority = priority;
 	}
 
+	public int getViewCount() {
+		return _viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		_viewCount = viewCount;
+	}
+
 	public int getLatest() {
 		return _latest;
 	}
@@ -535,6 +545,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 
 		articleImpl.setPriority(getPriority());
 
+		articleImpl.setViewCount(getViewCount());
+
 		articleImpl.setLatest(getLatest());
 
 		articleImpl.setStatus(getStatus());
@@ -591,7 +603,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(45);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -625,6 +637,8 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		sb.append(getDescription());
 		sb.append(", priority=");
 		sb.append(getPriority());
+		sb.append(", viewCount=");
+		sb.append(getViewCount());
 		sb.append(", latest=");
 		sb.append(getLatest());
 		sb.append(", status=");
@@ -641,7 +655,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(70);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.Article");
@@ -712,6 +726,10 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		sb.append(getPriority());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>viewCount</column-name><column-value><![CDATA[");
+		sb.append(getViewCount());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>latest</column-name><column-value><![CDATA[");
 		sb.append(getLatest());
 		sb.append("]]></column-value></column>");
@@ -761,6 +779,7 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 	private String _content;
 	private String _description;
 	private double _priority;
+	private int _viewCount;
 	private int _latest;
 	private int _status;
 	private long _statusByUserId;

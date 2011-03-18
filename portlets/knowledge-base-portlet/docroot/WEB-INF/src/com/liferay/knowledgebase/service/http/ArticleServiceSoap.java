@@ -303,14 +303,11 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static com.liferay.knowledgebase.model.ArticleSoap moveArticle(
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
-		throws RemoteException {
+	public static void moveArticle(long resourcePrimKey,
+		long parentResourcePrimKey, double priority) throws RemoteException {
 		try {
-			com.liferay.knowledgebase.model.Article returnValue = ArticleServiceUtil.moveArticle(resourcePrimKey,
-					parentResourcePrimKey, priority);
-
-			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModel(returnValue);
+			ArticleServiceUtil.moveArticle(resourcePrimKey,
+				parentResourcePrimKey, priority);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

@@ -421,13 +421,12 @@ public class ArticleLocalServiceUtil {
 			status);
 	}
 
-	public static com.liferay.knowledgebase.model.Article moveArticle(
-		long userId, long resourcePrimKey, long parentResourcePrimKey,
-		double priority)
+	public static void moveArticle(long userId, long resourcePrimKey,
+		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .moveArticle(userId, resourcePrimKey, parentResourcePrimKey,
+		getService()
+			.moveArticle(userId, resourcePrimKey, parentResourcePrimKey,
 			priority);
 	}
 
@@ -521,6 +520,13 @@ public class ArticleLocalServiceUtil {
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateStatus(userId, resourcePrimKey, status, serviceContext);
+	}
+
+	public static void updateViewCount(long userId, long resourcePrimKey,
+		int viewCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().updateViewCount(userId, resourcePrimKey, viewCount);
 	}
 
 	public static void clearService() {

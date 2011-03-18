@@ -399,11 +399,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			parentResourcePrimKey, status);
 	}
 
-	public com.liferay.knowledgebase.model.Article moveArticle(long userId,
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
+	public void moveArticle(long userId, long resourcePrimKey,
+		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.moveArticle(userId, resourcePrimKey,
+		_articleLocalService.moveArticle(userId, resourcePrimKey,
 			parentResourcePrimKey, priority);
 	}
 
@@ -492,6 +492,12 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.updateStatus(userId, resourcePrimKey,
 			status, serviceContext);
+	}
+
+	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_articleLocalService.updateViewCount(userId, resourcePrimKey, viewCount);
 	}
 
 	public ArticleLocalService getWrappedArticleLocalService() {

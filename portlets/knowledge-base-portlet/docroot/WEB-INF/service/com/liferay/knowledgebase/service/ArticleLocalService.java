@@ -345,8 +345,8 @@ public interface ArticleLocalService {
 		long parentResourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.knowledgebase.model.Article moveArticle(long userId,
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
+	public void moveArticle(long userId, long resourcePrimKey,
+		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -407,6 +407,10 @@ public interface ArticleLocalService {
 	public com.liferay.knowledgebase.model.Article updateStatus(long userId,
 		long resourcePrimKey, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

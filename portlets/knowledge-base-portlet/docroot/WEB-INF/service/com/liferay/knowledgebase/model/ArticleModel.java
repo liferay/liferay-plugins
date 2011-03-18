@@ -304,6 +304,20 @@ public interface ArticleModel extends BaseModel<Article> {
 	public void setPriority(double priority);
 
 	/**
+	 * Gets the view count of this article.
+	 *
+	 * @return the view count of this article
+	 */
+	public int getViewCount();
+
+	/**
+	 * Sets the view count of this article.
+	 *
+	 * @param viewCount the view count of this article
+	 */
+	public void setViewCount(int viewCount);
+
+	/**
 	 * Gets the latest of this article.
 	 *
 	 * @return the latest of this article

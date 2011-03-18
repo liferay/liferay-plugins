@@ -205,6 +205,9 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		_updateStatusMethodKey47 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
+
+		_updateViewCountMethodKey48 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateViewCount", long.class, long.class, int.class);
 	}
 
 	public com.liferay.knowledgebase.model.Article addArticle(
@@ -1248,17 +1251,15 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public com.liferay.knowledgebase.model.Article moveArticle(long userId,
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
+	public void moveArticle(long userId, long resourcePrimKey,
+		long parentResourcePrimKey, double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		MethodHandler methodHandler = new MethodHandler(_moveArticleMethodKey36,
 				userId, resourcePrimKey, parentResourcePrimKey, priority);
 
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -1277,8 +1278,6 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> search(
@@ -1630,6 +1629,34 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
+	public void updateViewCount(long userId, long resourcePrimKey, int viewCount)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_updateViewCountMethodKey48,
+				userId, resourcePrimKey, viewCount);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -1683,4 +1710,5 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	private MethodKey _updateAttachmentsMethodKey45;
 	private MethodKey _updatePrioritiesMethodKey46;
 	private MethodKey _updateStatusMethodKey47;
+	private MethodKey _updateViewCountMethodKey48;
 }

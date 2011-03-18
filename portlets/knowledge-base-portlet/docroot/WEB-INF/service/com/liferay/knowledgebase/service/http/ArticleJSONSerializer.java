@@ -66,6 +66,7 @@ public class ArticleJSONSerializer {
 		jsonObject.put("content", model.getContent());
 		jsonObject.put("description", model.getDescription());
 		jsonObject.put("priority", model.getPriority());
+		jsonObject.put("viewCount", model.getViewCount());
 		jsonObject.put("latest", model.getLatest());
 		jsonObject.put("status", model.getStatus());
 		jsonObject.put("statusByUserId", model.getStatusByUserId());

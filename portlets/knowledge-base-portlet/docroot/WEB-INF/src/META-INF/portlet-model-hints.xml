@@ -24,6 +24,7 @@
 			<hint-collection name="TEXTAREA" />
 		</field>
 		<field name="priority" type="double" />
+		<field name="viewCount" type="int" />
 		<field name="latest" type="int" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />

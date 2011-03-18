@@ -704,17 +704,15 @@ public class ArticleServiceClp implements ArticleService {
 		return ((Integer)returnObj).intValue();
 	}
 
-	public com.liferay.knowledgebase.model.Article moveArticle(
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
+	public void moveArticle(long resourcePrimKey, long parentResourcePrimKey,
+		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
 		MethodHandler methodHandler = new MethodHandler(_moveArticleMethodKey18,
 				resourcePrimKey, parentResourcePrimKey, priority);
 
 		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
+			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
@@ -733,8 +731,6 @@ public class ArticleServiceClp implements ArticleService {
 					" is not a valid exception");
 			}
 		}
-
-		return (com.liferay.knowledgebase.model.Article)ClpSerializer.translateOutput(returnObj);
 	}
 
 	public void subscribeArticle(long groupId, long resourcePrimKey)

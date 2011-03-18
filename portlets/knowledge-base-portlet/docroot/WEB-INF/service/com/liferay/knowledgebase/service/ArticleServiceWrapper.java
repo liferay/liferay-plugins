@@ -171,12 +171,12 @@ public class ArticleServiceWrapper implements ArticleService {
 			parentResourcePrimKey, status);
 	}
 
-	public com.liferay.knowledgebase.model.Article moveArticle(
-		long resourcePrimKey, long parentResourcePrimKey, double priority)
+	public void moveArticle(long resourcePrimKey, long parentResourcePrimKey,
+		double priority)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleService.moveArticle(resourcePrimKey,
-			parentResourcePrimKey, priority);
+		_articleService.moveArticle(resourcePrimKey, parentResourcePrimKey,
+			priority);
 	}
 
 	public void subscribeArticle(long groupId, long resourcePrimKey)

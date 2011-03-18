@@ -355,6 +355,24 @@ public class ArticleWrapper implements Article {
 	}
 
 	/**
+	* Gets the view count of this article.
+	*
+	* @return the view count of this article
+	*/
+	public int getViewCount() {
+		return _article.getViewCount();
+	}
+
+	/**
+	* Sets the view count of this article.
+	*
+	* @param viewCount the view count of this article
+	*/
+	public void setViewCount(int viewCount) {
+		_article.setViewCount(viewCount);
+	}
+
+	/**
 	* Gets the latest of this article.
 	*
 	* @return the latest of this article

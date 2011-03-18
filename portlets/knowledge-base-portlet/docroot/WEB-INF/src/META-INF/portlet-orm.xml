@@ -31,6 +31,7 @@
 			<basic name="content" />
 			<basic name="description" />
 			<basic name="priority" />
+			<basic name="viewCount" />
 			<basic name="latest" />
 			<basic name="status" />
 			<basic name="statusByUserId" />
