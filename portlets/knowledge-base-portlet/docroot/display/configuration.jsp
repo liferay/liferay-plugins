@@ -18,16 +18,16 @@
 
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "display-settings");
-
-List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, WorkflowConstants.STATUS_APPROVED, null);
+String tabs3 = ParamUtil.getString(request, "tabs3", "article");
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
+	<portlet:param name="tabs3" value="<%= tabs3 %>" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:tabs
-	names="display-settings,selection-method,rss"
+	names="display-settings,rss"
 	param="tabs2"
 	url="<%= portletURL %>"
 />
@@ -37,117 +37,57 @@ List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, W
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="resourcePrimKeys" type="hidden" value='<%= ListUtil.toString(articles, "resourcePrimKey") %>' />
+	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
 
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("display-settings") %>'>
-				<aui:select name="preferences--childArticlesDisplayStyle--">
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
-					<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
-				</aui:select>
+				<liferay-ui:tabs
+					names="article,template"
+					param="tabs3"
+					url="<%= portletURL %>"
+				/>
 
-				<aui:input inlineLabel="left" label="show-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+				<c:choose>
+					<c:when test='<%= tabs3.equals("article") %>'>
+						<div class="kb-field-wrapper">
+							<aui:field-wrapper label="order-by">
+								<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByCol--">
+									<aui:option label="author" selected='<%= articlesOrderByCol.equals("user-name") %>' value="user-name" />
+									<aui:option label="create-date" selected='<%= articlesOrderByCol.equals("create-date") %>' />
+									<aui:option label="modified-date" selected='<%= articlesOrderByCol.equals("modified-date") %>' />
+									<aui:option label="priority" selected='<%= articlesOrderByCol.equals("priority") %>' />
+									<aui:option label="title" selected='<%= articlesOrderByCol.equals("title") %>' />
+									<aui:option label="view-count" selected='<%= articlesOrderByCol.equals("view-count") %>' />
+								</aui:select>
 
-				<aui:input inlineLabel="left" label="show-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
-
-				<aui:input inlineLabel="left" label="show-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
-
-				<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
-
-				<aui:input inlineLabel="left" label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
-			</c:when>
-			<c:when test='<%= tabs2.equals("selection-method") %>'>
-				<div class="portlet-msg-info">
-					<liferay-ui:message key="set-the-selection-options-used-to-display-the-first-available-article-that-the-user-has-permissions-to-view" />
-				</div>
-
-				<%
-				String taglibOnChange = renderResponse.getNamespace() + "updateSelectionMethod(this.value);";
-				%>
-
-				<aui:select name="preferences--selectionMethod--" onChange="<%= taglibOnChange %>">
-					<aui:option label="articles" selected='<%= selectionMethod.equals("articles") %>' />
-					<aui:option label="filter" selected='<%= selectionMethod.equals("filter") %>' />
-					<aui:option label='<%= "this-" + (themeDisplay.getScopeGroup().isOrganization() ? "organization" : "site") %>' selected='<%= selectionMethod.equals("group") %>' value="group" />
-				</aui:select>
-
-				<div class="kb-field-wrapper" id="<portlet:namespace />articlesSelectionOptions">
-					<aui:field-wrapper label="articles">
-						<div class="kb-selected-entries" id="<portlet:namespace />articles">
-
-							<%
-							for (Article article : articles) {
-							%>
-
-								<span id="<portlet:namespace />article<%= article.getResourcePrimKey() %>"><%= article.getTitle() %></span>
-
-							<%
-							}
-							%>
-
+								<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByType--">
+									<aui:option label="ascending" selected='<%= articlesOrderByType.equals("asc") %>' value="asc" />
+									<aui:option label="descending" selected='<%= articlesOrderByType.equals("desc") %>' value="desc" />
+								</aui:select>
+							</aui:field-wrapper>
 						</div>
 
-						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectArticlesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-							<portlet:param name="jspPage" value="/display/select_articles.jsp" />
-						</liferay-portlet:renderURL>
+						<aui:input label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
 
-						<%
-						String taglibOnClick = "var selectArticlesWindow = window.open('" + selectArticlesURL + "', 'selectArticles', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectArticlesWindow.focus();";
-						%>
+						<aui:input label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
 
-						<div class="kb-edit-link">
-							<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-articles" /> &raquo;</aui:a>
-						</div>
-					</aui:field-wrapper>
-				</div>
+						<aui:input label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
-				<div class="kb-field-wrapper" id="<portlet:namespace />filterOptions">
-					<aui:field-wrapper label="filter">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--assetEntryQueryAndOperator--">
-							<aui:option label="all" selected="<%= assetEntryQueryAndOperator %>" value="<%= true %>" />
-							<aui:option label="any" selected="<%= !assetEntryQueryAndOperator %>" value="<%= false %>" />
-						</aui:select>
+						<aui:input label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
 
-						<%
-						taglibOnChange = renderResponse.getNamespace() + "updateAssetEntryQueryName(this.value);";
-						%>
+						<aui:input label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
 
-						<aui:select inlineField="<%= true %>" inlineLabel="left" label="of-the-following" name="preferences--assetEntryQueryName--" onChange="<%= taglibOnChange %>">
-							<aui:option label="categories" selected='<%= assetEntryQueryName.equals("asset-categories") %>' value="asset-categories" />
-							<aui:option label="tags" selected='<%= assetEntryQueryName.equals("asset-tags") %>' value="asset-tags" />
-						</aui:select>
-					</aui:field-wrapper>
+						<aui:input label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
+					</c:when>
+					<c:when test='<%= tabs3.equals("template") %>'>
+						<aui:input label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
 
-					<div class="kb-asset-selector-wrapper" id="<portlet:namespace />assetCategoriesSelector">
-						<liferay-ui:asset-categories-selector
-							curCategoryIds="<%= StringUtil.merge(assetCategoryIds) %>"
-							hiddenInput="assetCategoryIds"
-						/>
-					</div>
+						<aui:input label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
 
-					<div class="kb-asset-selector-wrapper" id="<portlet:namespace />assetTagsSelector">
-						<liferay-ui:asset-tags-selector
-							curTags="<%= StringUtil.merge(assetTagNames) %>"
-							hiddenInput="assetTagNames"
-						/>
-					</div>
-				</div>
-
-				<div class="kb-field-wrapper" id="<portlet:namespace />sortOptions">
-					<aui:field-wrapper label="order-by">
-						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByColumn--">
-							<aui:option label="create-date" selected='<%= orderByColumn.equals("create-date") %>' />
-							<aui:option label="modified-date" selected='<%= orderByColumn.equals("modified-date") %>' />
-						</aui:select>
-
-						<aui:select inlineField="<%= true %>" label="" name="preferences--orderByAscending--">
-							<aui:option label="ascending" selected="<%= orderByAscending %>" value="<%= true %>" />
-							<aui:option label="descending" selected="<%= !orderByAscending %>" value="<%= false %>" />
-						</aui:select>
-					</aui:field-wrapper>
-				</div>
+						<aui:input label="show-comments" name="preferences--showTemplateComments--" type="checkbox" value="<%= showTemplateComments %>" />
+					</c:when>
+				</c:choose>
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<aui:select label="maximum-items-to-display" name="preferences--rssDelta--">
@@ -189,55 +129,3 @@ List<Article> articles = ArticleLocalServiceUtil.getArticles(resourcePrimKeys, W
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
-
-<c:if test='<%= tabs2.equals("selection-method") %>'>
-	<aui:script>
-		function <portlet:namespace />selectArticles(resourcePrimKeys, titles) {
-			document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = resourcePrimKeys.join();
-			document.getElementById("<portlet:namespace />articles").innerHTML = "";
-
-			var articlesElement = document.getElementById("<portlet:namespace />articles");
-
-			for (var i = 0; i < titles.length; i++) {
-				var articleElement = document.createElement("span");
-
-				articleElement.id = "<portlet:namespace />article" + resourcePrimKeys[i];
-				articleElement.innerHTML = titles[i];
-
-				articlesElement.appendChild(articleElement);
-			}
-		}
-
-		function <portlet:namespace />updateAssetEntryQueryName(value) {
-			if (value == "asset-categories") {
-				document.getElementById("<portlet:namespace />assetCategoriesSelector").style.display = "";
-				document.getElementById("<portlet:namespace />assetTagsSelector").style.display = "none";
-			}
-			else if (value == "asset-tags") {
-				document.getElementById("<portlet:namespace />assetCategoriesSelector").style.display = "none";
-				document.getElementById("<portlet:namespace />assetTagsSelector").style.display = "";
-			}
-		}
-
-		function <portlet:namespace />updateSelectionMethod(value) {
-			if (value == "articles") {
-				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "";
-				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "none";
-			}
-			else if (value == "filter") {
-				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />filterOptions").style.display = "";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
-			}
-			else if (value == "group") {
-				document.getElementById("<portlet:namespace />articlesSelectionOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />filterOptions").style.display = "none";
-				document.getElementById("<portlet:namespace />sortOptions").style.display = "";
-			}
-		}
-
-		<portlet:namespace />updateAssetEntryQueryName("<%= assetEntryQueryName %>");
-		<portlet:namespace />updateSelectionMethod("<%= selectionMethod %>");
-	</aui:script>
-</c:if>

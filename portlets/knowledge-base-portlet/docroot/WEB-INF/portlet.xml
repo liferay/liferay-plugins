@@ -100,19 +100,19 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<display-name>Knowledge Base Aggregator</display-name>
-		<portlet-class>com.liferay.knowledgebase.aggregator.portlet.AggregatorPortlet</portlet-class>
+		<display-name>Knowledge Base</display-name>
+		<portlet-class>com.liferay.knowledgebase.display.portlet.DisplayPortlet</portlet-class>
 		<init-param>
 			<name>config-jsp</name>
-			<value>/aggregator/configuration.jsp</value>
+			<value>/display/configuration.jsp</value>
 		</init-param>
 		<init-param>
 			<name>jsp-path</name>
-			<value>/aggregator/</value>
+			<value>/display/</value>
 		</init-param>
 		<init-param>
 			<name>view-jsp</name>
-			<value>/aggregator/view.jsp</value>
+			<value>/display/view.jsp</value>
 		</init-param>
 		<init-param>
 			<name>copy-request-parameters</name>
@@ -123,10 +123,72 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Knowledge Base Aggregator</title>
-			<short-title>Knowledge Base Aggregator</short-title>
-			<keywords>Knowledge Base Aggregator</keywords>
+			<title>Knowledge Base</title>
+			<short-title>Knowledge Base</short-title>
+			<keywords>Knowledge Base</keywords>
 		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>articlesOrderByCol</name>
+				<value>priority</value>
+			</preference>
+			<preference>
+				<name>articlesOrderByType</name>
+				<value>desc</value>
+			</preference>
+			<preference>
+				<name>enableArticleDescription</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableArticleAssetCategories</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleAssetTags</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleRatings</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableArticleComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showArticleComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleViewCountIncrement</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableTemplateDescription</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableTemplateComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showTemplateComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>rssDelta</name>
+				<value>20</value>
+			</preference>
+			<preference>
+				<name>rssDisplayStyle</name>
+				<value>full-content</value>
+			</preference>
+			<preference>
+				<name>rssFormat</name>
+				<value>atom10</value>
+			</preference>
+		</portlet-preferences>
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>

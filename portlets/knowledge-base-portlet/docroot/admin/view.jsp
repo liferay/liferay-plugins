@@ -96,7 +96,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 
 				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="author"
 					orderable="<%= true %>"
@@ -139,7 +138,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
-					cssClass="kb-column-no-wrap"
 					path="/admin/article_action.jsp"
 				/>
 			</liferay-ui:search-container-row>
@@ -171,7 +169,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
 									<portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
-										<portlet:param name="jspPage" value="/admin/view.jsp" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 									</portlet:actionURL>
 
@@ -183,7 +180,6 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 								</c:when>
 								<c:otherwise>
 									<portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
-										<portlet:param name="jspPage" value="/admin/view.jsp" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 									</portlet:actionURL>
 

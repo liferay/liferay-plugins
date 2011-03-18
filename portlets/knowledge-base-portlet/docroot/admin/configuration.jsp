@@ -279,12 +279,12 @@ else if (tabs2.equals("article-updated-email")) {
 						<div class="kb-field-wrapper">
 							<aui:field-wrapper label="order-by">
 								<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByCol--">
+									<aui:option label="author" selected='<%= articlesOrderByCol.equals("user-name") %>' value="user-name" />
 									<aui:option label="create-date" selected='<%= articlesOrderByCol.equals("create-date") %>' />
 									<aui:option label="modified-date" selected='<%= articlesOrderByCol.equals("modified-date") %>' />
 									<aui:option label="priority" selected='<%= articlesOrderByCol.equals("priority") %>' />
 									<aui:option label="status" selected='<%= articlesOrderByCol.equals("status") %>' />
 									<aui:option label="title" selected='<%= articlesOrderByCol.equals("title") %>' />
-									<aui:option label="user-name" selected='<%= articlesOrderByCol.equals("user-name") %>' />
 									<aui:option label="view-count" selected='<%= articlesOrderByCol.equals("view-count") %>' />
 								</aui:select>
 

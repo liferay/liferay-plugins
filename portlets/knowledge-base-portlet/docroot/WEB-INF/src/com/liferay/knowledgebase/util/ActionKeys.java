@@ -21,6 +21,8 @@ package com.liferay.knowledgebase.util;
 public class ActionKeys
 	extends com.liferay.portal.security.permission.ActionKeys {
 
+	public static final String ADMINISTRATOR = "ADMINISTRATOR";
+
 	public static final String DELETE_ARTICLES = "DELETE_ARTICLES";
 
 	public static final String DELETE_TEMPLATES = "DELETE_TEMPLATES";

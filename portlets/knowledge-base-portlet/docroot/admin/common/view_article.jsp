@@ -20,9 +20,9 @@
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
 if (enableArticleViewCountIncrement) {
-	int viewCount = ArticleLocalServiceUtil.getLatestArticle(article.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
+	Article latestArticle = ArticleLocalServiceUtil.getLatestArticle(article.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
 
-	ArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), article.getResourcePrimKey(), viewCount + 1);
+	ArticleLocalServiceUtil.updateViewCount(themeDisplay.getUserId(), article.getResourcePrimKey(), latestArticle.getViewCount() + 1);
 }
 %>
 

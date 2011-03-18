@@ -1,19 +1,10 @@
-/* ---------- Configuration ---------- */
-
-.portlet-configuration .kb-asset-selector-wrapper {
-	margin: 5px 0 0;
-}
-
-.portlet-configuration .kb-edit-link {
-	margin-top: 5px;
-}
-
-.portlet-configuration .kb-selected-entries span {
-	display: block;
-}
-
 /* ---------- Portlet ---------- */
 
-.knowledge-base-portlet-display .kb-select-box select {
-	min-width: 150px;
+.knowledge-base-portlet-display .top-links-container .article-search {
+	float: right;
+}
+
+.knowledge-base-portlet-display .kb-display-tools {
+	float: right;
+	padding: 5px 5px 0 0;
 }

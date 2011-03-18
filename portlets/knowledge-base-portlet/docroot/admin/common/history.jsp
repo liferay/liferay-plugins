@@ -110,7 +110,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</liferay-ui:search-container-column-text>
 
 				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="author"
 					orderable="<%= true %>"

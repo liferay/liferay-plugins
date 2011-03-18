@@ -16,32 +16,33 @@
 
 <%@ include file="/init.jsp" %>
 
+<%@ page import="com.liferay.knowledgebase.display.search.ArticleSearch" %>
+
 <%
 PortletPreferences preferences = renderRequest.getPreferences();
+
+String portletResource = ParamUtil.getString(request, "portletResource");
 
 if (Validator.isNotNull(portletResource)) {
 	preferences = PortletPreferencesFactoryUtil.getPortletSetup(request, portletResource);
 }
 
-Map<String, String> preferencesMap = PortletPreferencesHelper.initPreferencesMap(rootPortletId, preferences);
+String articlesOrderByCol = preferences.getValue("articlesOrderByCol", StringPool.BLANK);
+String articlesOrderByType = preferences.getValue("articlesOrderByType", StringPool.BLANK);
 
-String childArticlesDisplayStyle = preferencesMap.get("childArticlesDisplayStyle");
-boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetCategories"));
-boolean enableArticleAssetTags = GetterUtil.getBoolean(preferencesMap.get("enableArticleAssetTags"));
-boolean enableArticleRatings = GetterUtil.getBoolean(preferencesMap.get("enableArticleRatings"));
-boolean enableArticleComments = GetterUtil.getBoolean(preferencesMap.get("enableArticleComments"));
-boolean showArticleComments = GetterUtil.getBoolean(preferencesMap.get("showArticleComments"));
+boolean enableArticleDescription = GetterUtil.getBoolean(preferences.getValue("enableArticleDescription", null));
+boolean enableArticleAssetCategories = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetCategories", null));
+boolean enableArticleAssetTags = GetterUtil.getBoolean(preferences.getValue("enableArticleAssetTags", null));
+boolean enableArticleRatings = GetterUtil.getBoolean(preferences.getValue("enableArticleRatings", null));
+boolean enableArticleComments = GetterUtil.getBoolean(preferences.getValue("enableArticleComments", null));
+boolean showArticleComments = GetterUtil.getBoolean(preferences.getValue("showArticleComments", null));
+boolean enableArticleViewCountIncrement = GetterUtil.getBoolean(preferences.getValue("enableArticleViewCountIncrement", null));
 
-String selectionMethod = preferencesMap.get("selectionMethod");
-long[] resourcePrimKeys = StringUtil.split(preferencesMap.get("resourcePrimKeys"), 0L);
-String orderByColumn = preferencesMap.get("orderByColumn");
-boolean orderByAscending = GetterUtil.getBoolean(preferencesMap.get("orderByAscending"));
-boolean assetEntryQueryAndOperator = GetterUtil.getBoolean(preferencesMap.get("assetEntryQueryAndOperator"));
-String assetEntryQueryName = preferencesMap.get("assetEntryQueryName");
-long[] assetCategoryIds = StringUtil.split(preferencesMap.get("assetCategoryIds"), 0L);
-String[] assetTagNames = StringUtil.split(preferencesMap.get("assetTagNames"));
+boolean enableTemplateDescription = GetterUtil.getBoolean(preferences.getValue("enableTemplateDescription", null));
+boolean enableTemplateComments = GetterUtil.getBoolean(preferences.getValue("enableTemplateComments", null));
+boolean showTemplateComments = GetterUtil.getBoolean(preferences.getValue("showTemplateComments", null));
 
-int rssDelta = GetterUtil.getInteger(preferencesMap.get("rssDelta"));
-String rssDisplayStyle = preferencesMap.get("rssDisplayStyle");
-String rssFormat = preferencesMap.get("rssFormat");
+int rssDelta = GetterUtil.getInteger(preferences.getValue("rssDelta", null));
+String rssDisplayStyle = preferences.getValue("rssDisplayStyle", StringPool.BLANK);
+String rssFormat = preferences.getValue("rssFormat", StringPool.BLANK);
 %>

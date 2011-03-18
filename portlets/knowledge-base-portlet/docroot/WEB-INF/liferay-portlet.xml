@@ -35,15 +35,14 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<icon>/icons/aggregator.png</icon>
-		<configuration-action-class>com.liferay.knowledgebase.aggregator.action.ConfigurationActionImpl</configuration-action-class>
+		<icon>/icons/display.png</icon>
+		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
-		<friendly-url-mapping>knowledge_base_aggregator</friendly-url-mapping>
-		<friendly-url-routes>com/liferay/knowledgebase/aggregator/portlet/aggregator-friendly-url-routes.xml</friendly-url-routes>
-		<instanceable>true</instanceable>
+		<friendly-url-mapping>knowledge_base</friendly-url-mapping>
+		<friendly-url-routes>com/liferay/knowledgebase/display/portlet/display-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
-		<header-portlet-css>/aggregator/css/main.css</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-aggregator</css-class-wrapper>
+		<header-portlet-css>/display/css/main.css</header-portlet-css>
+		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-display</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>

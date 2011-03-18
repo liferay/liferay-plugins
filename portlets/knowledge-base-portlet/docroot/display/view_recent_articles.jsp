@@ -16,18 +16,27 @@
 
 <%@ include file="/display/init.jsp" %>
 
+<%
+String orderByCol = ParamUtil.getString(request, "orderByCol", "modified-date");
+String orderByType = ParamUtil.getString(request, "orderByType", "desc");
+%>
+
 <liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
-	<portlet:param name="jspPage" value="/display/view.jsp" />
+	<portlet:param name="jspPage" value="/display/view_recent_articles.jsp" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
-	searchContainer="<%= new ArticleSearch(renderRequest, iteratorURL) %>"
+	emptyResultsMessage="no-articles-were-found"
+	iteratorURL="<%= iteratorURL %>"
+	orderByCol="<%= orderByCol %>"
+	orderByComparator="<%= KnowledgeBaseUtil.getArticleOrderByComparator(orderByCol, orderByType) %>"
+	orderByType="<%= orderByType %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= ArticleServiceUtil.getSiblingArticles(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
-		total="<%= ArticleServiceUtil.getSiblingArticlesCount(scopeGroupId, ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED) %>"
+		results="<%= ArticleServiceUtil.getGroupArticles(scopeGroupId, WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+		total="<%= ArticleServiceUtil.getGroupArticlesCount(scopeGroupId, WorkflowConstants.STATUS_APPROVED) %>"
 	/>
 
 	<%
@@ -43,14 +52,6 @@
 			<portlet:param name="jspPage" value="/display/view_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
-
-		<liferay-ui:search-container-column-text
-			cssClass="kb-column-no-wrap"
-			href="<%= rowURL %>"
-			name="priority"
-			orderable="<%= true %>"
-			value="<%= BigDecimal.valueOf(article.getPriority()).toPlainString() %>"
-		/>
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"

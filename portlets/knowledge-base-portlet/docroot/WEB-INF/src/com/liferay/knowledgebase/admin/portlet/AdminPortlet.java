@@ -528,6 +528,8 @@ public class AdminPortlet extends MVCPortlet {
 			SessionErrors.contains(
 				renderRequest, NoSuchCommentException.class.getName()) ||
 			SessionErrors.contains(
+				renderRequest, NoSuchSubscriptionException.class.getName()) ||
+			SessionErrors.contains(
 				renderRequest, NoSuchTemplateException.class.getName()) ||
 			SessionErrors.contains(
 				renderRequest, PrincipalException.class.getName())) {
@@ -549,7 +551,6 @@ public class AdminPortlet extends MVCPortlet {
 			cause instanceof NoSuchArticleException ||
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
-			cause instanceof NoSuchSubscriptionException ||
 			cause instanceof NoSuchTemplateException ||
 			cause instanceof PrincipalException ||
 			cause instanceof TemplateContentException ||

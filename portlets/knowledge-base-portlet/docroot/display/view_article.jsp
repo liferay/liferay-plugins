@@ -16,4 +16,6 @@
 
 <%@ include file="/display/init.jsp" %>
 
-<liferay-util:include page="/admin/view_article.jsp" servletContext="<%= application %>" />
+<liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
+
+<liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />

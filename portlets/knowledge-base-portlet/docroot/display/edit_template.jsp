@@ -1,3 +1,4 @@
+<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -11,25 +12,8 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+--%>
 
-package com.liferay.knowledgebase.util;
+<%@ include file="/display/init.jsp" %>
 
-/**
- * @author Brian Wing Shun Chan
- * @author Peter Shin
- */
-public class PortletKeys extends com.liferay.portal.util.PortletKeys {
-
-	public static final String KNOWLEDGE_BASE_DISPLAY =
-		"2_WAR_knowledgebaseportlet";
-
-	public static final String KNOWLEDGE_BASE_ARTICLE =
-		"3_WAR_knowledgebaseportlet";
-
-	public static final String KNOWLEDGE_BASE_LIST =
-		"5_WAR_knowledgebaseportlet";
-
-	public static final String KNOWLEDGE_BASE_SEARCH =
-		"4_WAR_knowledgebaseportlet";
-
-}
+<liferay-util:include page="/admin/common/edit_template.jsp" servletContext="<%= application %>" />

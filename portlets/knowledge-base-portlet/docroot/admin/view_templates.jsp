@@ -59,7 +59,6 @@
 				/>
 
 				<liferay-ui:search-container-column-text
-					cssClass="kb-column-no-wrap"
 					name="author"
 					orderable="<%= true %>"
 					orderableProperty="user-name"
@@ -82,7 +81,6 @@
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
-					cssClass="kb-column-no-wrap"
 					path="/admin/template_action.jsp"
 				/>
 			</liferay-ui:search-container-row>

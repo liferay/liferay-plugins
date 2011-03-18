@@ -51,6 +51,34 @@
 		</permissions>
 	</model-resource>
 	<model-resource>
+		<model-name>com.liferay.knowledgebase.display</model-name>
+		<portlet-ref>
+			<portlet-name>2</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>ADD_ARTICLE</action-key>
+				<action-key>ADD_TEMPLATE</action-key>
+				<action-key>ADMINISTRATOR</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>SUBSCRIBE</action-key>
+				<action-key>VIEW_TEMPLATES</action-key>
+			</supports>
+			<community-defaults>
+				<action-key>SUBSCRIBE</action-key>
+			</community-defaults>
+			<guest-defaults />
+			<guest-unsupported>
+				<action-key>ADD_ARTICLE</action-key>
+				<action-key>ADD_TEMPLATE</action-key>
+				<action-key>ADMINISTRATOR</action-key>
+				<action-key>PERMISSIONS</action-key>
+				<action-key>SUBSCRIBE</action-key>
+				<action-key>VIEW_TEMPLATES</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+	<model-resource>
 		<model-name>com.liferay.knowledgebase.model.Article</model-name>
 		<portlet-ref>
 			<portlet-name>1</portlet-name>
