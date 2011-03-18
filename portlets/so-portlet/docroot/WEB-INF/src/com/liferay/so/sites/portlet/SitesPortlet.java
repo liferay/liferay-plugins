@@ -84,7 +84,7 @@ public class SitesPortlet extends MVCPortlet {
 	}
 
 	private static final String _CLASS_NAME =
-		"com.liferay.portlet.communities.util.CommunitiesUtil";
+		"com.liferay.portlet.sites.util.CommunitiesUtil";
 
 	private static MethodKey _applyLayoutSetPrototypesMethodKey = new MethodKey(
 		_CLASS_NAME, "applyLayoutSetPrototypes", Group.class, long.class,

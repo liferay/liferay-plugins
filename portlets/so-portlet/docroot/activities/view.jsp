@@ -35,7 +35,7 @@ int total = 0;
 <c:choose>
 	<c:when test="<%= group.isUser() && (themeDisplay.getUserId() == group.getClassPK()) %>">
 		<liferay-ui:tabs
-			names="friends,coworkers,following,my-communities,me"
+			names="friends,coworkers,following,my-sites,me"
 			url="<%= portletURL.toString() %>"
 			value="<%= tabs1 %>"
 		/>
@@ -53,7 +53,7 @@ int total = 0;
 			activities = SocialActivityLocalServiceUtil.getRelationActivities(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
 			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(user.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 		}
-		else if (tabs1.equals("my-communities")) {
+		else if (tabs1.equals("my-sites")) {
 			activities = SocialActivityLocalServiceUtil.getUserGroupsActivities(user.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(user.getUserId());
 		}
