@@ -78,6 +78,11 @@ a:active {
 	display: none;
 }
 
+#page-search input[type="image"] {
+	float: right;
+	margin-left: 3px;
+}
+
 /* ---------- Navigation ---------- */
 
 #navigation {
