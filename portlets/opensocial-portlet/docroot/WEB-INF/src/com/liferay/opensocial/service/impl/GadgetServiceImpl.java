@@ -33,8 +33,8 @@ public class GadgetServiceImpl extends GadgetServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		GadgetPermission.check(
-				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				ActionKeys.ADD_ENTRY);
+			getPermissionChecker(), serviceContext.getScopeGroupId(),
+			ActionKeys.ADD_ENTRY);
 
 		return gadgetLocalService.addGadget(
 			companyId, url, portletCategoryNames, serviceContext);
