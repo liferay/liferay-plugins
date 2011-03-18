@@ -109,9 +109,8 @@ public class ArticleAssetRenderer extends BaseAssetRenderer {
 	}
 
 	public String render(
-			RenderRequest renderRequest, RenderResponse renderResponse,
-			String template)
-		throws Exception {
+		RenderRequest renderRequest, RenderResponse renderResponse,
+		String template) {
 
 		if (template.equals(TEMPLATE_FULL_CONTENT)) {
 			renderRequest.setAttribute(

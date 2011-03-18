@@ -35,6 +35,56 @@
 			<short-title>Knowledge Base</short-title>
 			<keywords>Knowledge Base</keywords>
 		</portlet-info>
+		<portlet-preferences>
+			<preference>
+				<name>articlesOrderByCol</name>
+				<value>priority</value>
+			</preference>
+			<preference>
+				<name>articlesOrderByType</name>
+				<value>desc</value>
+			</preference>
+			<preference>
+				<name>enableArticleDescription</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableArticleAssetCategories</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleAssetTags</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleRatings</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableArticleComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showArticleComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableArticleViewCountIncrement</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>enableTemplateDescription</name>
+				<value>false</value>
+			</preference>
+			<preference>
+				<name>enableTemplateComments</name>
+				<value>true</value>
+			</preference>
+			<preference>
+				<name>showTemplateComments</name>
+				<value>true</value>
+			</preference>
+		</portlet-preferences>
 		<security-role-ref>
 			<role-name>administrator</role-name>
 		</security-role-ref>
@@ -47,8 +97,6 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
-		<supported-public-render-parameter>tag</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>

@@ -34,6 +34,7 @@
 		<column name="content" type="String" />
 		<column name="description" type="String" />
 		<column name="priority" type="double" />
+		<column name="viewCount" type="int" />
 		<column name="latest" type="int" />
 		<column name="status" type="int" />
 		<column name="statusByUserId" type="long" />
@@ -50,6 +51,10 @@
 
 		<finder name="ResourcePrimKey" return-type="Collection">
 			<finder-column name="resourcePrimKey" />
+		</finder>
+		<finder name="R_G" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="groupId" />
 		</finder>
 		<finder name="R_V" return-type="Article" unique="true">
 			<finder-column name="resourcePrimKey" />
@@ -75,15 +80,20 @@
 			<finder-column name="parentResourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="latest" arrayable-operator="OR" />
 		</finder>
+		<finder name="R_G_L" return-type="Collection">
+			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
+			<finder-column name="groupId" />
+			<finder-column name="latest" arrayable-operator="OR" />
+		</finder>
+		<finder name="R_G_S" return-type="Collection">
+			<finder-column name="resourcePrimKey" />
+			<finder-column name="groupId" />
+			<finder-column name="status" />
+		</finder>
 		<finder name="R_L_S" return-type="Collection">
 			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
 			<finder-column name="latest" arrayable-operator="OR" />
 			<finder-column name="status" />
-		</finder>
-		<finder name="G_R_L" return-type="Collection">
-			<finder-column name="groupId" />
-			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
-			<finder-column name="latest" arrayable-operator="OR" />
 		</finder>
 		<finder name="G_P_L" return-type="Collection">
 			<finder-column name="groupId" />
@@ -105,9 +115,9 @@
 			<finder-column name="latest" arrayable-operator="OR" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="G_R_L_S" return-type="Collection">
-			<finder-column name="groupId" />
+		<finder name="R_G_L_S" return-type="Collection">
 			<finder-column name="resourcePrimKey" arrayable-operator="OR" />
+			<finder-column name="groupId" />
 			<finder-column name="latest" arrayable-operator="OR" />
 			<finder-column name="status" />
 		</finder>

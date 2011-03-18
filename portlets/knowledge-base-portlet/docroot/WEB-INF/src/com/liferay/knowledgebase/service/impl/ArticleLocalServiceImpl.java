@@ -126,6 +126,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(priority);
+		article.setViewCount(0);
 		article.setLatest(ArticleConstants.LATEST_VERSION);
 		article.setStatus(WorkflowConstants.STATUS_DRAFT);
 
@@ -535,7 +536,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			ArticleConstants.LATEST_ANY, status);
 	}
 
-	public Article moveArticle(
+	public void moveArticle(
 			long userId, long resourcePrimKey, long parentResourcePrimKey,
 			double priority)
 		throws PortalException, SystemException {
@@ -546,22 +547,28 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		updatePermissionFields(resourcePrimKey, parentResourcePrimKey);
 
-		Article article = getLatestArticle(
-			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+		List<Article> articles = getArticles(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, new ArticleVersionComparator());
 
-		article.setParentResourcePrimKey(parentResourcePrimKey);
-		article.setPriority(priority);
+		for (Article article : articles) {
+			article.setParentResourcePrimKey(parentResourcePrimKey);
+			article.setPriority(priority);
 
-		articlePersistence.update(article, false);
+			articlePersistence.update(article, false);
+		}
 
 		// Social
 
-		socialActivityLocalService.addActivity(
-			userId, article.getGroupId(), Article.class.getName(),
-			resourcePrimKey, AdminActivityKeys.MOVE_ARTICLE, StringPool.BLANK,
-			0);
+		Article article = getLatestArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-		return article;
+		if (article.isApproved() || !article.isFirstVersion()) {
+			socialActivityLocalService.addActivity(
+				userId, article.getGroupId(), Article.class.getName(),
+				resourcePrimKey, AdminActivityKeys.MOVE_ARTICLE,
+				StringPool.BLANK, 0);
+		}
 	}
 
 	public List<Article> search(
@@ -628,6 +635,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		long oldParentResourcePrimKey = oldArticle.getParentResourcePrimKey();
 		int oldVersion = oldArticle.getVersion();
 		double oldPriority = oldArticle.getPriority();
+		int oldViewCount = oldArticle.getViewCount();
 		int oldStatus = oldArticle.getStatus();
 
 		Article article = null;
@@ -661,6 +669,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setContent(content);
 		article.setDescription(description);
 		article.setPriority(oldPriority);
+		article.setViewCount(oldViewCount);
 		article.setLatest(ArticleConstants.LATEST_VERSION);
 		article.setStatus(status);
 
@@ -768,16 +777,22 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		long[] resourcePrimKeys = StringUtil.split(
 			StringUtil.merge(resourcePrimKeyToPriorityMap.keySet()), 0L);
 
-		List<Article> articles = getArticles(
+		List<Article> articles1 = getArticles(
 			resourcePrimKeys, WorkflowConstants.STATUS_ANY, null);
 
-		for (Article article : articles) {
+		for (Article article1 : articles1) {
 			double priority = resourcePrimKeyToPriorityMap.get(
-				article.getResourcePrimKey());
+				article1.getResourcePrimKey());
 
-			article.setPriority(priority);
+			List<Article> articles2 = getArticles(
+				article1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
-			articlePersistence.update(article, false);
+			for (Article article2 : articles2) {
+				article2.setPriority(priority);
+
+				articlePersistence.update(article2, false);
+			}
 		}
 	}
 
@@ -867,6 +882,34 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		notifySubscribers(article, serviceContext);
 
 		return article;
+	}
+
+	public void updateViewCount(
+			long userId, long resourcePrimKey, int viewCount)
+		throws PortalException, SystemException {
+
+		// Article
+
+		Article article = getLatestArticle(
+			resourcePrimKey, WorkflowConstants.STATUS_ANY);
+
+		article.setViewCount(viewCount);
+
+		articlePersistence.update(article, false);
+
+		if (!article.isApproved() && !article.isFirstVersion()) {
+			article = getLatestArticle(
+				resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+
+			article.setViewCount(viewCount);
+
+			articlePersistence.update(article, false);
+		}
+
+		// Asset
+
+		assetEntryLocalService.incrementViewCounter(
+			userId, Article.class.getName(), article.getClassPK());
 	}
 
 	protected void addAttachments(Article article, String dirName)

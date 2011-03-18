@@ -16,41 +16,6 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<%
-Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
-%>
-
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-<liferay-util:include page="/admin/article_breadcrumbs.jsp" servletContext="<%= application %>" />
-
-<div class="float-container kb-entity-header">
-	<div class="kb-title">
-		<%= article.getTitle() %>
-	</div>
-
-	<div class="kb-tools">
-		<liferay-util:include page="/admin/article_tools.jsp" servletContext="<%= application %>" />
-	</div>
-</div>
-
-<div class="kb-entity-body">
-
-	<%
-	request.setAttribute("article_icons.jsp-article", article);
-	%>
-
-	<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
-
-	<%= article.getContent() %>
-
-	<liferay-util:include page="/admin/article_attachments.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_assets.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_ratings.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_siblings.jsp" servletContext="<%= application %>" />
-
-	<liferay-util:include page="/admin/article_comments.jsp" servletContext="<%= application %>" />
-</div>
+<liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />

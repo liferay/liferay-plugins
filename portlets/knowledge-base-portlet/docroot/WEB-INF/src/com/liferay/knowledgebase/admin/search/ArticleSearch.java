@@ -15,27 +15,19 @@
 package com.liferay.knowledgebase.admin.search;
 
 import com.liferay.knowledgebase.model.Article;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
-import com.liferay.knowledgebase.util.comparator.ArticleCreateDateComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
-import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleStatusComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleTitleComparator;
-import com.liferay.knowledgebase.util.comparator.ArticleUserNameComparator;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.PortalPreferences;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import javax.portlet.PortletPreferences;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
@@ -45,25 +37,6 @@ import javax.portlet.PortletURL;
  */
 public class ArticleSearch extends SearchContainer<Article> {
 
-	static List<String> headerNames = new ArrayList<String>();
-	static Map<String, String> orderableHeaders = new HashMap<String, String>();
-
-	static {
-		headerNames.add("priority");
-		headerNames.add("title");
-		headerNames.add("author");
-		headerNames.add("create-date");
-		headerNames.add("modified-date");
-		headerNames.add("status");
-
-		orderableHeaders.put("priority", "priority");
-		orderableHeaders.put("title", "title");
-		orderableHeaders.put("author", "user-name");
-		orderableHeaders.put("create-date", "create-date");
-		orderableHeaders.put("modified-date", "modified-date");
-		orderableHeaders.put("status", "status");
-	}
-
 	public static final String EMPTY_RESULTS_MESSAGE = "no-articles-were-found";
 
 	public ArticleSearch(
@@ -72,7 +45,7 @@ public class ArticleSearch extends SearchContainer<Article> {
 		super(
 			portletRequest, new ArticleDisplayTerms(portletRequest),
 			new ArticleSearchTerms(portletRequest), DEFAULT_CUR_PARAM,
-			DEFAULT_DELTA, iteratorURL, headerNames, EMPTY_RESULTS_MESSAGE);
+			DEFAULT_DELTA, iteratorURL, null, EMPTY_RESULTS_MESSAGE);
 
 		ArticleDisplayTerms displayTerms =
 			(ArticleDisplayTerms)getDisplayTerms();
@@ -111,12 +84,20 @@ public class ArticleSearch extends SearchContainer<Article> {
 				PortletPreferencesFactoryUtil.getPortalPreferences(
 					portletRequest);
 
+			PortletPreferences portletPreferences =
+				PortletPreferencesFactoryUtil.getPortletSetup(portletRequest);
+
+			String portletOrderByCol = portletPreferences.getValue(
+				"articlesOrderByCol", StringPool.BLANK);
+			String portletOrderByType = portletPreferences.getValue(
+				"articlesOrderByType", StringPool.BLANK);
+
 			String oldOrderByCol = preferences.getValue(
 				PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-col",
-				"modified-date");
+				portletOrderByCol);
 			String oldOrderByType = preferences.getValue(
 				PortletKeys.KNOWLEDGE_BASE_ADMIN, "articles-order-by-type",
-				"desc");
+				portletOrderByType);
 
 			String orderByCol = ParamUtil.getString(
 				portletRequest, "orderByCol", oldOrderByCol);
@@ -139,35 +120,10 @@ public class ArticleSearch extends SearchContainer<Article> {
 				searchTerms.setCurStartValues(new int[0]);
 			}
 
-			boolean orderByAsc = false;
+			OrderByComparator orderByComparator =
+				KnowledgeBaseUtil.getArticleOrderByComparator(
+					orderByCol, orderByType);
 
-			if (orderByType.equals("asc")) {
-				orderByAsc = true;
-			}
-
-			OrderByComparator orderByComparator = null;
-
-			if (orderByCol.equals("create-date")) {
-				orderByComparator = new ArticleCreateDateComparator(orderByAsc);
-			}
-			else if (orderByCol.equals("modified-date")) {
-				orderByComparator = new ArticleModifiedDateComparator(
-					orderByAsc);
-			}
-			else if (orderByCol.equals("priority")) {
-				orderByComparator = new ArticlePriorityComparator(orderByAsc);
-			}
-			else if (orderByCol.equals("status")) {
-				orderByComparator = new ArticleStatusComparator(orderByAsc);
-			}
-			else if (orderByCol.equals("title")) {
-				orderByComparator = new ArticleTitleComparator(orderByAsc);
-			}
-			else if (orderByCol.equals("user-name")) {
-				orderByComparator = new ArticleUserNameComparator(orderByAsc);
-			}
-
-			setOrderableHeaders(orderableHeaders);
 			setOrderByCol(orderByCol);
 			setOrderByType(orderByType);
 			setOrderByComparator(orderByComparator);

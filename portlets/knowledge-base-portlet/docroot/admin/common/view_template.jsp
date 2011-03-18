@@ -16,4 +16,25 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-<liferay-util:include page="/admin/common/print_article.jsp" servletContext="<%= application %>" />
+<%
+Template template = (Template)request.getAttribute(WebKeys.KNOWLEDGE_BASE_TEMPLATE);
+%>
+
+<div class="float-container kb-entity-header">
+	<div class="kb-title">
+		<%= template.getTitle() %>
+	</div>
+</div>
+
+<div class="kb-entity-body">
+
+	<%
+	request.setAttribute("template_icons.jsp-template", template);
+	%>
+
+	<liferay-util:include page="/admin/template_icons.jsp" servletContext="<%= application %>" />
+
+	<%= template.getContent() %>
+
+	<liferay-util:include page="/admin/template_comments.jsp" servletContext="<%= application %>" />
+</div>

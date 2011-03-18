@@ -169,14 +169,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		throws SystemException {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.filterFindByG_R_L(
-				groupId, resourcePrimKey, ArticleConstants.LATEST_VERSION,
-				start, end, orderByComparator);
+			return articlePersistence.filterFindByR_G(
+				resourcePrimKey, groupId, start, end, orderByComparator);
 		}
 
-		return articlePersistence.filterFindByG_R_L_S(
-			groupId, new long[] {resourcePrimKey}, ArticleConstants.LATEST_ANY,
-			status, start, end, orderByComparator);
+		return articlePersistence.filterFindByR_G_S(
+			resourcePrimKey, groupId, status, start, end, orderByComparator);
 	}
 
 	public List<Article> getArticles(
@@ -234,13 +232,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			List<Article> curArticles = null;
 
 			if (status == WorkflowConstants.STATUS_ANY) {
-				curArticles = articlePersistence.filterFindByG_R_L(
-					groupId, ArrayUtil.toArray(params[1]),
+				curArticles = articlePersistence.filterFindByR_G_L(
+					ArrayUtil.toArray(params[1]), groupId,
 					new int[] {ArticleConstants.LATEST_VERSION});
 			}
 			else {
-				curArticles = articlePersistence.filterFindByG_R_L_S(
-					groupId, ArrayUtil.toArray(params[1]),
+				curArticles = articlePersistence.filterFindByR_G_L_S(
+					ArrayUtil.toArray(params[1]), groupId,
 					ArticleConstants.LATEST_ANY, status);
 			}
 
@@ -261,13 +259,12 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		throws SystemException {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.filterCountByG_R_L(
-				groupId, resourcePrimKey, ArticleConstants.LATEST_VERSION);
+			return articlePersistence.filterCountByR_G(
+				resourcePrimKey, groupId);
 		}
 
-		return articlePersistence.filterCountByG_R_L_S(
-			groupId, new long[] {resourcePrimKey}, ArticleConstants.LATEST_ANY,
-			status);
+		return articlePersistence.filterCountByR_G_S(
+			resourcePrimKey, groupId, status);
 	}
 
 	public ArticleSearchDisplay getArticleSearchDisplay(
@@ -432,14 +429,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 			ArticleConstants.LATEST_ANY, status);
 	}
 
-	public Article moveArticle(
+	public void moveArticle(
 			long resourcePrimKey, long parentResourcePrimKey, double priority)
 		throws PortalException, SystemException {
 
 		ArticlePermission.check(
 			getPermissionChecker(), resourcePrimKey, ActionKeys.MOVE);
 
-		return articleLocalService.moveArticle(
+		articleLocalService.moveArticle(
 			getUserId(), resourcePrimKey, parentResourcePrimKey, priority);
 	}
 

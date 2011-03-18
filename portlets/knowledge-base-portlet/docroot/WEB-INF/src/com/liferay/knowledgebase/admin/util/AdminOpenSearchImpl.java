@@ -47,9 +47,8 @@ public class AdminOpenSearchImpl extends HitsOpenSearchImpl {
 	}
 
 	protected String getURL(
-			ThemeDisplay themeDisplay, long groupId, Document result,
-			PortletURL portletURL)
-		throws Exception {
+		ThemeDisplay themeDisplay, long groupId, Document result,
+		PortletURL portletURL) {
 
 		long resourcePrimKey = GetterUtil.getLong(
 			result.get(Field.ENTRY_CLASS_PK));

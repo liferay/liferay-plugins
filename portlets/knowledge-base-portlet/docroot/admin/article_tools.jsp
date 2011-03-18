@@ -17,13 +17,15 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
+Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
 <div class="kb-article-tools">
 	<table class="lfr-table">
 	<tr>
-		<c:if test="<%= !rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+		<c:if test="<%= (article.isApproved() || !article.isFirstVersion()) && !Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
 			<td>
 				<portlet:resourceURL id="articleRSS" var="articleRSSURL">
 					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
@@ -42,7 +44,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			</td>
 		</c:if>
 
-		<c:if test="<%= ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
+		<c:if test="<%= (article.isApproved() || !article.isFirstVersion()) && ArticlePermission.contains(permissionChecker, article, ActionKeys.SUBSCRIBE) %>">
 			<td>
 				<c:choose>
 					<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), article.getResourcePrimKey()) %>">
@@ -73,24 +75,29 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			</td>
 		</c:if>
 
-		<td>
-			<portlet:renderURL var="historyURL">
-				<portlet:param name="jspPage" value='<%= jspPath + "history.jsp" %>' />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
-			</portlet:renderURL>
+		<c:if test="<%= article.isApproved() || !article.isFirstVersion() %>">
+			<td>
+				<portlet:renderURL var="historyURL">
+					<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "history.jsp" %>' />
+					<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+					<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
+				</portlet:renderURL>
 
-			<liferay-ui:icon
-				image="recent_changes"
-				label="<%= true %>"
-				message="history"
-				method="get"
-				url="<%= historyURL %>"
-			/>
-		</td>
+				<liferay-ui:icon
+					image="recent_changes"
+					label="<%= true %>"
+					message="history"
+					method="get"
+					url="<%= historyURL %>"
+				/>
+			</td>
+		</c:if>
+
 		<td>
 			<portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-				<portlet:param name="jspPage" value='<%= jspPath + "print_article.jsp" %>' />
+				<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "print_article.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+				<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
 			</portlet:renderURL>
 
 			<%

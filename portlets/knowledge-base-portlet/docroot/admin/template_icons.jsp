@@ -22,14 +22,14 @@ Template template = (Template)request.getAttribute("template_icons.jsp-template"
 long templateId = ParamUtil.getLong(request, "templateId");
 %>
 
-<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) || TemplatePermission.contains(permissionChecker, template, ActionKeys.PERMISSIONS) || TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
+<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) || TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) || TemplatePermission.contains(permissionChecker, template, ActionKeys.PERMISSIONS) || TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
 	<div class="kb-template-icons">
 		<table class="lfr-table">
 		<tr>
-			<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_ADMIN)) || (DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) && Validator.equals(portletDisplay.getRootPortletId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY)) %>">
 				<td>
 					<portlet:renderURL var="checkURL">
-						<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
+						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_article.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</portlet:renderURL>
@@ -38,6 +38,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 						image="../aui/check"
 						label="<%= true %>"
 						message="use-this-template"
+						method="get"
 						url="<%= checkURL %>"
 					/>
 				</td>
@@ -46,7 +47,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
 				<td>
 					<portlet:renderURL var="editURL">
-						<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_template.jsp" %>' />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</portlet:renderURL>
@@ -54,6 +55,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 					<liferay-ui:icon
 						image="edit"
 						label="<%= true %>"
+						method="get"
 						url="<%= editURL %>"
 					/>
 				</td>
@@ -71,6 +73,7 @@ long templateId = ParamUtil.getLong(request, "templateId");
 					<liferay-ui:icon
 						image="permissions"
 						label="<%= true %>"
+						method="get"
 						url="<%= permissionsURL %>"
 					/>
 				</td>
@@ -78,12 +81,13 @@ long templateId = ParamUtil.getLong(request, "templateId");
 
 			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.DELETE) %>">
 				<td>
-					<portlet:renderURL var="templatesURL">
-						<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
+					<portlet:renderURL var="homeURL">
+						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view-jsp" %>' />
 					</portlet:renderURL>
 
 					<portlet:actionURL name="deleteTemplate" var="deleteURL">
-						<portlet:param name="redirect" value="<%= (template.getTemplateId() == templateId) ? templatesURL : currentURL %>" />
+						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_template.jsp" %>' />
+						<portlet:param name="redirect" value="<%= (template.getTemplateId() == templateId) ? homeURL : currentURL %>" />
 						<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 					</portlet:actionURL>
 

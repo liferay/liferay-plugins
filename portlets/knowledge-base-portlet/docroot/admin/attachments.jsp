@@ -56,8 +56,9 @@ if (Validator.isNotNull(dirName)) {
 	%>
 
 	<portlet:renderURL var="selectAttachmentsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="jspPage" value="/admin/select_attachments.jsp" />
+		<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "select_attachments.jsp" %>' />
 		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
+		<portlet:param name="status" value="<%= String.valueOf(WorkflowConstants.STATUS_ANY) %>" />
 	</portlet:renderURL>
 
 	<portlet:actionURL name="updateAttachments" var="updateAttachmentsURL">

@@ -36,8 +36,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ServicePreAction extends Action {
 
-	public static final String NAMESPACE = "spa_knowledge_base_portlet_";
-
 	public void run(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			doRun(request, response);

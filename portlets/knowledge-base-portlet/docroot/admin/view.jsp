@@ -22,12 +22,12 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-<portlet:renderURL var="searchURL">
+<liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="jspPage" value="/admin/view.jsp" />
-</portlet:renderURL>
+</liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
-	<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<aui:input name="resourcePrimKeys" type="hidden" />
 
 	<liferay-ui:error exception="<%= ArticlePriorityException.class %>" message='<%= LanguageUtil.format(pageContext, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
@@ -55,6 +55,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<%@ include file="/admin/article_search_results.jspf" %>
 			</liferay-ui:search-container-results>
 
+			<%
+			boolean updateArticlesPriorities = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES);
+			%>
+
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.Article"
 				keyProperty="resourcePrimKey"
@@ -76,7 +80,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					orderable="<%= true %>"
 				>
 					<c:choose>
-						<c:when test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES) %>">
+						<c:when test="<%= updateArticlesPriorities %>">
 							<aui:input label="" name='<%= "priority" + article.getResourcePrimKey() %>' size="5" type="text" value="<%= BigDecimal.valueOf(article.getPriority()).toPlainString() %>" />
 						</c:when>
 						<c:otherwise>
@@ -92,6 +96,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="author"
 					orderable="<%= true %>"
@@ -100,54 +105,65 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="create-date"
 					orderable="<%= true %>"
-					value="<%= dateFormatDateTime.format(article.getCreateDate()) %>"
+					value='<%= dateFormatDate.format(article.getCreateDate()) + "<br />" + dateFormatTime.format(article.getCreateDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="modified-date"
 					orderable="<%= true %>"
-					value="<%= dateFormatDateTime.format(article.getModifiedDate()) %>"
+					value='<%= dateFormatDate.format(article.getModifiedDate()) + "<br />" + dateFormatTime.format(article.getModifiedDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					href="<%= rowURL %>"
 					name="status"
 					orderable="<%= true %>"
 					value='<%= article.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(article.getStatus())) + ")" %>'
 				/>
 
+				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
+					href="<%= rowURL %>"
+					name="views"
+					orderable="<%= true %>"
+					orderableProperty="view-count"
+					property="viewCount"
+				/>
+
 				<liferay-ui:search-container-column-jsp
 					align="right"
+					cssClass="kb-column-no-wrap"
 					path="/admin/article_action.jsp"
 				/>
 			</liferay-ui:search-container-row>
 
 			<c:if test="<%= (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE)) %>">
 				<aui:button-row cssClass="float-container">
-					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) || (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS)) %>">
-						<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
-							<portlet:renderURL var="addArticleURL">
-								<portlet:param name="jspPage" value="/admin/edit_article.jsp" />
-								<portlet:param name="redirect" value="<%= currentURL %>" />
-							</portlet:renderURL>
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE) %>">
+						<portlet:renderURL var="addArticleURL">
+							<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_article.jsp" %>' />
+							<portlet:param name="redirect" value="<%= currentURL %>" />
+						</portlet:renderURL>
 
-							<aui:button onClick="<%= addArticleURL %>" value="add-article" />
-						</c:if>
+						<aui:button onClick="<%= addArticleURL %>" value="add-article" />
+					</c:if>
 
-						<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
-							<liferay-security:permissionsURL
-								modelResource="com.liferay.knowledgebase.admin"
-								modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
-								resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
-								var="permissionsURL"
-							/>
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
+						<liferay-security:permissionsURL
+							modelResource="com.liferay.knowledgebase.admin"
+							modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
+							resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
+							var="permissionsURL"
+						/>
 
-							<aui:button onClick="<%= permissionsURL %>" value="permissions" />
-						</c:if>
+						<aui:button onClick="<%= permissionsURL %>" value="permissions" />
 					</c:if>
 
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">
@@ -155,6 +171,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							<c:choose>
 								<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), Article.class.getName(), scopeGroupId) %>">
 									<portlet:actionURL name="unsubscribeGroupArticles" var="unsubscribeGroupArticlesURL">
+										<portlet:param name="jspPage" value="/admin/view.jsp" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 									</portlet:actionURL>
 
@@ -166,6 +183,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 								</c:when>
 								<c:otherwise>
 									<portlet:actionURL name="subscribeGroupArticles" var="subscribeGroupArticlesURL">
+										<portlet:param name="jspPage" value="/admin/view.jsp" />
 										<portlet:param name="redirect" value="<%= currentURL %>" />
 									</portlet:actionURL>
 
@@ -191,7 +209,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 				<div class="portlet-msg-info">
 					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
 					</portlet:renderURL>
 
@@ -206,7 +224,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					%>
 
 					<c:choose>
-						<c:when test="<%= !searchContainer.getResultRows().isEmpty() %>">
+						<c:when test="<%= total > 0 %>">
 							<%= LanguageUtil.format(pageContext, "showing-child-articles-for-x", sb.toString(), false) %>
 						</c:when>
 						<c:otherwise>
@@ -216,7 +234,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				</div>
 			</c:if>
 
-			<c:if test="<%= !searchContainer.getResultRows().isEmpty() && (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES)) %>">
+			<c:if test="<%= (total > 0) && (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_ARTICLES_PRIORITIES)) %>">
 				<aui:button-row>
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_ARTICLES) %>">
 						<aui:button onClick='<%= renderResponse.getNamespace() + "deleteArticles();" %>' value="delete" />

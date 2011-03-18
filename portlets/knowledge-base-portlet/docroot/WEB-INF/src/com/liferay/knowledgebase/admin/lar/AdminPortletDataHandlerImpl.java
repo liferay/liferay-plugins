@@ -468,14 +468,18 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					assetTagNames, articleElement);
 			}
 			else {
-				importedArticle = ArticleLocalServiceUtil.updateArticle(
+				ArticleLocalServiceUtil.updateArticle(
 					userId, existingArticle.getResourcePrimKey(),
 					article.getTitle(), article.getContent(),
 					article.getDescription(), dirName, serviceContext);
 
-				importedArticle = ArticleLocalServiceUtil.moveArticle(
+				ArticleLocalServiceUtil.moveArticle(
 					userId, existingArticle.getResourcePrimKey(),
 					parentResourcePrimKey, article.getPriority());
+
+				importedArticle = ArticleLocalServiceUtil.getLatestArticle(
+					existingArticle.getResourcePrimKey(),
+					WorkflowConstants.STATUS_APPROVED);
 			}
 		}
 		else {

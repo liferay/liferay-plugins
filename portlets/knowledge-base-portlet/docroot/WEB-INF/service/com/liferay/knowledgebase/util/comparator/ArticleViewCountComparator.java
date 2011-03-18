@@ -21,19 +21,19 @@ import com.liferay.portal.kernel.util.OrderByComparator;
  * @author Peter Shin
  * @author Brian Wing Shun Chan
  */
-public class ArticleVersionComparator extends OrderByComparator {
+public class ArticleViewCountComparator extends OrderByComparator {
 
-	public static String ORDER_BY_ASC = "version ASC";
+	public static String ORDER_BY_ASC = "viewCount ASC";
 
-	public static String ORDER_BY_DESC = "version DESC";
+	public static String ORDER_BY_DESC = "viewCount DESC";
 
-	public static String[] ORDER_BY_FIELDS = {"version"};
+	public static String[] ORDER_BY_FIELDS = {"viewCount"};
 
-	public ArticleVersionComparator() {
+	public ArticleViewCountComparator() {
 		this(false);
 	}
 
-	public ArticleVersionComparator(boolean ascending) {
+	public ArticleViewCountComparator(boolean ascending) {
 		_ascending = ascending;
 	}
 
@@ -43,10 +43,10 @@ public class ArticleVersionComparator extends OrderByComparator {
 
 		int value = 0;
 
-		if (article1.getVersion() < article2.getVersion()) {
+		if (article1.getViewCount() < article2.getViewCount()) {
 			value = -1;
 		}
-		else if (article1.getVersion() > article2.getVersion()) {
+		else if (article1.getViewCount() > article2.getViewCount()) {
 			value = 1;
 		}
 

@@ -58,7 +58,7 @@ Comment comment = (Comment)request.getAttribute("template_comment.jsp-comment");
 				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(comment.getModifiedDate())) %>
 			</div>
 
-			<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) || (user.getUserId() == comment.getUserId()) %>">
+			<c:if test="<%= (user.getUserId() == comment.getUserId()) || TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
 				<br />
 
 				<%

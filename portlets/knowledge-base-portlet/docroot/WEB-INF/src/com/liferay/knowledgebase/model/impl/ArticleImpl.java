@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
 
 /**
@@ -54,9 +53,7 @@ public class ArticleImpl extends ArticleModelImpl implements Article {
 	}
 
 	public long getClassPK() {
-		if ((getVersion() == ArticleConstants.DEFAULT_VERSION) ||
-			(getStatus() == WorkflowConstants.STATUS_APPROVED)) {
-
+		if (isFirstVersion() || isApproved()) {
 			return getResourcePrimKey();
 		}
 

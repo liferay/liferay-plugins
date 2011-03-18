@@ -17,6 +17,8 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
+Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 %>
 
@@ -29,7 +31,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 		long selParentResourcePrimKey = article.getResourcePrimKey();
 
 		while (selParentResourcePrimKey != ArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, article.getStatus());
+			Article selArticle = ArticleServiceUtil.getLatestArticle(selParentResourcePrimKey, status.intValue());
 
 			selArticles.add(selArticle);
 
@@ -41,7 +43,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 		%>
 
 			<portlet:renderURL var="viewArticleURL">
-				<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+				<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
 				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selArticle.getResourcePrimKey()) %>" />
 			</portlet:renderURL>
 

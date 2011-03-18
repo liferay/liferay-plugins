@@ -20,45 +20,23 @@
 String jspPage = ParamUtil.getString(request, "jspPage");
 %>
 
-<c:if test="<%= rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN) %>">
+<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_TEMPLATES) %>">
 
 	<%
-	String[] names = new String[] {"articles"};
+	PortletURL articlesURL = renderResponse.createRenderURL();
 
-	if (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.VIEW_TEMPLATES)) {
-		names = ArrayUtil.append(names, "templates");
-	}
+	articlesURL.setParameter("jspPage", "/admin/view.jsp");
 
-	String[] urls = new String[] {StringPool.BLANK, StringPool.BLANK};
+	PortletURL templatesURL = renderResponse.createRenderURL();
 
-	if (ArrayUtil.contains(names, "articles")) {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("jspPage", "/admin/view.jsp");
-
-		urls[0] = portletURL.toString();
-	}
-
-	if (ArrayUtil.contains(names, "templates")) {
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("jspPage", "/admin/view_templates.jsp");
-
-		urls[1] = portletURL.toString();
-	}
-
-	String value = "articles";
-
-	if (jspPage.contains("template")) {
-		value = "templates";
-	}
+	templatesURL.setParameter("jspPage", "/admin/view_templates.jsp");
 	%>
 
 	<liferay-ui:tabs
-		names="<%= StringUtil.merge(names) %>"
+		names="articles,templates"
 		param="topTabs"
-		url0="<%= urls[0] %>"
-		url1="<%= urls[1] %>"
-		value="<%= value %>"
+		url0="<%= articlesURL.toString() %>"
+		url1="<%= templatesURL.toString() %>"
+		value='<%= jspPage.contains("template") ? "templates" : "articles" %>'
 	/>
 </c:if>

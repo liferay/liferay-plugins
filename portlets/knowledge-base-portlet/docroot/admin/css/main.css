@@ -9,27 +9,11 @@
 	border-bottom: none;
 }
 
-.knowledge-base-portlet-admin .aui-field-assetcategories .aui-field-content {
-	margin: 10px 0 20px;
-}
-
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-admin .kb-admin-tools {
 	float: right;
 	padding: 5px 5px 0 0;
-}
-
-.knowledge-base-portlet-admin .kb-attachments {
-	margin: 5px 0 0;
-}
-
-.knowledge-base-portlet-admin .kb-edit-link {
-	margin: 5px 0 0;
-}
-
-.knowledge-base-portlet-admin .kb-priority {
-	padding-left: 10px;
 }
 
 .knowledge-base-portlet-admin .kb-search-toggle .aui-field-label {
@@ -38,8 +22,4 @@
 
 .knowledge-base-portlet-admin .kb-search-toggle .kb-date-field {
 	float: left;
-}
-
-.knowledge-base-portlet-admin .kb-select-article-breadcrumbs {
-	margin: 0 0 5px;
 }

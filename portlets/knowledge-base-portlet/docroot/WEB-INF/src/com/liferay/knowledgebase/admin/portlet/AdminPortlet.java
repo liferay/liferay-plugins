@@ -35,6 +35,7 @@ import com.liferay.knowledgebase.service.CommentLocalServiceUtil;
 import com.liferay.knowledgebase.service.TemplateServiceUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
+import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
@@ -199,6 +200,10 @@ public class AdminPortlet extends MVCPortlet {
 		throws PortletException, IOException {
 
 		try {
+			Integer status = WorkflowConstants.STATUS_ANY;
+
+			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_STATUS, status);
+
 			Article article = null;
 
 			long resourcePrimKey = ParamUtil.getLong(
@@ -206,7 +211,7 @@ public class AdminPortlet extends MVCPortlet {
 
 			if (resourcePrimKey > 0) {
 				article = ArticleServiceUtil.getLatestArticle(
-					resourcePrimKey, _STATUS);
+					resourcePrimKey, status.intValue());
 			}
 
 			renderRequest.setAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE, article);
@@ -375,7 +380,7 @@ public class AdminPortlet extends MVCPortlet {
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
 			editURL = HttpUtil.setParameter(
-				editURL, namespace + "jspPage", "/admin/edit_article.jsp");
+				editURL, namespace + "jspPage", jspPath + "edit_article.jsp");
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);
 			editURL = HttpUtil.setParameter(
@@ -544,6 +549,7 @@ public class AdminPortlet extends MVCPortlet {
 			cause instanceof NoSuchArticleException ||
 			cause instanceof NoSuchCommentException ||
 			cause instanceof NoSuchFileException ||
+			cause instanceof NoSuchSubscriptionException ||
 			cause instanceof NoSuchTemplateException ||
 			cause instanceof PrincipalException ||
 			cause instanceof TemplateContentException ||
@@ -554,7 +560,5 @@ public class AdminPortlet extends MVCPortlet {
 
 		return false;
 	}
-
-	private static final int _STATUS = WorkflowConstants.STATUS_ANY;
 
 }

@@ -25,25 +25,27 @@ Template template = (Template)row.getObject();
 <liferay-ui:icon-menu cssClass="kb-template-action">
 	<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.VIEW) %>">
 		<portlet:renderURL var="viewURL">
-			<portlet:param name="jspPage" value="/admin/view_template.jsp" />
+			<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_template.jsp" %>' />
 			<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon
 			image="view"
+			method="get"
 			url="<%= viewURL %>"
 		/>
 	</c:if>
 
 	<c:if test="<%= TemplatePermission.contains(permissionChecker, template, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+			<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_template.jsp" %>' />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="templateId" value="<%= String.valueOf(template.getTemplateId()) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon
 			image="edit"
+			method="get"
 			url="<%= editURL %>"
 		/>
 	</c:if>
@@ -58,6 +60,7 @@ Template template = (Template)row.getObject();
 
 		<liferay-ui:icon
 			image="permissions"
+			method="get"
 			url="<%= permissionsURL %>"
 		/>
 	</c:if>

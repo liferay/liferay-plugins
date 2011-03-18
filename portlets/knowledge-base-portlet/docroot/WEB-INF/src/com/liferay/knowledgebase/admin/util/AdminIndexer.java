@@ -20,9 +20,7 @@ import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.comparator.ArticleModifiedDateComparator;
 import com.liferay.portal.kernel.search.BaseIndexer;
-import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.BooleanQuery;
-import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
@@ -32,13 +30,10 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Summary;
-import com.liferay.portal.kernel.search.TermQuery;
-import com.liferay.portal.kernel.search.TermQueryFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
@@ -48,7 +43,6 @@ import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.portlet.PortletURL;
@@ -82,66 +76,6 @@ public class AdminIndexer extends BaseIndexer {
 		return hits;
 	}
 
-	protected void addPortletPreferences(
-			BooleanQuery contextQuery, HashMap<String, Object> params)
-		throws Exception {
-
-		String selectionMethod = (String)params.get("selectionMethod");
-		Long[] resourcePrimKeys = (Long[])params.get("resourcePrimKeys");
-		Boolean assetEntryQueryAndOperator = (Boolean)params.get(
-			"assetEntryQueryAndOperator");
-		String assetEntryQueryName = (String)params.get("assetEntryQueryName");
-		Long[] assetCategoryIds = (Long[])params.get("assetCategoryIds");
-		String[] assetTagNames = (String[])params.get("assetTagNames");
-
-		if (selectionMethod.equals("articles")) {
-			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
-
-			for (long resourcePrimKey : resourcePrimKeys) {
-				String value = String.valueOf(resourcePrimKey);
-
-				booleanQuery.addExactTerm(Field.ENTRY_CLASS_PK, value);
-			}
-
-			contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
-		}
-		else if (selectionMethod.equals("filter")) {
-			List<Tuple> tuples = new ArrayList<Tuple>();
-
-			if (assetEntryQueryName.equals("asset-categories")) {
-				for (long assetCategoryId : assetCategoryIds) {
-					String value = String.valueOf(assetCategoryId);
-
-					tuples.add(new Tuple(Field.ASSET_CATEGORY_IDS, value));
-				}
-			}
-			else if (assetEntryQueryName.equals("asset-tags")) {
-				for (String assetTagName : assetTagNames) {
-					tuples.add(new Tuple(Field.ASSET_TAG_NAMES, assetTagName));
-				}
-			}
-
-			BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create();
-
-			for (Tuple tuple : tuples) {
-				String field = (String)tuple.getObject(0);
-				String value = (String)tuple.getObject(1);
-
-				if (assetEntryQueryAndOperator) {
-					TermQuery termQuery = TermQueryFactoryUtil.create(
-						field, value);
-
-					booleanQuery.add(termQuery, BooleanClauseOccur.MUST);
-				}
-				else {
-					booleanQuery.addExactTerm(field, value);
-				}
-			}
-
-			contextQuery.add(booleanQuery, BooleanClauseOccur.MUST);
-		}
-	}
-
 	protected void doDelete(Object obj) throws Exception {
 		Article article = (Article)obj;
 
@@ -166,6 +100,7 @@ public class AdminIndexer extends BaseIndexer {
 		String title = article.getTitle();
 		String content = HtmlUtil.extractText(article.getContent());
 		String description = article.getDescription();
+		Date createDate = article.getCreateDate();
 		Date modifiedDate = article.getModifiedDate();
 
 		long[] assetCategoryIds = AssetCategoryLocalServiceUtil.getCategoryIds(
@@ -180,7 +115,8 @@ public class AdminIndexer extends BaseIndexer {
 
 		document.addUID(PORTLET_ID, resourcePrimKey);
 
-		document.addModifiedDate(modifiedDate);
+		document.addDate("create", createDate);
+		document.addDate(Field.MODIFIED, modifiedDate);
 
 		document.addKeyword(Field.COMPANY_ID, companyId);
 		document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
@@ -199,6 +135,9 @@ public class AdminIndexer extends BaseIndexer {
 		document.addKeyword(Field.ENTRY_CLASS_NAME, Article.class.getName());
 		document.addKeyword(Field.ENTRY_CLASS_PK, resourcePrimKey);
 		document.addKeyword(Field.ROOT_ENTRY_CLASS_PK, rootResourcePrimKey);
+
+		document.addKeyword(Field.USER_NAME + "Keyword", userName, true);
+		document.addKeyword(Field.TITLE + "Keyword", title, true);
 
 		return document;
 	}
@@ -248,18 +187,6 @@ public class AdminIndexer extends BaseIndexer {
 
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
-	}
-
-	protected void postProcessContextQuery(
-			BooleanQuery contextQuery, SearchContext searchContext)
-		throws Exception {
-
-		HashMap<String, Object> params =
-			(HashMap<String, Object>)searchContext.getAttribute("params");
-
-		if (params != null) {
-			addPortletPreferences(contextQuery, params);
-		}
 	}
 
 	protected void postProcessSearchQuery(

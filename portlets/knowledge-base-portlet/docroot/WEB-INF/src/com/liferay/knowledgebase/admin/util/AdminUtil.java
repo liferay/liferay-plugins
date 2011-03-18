@@ -21,9 +21,16 @@ import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.MethodKey;
+import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Portlet;
+import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.ControlPanelEntry;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.portlet.PortletProps;
 
@@ -224,5 +231,29 @@ public class AdminUtil {
 		return preferences.getValue(
 			"emailFromName", PortletProps.get("admin.email.from.name"));
 	}
+
+	public static boolean isVisible(ThemeDisplay themeDisplay)
+		throws Exception {
+
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			themeDisplay.getCompanyId(), PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+		ControlPanelEntry controlPanelEntry =
+			portlet.getControlPanelEntryInstance();
+
+		if (controlPanelEntry == null) {
+			controlPanelEntry = (ControlPanelEntry)PortalClassInvoker.invoke(
+				false, _getInstanceMethodKey);
+		}
+
+		return controlPanelEntry.isVisible(
+			portlet, portlet.getControlPanelEntryCategory(), themeDisplay);
+	}
+
+	private static final String _CLASS_NAME =
+		"com.liferay.portlet.DefaultControlPanelEntryFactory";
+
+	private static MethodKey _getInstanceMethodKey = new MethodKey(
+		_CLASS_NAME, "getInstance");
 
 }

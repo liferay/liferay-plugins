@@ -17,9 +17,11 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
+Integer status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
+
 Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 
-List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), article.getStatus(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
+List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroupId, article.getResourcePrimKey(), status.intValue(), QueryUtil.ALL_POS, QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 %>
 
 <c:if test="<%= !siblingArticles.isEmpty() %>">
@@ -30,10 +32,11 @@ List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroup
 			for (Article siblingArticle : siblingArticles) {
 			%>
 
-				<div class='kb-element-header <%= childArticlesDisplayStyle.equals("title") ? "kb-title-only" : StringPool.BLANK %>'>
+				<div class="kb-element-header">
 					<portlet:renderURL var="viewArticleURL">
-						<portlet:param name="jspPage" value='<%= jspPath + "view_article.jsp" %>' />
+						<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(siblingArticle.getResourcePrimKey()) %>" />
+						<portlet:param name="status" value="<%= String.valueOf(status.intValue()) %>" />
 					</portlet:renderURL>
 
 					<liferay-ui:icon
@@ -53,15 +56,12 @@ List<Article> siblingArticles = ArticleServiceUtil.getSiblingArticles(scopeGroup
 					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 					<c:choose>
-						<c:when test='<%= childArticlesDisplayStyle.equals("full-content") %>'>
-							<%= siblingArticle.getContent() %>
-						</c:when>
-						<c:when test='<%= childArticlesDisplayStyle.equals("abstract") && Validator.isNotNull(siblingArticle.getDescription()) %>'>
+						<c:when test="<%= Validator.isNotNull(siblingArticle.getDescription()) %>">
 							<%= siblingArticle.getDescription() %>
 						</c:when>
-						<c:when test='<%= childArticlesDisplayStyle.equals("abstract") %>'>
+						<c:otherwise>
 							<%= StringUtil.shorten(HtmlUtil.extractText(siblingArticle.getContent()), 500) %>
-						</c:when>
+						</c:otherwise>
 					</c:choose>
 				</div>
 

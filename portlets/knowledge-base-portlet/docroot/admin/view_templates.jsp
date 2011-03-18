@@ -18,12 +18,12 @@
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
-<portlet:renderURL var="searchURL">
+<liferay-portlet:renderURL varImpl="searchURL">
 	<portlet:param name="jspPage" value="/admin/view_templates.jsp" />
-</portlet:renderURL>
+</liferay-portlet:renderURL>
 
 <aui:form action="<%= searchURL %>" method="get" name="fm">
-	<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<aui:input name="templateIds" type="hidden" />
 
 	<aui:fieldset>
@@ -59,6 +59,7 @@
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					name="author"
 					orderable="<%= true %>"
 					orderableProperty="user-name"
@@ -66,19 +67,22 @@
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					name="create-date"
 					orderable="<%= true %>"
-					value="<%= dateFormatDateTime.format(template.getCreateDate()) %>"
+					value='<%= dateFormatDate.format(template.getCreateDate()) + "<br />" + dateFormatTime.format(template.getCreateDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-text
+					cssClass="kb-column-no-wrap"
 					name="modified-date"
 					orderable="<%= true %>"
-					value="<%= dateFormatDateTime.format(template.getModifiedDate()) %>"
+					value='<%= dateFormatDate.format(template.getModifiedDate()) + "<br />" + dateFormatTime.format(template.getModifiedDate()) %>'
 				/>
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
+					cssClass="kb-column-no-wrap"
 					path="/admin/template_action.jsp"
 				/>
 			</liferay-ui:search-container-row>
@@ -87,7 +91,7 @@
 				<aui:button-row>
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_TEMPLATE) %>">
 						<portlet:renderURL var="addTemplateURL">
-							<portlet:param name="jspPage" value="/admin/edit_template.jsp" />
+							<portlet:param name="jspPage" value='<%= portletConfig.getInitParameter("jsp-path") + "edit_template.jsp" %>' />
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:renderURL>
 
@@ -109,7 +113,7 @@
 				<div class="separator"><!-- --></div>
 			</c:if>
 
-			<c:if test="<%= !searchContainer.getResultRows().isEmpty() && AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_TEMPLATES) %>">
+			<c:if test="<%= (total > 0) && AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_TEMPLATES) %>">
 				<aui:button-row>
 					<aui:button onClick='<%= renderResponse.getNamespace() + "deleteTemplates();" %>' value="delete" />
 				</aui:button-row>

@@ -276,30 +276,43 @@ else if (tabs2.equals("article-updated-email")) {
 
 				<c:choose>
 					<c:when test='<%= tabs3.equals("article") %>'>
-						<aui:select name="preferences--childArticlesDisplayStyle--">
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_ABSTRACT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_ABSTRACT) %>" />
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_FULL_CONTENT %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_FULL_CONTENT) %>" />
-							<aui:option label="<%= RSSUtil.DISPLAY_STYLE_TITLE %>" selected="<%= childArticlesDisplayStyle.equals(RSSUtil.DISPLAY_STYLE_TITLE) %>" />
-						</aui:select>
+						<div class="kb-field-wrapper">
+							<aui:field-wrapper label="order-by">
+								<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByCol--">
+									<aui:option label="create-date" selected='<%= articlesOrderByCol.equals("create-date") %>' />
+									<aui:option label="modified-date" selected='<%= articlesOrderByCol.equals("modified-date") %>' />
+									<aui:option label="priority" selected='<%= articlesOrderByCol.equals("priority") %>' />
+									<aui:option label="status" selected='<%= articlesOrderByCol.equals("status") %>' />
+									<aui:option label="title" selected='<%= articlesOrderByCol.equals("title") %>' />
+									<aui:option label="user-name" selected='<%= articlesOrderByCol.equals("user-name") %>' />
+									<aui:option label="view-count" selected='<%= articlesOrderByCol.equals("view-count") %>' />
+								</aui:select>
 
-						<aui:input inlineLabel="left" label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
+								<aui:select inlineField="<%= true %>" label="" name="preferences--articlesOrderByType--">
+									<aui:option label="ascending" selected='<%= articlesOrderByType.equals("asc") %>' value="asc" />
+									<aui:option label="descending" selected='<%= articlesOrderByType.equals("desc") %>' value="desc" />
+								</aui:select>
+							</aui:field-wrapper>
+						</div>
 
-						<aui:input inlineLabel="left" label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
+						<aui:input label="enable-description" name="preferences--enableArticleDescription--" type="checkbox" value="<%= enableArticleDescription %>" />
 
-						<aui:input inlineLabel="left" label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
+						<aui:input label="enable-categories" name="preferences--enableArticleAssetCategories--" type="checkbox" value="<%= enableArticleAssetCategories %>" />
 
-						<aui:input inlineLabel="left" label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
+						<aui:input label="enable-tags" name="preferences--enableArticleAssetTags--" type="checkbox" value="<%= enableArticleAssetTags %>" />
 
-						<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+						<aui:input label="enable-ratings" name="preferences--enableArticleRatings--" type="checkbox" value="<%= enableArticleRatings %>" />
 
-						<aui:input inlineLabel="left" label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
+						<aui:input label="enable-comments" name="preferences--enableArticleComments--" type="checkbox" value="<%= enableArticleComments %>" />
+
+						<aui:input label="show-comments" name="preferences--showArticleComments--" type="checkbox" value="<%= showArticleComments %>" />
 					</c:when>
 					<c:when test='<%= tabs3.equals("template") %>'>
-						<aui:input inlineLabel="left" label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
+						<aui:input label="enable-description" name="preferences--enableTemplateDescription--" type="checkbox" value="<%= enableTemplateDescription %>" />
 
-						<aui:input inlineLabel="left" label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
+						<aui:input label="enable-comments" name="preferences--enableTemplateComments--" type="checkbox" value="<%= enableTemplateComments %>" />
 
-						<aui:input inlineLabel="left" label="show-comments" name="preferences--showTemplateComments--" type="checkbox" value="<%= showTemplateComments %>" />
+						<aui:input label="show-comments" name="preferences--showTemplateComments--" type="checkbox" value="<%= showTemplateComments %>" />
 					</c:when>
 				</c:choose>
 			</c:when>
