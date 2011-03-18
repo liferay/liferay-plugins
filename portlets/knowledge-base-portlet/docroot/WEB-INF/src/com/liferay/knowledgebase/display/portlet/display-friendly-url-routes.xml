@@ -3,6 +3,14 @@
 
 <routes>
 	<route>
+		<pattern>/rss</pattern>
+		<ignored-parameter name="jspPage" />
+		<ignored-parameter name="p_p_state" />
+		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
+		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
+		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
+	</route>
+	<route>
 		<pattern>/administrator</pattern>
 		<implicit-parameter name="jspPage">/display/view_admin_panel.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
@@ -38,16 +46,8 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/article/{resourcePrimKey:\d+}/history</pattern>
+		<pattern>/article/{resourcePrimKey:\d+}/{status:\d+}/history</pattern>
 		<implicit-parameter name="jspPage">/display/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
-	</route>
-	<route>
-		<pattern>/{instanceId}/rss</pattern>
-		<ignored-parameter name="jspPage" />
-		<ignored-parameter name="p_p_state" />
-		<implicit-parameter name="p_p_cacheability">cacheLevelPage</implicit-parameter>
-		<implicit-parameter name="p_p_lifecycle">2</implicit-parameter>
-		<implicit-parameter name="p_p_resource_id">rss</implicit-parameter>
 	</route>
 </routes>

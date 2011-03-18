@@ -23,12 +23,12 @@
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/article/{resourcePrimKey:\d+}/history</pattern>
+		<pattern>/article/{resourcePrimKey:\d+}/{status:\d+}/history</pattern>
 		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
 		<implicit-parameter name="p_p_state">normal</implicit-parameter>
 	</route>
 	<route>
-		<pattern>/article/{resourcePrimKey:\d+}/history/{p_p_state}</pattern>
+		<pattern>/article/{resourcePrimKey:\d+}/{status:\d+}/history/{p_p_state}</pattern>
 		<implicit-parameter name="jspPage">/admin/history.jsp</implicit-parameter>
 	</route>
 	<route>

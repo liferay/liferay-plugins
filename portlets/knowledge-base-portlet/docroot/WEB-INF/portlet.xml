@@ -264,7 +264,7 @@
 			</preference>
 			<preference>
 				<name>enableArticleViewCountIncrement</name>
-				<value>true</value>
+				<value>false</value>
 			</preference>
 			<preference>
 				<name>rssDelta</name>
