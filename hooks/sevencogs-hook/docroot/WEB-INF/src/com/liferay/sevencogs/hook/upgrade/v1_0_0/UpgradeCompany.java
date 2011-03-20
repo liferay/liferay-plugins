@@ -962,8 +962,8 @@ public class UpgradeCompany extends UpgradeProcess {
 
 		Organization organization =
 			OrganizationLocalServiceUtil.addOrganization(
-				userId, parentOrganizationId, name, type, 0, recursable,
-				regionId, countryId, statusId, comments, serviceContext);
+				userId, parentOrganizationId, name, type, recursable, regionId,
+				countryId, statusId, comments, serviceContext);
 
 		// Group
 
@@ -1619,7 +1619,7 @@ public class UpgradeCompany extends UpgradeProcess {
 		name = "7Cogs, Inc. Mobile";
 
 		organization = OrganizationLocalServiceUtil.addOrganization(
-			userId, parentOrganizationId, name, type, 0, recursable, regionId,
+			userId, parentOrganizationId, name, type, recursable, regionId,
 			countryId, statusId, comments, serviceContext);
 
 		// Group
