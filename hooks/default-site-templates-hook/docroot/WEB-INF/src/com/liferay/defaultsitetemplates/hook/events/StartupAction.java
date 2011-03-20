@@ -177,7 +177,8 @@ public class StartupAction extends SimpleAction {
 
 		LayoutSetPrototype layoutSetPrototype =
 			LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
-				defaultUserId, companyId, nameMap, description, true);
+				defaultUserId, companyId, nameMap, description, true,
+				new ServiceContext());
 
 		LayoutSet layoutSet = layoutSetPrototype.getLayoutSet();
 
