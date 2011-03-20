@@ -29,7 +29,6 @@ public class BarSoap implements Serializable {
 	public static BarSoap toSoapModel(Bar model) {
 		BarSoap soapModel = new BarSoap();
 
-		soapModel.setUuid(model.getUuid());
 		soapModel.setBarId(model.getBarId());
 		soapModel.setText(model.getText());
 
@@ -84,14 +83,6 @@ public class BarSoap implements Serializable {
 		setBarId(pk);
 	}
 
-	public String getUuid() {
-		return _uuid;
-	}
-
-	public void setUuid(String uuid) {
-		_uuid = uuid;
-	}
-
 	public long getBarId() {
 		return _barId;
 	}
@@ -108,7 +99,6 @@ public class BarSoap implements Serializable {
 		_text = text;
 	}
 
-	private String _uuid;
 	private long _barId;
 	private String _text;
 }

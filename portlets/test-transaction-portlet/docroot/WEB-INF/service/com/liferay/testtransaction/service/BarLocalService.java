@@ -220,19 +220,13 @@ public interface BarLocalService {
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	/**
-	* NOTE FOR DEVELOPERS:
-	*
-	* Never reference this interface directly. Always use {@link com.liferay.testtransaction.service.BarLocalServiceUtil} to access the bar local service.
-	*/
+	public com.liferay.testtransaction.model.Bar addBar(java.lang.String text)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public void addBarPortalRollback(java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void addBarPortletRollback(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	public com.liferay.testtransaction.model.Bar addBarSuccess(
-		java.lang.String text)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public void cleanUp(com.liferay.testtransaction.model.Bar bar)

@@ -10,9 +10,6 @@
 	<mapped-superclass class="com.liferay.testtransaction.model.impl.BarModelImpl">
 		<attributes>
 			<id name="barId" />
-			<basic name="uuid">
-				<column name="UUID_" />
-			</basic>
 			<basic name="text">
 				<column name="TEXT_" />
 			</basic>

@@ -41,14 +41,6 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return new Long(_barId);
 	}
 
-	public String getUuid() {
-		return _uuid;
-	}
-
-	public void setUuid(String uuid) {
-		_uuid = uuid;
-	}
-
 	public long getBarId() {
 		return _barId;
 	}
@@ -78,7 +70,6 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	public Object clone() {
 		BarClp clone = new BarClp();
 
-		clone.setUuid(getUuid());
 		clone.setBarId(getBarId());
 		clone.setText(getText());
 
@@ -126,11 +117,9 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", barId=");
+		sb.append("{barId=");
 		sb.append(getBarId());
 		sb.append(", text=");
 		sb.append(getText());
@@ -140,16 +129,12 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.testtransaction.model.Bar");
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>barId</column-name><column-value><![CDATA[");
 		sb.append(getBarId());
@@ -164,7 +149,6 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		return sb.toString();
 	}
 
-	private String _uuid;
 	private long _barId;
 	private String _text;
 }

@@ -2,7 +2,6 @@
 
 <model-hints>
 	<model name="com.liferay.testtransaction.model.Bar">
-		<field name="uuid" type="String" />
 		<field name="barId" type="long" />
 		<field name="text" type="String" />
 	</model>

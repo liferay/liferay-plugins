@@ -47,24 +47,6 @@ public class BarWrapper implements Bar {
 	}
 
 	/**
-	* Gets the uuid of this bar.
-	*
-	* @return the uuid of this bar
-	*/
-	public java.lang.String getUuid() {
-		return _bar.getUuid();
-	}
-
-	/**
-	* Sets the uuid of this bar.
-	*
-	* @param uuid the uuid of this bar
-	*/
-	public void setUuid(java.lang.String uuid) {
-		_bar.setUuid(uuid);
-	}
-
-	/**
 	* Gets the bar ID of this bar.
 	*
 	* @return the bar ID of this bar

@@ -133,26 +133,19 @@ public class ClpSerializer {
 
 				Object newModel = newModelClass.newInstance();
 
-				Method method0 = newModelClass.getMethod("setUuid",
-						new Class[] { String.class });
+				Method method0 = newModelClass.getMethod("setBarId",
+						new Class[] { Long.TYPE });
 
-				String value0 = oldCplModel.getUuid();
+				Long value0 = new Long(oldCplModel.getBarId());
 
 				method0.invoke(newModel, value0);
 
-				Method method1 = newModelClass.getMethod("setBarId",
-						new Class[] { Long.TYPE });
-
-				Long value1 = new Long(oldCplModel.getBarId());
-
-				method1.invoke(newModel, value1);
-
-				Method method2 = newModelClass.getMethod("setText",
+				Method method1 = newModelClass.getMethod("setText",
 						new Class[] { String.class });
 
-				String value2 = oldCplModel.getText();
+				String value1 = oldCplModel.getText();
 
-				method2.invoke(newModel, value2);
+				method1.invoke(newModel, value1);
 
 				return newModel;
 			}
@@ -229,23 +222,17 @@ public class ClpSerializer {
 
 				Class<?> oldModelClass = oldModel.getClass();
 
-				Method method0 = oldModelClass.getMethod("getUuid");
+				Method method0 = oldModelClass.getMethod("getBarId");
 
-				String value0 = (String)method0.invoke(oldModel, (Object[])null);
+				Long value0 = (Long)method0.invoke(oldModel, (Object[])null);
 
-				newModel.setUuid(value0);
+				newModel.setBarId(value0);
 
-				Method method1 = oldModelClass.getMethod("getBarId");
+				Method method1 = oldModelClass.getMethod("getText");
 
-				Long value1 = (Long)method1.invoke(oldModel, (Object[])null);
+				String value1 = (String)method1.invoke(oldModel, (Object[])null);
 
-				newModel.setBarId(value1);
-
-				Method method2 = oldModelClass.getMethod("getText");
-
-				String value2 = (String)method2.invoke(oldModel, (Object[])null);
-
-				newModel.setText(value2);
+				newModel.setText(value1);
 
 				return newModel;
 			}

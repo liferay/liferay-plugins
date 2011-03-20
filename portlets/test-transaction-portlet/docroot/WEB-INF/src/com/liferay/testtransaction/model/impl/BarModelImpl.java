@@ -54,11 +54,10 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	 */
 	public static final String TABLE_NAME = "TT_Bar";
 	public static final Object[][] TABLE_COLUMNS = {
-			{ "uuid_", Types.VARCHAR },
 			{ "barId", Types.BIGINT },
 			{ "text_", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table TT_Bar (uuid_ VARCHAR(75) null,barId LONG not null primary key,text_ VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table TT_Bar (barId LONG not null primary key,text_ VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table TT_Bar";
 	public static final String ORDER_BY_JPQL = " ORDER BY bar.text ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY TT_Bar.text_ ASC";
@@ -87,19 +86,6 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_barId);
-	}
-
-	public String getUuid() {
-		if (_uuid == null) {
-			return StringPool.BLANK;
-		}
-		else {
-			return _uuid;
-		}
-	}
-
-	public void setUuid(String uuid) {
-		_uuid = uuid;
 	}
 
 	public long getBarId() {
@@ -149,8 +135,6 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	public Object clone() {
 		BarImpl barImpl = new BarImpl();
 
-		barImpl.setUuid(getUuid());
-
 		barImpl.setBarId(getBarId());
 
 		barImpl.setText(getText());
@@ -199,11 +183,9 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(7);
+		StringBundler sb = new StringBundler(5);
 
-		sb.append("{uuid=");
-		sb.append(getUuid());
-		sb.append(", barId=");
+		sb.append("{barId=");
 		sb.append(getBarId());
 		sb.append(", text=");
 		sb.append(getText());
@@ -213,16 +195,12 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(10);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.testtransaction.model.Bar");
 		sb.append("</model-name>");
 
-		sb.append(
-			"<column><column-name>uuid</column-name><column-value><![CDATA[");
-		sb.append(getUuid());
-		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>barId</column-name><column-value><![CDATA[");
 		sb.append(getBarId());
@@ -237,7 +215,6 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		return sb.toString();
 	}
 
-	private String _uuid;
 	private long _barId;
 	private String _text;
 	private transient ExpandoBridge _expandoBridge;

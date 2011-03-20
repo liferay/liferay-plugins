@@ -57,21 +57,6 @@ public interface BarModel extends BaseModel<Bar> {
 	public void setPrimaryKey(long pk);
 
 	/**
-	 * Gets the uuid of this bar.
-	 *
-	 * @return the uuid of this bar
-	 */
-	@AutoEscape
-	public String getUuid();
-
-	/**
-	 * Sets the uuid of this bar.
-	 *
-	 * @param uuid the uuid of this bar
-	 */
-	public void setUuid(String uuid);
-
-	/**
 	 * Gets the bar ID of this bar.
 	 *
 	 * @return the bar ID of this bar

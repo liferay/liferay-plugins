@@ -14,20 +14,98 @@
  */
 --%>
 
-<%@ include file="/init.jsp" %>
+<%@ page import="com.liferay.testtransaction.model.Bar" %>
+<%@ page import="com.liferay.testtransaction.service.BarLocalServiceUtil" %>
 
-<portlet:defineObjects />
+BarLocalServiceUtil.addBar=<%= _testAddBarPortalRollback() %><br />
+BarLocalServiceUtil.addBarPortalRollback=<%= _testAddBarPortalRollback() %><br />
+BarLocalServiceUtil.addBarPortletRollback=<%= _testAddBarPortletRollback() %>
 
-This is the <b>Test Transaction</b> portlet. This was made to test transaction support in portlets.
+<%!
+private String _testAddBar() {
+	String text = "Hello World";
 
-<br /><br />
+	try {
+		Bar bar = BarLocalServiceUtil.addBar(text);
 
-<b>Add Bar Portal Rollback : </b> <%=TestUtil.testAddBarPortalRollback() %>
+		bar = BarLocalServiceUtil.getBar(bar.getBarId());
 
-<br /><br />
+		BarLocalServiceUtil.cleanUp(bar);
 
-<b>Add Bar Portlet Rollback : </b> <%=TestUtil.testAddBarPortletRollback() %>
+		return "PASSED";
+	}
+	catch (Exception e) {
+		e.printStackTrace();
 
-<br /><br />
+		return "FAILED";
+	}
+}
 
-<b>Add Bar Success : </b> <%=TestUtil.testAddBarSuccess() %>
+private String _testAddBarPortalRollback() {
+	String text = "Hello World";
+
+	try {
+		BarLocalServiceUtil.addBarPortalRollback(text);
+
+		System.out.println("Portal failed to throw a SystemException");
+
+		return "FAILED";
+	}
+	catch (SystemException se1) {
+		try {
+			if (BarLocalServiceUtil.hasBar(text)) {
+				System.out.println("Portal failed to roll back Bar object");
+
+				return "FAILED";
+			}
+
+			if (BarLocalServiceUtil.hasClassName()) {
+				System.out.println("Portal failed to roll back ClassName object");
+
+				return "FAILED";
+			}
+		}
+		catch (SystemException se2) {
+			se2.printStackTrace();
+
+			return "FAILED";
+		}
+
+		return "PASSED";
+	}
+}
+
+private String _testAddBarPortletRollback() {
+	String text = "Hello World";
+
+	try {
+		BarLocalServiceUtil.addBarPortletRollback(text);
+
+		System.out.println("Portlet failed to throw a SystemException");
+
+		return "FAILED";
+	}
+	catch (SystemException se1) {
+		try {
+			if (BarLocalServiceUtil.hasBar(text)) {
+				System.out.println("Portlet failed to roll back Bar object");
+
+				return "FAILED";
+			}
+
+			if (BarLocalServiceUtil.hasClassName()) {
+				System.out.println("Portlet failed to roll back ClassName object");
+
+				return "FAILED";
+			}
+		}
+		catch (SystemException se2) {
+			se2.printStackTrace();
+
+			return "FAILED";
+		}
+
+		return "PASSED";
+	}
+}
+%>

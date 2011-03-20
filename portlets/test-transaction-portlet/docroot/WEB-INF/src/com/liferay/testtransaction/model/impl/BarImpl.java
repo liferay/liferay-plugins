@@ -17,20 +17,11 @@ package com.liferay.testtransaction.model.impl;
 import com.liferay.testtransaction.model.Bar;
 
 /**
- * The model implementation for the Bar service. Represents a row in the &quot;TT_Bar&quot; database table, with each column mapped to a property of this class.
- *
- * <p>
- * Helper methods and all application logic should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.testtransaction.model.Bar} interface.
- * </p>
- *
  * @author Brian Wing Shun Chan
  */
 public class BarImpl extends BarModelImpl implements Bar {
-	/**
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. All methods that expect a bar model instance should use the {@link Bar} interface instead.
-	 */
+
 	public BarImpl() {
 	}
+
 }
