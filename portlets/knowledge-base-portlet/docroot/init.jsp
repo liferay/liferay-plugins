@@ -123,7 +123,6 @@
 <%@ page import="javax.portlet.WindowState" %>
 
 <%@ page import="org.apache.commons.lang.time.FastDateFormat" %>
-
 <%@ page import="org.apache.commons.math.util.MathUtils" %>
 
 <portlet:defineObjects />
@@ -137,8 +136,8 @@ String currentURL = PortalUtil.getCurrentURL(request);
 
 String jspPath = portletConfig.getInitParameter("jsp-path");
 
-Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale, timeZone);
-
 Format dateFormatDate = FastDateFormat.getDateInstance(FastDateFormat.LONG, timeZone, locale);
 Format dateFormatDateTime = FastDateFormat.getDateTimeInstance(FastDateFormat.LONG, FastDateFormat.SHORT, timeZone, locale);
+
+Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale, timeZone);
 %>
