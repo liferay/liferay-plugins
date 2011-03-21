@@ -15,6 +15,7 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.opensocial.shindig.util.SerializerUtil;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -31,7 +32,6 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
@@ -423,6 +423,11 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		serviceContext.setAddCommunityPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
+
+		String extension = FileUtil.getExtension(fileName);
+
+		serviceContext.setAttribute("extension", extension);
+		serviceContext.setAttribute("sourceFileName", fileName);
 		serviceContext.setExpandoBridgeAttributes(
 			SerializerUtil.toExpandoAttributes(
 				mediaItem, _MEDIA_ITEM_FIELDS, user.getCompanyId(),
@@ -450,21 +455,6 @@ public class LiferayMediaItemService implements MediaItemService {
 				mediaItem.getDescription(), StringPool.BLANK, false, byteArray,
 				serviceContext);
 		}
-	}
-
-	protected String getFileEntryURL(
-		FileEntry fileEntry, SecurityToken securityToken) {
-
-		StringBuilder sb = new StringBuilder(6);
-
-		sb.append(securityToken.getDomain());
-		sb.append(PortalUtil.getPathContext());
-		sb.append("/documents/");
-		sb.append(fileEntry.getRepositoryId());
-		sb.append(StringPool.SLASH);
-		sb.append(fileEntry.getUuid());
-
-		return sb.toString();
 	}
 
 	protected String getFileName(MediaItem mediaItem, Http.Options options) {
@@ -504,7 +494,11 @@ public class LiferayMediaItemService implements MediaItemService {
 		mediaItem.setNumViews(String.valueOf(fileEntry.getReadCount()));
 		mediaItem.setTitle(fileEntry.getTitle());
 		mediaItem.setType(toMediaItemType(fileEntry.getExtension()));
-		mediaItem.setUrl(getFileEntryURL(fileEntry, securityToken));
+
+		String fileEntryURL = ShindigUtil.getFileEntryURL(
+			securityToken.getDomain(), fileEntry.getFileEntryId());
+
+		mediaItem.setUrl(fileEntryURL);
 
 		FileVersion fileVersion = fileEntry.getLatestFileVersion();
 

@@ -21,6 +21,8 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.repository.model.FileEntry;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -31,8 +33,11 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
+import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
 import java.io.File;
 
@@ -54,6 +59,7 @@ import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.ModulePrefs;
 import org.apache.shindig.gadgets.spec.OAuthService;
 import org.apache.shindig.gadgets.spec.OAuthSpec;
+import org.apache.shindig.gadgets.spec.SpecParserException;
 
 import org.json.JSONObject;
 
@@ -151,6 +157,51 @@ public class ShindigUtil {
 		return gadget.getSpec();
 	}
 
+	public static Folder getGadgetEditorRootFolder(long repositoryId)
+		throws Exception {
+
+		Folder folder = null;
+
+		try {
+			folder = DLAppServiceUtil.getFolder(
+				repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				_GADGET_EDITOR_ROOT_FOLDER_NAME);
+		}
+		catch (Exception e) {
+		}
+
+		if (folder == null) {
+			ServiceContext serviceContext = new ServiceContext();
+			serviceContext.setAddCommunityPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setScopeGroupId(repositoryId);
+
+			folder = DLAppServiceUtil.addFolder(
+				repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				_GADGET_EDITOR_ROOT_FOLDER_NAME, StringPool.BLANK,
+				serviceContext);
+		}
+
+		return folder;
+	}
+
+	public static String getFileEntryURL(String portalURL, long fileEntryId)
+		throws PortalException, SystemException {
+
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
+
+		StringBuilder sb = new StringBuilder(6);
+
+		sb.append(portalURL);
+		sb.append(PortalUtil.getPathContext());
+		sb.append("/documents/");
+		sb.append(fileEntry.getRepositoryId());
+		sb.append(StringPool.SLASH);
+		sb.append(fileEntry.getUuid());
+
+		return sb.toString();
+	}
+
 	public static String getHost() {
 		return _host.get();
 	}
@@ -210,6 +261,18 @@ public class ShindigUtil {
 		return _TABLE_OPEN_SOCIAL;
 	}
 
+	public static boolean isContentValid(String content) {
+		try {
+			new GadgetSpec(null, content);
+
+			return true;
+		}
+		catch (Exception e) {
+		}
+
+		return false;
+	}
+
 	public static boolean isRequiresPubsub(String url)
 		throws GadgetURLException {
 
@@ -229,11 +292,26 @@ public class ShindigUtil {
 		return features.containsKey("pubsub-2");
 	}
 
+	public static boolean isRequiresPubsubFromContent(String content)
+		throws SpecParserException {
+
+		GadgetSpec gadgetSpec = new GadgetSpec(null, content);
+
+		ModulePrefs modulePrefs = gadgetSpec.getModulePrefs();
+
+		Map<String, Feature> features = modulePrefs.getFeatures();
+
+		return features.containsKey("pubsub-2");
+	}
+
 	public static void setHost(String host) {
 		_host.set(host);
 	}
 
 	private static final String _COLUMN_USER_PREFS = "USER_PREFS_";
+
+	private static final String _GADGET_EDITOR_ROOT_FOLDER_NAME =
+		"OpenSocial Gadgets";
 
 	private static final String _TABLE_OPEN_SOCIAL = "OPEN_SOCIAL_DATA_";
 

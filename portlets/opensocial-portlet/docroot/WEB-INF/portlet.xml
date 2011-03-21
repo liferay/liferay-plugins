@@ -74,4 +74,26 @@
 			<keywords>Add Gadget</keywords>
 		</portlet-info>
 	</portlet>
+	<portlet>
+		<portlet-name>4</portlet-name>
+		<display-name>OpenSocial Gadget Editor</display-name>
+		<portlet-class>com.liferay.opensocial.editor.portlet.GadgetEditor</portlet-class>
+		<init-param>
+			<name>view-jsp</name>
+			<value>/editor/view.jsp</value>
+		</init-param>
+		<init-param>
+			<name>copy-request-parameters</name>
+			<value>true</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+		</supports>
+		<portlet-info>
+			<title>OpenSocial Gadget Editor</title>
+			<short-title>OpenSocial Gadget Editor</short-title>
+			<keywords>OpenSocial Gadget Editor</keywords>
+		</portlet-info>
+	</portlet>
 </portlet-app>

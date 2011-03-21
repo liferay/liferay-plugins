@@ -22,6 +22,7 @@ AUI().add(
 						value: ''
 					},
 					appId: {},
+					content: {},
 					country: {
 						value: 'ALL'
 					},
@@ -92,21 +93,27 @@ AUI().add(
 						var secureToken = instance.get('secureToken');
 						var width = instance.get('width');
 
-						var createOpenAjaxHubIframe = function() {
-							var iframeAttrs = {
-								className: CSS_CLASS_GADGET,
-								frameborder: 'no',
-								scrolling: 'no'
-							};
+						if (requiresPubsub == "true") {
+						    var iframeAttrs = {
+						    	className: CSS_CLASS_GADGET,
+							    frameborder: 'no',
+							    scrolling: 'no'
+						    };
 
-							if (height) {
-								iframeAttrs.height = height;
+						    if (height) {
+						    	iframeAttrs.height = height;
+						    }
+
+						    if (width) {
+						    	iframeAttrs.width = width;
+						    }
+							
+							var container = gadgets.pubsub2router.hub.getContainer(iframeId);
+							
+							if (container) {
+								delete gadgets.pubsub2router.hub._containers[iframeId];
 							}
-
-							if (width) {
-								iframeAttrs.width = width;
-							}
-
+						
 							var container = new OpenAjax.hub.IframeContainer(
 								gadgets.pubsub2router.hub,
 								iframeId,
@@ -127,10 +134,9 @@ AUI().add(
 							);
 
 							instance._iframe = container.getIframe();
-						};
-						
-						var createStandardIframe = function() {
-							var iframe = A.substitute(
+						}
+						else {
+					    	var iframe = A.substitute(
 								TPL_IFRAME,
 								{
 									height: (height ? 'height="' + height + '"' : ''),
@@ -147,14 +153,7 @@ AUI().add(
 
 							gadgets.rpc.setRelayUrl(iframeId, instance.get('serverBase') + instance.get('rpcRelay'));
 							gadgets.rpc.setAuthToken(iframeId, instance.get('rpcToken'));
-						};
-
-						if (requiresPubsub == 'true') {
-							createOpenAjaxHubIframe();
-						}
-						else {
-							createStandardIframe();
-						}
+					    }
 					},
 
 					bindUI: function() {
@@ -262,6 +261,12 @@ AUI().add(
 						}
 
 						url = instance.get('serverBase') + 'ifr?' + A.QueryString.stringify(urlData);
+						
+						var content = instance.get('content');
+						
+						if (content) {
+							url += '&rawxml=' + content;
+						}
 
 						var secureToken = instance.get('secureToken');
 
