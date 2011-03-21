@@ -11,7 +11,6 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-lang.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-math.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jdom.jar" />
