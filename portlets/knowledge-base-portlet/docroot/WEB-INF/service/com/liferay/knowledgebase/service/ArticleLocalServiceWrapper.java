@@ -283,11 +283,11 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 	}
 
 	public void addAttachment(long companyId, java.lang.String dirName,
-		java.lang.String shortFileName, java.io.InputStream inputStream)
+		java.lang.String shortFileName, byte[] bytes)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleLocalService.addAttachment(companyId, dirName, shortFileName,
-			inputStream);
+			bytes);
 	}
 
 	public void checkAttachments()

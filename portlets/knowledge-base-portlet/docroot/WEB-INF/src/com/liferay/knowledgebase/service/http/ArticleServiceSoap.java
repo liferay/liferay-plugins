@@ -84,6 +84,20 @@ public class ArticleServiceSoap {
 		}
 	}
 
+	public static void addAttachment(long companyId, long groupId,
+		long resourcePrimKey, java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes) throws RemoteException {
+		try {
+			ArticleServiceUtil.addAttachment(companyId, groupId,
+				resourcePrimKey, dirName, shortFileName, bytes);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void deleteArticle(long resourcePrimKey)
 		throws RemoteException {
 		try {

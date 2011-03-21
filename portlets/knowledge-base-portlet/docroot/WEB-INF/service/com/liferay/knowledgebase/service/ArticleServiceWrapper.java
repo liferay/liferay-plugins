@@ -41,11 +41,11 @@ public class ArticleServiceWrapper implements ArticleService {
 
 	public void addAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, java.io.InputStream inputStream)
+		java.lang.String shortFileName, byte[] bytes)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_articleService.addAttachment(companyId, groupId, resourcePrimKey,
-			dirName, shortFileName, inputStream);
+			dirName, shortFileName, bytes);
 	}
 
 	public void deleteArticle(long resourcePrimKey)

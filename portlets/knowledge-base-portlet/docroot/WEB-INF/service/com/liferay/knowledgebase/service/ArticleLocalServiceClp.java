@@ -99,7 +99,7 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 
 		_addAttachmentMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addAttachment", long.class, java.lang.String.class,
-				java.lang.String.class, java.io.InputStream.class);
+				java.lang.String.class, byte[].class);
 
 		_checkAttachmentsMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
 				"checkAttachments");
@@ -754,13 +754,13 @@ public class ArticleLocalServiceClp implements ArticleLocalService {
 	}
 
 	public void addAttachment(long companyId, java.lang.String dirName,
-		java.lang.String shortFileName, java.io.InputStream inputStream)
+		java.lang.String shortFileName, byte[] bytes)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey19,
 				companyId, ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(shortFileName),
-				ClpSerializer.translateInput(inputStream));
+				ClpSerializer.translateInput(bytes));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);

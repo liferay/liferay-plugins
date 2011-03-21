@@ -33,8 +33,7 @@ public class ArticleServiceClp implements ArticleService {
 
 		_addAttachmentMethodKey1 = new MethodKey(_classLoaderProxy.getClassName(),
 				"addAttachment", long.class, long.class, long.class,
-				java.lang.String.class, java.lang.String.class,
-				java.io.InputStream.class);
+				java.lang.String.class, java.lang.String.class, byte[].class);
 
 		_deleteArticleMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
 				"deleteArticle", long.class);
@@ -172,14 +171,14 @@ public class ArticleServiceClp implements ArticleService {
 
 	public void addAttachment(long companyId, long groupId,
 		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, java.io.InputStream inputStream)
+		java.lang.String shortFileName, byte[] bytes)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_addAttachmentMethodKey1,
 				companyId, groupId, resourcePrimKey,
 				ClpSerializer.translateInput(dirName),
 				ClpSerializer.translateInput(shortFileName),
-				ClpSerializer.translateInput(inputStream));
+				ClpSerializer.translateInput(bytes));
 
 		try {
 			_classLoaderProxy.invoke(methodHandler);
