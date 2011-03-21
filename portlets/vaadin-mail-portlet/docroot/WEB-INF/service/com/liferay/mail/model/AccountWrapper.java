@@ -28,6 +28,14 @@ public class AccountWrapper implements Account {
 		_account = account;
 	}
 
+	public Class<?> getModelClass() {
+		return Account.class;
+	}
+
+	public String getModelClassName() {
+		return Account.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this account.
 	*

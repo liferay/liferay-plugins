@@ -28,6 +28,14 @@ public class FooWrapper implements Foo {
 		_foo = foo;
 	}
 
+	public Class<?> getModelClass() {
+		return Foo.class;
+	}
+
+	public String getModelClassName() {
+		return Foo.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this foo.
 	*

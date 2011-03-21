@@ -28,6 +28,14 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		_wsrpConsumerPortlet = wsrpConsumerPortlet;
 	}
 
+	public Class<?> getModelClass() {
+		return WSRPConsumerPortlet.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPConsumerPortlet.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this w s r p consumer portlet.
 	*

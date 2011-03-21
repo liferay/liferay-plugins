@@ -28,6 +28,14 @@ public class CheckoutWrapper implements Checkout {
 		_checkout = checkout;
 	}
 
+	public Class<?> getModelClass() {
+		return Checkout.class;
+	}
+
+	public String getModelClassName() {
+		return Checkout.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this checkout.
 	*

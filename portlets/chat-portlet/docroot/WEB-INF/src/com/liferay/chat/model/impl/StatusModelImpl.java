@@ -77,6 +77,15 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.chat.model.Status"),
 			true);
+
+	public Class<?> getModelClass() {
+		return Status.class;
+	}
+
+	public String getModelClassName() {
+		return Status.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.chat.model.Status"));
 

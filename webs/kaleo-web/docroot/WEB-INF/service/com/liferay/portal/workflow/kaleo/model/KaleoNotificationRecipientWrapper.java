@@ -30,6 +30,14 @@ public class KaleoNotificationRecipientWrapper
 		_kaleoNotificationRecipient = kaleoNotificationRecipient;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoNotificationRecipient.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoNotificationRecipient.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo notification recipient.
 	*

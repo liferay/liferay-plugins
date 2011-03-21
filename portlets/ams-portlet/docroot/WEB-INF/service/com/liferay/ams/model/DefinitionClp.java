@@ -34,6 +34,14 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 	public DefinitionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Definition.class;
+	}
+
+	public String getModelClassName() {
+		return Definition.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _definitionId;
 	}

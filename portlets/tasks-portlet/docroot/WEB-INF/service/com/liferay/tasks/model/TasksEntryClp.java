@@ -35,6 +35,14 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 	public TasksEntryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return TasksEntry.class;
+	}
+
+	public String getModelClassName() {
+		return TasksEntry.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _tasksEntryId;
 	}

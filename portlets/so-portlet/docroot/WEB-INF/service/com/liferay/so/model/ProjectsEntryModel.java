@@ -16,6 +16,7 @@ package com.liferay.so.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,7 +39,8 @@ import java.util.Date;
  * @see com.liferay.so.model.impl.ProjectsEntryModelImpl
  * @generated
  */
-public interface ProjectsEntryModel extends BaseModel<ProjectsEntry> {
+public interface ProjectsEntryModel extends AuditedModel,
+	BaseModel<ProjectsEntry> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

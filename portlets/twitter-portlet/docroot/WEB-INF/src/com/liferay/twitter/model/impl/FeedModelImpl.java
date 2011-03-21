@@ -79,6 +79,15 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.twitter.model.Feed"),
 			true);
+
+	public Class<?> getModelClass() {
+		return Feed.class;
+	}
+
+	public String getModelClassName() {
+		return Feed.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.twitter.model.Feed"));
 

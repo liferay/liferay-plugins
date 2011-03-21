@@ -42,6 +42,14 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	public KaleoDefinitionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoDefinition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoDefinition.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoDefinitionId;
 	}

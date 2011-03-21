@@ -28,6 +28,14 @@ public class MessageWrapper implements Message {
 		_message = message;
 	}
 
+	public Class<?> getModelClass() {
+		return Message.class;
+	}
+
+	public String getModelClassName() {
+		return Message.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this message.
 	*

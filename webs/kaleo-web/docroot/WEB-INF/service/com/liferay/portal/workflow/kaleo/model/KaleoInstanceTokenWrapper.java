@@ -28,6 +28,14 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken {
 		_kaleoInstanceToken = kaleoInstanceToken;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoInstanceToken.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo instance token.
 	*

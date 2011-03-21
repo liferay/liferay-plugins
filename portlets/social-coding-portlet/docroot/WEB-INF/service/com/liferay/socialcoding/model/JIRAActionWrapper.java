@@ -28,6 +28,14 @@ public class JIRAActionWrapper implements JIRAAction {
 		_jiraAction = jiraAction;
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAAction.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAAction.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this j i r a action.
 	*

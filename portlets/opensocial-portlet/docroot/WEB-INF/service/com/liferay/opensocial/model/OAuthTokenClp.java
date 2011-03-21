@@ -34,6 +34,14 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	public OAuthTokenClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return OAuthToken.class;
+	}
+
+	public String getModelClassName() {
+		return OAuthToken.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _oAuthTokenId;
 	}

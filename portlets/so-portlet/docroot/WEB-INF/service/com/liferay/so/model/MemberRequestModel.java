@@ -17,6 +17,7 @@ package com.liferay.so.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -38,7 +39,8 @@ import java.util.Date;
  * @see com.liferay.so.model.impl.MemberRequestModelImpl
  * @generated
  */
-public interface MemberRequestModel extends BaseModel<MemberRequest> {
+public interface MemberRequestModel extends BaseModel<MemberRequest>,
+	GroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

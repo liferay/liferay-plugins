@@ -120,6 +120,14 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		return models;
 	}
 
+	public Class<?> getModelClass() {
+		return Gadget.class;
+	}
+
+	public String getModelClassName() {
+		return Gadget.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.opensocial.model.Gadget"));
 

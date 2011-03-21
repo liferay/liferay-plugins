@@ -16,6 +16,7 @@ package com.liferay.microblogs.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,7 +39,8 @@ import java.util.Date;
  * @see com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl
  * @generated
  */
-public interface MicroblogsEntryModel extends BaseModel<MicroblogsEntry> {
+public interface MicroblogsEntryModel extends AuditedModel,
+	BaseModel<MicroblogsEntry> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

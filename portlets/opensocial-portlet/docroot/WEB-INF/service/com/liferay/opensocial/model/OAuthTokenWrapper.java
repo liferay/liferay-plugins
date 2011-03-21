@@ -28,6 +28,14 @@ public class OAuthTokenWrapper implements OAuthToken {
 		_oAuthToken = oAuthToken;
 	}
 
+	public Class<?> getModelClass() {
+		return OAuthToken.class;
+	}
+
+	public String getModelClassName() {
+		return OAuthToken.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this o auth token.
 	*

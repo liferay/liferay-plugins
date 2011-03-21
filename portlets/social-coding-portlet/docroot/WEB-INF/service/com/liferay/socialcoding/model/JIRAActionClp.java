@@ -33,6 +33,14 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	public JIRAActionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAAction.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAAction.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _jiraActionId;
 	}

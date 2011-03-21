@@ -28,6 +28,14 @@ public class BarWrapper implements Bar {
 		_bar = bar;
 	}
 
+	public Class<?> getModelClass() {
+		return Bar.class;
+	}
+
+	public String getModelClassName() {
+		return Bar.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this bar.
 	*

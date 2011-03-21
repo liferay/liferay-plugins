@@ -35,6 +35,14 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	public MeetupsRegistrationClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return MeetupsRegistration.class;
+	}
+
+	public String getModelClassName() {
+		return MeetupsRegistration.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _meetupsRegistrationId;
 	}

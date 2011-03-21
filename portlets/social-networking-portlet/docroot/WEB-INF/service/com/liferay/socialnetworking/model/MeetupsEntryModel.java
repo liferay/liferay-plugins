@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,7 +39,7 @@ import java.util.Date;
  * @see com.liferay.socialnetworking.model.impl.MeetupsEntryModelImpl
  * @generated
  */
-public interface MeetupsEntryModel extends BaseModel<MeetupsEntry> {
+public interface MeetupsEntryModel extends AuditedModel, BaseModel<MeetupsEntry> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

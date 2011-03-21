@@ -28,6 +28,14 @@ public class FolderWrapper implements Folder {
 		_folder = folder;
 	}
 
+	public Class<?> getModelClass() {
+		return Folder.class;
+	}
+
+	public String getModelClassName() {
+		return Folder.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this folder.
 	*

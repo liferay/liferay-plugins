@@ -28,6 +28,14 @@ public class UserThreadWrapper implements UserThread {
 		_userThread = userThread;
 	}
 
+	public Class<?> getModelClass() {
+		return UserThread.class;
+	}
+
+	public String getModelClassName() {
+		return UserThread.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this user thread.
 	*

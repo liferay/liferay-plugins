@@ -33,6 +33,14 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 	public CheckoutClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Checkout.class;
+	}
+
+	public String getModelClassName() {
+		return Checkout.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _checkoutId;
 	}

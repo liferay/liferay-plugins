@@ -32,6 +32,14 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	public WSRPConsumerClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return WSRPConsumer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPConsumer.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _wsrpConsumerId;
 	}

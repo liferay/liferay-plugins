@@ -30,6 +30,14 @@ public class KaleoTaskAssignmentInstanceWrapper
 		_kaleoTaskAssignmentInstance = kaleoTaskAssignmentInstance;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTaskAssignmentInstance.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTaskAssignmentInstance.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo task assignment instance.
 	*

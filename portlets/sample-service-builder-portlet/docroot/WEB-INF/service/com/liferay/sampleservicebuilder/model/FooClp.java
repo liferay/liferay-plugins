@@ -33,6 +33,14 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	public FooClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Foo.class;
+	}
+
+	public String getModelClassName() {
+		return Foo.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _fooId;
 	}

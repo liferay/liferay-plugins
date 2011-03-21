@@ -28,6 +28,14 @@ public class TasksEntryWrapper implements TasksEntry {
 		_tasksEntry = tasksEntry;
 	}
 
+	public Class<?> getModelClass() {
+		return TasksEntry.class;
+	}
+
+	public String getModelClassName() {
+		return TasksEntry.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this tasks entry.
 	*

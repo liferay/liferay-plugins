@@ -35,6 +35,14 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	public ArticleClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Article.class;
+	}
+
+	public String getModelClassName() {
+		return Article.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _articleId;
 	}

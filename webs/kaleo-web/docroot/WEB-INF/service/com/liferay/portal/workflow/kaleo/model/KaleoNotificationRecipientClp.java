@@ -34,6 +34,14 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	public KaleoNotificationRecipientClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoNotificationRecipient.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoNotificationRecipient.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoNotificationRecipientId;
 	}

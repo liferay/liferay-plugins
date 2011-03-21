@@ -29,6 +29,14 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		_kaleoTimerInstanceToken = kaleoTimerInstanceToken;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTimerInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTimerInstanceToken.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo timer instance token.
 	*

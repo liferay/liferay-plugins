@@ -34,6 +34,14 @@ public class KaleoTimerInstanceTokenClp extends BaseModelImpl<KaleoTimerInstance
 	public KaleoTimerInstanceTokenClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTimerInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTimerInstanceToken.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoTimerInstanceTokenId;
 	}

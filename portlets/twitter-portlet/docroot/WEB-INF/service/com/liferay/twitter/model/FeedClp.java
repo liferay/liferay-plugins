@@ -33,6 +33,14 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	public FeedClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Feed.class;
+	}
+
+	public String getModelClassName() {
+		return Feed.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _feedId;
 	}

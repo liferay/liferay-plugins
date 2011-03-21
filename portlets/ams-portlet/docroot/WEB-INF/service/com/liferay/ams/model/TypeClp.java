@@ -29,6 +29,14 @@ public class TypeClp extends BaseModelImpl<Type> implements Type {
 	public TypeClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Type.class;
+	}
+
+	public String getModelClassName() {
+		return Type.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _typeId;
 	}

@@ -28,6 +28,14 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		_meetupsEntry = meetupsEntry;
 	}
 
+	public Class<?> getModelClass() {
+		return MeetupsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return MeetupsEntry.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this meetups entry.
 	*

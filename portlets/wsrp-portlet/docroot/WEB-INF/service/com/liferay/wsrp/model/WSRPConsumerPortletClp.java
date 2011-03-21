@@ -32,6 +32,14 @@ public class WSRPConsumerPortletClp extends BaseModelImpl<WSRPConsumerPortlet>
 	public WSRPConsumerPortletClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return WSRPConsumerPortlet.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPConsumerPortlet.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _wsrpConsumerPortletId;
 	}

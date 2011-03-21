@@ -28,6 +28,14 @@ public class KaleoActionWrapper implements KaleoAction {
 		_kaleoAction = kaleoAction;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoAction.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoAction.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo action.
 	*

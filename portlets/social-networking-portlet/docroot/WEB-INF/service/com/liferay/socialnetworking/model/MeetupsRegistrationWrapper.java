@@ -28,6 +28,14 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		_meetupsRegistration = meetupsRegistration;
 	}
 
+	public Class<?> getModelClass() {
+		return MeetupsRegistration.class;
+	}
+
+	public String getModelClassName() {
+		return MeetupsRegistration.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this meetups registration.
 	*

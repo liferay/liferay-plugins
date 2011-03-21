@@ -28,6 +28,14 @@ public class ArticleWrapper implements Article {
 		_article = article;
 	}
 
+	public Class<?> getModelClass() {
+		return Article.class;
+	}
+
+	public String getModelClassName() {
+		return Article.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this article.
 	*

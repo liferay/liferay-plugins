@@ -28,6 +28,14 @@ public class TemplateWrapper implements Template {
 		_template = template;
 	}
 
+	public Class<?> getModelClass() {
+		return Template.class;
+	}
+
+	public String getModelClassName() {
+		return Template.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this template.
 	*

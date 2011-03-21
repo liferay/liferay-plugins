@@ -28,6 +28,14 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		_jiraChangeItem = jiraChangeItem;
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAChangeItem.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAChangeItem.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this j i r a change item.
 	*

@@ -31,6 +31,14 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	public GadgetClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Gadget.class;
+	}
+
+	public String getModelClassName() {
+		return Gadget.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _gadgetId;
 	}

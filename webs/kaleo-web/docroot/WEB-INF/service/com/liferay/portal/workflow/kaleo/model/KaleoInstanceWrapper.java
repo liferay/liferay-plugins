@@ -28,6 +28,14 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		_kaleoInstance = kaleoInstance;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoInstance.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoInstance.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo instance.
 	*

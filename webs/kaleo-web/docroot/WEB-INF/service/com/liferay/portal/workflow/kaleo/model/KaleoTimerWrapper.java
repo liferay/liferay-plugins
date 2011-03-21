@@ -28,6 +28,14 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		_kaleoTimer = kaleoTimer;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTimer.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTimer.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo timer.
 	*

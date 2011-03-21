@@ -28,6 +28,14 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		_projectsEntry = projectsEntry;
 	}
 
+	public Class<?> getModelClass() {
+		return ProjectsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return ProjectsEntry.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this projects entry.
 	*

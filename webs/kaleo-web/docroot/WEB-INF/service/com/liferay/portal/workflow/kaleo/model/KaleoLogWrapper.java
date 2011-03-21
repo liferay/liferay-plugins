@@ -28,6 +28,14 @@ public class KaleoLogWrapper implements KaleoLog {
 		_kaleoLog = kaleoLog;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoLog.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoLog.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo log.
 	*

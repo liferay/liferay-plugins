@@ -28,6 +28,14 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		_oAuthConsumer = oAuthConsumer;
 	}
 
+	public Class<?> getModelClass() {
+		return OAuthConsumer.class;
+	}
+
+	public String getModelClassName() {
+		return OAuthConsumer.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this o auth consumer.
 	*

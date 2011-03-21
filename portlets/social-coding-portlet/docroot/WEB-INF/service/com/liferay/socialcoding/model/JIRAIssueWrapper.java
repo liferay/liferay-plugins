@@ -28,6 +28,14 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		_jiraIssue = jiraIssue;
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAIssue.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAIssue.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this j i r a issue.
 	*

@@ -32,6 +32,14 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	public OAuthConsumerClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return OAuthConsumer.class;
+	}
+
+	public String getModelClassName() {
+		return OAuthConsumer.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _oAuthConsumerId;
 	}

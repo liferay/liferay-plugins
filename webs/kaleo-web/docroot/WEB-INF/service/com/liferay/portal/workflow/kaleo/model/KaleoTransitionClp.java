@@ -34,6 +34,14 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	public KaleoTransitionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTransition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTransition.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoTransitionId;
 	}

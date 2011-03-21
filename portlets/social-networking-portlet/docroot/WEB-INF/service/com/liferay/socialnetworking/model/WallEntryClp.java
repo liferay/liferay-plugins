@@ -34,6 +34,14 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	public WallEntryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return WallEntry.class;
+	}
+
+	public String getModelClassName() {
+		return WallEntry.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _wallEntryId;
 	}

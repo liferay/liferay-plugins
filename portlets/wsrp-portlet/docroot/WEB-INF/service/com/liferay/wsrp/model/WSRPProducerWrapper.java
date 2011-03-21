@@ -28,6 +28,14 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		_wsrpProducer = wsrpProducer;
 	}
 
+	public Class<?> getModelClass() {
+		return WSRPProducer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPProducer.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this w s r p producer.
 	*

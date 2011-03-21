@@ -35,6 +35,14 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	public UserThreadClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return UserThread.class;
+	}
+
+	public String getModelClassName() {
+		return UserThread.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _userThreadId;
 	}

@@ -30,6 +30,14 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	public JIRAChangeItemClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAChangeItem.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAChangeItem.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _jiraChangeItemId;
 	}

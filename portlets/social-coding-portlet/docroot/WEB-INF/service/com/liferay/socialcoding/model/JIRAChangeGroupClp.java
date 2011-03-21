@@ -33,6 +33,14 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	public JIRAChangeGroupClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAChangeGroup.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAChangeGroup.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _jiraChangeGroupId;
 	}

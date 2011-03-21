@@ -32,6 +32,14 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	public SVNRevisionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return SVNRevision.class;
+	}
+
+	public String getModelClassName() {
+		return SVNRevision.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _svnRevisionId;
 	}

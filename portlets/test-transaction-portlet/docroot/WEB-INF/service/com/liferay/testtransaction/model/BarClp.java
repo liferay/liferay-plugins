@@ -29,6 +29,14 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	public BarClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Bar.class;
+	}
+
+	public String getModelClassName() {
+		return Bar.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _barId;
 	}

@@ -34,6 +34,14 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	public KaleoTimerClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTimer.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTimer.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoTimerId;
 	}

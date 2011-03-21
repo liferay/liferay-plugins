@@ -28,6 +28,14 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		_microblogsEntry = microblogsEntry;
 	}
 
+	public Class<?> getModelClass() {
+		return MicroblogsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return MicroblogsEntry.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this microblogs entry.
 	*

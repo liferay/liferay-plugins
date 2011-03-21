@@ -34,6 +34,14 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	public KaleoActionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoAction.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoAction.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoActionId;
 	}

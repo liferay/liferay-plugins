@@ -34,6 +34,14 @@ public class KaleoTaskAssignmentInstanceClp extends BaseModelImpl<KaleoTaskAssig
 	public KaleoTaskAssignmentInstanceClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTaskAssignmentInstance.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTaskAssignmentInstance.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoTaskAssignmentInstanceId;
 	}

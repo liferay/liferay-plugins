@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.model;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -40,7 +41,8 @@ import java.util.Map;
  * @see com.liferay.portal.workflow.kaleo.model.impl.KaleoDefinitionModelImpl
  * @generated
  */
-public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition> {
+public interface KaleoDefinitionModel extends BaseModel<KaleoDefinition>,
+	GroupedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -70,6 +70,15 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.testtransaction.model.Bar"),
 			true);
+
+	public Class<?> getModelClass() {
+		return Bar.class;
+	}
+
+	public String getModelClassName() {
+		return Bar.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.testtransaction.model.Bar"));
 

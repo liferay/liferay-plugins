@@ -28,6 +28,14 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		_wsrpConsumer = wsrpConsumer;
 	}
 
+	public Class<?> getModelClass() {
+		return WSRPConsumer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPConsumer.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this w s r p consumer.
 	*

@@ -33,6 +33,14 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	public KaleoTaskClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTask.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTask.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoTaskId;
 	}

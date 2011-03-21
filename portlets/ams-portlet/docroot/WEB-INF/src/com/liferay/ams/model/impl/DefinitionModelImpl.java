@@ -84,6 +84,15 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.ams.model.Definition"),
 			true);
+
+	public Class<?> getModelClass() {
+		return Definition.class;
+	}
+
+	public String getModelClassName() {
+		return Definition.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.ams.model.Definition"));
 

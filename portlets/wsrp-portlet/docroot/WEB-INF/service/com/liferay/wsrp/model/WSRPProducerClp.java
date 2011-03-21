@@ -32,6 +32,14 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	public WSRPProducerClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return WSRPProducer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPProducer.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _wsrpProducerId;
 	}

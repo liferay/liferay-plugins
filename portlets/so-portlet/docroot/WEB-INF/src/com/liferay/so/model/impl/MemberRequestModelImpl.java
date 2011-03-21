@@ -86,6 +86,15 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.so.model.MemberRequest"),
 			true);
+
+	public Class<?> getModelClass() {
+		return MemberRequest.class;
+	}
+
+	public String getModelClassName() {
+		return MemberRequest.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.so.model.MemberRequest"));
 

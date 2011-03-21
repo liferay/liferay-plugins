@@ -35,6 +35,14 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	public MeetupsEntryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return MeetupsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return MeetupsEntry.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _meetupsEntryId;
 	}

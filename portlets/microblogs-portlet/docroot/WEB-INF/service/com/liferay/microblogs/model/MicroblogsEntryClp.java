@@ -35,6 +35,14 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	public MicroblogsEntryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return MicroblogsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return MicroblogsEntry.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _microblogsEntryId;
 	}

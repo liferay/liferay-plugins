@@ -34,6 +34,14 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	public KaleoConditionClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoCondition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoCondition.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoConditionId;
 	}

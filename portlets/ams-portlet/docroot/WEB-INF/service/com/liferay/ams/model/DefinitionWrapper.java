@@ -28,6 +28,14 @@ public class DefinitionWrapper implements Definition {
 		_definition = definition;
 	}
 
+	public Class<?> getModelClass() {
+		return Definition.class;
+	}
+
+	public String getModelClassName() {
+		return Definition.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this definition.
 	*

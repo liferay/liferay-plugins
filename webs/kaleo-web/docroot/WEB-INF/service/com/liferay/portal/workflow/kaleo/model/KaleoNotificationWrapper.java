@@ -28,6 +28,14 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		_kaleoNotification = kaleoNotification;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoNotification.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoNotification.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo notification.
 	*

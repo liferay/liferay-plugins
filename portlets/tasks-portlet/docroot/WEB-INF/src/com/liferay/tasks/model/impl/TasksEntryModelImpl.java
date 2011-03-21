@@ -135,6 +135,14 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return models;
 	}
 
+	public Class<?> getModelClass() {
+		return TasksEntry.class;
+	}
+
+	public String getModelClassName() {
+		return TasksEntry.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.tasks.model.TasksEntry"));
 

@@ -30,6 +30,14 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	public SVNRepositoryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return SVNRepository.class;
+	}
+
+	public String getModelClassName() {
+		return SVNRepository.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _svnRepositoryId;
 	}

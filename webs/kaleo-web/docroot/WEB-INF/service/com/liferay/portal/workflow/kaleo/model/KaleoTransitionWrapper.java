@@ -28,6 +28,14 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		_kaleoTransition = kaleoTransition;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTransition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTransition.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo transition.
 	*

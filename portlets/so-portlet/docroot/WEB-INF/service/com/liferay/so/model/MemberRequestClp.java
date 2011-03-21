@@ -35,6 +35,14 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	public MemberRequestClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return MemberRequest.class;
+	}
+
+	public String getModelClassName() {
+		return MemberRequest.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _memberRequestId;
 	}

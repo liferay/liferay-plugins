@@ -28,6 +28,14 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		_svnRepository = svnRepository;
 	}
 
+	public Class<?> getModelClass() {
+		return SVNRepository.class;
+	}
+
+	public String getModelClassName() {
+		return SVNRepository.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this s v n repository.
 	*

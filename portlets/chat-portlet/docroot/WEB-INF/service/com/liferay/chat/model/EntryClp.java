@@ -31,6 +31,14 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	public EntryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Entry.class;
+	}
+
+	public String getModelClassName() {
+		return Entry.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _entryId;
 	}

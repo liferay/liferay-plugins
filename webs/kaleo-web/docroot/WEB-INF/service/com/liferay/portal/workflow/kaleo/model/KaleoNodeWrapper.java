@@ -28,6 +28,14 @@ public class KaleoNodeWrapper implements KaleoNode {
 		_kaleoNode = kaleoNode;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoNode.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoNode.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo node.
 	*

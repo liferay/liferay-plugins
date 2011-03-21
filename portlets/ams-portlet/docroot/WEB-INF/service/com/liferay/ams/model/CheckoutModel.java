@@ -16,6 +16,7 @@ package com.liferay.ams.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,7 +39,7 @@ import java.util.Date;
  * @see com.liferay.ams.model.impl.CheckoutModelImpl
  * @generated
  */
-public interface CheckoutModel extends BaseModel<Checkout> {
+public interface CheckoutModel extends AuditedModel, BaseModel<Checkout> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

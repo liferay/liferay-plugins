@@ -28,6 +28,14 @@ public class AssetWrapper implements Asset {
 		_asset = asset;
 	}
 
+	public Class<?> getModelClass() {
+		return Asset.class;
+	}
+
+	public String getModelClassName() {
+		return Asset.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this asset.
 	*

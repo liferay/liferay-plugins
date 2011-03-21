@@ -34,6 +34,14 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	public KaleoInstanceClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoInstance.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoInstance.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoInstanceId;
 	}

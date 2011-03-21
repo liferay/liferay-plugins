@@ -28,6 +28,14 @@ public class EntryWrapper implements Entry {
 		_entry = entry;
 	}
 
+	public Class<?> getModelClass() {
+		return Entry.class;
+	}
+
+	public String getModelClassName() {
+		return Entry.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this entry.
 	*

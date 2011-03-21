@@ -28,6 +28,14 @@ public class MemberRequestWrapper implements MemberRequest {
 		_memberRequest = memberRequest;
 	}
 
+	public Class<?> getModelClass() {
+		return MemberRequest.class;
+	}
+
+	public String getModelClassName() {
+		return MemberRequest.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this member request.
 	*

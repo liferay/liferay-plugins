@@ -28,6 +28,14 @@ public class AttachmentWrapper implements Attachment {
 		_attachment = attachment;
 	}
 
+	public Class<?> getModelClass() {
+		return Attachment.class;
+	}
+
+	public String getModelClassName() {
+		return Attachment.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this attachment.
 	*

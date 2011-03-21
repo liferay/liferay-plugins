@@ -33,6 +33,14 @@ public class KaleoNodeClp extends BaseModelImpl<KaleoNode> implements KaleoNode 
 	public KaleoNodeClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoNode.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoNode.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoNodeId;
 	}

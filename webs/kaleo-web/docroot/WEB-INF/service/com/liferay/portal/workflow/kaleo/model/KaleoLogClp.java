@@ -33,6 +33,14 @@ public class KaleoLogClp extends BaseModelImpl<KaleoLog> implements KaleoLog {
 	public KaleoLogClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoLog.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoLog.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoLogId;
 	}

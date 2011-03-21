@@ -35,6 +35,14 @@ public class CommentClp extends BaseModelImpl<Comment> implements Comment {
 	public CommentClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Comment.class;
+	}
+
+	public String getModelClassName() {
+		return Comment.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _commentId;
 	}

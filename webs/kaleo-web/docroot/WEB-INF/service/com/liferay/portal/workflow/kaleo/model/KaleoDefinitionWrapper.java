@@ -28,6 +28,14 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		_kaleoDefinition = kaleoDefinition;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoDefinition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoDefinition.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo definition.
 	*

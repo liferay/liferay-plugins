@@ -28,6 +28,14 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		_kaleoTaskAssignment = kaleoTaskAssignment;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTaskAssignment.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTaskAssignment.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo task assignment.
 	*

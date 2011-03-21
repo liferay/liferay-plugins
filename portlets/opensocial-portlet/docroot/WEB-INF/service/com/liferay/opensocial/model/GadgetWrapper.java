@@ -28,6 +28,14 @@ public class GadgetWrapper implements Gadget {
 		_gadget = gadget;
 	}
 
+	public Class<?> getModelClass() {
+		return Gadget.class;
+	}
+
+	public String getModelClassName() {
+		return Gadget.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this gadget.
 	*

@@ -28,6 +28,14 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		_kaleoCondition = kaleoCondition;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoCondition.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoCondition.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo condition.
 	*

@@ -28,6 +28,14 @@ public class TypeWrapper implements Type {
 		_type = type;
 	}
 
+	public Class<?> getModelClass() {
+		return Type.class;
+	}
+
+	public String getModelClassName() {
+		return Type.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this type.
 	*

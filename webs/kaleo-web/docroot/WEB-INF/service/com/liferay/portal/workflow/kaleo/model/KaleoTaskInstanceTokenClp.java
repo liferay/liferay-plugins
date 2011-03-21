@@ -34,6 +34,14 @@ public class KaleoTaskInstanceTokenClp extends BaseModelImpl<KaleoTaskInstanceTo
 	public KaleoTaskInstanceTokenClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTaskInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTaskInstanceToken.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _kaleoTaskInstanceTokenId;
 	}

@@ -28,6 +28,14 @@ public class WallEntryWrapper implements WallEntry {
 		_wallEntry = wallEntry;
 	}
 
+	public Class<?> getModelClass() {
+		return WallEntry.class;
+	}
+
+	public String getModelClassName() {
+		return WallEntry.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this wall entry.
 	*

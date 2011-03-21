@@ -72,6 +72,15 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.socialcoding.model.SVNRepository"),
 			true);
+
+	public Class<?> getModelClass() {
+		return SVNRepository.class;
+	}
+
+	public String getModelClassName() {
+		return SVNRepository.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.socialcoding.model.SVNRepository"));
 

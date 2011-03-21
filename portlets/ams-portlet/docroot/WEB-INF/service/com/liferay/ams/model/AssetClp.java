@@ -33,6 +33,14 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	public AssetClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Asset.class;
+	}
+
+	public String getModelClassName() {
+		return Asset.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _assetId;
 	}

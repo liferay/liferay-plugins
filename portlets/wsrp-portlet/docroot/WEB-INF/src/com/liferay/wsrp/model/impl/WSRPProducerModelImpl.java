@@ -80,6 +80,15 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.wsrp.model.WSRPProducer"),
 			true);
+
+	public Class<?> getModelClass() {
+		return WSRPProducer.class;
+	}
+
+	public String getModelClassName() {
+		return WSRPProducer.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.wsrp.model.WSRPProducer"));
 

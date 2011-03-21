@@ -29,6 +29,14 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTaskInstanceToken.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTaskInstanceToken.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo task instance token.
 	*

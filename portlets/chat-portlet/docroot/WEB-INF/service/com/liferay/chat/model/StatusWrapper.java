@@ -28,6 +28,14 @@ public class StatusWrapper implements Status {
 		_status = status;
 	}
 
+	public Class<?> getModelClass() {
+		return Status.class;
+	}
+
+	public String getModelClassName() {
+		return Status.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this status.
 	*

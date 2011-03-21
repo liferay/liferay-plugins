@@ -16,6 +16,7 @@ package com.liferay.twitter.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -38,7 +39,7 @@ import java.util.Date;
  * @see com.liferay.twitter.model.impl.FeedModelImpl
  * @generated
  */
-public interface FeedModel extends BaseModel<Feed> {
+public interface FeedModel extends AuditedModel, BaseModel<Feed> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *

@@ -129,6 +129,14 @@ public class TemplateModelImpl extends BaseModelImpl<Template>
 		return models;
 	}
 
+	public Class<?> getModelClass() {
+		return Template.class;
+	}
+
+	public String getModelClassName() {
+		return Template.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.knowledgebase.model.Template"));
 

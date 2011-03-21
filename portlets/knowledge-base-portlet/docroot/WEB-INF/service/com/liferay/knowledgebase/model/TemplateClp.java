@@ -34,6 +34,14 @@ public class TemplateClp extends BaseModelImpl<Template> implements Template {
 	public TemplateClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Template.class;
+	}
+
+	public String getModelClassName() {
+		return Template.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _templateId;
 	}

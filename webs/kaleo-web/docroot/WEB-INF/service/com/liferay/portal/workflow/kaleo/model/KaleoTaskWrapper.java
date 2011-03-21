@@ -28,6 +28,14 @@ public class KaleoTaskWrapper implements KaleoTask {
 		_kaleoTask = kaleoTask;
 	}
 
+	public Class<?> getModelClass() {
+		return KaleoTask.class;
+	}
+
+	public String getModelClassName() {
+		return KaleoTask.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this kaleo task.
 	*

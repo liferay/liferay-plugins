@@ -28,6 +28,14 @@ public class SVNRevisionWrapper implements SVNRevision {
 		_svnRevision = svnRevision;
 	}
 
+	public Class<?> getModelClass() {
+		return SVNRevision.class;
+	}
+
+	public String getModelClassName() {
+		return SVNRevision.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this s v n revision.
 	*

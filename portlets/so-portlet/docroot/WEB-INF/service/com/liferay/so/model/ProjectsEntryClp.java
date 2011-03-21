@@ -35,6 +35,14 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	public ProjectsEntryClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return ProjectsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return ProjectsEntry.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _projectsEntryId;
 	}

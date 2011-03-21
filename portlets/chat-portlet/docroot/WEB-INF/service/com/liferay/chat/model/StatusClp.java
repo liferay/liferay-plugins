@@ -31,6 +31,14 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	public StatusClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Status.class;
+	}
+
+	public String getModelClassName() {
+		return Status.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _statusId;
 	}

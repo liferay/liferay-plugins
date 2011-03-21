@@ -82,6 +82,15 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.privatemessaging.model.UserThread"),
 			true);
+
+	public Class<?> getModelClass() {
+		return UserThread.class;
+	}
+
+	public String getModelClassName() {
+		return UserThread.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.privatemessaging.model.UserThread"));
 

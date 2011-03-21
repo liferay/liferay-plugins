@@ -28,6 +28,14 @@ public class CommentWrapper implements Comment {
 		_comment = comment;
 	}
 
+	public Class<?> getModelClass() {
+		return Comment.class;
+	}
+
+	public String getModelClassName() {
+		return Comment.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this comment.
 	*

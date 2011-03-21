@@ -28,6 +28,14 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		_jiraChangeGroup = jiraChangeGroup;
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAChangeGroup.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAChangeGroup.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this j i r a change group.
 	*

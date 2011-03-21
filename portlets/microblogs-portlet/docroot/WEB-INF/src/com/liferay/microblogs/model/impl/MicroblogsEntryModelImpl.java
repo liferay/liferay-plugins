@@ -130,6 +130,14 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		return models;
 	}
 
+	public Class<?> getModelClass() {
+		return MicroblogsEntry.class;
+	}
+
+	public String getModelClassName() {
+		return MicroblogsEntry.class.getName();
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.microblogs.model.MicroblogsEntry"));
 

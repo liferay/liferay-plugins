@@ -28,6 +28,14 @@ public class FeedWrapper implements Feed {
 		_feed = feed;
 	}
 
+	public Class<?> getModelClass() {
+		return Feed.class;
+	}
+
+	public String getModelClassName() {
+		return Feed.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this feed.
 	*

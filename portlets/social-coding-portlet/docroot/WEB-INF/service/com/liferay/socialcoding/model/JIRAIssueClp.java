@@ -32,6 +32,14 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	public JIRAIssueClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return JIRAIssue.class;
+	}
+
+	public String getModelClassName() {
+		return JIRAIssue.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _jiraIssueId;
 	}
