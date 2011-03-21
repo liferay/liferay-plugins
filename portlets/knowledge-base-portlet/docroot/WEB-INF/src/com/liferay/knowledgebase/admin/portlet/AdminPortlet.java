@@ -56,7 +56,6 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.servlet.PortletResponseUtil;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -97,7 +96,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		ArticleServiceUtil.addAttachment(
 			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			resourcePrimKey, dirName, fileName, new FileInputStream(file));
+			resourcePrimKey, dirName, fileName, FileUtil.getBytes(file));
 	}
 
 	public void deleteArticle(

@@ -51,8 +51,6 @@ import com.sun.syndication.feed.synd.SyndFeed;
 import com.sun.syndication.feed.synd.SyndFeedImpl;
 import com.sun.syndication.io.FeedException;
 
-import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -80,7 +78,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 	public void addAttachment(
 			long companyId, long groupId, long resourcePrimKey, String dirName,
-			String shortFileName, InputStream inputStream)
+			String shortFileName, byte[] bytes)
 		throws PortalException, SystemException {
 
 		if (resourcePrimKey <= 0) {
@@ -93,7 +91,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		articleLocalService.addAttachment(
-			companyId, dirName, shortFileName, inputStream);
+			companyId, dirName, shortFileName, bytes);
 	}
 
 	public void deleteArticle(long resourcePrimKey)

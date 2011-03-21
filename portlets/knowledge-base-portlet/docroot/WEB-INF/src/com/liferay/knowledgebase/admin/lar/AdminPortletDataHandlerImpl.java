@@ -52,8 +52,6 @@ import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
-import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -223,7 +221,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			String shortFileName = FileUtil.getShortFileName(fileName);
 
 			String path = rootPath + StringPool.SLASH + shortFileName;
-			InputStream inputStream = DLLocalServiceUtil.getFileAsStream(
+			byte[] bytes = DLLocalServiceUtil.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
 			Element fileElement = articleAttachmentsElement.addElement("file");
@@ -231,7 +229,7 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			fileElement.addAttribute("path", path);
 			fileElement.addAttribute("short-file-name", shortFileName);
 
-			portletDataContext.addZipEntry(path, inputStream);
+			portletDataContext.addZipEntry(path, bytes);
 		}
 	}
 
@@ -532,9 +530,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					"short-file-name");
 
 				String fileName = dirName + StringPool.SLASH + shortFileName;
-				InputStream inputStream =
-					portletDataContext.getZipEntryAsInputStream(
-						fileElement.attributeValue("path"));
+				byte[] bytes = portletDataContext.getZipEntryAsByteArray(
+					fileElement.attributeValue("path"));
 
 				ServiceContext serviceContext = new ServiceContext();
 
@@ -542,9 +539,8 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 					portletDataContext.getCompanyId(),
 					CompanyConstants.SYSTEM_STRING,
 					GroupConstants.DEFAULT_PARENT_GROUP_ID,
-					CompanyConstants.SYSTEM, fileName, true, 0,
-					StringPool.BLANK, serviceContext.getCreateDate(null),
-					serviceContext, inputStream);
+					CompanyConstants.SYSTEM, fileName, 0, StringPool.BLANK,
+					serviceContext.getCreateDate(null), serviceContext, bytes);
 			}
 
 			dirNames.put(resourcePrimKey, dirName);
