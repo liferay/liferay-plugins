@@ -85,7 +85,7 @@ public class FindArticleAction extends BaseStrutsAction {
 		Article article = getArticle(resourcePrimKey);
 
 		if (article == null) {
-			portletURL = getDisplayPortletURL(plid, request);
+			portletURL = getDynamicPortletURL(plid, request);
 		}
 
 		if (portletURL == null) {
@@ -97,7 +97,7 @@ public class FindArticleAction extends BaseStrutsAction {
 		}
 
 		if (portletURL == null) {
-			portletURL = getDisplayPortletURL(plid, request);
+			portletURL = getDynamicPortletURL(plid, request);
 		}
 
 		if (maximized) {
@@ -229,7 +229,7 @@ public class FindArticleAction extends BaseStrutsAction {
 		return null;
 	}
 
-	protected PortletURL getDisplayPortletURL(
+	protected PortletURL getDynamicPortletURL(
 			long plid, HttpServletRequest request)
 		throws Exception {
 

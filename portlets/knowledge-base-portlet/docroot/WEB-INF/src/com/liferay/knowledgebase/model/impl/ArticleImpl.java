@@ -53,7 +53,7 @@ public class ArticleImpl extends ArticleModelImpl implements Article {
 	}
 
 	public long getClassPK() {
-		if (isFirstVersion() || isApproved()) {
+		if (isApproved()) {
 			return getResourcePrimKey();
 		}
 

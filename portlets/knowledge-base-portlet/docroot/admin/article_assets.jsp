@@ -26,6 +26,7 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			<liferay-ui:asset-categories-summary
 				className="<%= Article.class.getName() %>"
 				classPK="<%= article.getClassPK() %>"
+				portletURL="<%= renderResponse.createRenderURL() %>"
 			/>
 		</c:if>
 
@@ -33,6 +34,8 @@ Article article = (Article)request.getAttribute(WebKeys.KNOWLEDGE_BASE_ARTICLE);
 			<liferay-ui:asset-tags-summary
 				className="<%= Article.class.getName() %>"
 				classPK="<%= article.getClassPK() %>"
+				message="tags"
+				portletURL="<%= renderResponse.createRenderURL() %>"
 			/>
 		</c:if>
 	</liferay-util:buffer>

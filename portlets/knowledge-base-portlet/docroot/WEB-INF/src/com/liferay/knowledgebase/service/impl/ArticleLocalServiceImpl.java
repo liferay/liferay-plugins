@@ -699,7 +699,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		updateAttachments(article, oldStatus, dirName);
+		updateAttachments(article, oldVersion, dirName);
 
 		// Workflow
 
@@ -832,17 +832,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Asset
 
-		if (!article.isFirstVersion()) {
-			AssetEntry assetEntry = assetEntryLocalService.getEntry(
-				Article.class.getName(), article.getPrimaryKey());
+		AssetEntry assetEntry = assetEntryLocalService.getEntry(
+			Article.class.getName(), article.getPrimaryKey());
 
-			updateAsset(
-				userId, article, assetEntry.getCategoryIds(),
-				assetEntry.getTagNames());
+		updateAsset(
+			userId, article, assetEntry.getCategoryIds(),
+			assetEntry.getTagNames());
 
-			assetEntryLocalService.deleteEntry(
-				Article.class.getName(), article.getPrimaryKey());
-		}
+		assetEntryLocalService.deleteEntry(
+			Article.class.getName(), article.getPrimaryKey());
 
 		// Social
 
@@ -867,15 +865,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		if (!article.isFirstVersion()) {
-			deleteAttachments(article, article.getResourcePrimKey());
+		deleteAttachments(article, article.getResourcePrimKey());
 
-			addAttachments(
-				article,
-				ArticleConstants.DIR_NAME_PREFIX + article.getPrimaryKey());
+		String dirName =
+			ArticleConstants.DIR_NAME_PREFIX + article.getPrimaryKey();
 
-			deleteAttachments(article, article.getPrimaryKey());
-		}
+		addAttachments(article, dirName);
+
+		deleteAttachments(article, article.getPrimaryKey());
 
 		// Subscriptions
 
@@ -1050,21 +1047,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		assetEntryLocalService.deleteEntry(
-			Article.class.getName(), article.getResourcePrimKey());
+			Article.class.getName(), article.getClassPK());
 
-		if (!article.isFirstVersion() && !article.isApproved()) {
+		if (!article.isApproved()) {
 			assetEntryLocalService.deleteEntry(
-				Article.class.getName(), article.getPrimaryKey());
+				Article.class.getName(), article.getResourcePrimKey());
 		}
 	}
 
 	protected void deleteAttachments(Article article)
 		throws PortalException, SystemException {
 
-		deleteAttachments(article, article.getResourcePrimKey());
+		deleteAttachments(article, article.getClassPK());
 
-		if (!article.isFirstVersion() && !article.isApproved()) {
-			deleteAttachments(article, article.getPrimaryKey());
+		if (!article.isApproved()) {
+			deleteAttachments(article, article.getResourcePrimKey());
 		}
 	}
 
@@ -1264,22 +1261,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected void updateAttachments(
-			Article article, int oldStatus, String dirName)
+			Article article, int oldVersion, String dirName)
 		throws PortalException, SystemException {
 
-		if (oldStatus == WorkflowConstants.STATUS_APPROVED) {
-			if (Validator.isNull(dirName)) {
-				dirName = ArticleConstants.DIR_NAME_PREFIX +
-					article.getResourcePrimKey();
-			}
+		if (article.getVersion() > oldVersion) {
+			String oldDirName =
+				ArticleConstants.DIR_NAME_PREFIX + article.getResourcePrimKey();
 
-			addAttachments(article, dirName);
+			if (Validator.isNull(dirName)) {
+				addAttachments(article, oldDirName);
+			}
+			else {
+				addAttachments(article, dirName);
+			}
 		}
-		else {
-			if (Validator.isNull(dirName)) {
-				return;
-			}
-
+		else if (Validator.isNotNull(dirName)) {
 			deleteAttachments(article, article.getClassPK());
 
 			addAttachments(article, dirName);

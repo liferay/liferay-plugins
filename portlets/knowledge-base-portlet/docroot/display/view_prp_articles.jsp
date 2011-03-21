@@ -19,6 +19,9 @@
 <%
 long assetCategoryId = ParamUtil.getLong(request, "categoryId");
 String assetTagName = ParamUtil.getString(request, "tag");
+
+String orderByCol = ParamUtil.getString(request, "orderByCol", "modifiedDate");
+String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 %>
 
 <liferay-util:include page="/display/top_links.jsp" servletContext="<%= application %>" />
@@ -31,15 +34,15 @@ String assetTagName = ParamUtil.getString(request, "tag");
 
 <liferay-ui:search-container
 	iteratorURL="<%= iteratorURL %>"
+	orderByCol="<%= orderByCol %>"
+	orderByType="<%= orderByType %>"
 >
 	<liferay-ui:search-container-results>
 
 		<%
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery(Article.class.getName(), searchContainer);
 
-		List<AssetEntry> assetEntries = AssetEntryServiceUtil.getEntries(assetEntryQuery);
-
-		pageContext.setAttribute("results", ArticleLocalServiceUtil.getArticles(StringUtil.split(ListUtil.toString(assetEntries, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, null));
+		pageContext.setAttribute("results", AssetEntryServiceUtil.getEntries(assetEntryQuery));
 		pageContext.setAttribute("total", AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));
 		%>
 
@@ -50,13 +53,13 @@ String assetTagName = ParamUtil.getString(request, "tag");
 	%>
 
 	<liferay-ui:search-container-row
-		className="com.liferay.knowledgebase.model.Article"
-		keyProperty="resourcePrimKey"
-		modelVar="article"
+		className="com.liferay.portlet.asset.model.AssetEntry"
+		keyProperty="entryId"
+		modelVar="assetEntry"
 	>
 		<liferay-portlet:renderURL varImpl="rowURL">
 			<portlet:param name="jspPage" value="/display/view_article.jsp" />
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(article.getResourcePrimKey()) %>" />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(assetEntry.getClassPK()) %>" />
 		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container-column-text
@@ -69,7 +72,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			href="<%= rowURL %>"
 			name="author"
 			orderable="<%= true %>"
-			orderableProperty="user-name"
+			orderableProperty="userName"
 			property="userName"
 		/>
 
@@ -78,7 +81,8 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			href="<%= rowURL %>"
 			name="create-date"
 			orderable="<%= true %>"
-			value='<%= dateFormatDate.format(article.getCreateDate()) + "<br />" + dateFormatTime.format(article.getCreateDate()) %>'
+			orderableProperty="createDate"
+			value='<%= dateFormatDate.format(assetEntry.getCreateDate()) + "<br />" + dateFormatTime.format(assetEntry.getCreateDate()) %>'
 		/>
 
 		<liferay-ui:search-container-column-text
@@ -86,7 +90,8 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			href="<%= rowURL %>"
 			name="modified-date"
 			orderable="<%= true %>"
-			value='<%= dateFormatDate.format(article.getModifiedDate()) + "<br />" + dateFormatTime.format(article.getModifiedDate()) %>'
+			orderableProperty="modifiedDate"
+			value='<%= dateFormatDate.format(assetEntry.getModifiedDate()) + "<br />" + dateFormatTime.format(assetEntry.getModifiedDate()) %>'
 		/>
 
 		<c:if test="<%= administrator %>">
@@ -95,7 +100,7 @@ String assetTagName = ParamUtil.getString(request, "tag");
 				href="<%= rowURL %>"
 				name="status"
 				orderable="<%= true %>"
-				value='<%= article.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.toLabel(article.getStatus())) + ")" %>'
+				value='<%= WorkflowConstants.STATUS_APPROVED + " (" + LanguageUtil.get(pageContext, WorkflowConstants.LABEL_APPROVED) + ")" %>'
 			/>
 		</c:if>
 
@@ -104,13 +109,8 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			href="<%= rowURL %>"
 			name="views"
 			orderable="<%= true %>"
-			orderableProperty="view-count"
+			orderableProperty="viewCount"
 			property="viewCount"
-		/>
-
-		<liferay-ui:search-container-column-jsp
-			align="right"
-			path="/display/article_action.jsp"
 		/>
 	</liferay-ui:search-container-row>
 
