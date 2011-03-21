@@ -20,7 +20,7 @@
 <%@ include file="/html/portlet/login/init.jsp" %>
 
 <%
-String memberRequestKey = HttpUtil.getParameter(currentURL, "key");
+String memberRequestKey = HttpUtil.getParameter(themeDisplay.getURLCurrent(), "key");
 
 if (Validator.isNotNull(memberRequestKey)) {
 	session.setAttribute("LIFERAY_SHARED_MEMBER_REQUEST_KEY", memberRequestKey);

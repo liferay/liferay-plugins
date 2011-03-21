@@ -17,109 +17,25 @@
 
 package com.liferay.so.invitemembers.portlet;
 
-import com.liferay.portal.NoSuchGroupException;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.so.MemberRequestAlreadyUsedException;
-import com.liferay.so.MemberRequestInvalidUserException;
-import com.liferay.so.invitemembers.util.InviteMembersConstants;
-import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
-import java.io.IOException;
-
-import java.util.Iterator;
-import java.util.List;
-
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author Ryan Park
  */
 public class InviteMembersPortlet extends MVCPortlet {
-
-	public void doView(
-			RenderRequest renderRequest, RenderResponse renderResponse)
-		throws IOException, PortletException {
-
-		try {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
-
-			Group group = GroupLocalServiceUtil.getGroup(
-				themeDisplay.getScopeGroupId());
-
-			if (group.isUser() && themeDisplay.isSignedIn()) {
-				HttpServletRequest request =
-					PortalUtil.getHttpServletRequest(renderRequest);
-
-				HttpSession session = request.getSession();
-
-				String memberRequestKey = (String)session.getAttribute(
-					WebKeys.MEMBER_REQEUST_KEY);
-
-				if (Validator.isNotNull(memberRequestKey)) {
-					MemberRequestLocalServiceUtil.updateMemberRequest(
-						memberRequestKey, themeDisplay.getUserId());
-
-					session.removeAttribute(WebKeys.MEMBER_REQEUST_KEY);
-				}
-			}
-
-			List<MemberRequest> memberRequests =
-				MemberRequestLocalServiceUtil.getReceiverStatusMemberRequest(
-					themeDisplay.getUserId(),
-					InviteMembersConstants.STATUS_PENDING, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
-
-			Iterator<MemberRequest> itr = memberRequests.iterator();
-
-			while (itr.hasNext()) {
-				MemberRequest memberRequest = itr.next();
-
-				try {
-					GroupLocalServiceUtil.getGroup(memberRequest.getGroupId());
-				}
-				catch (NoSuchGroupException nsge) {
-					MemberRequestLocalServiceUtil.deleteMemberRequest(
-						memberRequest);
-
-					itr.remove();
-				}
-			}
-
-			if (group.isUser() && memberRequests.isEmpty()) {
-				renderRequest.setAttribute(
-					WebKeys.PORTLET_DECORATE, Boolean.FALSE);
-			}
-
-			include(viewJSP, renderRequest, renderResponse);
-		}
-		catch (Exception e) {
-			super.doView(renderRequest, renderResponse);
-		}
-	}
 
 	public void sendInvites(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -131,25 +47,6 @@ public class InviteMembersPortlet extends MVCPortlet {
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(e, e);
-			}
-		}
-	}
-
-	public void updateInvite(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		try {
-			doUpdateInvite(actionRequest, actionResponse);
-		}
-		catch (Exception e) {
-			if (e instanceof MemberRequestAlreadyUsedException ||
-				e instanceof MemberRequestInvalidUserException) {
-
-				SessionErrors.add(actionRequest, e.getClass().getName(), e);
-			}
-			else {
-				throw e;
 			}
 		}
 	}
@@ -181,21 +78,6 @@ public class InviteMembersPortlet extends MVCPortlet {
 		MemberRequestLocalServiceUtil.addMemberRequests(
 			themeDisplay.getUserId(), groupId, receiverEmailAddresses,
 			invitedRoleId, invitedTeamId, themeDisplay);
-	}
-
-	protected void doUpdateInvite(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		long memberRequestId = ParamUtil.getLong(
-			actionRequest, "memberRequestId");
-		int status = ParamUtil.getInteger(actionRequest, "status");
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		MemberRequestLocalServiceUtil.updateMemberRequest(
-			themeDisplay.getUserId(), memberRequestId, status);
 	}
 
 	protected long[] getLongArray(PortletRequest portletRequest, String name) {

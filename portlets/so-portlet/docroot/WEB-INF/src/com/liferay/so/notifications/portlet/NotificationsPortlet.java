@@ -20,8 +20,9 @@ package com.liferay.so.notifications.portlet;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
@@ -32,6 +33,7 @@ import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersConstants;
 import com.liferay.so.model.MemberRequest;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
+import com.liferay.so.util.WebKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -44,8 +46,12 @@ import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 /**
  * @author Jonathan Lee
+ * @author Ryan Park
  */
 public class NotificationsPortlet extends MVCPortlet {
 
@@ -56,6 +62,23 @@ public class NotificationsPortlet extends MVCPortlet {
 		try {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)renderRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			if (themeDisplay.isSignedIn()) {
+				HttpServletRequest request =
+					PortalUtil.getHttpServletRequest(renderRequest);
+
+				HttpSession session = request.getSession();
+
+				String memberRequestKey = (String)session.getAttribute(
+					WebKeys.MEMBER_REQEUST_KEY);
+
+				if (Validator.isNotNull(memberRequestKey)) {
+					MemberRequestLocalServiceUtil.updateMemberRequest(
+						memberRequestKey, themeDisplay.getUserId());
+
+					session.removeAttribute(WebKeys.MEMBER_REQEUST_KEY);
+				}
+			}
 
 			List<SocialRequest> socialRequests =
 				SocialRequestLocalServiceUtil.getReceiverUserRequests(
