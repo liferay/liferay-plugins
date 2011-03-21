@@ -183,10 +183,6 @@ a:focus {
 	background-image: url(../images/custom/login_icon.png);
 }
 
-.portlet-toolbar {
-	display: none;
-}
-
 .portlet-body {
 	margin: 0;
 }
