@@ -3,11 +3,17 @@ AUI().add(
 	function(A) {
 		var Lang = A.Lang;
 
+		var containsString = Lang.String.contains;
+
 		var getClassName = A.ClassNameManager.getClassName;
 
 		var CSS_CLASS_GADGET = getClassName('gadget');
 
 		var GADGET_IFRAME_PREFIX = 'remote_iframe_';
+
+		var MAP = {};
+
+		var PREFIX = 'gadget:';
 
 		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="about:blank" frameborder="no" scrolling="no" {height} {width}></iframe>';
 
@@ -457,18 +463,92 @@ AUI().add(
 			return _instances[id];
 		};
 
+		Liferay._detachInitialFn = Liferay.detach;
+
+		Liferay.detach = function(topic, fn) {
+			var handle = topic;
+
+			if (Lang.isObject(eventType)) {
+				fn = type.sub.fn;
+
+				topic = handle.evt.type;
+			}
+
+			if (containsString(topic, PREFIX)) {
+				var eventType = topic.replace(PREFIX, '');
+
+				var eventMap = MAP[eventType];
+
+				if (eventMap) {
+					for (var i in eventMap) {
+						if (!fn || eventMap[i] == fn) {
+							gadgets.pubsub2router.hub.unsubscribe(i);
+						}
+					}
+				}
+			}
+
+			return Liferay._detachInitialFn.apply(Liferay, arguments);
+		}
+
+		Liferay._fireInitialFn = Liferay.fire;
+
+		Liferay.fire = function(topic, data) {
+			var eventType = topic;
+
+			if (containsString(topic, PREFIX)) {
+				eventType = topic.replace(PREFIX, '');
+
+				gadgets.pubsub2router.hub.publish(eventType, data);
+			}
+
+			return Liferay._fireInitialFn.apply(Liferay, arguments);
+		}
+
+		Liferay._onInitialFn = Liferay.on;
+
+		Liferay.on = function(topic, fn) {
+			var eventType = topic;
+
+			var handle;
+
+			if (containsString(topic, PREFIX)) {
+				eventType = topic.replace(PREFIX, '');
+
+				var eventMap = MAP[eventType] || {};
+
+				var subscriptionId = gadgets.pubsub2router.hub.subscribe(eventType, fn);
+
+				eventMap[subscriptionId] = fn;
+
+				MAP[eventType] = eventMap;
+
+				handle = Liferay._onInitialFn(topic, Lang.emptyFn);
+			}
+			else {
+				handle = Liferay._onInitialFn.apply(Liferay, arguments);
+			}
+
+			return handle;
+		};
+
 		var managedHub = new OpenAjax.hub.ManagedHub(
 			{
-				onSubscribe: function(topic, container) {
-					return true;
-				},
-
-				onUnsubscribe: function(topic, container) {
-				},
-
 				onPublish: function(topic, data, pcont, scont) {
+					var eventType;
+
+					if (!containsString(topic, PREFIX)) {
+						eventType = PREFIX + topic;
+
+						Liferay._fireInitialFn(eventType, data);
+					}
+
 					return true;
-				}
+				},
+
+				onSubscribe: Lang.emptyFnTrue,
+
+				onUnsubscribe: Lang.emptyFn
 			}
 		);
 
