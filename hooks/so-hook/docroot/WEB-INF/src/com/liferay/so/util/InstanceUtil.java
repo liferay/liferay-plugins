@@ -452,13 +452,11 @@ public class InstanceUtil {
 
 		// Members
 
-		layout = addLayout(group, "Members", "/members", "2_columns_ii");
+		layout = addLayout(group, "Members", "/members", "1_column");
 
 		addPortlets(group, layout, "/members");
 
 		removePortletBorder(layout, "2_WAR_soportlet");
-		removePortletBorder(layout, "3_WAR_soportlet");
-		removePortletBorder(layout, "4_WAR_soportlet");
 
 		updatePermissions(layout, true);
 	}
