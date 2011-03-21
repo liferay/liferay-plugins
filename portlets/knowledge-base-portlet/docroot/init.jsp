@@ -75,6 +75,7 @@
 <%@ page import="com.liferay.portal.kernel.servlet.SessionErrors" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.ContentTypes" %>
+<%@ page import="com.liferay.portal.kernel.util.FastDateFormatConstants" %>
 <%@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.FileUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
@@ -122,7 +123,6 @@
 <%@ page import="javax.portlet.PortletURL" %>
 <%@ page import="javax.portlet.WindowState" %>
 
-<%@ page import="org.apache.commons.lang.time.FastDateFormat" %>
 <%@ page import="org.apache.commons.math.util.MathUtils" %>
 
 <portlet:defineObjects />
@@ -136,8 +136,7 @@ String currentURL = PortalUtil.getCurrentURL(request);
 
 String jspPath = portletConfig.getInitParameter("jsp-path");
 
-Format dateFormatDate = FastDateFormat.getDateInstance(FastDateFormat.LONG, timeZone, locale);
-Format dateFormatDateTime = FastDateFormat.getDateTimeInstance(FastDateFormat.LONG, FastDateFormat.SHORT, timeZone, locale);
-
+Format dateFormatDate = FastDateFormatFactoryUtil.getDate(FastDateFormatConstants.LONG, locale, timeZone);
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT, locale, timeZone);
 Format dateFormatTime = FastDateFormatFactoryUtil.getTime(locale, timeZone);
 %>
