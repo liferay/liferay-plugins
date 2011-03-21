@@ -12,8 +12,8 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<header-portlet-css>/invite_members/css.jsp</header-portlet-css>
-		<header-portlet-javascript>/invite_members/javascript.js</header-portlet-javascript>
+		<header-portlet-css>/invite_members/css/main.jsp</header-portlet-css>
+		<header-portlet-javascript>/invite_members/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>so-portlet-invite-members</css-class-wrapper>
 		<system>true</system>
 	</portlet>

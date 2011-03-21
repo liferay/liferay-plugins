@@ -25,11 +25,62 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 <c:choose>
 	<c:when test="<%= group.isUser() %>">
-		<%@ include file="/invite_members/view_user.jspf" %>
+		<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-site-page" />
 	</c:when>
 	<c:when test="<%= GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.UPDATE) %>">
-		<div id="so-invitemembers-wrapper" class="aui-helper-hidden">
-			<liferay-util:include page="/invite_members/view_community.jsp" portletId="<%= portletDisplay.getId() %>" />
-		</div>
+		<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="inviteURL">
+			<portlet:param name="jspPage" value="/invite_members/view_invite.jsp" />
+		</portlet:renderURL>
+
+		<a class="invite-members" href="javascript:;" onClick="<portlet:namespace />openInviteMembers('<%= inviteURL %>');"><liferay-ui:message key="invite-members-to-this-site" /></a>
+
+		<aui:script use="aui-base,aui-dialog,aui-io-plugin,liferay-soffice-invitemembers">
+			Liferay.provide(
+				window,
+				'<portlet:namespace />openInviteMembers',
+				function(url) {
+					if (A.one('#so-invitemembers-container')) {
+						return;
+					}
+
+					var title = '';
+					var titleNode = A.one('.so-portlet-invite-members .portlet-title-default');
+
+					if (titleNode) {
+						title = titleNode.get('innerHTML');
+					}
+
+					var viewportRegion = A.getBody().get('viewportRegion');
+
+					var dialog = new A.Dialog(
+						{
+							cssClass: 'so-portlet-invite-members',
+							destroyOnClose: true,
+							resizable: false,
+							title: title,
+							width: 700,
+							xy: [viewportRegion.left + 20, viewportRegion.top + 20]
+						}
+					).plug(
+						A.Plugin.IO,
+						{
+							after: {
+								success: function() {
+									new Liferay.SO.InviteMembers(
+										{
+											dialog: dialog,
+											portletNamespace: '<portlet:namespace />'
+										}
+									);
+								}
+							},
+							method: 'GET',
+							uri: url
+						}
+					).render();
+				},
+				['aui-base', 'aui-dialog', 'aui-io-plugin', 'liferay-soffice-invitemembers']
+			);
+		</aui:script>
 	</c:when>
 </c:choose>

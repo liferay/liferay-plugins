@@ -8,6 +8,10 @@ AUI().add(
 		InviteMembers.NAME = 'soinvitemembers';
 
 		InviteMembers.ATTRS = {
+			dialog: {
+				value: null
+			},
+
 			portletNamespace: {
 				value: ''
 			}
@@ -20,7 +24,6 @@ AUI().add(
 				initializer: function(params) {
 					var instance = this;
 
-					instance._inviteMembersWrapper = A.one('#so-invitemembers-wrapper');
 					instance._inviteMembersContainer = A.one('#so-invitemembers-container');
 
 					if (!instance._inviteMembersContainer) {
@@ -37,30 +40,20 @@ AUI().add(
 					form.on(
 						'submit',
 						function(event) {
-							event.preventDefault();
-
 							instance._syncFields(form);
 
-							if (!instance._inviteMembersWrapper.io) {
-								instance._inviteMembersWrapper.plug(
-									A.Plugin.IO,
-									{
-										autoLoad: false,
-										form: {id: form.getDOM()},
-										method: 'POST',
-										uri: form.getAttribute('action')
-									}
-								);
+							var dialog = instance.get('dialog');
+
+							if (!dialog && !dialog.io) {
+								return;
 							}
 
-							instance._inviteMembersWrapper.io.start();
-						}
-					);
+							event.halt();
 
-					A.one('.so-portlet-members .invite-members a').on(
-						'click',
-						function(event) {
-							instance._showInviteMembers();
+							dialog.io.set('form', {id: form.getDOM()});
+							dialog.io.set('uri', form.getAttribute('action'));
+
+							dialog.io.start();
 						}
 					);
 
@@ -151,18 +144,6 @@ AUI().add(
 					invitedUser.remove();
 				},
 
-				_showInviteMembers: function() {
-					var instance = this;
-
-					var profile = A.one('#so-profile-wrapper');
-
-					if (profile) {
-						profile.hide();
-					}
-
-					instance._inviteMembersWrapper.show();
-				},
-
 				_syncFields: function(form) {
 					var instance = this;
 
@@ -198,6 +179,6 @@ AUI().add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-live-search']
+		requires: ['aui-base', 'aui-dialog', 'aui-io', 'aui-live-search']
 	}
 );
