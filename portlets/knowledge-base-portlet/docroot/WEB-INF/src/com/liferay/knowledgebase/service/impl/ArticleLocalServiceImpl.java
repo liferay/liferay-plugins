@@ -1045,7 +1045,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		assetEntryLocalService.deleteEntry(
 			Article.class.getName(), article.getClassPK());
 
-		if (!article.isApproved()) {
+		if (!article.isApproved() && !article.isFirstVersion()) {
 			assetEntryLocalService.deleteEntry(
 				Article.class.getName(), article.getResourcePrimKey());
 		}
@@ -1056,7 +1056,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		deleteAttachments(article, article.getClassPK());
 
-		if (!article.isApproved()) {
+		if (!article.isApproved() && !article.isFirstVersion()) {
 			deleteAttachments(article, article.getResourcePrimKey());
 		}
 	}
