@@ -222,11 +222,11 @@ public class InstanceUtil {
 		for (String portletId : portletIds) {
 			addResources(layout, portletId);
 
-			if (portletId.equals("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, "1_WAR_wysiwygportlet", "Welcome");
+			if (portletId.startsWith("1_WAR_wysiwygportlet")) {
+				updatePortletTitle(layout, portletId, "Welcome");
 			}
 			else if (portletId.equals(PortletKeys.ALERTS)) {
-				updatePortletTitle(layout, PortletKeys.ALERTS, "Announcements");
+				updatePortletTitle(layout, portletId, "Announcements");
 			}
 		}
 	}
