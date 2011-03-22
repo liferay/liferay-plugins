@@ -1,0 +1,232 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_0_0.dtd">
+
+<service-builder package-path="com.liferay.dayplanner">
+	<author>Eduardo Lundgren</author>
+	<namespace>DP</namespace>
+	<entity name="Booking" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="bookingId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="calendarId" type="long" />
+		<column name="eventId" type="long" />
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="title" type="String" localized="true" />
+		<column name="name" type="String" localized="true" />
+		<column name="description" type="String" localized="true" />
+		<column name="location" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="durationHour" type="int" />
+		<column name="durationMinute" type="int" />
+		<column name="recurrence" type="String" />
+		<column name="type" type="String" />
+		<column name="statusId" type="int" />
+		<column name="required" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="title" case-sensitive="false" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="UserId" return-type="Collection">
+			<finder-column name="userId" />
+		</finder>
+		<finder name="CalendarId" return-type="Collection">
+			<finder-column name="calendarId" />
+		</finder>
+		<finder name="EventId" return-type="Collection">
+			<finder-column name="eventId" />
+		</finder>
+		<finder name="StatusId" return-type="Collection">
+			<finder-column name="statusId" />
+		</finder>
+		<finder name="C_E" return-type="Booking" unique="true">
+			<finder-column name="calendarId" />
+			<finder-column name="eventId" />
+		</finder>
+		<finder name="C_S" return-type="Collection">
+			<finder-column name="calendarId" />
+			<finder-column name="statusId" />
+		</finder>
+		<finder name="E_S" return-type="Collection">
+			<finder-column name="eventId" />
+			<finder-column name="statusId" arrayable-operator="OR" />
+		</finder>
+		<finder name="C_C_S" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+			<finder-column name="statusId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Group" />
+	</entity>
+	<entity name="Calendar" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="calendarId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="classNameId" type="long" />
+		<column name="classPK" type="long" />
+		<column name="classUuid" type="String" />
+		<column name="name" type="String" localized="true" />
+		<column name="description" type="String" localized="true" />
+		<column name="active" type="boolean" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="name" case-sensitive="false" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Active" return-type="Collection">
+			<finder-column name="active" />
+		</finder>
+		<finder name="G_A" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="C_A" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="U_A" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="C_C" return-type="Calendar" unique="true">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
+		<finder name="G_N_A" return-type="Collection">
+			<finder-column name="groupId" arrayable-operator="OR" />
+			<finder-column name="name" comparator="LIKE" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="C_N_A" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="name" comparator="LIKE" />
+			<finder-column name="active" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Group" />
+	</entity>
+	<entity name="Event" uuid="true" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="eventId" type="long" primary="true" />
+
+		<!-- Group instance -->
+
+		<column name="groupId" type="long" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="userName" type="String" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="title" type="String" localized="true" />
+		<column name="description" type="String" localized="true" />
+		<column name="location" type="String" />
+		<column name="startDate" type="Date" />
+		<column name="endDate" type="Date" />
+		<column name="durationHour" type="int" />
+		<column name="durationMinute" type="int" />
+		<column name="allDay" type="boolean" />
+		<column name="recurrence" type="String" />
+		<column name="type" type="String" />
+		<column name="remindBy" type="int" />
+		<column name="firstReminder" type="int" />
+		<column name="secondReminder" type="int" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="startDate" />
+			<order-column name="title" case-sensitive="false" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="GroupId" return-type="Collection">
+			<finder-column name="groupId" />
+		</finder>
+		<finder name="CompanyId" return-type="Collection">
+			<finder-column name="companyId" />
+		</finder>
+		<finder name="NotRemindBy" return-type="Collection">
+			<finder-column name="remindBy" comparator="!=" />
+		</finder>
+		<finder name="G_R" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="recurrence" />
+		</finder>
+		<finder name="G_T" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="type" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.mail" entity="Mail" />
+		<reference package-path="com.liferay.portal" entity="Company" />
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="PortletPreferences" />
+	</entity>
+	<exceptions>
+		<exception>EventDuration</exception>
+		<exception>EventEndDate</exception>
+		<exception>EventStartDate</exception>
+		<exception>EventTitle</exception>
+	</exceptions>
+</service-builder>
