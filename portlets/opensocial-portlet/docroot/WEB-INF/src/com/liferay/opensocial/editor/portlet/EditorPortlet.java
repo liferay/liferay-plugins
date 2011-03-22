@@ -49,7 +49,7 @@ import javax.portlet.ResourceResponse;
 /**
  * @author Dennis Ju
  */
-public class GadgetEditor extends MVCPortlet {
+public class EditorPortlet extends MVCPortlet {
 
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)

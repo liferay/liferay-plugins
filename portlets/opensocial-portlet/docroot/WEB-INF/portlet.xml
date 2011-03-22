@@ -77,7 +77,7 @@
 	<portlet>
 		<portlet-name>4</portlet-name>
 		<display-name>OpenSocial Gadget Editor</display-name>
-		<portlet-class>com.liferay.opensocial.editor.portlet.GadgetEditor</portlet-class>
+		<portlet-class>com.liferay.opensocial.editor.portlet.EditorPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/editor/view.jsp</value>
