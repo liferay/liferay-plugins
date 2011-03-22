@@ -28,14 +28,6 @@ public class FolderWrapper implements Folder {
 		_folder = folder;
 	}
 
-	public Class<?> getModelClass() {
-		return Folder.class;
-	}
-
-	public String getModelClassName() {
-		return Folder.class.getName();
-	}
-
 	/**
 	* Gets the primary key of this folder.
 	*
@@ -295,7 +287,7 @@ public class FolderWrapper implements Folder {
 		return new FolderWrapper((Folder)_folder.clone());
 	}
 
-	public int compareTo(com.liferay.mail.model.Folder folder) {
+	public int compareTo(Folder folder) {
 		return _folder.compareTo(folder);
 	}
 
@@ -303,7 +295,7 @@ public class FolderWrapper implements Folder {
 		return _folder.hashCode();
 	}
 
-	public com.liferay.mail.model.Folder toEscapedModel() {
+	public Folder toEscapedModel() {
 		return new FolderWrapper(_folder.toEscapedModel());
 	}
 

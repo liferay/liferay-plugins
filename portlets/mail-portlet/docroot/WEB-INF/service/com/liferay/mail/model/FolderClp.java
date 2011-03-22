@@ -33,14 +33,6 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	public FolderClp() {
 	}
 
-	public Class<?> getModelClass() {
-		return Folder.class;
-	}
-
-	public String getModelClassName() {
-		return Folder.class.getName();
-	}
-
 	public long getPrimaryKey() {
 		return _folderId;
 	}

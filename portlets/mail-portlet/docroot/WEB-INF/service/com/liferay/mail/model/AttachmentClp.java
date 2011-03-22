@@ -32,14 +32,6 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	public AttachmentClp() {
 	}
 
-	public Class<?> getModelClass() {
-		return Attachment.class;
-	}
-
-	public String getModelClassName() {
-		return Attachment.class.getName();
-	}
-
 	public long getPrimaryKey() {
 		return _attachmentId;
 	}

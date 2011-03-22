@@ -28,14 +28,6 @@ public class MessageWrapper implements Message {
 		_message = message;
 	}
 
-	public Class<?> getModelClass() {
-		return Message.class;
-	}
-
-	public String getModelClassName() {
-		return Message.class.getName();
-	}
-
 	/**
 	* Gets the primary key of this message.
 	*
@@ -457,7 +449,7 @@ public class MessageWrapper implements Message {
 		return new MessageWrapper((Message)_message.clone());
 	}
 
-	public int compareTo(com.liferay.mail.model.Message message) {
+	public int compareTo(Message message) {
 		return _message.compareTo(message);
 	}
 
@@ -465,7 +457,7 @@ public class MessageWrapper implements Message {
 		return _message.hashCode();
 	}
 
-	public com.liferay.mail.model.Message toEscapedModel() {
+	public Message toEscapedModel() {
 		return new MessageWrapper(_message.toEscapedModel());
 	}
 

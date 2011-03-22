@@ -16,7 +16,6 @@ package com.liferay.mail.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.ServiceContext;
 
@@ -39,7 +38,7 @@ import java.util.Date;
  * @see com.liferay.mail.model.impl.MessageModelImpl
  * @generated
  */
-public interface MessageModel extends AuditedModel, BaseModel<Message> {
+public interface MessageModel extends BaseModel<Message> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
