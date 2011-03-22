@@ -427,7 +427,9 @@ public class LiferayMediaItemService implements MediaItemService {
 		String extension = FileUtil.getExtension(fileName);
 
 		serviceContext.setAttribute("extension", extension);
+
 		serviceContext.setAttribute("sourceFileName", fileName);
+
 		serviceContext.setExpandoBridgeAttributes(
 			SerializerUtil.toExpandoAttributes(
 				mediaItem, _MEDIA_ITEM_FIELDS, user.getCompanyId(),

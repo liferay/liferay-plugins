@@ -330,7 +330,7 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 	}
 
 	protected void validate(String portletCategoryNames)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(portletCategoryNames)) {
 			throw new GadgetPortletCategoryNamesException();

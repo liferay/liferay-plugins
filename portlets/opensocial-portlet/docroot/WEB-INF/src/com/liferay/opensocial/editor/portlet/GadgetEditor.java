@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -87,17 +88,17 @@ public class GadgetEditor extends MVCPortlet {
 		}
 		catch (IOException ioe) {
 			serveException(ioe, resourceRequest, resourceResponse);
-			
+
 			throw ioe;
 		}
 		catch (PortletException pe) {
 			serveException(pe, resourceRequest, resourceResponse);
-			
+
 			throw pe;
 		}
 		catch (Exception e) {
 			serveException(e, resourceRequest, resourceResponse);
-			
+
 			throw new PortletException(e);
 		}
   	}
@@ -109,8 +110,6 @@ public class GadgetEditor extends MVCPortlet {
 		long folderId = ParamUtil.getLong(resourceRequest, "folderId");
 
 		Folder folder = DLAppServiceUtil.getFolder(folderId);
-
-		long repositoryId = folder.getRepositoryId();
 
 		String fileEntryTitle = ParamUtil.getString(
 			resourceRequest, "fileEntryTitle");
@@ -127,26 +126,20 @@ public class GadgetEditor extends MVCPortlet {
 		String extension = FileUtil.getExtension(fileEntryTitle);
 
 		serviceContext.setAttribute("extension", extension);
+
 		serviceContext.setAttribute("sourceFileName", fileEntryTitle);
+
 		serviceContext.setScopeGroupId(folder.getGroupId());
 
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
-			repositoryId, folderId, fileEntryTitle, StringPool.BLANK,
-			StringPool.BLANK, bytes, serviceContext);
-
-		long fileEntryId = fileEntry.getFileEntryId();
+			folder.getRepositoryId(), folderId, fileEntryTitle,
+			StringPool.BLANK, StringPool.BLANK, bytes, serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("fileEntryId", String.valueOf(fileEntryId));
+		jsonObject.put("fileEntryId", fileEntry.getFileEntryId());
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonObject.toString().getBytes());
-
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
 
 	protected void serveAddFolder(
@@ -158,8 +151,6 @@ public class GadgetEditor extends MVCPortlet {
 
 		Folder parentFolder = DLAppServiceUtil.getFolder(parentFolderId);
 
-		long repositoryId = parentFolder.getRepositoryId();
-
 		String folderName = ParamUtil.getString(resourceRequest, "folderName");
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -169,22 +160,14 @@ public class GadgetEditor extends MVCPortlet {
 		serviceContext.setScopeGroupId(parentFolder.getGroupId());
 
 		Folder folder = DLAppServiceUtil.addFolder(
-			repositoryId, parentFolderId, folderName, StringPool.BLANK,
-			serviceContext);
-
-		long folderId = folder.getFolderId();
+			parentFolder.getRepositoryId(), parentFolderId, folderName,
+			StringPool.BLANK, serviceContext);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("folderId", folderId);
+		jsonObject.put("folderId", folder.getFolderId());
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonObject.toString().getBytes());
-
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
 
 	protected void serveDeleteFileEntry(
@@ -209,18 +192,12 @@ public class GadgetEditor extends MVCPortlet {
 			Exception exception, ResourceRequest resourceRequest,
 			ResourceResponse resourceResponse)
 		throws IOException {
-	
+
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("error", exception.getLocalizedMessage());
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonObject.toString().getBytes());
-	
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-	
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
 
 	protected void serveGetFileEntryContent(
@@ -237,13 +214,7 @@ public class GadgetEditor extends MVCPortlet {
 
 		jsonObject.put("content", content);
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonObject.toString().getBytes());
-
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
 
 	protected void serveGetFolderChildren(
@@ -256,22 +227,20 @@ public class GadgetEditor extends MVCPortlet {
 		List<Folder> folders = DLAppServiceUtil.getFolders(
 			repositoryId, folderId);
 
+		folders = ListUtil.sort(
+			folders, new RepositoryModelNameComparator(true));
+
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		if (folders.size() > 0) {
-			for (Folder folder : folders) {
-				folders = ListUtil.sort(
-					folders, new RepositoryModelNameComparator(true));
+		for (Folder folder : folders) {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+			jsonObject.put("id", String.valueOf(folder.getFolderId()));
+			jsonObject.put("label", folder.getName());
+			jsonObject.put("leaf", false);
+			jsonObject.put("type", "io");
 
-				jsonObject.put("id", String.valueOf(folder.getFolderId()));
-				jsonObject.put("label", folder.getName());
-				jsonObject.put("leaf", false);
-				jsonObject.put("type", "io");
-
-				jsonArray.put(jsonObject);
-			}
+			jsonArray.put(jsonObject);
 		}
 
 		boolean getFileEntries = ParamUtil.getBoolean(
@@ -281,30 +250,22 @@ public class GadgetEditor extends MVCPortlet {
 			List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
 				repositoryId, folderId);
 
-			if (fileEntries.size() > 0) {
-				fileEntries = ListUtil.sort(
-					fileEntries, new RepositoryModelNameComparator(true));
-				
-				for (FileEntry fileEntry : fileEntries) {
-					JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+			fileEntries = ListUtil.sort(
+				fileEntries, new RepositoryModelNameComparator(true));
 
-					jsonObject.put(
-						"id", String.valueOf(fileEntry.getFileEntryId()));
-					jsonObject.put("label", fileEntry.getTitle());
-					jsonObject.put("leaf", true);
+			for (FileEntry fileEntry : fileEntries) {
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-					jsonArray.put(jsonObject);
-				}
+				jsonObject.put(
+					"id", String.valueOf(fileEntry.getFileEntryId()));
+				jsonObject.put("label", fileEntry.getTitle());
+				jsonObject.put("leaf", true);
+
+				jsonArray.put(jsonObject);
 			}
 		}
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonArray.toString().getBytes());
-
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+		writeJSON(resourceRequest, resourceResponse, jsonArray.toString());
 	}
 
 	protected void serveGetRenderParameters(
@@ -316,44 +277,40 @@ public class GadgetEditor extends MVCPortlet {
 
 		String content = ParamUtil.getString(resourceRequest, "content");
 
-		boolean isContentValid = ShindigUtil.isContentValid(content);
+		boolean contentValid = ShindigUtil.isContentValid(content);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("isContentValid", isContentValid);
+		jsonObject.put("contentValid", contentValid);
 
-		if (isContentValid) {
-			String url = "http://localhost/raw.xml";
+		if (contentValid) {
+			String appId = "http://localhost/raw.xml";
+
+			jsonObject.put("appId", appId);
 
 			long moduleId = ShindigUtil.getModuleId(
 				resourceResponse.getNamespace());
 
+			jsonObject.put("moduleId", moduleId);
+
 			boolean requiresPubsub = ShindigUtil.isRequiresPubsubFromContent(
 				content);
 
-			String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
+			jsonObject.put("requiresPubsub", requiresPubsub);
 
+			String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
 			String currentURL = PortalUtil.getCurrentURL(resourceRequest);
+			String portalURL = PortalUtil.getPortalURL(themeDisplay);
 
 			String secureToken = ShindigUtil.createSecurityToken(
-				ownerId, themeDisplay.getUserId(), url,
-				PortalUtil.getPortalURL(themeDisplay), url, moduleId,
-				currentURL);
+				ownerId, themeDisplay.getUserId(), appId, portalURL, appId,
+				moduleId, currentURL);
 
-			jsonObject.put("appId", url);
-			jsonObject.put("moduleId", moduleId);
-			jsonObject.put("requiresPubsub", requiresPubsub);
 			jsonObject.put("secureToken", secureToken);
-			jsonObject.put("specUrl", url);
+			jsonObject.put("specUrl", appId);
 		}
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonObject.toString().getBytes());
-
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
 	}
 
 	protected void serveUpdateFileEntry(
@@ -362,16 +319,16 @@ public class GadgetEditor extends MVCPortlet {
 
 		long fileEntryId = ParamUtil.getLong(resourceRequest, "fileEntryId");
 
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
+
 		String fileEntryTitle = ParamUtil.getString(
 			resourceRequest, "fileEntryTitle");
-
-		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
 
 		byte[] bytes = null;
 
 		String content = ParamUtil.getString(resourceRequest, "content");
 
-		if (!content.isEmpty()) {
+		if (Validator.isNotNull(content)) {
 			bytes = content.getBytes(StringPool.UTF8);
 		}
 
@@ -386,13 +343,20 @@ public class GadgetEditor extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		InputStream is = new UnsyncByteArrayInputStream(
-			jsonObject.toString().getBytes());
+		writeJSON(resourceRequest, resourceResponse, jsonObject.toString());
+	}
 
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
+	protected void writeJSON(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
+			String json)
+		throws IOException {
+
+		InputStream inputStream = new UnsyncByteArrayInputStream(
+			json.getBytes());
 
 		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, null, is, contentType);
+			resourceRequest, resourceResponse, null, inputStream,
+			ContentTypes.TEXT_JAVASCRIPT);
 	}
 
 }

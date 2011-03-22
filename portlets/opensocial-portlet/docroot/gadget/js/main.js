@@ -113,13 +113,13 @@ AUI().add(
 						    if (width) {
 						    	iframeAttrs.width = width;
 						    }
-							
+
 							var container = gadgets.pubsub2router.hub.getContainer(iframeId);
-							
+
 							if (container) {
 								delete gadgets.pubsub2router.hub._containers[iframeId];
 							}
-						
+
 							var container = new OpenAjax.hub.IframeContainer(
 								gadgets.pubsub2router.hub,
 								iframeId,
@@ -267,9 +267,9 @@ AUI().add(
 						}
 
 						url = instance.get('serverBase') + 'ifr?' + A.QueryString.stringify(urlData);
-						
+
 						var content = instance.get('content');
-						
+
 						if (content) {
 							url += '&rawxml=' + content;
 						}

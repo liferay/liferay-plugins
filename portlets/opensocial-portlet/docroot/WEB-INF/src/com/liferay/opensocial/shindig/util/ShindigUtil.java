@@ -119,6 +119,23 @@ public class ShindigUtil {
 		return _COLUMN_USER_PREFS.concat(namespace);
 	}
 
+	public static String getFileEntryURL(String portalURL, long fileEntryId)
+		throws PortalException, SystemException {
+
+		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
+
+		StringBuilder sb = new StringBuilder(6);
+
+		sb.append(portalURL);
+		sb.append(PortalUtil.getPathContext());
+		sb.append("/documents/");
+		sb.append(fileEntry.getRepositoryId());
+		sb.append(StringPool.SLASH);
+		sb.append(fileEntry.getUuid());
+
+		return sb.toString();
+	}
+
 	public static com.liferay.opensocial.model.Gadget getGadget(
 			String portletName)
 		throws Exception {
@@ -133,6 +150,35 @@ public class ShindigUtil {
 			GadgetLocalServiceUtil.getGadget(uuid);
 
 		return gadget;
+	}
+
+	public static Folder getGadgetEditorRootFolder(long repositoryId)
+		throws Exception {
+
+		Folder folder = null;
+
+		try {
+			folder = DLAppServiceUtil.getFolder(
+				repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				_GADGET_EDITOR_ROOT_FOLDER_NAME);
+		}
+		catch (Exception e) {
+		}
+
+		if (folder == null) {
+			ServiceContext serviceContext = new ServiceContext();
+
+			serviceContext.setAddCommunityPermissions(true);
+			serviceContext.setAddGuestPermissions(true);
+			serviceContext.setScopeGroupId(repositoryId);
+
+			folder = DLAppServiceUtil.addFolder(
+				repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+				_GADGET_EDITOR_ROOT_FOLDER_NAME, StringPool.BLANK,
+				serviceContext);
+		}
+
+		return folder;
 	}
 
 	public static GadgetSpec getGadgetSpec(String url) throws Exception {
@@ -155,51 +201,6 @@ public class ShindigUtil {
 		Gadget gadget = _processor.process(jsonRpcGadgetContext);
 
 		return gadget.getSpec();
-	}
-
-	public static Folder getGadgetEditorRootFolder(long repositoryId)
-		throws Exception {
-
-		Folder folder = null;
-
-		try {
-			folder = DLAppServiceUtil.getFolder(
-				repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-				_GADGET_EDITOR_ROOT_FOLDER_NAME);
-		}
-		catch (Exception e) {
-		}
-
-		if (folder == null) {
-			ServiceContext serviceContext = new ServiceContext();
-			serviceContext.setAddCommunityPermissions(true);
-			serviceContext.setAddGuestPermissions(true);
-			serviceContext.setScopeGroupId(repositoryId);
-
-			folder = DLAppServiceUtil.addFolder(
-				repositoryId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-				_GADGET_EDITOR_ROOT_FOLDER_NAME, StringPool.BLANK,
-				serviceContext);
-		}
-
-		return folder;
-	}
-
-	public static String getFileEntryURL(String portalURL, long fileEntryId)
-		throws PortalException, SystemException {
-
-		FileEntry fileEntry = DLAppServiceUtil.getFileEntry(fileEntryId);
-
-		StringBuilder sb = new StringBuilder(6);
-
-		sb.append(portalURL);
-		sb.append(PortalUtil.getPathContext());
-		sb.append("/documents/");
-		sb.append(fileEntry.getRepositoryId());
-		sb.append(StringPool.SLASH);
-		sb.append(fileEntry.getUuid());
-
-		return sb.toString();
 	}
 
 	public static String getHost() {
