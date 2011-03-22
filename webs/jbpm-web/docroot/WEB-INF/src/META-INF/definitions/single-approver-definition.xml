@@ -20,36 +20,6 @@
 					<element>
 						<entry>
 							<key>role-type</key>
-							<value>site</value>
-						</entry>
-						<entry>
-							<key>role-name</key>
-							<value>Community Administrator</value>
-						</entry>
-					</element>
-					<element>
-						<entry>
-							<key>role-type</key>
-							<value>site</value>
-						</entry>
-						<entry>
-							<key>role-name</key>
-							<value>Community Content Reviewer</value>
-						</entry>
-					</element>
-					<element>
-						<entry>
-							<key>role-type</key>
-							<value>site</value>
-						</entry>
-						<entry>
-							<key>role-name</key>
-							<value>Community Owner</value>
-						</entry>
-					</element>
-					<element>
-						<entry>
-							<key>role-type</key>
 							<value>organization</value>
 						</entry>
 						<entry>
@@ -95,6 +65,36 @@
 						<entry>
 							<key>role-name</key>
 							<value>Administrator</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>site</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Community Administrator</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>site</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Community Content Reviewer</value>
+						</entry>
+					</element>
+					<element>
+						<entry>
+							<key>role-type</key>
+							<value>site</value>
+						</entry>
+						<entry>
+							<key>role-name</key>
+							<value>Community Owner</value>
 						</entry>
 					</element>
 				</roles>

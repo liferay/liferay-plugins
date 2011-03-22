@@ -137,18 +137,6 @@
 		</actions>
 		<assignments>
 			<roles>
-                <role>
-                    <role-type>site</role-type>
-                    <name>Community Administrator</name>
-                </role>
-				<role>
-					<role-type>site</role-type>
-					<name>Community Content Reviewer</name>
-				</role>
-				<role>
-					<role-type>site</role-type>
-					<name>Community Owner</name>
-				</role>
 				<role>
                     <role-type>organization</role-type>
                     <name>Organization Administrator</name>
@@ -163,11 +151,23 @@
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Portal Content Reviewer</name>
+					<name>Administrator</name>
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Administrator</name>
+					<name>Portal Content Reviewer</name>
+				</role>
+                <role>
+                    <role-type>site</role-type>
+                    <name>Community Administrator</name>
+                </role>
+				<role>
+					<role-type>site</role-type>
+					<name>Community Content Reviewer</name>
+				</role>
+				<role>
+					<role-type>site</role-type>
+					<name>Community Owner</name>
 				</role>
 			</roles>
 		</assignments>
@@ -197,18 +197,6 @@
 		</actions>
 		<assignments>
 			<roles>
-                <role>
-                    <role-type>site</role-type>
-                    <name>Community Administrator</name>
-                </role>
-				<role>
-					<role-type>site</role-type>
-					<name>Community Legal Reviewer</name>
-				</role>
-				<role>
-					<role-type>site</role-type>
-					<name>Community Owner</name>
-				</role>
 				<role>
                     <role-type>organization</role-type>
                     <name>Organization Administrator</name>
@@ -223,11 +211,23 @@
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Portal Legal Reviewer</name>
+					<name>Administrator</name>
 				</role>
 				<role>
 					<role-type>regular</role-type>
-					<name>Administrator</name>
+					<name>Portal Legal Reviewer</name>
+				</role>
+                <role>
+                    <role-type>site</role-type>
+                    <name>Community Administrator</name>
+                </role>
+				<role>
+					<role-type>site</role-type>
+					<name>Community Legal Reviewer</name>
+				</role>
+				<role>
+					<role-type>site</role-type>
+					<name>Community Owner</name>
 				</role>
 			</roles>
 		</assignments>
