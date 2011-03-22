@@ -20,7 +20,7 @@
 					<element>
 						<entry>
 							<key>role-type</key>
-							<value>community</value>
+							<value>site</value>
 						</entry>
 						<entry>
 							<key>role-name</key>
@@ -30,7 +30,7 @@
 					<element>
 						<entry>
 							<key>role-type</key>
-							<value>community</value>
+							<value>site</value>
 						</entry>
 						<entry>
 							<key>role-name</key>
@@ -40,7 +40,7 @@
 					<element>
 						<entry>
 							<key>role-type</key>
-							<value>community</value>
+							<value>site</value>
 						</entry>
 						<entry>
 							<key>role-name</key>
