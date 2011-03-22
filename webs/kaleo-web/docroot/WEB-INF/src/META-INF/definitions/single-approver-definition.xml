@@ -55,15 +55,15 @@
 		<assignments>
 			<roles>
                 <role>
-                    <role-type>community</role-type>
+                    <role-type>site</role-type>
                     <name>Community Administrator</name>
                 </role>
 				<role>
-					<role-type>community</role-type>
+					<role-type>site</role-type>
 					<name>Community Content Reviewer</name>
 				</role>
 				<role>
-					<role-type>community</role-type>
+					<role-type>site</role-type>
 					<name>Community Owner</name>
 				</role>
 				<role>
