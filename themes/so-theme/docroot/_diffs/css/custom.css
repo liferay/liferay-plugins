@@ -920,54 +920,13 @@ table.calendar {
 	background: #7F80A4;
 }
 
-/* Contacts */
+/* Contacts Center: Profile */
 
-.ie6 .contacts-portlet .control .add-entry {
-	position: static;
-}
-
-.contacts-portlet .control .email,
-.contacts-portlet .control .email:hover,
-.contacts-portlet .control .plus,
-.contacts-portlet .control .plus:hover {
-	font-size: 11px;
-	font-weight: normal;
-}
-
-.contacts-portlet .edit-entry-table .label,
-.contacts-portlet .send-email-table .label {
-	color: #999;
-}
-
-.contacts-portlet .entry-display-table a {
-	font-size: 11px;
-	font-weight: bold;
-}
-
-.contacts-portlet .entry-display-table .login-date {
-	font-size: 9px;
-}
-
-.contacts-portlet .lfr-panel,
-.contacts-portlet .ui-dialog-content {
-	font-size: 1.2em;
-}
-
-.contacts-portlet .lfr-panel-content a.panel-hover {
-	background: #E8EFF4;
-}
-
-.contacts-portlet .portlet-content-container {
-	position: relative;
-}
-
-.contacts-portlet .search-entries {
-	margin-bottom: 9px;
-}
-
-.contacts-portlet td .col-1 a {
-	font-size: 11px;
-	font-weight: bold;
+.contacts-portlet .group-members-content {
+	background: #EFEFEF;
+	border: 1px solid #999;
+	margin-right: 1em;
+	padding: 1em;
 }
 
 /* Document Library */
@@ -1278,147 +1237,6 @@ table.calendar {
 
 .ie6 .so-portlet-members .invite-members {
 	width: 100%;
-}
-
-/* SO: Profiles */
-
-.so-portlet-profiles td {
-	vertical-align: top;
-}
-
-.so-portlet-profiles .profile-area {
-	padding: 0 0 15px 15px;
-}
-
-.so-portlet-profiles .user-name {
-	font-size: 1.5em;
-	font-weight: bold;
-}
-
-.so-portlet-profiles .user-title {
-	font-size: 1.3em;
-	line-height: 1.6em;
-}
-
-.so-portlet-profiles .lfr-label {
-	padding-right: 1em;
-}
-
-.so-portlet-profiles h3 {
-	color: #8F0920;
-}
-
-.so-portlet-profiles .project {
-	border-bottom: 1px solid #E2E2E2;
-}
-
-.so-portlet-profiles .project h4 {
-	color: #514849;
-	font-size: bold;
-	margin: 1em 0;
-	position: relative;
-}
-
-.so-portlet-profiles .project h4 span {
-	color: #999;
-	position: absolute;
-	right: 0;
-	top: 0;
-}
-
-.so-portlet-profiles .project-footer {
-	font-size: 0.9em;
-}
-
-.so-portlet-profiles .project-footer span {
-	color: #514849;
-	font-weight: bold;
-	margin-right: .5em;
-}
-
-.so-portlet-profiles .extend-information {
-	width: 100%;
-}
-
-.so-portlet-profiles .extend-information .column-1 {
-	width: 70%;
-}
-
-.so-portlet-profiles .extend-information .column-2 {
-	width: 30%;
-}
-
-.so-portlet-profiles .profile-controls,
-.so-portlet-profiles .relations-controls {
-	margin-top: 1em;
-}
-
-.so-portlet-profiles .date-selectors .ctrl-holder {
-	float: left;
-	padding-right: 15px;
-}
-
-.so-portlet-profiles .user-address {
-	float: left;
-	padding: 0 25px 5px 5px;
-}
-
-.so-portlet-profiles .site-name a {
-	font-weight: bold;
-}
-
-.so-portlet-profiles .edit-profile td {
-	padding-bottom: .5em;
-}
-
-.so-portlet-profiles .edit-profile .lfr-label {
-	width: 20%;
-}
-
-.so-portlet-profiles .profile-controls a {
-	display: block;
-	white-space: nowrap;
-}
-
-.so-portlet-profiles .edit-profile .first {
-	margin-top: 0;
-}
-
-.so-portlet-profiles fieldset {
-	border: none;
-	padding: 0;
-}
-
-.so-portlet-profiles .row-fields .col {
-	float: left;
-	margin-right: 1em;
-}
-
-.so-portlet-profiles .lfr-form-row {
-	border-bottom: 1px solid #EEE;
-	padding: 0 0 5px;
-}
-
-.so-portlet-profiles .portlet-msg-info.undo-queue {
-	display: none;
-}
-
-.so-portlet-profiles #addresses .aui-field {
-	float: none;
-}
-
-.so-portlet-profiles #additionalEmailAddresses label,
-.so-portlet-profiles #addresses label,
-.so-portlet-profiles #phoneNumbers label,
-.so-portlet-profiles #projectsEntries label,
-.so-portlet-profiles #websites label {
-	color: #999;
-	display: block;
-	font-size: 10px;
-}
-
-.so-portlet-profiles #projectsEntries .date-selectors {
-	height: 41px;
 }
 
 /* SO: Sites */
