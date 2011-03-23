@@ -38,7 +38,6 @@
 		<column name="durationMinute" type="int" />
 		<column name="recurrence" type="String" />
 		<column name="type" type="String" />
-		<column name="statusId" type="int" />
 		<column name="required" type="boolean" />
 
 		<!-- Order -->
