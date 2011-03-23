@@ -15,7 +15,6 @@
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-collections.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/dom4j.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/hibernate3.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/javassist.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-api.jar" />
@@ -33,6 +32,9 @@
 	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/asm.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/cglib.jar" />
+	<classpathentry kind="lib" path="tmp/WEB-INF/lib/hibernate3.jar" />
 	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jbpm-identity.jar" />
 	<classpathentry kind="lib" path="tmp/WEB-INF/lib/jbpm-jpdl.jar" />
 	<classpathentry kind="output" path="bin" />
