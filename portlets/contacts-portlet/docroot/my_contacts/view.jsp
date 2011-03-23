@@ -95,42 +95,42 @@ Group group = themeDisplay.getScopeGroup();
 						<liferay-util:include page="/contacts_center/view_user.jsp" portletId="<%= portletDisplay.getId() %>" />
 					</aui:column>
 				</aui:layout>
+
+				<aui:script use="aui-base,aui-live-search">
+					var container = A.one('.lfr-user-grid');
+
+					container.delegate(
+						'mouseenter',
+						function(event) {
+							event.currentTarget.ancestor('.lfr-user-grid-item').addClass('hover');
+						},
+						'.lfr-user-grid-item img'
+					);
+
+					container.delegate(
+						'mouseleave',
+						function(event) {
+							event.currentTarget.ancestor('.lfr-user-grid-item').removeClass('hover');
+						},
+						'.lfr-user-grid-item img'
+					);
+
+					var groupMembers = A.one('.contacts-portlet .group-members');
+
+					var liveSearch = new A.LiveSearch(
+						{
+							data: function(node) {
+								var userInfo = node.one('.lfr-user-info');
+
+								return userInfo.one('.lfr-user-data-name').html() + " " + userInfo.one('.lfr-user-data-email').html();
+							},
+							input: groupMembers.one('#<portlet:namespace />filter'),
+							nodes: groupMembers.all('.lfr-user-grid-item')
+						}
+					);
+				</aui:script>
 			</c:otherwise>
 		</c:choose>
-
-		<aui:script use="aui-base,aui-live-search">
-			var container = A.one('.lfr-user-grid');
-
-			container.delegate(
-				'mouseenter',
-				function(event) {
-					event.currentTarget.ancestor('.lfr-user-grid-item').addClass('hover');
-				},
-				'.lfr-user-grid-item img'
-			);
-
-			container.delegate(
-				'mouseleave',
-				function(event) {
-					event.currentTarget.ancestor('.lfr-user-grid-item').removeClass('hover');
-				},
-				'.lfr-user-grid-item img'
-			);
-
-			var groupMembers = A.one('.contacts-portlet .group-members');
-
-			var liveSearch = new A.LiveSearch(
-				{
-					data: function(node) {
-						var userInfo = node.one('.lfr-user-info');
-
-						return userInfo.one('.lfr-user-data-name').html() + " " + userInfo.one('.lfr-user-data-email').html();
-					},
-					input: groupMembers.one('#<portlet:namespace />filter'),
-					nodes: groupMembers.all('.lfr-user-grid-item')
-				}
-			);
-		</aui:script>
 	</c:when>
 	<c:otherwise>
 		<div class="portlet-msg-error">
