@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.calendar.service.CalendarBookingLocalService" class="com.liferay.calendar.service.impl.CalendarBookingLocalServiceImpl" />
+	<bean id="com.liferay.calendar.service.CalendarBookingLocalServiceUtil" class="com.liferay.calendar.service.CalendarBookingLocalServiceUtil">
+		<property name="service" ref="com.liferay.calendar.service.CalendarBookingLocalService" />
+	</bean>
+	<bean id="com.liferay.calendar.service.persistence.CalendarBookingPersistence" class="com.liferay.calendar.service.persistence.CalendarBookingPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.calendar.service.CalendarEventLocalService" class="com.liferay.calendar.service.impl.CalendarEventLocalServiceImpl" />
+	<bean id="com.liferay.calendar.service.CalendarEventLocalServiceUtil" class="com.liferay.calendar.service.CalendarEventLocalServiceUtil">
+		<property name="service" ref="com.liferay.calendar.service.CalendarEventLocalService" />
+	</bean>
+	<bean id="com.liferay.calendar.service.persistence.CalendarEventPersistence" class="com.liferay.calendar.service.persistence.CalendarEventPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.calendar.service.CalendarResourceLocalService" class="com.liferay.calendar.service.impl.CalendarResourceLocalServiceImpl" />
+	<bean id="com.liferay.calendar.service.CalendarResourceLocalServiceUtil" class="com.liferay.calendar.service.CalendarResourceLocalServiceUtil">
+		<property name="service" ref="com.liferay.calendar.service.CalendarResourceLocalService" />
+	</bean>
+	<bean id="com.liferay.calendar.service.persistence.CalendarResourcePersistence" class="com.liferay.calendar.service.persistence.CalendarResourcePersistenceImpl" parent="basePersistence" />
+</beans>

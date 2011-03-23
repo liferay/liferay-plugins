@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.calendar.model.impl.CalendarBookingModelImpl">
+		<attributes>
+			<id name="calendarBookingId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="calendarEventId" />
+			<basic name="calendarResourceId" />
+			<basic name="classNameId" />
+			<basic name="classPK" />
+			<basic name="title" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="location" />
+			<basic name="startDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="durationHour" />
+			<basic name="durationMinute" />
+			<basic name="recurrence" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="statusId" />
+			<basic name="required" />
+			<transient name="descriptionMap" />
+			<transient name="nameMap" />
+			<transient name="primaryKey" />
+			<transient name="titleMap" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.calendar.model.impl.CalendarEventModelImpl">
+		<attributes>
+			<id name="calendarEventId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="title" />
+			<basic name="description" />
+			<basic name="location" />
+			<basic name="startDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="endDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="durationHour" />
+			<basic name="durationMinute" />
+			<basic name="allDay" />
+			<basic name="recurrence" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="remindBy" />
+			<basic name="firstReminder" />
+			<basic name="secondReminder" />
+			<transient name="descriptionMap" />
+			<transient name="primaryKey" />
+			<transient name="titleMap" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.calendar.model.impl.CalendarResourceModelImpl">
+		<attributes>
+			<id name="calendarResourceId" />
+			<basic name="uuid">
+				<column name="UUID_" />
+			</basic>
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="classNameId" />
+			<basic name="classPK" />
+			<basic name="classUuid" />
+			<basic name="name" />
+			<basic name="description" />
+			<basic name="active">
+				<column name="ACTIVE_" />
+			</basic>
+			<transient name="descriptionMap" />
+			<transient name="nameMap" />
+			<transient name="primaryKey" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.calendar.model.impl.CalendarBookingImpl" name="CalendarBooking">
+		<table name="CalendarBooking" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.calendar.model.impl.CalendarEventImpl" name="CalendarEvent">
+		<table name="CalendarEvent" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.calendar.model.impl.CalendarResourceImpl" name="CalendarResource">
+		<table name="CalendarResource" />
+		<attributes />
+	</entity>
+</entity-mappings>
