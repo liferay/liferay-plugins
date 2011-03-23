@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<css-class-wrapper>day-planner-portlet</css-class-wrapper>
+		<css-class-wrapper>calendar-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

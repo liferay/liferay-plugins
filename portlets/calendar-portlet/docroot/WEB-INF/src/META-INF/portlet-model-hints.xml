@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.calendar.model.CalendarBooking">
+		<field name="uuid" type="String" />
+		<field name="calendarBookingId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="calendarEventId" type="long" />
+		<field name="calendarResourceId" type="long" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
+		<field name="title" type="String" localized="true" />
+		<field name="name" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="location" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="durationHour" type="int" />
+		<field name="durationMinute" type="int" />
+		<field name="recurrence" type="String" />
+		<field name="type" type="String" />
+		<field name="statusId" type="int" />
+		<field name="required" type="boolean" />
+	</model>
+	<model name="com.liferay.calendar.model.CalendarEvent">
+		<field name="uuid" type="String" />
+		<field name="calendarEventId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="title" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="location" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="startDate" type="Date" />
+		<field name="endDate" type="Date" />
+		<field name="durationHour" type="int" />
+		<field name="durationMinute" type="int" />
+		<field name="allDay" type="boolean" />
+		<field name="recurrence" type="String" />
+		<field name="type" type="String" />
+		<field name="remindBy" type="int" />
+		<field name="firstReminder" type="int" />
+		<field name="secondReminder" type="int" />
+	</model>
+	<model name="com.liferay.calendar.model.CalendarResource">
+		<field name="uuid" type="String" />
+		<field name="calendarResourceId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="classNameId" type="long" />
+		<field name="classPK" type="long" />
+		<field name="classUuid" type="String" />
+		<field name="name" type="String" localized="true" />
+		<field name="description" type="String" localized="true">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="active" type="boolean" />
+	</model>
+</model-hints>

@@ -8,8 +8,8 @@
 >
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<display-name>Day Planner</display-name>
-		<portlet-class>com.liferay.dayplanner.portlet.DayPlannerPortlet</portlet-class>
+		<display-name>Calendar</display-name>
+		<portlet-class>com.liferay.calendar.portlet.CalendarPortlet</portlet-class>
 		<init-param>
 			<name>view-jsp</name>
 			<value>/view.jsp</value>
@@ -19,9 +19,9 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<portlet-info>
-			<title>Day Planner</title>
-			<short-title>Day Planner</short-title>
-			<keywords>Day Planner</keywords>
+			<title>Calendar</title>
+			<short-title>Calendar</short-title>
+			<keywords>Calendar</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
