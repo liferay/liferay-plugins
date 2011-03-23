@@ -1203,20 +1203,6 @@ table.calendar {
 	padding: 0 5px 8px 0;
 }
 
-/* Requests */
-
-.portlet-activities .request .controls a {
-	background: url(../images/custom/bullet.png) no-repeat 3px 50%;
-	padding-left: 10px;
-}
-
-.portlet-activities .request .thumbnail img,
-.so-portlet-invite-members .thumbnail img {
-	border :1px solid #CCC;
-	padding: 1px;
-	width: 40px;
-}
-
 /* RSS */
 
 .portlet-rss .feed-entry-title {
