@@ -33,6 +33,14 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	public AccountClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Account.class;
+	}
+
+	public String getModelClassName() {
+		return Account.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _accountId;
 	}

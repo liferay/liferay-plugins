@@ -34,6 +34,14 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	public MessageClp() {
 	}
 
+	public Class<?> getModelClass() {
+		return Message.class;
+	}
+
+	public String getModelClassName() {
+		return Message.class.getName();
+	}
+
 	public long getPrimaryKey() {
 		return _messageId;
 	}

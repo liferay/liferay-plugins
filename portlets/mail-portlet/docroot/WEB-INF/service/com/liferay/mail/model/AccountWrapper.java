@@ -28,6 +28,14 @@ public class AccountWrapper implements Account {
 		_account = account;
 	}
 
+	public Class<?> getModelClass() {
+		return Account.class;
+	}
+
+	public String getModelClassName() {
+		return Account.class.getName();
+	}
+
 	/**
 	* Gets the primary key of this account.
 	*
@@ -620,7 +628,7 @@ public class AccountWrapper implements Account {
 		return new AccountWrapper((Account)_account.clone());
 	}
 
-	public int compareTo(Account account) {
+	public int compareTo(com.liferay.mail.model.Account account) {
 		return _account.compareTo(account);
 	}
 
@@ -628,7 +636,7 @@ public class AccountWrapper implements Account {
 		return _account.hashCode();
 	}
 
-	public Account toEscapedModel() {
+	public com.liferay.mail.model.Account toEscapedModel() {
 		return new AccountWrapper(_account.toEscapedModel());
 	}
 
