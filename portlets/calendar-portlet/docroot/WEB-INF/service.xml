@@ -45,6 +45,19 @@
 		<order by="asc">
 			<order-column name="title" case-sensitive="false" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="CalendarEventId" return-type="Collection">
+			<finder-column name="calendarEventId" />
+		</finder>
+		<finder name="CalendarResourceId" return-type="Collection">
+			<finder-column name="calendarResourceId" />
+		</finder>
+		<finder name="C_C" return-type="Collection">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
 	</entity>
 	<entity name="CalendarEvent" uuid="true" local-service="true" remote-service="false">
 
@@ -119,6 +132,30 @@
 		<order by="asc">
 			<order-column name="name" case-sensitive="false" />
 		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="Active" return-type="Collection">
+			<finder-column name="active" />
+		</finder>
+		<finder name="G_A" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="C_C" return-type="CalendarResource" unique="true">
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
+		<finder name="G_N_A" return-type="Collection">
+			<finder-column name="groupId" arrayable-operator="OR" />
+			<finder-column name="name" comparator="LIKE" />
+			<finder-column name="active" />
+		</finder>
+		<finder name="C_N_A" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="name" comparator="LIKE" />
+			<finder-column name="active" />
+		</finder>
 	</entity>
 	<exceptions>
 		<exception>CalendarEventDuration</exception>
