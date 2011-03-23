@@ -70,38 +70,6 @@
 		<supported-public-render-parameter>invitedMembersCount</supported-public-render-parameter>
 	</portlet>
 	<portlet>
-		<portlet-name>3</portlet-name>
-		<display-name>Members</display-name>
-		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>
-		<init-param>
-			<name>view-jsp</name>
-			<value>/members/view.jsp</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-		</supports>
-		<resource-bundle>content.Language</resource-bundle>
-		<portlet-info>
-			<title>Members</title>
-			<short-title>Members</short-title>
-			<keywords>Members</keywords>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>administrator</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>guest</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>power-user</role-name>
-		</security-role-ref>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-		<supported-public-render-parameter>invitedMembersCount</supported-public-render-parameter>
-	</portlet>
-	<portlet>
 		<portlet-name>4</portlet-name>
 		<display-name>Expertise</display-name>
 		<portlet-class>com.liferay.util.bridges.mvc.MVCPortlet</portlet-class>

@@ -1224,29 +1224,6 @@ table.calendar {
 	font-size: 1em;
 }
 
-/* SO: Members */
-
-.so-portlet-members .invite-members a {
-	background: transparent url(../images/arrows/01_plus.png) no-repeat 100% 50%;
-	display: block;
-	font-size: 1.2em;
-	margin: 12px 0;
-	padding: 0 18px 0 0;
-	position: absolute;
-}
-
-.so-portlet-members .portlet-section-header {
-	display: none;
-}
-
-.so-portlet-members .taglib-search-iterator .col-1 {
-	width: 35px;
-}
-
-.ie6 .so-portlet-members .invite-members {
-	width: 100%;
-}
-
 /* SO: Sites */
 
 .so-portlet-sites .results-grid .col-1 a {

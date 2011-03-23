@@ -18,11 +18,6 @@
 		<system>true</system>
 	</portlet>
 	<portlet>
-		<portlet-name>3</portlet-name>
-		<css-class-wrapper>so-portlet-members</css-class-wrapper>
-		<system>true</system>
-	</portlet>
-	<portlet>
 		<portlet-name>4</portlet-name>
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>
 		<system>true</system>
