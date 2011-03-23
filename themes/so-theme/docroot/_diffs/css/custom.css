@@ -922,6 +922,10 @@ table.calendar {
 
 /* Contacts Center: Profile */
 
+.contacts-portlet h1.header-title {
+	margin: 0;
+}
+
 .contacts-portlet .group-members-content {
 	background: #EFEFEF;
 	border: 1px solid #999;
@@ -1124,6 +1128,24 @@ table.calendar {
 	color: #777;
 	float: none;
 	padding: 0;
+}
+
+.portlet-message-boards .displayStyle-question .stats {
+	width: auto;
+}
+
+.portlet-message-boards .stats .votes,
+.portlet-message-boards .stats .status {
+	display: block;
+	height: auto;
+	padding: 0;
+	margin: 0;
+	width: auto;
+}
+
+.portlet-message-boards .stats .count {
+	display: inline;
+	font-size: 1em;
 }
 
 /* Microblogs */

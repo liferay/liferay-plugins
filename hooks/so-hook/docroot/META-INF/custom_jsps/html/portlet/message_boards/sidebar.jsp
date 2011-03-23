@@ -24,13 +24,7 @@ MBCategory category = (MBCategory)request.getAttribute(WebKeys.MESSAGE_BOARDS_CA
 
 long categoryId = MBUtil.getCategoryId(request, category);
 
-boolean defaultShowCategories = false;
-
-if (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
-	defaultShowCategories = true;
-}
-
-boolean showCategories = ParamUtil.getBoolean(request, "showCategories", defaultShowCategories);
+boolean showCategories = ParamUtil.getBoolean(request, "showCategories", false);
 
 PortletURL portletURL = renderResponse.createRenderURL();
 %>
@@ -51,6 +45,17 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	</form>
 
 	<h2><liferay-ui:message key="categories" /></h2>
+
+	<ul class="disc">
+		<li>
+
+			<%
+			portletURL.setParameter("topLink", "message-boards-home");
+			%>
+
+			<a href="<%= portletURL %>"><liferay-ui:message key="message-boards-home" /></a>
+		</li>
+	</ul>
 
 	<ul class="disc">
 
@@ -82,82 +87,77 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	boolean defaultCategory = (categoryId == MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 	%>
 
-	<c:if test="<%= !defaultCategory %>">
-		<ul class="disc">
-			<c:if test="<%= showAddCategoryButton %>">
-				<li>
-					<a href="javascript:;" onClick="<portlet:namespace />addCategory();"><liferay-ui:message key='<%= (category == null) ? "add-category" : "add-subcategory" %>' /></a>
-				</li>
-			</c:if>
+	<ul class="disc">
+		<c:if test="<%= showAddCategoryButton %>">
+			<li>
+				<portlet:renderURL var="editCategoryURL">
+					<portlet:param name="struts_action" value="/message_boards/edit_category" />
+					<portlet:param name="redirect" value="<%= currentURL %>" />
+					<portlet:param name="parentCategoryId" value="<%= String.valueOf(categoryId) %>" />
+				</portlet:renderURL>
+
+				<a href="<%= editCategoryURL %>"><liferay-ui:message key='<%= (category == null) ? "add-category" : "add-subcategory" %>' /></a>
+			</li>
+		</c:if>
+
+		<li>
+
+			<%
+			PortletURL toggleCategoriesURL = renderResponse.createRenderURL();
+
+			toggleCategoriesURL.setParameter("mbCategoryId", String.valueOf(categoryId));
+			%>
+
+			<c:choose>
+				<c:when test="<%= showCategories %>">
+
+					<%
+					toggleCategoriesURL.setParameter("showCategories", String.valueOf(false));
+					%>
+
+					<a href="<%= toggleCategoriesURL.toString() %>"><liferay-ui:message key="hide-category-controls" /></a>
+				</c:when>
+				<c:otherwise>
+
+					<%
+					toggleCategoriesURL.setParameter("showCategories", String.valueOf(true));
+					%>
+
+					<a href="<%= toggleCategoriesURL.toString() %>"><liferay-ui:message key="show-category-controls" /></a>
+				</c:otherwise>
+			</c:choose>
+		</li>
+
+		<c:if test="<%= showPermissionsButton %>">
+
+			<%
+			String modelResource = "com.liferay.portlet.messageboards";
+			String modelResourceDescription = themeDisplay.getScopeGroupName();
+			String resourcePrimKey = String.valueOf(scopeGroupId);
+
+			if (category != null) {
+				modelResource = MBCategory.class.getName();
+				modelResourceDescription = category.getName();
+				resourcePrimKey = String.valueOf(category.getCategoryId());
+			}
+			%>
+
+			<liferay-security:permissionsURL
+				modelResource="<%= modelResource %>"
+				modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
+				resourcePrimKey="<%= resourcePrimKey %>"
+				var="permissionsURL"
+			/>
 
 			<li>
-
-				<%
-				PortletURL toggleCategoriesURL = renderResponse.createRenderURL();
-
-				toggleCategoriesURL.setParameter("mbCategoryId", String.valueOf(categoryId));
-				%>
-
-				<c:choose>
-					<c:when test="<%= showCategories %>">
-
-						<%
-						toggleCategoriesURL.setParameter("showCategories", String.valueOf(false));
-						%>
-
-						<a href="<%= toggleCategoriesURL.toString() %>"><liferay-ui:message key="hide-category-controls" /></a>
-					</c:when>
-					<c:otherwise>
-
-						<%
-						toggleCategoriesURL.setParameter("showCategories", String.valueOf(true));
-						%>
-
-						<a href="<%= toggleCategoriesURL.toString() %>"><liferay-ui:message key="show-category-controls" /></a>
-					</c:otherwise>
-				</c:choose>
+				<a href="javascript:;" onClick="location.href = '<%= permissionsURL %>';" /><liferay-ui:message key="permissions" /></a>
 			</li>
-
-			<c:if test="<%= showPermissionsButton %>">
-
-				<%
-				String modelResource = "com.liferay.portlet.messageboards";
-				String modelResourceDescription = themeDisplay.getScopeGroupName();
-				String resourcePrimKey = String.valueOf(scopeGroupId);
-
-				if (category != null) {
-					modelResource = MBCategory.class.getName();
-					modelResourceDescription = category.getName();
-					resourcePrimKey = String.valueOf(category.getCategoryId());
-				}
-				%>
-
-				<liferay-security:permissionsURL
-					modelResource="<%= modelResource %>"
-					modelResourceDescription="<%= HtmlUtil.escape(modelResourceDescription) %>"
-					resourcePrimKey="<%= resourcePrimKey %>"
-					var="permissionsURL"
-				/>
-
-				<li>
-					<a href="javascript:;" onClick="location.href = '<%= permissionsURL %>';" /><liferay-ui:message key="permissions" /></a>
-				</li>
-			</c:if>
-		</ul>
-	</c:if>
+		</c:if>
+	</ul>
 
 	<h2><liferay-ui:message key="quick-links" /></h2>
 
 	<ul class="disc">
-		<li>
-
-			<%
-			portletURL.setParameter("topLink", "message-boards-home");
-			%>
-
-			<a href="<%= portletURL %>"><liferay-ui:message key="message-boards-home" /></a>
-		</li>
-
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<li>
 
@@ -177,14 +177,6 @@ PortletURL portletURL = renderResponse.createRenderURL();
 			</li>
 		</c:if>
 
-		<li>
-
-			<%
-			portletURL.setParameter("topLink", "recent-posts");
-			%>
-
-			<a href="<%= portletURL %>"><liferay-ui:message key="recent-posts" /></a>
-		</li>
 		<li>
 
 			<%
