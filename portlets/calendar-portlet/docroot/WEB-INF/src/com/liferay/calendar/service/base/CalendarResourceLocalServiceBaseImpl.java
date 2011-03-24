@@ -103,10 +103,11 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * Deletes the calendar resource from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param calendarResource the calendar resource to delete
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarResource(CalendarResource calendarResource)
-		throws SystemException {
+		throws PortalException, SystemException {
 		calendarResourcePersistence.remove(calendarResource);
 	}
 

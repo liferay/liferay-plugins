@@ -71,11 +71,13 @@ public class CalendarResourceLocalServiceWrapper
 	* Deletes the calendar resource from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarResource the calendar resource to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		_calendarResourceLocalService.deleteCalendarResource(calendarResource);
 	}
 
@@ -257,6 +259,145 @@ public class CalendarResourceLocalServiceWrapper
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		_calendarResourceLocalService.setBeanIdentifier(beanIdentifier);
+	}
+
+	public com.liferay.calendar.model.CalendarResource addCalendarResource(
+		long userId, java.lang.String className, long classPK,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.addCalendarResource(userId,
+			className, classPK, nameMap, descriptionMap, active, serviceContext);
+	}
+
+	public void addCalendarResourceResources(
+		com.liferay.calendar.model.CalendarResource calendarResource,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.addCalendarResourceResources(calendarResource,
+			addCommunityPermissions, addGuestPermissions);
+	}
+
+	public void addCalendarResourceResources(
+		com.liferay.calendar.model.CalendarResource calendarResource,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.addCalendarResourceResources(calendarResource,
+			communityPermissions, guestPermissions);
+	}
+
+	public com.liferay.calendar.model.CalendarResource getCalendarResource(
+		java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getCalendarResource(className,
+			classPK);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarResource> getCalendarResources(
+		boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getCalendarResources(active,
+			start, end, orderByComparator);
+	}
+
+	public int getCalendarResourcesCount(boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getCalendarResourcesCount(active);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarResource> getCompanyCalendarResources(
+		long companyId, java.lang.String name, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getCompanyCalendarResources(companyId,
+			name, active, start, end, orderByComparator);
+	}
+
+	public int getCompanyCalendarResourcesCount(long companyId,
+		java.lang.String name, boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getCompanyCalendarResourcesCount(companyId,
+			name, active, start, end, orderByComparator);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarResource> getGroupCalendarResources(
+		long groupId, boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getGroupCalendarResources(groupId,
+			active, start, end, orderByComparator);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarResource> getGroupCalendarResources(
+		long groupId, java.lang.String name, boolean active, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getGroupCalendarResources(groupId,
+			name, active, start, end, orderByComparator);
+	}
+
+	public int getGroupCalendarResourcesCount(long groupId, boolean active)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getGroupCalendarResourcesCount(groupId,
+			active);
+	}
+
+	public int getGroupCalendarResourcesCount(long groupId,
+		java.lang.String name, boolean active, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.getGroupCalendarResourcesCount(groupId,
+			name, active, start, end, orderByComparator);
+	}
+
+	public java.util.List<com.liferay.calendar.model.CalendarResource> search(
+		long companyId, long[] groupIds, java.lang.String name,
+		java.lang.String description, java.lang.Boolean active,
+		boolean andOperator, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.search(companyId, groupIds, name,
+			description, active, andOperator, start, end, orderByComparator);
+	}
+
+	public int searchCount(long companyId, long[] groupIds,
+		java.lang.String name, java.lang.String description,
+		java.lang.Boolean active, boolean andOperator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.searchCount(companyId, groupIds,
+			name, description, active, andOperator);
+	}
+
+	public com.liferay.calendar.model.CalendarResource updateCalendarResource(
+		long calendarResourceId,
+		java.util.Map<java.util.Locale, java.lang.String> nameMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String className, long classPK, boolean active,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarResourceLocalService.updateCalendarResource(calendarResourceId,
+			nameMap, descriptionMap, className, classPK, active, serviceContext);
+	}
+
+	public void updateCalendarResourceResources(
+		com.liferay.calendar.model.CalendarResource calendarResource,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_calendarResourceLocalService.updateCalendarResourceResources(calendarResource,
+			communityPermissions, guestPermissions);
 	}
 
 	public CalendarResourceLocalService getWrappedCalendarResourceLocalService() {

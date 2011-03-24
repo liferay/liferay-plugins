@@ -88,10 +88,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 			{ "durationMinute", Types.INTEGER },
 			{ "recurrence", Types.VARCHAR },
 			{ "type_", Types.VARCHAR },
-			{ "statusId", Types.INTEGER },
 			{ "required", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarEventId LONG,calendarResourceId LONG,classNameId LONG,classPK LONG,title STRING null,name STRING null,description STRING null,location STRING null,startDate DATE null,endDate DATE null,durationHour INTEGER,durationMinute INTEGER,recurrence VARCHAR(75) null,type_ VARCHAR(75) null,statusId INTEGER,required BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table CalendarBooking (uuid_ VARCHAR(75) null,calendarBookingId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,calendarEventId LONG,calendarResourceId LONG,classNameId LONG,classPK LONG,title STRING null,name STRING null,description STRING null,location STRING null,startDate DATE null,endDate DATE null,durationHour INTEGER,durationMinute INTEGER,recurrence VARCHAR(75) null,type_ VARCHAR(75) null,required BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table CalendarBooking";
 	public static final String ORDER_BY_JPQL = " ORDER BY calendarBooking.title ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY CalendarBooking.title ASC";
@@ -610,14 +609,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		_type = type;
 	}
 
-	public int getStatusId() {
-		return _statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		_statusId = statusId;
-	}
-
 	public boolean getRequired() {
 		return _required;
 	}
@@ -708,8 +699,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 		calendarBookingImpl.setType(getType());
 
-		calendarBookingImpl.setStatusId(getStatusId());
-
 		calendarBookingImpl.setRequired(getRequired());
 
 		return calendarBookingImpl;
@@ -757,7 +746,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(47);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -803,8 +792,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		sb.append(getRecurrence());
 		sb.append(", type=");
 		sb.append(getType());
-		sb.append(", statusId=");
-		sb.append(getStatusId());
 		sb.append(", required=");
 		sb.append(getRequired());
 		sb.append("}");
@@ -813,7 +800,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(73);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -908,10 +895,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		sb.append(getType());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>statusId</column-name><column-value><![CDATA[");
-		sb.append(getStatusId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>required</column-name><column-value><![CDATA[");
 		sb.append(getRequired());
 		sb.append("]]></column-value></column>");
@@ -947,7 +930,6 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private int _durationMinute;
 	private String _recurrence;
 	private String _type;
-	private int _statusId;
 	private boolean _required;
 	private transient ExpandoBridge _expandoBridge;
 }

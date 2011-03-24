@@ -77,11 +77,13 @@ public interface CalendarEventLocalService {
 	* Deletes the calendar event from the database. Also notifies the appropriate model listeners.
 	*
 	* @param calendarEvent the calendar event to delete
+	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public void deleteCalendarEvent(
 		com.liferay.calendar.model.CalendarEvent calendarEvent)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Performs a dynamic query on the database and returns the matching rows.
@@ -237,4 +239,52 @@ public interface CalendarEventLocalService {
 	* @param beanIdentifier the Spring bean ID for this bean
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
+
+	public com.liferay.calendar.model.CalendarEvent addCaledarEvent(
+		long userId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, int durationHour, int durationMinute,
+		boolean allDay, java.lang.String recurrence, java.lang.String type,
+		int remindBy, int firstReminder, int secondReminder,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void addCalendarEventResources(
+		com.liferay.calendar.model.CalendarEvent calendarEvent,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void addCalendarEventResources(
+		com.liferay.calendar.model.CalendarEvent calendarEvent,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.calendar.model.CalendarEvent updateCalendarEvent(
+		long calendarEventId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, int durationHour, int durationMinute,
+		boolean allDay, java.lang.String recurrence, java.lang.String type,
+		int remindBy, int firstReminder, int secondReminder,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateCalendarEventResources(
+		com.liferay.calendar.model.CalendarEvent calendarEvent,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

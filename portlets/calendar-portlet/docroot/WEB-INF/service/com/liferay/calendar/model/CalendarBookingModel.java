@@ -581,20 +581,6 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	public void setType(String type);
 
 	/**
-	 * Gets the status ID of this calendar booking.
-	 *
-	 * @return the status ID of this calendar booking
-	 */
-	public int getStatusId();
-
-	/**
-	 * Sets the status ID of this calendar booking.
-	 *
-	 * @param statusId the status ID of this calendar booking
-	 */
-	public void setStatusId(int statusId);
-
-	/**
 	 * Gets the required of this calendar booking.
 	 *
 	 * @return the required of this calendar booking

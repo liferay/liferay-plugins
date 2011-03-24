@@ -731,24 +731,6 @@ public class CalendarBookingWrapper implements CalendarBooking {
 	}
 
 	/**
-	* Gets the status ID of this calendar booking.
-	*
-	* @return the status ID of this calendar booking
-	*/
-	public int getStatusId() {
-		return _calendarBooking.getStatusId();
-	}
-
-	/**
-	* Sets the status ID of this calendar booking.
-	*
-	* @param statusId the status ID of this calendar booking
-	*/
-	public void setStatusId(int statusId) {
-		_calendarBooking.setStatusId(statusId);
-	}
-
-	/**
 	* Gets the required of this calendar booking.
 	*
 	* @return the required of this calendar booking

@@ -298,19 +298,12 @@ public class ClpSerializer {
 
 				method21.invoke(newModel, value21);
 
-				Method method22 = newModelClass.getMethod("setStatusId",
-						new Class[] { Integer.TYPE });
-
-				Integer value22 = new Integer(oldCplModel.getStatusId());
-
-				method22.invoke(newModel, value22);
-
-				Method method23 = newModelClass.getMethod("setRequired",
+				Method method22 = newModelClass.getMethod("setRequired",
 						new Class[] { Boolean.TYPE });
 
-				Boolean value23 = new Boolean(oldCplModel.getRequired());
+				Boolean value22 = new Boolean(oldCplModel.getRequired());
 
-				method23.invoke(newModel, value23);
+				method22.invoke(newModel, value22);
 
 				return newModel;
 			}
@@ -841,19 +834,12 @@ public class ClpSerializer {
 
 				newModel.setType(value21);
 
-				Method method22 = oldModelClass.getMethod("getStatusId");
+				Method method22 = oldModelClass.getMethod("getRequired");
 
-				Integer value22 = (Integer)method22.invoke(oldModel,
+				Boolean value22 = (Boolean)method22.invoke(oldModel,
 						(Object[])null);
 
-				newModel.setStatusId(value22);
-
-				Method method23 = oldModelClass.getMethod("getRequired");
-
-				Boolean value23 = (Boolean)method23.invoke(oldModel,
-						(Object[])null);
-
-				newModel.setRequired(value23);
+				newModel.setRequired(value22);
 
 				return newModel;
 			}

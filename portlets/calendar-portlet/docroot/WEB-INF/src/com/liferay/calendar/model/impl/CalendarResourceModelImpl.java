@@ -234,7 +234,17 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setClassNameId(long classNameId) {
+		if (!_setOriginalClassNameId) {
+			_setOriginalClassNameId = true;
+
+			_originalClassNameId = _classNameId;
+		}
+
 		_classNameId = classNameId;
+	}
+
+	public long getOriginalClassNameId() {
+		return _originalClassNameId;
 	}
 
 	public long getClassPK() {
@@ -242,7 +252,17 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	}
 
 	public void setClassPK(long classPK) {
+		if (!_setOriginalClassPK) {
+			_setOriginalClassPK = true;
+
+			_originalClassPK = _classPK;
+		}
+
 		_classPK = classPK;
+	}
+
+	public long getOriginalClassPK() {
+		return _originalClassPK;
 	}
 
 	public String getClassUuid() {
@@ -502,8 +522,14 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		calendarResourceImpl.setClassNameId(getClassNameId());
 
+		calendarResourceModelImpl._originalClassNameId = calendarResourceModelImpl._classNameId;
+
+		calendarResourceModelImpl._setOriginalClassNameId = false;
 		calendarResourceImpl.setClassPK(getClassPK());
 
+		calendarResourceModelImpl._originalClassPK = calendarResourceModelImpl._classPK;
+
+		calendarResourceModelImpl._setOriginalClassPK = false;
 		calendarResourceImpl.setClassUuid(getClassUuid());
 
 		calendarResourceImpl.setName(getName());
@@ -674,7 +700,11 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private Date _createDate;
 	private Date _modifiedDate;
 	private long _classNameId;
+	private long _originalClassNameId;
+	private boolean _setOriginalClassNameId;
 	private long _classPK;
+	private long _originalClassPK;
+	private boolean _setOriginalClassPK;
 	private String _classUuid;
 	private String _name;
 	private String _description;

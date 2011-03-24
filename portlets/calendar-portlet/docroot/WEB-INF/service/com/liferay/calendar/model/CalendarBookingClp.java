@@ -535,14 +535,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_type = type;
 	}
 
-	public int getStatusId() {
-		return _statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		_statusId = statusId;
-	}
-
 	public boolean getRequired() {
 		return _required;
 	}
@@ -591,7 +583,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		clone.setDurationMinute(getDurationMinute());
 		clone.setRecurrence(getRecurrence());
 		clone.setType(getType());
-		clone.setStatusId(getStatusId());
 		clone.setRequired(getRequired());
 
 		return clone;
@@ -639,7 +630,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(47);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -685,8 +676,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getRecurrence());
 		sb.append(", type=");
 		sb.append(getType());
-		sb.append(", statusId=");
-		sb.append(getStatusId());
 		sb.append(", required=");
 		sb.append(getRequired());
 		sb.append("}");
@@ -695,7 +684,7 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(73);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.calendar.model.CalendarBooking");
@@ -790,10 +779,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		sb.append(getType());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>statusId</column-name><column-value><![CDATA[");
-		sb.append(getStatusId());
-		sb.append("]]></column-value></column>");
-		sb.append(
 			"<column><column-name>required</column-name><column-value><![CDATA[");
 		sb.append(getRequired());
 		sb.append("]]></column-value></column>");
@@ -826,6 +811,5 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private int _durationMinute;
 	private String _recurrence;
 	private String _type;
-	private int _statusId;
 	private boolean _required;
 }

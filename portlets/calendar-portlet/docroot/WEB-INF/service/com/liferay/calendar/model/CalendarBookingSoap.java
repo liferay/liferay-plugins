@@ -52,7 +52,6 @@ public class CalendarBookingSoap implements Serializable {
 		soapModel.setDurationMinute(model.getDurationMinute());
 		soapModel.setRecurrence(model.getRecurrence());
 		soapModel.setType(model.getType());
-		soapModel.setStatusId(model.getStatusId());
 		soapModel.setRequired(model.getRequired());
 
 		return soapModel;
@@ -284,14 +283,6 @@ public class CalendarBookingSoap implements Serializable {
 		_type = type;
 	}
 
-	public int getStatusId() {
-		return _statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		_statusId = statusId;
-	}
-
 	public boolean getRequired() {
 		return _required;
 	}
@@ -326,6 +317,5 @@ public class CalendarBookingSoap implements Serializable {
 	private int _durationMinute;
 	private String _recurrence;
 	private String _type;
-	private int _statusId;
 	private boolean _required;
 }

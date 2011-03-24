@@ -84,6 +84,39 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 
 		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
+
+		_addCaledarEventMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addCaledarEvent", long.class, java.util.Map.class,
+				java.util.Map.class, java.lang.String.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, boolean.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_addCalendarEventResourcesMethodKey17 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addCalendarEventResources",
+				com.liferay.calendar.model.CalendarEvent.class, boolean.class,
+				boolean.class);
+
+		_addCalendarEventResourcesMethodKey18 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addCalendarEventResources",
+				com.liferay.calendar.model.CalendarEvent.class,
+				java.lang.String[].class, java.lang.String[].class);
+
+		_updateCalendarEventMethodKey19 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCalendarEvent", long.class, java.util.Map.class,
+				java.util.Map.class, java.lang.String.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, int.class, int.class, int.class, int.class,
+				int.class, boolean.class, java.lang.String.class,
+				java.lang.String.class, int.class, int.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateCalendarEventResourcesMethodKey20 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCalendarEventResources",
+				com.liferay.calendar.model.CalendarEvent.class,
+				java.lang.String[].class, java.lang.String[].class);
 	}
 
 	public com.liferay.calendar.model.CalendarEvent addCalendarEvent(
@@ -167,7 +200,8 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 
 	public void deleteCalendarEvent(
 		com.liferay.calendar.model.CalendarEvent calendarEvent)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
 		MethodHandler methodHandler = new MethodHandler(_deleteCalendarEventMethodKey3,
 				ClpSerializer.translateInput(calendarEvent));
 
@@ -175,6 +209,10 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 			_classLoaderProxy.invoke(methodHandler);
 		}
 		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
@@ -522,6 +560,203 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 		}
 	}
 
+	public com.liferay.calendar.model.CalendarEvent addCaledarEvent(
+		long userId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, int durationHour, int durationMinute,
+		boolean allDay, java.lang.String recurrence, java.lang.String type,
+		int remindBy, int firstReminder, int secondReminder,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_addCaledarEventMethodKey16,
+				userId, ClpSerializer.translateInput(titleMap),
+				ClpSerializer.translateInput(descriptionMap),
+				ClpSerializer.translateInput(location), startDateMonth,
+				startDateDay, startDateYear, startDateHour, startDateMinute,
+				endDateMonth, endDateDay, endDateYear, endDateHour,
+				endDateMinute, durationHour, durationMinute, allDay,
+				ClpSerializer.translateInput(recurrence),
+				ClpSerializer.translateInput(type), remindBy, firstReminder,
+				secondReminder, ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarEvent)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void addCalendarEventResources(
+		com.liferay.calendar.model.CalendarEvent calendarEvent,
+		boolean addCommunityPermissions, boolean addGuestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_addCalendarEventResourcesMethodKey17,
+				ClpSerializer.translateInput(calendarEvent),
+				addCommunityPermissions, addGuestPermissions);
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public void addCalendarEventResources(
+		com.liferay.calendar.model.CalendarEvent calendarEvent,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_addCalendarEventResourcesMethodKey18,
+				ClpSerializer.translateInput(calendarEvent),
+				ClpSerializer.translateInput(communityPermissions),
+				ClpSerializer.translateInput(guestPermissions));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	public com.liferay.calendar.model.CalendarEvent updateCalendarEvent(
+		long calendarEventId,
+		java.util.Map<java.util.Locale, java.lang.String> titleMap,
+		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
+		java.lang.String location, int startDateMonth, int startDateDay,
+		int startDateYear, int startDateHour, int startDateMinute,
+		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
+		int endDateMinute, int durationHour, int durationMinute,
+		boolean allDay, java.lang.String recurrence, java.lang.String type,
+		int remindBy, int firstReminder, int secondReminder,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarEventMethodKey19,
+				calendarEventId, ClpSerializer.translateInput(titleMap),
+				ClpSerializer.translateInput(descriptionMap),
+				ClpSerializer.translateInput(location), startDateMonth,
+				startDateDay, startDateYear, startDateHour, startDateMinute,
+				endDateMonth, endDateDay, endDateYear, endDateHour,
+				endDateMinute, durationHour, durationMinute, allDay,
+				ClpSerializer.translateInput(recurrence),
+				ClpSerializer.translateInput(type), remindBy, firstReminder,
+				secondReminder, ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarEvent)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public void updateCalendarEventResources(
+		com.liferay.calendar.model.CalendarEvent calendarEvent,
+		java.lang.String[] communityPermissions,
+		java.lang.String[] guestPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarEventResourcesMethodKey20,
+				ClpSerializer.translateInput(calendarEvent),
+				ClpSerializer.translateInput(communityPermissions),
+				ClpSerializer.translateInput(guestPermissions));
+
+		try {
+			_classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -543,4 +778,9 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 	private MethodKey _updateCalendarEventMethodKey13;
 	private MethodKey _getBeanIdentifierMethodKey14;
 	private MethodKey _setBeanIdentifierMethodKey15;
+	private MethodKey _addCaledarEventMethodKey16;
+	private MethodKey _addCalendarEventResourcesMethodKey17;
+	private MethodKey _addCalendarEventResourcesMethodKey18;
+	private MethodKey _updateCalendarEventMethodKey19;
+	private MethodKey _updateCalendarEventResourcesMethodKey20;
 }

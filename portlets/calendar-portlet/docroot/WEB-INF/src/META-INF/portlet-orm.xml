@@ -43,7 +43,6 @@
 			<basic name="type">
 				<column name="TYPE_" />
 			</basic>
-			<basic name="statusId" />
 			<basic name="required" />
 			<transient name="descriptionMap" />
 			<transient name="nameMap" />

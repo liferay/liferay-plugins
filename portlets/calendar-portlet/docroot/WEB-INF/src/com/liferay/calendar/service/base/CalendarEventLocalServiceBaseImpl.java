@@ -103,10 +103,11 @@ public abstract class CalendarEventLocalServiceBaseImpl
 	 * Deletes the calendar event from the database. Also notifies the appropriate model listeners.
 	 *
 	 * @param calendarEvent the calendar event to delete
+	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void deleteCalendarEvent(CalendarEvent calendarEvent)
-		throws SystemException {
+		throws PortalException, SystemException {
 		calendarEventPersistence.remove(calendarEvent);
 	}
 

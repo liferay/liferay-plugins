@@ -21,7 +21,6 @@ create table CalendarBooking (
 	durationMinute INTEGER,
 	recurrence VARCHAR(75) null,
 	type_ VARCHAR(75) null,
-	statusId INTEGER,
 	required BOOLEAN
 );
 

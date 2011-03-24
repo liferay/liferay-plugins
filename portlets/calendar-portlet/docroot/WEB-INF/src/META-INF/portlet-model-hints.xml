@@ -28,7 +28,6 @@
 		<field name="durationMinute" type="int" />
 		<field name="recurrence" type="String" />
 		<field name="type" type="String" />
-		<field name="statusId" type="int" />
 		<field name="required" type="boolean" />
 	</model>
 	<model name="com.liferay.calendar.model.CalendarEvent">
