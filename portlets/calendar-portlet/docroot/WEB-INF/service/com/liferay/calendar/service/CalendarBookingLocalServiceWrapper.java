@@ -352,6 +352,14 @@ public class CalendarBookingLocalServiceWrapper
 			serviceContext);
 	}
 
+	public com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId, long calendarBookingId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.updateStatus(userId,
+			calendarBookingId, status);
+	}
+
 	public CalendarBookingLocalService getWrappedCalendarBookingLocalService() {
 		return _calendarBookingLocalService;
 	}

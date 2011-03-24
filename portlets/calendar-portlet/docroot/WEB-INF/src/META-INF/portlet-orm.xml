@@ -44,9 +44,16 @@
 				<column name="TYPE_" />
 			</basic>
 			<basic name="required" />
+			<basic name="status" />
+			<basic name="statusByUserId" />
+			<basic name="statusByUserName" />
+			<basic name="statusDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<transient name="descriptionMap" />
 			<transient name="nameMap" />
 			<transient name="primaryKey" />
+			<transient name="statusByUserUuid" />
 			<transient name="titleMap" />
 			<transient name="userUuid" />
 		</attributes>

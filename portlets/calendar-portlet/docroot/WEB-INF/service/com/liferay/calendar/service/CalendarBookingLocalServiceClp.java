@@ -135,6 +135,9 @@ public class CalendarBookingLocalServiceClp
 		_updateCalendarBookingsMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarBookings", long.class,
 				com.liferay.portal.service.ServiceContext.class);
+
+		_updateStatusMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateStatus", long.class, long.class, int.class);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
@@ -944,6 +947,39 @@ public class CalendarBookingLocalServiceClp
 		}
 	}
 
+	public com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId, long calendarBookingId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey28,
+				userId, calendarBookingId, status);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
 	public ClassLoaderProxy getClassLoaderProxy() {
 		return _classLoaderProxy;
 	}
@@ -977,4 +1013,5 @@ public class CalendarBookingLocalServiceClp
 	private MethodKey _updateCalendarBookingMethodKey25;
 	private MethodKey _updateCalendarBookingMethodKey26;
 	private MethodKey _updateCalendarBookingsMethodKey27;
+	private MethodKey _updateStatusMethodKey28;
 }

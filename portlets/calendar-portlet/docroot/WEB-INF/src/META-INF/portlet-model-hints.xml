@@ -29,6 +29,10 @@
 		<field name="recurrence" type="String" />
 		<field name="type" type="String" />
 		<field name="required" type="boolean" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.calendar.model.CalendarEvent">
 		<field name="uuid" type="String" />

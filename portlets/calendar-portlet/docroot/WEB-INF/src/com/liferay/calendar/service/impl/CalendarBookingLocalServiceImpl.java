@@ -19,6 +19,8 @@ import com.liferay.calendar.model.CalendarEvent;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarUtil;
+import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -31,6 +33,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -86,8 +89,15 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setRecurrence(calendarEvent.getRecurrence());
 		calendarBooking.setType(calendarEvent.getType());
 		calendarBooking.setRequired(required);
+		calendarBooking.setStatus(WorkflowConstants.STATUS_DRAFT);
+		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 		calendarBookingPersistence.update(calendarBooking, false);
+
+		// Workflow
+
+		calendarBookingApprovalWorkflow.startWorkflow(
+			userId, calendarBookingId);
 
 		return calendarBooking;
 	}
@@ -245,6 +255,42 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
+	public CalendarBooking updateStatus(
+			long userId, long calendarBookingId, int status)
+		throws PortalException, SystemException {
+
+		Date now = new Date();
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		CalendarEvent event = calendarEventLocalService.getCalendarEvent(
+			calendarBooking.getCalendarEventId());
+
+		// If is the owner of the event cancel the event
+
+		if ((userId == event.getUserId()) &&
+			(status == WorkflowConstants.STATUS_DENIED)) {
+
+			calendarEventLocalService.deleteCalendarEvent(
+				calendarBooking.getCalendarEventId());
+		}
+		else {
+			calendarBooking.setModifiedDate(now);
+			calendarBooking.setStatus(status);
+			calendarBooking.setStatusDate(new Date());
+			calendarBooking.setStatusByUserId(userId);
+
+			User user = userLocalService.getUser(userId);
+			calendarBooking.setStatusByUserName(user.getFullName());
+
+			calendarBookingPersistence.update(calendarBooking, false);
+		}
+
+		return calendarBooking;
+	}
+
+
 	protected DynamicQuery buildDynamicQuery(
 		long calendarResourceId, String title, String description, String type,
 		boolean andOperator) {
@@ -297,5 +343,8 @@ public class CalendarBookingLocalServiceImpl
 
 		return dynamicQuery.add(junction);
 	}
+
+	@BeanReference(type = CalendarBookingApprovalWorkflow.class)
+	protected CalendarBookingApprovalWorkflow calendarBookingApprovalWorkflow;
 
 }

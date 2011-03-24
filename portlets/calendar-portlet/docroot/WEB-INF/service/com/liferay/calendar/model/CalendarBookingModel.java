@@ -601,6 +601,111 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	 */
 	public void setRequired(boolean required);
 
+	/**
+	 * Gets the status of this calendar booking.
+	 *
+	 * @return the status of this calendar booking
+	 */
+	public int getStatus();
+
+	/**
+	 * Sets the status of this calendar booking.
+	 *
+	 * @param status the status of this calendar booking
+	 */
+	public void setStatus(int status);
+
+	/**
+	 * Gets the status by user ID of this calendar booking.
+	 *
+	 * @return the status by user ID of this calendar booking
+	 */
+	public long getStatusByUserId();
+
+	/**
+	 * Sets the status by user ID of this calendar booking.
+	 *
+	 * @param statusByUserId the status by user ID of this calendar booking
+	 */
+	public void setStatusByUserId(long statusByUserId);
+
+	/**
+	 * Gets the status by user uuid of this calendar booking.
+	 *
+	 * @return the status by user uuid of this calendar booking
+	 * @throws SystemException if a system exception occurred
+	 */
+	public String getStatusByUserUuid() throws SystemException;
+
+	/**
+	 * Sets the status by user uuid of this calendar booking.
+	 *
+	 * @param statusByUserUuid the status by user uuid of this calendar booking
+	 */
+	public void setStatusByUserUuid(String statusByUserUuid);
+
+	/**
+	 * Gets the status by user name of this calendar booking.
+	 *
+	 * @return the status by user name of this calendar booking
+	 */
+	@AutoEscape
+	public String getStatusByUserName();
+
+	/**
+	 * Sets the status by user name of this calendar booking.
+	 *
+	 * @param statusByUserName the status by user name of this calendar booking
+	 */
+	public void setStatusByUserName(String statusByUserName);
+
+	/**
+	 * Gets the status date of this calendar booking.
+	 *
+	 * @return the status date of this calendar booking
+	 */
+	public Date getStatusDate();
+
+	/**
+	 * Sets the status date of this calendar booking.
+	 *
+	 * @param statusDate the status date of this calendar booking
+	 */
+	public void setStatusDate(Date statusDate);
+
+	/**
+	 * @deprecated {@link #isApproved}
+	 */
+	public boolean getApproved();
+
+	/**
+	 * Determines if this calendar booking is approved.
+	 *
+	 * @return <code>true</code> if this calendar booking is approved; <code>false</code> otherwise
+	 */
+	public boolean isApproved();
+
+	/**
+	 * Determines if this calendar booking is a draft.
+	 *
+	 * @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
+	 */
+	public boolean isDraft();
+
+	/**
+	 * Determines if this calendar booking is expired.
+	 *
+	 * @return <code>true</code> if this calendar booking is expired; <code>false</code> otherwise
+	 */
+	public boolean isExpired();
+
+	/**
+	 * Determines if this calendar booking is pending.
+	 *
+	 * @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
+	 */
+	public boolean isPending();
+
 	public boolean isNew();
 
 	public void setNew(boolean n);

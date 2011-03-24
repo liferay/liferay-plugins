@@ -21,7 +21,11 @@ create table CalendarBooking (
 	durationMinute INTEGER,
 	recurrence VARCHAR(75) null,
 	type_ VARCHAR(75) null,
-	required BOOLEAN
+	required BOOLEAN,
+	status INTEGER,
+	statusByUserId LONG,
+	statusByUserName VARCHAR(75) null,
+	statusDate DATE null
 );
 
 create table CalendarEvent (

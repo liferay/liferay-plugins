@@ -53,6 +53,10 @@ public class CalendarBookingSoap implements Serializable {
 		soapModel.setRecurrence(model.getRecurrence());
 		soapModel.setType(model.getType());
 		soapModel.setRequired(model.getRequired());
+		soapModel.setStatus(model.getStatus());
+		soapModel.setStatusByUserId(model.getStatusByUserId());
+		soapModel.setStatusByUserName(model.getStatusByUserName());
+		soapModel.setStatusDate(model.getStatusDate());
 
 		return soapModel;
 	}
@@ -295,6 +299,38 @@ public class CalendarBookingSoap implements Serializable {
 		_required = required;
 	}
 
+	public int getStatus() {
+		return _status;
+	}
+
+	public void setStatus(int status) {
+		_status = status;
+	}
+
+	public long getStatusByUserId() {
+		return _statusByUserId;
+	}
+
+	public void setStatusByUserId(long statusByUserId) {
+		_statusByUserId = statusByUserId;
+	}
+
+	public String getStatusByUserName() {
+		return _statusByUserName;
+	}
+
+	public void setStatusByUserName(String statusByUserName) {
+		_statusByUserName = statusByUserName;
+	}
+
+	public Date getStatusDate() {
+		return _statusDate;
+	}
+
+	public void setStatusDate(Date statusDate) {
+		_statusDate = statusDate;
+	}
+
 	private String _uuid;
 	private long _calendarBookingId;
 	private long _groupId;
@@ -318,4 +354,8 @@ public class CalendarBookingSoap implements Serializable {
 	private String _recurrence;
 	private String _type;
 	private boolean _required;
+	private int _status;
+	private long _statusByUserId;
+	private String _statusByUserName;
+	private Date _statusDate;
 }

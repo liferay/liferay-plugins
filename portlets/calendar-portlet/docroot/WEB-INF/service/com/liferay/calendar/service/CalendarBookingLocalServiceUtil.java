@@ -370,6 +370,13 @@ public class CalendarBookingLocalServiceUtil {
 		getService().updateCalendarBookings(calendarEventId, serviceContext);
 	}
 
+	public static com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId, long calendarBookingId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateStatus(userId, calendarBookingId, status);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

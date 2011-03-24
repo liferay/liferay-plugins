@@ -757,6 +757,141 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		_calendarBooking.setRequired(required);
 	}
 
+	/**
+	* Gets the status of this calendar booking.
+	*
+	* @return the status of this calendar booking
+	*/
+	public int getStatus() {
+		return _calendarBooking.getStatus();
+	}
+
+	/**
+	* Sets the status of this calendar booking.
+	*
+	* @param status the status of this calendar booking
+	*/
+	public void setStatus(int status) {
+		_calendarBooking.setStatus(status);
+	}
+
+	/**
+	* Gets the status by user ID of this calendar booking.
+	*
+	* @return the status by user ID of this calendar booking
+	*/
+	public long getStatusByUserId() {
+		return _calendarBooking.getStatusByUserId();
+	}
+
+	/**
+	* Sets the status by user ID of this calendar booking.
+	*
+	* @param statusByUserId the status by user ID of this calendar booking
+	*/
+	public void setStatusByUserId(long statusByUserId) {
+		_calendarBooking.setStatusByUserId(statusByUserId);
+	}
+
+	/**
+	* Gets the status by user uuid of this calendar booking.
+	*
+	* @return the status by user uuid of this calendar booking
+	* @throws SystemException if a system exception occurred
+	*/
+	public java.lang.String getStatusByUserUuid()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getStatusByUserUuid();
+	}
+
+	/**
+	* Sets the status by user uuid of this calendar booking.
+	*
+	* @param statusByUserUuid the status by user uuid of this calendar booking
+	*/
+	public void setStatusByUserUuid(java.lang.String statusByUserUuid) {
+		_calendarBooking.setStatusByUserUuid(statusByUserUuid);
+	}
+
+	/**
+	* Gets the status by user name of this calendar booking.
+	*
+	* @return the status by user name of this calendar booking
+	*/
+	public java.lang.String getStatusByUserName() {
+		return _calendarBooking.getStatusByUserName();
+	}
+
+	/**
+	* Sets the status by user name of this calendar booking.
+	*
+	* @param statusByUserName the status by user name of this calendar booking
+	*/
+	public void setStatusByUserName(java.lang.String statusByUserName) {
+		_calendarBooking.setStatusByUserName(statusByUserName);
+	}
+
+	/**
+	* Gets the status date of this calendar booking.
+	*
+	* @return the status date of this calendar booking
+	*/
+	public java.util.Date getStatusDate() {
+		return _calendarBooking.getStatusDate();
+	}
+
+	/**
+	* Sets the status date of this calendar booking.
+	*
+	* @param statusDate the status date of this calendar booking
+	*/
+	public void setStatusDate(java.util.Date statusDate) {
+		_calendarBooking.setStatusDate(statusDate);
+	}
+
+	/**
+	* @deprecated {@link #isApproved}
+	*/
+	public boolean getApproved() {
+		return _calendarBooking.getApproved();
+	}
+
+	/**
+	* Determines if this calendar booking is approved.
+	*
+	* @return <code>true</code> if this calendar booking is approved; <code>false</code> otherwise
+	*/
+	public boolean isApproved() {
+		return _calendarBooking.isApproved();
+	}
+
+	/**
+	* Determines if this calendar booking is a draft.
+	*
+	* @return <code>true</code> if this calendar booking is a draft; <code>false</code> otherwise
+	*/
+	public boolean isDraft() {
+		return _calendarBooking.isDraft();
+	}
+
+	/**
+	* Determines if this calendar booking is expired.
+	*
+	* @return <code>true</code> if this calendar booking is expired; <code>false</code> otherwise
+	*/
+	public boolean isExpired() {
+		return _calendarBooking.isExpired();
+	}
+
+	/**
+	* Determines if this calendar booking is pending.
+	*
+	* @return <code>true</code> if this calendar booking is pending; <code>false</code> otherwise
+	*/
+	public boolean isPending() {
+		return _calendarBooking.isPending();
+	}
+
 	public boolean isNew() {
 		return _calendarBooking.isNew();
 	}
@@ -817,6 +952,12 @@ public class CalendarBookingWrapper implements CalendarBooking {
 
 	public java.lang.String toXmlString() {
 		return _calendarBooking.toXmlString();
+	}
+
+	public com.liferay.calendar.model.CalendarResource getCalendarResource()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getCalendarResource();
 	}
 
 	public CalendarBooking getWrappedCalendarBooking() {
