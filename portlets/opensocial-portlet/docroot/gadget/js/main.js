@@ -468,8 +468,8 @@ AUI().add(
 		Liferay.detach = function(topic, fn) {
 			var handle = topic;
 
-			if (Lang.isObject(eventType)) {
-				fn = type.sub.fn;
+			if (Lang.isObject(handle)) {
+				fn = handle.sub.fn;
 
 				topic = handle.evt.type;
 			}
