@@ -57,7 +57,6 @@ public class CalendarEventLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
-		Date now = new Date();
 
 		if (allDay) {
 			startDateHour = 0;
@@ -68,16 +67,17 @@ public class CalendarEventLocalServiceImpl
 			durationMinute = 59;
 		}
 
-		validate(
-			titleMap, startDateMonth, startDateDay, startDateYear, endDateMonth,
-			endDateDay, endDateYear, durationHour, durationMinute, allDay);
-
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, TimeZoneUtil.getDefault(), null);
 		Date endDate = PortalUtil.getDate(
 			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
 			TimeZoneUtil.getDefault(), null);
+		Date now = new Date();
+
+		validate(
+			titleMap, startDateMonth, startDateDay, startDateYear, endDateMonth,
+			endDateDay, endDateYear, durationHour, durationMinute, allDay);
 
 		long calendarEventId = counterLocalService.increment();
 
@@ -165,7 +165,13 @@ public class CalendarEventLocalServiceImpl
 
 		// Calendar bookings
 
-		deleteCalendarBookings(calendarEvent);
+		List<CalendarBooking> calendarBookings =
+			calendarBookingPersistence.findByCalendarEventId(
+				calendarEvent.getCalendarEventId());
+
+		for (CalendarBooking calendarBooking : calendarBookings) {
+			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
+		}
 	}
 
 	public void deleteCalendarEvent(long calendarEventId)
@@ -205,16 +211,16 @@ public class CalendarEventLocalServiceImpl
 			durationMinute = 59;
 		}
 
-		validate(
-			titleMap, startDateMonth, startDateDay, startDateYear, endDateMonth,
-			endDateDay, endDateYear, durationHour, durationMinute, allDay);
-
 		Date startDate = PortalUtil.getDate(
 			startDateMonth, startDateDay, startDateYear, startDateHour,
 			startDateMinute, TimeZoneUtil.getDefault(), null);
 		Date endDate = PortalUtil.getDate(
 			endDateMonth, endDateDay, endDateYear, endDateHour, endDateMinute,
 			TimeZoneUtil.getDefault(), null);
+
+		validate(
+			titleMap, startDateMonth, startDateDay, startDateYear, endDateMonth,
+			endDateDay, endDateYear, durationHour, durationMinute, allDay);
 
 		CalendarEvent calendarEvent = calendarEventPersistence.findByPrimaryKey(
 			calendarEventId);
@@ -263,18 +269,6 @@ public class CalendarEventLocalServiceImpl
 			calendarEvent.getCompanyId(), calendarEvent.getGroupId(),
 			CalendarEvent.class.getName(), calendarEvent.getCalendarEventId(),
 			communityPermissions, guestPermissions);
-	}
-
-	protected void deleteCalendarBookings(CalendarEvent calendarEvent)
-		throws PortalException, SystemException {
-
-		List<CalendarBooking> calendarBookings =
-			calendarBookingPersistence.findByCalendarEventId(
-				calendarEvent.getCalendarEventId());
-
-		for (CalendarBooking calendarBooking : calendarBookings) {
-			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
-		}
 	}
 
 	protected void validate(

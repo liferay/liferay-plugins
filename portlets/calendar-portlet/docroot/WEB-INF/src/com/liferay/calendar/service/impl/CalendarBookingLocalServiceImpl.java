@@ -93,7 +93,7 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	public void deleteCalendarBooking(CalendarBooking calendarBooking)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		calendarBookingPersistence.remove(calendarBooking);
 	}
@@ -124,14 +124,12 @@ public class CalendarBookingLocalServiceImpl
 			classNameId, classPK, start, end, orderByComparator);
 	}
 
-	public int getCalendarBookingsCount(
-			String className, long classPK)
+	public int getCalendarBookingsCount(String className, long classPK)
 		throws SystemException {
 
 		long classNameId = PortalUtil.getClassNameId(className);
 
-		return calendarBookingPersistence.countByC_C(
-			classNameId, classPK);
+		return calendarBookingPersistence.countByC_C(classNameId, classPK);
 	}
 
 	public List<CalendarBooking> getCalendarEventCalendarBookings(
