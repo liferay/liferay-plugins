@@ -99,6 +99,10 @@
 			<order-column name="startDate" />
 			<order-column name="title" case-sensitive="false" />
 		</order>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
 	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="false">
 
@@ -156,11 +160,16 @@
 			<finder-column name="name" comparator="LIKE" />
 			<finder-column name="active" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
 	<exceptions>
 		<exception>CalendarEventDuration</exception>
 		<exception>CalendarEventEndDate</exception>
 		<exception>CalendarEventStartDate</exception>
 		<exception>CalendarEventTitle</exception>
+		<exception>DuplicateCalendarResource</exception>
 	</exceptions>
 </service-builder>

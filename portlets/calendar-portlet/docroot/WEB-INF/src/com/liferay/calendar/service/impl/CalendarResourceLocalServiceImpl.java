@@ -14,6 +14,7 @@
 
 package com.liferay.calendar.service.impl;
 
+import com.liferay.calendar.DuplicateCalendarResourceException;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarResourceLocalServiceBaseImpl;
@@ -27,11 +28,15 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 
@@ -53,11 +58,30 @@ public class CalendarResourceLocalServiceImpl
 			boolean active, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		if (Validator.isNull(className)) {
+			className = CalendarResource.class.getName();
+		}
+
+		long classNameId = PortalUtil.getClassNameId(className);
+
+		if (hasCalendarResource(classNameId, classPK)) {
+			throw new DuplicateCalendarResourceException(
+				"Cannot add the same resource: " + className + " " + classPK);
+		}
+
+		if (isGlobalResource(className)) {
+			long globalUserId = getGlobalResourceUserId(
+				className, classPK);
+
+			if (globalUserId > 0) {
+				userId = globalUserId;
+			}
+		}
+
 		// Calendar resource
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
-		long classNameId = PortalUtil.getClassNameId(className);
 		Date now = new Date();
 
 		long calendarResourceId = counterLocalService.increment();
@@ -69,7 +93,14 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setGroupId(groupId);
 		calendarResource.setCompanyId(user.getCompanyId());
 		calendarResource.setUserId(user.getUserId());
-		calendarResource.setUserName(user.getFullName());
+
+		String userName = user.getFullName();
+
+		if (user.isDefaultUser()) {
+			userName = user.getScreenName();
+		}
+
+		calendarResource.setUserName(userName);
 		calendarResource.setCreateDate(serviceContext.getCreateDate(now));
 		calendarResource.setModifiedDate(serviceContext.getModifiedDate(now));
 		calendarResource.setClassNameId(classNameId);
@@ -77,6 +108,7 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setNameMap(nameMap);
 		calendarResource.setDescriptionMap(descriptionMap);
 		calendarResource.setActive(active);
+		calendarResource.setExpandoBridgeAttributes(serviceContext);
 
 		calendarResourcePersistence.update(calendarResource, false);
 
@@ -128,6 +160,12 @@ public class CalendarResourceLocalServiceImpl
 		// Calendar resource
 
 		calendarResourcePersistence.remove(calendarResource);
+
+		// Expando
+
+		expandoValueLocalService.deleteValues(
+			CalendarResource.class.getName(),
+			calendarResource.getCalendarResourceId());
 
 		// Resources
 
@@ -272,6 +310,8 @@ public class CalendarResourceLocalServiceImpl
 		calendarResource.setDescriptionMap(descriptionMap);
 		calendarResource.setActive(active);
 
+		calendarResource.setExpandoBridgeAttributes(serviceContext);
+
 		calendarResourcePersistence.update(calendarResource, false);
 
 		// Resources
@@ -377,4 +417,37 @@ public class CalendarResourceLocalServiceImpl
 		}
 	}
 
+	protected long getGlobalResourceUserId(String className, long classPK)
+		throws PortalException, SystemException {
+
+		long userId = 0;
+
+		if (className.equals(Group.class.getName())) {
+			Group group = GroupLocalServiceUtil.getGroup(classPK);
+
+			userId = group.getCreatorUserId();
+		}
+		else if (className.equals(User.class.getName())) {
+			userId = classPK;
+		}
+
+		return userId;
+	}
+
+	protected boolean hasCalendarResource(long classNameId, long classPK)
+		throws SystemException {
+
+		int count = calendarResourcePersistence.countByC_C(
+			classNameId, classPK);
+
+		return (count > 0);
+	}
+
+	protected boolean isGlobalResource(String className) {
+		return (className.equals(User.class.getName()) ||
+				className.equals(Group.class.getName()));
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		CalendarResourceLocalServiceImpl.class);
 }

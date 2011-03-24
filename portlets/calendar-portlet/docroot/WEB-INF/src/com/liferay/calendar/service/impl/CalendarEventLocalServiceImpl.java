@@ -104,6 +104,7 @@ public class CalendarEventLocalServiceImpl
 		calendarEvent.setRemindBy(remindBy);
 		calendarEvent.setFirstReminder(firstReminder);
 		calendarEvent.setSecondReminder(secondReminder);
+		calendarEvent.setExpandoBridgeAttributes(serviceContext);
 
 		calendarEventPersistence.update(calendarEvent, false);
 
@@ -155,6 +156,12 @@ public class CalendarEventLocalServiceImpl
 		// Calendar event
 
 		calendarEventPersistence.remove(calendarEvent);
+
+		// Expando
+
+		expandoValueLocalService.deleteValues(
+			CalendarEvent.class.getName(),
+			calendarEvent.getCalendarEventId());
 
 		// Resources
 
@@ -239,6 +246,7 @@ public class CalendarEventLocalServiceImpl
 		calendarEvent.setRemindBy(remindBy);
 		calendarEvent.setFirstReminder(firstReminder);
 		calendarEvent.setSecondReminder(secondReminder);
+		calendarEvent.setExpandoBridgeAttributes(serviceContext);
 
 		calendarEventPersistence.update(calendarEvent, false);
 
