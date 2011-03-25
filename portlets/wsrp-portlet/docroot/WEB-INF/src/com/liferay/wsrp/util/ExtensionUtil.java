@@ -97,6 +97,14 @@ public class ExtensionUtil {
 		return messageElements;
 	}
 
+	public static String getNameAttribute(MessageElement messageElement) {
+		String prefix = (String)messageElement.getNamespacePrefixes().next();
+
+		String namespaceURI = messageElement.getNamespaceURI(prefix);
+
+		return messageElement.getAttributeNS(namespaceURI, NAME);
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(ExtensionUtil.class);
 
 }
