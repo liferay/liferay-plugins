@@ -137,7 +137,8 @@ public class CalendarBookingLocalServiceClp
 				com.liferay.portal.service.ServiceContext.class);
 
 		_updateStatusMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
-				"updateStatus", long.class, long.class, int.class);
+				"updateStatus", long.class, long.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
 	}
 
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
@@ -948,13 +949,15 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateStatus(
-		long userId, long calendarBookingId, int status)
+		long userId, long calendarBookingId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey28,
-				userId, calendarBookingId, status);
+				userId, calendarBookingId, status,
+				ClpSerializer.translateInput(serviceContext));
 
 		try {
 			returnObj = _classLoaderProxy.invoke(methodHandler);
