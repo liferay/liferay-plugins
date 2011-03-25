@@ -101,6 +101,13 @@
 		<delete file="velocity.log" quiet="true" />
 	</target>
 
+	<target name="build-lang">
+		<antcall target="build-lang-cmd">
+			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
+			<param name="lang.file" value="Language" />
+		</antcall>
+	</target>
+
 	<target name="build-lang-cmd">
 		<java
 			classname="com.liferay.portal.tools.LangBuilder"

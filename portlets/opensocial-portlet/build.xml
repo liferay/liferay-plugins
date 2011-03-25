@@ -5,13 +5,6 @@
 
 	<property name="original.war.file" value="shindig-server-2.0.2.war" />
 
-	<target name="build-lang">
-		<antcall target="build-lang-cmd">
-			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
-			<param name="lang.file" value="Language" />
-		</antcall>
-	</target>
-
 	<target name="merge">
 
 		<!-- Merge -->

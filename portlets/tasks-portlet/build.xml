@@ -2,11 +2,4 @@
 
 <project name="tasks-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
-
-	<target name="build-lang">
-		<antcall target="build-lang-cmd">
-			<param name="lang.dir" value="docroot/WEB-INF/src/content" />
-			<param name="lang.file" value="Language" />
-		</antcall>
-	</target>
 </project>
