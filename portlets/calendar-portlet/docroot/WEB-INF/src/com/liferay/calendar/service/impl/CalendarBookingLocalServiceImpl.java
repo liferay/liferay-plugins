@@ -259,37 +259,34 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarBookingId, int status)
 		throws PortalException, SystemException {
 
-		Date now = new Date();
-
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		CalendarEvent event = calendarEventLocalService.getCalendarEvent(
-			calendarBooking.getCalendarEventId());
+		CalendarEvent calendarEvent =
+			calendarEventLocalService.getCalendarEvent(
+				calendarBooking.getCalendarEventId());
 
-		// If is the owner of the event cancel the event
-
-		if ((userId == event.getUserId()) &&
+		if ((userId == calendarEvent.getUserId()) &&
 			(status == WorkflowConstants.STATUS_DENIED)) {
 
 			calendarEventLocalService.deleteCalendarEvent(
 				calendarBooking.getCalendarEventId());
 		}
 		else {
+			User user = userLocalService.getUser(userId);
+			Date now = new Date();
+
 			calendarBooking.setModifiedDate(now);
 			calendarBooking.setStatus(status);
-			calendarBooking.setStatusDate(new Date());
 			calendarBooking.setStatusByUserId(userId);
-
-			User user = userLocalService.getUser(userId);
 			calendarBooking.setStatusByUserName(user.getFullName());
+			calendarBooking.setStatusDate(now);
 
 			calendarBookingPersistence.update(calendarBooking, false);
 		}
 
 		return calendarBooking;
 	}
-
 
 	protected DynamicQuery buildDynamicQuery(
 		long calendarResourceId, String title, String description, String type,

@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -27,49 +27,53 @@ import com.liferay.portal.security.permission.PermissionChecker;
 public class CalendarResourcePermission {
 
 	public static void check(
-			PermissionChecker permissionChecker, CalendarResource resource,
-			String actionId)
+			PermissionChecker permissionChecker,
+			CalendarResource calendarResource, String actionId)
 		throws PortalException {
 
-		if (!contains(permissionChecker, resource, actionId)) {
+		if (!contains(permissionChecker, calendarResource, actionId)) {
 			throw new PrincipalException();
 		}
 	}
 
 	public static void check(
-			PermissionChecker permissionChecker, long resourceId,
+			PermissionChecker permissionChecker, long calendarResourceId,
 			String actionId)
 		throws PortalException, SystemException {
 
-		if (!contains(permissionChecker, resourceId, actionId)) {
+		if (!contains(permissionChecker, calendarResourceId, actionId)) {
 			throw new PrincipalException();
 		}
 	}
 
 	public static boolean contains(
-		PermissionChecker permissionChecker, CalendarResource resource,
+		PermissionChecker permissionChecker, CalendarResource calendarResource,
 		String actionId) {
 
 		if (permissionChecker.hasOwnerPermission(
-				resource.getCompanyId(), CalendarResource.class.getName(),
-				resource.getCalendarResourceId(), resource.getUserId(), actionId)) {
+				calendarResource.getCompanyId(),
+				CalendarResource.class.getName(),
+				calendarResource.getCalendarResourceId(),
+				calendarResource.getUserId(), actionId)) {
 
 			return true;
 		}
 
 		return permissionChecker.hasPermission(
-			resource.getGroupId(), CalendarResource.class.getName(),
-			resource.getCalendarResourceId(), actionId);
+			calendarResource.getGroupId(), CalendarResource.class.getName(),
+			calendarResource.getCalendarResourceId(), actionId);
 	}
 
 	public static boolean contains(
-			PermissionChecker permissionChecker, long resourceId,
+			PermissionChecker permissionChecker, long calendarResourceId,
 			String actionId)
 		throws PortalException, SystemException {
 
-		CalendarResource resource =
-			CalendarResourceLocalServiceUtil.getCalendarResource(resourceId);
+		CalendarResource calendarResource =
+			CalendarResourceLocalServiceUtil.getCalendarResource(
+				calendarResourceId);
 
-		return contains(permissionChecker, resource, actionId);
+		return contains(permissionChecker, calendarResource, actionId);
 	}
+
 }
