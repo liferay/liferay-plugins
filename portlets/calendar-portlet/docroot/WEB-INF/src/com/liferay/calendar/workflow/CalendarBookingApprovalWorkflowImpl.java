@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -18,10 +18,8 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarEvent;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
-import com.liferay.calendar.service.CalendarEventLocalServiceUtil;
-import com.liferay.calendar.service.permission.CalendarActionKeys;
 import com.liferay.calendar.service.permission.CalendarResourcePermission;
-import com.liferay.calendar.util.CalendarConstants;
+import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -34,72 +32,59 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public class CalendarBookingApprovalWorkflowImpl 
+public class CalendarBookingApprovalWorkflowImpl
 	implements CalendarBookingApprovalWorkflow {
-	
+
 	public Map<Long, List<String>> getActionNames(
-			PermissionChecker permissionChecker, Long[] bookingIds)
+			PermissionChecker permissionChecker, long[] calendarBookingIds)
 		throws PortalException, SystemException {
 
-		Map<Long, List<String>> map = new LinkedHashMap<Long, List<String>>();
+		Map<Long, List<String>> actionNames =
+			new LinkedHashMap<Long, List<String>>();
 
-		for (long bookingId : bookingIds) {
-			CalendarBooking booking =
-				CalendarBookingLocalServiceUtil.getCalendarBooking(bookingId);
+		for (long calendarBookingId : calendarBookingIds) {
+			CalendarBooking calendarBooking =
+				CalendarBookingLocalServiceUtil.getCalendarBooking(
+					calendarBookingId);
 
 			List<String> transitions = new ArrayList<String>();
 
 			if (CalendarResourcePermission.contains(
-					permissionChecker, booking.getCalendarResourceId(),
-					CalendarActionKeys.ACCEPT_BOOKING_EVENT)) {
+					permissionChecker, calendarBooking.getCalendarResourceId(),
+					ActionKeys.ACCEPT_BOOKING_EVENT)) {
 
-				if (booking.getStatus() !=
+				if (calendarBooking.getStatus() !=
 						CalendarBookingWorkflowConstants.STATUS_APPROVED) {
 
-					transitions.add(CalendarConstants.ACCEPT);
+					transitions.add("accept");
 				}
 
-				transitions.add(CalendarConstants.DECLINE);
+				transitions.add("decline");
 			}
 
-			map.put(bookingId, transitions);
+			actionNames.put(calendarBookingId, transitions);
 		}
 
-		return map;
-	}
-
-	public Map<Long, List<String>> getActionNames(
-			PermissionChecker permissionChecker, String assetType,
-			Long[] assetPrimaryKeys, boolean completed)
-		throws PortalException, SystemException {
-
-		return getActionNames(permissionChecker, assetPrimaryKeys);
+		return actionNames;
 	}
 
 	public void invokeTransition(
-			long userId, Long resourceBookingId, String transitionName)
+			long userId, long calendarBookingId, String transitionName)
 		throws PortalException, SystemException {
 
-		int statusId = CalendarBookingWorkflowConstants.toStatus(
-			transitionName);
+		int status = CalendarBookingWorkflowConstants.toStatus(transitionName);
 
-		CalendarBooking calendarBooking =
-			CalendarBookingLocalServiceUtil.getCalendarBooking(
-				resourceBookingId);
+		if (status == CalendarBookingWorkflowConstants.STATUS_PENDING) {
+			CalendarBooking calendarBooking =
+				CalendarBookingLocalServiceUtil.getCalendarBooking(
+					calendarBookingId);
 
-		CalendarEvent event = CalendarEventLocalServiceUtil.getCalendarEvent(
-			calendarBooking.getCalendarEventId());
-
-		if (statusId == CalendarBookingWorkflowConstants.STATUS_PENDING) {
-			if (checkAutoApprovePendingEventBooking(
-					userId, event, calendarBooking)) {
-
+			if (isAutoApproveCalendarBooking(userId, calendarBooking)) {
 				CalendarBookingLocalServiceUtil.updateStatus(
-					userId, resourceBookingId,
+					userId, calendarBookingId,
 					CalendarBookingWorkflowConstants.STATUS_APPROVED);
 			}
 			else {
-
 				CalendarBookingLocalServiceUtil.updateStatus(
 					userId, calendarBooking.getCalendarBookingId(),
 					CalendarBookingWorkflowConstants.STATUS_PENDING);
@@ -107,38 +92,42 @@ public class CalendarBookingApprovalWorkflowImpl
 		}
 		else {
 			CalendarBookingLocalServiceUtil.updateStatus(
-				userId, calendarBooking.getCalendarBookingId(), statusId);
+				userId, calendarBookingId, status);
 		}
 	}
 
-	public void invokeTransition(
-			long userId, String assetType, Long assetPrimaryKey,
-			String transitionName, String transitionDesc, boolean completed)
-		throws PortalException, SystemException{
-
-		invokeTransition(userId, assetPrimaryKey, transitionName);
-	}
-
-	public void startWorkflow(long userId, long bookingId)
+	public void startWorkflow(long userId, long calendarBookingId)
 		throws PortalException, SystemException {
 
 		invokeTransition(
-			userId, bookingId, CalendarBookingWorkflowConstants.LABEL_PENDING);
+			userId, calendarBookingId,
+			CalendarBookingWorkflowConstants.LABEL_PENDING);
 	}
 
-	protected boolean checkAutoApprovePendingEventBooking(
-			long userId, CalendarEvent calendarEvent,
-			CalendarBooking calendarBooking)
+	protected boolean isAutoApproveCalendarBooking(
+			long userId, CalendarBooking calendarBooking)
 		throws PortalException, SystemException {
 
-		// Auto approve pending events when userId is the
-		// calendarEvent owner userId or the calendarResource ownerId
+		if (calendarBooking.getStatus() ==
+				CalendarBookingWorkflowConstants.STATUS_DENIED) {
+
+			return false;
+		}
+
+		CalendarEvent calendarEvent = calendarBooking.getCalendarEvent();
+
+		if (userId != calendarEvent.getUserId()) {
+			return false;
+		}
+
 		CalendarResource calendarResource =
 			calendarBooking.getCalendarResource();
 
-		return ((userId == calendarEvent.getUserId()) &&
-				(userId == calendarResource.getUserId()) &&
-				(calendarBooking.getStatus() !=
-					CalendarBookingWorkflowConstants.STATUS_DENIED));
+		if (userId != calendarResource.getUserId()) {
+			return false;
+		}
+
+		return true;
 	}
+
 }
