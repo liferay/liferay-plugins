@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<c:if test="<%= themeDisplay.isSignedIn() && !(BrowserSnifferUtil.isMobile(request) && BrowserSnifferUtil.isIe(request) && (BrowserSnifferUtil.getMajorVersion(request) < 7)) %>">
+<c:if test="<%= themeDisplay.isSignedIn() && !(BrowserSnifferUtil.isIe(request) && (BrowserSnifferUtil.getMajorVersion(request) < 7)) && !BrowserSnifferUtil.isMobile(request) %>">
 
 	<%
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
