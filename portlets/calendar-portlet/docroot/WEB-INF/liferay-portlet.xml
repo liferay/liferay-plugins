@@ -4,6 +4,8 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
+		<custom-attributes-display>com.liferay.calendar.custom.CalendarEventCustomAttributesDisplay</custom-attributes-display>
+		<custom-attributes-display>com.liferay.calendar.custom.CalendarResourceCustomAttributesDisplay</custom-attributes-display>
 		<css-class-wrapper>calendar-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
