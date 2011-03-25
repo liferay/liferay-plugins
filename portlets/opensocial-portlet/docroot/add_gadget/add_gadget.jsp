@@ -34,8 +34,6 @@
 		function() {
 			var Layout = Liferay.Layout;
 
-			var placeHolder = A.Node.create('<div class="loading-animation" />');
-
 			var layoutOptions = Layout.options;
 
 			var firstColumn = A.one(layoutOptions.dropNodes);
@@ -43,24 +41,24 @@
 			if (firstColumn) {
 				var dropColumn = firstColumn.one(layoutOptions.dropContainer);
 
+				var placeHolder = A.Node.create('<div class="loading-animation" />');
+
 				var referencePortlet = Layout.findReferencePortlet(dropColumn);
 
 				if (referencePortlet) {
 					referencePortlet.placeBefore(placeHolder);
 				}
-				else {
-					if (dropColumn) {
-						dropColumn.append(placeHolder);
-					}
+				else if (dropColumn) {
+					dropColumn.append(placeHolder);
 				}
 			}
 
 			Liferay.Service.OpenSocial.Gadget.addGadget(
 				{
 					companyId: themeDisplay.getCompanyId(),
-					url: A.one('#<portlet:namespace />url').get('value'),
+					url: A.one('#<portlet:namespace />url').val(),
 					portletCategoryNames: 'category.gadgets',
-					serviceContext: A.JSON.stringify({})
+					serviceContext: '{}'
 				},
 				function(response) {
 					if (response.exception) {
@@ -76,28 +74,27 @@
 						var errorNode = A.one('#<portlet:namespace />error');
 
 						errorNode.addClass('portlet-msg-error');
-						errorNode.set('innerHTML', errorMessage);
+						errorNode.html(errorMessage);
 
 						dropColumn.remove(placeHolder);
-
-						return;
 					}
+					else {
+						var gadget = response;
 
-					var gadget = response;
+						var portletId = 'OPENSOCIAL_' + gadget.uuid.replace(/-/g, '__');
 
-					var portletId = 'OPENSOCIAL_' + gadget.uuid.replace(/-/g, '__');
+						var portletOptions = {
+							onComplete: function(portletBoundary) {
+								Layout.syncDraggableClassUI();
+								Layout.updatePortletDropZones(portletBoundary);
+							},
+							placeHolder: placeHolder,
+							plid: themeDisplay.getPlid(),
+							portletId: portletId
+						};
 
-					var portletOptions = {
-						onComplete: function(portletBoundary) {
-							Layout.syncDraggableClassUI();
-							Layout.updatePortletDropZones(portletBoundary);
-						},
-						placeHolder: placeHolder,
-						plid: themeDisplay.getPlid(),
-						portletId: portletId
-					};
-
-					Liferay.Portlet.add(portletOptions);
+						Liferay.Portlet.add(portletOptions);
+					}
 				}
 			);
 		}

@@ -1,36 +1,35 @@
 (function(A) {
-	Liferay.namespace('OpenSocial');
+	var Lang = A.Lang;
+
+	var Dockbar = Liferay.Dockbar;
+
+	var OpenSocial = Liferay.namespace('OpenSocial');
+
+	var TPL_LIST_ITEM_GADGET = '<li class="aui-menu-item"><a href="javascript:;"><span><img alt="{0}" class="icon" src="/opensocial-portlet/icon.png" title="{0}"></span> {0}</a></li>';
 
 	Liferay.provide(
-		Liferay.OpenSocial,
+		OpenSocial,
 		'addMenuItem',
-		function(event) {
+		function() {
 			var moreApplicationsNode = A.one('li.add-application.last.more-applications');
 
-			if (!moreApplicationsNode) {
-				return;
+			if (moreApplicationsNode) {
+				var gadgetTPL = Lang.sub(TPL_LIST_ITEM_GADGET, [Liferay.Language.get('gadget')]);
+
+				var addGadgetNode = A.Node.create(gadgetTPL);
+
+				addGadgetNode.on('click', OpenSocial.addUnderlay, OpenSocial);
+
+				moreApplicationsNode.placeBefore(addGadgetNode);
+
+				Dockbar.addContent.get('contentBox').focusManager.refresh();
 			}
-
-			var gadget = Liferay.Language.get('gadget');
-
-			var addGadgetNode = A.Node.create('<li class="aui-menu-item"><a href="javascript:;"><span><img alt="' + gadget + '" class="icon" src="/opensocial-portlet/icon.png" title="' + gadget + '"></span> ' + gadget + '</a></li>');
-
-			addGadgetNode.on(
-				'click',
-				function() {
-					Liferay.OpenSocial.addUnderlay();
-				}
-			);
-
-			moreApplicationsNode.placeBefore(addGadgetNode);
-
-			Liferay.Dockbar.addContent.get('contentBox').focusManager.refresh();
 		},
 		['aui-base', 'liferay-language']
 	);
 
 	Liferay.provide(
-		Liferay.OpenSocial,
+		OpenSocial,
 		'addUnderlay',
 		function(event) {
 			var portletURL = Liferay.PortletURL.createRenderURL();
@@ -40,7 +39,7 @@
 
 			portletURL.setParameter('jspPage', '/add_gadget/add_gadget.jsp');
 
-			Liferay.Dockbar.addUnderlay(
+			Dockbar.addUnderlay(
 				{
 					io: {
 						uri: portletURL.toString()
@@ -50,15 +49,15 @@
 				}
 			);
 
-			Liferay.Dockbar.MenuManager.hideAll();
+			Dockbar.MenuManager.hideAll();
 		},
 		['liferay-portlet-url']
 	);
 
 	Liferay.after(
-	'initDockbar',
-	function(event) {
-		Liferay.OpenSocial.addMenuItem();
-	}
-);
+		'initDockbar',
+		function(event) {
+			OpenSocial.addMenuItem();
+		}
+	);
 })(AUI());
