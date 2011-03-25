@@ -17,6 +17,7 @@ package com.liferay.calendar.workflow;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
 import java.util.Map;
@@ -31,10 +32,12 @@ public interface CalendarBookingApprovalWorkflow {
 		throws PortalException, SystemException;
 
 	public void invokeTransition(
-			long userId, long calendarBookingId, String transitionName)
+			long userId, long calendarBookingId, String transitionName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException;
 
-	public void startWorkflow(long userId, long calendarBookingId)
+	public void startWorkflow(
+			long userId, long calendarBookingId, ServiceContext serviceContext)
 		throws PortalException, SystemException;
 
 }

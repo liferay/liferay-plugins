@@ -23,6 +23,7 @@ import com.liferay.calendar.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ServiceContext;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -69,7 +70,8 @@ public class CalendarBookingApprovalWorkflowImpl
 	}
 
 	public void invokeTransition(
-			long userId, long calendarBookingId, String transitionName)
+			long userId, long calendarBookingId, String transitionName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		int status = CalendarBookingWorkflowConstants.toStatus(transitionName);
@@ -82,26 +84,29 @@ public class CalendarBookingApprovalWorkflowImpl
 			if (isAutoApproveCalendarBooking(userId, calendarBooking)) {
 				CalendarBookingLocalServiceUtil.updateStatus(
 					userId, calendarBookingId,
-					CalendarBookingWorkflowConstants.STATUS_APPROVED);
+					CalendarBookingWorkflowConstants.STATUS_APPROVED,
+					serviceContext);
 			}
 			else {
 				CalendarBookingLocalServiceUtil.updateStatus(
 					userId, calendarBooking.getCalendarBookingId(),
-					CalendarBookingWorkflowConstants.STATUS_PENDING);
+					CalendarBookingWorkflowConstants.STATUS_PENDING,
+					serviceContext);
 			}
 		}
 		else {
 			CalendarBookingLocalServiceUtil.updateStatus(
-				userId, calendarBookingId, status);
+				userId, calendarBookingId, status, serviceContext);
 		}
 	}
 
-	public void startWorkflow(long userId, long calendarBookingId)
+	public void startWorkflow(
+			long userId, long calendarBookingId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		invokeTransition(
 			userId, calendarBookingId,
-			CalendarBookingWorkflowConstants.LABEL_PENDING);
+			CalendarBookingWorkflowConstants.LABEL_PENDING, serviceContext);
 	}
 
 	protected boolean isAutoApproveCalendarBooking(

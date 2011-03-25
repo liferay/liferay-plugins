@@ -90,14 +90,13 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setType(calendarEvent.getType());
 		calendarBooking.setRequired(required);
 		calendarBooking.setStatus(WorkflowConstants.STATUS_DRAFT);
-		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 		calendarBookingPersistence.update(calendarBooking, false);
 
 		// Workflow
 
 		calendarBookingApprovalWorkflow.startWorkflow(
-			userId, calendarBookingId);
+			userId, calendarBookingId, serviceContext);
 
 		return calendarBooking;
 	}
@@ -256,7 +255,8 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	public CalendarBooking updateStatus(
-			long userId, long calendarBookingId, int status)
+			long userId, long calendarBookingId, int status,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
@@ -269,18 +269,18 @@ public class CalendarBookingLocalServiceImpl
 		if ((userId == calendarEvent.getUserId()) &&
 			(status == WorkflowConstants.STATUS_DENIED)) {
 
-			calendarEventLocalService.deleteCalendarEvent(
-				calendarBooking.getCalendarEventId());
+			calendarEventLocalService.deleteCalendarEvent(calendarEvent);
 		}
 		else {
 			User user = userLocalService.getUser(userId);
 			Date now = new Date();
 
-			calendarBooking.setModifiedDate(now);
+			calendarBooking.setModifiedDate(
+				serviceContext.getModifiedDate(now));
 			calendarBooking.setStatus(status);
 			calendarBooking.setStatusByUserId(userId);
 			calendarBooking.setStatusByUserName(user.getFullName());
-			calendarBooking.setStatusDate(now);
+			calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 			calendarBookingPersistence.update(calendarBooking, false);
 		}
