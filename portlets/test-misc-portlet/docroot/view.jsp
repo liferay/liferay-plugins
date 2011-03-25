@@ -24,7 +24,15 @@ This is the <strong>Sample Test Portlet</strong>. This was made to test some por
 
 <br /><br />
 
-<strong>Portlet Response:</strong> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a> | <a href="<portlet:resourceURL id="logo.png" />">Download File</a>
+<strong>Portlet Response (ActionResponse, Normal State):</strong> <a href="<portlet:actionURL />">Download File</a>
+
+<br /><br />
+
+<strong>Portlet Response (ActionResponse, Exclusive State):</strong> <a href="<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" />">Download File</a>
+
+<br /><br />
+
+<strong>Portlet Response (ResourceResponse):</strong> <a href="<portlet:renderURL><portlet:param name="jspPage" value="/portlet_response/buffer_size.jsp" /></portlet:renderURL>">Buffer Size</a> | <a href="<portlet:resourceURL id="logo.png" />">Download File</a>
 
 <br /><br />
 

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.portlet.PortletRequestUtil;
 import com.liferay.util.servlet.PortletResponseUtil;
+import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,8 +38,12 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author Brian Wing Shun Chan
+ * @author Amos Fong
  */
 public class TestPortlet extends LiferayPortlet {
 
@@ -56,16 +61,35 @@ public class TestPortlet extends LiferayPortlet {
 		include(jspPage, renderRequest, renderResponse);
 	}
 
-	public void serveResource(
-			ResourceRequest renderRequest, ResourceResponse renderResponse)
+	public void processAction(
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		String fileName = renderRequest.getResourceID();
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			actionRequest);
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			actionResponse);
+
+		String fileName = "logo.png";
 		InputStream is = getPortletContext().getResourceAsStream(
 			"/WEB-INF/images/logo.png");
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
-		PortletResponseUtil.sendFile(renderResponse, fileName, is, contentType);
+		ServletResponseUtil.sendFile(
+			request, response, fileName, is, contentType);
+	}
+
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws IOException, PortletException {
+
+		String fileName = resourceRequest.getResourceID();
+		InputStream is = getPortletContext().getResourceAsStream(
+			"/WEB-INF/images/logo.png");
+		String contentType = MimeTypesUtil.getContentType(fileName);
+
+		PortletResponseUtil.sendFile(
+			resourceResponse, fileName, is, contentType);
 	}
 
 	public void uploadForm1(
