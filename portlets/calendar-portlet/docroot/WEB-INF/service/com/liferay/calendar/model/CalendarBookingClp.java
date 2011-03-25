@@ -589,6 +589,10 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		_statusDate = statusDate;
 	}
 
+	public com.liferay.calendar.model.CalendarEvent getCalendarEvent() {
+		throw new UnsupportedOperationException();
+	}
+
 	public com.liferay.calendar.model.CalendarResource getCalendarResource() {
 		throw new UnsupportedOperationException();
 	}

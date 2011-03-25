@@ -152,8 +152,8 @@ public class CalendarResourceLocalServiceClp
 
 		_updateCalendarResourceMethodKey30 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarResource", long.class, java.util.Map.class,
-				java.util.Map.class, java.lang.String.class, long.class,
-				boolean.class, com.liferay.portal.service.ServiceContext.class);
+				java.util.Map.class, boolean.class,
+				com.liferay.portal.service.ServiceContext.class);
 
 		_updateCalendarResourceResourcesMethodKey31 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarResourceResources",
@@ -1046,16 +1046,14 @@ public class CalendarResourceLocalServiceClp
 		long calendarResourceId,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
-		java.lang.String className, long classPK, boolean active,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		boolean active, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCalendarResourceMethodKey30,
 				calendarResourceId, ClpSerializer.translateInput(nameMap),
-				ClpSerializer.translateInput(descriptionMap),
-				ClpSerializer.translateInput(className), classPK, active,
+				ClpSerializer.translateInput(descriptionMap), active,
 				ClpSerializer.translateInput(serviceContext));
 
 		try {
