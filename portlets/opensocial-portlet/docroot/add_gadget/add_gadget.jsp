@@ -34,14 +34,14 @@
 		function() {
 			var Layout = Liferay.Layout;
 
+			var placeHolder = A.Node.create('<div class="loading-animation" />');
+
 			var layoutOptions = Layout.options;
 
 			var firstColumn = A.one(layoutOptions.dropNodes);
 
 			if (firstColumn) {
 				var dropColumn = firstColumn.one(layoutOptions.dropContainer);
-
-				var placeHolder = A.Node.create('<div class="loading-animation" />');
 
 				var referencePortlet = Layout.findReferencePortlet(dropColumn);
 
