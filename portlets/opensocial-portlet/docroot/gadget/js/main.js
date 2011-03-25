@@ -15,6 +15,8 @@ AUI().add(
 
 		var PREFIX = 'gadget:';
 
+		var STR_EMPTY = '';
+
 		var TPL_IFRAME = '<iframe id="{iframeId}" name="{iframeId}" class="' + CSS_CLASS_GADGET + '" src="about:blank" frameborder="no" scrolling="no" {height} {width}></iframe>';
 
 		var Gadget = A.Component.create(
@@ -25,7 +27,7 @@ AUI().add(
 
 				ATTRS: {
 					additionalParams: {
-						value: ''
+						value: STR_EMPTY
 					},
 					appId: {},
 					content: {},
@@ -101,18 +103,18 @@ AUI().add(
 
 						if (requiresPubsub == "true") {
 						    var iframeAttrs = {
-						    	className: CSS_CLASS_GADGET,
-							    frameborder: 'no',
-							    scrolling: 'no'
+								className: CSS_CLASS_GADGET,
+								frameborder: 'no',
+								scrolling: 'no'
 						    };
 
 						    if (height) {
-						    	iframeAttrs.height = height;
+								iframeAttrs.height = height;
 						    }
 
-						    if (width) {
-						    	iframeAttrs.width = width;
-						    }
+							if (width) {
+								iframeAttrs.width = width;
+							}
 
 							var container = gadgets.pubsub2router.hub.getContainer(iframeId);
 
@@ -120,7 +122,7 @@ AUI().add(
 								delete gadgets.pubsub2router.hub._containers[iframeId];
 							}
 
-							var container = new OpenAjax.hub.IframeContainer(
+							container = new OpenAjax.hub.IframeContainer(
 								gadgets.pubsub2router.hub,
 								iframeId,
 								{
@@ -142,12 +144,12 @@ AUI().add(
 							instance._iframe = container.getIframe();
 						}
 						else {
-					    	var iframe = A.substitute(
+							var iframe = A.substitute(
 								TPL_IFRAME,
 								{
-									height: (height ? 'height="' + height + '"' : ''),
+									height: (height ? 'height="' + height + '"' : STR_EMPTY),
 									iframeId: iframeId,
-									width: (width ? 'width="' + width + '"' : '')
+									width: (width ? 'width="' + width + '"' : STR_EMPTY)
 								}
 							);
 
@@ -205,7 +207,7 @@ AUI().add(
 							buffer.push('&up_' + encodeURIComponent(i) + '=' + encodeURIComponent(userPrefs[i]));
 						}
 
-						return buffer.join('');
+						return buffer.join(STR_EMPTY);
 					},
 
 					refresh: function() {
@@ -243,7 +245,7 @@ AUI().add(
 					_getIframeUrl: function(value) {
 						var instance = this;
 
-						var url = '';
+						var url = STR_EMPTY;
 
 						var urlData = {
 							aid: instance.get('appId'),
@@ -457,25 +459,27 @@ AUI().add(
 			id = String(id);
 
 			if (id.indexOf(GADGET_IFRAME_PREFIX) === 0) {
-				id = id.replace(GADGET_IFRAME_PREFIX, '');
+				id = id.replace(GADGET_IFRAME_PREFIX, STR_EMPTY);
 			}
 
 			return _instances[id];
 		};
 
 		Liferay._detachInitialFn = Liferay.detach;
+		Liferay._fireInitialFn = Liferay.fire;
+		Liferay._onInitialFn = Liferay.on;
 
 		Liferay.detach = function(topic, fn) {
 			var handle = topic;
 
-			if (Lang.isObject(handle)) {
+			if (handle && handle.detach) {
 				fn = handle.sub.fn;
 
 				topic = handle.evt.type;
 			}
 
 			if (containsString(topic, PREFIX)) {
-				var eventType = topic.replace(PREFIX, '');
+				var eventType = topic.replace(PREFIX, STR_EMPTY);
 
 				var eventMap = MAP[eventType];
 
@@ -489,31 +493,23 @@ AUI().add(
 			}
 
 			return Liferay._detachInitialFn.apply(Liferay, arguments);
-		}
-
-		Liferay._fireInitialFn = Liferay.fire;
+		};
 
 		Liferay.fire = function(topic, data) {
-			var eventType = topic;
-
 			if (containsString(topic, PREFIX)) {
-				eventType = topic.replace(PREFIX, '');
+				var eventType = topic.replace(PREFIX, STR_EMPTY);
 
 				gadgets.pubsub2router.hub.publish(eventType, data);
 			}
 
 			return Liferay._fireInitialFn.apply(Liferay, arguments);
-		}
-
-		Liferay._onInitialFn = Liferay.on;
+		};
 
 		Liferay.on = function(topic, fn) {
-			var eventType = topic;
-
 			var handle;
 
 			if (containsString(topic, PREFIX)) {
-				eventType = topic.replace(PREFIX, '');
+				var eventType = topic.replace(PREFIX, STR_EMPTY);
 
 				var eventMap = MAP[eventType] || {};
 
@@ -535,10 +531,8 @@ AUI().add(
 		var managedHub = new OpenAjax.hub.ManagedHub(
 			{
 				onPublish: function(topic, data, pcont, scont) {
-					var eventType;
-
 					if (!containsString(topic, PREFIX)) {
-						eventType = PREFIX + topic;
+						var eventType = PREFIX + topic;
 
 						Liferay._fireInitialFn(eventType, data);
 					}
@@ -547,18 +541,17 @@ AUI().add(
 				},
 
 				onSubscribe: Lang.emptyFnTrue,
-
 				onUnsubscribe: Lang.emptyFn
 			}
 		);
 
 		var inlineContainer = new OpenAjax.hub.InlineContainer(managedHub , "liferay",
 			{
-			  	Container: {
+				Container: {
 					onSecurityAlert: function(source, alertType) {},
 					onConnect: function(container) {},
 					onDisconnect: function(container) {}
-			  	}
+				}
 			}
 		);
 
@@ -641,6 +634,7 @@ AUI().add(
 				}
 			}
 		);
+
 		gadgets.rpc.register('set_title', Lang.emptyFn);
 		gadgets.rpc.register('requestSendMessage', Lang.emptyFn);
 
