@@ -71,12 +71,16 @@ public class TestPortlet extends LiferayPortlet {
 			actionResponse);
 
 		String fileName = "logo.png";
-		InputStream is = getPortletContext().getResourceAsStream(
+
+		PortletContext portletContext = getPortletContext();
+
+		InputStream inputStream = portletContext.getResourceAsStream(
 			"/WEB-INF/images/logo.png");
+
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		ServletResponseUtil.sendFile(
-			request, response, fileName, is, contentType);
+			request, response, fileName, inputStream, contentType);
 	}
 
 	public void serveResource(
@@ -84,12 +88,16 @@ public class TestPortlet extends LiferayPortlet {
 		throws IOException, PortletException {
 
 		String fileName = resourceRequest.getResourceID();
-		InputStream is = getPortletContext().getResourceAsStream(
+
+		InputStream inputStream = getPortletContext().getResourceAsStream(
 			"/WEB-INF/images/logo.png");
+
+		PortletContext portletContext = getPortletContext();
+
 		String contentType = MimeTypesUtil.getContentType(fileName);
 
 		PortletResponseUtil.sendFile(
-			resourceResponse, fileName, is, contentType);
+			resourceResponse, fileName, inputStream, contentType);
 	}
 
 	public void uploadForm1(
