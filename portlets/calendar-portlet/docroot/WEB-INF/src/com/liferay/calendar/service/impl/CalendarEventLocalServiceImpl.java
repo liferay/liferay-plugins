@@ -157,12 +157,6 @@ public class CalendarEventLocalServiceImpl
 
 		calendarEventPersistence.remove(calendarEvent);
 
-		// Expando
-
-		expandoValueLocalService.deleteValues(
-			CalendarEvent.class.getName(),
-			calendarEvent.getCalendarEventId());
-
 		// Resources
 
 		resourceLocalService.deleteResource(
@@ -179,6 +173,12 @@ public class CalendarEventLocalServiceImpl
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 		}
+
+		// Expando
+
+		expandoValueLocalService.deleteValues(
+			CalendarEvent.class.getName(),
+			calendarEvent.getCalendarEventId());
 	}
 
 	public void deleteCalendarEvent(long calendarEventId)
