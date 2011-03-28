@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import oasis.names.tc.wsrp.v2.types.Extension;
@@ -98,9 +99,11 @@ public class ExtensionUtil {
 	}
 
 	public static String getNameAttribute(MessageElement messageElement) {
-		String prefix = (String)messageElement.getNamespacePrefixes().next();
+		Iterator<String> itr = messageElement.getNamespacePrefixes();
 
-		String namespaceURI = messageElement.getNamespaceURI(prefix);
+		String namespacePrefix = itr.next();
+
+		String namespaceURI = messageElement.getNamespaceURI(namespacePrefix);
 
 		return messageElement.getAttributeNS(namespaceURI, NAME);
 	}
