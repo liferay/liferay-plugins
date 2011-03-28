@@ -4,18 +4,12 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/icon.png</icon>
 		<instanceable>false</instanceable>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>test-opensocial-pubsub-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<icon>/icon.png</icon>
 		<instanceable>false</instanceable>
-		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>test-opensocial-pubsub-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
