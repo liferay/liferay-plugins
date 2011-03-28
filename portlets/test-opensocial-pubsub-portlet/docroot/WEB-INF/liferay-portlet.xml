@@ -4,13 +4,9 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<instanceable>false</instanceable>
-		<css-class-wrapper>test-opensocial-pubsub-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<instanceable>false</instanceable>
-		<css-class-wrapper>test-opensocial-pubsub-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

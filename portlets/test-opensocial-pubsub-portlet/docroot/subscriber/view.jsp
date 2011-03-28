@@ -1,4 +1,4 @@
-<%
+<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,14 +12,13 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
+--%>
 
 <%@ include file="/init.jsp" %>
 
-<p>Subscriber portlet - test</p>
-
 <div>
 	<input id="<portlet:namespace />subscribe" type="button" value="Subscribe" />
+
 	<input id="<portlet:namespace />unsubscribe" type="button" value="Unsubscribe" />
 </div>
 
@@ -29,7 +28,7 @@
 	var topic;
 
 	function callback(topic, data, subscriberData) {
-		A.one('#<portlet:namespace />message').set('innerHTML', 'liferay message: ' + data + '<br/> liferay received at: ' + new Date().toString());
+		A.one('#<portlet:namespace />message').set('innerHTML', 'Message: ' + data + '<br />Received: ' + new Date().toString());
 	}
 
 	A.one('#<portlet:namespace />subscribe').on(

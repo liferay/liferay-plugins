@@ -1,4 +1,4 @@
-<%
+<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,14 +12,12 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-%>
+--%>
 
 <%@ include file="/init.jsp" %>
 
-<p>Publisher portlet - test</p>
-
 <div>
-	<input id="<portlet:namespace/>publish" type="button" value="Publish a random number" />
+	<input id="<portlet:namespace/>publish" type="button" value="Publish a Random Number" />
 </div>
 
 <div id="<portlet:namespace />message"></div>
