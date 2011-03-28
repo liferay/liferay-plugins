@@ -25,16 +25,16 @@
 <div id="<portlet:namespace />message"></div>
 
 <aui:script use="aui-base">
-	var topic;
+	var topic = null;
 
-	function callback(topic, data, subscriberData) {
+	function <portlet:namespace />callback(topic, data, subscriberData) {
 		A.one('#<portlet:namespace />message').set('innerHTML', 'Message: ' + data + '<br />Received: ' + new Date().toString());
 	}
 
 	A.one('#<portlet:namespace />subscribe').on(
 		'click',
 		function () {
-			topic = Liferay.on('gadget:org.apache.shindig.random-number', callback);
+			topic = Liferay.on('gadget:org.apache.shindig.random-number', <portlet:namespace />callback);
 		}
 	);
 
