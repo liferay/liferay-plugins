@@ -947,26 +947,26 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			junction = RestrictionsFactoryUtil.disjunction();
 		}
 
+		Map<String, String> terms = new HashMap<String, String>();
+
 		if (Validator.isNotNull(title)) {
-			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
-
-			for (String s : KnowledgeBaseUtil.splitKeywords(title)) {
-				String value = StringPool.PERCENT + s + StringPool.PERCENT;
-
-				disjunction.add(RestrictionsFactoryUtil.ilike("title", value));
-			}
-
-			junction.add(disjunction);
+			terms.put("title", title);
 		}
 
 		if (Validator.isNotNull(content)) {
+			terms.put("content", content);
+		}
+
+		for (Map.Entry<String, String> entry : terms.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
-			for (String s : KnowledgeBaseUtil.splitKeywords(content)) {
-				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+			for (String s1 : KnowledgeBaseUtil.splitKeywords(value)) {
+				String s2 = StringPool.PERCENT + s1 + StringPool.PERCENT;
 
-				disjunction.add(
-					RestrictionsFactoryUtil.ilike("content", value));
+				disjunction.add(RestrictionsFactoryUtil.ilike(key, s2));
 			}
 
 			junction.add(disjunction);
