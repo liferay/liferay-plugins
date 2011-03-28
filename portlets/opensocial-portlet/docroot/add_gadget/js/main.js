@@ -1,16 +1,24 @@
 (function(A) {
 	var Lang = A.Lang;
 
-	var Dockbar = Liferay.Dockbar;
-
+	var Dockbar;
+	
 	var OpenSocial = Liferay.namespace('OpenSocial');
 
 	var TPL_LIST_ITEM_GADGET = '<li class="aui-menu-item"><a href="javascript:;"><span><img alt="{0}" class="icon" src="/opensocial-portlet/icon.png" title="{0}"></span> {0}</a></li>';
 
+	function initDockbar() {
+		if (!Dockbar) {
+			Dockbar = Liferay.Dockbar;
+		}
+	}
+	
 	Liferay.provide(
 		OpenSocial,
 		'addMenuItem',
 		function() {
+			initDockbar();
+
 			var moreApplicationsNode = A.one('li.add-application.last.more-applications');
 
 			if (moreApplicationsNode) {
@@ -31,7 +39,7 @@
 	Liferay.provide(
 		OpenSocial,
 		'addUnderlay',
-		function(event) {
+		function(event) {			
 			var portletURL = Liferay.PortletURL.createRenderURL();
 
 			portletURL.setPortletId('3_WAR_opensocialportlet');
