@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.calendar.custom;
+package com.liferay.calendar;
 
 import com.liferay.calendar.model.CalendarEvent;
 import com.liferay.portal.theme.ThemeDisplay;
