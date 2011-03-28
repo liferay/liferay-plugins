@@ -4,7 +4,6 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/icon.png</icon>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.testmisc.messaging.TestSchedulerMessageListener</scheduler-event-listener-class>
 			<trigger>
