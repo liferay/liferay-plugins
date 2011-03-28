@@ -30,6 +30,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Knowledge Base</title>
 			<short-title>Knowledge Base</short-title>
@@ -122,6 +123,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Knowledge Base</title>
 			<short-title>Knowledge Base</short-title>
@@ -228,6 +230,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Knowledge Base Article</title>
 			<short-title>Knowledge Base Article</short-title>
