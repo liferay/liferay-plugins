@@ -2,7 +2,7 @@
 	var Lang = A.Lang;
 
 	var Dockbar;
-	
+
 	var OpenSocial = Liferay.namespace('OpenSocial');
 
 	var TPL_LIST_ITEM_GADGET = '<li class="aui-menu-item"><a href="javascript:;"><span><img alt="{0}" class="icon" src="/opensocial-portlet/icon.png" title="{0}"></span> {0}</a></li>';
@@ -12,7 +12,7 @@
 			Dockbar = Liferay.Dockbar;
 		}
 	}
-	
+
 	Liferay.provide(
 		OpenSocial,
 		'addMenuItem',
@@ -39,7 +39,7 @@
 	Liferay.provide(
 		OpenSocial,
 		'addUnderlay',
-		function(event) {			
+		function(event) {
 			var portletURL = Liferay.PortletURL.createRenderURL();
 
 			portletURL.setPortletId('3_WAR_opensocialportlet');
