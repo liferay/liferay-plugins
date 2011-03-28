@@ -54,6 +54,8 @@ public class CalendarBookingLocalServiceImpl
 			boolean required, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Calendar booking
+
 		User user = userPersistence.findByPrimaryKey(userId);
 		long groupId = serviceContext.getScopeGroupId();
 		CalendarEvent calendarEvent = calendarEventPersistence.findByPrimaryKey(
@@ -273,14 +275,13 @@ public class CalendarBookingLocalServiceImpl
 		}
 		else {
 			User user = userLocalService.getUser(userId);
-			Date now = new Date();
 
 			calendarBooking.setModifiedDate(
-				serviceContext.getModifiedDate(now));
+				serviceContext.getModifiedDate(null));
 			calendarBooking.setStatus(status);
 			calendarBooking.setStatusByUserId(userId);
 			calendarBooking.setStatusByUserName(user.getFullName());
-			calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
+			calendarBooking.setStatusDate(serviceContext.getModifiedDate(null));
 
 			calendarBookingPersistence.update(calendarBooking, false);
 		}
