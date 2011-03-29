@@ -42,7 +42,7 @@ import java.util.Map;
 public class CalendarEventLocalServiceImpl
 	extends CalendarEventLocalServiceBaseImpl {
 
-	public CalendarEvent addCaledarEvent(
+	public CalendarEvent addCalendarEvent(
 			long userId, Map<Locale, String> titleMap,
 			Map<Locale, String> descriptionMap, String location,
 			int startDateMonth, int startDateDay, int startDateYear,

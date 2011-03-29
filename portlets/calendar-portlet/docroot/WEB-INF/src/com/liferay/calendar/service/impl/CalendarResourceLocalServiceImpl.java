@@ -19,6 +19,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarResourceLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarUtil;
+import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
@@ -359,13 +361,16 @@ public class CalendarResourceLocalServiceImpl
 		}
 
 		for (Map.Entry<String, String> entry : terms.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
-			for (String s : CalendarUtil.splitKeywords(entry.getValue())) {
-				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+			for (String keyword : CalendarUtil.splitKeywords(value)) {
+				Criterion criterion = RestrictionsFactoryUtil.ilike(
+					key, StringUtil.quote(keyword, StringPool.PERCENT));
 
-				disjunction.add(
-					RestrictionsFactoryUtil.ilike(entry.getKey(), value));
+				disjunction.add(criterion);
 			}
 
 			junction.add(disjunction);

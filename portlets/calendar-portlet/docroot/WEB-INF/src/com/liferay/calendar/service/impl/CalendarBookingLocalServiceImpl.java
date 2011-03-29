@@ -20,7 +20,9 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
+import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -32,6 +34,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
@@ -215,6 +218,18 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	public CalendarBooking updateCalendarBooking(
+			long userId, long calendarBookingId, int status,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		calendarBookingApprovalWorkflow.invokeTransition(
+			userId, calendarBookingId,
+			CalendarBookingWorkflowConstants.toLabel(status), serviceContext);
+
+		return calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+	}
+
+	public CalendarBooking updateCalendarBooking(
 			long calendarBookingId, long calendarEventId,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
@@ -317,13 +332,16 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		for (Map.Entry<String, String> entry : terms.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
-			for (String s : CalendarUtil.splitKeywords(entry.getValue())) {
-				String value = StringPool.PERCENT + s + StringPool.PERCENT;
+			for (String keyword : CalendarUtil.splitKeywords(value)) {
+				Criterion criterion = RestrictionsFactoryUtil.ilike(
+					key, StringUtil.quote(keyword, StringPool.PERCENT));
 
-				disjunction.add(
-					RestrictionsFactoryUtil.ilike(entry.getKey(), value));
+				disjunction.add(criterion);
 			}
 
 			junction.add(disjunction);
