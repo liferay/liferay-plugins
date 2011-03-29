@@ -21,9 +21,31 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class MicroblogsEntryFinderUtil {
+	public static int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().countByUserId(userId);
+	}
+
+	public static int countByU_AT(long userId, java.lang.String assetTagName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().countByU_AT(userId, assetTagName);
+	}
+
 	public static int countByU_MU(long userId, long microblogsEntryUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().countByU_MU(userId, microblogsEntryUserId);
+	}
+
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByUserId(userId, start, end);
+	}
+
+	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_AT(
+		long userId, java.lang.String assetTagName, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByU_AT(userId, assetTagName, start, end);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_MU(

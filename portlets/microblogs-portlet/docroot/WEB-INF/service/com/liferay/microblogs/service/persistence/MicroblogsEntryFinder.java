@@ -18,7 +18,21 @@ package com.liferay.microblogs.service.persistence;
  * @author Brian Wing Shun Chan
  */
 public interface MicroblogsEntryFinder {
+	public int countByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public int countByU_AT(long userId, java.lang.String assetTagName)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public int countByU_MU(long userId, long microblogsEntryUserId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
+		long userId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_AT(
+		long userId, java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_MU(
