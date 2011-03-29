@@ -22,6 +22,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.PermissionChecker;
 
 /**
+ * @author Eduardo Lundgren
  * @author Michael C. Han
  */
 public class CalendarResourcePermission {

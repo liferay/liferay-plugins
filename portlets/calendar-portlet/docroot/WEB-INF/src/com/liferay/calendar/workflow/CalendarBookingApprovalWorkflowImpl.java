@@ -52,7 +52,7 @@ public class CalendarBookingApprovalWorkflowImpl
 
 			if (CalendarResourcePermission.contains(
 					permissionChecker, calendarBooking.getCalendarResourceId(),
-					ActionKeys.ACCEPT_BOOKING_EVENT)) {
+					ActionKeys.UPDATE_BOOKINGS)) {
 
 				if (calendarBooking.getStatus() !=
 						CalendarBookingWorkflowConstants.STATUS_APPROVED) {

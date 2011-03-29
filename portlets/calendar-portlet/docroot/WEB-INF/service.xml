@@ -4,7 +4,7 @@
 <service-builder package-path="com.liferay.calendar" auto-namespace-tables="false">
 	<author>Eduardo Lundgren</author>
 	<namespace>Calendar</namespace>
-	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="false">
+	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
@@ -63,7 +63,7 @@
 			<finder-column name="classPK" />
 		</finder>
 	</entity>
-	<entity name="CalendarEvent" uuid="true" local-service="true" remote-service="false">
+	<entity name="CalendarEvent" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 
@@ -108,7 +108,7 @@
 
 		<reference package-path="com.liferay.portlet.expando" entity="ExpandoValue" />
 	</entity>
-	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="false">
+	<entity name="CalendarResource" uuid="true" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
 

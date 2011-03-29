@@ -62,7 +62,9 @@
 				<action-key>DELETE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
+				<action-key>UPDATE_BOOKINGS</action-key>
 				<action-key>VIEW</action-key>
+				<action-key>VIEW_BOOKINGS</action-key>
 			</supports>
 			<community-defaults>
 				<action-key>VIEW</action-key>
@@ -75,6 +77,7 @@
 				<action-key>DELETE</action-key>
 				<action-key>PERMISSIONS</action-key>
 				<action-key>UPDATE</action-key>
+				<action-key>UPDATE_BOOKINGS</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
