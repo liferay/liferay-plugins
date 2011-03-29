@@ -40,8 +40,20 @@ import java.util.List;
 public class MicroblogsEntryFinderImpl
 	extends BasePersistenceImpl implements MicroblogsEntryFinder {
 
+	public static String COUNT_BY_USER_ID =
+		MicroblogsEntryFinder.class.getName() + ".countByUserId";
+
+	public static String COUNT_BY_U_AT =
+		MicroblogsEntryFinder.class.getName() + ".countByU_AT";
+
 	public static String COUNT_BY_U_MU =
 		MicroblogsEntryFinder.class.getName() + ".countByU_MU";
+
+	public static String FIND_BY_USER_ID =
+		MicroblogsEntryFinder.class.getName() + ".findByUserId";
+
+	public static String FIND_BY_U_AT =
+		MicroblogsEntryFinder.class.getName() + ".findByU_AT";
 
 	public static String FIND_BY_U_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_MU";
@@ -61,15 +73,13 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public int countByU_MU(long userId, long microblogsEntryUserId)
-		throws SystemException {
-
+	public int countByUserId(long userId) throws SystemException {
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_U_MU);
+			String sql = CustomSQLUtil.get(COUNT_BY_USER_ID);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY_SOCIAL_RELATION$]", _joinBySocialRelationSQL);
@@ -81,9 +91,9 @@ public class MicroblogsEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(microblogsEntryUserId);
 			qPos.add(userId);
-			qPos.add(microblogsEntryUserId);
+			qPos.add(userId);
+			qPos.add(userId);
 
 			Iterator<Long> itr = q.list().iterator();
 
@@ -105,8 +115,7 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public List<MicroblogsEntry> findByU_MU(
-			long userId, long microblogsEntryUserId, int start, int end)
+	public int countByU_AT(long userId, String assetTagName)
 		throws SystemException {
 
 		Session session = null;
@@ -114,7 +123,89 @@ public class MicroblogsEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_U_MU);
+			String sql = CustomSQLUtil.get(COUNT_BY_U_AT);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+
+			Iterator<Long> itr = q.list().iterator();
+
+			if (itr.hasNext()) {
+				Long count = itr.next();
+
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+
+			return 0;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public int countByU_MU(long userId, long microblogsEntryUserId)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(COUNT_BY_U_MU);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			qPos.add(userId);
+			qPos.add(userId);
+
+			Iterator<Long> itr = q.list().iterator();
+
+			if (itr.hasNext()) {
+				Long count = itr.next();
+
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+
+			return 0;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<MicroblogsEntry> findByUserId(long userId, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_USER_ID);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY_SOCIAL_RELATION$]", _joinBySocialRelationSQL);
@@ -126,7 +217,73 @@ public class MicroblogsEntryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(microblogsEntryUserId);
+			qPos.add(userId);
+			qPos.add(userId);
+			qPos.add(userId);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<MicroblogsEntry> findByU_AT(
+			long userId, String assetTagName, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_U_AT);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<MicroblogsEntry> findByU_MU(
+			long userId, long microblogsEntryUserId, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_U_MU);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
 			qPos.add(userId);
 			qPos.add(microblogsEntryUserId);
 

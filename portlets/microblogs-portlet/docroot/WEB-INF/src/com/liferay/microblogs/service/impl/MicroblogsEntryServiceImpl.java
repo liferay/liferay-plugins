@@ -15,7 +15,6 @@
 package com.liferay.microblogs.service.impl;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
-import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.base.MicroblogsEntryServiceBaseImpl;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.service.permission.MicroblogsPermission;
@@ -44,13 +43,6 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		return microblogsEntryLocalService.addMicroblogsEntry(
 			userId, content, type, receiverUserId, receiverEntryId,
 			socialRelationType, serviceContext);
-	 }
-
-	 public int getMicroblogsEntriesCount(long microblogsEntryUserId)
-		throws PortalException, SystemException {
-
-		return microblogsEntryFinder.countByU_MU(
-			getUserId(), microblogsEntryUserId);
 	}
 
 	public void deleteMicroblogsEntry(long microblogsEntryId)
@@ -62,12 +54,30 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		microblogsEntryLocalService.deleteMicroblogsEntry(microblogsEntryId);
 	}
 
-	public List<MicroblogsEntry> getMicroblogsEntries(
-			long microblogsEntryUserId, int start, int end)
+	public List<MicroblogsEntry> getMicroblogsEntries(int start, int end)
 		throws PortalException, SystemException {
 
-		return microblogsEntryFinder.findByU_MU(
-			getUserId(), microblogsEntryUserId, start, end);
+		return microblogsEntryFinder.findByUserId(getUserId(), start, end);
+	}
+
+	public int getMicroblogsEntriesCount()
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.countByUserId(getUserId());
+	}
+
+	public List<MicroblogsEntry> getMicroblogsEntries(
+			String assetTagName, int start, int end)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.findByU_AT(
+			getUserId(), assetTagName, start, end);
+	}
+
+	public int getMicroblogsEntriesCount(String assetTagName)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.countByU_AT(getUserId(), assetTagName);
 	}
 
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
@@ -76,8 +86,23 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		MicroblogsEntryPermission.check(
 			getPermissionChecker(), microblogsEntryId, ActionKeys.VIEW);
 
-		return MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+		return microblogsEntryLocalService.getMicroblogsEntry(
 			microblogsEntryId);
+	}
+
+	public List<MicroblogsEntry> getUserMicroblogsEntries(
+			long microblogsEntryUserId, int start, int end)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.findByU_MU(
+			getUserId(), microblogsEntryUserId, start, end);
+	}
+
+	public int getUserMicroblogsEntriesCount(long microblogsEntryUserId)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.countByU_MU(
+			getUserId(), microblogsEntryUserId);
 	}
 
 	public MicroblogsEntry updateMicroblogsEntry(
