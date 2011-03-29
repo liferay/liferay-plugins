@@ -29,11 +29,14 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
+import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
+import com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler;
 import com.liferay.portal.workflow.kaleo.runtime.TaskManager;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoTaskInstanceTokenLocalServiceUtil;
@@ -94,9 +97,33 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
-		return _taskManager.completeWorkflowTask(
-			workflowTaskInstanceId, transitionName, comment, workflowContext,
-			serviceContext);
+		WorkflowTaskAdapter workflowTask =
+			(WorkflowTaskAdapter) _taskManager.completeWorkflowTask(
+				workflowTaskInstanceId, transitionName, comment, workflowContext,
+				serviceContext);
+
+		try {
+			KaleoTaskInstanceToken kaleoTaskInstanceToken =
+				workflowTask.getKaleoTaskInstanceToken();
+
+			KaleoInstanceToken kaleoInstanceToken =
+				kaleoTaskInstanceToken.getKaleoInstanceToken();
+
+			if (workflowContext == null) {
+				workflowContext = WorkflowContextUtil.convert(
+					kaleoInstanceToken.getKaleoInstance().getWorkflowContext());
+			}
+
+			ExecutionContext executionContext = new ExecutionContext(
+				kaleoInstanceToken, workflowContext, serviceContext);
+
+			_kaleoSignaler.signalExit(transitionName, executionContext);
+		}
+		catch (Exception e) {
+			throw new WorkflowException("Unable to complete task", e);
+		}
+
+		return workflowTask;
 	}
 
 	public List<String> getNextTransitionNames(
@@ -543,6 +570,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		}
 	}
 
+	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
+		_kaleoSignaler = kaleoSignaler;
+	}
+
 	public void setTaskManager(TaskManager taskManager) {
 		_taskManager = taskManager;
 	}
@@ -582,6 +613,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		return workflowTasks;
 	}
 
+	private KaleoSignaler _kaleoSignaler;
 	private TaskManager _taskManager;
 
 }

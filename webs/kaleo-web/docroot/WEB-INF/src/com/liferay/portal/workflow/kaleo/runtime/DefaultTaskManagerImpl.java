@@ -27,7 +27,6 @@ import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowTaskAdapter;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
@@ -88,16 +87,12 @@ public class DefaultTaskManagerImpl
 
 		try {
 			return doCompleteWorkflowTask(
-				workflowTaskInstanceId, transitionName, comment,
-				workflowContext, serviceContext);
+				workflowTaskInstanceId, comment, workflowContext,
+				serviceContext);
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
 		}
-	}
-
-	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
-		_kaleoSignaler = kaleoSignaler;
 	}
 
 	public WorkflowTask updateDueDate(
@@ -193,7 +188,7 @@ public class DefaultTaskManagerImpl
 	}
 
 	protected WorkflowTask doCompleteWorkflowTask(
-			long workflowTaskInstanceId, String transitionName, String comment,
+			long workflowTaskInstanceId, String comment,
 			Map<String, Serializable> workflowContext,
 			ServiceContext serviceContext)
 		throws Exception {
@@ -219,22 +214,8 @@ public class DefaultTaskManagerImpl
 				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId(),
 				serviceContext);
 
-		KaleoInstanceToken kaleoInstanceToken =
-			kaleoInstanceTokenLocalService.getKaleoInstanceToken(
-				kaleoTaskInstanceToken.getKaleoInstanceTokenId());
-
 		kaleoLogLocalService.addTaskCompletionKaleoLog(
 			kaleoTaskInstanceToken, comment, workflowContext, serviceContext);
-
-		if (workflowContext == null) {
-			workflowContext = WorkflowContextUtil.convert(
-				kaleoInstanceToken.getKaleoInstance().getWorkflowContext());
-		}
-
-		ExecutionContext executionContext = new ExecutionContext(
-			kaleoInstanceToken, workflowContext, serviceContext);
-
-		_kaleoSignaler.signalExit(transitionName, executionContext);
 
 		return new WorkflowTaskAdapter(kaleoTaskInstanceToken, workflowContext);
 	}
@@ -269,7 +250,5 @@ public class DefaultTaskManagerImpl
 
 		return workflowContext;
 	}
-
-	private KaleoSignaler _kaleoSignaler;
 
 }

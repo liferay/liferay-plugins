@@ -42,6 +42,8 @@ public class WorkflowInstanceAdapter extends DefaultWorkflowInstance {
 			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
+		_kaleoInstanceToken = kaleoInstanceToken;
+
 		setEndDate(kaleoInstance.getCompletionDate());
 		setStartDate(kaleoInstance.getCreateDate());
 		setState(kaleoInstanceToken.getCurrentKaleoNode().getName());
@@ -59,5 +61,11 @@ public class WorkflowInstanceAdapter extends DefaultWorkflowInstance {
 		setWorkflowDefinitionVersion(kaleoInstance.getKaleoDefinitionVersion());
 		setWorkflowInstanceId(kaleoInstance.getKaleoInstanceId());
 	}
+
+	public KaleoInstanceToken getKaleoInstanceToken() {
+		return _kaleoInstanceToken;
+	}
+
+	private KaleoInstanceToken _kaleoInstanceToken;
 
 }

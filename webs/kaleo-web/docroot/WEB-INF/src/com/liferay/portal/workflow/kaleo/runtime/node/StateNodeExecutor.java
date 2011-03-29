@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoInstanceTokenImpl;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
@@ -88,6 +89,11 @@ public class StateNodeExecutor extends BaseNodeExecutor {
 			newExecutionContext);
 
 		remainingPathElements.add(pathElement);
+	}
+
+	protected void doExecuteTimer(
+		KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
+		ExecutionContext executionContext) {
 	}
 
 	protected void doExit(

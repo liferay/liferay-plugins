@@ -20,17 +20,12 @@ import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
-import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
-import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler;
-import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
-import com.liferay.portal.workflow.kaleo.runtime.assignment.TaskAssignerUtil;
-import com.liferay.portal.workflow.kaleo.runtime.notification.NotificationUtil;
+import com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerInstanceTokenLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
@@ -47,14 +42,19 @@ public class TimerMessageListener extends BaseMessageListener {
 		_kaleoSignaler = kaleoSignaler;
 	}
 
+	public void setWorkflowEngine(WorkflowEngine workflowEngine) {
+		_workflowEngine = workflowEngine;
+	}
+
 	protected void doReceive(Message message) throws Exception {
+		long kaleoTimerInstanceTokenId = message.getLong(
+			"kaleoTimerInstanceTokenId");
+
 		KaleoTimerInstanceToken kaleoTimerInstanceToken =
 			getKaleoTimerInstanceToken(message);
 
 		KaleoInstanceToken kaleoInstanceToken =
 			kaleoTimerInstanceToken.getKaleoInstanceToken();
-
-		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
 		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
 			kaleoTimerInstanceToken.getWorkflowContext());
@@ -62,28 +62,11 @@ public class TimerMessageListener extends BaseMessageListener {
 		ServiceContext serviceContext = (ServiceContext)workflowContext.get(
 			WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
-		ExecutionContext executionContext = new ExecutionContext(
-			kaleoInstanceToken, workflowContext, serviceContext);
+		ExecutionContext executionContext =
+			_workflowEngine.executeTimerWorkflowInstance(
+				kaleoTimerInstanceTokenId, serviceContext, workflowContext);
 
-		KaleoTimerInstanceTokenLocalServiceUtil.completeKaleoTimerInstanceToken(
-			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
-			serviceContext);
-
-		KaleoTimer kaleoTimer = kaleoTimerInstanceToken.getKaleoTimer();
-
-		ActionExecutorUtil.executeKaleoActions(
-			kaleoTimer.getKaleoNodeId(), ExecutionType.ON_TIMER,
-			executionContext);
-
-		NotificationUtil.sendKaleoNotifications(
-			kaleoTimer.getKaleoNodeId(), ExecutionType.ON_TIMER,
-			executionContext);
-
-		if (currentKaleoNode.getType().equals(NodeType.TASK.name())) {
-			TaskAssignerUtil.reassignKaleoTask(
-				kaleoTimer.getKaleoNodeId(), kaleoTimer.getParentKaleoNodeId(),
-				executionContext);
-		}
+		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
 
 		_kaleoSignaler.signalExecute(currentKaleoNode, executionContext);
 	}
@@ -103,5 +86,6 @@ public class TimerMessageListener extends BaseMessageListener {
 	}
 
 	private KaleoSignaler _kaleoSignaler;
+	private WorkflowEngine _workflowEngine;
 
 }

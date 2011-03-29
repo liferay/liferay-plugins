@@ -44,6 +44,11 @@ public interface WorkflowEngine {
 			ServiceContext serviceContext)
 		throws WorkflowException;
 
+	public ExecutionContext executeTimerWorkflowInstance(
+			long kaleoTimerInstanceTokenId, ServiceContext serviceContext,
+			Map<String, Serializable> workflowContext)
+		throws WorkflowException;
+
 	public List<String> getNextTransitionNames(
 			long workflowInstanceId, ServiceContext serviceContext)
 		throws WorkflowException;

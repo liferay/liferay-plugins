@@ -16,11 +16,13 @@ package com.liferay.portal.workflow.kaleo.runtime.node;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.action.ActionExecutorUtil;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
@@ -76,6 +78,33 @@ public abstract class BaseNodeExecutor
 		doExecute(currentKaleoNode, executionContext, remainingPathElements);
 	}
 
+	public void executeTimer(
+			KaleoNode currentKaleoNode,
+			ExecutionContext executionContext)
+		throws PortalException, SystemException {
+
+		ServiceContext serviceContext = executionContext.getServiceContext();
+
+		KaleoTimerInstanceToken kaleoTimerInstanceToken =
+			executionContext.getKaleoTimerInstanceToken();
+
+		KaleoTimer kaleoTimer = kaleoTimerInstanceToken.getKaleoTimer();
+
+		ActionExecutorUtil.executeKaleoActions(
+			kaleoTimer.getKaleoNodeId(), ExecutionType.ON_TIMER,
+			executionContext);
+
+		NotificationUtil.sendKaleoNotifications(
+			kaleoTimer.getKaleoNodeId(), ExecutionType.ON_TIMER,
+			executionContext);
+
+		doExecuteTimer(currentKaleoNode, kaleoTimer, executionContext);
+
+		kaleoTimerInstanceTokenLocalService.completeKaleoTimerInstanceToken(
+			kaleoTimerInstanceToken.getKaleoTimerInstanceTokenId(),
+			serviceContext);
+	}
+
 	public void exit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
@@ -107,6 +136,11 @@ public abstract class BaseNodeExecutor
 	protected abstract void doExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)
+		throws PortalException, SystemException;
+
+	protected abstract void doExecuteTimer(
+			KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
+			ExecutionContext executionContext)
 		throws PortalException, SystemException;
 
 	protected abstract void doExit(

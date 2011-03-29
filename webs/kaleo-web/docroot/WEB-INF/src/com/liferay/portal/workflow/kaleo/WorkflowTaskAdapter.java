@@ -39,6 +39,8 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 			Map<String, Serializable> workflowContext)
 		throws PortalException, SystemException {
 
+		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
+
 		setCreateDate(kaleoTaskInstanceToken.getCreateDate());
 		setCompletionDate(kaleoTaskInstanceToken.getCompletionDate());
 		setDescription(kaleoTaskInstanceToken.getKaleoTask().getDescription());
@@ -71,5 +73,11 @@ public class WorkflowTaskAdapter extends DefaultWorkflowTask {
 
 		setWorkflowTaskId(kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 	}
+
+	public KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
+		return _kaleoTaskInstanceToken;
+	}
+
+	private KaleoTaskInstanceToken _kaleoTaskInstanceToken;
 
 }

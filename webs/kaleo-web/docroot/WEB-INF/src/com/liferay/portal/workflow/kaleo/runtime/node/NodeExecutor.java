@@ -36,6 +36,11 @@ public interface NodeExecutor {
 			List<PathElement> remainingPathElements)
 		throws PortalException, SystemException;
 
+	public void executeTimer(
+			KaleoNode currentKaleoNode,
+			ExecutionContext executionContext)
+		throws PortalException, SystemException;
+
 	public void exit(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext,
 			List<PathElement> remainingPathElements)

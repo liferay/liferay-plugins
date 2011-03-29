@@ -19,10 +19,11 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.sender.DefaultSingleDestinationMessageSender;
 import com.liferay.portal.kernel.messaging.sender.SingleDestinationMessageSender;
+import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
+import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
-import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
-import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
@@ -36,6 +37,9 @@ import java.util.List;
 /**
  * @author Michael C. Han
  */
+@Transactional(
+	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
+	rollbackFor = {PortalException.class, SystemException.class})
 public class DefaultKaleoSignaler
 	extends BaseKaleoBean implements KaleoSignaler {
 
@@ -45,16 +49,11 @@ public class DefaultKaleoSignaler
 
 		KaleoInstanceToken kaleoInstanceToken =
 			executionContext.getKaleoInstanceToken();
-		KaleoInstance kaleoInstance = kaleoInstanceToken.getKaleoInstance();
-		KaleoDefinition kaleoDefinition = kaleoInstance.getKaleoDefinition();
-		KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
-
-		kaleoInstanceToken.setCurrentKaleoNode(kaleoStartNode);
 
 		executionContext.setTransitionName(transitionName);
 
 		PathElement startPathElement = new PathElement(
-			null, kaleoStartNode, executionContext);
+			null, kaleoInstanceToken.getCurrentKaleoNode(), executionContext);
 
 		_singleDestinationMessageSender.send(startPathElement);
 	}

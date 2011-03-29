@@ -29,14 +29,18 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.BaseKaleoBean;
 import com.liferay.portal.workflow.kaleo.WorkflowInstanceAdapter;
 import com.liferay.portal.workflow.kaleo.definition.Definition;
+import com.liferay.portal.workflow.kaleo.definition.NodeType;
 import com.liferay.portal.workflow.kaleo.deployment.WorkflowDeployer;
 import com.liferay.portal.workflow.kaleo.model.KaleoDefinition;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowModelParser;
 import com.liferay.portal.workflow.kaleo.parser.WorkflowValidator;
+import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutor;
+import com.liferay.portal.workflow.kaleo.runtime.node.NodeExecutorFactory;
 
 import java.io.InputStream;
 import java.io.Serializable;
@@ -93,6 +97,38 @@ public class DefaultWorkflowEngineImpl
 				title, definition, serviceContext);
 
 			return workflowDefinition;
+		}
+		catch (Exception e) {
+			throw new WorkflowException(e);
+		}
+	}
+
+	public ExecutionContext executeTimerWorkflowInstance(
+			long kaleoTimerInstanceTokenId, ServiceContext serviceContext,
+			Map<String, Serializable> workflowContext)
+		throws WorkflowException {
+
+		try {
+			KaleoTimerInstanceToken kaleoTimerInstanceToken =
+				kaleoTimerInstanceTokenLocalService.getKaleoTimerInstanceToken(
+					kaleoTimerInstanceTokenId);
+
+			KaleoInstanceToken kaleoInstanceToken =
+				kaleoTimerInstanceToken.getKaleoInstanceToken();
+
+			KaleoNode currentKaleoNode =
+				kaleoInstanceToken.getCurrentKaleoNode();
+
+			ExecutionContext executionContext = new ExecutionContext(
+				kaleoInstanceToken, kaleoTimerInstanceToken,
+				workflowContext, serviceContext);
+
+			NodeExecutor nodeExecutor = NodeExecutorFactory.getNodeExecutor(
+				NodeType.valueOf(currentKaleoNode.getType()));
+
+			nodeExecutor.executeTimer(currentKaleoNode, executionContext);
+
+			return executionContext;
 		}
 		catch (Exception e) {
 			throw new WorkflowException(e);
@@ -208,10 +244,6 @@ public class DefaultWorkflowEngineImpl
 		}
 	}
 
-	public void setKaleoSignaler(KaleoSignaler kaleoSignaler) {
-		_kaleoSignaler = kaleoSignaler;
-	}
-
 	public void setWorkflowDeployer(WorkflowDeployer workflowDeployer) {
 		_workflowDeployer = workflowDeployer;
 	}
@@ -240,11 +272,6 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstance.getRootKaleoInstanceToken(serviceContext);
 
 			serviceContext.setScopeGroupId(kaleoInstanceToken.getGroupId());
-
-			ExecutionContext executionContext = new ExecutionContext(
-				kaleoInstanceToken, workflowContext, serviceContext);
-
-			_kaleoSignaler.signalExit(transitionName, executionContext);
 
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, kaleoInstanceToken, workflowContext);
@@ -296,13 +323,12 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstance.getRootKaleoInstanceToken(
 					workflowContext, serviceContext);
 
+			KaleoNode kaleoStartNode = kaleoDefinition.getKaleoStartNode();
+
+			rootKaleoInstanceToken.setCurrentKaleoNode(kaleoStartNode);
+
 			kaleoLogLocalService.addWorkflowInstanceStartKaleoLog(
 				rootKaleoInstanceToken, serviceContext);
-
-			ExecutionContext executionContext = new ExecutionContext(
-				rootKaleoInstanceToken, workflowContext, serviceContext);
-
-			_kaleoSignaler.signalEntry(transitionName, executionContext);
 
 			return new WorkflowInstanceAdapter(
 				kaleoInstance, rootKaleoInstanceToken, workflowContext);
@@ -389,7 +415,6 @@ public class DefaultWorkflowEngineImpl
 		return workflowInstances;
 	}
 
-	private KaleoSignaler _kaleoSignaler;
 	private WorkflowDeployer _workflowDeployer;
 	private WorkflowModelParser _workflowModelParser;
 	private WorkflowValidator _workflowValidator;

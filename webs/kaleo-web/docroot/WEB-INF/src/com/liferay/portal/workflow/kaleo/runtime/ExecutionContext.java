@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 
 import java.io.Serializable;
 
@@ -49,12 +50,28 @@ public class ExecutionContext {
 		_serviceContext = serviceContext;
 	}
 
+	public ExecutionContext(
+		KaleoInstanceToken kaleoInstanceToken,
+		KaleoTimerInstanceToken kaleoTimerInstanceToken,
+		Map<String, Serializable> workflowContext,
+		ServiceContext serviceContext) {
+
+		_kaleoInstanceToken = kaleoInstanceToken;
+		_kaleoTimerInstanceToken = kaleoTimerInstanceToken;
+		_workflowContext = workflowContext;
+		_serviceContext = serviceContext;
+	}
+
 	public KaleoInstanceToken getKaleoInstanceToken() {
 		return _kaleoInstanceToken;
 	}
 
 	public KaleoTaskInstanceToken getKaleoTaskInstanceToken() {
 		return _kaleoTaskInstanceToken;
+	}
+
+	public KaleoTimerInstanceToken getKaleoTimerInstanceToken() {
+		return _kaleoTimerInstanceToken;
 	}
 
 	public ServiceContext getServiceContext() {
@@ -75,12 +92,18 @@ public class ExecutionContext {
 		_kaleoTaskInstanceToken = kaleoTaskInstanceToken;
 	}
 
+	public void setKaleoTimerInstanceToken(
+		KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+		_kaleoTimerInstanceToken = kaleoTimerInstanceToken;
+	}
+
 	public void setTransitionName(String transitionName) {
 		_transitionName = transitionName;
 	}
 
 	private KaleoInstanceToken _kaleoInstanceToken;
 	private KaleoTaskInstanceToken _kaleoTaskInstanceToken;
+	private KaleoTimerInstanceToken _kaleoTimerInstanceToken;
 	private ServiceContext _serviceContext;
 	private String _transitionName;
 	private Map<String, Serializable> _workflowContext;

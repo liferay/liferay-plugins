@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.graph.PathElement;
@@ -83,6 +84,11 @@ public class JoinNodeExecutor extends BaseNodeExecutor {
 			newExecutionContext);
 
 		remainingPathElements.add(pathElement);
+	}
+
+	protected void doExecuteTimer(
+		KaleoNode currentKaleoNode, KaleoTimer kaleoTimer,
+		ExecutionContext executionContext) {
 	}
 
 	protected void doExit(
