@@ -286,10 +286,11 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
-			for (String s1 : KnowledgeBaseUtil.splitKeywords(value)) {
-				String s2 = StringPool.PERCENT + s1 + StringPool.PERCENT;
-
-				disjunction.add(RestrictionsFactoryUtil.ilike(key, s2));
+			for (String keyword : KnowledgeBaseUtil.splitKeywords(value)) {
+				disjunction.add(
+					RestrictionsFactoryUtil.ilike(
+						key,
+					StringPool.PERCENT + keyword + StringPool.PERCENT));
 			}
 
 			junction.add(disjunction);
