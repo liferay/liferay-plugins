@@ -487,7 +487,7 @@ AUI().add(
 					for (var i in eventMap) {
 						if (!fn || eventMap[i] == fn) {
 							gadgets.pubsub2router.hub.unsubscribe(i);
-							
+
 							delete eventMap[i];
 						}
 					}
