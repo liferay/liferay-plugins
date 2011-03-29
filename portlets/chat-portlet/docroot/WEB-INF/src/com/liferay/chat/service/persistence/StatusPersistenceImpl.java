@@ -135,6 +135,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_USERID,
 			new Object[] { Long.valueOf(status.getUserId()) }, status);
+
+		status.resetOriginalValues();
 	}
 
 	/**

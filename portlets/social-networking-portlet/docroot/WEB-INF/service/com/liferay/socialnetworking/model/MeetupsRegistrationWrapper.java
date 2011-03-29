@@ -302,5 +302,9 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration {
 		return _meetupsRegistration;
 	}
 
+	public void resetOriginalValues() {
+		_meetupsRegistration.resetOriginalValues();
+	}
+
 	private MeetupsRegistration _meetupsRegistration;
 }

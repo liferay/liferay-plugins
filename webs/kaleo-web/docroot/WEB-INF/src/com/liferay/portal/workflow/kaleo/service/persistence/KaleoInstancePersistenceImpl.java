@@ -147,6 +147,8 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		EntityCacheUtil.putResult(KaleoInstanceModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoInstanceImpl.class, kaleoInstance.getPrimaryKey(),
 			kaleoInstance);
+
+		kaleoInstance.resetOriginalValues();
 	}
 
 	/**

@@ -145,6 +145,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			KaleoTaskAssignmentInstanceImpl.class,
 			kaleoTaskAssignmentInstance.getPrimaryKey(),
 			kaleoTaskAssignmentInstance);
+
+		kaleoTaskAssignmentInstance.resetOriginalValues();
 	}
 
 	/**

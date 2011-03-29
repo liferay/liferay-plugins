@@ -219,20 +219,15 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 		JIRAActionImpl jiraActionImpl = new JIRAActionImpl();
 
 		jiraActionImpl.setJiraActionId(getJiraActionId());
-
 		jiraActionImpl.setJiraUserId(getJiraUserId());
-
 		jiraActionImpl.setCreateDate(getCreateDate());
-
 		jiraActionImpl.setModifiedDate(getModifiedDate());
-
 		jiraActionImpl.setJiraIssueId(getJiraIssueId());
-
 		jiraActionImpl.setType(getType());
-
 		jiraActionImpl.setBody(getBody());
-
 		jiraActionImpl.setJiraGroupName(getJiraGroupName());
+
+		jiraActionImpl.resetOriginalValues();
 
 		return jiraActionImpl;
 	}
@@ -278,6 +273,9 @@ public class JIRAActionModelImpl extends BaseModelImpl<JIRAAction>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

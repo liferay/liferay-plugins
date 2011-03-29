@@ -268,30 +268,18 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 		JIRAIssueImpl jiraIssueImpl = new JIRAIssueImpl();
 
 		jiraIssueImpl.setJiraIssueId(getJiraIssueId());
-
 		jiraIssueImpl.setCreateDate(getCreateDate());
-
 		jiraIssueImpl.setModifiedDate(getModifiedDate());
-
 		jiraIssueImpl.setProjectId(getProjectId());
-
 		jiraIssueImpl.setKey(getKey());
-
-		JIRAIssueModelImpl jiraIssueModelImpl = jiraIssueImpl;
-
-		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
-
 		jiraIssueImpl.setSummary(getSummary());
-
 		jiraIssueImpl.setDescription(getDescription());
-
 		jiraIssueImpl.setReporterJiraUserId(getReporterJiraUserId());
-
 		jiraIssueImpl.setAssigneeJiraUserId(getAssigneeJiraUserId());
-
 		jiraIssueImpl.setResolution(getResolution());
-
 		jiraIssueImpl.setStatus(getStatus());
+
+		jiraIssueImpl.resetOriginalValues();
 
 		return jiraIssueImpl;
 	}
@@ -337,6 +325,12 @@ public class JIRAIssueModelImpl extends BaseModelImpl<JIRAIssue>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		JIRAIssueModelImpl jiraIssueModelImpl = this;
+
+		jiraIssueModelImpl._originalKey = jiraIssueModelImpl._key;
 	}
 
 	public String toString() {

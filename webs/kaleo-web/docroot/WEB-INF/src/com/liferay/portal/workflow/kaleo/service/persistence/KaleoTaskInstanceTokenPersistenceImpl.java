@@ -146,6 +146,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 				Long.valueOf(kaleoTaskInstanceToken.getKaleoInstanceId()),
 				Long.valueOf(kaleoTaskInstanceToken.getKaleoTaskId())
 			}, kaleoTaskInstanceToken);
+
+		kaleoTaskInstanceToken.resetOriginalValues();
 	}
 
 	/**

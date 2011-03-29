@@ -149,7 +149,7 @@ public class TypeWrapper implements Type {
 		return new TypeWrapper((Type)_type.clone());
 	}
 
-	public int compareTo(Type type) {
+	public int compareTo(com.liferay.ams.model.Type type) {
 		return _type.compareTo(type);
 	}
 
@@ -157,7 +157,7 @@ public class TypeWrapper implements Type {
 		return _type.hashCode();
 	}
 
-	public Type toEscapedModel() {
+	public com.liferay.ams.model.Type toEscapedModel() {
 		return new TypeWrapper(_type.toEscapedModel());
 	}
 
@@ -171,6 +171,10 @@ public class TypeWrapper implements Type {
 
 	public Type getWrappedType() {
 		return _type;
+	}
+
+	public void resetOriginalValues() {
+		_type.resetOriginalValues();
 	}
 
 	private Type _type;

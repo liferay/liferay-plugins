@@ -245,29 +245,16 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 		WSRPProducerImpl wsrpProducerImpl = new WSRPProducerImpl();
 
 		wsrpProducerImpl.setUuid(getUuid());
-
-		WSRPProducerModelImpl wsrpProducerModelImpl = wsrpProducerImpl;
-
-		wsrpProducerModelImpl._originalUuid = wsrpProducerModelImpl._uuid;
-
 		wsrpProducerImpl.setWsrpProducerId(getWsrpProducerId());
-
 		wsrpProducerImpl.setGroupId(getGroupId());
-
-		wsrpProducerModelImpl._originalGroupId = wsrpProducerModelImpl._groupId;
-
-		wsrpProducerModelImpl._setOriginalGroupId = false;
 		wsrpProducerImpl.setCompanyId(getCompanyId());
-
 		wsrpProducerImpl.setCreateDate(getCreateDate());
-
 		wsrpProducerImpl.setModifiedDate(getModifiedDate());
-
 		wsrpProducerImpl.setName(getName());
-
 		wsrpProducerImpl.setVersion(getVersion());
-
 		wsrpProducerImpl.setPortletIds(getPortletIds());
+
+		wsrpProducerImpl.resetOriginalValues();
 
 		return wsrpProducerImpl;
 	}
@@ -310,6 +297,16 @@ public class WSRPProducerModelImpl extends BaseModelImpl<WSRPProducer>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		WSRPProducerModelImpl wsrpProducerModelImpl = this;
+
+		wsrpProducerModelImpl._originalUuid = wsrpProducerModelImpl._uuid;
+
+		wsrpProducerModelImpl._originalGroupId = wsrpProducerModelImpl._groupId;
+
+		wsrpProducerModelImpl._setOriginalGroupId = false;
 	}
 
 	public String toString() {

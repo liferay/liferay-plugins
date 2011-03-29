@@ -155,5 +155,9 @@ public class BarWrapper implements Bar {
 		return _bar;
 	}
 
+	public void resetOriginalValues() {
+		_bar.resetOriginalValues();
+	}
+
 	private Bar _bar;
 }

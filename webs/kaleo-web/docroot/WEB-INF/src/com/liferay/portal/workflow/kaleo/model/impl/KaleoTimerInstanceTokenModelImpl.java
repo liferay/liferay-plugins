@@ -327,44 +327,23 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 		KaleoTimerInstanceTokenImpl kaleoTimerInstanceTokenImpl = new KaleoTimerInstanceTokenImpl();
 
 		kaleoTimerInstanceTokenImpl.setKaleoTimerInstanceTokenId(getKaleoTimerInstanceTokenId());
-
 		kaleoTimerInstanceTokenImpl.setGroupId(getGroupId());
-
 		kaleoTimerInstanceTokenImpl.setCompanyId(getCompanyId());
-
 		kaleoTimerInstanceTokenImpl.setUserId(getUserId());
-
 		kaleoTimerInstanceTokenImpl.setUserName(getUserName());
-
 		kaleoTimerInstanceTokenImpl.setCreateDate(getCreateDate());
-
 		kaleoTimerInstanceTokenImpl.setModifiedDate(getModifiedDate());
-
 		kaleoTimerInstanceTokenImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoTimerInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
-
-		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl = kaleoTimerInstanceTokenImpl;
-
-		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceId;
-
-		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
 		kaleoTimerInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-
 		kaleoTimerInstanceTokenImpl.setKaleoTimerId(getKaleoTimerId());
-
-		kaleoTimerInstanceTokenModelImpl._originalKaleoTimerId = kaleoTimerInstanceTokenModelImpl._kaleoTimerId;
-
-		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoTimerId = false;
 		kaleoTimerInstanceTokenImpl.setKaleoTimerName(getKaleoTimerName());
-
 		kaleoTimerInstanceTokenImpl.setCompletionUserId(getCompletionUserId());
-
 		kaleoTimerInstanceTokenImpl.setCompleted(getCompleted());
-
 		kaleoTimerInstanceTokenImpl.setCompletionDate(getCompletionDate());
-
 		kaleoTimerInstanceTokenImpl.setWorkflowContext(getWorkflowContext());
+
+		kaleoTimerInstanceTokenImpl.resetOriginalValues();
 
 		return kaleoTimerInstanceTokenImpl;
 	}
@@ -415,6 +394,18 @@ public class KaleoTimerInstanceTokenModelImpl extends BaseModelImpl<KaleoTimerIn
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		KaleoTimerInstanceTokenModelImpl kaleoTimerInstanceTokenModelImpl = this;
+
+		kaleoTimerInstanceTokenModelImpl._originalKaleoInstanceId = kaleoTimerInstanceTokenModelImpl._kaleoInstanceId;
+
+		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoInstanceId = false;
+
+		kaleoTimerInstanceTokenModelImpl._originalKaleoTimerId = kaleoTimerInstanceTokenModelImpl._kaleoTimerId;
+
+		kaleoTimerInstanceTokenModelImpl._setOriginalKaleoTimerId = false;
 	}
 
 	public String toString() {

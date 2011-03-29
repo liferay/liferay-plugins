@@ -192,5 +192,9 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup {
 		return _jiraChangeGroup;
 	}
 
+	public void resetOriginalValues() {
+		_jiraChangeGroup.resetOriginalValues();
+	}
+
 	private JIRAChangeGroup _jiraChangeGroup;
 }

@@ -428,5 +428,9 @@ public class KaleoActionWrapper implements KaleoAction {
 		return _kaleoAction;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoAction.resetOriginalValues();
+	}
+
 	private KaleoAction _kaleoAction;
 }

@@ -337,32 +337,21 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		TasksEntryImpl tasksEntryImpl = new TasksEntryImpl();
 
 		tasksEntryImpl.setTasksEntryId(getTasksEntryId());
-
 		tasksEntryImpl.setGroupId(getGroupId());
-
 		tasksEntryImpl.setCompanyId(getCompanyId());
-
 		tasksEntryImpl.setUserId(getUserId());
-
 		tasksEntryImpl.setUserName(getUserName());
-
 		tasksEntryImpl.setCreateDate(getCreateDate());
-
 		tasksEntryImpl.setModifiedDate(getModifiedDate());
-
 		tasksEntryImpl.setTitle(getTitle());
-
 		tasksEntryImpl.setPriority(getPriority());
-
 		tasksEntryImpl.setAssigneeUserId(getAssigneeUserId());
-
 		tasksEntryImpl.setResolverUserId(getResolverUserId());
-
 		tasksEntryImpl.setDueDate(getDueDate());
-
 		tasksEntryImpl.setFinishDate(getFinishDate());
-
 		tasksEntryImpl.setStatus(getStatus());
+
+		tasksEntryImpl.resetOriginalValues();
 
 		return tasksEntryImpl;
 	}
@@ -425,6 +414,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

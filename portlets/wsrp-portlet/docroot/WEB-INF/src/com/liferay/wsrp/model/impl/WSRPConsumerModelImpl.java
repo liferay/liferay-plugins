@@ -261,26 +261,18 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 		WSRPConsumerImpl wsrpConsumerImpl = new WSRPConsumerImpl();
 
 		wsrpConsumerImpl.setUuid(getUuid());
-
 		wsrpConsumerImpl.setWsrpConsumerId(getWsrpConsumerId());
-
 		wsrpConsumerImpl.setCompanyId(getCompanyId());
-
 		wsrpConsumerImpl.setCreateDate(getCreateDate());
-
 		wsrpConsumerImpl.setModifiedDate(getModifiedDate());
-
 		wsrpConsumerImpl.setName(getName());
-
 		wsrpConsumerImpl.setUrl(getUrl());
-
 		wsrpConsumerImpl.setWsdl(getWsdl());
-
 		wsrpConsumerImpl.setRegistrationContextString(getRegistrationContextString());
-
 		wsrpConsumerImpl.setRegistrationPropertiesString(getRegistrationPropertiesString());
-
 		wsrpConsumerImpl.setForwardCookies(getForwardCookies());
+
+		wsrpConsumerImpl.resetOriginalValues();
 
 		return wsrpConsumerImpl;
 	}
@@ -323,6 +315,9 @@ public class WSRPConsumerModelImpl extends BaseModelImpl<WSRPConsumer>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

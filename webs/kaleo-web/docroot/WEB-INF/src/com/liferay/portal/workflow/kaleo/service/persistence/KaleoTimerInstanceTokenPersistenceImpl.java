@@ -116,6 +116,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 				Long.valueOf(kaleoTimerInstanceToken.getKaleoInstanceId()),
 				Long.valueOf(kaleoTimerInstanceToken.getKaleoTimerId())
 			}, kaleoTimerInstanceToken);
+
+		kaleoTimerInstanceToken.resetOriginalValues();
 	}
 
 	/**

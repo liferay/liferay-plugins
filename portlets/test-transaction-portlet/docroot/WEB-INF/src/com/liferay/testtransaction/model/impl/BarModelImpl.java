@@ -145,8 +145,9 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		BarImpl barImpl = new BarImpl();
 
 		barImpl.setBarId(getBarId());
-
 		barImpl.setText(getText());
+
+		barImpl.resetOriginalValues();
 
 		return barImpl;
 	}
@@ -189,6 +190,9 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

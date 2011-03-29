@@ -285,5 +285,9 @@ public class WSRPProducerWrapper implements WSRPProducer {
 		return _wsrpProducer;
 	}
 
+	public void resetOriginalValues() {
+		_wsrpProducer.resetOriginalValues();
+	}
+
 	private WSRPProducer _wsrpProducer;
 }

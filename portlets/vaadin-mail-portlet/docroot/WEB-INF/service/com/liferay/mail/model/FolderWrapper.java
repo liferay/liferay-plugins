@@ -319,5 +319,9 @@ public class FolderWrapper implements Folder {
 		return _folder;
 	}
 
+	public void resetOriginalValues() {
+		_folder.resetOriginalValues();
+	}
+
 	private Folder _folder;
 }

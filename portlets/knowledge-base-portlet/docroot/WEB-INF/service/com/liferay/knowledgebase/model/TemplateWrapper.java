@@ -337,5 +337,9 @@ public class TemplateWrapper implements Template {
 		return _template;
 	}
 
+	public void resetOriginalValues() {
+		_template.resetOriginalValues();
+	}
+
 	private Template _template;
 }

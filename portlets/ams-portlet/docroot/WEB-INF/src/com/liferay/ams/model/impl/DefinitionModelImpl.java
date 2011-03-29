@@ -266,30 +266,20 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 		DefinitionImpl definitionImpl = new DefinitionImpl();
 
 		definitionImpl.setDefinitionId(getDefinitionId());
-
 		definitionImpl.setGroupId(getGroupId());
-
 		definitionImpl.setCompanyId(getCompanyId());
-
 		definitionImpl.setUserId(getUserId());
-
 		definitionImpl.setUserName(getUserName());
-
 		definitionImpl.setCreateDate(getCreateDate());
-
 		definitionImpl.setModifiedDate(getModifiedDate());
-
 		definitionImpl.setTypeId(getTypeId());
-
 		definitionImpl.setManufacturer(getManufacturer());
-
 		definitionImpl.setModel(getModel());
-
 		definitionImpl.setOrderDate(getOrderDate());
-
 		definitionImpl.setQuantity(getQuantity());
-
 		definitionImpl.setPrice(getPrice());
+
+		definitionImpl.resetOriginalValues();
 
 		return definitionImpl;
 	}
@@ -334,6 +324,9 @@ public class DefinitionModelImpl extends BaseModelImpl<Definition>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

@@ -491,5 +491,9 @@ public class MessageWrapper implements Message {
 		return _message;
 	}
 
+	public void resetOriginalValues() {
+		_message.resetOriginalValues();
+	}
+
 	private Message _message;
 }

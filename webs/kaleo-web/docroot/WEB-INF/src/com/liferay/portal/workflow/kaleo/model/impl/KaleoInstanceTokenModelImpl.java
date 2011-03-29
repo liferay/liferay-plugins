@@ -298,36 +298,23 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 		KaleoInstanceTokenImpl kaleoInstanceTokenImpl = new KaleoInstanceTokenImpl();
 
 		kaleoInstanceTokenImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-
 		kaleoInstanceTokenImpl.setGroupId(getGroupId());
-
 		kaleoInstanceTokenImpl.setCompanyId(getCompanyId());
-
 		kaleoInstanceTokenImpl.setUserId(getUserId());
-
 		kaleoInstanceTokenImpl.setUserName(getUserName());
-
 		kaleoInstanceTokenImpl.setCreateDate(getCreateDate());
-
 		kaleoInstanceTokenImpl.setModifiedDate(getModifiedDate());
-
 		kaleoInstanceTokenImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoInstanceTokenImpl.setKaleoInstanceId(getKaleoInstanceId());
-
 		kaleoInstanceTokenImpl.setParentKaleoInstanceTokenId(getParentKaleoInstanceTokenId());
-
 		kaleoInstanceTokenImpl.setCurrentKaleoNodeId(getCurrentKaleoNodeId());
-
 		kaleoInstanceTokenImpl.setCurrentKaleoNodeName(getCurrentKaleoNodeName());
-
 		kaleoInstanceTokenImpl.setClassName(getClassName());
-
 		kaleoInstanceTokenImpl.setClassPK(getClassPK());
-
 		kaleoInstanceTokenImpl.setCompleted(getCompleted());
-
 		kaleoInstanceTokenImpl.setCompletionDate(getCompletionDate());
+
+		kaleoInstanceTokenImpl.resetOriginalValues();
 
 		return kaleoInstanceTokenImpl;
 	}
@@ -378,6 +365,9 @@ public class KaleoInstanceTokenModelImpl extends BaseModelImpl<KaleoInstanceToke
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

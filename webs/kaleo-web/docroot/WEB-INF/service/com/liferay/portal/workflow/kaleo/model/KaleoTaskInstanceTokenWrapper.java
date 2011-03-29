@@ -529,5 +529,9 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken {
 		return _kaleoTaskInstanceToken;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTaskInstanceToken.resetOriginalValues();
+	}
+
 	private KaleoTaskInstanceToken _kaleoTaskInstanceToken;
 }

@@ -245,30 +245,16 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 		UserThreadImpl userThreadImpl = new UserThreadImpl();
 
 		userThreadImpl.setUserThreadId(getUserThreadId());
-
 		userThreadImpl.setCompanyId(getCompanyId());
-
 		userThreadImpl.setUserId(getUserId());
-
-		UserThreadModelImpl userThreadModelImpl = userThreadImpl;
-
-		userThreadModelImpl._originalUserId = userThreadModelImpl._userId;
-
-		userThreadModelImpl._setOriginalUserId = false;
 		userThreadImpl.setCreateDate(getCreateDate());
-
 		userThreadImpl.setModifiedDate(getModifiedDate());
-
 		userThreadImpl.setMbThreadId(getMbThreadId());
-
-		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
-
-		userThreadModelImpl._setOriginalMbThreadId = false;
 		userThreadImpl.setTopMBMessageId(getTopMBMessageId());
-
 		userThreadImpl.setRead(getRead());
-
 		userThreadImpl.setDeleted(getDeleted());
+
+		userThreadImpl.resetOriginalValues();
 
 		return userThreadImpl;
 	}
@@ -314,6 +300,18 @@ public class UserThreadModelImpl extends BaseModelImpl<UserThread>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		UserThreadModelImpl userThreadModelImpl = this;
+
+		userThreadModelImpl._originalUserId = userThreadModelImpl._userId;
+
+		userThreadModelImpl._setOriginalUserId = false;
+
+		userThreadModelImpl._originalMbThreadId = userThreadModelImpl._mbThreadId;
+
+		userThreadModelImpl._setOriginalMbThreadId = false;
 	}
 
 	public String toString() {

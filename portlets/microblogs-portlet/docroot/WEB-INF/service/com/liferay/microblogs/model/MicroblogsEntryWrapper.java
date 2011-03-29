@@ -358,5 +358,9 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry {
 		return _microblogsEntry;
 	}
 
+	public void resetOriginalValues() {
+		_microblogsEntry.resetOriginalValues();
+	}
+
 	private MicroblogsEntry _microblogsEntry;
 }

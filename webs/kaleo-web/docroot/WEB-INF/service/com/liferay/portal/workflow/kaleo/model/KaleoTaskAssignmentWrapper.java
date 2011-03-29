@@ -411,5 +411,9 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment {
 		return _kaleoTaskAssignment;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTaskAssignment.resetOriginalValues();
+	}
+
 	private KaleoTaskAssignment _kaleoTaskAssignment;
 }

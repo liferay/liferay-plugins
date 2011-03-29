@@ -286,35 +286,19 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 		KaleoConditionImpl kaleoConditionImpl = new KaleoConditionImpl();
 
 		kaleoConditionImpl.setKaleoConditionId(getKaleoConditionId());
-
 		kaleoConditionImpl.setGroupId(getGroupId());
-
 		kaleoConditionImpl.setCompanyId(getCompanyId());
-
 		kaleoConditionImpl.setUserId(getUserId());
-
 		kaleoConditionImpl.setUserName(getUserName());
-
 		kaleoConditionImpl.setCreateDate(getCreateDate());
-
 		kaleoConditionImpl.setModifiedDate(getModifiedDate());
-
 		kaleoConditionImpl.setClassName(getClassName());
-
-		KaleoConditionModelImpl kaleoConditionModelImpl = kaleoConditionImpl;
-
-		kaleoConditionModelImpl._originalClassName = kaleoConditionModelImpl._className;
-
 		kaleoConditionImpl.setClassPK(getClassPK());
-
-		kaleoConditionModelImpl._originalClassPK = kaleoConditionModelImpl._classPK;
-
-		kaleoConditionModelImpl._setOriginalClassPK = false;
 		kaleoConditionImpl.setDescription(getDescription());
-
 		kaleoConditionImpl.setScript(getScript());
-
 		kaleoConditionImpl.setScriptLanguage(getScriptLanguage());
+
+		kaleoConditionImpl.resetOriginalValues();
 
 		return kaleoConditionImpl;
 	}
@@ -365,6 +349,16 @@ public class KaleoConditionModelImpl extends BaseModelImpl<KaleoCondition>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		KaleoConditionModelImpl kaleoConditionModelImpl = this;
+
+		kaleoConditionModelImpl._originalClassName = kaleoConditionModelImpl._className;
+
+		kaleoConditionModelImpl._originalClassPK = kaleoConditionModelImpl._classPK;
+
+		kaleoConditionModelImpl._setOriginalClassPK = false;
 	}
 
 	public String toString() {

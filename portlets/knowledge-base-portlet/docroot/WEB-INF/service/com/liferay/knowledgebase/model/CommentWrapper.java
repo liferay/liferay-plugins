@@ -373,5 +373,9 @@ public class CommentWrapper implements Comment {
 		return _comment;
 	}
 
+	public void resetOriginalValues() {
+		_comment.resetOriginalValues();
+	}
+
 	private Comment _comment;
 }

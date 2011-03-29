@@ -182,5 +182,9 @@ public class SVNRepositoryWrapper implements SVNRepository {
 		return _svnRepository;
 	}
 
+	public void resetOriginalValues() {
+		_svnRepository.resetOriginalValues();
+	}
+
 	private SVNRepository _svnRepository;
 }

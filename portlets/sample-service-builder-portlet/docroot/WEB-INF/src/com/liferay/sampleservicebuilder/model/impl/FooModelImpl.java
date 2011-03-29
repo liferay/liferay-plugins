@@ -338,37 +338,20 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 		FooImpl fooImpl = new FooImpl();
 
 		fooImpl.setUuid(getUuid());
-
-		FooModelImpl fooModelImpl = fooImpl;
-
-		fooModelImpl._originalUuid = fooModelImpl._uuid;
-
 		fooImpl.setFooId(getFooId());
-
 		fooImpl.setGroupId(getGroupId());
-
-		fooModelImpl._originalGroupId = fooModelImpl._groupId;
-
-		fooModelImpl._setOriginalGroupId = false;
 		fooImpl.setCompanyId(getCompanyId());
-
 		fooImpl.setUserId(getUserId());
-
 		fooImpl.setUserName(getUserName());
-
 		fooImpl.setCreateDate(getCreateDate());
-
 		fooImpl.setModifiedDate(getModifiedDate());
-
 		fooImpl.setField1(getField1());
-
 		fooImpl.setField2(getField2());
-
 		fooImpl.setField3(getField3());
-
 		fooImpl.setField4(getField4());
-
 		fooImpl.setField5(getField5());
+
+		fooImpl.resetOriginalValues();
 
 		return fooImpl;
 	}
@@ -411,6 +394,16 @@ public class FooModelImpl extends BaseModelImpl<Foo> implements FooModel {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		FooModelImpl fooModelImpl = this;
+
+		fooModelImpl._originalUuid = fooModelImpl._uuid;
+
+		fooModelImpl._originalGroupId = fooModelImpl._groupId;
+
+		fooModelImpl._setOriginalGroupId = false;
 	}
 
 	public String toString() {

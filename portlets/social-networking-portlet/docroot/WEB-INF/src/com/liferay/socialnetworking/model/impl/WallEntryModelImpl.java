@@ -218,20 +218,15 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		WallEntryImpl wallEntryImpl = new WallEntryImpl();
 
 		wallEntryImpl.setWallEntryId(getWallEntryId());
-
 		wallEntryImpl.setGroupId(getGroupId());
-
 		wallEntryImpl.setCompanyId(getCompanyId());
-
 		wallEntryImpl.setUserId(getUserId());
-
 		wallEntryImpl.setUserName(getUserName());
-
 		wallEntryImpl.setCreateDate(getCreateDate());
-
 		wallEntryImpl.setModifiedDate(getModifiedDate());
-
 		wallEntryImpl.setComments(getComments());
+
+		wallEntryImpl.resetOriginalValues();
 
 		return wallEntryImpl;
 	}
@@ -276,6 +271,9 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

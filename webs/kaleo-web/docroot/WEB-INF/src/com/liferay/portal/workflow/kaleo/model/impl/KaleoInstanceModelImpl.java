@@ -303,36 +303,23 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 		KaleoInstanceImpl kaleoInstanceImpl = new KaleoInstanceImpl();
 
 		kaleoInstanceImpl.setKaleoInstanceId(getKaleoInstanceId());
-
 		kaleoInstanceImpl.setGroupId(getGroupId());
-
 		kaleoInstanceImpl.setCompanyId(getCompanyId());
-
 		kaleoInstanceImpl.setUserId(getUserId());
-
 		kaleoInstanceImpl.setUserName(getUserName());
-
 		kaleoInstanceImpl.setCreateDate(getCreateDate());
-
 		kaleoInstanceImpl.setModifiedDate(getModifiedDate());
-
 		kaleoInstanceImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoInstanceImpl.setKaleoDefinitionName(getKaleoDefinitionName());
-
 		kaleoInstanceImpl.setKaleoDefinitionVersion(getKaleoDefinitionVersion());
-
 		kaleoInstanceImpl.setRootKaleoInstanceTokenId(getRootKaleoInstanceTokenId());
-
 		kaleoInstanceImpl.setClassName(getClassName());
-
 		kaleoInstanceImpl.setClassPK(getClassPK());
-
 		kaleoInstanceImpl.setCompleted(getCompleted());
-
 		kaleoInstanceImpl.setCompletionDate(getCompletionDate());
-
 		kaleoInstanceImpl.setWorkflowContext(getWorkflowContext());
+
+		kaleoInstanceImpl.resetOriginalValues();
 
 		return kaleoInstanceImpl;
 	}
@@ -383,6 +370,9 @@ public class KaleoInstanceModelImpl extends BaseModelImpl<KaleoInstance>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

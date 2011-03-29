@@ -301,5 +301,9 @@ public class AttachmentWrapper implements Attachment {
 		return _attachment;
 	}
 
+	public void resetOriginalValues() {
+		_attachment.resetOriginalValues();
+	}
+
 	private Attachment _attachment;
 }

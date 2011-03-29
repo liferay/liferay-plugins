@@ -244,6 +244,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KEY,
 			new Object[] { jiraIssue.getKey() }, jiraIssue);
+
+		jiraIssue.resetOriginalValues();
 	}
 
 	/**

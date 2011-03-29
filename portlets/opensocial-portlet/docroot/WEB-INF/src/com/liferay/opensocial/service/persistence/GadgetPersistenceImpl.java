@@ -127,6 +127,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_C_U,
 			new Object[] { Long.valueOf(gadget.getCompanyId()), gadget.getUrl() },
 			gadget);
+
+		gadget.resetOriginalValues();
 	}
 
 	/**

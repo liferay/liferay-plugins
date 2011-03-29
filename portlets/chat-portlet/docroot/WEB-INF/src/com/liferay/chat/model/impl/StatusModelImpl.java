@@ -235,25 +235,15 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 		StatusImpl statusImpl = new StatusImpl();
 
 		statusImpl.setStatusId(getStatusId());
-
 		statusImpl.setUserId(getUserId());
-
-		StatusModelImpl statusModelImpl = statusImpl;
-
-		statusModelImpl._originalUserId = statusModelImpl._userId;
-
-		statusModelImpl._setOriginalUserId = false;
 		statusImpl.setModifiedDate(getModifiedDate());
-
 		statusImpl.setOnline(getOnline());
-
 		statusImpl.setAwake(getAwake());
-
 		statusImpl.setActivePanelId(getActivePanelId());
-
 		statusImpl.setMessage(getMessage());
-
 		statusImpl.setPlaySound(getPlaySound());
+
+		statusImpl.resetOriginalValues();
 
 		return statusImpl;
 	}
@@ -298,6 +288,14 @@ public class StatusModelImpl extends BaseModelImpl<Status>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		StatusModelImpl statusModelImpl = this;
+
+		statusModelImpl._originalUserId = statusModelImpl._userId;
+
+		statusModelImpl._setOriginalUserId = false;
 	}
 
 	public String toString() {

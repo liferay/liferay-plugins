@@ -129,6 +129,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] { foo.getUuid(), Long.valueOf(foo.getGroupId()) }, foo);
+
+		foo.resetOriginalValues();
 	}
 
 	/**

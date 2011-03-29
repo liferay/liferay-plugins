@@ -336,47 +336,21 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 		OAuthTokenImpl oAuthTokenImpl = new OAuthTokenImpl();
 
 		oAuthTokenImpl.setOAuthTokenId(getOAuthTokenId());
-
 		oAuthTokenImpl.setCompanyId(getCompanyId());
-
 		oAuthTokenImpl.setUserId(getUserId());
-
-		OAuthTokenModelImpl oAuthTokenModelImpl = oAuthTokenImpl;
-
-		oAuthTokenModelImpl._originalUserId = oAuthTokenModelImpl._userId;
-
-		oAuthTokenModelImpl._setOriginalUserId = false;
 		oAuthTokenImpl.setUserName(getUserName());
-
 		oAuthTokenImpl.setCreateDate(getCreateDate());
-
 		oAuthTokenImpl.setModifiedDate(getModifiedDate());
-
 		oAuthTokenImpl.setGadgetId(getGadgetId());
-
-		oAuthTokenModelImpl._originalGadgetId = oAuthTokenModelImpl._gadgetId;
-
-		oAuthTokenModelImpl._setOriginalGadgetId = false;
 		oAuthTokenImpl.setServiceName(getServiceName());
-
-		oAuthTokenModelImpl._originalServiceName = oAuthTokenModelImpl._serviceName;
-
 		oAuthTokenImpl.setModuleId(getModuleId());
-
-		oAuthTokenModelImpl._originalModuleId = oAuthTokenModelImpl._moduleId;
-
-		oAuthTokenModelImpl._setOriginalModuleId = false;
 		oAuthTokenImpl.setAccessToken(getAccessToken());
-
 		oAuthTokenImpl.setTokenName(getTokenName());
-
-		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
-
 		oAuthTokenImpl.setTokenSecret(getTokenSecret());
-
 		oAuthTokenImpl.setSessionHandle(getSessionHandle());
-
 		oAuthTokenImpl.setExpiration(getExpiration());
+
+		oAuthTokenImpl.resetOriginalValues();
 
 		return oAuthTokenImpl;
 	}
@@ -421,6 +395,26 @@ public class OAuthTokenModelImpl extends BaseModelImpl<OAuthToken>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		OAuthTokenModelImpl oAuthTokenModelImpl = this;
+
+		oAuthTokenModelImpl._originalUserId = oAuthTokenModelImpl._userId;
+
+		oAuthTokenModelImpl._setOriginalUserId = false;
+
+		oAuthTokenModelImpl._originalGadgetId = oAuthTokenModelImpl._gadgetId;
+
+		oAuthTokenModelImpl._setOriginalGadgetId = false;
+
+		oAuthTokenModelImpl._originalServiceName = oAuthTokenModelImpl._serviceName;
+
+		oAuthTokenModelImpl._originalModuleId = oAuthTokenModelImpl._moduleId;
+
+		oAuthTokenModelImpl._setOriginalModuleId = false;
+
+		oAuthTokenModelImpl._originalTokenName = oAuthTokenModelImpl._tokenName;
 	}
 
 	public String toString() {

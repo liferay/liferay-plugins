@@ -391,5 +391,9 @@ public class OAuthTokenWrapper implements OAuthToken {
 		return _oAuthToken;
 	}
 
+	public void resetOriginalValues() {
+		_oAuthToken.resetOriginalValues();
+	}
+
 	private OAuthToken _oAuthToken;
 }

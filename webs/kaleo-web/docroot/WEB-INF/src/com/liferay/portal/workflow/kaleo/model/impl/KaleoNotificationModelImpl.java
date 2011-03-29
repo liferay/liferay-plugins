@@ -319,36 +319,23 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 		KaleoNotificationImpl kaleoNotificationImpl = new KaleoNotificationImpl();
 
 		kaleoNotificationImpl.setKaleoNotificationId(getKaleoNotificationId());
-
 		kaleoNotificationImpl.setGroupId(getGroupId());
-
 		kaleoNotificationImpl.setCompanyId(getCompanyId());
-
 		kaleoNotificationImpl.setUserId(getUserId());
-
 		kaleoNotificationImpl.setUserName(getUserName());
-
 		kaleoNotificationImpl.setCreateDate(getCreateDate());
-
 		kaleoNotificationImpl.setModifiedDate(getModifiedDate());
-
 		kaleoNotificationImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoNotificationImpl.setKaleoNodeId(getKaleoNodeId());
-
 		kaleoNotificationImpl.setKaleoNodeName(getKaleoNodeName());
-
 		kaleoNotificationImpl.setName(getName());
-
 		kaleoNotificationImpl.setDescription(getDescription());
-
 		kaleoNotificationImpl.setExecutionType(getExecutionType());
-
 		kaleoNotificationImpl.setTemplate(getTemplate());
-
 		kaleoNotificationImpl.setTemplateLanguage(getTemplateLanguage());
-
 		kaleoNotificationImpl.setNotificationTypes(getNotificationTypes());
+
+		kaleoNotificationImpl.resetOriginalValues();
 
 		return kaleoNotificationImpl;
 	}
@@ -399,6 +386,9 @@ public class KaleoNotificationModelImpl extends BaseModelImpl<KaleoNotification>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

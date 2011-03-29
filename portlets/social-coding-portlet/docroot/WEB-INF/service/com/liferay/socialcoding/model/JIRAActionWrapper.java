@@ -263,5 +263,9 @@ public class JIRAActionWrapper implements JIRAAction {
 		return _jiraAction;
 	}
 
+	public void resetOriginalValues() {
+		_jiraAction.resetOriginalValues();
+	}
+
 	private JIRAAction _jiraAction;
 }

@@ -392,5 +392,9 @@ public class MeetupsEntryWrapper implements MeetupsEntry {
 		return _meetupsEntry;
 	}
 
+	public void resetOriginalValues() {
+		_meetupsEntry.resetOriginalValues();
+	}
+
 	private MeetupsEntry _meetupsEntry;
 }

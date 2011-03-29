@@ -132,6 +132,8 @@ public class KaleoNotificationRecipientPersistenceImpl
 			KaleoNotificationRecipientImpl.class,
 			kaleoNotificationRecipient.getPrimaryKey(),
 			kaleoNotificationRecipient);
+
+		kaleoNotificationRecipient.resetOriginalValues();
 	}
 
 	/**

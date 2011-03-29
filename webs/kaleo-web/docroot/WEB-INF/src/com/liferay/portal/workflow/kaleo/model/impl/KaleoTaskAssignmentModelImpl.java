@@ -295,34 +295,22 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 		KaleoTaskAssignmentImpl kaleoTaskAssignmentImpl = new KaleoTaskAssignmentImpl();
 
 		kaleoTaskAssignmentImpl.setKaleoTaskAssignmentId(getKaleoTaskAssignmentId());
-
 		kaleoTaskAssignmentImpl.setGroupId(getGroupId());
-
 		kaleoTaskAssignmentImpl.setCompanyId(getCompanyId());
-
 		kaleoTaskAssignmentImpl.setUserId(getUserId());
-
 		kaleoTaskAssignmentImpl.setUserName(getUserName());
-
 		kaleoTaskAssignmentImpl.setCreateDate(getCreateDate());
-
 		kaleoTaskAssignmentImpl.setModifiedDate(getModifiedDate());
-
 		kaleoTaskAssignmentImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoTaskAssignmentImpl.setKaleoNodeId(getKaleoNodeId());
-
 		kaleoTaskAssignmentImpl.setKaleoTaskId(getKaleoTaskId());
-
 		kaleoTaskAssignmentImpl.setAssigneeClassName(getAssigneeClassName());
-
 		kaleoTaskAssignmentImpl.setAssigneeClassPK(getAssigneeClassPK());
-
 		kaleoTaskAssignmentImpl.setAssigneeActionId(getAssigneeActionId());
-
 		kaleoTaskAssignmentImpl.setAssigneeScript(getAssigneeScript());
-
 		kaleoTaskAssignmentImpl.setAssigneeScriptLanguage(getAssigneeScriptLanguage());
+
+		kaleoTaskAssignmentImpl.resetOriginalValues();
 
 		return kaleoTaskAssignmentImpl;
 	}
@@ -373,6 +361,9 @@ public class KaleoTaskAssignmentModelImpl extends BaseModelImpl<KaleoTaskAssignm
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

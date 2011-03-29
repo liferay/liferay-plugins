@@ -117,6 +117,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 				kaleoCondition.getClassName(),
 				Long.valueOf(kaleoCondition.getClassPK())
 			}, kaleoCondition);
+
+		kaleoCondition.resetOriginalValues();
 	}
 
 	/**

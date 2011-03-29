@@ -320,5 +320,9 @@ public class UserThreadWrapper implements UserThread {
 		return _userThread;
 	}
 
+	public void resetOriginalValues() {
+		_userThread.resetOriginalValues();
+	}
+
 	private UserThread _userThread;
 }

@@ -249,5 +249,9 @@ public class EntryWrapper implements Entry {
 		return _entry;
 	}
 
+	public void resetOriginalValues() {
+		_entry.resetOriginalValues();
+	}
+
 	private Entry _entry;
 }

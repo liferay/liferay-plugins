@@ -458,5 +458,9 @@ public class KaleoTaskAssignmentInstanceWrapper
 		return _kaleoTaskAssignmentInstance;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTaskAssignmentInstance.resetOriginalValues();
+	}
+
 	private KaleoTaskAssignmentInstance _kaleoTaskAssignmentInstance;
 }

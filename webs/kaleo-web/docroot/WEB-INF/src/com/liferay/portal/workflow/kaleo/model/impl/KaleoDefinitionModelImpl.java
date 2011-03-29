@@ -386,40 +386,20 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 		KaleoDefinitionImpl kaleoDefinitionImpl = new KaleoDefinitionImpl();
 
 		kaleoDefinitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoDefinitionImpl.setGroupId(getGroupId());
-
 		kaleoDefinitionImpl.setCompanyId(getCompanyId());
-
-		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = kaleoDefinitionImpl;
-
-		kaleoDefinitionModelImpl._originalCompanyId = kaleoDefinitionModelImpl._companyId;
-
-		kaleoDefinitionModelImpl._setOriginalCompanyId = false;
 		kaleoDefinitionImpl.setUserId(getUserId());
-
 		kaleoDefinitionImpl.setUserName(getUserName());
-
 		kaleoDefinitionImpl.setCreateDate(getCreateDate());
-
 		kaleoDefinitionImpl.setModifiedDate(getModifiedDate());
-
 		kaleoDefinitionImpl.setName(getName());
-
-		kaleoDefinitionModelImpl._originalName = kaleoDefinitionModelImpl._name;
-
 		kaleoDefinitionImpl.setTitle(getTitle());
-
 		kaleoDefinitionImpl.setDescription(getDescription());
-
 		kaleoDefinitionImpl.setVersion(getVersion());
-
-		kaleoDefinitionModelImpl._originalVersion = kaleoDefinitionModelImpl._version;
-
-		kaleoDefinitionModelImpl._setOriginalVersion = false;
 		kaleoDefinitionImpl.setActive(getActive());
-
 		kaleoDefinitionImpl.setStartKaleoNodeId(getStartKaleoNodeId());
+
+		kaleoDefinitionImpl.resetOriginalValues();
 
 		return kaleoDefinitionImpl;
 	}
@@ -472,6 +452,20 @@ public class KaleoDefinitionModelImpl extends BaseModelImpl<KaleoDefinition>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		KaleoDefinitionModelImpl kaleoDefinitionModelImpl = this;
+
+		kaleoDefinitionModelImpl._originalCompanyId = kaleoDefinitionModelImpl._companyId;
+
+		kaleoDefinitionModelImpl._setOriginalCompanyId = false;
+
+		kaleoDefinitionModelImpl._originalName = kaleoDefinitionModelImpl._name;
+
+		kaleoDefinitionModelImpl._originalVersion = kaleoDefinitionModelImpl._version;
+
+		kaleoDefinitionModelImpl._setOriginalVersion = false;
 	}
 
 	public String toString() {

@@ -125,6 +125,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_KALEONODEID,
 			new Object[] { Long.valueOf(kaleoTask.getKaleoNodeId()) }, kaleoTask);
+
+		kaleoTask.resetOriginalValues();
 	}
 
 	/**

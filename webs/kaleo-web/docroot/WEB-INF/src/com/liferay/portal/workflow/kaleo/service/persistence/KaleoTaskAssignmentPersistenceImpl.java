@@ -155,6 +155,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		EntityCacheUtil.putResult(KaleoTaskAssignmentModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTaskAssignmentImpl.class, kaleoTaskAssignment.getPrimaryKey(),
 			kaleoTaskAssignment);
+
+		kaleoTaskAssignment.resetOriginalValues();
 	}
 
 	/**

@@ -544,53 +544,28 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 		CalendarEventImpl calendarEventImpl = new CalendarEventImpl();
 
 		calendarEventImpl.setUuid(getUuid());
-
-		CalendarEventModelImpl calendarEventModelImpl = calendarEventImpl;
-
-		calendarEventModelImpl._originalUuid = calendarEventModelImpl._uuid;
-
 		calendarEventImpl.setCalendarEventId(getCalendarEventId());
-
 		calendarEventImpl.setGroupId(getGroupId());
-
-		calendarEventModelImpl._originalGroupId = calendarEventModelImpl._groupId;
-
-		calendarEventModelImpl._setOriginalGroupId = false;
 		calendarEventImpl.setCompanyId(getCompanyId());
-
 		calendarEventImpl.setUserId(getUserId());
-
 		calendarEventImpl.setUserName(getUserName());
-
 		calendarEventImpl.setCreateDate(getCreateDate());
-
 		calendarEventImpl.setModifiedDate(getModifiedDate());
-
 		calendarEventImpl.setTitle(getTitle());
-
 		calendarEventImpl.setDescription(getDescription());
-
 		calendarEventImpl.setLocation(getLocation());
-
 		calendarEventImpl.setStartDate(getStartDate());
-
 		calendarEventImpl.setEndDate(getEndDate());
-
 		calendarEventImpl.setDurationHour(getDurationHour());
-
 		calendarEventImpl.setDurationMinute(getDurationMinute());
-
 		calendarEventImpl.setAllDay(getAllDay());
-
 		calendarEventImpl.setRecurrence(getRecurrence());
-
 		calendarEventImpl.setType(getType());
-
 		calendarEventImpl.setRemindBy(getRemindBy());
-
 		calendarEventImpl.setFirstReminder(getFirstReminder());
-
 		calendarEventImpl.setSecondReminder(getSecondReminder());
+
+		calendarEventImpl.resetOriginalValues();
 
 		return calendarEventImpl;
 	}
@@ -640,6 +615,16 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		CalendarEventModelImpl calendarEventModelImpl = this;
+
+		calendarEventModelImpl._originalUuid = calendarEventModelImpl._uuid;
+
+		calendarEventModelImpl._originalGroupId = calendarEventModelImpl._groupId;
+
+		calendarEventModelImpl._setOriginalGroupId = false;
 	}
 
 	public String toString() {

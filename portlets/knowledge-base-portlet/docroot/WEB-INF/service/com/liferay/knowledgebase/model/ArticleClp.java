@@ -79,6 +79,14 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		_resourcePrimKey = resourcePrimKey;
 	}
 
+	public boolean isResourceMain() {
+		return _resourceMain;
+	}
+
+	public void setResourceMain(boolean resourceMain) {
+		_resourceMain = resourceMain;
+	}
+
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -548,6 +556,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	private String _uuid;
 	private long _articleId;
 	private long _resourcePrimKey;
+	private boolean _resourceMain;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;

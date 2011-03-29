@@ -119,6 +119,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 				
 			oAuthConsumer.getServiceName()
 			}, oAuthConsumer);
+
+		oAuthConsumer.resetOriginalValues();
 	}
 
 	/**

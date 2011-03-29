@@ -183,6 +183,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public void cacheResult(Entry entry) {
 		EntityCacheUtil.putResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryImpl.class, entry.getPrimaryKey(), entry);
+
+		entry.resetOriginalValues();
 	}
 
 	/**

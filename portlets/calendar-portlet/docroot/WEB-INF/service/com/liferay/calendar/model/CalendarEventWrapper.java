@@ -694,5 +694,9 @@ public class CalendarEventWrapper implements CalendarEvent {
 		return _calendarEvent;
 	}
 
+	public void resetOriginalValues() {
+		_calendarEvent.resetOriginalValues();
+	}
+
 	private CalendarEvent _calendarEvent;
 }

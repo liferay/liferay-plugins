@@ -263,5 +263,9 @@ public class GadgetWrapper implements Gadget {
 		return _gadget;
 	}
 
+	public void resetOriginalValues() {
+		_gadget.resetOriginalValues();
+	}
+
 	private Gadget _gadget;
 }

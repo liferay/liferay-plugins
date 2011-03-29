@@ -248,30 +248,16 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 		MeetupsRegistrationImpl meetupsRegistrationImpl = new MeetupsRegistrationImpl();
 
 		meetupsRegistrationImpl.setMeetupsRegistrationId(getMeetupsRegistrationId());
-
 		meetupsRegistrationImpl.setCompanyId(getCompanyId());
-
 		meetupsRegistrationImpl.setUserId(getUserId());
-
-		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = meetupsRegistrationImpl;
-
-		meetupsRegistrationModelImpl._originalUserId = meetupsRegistrationModelImpl._userId;
-
-		meetupsRegistrationModelImpl._setOriginalUserId = false;
 		meetupsRegistrationImpl.setUserName(getUserName());
-
 		meetupsRegistrationImpl.setCreateDate(getCreateDate());
-
 		meetupsRegistrationImpl.setModifiedDate(getModifiedDate());
-
 		meetupsRegistrationImpl.setMeetupsEntryId(getMeetupsEntryId());
-
-		meetupsRegistrationModelImpl._originalMeetupsEntryId = meetupsRegistrationModelImpl._meetupsEntryId;
-
-		meetupsRegistrationModelImpl._setOriginalMeetupsEntryId = false;
 		meetupsRegistrationImpl.setStatus(getStatus());
-
 		meetupsRegistrationImpl.setComments(getComments());
+
+		meetupsRegistrationImpl.resetOriginalValues();
 
 		return meetupsRegistrationImpl;
 	}
@@ -317,6 +303,18 @@ public class MeetupsRegistrationModelImpl extends BaseModelImpl<MeetupsRegistrat
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		MeetupsRegistrationModelImpl meetupsRegistrationModelImpl = this;
+
+		meetupsRegistrationModelImpl._originalUserId = meetupsRegistrationModelImpl._userId;
+
+		meetupsRegistrationModelImpl._setOriginalUserId = false;
+
+		meetupsRegistrationModelImpl._originalMeetupsEntryId = meetupsRegistrationModelImpl._meetupsEntryId;
+
+		meetupsRegistrationModelImpl._setOriginalMeetupsEntryId = false;
 	}
 
 	public String toString() {

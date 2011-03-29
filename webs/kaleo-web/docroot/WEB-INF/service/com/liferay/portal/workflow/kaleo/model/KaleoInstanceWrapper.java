@@ -459,5 +459,9 @@ public class KaleoInstanceWrapper implements KaleoInstance {
 		return _kaleoInstance;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoInstance.resetOriginalValues();
+	}
+
 	private KaleoInstance _kaleoInstance;
 }

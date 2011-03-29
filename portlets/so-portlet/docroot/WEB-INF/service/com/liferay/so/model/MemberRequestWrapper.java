@@ -375,5 +375,9 @@ public class MemberRequestWrapper implements MemberRequest {
 		return _memberRequest;
 	}
 
+	public void resetOriginalValues() {
+		_memberRequest.resetOriginalValues();
+	}
+
 	private MemberRequest _memberRequest;
 }

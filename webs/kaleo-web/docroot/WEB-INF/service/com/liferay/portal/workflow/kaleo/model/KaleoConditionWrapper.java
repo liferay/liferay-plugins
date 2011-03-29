@@ -356,5 +356,9 @@ public class KaleoConditionWrapper implements KaleoCondition {
 		return _kaleoCondition;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoCondition.resetOriginalValues();
+	}
+
 	private KaleoCondition _kaleoCondition;
 }

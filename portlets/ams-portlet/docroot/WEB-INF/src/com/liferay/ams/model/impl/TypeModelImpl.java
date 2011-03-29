@@ -154,10 +154,10 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		TypeImpl typeImpl = new TypeImpl();
 
 		typeImpl.setTypeId(getTypeId());
-
 		typeImpl.setGroupId(getGroupId());
-
 		typeImpl.setName(getName());
+
+		typeImpl.resetOriginalValues();
 
 		return typeImpl;
 	}
@@ -200,6 +200,9 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

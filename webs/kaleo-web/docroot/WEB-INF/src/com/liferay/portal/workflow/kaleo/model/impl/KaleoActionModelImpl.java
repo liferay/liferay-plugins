@@ -314,36 +314,23 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 		KaleoActionImpl kaleoActionImpl = new KaleoActionImpl();
 
 		kaleoActionImpl.setKaleoActionId(getKaleoActionId());
-
 		kaleoActionImpl.setGroupId(getGroupId());
-
 		kaleoActionImpl.setCompanyId(getCompanyId());
-
 		kaleoActionImpl.setUserId(getUserId());
-
 		kaleoActionImpl.setUserName(getUserName());
-
 		kaleoActionImpl.setCreateDate(getCreateDate());
-
 		kaleoActionImpl.setModifiedDate(getModifiedDate());
-
 		kaleoActionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoActionImpl.setKaleoNodeId(getKaleoNodeId());
-
 		kaleoActionImpl.setKaleoNodeName(getKaleoNodeName());
-
 		kaleoActionImpl.setName(getName());
-
 		kaleoActionImpl.setDescription(getDescription());
-
 		kaleoActionImpl.setExecutionType(getExecutionType());
-
 		kaleoActionImpl.setScript(getScript());
-
 		kaleoActionImpl.setScriptLanguage(getScriptLanguage());
-
 		kaleoActionImpl.setPriority(getPriority());
+
+		kaleoActionImpl.resetOriginalValues();
 
 		return kaleoActionImpl;
 	}
@@ -394,6 +381,9 @@ public class KaleoActionModelImpl extends BaseModelImpl<KaleoAction>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

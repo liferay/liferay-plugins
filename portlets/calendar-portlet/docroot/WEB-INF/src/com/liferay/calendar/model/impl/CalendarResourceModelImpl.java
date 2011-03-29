@@ -498,45 +498,21 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 		CalendarResourceImpl calendarResourceImpl = new CalendarResourceImpl();
 
 		calendarResourceImpl.setUuid(getUuid());
-
-		CalendarResourceModelImpl calendarResourceModelImpl = calendarResourceImpl;
-
-		calendarResourceModelImpl._originalUuid = calendarResourceModelImpl._uuid;
-
 		calendarResourceImpl.setCalendarResourceId(getCalendarResourceId());
-
 		calendarResourceImpl.setGroupId(getGroupId());
-
-		calendarResourceModelImpl._originalGroupId = calendarResourceModelImpl._groupId;
-
-		calendarResourceModelImpl._setOriginalGroupId = false;
 		calendarResourceImpl.setCompanyId(getCompanyId());
-
 		calendarResourceImpl.setUserId(getUserId());
-
 		calendarResourceImpl.setUserName(getUserName());
-
 		calendarResourceImpl.setCreateDate(getCreateDate());
-
 		calendarResourceImpl.setModifiedDate(getModifiedDate());
-
 		calendarResourceImpl.setClassNameId(getClassNameId());
-
-		calendarResourceModelImpl._originalClassNameId = calendarResourceModelImpl._classNameId;
-
-		calendarResourceModelImpl._setOriginalClassNameId = false;
 		calendarResourceImpl.setClassPK(getClassPK());
-
-		calendarResourceModelImpl._originalClassPK = calendarResourceModelImpl._classPK;
-
-		calendarResourceModelImpl._setOriginalClassPK = false;
 		calendarResourceImpl.setClassUuid(getClassUuid());
-
 		calendarResourceImpl.setName(getName());
-
 		calendarResourceImpl.setDescription(getDescription());
-
 		calendarResourceImpl.setActive(getActive());
+
+		calendarResourceImpl.resetOriginalValues();
 
 		return calendarResourceImpl;
 	}
@@ -580,6 +556,24 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		CalendarResourceModelImpl calendarResourceModelImpl = this;
+
+		calendarResourceModelImpl._originalUuid = calendarResourceModelImpl._uuid;
+
+		calendarResourceModelImpl._originalGroupId = calendarResourceModelImpl._groupId;
+
+		calendarResourceModelImpl._setOriginalGroupId = false;
+
+		calendarResourceModelImpl._originalClassNameId = calendarResourceModelImpl._classNameId;
+
+		calendarResourceModelImpl._setOriginalClassNameId = false;
+
+		calendarResourceModelImpl._originalClassPK = calendarResourceModelImpl._classPK;
+
+		calendarResourceModelImpl._setOriginalClassPK = false;
 	}
 
 	public String toString() {

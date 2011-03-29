@@ -258,31 +258,17 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 		FolderImpl folderImpl = new FolderImpl();
 
 		folderImpl.setFolderId(getFolderId());
-
 		folderImpl.setCompanyId(getCompanyId());
-
 		folderImpl.setUserId(getUserId());
-
 		folderImpl.setUserName(getUserName());
-
 		folderImpl.setCreateDate(getCreateDate());
-
 		folderImpl.setModifiedDate(getModifiedDate());
-
 		folderImpl.setAccountId(getAccountId());
-
-		FolderModelImpl folderModelImpl = folderImpl;
-
-		folderModelImpl._originalAccountId = folderModelImpl._accountId;
-
-		folderModelImpl._setOriginalAccountId = false;
 		folderImpl.setFullName(getFullName());
-
-		folderModelImpl._originalFullName = folderModelImpl._fullName;
-
 		folderImpl.setDisplayName(getDisplayName());
-
 		folderImpl.setRemoteMessageCount(getRemoteMessageCount());
+
+		folderImpl.resetOriginalValues();
 
 		return folderImpl;
 	}
@@ -325,6 +311,16 @@ public class FolderModelImpl extends BaseModelImpl<Folder>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		FolderModelImpl folderModelImpl = this;
+
+		folderModelImpl._originalAccountId = folderModelImpl._accountId;
+
+		folderModelImpl._setOriginalAccountId = false;
+
+		folderModelImpl._originalFullName = folderModelImpl._fullName;
 	}
 
 	public String toString() {

@@ -290,5 +290,9 @@ public class OAuthConsumerWrapper implements OAuthConsumer {
 		return _oAuthConsumer;
 	}
 
+	public void resetOriginalValues() {
+		_oAuthConsumer.resetOriginalValues();
+	}
+
 	private OAuthConsumer _oAuthConsumer;
 }

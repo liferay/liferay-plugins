@@ -384,6 +384,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				Long.valueOf(article.getResourcePrimKey()),
 				Integer.valueOf(article.getVersion())
 			}, article);
+
+		article.resetOriginalValues();
 	}
 
 	/**

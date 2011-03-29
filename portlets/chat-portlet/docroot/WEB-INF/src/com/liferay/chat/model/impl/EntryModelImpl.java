@@ -190,14 +190,12 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		EntryImpl entryImpl = new EntryImpl();
 
 		entryImpl.setEntryId(getEntryId());
-
 		entryImpl.setCreateDate(getCreateDate());
-
 		entryImpl.setFromUserId(getFromUserId());
-
 		entryImpl.setToUserId(getToUserId());
-
 		entryImpl.setContent(getContent());
+
+		entryImpl.resetOriginalValues();
 
 		return entryImpl;
 	}
@@ -250,6 +248,9 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

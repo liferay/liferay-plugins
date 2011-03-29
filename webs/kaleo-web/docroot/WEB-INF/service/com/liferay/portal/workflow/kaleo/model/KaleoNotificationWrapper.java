@@ -428,5 +428,9 @@ public class KaleoNotificationWrapper implements KaleoNotification {
 		return _kaleoNotification;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoNotification.resetOriginalValues();
+	}
+
 	private KaleoNotification _kaleoNotification;
 }

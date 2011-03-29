@@ -268,30 +268,20 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 		KaleoNotificationRecipientImpl kaleoNotificationRecipientImpl = new KaleoNotificationRecipientImpl();
 
 		kaleoNotificationRecipientImpl.setKaleoNotificationRecipientId(getKaleoNotificationRecipientId());
-
 		kaleoNotificationRecipientImpl.setGroupId(getGroupId());
-
 		kaleoNotificationRecipientImpl.setCompanyId(getCompanyId());
-
 		kaleoNotificationRecipientImpl.setUserId(getUserId());
-
 		kaleoNotificationRecipientImpl.setUserName(getUserName());
-
 		kaleoNotificationRecipientImpl.setCreateDate(getCreateDate());
-
 		kaleoNotificationRecipientImpl.setModifiedDate(getModifiedDate());
-
 		kaleoNotificationRecipientImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoNotificationRecipientImpl.setKaleoNotificationId(getKaleoNotificationId());
-
 		kaleoNotificationRecipientImpl.setRecipientClassName(getRecipientClassName());
-
 		kaleoNotificationRecipientImpl.setRecipientClassPK(getRecipientClassPK());
-
 		kaleoNotificationRecipientImpl.setRecipientRoleType(getRecipientRoleType());
-
 		kaleoNotificationRecipientImpl.setAddress(getAddress());
+
+		kaleoNotificationRecipientImpl.resetOriginalValues();
 
 		return kaleoNotificationRecipientImpl;
 	}
@@ -342,6 +332,9 @@ public class KaleoNotificationRecipientModelImpl extends BaseModelImpl<KaleoNoti
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

@@ -131,6 +131,8 @@ public class TemplatePersistenceImpl extends BasePersistenceImpl<Template>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G,
 			new Object[] { template.getUuid(), Long.valueOf(
 					template.getGroupId()) }, template);
+
+		template.resetOriginalValues();
 	}
 
 	/**

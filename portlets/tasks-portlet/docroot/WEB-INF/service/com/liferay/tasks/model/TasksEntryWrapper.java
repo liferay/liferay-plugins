@@ -447,5 +447,9 @@ public class TasksEntryWrapper implements TasksEntry {
 		return _tasksEntry;
 	}
 
+	public void resetOriginalValues() {
+		_tasksEntry.resetOriginalValues();
+	}
+
 	private TasksEntry _tasksEntry;
 }

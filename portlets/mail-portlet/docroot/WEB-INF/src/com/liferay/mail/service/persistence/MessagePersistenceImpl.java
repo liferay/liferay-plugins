@@ -127,6 +127,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 				Long.valueOf(message.getFolderId()),
 				Long.valueOf(message.getRemoteMessageId())
 			}, message);
+
+		message.resetOriginalValues();
 	}
 
 	/**

@@ -264,5 +264,9 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet {
 		return _wsrpConsumerPortlet;
 	}
 
+	public void resetOriginalValues() {
+		_wsrpConsumerPortlet.resetOriginalValues();
+	}
+
 	private WSRPConsumerPortlet _wsrpConsumerPortlet;
 }

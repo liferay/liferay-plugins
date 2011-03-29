@@ -337,5 +337,9 @@ public class WSRPConsumerWrapper implements WSRPConsumer {
 		return _wsrpConsumer;
 	}
 
+	public void resetOriginalValues() {
+		_wsrpConsumer.resetOriginalValues();
+	}
+
 	private WSRPConsumer _wsrpConsumer;
 }

@@ -470,5 +470,9 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken {
 		return _kaleoTimerInstanceToken;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTimerInstanceToken.resetOriginalValues();
+	}
+
 	private KaleoTimerInstanceToken _kaleoTimerInstanceToken;
 }

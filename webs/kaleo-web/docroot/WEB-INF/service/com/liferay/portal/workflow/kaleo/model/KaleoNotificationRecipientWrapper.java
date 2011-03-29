@@ -377,5 +377,9 @@ public class KaleoNotificationRecipientWrapper
 		return _kaleoNotificationRecipient;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoNotificationRecipient.resetOriginalValues();
+	}
+
 	private KaleoNotificationRecipient _kaleoNotificationRecipient;
 }

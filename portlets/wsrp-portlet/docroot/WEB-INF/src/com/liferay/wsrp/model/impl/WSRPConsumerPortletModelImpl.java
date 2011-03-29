@@ -231,27 +231,15 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 		WSRPConsumerPortletImpl wsrpConsumerPortletImpl = new WSRPConsumerPortletImpl();
 
 		wsrpConsumerPortletImpl.setUuid(getUuid());
-
 		wsrpConsumerPortletImpl.setWsrpConsumerPortletId(getWsrpConsumerPortletId());
-
 		wsrpConsumerPortletImpl.setCompanyId(getCompanyId());
-
 		wsrpConsumerPortletImpl.setCreateDate(getCreateDate());
-
 		wsrpConsumerPortletImpl.setModifiedDate(getModifiedDate());
-
 		wsrpConsumerPortletImpl.setWsrpConsumerId(getWsrpConsumerId());
-
-		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = wsrpConsumerPortletImpl;
-
-		wsrpConsumerPortletModelImpl._originalWsrpConsumerId = wsrpConsumerPortletModelImpl._wsrpConsumerId;
-
-		wsrpConsumerPortletModelImpl._setOriginalWsrpConsumerId = false;
 		wsrpConsumerPortletImpl.setName(getName());
-
 		wsrpConsumerPortletImpl.setPortletHandle(getPortletHandle());
 
-		wsrpConsumerPortletModelImpl._originalPortletHandle = wsrpConsumerPortletModelImpl._portletHandle;
+		wsrpConsumerPortletImpl.resetOriginalValues();
 
 		return wsrpConsumerPortletImpl;
 	}
@@ -294,6 +282,16 @@ public class WSRPConsumerPortletModelImpl extends BaseModelImpl<WSRPConsumerPort
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		WSRPConsumerPortletModelImpl wsrpConsumerPortletModelImpl = this;
+
+		wsrpConsumerPortletModelImpl._originalWsrpConsumerId = wsrpConsumerPortletModelImpl._wsrpConsumerId;
+
+		wsrpConsumerPortletModelImpl._setOriginalWsrpConsumerId = false;
+
+		wsrpConsumerPortletModelImpl._originalPortletHandle = wsrpConsumerPortletModelImpl._portletHandle;
 	}
 
 	public String toString() {

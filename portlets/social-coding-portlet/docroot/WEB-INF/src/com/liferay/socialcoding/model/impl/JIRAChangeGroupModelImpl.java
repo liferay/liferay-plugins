@@ -168,12 +168,11 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 		JIRAChangeGroupImpl jiraChangeGroupImpl = new JIRAChangeGroupImpl();
 
 		jiraChangeGroupImpl.setJiraChangeGroupId(getJiraChangeGroupId());
-
 		jiraChangeGroupImpl.setJiraUserId(getJiraUserId());
-
 		jiraChangeGroupImpl.setCreateDate(getCreateDate());
-
 		jiraChangeGroupImpl.setJiraIssueId(getJiraIssueId());
+
+		jiraChangeGroupImpl.resetOriginalValues();
 
 		return jiraChangeGroupImpl;
 	}
@@ -219,6 +218,9 @@ public class JIRAChangeGroupModelImpl extends BaseModelImpl<JIRAChangeGroup>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

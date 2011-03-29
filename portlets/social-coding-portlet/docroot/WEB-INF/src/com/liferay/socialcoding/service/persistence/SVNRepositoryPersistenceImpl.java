@@ -102,6 +102,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_URL,
 			new Object[] { svnRepository.getUrl() }, svnRepository);
+
+		svnRepository.resetOriginalValues();
 	}
 
 	/**

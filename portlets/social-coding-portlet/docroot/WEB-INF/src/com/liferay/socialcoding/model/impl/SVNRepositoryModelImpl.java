@@ -164,14 +164,10 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 		SVNRepositoryImpl svnRepositoryImpl = new SVNRepositoryImpl();
 
 		svnRepositoryImpl.setSvnRepositoryId(getSvnRepositoryId());
-
 		svnRepositoryImpl.setUrl(getUrl());
-
-		SVNRepositoryModelImpl svnRepositoryModelImpl = svnRepositoryImpl;
-
-		svnRepositoryModelImpl._originalUrl = svnRepositoryModelImpl._url;
-
 		svnRepositoryImpl.setRevisionNumber(getRevisionNumber());
+
+		svnRepositoryImpl.resetOriginalValues();
 
 		return svnRepositoryImpl;
 	}
@@ -214,6 +210,12 @@ public class SVNRepositoryModelImpl extends BaseModelImpl<SVNRepository>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		SVNRepositoryModelImpl svnRepositoryModelImpl = this;
+
+		svnRepositoryModelImpl._originalUrl = svnRepositoryModelImpl._url;
 	}
 
 	public String toString() {

@@ -337,5 +337,9 @@ public class ProjectsEntryWrapper implements ProjectsEntry {
 		return _projectsEntry;
 	}
 
+	public void resetOriginalValues() {
+		_projectsEntry.resetOriginalValues();
+	}
+
 	private ProjectsEntry _projectsEntry;
 }

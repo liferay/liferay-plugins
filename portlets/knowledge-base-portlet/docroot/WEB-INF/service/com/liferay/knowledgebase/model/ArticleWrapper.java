@@ -108,6 +108,10 @@ public class ArticleWrapper implements Article {
 		_article.setResourcePrimKey(resourcePrimKey);
 	}
 
+	public boolean isResourceMain() {
+		return _article.isResourceMain();
+	}
+
 	/**
 	* Gets the group ID of this article.
 	*
@@ -618,6 +622,10 @@ public class ArticleWrapper implements Article {
 
 	public Article getWrappedArticle() {
 		return _article;
+	}
+
+	public void resetOriginalValues() {
+		_article.resetOriginalValues();
 	}
 
 	private Article _article;

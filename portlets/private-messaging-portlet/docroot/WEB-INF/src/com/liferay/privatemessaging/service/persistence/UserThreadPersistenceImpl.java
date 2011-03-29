@@ -157,6 +157,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 				Long.valueOf(userThread.getUserId()),
 				Long.valueOf(userThread.getMbThreadId())
 			}, userThread);
+
+		userThread.resetOriginalValues();
 	}
 
 	/**

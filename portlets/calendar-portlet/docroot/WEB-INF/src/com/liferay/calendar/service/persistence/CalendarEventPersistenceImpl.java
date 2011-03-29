@@ -121,6 +121,8 @@ public class CalendarEventPersistenceImpl extends BasePersistenceImpl<CalendarEv
 				calendarEvent.getUuid(),
 				Long.valueOf(calendarEvent.getGroupId())
 			}, calendarEvent);
+
+		calendarEvent.resetOriginalValues();
 	}
 
 	/**

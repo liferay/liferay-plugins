@@ -660,5 +660,9 @@ public class AccountWrapper implements Account {
 		return _account;
 	}
 
+	public void resetOriginalValues() {
+		_account.resetOriginalValues();
+	}
+
 	private Account _account;
 }

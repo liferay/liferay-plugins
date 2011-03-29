@@ -158,6 +158,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				calendarBooking.getUuid(),
 				Long.valueOf(calendarBooking.getGroupId())
 			}, calendarBooking);
+
+		calendarBooking.resetOriginalValues();
 	}
 
 	/**

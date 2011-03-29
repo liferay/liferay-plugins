@@ -275,27 +275,15 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 		GadgetImpl gadgetImpl = new GadgetImpl();
 
 		gadgetImpl.setUuid(getUuid());
-
 		gadgetImpl.setGadgetId(getGadgetId());
-
 		gadgetImpl.setCompanyId(getCompanyId());
-
-		GadgetModelImpl gadgetModelImpl = gadgetImpl;
-
-		gadgetModelImpl._originalCompanyId = gadgetModelImpl._companyId;
-
-		gadgetModelImpl._setOriginalCompanyId = false;
 		gadgetImpl.setCreateDate(getCreateDate());
-
 		gadgetImpl.setModifiedDate(getModifiedDate());
-
 		gadgetImpl.setName(getName());
-
 		gadgetImpl.setUrl(getUrl());
-
-		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
-
 		gadgetImpl.setPortletCategoryNames(getPortletCategoryNames());
+
+		gadgetImpl.resetOriginalValues();
 
 		return gadgetImpl;
 	}
@@ -338,6 +326,16 @@ public class GadgetModelImpl extends BaseModelImpl<Gadget>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		GadgetModelImpl gadgetModelImpl = this;
+
+		gadgetModelImpl._originalCompanyId = gadgetModelImpl._companyId;
+
+		gadgetModelImpl._setOriginalCompanyId = false;
+
+		gadgetModelImpl._originalUrl = gadgetModelImpl._url;
 	}
 
 	public String toString() {

@@ -178,6 +178,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public void cacheResult(TasksEntry tasksEntry) {
 		EntityCacheUtil.putResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TasksEntryImpl.class, tasksEntry.getPrimaryKey(), tasksEntry);
+
+		tasksEntry.resetOriginalValues();
 	}
 
 	/**

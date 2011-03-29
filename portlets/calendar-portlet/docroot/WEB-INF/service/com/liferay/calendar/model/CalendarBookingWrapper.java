@@ -970,5 +970,9 @@ public class CalendarBookingWrapper implements CalendarBooking {
 		return _calendarBooking;
 	}
 
+	public void resetOriginalValues() {
+		_calendarBooking.resetOriginalValues();
+	}
+
 	private CalendarBooking _calendarBooking;
 }

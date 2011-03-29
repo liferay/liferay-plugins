@@ -620,6 +620,14 @@ public class ClpSerializer {
 
 				newModel.setResourcePrimKey(value2);
 
+				Method methodIsResourceMain = oldModelClass.getMethod(
+						"isResourceMain");
+
+				Boolean resourceMain = (Boolean)methodIsResourceMain.invoke(oldModel,
+						(Object[])null);
+
+				newModel.setResourceMain(resourceMain);
+
 				Method method3 = oldModelClass.getMethod("getGroupId");
 
 				Long value3 = (Long)method3.invoke(oldModel, (Object[])null);

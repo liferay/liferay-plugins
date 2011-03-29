@@ -172,6 +172,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			kaleoDefinition.getName(),
 				Integer.valueOf(kaleoDefinition.getVersion())
 			}, kaleoDefinition);
+
+		kaleoDefinition.resetOriginalValues();
 	}
 
 	/**

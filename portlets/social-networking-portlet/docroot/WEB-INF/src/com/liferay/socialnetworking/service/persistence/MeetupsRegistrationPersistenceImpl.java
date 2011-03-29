@@ -130,6 +130,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 				Long.valueOf(meetupsRegistration.getUserId()),
 				Long.valueOf(meetupsRegistration.getMeetupsEntryId())
 			}, meetupsRegistration);
+
+		meetupsRegistration.resetOriginalValues();
 	}
 
 	/**

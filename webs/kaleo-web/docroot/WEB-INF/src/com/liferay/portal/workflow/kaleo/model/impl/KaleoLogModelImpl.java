@@ -449,62 +449,36 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 		KaleoLogImpl kaleoLogImpl = new KaleoLogImpl();
 
 		kaleoLogImpl.setKaleoLogId(getKaleoLogId());
-
 		kaleoLogImpl.setGroupId(getGroupId());
-
 		kaleoLogImpl.setCompanyId(getCompanyId());
-
 		kaleoLogImpl.setUserId(getUserId());
-
 		kaleoLogImpl.setUserName(getUserName());
-
 		kaleoLogImpl.setCreateDate(getCreateDate());
-
 		kaleoLogImpl.setModifiedDate(getModifiedDate());
-
 		kaleoLogImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoLogImpl.setKaleoInstanceId(getKaleoInstanceId());
-
 		kaleoLogImpl.setKaleoInstanceTokenId(getKaleoInstanceTokenId());
-
 		kaleoLogImpl.setKaleoTaskInstanceTokenId(getKaleoTaskInstanceTokenId());
-
 		kaleoLogImpl.setKaleoNodeId(getKaleoNodeId());
-
 		kaleoLogImpl.setKaleoNodeName(getKaleoNodeName());
-
 		kaleoLogImpl.setTerminalKaleoNode(getTerminalKaleoNode());
-
 		kaleoLogImpl.setKaleoActionId(getKaleoActionId());
-
 		kaleoLogImpl.setKaleoActionName(getKaleoActionName());
-
 		kaleoLogImpl.setKaleoActionDescription(getKaleoActionDescription());
-
 		kaleoLogImpl.setPreviousKaleoNodeId(getPreviousKaleoNodeId());
-
 		kaleoLogImpl.setPreviousKaleoNodeName(getPreviousKaleoNodeName());
-
 		kaleoLogImpl.setPreviousAssigneeClassName(getPreviousAssigneeClassName());
-
 		kaleoLogImpl.setPreviousAssigneeClassPK(getPreviousAssigneeClassPK());
-
 		kaleoLogImpl.setCurrentAssigneeClassName(getCurrentAssigneeClassName());
-
 		kaleoLogImpl.setCurrentAssigneeClassPK(getCurrentAssigneeClassPK());
-
 		kaleoLogImpl.setType(getType());
-
 		kaleoLogImpl.setComment(getComment());
-
 		kaleoLogImpl.setStartDate(getStartDate());
-
 		kaleoLogImpl.setEndDate(getEndDate());
-
 		kaleoLogImpl.setDuration(getDuration());
-
 		kaleoLogImpl.setWorkflowContext(getWorkflowContext());
+
+		kaleoLogImpl.resetOriginalValues();
 
 		return kaleoLogImpl;
 	}
@@ -555,6 +529,9 @@ public class KaleoLogModelImpl extends BaseModelImpl<KaleoLog>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

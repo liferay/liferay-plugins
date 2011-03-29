@@ -349,5 +349,9 @@ public class KaleoTaskWrapper implements KaleoTask {
 		return _kaleoTask;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTask.resetOriginalValues();
+	}
+
 	private KaleoTask _kaleoTask;
 }

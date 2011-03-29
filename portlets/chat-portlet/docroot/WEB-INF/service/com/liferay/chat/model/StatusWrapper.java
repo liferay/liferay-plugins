@@ -310,5 +310,9 @@ public class StatusWrapper implements Status {
 		return _status;
 	}
 
+	public void resetOriginalValues() {
+		_status.resetOriginalValues();
+	}
+
 	private Status _status;
 }

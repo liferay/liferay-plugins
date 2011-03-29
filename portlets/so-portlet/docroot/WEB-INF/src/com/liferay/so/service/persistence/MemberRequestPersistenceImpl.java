@@ -152,6 +152,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 				Long.valueOf(memberRequest.getReceiverUserId()),
 				Integer.valueOf(memberRequest.getStatus())
 			}, memberRequest);
+
+		memberRequest.resetOriginalValues();
 	}
 
 	/**

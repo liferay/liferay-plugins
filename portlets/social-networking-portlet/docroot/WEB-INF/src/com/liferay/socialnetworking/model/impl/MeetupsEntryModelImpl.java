@@ -278,32 +278,21 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 		MeetupsEntryImpl meetupsEntryImpl = new MeetupsEntryImpl();
 
 		meetupsEntryImpl.setMeetupsEntryId(getMeetupsEntryId());
-
 		meetupsEntryImpl.setCompanyId(getCompanyId());
-
 		meetupsEntryImpl.setUserId(getUserId());
-
 		meetupsEntryImpl.setUserName(getUserName());
-
 		meetupsEntryImpl.setCreateDate(getCreateDate());
-
 		meetupsEntryImpl.setModifiedDate(getModifiedDate());
-
 		meetupsEntryImpl.setTitle(getTitle());
-
 		meetupsEntryImpl.setDescription(getDescription());
-
 		meetupsEntryImpl.setStartDate(getStartDate());
-
 		meetupsEntryImpl.setEndDate(getEndDate());
-
 		meetupsEntryImpl.setTotalAttendees(getTotalAttendees());
-
 		meetupsEntryImpl.setMaxAttendees(getMaxAttendees());
-
 		meetupsEntryImpl.setPrice(getPrice());
-
 		meetupsEntryImpl.setThumbnailId(getThumbnailId());
+
+		meetupsEntryImpl.resetOriginalValues();
 
 		return meetupsEntryImpl;
 	}
@@ -348,6 +337,9 @@ public class MeetupsEntryModelImpl extends BaseModelImpl<MeetupsEntry>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

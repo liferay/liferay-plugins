@@ -119,6 +119,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 				
 			feed.getTwitterScreenName()
 			}, feed);
+
+		feed.resetOriginalValues();
 	}
 
 	/**

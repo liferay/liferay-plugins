@@ -578,5 +578,9 @@ public class CalendarResourceWrapper implements CalendarResource {
 		return _calendarResource;
 	}
 
+	public void resetOriginalValues() {
+		_calendarResource.resetOriginalValues();
+	}
+
 	private CalendarResource _calendarResource;
 }

@@ -260,32 +260,16 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 		FeedImpl feedImpl = new FeedImpl();
 
 		feedImpl.setFeedId(getFeedId());
-
 		feedImpl.setCompanyId(getCompanyId());
-
-		FeedModelImpl feedModelImpl = feedImpl;
-
-		feedModelImpl._originalCompanyId = feedModelImpl._companyId;
-
-		feedModelImpl._setOriginalCompanyId = false;
 		feedImpl.setUserId(getUserId());
-
 		feedImpl.setUserName(getUserName());
-
 		feedImpl.setCreateDate(getCreateDate());
-
 		feedImpl.setModifiedDate(getModifiedDate());
-
 		feedImpl.setTwitterUserId(getTwitterUserId());
-
-		feedModelImpl._originalTwitterUserId = feedModelImpl._twitterUserId;
-
-		feedModelImpl._setOriginalTwitterUserId = false;
 		feedImpl.setTwitterScreenName(getTwitterScreenName());
-
-		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
-
 		feedImpl.setLastStatusId(getLastStatusId());
+
+		feedImpl.resetOriginalValues();
 
 		return feedImpl;
 	}
@@ -330,6 +314,20 @@ public class FeedModelImpl extends BaseModelImpl<Feed> implements FeedModel {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		FeedModelImpl feedModelImpl = this;
+
+		feedModelImpl._originalCompanyId = feedModelImpl._companyId;
+
+		feedModelImpl._setOriginalCompanyId = false;
+
+		feedModelImpl._originalTwitterUserId = feedModelImpl._twitterUserId;
+
+		feedModelImpl._setOriginalTwitterUserId = false;
+
+		feedModelImpl._originalTwitterScreenName = feedModelImpl._twitterScreenName;
 	}
 
 	public String toString() {

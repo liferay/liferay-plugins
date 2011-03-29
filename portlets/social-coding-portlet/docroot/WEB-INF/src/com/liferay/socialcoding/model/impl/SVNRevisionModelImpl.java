@@ -190,16 +190,13 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 		SVNRevisionImpl svnRevisionImpl = new SVNRevisionImpl();
 
 		svnRevisionImpl.setSvnRevisionId(getSvnRevisionId());
-
 		svnRevisionImpl.setSvnUserId(getSvnUserId());
-
 		svnRevisionImpl.setCreateDate(getCreateDate());
-
 		svnRevisionImpl.setSvnRepositoryId(getSvnRepositoryId());
-
 		svnRevisionImpl.setRevisionNumber(getRevisionNumber());
-
 		svnRevisionImpl.setComments(getComments());
+
+		svnRevisionImpl.resetOriginalValues();
 
 		return svnRevisionImpl;
 	}
@@ -252,6 +249,9 @@ public class SVNRevisionModelImpl extends BaseModelImpl<SVNRevision>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

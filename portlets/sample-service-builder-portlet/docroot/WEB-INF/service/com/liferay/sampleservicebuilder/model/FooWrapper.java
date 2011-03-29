@@ -382,5 +382,9 @@ public class FooWrapper implements Foo {
 		return _foo;
 	}
 
+	public void resetOriginalValues() {
+		_foo.resetOriginalValues();
+	}
+
 	private Foo _foo;
 }

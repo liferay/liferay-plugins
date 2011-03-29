@@ -477,5 +477,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition {
 		return _kaleoDefinition;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoDefinition.resetOriginalValues();
+	}
+
 	private KaleoDefinition _kaleoDefinition;
 }

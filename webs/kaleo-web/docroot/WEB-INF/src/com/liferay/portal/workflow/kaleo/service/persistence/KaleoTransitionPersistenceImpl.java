@@ -158,6 +158,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 				Long.valueOf(kaleoTransition.getKaleoNodeId()),
 				Boolean.valueOf(kaleoTransition.getDefaultTransition())
 			}, kaleoTransition);
+
+		kaleoTransition.resetOriginalValues();
 	}
 
 	/**

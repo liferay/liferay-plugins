@@ -87,6 +87,8 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 	public void cacheResult(Asset asset) {
 		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
 			AssetImpl.class, asset.getPrimaryKey(), asset);
+
+		asset.resetOriginalValues();
 	}
 
 	/**

@@ -130,6 +130,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 			new Object[] {
 				wsrpProducer.getUuid(), Long.valueOf(wsrpProducer.getGroupId())
 			}, wsrpProducer);
+
+		wsrpProducer.resetOriginalValues();
 	}
 
 	/**

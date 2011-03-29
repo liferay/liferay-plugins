@@ -317,5 +317,9 @@ public class JIRAIssueWrapper implements JIRAIssue {
 		return _jiraIssue;
 	}
 
+	public void resetOriginalValues() {
+		_jiraIssue.resetOriginalValues();
+	}
+
 	private JIRAIssue _jiraIssue;
 }

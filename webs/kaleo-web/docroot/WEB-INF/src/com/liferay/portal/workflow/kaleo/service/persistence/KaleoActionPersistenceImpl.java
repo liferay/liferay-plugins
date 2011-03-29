@@ -125,6 +125,8 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	public void cacheResult(KaleoAction kaleoAction) {
 		EntityCacheUtil.putResult(KaleoActionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoActionImpl.class, kaleoAction.getPrimaryKey(), kaleoAction);
+
+		kaleoAction.resetOriginalValues();
 	}
 
 	/**

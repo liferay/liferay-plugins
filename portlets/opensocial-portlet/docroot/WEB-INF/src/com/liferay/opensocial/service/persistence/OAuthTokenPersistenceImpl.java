@@ -129,6 +129,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 				
 			oAuthToken.getTokenName()
 			}, oAuthToken);
+
+		oAuthToken.resetOriginalValues();
 	}
 
 	/**

@@ -228,24 +228,17 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		CheckoutImpl checkoutImpl = new CheckoutImpl();
 
 		checkoutImpl.setCheckoutId(getCheckoutId());
-
 		checkoutImpl.setCompanyId(getCompanyId());
-
 		checkoutImpl.setUserId(getUserId());
-
 		checkoutImpl.setUserName(getUserName());
-
 		checkoutImpl.setCreateDate(getCreateDate());
-
 		checkoutImpl.setModifiedDate(getModifiedDate());
-
 		checkoutImpl.setAssetId(getAssetId());
-
 		checkoutImpl.setCheckOutDate(getCheckOutDate());
-
 		checkoutImpl.setExpectedCheckInDate(getExpectedCheckInDate());
-
 		checkoutImpl.setActualCheckInDate(getActualCheckInDate());
+
+		checkoutImpl.resetOriginalValues();
 
 		return checkoutImpl;
 	}
@@ -290,6 +283,9 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

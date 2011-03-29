@@ -321,5 +321,9 @@ public class FeedWrapper implements Feed {
 		return _feed;
 	}
 
+	public void resetOriginalValues() {
+		_feed.resetOriginalValues();
+	}
+
 	private Feed _feed;
 }

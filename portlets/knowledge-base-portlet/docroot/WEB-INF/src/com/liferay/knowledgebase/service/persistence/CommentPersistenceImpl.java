@@ -174,6 +174,8 @@ public class CommentPersistenceImpl extends BasePersistenceImpl<Comment>
 				Long.valueOf(comment.getClassNameId()),
 				Long.valueOf(comment.getClassPK())
 			}, comment);
+
+		comment.resetOriginalValues();
 	}
 
 	/**

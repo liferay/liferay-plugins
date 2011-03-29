@@ -133,6 +133,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 				
 			wsrpConsumerPortlet.getPortletHandle()
 			}, wsrpConsumerPortlet);
+
+		wsrpConsumerPortlet.resetOriginalValues();
 	}
 
 	/**

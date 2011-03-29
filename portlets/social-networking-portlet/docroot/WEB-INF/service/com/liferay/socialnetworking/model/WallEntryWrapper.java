@@ -283,5 +283,9 @@ public class WallEntryWrapper implements WallEntry {
 		return _wallEntry;
 	}
 
+	public void resetOriginalValues() {
+		_wallEntry.resetOriginalValues();
+	}
+
 	private WallEntry _wallEntry;
 }

@@ -319,44 +319,19 @@ public class CommentModelImpl extends BaseModelImpl<Comment>
 		CommentImpl commentImpl = new CommentImpl();
 
 		commentImpl.setUuid(getUuid());
-
-		CommentModelImpl commentModelImpl = commentImpl;
-
-		commentModelImpl._originalUuid = commentModelImpl._uuid;
-
 		commentImpl.setCommentId(getCommentId());
-
 		commentImpl.setGroupId(getGroupId());
-
-		commentModelImpl._originalGroupId = commentModelImpl._groupId;
-
-		commentModelImpl._setOriginalGroupId = false;
 		commentImpl.setCompanyId(getCompanyId());
-
 		commentImpl.setUserId(getUserId());
-
-		commentModelImpl._originalUserId = commentModelImpl._userId;
-
-		commentModelImpl._setOriginalUserId = false;
 		commentImpl.setUserName(getUserName());
-
 		commentImpl.setCreateDate(getCreateDate());
-
 		commentImpl.setModifiedDate(getModifiedDate());
-
 		commentImpl.setClassNameId(getClassNameId());
-
-		commentModelImpl._originalClassNameId = commentModelImpl._classNameId;
-
-		commentModelImpl._setOriginalClassNameId = false;
 		commentImpl.setClassPK(getClassPK());
-
-		commentModelImpl._originalClassPK = commentModelImpl._classPK;
-
-		commentModelImpl._setOriginalClassPK = false;
 		commentImpl.setContent(getContent());
-
 		commentImpl.setHelpful(getHelpful());
+
+		commentImpl.resetOriginalValues();
 
 		return commentImpl;
 	}
@@ -401,6 +376,28 @@ public class CommentModelImpl extends BaseModelImpl<Comment>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		CommentModelImpl commentModelImpl = this;
+
+		commentModelImpl._originalUuid = commentModelImpl._uuid;
+
+		commentModelImpl._originalGroupId = commentModelImpl._groupId;
+
+		commentModelImpl._setOriginalGroupId = false;
+
+		commentModelImpl._originalUserId = commentModelImpl._userId;
+
+		commentModelImpl._setOriginalUserId = false;
+
+		commentModelImpl._originalClassNameId = commentModelImpl._classNameId;
+
+		commentModelImpl._setOriginalClassNameId = false;
+
+		commentModelImpl._originalClassPK = commentModelImpl._classPK;
+
+		commentModelImpl._setOriginalClassPK = false;
 	}
 
 	public String toString() {

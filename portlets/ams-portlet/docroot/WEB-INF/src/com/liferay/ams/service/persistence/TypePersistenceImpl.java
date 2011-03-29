@@ -87,6 +87,8 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	public void cacheResult(Type type) {
 		EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
 			TypeImpl.class, type.getPrimaryKey(), type);
+
+		type.resetOriginalValues();
 	}
 
 	/**

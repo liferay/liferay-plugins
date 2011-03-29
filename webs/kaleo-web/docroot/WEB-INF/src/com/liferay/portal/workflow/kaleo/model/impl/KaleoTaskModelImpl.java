@@ -258,31 +258,18 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 		KaleoTaskImpl kaleoTaskImpl = new KaleoTaskImpl();
 
 		kaleoTaskImpl.setKaleoTaskId(getKaleoTaskId());
-
 		kaleoTaskImpl.setGroupId(getGroupId());
-
 		kaleoTaskImpl.setCompanyId(getCompanyId());
-
 		kaleoTaskImpl.setUserId(getUserId());
-
 		kaleoTaskImpl.setUserName(getUserName());
-
 		kaleoTaskImpl.setCreateDate(getCreateDate());
-
 		kaleoTaskImpl.setModifiedDate(getModifiedDate());
-
 		kaleoTaskImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoTaskImpl.setKaleoNodeId(getKaleoNodeId());
-
-		KaleoTaskModelImpl kaleoTaskModelImpl = kaleoTaskImpl;
-
-		kaleoTaskModelImpl._originalKaleoNodeId = kaleoTaskModelImpl._kaleoNodeId;
-
-		kaleoTaskModelImpl._setOriginalKaleoNodeId = false;
 		kaleoTaskImpl.setName(getName());
-
 		kaleoTaskImpl.setDescription(getDescription());
+
+		kaleoTaskImpl.resetOriginalValues();
 
 		return kaleoTaskImpl;
 	}
@@ -333,6 +320,14 @@ public class KaleoTaskModelImpl extends BaseModelImpl<KaleoTask>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		KaleoTaskModelImpl kaleoTaskModelImpl = this;
+
+		kaleoTaskModelImpl._originalKaleoNodeId = kaleoTaskModelImpl._kaleoNodeId;
+
+		kaleoTaskModelImpl._setOriginalKaleoNodeId = false;
 	}
 
 	public String toString() {

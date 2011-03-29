@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.GroupedModel;
+import com.liferay.portal.model.ResourcedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -39,7 +40,8 @@ import java.util.Date;
  * @see com.liferay.knowledgebase.model.impl.ArticleModelImpl
  * @generated
  */
-public interface ArticleModel extends BaseModel<Article>, GroupedModel {
+public interface ArticleModel extends BaseModel<Article>, GroupedModel,
+	ResourcedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -102,6 +104,8 @@ public interface ArticleModel extends BaseModel<Article>, GroupedModel {
 	 * @param resourcePrimKey the resource prim key of this article
 	 */
 	public void setResourcePrimKey(long resourcePrimKey);
+
+	public boolean isResourceMain();
 
 	/**
 	 * Gets the group ID of this article.

@@ -246,5 +246,9 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem {
 		return _jiraChangeItem;
 	}
 
+	public void resetOriginalValues() {
+		_jiraChangeItem.resetOriginalValues();
+	}
+
 	private JIRAChangeItem _jiraChangeItem;
 }

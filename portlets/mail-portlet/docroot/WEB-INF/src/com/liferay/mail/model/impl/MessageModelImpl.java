@@ -372,51 +372,26 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 		MessageImpl messageImpl = new MessageImpl();
 
 		messageImpl.setMessageId(getMessageId());
-
 		messageImpl.setCompanyId(getCompanyId());
-
 		messageImpl.setUserId(getUserId());
-
 		messageImpl.setUserName(getUserName());
-
 		messageImpl.setCreateDate(getCreateDate());
-
 		messageImpl.setModifiedDate(getModifiedDate());
-
 		messageImpl.setAccountId(getAccountId());
-
 		messageImpl.setFolderId(getFolderId());
-
-		MessageModelImpl messageModelImpl = messageImpl;
-
-		messageModelImpl._originalFolderId = messageModelImpl._folderId;
-
-		messageModelImpl._setOriginalFolderId = false;
 		messageImpl.setSender(getSender());
-
 		messageImpl.setTo(getTo());
-
 		messageImpl.setCc(getCc());
-
 		messageImpl.setBcc(getBcc());
-
 		messageImpl.setSentDate(getSentDate());
-
 		messageImpl.setSubject(getSubject());
-
 		messageImpl.setPreview(getPreview());
-
 		messageImpl.setBody(getBody());
-
 		messageImpl.setFlags(getFlags());
-
 		messageImpl.setSize(getSize());
-
 		messageImpl.setRemoteMessageId(getRemoteMessageId());
 
-		messageModelImpl._originalRemoteMessageId = messageModelImpl._remoteMessageId;
-
-		messageModelImpl._setOriginalRemoteMessageId = false;
+		messageImpl.resetOriginalValues();
 
 		return messageImpl;
 	}
@@ -459,6 +434,18 @@ public class MessageModelImpl extends BaseModelImpl<Message>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		MessageModelImpl messageModelImpl = this;
+
+		messageModelImpl._originalFolderId = messageModelImpl._folderId;
+
+		messageModelImpl._setOriginalFolderId = false;
+
+		messageModelImpl._originalRemoteMessageId = messageModelImpl._remoteMessageId;
+
+		messageModelImpl._setOriginalRemoteMessageId = false;
 	}
 
 	public String toString() {

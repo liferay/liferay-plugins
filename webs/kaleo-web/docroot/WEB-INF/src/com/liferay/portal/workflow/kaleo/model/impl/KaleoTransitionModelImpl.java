@@ -336,47 +336,23 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 		KaleoTransitionImpl kaleoTransitionImpl = new KaleoTransitionImpl();
 
 		kaleoTransitionImpl.setKaleoTransitionId(getKaleoTransitionId());
-
 		kaleoTransitionImpl.setGroupId(getGroupId());
-
 		kaleoTransitionImpl.setCompanyId(getCompanyId());
-
 		kaleoTransitionImpl.setUserId(getUserId());
-
 		kaleoTransitionImpl.setUserName(getUserName());
-
 		kaleoTransitionImpl.setCreateDate(getCreateDate());
-
 		kaleoTransitionImpl.setModifiedDate(getModifiedDate());
-
 		kaleoTransitionImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoTransitionImpl.setKaleoNodeId(getKaleoNodeId());
-
-		KaleoTransitionModelImpl kaleoTransitionModelImpl = kaleoTransitionImpl;
-
-		kaleoTransitionModelImpl._originalKaleoNodeId = kaleoTransitionModelImpl._kaleoNodeId;
-
-		kaleoTransitionModelImpl._setOriginalKaleoNodeId = false;
 		kaleoTransitionImpl.setName(getName());
-
-		kaleoTransitionModelImpl._originalName = kaleoTransitionModelImpl._name;
-
 		kaleoTransitionImpl.setDescription(getDescription());
-
 		kaleoTransitionImpl.setSourceKaleoNodeId(getSourceKaleoNodeId());
-
 		kaleoTransitionImpl.setSourceKaleoNodeName(getSourceKaleoNodeName());
-
 		kaleoTransitionImpl.setTargetKaleoNodeId(getTargetKaleoNodeId());
-
 		kaleoTransitionImpl.setTargetKaleoNodeName(getTargetKaleoNodeName());
-
 		kaleoTransitionImpl.setDefaultTransition(getDefaultTransition());
 
-		kaleoTransitionModelImpl._originalDefaultTransition = kaleoTransitionModelImpl._defaultTransition;
-
-		kaleoTransitionModelImpl._setOriginalDefaultTransition = false;
+		kaleoTransitionImpl.resetOriginalValues();
 
 		return kaleoTransitionImpl;
 	}
@@ -427,6 +403,20 @@ public class KaleoTransitionModelImpl extends BaseModelImpl<KaleoTransition>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		KaleoTransitionModelImpl kaleoTransitionModelImpl = this;
+
+		kaleoTransitionModelImpl._originalKaleoNodeId = kaleoTransitionModelImpl._kaleoNodeId;
+
+		kaleoTransitionModelImpl._setOriginalKaleoNodeId = false;
+
+		kaleoTransitionModelImpl._originalName = kaleoTransitionModelImpl._name;
+
+		kaleoTransitionModelImpl._originalDefaultTransition = kaleoTransitionModelImpl._defaultTransition;
+
+		kaleoTransitionModelImpl._setOriginalDefaultTransition = false;
 	}
 
 	public String toString() {

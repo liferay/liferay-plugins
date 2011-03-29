@@ -116,6 +116,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		EntityCacheUtil.putResult(JIRAChangeGroupModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
 			jiraChangeGroup);
+
+		jiraChangeGroup.resetOriginalValues();
 	}
 
 	/**

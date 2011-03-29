@@ -239,5 +239,9 @@ public class SVNRevisionWrapper implements SVNRevision {
 		return _svnRevision;
 	}
 
+	public void resetOriginalValues() {
+		_svnRevision.resetOriginalValues();
+	}
+
 	private SVNRevision _svnRevision;
 }

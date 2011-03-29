@@ -223,22 +223,16 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 		AttachmentImpl attachmentImpl = new AttachmentImpl();
 
 		attachmentImpl.setAttachmentId(getAttachmentId());
-
 		attachmentImpl.setCompanyId(getCompanyId());
-
 		attachmentImpl.setUserId(getUserId());
-
 		attachmentImpl.setAccountId(getAccountId());
-
 		attachmentImpl.setFolderId(getFolderId());
-
 		attachmentImpl.setMessageId(getMessageId());
-
 		attachmentImpl.setContentPath(getContentPath());
-
 		attachmentImpl.setFileName(getFileName());
-
 		attachmentImpl.setSize(getSize());
+
+		attachmentImpl.resetOriginalValues();
 
 		return attachmentImpl;
 	}
@@ -283,6 +277,9 @@ public class AttachmentModelImpl extends BaseModelImpl<Attachment>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

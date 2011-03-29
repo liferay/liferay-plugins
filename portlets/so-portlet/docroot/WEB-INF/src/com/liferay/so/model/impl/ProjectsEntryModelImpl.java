@@ -256,26 +256,18 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 		ProjectsEntryImpl projectsEntryImpl = new ProjectsEntryImpl();
 
 		projectsEntryImpl.setProjectsEntryId(getProjectsEntryId());
-
 		projectsEntryImpl.setCompanyId(getCompanyId());
-
 		projectsEntryImpl.setUserId(getUserId());
-
 		projectsEntryImpl.setUserName(getUserName());
-
 		projectsEntryImpl.setCreateDate(getCreateDate());
-
 		projectsEntryImpl.setModifiedDate(getModifiedDate());
-
 		projectsEntryImpl.setTitle(getTitle());
-
 		projectsEntryImpl.setDescription(getDescription());
-
 		projectsEntryImpl.setStartDate(getStartDate());
-
 		projectsEntryImpl.setEndDate(getEndDate());
-
 		projectsEntryImpl.setData(getData());
+
+		projectsEntryImpl.resetOriginalValues();
 
 		return projectsEntryImpl;
 	}
@@ -318,6 +310,9 @@ public class ProjectsEntryModelImpl extends BaseModelImpl<ProjectsEntry>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

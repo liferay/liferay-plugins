@@ -457,63 +457,33 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 		AccountImpl accountImpl = new AccountImpl();
 
 		accountImpl.setAccountId(getAccountId());
-
 		accountImpl.setCompanyId(getCompanyId());
-
 		accountImpl.setUserId(getUserId());
-
-		AccountModelImpl accountModelImpl = accountImpl;
-
-		accountModelImpl._originalUserId = accountModelImpl._userId;
-
-		accountModelImpl._setOriginalUserId = false;
 		accountImpl.setUserName(getUserName());
-
 		accountImpl.setCreateDate(getCreateDate());
-
 		accountImpl.setModifiedDate(getModifiedDate());
-
 		accountImpl.setAddress(getAddress());
-
-		accountModelImpl._originalAddress = accountModelImpl._address;
-
 		accountImpl.setPersonalName(getPersonalName());
-
 		accountImpl.setProtocol(getProtocol());
-
 		accountImpl.setIncomingHostName(getIncomingHostName());
-
 		accountImpl.setIncomingPort(getIncomingPort());
-
 		accountImpl.setIncomingSecure(getIncomingSecure());
-
 		accountImpl.setOutgoingHostName(getOutgoingHostName());
-
 		accountImpl.setOutgoingPort(getOutgoingPort());
-
 		accountImpl.setOutgoingSecure(getOutgoingSecure());
-
 		accountImpl.setLogin(getLogin());
-
 		accountImpl.setPassword(getPassword());
-
 		accountImpl.setSavePassword(getSavePassword());
-
 		accountImpl.setSignature(getSignature());
-
 		accountImpl.setUseSignature(getUseSignature());
-
 		accountImpl.setFolderPrefix(getFolderPrefix());
-
 		accountImpl.setInboxFolderId(getInboxFolderId());
-
 		accountImpl.setDraftFolderId(getDraftFolderId());
-
 		accountImpl.setSentFolderId(getSentFolderId());
-
 		accountImpl.setTrashFolderId(getTrashFolderId());
-
 		accountImpl.setDefaultSender(getDefaultSender());
+
+		accountImpl.resetOriginalValues();
 
 		return accountImpl;
 	}
@@ -556,6 +526,16 @@ public class AccountModelImpl extends BaseModelImpl<Account>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		AccountModelImpl accountModelImpl = this;
+
+		accountModelImpl._originalUserId = accountModelImpl._userId;
+
+		accountModelImpl._setOriginalUserId = false;
+
+		accountModelImpl._originalAddress = accountModelImpl._address;
 	}
 
 	public String toString() {

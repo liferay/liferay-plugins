@@ -674,5 +674,9 @@ public class KaleoLogWrapper implements KaleoLog {
 		return _kaleoLog;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoLog.resetOriginalValues();
+	}
+
 	private KaleoLog _kaleoLog;
 }

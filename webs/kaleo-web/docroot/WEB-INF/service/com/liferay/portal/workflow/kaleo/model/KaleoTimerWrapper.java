@@ -419,5 +419,9 @@ public class KaleoTimerWrapper implements KaleoTimer {
 		return _kaleoTimer;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTimer.resetOriginalValues();
+	}
+
 	private KaleoTimer _kaleoTimer;
 }

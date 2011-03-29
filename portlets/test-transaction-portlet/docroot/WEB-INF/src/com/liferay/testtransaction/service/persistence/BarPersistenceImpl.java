@@ -102,6 +102,8 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	public void cacheResult(Bar bar) {
 		EntityCacheUtil.putResult(BarModelImpl.ENTITY_CACHE_ENABLED,
 			BarImpl.class, bar.getPrimaryKey(), bar);
+
+		bar.resetOriginalValues();
 	}
 
 	/**

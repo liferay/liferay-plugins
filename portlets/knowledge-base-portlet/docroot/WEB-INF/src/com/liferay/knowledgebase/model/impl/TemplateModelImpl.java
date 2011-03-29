@@ -321,33 +321,18 @@ public class TemplateModelImpl extends BaseModelImpl<Template>
 		TemplateImpl templateImpl = new TemplateImpl();
 
 		templateImpl.setUuid(getUuid());
-
-		TemplateModelImpl templateModelImpl = templateImpl;
-
-		templateModelImpl._originalUuid = templateModelImpl._uuid;
-
 		templateImpl.setTemplateId(getTemplateId());
-
 		templateImpl.setGroupId(getGroupId());
-
-		templateModelImpl._originalGroupId = templateModelImpl._groupId;
-
-		templateModelImpl._setOriginalGroupId = false;
 		templateImpl.setCompanyId(getCompanyId());
-
 		templateImpl.setUserId(getUserId());
-
 		templateImpl.setUserName(getUserName());
-
 		templateImpl.setCreateDate(getCreateDate());
-
 		templateImpl.setModifiedDate(getModifiedDate());
-
 		templateImpl.setTitle(getTitle());
-
 		templateImpl.setContent(getContent());
-
 		templateImpl.setDescription(getDescription());
+
+		templateImpl.resetOriginalValues();
 
 		return templateImpl;
 	}
@@ -392,6 +377,16 @@ public class TemplateModelImpl extends BaseModelImpl<Template>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		TemplateModelImpl templateModelImpl = this;
+
+		templateModelImpl._originalUuid = templateModelImpl._uuid;
+
+		templateModelImpl._originalGroupId = templateModelImpl._groupId;
+
+		templateModelImpl._setOriginalGroupId = false;
 	}
 
 	public String toString() {

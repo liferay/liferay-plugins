@@ -236,24 +236,17 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 		AssetImpl assetImpl = new AssetImpl();
 
 		assetImpl.setAssetId(getAssetId());
-
 		assetImpl.setCompanyId(getCompanyId());
-
 		assetImpl.setUserId(getUserId());
-
 		assetImpl.setUserName(getUserName());
-
 		assetImpl.setCreateDate(getCreateDate());
-
 		assetImpl.setModifiedDate(getModifiedDate());
-
 		assetImpl.setDefinitionId(getDefinitionId());
-
 		assetImpl.setSerialNumber(getSerialNumber());
-
 		assetImpl.setInactiveDate(getInactiveDate());
-
 		assetImpl.setActive(getActive());
+
+		assetImpl.resetOriginalValues();
 
 		return assetImpl;
 	}
@@ -298,6 +291,9 @@ public class AssetModelImpl extends BaseModelImpl<Asset> implements AssetModel {
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

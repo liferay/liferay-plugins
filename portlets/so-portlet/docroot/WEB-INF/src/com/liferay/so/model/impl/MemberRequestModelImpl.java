@@ -302,42 +302,19 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		MemberRequestImpl memberRequestImpl = new MemberRequestImpl();
 
 		memberRequestImpl.setMemberRequestId(getMemberRequestId());
-
 		memberRequestImpl.setGroupId(getGroupId());
-
-		MemberRequestModelImpl memberRequestModelImpl = memberRequestImpl;
-
-		memberRequestModelImpl._originalGroupId = memberRequestModelImpl._groupId;
-
-		memberRequestModelImpl._setOriginalGroupId = false;
 		memberRequestImpl.setCompanyId(getCompanyId());
-
 		memberRequestImpl.setUserId(getUserId());
-
 		memberRequestImpl.setUserName(getUserName());
-
 		memberRequestImpl.setCreateDate(getCreateDate());
-
 		memberRequestImpl.setModifiedDate(getModifiedDate());
-
 		memberRequestImpl.setKey(getKey());
-
-		memberRequestModelImpl._originalKey = memberRequestModelImpl._key;
-
 		memberRequestImpl.setReceiverUserId(getReceiverUserId());
-
-		memberRequestModelImpl._originalReceiverUserId = memberRequestModelImpl._receiverUserId;
-
-		memberRequestModelImpl._setOriginalReceiverUserId = false;
 		memberRequestImpl.setInvitedRoleId(getInvitedRoleId());
-
 		memberRequestImpl.setInvitedTeamId(getInvitedTeamId());
-
 		memberRequestImpl.setStatus(getStatus());
 
-		memberRequestModelImpl._originalStatus = memberRequestModelImpl._status;
-
-		memberRequestModelImpl._setOriginalStatus = false;
+		memberRequestImpl.resetOriginalValues();
 
 		return memberRequestImpl;
 	}
@@ -383,6 +360,24 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		MemberRequestModelImpl memberRequestModelImpl = this;
+
+		memberRequestModelImpl._originalGroupId = memberRequestModelImpl._groupId;
+
+		memberRequestModelImpl._setOriginalGroupId = false;
+
+		memberRequestModelImpl._originalKey = memberRequestModelImpl._key;
+
+		memberRequestModelImpl._originalReceiverUserId = memberRequestModelImpl._receiverUserId;
+
+		memberRequestModelImpl._setOriginalReceiverUserId = false;
+
+		memberRequestModelImpl._originalStatus = memberRequestModelImpl._status;
+
+		memberRequestModelImpl._setOriginalStatus = false;
 	}
 
 	public String toString() {

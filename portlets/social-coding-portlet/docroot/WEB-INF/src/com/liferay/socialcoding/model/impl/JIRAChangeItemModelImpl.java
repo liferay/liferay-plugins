@@ -210,18 +210,14 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 		JIRAChangeItemImpl jiraChangeItemImpl = new JIRAChangeItemImpl();
 
 		jiraChangeItemImpl.setJiraChangeItemId(getJiraChangeItemId());
-
 		jiraChangeItemImpl.setJiraChangeGroupId(getJiraChangeGroupId());
-
 		jiraChangeItemImpl.setField(getField());
-
 		jiraChangeItemImpl.setOldValue(getOldValue());
-
 		jiraChangeItemImpl.setOldString(getOldString());
-
 		jiraChangeItemImpl.setNewValue(getNewValue());
-
 		jiraChangeItemImpl.setNewString(getNewString());
+
+		jiraChangeItemImpl.resetOriginalValues();
 
 		return jiraChangeItemImpl;
 	}
@@ -266,6 +262,9 @@ public class JIRAChangeItemModelImpl extends BaseModelImpl<JIRAChangeItem>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

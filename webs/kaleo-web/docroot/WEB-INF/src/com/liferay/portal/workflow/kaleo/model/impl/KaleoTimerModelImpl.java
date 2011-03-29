@@ -294,34 +294,22 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 		KaleoTimerImpl kaleoTimerImpl = new KaleoTimerImpl();
 
 		kaleoTimerImpl.setKaleoTimerId(getKaleoTimerId());
-
 		kaleoTimerImpl.setGroupId(getGroupId());
-
 		kaleoTimerImpl.setCompanyId(getCompanyId());
-
 		kaleoTimerImpl.setUserId(getUserId());
-
 		kaleoTimerImpl.setUserName(getUserName());
-
 		kaleoTimerImpl.setCreateDate(getCreateDate());
-
 		kaleoTimerImpl.setModifiedDate(getModifiedDate());
-
 		kaleoTimerImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoTimerImpl.setKaleoNodeId(getKaleoNodeId());
-
 		kaleoTimerImpl.setParentKaleoNodeId(getParentKaleoNodeId());
-
 		kaleoTimerImpl.setName(getName());
-
 		kaleoTimerImpl.setDefaultTimer(getDefaultTimer());
-
 		kaleoTimerImpl.setDescription(getDescription());
-
 		kaleoTimerImpl.setDuration(getDuration());
-
 		kaleoTimerImpl.setScale(getScale());
+
+		kaleoTimerImpl.resetOriginalValues();
 
 		return kaleoTimerImpl;
 	}
@@ -372,6 +360,9 @@ public class KaleoTimerModelImpl extends BaseModelImpl<KaleoTimer>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

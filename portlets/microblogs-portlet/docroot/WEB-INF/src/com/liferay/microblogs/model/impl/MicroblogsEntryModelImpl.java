@@ -299,26 +299,18 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		MicroblogsEntryImpl microblogsEntryImpl = new MicroblogsEntryImpl();
 
 		microblogsEntryImpl.setMicroblogsEntryId(getMicroblogsEntryId());
-
 		microblogsEntryImpl.setCompanyId(getCompanyId());
-
 		microblogsEntryImpl.setUserId(getUserId());
-
 		microblogsEntryImpl.setUserName(getUserName());
-
 		microblogsEntryImpl.setCreateDate(getCreateDate());
-
 		microblogsEntryImpl.setModifiedDate(getModifiedDate());
-
 		microblogsEntryImpl.setContent(getContent());
-
 		microblogsEntryImpl.setType(getType());
-
 		microblogsEntryImpl.setReceiverUserId(getReceiverUserId());
-
 		microblogsEntryImpl.setReceiverMicroblogsEntryId(getReceiverMicroblogsEntryId());
-
 		microblogsEntryImpl.setSocialRelationType(getSocialRelationType());
+
+		microblogsEntryImpl.resetOriginalValues();
 
 		return microblogsEntryImpl;
 	}
@@ -364,6 +356,9 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

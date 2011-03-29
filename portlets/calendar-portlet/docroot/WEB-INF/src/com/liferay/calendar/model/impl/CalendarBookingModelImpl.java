@@ -743,65 +743,34 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		CalendarBookingImpl calendarBookingImpl = new CalendarBookingImpl();
 
 		calendarBookingImpl.setUuid(getUuid());
-
-		CalendarBookingModelImpl calendarBookingModelImpl = calendarBookingImpl;
-
-		calendarBookingModelImpl._originalUuid = calendarBookingModelImpl._uuid;
-
 		calendarBookingImpl.setCalendarBookingId(getCalendarBookingId());
-
 		calendarBookingImpl.setGroupId(getGroupId());
-
-		calendarBookingModelImpl._originalGroupId = calendarBookingModelImpl._groupId;
-
-		calendarBookingModelImpl._setOriginalGroupId = false;
 		calendarBookingImpl.setCompanyId(getCompanyId());
-
 		calendarBookingImpl.setUserId(getUserId());
-
 		calendarBookingImpl.setUserName(getUserName());
-
 		calendarBookingImpl.setCreateDate(getCreateDate());
-
 		calendarBookingImpl.setModifiedDate(getModifiedDate());
-
 		calendarBookingImpl.setCalendarEventId(getCalendarEventId());
-
 		calendarBookingImpl.setCalendarResourceId(getCalendarResourceId());
-
 		calendarBookingImpl.setClassNameId(getClassNameId());
-
 		calendarBookingImpl.setClassPK(getClassPK());
-
 		calendarBookingImpl.setTitle(getTitle());
-
 		calendarBookingImpl.setName(getName());
-
 		calendarBookingImpl.setDescription(getDescription());
-
 		calendarBookingImpl.setLocation(getLocation());
-
 		calendarBookingImpl.setStartDate(getStartDate());
-
 		calendarBookingImpl.setEndDate(getEndDate());
-
 		calendarBookingImpl.setDurationHour(getDurationHour());
-
 		calendarBookingImpl.setDurationMinute(getDurationMinute());
-
 		calendarBookingImpl.setRecurrence(getRecurrence());
-
 		calendarBookingImpl.setType(getType());
-
 		calendarBookingImpl.setRequired(getRequired());
-
 		calendarBookingImpl.setStatus(getStatus());
-
 		calendarBookingImpl.setStatusByUserId(getStatusByUserId());
-
 		calendarBookingImpl.setStatusByUserName(getStatusByUserName());
-
 		calendarBookingImpl.setStatusDate(getStatusDate());
+
+		calendarBookingImpl.resetOriginalValues();
 
 		return calendarBookingImpl;
 	}
@@ -845,6 +814,16 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		CalendarBookingModelImpl calendarBookingModelImpl = this;
+
+		calendarBookingModelImpl._originalUuid = calendarBookingModelImpl._uuid;
+
+		calendarBookingModelImpl._originalGroupId = calendarBookingModelImpl._groupId;
+
+		calendarBookingModelImpl._setOriginalGroupId = false;
 	}
 
 	public String toString() {

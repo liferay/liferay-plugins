@@ -221,6 +221,10 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		_resourcePrimKey = resourcePrimKey;
 	}
 
+	public boolean isResourceMain() {
+		return true;
+	}
+
 	public long getOriginalResourcePrimKey() {
 		return _originalResourcePrimKey;
 	}
@@ -509,61 +513,29 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 		ArticleImpl articleImpl = new ArticleImpl();
 
 		articleImpl.setUuid(getUuid());
-
-		ArticleModelImpl articleModelImpl = articleImpl;
-
-		articleModelImpl._originalUuid = articleModelImpl._uuid;
-
 		articleImpl.setArticleId(getArticleId());
-
 		articleImpl.setResourcePrimKey(getResourcePrimKey());
-
-		articleModelImpl._originalResourcePrimKey = articleModelImpl._resourcePrimKey;
-
-		articleModelImpl._setOriginalResourcePrimKey = false;
 		articleImpl.setGroupId(getGroupId());
-
-		articleModelImpl._originalGroupId = articleModelImpl._groupId;
-
-		articleModelImpl._setOriginalGroupId = false;
 		articleImpl.setCompanyId(getCompanyId());
-
 		articleImpl.setUserId(getUserId());
-
 		articleImpl.setUserName(getUserName());
-
 		articleImpl.setCreateDate(getCreateDate());
-
 		articleImpl.setModifiedDate(getModifiedDate());
-
 		articleImpl.setRootResourcePrimKey(getRootResourcePrimKey());
-
 		articleImpl.setParentResourcePrimKey(getParentResourcePrimKey());
-
 		articleImpl.setVersion(getVersion());
-
-		articleModelImpl._originalVersion = articleModelImpl._version;
-
-		articleModelImpl._setOriginalVersion = false;
 		articleImpl.setTitle(getTitle());
-
 		articleImpl.setContent(getContent());
-
 		articleImpl.setDescription(getDescription());
-
 		articleImpl.setPriority(getPriority());
-
 		articleImpl.setViewCount(getViewCount());
-
 		articleImpl.setLatest(getLatest());
-
 		articleImpl.setStatus(getStatus());
-
 		articleImpl.setStatusByUserId(getStatusByUserId());
-
 		articleImpl.setStatusByUserName(getStatusByUserName());
-
 		articleImpl.setStatusDate(getStatusDate());
+
+		articleImpl.resetOriginalValues();
 
 		return articleImpl;
 	}
@@ -608,6 +580,24 @@ public class ArticleModelImpl extends BaseModelImpl<Article>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		ArticleModelImpl articleModelImpl = this;
+
+		articleModelImpl._originalUuid = articleModelImpl._uuid;
+
+		articleModelImpl._originalResourcePrimKey = articleModelImpl._resourcePrimKey;
+
+		articleModelImpl._setOriginalResourcePrimKey = false;
+
+		articleModelImpl._originalGroupId = articleModelImpl._groupId;
+
+		articleModelImpl._setOriginalGroupId = false;
+
+		articleModelImpl._originalVersion = articleModelImpl._version;
+
+		articleModelImpl._setOriginalVersion = false;
 	}
 
 	public String toString() {

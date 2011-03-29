@@ -245,29 +245,16 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 		OAuthConsumerImpl oAuthConsumerImpl = new OAuthConsumerImpl();
 
 		oAuthConsumerImpl.setOAuthConsumerId(getOAuthConsumerId());
-
 		oAuthConsumerImpl.setCompanyId(getCompanyId());
-
 		oAuthConsumerImpl.setCreateDate(getCreateDate());
-
 		oAuthConsumerImpl.setModifiedDate(getModifiedDate());
-
 		oAuthConsumerImpl.setGadgetId(getGadgetId());
-
-		OAuthConsumerModelImpl oAuthConsumerModelImpl = oAuthConsumerImpl;
-
-		oAuthConsumerModelImpl._originalGadgetId = oAuthConsumerModelImpl._gadgetId;
-
-		oAuthConsumerModelImpl._setOriginalGadgetId = false;
 		oAuthConsumerImpl.setServiceName(getServiceName());
-
-		oAuthConsumerModelImpl._originalServiceName = oAuthConsumerModelImpl._serviceName;
-
 		oAuthConsumerImpl.setConsumerKey(getConsumerKey());
-
 		oAuthConsumerImpl.setConsumerSecret(getConsumerSecret());
-
 		oAuthConsumerImpl.setKeyType(getKeyType());
+
+		oAuthConsumerImpl.resetOriginalValues();
 
 		return oAuthConsumerImpl;
 	}
@@ -310,6 +297,16 @@ public class OAuthConsumerModelImpl extends BaseModelImpl<OAuthConsumer>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
+		OAuthConsumerModelImpl oAuthConsumerModelImpl = this;
+
+		oAuthConsumerModelImpl._originalGadgetId = oAuthConsumerModelImpl._gadgetId;
+
+		oAuthConsumerModelImpl._setOriginalGadgetId = false;
+
+		oAuthConsumerModelImpl._originalServiceName = oAuthConsumerModelImpl._serviceName;
 	}
 
 	public String toString() {

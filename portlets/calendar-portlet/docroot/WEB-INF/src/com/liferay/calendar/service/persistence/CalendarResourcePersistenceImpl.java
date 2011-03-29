@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -43,6 +44,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.ModelListener;
+import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.BatchSessionUtil;
 import com.liferay.portal.service.persistence.ResourcePersistence;
 import com.liferay.portal.service.persistence.UserPersistence;
@@ -195,6 +197,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				Long.valueOf(calendarResource.getClassNameId()),
 				Long.valueOf(calendarResource.getClassPK())
 			}, calendarResource);
+
+		calendarResource.resetOriginalValues();
 	}
 
 	/**
@@ -1797,6 +1801,335 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
+	 * Filters by the user's permissions and finds all the calendar resources where groupId = &#63; and active = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param active the active to search with
+	 * @return the matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_A(long groupId, boolean active)
+		throws SystemException {
+		return filterFindByG_A(groupId, active, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the calendar resources where groupId = &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param active the active to search with
+	 * @param start the lower bound of the range of calendar resources to return
+	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @return the range of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_A(long groupId, boolean active,
+		int start, int end) throws SystemException {
+		return filterFindByG_A(groupId, active, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the calendar resources where groupId = &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param active the active to search with
+	 * @param start the lower bound of the range of calendar resources to return
+	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_A(long groupId, boolean active,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_A(groupId, active, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_A_ACTIVE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(CalendarResourceModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(CalendarResourceModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, CalendarResourceImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, CalendarResourceImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(active);
+
+			return (List<CalendarResource>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param calendarResourceId the primary key of the current calendar resource
+	 * @param groupId the group ID to search with
+	 * @param active the active to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next calendar resource
+	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarResource[] filterFindByG_A_PrevAndNext(
+		long calendarResourceId, long groupId, boolean active,
+		OrderByComparator orderByComparator)
+		throws NoSuchResourceException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_A_PrevAndNext(calendarResourceId, groupId, active,
+				orderByComparator);
+		}
+
+		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			CalendarResource[] array = new CalendarResourceImpl[3];
+
+			array[0] = filterGetByG_A_PrevAndNext(session, calendarResource,
+					groupId, active, orderByComparator, true);
+
+			array[1] = calendarResource;
+
+			array[2] = filterGetByG_A_PrevAndNext(session, calendarResource,
+					groupId, active, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected CalendarResource filterGetByG_A_PrevAndNext(Session session,
+		CalendarResource calendarResource, long groupId, boolean active,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_A_ACTIVE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(CalendarResourceModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(CalendarResourceModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, CalendarResourceImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, CalendarResourceImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(active);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(calendarResource);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<CalendarResource> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Finds the calendar resource where classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.calendar.NoSuchResourceException} if it could not be found.
 	 *
 	 * @param classNameId the class name ID to search with
@@ -2517,6 +2850,558 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		}
 
 		return list;
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @return the matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_N_A(long groupId, String name,
+		boolean active) throws SystemException {
+		return filterFindByG_N_A(groupId, name, active, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @param start the lower bound of the range of calendar resources to return
+	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @return the range of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_N_A(long groupId, String name,
+		boolean active, int start, int end) throws SystemException {
+		return filterFindByG_N_A(groupId, name, active, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @param start the lower bound of the range of calendar resources to return
+	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_N_A(long groupId, String name,
+		boolean active, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_N_A(groupId, name, active, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(5 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(5);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_GROUPID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_G_N_A_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_ACTIVE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(CalendarResourceModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(CalendarResourceModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, CalendarResourceImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, CalendarResourceImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			qPos.add(active);
+
+			return (List<CalendarResource>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the calendar resources before and after the current calendar resource in the ordered set where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param calendarResourceId the primary key of the current calendar resource
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next calendar resource
+	 * @throws com.liferay.calendar.NoSuchResourceException if a calendar resource with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public CalendarResource[] filterFindByG_N_A_PrevAndNext(
+		long calendarResourceId, long groupId, String name, boolean active,
+		OrderByComparator orderByComparator)
+		throws NoSuchResourceException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_N_A_PrevAndNext(calendarResourceId, groupId, name,
+				active, orderByComparator);
+		}
+
+		CalendarResource calendarResource = findByPrimaryKey(calendarResourceId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			CalendarResource[] array = new CalendarResourceImpl[3];
+
+			array[0] = filterGetByG_N_A_PrevAndNext(session, calendarResource,
+					groupId, name, active, orderByComparator, true);
+
+			array[1] = calendarResource;
+
+			array[2] = filterGetByG_N_A_PrevAndNext(session, calendarResource,
+					groupId, name, active, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected CalendarResource filterGetByG_N_A_PrevAndNext(Session session,
+		CalendarResource calendarResource, long groupId, String name,
+		boolean active, OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_GROUPID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_G_N_A_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_ACTIVE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(CalendarResourceModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(CalendarResourceModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, CalendarResourceImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, CalendarResourceImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		if (name != null) {
+			qPos.add(name);
+		}
+
+		qPos.add(active);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(calendarResource);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<CalendarResource> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupIds the group IDs to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @return the matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_N_A(long[] groupIds,
+		String name, boolean active) throws SystemException {
+		return filterFindByG_N_A(groupIds, name, active, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupIds the group IDs to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @param start the lower bound of the range of calendar resources to return
+	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @return the range of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_N_A(long[] groupIds,
+		String name, boolean active, int start, int end)
+		throws SystemException {
+		return filterFindByG_N_A(groupIds, name, active, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupIds the group IDs to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @param start the lower bound of the range of calendar resources to return
+	 * @param end the upper bound of the range of calendar resources to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<CalendarResource> filterFindByG_N_A(long[] groupIds,
+		String name, boolean active, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
+			return findByG_N_A(groupIds, name, active, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = new StringBundler();
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		boolean conjunctionable = false;
+
+		if ((groupIds == null) || (groupIds.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < groupIds.length; i++) {
+				query.append(_FINDER_COLUMN_G_N_A_GROUPID_5);
+
+				if ((i + 1) < groupIds.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
+
+			conjunctionable = true;
+		}
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_G_N_A_NAME_4);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_6);
+			}
+			else {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_5);
+			}
+		}
+
+		conjunctionable = true;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_ACTIVE_5);
+
+		conjunctionable = true;
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(CalendarResourceModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(CalendarResourceModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupIds);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, CalendarResourceImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, CalendarResourceImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (groupIds != null) {
+				qPos.add(groupIds);
+			}
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			qPos.add(active);
+
+			return (List<CalendarResource>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -3393,6 +4278,60 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
+	 * Filters by the user's permissions and counts all the calendar resources where groupId = &#63; and active = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param active the active to search with
+	 * @return the number of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_A(long groupId, boolean active)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByG_A(groupId, active);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_A_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_A_ACTIVE_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(active);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Counts all the calendar resources where classNameId = &#63; and classPK = &#63;.
 	 *
 	 * @param classNameId the class name ID to search with
@@ -3640,6 +4579,182 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	/**
+	 * Filters by the user's permissions and counts all the calendar resources where groupId = &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @return the number of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_N_A(long groupId, String name, boolean active)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByG_N_A(groupId, name, active);
+		}
+
+		StringBundler query = new StringBundler(4);
+
+		query.append(_FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_N_A_GROUPID_2);
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_G_N_A_NAME_1);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_3);
+			}
+			else {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_2);
+			}
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_ACTIVE_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			qPos.add(active);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the calendar resources where groupId = any &#63; and name LIKE &#63; and active = &#63;.
+	 *
+	 * @param groupIds the group IDs to search with
+	 * @param name the name to search with
+	 * @param active the active to search with
+	 * @return the number of matching calendar resources that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_N_A(long[] groupIds, String name, boolean active)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupIds)) {
+			return countByG_N_A(groupIds, name, active);
+		}
+
+		StringBundler query = new StringBundler();
+
+		query.append(_FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE);
+
+		boolean conjunctionable = false;
+
+		if ((groupIds == null) || (groupIds.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < groupIds.length; i++) {
+				query.append(_FINDER_COLUMN_G_N_A_GROUPID_5);
+
+				if ((i + 1) < groupIds.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
+
+			conjunctionable = true;
+		}
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		if (name == null) {
+			query.append(_FINDER_COLUMN_G_N_A_NAME_4);
+		}
+		else {
+			if (name.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_6);
+			}
+			else {
+				query.append(_FINDER_COLUMN_G_N_A_NAME_5);
+			}
+		}
+
+		conjunctionable = true;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_G_N_A_ACTIVE_5);
+
+		conjunctionable = true;
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				CalendarResource.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupIds);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (groupIds != null) {
+				qPos.add(groupIds);
+			}
+
+			if (name != null) {
+				qPos.add(name);
+			}
+
+			qPos.add(active);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
 	 * Counts all the calendar resources where companyId = &#63; and name LIKE &#63; and active = &#63;.
 	 *
 	 * @param companyId the company ID to search with
@@ -3845,7 +4960,18 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		return sql;
 	}
 
+	private static final String _FILTER_SQL_SELECT_CALENDARRESOURCE_WHERE = "SELECT DISTINCT {calendarResource.*} FROM CalendarResource calendarResource WHERE ";
+	private static final String _FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_1 =
+		"SELECT {CalendarResource.*} FROM (SELECT DISTINCT calendarResource.calendarResourceId FROM CalendarResource calendarResource WHERE ";
+	private static final String _FILTER_SQL_SELECT_CALENDARRESOURCE_NO_INLINE_DISTINCT_WHERE_2 =
+		") TEMP_TABLE INNER JOIN CalendarResource ON TEMP_TABLE.calendarResourceId = CalendarResource.calendarResourceId";
+	private static final String _FILTER_SQL_COUNT_CALENDARRESOURCE_WHERE = "SELECT COUNT(DISTINCT calendarResource.calendarResourceId) AS COUNT_VALUE FROM CalendarResource calendarResource WHERE ";
+	private static final String _FILTER_COLUMN_PK = "calendarResource.calendarResourceId";
+	private static final String _FILTER_COLUMN_USERID = "calendarResource.userId";
+	private static final String _FILTER_ENTITY_ALIAS = "calendarResource";
+	private static final String _FILTER_ENTITY_TABLE = "CalendarResource";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "calendarResource.";
+	private static final String _ORDER_BY_ENTITY_TABLE = "CalendarResource.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No CalendarResource exists with the primary key ";
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No CalendarResource exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = GetterUtil.getBoolean(PropsUtil.get(

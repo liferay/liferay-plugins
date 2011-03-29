@@ -415,5 +415,9 @@ public class KaleoNodeWrapper implements KaleoNode {
 		return _kaleoNode;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoNode.resetOriginalValues();
+	}
+
 	private KaleoNode _kaleoNode;
 }

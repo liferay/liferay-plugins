@@ -158,6 +158,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		EntityCacheUtil.putResult(KaleoInstanceTokenModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoInstanceTokenImpl.class, kaleoInstanceToken.getPrimaryKey(),
 			kaleoInstanceToken);
+
+		kaleoInstanceToken.resetOriginalValues();
 	}
 
 	/**

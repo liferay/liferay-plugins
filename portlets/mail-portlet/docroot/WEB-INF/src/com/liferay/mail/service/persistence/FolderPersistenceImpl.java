@@ -117,6 +117,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 				
 			folder.getFullName()
 			}, folder);
+
+		folder.resetOriginalValues();
 	}
 
 	/**

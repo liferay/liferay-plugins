@@ -279,30 +279,20 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 		KaleoNodeImpl kaleoNodeImpl = new KaleoNodeImpl();
 
 		kaleoNodeImpl.setKaleoNodeId(getKaleoNodeId());
-
 		kaleoNodeImpl.setGroupId(getGroupId());
-
 		kaleoNodeImpl.setCompanyId(getCompanyId());
-
 		kaleoNodeImpl.setUserId(getUserId());
-
 		kaleoNodeImpl.setUserName(getUserName());
-
 		kaleoNodeImpl.setCreateDate(getCreateDate());
-
 		kaleoNodeImpl.setModifiedDate(getModifiedDate());
-
 		kaleoNodeImpl.setKaleoDefinitionId(getKaleoDefinitionId());
-
 		kaleoNodeImpl.setName(getName());
-
 		kaleoNodeImpl.setDescription(getDescription());
-
 		kaleoNodeImpl.setType(getType());
-
 		kaleoNodeImpl.setInitial(getInitial());
-
 		kaleoNodeImpl.setTerminal(getTerminal());
+
+		kaleoNodeImpl.resetOriginalValues();
 
 		return kaleoNodeImpl;
 	}
@@ -353,6 +343,9 @@ public class KaleoNodeModelImpl extends BaseModelImpl<KaleoNode>
 
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	public void resetOriginalValues() {
 	}
 
 	public String toString() {

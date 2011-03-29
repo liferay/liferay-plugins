@@ -125,6 +125,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	public void cacheResult(JIRAAction jiraAction) {
 		EntityCacheUtil.putResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionImpl.class, jiraAction.getPrimaryKey(), jiraAction);
+
+		jiraAction.resetOriginalValues();
 	}
 
 	/**

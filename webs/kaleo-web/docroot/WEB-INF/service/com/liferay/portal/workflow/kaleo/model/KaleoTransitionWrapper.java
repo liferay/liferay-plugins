@@ -455,5 +455,9 @@ public class KaleoTransitionWrapper implements KaleoTransition {
 		return _kaleoTransition;
 	}
 
+	public void resetOriginalValues() {
+		_kaleoTransition.resetOriginalValues();
+	}
+
 	private KaleoTransition _kaleoTransition;
 }

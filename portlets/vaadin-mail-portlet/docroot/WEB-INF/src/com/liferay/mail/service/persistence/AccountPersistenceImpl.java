@@ -114,6 +114,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_A,
 			new Object[] { Long.valueOf(account.getUserId()), account.getAddress() },
 			account);
+
+		account.resetOriginalValues();
 	}
 
 	/**
