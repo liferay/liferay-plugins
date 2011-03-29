@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
@@ -72,7 +73,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 			userParams.put("contactTwitterSn", Boolean.TRUE);
 
 			List<User> users = userLocalService.search(
-				companyId, null, null, userParams, QueryUtil.ALL_POS,
+				companyId, StringPool.BLANK, 0, userParams, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, (OrderByComparator)null);
 
 			for (User user : users) {
