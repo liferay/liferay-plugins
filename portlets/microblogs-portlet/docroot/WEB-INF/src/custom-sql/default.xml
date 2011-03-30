@@ -51,7 +51,7 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_AT">
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.countByU_ATN">
 		<![CDATA[
 			SELECT
 				COUNT(DISTINCT MicroblogsEntry.microblogsEntryId) AS COUNT_VALUE
@@ -140,7 +140,7 @@
 				MicroblogsEntry.createDate DESC
 		]]>
 	</sql>
-	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByU_AT">
+	<sql id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder.findByU_ATN">
 		<![CDATA[
 			SELECT
 				DISTINCT {MicroblogsEntry.*}

@@ -38,25 +38,26 @@ import java.util.List;
  * @author Jonathan Lee
  */
 public class MicroblogsEntryFinderImpl
-	extends BasePersistenceImpl implements MicroblogsEntryFinder {
+	extends BasePersistenceImpl<MicroblogsEntry>
+	implements MicroblogsEntryFinder {
 
 	public static String COUNT_BY_USER_ID =
 		MicroblogsEntryFinder.class.getName() + ".countByUserId";
 
-	public static String COUNT_BY_U_AT =
-		MicroblogsEntryFinder.class.getName() + ".countByU_AT";
-
 	public static String COUNT_BY_U_MU =
 		MicroblogsEntryFinder.class.getName() + ".countByU_MU";
+
+	public static String COUNT_BY_U_ATN =
+	MicroblogsEntryFinder.class.getName() + ".countByU_ATN";
 
 	public static String FIND_BY_USER_ID =
 		MicroblogsEntryFinder.class.getName() + ".findByUserId";
 
-	public static String FIND_BY_U_AT =
-		MicroblogsEntryFinder.class.getName() + ".findByU_AT";
-
 	public static String FIND_BY_U_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_MU";
+
+	public static String FIND_BY_U_ATN =
+	MicroblogsEntryFinder.class.getName() + ".findByU_ATN";
 
 	public MicroblogsEntryFinderImpl() {
 		try {
@@ -94,48 +95,6 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(userId);
 			qPos.add(userId);
 			qPos.add(userId);
-
-			Iterator<Long> itr = q.list().iterator();
-
-			if (itr.hasNext()) {
-				Long count = itr.next();
-
-				if (count != null) {
-					return count.intValue();
-				}
-			}
-
-			return 0;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public int countByU_AT(long userId, String assetTagName)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(COUNT_BY_U_AT);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(assetTagName);
-			qPos.add(userId);
-			qPos.add(assetTagName);
 
 			Iterator<Long> itr = q.list().iterator();
 
@@ -197,6 +156,48 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
+	public int countByU_ATN(long userId, String assetTagName)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(COUNT_BY_U_ATN);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+
+			Iterator<Long> itr = q.list().iterator();
+
+			if (itr.hasNext()) {
+				Long count = itr.next();
+
+				if (count != null) {
+					return count.intValue();
+				}
+			}
+
+			return 0;
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<MicroblogsEntry> findByUserId(long userId, int start, int end)
 		throws SystemException {
 
@@ -232,40 +233,6 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public List<MicroblogsEntry> findByU_AT(
-			long userId, String assetTagName, int start, int end)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(FIND_BY_U_AT);
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(assetTagName);
-			qPos.add(userId);
-			qPos.add(assetTagName);
-
-			return (List<MicroblogsEntry>)QueryUtil.list(
-				q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
 	public List<MicroblogsEntry> findByU_MU(
 			long userId, long microblogsEntryUserId, int start, int end)
 		throws SystemException {
@@ -286,6 +253,40 @@ public class MicroblogsEntryFinderImpl
 			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
 			qPos.add(userId);
 			qPos.add(microblogsEntryUserId);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	public List<MicroblogsEntry> findByU_ATN(
+			long userId, String assetTagName, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_U_ATN);
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			qPos.add(userId);
+			qPos.add(assetTagName);
+			qPos.add(userId);
+			qPos.add(assetTagName);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				q, getDialect(), start, end);

@@ -60,24 +60,24 @@ public class MicroblogsEntryServiceImpl extends MicroblogsEntryServiceBaseImpl {
 		return microblogsEntryFinder.findByUserId(getUserId(), start, end);
 	}
 
+	public List<MicroblogsEntry> getMicroblogsEntries(
+			String assetTagName, int start, int end)
+		throws PortalException, SystemException {
+
+		return microblogsEntryFinder.findByU_ATN(
+			getUserId(), assetTagName, start, end);
+	}
+
 	public int getMicroblogsEntriesCount()
 		throws PortalException, SystemException {
 
 		return microblogsEntryFinder.countByUserId(getUserId());
 	}
 
-	public List<MicroblogsEntry> getMicroblogsEntries(
-			String assetTagName, int start, int end)
-		throws PortalException, SystemException {
-
-		return microblogsEntryFinder.findByU_AT(
-			getUserId(), assetTagName, start, end);
-	}
-
 	public int getMicroblogsEntriesCount(String assetTagName)
 		throws PortalException, SystemException {
 
-		return microblogsEntryFinder.countByU_AT(getUserId(), assetTagName);
+		return microblogsEntryFinder.countByU_ATN(getUserId(), assetTagName);
 	}
 
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
