@@ -370,6 +370,10 @@ html body {
 	position: relative;
 }
 
+.ie6 .panel-output, .ie7 .panel-output {
+	width: 100%;
+}
+
 .panel-output .blurb {
 	margin: 0;
 	position: relative;
