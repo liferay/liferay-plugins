@@ -36,12 +36,12 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		_getMicroblogsEntriesMethodKey2 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMicroblogsEntries", int.class, int.class);
 
-		_getMicroblogsEntriesCountMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
-				"getMicroblogsEntriesCount");
-
-		_getMicroblogsEntriesMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+		_getMicroblogsEntriesMethodKey3 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMicroblogsEntries", java.lang.String.class, int.class,
 				int.class);
+
+		_getMicroblogsEntriesCountMethodKey4 = new MethodKey(_classLoaderProxy.getClassName(),
+				"getMicroblogsEntriesCount");
 
 		_getMicroblogsEntriesCountMethodKey5 = new MethodKey(_classLoaderProxy.getClassName(),
 				"getMicroblogsEntriesCount", java.lang.String.class);
@@ -158,44 +158,13 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		return (java.util.List<com.liferay.microblogs.model.MicroblogsEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
-	public int getMicroblogsEntriesCount()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesCountMethodKey3);
-
-		try {
-			returnObj = _classLoaderProxy.invoke(methodHandler);
-		}
-		catch (Throwable t) {
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return ((Integer)returnObj).intValue();
-	}
-
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesMethodKey4,
+		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesMethodKey3,
 				ClpSerializer.translateInput(assetTagName), start, end);
 
 		try {
@@ -220,6 +189,37 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 		}
 
 		return (java.util.List<com.liferay.microblogs.model.MicroblogsEntry>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public int getMicroblogsEntriesCount()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_getMicroblogsEntriesCountMethodKey4);
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
 	}
 
 	public int getMicroblogsEntriesCount(java.lang.String assetTagName)
@@ -396,8 +396,8 @@ public class MicroblogsEntryServiceClp implements MicroblogsEntryService {
 	private MethodKey _addMicroblogsEntryMethodKey0;
 	private MethodKey _deleteMicroblogsEntryMethodKey1;
 	private MethodKey _getMicroblogsEntriesMethodKey2;
-	private MethodKey _getMicroblogsEntriesCountMethodKey3;
-	private MethodKey _getMicroblogsEntriesMethodKey4;
+	private MethodKey _getMicroblogsEntriesMethodKey3;
+	private MethodKey _getMicroblogsEntriesCountMethodKey4;
 	private MethodKey _getMicroblogsEntriesCountMethodKey5;
 	private MethodKey _getMicroblogsEntryMethodKey6;
 	private MethodKey _getUserMicroblogsEntriesMethodKey7;

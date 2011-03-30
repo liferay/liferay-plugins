@@ -53,18 +53,18 @@ public class MicroblogsEntryServiceWrapper implements MicroblogsEntryService {
 		return _microblogsEntryService.getMicroblogsEntries(start, end);
 	}
 
-	public int getMicroblogsEntriesCount()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _microblogsEntryService.getMicroblogsEntriesCount();
-	}
-
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _microblogsEntryService.getMicroblogsEntries(assetTagName,
 			start, end);
+	}
+
+	public int getMicroblogsEntriesCount()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryService.getMicroblogsEntriesCount();
 	}
 
 	public int getMicroblogsEntriesCount(java.lang.String assetTagName)

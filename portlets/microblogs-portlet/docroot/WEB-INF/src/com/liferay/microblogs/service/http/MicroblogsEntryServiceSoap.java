@@ -111,19 +111,6 @@ public class MicroblogsEntryServiceSoap {
 		}
 	}
 
-	public static int getMicroblogsEntriesCount() throws RemoteException {
-		try {
-			int returnValue = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount();
-
-			return returnValue;
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.microblogs.model.MicroblogsEntrySoap[] getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws RemoteException {
@@ -133,6 +120,19 @@ public class MicroblogsEntryServiceSoap {
 					start, end);
 
 			return com.liferay.microblogs.model.MicroblogsEntrySoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getMicroblogsEntriesCount() throws RemoteException {
+		try {
+			int returnValue = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount();
+
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);

@@ -21,21 +21,21 @@ public interface MicroblogsEntryFinder {
 	public int countByUserId(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByU_AT(long userId, java.lang.String assetTagName)
+	public int countByU_MU(long userId, long microblogsEntryUserId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public int countByU_MU(long userId, long microblogsEntryUserId)
+	public int countByU_ATN(long userId, java.lang.String assetTagName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
 		long userId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_AT(
-		long userId, java.lang.String assetTagName, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_MU(
 		long userId, long microblogsEntryUserId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_ATN(
+		long userId, java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

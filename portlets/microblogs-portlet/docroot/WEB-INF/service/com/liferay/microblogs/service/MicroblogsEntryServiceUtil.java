@@ -62,17 +62,17 @@ public class MicroblogsEntryServiceUtil {
 		return getService().getMicroblogsEntries(start, end);
 	}
 
-	public static int getMicroblogsEntriesCount()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getMicroblogsEntriesCount();
-	}
-
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
 		java.lang.String assetTagName, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMicroblogsEntries(assetTagName, start, end);
+	}
+
+	public static int getMicroblogsEntriesCount()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getMicroblogsEntriesCount();
 	}
 
 	public static int getMicroblogsEntriesCount(java.lang.String assetTagName)
