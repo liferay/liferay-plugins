@@ -727,7 +727,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			article.getClassPK(), article.getUuid(), assetCategoryIds,
 			assetTagNames, article.isApproved(), null, null, null, null,
 			ContentTypes.TEXT_HTML, article.getTitle(),
-			article.getDescription(), null, null, 0, 0, null, false);
+			article.getDescription(), null, null, null, 0, 0, null, false);
 	}
 
 	public String updateAttachments(
