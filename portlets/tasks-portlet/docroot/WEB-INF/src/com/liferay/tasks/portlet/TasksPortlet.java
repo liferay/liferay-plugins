@@ -76,7 +76,6 @@ public class TasksPortlet extends MVCPortlet {
 
 			ServletResponseUtil.write(response, jsonObject.toString());
 		}
-
 	}
 
 	public void processAction(
