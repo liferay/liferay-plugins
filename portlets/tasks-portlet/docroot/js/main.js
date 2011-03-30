@@ -197,7 +197,7 @@ AUI().use(
 			_setupProgressBar: function() {
 				var instance = this;
 
-				var portlet = A.one('.tasks-portlet');
+				var portlet = A.one('.tasks-portlet .list-wrapper');
 
 				portlet.delegate(
 					'mouseover',
