@@ -33,6 +33,7 @@
 			<basic name="priority" />
 			<basic name="viewCount" />
 			<basic name="latest" />
+			<basic name="main" />
 			<basic name="status" />
 			<basic name="statusByUserId" />
 			<basic name="statusByUserName" />

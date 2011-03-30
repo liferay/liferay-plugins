@@ -145,7 +145,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByR_L",
 			new String[] {
-				Long.class.getName(), Integer.class.getName(),
+				Long.class.getName(), Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -153,7 +153,20 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public static final FinderPath FINDER_PATH_COUNT_BY_R_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByR_L",
-			new String[] { Long.class.getName(), Integer.class.getName() });
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_R_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByR_M",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_R_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByR_M",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_R_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByR_S",
@@ -171,7 +184,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByG_L",
 			new String[] {
-				Long.class.getName(), Integer.class.getName(),
+				Long.class.getName(), Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -179,12 +192,38 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public static final FinderPath FINDER_PATH_COUNT_BY_G_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByG_L",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_G_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByG_M",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByG_M",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_G_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByG_S",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByG_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_C_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByC_L",
 			new String[] {
-				Long.class.getName(), Integer.class.getName(),
+				Long.class.getName(), Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -192,12 +231,38 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public static final FinderPath FINDER_PATH_COUNT_BY_C_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByC_L",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_C_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByC_M",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByC_M",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_C_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByC_S",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_C_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByC_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_P_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByP_L",
 			new String[] {
-				Long.class.getName(), Integer.class.getName(),
+				Long.class.getName(), Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -205,13 +270,39 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	public static final FinderPath FINDER_PATH_COUNT_BY_P_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"countByP_L",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_P_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_M",
+			new String[] {
+				Long.class.getName(), Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_M",
+			new String[] { Long.class.getName(), Boolean.class.getName() });
+	public static final FinderPath FINDER_PATH_FIND_BY_P_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByP_S",
+			new String[] {
+				Long.class.getName(), Integer.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_P_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByP_S",
 			new String[] { Long.class.getName(), Integer.class.getName() });
 	public static final FinderPath FINDER_PATH_FIND_BY_R_G_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByR_G_L",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName(),
+				Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -221,7 +312,24 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			"countByR_G_L",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName()
+				Boolean.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_R_G_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByR_G_M",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_R_G_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByR_G_M",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_BY_R_G_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
@@ -240,29 +348,12 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_FIND_BY_R_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByR_L_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_R_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByR_L_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName()
-			});
 	public static final FinderPath FINDER_PATH_FIND_BY_G_P_L = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
 			"findByG_P_L",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName(),
+				Boolean.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
@@ -272,92 +363,41 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			"countByG_P_L",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName()
+				Boolean.class.getName()
 			});
-	public static final FinderPath FINDER_PATH_FIND_BY_G_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FIND_BY_G_P_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_L_S",
+			"findByG_P_M",
 			new String[] {
-				Long.class.getName(), Integer.class.getName(),
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName(),
+				
+			"java.lang.Integer", "java.lang.Integer",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			});
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_P_M = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"countByG_P_M",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
+				Boolean.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_FIND_BY_G_P_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
+			"findByG_P_S",
+			new String[] {
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName(),
 				
 			"java.lang.Integer", "java.lang.Integer",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_G_P_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_L_S",
+			"countByG_P_S",
 			new String[] {
-				Long.class.getName(), Integer.class.getName(),
+				Long.class.getName(), Long.class.getName(),
 				Integer.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_C_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByC_L_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByC_L_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_P_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByP_L_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_P_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByP_L_S",
-			new String[] {
-				Long.class.getName(), Integer.class.getName(),
-				Integer.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_R_G_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByR_G_L_S",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName(), Integer.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_R_G_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByR_G_L_S",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName(), Integer.class.getName()
-			});
-	public static final FinderPath FINDER_PATH_FIND_BY_G_P_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"findByG_P_L_S",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName(), Integer.class.getName(),
-				
-			"java.lang.Integer", "java.lang.Integer",
-				"com.liferay.portal.kernel.util.OrderByComparator"
-			});
-	public static final FinderPath FINDER_PATH_COUNT_BY_G_P_L_S = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
-			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
-			"countByG_P_L_S",
-			new String[] {
-				Long.class.getName(), Long.class.getName(),
-				Integer.class.getName(), Integer.class.getName()
 			});
 	public static final FinderPath FINDER_PATH_FIND_ALL = new FinderPath(ArticleModelImpl.ENTITY_CACHE_ENABLED,
 			ArticleModelImpl.FINDER_CACHE_ENABLED, FINDER_CLASS_NAME_LIST,
@@ -669,7 +709,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		articleImpl.setDescription(article.getDescription());
 		articleImpl.setPriority(article.getPriority());
 		articleImpl.setViewCount(article.getViewCount());
-		articleImpl.setLatest(article.getLatest());
+		articleImpl.setLatest(article.isLatest());
+		articleImpl.setMain(article.isMain());
 		articleImpl.setStatus(article.getStatus());
 		articleImpl.setStatusByUserId(article.getStatusByUserId());
 		articleImpl.setStatusByUserName(article.getStatusByUserName());
@@ -2452,7 +2493,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L(long resourcePrimKey, int latest)
+	public List<Article> findByR_L(long resourcePrimKey, boolean latest)
 		throws SystemException {
 		return findByR_L(resourcePrimKey, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
@@ -2472,8 +2513,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L(long resourcePrimKey, int latest, int start,
-		int end) throws SystemException {
+	public List<Article> findByR_L(long resourcePrimKey, boolean latest,
+		int start, int end) throws SystemException {
 		return findByR_L(resourcePrimKey, latest, start, end, null);
 	}
 
@@ -2492,8 +2533,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L(long resourcePrimKey, int latest, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<Article> findByR_L(long resourcePrimKey, boolean latest,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, latest,
 				
@@ -2583,7 +2625,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByR_L_First(long resourcePrimKey, int latest,
+	public Article findByR_L_First(long resourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		List<Article> list = findByR_L(resourcePrimKey, latest, 0, 1,
@@ -2623,7 +2665,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByR_L_Last(long resourcePrimKey, int latest,
+	public Article findByR_L_Last(long resourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		int count = countByR_L(resourcePrimKey, latest);
@@ -2667,7 +2709,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] findByR_L_PrevAndNext(long articleId,
-		long resourcePrimKey, int latest, OrderByComparator orderByComparator)
+		long resourcePrimKey, boolean latest,
+		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
 
@@ -2697,8 +2740,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article getByR_L_PrevAndNext(Session session, Article article,
-		long resourcePrimKey, int latest, OrderByComparator orderByComparator,
-		boolean previous) {
+		long resourcePrimKey, boolean latest,
+		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2805,62 +2848,62 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds all the articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L(long[] resourcePrimKeies, int[] latests)
+	public List<Article> findByR_L(long[] resourcePrimKeies, boolean latest)
 		throws SystemException {
-		return findByR_L(resourcePrimKeies, latests, QueryUtil.ALL_POS,
+		return findByR_L(resourcePrimKeies, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds a range of all the articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L(long[] resourcePrimKeies, int[] latests,
+	public List<Article> findByR_L(long[] resourcePrimKeies, boolean latest,
 		int start, int end) throws SystemException {
-		return findByR_L(resourcePrimKeies, latests, start, end, null);
+		return findByR_L(resourcePrimKeies, latest, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L(long[] resourcePrimKeies, int[] latests,
+	public List<Article> findByR_L(long[] resourcePrimKeies, boolean latest,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), StringUtil.merge(latests),
+				StringUtil.merge(resourcePrimKeies), latest,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -2896,25 +2939,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				conjunctionable = true;
 			}
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_R_L_LATEST_5);
+
+			conjunctionable = true;
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -2940,9 +2971,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					qPos.add(resourcePrimKeies);
 				}
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -2958,6 +2987,517 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					cacheResult(list);
 
 					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_L,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds all the articles where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_M(long resourcePrimKey, boolean main)
+		throws SystemException {
+		return findByR_M(resourcePrimKey, main, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_M(long resourcePrimKey, boolean main,
+		int start, int end) throws SystemException {
+		return findByR_M(resourcePrimKey, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_M(long resourcePrimKey, boolean main,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				resourcePrimKey, main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_R_M_MAIN_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_M,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByR_M_First(long resourcePrimKey, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByR_M(resourcePrimKey, main, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("resourcePrimKey=");
+			msg.append(resourcePrimKey);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByR_M_Last(long resourcePrimKey, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByR_M(resourcePrimKey, main);
+
+		List<Article> list = findByR_M(resourcePrimKey, main, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("resourcePrimKey=");
+			msg.append(resourcePrimKey);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByR_M_PrevAndNext(long articleId,
+		long resourcePrimKey, boolean main, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByR_M_PrevAndNext(session, article, resourcePrimKey,
+					main, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByR_M_PrevAndNext(session, article, resourcePrimKey,
+					main, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByR_M_PrevAndNext(Session session, Article article,
+		long resourcePrimKey, boolean main,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_M_MAIN_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(resourcePrimKey);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where resourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_M(long[] resourcePrimKeies, boolean main)
+		throws SystemException {
+		return findByR_M(resourcePrimKeies, main, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_M(long[] resourcePrimKeies, boolean main,
+		int start, int end) throws SystemException {
+		return findByR_M(resourcePrimKeies, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_M(long[] resourcePrimKeies, boolean main,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_M_MAIN_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_M,
 						finderArgs, list);
 				}
 
@@ -3329,6 +3869,156 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Finds all the articles where resourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_S(long[] resourcePrimKeies, int status)
+		throws SystemException {
+		return findByR_S(resourcePrimKeies, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_S(long[] resourcePrimKeies, int status,
+		int start, int end) throws SystemException {
+		return findByR_S(resourcePrimKeies, status, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_S(long[] resourcePrimKeies, int status,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_S_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_S_STATUS_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
 	 * Finds all the articles where groupId = &#63; and latest = &#63;.
 	 *
 	 * @param groupId the group ID to search with
@@ -3336,7 +4026,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L(long groupId, int latest)
+	public List<Article> findByG_L(long groupId, boolean latest)
 		throws SystemException {
 		return findByG_L(groupId, latest, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
@@ -3356,8 +4046,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L(long groupId, int latest, int start, int end)
-		throws SystemException {
+	public List<Article> findByG_L(long groupId, boolean latest, int start,
+		int end) throws SystemException {
 		return findByG_L(groupId, latest, start, end, null);
 	}
 
@@ -3376,7 +4066,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L(long groupId, int latest, int start,
+	public List<Article> findByG_L(long groupId, boolean latest, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				groupId, latest,
@@ -3467,7 +4157,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByG_L_First(long groupId, int latest,
+	public Article findByG_L_First(long groupId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		List<Article> list = findByG_L(groupId, latest, 0, 1, orderByComparator);
@@ -3506,7 +4196,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByG_L_Last(long groupId, int latest,
+	public Article findByG_L_Last(long groupId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		int count = countByG_L(groupId, latest);
@@ -3550,7 +4240,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] findByG_L_PrevAndNext(long articleId, long groupId,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
 
@@ -3580,7 +4270,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article getByG_L_PrevAndNext(Session session, Article article,
-		long groupId, int latest, OrderByComparator orderByComparator,
+		long groupId, boolean latest, OrderByComparator orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -3688,155 +4378,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where groupId = &#63; and latest = any &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_L(long groupId, int[] latests)
-		throws SystemException {
-		return findByG_L(groupId, latests, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where groupId = &#63; and latest = any &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_L(long groupId, int[] latests, int start,
-		int end) throws SystemException {
-		return findByG_L(groupId, latests, start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where groupId = &#63; and latest = any &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_L(long groupId, int[] latests, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(latests),
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_L,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_G_L_GROUPID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_L,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_L,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
 	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = &#63;.
 	 *
 	 * @param groupId the group ID to search with
@@ -3844,7 +4385,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L(long groupId, int latest)
+	public List<Article> filterFindByG_L(long groupId, boolean latest)
 		throws SystemException {
 		return filterFindByG_L(groupId, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
@@ -3864,8 +4405,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L(long groupId, int latest, int start,
-		int end) throws SystemException {
+	public List<Article> filterFindByG_L(long groupId, boolean latest,
+		int start, int end) throws SystemException {
 		return filterFindByG_L(groupId, latest, start, end, null);
 	}
 
@@ -3884,8 +4425,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the ordered range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L(long groupId, int latest, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<Article> filterFindByG_L(long groupId, boolean latest,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_L(groupId, latest, start, end, orderByComparator);
 		}
@@ -3985,7 +4527,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] filterFindByG_L_PrevAndNext(long articleId, long groupId,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_L_PrevAndNext(articleId, groupId, latest,
@@ -4020,7 +4562,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article filterGetByG_L_PrevAndNext(Session session,
-		Article article, long groupId, int latest,
+		Article article, long groupId, boolean latest,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -4163,65 +4705,427 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63;.
+	 * Finds all the articles where groupId = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_M(long groupId, boolean main)
+		throws SystemException {
+		return findByG_M(groupId, main, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Finds a range of all the articles where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_M(long groupId, boolean main, int start,
+		int end) throws SystemException {
+		return findByG_M(groupId, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_M(long groupId, boolean main, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				groupId, main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_M_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_M_MAIN_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_M,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByG_M_First(long groupId, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByG_M(groupId, main, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByG_M_Last(long groupId, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByG_M(groupId, main);
+
+		List<Article> list = findByG_M(groupId, main, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByG_M_PrevAndNext(long articleId, long groupId,
+		boolean main, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByG_M_PrevAndNext(session, article, groupId, main,
+					orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByG_M_PrevAndNext(session, article, groupId, main,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByG_M_PrevAndNext(Session session, Article article,
+		long groupId, boolean main, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_M_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_M_MAIN_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
 	 * @return the matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L(long groupId, int[] latests)
+	public List<Article> filterFindByG_M(long groupId, boolean main)
 		throws SystemException {
-		return filterFindByG_L(groupId, latests, QueryUtil.ALL_POS,
+		return filterFindByG_M(groupId, main, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L(long groupId, int[] latests,
-		int start, int end) throws SystemException {
-		return filterFindByG_L(groupId, latests, start, end, null);
+	public List<Article> filterFindByG_M(long groupId, boolean main, int start,
+		int end) throws SystemException {
+		return filterFindByG_M(groupId, main, start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L(long groupId, int[] latests,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	public List<Article> filterFindByG_M(long groupId, boolean main, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_L(groupId, latests, start, end, orderByComparator);
+			return findByG_M(groupId, main, start, end, orderByComparator);
 		}
 
-		StringBundler query = new StringBundler();
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
 
 		if (getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
@@ -4230,35 +5134,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		boolean conjunctionable = false;
+		query.append(_FINDER_COLUMN_G_M_GROUPID_2);
 
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_GROUPID_5);
-
-		conjunctionable = true;
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_L_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
+		query.append(_FINDER_COLUMN_G_M_MAIN_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
@@ -4306,9 +5184,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			qPos.add(groupId);
 
-			if (latests != null) {
-				qPos.add(latests);
-			}
+			qPos.add(main);
 
 			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -4321,6 +5197,884 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_M_PrevAndNext(long articleId, long groupId,
+		boolean main, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_M_PrevAndNext(articleId, groupId, main,
+				orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_M_PrevAndNext(session, article, groupId,
+					main, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_M_PrevAndNext(session, article, groupId,
+					main, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_M_PrevAndNext(Session session,
+		Article article, long groupId, boolean main,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_M_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_M_MAIN_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_S(long groupId, int status)
+		throws SystemException {
+		return findByG_S(groupId, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
+	}
+
+	/**
+	 * Finds a range of all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_S(long groupId, int status, int start, int end)
+		throws SystemException {
+		return findByG_S(groupId, status, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_S(long groupId, int status, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				groupId, status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_S_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByG_S_First(long groupId, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByG_S(groupId, status, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByG_S_Last(long groupId, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByG_S(groupId, status);
+
+		List<Article> list = findByG_S(groupId, status, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByG_S_PrevAndNext(long articleId, long groupId,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByG_S_PrevAndNext(session, article, groupId, status,
+					orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByG_S_PrevAndNext(session, article, groupId, status,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByG_S_PrevAndNext(Session session, Article article,
+		long groupId, int status, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_S(long groupId, int status)
+		throws SystemException {
+		return filterFindByG_S(groupId, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_S(long groupId, int status, int start,
+		int end) throws SystemException {
+		return filterFindByG_S(groupId, status, start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_S(long groupId, int status, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_S(groupId, status, start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(4 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(4);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(status);
+
+			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_S_PrevAndNext(long articleId, long groupId,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_S_PrevAndNext(articleId, groupId, status,
+				orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_S_PrevAndNext(session, article, groupId,
+					status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_S_PrevAndNext(session, article, groupId,
+					status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_S_PrevAndNext(Session session,
+		Article article, long groupId, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Finds all the articles where companyId = &#63; and latest = &#63;.
 	 *
 	 * @param companyId the company ID to search with
@@ -4328,7 +6082,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByC_L(long companyId, int latest)
+	public List<Article> findByC_L(long companyId, boolean latest)
 		throws SystemException {
 		return findByC_L(companyId, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
@@ -4348,7 +6102,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByC_L(long companyId, int latest, int start,
+	public List<Article> findByC_L(long companyId, boolean latest, int start,
 		int end) throws SystemException {
 		return findByC_L(companyId, latest, start, end, null);
 	}
@@ -4368,7 +6122,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByC_L(long companyId, int latest, int start,
+	public List<Article> findByC_L(long companyId, boolean latest, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				companyId, latest,
@@ -4459,7 +6213,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByC_L_First(long companyId, int latest,
+	public Article findByC_L_First(long companyId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		List<Article> list = findByC_L(companyId, latest, 0, 1,
@@ -4499,7 +6253,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByC_L_Last(long companyId, int latest,
+	public Article findByC_L_Last(long companyId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		int count = countByC_L(companyId, latest);
@@ -4543,7 +6297,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] findByC_L_PrevAndNext(long articleId, long companyId,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
 
@@ -4573,7 +6327,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article getByC_L_PrevAndNext(Session session, Article article,
-		long companyId, int latest, OrderByComparator orderByComparator,
+		long companyId, boolean latest, OrderByComparator orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -4681,103 +6435,81 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where companyId = &#63; and latest = any &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
+	 * Finds all the articles where companyId = &#63; and main = &#63;.
 	 *
 	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByC_L(long companyId, int[] latests)
+	public List<Article> findByC_M(long companyId, boolean main)
 		throws SystemException {
-		return findByC_L(companyId, latests, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+		return findByC_M(companyId, main, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			null);
 	}
 
 	/**
-	 * Finds a range of all the articles where companyId = &#63; and latest = any &#63;.
+	 * Finds a range of all the articles where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByC_L(long companyId, int[] latests, int start,
+	public List<Article> findByC_M(long companyId, boolean main, int start,
 		int end) throws SystemException {
-		return findByC_L(companyId, latests, start, end, null);
+		return findByC_M(companyId, main, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where companyId = &#63; and latest = any &#63;.
+	 * Finds an ordered range of all the articles where companyId = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByC_L(long companyId, int[] latests, int start,
+	public List<Article> findByC_M(long companyId, boolean main, int start,
 		int end, OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				companyId, StringUtil.merge(latests),
+				companyId, main,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_L,
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_M,
 				finderArgs, this);
 
 		if (list == null) {
-			StringBundler query = new StringBundler();
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
 
 			query.append(_SQL_SELECT_ARTICLE_WHERE);
 
-			boolean conjunctionable = false;
+			query.append(_FINDER_COLUMN_C_M_COMPANYID_2);
 
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_L_COMPANYID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_C_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
+			query.append(_FINDER_COLUMN_C_M_MAIN_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -4801,9 +6533,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(companyId);
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(main);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -4812,13 +6542,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_C_L,
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_C_M,
 						finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_L,
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_M,
 						finderArgs, list);
 				}
 
@@ -4830,6 +6560,600 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Finds the first article in the ordered set where companyId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByC_M_First(long companyId, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByC_M(companyId, main, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where companyId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByC_M_Last(long companyId, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByC_M(companyId, main);
+
+		List<Article> list = findByC_M(companyId, main, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where companyId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param companyId the company ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByC_M_PrevAndNext(long articleId, long companyId,
+		boolean main, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByC_M_PrevAndNext(session, article, companyId, main,
+					orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByC_M_PrevAndNext(session, article, companyId, main,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByC_M_PrevAndNext(Session session, Article article,
+		long companyId, boolean main, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_C_M_COMPANYID_2);
+
+		query.append(_FINDER_COLUMN_C_M_MAIN_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where companyId = &#63; and status = &#63;.
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByC_S(long companyId, int status)
+		throws SystemException {
+		return findByC_S(companyId, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where companyId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByC_S(long companyId, int status, int start,
+		int end) throws SystemException {
+		return findByC_S(companyId, status, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where companyId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByC_S(long companyId, int status, int start,
+		int end, OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				companyId, status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_C_S_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_S_STATUS_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_C_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where companyId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByC_S_First(long companyId, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByC_S(companyId, status, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where companyId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByC_S_Last(long companyId, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByC_S(companyId, status);
+
+		List<Article> list = findByC_S(companyId, status, count - 1, count,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("companyId=");
+			msg.append(companyId);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where companyId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByC_S_PrevAndNext(long articleId, long companyId,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByC_S_PrevAndNext(session, article, companyId,
+					status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByC_S_PrevAndNext(session, article, companyId,
+					status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByC_S_PrevAndNext(Session session, Article article,
+		long companyId, int status, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_C_S_COMPANYID_2);
+
+		query.append(_FINDER_COLUMN_C_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(companyId);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
 	 * Finds all the articles where parentResourcePrimKey = &#63; and latest = &#63;.
 	 *
 	 * @param parentResourcePrimKey the parent resource prim key to search with
@@ -4837,7 +7161,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByP_L(long parentResourcePrimKey, int latest)
+	public List<Article> findByP_L(long parentResourcePrimKey, boolean latest)
 		throws SystemException {
 		return findByP_L(parentResourcePrimKey, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
@@ -4857,7 +7181,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByP_L(long parentResourcePrimKey, int latest,
+	public List<Article> findByP_L(long parentResourcePrimKey, boolean latest,
 		int start, int end) throws SystemException {
 		return findByP_L(parentResourcePrimKey, latest, start, end, null);
 	}
@@ -4877,7 +7201,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByP_L(long parentResourcePrimKey, int latest,
+	public List<Article> findByP_L(long parentResourcePrimKey, boolean latest,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
@@ -4969,7 +7293,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByP_L_First(long parentResourcePrimKey, int latest,
+	public Article findByP_L_First(long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		List<Article> list = findByP_L(parentResourcePrimKey, latest, 0, 1,
@@ -5009,7 +7333,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByP_L_Last(long parentResourcePrimKey, int latest,
+	public Article findByP_L_Last(long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		int count = countByP_L(parentResourcePrimKey, latest);
@@ -5053,7 +7377,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] findByP_L_PrevAndNext(long articleId,
-		long parentResourcePrimKey, int latest,
+		long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
@@ -5084,7 +7408,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article getByP_L_PrevAndNext(Session session, Article article,
-		long parentResourcePrimKey, int latest,
+		long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -5192,51 +7516,51 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds all the articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByP_L(long[] parentResourcePrimKeies, int[] latests)
-		throws SystemException {
-		return findByP_L(parentResourcePrimKeies, latests, QueryUtil.ALL_POS,
+	public List<Article> findByP_L(long[] parentResourcePrimKeies,
+		boolean latest) throws SystemException {
+		return findByP_L(parentResourcePrimKeies, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the articles where parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds a range of all the articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByP_L(long[] parentResourcePrimKeies,
-		int[] latests, int start, int end) throws SystemException {
-		return findByP_L(parentResourcePrimKeies, latests, start, end, null);
+		boolean latest, int start, int end) throws SystemException {
+		return findByP_L(parentResourcePrimKeies, latest, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds an ordered range of all the articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -5244,11 +7568,10 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByP_L(long[] parentResourcePrimKeies,
-		int[] latests, int start, int end, OrderByComparator orderByComparator)
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests),
+				StringUtil.merge(parentResourcePrimKeies), latest,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -5285,25 +7608,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				conjunctionable = true;
 			}
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_P_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_P_L_LATEST_5);
+
+			conjunctionable = true;
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -5329,9 +7640,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					qPos.add(parentResourcePrimKeies);
 				}
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -5358,6 +7667,1032 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Finds all the articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_M(long parentResourcePrimKey, boolean main)
+		throws SystemException {
+		return findByP_M(parentResourcePrimKey, main, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_M(long parentResourcePrimKey, boolean main,
+		int start, int end) throws SystemException {
+		return findByP_M(parentResourcePrimKey, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_M(long parentResourcePrimKey, boolean main,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				parentResourcePrimKey, main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_P_M_MAIN_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_M,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByP_M_First(long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByP_M(parentResourcePrimKey, main, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByP_M_Last(long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByP_M(parentResourcePrimKey, main);
+
+		List<Article> list = findByP_M(parentResourcePrimKey, main, count - 1,
+				count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByP_M_PrevAndNext(long articleId,
+		long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByP_M_PrevAndNext(session, article,
+					parentResourcePrimKey, main, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByP_M_PrevAndNext(session, article,
+					parentResourcePrimKey, main, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByP_M_PrevAndNext(Session session, Article article,
+		long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_P_M_MAIN_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_M(long[] parentResourcePrimKeies, boolean main)
+		throws SystemException {
+		return findByP_M(parentResourcePrimKeies, main, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_M(long[] parentResourcePrimKeies,
+		boolean main, int start, int end) throws SystemException {
+		return findByP_M(parentResourcePrimKeies, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_M(long[] parentResourcePrimKeies,
+		boolean main, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_5);
+
+					if ((i + 1) < parentResourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_P_M_MAIN_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
+				}
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_M,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds all the articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_S(long parentResourcePrimKey, int status)
+		throws SystemException {
+		return findByP_S(parentResourcePrimKey, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_S(long parentResourcePrimKey, int status,
+		int start, int end) throws SystemException {
+		return findByP_S(parentResourcePrimKey, status, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_S(long parentResourcePrimKey, int status,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				parentResourcePrimKey, status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(4 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(4);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_P_S_STATUS_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByP_S_First(long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByP_S(parentResourcePrimKey, status, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByP_S_Last(long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByP_S(parentResourcePrimKey, status);
+
+		List<Article> list = findByP_S(parentResourcePrimKey, status,
+				count - 1, count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByP_S_PrevAndNext(long articleId,
+		long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByP_S_PrevAndNext(session, article,
+					parentResourcePrimKey, status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByP_S_PrevAndNext(session, article,
+					parentResourcePrimKey, status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByP_S_PrevAndNext(Session session, Article article,
+		long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_P_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_S(long[] parentResourcePrimKeies, int status)
+		throws SystemException {
+		return findByP_S(parentResourcePrimKeies, status, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_S(long[] parentResourcePrimKeies, int status,
+		int start, int end) throws SystemException {
+		return findByP_S(parentResourcePrimKeies, status, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByP_S(long[] parentResourcePrimKeies, int status,
+		int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_5);
+
+					if ((i + 1) < parentResourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_P_S_STATUS_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
+				}
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
 	 * Finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * @param resourcePrimKey the resource prim key to search with
@@ -5367,7 +8702,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByR_G_L(long resourcePrimKey, long groupId,
-		int latest) throws SystemException {
+		boolean latest) throws SystemException {
 		return findByR_G_L(resourcePrimKey, groupId, latest, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -5388,7 +8723,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByR_G_L(long resourcePrimKey, long groupId,
-		int latest, int start, int end) throws SystemException {
+		boolean latest, int start, int end) throws SystemException {
 		return findByR_G_L(resourcePrimKey, groupId, latest, start, end, null);
 	}
 
@@ -5409,7 +8744,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByR_G_L(long resourcePrimKey, long groupId,
-		int latest, int start, int end, OrderByComparator orderByComparator)
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				resourcePrimKey, groupId, latest,
@@ -5506,7 +8841,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article findByR_G_L_First(long resourcePrimKey, long groupId,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		List<Article> list = findByR_G_L(resourcePrimKey, groupId, latest, 0,
 				1, orderByComparator);
@@ -5550,7 +8885,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article findByR_G_L_Last(long resourcePrimKey, long groupId,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		int count = countByR_G_L(resourcePrimKey, groupId, latest);
 
@@ -5597,7 +8932,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] findByR_G_L_PrevAndNext(long articleId,
-		long resourcePrimKey, long groupId, int latest,
+		long resourcePrimKey, long groupId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
@@ -5628,7 +8963,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article getByR_G_L_PrevAndNext(Session session, Article article,
-		long resourcePrimKey, long groupId, int latest,
+		long resourcePrimKey, long groupId, boolean latest,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -5740,7 +9075,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -5748,18 +9083,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByR_G_L(long[] resourcePrimKeies, long groupId,
-		int[] latests) throws SystemException {
-		return findByR_G_L(resourcePrimKeies, groupId, latests,
+		boolean latest) throws SystemException {
+		return findByR_G_L(resourcePrimKeies, groupId, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -5767,19 +9102,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByR_G_L(long[] resourcePrimKeies, long groupId,
-		int[] latests, int start, int end) throws SystemException {
-		return findByR_G_L(resourcePrimKeies, groupId, latests, start, end, null);
+		boolean latest, int start, int end) throws SystemException {
+		return findByR_G_L(resourcePrimKeies, groupId, latest, start, end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -5787,7 +9122,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -5795,11 +9130,10 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByR_G_L(long[] resourcePrimKeies, long groupId,
-		int[] latests, int start, int end, OrderByComparator orderByComparator)
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId,
-				StringUtil.merge(latests),
+				StringUtil.merge(resourcePrimKeies), groupId, latest,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -5843,25 +9177,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			conjunctionable = true;
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
+
+			conjunctionable = true;
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -5889,9 +9211,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(groupId);
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -5927,7 +9247,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByR_G_L(long resourcePrimKey, long groupId,
-		int latest) throws SystemException {
+		boolean latest) throws SystemException {
 		return filterFindByR_G_L(resourcePrimKey, groupId, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -5948,7 +9268,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByR_G_L(long resourcePrimKey, long groupId,
-		int latest, int start, int end) throws SystemException {
+		boolean latest, int start, int end) throws SystemException {
 		return filterFindByR_G_L(resourcePrimKey, groupId, latest, start, end,
 			null);
 	}
@@ -5970,7 +9290,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByR_G_L(long resourcePrimKey, long groupId,
-		int latest, int start, int end, OrderByComparator orderByComparator)
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByR_G_L(resourcePrimKey, groupId, latest, start, end,
@@ -6077,7 +9397,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] filterFindByR_G_L_PrevAndNext(long articleId,
-		long resourcePrimKey, long groupId, int latest,
+		long resourcePrimKey, long groupId, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
@@ -6113,7 +9433,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article filterGetByR_G_L_PrevAndNext(Session session,
-		Article article, long resourcePrimKey, long groupId, int latest,
+		Article article, long resourcePrimKey, long groupId, boolean latest,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -6260,7 +9580,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -6268,18 +9588,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByR_G_L(long[] resourcePrimKeies,
-		long groupId, int[] latests) throws SystemException {
-		return filterFindByR_G_L(resourcePrimKeies, groupId, latests,
+		long groupId, boolean latest) throws SystemException {
+		return filterFindByR_G_L(resourcePrimKeies, groupId, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -6287,21 +9607,21 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByR_G_L(long[] resourcePrimKeies,
-		long groupId, int[] latests, int start, int end)
+		long groupId, boolean latest, int start, int end)
 		throws SystemException {
-		return filterFindByR_G_L(resourcePrimKeies, groupId, latests, start,
+		return filterFindByR_G_L(resourcePrimKeies, groupId, latest, start,
 			end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -6309,7 +9629,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -6317,10 +9637,10 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByR_G_L(long[] resourcePrimKeies,
-		long groupId, int[] latests, int start, int end,
+		long groupId, boolean latest, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByR_G_L(resourcePrimKeies, groupId, latests, start, end,
+			return findByR_G_L(resourcePrimKeies, groupId, latest, start, end,
 				orderByComparator);
 		}
 
@@ -6363,25 +9683,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 		conjunctionable = true;
 
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
+		if (conjunctionable) {
+			query.append(WHERE_AND);
 		}
+
+		query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
+
+		conjunctionable = true;
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
@@ -6433,9 +9741,1068 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			qPos.add(groupId);
 
-			if (latests != null) {
-				qPos.add(latests);
+			qPos.add(latest);
+
+			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_M(long resourcePrimKey, long groupId,
+		boolean main) throws SystemException {
+		return findByR_G_M(resourcePrimKey, groupId, main, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_M(long resourcePrimKey, long groupId,
+		boolean main, int start, int end) throws SystemException {
+		return findByR_G_M(resourcePrimKey, groupId, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_M(long resourcePrimKey, long groupId,
+		boolean main, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				resourcePrimKey, groupId, main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
 			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_R_G_M_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(groupId);
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_G_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_G_M,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByR_G_M_First(long resourcePrimKey, long groupId,
+		boolean main, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByR_G_M(resourcePrimKey, groupId, main, 0, 1,
+				orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("resourcePrimKey=");
+			msg.append(resourcePrimKey);
+
+			msg.append(", groupId=");
+			msg.append(groupId);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByR_G_M_Last(long resourcePrimKey, long groupId,
+		boolean main, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByR_G_M(resourcePrimKey, groupId, main);
+
+		List<Article> list = findByR_G_M(resourcePrimKey, groupId, main,
+				count - 1, count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("resourcePrimKey=");
+			msg.append(resourcePrimKey);
+
+			msg.append(", groupId=");
+			msg.append(groupId);
+
+			msg.append(", main=");
+			msg.append(main);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByR_G_M_PrevAndNext(long articleId,
+		long resourcePrimKey, long groupId, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByR_G_M_PrevAndNext(session, article,
+					resourcePrimKey, groupId, main, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByR_G_M_PrevAndNext(session, article,
+					resourcePrimKey, groupId, main, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByR_G_M_PrevAndNext(Session session, Article article,
+		long resourcePrimKey, long groupId, boolean main,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(resourcePrimKey);
+
+		qPos.add(groupId);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_M(long[] resourcePrimKeies, long groupId,
+		boolean main) throws SystemException {
+		return findByR_G_M(resourcePrimKeies, groupId, main, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_M(long[] resourcePrimKeies, long groupId,
+		boolean main, int start, int end) throws SystemException {
+		return findByR_G_M(resourcePrimKeies, groupId, main, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_M(long[] resourcePrimKeies, long groupId,
+		boolean main, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, main,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_M,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_M_GROUPID_5);
+
+			conjunctionable = true;
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_M_MAIN_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(groupId);
+
+				qPos.add(main);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_G_M,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_G_M,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_M(long resourcePrimKey, long groupId,
+		boolean main) throws SystemException {
+		return filterFindByR_G_M(resourcePrimKey, groupId, main,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_M(long resourcePrimKey, long groupId,
+		boolean main, int start, int end) throws SystemException {
+		return filterFindByR_G_M(resourcePrimKey, groupId, main, start, end,
+			null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_M(long resourcePrimKey, long groupId,
+		boolean main, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByR_G_M(resourcePrimKey, groupId, main, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(5 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(5);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(resourcePrimKey);
+
+			qPos.add(groupId);
+
+			qPos.add(main);
+
+			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByR_G_M_PrevAndNext(long articleId,
+		long resourcePrimKey, long groupId, boolean main,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByR_G_M_PrevAndNext(articleId, resourcePrimKey, groupId,
+				main, orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByR_G_M_PrevAndNext(session, article,
+					resourcePrimKey, groupId, main, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByR_G_M_PrevAndNext(session, article,
+					resourcePrimKey, groupId, main, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByR_G_M_PrevAndNext(Session session,
+		Article article, long resourcePrimKey, long groupId, boolean main,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(resourcePrimKey);
+
+		qPos.add(groupId);
+
+		qPos.add(main);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_M(long[] resourcePrimKeies,
+		long groupId, boolean main) throws SystemException {
+		return filterFindByR_G_M(resourcePrimKeies, groupId, main,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_M(long[] resourcePrimKeies,
+		long groupId, boolean main, int start, int end)
+		throws SystemException {
+		return filterFindByR_G_M(resourcePrimKeies, groupId, main, start, end,
+			null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_M(long[] resourcePrimKeies,
+		long groupId, boolean main, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByR_G_M(resourcePrimKeies, groupId, main, start, end,
+				orderByComparator);
+		}
+
+		StringBundler query = new StringBundler();
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		boolean conjunctionable = false;
+
+		if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_5);
+
+				if ((i + 1) < resourcePrimKeies.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
+
+			conjunctionable = true;
+		}
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_M_GROUPID_5);
+
+		conjunctionable = true;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_M_MAIN_5);
+
+		conjunctionable = true;
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (resourcePrimKeies != null) {
+				qPos.add(resourcePrimKeies);
+			}
+
+			qPos.add(groupId);
+
+			qPos.add(main);
 
 			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -6830,6 +11197,169 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_S(long[] resourcePrimKeies, long groupId,
+		int status) throws SystemException {
+		return findByR_G_S(resourcePrimKeies, groupId, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_S(long[] resourcePrimKeies, long groupId,
+		int status, int start, int end) throws SystemException {
+		return findByR_G_S(resourcePrimKeies, groupId, status, start, end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByR_G_S(long[] resourcePrimKeies, long groupId,
+		int status, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_S_GROUPID_5);
+
+			conjunctionable = true;
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_S_STATUS_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(groupId);
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_G_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_G_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
 	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * @param resourcePrimKey the resource prim key to search with
@@ -7172,266 +11702,169 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_L_S(long resourcePrimKey, int latest,
-		int status) throws SystemException {
-		return findByR_L_S(resourcePrimKey, latest, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByR_G_S(long[] resourcePrimKeies,
+		long groupId, int status) throws SystemException {
+		return filterFindByR_G_S(resourcePrimKeies, groupId, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
 	 * @param status the status to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
+	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L_S(long resourcePrimKey, int latest,
-		int status, int start, int end) throws SystemException {
-		return findByR_L_S(resourcePrimKey, latest, status, start, end, null);
+	public List<Article> filterFindByR_G_S(long[] resourcePrimKeies,
+		long groupId, int status, int start, int end) throws SystemException {
+		return filterFindByR_G_S(resourcePrimKeies, groupId, status, start,
+			end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
 	 * @param status the status to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
+	 * @return the ordered range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByR_L_S(long resourcePrimKey, int latest,
-		int status, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				resourcePrimKey, latest, status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
+	public List<Article> filterFindByR_G_S(long[] resourcePrimKeies,
+		long groupId, int status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByR_G_S(resourcePrimKeies, groupId, status, start, end,
+				orderByComparator);
+		}
 
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_L_S,
-				finderArgs, this);
+		StringBundler query = new StringBundler();
 
-		if (list == null) {
-			StringBundler query = null;
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
 
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
+		boolean conjunctionable = false;
+
+		if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
-			else {
-				query = new StringBundler(5);
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				query.append(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_5);
+
+				if ((i + 1) < resourcePrimKeies.length) {
+					query.append(WHERE_OR);
+				}
 			}
 
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
+			query.append(StringPool.CLOSE_PARENTHESIS);
 
-			query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_2);
+			conjunctionable = true;
+		}
 
-			query.append(_FINDER_COLUMN_R_L_S_LATEST_2);
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
 
-			query.append(_FINDER_COLUMN_R_L_S_STATUS_2);
+		query.append(_FINDER_COLUMN_R_G_S_GROUPID_5);
 
-			if (orderByComparator != null) {
+		conjunctionable = true;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_S_STATUS_5);
+
+		conjunctionable = true;
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
 					orderByComparator);
 			}
-
 			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
 				query.append(ArticleModelImpl.ORDER_BY_JPQL);
 			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(resourcePrimKey);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
 			}
 		}
 
-		return list;
-	}
-
-	/**
-	 * Finds the first article in the ordered set where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByR_L_S_First(long resourcePrimKey, int latest,
-		int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		List<Article> list = findByR_L_S(resourcePrimKey, latest, status, 0, 1,
-				orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the last article in the ordered set where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByR_L_S_Last(long resourcePrimKey, int latest,
-		int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		int count = countByR_L_S(resourcePrimKey, latest, status);
-
-		List<Article> list = findByR_L_S(resourcePrimKey, latest, status,
-				count - 1, count, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] findByR_L_S_PrevAndNext(long articleId,
-		long resourcePrimKey, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		Article article = findByPrimaryKey(articleId);
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
 
 		Session session = null;
 
 		try {
 			session = openSession();
 
-			Article[] array = new ArticleImpl[3];
+			SQLQuery q = session.createSQLQuery(sql);
 
-			array[0] = getByR_L_S_PrevAndNext(session, article,
-					resourcePrimKey, latest, status, orderByComparator, true);
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+			}
 
-			array[1] = article;
+			QueryPos qPos = QueryPos.getInstance(q);
 
-			array[2] = getByR_L_S_PrevAndNext(session, article,
-					resourcePrimKey, latest, status, orderByComparator, false);
+			if (resourcePrimKeies != null) {
+				qPos.add(resourcePrimKeies);
+			}
 
-			return array;
+			qPos.add(groupId);
+
+			qPos.add(status);
+
+			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 		}
 		catch (Exception e) {
 			throw processException(e);
@@ -7439,296 +11872,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		finally {
 			closeSession(session);
 		}
-	}
-
-	protected Article getByR_L_S_PrevAndNext(Session session, Article article,
-		long resourcePrimKey, int latest, int status,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_R_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_R_L_S_STATUS_2);
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(ArticleModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(resourcePrimKey);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Finds all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_L_S(long[] resourcePrimKeies, int[] latests,
-		int status) throws SystemException {
-		return findByR_L_S(resourcePrimKeies, latests, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_L_S(long[] resourcePrimKeies, int[] latests,
-		int status, int start, int end) throws SystemException {
-		return findByR_L_S(resourcePrimKeies, latests, status, start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_L_S(long[] resourcePrimKeies, int[] latests,
-		int status, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), StringUtil.merge(latests),
-				status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5);
-
-					if ((i + 1) < resourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_R_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (resourcePrimKeies != null) {
-					qPos.add(resourcePrimKeies);
-				}
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
 	}
 
 	/**
@@ -7741,7 +11884,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByG_P_L(long groupId, long parentResourcePrimKey,
-		int latest) throws SystemException {
+		boolean latest) throws SystemException {
 		return findByG_P_L(groupId, parentResourcePrimKey, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -7762,7 +11905,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByG_P_L(long groupId, long parentResourcePrimKey,
-		int latest, int start, int end) throws SystemException {
+		boolean latest, int start, int end) throws SystemException {
 		return findByG_P_L(groupId, parentResourcePrimKey, latest, start, end,
 			null);
 	}
@@ -7784,7 +11927,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByG_P_L(long groupId, long parentResourcePrimKey,
-		int latest, int start, int end, OrderByComparator orderByComparator)
+		boolean latest, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, latest,
@@ -7881,7 +12024,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article findByG_P_L_First(long groupId, long parentResourcePrimKey,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		List<Article> list = findByG_P_L(groupId, parentResourcePrimKey,
 				latest, 0, 1, orderByComparator);
@@ -7925,7 +12068,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article findByG_P_L_Last(long groupId, long parentResourcePrimKey,
-		int latest, OrderByComparator orderByComparator)
+		boolean latest, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		int count = countByG_P_L(groupId, parentResourcePrimKey, latest);
 
@@ -7972,7 +12115,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] findByG_P_L_PrevAndNext(long articleId, long groupId,
-		long parentResourcePrimKey, int latest,
+		long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
@@ -8003,7 +12146,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article getByG_P_L_PrevAndNext(Session session, Article article,
-		long groupId, long parentResourcePrimKey, int latest,
+		long groupId, long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -8115,7 +12258,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -8123,19 +12266,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByG_P_L(long groupId,
-		long[] parentResourcePrimKeies, int[] latests)
+		long[] parentResourcePrimKeies, boolean latest)
 		throws SystemException {
-		return findByG_P_L(groupId, parentResourcePrimKeies, latests,
+		return findByG_P_L(groupId, parentResourcePrimKeies, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -8143,21 +12286,21 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByG_P_L(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int start, int end)
+		long[] parentResourcePrimKeies, boolean latest, int start, int end)
 		throws SystemException {
-		return findByG_P_L(groupId, parentResourcePrimKeies, latests, start,
+		return findByG_P_L(groupId, parentResourcePrimKeies, latest, start,
 			end, null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -8165,7 +12308,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -8173,11 +12316,10 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> findByG_P_L(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int start, int end,
+		long[] parentResourcePrimKeies, boolean latest, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests),
+				groupId, StringUtil.merge(parentResourcePrimKeies), latest,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
@@ -8222,25 +12364,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				conjunctionable = true;
 			}
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
+
+			conjunctionable = true;
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -8268,9 +12398,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					qPos.add(parentResourcePrimKeies);
 				}
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -8306,7 +12434,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByG_P_L(long groupId,
-		long parentResourcePrimKey, int latest) throws SystemException {
+		long parentResourcePrimKey, boolean latest) throws SystemException {
 		return filterFindByG_P_L(groupId, parentResourcePrimKey, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -8327,7 +12455,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByG_P_L(long groupId,
-		long parentResourcePrimKey, int latest, int start, int end)
+		long parentResourcePrimKey, boolean latest, int start, int end)
 		throws SystemException {
 		return filterFindByG_P_L(groupId, parentResourcePrimKey, latest, start,
 			end, null);
@@ -8350,7 +12478,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByG_P_L(long groupId,
-		long parentResourcePrimKey, int latest, int start, int end,
+		long parentResourcePrimKey, boolean latest, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_P_L(groupId, parentResourcePrimKey, latest, start,
@@ -8457,7 +12585,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public Article[] filterFindByG_P_L_PrevAndNext(long articleId,
-		long groupId, long parentResourcePrimKey, int latest,
+		long groupId, long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
@@ -8493,8 +12621,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	protected Article filterGetByG_P_L_PrevAndNext(Session session,
-		Article article, long groupId, long parentResourcePrimKey, int latest,
-		OrderByComparator orderByComparator, boolean previous) {
+		Article article, long groupId, long parentResourcePrimKey,
+		boolean latest, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -8640,7 +12768,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -8648,19 +12776,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByG_P_L(long groupId,
-		long[] parentResourcePrimKeies, int[] latests)
+		long[] parentResourcePrimKeies, boolean latest)
 		throws SystemException {
-		return filterFindByG_P_L(groupId, parentResourcePrimKeies, latests,
+		return filterFindByG_P_L(groupId, parentResourcePrimKeies, latest,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -8668,21 +12796,21 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByG_P_L(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int start, int end)
+		long[] parentResourcePrimKeies, boolean latest, int start, int end)
 		throws SystemException {
-		return filterFindByG_P_L(groupId, parentResourcePrimKeies, latests,
+		return filterFindByG_P_L(groupId, parentResourcePrimKeies, latest,
 			start, end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -8690,7 +12818,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
@@ -8698,11 +12826,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<Article> filterFindByG_P_L(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int start, int end,
+		long[] parentResourcePrimKeies, boolean latest, int start, int end,
 		OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P_L(groupId, parentResourcePrimKeies, latests,
-				start, end, orderByComparator);
+			return findByG_P_L(groupId, parentResourcePrimKeies, latest, start,
+				end, orderByComparator);
 		}
 
 		StringBundler query = new StringBundler();
@@ -8745,25 +12873,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			conjunctionable = true;
 		}
 
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
+		if (conjunctionable) {
+			query.append(WHERE_AND);
 		}
+
+		query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
+
+		conjunctionable = true;
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
@@ -8815,9 +12931,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				qPos.add(parentResourcePrimKeies);
 			}
 
-			if (latests != null) {
-				qPos.add(latests);
-			}
+			qPos.add(latest);
 
 			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -8830,67 +12944,68 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L_S(long groupId, int latest, int status)
-		throws SystemException {
-		return findByG_L_S(groupId, latest, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<Article> findByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main) throws SystemException {
+		return findByG_P_M(groupId, parentResourcePrimKey, main,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L_S(long groupId, int latest, int status,
-		int start, int end) throws SystemException {
-		return findByG_L_S(groupId, latest, status, start, end, null);
+	public List<Article> findByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main, int start, int end) throws SystemException {
+		return findByG_P_M(groupId, parentResourcePrimKey, main, start, end,
+			null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L_S(long groupId, int latest, int status,
-		int start, int end, OrderByComparator orderByComparator)
+	public List<Article> findByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main, int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				groupId, latest, status,
+				groupId, parentResourcePrimKey, main,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_L_S,
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_M,
 				finderArgs, this);
 
 		if (list == null) {
@@ -8906,11 +13021,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			query.append(_SQL_SELECT_ARTICLE_WHERE);
 
-			query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
+			query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
-			query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
+			query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2);
 
-			query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
+			query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -8934,9 +13049,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(groupId);
 
-				qPos.add(latest);
+				qPos.add(parentResourcePrimKey);
 
-				qPos.add(status);
+				qPos.add(main);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -8945,13 +13060,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_L_S,
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_P_M,
 						finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_L_S,
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_P_M,
 						finderArgs, list);
 				}
 
@@ -8963,25 +13078,25 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds the first article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Finds the first article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByG_L_S_First(long groupId, int latest, int status,
-		OrderByComparator orderByComparator)
+	public Article findByG_P_M_First(long groupId, long parentResourcePrimKey,
+		boolean main, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
-		List<Article> list = findByG_L_S(groupId, latest, status, 0, 1,
-				orderByComparator);
+		List<Article> list = findByG_P_M(groupId, parentResourcePrimKey, main,
+				0, 1, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -8991,11 +13106,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			msg.append("groupId=");
 			msg.append(groupId);
 
-			msg.append(", latest=");
-			msg.append(latest);
+			msg.append(", parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
 
-			msg.append(", status=");
-			msg.append(status);
+			msg.append(", main=");
+			msg.append(main);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -9007,27 +13122,27 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds the last article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Finds the last article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article findByG_L_S_Last(long groupId, int latest, int status,
-		OrderByComparator orderByComparator)
+	public Article findByG_P_M_Last(long groupId, long parentResourcePrimKey,
+		boolean main, OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
-		int count = countByG_L_S(groupId, latest, status);
+		int count = countByG_P_M(groupId, parentResourcePrimKey, main);
 
-		List<Article> list = findByG_L_S(groupId, latest, status, count - 1,
-				count, orderByComparator);
+		List<Article> list = findByG_P_M(groupId, parentResourcePrimKey, main,
+				count - 1, count, orderByComparator);
 
 		if (list.isEmpty()) {
 			StringBundler msg = new StringBundler(8);
@@ -9037,11 +13152,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			msg.append("groupId=");
 			msg.append(groupId);
 
-			msg.append(", latest=");
-			msg.append(latest);
+			msg.append(", parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
 
-			msg.append(", status=");
-			msg.append(status);
+			msg.append(", main=");
+			msg.append(main);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -9053,7 +13168,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Finds the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -9061,15 +13176,16 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param articleId the primary key of the current article
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article[] findByG_L_S_PrevAndNext(long articleId, long groupId,
-		int latest, int status, OrderByComparator orderByComparator)
+	public Article[] findByG_P_M_PrevAndNext(long articleId, long groupId,
+		long parentResourcePrimKey, boolean main,
+		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		Article article = findByPrimaryKey(articleId);
 
@@ -9080,13 +13196,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			Article[] array = new ArticleImpl[3];
 
-			array[0] = getByG_L_S_PrevAndNext(session, article, groupId,
-					latest, status, orderByComparator, true);
+			array[0] = getByG_P_M_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, main, orderByComparator, true);
 
 			array[1] = article;
 
-			array[2] = getByG_L_S_PrevAndNext(session, article, groupId,
-					latest, status, orderByComparator, false);
+			array[2] = getByG_P_M_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, main, orderByComparator, false);
 
 			return array;
 		}
@@ -9098,8 +13214,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
-	protected Article getByG_L_S_PrevAndNext(Session session, Article article,
-		long groupId, int latest, int status,
+	protected Article getByG_P_M_PrevAndNext(Session session, Article article,
+		long groupId, long parentResourcePrimKey, boolean main,
 		OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
@@ -9113,11 +13229,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 		query.append(_SQL_SELECT_ARTICLE_WHERE);
 
-		query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
+		query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
-		query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
+		query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2);
 
-		query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
+		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 		if (orderByComparator != null) {
 			String[] orderByFields = orderByComparator.getOrderByFields();
@@ -9188,9 +13304,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 		qPos.add(groupId);
 
-		qPos.add(latest);
+		qPos.add(parentResourcePrimKey);
 
-		qPos.add(status);
+		qPos.add(main);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByValues(article);
@@ -9211,71 +13327,73 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Finds all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
 	 * @return the matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L_S(long groupId, int[] latests, int status)
-		throws SystemException {
-		return findByG_L_S(groupId, latests, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<Article> findByG_P_M(long groupId,
+		long[] parentResourcePrimKeies, boolean main) throws SystemException {
+		return findByG_P_M(groupId, parentResourcePrimKeies, main,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Finds a range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L_S(long groupId, int[] latests, int status,
-		int start, int end) throws SystemException {
-		return findByG_L_S(groupId, latests, status, start, end, null);
+	public List<Article> findByG_P_M(long groupId,
+		long[] parentResourcePrimKeies, boolean main, int start, int end)
+		throws SystemException {
+		return findByG_P_M(groupId, parentResourcePrimKeies, main, start, end,
+			null);
 	}
 
 	/**
-	 * Finds an ordered range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> findByG_L_S(long groupId, int[] latests, int status,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	public List<Article> findByG_P_M(long groupId,
+		long[] parentResourcePrimKeies, boolean main, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(latests), status,
+				groupId, StringUtil.merge(parentResourcePrimKeies), main,
 				
 				String.valueOf(start), String.valueOf(end),
 				String.valueOf(orderByComparator)
 			};
 
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_L_S,
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_M,
 				finderArgs, this);
 
 		if (list == null) {
@@ -9289,21 +13407,22 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(WHERE_AND);
 			}
 
-			query.append(_FINDER_COLUMN_G_L_S_GROUPID_5);
+			query.append(_FINDER_COLUMN_G_P_M_GROUPID_5);
 
 			conjunctionable = true;
 
-			if ((latests == null) || (latests.length > 0)) {
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
 				if (conjunctionable) {
 					query.append(WHERE_AND);
 				}
 
 				query.append(StringPool.OPEN_PARENTHESIS);
 
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_5);
 
-					if ((i + 1) < latests.length) {
+					if ((i + 1) < parentResourcePrimKeies.length) {
 						query.append(WHERE_OR);
 					}
 				}
@@ -9317,7 +13436,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(WHERE_AND);
 			}
 
-			query.append(_FINDER_COLUMN_G_L_S_STATUS_5);
+			query.append(_FINDER_COLUMN_G_P_M_MAIN_5);
 
 			conjunctionable = true;
 
@@ -9343,11 +13462,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(groupId);
 
-				if (latests != null) {
-					qPos.add(latests);
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
 				}
 
-				qPos.add(status);
+				qPos.add(main);
 
 				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 			}
@@ -9356,13 +13475,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			}
 			finally {
 				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_L_S,
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_P_M,
 						finderArgs);
 				}
 				else {
 					cacheResult(list);
 
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_L_S,
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_P_M,
 						finderArgs, list);
 				}
 
@@ -9374,62 +13493,64 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @return the matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L_S(long groupId, int latest, int status)
-		throws SystemException {
-		return filterFindByG_L_S(groupId, latest, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
+	public List<Article> filterFindByG_P_M(long groupId,
+		long parentResourcePrimKey, boolean main) throws SystemException {
+		return filterFindByG_P_M(groupId, parentResourcePrimKey, main,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L_S(long groupId, int latest,
-		int status, int start, int end) throws SystemException {
-		return filterFindByG_L_S(groupId, latest, status, start, end, null);
+	public List<Article> filterFindByG_P_M(long groupId,
+		long parentResourcePrimKey, boolean main, int start, int end)
+		throws SystemException {
+		return filterFindByG_P_M(groupId, parentResourcePrimKey, main, start,
+			end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
 	 * </p>
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_L_S(long groupId, int latest,
-		int status, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+	public List<Article> filterFindByG_P_M(long groupId,
+		long parentResourcePrimKey, boolean main, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_L_S(groupId, latest, status, start, end,
-				orderByComparator);
+			return findByG_P_M(groupId, parentResourcePrimKey, main, start,
+				end, orderByComparator);
 		}
 
 		StringBundler query = null;
@@ -9449,3402 +13570,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
+		query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
-		query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
+		query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2);
 
-		query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
-
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
-
-		if (orderByComparator != null) {
-			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
-			}
-		}
-
-		else {
-			if (getDB().isSupportsInlineDistinct()) {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_SQL);
-			}
-		}
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			if (getDB().isSupportsInlineDistinct()) {
-				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
-			}
-			else {
-				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
-			}
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			qPos.add(latest);
-
-			qPos.add(status);
-
-			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] filterFindByG_L_S_PrevAndNext(long articleId,
-		long groupId, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_L_S_PrevAndNext(articleId, groupId, latest, status,
-				orderByComparator);
-		}
-
-		Article article = findByPrimaryKey(articleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Article[] array = new ArticleImpl[3];
-
-			array[0] = filterGetByG_L_S_PrevAndNext(session, article, groupId,
-					latest, status, orderByComparator, true);
-
-			array[1] = article;
-
-			array[2] = filterGetByG_L_S_PrevAndNext(session, article, groupId,
-					latest, status, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Article filterGetByG_L_S_PrevAndNext(Session session,
-		Article article, long groupId, int latest, int status,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
-
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				if (getDB().isSupportsInlineDistinct()) {
-					query.append(_ORDER_BY_ENTITY_ALIAS);
-				}
-				else {
-					query.append(_ORDER_BY_ENTITY_TABLE);
-				}
-
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				if (getDB().isSupportsInlineDistinct()) {
-					query.append(_ORDER_BY_ENTITY_ALIAS);
-				}
-				else {
-					query.append(_ORDER_BY_ENTITY_TABLE);
-				}
-
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			if (getDB().isSupportsInlineDistinct()) {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_SQL);
-			}
-		}
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		SQLQuery q = session.createSQLQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		if (getDB().isSupportsInlineDistinct()) {
-			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
-		}
-		else {
-			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
-		}
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(groupId);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByG_L_S(long groupId, int[] latests,
-		int status) throws SystemException {
-		return filterFindByG_L_S(groupId, latests, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByG_L_S(long groupId, int[] latests,
-		int status, int start, int end) throws SystemException {
-		return filterFindByG_L_S(groupId, latests, status, start, end, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByG_L_S(long groupId, int[] latests,
-		int status, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_L_S(groupId, latests, status, start, end,
-				orderByComparator);
-		}
-
-		StringBundler query = new StringBundler();
-
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
-
-		boolean conjunctionable = false;
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_S_GROUPID_5);
-
-		conjunctionable = true;
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_S_STATUS_5);
-
-		conjunctionable = true;
-
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
-
-		if (orderByComparator != null) {
-			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
-			}
-		}
-
-		else {
-			if (getDB().isSupportsInlineDistinct()) {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_SQL);
-			}
-		}
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			if (getDB().isSupportsInlineDistinct()) {
-				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
-			}
-			else {
-				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
-			}
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			if (latests != null) {
-				qPos.add(latests);
-			}
-
-			qPos.add(status);
-
-			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Finds all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByC_L_S(long companyId, int latest, int status)
-		throws SystemException {
-		return findByC_L_S(companyId, latest, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByC_L_S(long companyId, int latest, int status,
-		int start, int end) throws SystemException {
-		return findByC_L_S(companyId, latest, status, start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByC_L_S(long companyId, int latest, int status,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				companyId, latest, status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_C_L_S_COMPANYID_2);
-
-			query.append(_FINDER_COLUMN_C_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_C_L_S_STATUS_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_C_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Finds the first article in the ordered set where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByC_L_S_First(long companyId, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		List<Article> list = findByC_L_S(companyId, latest, status, 0, 1,
-				orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the last article in the ordered set where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByC_L_S_Last(long companyId, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		int count = countByC_L_S(companyId, latest, status);
-
-		List<Article> list = findByC_L_S(companyId, latest, status, count - 1,
-				count, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the articles before and after the current article in the ordered set where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] findByC_L_S_PrevAndNext(long articleId, long companyId,
-		int latest, int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		Article article = findByPrimaryKey(articleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Article[] array = new ArticleImpl[3];
-
-			array[0] = getByC_L_S_PrevAndNext(session, article, companyId,
-					latest, status, orderByComparator, true);
-
-			array[1] = article;
-
-			array[2] = getByC_L_S_PrevAndNext(session, article, companyId,
-					latest, status, orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Article getByC_L_S_PrevAndNext(Session session, Article article,
-		long companyId, int latest, int status,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_C_L_S_COMPANYID_2);
-
-		query.append(_FINDER_COLUMN_C_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_C_L_S_STATUS_2);
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(ArticleModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(companyId);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Finds all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByC_L_S(long companyId, int[] latests, int status)
-		throws SystemException {
-		return findByC_L_S(companyId, latests, status, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByC_L_S(long companyId, int[] latests, int status,
-		int start, int end) throws SystemException {
-		return findByC_L_S(companyId, latests, status, start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByC_L_S(long companyId, int[] latests, int status,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				companyId, StringUtil.merge(latests), status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_C_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_L_S_COMPANYID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_C_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_C_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_C_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Finds all the articles where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByP_L_S(long parentResourcePrimKey, int latest,
-		int status) throws SystemException {
-		return findByP_L_S(parentResourcePrimKey, latest, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByP_L_S(long parentResourcePrimKey, int latest,
-		int status, int start, int end) throws SystemException {
-		return findByP_L_S(parentResourcePrimKey, latest, status, start, end,
-			null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByP_L_S(long parentResourcePrimKey, int latest,
-		int status, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				parentResourcePrimKey, latest, status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(5 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(5);
-			}
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_P_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_P_L_S_STATUS_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(parentResourcePrimKey);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Finds the first article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByP_L_S_First(long parentResourcePrimKey, int latest,
-		int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		List<Article> list = findByP_L_S(parentResourcePrimKey, latest, status,
-				0, 1, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the last article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByP_L_S_Last(long parentResourcePrimKey, int latest,
-		int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		int count = countByP_L_S(parentResourcePrimKey, latest, status);
-
-		List<Article> list = findByP_L_S(parentResourcePrimKey, latest, status,
-				count - 1, count, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(8);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the articles before and after the current article in the ordered set where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] findByP_L_S_PrevAndNext(long articleId,
-		long parentResourcePrimKey, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		Article article = findByPrimaryKey(articleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Article[] array = new ArticleImpl[3];
-
-			array[0] = getByP_L_S_PrevAndNext(session, article,
-					parentResourcePrimKey, latest, status, orderByComparator,
-					true);
-
-			array[1] = article;
-
-			array[2] = getByP_L_S_PrevAndNext(session, article,
-					parentResourcePrimKey, latest, status, orderByComparator,
-					false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Article getByP_L_S_PrevAndNext(Session session, Article article,
-		long parentResourcePrimKey, int latest, int status,
-		OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_P_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_P_L_S_STATUS_2);
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(ArticleModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(parentResourcePrimKey);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Finds all the articles where parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByP_L_S(long[] parentResourcePrimKeies,
-		int[] latests, int status) throws SystemException {
-		return findByP_L_S(parentResourcePrimKeies, latests, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByP_L_S(long[] parentResourcePrimKeies,
-		int[] latests, int status, int start, int end)
-		throws SystemException {
-		return findByP_L_S(parentResourcePrimKeies, latests, status, start,
-			end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByP_L_S(long[] parentResourcePrimKeies,
-		int[] latests, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests), status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_P_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if ((parentResourcePrimKeies == null) ||
-					(parentResourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_5);
-
-					if ((i + 1) < parentResourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_P_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_P_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (parentResourcePrimKeies != null) {
-					qPos.add(parentResourcePrimKeies);
-				}
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_P_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_P_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_G_L_S(long resourcePrimKey, long groupId,
-		int latest, int status) throws SystemException {
-		return findByR_G_L_S(resourcePrimKey, groupId, latest, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_G_L_S(long resourcePrimKey, long groupId,
-		int latest, int status, int start, int end) throws SystemException {
-		return findByR_G_L_S(resourcePrimKey, groupId, latest, status, start,
-			end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_G_L_S(long resourcePrimKey, long groupId,
-		int latest, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				resourcePrimKey, groupId, latest, status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(6 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(6);
-			}
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_2);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_STATUS_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(resourcePrimKey);
-
-				qPos.add(groupId);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_G_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_G_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Finds the first article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByR_G_L_S_First(long resourcePrimKey, long groupId,
-		int latest, int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		List<Article> list = findByR_G_L_S(resourcePrimKey, groupId, latest,
-				status, 0, 1, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the last article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByR_G_L_S_Last(long resourcePrimKey, long groupId,
-		int latest, int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		int count = countByR_G_L_S(resourcePrimKey, groupId, latest, status);
-
-		List<Article> list = findByR_G_L_S(resourcePrimKey, groupId, latest,
-				status, count - 1, count, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("resourcePrimKey=");
-			msg.append(resourcePrimKey);
-
-			msg.append(", groupId=");
-			msg.append(groupId);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] findByR_G_L_S_PrevAndNext(long articleId,
-		long resourcePrimKey, long groupId, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		Article article = findByPrimaryKey(articleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Article[] array = new ArticleImpl[3];
-
-			array[0] = getByR_G_L_S_PrevAndNext(session, article,
-					resourcePrimKey, groupId, latest, status,
-					orderByComparator, true);
-
-			array[1] = article;
-
-			array[2] = getByR_G_L_S_PrevAndNext(session, article,
-					resourcePrimKey, groupId, latest, status,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Article getByR_G_L_S_PrevAndNext(Session session,
-		Article article, long resourcePrimKey, long groupId, int latest,
-		int status, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_STATUS_2);
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(ArticleModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(resourcePrimKey);
-
-		qPos.add(groupId);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_G_L_S(long[] resourcePrimKeies, long groupId,
-		int[] latests, int status) throws SystemException {
-		return findByR_G_L_S(resourcePrimKeies, groupId, latests, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_G_L_S(long[] resourcePrimKeies, long groupId,
-		int[] latests, int status, int start, int end)
-		throws SystemException {
-		return findByR_G_L_S(resourcePrimKeies, groupId, latests, status,
-			start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByR_G_L_S(long[] resourcePrimKeies, long groupId,
-		int[] latests, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId,
-				StringUtil.merge(latests), status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_R_G_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_5);
-
-					if ((i + 1) < resourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_G_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_R_G_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (resourcePrimKeies != null) {
-					qPos.add(resourcePrimKeies);
-				}
-
-				qPos.add(groupId);
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_R_G_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_R_G_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByR_G_L_S(long resourcePrimKey,
-		long groupId, int latest, int status) throws SystemException {
-		return filterFindByR_G_L_S(resourcePrimKey, groupId, latest, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByR_G_L_S(long resourcePrimKey,
-		long groupId, int latest, int status, int start, int end)
-		throws SystemException {
-		return filterFindByR_G_L_S(resourcePrimKey, groupId, latest, status,
-			start, end, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByR_G_L_S(long resourcePrimKey,
-		long groupId, int latest, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByR_G_L_S(resourcePrimKey, groupId, latest, status,
-				start, end, orderByComparator);
-		}
-
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 3));
-		}
-		else {
-			query = new StringBundler(6);
-		}
-
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
-
-		query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_STATUS_2);
-
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
-
-		if (orderByComparator != null) {
-			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
-			}
-		}
-
-		else {
-			if (getDB().isSupportsInlineDistinct()) {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_SQL);
-			}
-		}
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			if (getDB().isSupportsInlineDistinct()) {
-				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
-			}
-			else {
-				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
-			}
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(resourcePrimKey);
-
-			qPos.add(groupId);
-
-			qPos.add(latest);
-
-			qPos.add(status);
-
-			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Filters the articles before and after the current article in the ordered set where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] filterFindByR_G_L_S_PrevAndNext(long articleId,
-		long resourcePrimKey, long groupId, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByR_G_L_S_PrevAndNext(articleId, resourcePrimKey,
-				groupId, latest, status, orderByComparator);
-		}
-
-		Article article = findByPrimaryKey(articleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Article[] array = new ArticleImpl[3];
-
-			array[0] = filterGetByR_G_L_S_PrevAndNext(session, article,
-					resourcePrimKey, groupId, latest, status,
-					orderByComparator, true);
-
-			array[1] = article;
-
-			array[2] = filterGetByR_G_L_S_PrevAndNext(session, article,
-					resourcePrimKey, groupId, latest, status,
-					orderByComparator, false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Article filterGetByR_G_L_S_PrevAndNext(Session session,
-		Article article, long resourcePrimKey, long groupId, int latest,
-		int status, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
-
-		query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_STATUS_2);
-
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				if (getDB().isSupportsInlineDistinct()) {
-					query.append(_ORDER_BY_ENTITY_ALIAS);
-				}
-				else {
-					query.append(_ORDER_BY_ENTITY_TABLE);
-				}
-
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				if (getDB().isSupportsInlineDistinct()) {
-					query.append(_ORDER_BY_ENTITY_ALIAS);
-				}
-				else {
-					query.append(_ORDER_BY_ENTITY_TABLE);
-				}
-
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			if (getDB().isSupportsInlineDistinct()) {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_SQL);
-			}
-		}
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		SQLQuery q = session.createSQLQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		if (getDB().isSupportsInlineDistinct()) {
-			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
-		}
-		else {
-			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
-		}
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(resourcePrimKey);
-
-		qPos.add(groupId);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Filters by the user's permissions and finds all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByR_G_L_S(long[] resourcePrimKeies,
-		long groupId, int[] latests, int status) throws SystemException {
-		return filterFindByR_G_L_S(resourcePrimKeies, groupId, latests, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds a range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByR_G_L_S(long[] resourcePrimKeies,
-		long groupId, int[] latests, int status, int start, int end)
-		throws SystemException {
-		return filterFindByR_G_L_S(resourcePrimKeies, groupId, latests, status,
-			start, end, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByR_G_L_S(long[] resourcePrimKeies,
-		long groupId, int[] latests, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByR_G_L_S(resourcePrimKeies, groupId, latests, status,
-				start, end, orderByComparator);
-		}
-
-		StringBundler query = new StringBundler();
-
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
-
-		boolean conjunctionable = false;
-
-		if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < resourcePrimKeies.length; i++) {
-				query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_5);
-
-				if ((i + 1) < resourcePrimKeies.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_5);
-
-		conjunctionable = true;
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_R_G_L_S_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_R_G_L_S_STATUS_5);
-
-		conjunctionable = true;
-
-		if (!getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
-		}
-
-		if (orderByComparator != null) {
-			if (getDB().isSupportsInlineDistinct()) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-			else {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
-					orderByComparator);
-			}
-		}
-
-		else {
-			if (getDB().isSupportsInlineDistinct()) {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_SQL);
-			}
-		}
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			if (getDB().isSupportsInlineDistinct()) {
-				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
-			}
-			else {
-				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
-			}
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (resourcePrimKeies != null) {
-				qPos.add(resourcePrimKeies);
-			}
-
-			qPos.add(groupId);
-
-			if (latests != null) {
-				qPos.add(latests);
-			}
-
-			qPos.add(status);
-
-			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_P_L_S(long groupId,
-		long parentResourcePrimKey, int latest, int status)
-		throws SystemException {
-		return findByG_P_L_S(groupId, parentResourcePrimKey, latest, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_P_L_S(long groupId,
-		long parentResourcePrimKey, int latest, int status, int start, int end)
-		throws SystemException {
-		return findByG_P_L_S(groupId, parentResourcePrimKey, latest, status,
-			start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_P_L_S(long groupId,
-		long parentResourcePrimKey, int latest, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, parentResourcePrimKey, latest, status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = null;
-
-			if (orderByComparator != null) {
-				query = new StringBundler(6 +
-						(orderByComparator.getOrderByFields().length * 3));
-			}
-			else {
-				query = new StringBundler(6);
-			}
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				qPos.add(parentResourcePrimKey);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_P_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_P_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Finds the first article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the first matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByG_P_L_S_First(long groupId,
-		long parentResourcePrimKey, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		List<Article> list = findByG_P_L_S(groupId, parentResourcePrimKey,
-				latest, status, 0, 1, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the last article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the last matching article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article findByG_P_L_S_Last(long groupId, long parentResourcePrimKey,
-		int latest, int status, OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		int count = countByG_P_L_S(groupId, parentResourcePrimKey, latest,
-				status);
-
-		List<Article> list = findByG_P_L_S(groupId, parentResourcePrimKey,
-				latest, status, count - 1, count, orderByComparator);
-
-		if (list.isEmpty()) {
-			StringBundler msg = new StringBundler(10);
-
-			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			msg.append("groupId=");
-			msg.append(groupId);
-
-			msg.append(", parentResourcePrimKey=");
-			msg.append(parentResourcePrimKey);
-
-			msg.append(", latest=");
-			msg.append(latest);
-
-			msg.append(", status=");
-			msg.append(status);
-
-			msg.append(StringPool.CLOSE_CURLY_BRACE);
-
-			throw new NoSuchArticleException(msg.toString());
-		}
-		else {
-			return list.get(0);
-		}
-	}
-
-	/**
-	 * Finds the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param articleId the primary key of the current article
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
-	 * @return the previous, current, and next article
-	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
-	 */
-	public Article[] findByG_P_L_S_PrevAndNext(long articleId, long groupId,
-		long parentResourcePrimKey, int latest, int status,
-		OrderByComparator orderByComparator)
-		throws NoSuchArticleException, SystemException {
-		Article article = findByPrimaryKey(articleId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			Article[] array = new ArticleImpl[3];
-
-			array[0] = getByG_P_L_S_PrevAndNext(session, article, groupId,
-					parentResourcePrimKey, latest, status, orderByComparator,
-					true);
-
-			array[1] = article;
-
-			array[2] = getByG_P_L_S_PrevAndNext(session, article, groupId,
-					parentResourcePrimKey, latest, status, orderByComparator,
-					false);
-
-			return array;
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	protected Article getByG_P_L_S_PrevAndNext(Session session,
-		Article article, long groupId, long parentResourcePrimKey, int latest,
-		int status, OrderByComparator orderByComparator, boolean previous) {
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 6));
-		}
-		else {
-			query = new StringBundler(3);
-		}
-
-		query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
-
-		if (orderByComparator != null) {
-			String[] orderByFields = orderByComparator.getOrderByFields();
-
-			if (orderByFields.length > 0) {
-				query.append(WHERE_AND);
-			}
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN_HAS_NEXT);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(WHERE_GREATER_THAN);
-					}
-					else {
-						query.append(WHERE_LESSER_THAN);
-					}
-				}
-			}
-
-			query.append(ORDER_BY_CLAUSE);
-
-			for (int i = 0; i < orderByFields.length; i++) {
-				query.append(_ORDER_BY_ENTITY_ALIAS);
-				query.append(orderByFields[i]);
-
-				if ((i + 1) < orderByFields.length) {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC_HAS_NEXT);
-					}
-					else {
-						query.append(ORDER_BY_DESC_HAS_NEXT);
-					}
-				}
-				else {
-					if (orderByComparator.isAscending() ^ previous) {
-						query.append(ORDER_BY_ASC);
-					}
-					else {
-						query.append(ORDER_BY_DESC);
-					}
-				}
-			}
-		}
-
-		else {
-			query.append(ArticleModelImpl.ORDER_BY_JPQL);
-		}
-
-		String sql = query.toString();
-
-		Query q = session.createQuery(sql);
-
-		q.setFirstResult(0);
-		q.setMaxResults(2);
-
-		QueryPos qPos = QueryPos.getInstance(q);
-
-		qPos.add(groupId);
-
-		qPos.add(parentResourcePrimKey);
-
-		qPos.add(latest);
-
-		qPos.add(status);
-
-		if (orderByComparator != null) {
-			Object[] values = orderByComparator.getOrderByValues(article);
-
-			for (Object value : values) {
-				qPos.add(value);
-			}
-		}
-
-		List<Article> list = q.list();
-
-		if (list.size() == 2) {
-			return list.get(1);
-		}
-		else {
-			return null;
-		}
-	}
-
-	/**
-	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status)
-		throws SystemException {
-		return findByG_P_L_S(groupId, parentResourcePrimKeies, latests, status,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status, int start,
-		int end) throws SystemException {
-		return findByG_P_L_S(groupId, parentResourcePrimKeies, latests, status,
-			start, end, null);
-	}
-
-	/**
-	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> findByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests), status,
-				
-				String.valueOf(start), String.valueOf(end),
-				String.valueOf(orderByComparator)
-			};
-
-		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_L_S,
-				finderArgs, this);
-
-		if (list == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_SELECT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_5);
-
-			conjunctionable = true;
-
-			if ((parentResourcePrimKeies == null) ||
-					(parentResourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
-
-					if ((i + 1) < parentResourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_G_P_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			if (orderByComparator != null) {
-				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
-					orderByComparator);
-			}
-
-			else {
-				query.append(ArticleModelImpl.ORDER_BY_JPQL);
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (parentResourcePrimKeies != null) {
-					qPos.add(parentResourcePrimKeies);
-				}
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (list == null) {
-					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_P_L_S,
-						finderArgs);
-				}
-				else {
-					cacheResult(list);
-
-					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_P_L_S,
-						finderArgs, list);
-				}
-
-				closeSession(session);
-			}
-		}
-
-		return list;
-	}
-
-	/**
-	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByG_P_L_S(long groupId,
-		long parentResourcePrimKey, int latest, int status)
-		throws SystemException {
-		return filterFindByG_P_L_S(groupId, parentResourcePrimKey, latest,
-			status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @return the range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByG_P_L_S(long groupId,
-		long parentResourcePrimKey, int latest, int status, int start, int end)
-		throws SystemException {
-		return filterFindByG_P_L_S(groupId, parentResourcePrimKey, latest,
-			status, start, end, null);
-	}
-
-	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
-	 * </p>
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @param start the lower bound of the range of articles to return
-	 * @param end the upper bound of the range of articles to return (not inclusive)
-	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public List<Article> filterFindByG_P_L_S(long groupId,
-		long parentResourcePrimKey, int latest, int status, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P_L_S(groupId, parentResourcePrimKey, latest,
-				status, start, end, orderByComparator);
-		}
-
-		StringBundler query = null;
-
-		if (orderByComparator != null) {
-			query = new StringBundler(6 +
-					(orderByComparator.getOrderByFields().length * 3));
-		}
-		else {
-			query = new StringBundler(6);
-		}
-
-		if (getDB().isSupportsInlineDistinct()) {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
-		}
-		else {
-			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
-		}
-
-		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
+		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
@@ -12894,9 +13624,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			qPos.add(parentResourcePrimKey);
 
-			qPos.add(latest);
-
-			qPos.add(status);
+			qPos.add(main);
 
 			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
 		}
@@ -12909,7 +13637,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -12918,20 +13646,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @param articleId the primary key of the current article
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param main the main to search with
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next article
 	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
-	public Article[] filterFindByG_P_L_S_PrevAndNext(long articleId,
-		long groupId, long parentResourcePrimKey, int latest, int status,
+	public Article[] filterFindByG_P_M_PrevAndNext(long articleId,
+		long groupId, long parentResourcePrimKey, boolean main,
 		OrderByComparator orderByComparator)
 		throws NoSuchArticleException, SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P_L_S_PrevAndNext(articleId, groupId,
-				parentResourcePrimKey, latest, status, orderByComparator);
+			return findByG_P_M_PrevAndNext(articleId, groupId,
+				parentResourcePrimKey, main, orderByComparator);
 		}
 
 		Article article = findByPrimaryKey(articleId);
@@ -12943,15 +13670,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			Article[] array = new ArticleImpl[3];
 
-			array[0] = filterGetByG_P_L_S_PrevAndNext(session, article,
-					groupId, parentResourcePrimKey, latest, status,
-					orderByComparator, true);
+			array[0] = filterGetByG_P_M_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, main, orderByComparator, true);
 
 			array[1] = article;
 
-			array[2] = filterGetByG_P_L_S_PrevAndNext(session, article,
-					groupId, parentResourcePrimKey, latest, status,
-					orderByComparator, false);
+			array[2] = filterGetByG_P_M_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, main, orderByComparator, false);
 
 			return array;
 		}
@@ -12963,9 +13688,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 		}
 	}
 
-	protected Article filterGetByG_P_L_S_PrevAndNext(Session session,
-		Article article, long groupId, long parentResourcePrimKey, int latest,
-		int status, OrderByComparator orderByComparator, boolean previous) {
+	protected Article filterGetByG_P_M_PrevAndNext(Session session,
+		Article article, long groupId, long parentResourcePrimKey,
+		boolean main, OrderByComparator orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -12983,13 +13708,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
 		}
 
-		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
+		query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
-		query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
+		query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2);
 
-		query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
+		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 		if (!getDB().isSupportsInlineDistinct()) {
 			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
@@ -13092,9 +13815,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 		qPos.add(parentResourcePrimKey);
 
-		qPos.add(latest);
-
-		qPos.add(status);
+		qPos.add(main);
 
 		if (orderByComparator != null) {
 			Object[] values = orderByComparator.getOrderByValues(article);
@@ -13115,7 +13836,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -13123,20 +13844,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param main the main to search with
 	 * @return the matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status)
-		throws SystemException {
-		return filterFindByG_P_L_S(groupId, parentResourcePrimKeies, latests,
-			status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	public List<Article> filterFindByG_P_M(long groupId,
+		long[] parentResourcePrimKeies, boolean main) throws SystemException {
+		return filterFindByG_P_M(groupId, parentResourcePrimKeies, main,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -13144,22 +13863,21 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @return the range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status, int start,
-		int end) throws SystemException {
-		return filterFindByG_P_L_S(groupId, parentResourcePrimKeies, latests,
-			status, start, end, null);
+	public List<Article> filterFindByG_P_M(long groupId,
+		long[] parentResourcePrimKeies, boolean main, int start, int end)
+		throws SystemException {
+		return filterFindByG_P_M(groupId, parentResourcePrimKeies, main, start,
+			end, null);
 	}
 
 	/**
-	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
@@ -13167,20 +13885,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param main the main to search with
 	 * @param start the lower bound of the range of articles to return
 	 * @param end the upper bound of the range of articles to return (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public List<Article> filterFindByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+	public List<Article> filterFindByG_P_M(long groupId,
+		long[] parentResourcePrimKeies, boolean main, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return findByG_P_L_S(groupId, parentResourcePrimKeies, latests,
-				status, start, end, orderByComparator);
+			return findByG_P_M(groupId, parentResourcePrimKeies, main, start,
+				end, orderByComparator);
 		}
 
 		StringBundler query = new StringBundler();
@@ -13198,7 +13915,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(WHERE_AND);
 		}
 
-		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_5);
+		query.append(_FINDER_COLUMN_G_P_M_GROUPID_5);
 
 		conjunctionable = true;
 
@@ -13211,29 +13928,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
+				query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
-
-				if ((i + 1) < latests.length) {
 					query.append(WHERE_OR);
 				}
 			}
@@ -13247,7 +13944,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(WHERE_AND);
 		}
 
-		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_5);
+		query.append(_FINDER_COLUMN_G_P_M_MAIN_5);
 
 		conjunctionable = true;
 
@@ -13301,8 +13998,1071 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				qPos.add(parentResourcePrimKeies);
 			}
 
-			if (latests != null) {
-				qPos.add(latests);
+			qPos.add(main);
+
+			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_P_S(long groupId, long parentResourcePrimKey,
+		int status) throws SystemException {
+		return findByG_P_S(groupId, parentResourcePrimKey, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_P_S(long groupId, long parentResourcePrimKey,
+		int status, int start, int end) throws SystemException {
+		return findByG_P_S(groupId, parentResourcePrimKey, status, start, end,
+			null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_P_S(long groupId, long parentResourcePrimKey,
+		int status, int start, int end, OrderByComparator orderByComparator)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				groupId, parentResourcePrimKey, status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(5 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(5);
+			}
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(parentResourcePrimKey);
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_P_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_P_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Finds the first article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByG_P_S_First(long groupId, long parentResourcePrimKey,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		List<Article> list = findByG_P_S(groupId, parentResourcePrimKey,
+				status, 0, 1, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the last article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a matching article could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article findByG_P_S_Last(long groupId, long parentResourcePrimKey,
+		int status, OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		int count = countByG_P_S(groupId, parentResourcePrimKey, status);
+
+		List<Article> list = findByG_P_S(groupId, parentResourcePrimKey,
+				status, count - 1, count, orderByComparator);
+
+		if (list.isEmpty()) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("groupId=");
+			msg.append(groupId);
+
+			msg.append(", parentResourcePrimKey=");
+			msg.append(parentResourcePrimKey);
+
+			msg.append(", status=");
+			msg.append(status);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			throw new NoSuchArticleException(msg.toString());
+		}
+		else {
+			return list.get(0);
+		}
+	}
+
+	/**
+	 * Finds the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] findByG_P_S_PrevAndNext(long articleId, long groupId,
+		long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = getByG_P_S_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = getByG_P_S_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article getByG_P_S_PrevAndNext(Session session, Article article,
+		long groupId, long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			query.append(ArticleModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_P_S(long groupId,
+		long[] parentResourcePrimKeies, int status) throws SystemException {
+		return findByG_P_S(groupId, parentResourcePrimKeies, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_P_S(long groupId,
+		long[] parentResourcePrimKeies, int status, int start, int end)
+		throws SystemException {
+		return findByG_P_S(groupId, parentResourcePrimKeies, status, start,
+			end, null);
+	}
+
+	/**
+	 * Finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> findByG_P_S(long groupId,
+		long[] parentResourcePrimKeies, int status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				groupId, StringUtil.merge(parentResourcePrimKeies), status,
+				
+				String.valueOf(start), String.valueOf(end),
+				String.valueOf(orderByComparator)
+			};
+
+		List<Article> list = (List<Article>)FinderCacheUtil.getResult(FINDER_PATH_FIND_BY_G_P_S,
+				finderArgs, this);
+
+		if (list == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_SELECT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_G_P_S_GROUPID_5);
+
+			conjunctionable = true;
+
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_5);
+
+					if ((i + 1) < parentResourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_G_P_S_STATUS_5);
+
+			conjunctionable = true;
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
+				}
+
+				qPos.add(status);
+
+				list = (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (list == null) {
+					FinderCacheUtil.removeResult(FINDER_PATH_FIND_BY_G_P_S,
+						finderArgs);
+				}
+				else {
+					cacheResult(list);
+
+					FinderCacheUtil.putResult(FINDER_PATH_FIND_BY_G_P_S,
+						finderArgs, list);
+				}
+
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @return the matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_P_S(long groupId,
+		long parentResourcePrimKey, int status) throws SystemException {
+		return filterFindByG_P_S(groupId, parentResourcePrimKey, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_P_S(long groupId,
+		long parentResourcePrimKey, int status, int start, int end)
+		throws SystemException {
+		return filterFindByG_P_S(groupId, parentResourcePrimKey, status, start,
+			end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_P_S(long groupId,
+		long parentResourcePrimKey, int status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_P_S(groupId, parentResourcePrimKey, status, start,
+				end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(5 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(5);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(parentResourcePrimKey);
+
+			qPos.add(status);
+
+			return (List<Article>)QueryUtil.list(q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters the articles before and after the current article in the ordered set where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param articleId the primary key of the current article
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next article
+	 * @throws com.liferay.knowledgebase.NoSuchArticleException if a article with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	public Article[] filterFindByG_P_S_PrevAndNext(long articleId,
+		long groupId, long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator)
+		throws NoSuchArticleException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_P_S_PrevAndNext(articleId, groupId,
+				parentResourcePrimKey, status, orderByComparator);
+		}
+
+		Article article = findByPrimaryKey(articleId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Article[] array = new ArticleImpl[3];
+
+			array[0] = filterGetByG_P_S_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, status, orderByComparator, true);
+
+			array[1] = article;
+
+			array[2] = filterGetByG_P_S_PrevAndNext(session, article, groupId,
+					parentResourcePrimKey, status, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected Article filterGetByG_P_S_PrevAndNext(Session session,
+		Article article, long groupId, long parentResourcePrimKey, int status,
+		OrderByComparator orderByComparator, boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			if (orderByFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		SQLQuery q = session.createSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(groupId);
+
+		qPos.add(parentResourcePrimKey);
+
+		qPos.add(status);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByValues(article);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<Article> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and finds all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_P_S(long groupId,
+		long[] parentResourcePrimKeies, int status) throws SystemException {
+		return filterFindByG_P_S(groupId, parentResourcePrimKeies, status,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds a range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @return the range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_P_S(long groupId,
+		long[] parentResourcePrimKeies, int status, int start, int end)
+		throws SystemException {
+		return filterFindByG_P_S(groupId, parentResourcePrimKeies, status,
+			start, end, null);
+	}
+
+	/**
+	 * Filters by the user's permissions and finds an ordered range of all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set.
+	 * </p>
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @param start the lower bound of the range of articles to return
+	 * @param end the upper bound of the range of articles to return (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public List<Article> filterFindByG_P_S(long groupId,
+		long[] parentResourcePrimKeies, int status, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return findByG_P_S(groupId, parentResourcePrimKeies, status, start,
+				end, orderByComparator);
+		}
+
+		StringBundler query = new StringBundler();
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		boolean conjunctionable = false;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_S_GROUPID_5);
+
+		conjunctionable = true;
+
+		if ((parentResourcePrimKeies == null) ||
+				(parentResourcePrimKeies.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_5);
+
+				if ((i + 1) < parentResourcePrimKeies.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
+
+			conjunctionable = true;
+		}
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_S_STATUS_5);
+
+		conjunctionable = true;
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_ARTICLE_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator);
+			}
+		}
+
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(ArticleModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(ArticleModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, ArticleImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, ArticleImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			if (parentResourcePrimKeies != null) {
+				qPos.add(parentResourcePrimKeies);
 			}
 
 			qPos.add(status);
@@ -13499,9 +15259,23 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @param latest the latest to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByR_L(long resourcePrimKey, int latest)
+	public void removeByR_L(long resourcePrimKey, boolean latest)
 		throws SystemException {
 		for (Article article : findByR_L(resourcePrimKey, latest)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where resourcePrimKey = &#63; and main = &#63; from the database.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByR_M(long resourcePrimKey, boolean main)
+		throws SystemException {
+		for (Article article : findByR_M(resourcePrimKey, main)) {
 			articlePersistence.remove(article);
 		}
 	}
@@ -13527,8 +15301,36 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @param latest the latest to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByG_L(long groupId, int latest) throws SystemException {
+	public void removeByG_L(long groupId, boolean latest)
+		throws SystemException {
 		for (Article article : findByG_L(groupId, latest)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where groupId = &#63; and main = &#63; from the database.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByG_M(long groupId, boolean main)
+		throws SystemException {
+		for (Article article : findByG_M(groupId, main)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where groupId = &#63; and status = &#63; from the database.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByG_S(long groupId, int status) throws SystemException {
+		for (Article article : findByG_S(groupId, status)) {
 			articlePersistence.remove(article);
 		}
 	}
@@ -13540,9 +15342,37 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @param latest the latest to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByC_L(long companyId, int latest)
+	public void removeByC_L(long companyId, boolean latest)
 		throws SystemException {
 		for (Article article : findByC_L(companyId, latest)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where companyId = &#63; and main = &#63; from the database.
+	 *
+	 * @param companyId the company ID to search with
+	 * @param main the main to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByC_M(long companyId, boolean main)
+		throws SystemException {
+		for (Article article : findByC_M(companyId, main)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where companyId = &#63; and status = &#63; from the database.
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByC_S(long companyId, int status)
+		throws SystemException {
+		for (Article article : findByC_S(companyId, status)) {
 			articlePersistence.remove(article);
 		}
 	}
@@ -13554,9 +15384,37 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @param latest the latest to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByP_L(long parentResourcePrimKey, int latest)
+	public void removeByP_L(long parentResourcePrimKey, boolean latest)
 		throws SystemException {
 		for (Article article : findByP_L(parentResourcePrimKey, latest)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where parentResourcePrimKey = &#63; and main = &#63; from the database.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByP_M(long parentResourcePrimKey, boolean main)
+		throws SystemException {
+		for (Article article : findByP_M(parentResourcePrimKey, main)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where parentResourcePrimKey = &#63; and status = &#63; from the database.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByP_S(long parentResourcePrimKey, int status)
+		throws SystemException {
+		for (Article article : findByP_S(parentResourcePrimKey, status)) {
 			articlePersistence.remove(article);
 		}
 	}
@@ -13569,9 +15427,24 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @param latest the latest to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByR_G_L(long resourcePrimKey, long groupId, int latest)
+	public void removeByR_G_L(long resourcePrimKey, long groupId, boolean latest)
 		throws SystemException {
 		for (Article article : findByR_G_L(resourcePrimKey, groupId, latest)) {
+			articlePersistence.remove(article);
+		}
+	}
+
+	/**
+	 * Removes all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63; from the database.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @throws SystemException if a system exception occurred
+	 */
+	public void removeByR_G_M(long resourcePrimKey, long groupId, boolean main)
+		throws SystemException {
+		for (Article article : findByR_G_M(resourcePrimKey, groupId, main)) {
 			articlePersistence.remove(article);
 		}
 	}
@@ -13592,21 +15465,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Removes all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63; from the database.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByR_L_S(long resourcePrimKey, int latest, int status)
-		throws SystemException {
-		for (Article article : findByR_L_S(resourcePrimKey, latest, status)) {
-			articlePersistence.remove(article);
-		}
-	}
-
-	/**
 	 * Removes all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; from the database.
 	 *
 	 * @param groupId the group ID to search with
@@ -13615,7 +15473,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void removeByG_P_L(long groupId, long parentResourcePrimKey,
-		int latest) throws SystemException {
+		boolean latest) throws SystemException {
 		for (Article article : findByG_P_L(groupId, parentResourcePrimKey,
 				latest)) {
 			articlePersistence.remove(article);
@@ -13623,80 +15481,32 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Removes all the articles where groupId = &#63; and latest = &#63; and status = &#63; from the database.
+	 * Removes all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63; from the database.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByG_L_S(long groupId, int latest, int status)
-		throws SystemException {
-		for (Article article : findByG_L_S(groupId, latest, status)) {
-			articlePersistence.remove(article);
-		}
-	}
-
-	/**
-	 * Removes all the articles where companyId = &#63; and latest = &#63; and status = &#63; from the database.
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByC_L_S(long companyId, int latest, int status)
-		throws SystemException {
-		for (Article article : findByC_L_S(companyId, latest, status)) {
-			articlePersistence.remove(article);
-		}
-	}
-
-	/**
-	 * Removes all the articles where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63; from the database.
-	 *
 	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param main the main to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByP_L_S(long parentResourcePrimKey, int latest, int status)
-		throws SystemException {
-		for (Article article : findByP_L_S(parentResourcePrimKey, latest, status)) {
+	public void removeByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main) throws SystemException {
+		for (Article article : findByG_P_M(groupId, parentResourcePrimKey, main)) {
 			articlePersistence.remove(article);
 		}
 	}
 
 	/**
-	 * Removes all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63; from the database.
+	 * Removes all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63; from the database.
 	 *
-	 * @param resourcePrimKey the resource prim key to search with
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
 	 * @param status the status to search with
 	 * @throws SystemException if a system exception occurred
 	 */
-	public void removeByR_G_L_S(long resourcePrimKey, long groupId, int latest,
+	public void removeByG_P_S(long groupId, long parentResourcePrimKey,
 		int status) throws SystemException {
-		for (Article article : findByR_G_L_S(resourcePrimKey, groupId, latest,
+		for (Article article : findByG_P_S(groupId, parentResourcePrimKey,
 				status)) {
-			articlePersistence.remove(article);
-		}
-	}
-
-	/**
-	 * Removes all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63; from the database.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @throws SystemException if a system exception occurred
-	 */
-	public void removeByG_P_L_S(long groupId, long parentResourcePrimKey,
-		int latest, int status) throws SystemException {
-		for (Article article : findByG_P_L_S(groupId, parentResourcePrimKey,
-				latest, status)) {
 			articlePersistence.remove(article);
 		}
 	}
@@ -14082,7 +15892,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByR_L(long resourcePrimKey, int latest)
+	public int countByR_L(long resourcePrimKey, boolean latest)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { resourcePrimKey, latest };
 
@@ -14134,17 +15944,17 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where resourcePrimKey = any &#63; and latest = any &#63;.
+	 * Counts all the articles where resourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByR_L(long[] resourcePrimKeies, int[] latests)
+	public int countByR_L(long[] resourcePrimKeies, boolean latest)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), StringUtil.merge(latests)
+				StringUtil.merge(resourcePrimKeies), latest
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_L,
@@ -14177,25 +15987,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				conjunctionable = true;
 			}
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_R_L_LATEST_5);
+
+			conjunctionable = true;
 
 			String sql = query.toString();
 
@@ -14212,9 +16010,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					qPos.add(resourcePrimKeies);
 				}
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -14227,6 +16023,154 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				}
 
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_L, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where resourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByR_M(long resourcePrimKey, boolean main)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { resourcePrimKey, main };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_R_M_MAIN_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_M, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where resourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByR_M(long[] resourcePrimKeies, boolean main)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), main
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_M_MAIN_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_M, finderArgs,
 					count);
 
 				closeSession(session);
@@ -14296,6 +16240,95 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Counts all the articles where resourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByR_S(long[] resourcePrimKeies, int status)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), status
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_S_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_S_STATUS_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_S, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
 	 * Counts all the articles where groupId = &#63; and latest = &#63;.
 	 *
 	 * @param groupId the group ID to search with
@@ -14303,7 +16336,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByG_L(long groupId, int latest) throws SystemException {
+	public int countByG_L(long groupId, boolean latest)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { groupId, latest };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_L,
@@ -14354,93 +16388,6 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where groupId = &#63; and latest = any &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByG_L(long groupId, int[] latests)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { groupId, StringUtil.merge(latests) };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_L,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_G_L_GROUPID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_L, finderArgs,
-					count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
 	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = &#63;.
 	 *
 	 * @param groupId the group ID to search with
@@ -14448,7 +16395,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int filterCountByG_L(long groupId, int latest)
+	public int filterCountByG_L(long groupId, boolean latest)
 		throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_L(groupId, latest);
@@ -14495,52 +16442,84 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = any &#63;.
+	 * Counts all the articles where groupId = &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByG_M(long groupId, boolean main) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, main };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_M_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_M_MAIN_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_M, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and main = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int filterCountByG_L(long groupId, int[] latests)
+	public int filterCountByG_M(long groupId, boolean main)
 		throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_L(groupId, latests);
+			return countByG_M(groupId, main);
 		}
 
-		StringBundler query = new StringBundler();
+		StringBundler query = new StringBundler(3);
 
 		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
 
-		boolean conjunctionable = false;
+		query.append(_FINDER_COLUMN_G_M_GROUPID_2);
 
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_GROUPID_5);
-
-		conjunctionable = true;
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_L_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
+		query.append(_FINDER_COLUMN_G_M_MAIN_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Article.class.getName(), _FILTER_COLUMN_PK,
@@ -14560,9 +16539,119 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			qPos.add(groupId);
 
-			if (latests != null) {
-				qPos.add(latests);
+			qPos.add(main);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Counts all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByG_S(long groupId, int status) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, status };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_S_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
 			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_S, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_S(long groupId, int status)
+		throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByG_S(groupId, status);
+		}
+
+		StringBundler query = new StringBundler(3);
+
+		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_S_STATUS_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(status);
 
 			Long count = (Long)q.uniqueResult();
 
@@ -14584,7 +16673,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByC_L(long companyId, int latest) throws SystemException {
+	public int countByC_L(long companyId, boolean latest)
+		throws SystemException {
 		Object[] finderArgs = new Object[] { companyId, latest };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_L,
@@ -14635,54 +16725,28 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where companyId = &#63; and latest = any &#63;.
+	 * Counts all the articles where companyId = &#63; and main = &#63;.
 	 *
 	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
+	 * @param main the main to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByC_L(long companyId, int[] latests)
+	public int countByC_M(long companyId, boolean main)
 		throws SystemException {
-		Object[] finderArgs = new Object[] { companyId, StringUtil.merge(latests) };
+		Object[] finderArgs = new Object[] { companyId, main };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_L,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_M,
 				finderArgs, this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler();
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_COUNT_ARTICLE_WHERE);
 
-			boolean conjunctionable = false;
+			query.append(_FINDER_COLUMN_C_M_COMPANYID_2);
 
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_L_COMPANYID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_C_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
+			query.append(_FINDER_COLUMN_C_M_MAIN_2);
 
 			String sql = query.toString();
 
@@ -14697,9 +16761,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(companyId);
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(main);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -14711,7 +16773,65 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_L, finderArgs,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_M, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where companyId = &#63; and status = &#63;.
+	 *
+	 * @param companyId the company ID to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByC_S(long companyId, int status) throws SystemException {
+		Object[] finderArgs = new Object[] { companyId, status };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_C_S_COMPANYID_2);
+
+			query.append(_FINDER_COLUMN_C_S_STATUS_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(companyId);
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_S, finderArgs,
 					count);
 
 				closeSession(session);
@@ -14729,7 +16849,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByP_L(long parentResourcePrimKey, int latest)
+	public int countByP_L(long parentResourcePrimKey, boolean latest)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { parentResourcePrimKey, latest };
 
@@ -14781,18 +16901,17 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Counts all the articles where parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByP_L(long[] parentResourcePrimKeies, int[] latests)
+	public int countByP_L(long[] parentResourcePrimKeies, boolean latest)
 		throws SystemException {
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests)
+				StringUtil.merge(parentResourcePrimKeies), latest
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_L,
@@ -14826,25 +16945,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				conjunctionable = true;
 			}
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_P_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_P_L_LATEST_5);
+
+			conjunctionable = true;
 
 			String sql = query.toString();
 
@@ -14861,9 +16968,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					qPos.add(parentResourcePrimKeies);
 				}
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -14886,6 +16991,304 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
+	 * Counts all the articles where parentResourcePrimKey = &#63; and main = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByP_M(long parentResourcePrimKey, boolean main)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { parentResourcePrimKey, main };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_P_M_MAIN_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_M, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where parentResourcePrimKey = any &#63; and main = &#63;.
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByP_M(long[] parentResourcePrimKeies, boolean main)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), main
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_5);
+
+					if ((i + 1) < parentResourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_P_M_MAIN_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
+				}
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_M, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByP_S(long parentResourcePrimKey, int status)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { parentResourcePrimKey, status };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_P_S_STATUS_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(parentResourcePrimKey);
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_S, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByP_S(long[] parentResourcePrimKeies, int status)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(parentResourcePrimKeies), status
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_5);
+
+					if ((i + 1) < parentResourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_P_S_STATUS_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
+				}
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_S, finderArgs,
+					count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
 	 * Counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * @param resourcePrimKey the resource prim key to search with
@@ -14894,7 +17297,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByR_G_L(long resourcePrimKey, long groupId, int latest)
+	public int countByR_G_L(long resourcePrimKey, long groupId, boolean latest)
 		throws SystemException {
 		Object[] finderArgs = new Object[] { resourcePrimKey, groupId, latest };
 
@@ -14950,19 +17353,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countByR_G_L(long[] resourcePrimKeies, long groupId,
-		int[] latests) throws SystemException {
+		boolean latest) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId,
-				StringUtil.merge(latests)
+				StringUtil.merge(resourcePrimKeies), groupId, latest
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_G_L,
@@ -15003,25 +17405,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			conjunctionable = true;
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
+
+			conjunctionable = true;
 
 			String sql = query.toString();
 
@@ -15040,9 +17430,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(groupId);
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -15073,8 +17461,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int filterCountByR_G_L(long resourcePrimKey, long groupId, int latest)
-		throws SystemException {
+	public int filterCountByR_G_L(long resourcePrimKey, long groupId,
+		boolean latest) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByR_G_L(resourcePrimKey, groupId, latest);
 		}
@@ -15124,18 +17512,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = &#63;.
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int filterCountByR_G_L(long[] resourcePrimKeies, long groupId,
-		int[] latests) throws SystemException {
+		boolean latest) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByR_G_L(resourcePrimKeies, groupId, latests);
+			return countByR_G_L(resourcePrimKeies, groupId, latest);
 		}
 
 		StringBundler query = new StringBundler();
@@ -15172,25 +17560,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 		conjunctionable = true;
 
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
+		if (conjunctionable) {
+			query.append(WHERE_AND);
 		}
+
+		query.append(_FINDER_COLUMN_R_G_L_LATEST_5);
+
+		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Article.class.getName(), _FILTER_COLUMN_PK,
@@ -15214,9 +17590,323 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			qPos.add(groupId);
 
-			if (latests != null) {
-				qPos.add(latests);
+			qPos.add(latest);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByR_G_M(long resourcePrimKey, long groupId, boolean main)
+		throws SystemException {
+		Object[] finderArgs = new Object[] { resourcePrimKey, groupId, main };
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_G_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_R_G_M_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(resourcePrimKey);
+
+				qPos.add(groupId);
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
 			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_G_M,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByR_G_M(long[] resourcePrimKeies, long groupId, boolean main)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, main
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_G_M,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_M_GROUPID_5);
+
+			conjunctionable = true;
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_M_MAIN_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
+
+				qPos.add(groupId);
+
+				qPos.add(main);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_G_M,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKey the resource prim key to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByR_G_M(long resourcePrimKey, long groupId,
+		boolean main) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByR_G_M(resourcePrimKey, groupId, main);
+		}
+
+		StringBundler query = new StringBundler(4);
+
+		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_R_G_M_MAIN_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(resourcePrimKey);
+
+			qPos.add(groupId);
+
+			qPos.add(main);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and main = &#63;.
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param main the main to search with
+	 * @return the number of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByR_G_M(long[] resourcePrimKeies, long groupId,
+		boolean main) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByR_G_M(resourcePrimKeies, groupId, main);
+		}
+
+		StringBundler query = new StringBundler();
+
+		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
+
+		boolean conjunctionable = false;
+
+		if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				query.append(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_5);
+
+				if ((i + 1) < resourcePrimKeies.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
+
+			conjunctionable = true;
+		}
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_M_GROUPID_5);
+
+		conjunctionable = true;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_M_MAIN_5);
+
+		conjunctionable = true;
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (resourcePrimKeies != null) {
+				qPos.add(resourcePrimKeies);
+			}
+
+			qPos.add(groupId);
+
+			qPos.add(main);
 
 			Long count = (Long)q.uniqueResult();
 
@@ -15269,6 +17959,106 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(resourcePrimKey);
+
+				qPos.add(groupId);
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_G_S,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
+	 *
+	 * @param resourcePrimKeies the resource prim keies to search with
+	 * @param groupId the group ID to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByR_G_S(long[] resourcePrimKeies, long groupId, int status)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				StringUtil.merge(resourcePrimKeies), groupId, status
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_G_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < resourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_5);
+
+					if ((i + 1) < resourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_S_GROUPID_5);
+
+			conjunctionable = true;
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_R_G_S_STATUS_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (resourcePrimKeies != null) {
+					qPos.add(resourcePrimKeies);
+				}
 
 				qPos.add(groupId);
 
@@ -15354,182 +18144,96 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where resourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByR_L_S(long resourcePrimKey, int latest, int status)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { resourcePrimKey, latest, status };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_R_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_R_L_S_STATUS_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(resourcePrimKey);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where resourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and status = &#63;.
 	 *
 	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param groupId the group ID to search with
 	 * @param status the status to search with
-	 * @return the number of matching articles
+	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByR_L_S(long[] resourcePrimKeies, int[] latests, int status)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), StringUtil.merge(latests),
-				status
-			};
+	public int filterCountByR_G_S(long[] resourcePrimKeies, long groupId,
+		int status) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByR_G_S(resourcePrimKeies, groupId, status);
+		}
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_L_S,
-				finderArgs, this);
+		StringBundler query = new StringBundler();
 
-		if (count == null) {
-			StringBundler query = new StringBundler();
+		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
 
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
+		boolean conjunctionable = false;
 
-			boolean conjunctionable = false;
-
-			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5);
-
-					if ((i + 1) < resourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
+		if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
 			if (conjunctionable) {
 				query.append(WHERE_AND);
 			}
 
-			query.append(_FINDER_COLUMN_R_L_S_STATUS_5);
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < resourcePrimKeies.length; i++) {
+				query.append(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_5);
+
+				if ((i + 1) < resourcePrimKeies.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
 
 			conjunctionable = true;
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (resourcePrimKeies != null) {
-					qPos.add(resourcePrimKeies);
-				}
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
 		}
 
-		return count.intValue();
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_S_GROUPID_5);
+
+		conjunctionable = true;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_R_G_S_STATUS_5);
+
+		conjunctionable = true;
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			if (resourcePrimKeies != null) {
+				qPos.add(resourcePrimKeies);
+			}
+
+			qPos.add(groupId);
+
+			qPos.add(status);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
 	}
 
 	/**
@@ -15541,8 +18245,8 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByG_P_L(long groupId, long parentResourcePrimKey, int latest)
-		throws SystemException {
+	public int countByG_P_L(long groupId, long parentResourcePrimKey,
+		boolean latest) throws SystemException {
 		Object[] finderArgs = new Object[] {
 				groupId, parentResourcePrimKey, latest
 			};
@@ -15599,19 +18303,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int countByG_P_L(long groupId, long[] parentResourcePrimKeies,
-		int[] latests) throws SystemException {
+		boolean latest) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests)
+				groupId, StringUtil.merge(parentResourcePrimKeies), latest
 			};
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_L,
@@ -15653,25 +18356,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				conjunctionable = true;
 			}
 
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
+			if (conjunctionable) {
+				query.append(WHERE_AND);
 			}
+
+			query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
+
+			conjunctionable = true;
 
 			String sql = query.toString();
 
@@ -15690,9 +18381,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					qPos.add(parentResourcePrimKeies);
 				}
 
-				if (latests != null) {
-					qPos.add(latests);
-				}
+				qPos.add(latest);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -15724,7 +18413,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int filterCountByG_P_L(long groupId, long parentResourcePrimKey,
-		int latest) throws SystemException {
+		boolean latest) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByG_P_L(groupId, parentResourcePrimKey, latest);
 		}
@@ -15774,18 +18463,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63;.
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = &#63;.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
+	 * @param latest the latest to search with
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
 	public int filterCountByG_P_L(long groupId, long[] parentResourcePrimKeies,
-		int[] latests) throws SystemException {
+		boolean latest) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_P_L(groupId, parentResourcePrimKeies, latests);
+			return countByG_P_L(groupId, parentResourcePrimKeies, latest);
 		}
 
 		StringBundler query = new StringBundler();
@@ -15823,25 +18512,13 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			conjunctionable = true;
 		}
 
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
+		if (conjunctionable) {
+			query.append(WHERE_AND);
 		}
+
+		query.append(_FINDER_COLUMN_G_P_L_LATEST_5);
+
+		conjunctionable = true;
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Article.class.getName(), _FILTER_COLUMN_PK,
@@ -15865,9 +18542,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				qPos.add(parentResourcePrimKeies);
 			}
 
-			if (latests != null) {
-				qPos.add(latests);
-			}
+			qPos.add(latest);
 
 			Long count = (Long)q.uniqueResult();
 
@@ -15882,19 +18557,19 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByG_L_S(long groupId, int latest, int status)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { groupId, latest, status };
+	public int countByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main) throws SystemException {
+		Object[] finderArgs = new Object[] { groupId, parentResourcePrimKey, main };
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_L_S,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_M,
 				finderArgs, this);
 
 		if (count == null) {
@@ -15902,11 +18577,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			query.append(_SQL_COUNT_ARTICLE_WHERE);
 
-			query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
+			query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
-			query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
+			query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2);
 
-			query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
+			query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 			String sql = query.toString();
 
@@ -15921,9 +18596,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(groupId);
 
-				qPos.add(latest);
+				qPos.add(parentResourcePrimKey);
 
-				qPos.add(status);
+				qPos.add(main);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -15935,7 +18610,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_L_S,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_M,
 					finderArgs, count);
 
 				closeSession(session);
@@ -15946,21 +18621,21 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Counts all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
+	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param main the main to search with
 	 * @return the number of matching articles
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int countByG_L_S(long groupId, int[] latests, int status)
-		throws SystemException {
+	public int countByG_P_M(long groupId, long[] parentResourcePrimKeies,
+		boolean main) throws SystemException {
 		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(latests), status
+				groupId, StringUtil.merge(parentResourcePrimKeies), main
 			};
 
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_L_S,
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_M,
 				finderArgs, this);
 
 		if (count == null) {
@@ -15974,21 +18649,22 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(WHERE_AND);
 			}
 
-			query.append(_FINDER_COLUMN_G_L_S_GROUPID_5);
+			query.append(_FINDER_COLUMN_G_P_M_GROUPID_5);
 
 			conjunctionable = true;
 
-			if ((latests == null) || (latests.length > 0)) {
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
 				if (conjunctionable) {
 					query.append(WHERE_AND);
 				}
 
 				query.append(StringPool.OPEN_PARENTHESIS);
 
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_5);
 
-					if ((i + 1) < latests.length) {
+					if ((i + 1) < parentResourcePrimKeies.length) {
 						query.append(WHERE_OR);
 					}
 				}
@@ -16002,7 +18678,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				query.append(WHERE_AND);
 			}
 
-			query.append(_FINDER_COLUMN_G_L_S_STATUS_5);
+			query.append(_FINDER_COLUMN_G_P_M_MAIN_5);
 
 			conjunctionable = true;
 
@@ -16019,11 +18695,11 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 				qPos.add(groupId);
 
-				if (latests != null) {
-					qPos.add(latests);
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
 				}
 
-				qPos.add(status);
+				qPos.add(main);
 
 				count = (Long)q.uniqueResult();
 			}
@@ -16035,7 +18711,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 					count = Long.valueOf(0);
 				}
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_L_S,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_M,
 					finderArgs, count);
 
 				closeSession(session);
@@ -16046,1105 +18722,29 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = &#63; and status = &#63;.
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param main the main to search with
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int filterCountByG_L_S(long groupId, int latest, int status)
-		throws SystemException {
+	public int filterCountByG_P_M(long groupId, long parentResourcePrimKey,
+		boolean main) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_L_S(groupId, latest, status);
+			return countByG_P_M(groupId, parentResourcePrimKey, main);
 		}
 
 		StringBundler query = new StringBundler(4);
 
 		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
 
-		query.append(_FINDER_COLUMN_G_L_S_GROUPID_2);
+		query.append(_FINDER_COLUMN_G_P_M_GROUPID_2);
 
-		query.append(_FINDER_COLUMN_G_L_S_LATEST_2);
+		query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2);
 
-		query.append(_FINDER_COLUMN_G_L_S_STATUS_2);
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			qPos.add(latest);
-
-			qPos.add(status);
-
-			Long count = (Long)q.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int filterCountByG_L_S(long groupId, int[] latests, int status)
-		throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_L_S(groupId, latests, status);
-		}
-
-		StringBundler query = new StringBundler();
-
-		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
-
-		boolean conjunctionable = false;
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_S_GROUPID_5);
-
-		conjunctionable = true;
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_L_S_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_G_L_S_STATUS_5);
-
-		conjunctionable = true;
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(groupId);
-
-			if (latests != null) {
-				qPos.add(latests);
-			}
-
-			qPos.add(status);
-
-			Long count = (Long)q.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Counts all the articles where companyId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByC_L_S(long companyId, int latest, int status)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { companyId, latest, status };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_C_L_S_COMPANYID_2);
-
-			query.append(_FINDER_COLUMN_C_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_C_L_S_STATUS_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where companyId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * @param companyId the company ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByC_L_S(long companyId, int[] latests, int status)
-		throws SystemException {
-		Object[] finderArgs = new Object[] {
-				companyId, StringUtil.merge(latests), status
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_C_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_L_S_COMPANYID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_C_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(companyId);
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_C_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByP_L_S(long parentResourcePrimKey, int latest, int status)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { parentResourcePrimKey, latest, status };
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(4);
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_P_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_P_L_S_STATUS_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(parentResourcePrimKey);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByP_L_S(long[] parentResourcePrimKeies, int[] latests,
-		int status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests), status
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_P_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if ((parentResourcePrimKeies == null) ||
-					(parentResourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_5);
-
-					if ((i + 1) < parentResourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_P_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_P_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (parentResourcePrimKeies != null) {
-					qPos.add(parentResourcePrimKeies);
-				}
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_P_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByR_G_L_S(long resourcePrimKey, long groupId, int latest,
-		int status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				resourcePrimKey, groupId, latest, status
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_G_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(5);
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_2);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_R_G_L_S_STATUS_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(resourcePrimKey);
-
-				qPos.add(groupId);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_G_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByR_G_L_S(long[] resourcePrimKeies, long groupId,
-		int[] latests, int status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				StringUtil.merge(resourcePrimKeies), groupId,
-				StringUtil.merge(latests), status
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_R_G_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < resourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_5);
-
-					if ((i + 1) < resourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_5);
-
-			conjunctionable = true;
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_R_G_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_R_G_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (resourcePrimKeies != null) {
-					qPos.add(resourcePrimKeies);
-				}
-
-				qPos.add(groupId);
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_R_G_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = &#63; and groupId = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKey the resource prim key to search with
-	 * @param groupId the group ID to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int filterCountByR_G_L_S(long resourcePrimKey, long groupId,
-		int latest, int status) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByR_G_L_S(resourcePrimKey, groupId, latest, status);
-		}
-
-		StringBundler query = new StringBundler(5);
-
-		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_R_G_L_S_STATUS_2);
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(resourcePrimKey);
-
-			qPos.add(groupId);
-
-			qPos.add(latest);
-
-			qPos.add(status);
-
-			Long count = (Long)q.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Filters by the user's permissions and counts all the articles where resourcePrimKey = any &#63; and groupId = &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * @param resourcePrimKeies the resource prim keies to search with
-	 * @param groupId the group ID to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int filterCountByR_G_L_S(long[] resourcePrimKeies, long groupId,
-		int[] latests, int status) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByR_G_L_S(resourcePrimKeies, groupId, latests, status);
-		}
-
-		StringBundler query = new StringBundler();
-
-		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
-
-		boolean conjunctionable = false;
-
-		if ((resourcePrimKeies == null) || (resourcePrimKeies.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < resourcePrimKeies.length; i++) {
-				query.append(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_5);
-
-				if ((i + 1) < resourcePrimKeies.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_R_G_L_S_GROUPID_5);
-
-		conjunctionable = true;
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_R_G_L_S_LATEST_5);
-
-				if ((i + 1) < latests.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if (conjunctionable) {
-			query.append(WHERE_AND);
-		}
-
-		query.append(_FINDER_COLUMN_R_G_L_S_STATUS_5);
-
-		conjunctionable = true;
-
-		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
-				Article.class.getName(), _FILTER_COLUMN_PK,
-				_FILTER_COLUMN_USERID, groupId);
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			SQLQuery q = session.createSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME,
-				com.liferay.portal.kernel.dao.orm.Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (resourcePrimKeies != null) {
-				qPos.add(resourcePrimKeies);
-			}
-
-			qPos.add(groupId);
-
-			if (latests != null) {
-				qPos.add(latests);
-			}
-
-			qPos.add(status);
-
-			Long count = (Long)q.uniqueResult();
-
-			return count.intValue();
-		}
-		catch (Exception e) {
-			throw processException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	/**
-	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByG_P_L_S(long groupId, long parentResourcePrimKey,
-		int latest, int status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, parentResourcePrimKey, latest, status
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler(5);
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
-
-			query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				qPos.add(parentResourcePrimKey);
-
-				qPos.add(latest);
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int countByG_P_L_S(long groupId, long[] parentResourcePrimKeies,
-		int[] latests, int status) throws SystemException {
-		Object[] finderArgs = new Object[] {
-				groupId, StringUtil.merge(parentResourcePrimKeies),
-				StringUtil.merge(latests), status
-			};
-
-		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_L_S,
-				finderArgs, this);
-
-		if (count == null) {
-			StringBundler query = new StringBundler();
-
-			query.append(_SQL_COUNT_ARTICLE_WHERE);
-
-			boolean conjunctionable = false;
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_5);
-
-			conjunctionable = true;
-
-			if ((parentResourcePrimKeies == null) ||
-					(parentResourcePrimKeies.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-					query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
-
-					if ((i + 1) < parentResourcePrimKeies.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if ((latests == null) || (latests.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
-				query.append(StringPool.OPEN_PARENTHESIS);
-
-				for (int i = 0; i < latests.length; i++) {
-					query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
-
-					if ((i + 1) < latests.length) {
-						query.append(WHERE_OR);
-					}
-				}
-
-				query.append(StringPool.CLOSE_PARENTHESIS);
-
-				conjunctionable = true;
-			}
-
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_G_P_L_S_STATUS_5);
-
-			conjunctionable = true;
-
-			String sql = query.toString();
-
-			Session session = null;
-
-			try {
-				session = openSession();
-
-				Query q = session.createQuery(sql);
-
-				QueryPos qPos = QueryPos.getInstance(q);
-
-				qPos.add(groupId);
-
-				if (parentResourcePrimKeies != null) {
-					qPos.add(parentResourcePrimKeies);
-				}
-
-				if (latests != null) {
-					qPos.add(latests);
-				}
-
-				qPos.add(status);
-
-				count = (Long)q.uniqueResult();
-			}
-			catch (Exception e) {
-				throw processException(e);
-			}
-			finally {
-				if (count == null) {
-					count = Long.valueOf(0);
-				}
-
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_L_S,
-					finderArgs, count);
-
-				closeSession(session);
-			}
-		}
-
-		return count.intValue();
-	}
-
-	/**
-	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and latest = &#63; and status = &#63;.
-	 *
-	 * @param groupId the group ID to search with
-	 * @param parentResourcePrimKey the parent resource prim key to search with
-	 * @param latest the latest to search with
-	 * @param status the status to search with
-	 * @return the number of matching articles that the user has permission to view
-	 * @throws SystemException if a system exception occurred
-	 */
-	public int filterCountByG_P_L_S(long groupId, long parentResourcePrimKey,
-		int latest, int status) throws SystemException {
-		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_P_L_S(groupId, parentResourcePrimKey, latest, status);
-		}
-
-		StringBundler query = new StringBundler(5);
-
-		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_LATEST_2);
-
-		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_2);
+		query.append(_FINDER_COLUMN_G_P_M_MAIN_2);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Article.class.getName(), _FILTER_COLUMN_PK,
@@ -17166,9 +18766,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 
 			qPos.add(parentResourcePrimKey);
 
-			qPos.add(latest);
-
-			qPos.add(status);
+			qPos.add(main);
 
 			Long count = (Long)q.uniqueResult();
 
@@ -17183,21 +18781,18 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	}
 
 	/**
-	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and latest = any &#63; and status = &#63;.
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and main = &#63;.
 	 *
 	 * @param groupId the group ID to search with
 	 * @param parentResourcePrimKeies the parent resource prim keies to search with
-	 * @param latests the latests to search with
-	 * @param status the status to search with
+	 * @param main the main to search with
 	 * @return the number of matching articles that the user has permission to view
 	 * @throws SystemException if a system exception occurred
 	 */
-	public int filterCountByG_P_L_S(long groupId,
-		long[] parentResourcePrimKeies, int[] latests, int status)
-		throws SystemException {
+	public int filterCountByG_P_M(long groupId, long[] parentResourcePrimKeies,
+		boolean main) throws SystemException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
-			return countByG_P_L_S(groupId, parentResourcePrimKeies, latests,
-				status);
+			return countByG_P_M(groupId, parentResourcePrimKeies, main);
 		}
 
 		StringBundler query = new StringBundler();
@@ -17210,7 +18805,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(WHERE_AND);
 		}
 
-		query.append(_FINDER_COLUMN_G_P_L_S_GROUPID_5);
+		query.append(_FINDER_COLUMN_G_P_M_GROUPID_5);
 
 		conjunctionable = true;
 
@@ -17223,29 +18818,9 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(StringPool.OPEN_PARENTHESIS);
 
 			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
-				query.append(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5);
+				query.append(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_5);
 
 				if ((i + 1) < parentResourcePrimKeies.length) {
-					query.append(WHERE_OR);
-				}
-			}
-
-			query.append(StringPool.CLOSE_PARENTHESIS);
-
-			conjunctionable = true;
-		}
-
-		if ((latests == null) || (latests.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(StringPool.OPEN_PARENTHESIS);
-
-			for (int i = 0; i < latests.length; i++) {
-				query.append(_FINDER_COLUMN_G_P_L_S_LATEST_5);
-
-				if ((i + 1) < latests.length) {
 					query.append(WHERE_OR);
 				}
 			}
@@ -17259,7 +18834,7 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 			query.append(WHERE_AND);
 		}
 
-		query.append(_FINDER_COLUMN_G_P_L_S_STATUS_5);
+		query.append(_FINDER_COLUMN_G_P_M_MAIN_5);
 
 		conjunctionable = true;
 
@@ -17285,8 +18860,324 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 				qPos.add(parentResourcePrimKeies);
 			}
 
-			if (latests != null) {
-				qPos.add(latests);
+			qPos.add(main);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByG_P_S(long groupId, long parentResourcePrimKey, int status)
+		throws SystemException {
+		Object[] finderArgs = new Object[] {
+				groupId, parentResourcePrimKey, status
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
+
+			query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2);
+
+			query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				qPos.add(parentResourcePrimKey);
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_S,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int countByG_P_S(long groupId, long[] parentResourcePrimKeies,
+		int status) throws SystemException {
+		Object[] finderArgs = new Object[] {
+				groupId, StringUtil.merge(parentResourcePrimKeies), status
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_BY_G_P_S,
+				finderArgs, this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler();
+
+			query.append(_SQL_COUNT_ARTICLE_WHERE);
+
+			boolean conjunctionable = false;
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_G_P_S_GROUPID_5);
+
+			conjunctionable = true;
+
+			if ((parentResourcePrimKeies == null) ||
+					(parentResourcePrimKeies.length > 0)) {
+				if (conjunctionable) {
+					query.append(WHERE_AND);
+				}
+
+				query.append(StringPool.OPEN_PARENTHESIS);
+
+				for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+					query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_5);
+
+					if ((i + 1) < parentResourcePrimKeies.length) {
+						query.append(WHERE_OR);
+					}
+				}
+
+				query.append(StringPool.CLOSE_PARENTHESIS);
+
+				conjunctionable = true;
+			}
+
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(_FINDER_COLUMN_G_P_S_STATUS_5);
+
+			conjunctionable = true;
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(groupId);
+
+				if (parentResourcePrimKeies != null) {
+					qPos.add(parentResourcePrimKeies);
+				}
+
+				qPos.add(status);
+
+				count = (Long)q.uniqueResult();
+			}
+			catch (Exception e) {
+				throw processException(e);
+			}
+			finally {
+				if (count == null) {
+					count = Long.valueOf(0);
+				}
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_G_P_S,
+					finderArgs, count);
+
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKey the parent resource prim key to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_P_S(long groupId, long parentResourcePrimKey,
+		int status) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByG_P_S(groupId, parentResourcePrimKey, status);
+		}
+
+		StringBundler query = new StringBundler(4);
+
+		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
+
+		query.append(_FINDER_COLUMN_G_P_S_GROUPID_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2);
+
+		query.append(_FINDER_COLUMN_G_P_S_STATUS_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			qPos.add(parentResourcePrimKey);
+
+			qPos.add(status);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Filters by the user's permissions and counts all the articles where groupId = &#63; and parentResourcePrimKey = any &#63; and status = &#63;.
+	 *
+	 * @param groupId the group ID to search with
+	 * @param parentResourcePrimKeies the parent resource prim keies to search with
+	 * @param status the status to search with
+	 * @return the number of matching articles that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	public int filterCountByG_P_S(long groupId, long[] parentResourcePrimKeies,
+		int status) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return countByG_P_S(groupId, parentResourcePrimKeies, status);
+		}
+
+		StringBundler query = new StringBundler();
+
+		query.append(_FILTER_SQL_COUNT_ARTICLE_WHERE);
+
+		boolean conjunctionable = false;
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_S_GROUPID_5);
+
+		conjunctionable = true;
+
+		if ((parentResourcePrimKeies == null) ||
+				(parentResourcePrimKeies.length > 0)) {
+			if (conjunctionable) {
+				query.append(WHERE_AND);
+			}
+
+			query.append(StringPool.OPEN_PARENTHESIS);
+
+			for (int i = 0; i < parentResourcePrimKeies.length; i++) {
+				query.append(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_5);
+
+				if ((i + 1) < parentResourcePrimKeies.length) {
+					query.append(WHERE_OR);
+				}
+			}
+
+			query.append(StringPool.CLOSE_PARENTHESIS);
+
+			conjunctionable = true;
+		}
+
+		if (conjunctionable) {
+			query.append(WHERE_AND);
+		}
+
+		query.append(_FINDER_COLUMN_G_P_S_STATUS_5);
+
+		conjunctionable = true;
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				Article.class.getName(), _FILTER_COLUMN_PK,
+				_FILTER_COLUMN_USERID, groupId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(groupId);
+
+			if (parentResourcePrimKeies != null) {
+				qPos.add(parentResourcePrimKeies);
 			}
 
 			qPos.add(status);
@@ -17425,26 +19316,48 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	private static final String _FINDER_COLUMN_R_L_LATEST_2 = "article.latest = ?";
 	private static final String _FINDER_COLUMN_R_L_LATEST_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_R_L_LATEST_2) + ")";
+	private static final String _FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_R_M_RESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_M_RESOURCEPRIMKEY_2) + ")";
+	private static final String _FINDER_COLUMN_R_M_MAIN_2 = "article.main = ?";
+	private static final String _FINDER_COLUMN_R_M_MAIN_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_M_MAIN_2) + ")";
 	private static final String _FINDER_COLUMN_R_S_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_R_S_RESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_S_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_S_STATUS_2 = "article.status = ?";
+	private static final String _FINDER_COLUMN_R_S_STATUS_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_S_STATUS_2) + ")";
 	private static final String _FINDER_COLUMN_G_L_GROUPID_2 = "article.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_L_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_L_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_G_L_LATEST_2 = "article.latest = ?";
-	private static final String _FINDER_COLUMN_G_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_L_LATEST_2) + ")";
+	private static final String _FINDER_COLUMN_G_M_GROUPID_2 = "article.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_M_MAIN_2 = "article.main = ?";
+	private static final String _FINDER_COLUMN_G_S_GROUPID_2 = "article.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_S_STATUS_2 = "article.status = ?";
 	private static final String _FINDER_COLUMN_C_L_COMPANYID_2 = "article.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_L_COMPANYID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_C_L_COMPANYID_2) + ")";
 	private static final String _FINDER_COLUMN_C_L_LATEST_2 = "article.latest = ?";
-	private static final String _FINDER_COLUMN_C_L_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_C_L_LATEST_2) + ")";
+	private static final String _FINDER_COLUMN_C_M_COMPANYID_2 = "article.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_M_MAIN_2 = "article.main = ?";
+	private static final String _FINDER_COLUMN_C_S_COMPANYID_2 = "article.companyId = ? AND ";
+	private static final String _FINDER_COLUMN_C_S_STATUS_2 = "article.status = ?";
 	private static final String _FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_P_L_PARENTRESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_P_L_LATEST_2 = "article.latest = ?";
 	private static final String _FINDER_COLUMN_P_L_LATEST_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_P_L_LATEST_2) + ")";
+	private static final String _FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_P_M_PARENTRESOURCEPRIMKEY_2) + ")";
+	private static final String _FINDER_COLUMN_P_M_MAIN_2 = "article.main = ?";
+	private static final String _FINDER_COLUMN_P_M_MAIN_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_P_M_MAIN_2) + ")";
+	private static final String _FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_P_S_PARENTRESOURCEPRIMKEY_2) + ")";
+	private static final String _FINDER_COLUMN_P_S_STATUS_2 = "article.status = ?";
+	private static final String _FINDER_COLUMN_P_S_STATUS_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_P_S_STATUS_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_R_G_L_RESOURCEPRIMKEY_2) + ")";
@@ -17454,18 +19367,24 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	private static final String _FINDER_COLUMN_R_G_L_LATEST_2 = "article.latest = ?";
 	private static final String _FINDER_COLUMN_R_G_L_LATEST_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_R_G_L_LATEST_2) + ")";
+	private static final String _FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_G_M_RESOURCEPRIMKEY_2) + ")";
+	private static final String _FINDER_COLUMN_R_G_M_GROUPID_2 = "article.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_R_G_M_GROUPID_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_G_M_GROUPID_2) + ")";
+	private static final String _FINDER_COLUMN_R_G_M_MAIN_2 = "article.main = ?";
+	private static final String _FINDER_COLUMN_R_G_M_MAIN_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_G_M_MAIN_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_G_S_RESOURCEPRIMKEY_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_S_GROUPID_2 = "article.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_R_G_S_GROUPID_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_G_S_GROUPID_2) + ")";
 	private static final String _FINDER_COLUMN_R_G_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_L_S_RESOURCEPRIMKEY_2) + ")";
-	private static final String _FINDER_COLUMN_R_L_S_LATEST_2 = "article.latest = ? AND ";
-	private static final String _FINDER_COLUMN_R_L_S_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_L_S_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_R_L_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_R_L_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_L_S_STATUS_2) + ")";
+	private static final String _FINDER_COLUMN_R_G_S_STATUS_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_R_G_S_STATUS_2) + ")";
 	private static final String _FINDER_COLUMN_G_P_L_GROUPID_2 = "article.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_P_L_GROUPID_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_G_P_L_GROUPID_2) + ")";
@@ -17475,58 +19394,24 @@ public class ArticlePersistenceImpl extends BasePersistenceImpl<Article>
 	private static final String _FINDER_COLUMN_G_P_L_LATEST_2 = "article.latest = ?";
 	private static final String _FINDER_COLUMN_G_P_L_LATEST_5 = "(" +
 		_removeConjunction(_FINDER_COLUMN_G_P_L_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_G_L_S_GROUPID_2 = "article.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_L_S_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_L_S_GROUPID_2) + ")";
-	private static final String _FINDER_COLUMN_G_L_S_LATEST_2 = "article.latest = ? AND ";
-	private static final String _FINDER_COLUMN_G_L_S_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_L_S_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_G_L_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_G_L_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_L_S_STATUS_2) + ")";
-	private static final String _FINDER_COLUMN_C_L_S_COMPANYID_2 = "article.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_L_S_COMPANYID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_C_L_S_COMPANYID_2) + ")";
-	private static final String _FINDER_COLUMN_C_L_S_LATEST_2 = "article.latest = ? AND ";
-	private static final String _FINDER_COLUMN_C_L_S_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_C_L_S_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_C_L_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_C_L_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_C_L_S_STATUS_2) + ")";
-	private static final String _FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_L_S_PARENTRESOURCEPRIMKEY_2) + ")";
-	private static final String _FINDER_COLUMN_P_L_S_LATEST_2 = "article.latest = ? AND ";
-	private static final String _FINDER_COLUMN_P_L_S_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_L_S_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_P_L_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_P_L_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_P_L_S_STATUS_2) + ")";
-	private static final String _FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2 = "article.resourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_S_RESOURCEPRIMKEY_2) + ")";
-	private static final String _FINDER_COLUMN_R_G_L_S_GROUPID_2 = "article.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_R_G_L_S_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_S_GROUPID_2) + ")";
-	private static final String _FINDER_COLUMN_R_G_L_S_LATEST_2 = "article.latest = ? AND ";
-	private static final String _FINDER_COLUMN_R_G_L_S_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_S_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_R_G_L_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_R_G_L_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_R_G_L_S_STATUS_2) + ")";
-	private static final String _FINDER_COLUMN_G_P_L_S_GROUPID_2 = "article.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_L_S_GROUPID_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_S_GROUPID_2) + ")";
-	private static final String _FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_S_PARENTRESOURCEPRIMKEY_2) +
-		")";
-	private static final String _FINDER_COLUMN_G_P_L_S_LATEST_2 = "article.latest = ? AND ";
-	private static final String _FINDER_COLUMN_G_P_L_S_LATEST_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_S_LATEST_2) + ")";
-	private static final String _FINDER_COLUMN_G_P_L_S_STATUS_2 = "article.status = ?";
-	private static final String _FINDER_COLUMN_G_P_L_S_STATUS_5 = "(" +
-		_removeConjunction(_FINDER_COLUMN_G_P_L_S_STATUS_2) + ")";
+	private static final String _FINDER_COLUMN_G_P_M_GROUPID_2 = "article.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_P_M_GROUPID_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_G_P_M_GROUPID_2) + ")";
+	private static final String _FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_G_P_M_PARENTRESOURCEPRIMKEY_2) + ")";
+	private static final String _FINDER_COLUMN_G_P_M_MAIN_2 = "article.main = ?";
+	private static final String _FINDER_COLUMN_G_P_M_MAIN_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_G_P_M_MAIN_2) + ")";
+	private static final String _FINDER_COLUMN_G_P_S_GROUPID_2 = "article.groupId = ? AND ";
+	private static final String _FINDER_COLUMN_G_P_S_GROUPID_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_G_P_S_GROUPID_2) + ")";
+	private static final String _FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2 = "article.parentResourcePrimKey = ? AND ";
+	private static final String _FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_G_P_S_PARENTRESOURCEPRIMKEY_2) + ")";
+	private static final String _FINDER_COLUMN_G_P_S_STATUS_2 = "article.status = ?";
+	private static final String _FINDER_COLUMN_G_P_S_STATUS_5 = "(" +
+		_removeConjunction(_FINDER_COLUMN_G_P_S_STATUS_2) + ")";
 
 	private static String _removeConjunction(String sql) {
 		int pos = sql.indexOf(" AND ");

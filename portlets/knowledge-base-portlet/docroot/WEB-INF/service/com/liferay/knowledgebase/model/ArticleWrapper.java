@@ -389,17 +389,53 @@ public class ArticleWrapper implements Article {
 	*
 	* @return the latest of this article
 	*/
-	public int getLatest() {
+	public boolean getLatest() {
 		return _article.getLatest();
 	}
 
 	/**
-	* Sets the latest of this article.
+	* Determines if this article is latest.
+	*
+	* @return <code>true</code> if this article is latest; <code>false</code> otherwise
+	*/
+	public boolean isLatest() {
+		return _article.isLatest();
+	}
+
+	/**
+	* Sets whether this article is latest.
 	*
 	* @param latest the latest of this article
 	*/
-	public void setLatest(int latest) {
+	public void setLatest(boolean latest) {
 		_article.setLatest(latest);
+	}
+
+	/**
+	* Gets the main of this article.
+	*
+	* @return the main of this article
+	*/
+	public boolean getMain() {
+		return _article.getMain();
+	}
+
+	/**
+	* Determines if this article is main.
+	*
+	* @return <code>true</code> if this article is main; <code>false</code> otherwise
+	*/
+	public boolean isMain() {
+		return _article.isMain();
+	}
+
+	/**
+	* Sets whether this article is main.
+	*
+	* @param main the main of this article
+	*/
+	public void setMain(boolean main) {
+		_article.setMain(main);
 	}
 
 	/**

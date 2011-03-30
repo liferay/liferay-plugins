@@ -49,6 +49,7 @@ public class ArticleSoap implements Serializable {
 		soapModel.setPriority(model.getPriority());
 		soapModel.setViewCount(model.getViewCount());
 		soapModel.setLatest(model.getLatest());
+		soapModel.setMain(model.getMain());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setStatusByUserId(model.getStatusByUserId());
 		soapModel.setStatusByUserName(model.getStatusByUserName());
@@ -241,12 +242,28 @@ public class ArticleSoap implements Serializable {
 		_viewCount = viewCount;
 	}
 
-	public int getLatest() {
+	public boolean getLatest() {
 		return _latest;
 	}
 
-	public void setLatest(int latest) {
+	public boolean isLatest() {
+		return _latest;
+	}
+
+	public void setLatest(boolean latest) {
 		_latest = latest;
+	}
+
+	public boolean getMain() {
+		return _main;
+	}
+
+	public boolean isMain() {
+		return _main;
+	}
+
+	public void setMain(boolean main) {
+		_main = main;
 	}
 
 	public int getStatus() {
@@ -298,7 +315,8 @@ public class ArticleSoap implements Serializable {
 	private String _description;
 	private double _priority;
 	private int _viewCount;
-	private int _latest;
+	private boolean _latest;
+	private boolean _main;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserName;

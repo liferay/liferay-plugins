@@ -207,12 +207,28 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		_viewCount = viewCount;
 	}
 
-	public int getLatest() {
+	public boolean getLatest() {
 		return _latest;
 	}
 
-	public void setLatest(int latest) {
+	public boolean isLatest() {
+		return _latest;
+	}
+
+	public void setLatest(boolean latest) {
 		_latest = latest;
+	}
+
+	public boolean getMain() {
+		return _main;
+	}
+
+	public boolean isMain() {
+		return _main;
+	}
+
+	public void setMain(boolean main) {
+		_main = main;
 	}
 
 	public int getStatus() {
@@ -350,6 +366,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		clone.setPriority(getPriority());
 		clone.setViewCount(getViewCount());
 		clone.setLatest(getLatest());
+		clone.setMain(getMain());
 		clone.setStatus(getStatus());
 		clone.setStatusByUserId(getStatusByUserId());
 		clone.setStatusByUserName(getStatusByUserName());
@@ -401,7 +418,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	}
 
 	public String toString() {
-		StringBundler sb = new StringBundler(45);
+		StringBundler sb = new StringBundler(47);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -439,6 +456,8 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		sb.append(getViewCount());
 		sb.append(", latest=");
 		sb.append(getLatest());
+		sb.append(", main=");
+		sb.append(getMain());
 		sb.append(", status=");
 		sb.append(getStatus());
 		sb.append(", statusByUserId=");
@@ -453,7 +472,7 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(70);
+		StringBundler sb = new StringBundler(73);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.Article");
@@ -532,6 +551,10 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 		sb.append(getLatest());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>main</column-name><column-value><![CDATA[");
+		sb.append(getMain());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>status</column-name><column-value><![CDATA[");
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
@@ -572,7 +595,8 @@ public class ArticleClp extends BaseModelImpl<Article> implements Article {
 	private String _description;
 	private double _priority;
 	private int _viewCount;
-	private int _latest;
+	private boolean _latest;
+	private boolean _main;
 	private int _status;
 	private long _statusByUserId;
 	private String _statusByUserUuid;

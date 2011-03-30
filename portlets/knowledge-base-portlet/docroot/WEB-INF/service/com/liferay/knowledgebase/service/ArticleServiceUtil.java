@@ -50,14 +50,14 @@ public class ArticleServiceUtil {
 			description, dirName, serviceContext);
 	}
 
-	public static void addAttachment(long companyId, long groupId,
-		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes)
+	public static void addAttachment(long resourcePrimKey,
+		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService()
-			.addAttachment(companyId, groupId, resourcePrimKey, dirName,
-			shortFileName, bytes);
+			.addAttachment(resourcePrimKey, dirName, shortFileName, bytes,
+			serviceContext);
 	}
 
 	public static void deleteArticle(long resourcePrimKey)
@@ -87,6 +87,15 @@ public class ArticleServiceUtil {
 		return getService().getArticle(resourcePrimKey, version);
 	}
 
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticleAndAllDescendants(
+		long groupId, long resourcePrimKey, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getArticleAndAllDescendants(groupId, resourcePrimKey,
+			status, orderByComparator);
+	}
+
 	public static java.lang.String getArticleRSS(long resourcePrimKey,
 		int status, int rssDelta, java.lang.String rssDisplayStyle,
 		java.lang.String rssFormat,
@@ -98,22 +107,20 @@ public class ArticleServiceUtil {
 			rssDisplayStyle, rssFormat, themeDisplay);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticleVersions(
 		long groupId, long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getArticles(groupId, resourcePrimKey, status, start, end,
-			orderByComparator);
+				   .getArticleVersions(groupId, resourcePrimKey, status, start,
+			end, orderByComparator);
 	}
 
-	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long groupId, long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+	public static int getArticleVersionsCount(long groupId,
+		long resourcePrimKey, int status)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getArticles(groupId, resourcePrimKey, status,
-			orderByComparator);
+				   .getArticleVersionsCount(groupId, resourcePrimKey, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
@@ -123,11 +130,6 @@ public class ArticleServiceUtil {
 		return getService()
 				   .getArticles(groupId, resourcePrimKeys, status,
 			orderByComparator);
-	}
-
-	public static int getArticlesCount(long groupId, long resourcePrimKey,
-		int status) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getArticlesCount(groupId, resourcePrimKey, status);
 	}
 
 	public static com.liferay.knowledgebase.model.ArticleSearchDisplay getArticleSearchDisplay(
@@ -238,13 +240,13 @@ public class ArticleServiceUtil {
 			dirName, serviceContext);
 	}
 
-	public static java.lang.String updateAttachments(long companyId,
-		long groupId, long resourcePrimKey, java.lang.String dirName)
+	public static java.lang.String updateAttachments(long resourcePrimKey,
+		java.lang.String dirName,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateAttachments(companyId, groupId, resourcePrimKey,
-			dirName);
+				   .updateAttachments(resourcePrimKey, dirName, serviceContext);
 	}
 
 	public static void updatePriorities(long groupId,

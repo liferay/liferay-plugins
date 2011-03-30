@@ -327,14 +327,42 @@ public interface ArticleModel extends BaseModel<Article>, GroupedModel,
 	 *
 	 * @return the latest of this article
 	 */
-	public int getLatest();
+	public boolean getLatest();
 
 	/**
-	 * Sets the latest of this article.
+	 * Determines if this article is latest.
+	 *
+	 * @return <code>true</code> if this article is latest; <code>false</code> otherwise
+	 */
+	public boolean isLatest();
+
+	/**
+	 * Sets whether this article is latest.
 	 *
 	 * @param latest the latest of this article
 	 */
-	public void setLatest(int latest);
+	public void setLatest(boolean latest);
+
+	/**
+	 * Gets the main of this article.
+	 *
+	 * @return the main of this article
+	 */
+	public boolean getMain();
+
+	/**
+	 * Determines if this article is main.
+	 *
+	 * @return <code>true</code> if this article is main; <code>false</code> otherwise
+	 */
+	public boolean isMain();
+
+	/**
+	 * Sets whether this article is main.
+	 *
+	 * @param main the main of this article
+	 */
+	public void setMain(boolean main);
 
 	/**
 	 * Gets the status of this article.

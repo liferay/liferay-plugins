@@ -282,12 +282,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			guestPermissions);
 	}
 
-	public void addAttachment(long companyId, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes)
+	public void addAttachment(java.lang.String dirName,
+		java.lang.String shortFileName, byte[] bytes,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_articleLocalService.addAttachment(companyId, dirName, shortFileName,
-			bytes);
+		_articleLocalService.addAttachment(dirName, shortFileName, bytes,
+			serviceContext);
 	}
 
 	public void checkAttachments()
@@ -321,20 +322,26 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		return _articleLocalService.getArticle(resourcePrimKey, version);
 	}
 
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
-		long resourcePrimKey, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getArticles(resourcePrimKey, status, start,
-			end, orderByComparator);
-	}
-
-	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticleAndAllDescendants(
 		long resourcePrimKey, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getArticles(resourcePrimKey, status,
-			orderByComparator);
+		return _articleLocalService.getArticleAndAllDescendants(resourcePrimKey,
+			status, orderByComparator);
+	}
+
+	public java.util.List<com.liferay.knowledgebase.model.Article> getArticleVersions(
+		long resourcePrimKey, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticleVersions(resourcePrimKey, status,
+			start, end, orderByComparator);
+	}
+
+	public int getArticleVersionsCount(long resourcePrimKey, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _articleLocalService.getArticleVersionsCount(resourcePrimKey,
+			status);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getArticles(
@@ -343,11 +350,6 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _articleLocalService.getArticles(resourcePrimKeys, status,
 			orderByComparator);
-	}
-
-	public int getArticlesCount(long resourcePrimKey, int status)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.getArticlesCount(resourcePrimKey, status);
 	}
 
 	public java.util.List<com.liferay.knowledgebase.model.Article> getCompanyArticles(
@@ -470,12 +472,13 @@ public class ArticleLocalServiceWrapper implements ArticleLocalService {
 			assetTagNames);
 	}
 
-	public java.lang.String updateAttachments(long companyId,
-		long resourcePrimKey, java.lang.String dirName)
+	public java.lang.String updateAttachments(long resourcePrimKey,
+		java.lang.String dirName,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _articleLocalService.updateAttachments(companyId,
-			resourcePrimKey, dirName);
+		return _articleLocalService.updateAttachments(resourcePrimKey, dirName,
+			serviceContext);
 	}
 
 	public void updatePriorities(

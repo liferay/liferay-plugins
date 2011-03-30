@@ -84,12 +84,13 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static void addAttachment(long companyId, long groupId,
-		long resourcePrimKey, java.lang.String dirName,
-		java.lang.String shortFileName, byte[] bytes) throws RemoteException {
+	public static void addAttachment(long resourcePrimKey,
+		java.lang.String dirName, java.lang.String shortFileName, byte[] bytes,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws RemoteException {
 		try {
-			ArticleServiceUtil.addAttachment(companyId, groupId,
-				resourcePrimKey, dirName, shortFileName, bytes);
+			ArticleServiceUtil.addAttachment(resourcePrimKey, dirName,
+				shortFileName, bytes, serviceContext);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -151,12 +152,29 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticles(
+	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticleAndAllDescendants(
+		long groupId, long resourcePrimKey, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticleAndAllDescendants(groupId,
+					resourcePrimKey, status, orderByComparator);
+
+			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticleVersions(
 		long groupId, long resourcePrimKey, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws RemoteException {
 		try {
-			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(groupId,
+			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticleVersions(groupId,
 					resourcePrimKey, status, start, end, orderByComparator);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
@@ -168,15 +186,13 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static com.liferay.knowledgebase.model.ArticleSoap[] getArticles(
-		long groupId, long resourcePrimKey, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws RemoteException {
+	public static int getArticleVersionsCount(long groupId,
+		long resourcePrimKey, int status) throws RemoteException {
 		try {
-			java.util.List<com.liferay.knowledgebase.model.Article> returnValue = ArticleServiceUtil.getArticles(groupId,
-					resourcePrimKey, status, orderByComparator);
+			int returnValue = ArticleServiceUtil.getArticleVersionsCount(groupId,
+					resourcePrimKey, status);
 
-			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -194,21 +210,6 @@ public class ArticleServiceSoap {
 					resourcePrimKeys, status, orderByComparator);
 
 			return com.liferay.knowledgebase.model.ArticleSoap.toSoapModels(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
-	public static int getArticlesCount(long groupId, long resourcePrimKey,
-		int status) throws RemoteException {
-		try {
-			int returnValue = ArticleServiceUtil.getArticlesCount(groupId,
-					resourcePrimKey, status);
-
-			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -396,12 +397,13 @@ public class ArticleServiceSoap {
 		}
 	}
 
-	public static java.lang.String updateAttachments(long companyId,
-		long groupId, long resourcePrimKey, java.lang.String dirName)
+	public static java.lang.String updateAttachments(long resourcePrimKey,
+		java.lang.String dirName,
+		com.liferay.portal.service.ServiceContext serviceContext)
 		throws RemoteException {
 		try {
-			java.lang.String returnValue = ArticleServiceUtil.updateAttachments(companyId,
-					groupId, resourcePrimKey, dirName);
+			java.lang.String returnValue = ArticleServiceUtil.updateAttachments(resourcePrimKey,
+					dirName, serviceContext);
 
 			return returnValue;
 		}
