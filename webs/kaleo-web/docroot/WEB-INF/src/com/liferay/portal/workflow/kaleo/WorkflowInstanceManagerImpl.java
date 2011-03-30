@@ -151,13 +151,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
-		WorkflowInstanceAdapter workflowInstance =
+		WorkflowInstanceAdapter workflowInstanceAdapter =
 			(WorkflowInstanceAdapter)_workflowEngine.signalWorkflowInstance(
 				workflowInstanceId, transitionName, workflowContext,
 				serviceContext);
 
 		KaleoInstanceToken kaleoInstanceToken =
-			workflowInstance.getKaleoInstanceToken();
+			workflowInstanceAdapter.getKaleoInstanceToken();
 
 		ExecutionContext executionContext = new ExecutionContext(
 			kaleoInstanceToken, workflowContext, serviceContext);
@@ -169,7 +169,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			throw new WorkflowException("Unable to signal next transition", e);
 		}
 
-		return workflowInstance;
+		return workflowInstanceAdapter;
 	}
 
 	public WorkflowInstance startWorkflowInstance(
@@ -184,13 +184,13 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 		serviceContext.setScopeGroupId(groupId);
 		serviceContext.setUserId(userId);
 
-		WorkflowInstanceAdapter workflowInstance =
+		WorkflowInstanceAdapter workflowInstanceAdapter =
 			(WorkflowInstanceAdapter)_workflowEngine.startWorkflowInstance(
 				workflowDefinitionName, workflowDefinitionVersion,
 				transitionName, workflowContext, serviceContext);
 
 		KaleoInstanceToken kaleoInstanceToken =
-			workflowInstance.getKaleoInstanceToken();
+			workflowInstanceAdapter.getKaleoInstanceToken();
 
 		ExecutionContext executionContext = new ExecutionContext(
 			kaleoInstanceToken, workflowContext, serviceContext);
@@ -202,7 +202,7 @@ public class WorkflowInstanceManagerImpl implements WorkflowInstanceManager {
 			throw new WorkflowException("Unable to start workflow", e);
 		}
 
-		return workflowInstance;
+		return workflowInstanceAdapter;
 	}
 
 	public WorkflowInstance updateWorkflowContext(

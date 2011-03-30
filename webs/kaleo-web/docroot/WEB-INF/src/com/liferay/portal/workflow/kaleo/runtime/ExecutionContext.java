@@ -30,16 +30,6 @@ public class ExecutionContext {
 
 	public ExecutionContext(
 		KaleoInstanceToken kaleoInstanceToken,
-		Map<String, Serializable> workflowContext,
-		ServiceContext serviceContext) {
-
-		_kaleoInstanceToken = kaleoInstanceToken;
-		_workflowContext = workflowContext;
-		_serviceContext = serviceContext;
-	}
-
-	public ExecutionContext(
-		KaleoInstanceToken kaleoInstanceToken,
 		KaleoTaskInstanceToken kaleoTaskInstanceToken,
 		Map<String, Serializable> workflowContext,
 		ServiceContext serviceContext) {
@@ -58,6 +48,16 @@ public class ExecutionContext {
 
 		_kaleoInstanceToken = kaleoInstanceToken;
 		_kaleoTimerInstanceToken = kaleoTimerInstanceToken;
+		_workflowContext = workflowContext;
+		_serviceContext = serviceContext;
+	}
+
+	public ExecutionContext(
+		KaleoInstanceToken kaleoInstanceToken,
+		Map<String, Serializable> workflowContext,
+		ServiceContext serviceContext) {
+
+		_kaleoInstanceToken = kaleoInstanceToken;
 		_workflowContext = workflowContext;
 		_serviceContext = serviceContext;
 	}
@@ -94,6 +94,7 @@ public class ExecutionContext {
 
 	public void setKaleoTimerInstanceToken(
 		KaleoTimerInstanceToken kaleoTimerInstanceToken) {
+
 		_kaleoTimerInstanceToken = kaleoTimerInstanceToken;
 	}
 

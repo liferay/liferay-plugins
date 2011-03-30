@@ -37,8 +37,7 @@ public interface NodeExecutor {
 		throws PortalException, SystemException;
 
 	public void executeTimer(
-			KaleoNode currentKaleoNode,
-			ExecutionContext executionContext)
+			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException;
 
 	public void exit(

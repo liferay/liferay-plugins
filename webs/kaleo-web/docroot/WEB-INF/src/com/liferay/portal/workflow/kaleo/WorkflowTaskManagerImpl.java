@@ -97,14 +97,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 		serviceContext.setCompanyId(companyId);
 		serviceContext.setUserId(userId);
 
-		WorkflowTaskAdapter workflowTask =
-			(WorkflowTaskAdapter) _taskManager.completeWorkflowTask(
-				workflowTaskInstanceId, transitionName, comment, workflowContext,
-				serviceContext);
+		WorkflowTaskAdapter workflowTaskAdapter =
+			(WorkflowTaskAdapter)_taskManager.completeWorkflowTask(
+				workflowTaskInstanceId, transitionName, comment,
+				workflowContext, serviceContext);
 
 		try {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				workflowTask.getKaleoTaskInstanceToken();
+				workflowTaskAdapter.getKaleoTaskInstanceToken();
 
 			KaleoInstanceToken kaleoInstanceToken =
 				kaleoTaskInstanceToken.getKaleoInstanceToken();
@@ -123,7 +123,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			throw new WorkflowException("Unable to complete task", e);
 		}
 
-		return workflowTask;
+		return workflowTaskAdapter;
 	}
 
 	public List<String> getNextTransitionNames(

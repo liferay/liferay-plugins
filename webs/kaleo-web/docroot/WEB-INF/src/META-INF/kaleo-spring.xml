@@ -28,13 +28,13 @@
 	</bean>
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowEngineManager" class="com.liferay.portal.workflow.kaleo.WorkflowEngineManagerImpl" />
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowInstanceManager" class="com.liferay.portal.workflow.kaleo.WorkflowInstanceManagerImpl">
-		<property name="workflowEngine" ref="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" />
 		<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
+		<property name="workflowEngine" ref="com.liferay.portal.workflow.kaleo.runtime.WorkflowEngine" />
 	</bean>
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowLogManager" class="com.liferay.portal.workflow.kaleo.WorkflowLogManagerImpl" />
 	<bean id="com.liferay.portal.kernel.workflow.WorkflowTaskManager" class="com.liferay.portal.workflow.kaleo.WorkflowTaskManagerImpl">
-		<property name="taskManager" ref="com.liferay.portal.workflow.kaleo.runtime.TaskManager" />
 		<property name="kaleoSignaler" ref="com.liferay.portal.workflow.kaleo.runtime.KaleoSignaler" />
+		<property name="taskManager" ref="com.liferay.portal.workflow.kaleo.runtime.TaskManager" />
 	</bean>
 	<bean id="com.liferay.portal.workflow.kaleo.manager.PortalKaleoManager" class="com.liferay.portal.workflow.kaleo.manager.DefaultPortalKaleoManager">
 		<property name="defaultDefinitionName" value="Single Approver" />
