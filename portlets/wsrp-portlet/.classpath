@@ -3,33 +3,33 @@
 <classpath>
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/service" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
-	<classpathentry kind="src" path="/portal-trunk" />
+	<classpathentry kind="src" path="/portal" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/development/activation.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/development/annotations.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/development/jsp-api.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/development/mail.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/development/servlet-api.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/axis.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-beanutils.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-discovery.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/commons-logging.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jabsorb.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jaxrpc.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jstl-api.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/jstl-impl.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/log4j.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/saaj-api.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/saaj-impl.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-api.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/slf4j-log4j12.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/wsdl4j.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/lib/portal/xmlsec.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/portal-service/portal-service.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/util-bridges/util-bridges.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/util-java/util-java.jar" />
-	<classpathentry kind="lib" path="/portal-trunk/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/activation.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/annotations.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/jsp-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/mail.jar" />
+	<classpathentry kind="lib" path="/portal/lib/development/servlet-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/global/portlet.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/axis.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-beanutils.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-discovery.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jabsorb.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jaxrpc.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/jstl-impl.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/log4j.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/saaj-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/saaj-impl.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-api.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/slf4j-log4j12.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/wsdl4j.jar" />
+	<classpathentry kind="lib" path="/portal/lib/portal/xmlsec.jar" />
+	<classpathentry kind="lib" path="/portal/portal-service/portal-service.jar" />
+	<classpathentry kind="lib" path="/portal/util-bridges/util-bridges.jar" />
+	<classpathentry kind="lib" path="/portal/util-java/util-java.jar" />
+	<classpathentry kind="lib" path="/portal/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/oasis-wsrp.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wss4j.jar" />
 	<classpathentry kind="output" path="bin" />
