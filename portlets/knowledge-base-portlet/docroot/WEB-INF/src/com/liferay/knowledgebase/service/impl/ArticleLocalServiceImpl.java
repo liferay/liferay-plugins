@@ -125,7 +125,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setDescription(description);
 		article.setPriority(priority);
 		article.setViewCount(0);
-		article.setLatest(ArticleConstants.LATEST_VERSION);
+		article.setLatest(true);
+		article.setMain(false);
 		article.setStatus(WorkflowConstants.STATUS_DRAFT);
 
 		articlePersistence.update(article, false);
@@ -331,21 +332,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return articlePersistence.findByR_V(resourcePrimKey, version);
 	}
 
-	public List<Article> getArticles(
-			long resourcePrimKey, int status, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.findByResourcePrimKey(
-				resourcePrimKey, start, end, orderByComparator);
-		}
-
-		return articlePersistence.findByR_S(
-			resourcePrimKey, status, start, end, orderByComparator);
-	}
-
-	public List<Article> getArticles(
+	public List<Article> getArticleAndAllDescendants(
 			long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -362,13 +349,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			if (status == WorkflowConstants.STATUS_ANY) {
 				curArticles = articlePersistence.findByP_L(
-					ArrayUtil.toArray(params[1]),
-					new int[] {ArticleConstants.LATEST_VERSION});
+					ArrayUtil.toArray(params[1]), true);
+			}
+			else if (status == WorkflowConstants.STATUS_APPROVED) {
+				curArticles = articlePersistence.findByP_M(
+					ArrayUtil.toArray(params[1]), true);
 			}
 			else {
-				curArticles = articlePersistence.findByP_L_S(
-					ArrayUtil.toArray(params[1]), ArticleConstants.LATEST_ANY,
-					status);
+				curArticles = articlePersistence.findByP_S(
+					ArrayUtil.toArray(params[1]), status);
 			}
 
 			articles.addAll(curArticles);
@@ -387,6 +376,30 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return new UnmodifiableList<Article>(articles);
 	}
 
+	public List<Article> getArticleVersions(
+			long resourcePrimKey, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.findByResourcePrimKey(
+				resourcePrimKey, start, end, orderByComparator);
+		}
+
+		return articlePersistence.findByR_S(
+			resourcePrimKey, status, start, end, orderByComparator);
+	}
+
+	public int getArticleVersionsCount(long resourcePrimKey, int status)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.countByResourcePrimKey(resourcePrimKey);
+		}
+
+		return articlePersistence.countByR_S(resourcePrimKey, status);
+	}
+
 	public List<Article> getArticles(
 			long[] resourcePrimKeys, int status,
 			OrderByComparator orderByComparator)
@@ -401,13 +414,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 			if (status == WorkflowConstants.STATUS_ANY) {
 				curArticles = articlePersistence.findByR_L(
-					ArrayUtil.toArray(params[1]),
-					new int[] {ArticleConstants.LATEST_VERSION});
+					ArrayUtil.toArray(params[1]), true);
+			}
+			else if (status == WorkflowConstants.STATUS_APPROVED) {
+				curArticles = articlePersistence.findByR_M(
+					ArrayUtil.toArray(params[1]), true);
 			}
 			else {
-				curArticles = articlePersistence.findByR_L_S(
-					ArrayUtil.toArray(params[1]),
-					ArticleConstants.LATEST_ANY, status);
+				curArticles = articlePersistence.findByR_S(
+					ArrayUtil.toArray(params[1]), status);
 			}
 
 			articles.addAll(curArticles);
@@ -423,16 +438,6 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		return new UnmodifiableList<Article>(articles);
 	}
 
-	public int getArticlesCount(long resourcePrimKey, int status)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.countByResourcePrimKey(resourcePrimKey);
-		}
-
-		return articlePersistence.countByR_S(resourcePrimKey, status);
-	}
-
 	public List<Article> getCompanyArticles(
 			long companyId, int status, int start, int end,
 			OrderByComparator orderByComparator)
@@ -440,25 +445,28 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.findByC_L(
-				companyId, ArticleConstants.LATEST_VERSION, start, end,
-				orderByComparator);
+				companyId, true, start, end, orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.findByC_M(
+				companyId, true, start, end, orderByComparator);
 		}
 
-		return articlePersistence.findByC_L_S(
-			companyId, ArticleConstants.LATEST_ANY, status, start, end,
-			orderByComparator);
+		return articlePersistence.findByC_S(
+			companyId, status, start, end, orderByComparator);
 	}
 
 	public int getCompanyArticlesCount(long companyId, int status)
 		throws SystemException {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.countByC_L(
-				companyId, ArticleConstants.LATEST_VERSION);
+			return articlePersistence.countByC_L(companyId, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.countByC_M(companyId, true);
 		}
 
-		return articlePersistence.countByC_L_S(
-			companyId, ArticleConstants.LATEST_ANY, status);
+		return articlePersistence.countByC_S(companyId, status);
 	}
 
 	public List<Article> getGroupArticles(
@@ -468,25 +476,28 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.findByG_L(
-				groupId, ArticleConstants.LATEST_VERSION, start, end,
-				orderByComparator);
+				groupId, true, start, end, orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.findByG_M(
+				groupId, true, start, end, orderByComparator);
 		}
 
-		return articlePersistence.findByG_L_S(
-			groupId, ArticleConstants.LATEST_ANY, status, start, end,
-			orderByComparator);
+		return articlePersistence.findByG_S(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	public int getGroupArticlesCount(long groupId, int status)
 		throws SystemException {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.countByG_L(
-				groupId, ArticleConstants.LATEST_VERSION);
+			return articlePersistence.countByG_L(groupId, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.countByG_M(groupId, true);
 		}
 
-		return articlePersistence.countByG_L_S(
-			groupId, ArticleConstants.LATEST_ANY, status);
+		return articlePersistence.countByG_S(groupId, status);
 	}
 
 	public Article getLatestArticle(long resourcePrimKey, int status)
@@ -508,13 +519,18 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.findByG_P_L(
-				groupId, parentResourcePrimKey, ArticleConstants.LATEST_VERSION,
-				start, end, orderByComparator);
+				groupId, parentResourcePrimKey, true, start, end,
+				orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.findByG_P_M(
+				groupId, parentResourcePrimKey, true, start, end,
+				orderByComparator);
 		}
 
-		return articlePersistence.findByG_P_L_S(
-			groupId, new long[] {parentResourcePrimKey},
-			ArticleConstants.LATEST_ANY, status, start, end, orderByComparator);
+		return articlePersistence.findByG_P_S(
+			groupId, parentResourcePrimKey, status, start, end,
+			orderByComparator);
 	}
 
 	public int getSiblingArticlesCount(
@@ -523,13 +539,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.countByG_P_L(
-				groupId, parentResourcePrimKey,
-				ArticleConstants.LATEST_VERSION);
+				groupId, parentResourcePrimKey, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.countByG_P_M(
+				groupId, parentResourcePrimKey, true);
 		}
 
-		return articlePersistence.countByG_P_L_S(
-			groupId, new long[] {parentResourcePrimKey},
-			ArticleConstants.LATEST_ANY, status);
+		return articlePersistence.countByG_P_S(
+			groupId, parentResourcePrimKey, status);
 	}
 
 	public void moveArticle(
@@ -543,7 +561,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		updatePermissionFields(resourcePrimKey, parentResourcePrimKey);
 
-		List<Article> articles = getArticles(
+		List<Article> articles = getArticleVersions(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, new ArticleVersionComparator());
 
@@ -666,13 +684,14 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		article.setDescription(description);
 		article.setPriority(oldPriority);
 		article.setViewCount(oldViewCount);
-		article.setLatest(ArticleConstants.LATEST_VERSION);
+		article.setLatest(true);
+		article.setMain(false);
 		article.setStatus(status);
 
 		articlePersistence.update(article, false);
 
-		if (oldStatus == WorkflowConstants.STATUS_APPROVED) {
-			oldArticle.setLatest(ArticleConstants.LATEST_APPROVED);
+		if (oldVersion < version) {
+			oldArticle.setLatest(false);
 
 			articlePersistence.update(oldArticle, false);
 		}
@@ -780,7 +799,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			double priority = resourcePrimKeyToPriorityMap.get(
 				article1.getResourcePrimKey());
 
-			List<Article> articles2 = getArticles(
+			List<Article> articles2 = getArticleVersions(
 				article1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
@@ -797,15 +816,21 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		// Article
+
 		User user = userPersistence.findByPrimaryKey(userId);
+		boolean main = false;
 		Date now = new Date();
 
-		// Article
+		if (status == WorkflowConstants.STATUS_APPROVED) {
+			main = true;
+		}
 
 		Article article = getLatestArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 		article.setModifiedDate(serviceContext.getModifiedDate(now));
+		article.setMain(main);
 		article.setStatus(status);
 		article.setStatusByUserId(user.getUserId());
 		article.setStatusByUserName(user.getFullName());
@@ -821,7 +846,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Article oldArticle = articlePersistence.findByR_V(
 				resourcePrimKey, article.getVersion() - 1);
 
-			oldArticle.setLatest(ArticleConstants.LATEST_ARCHIVED);
+			oldArticle.setMain(false);
 
 			articlePersistence.update(oldArticle, false);
 		}
@@ -1001,9 +1026,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			Article.class, getClass().getClassLoader());
 
-		Property latestProperty = PropertyFactoryUtil.forName("latest");
+		if (status == WorkflowConstants.STATUS_ANY) {
+			Property property = PropertyFactoryUtil.forName("latest");
 
-		dynamicQuery.add(latestProperty.eq(ArticleConstants.LATEST_VERSION));
+			dynamicQuery.add(property.eq(Boolean.TRUE));
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			Property property = PropertyFactoryUtil.forName("main");
+
+			dynamicQuery.add(property.eq(Boolean.TRUE));
+		}
 
 		if (groupId > 0) {
 			Property property = PropertyFactoryUtil.forName("groupId");
@@ -1301,11 +1333,11 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Sync database
 
-		List<Article> articles1 = getArticles(
+		List<Article> articles1 = getArticleAndAllDescendants(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
 
 		for (Article article1 : articles1) {
-			List<Article> articles2 = getArticles(
+			List<Article> articles2 = getArticleVersions(
 				article1.getResourcePrimKey(), WorkflowConstants.STATUS_ANY,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 

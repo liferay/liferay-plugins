@@ -244,8 +244,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 			getPortletPath(portletDataContext) + "/articles/versions/" +
 				resourcePrimKey;
 
-		List<Article> articles = ArticleUtil.findByResourcePrimKey(
-			resourcePrimKey, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+		List<Article> articles = ArticleUtil.findByR_S(
+			resourcePrimKey, WorkflowConstants.STATUS_APPROVED,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new ArticleModifiedDateComparator(true));
 
 		for (Article article : articles) {
@@ -384,10 +385,9 @@ public class AdminPortletDataHandlerImpl extends BasePortletDataHandler {
 		};
 
 		while ((params = KnowledgeBaseUtil.getParams(params[0])) != null) {
-			List<Article> curArticles = ArticleUtil.findByG_P_L_S(
+			List<Article> curArticles = ArticleUtil.findByG_P_M(
 				portletDataContext.getScopeGroupId(),
-				ArrayUtil.toArray(params[1]), ArticleConstants.LATEST_ANY,
-				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
+				ArrayUtil.toArray(params[1]), true, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, new ArticlePriorityComparator(true));
 
 			siblingArticles.addAll(curArticles);

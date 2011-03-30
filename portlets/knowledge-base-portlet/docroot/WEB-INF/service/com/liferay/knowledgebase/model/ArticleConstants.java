@@ -28,14 +28,4 @@ public class ArticleConstants {
 
 	public static final String DIR_NAME_PREFIX = "knowledgebase/articles/";
 
-	public static final int[] LATEST_ANY = new int[] {
-		ArticleConstants.LATEST_APPROVED, ArticleConstants.LATEST_VERSION
-	};
-
-	public static final int LATEST_APPROVED = 2;
-
-	public static final int LATEST_ARCHIVED = 0;
-
-	public static final int LATEST_VERSION = 1;
-
 }

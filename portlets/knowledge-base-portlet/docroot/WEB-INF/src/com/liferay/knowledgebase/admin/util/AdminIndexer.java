@@ -206,9 +206,10 @@ public class AdminIndexer extends BaseIndexer {
 
 		// See ArticlePermission#contains
 
-		List<Article> articles = ArticleLocalServiceUtil.getArticles(
-			article.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED,
-			null);
+		List<Article> articles =
+			ArticleLocalServiceUtil.getArticleAndAllDescendants(
+				article.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED,
+				null);
 
  		Collection<Document> documents = new ArrayList<Document>();
 

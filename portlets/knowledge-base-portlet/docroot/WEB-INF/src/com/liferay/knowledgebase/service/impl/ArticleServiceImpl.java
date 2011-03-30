@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.service.impl;
 
 import com.liferay.knowledgebase.model.Article;
-import com.liferay.knowledgebase.model.ArticleConstants;
 import com.liferay.knowledgebase.model.ArticleSearchDisplay;
 import com.liferay.knowledgebase.model.impl.ArticleSearchDisplayImpl;
 import com.liferay.knowledgebase.service.base.ArticleServiceBaseImpl;
@@ -137,45 +136,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return articleLocalService.getArticle(resourcePrimKey, version);
 	}
 
-	public String getArticleRSS(
-			long resourcePrimKey, int status, int rssDelta,
-			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
-
-		Article article = articleLocalService.getLatestArticle(
-			resourcePrimKey, status);
-
-		String name = HtmlUtil.escape(article.getTitle());
-		String description = HtmlUtil.escape(article.getTitle());
-
-		String feedURL = KnowledgeBaseUtil.getArticleURL(
-			themeDisplay.getPlid(), resourcePrimKey,
-			themeDisplay.getPortalURL(), false);
-
-		List<Article> articles = getArticles(
-			article.getGroupId(), resourcePrimKey, status,
-			new ArticleModifiedDateComparator());
-
-		return exportToRSS(
-			rssDisplayStyle, rssFormat, name, description, feedURL,
-			ListUtil.subList(articles, 0, rssDelta), themeDisplay);
-	}
-
-	public List<Article> getArticles(
-			long groupId, long resourcePrimKey, int status, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.filterFindByR_G(
-				resourcePrimKey, groupId, start, end, orderByComparator);
-		}
-
-		return articlePersistence.filterFindByR_G_S(
-			resourcePrimKey, groupId, status, start, end, orderByComparator);
-	}
-
-	public List<Article> getArticles(
+	public List<Article> getArticleAndAllDescendants(
 			long groupId, long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -192,13 +153,15 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			if (status == WorkflowConstants.STATUS_ANY) {
 				curArticles = articlePersistence.filterFindByG_P_L(
-					groupId, ArrayUtil.toArray(params[1]),
-					new int[] {ArticleConstants.LATEST_VERSION});
+					groupId, ArrayUtil.toArray(params[1]), true);
+			}
+			else if (status == WorkflowConstants.STATUS_APPROVED) {
+				curArticles = articlePersistence.filterFindByG_P_M(
+					groupId, ArrayUtil.toArray(params[1]), true);
 			}
 			else {
-				curArticles = articlePersistence.filterFindByG_P_L_S(
-					groupId, ArrayUtil.toArray(params[1]),
-					ArticleConstants.LATEST_ANY, status);
+				curArticles = articlePersistence.filterFindByG_P_S(
+					groupId, ArrayUtil.toArray(params[1]), status);
 			}
 
 			articles.addAll(curArticles);
@@ -217,6 +180,57 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		return new UnmodifiableList<Article>(articles);
 	}
 
+	public String getArticleRSS(
+			long resourcePrimKey, int status, int rssDelta,
+			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
+		throws PortalException, SystemException {
+
+		Article article = articleLocalService.getLatestArticle(
+			resourcePrimKey, status);
+
+		String name = HtmlUtil.escape(article.getTitle());
+		String description = HtmlUtil.escape(article.getTitle());
+
+		String feedURL = KnowledgeBaseUtil.getArticleURL(
+			themeDisplay.getPlid(), resourcePrimKey,
+			themeDisplay.getPortalURL(), false);
+
+		List<Article> articles = getArticleAndAllDescendants(
+			article.getGroupId(), resourcePrimKey, status,
+			new ArticleModifiedDateComparator());
+
+		return exportToRSS(
+			rssDisplayStyle, rssFormat, name, description, feedURL,
+			ListUtil.subList(articles, 0, rssDelta), themeDisplay);
+	}
+
+	public List<Article> getArticleVersions(
+			long groupId, long resourcePrimKey, int status, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.filterFindByR_G(
+				resourcePrimKey, groupId, start, end, orderByComparator);
+		}
+
+		return articlePersistence.filterFindByR_G_S(
+			resourcePrimKey, groupId, status, start, end, orderByComparator);
+	}
+
+	public int getArticleVersionsCount(
+			long groupId, long resourcePrimKey, int status)
+		throws SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return articlePersistence.filterCountByR_G(
+				resourcePrimKey, groupId);
+		}
+
+		return articlePersistence.filterCountByR_G_S(
+			resourcePrimKey, groupId, status);
+	}
+
 	public List<Article> getArticles(
 			long groupId, long[] resourcePrimKeys, int status,
 			OrderByComparator orderByComparator)
@@ -231,13 +245,15 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 			if (status == WorkflowConstants.STATUS_ANY) {
 				curArticles = articlePersistence.filterFindByR_G_L(
-					ArrayUtil.toArray(params[1]), groupId,
-					new int[] {ArticleConstants.LATEST_VERSION});
+					ArrayUtil.toArray(params[1]), groupId, true);
+			}
+			else if (status == WorkflowConstants.STATUS_APPROVED) {
+				curArticles = articlePersistence.filterFindByR_G_M(
+					ArrayUtil.toArray(params[1]), groupId, true);
 			}
 			else {
-				curArticles = articlePersistence.filterFindByR_G_L_S(
-					ArrayUtil.toArray(params[1]), groupId,
-					ArticleConstants.LATEST_ANY, status);
+				curArticles = articlePersistence.filterFindByR_G_S(
+					ArrayUtil.toArray(params[1]), groupId, status);
 			}
 
 			articles.addAll(curArticles);
@@ -251,18 +267,6 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		return new UnmodifiableList<Article>(articles);
-	}
-
-	public int getArticlesCount(long groupId, long resourcePrimKey, int status)
-		throws SystemException {
-
-		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.filterCountByR_G(
-				resourcePrimKey, groupId);
-		}
-
-		return articlePersistence.filterCountByR_G_S(
-			resourcePrimKey, groupId, status);
 	}
 
 	public ArticleSearchDisplay getArticleSearchDisplay(
@@ -343,25 +347,28 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.filterFindByG_L(
-				groupId, new int[] {ArticleConstants.LATEST_VERSION}, start,
-				end, orderByComparator);
+				groupId, true, start, end, orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.filterFindByG_M(
+				groupId, true, start, end, orderByComparator);
 		}
 
-		return articlePersistence.filterFindByG_L_S(
-			groupId, ArticleConstants.LATEST_ANY, status, start, end,
-			orderByComparator);
+		return articlePersistence.filterFindByG_S(
+			groupId, status, start, end, orderByComparator);
 	}
 
 	public int getGroupArticlesCount(long groupId, int status)
 		throws SystemException {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
-			return articlePersistence.filterCountByG_L(
-				groupId, new int[] {ArticleConstants.LATEST_VERSION});
+			return articlePersistence.filterCountByG_L(groupId, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.filterCountByG_M(groupId, true);
 		}
 
-		return articlePersistence.filterCountByG_L_S(
-			groupId, ArticleConstants.LATEST_ANY, status);
+		return articlePersistence.filterCountByG_S(groupId, status);
 	}
 
 	public String getGroupArticlesRSS(
@@ -403,13 +410,18 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.filterFindByG_P_L(
-				groupId, parentResourcePrimKey, ArticleConstants.LATEST_VERSION,
-				start, end, orderByComparator);
+				groupId, parentResourcePrimKey, true, start, end,
+				orderByComparator);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.filterFindByG_P_M(
+				groupId, parentResourcePrimKey, true, start, end,
+				orderByComparator);
 		}
 
-		return articlePersistence.filterFindByG_P_L_S(
-			groupId, new long[] {parentResourcePrimKey},
-			ArticleConstants.LATEST_ANY, status, start, end, orderByComparator);
+		return articlePersistence.filterFindByG_P_S(
+			groupId, parentResourcePrimKey, status, start, end,
+			orderByComparator);
 	}
 
 	public int getSiblingArticlesCount(
@@ -418,13 +430,15 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			return articlePersistence.filterCountByG_P_L(
-				groupId, parentResourcePrimKey,
-				ArticleConstants.LATEST_VERSION);
+				groupId, parentResourcePrimKey, true);
+		}
+		else if (status == WorkflowConstants.STATUS_APPROVED) {
+			return articlePersistence.filterCountByG_P_M(
+				groupId, parentResourcePrimKey, true);
 		}
 
-		return articlePersistence.filterCountByG_P_L_S(
-			groupId, new long[] {parentResourcePrimKey},
-			ArticleConstants.LATEST_ANY, status);
+		return articlePersistence.filterCountByG_P_S(
+			groupId, parentResourcePrimKey, status);
 	}
 
 	public void moveArticle(

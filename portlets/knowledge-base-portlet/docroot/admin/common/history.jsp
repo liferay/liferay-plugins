@@ -65,8 +65,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<%
 				int selStatus = ArticlePermission.contains(permissionChecker, article, ActionKeys.UPDATE) ? WorkflowConstants.STATUS_ANY : status;
 
-				pageContext.setAttribute("results", ArticleServiceUtil.getArticles(scopeGroupId, article.getResourcePrimKey(), selStatus, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()));
-				pageContext.setAttribute("total", ArticleServiceUtil.getArticlesCount(scopeGroupId, article.getResourcePrimKey(), selStatus));
+				pageContext.setAttribute("results", ArticleServiceUtil.getArticleVersions(scopeGroupId, article.getResourcePrimKey(), selStatus, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()));
+				pageContext.setAttribute("total", ArticleServiceUtil.getArticleVersionsCount(scopeGroupId, article.getResourcePrimKey(), selStatus));
 				%>
 
 			</liferay-ui:search-container-results>

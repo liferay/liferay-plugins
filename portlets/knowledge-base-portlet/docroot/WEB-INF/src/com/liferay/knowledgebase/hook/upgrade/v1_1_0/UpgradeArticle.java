@@ -28,14 +28,6 @@ import java.sql.ResultSet;
 public class UpgradeArticle extends UpgradeProcess {
 
 	protected void doUpgrade() throws Exception {
-		if (!tableHasColumn("KB_Article", "latest")) {
-			updateArticles();
-		}
-	}
-
-	protected void updateArticles() throws Exception {
-		runSQL("alter table KB_Article add latest INTEGER");
-
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -60,26 +52,28 @@ public class UpgradeArticle extends UpgradeProcess {
 				long curResourcePrimKey = rs.getLong("resourcePrimKey");
 				int curStatus = rs.getInt("status");
 
-				int latest = _LATEST_ARCHIVED;
+				String latest = "FALSE";
+				String main = "FALSE";
 
 				if (curResourcePrimKey != resourcePrimKey) {
 					resourcePrimKey = curResourcePrimKey;
-					status = curStatus;
+					status = -1;
 
-					latest = _LATEST_VERSION;
-				}
-				else if ((curStatus != status) &&
-						 (curStatus == _STATUS_APPROVED)) {
-
-					status = curStatus;
-
-					latest = _LATEST_APPROVED;
+					latest = "TRUE";
 				}
 
-				sb = new StringBundler(4);
+				if ((curStatus != status) && (curStatus == _STATUS_APPROVED)) {
+					status = curStatus;
+
+					main = "TRUE";
+				}
+
+				sb = new StringBundler(6);
 
 				sb.append("update KB_Article set latest = ");
 				sb.append(latest);
+				sb.append(", main = ");
+				sb.append(main);
 				sb.append(" where articleId = ");
 				sb.append(curArticleId);
 
@@ -90,12 +84,6 @@ public class UpgradeArticle extends UpgradeProcess {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
-
-	private static final int _LATEST_APPROVED = 2;
-
-	private static final int _LATEST_ARCHIVED = 0;
-
-	private static final int _LATEST_VERSION = 1;
 
 	private static final int _STATUS_APPROVED = 0;
 
