@@ -370,8 +370,9 @@ html body {
 	position: relative;
 }
 
-.ie6 .panel-output, .ie7 .panel-output {
-	width: 100%;
+.ie6 .panel-window, .ie7 .panel-window {
+	min-width: auto;
+	width: 226px;
 }
 
 .panel-output .blurb {
