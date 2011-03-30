@@ -38,8 +38,8 @@ import java.util.List;
  * @author Michael C. Han
  */
 @Transactional(
-	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
-	rollbackFor = {PortalException.class, SystemException.class})
+	isolation = Isolation.PORTAL, propagation = Propagation.SUPPORTS,
+	rollbackFor = {Exception.class})
 public class DefaultKaleoSignaler
 	extends BaseKaleoBean implements KaleoSignaler {
 
@@ -58,6 +58,9 @@ public class DefaultKaleoSignaler
 		_singleDestinationMessageSender.send(startPathElement);
 	}
 
+	@Transactional(
+		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
+		rollbackFor = {Exception.class})
 	public void signalExecute(
 			KaleoNode currentKaleoNode, ExecutionContext executionContext)
 		throws PortalException, SystemException {

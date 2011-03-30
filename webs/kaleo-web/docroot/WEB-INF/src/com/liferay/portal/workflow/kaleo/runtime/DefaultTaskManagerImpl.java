@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.runtime;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
@@ -43,7 +44,9 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-@Transactional(isolation = Isolation.PORTAL, rollbackFor = {Exception.class})
+@Transactional(
+	isolation = Isolation.PORTAL, propagation = Propagation.REQUIRED,
+	rollbackFor = {Exception.class})
 public class DefaultTaskManagerImpl
 	extends BaseKaleoBean implements TaskManager {
 
@@ -79,6 +82,9 @@ public class DefaultTaskManagerImpl
 		}
 	}
 
+	@Transactional(
+		isolation = Isolation.PORTAL, propagation = Propagation.REQUIRES_NEW,
+		rollbackFor = {Exception.class})
 	public WorkflowTask completeWorkflowTask(
 			long workflowTaskInstanceId, String transitionName, String comment,
 			Map<String, Serializable> workflowContext,
