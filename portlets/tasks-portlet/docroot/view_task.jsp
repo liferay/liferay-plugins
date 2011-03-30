@@ -108,9 +108,35 @@ boolean neverDue = true;
 
 		<input type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED %>)" />
 
-		<input type="button" value="<liferay-ui:message key="edit" />" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
+		<span class="task-action-spacer">
+			<input type="button" value="<liferay-ui:message key="edit" />" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');" />
+
+			<input type="button" value="<liferay-ui:message key="delete" />" onClick="if(confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-entry" />')){<portlet:namespace />deleteTask()}" />
+		</span>
 
 		<aui:script use="aui-io">
+			Liferay.provide(
+				window,
+				'<portlet:namespace />deleteTask',
+				function() {
+					A.io.request(
+						'<portlet:actionURL name="deleteTasksEntry" />',
+						{
+							after: {
+								success: function() {
+									Liferay.Tasks.updateTaskList();
+
+									Liferay.Tasks.closePopup();
+								}
+							},
+							data: {
+								tasksEntryId: <%= tasksEntry.getTasksEntryId() %>
+							}
+						}
+					);
+				}
+			);
+
 			Liferay.provide(
 				window,
 				'<portlet:namespace />updateStatus',
@@ -118,17 +144,17 @@ boolean neverDue = true;
 					A.io.request(
 						'<portlet:actionURL name="updateTasksEntryStatus" />',
 						{
-							data: {
-								tasksEntryId: <%= tasksEntry.getTasksEntryId() %>,
-								resolverUserId: <%= user.getUserId() %>,
-								status: status
-							},
-							on: {
+							after: {
 								success: function() {
 									Liferay.Tasks.updateTaskList();
 
 									Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="jspPage" value="/tasks/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', 'Tasks');
 								}
+							},
+							data: {
+								tasksEntryId: <%= tasksEntry.getTasksEntryId() %>,
+								resolverUserId: <%= user.getUserId() %>,
+								status: status
 							}
 						}
 					);
@@ -137,7 +163,7 @@ boolean neverDue = true;
 		</aui:script>
 	</c:if>
 
-	<div class="task-action-close">
+	<div class="task-action-right">
 		<input type="button" value="<liferay-ui:message key="close" />" onClick="Liferay.Tasks.closePopup();" />
 	</div>
 </div>

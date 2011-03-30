@@ -11,7 +11,6 @@ AUI().use(
 
 				instance._setupFilter();
 				instance._setupTagsPopup();
-				instance._setupPopup();
 				instance._setupProgressBar();
 
 				instance._currentTab = param.currentTab;
@@ -76,6 +75,10 @@ AUI().use(
 				instance._popup.io.set('uri', null);
 
 				return instance._popup;
+			},
+
+			openTask: function(href) {
+				this.displayPopup(href, "Tasks");
 			},
 
 			toggleCommentForm: function() {
@@ -188,24 +191,6 @@ AUI().use(
 						event.currentTarget.one('.tags').hide();
 					},
 					'.tags-wrapper'
-				);
-			},
-
-			_setupPopup: function() {
-				var instance = this;
-
-				A.one('.tasks-portlet').delegate(
-					'click',
-					function(event) {
-						event.halt();
-
-						var href = event.currentTarget.getAttribute('href');
-
-						if (href) {
-							instance.displayPopup(href, "Tasks");
-						}
-					},
-					'a.tasks-title'
 				);
 			},
 

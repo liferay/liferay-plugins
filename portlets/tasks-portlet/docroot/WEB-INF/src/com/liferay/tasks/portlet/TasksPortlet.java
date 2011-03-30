@@ -14,6 +14,8 @@
 
 package com.liferay.tasks.portlet;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -32,6 +34,7 @@ import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 import com.liferay.tasks.service.TasksEntryServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
+import com.liferay.util.servlet.ServletResponseUtil;
 
 import java.io.IOException;
 
@@ -42,6 +45,8 @@ import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ryan Park
@@ -61,6 +66,17 @@ public class TasksPortlet extends MVCPortlet {
 		if (Validator.isNotNull(redirect)) {
 			actionResponse.sendRedirect(redirect);
 		}
+		else {
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			jsonObject.put("success", true);
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				actionResponse);
+
+			ServletResponseUtil.write(response, jsonObject.toString());
+		}
+
 	}
 
 	public void processAction(
@@ -183,8 +199,9 @@ public class TasksPortlet extends MVCPortlet {
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			PortalUtil.getHttpServletRequest(actionRequest), "1_WAR_tasksportlet",
-			themeDisplay.getLayout().getPlid(), PortletRequest.RENDER_PHASE);
+			PortalUtil.getHttpServletRequest(actionRequest),
+			"1_WAR_tasksportlet", themeDisplay.getLayout().getPlid(),
+			PortletRequest.RENDER_PHASE);
 
 		portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 

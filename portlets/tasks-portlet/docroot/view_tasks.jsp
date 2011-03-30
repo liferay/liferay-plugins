@@ -116,7 +116,7 @@ taskListURL.setParameter("tabs2", tabs2);
 			<div class="result-title">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(rowHREF) %>">
-						<a class="<%= cssClass %>" href="<%= rowHREF %>"><%= tasksEntry.getTitle() %></a>
+						<a class="<%= cssClass %>" href="javascript:;" onClick="Liferay.Tasks.openTask('<%= rowHREF %>');"><%= tasksEntry.getTitle() %></a>
 					</c:when>
 					<c:otherwise>
 						<span class="<%= cssClass %>"><%= tasksEntry.getTitle() %></span>

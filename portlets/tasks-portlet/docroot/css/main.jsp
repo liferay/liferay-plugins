@@ -350,6 +350,12 @@
 	margin: 1em 0;
 }
 
-.tasks-dialog .task-action-close {
+.tasks-dialog .task-action-spacer {
+	border-left: 1px solid #BFBFBF;
+	margin-left: .5em;
+	padding-left: .5em;
+}
+
+.tasks-dialog .task-action-right {
 	float: right;
 }
