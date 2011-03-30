@@ -129,14 +129,18 @@ public class CalendarBookingLocalServiceClp
 				com.liferay.portal.service.ServiceContext.class);
 
 		_updateCalendarBookingMethodKey26 = new MethodKey(_classLoaderProxy.getClassName(),
+				"updateCalendarBooking", long.class, long.class, int.class,
+				com.liferay.portal.service.ServiceContext.class);
+
+		_updateCalendarBookingMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarBooking", long.class, long.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateCalendarBookingsMethodKey27 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateCalendarBookingsMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateCalendarBookings", long.class,
 				com.liferay.portal.service.ServiceContext.class);
 
-		_updateStatusMethodKey28 = new MethodKey(_classLoaderProxy.getClassName(),
+		_updateStatusMethodKey29 = new MethodKey(_classLoaderProxy.getClassName(),
 				"updateStatus", long.class, long.class, int.class,
 				com.liferay.portal.service.ServiceContext.class);
 	}
@@ -885,13 +889,48 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		long calendarBookingId, long calendarEventId,
+		long userId, long calendarBookingId, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey26,
+				userId, calendarBookingId, status,
+				ClpSerializer.translateInput(serviceContext));
+
+		try {
+			returnObj = _classLoaderProxy.invoke(methodHandler);
+		}
+		catch (Throwable t) {
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
+		long calendarBookingId, long calendarEventId,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingMethodKey27,
 				calendarBookingId, calendarEventId,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -923,7 +962,7 @@ public class CalendarBookingLocalServiceClp
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingsMethodKey27,
+		MethodHandler methodHandler = new MethodHandler(_updateCalendarBookingsMethodKey28,
 				calendarEventId, ClpSerializer.translateInput(serviceContext));
 
 		try {
@@ -955,7 +994,7 @@ public class CalendarBookingLocalServiceClp
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey28,
+		MethodHandler methodHandler = new MethodHandler(_updateStatusMethodKey29,
 				userId, calendarBookingId, status,
 				ClpSerializer.translateInput(serviceContext));
 
@@ -1015,6 +1054,7 @@ public class CalendarBookingLocalServiceClp
 	private MethodKey _searchCountMethodKey24;
 	private MethodKey _updateCalendarBookingMethodKey25;
 	private MethodKey _updateCalendarBookingMethodKey26;
-	private MethodKey _updateCalendarBookingsMethodKey27;
-	private MethodKey _updateStatusMethodKey28;
+	private MethodKey _updateCalendarBookingMethodKey27;
+	private MethodKey _updateCalendarBookingsMethodKey28;
+	private MethodKey _updateStatusMethodKey29;
 }

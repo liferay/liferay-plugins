@@ -16,6 +16,7 @@ package com.liferay.calendar.model.impl;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarBookingModel;
+import com.liferay.calendar.model.CalendarBookingSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -41,7 +42,9 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -108,6 +111,63 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.calendar.model.CalendarBooking"),
 			true);
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static CalendarBooking toModel(CalendarBookingSoap soapModel) {
+		CalendarBooking model = new CalendarBookingImpl();
+
+		model.setUuid(soapModel.getUuid());
+		model.setCalendarBookingId(soapModel.getCalendarBookingId());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateDate(soapModel.getCreateDate());
+		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setCalendarEventId(soapModel.getCalendarEventId());
+		model.setCalendarResourceId(soapModel.getCalendarResourceId());
+		model.setClassNameId(soapModel.getClassNameId());
+		model.setClassPK(soapModel.getClassPK());
+		model.setTitle(soapModel.getTitle());
+		model.setName(soapModel.getName());
+		model.setDescription(soapModel.getDescription());
+		model.setLocation(soapModel.getLocation());
+		model.setStartDate(soapModel.getStartDate());
+		model.setEndDate(soapModel.getEndDate());
+		model.setDurationHour(soapModel.getDurationHour());
+		model.setDurationMinute(soapModel.getDurationMinute());
+		model.setRecurrence(soapModel.getRecurrence());
+		model.setType(soapModel.getType());
+		model.setRequired(soapModel.getRequired());
+		model.setStatus(soapModel.getStatus());
+		model.setStatusByUserId(soapModel.getStatusByUserId());
+		model.setStatusByUserName(soapModel.getStatusByUserName());
+		model.setStatusDate(soapModel.getStatusDate());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<CalendarBooking> toModels(
+		CalendarBookingSoap[] soapModels) {
+		List<CalendarBooking> models = new ArrayList<CalendarBooking>(soapModels.length);
+
+		for (CalendarBookingSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
 
 	public Class<?> getModelClass() {
 		return CalendarBooking.class;

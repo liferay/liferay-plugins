@@ -259,7 +259,7 @@ public class CalendarEventLocalServiceWrapper
 		_calendarEventLocalService.setBeanIdentifier(beanIdentifier);
 	}
 
-	public com.liferay.calendar.model.CalendarEvent addCaledarEvent(
+	public com.liferay.calendar.model.CalendarEvent addCalendarEvent(
 		long userId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -272,7 +272,7 @@ public class CalendarEventLocalServiceWrapper
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarEventLocalService.addCaledarEvent(userId, titleMap,
+		return _calendarEventLocalService.addCalendarEvent(userId, titleMap,
 			descriptionMap, location, startDateMonth, startDateDay,
 			startDateYear, startDateHour, startDateMinute, endDateMonth,
 			endDateDay, endDateYear, endDateHour, endDateMinute, durationHour,

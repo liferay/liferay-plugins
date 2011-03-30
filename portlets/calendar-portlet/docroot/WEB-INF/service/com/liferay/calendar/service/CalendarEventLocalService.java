@@ -240,7 +240,7 @@ public interface CalendarEventLocalService {
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	public com.liferay.calendar.model.CalendarEvent addCaledarEvent(
+	public com.liferay.calendar.model.CalendarEvent addCalendarEvent(
 		long userId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,

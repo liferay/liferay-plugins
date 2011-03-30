@@ -16,8 +16,11 @@ package com.liferay.calendar.service.base;
 
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarBookingLocalService;
+import com.liferay.calendar.service.CalendarBookingService;
 import com.liferay.calendar.service.CalendarEventLocalService;
+import com.liferay.calendar.service.CalendarEventService;
 import com.liferay.calendar.service.CalendarResourceLocalService;
+import com.liferay.calendar.service.CalendarResourceService;
 import com.liferay.calendar.service.persistence.CalendarBookingPersistence;
 import com.liferay.calendar.service.persistence.CalendarEventPersistence;
 import com.liferay.calendar.service.persistence.CalendarResourcePersistence;
@@ -285,6 +288,25 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the calendar booking remote service.
+	 *
+	 * @return the calendar booking remote service
+	 */
+	public CalendarBookingService getCalendarBookingService() {
+		return calendarBookingService;
+	}
+
+	/**
+	 * Sets the calendar booking remote service.
+	 *
+	 * @param calendarBookingService the calendar booking remote service
+	 */
+	public void setCalendarBookingService(
+		CalendarBookingService calendarBookingService) {
+		this.calendarBookingService = calendarBookingService;
+	}
+
+	/**
 	 * Gets the calendar booking persistence.
 	 *
 	 * @return the calendar booking persistence
@@ -323,6 +345,25 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	}
 
 	/**
+	 * Gets the calendar event remote service.
+	 *
+	 * @return the calendar event remote service
+	 */
+	public CalendarEventService getCalendarEventService() {
+		return calendarEventService;
+	}
+
+	/**
+	 * Sets the calendar event remote service.
+	 *
+	 * @param calendarEventService the calendar event remote service
+	 */
+	public void setCalendarEventService(
+		CalendarEventService calendarEventService) {
+		this.calendarEventService = calendarEventService;
+	}
+
+	/**
 	 * Gets the calendar event persistence.
 	 *
 	 * @return the calendar event persistence
@@ -358,6 +399,25 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	public void setCalendarResourceLocalService(
 		CalendarResourceLocalService calendarResourceLocalService) {
 		this.calendarResourceLocalService = calendarResourceLocalService;
+	}
+
+	/**
+	 * Gets the calendar resource remote service.
+	 *
+	 * @return the calendar resource remote service
+	 */
+	public CalendarResourceService getCalendarResourceService() {
+		return calendarResourceService;
+	}
+
+	/**
+	 * Sets the calendar resource remote service.
+	 *
+	 * @param calendarResourceService the calendar resource remote service
+	 */
+	public void setCalendarResourceService(
+		CalendarResourceService calendarResourceService) {
+		this.calendarResourceService = calendarResourceService;
 	}
 
 	/**
@@ -601,14 +661,20 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 
 	@BeanReference(type = CalendarBookingLocalService.class)
 	protected CalendarBookingLocalService calendarBookingLocalService;
+	@BeanReference(type = CalendarBookingService.class)
+	protected CalendarBookingService calendarBookingService;
 	@BeanReference(type = CalendarBookingPersistence.class)
 	protected CalendarBookingPersistence calendarBookingPersistence;
 	@BeanReference(type = CalendarEventLocalService.class)
 	protected CalendarEventLocalService calendarEventLocalService;
+	@BeanReference(type = CalendarEventService.class)
+	protected CalendarEventService calendarEventService;
 	@BeanReference(type = CalendarEventPersistence.class)
 	protected CalendarEventPersistence calendarEventPersistence;
 	@BeanReference(type = CalendarResourceLocalService.class)
 	protected CalendarResourceLocalService calendarResourceLocalService;
+	@BeanReference(type = CalendarResourceService.class)
+	protected CalendarResourceService calendarResourceService;
 	@BeanReference(type = CalendarResourcePersistence.class)
 	protected CalendarResourcePersistence calendarResourcePersistence;
 	@BeanReference(type = CounterLocalService.class)

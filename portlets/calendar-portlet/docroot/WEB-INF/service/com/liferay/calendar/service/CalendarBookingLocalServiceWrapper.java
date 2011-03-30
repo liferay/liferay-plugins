@@ -336,6 +336,15 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
+		long userId, long calendarBookingId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.updateCalendarBooking(userId,
+			calendarBookingId, status, serviceContext);
+	}
+
+	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
 		long calendarBookingId, long calendarEventId,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,

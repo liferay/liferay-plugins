@@ -15,8 +15,11 @@
 package com.liferay.calendar.service.messaging;
 
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
+import com.liferay.calendar.service.CalendarBookingServiceUtil;
 import com.liferay.calendar.service.CalendarEventLocalServiceUtil;
+import com.liferay.calendar.service.CalendarEventServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
+import com.liferay.calendar.service.CalendarResourceServiceUtil;
 import com.liferay.calendar.service.ClpSerializer;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -38,9 +41,13 @@ public class ClpMessageListener extends BaseMessageListener {
 				servletContextName.equals(getServletContextName())) {
 			CalendarBookingLocalServiceUtil.clearService();
 
+			CalendarBookingServiceUtil.clearService();
 			CalendarEventLocalServiceUtil.clearService();
 
+			CalendarEventServiceUtil.clearService();
 			CalendarResourceLocalServiceUtil.clearService();
+
+			CalendarResourceServiceUtil.clearService();
 		}
 	}
 }

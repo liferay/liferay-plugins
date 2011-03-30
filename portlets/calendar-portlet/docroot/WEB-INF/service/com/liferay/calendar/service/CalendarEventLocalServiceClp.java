@@ -85,8 +85,8 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 		_setBeanIdentifierMethodKey15 = new MethodKey(_classLoaderProxy.getClassName(),
 				"setBeanIdentifier", java.lang.String.class);
 
-		_addCaledarEventMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
-				"addCaledarEvent", long.class, java.util.Map.class,
+		_addCalendarEventMethodKey16 = new MethodKey(_classLoaderProxy.getClassName(),
+				"addCalendarEvent", long.class, java.util.Map.class,
 				java.util.Map.class, java.lang.String.class, int.class,
 				int.class, int.class, int.class, int.class, int.class,
 				int.class, int.class, int.class, int.class, int.class,
@@ -560,7 +560,7 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 		}
 	}
 
-	public com.liferay.calendar.model.CalendarEvent addCaledarEvent(
+	public com.liferay.calendar.model.CalendarEvent addCalendarEvent(
 		long userId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -575,7 +575,7 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
-		MethodHandler methodHandler = new MethodHandler(_addCaledarEventMethodKey16,
+		MethodHandler methodHandler = new MethodHandler(_addCalendarEventMethodKey16,
 				userId, ClpSerializer.translateInput(titleMap),
 				ClpSerializer.translateInput(descriptionMap),
 				ClpSerializer.translateInput(location), startDateMonth,
@@ -778,7 +778,7 @@ public class CalendarEventLocalServiceClp implements CalendarEventLocalService {
 	private MethodKey _updateCalendarEventMethodKey13;
 	private MethodKey _getBeanIdentifierMethodKey14;
 	private MethodKey _setBeanIdentifierMethodKey15;
-	private MethodKey _addCaledarEventMethodKey16;
+	private MethodKey _addCalendarEventMethodKey16;
 	private MethodKey _addCalendarEventResourcesMethodKey17;
 	private MethodKey _addCalendarEventResourcesMethodKey18;
 	private MethodKey _updateCalendarEventMethodKey19;

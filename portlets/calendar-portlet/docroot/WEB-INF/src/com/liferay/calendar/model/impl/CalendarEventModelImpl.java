@@ -16,6 +16,7 @@ package com.liferay.calendar.model.impl;
 
 import com.liferay.calendar.model.CalendarEvent;
 import com.liferay.calendar.model.CalendarEventModel;
+import com.liferay.calendar.model.CalendarEventSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -41,7 +42,9 @@ import java.lang.reflect.Proxy;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -102,6 +105,56 @@ public class CalendarEventModelImpl extends BaseModelImpl<CalendarEvent>
 	public static final boolean FINDER_CACHE_ENABLED = GetterUtil.getBoolean(com.liferay.util.service.ServiceProps.get(
 				"value.object.finder.cache.enabled.com.liferay.calendar.model.CalendarEvent"),
 			true);
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static CalendarEvent toModel(CalendarEventSoap soapModel) {
+		CalendarEvent model = new CalendarEventImpl();
+
+		model.setUuid(soapModel.getUuid());
+		model.setCalendarEventId(soapModel.getCalendarEventId());
+		model.setGroupId(soapModel.getGroupId());
+		model.setCompanyId(soapModel.getCompanyId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateDate(soapModel.getCreateDate());
+		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setTitle(soapModel.getTitle());
+		model.setDescription(soapModel.getDescription());
+		model.setLocation(soapModel.getLocation());
+		model.setStartDate(soapModel.getStartDate());
+		model.setEndDate(soapModel.getEndDate());
+		model.setDurationHour(soapModel.getDurationHour());
+		model.setDurationMinute(soapModel.getDurationMinute());
+		model.setAllDay(soapModel.getAllDay());
+		model.setRecurrence(soapModel.getRecurrence());
+		model.setType(soapModel.getType());
+		model.setRemindBy(soapModel.getRemindBy());
+		model.setFirstReminder(soapModel.getFirstReminder());
+		model.setSecondReminder(soapModel.getSecondReminder());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<CalendarEvent> toModels(CalendarEventSoap[] soapModels) {
+		List<CalendarEvent> models = new ArrayList<CalendarEvent>(soapModels.length);
+
+		for (CalendarEventSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
 
 	public Class<?> getModelClass() {
 		return CalendarEvent.class;

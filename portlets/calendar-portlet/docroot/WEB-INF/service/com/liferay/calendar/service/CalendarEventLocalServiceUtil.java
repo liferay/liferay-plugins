@@ -266,7 +266,7 @@ public class CalendarEventLocalServiceUtil {
 		getService().setBeanIdentifier(beanIdentifier);
 	}
 
-	public static com.liferay.calendar.model.CalendarEvent addCaledarEvent(
+	public static com.liferay.calendar.model.CalendarEvent addCalendarEvent(
 		long userId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -280,12 +280,12 @@ public class CalendarEventLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addCaledarEvent(userId, titleMap, descriptionMap, location,
-			startDateMonth, startDateDay, startDateYear, startDateHour,
-			startDateMinute, endDateMonth, endDateDay, endDateYear,
-			endDateHour, endDateMinute, durationHour, durationMinute, allDay,
-			recurrence, type, remindBy, firstReminder, secondReminder,
-			serviceContext);
+				   .addCalendarEvent(userId, titleMap, descriptionMap,
+			location, startDateMonth, startDateDay, startDateYear,
+			startDateHour, startDateMinute, endDateMonth, endDateDay,
+			endDateYear, endDateHour, endDateMinute, durationHour,
+			durationMinute, allDay, recurrence, type, remindBy, firstReminder,
+			secondReminder, serviceContext);
 	}
 
 	public static void addCalendarEventResources(
