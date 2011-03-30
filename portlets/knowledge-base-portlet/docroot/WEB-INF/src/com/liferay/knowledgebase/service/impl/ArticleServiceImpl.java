@@ -76,13 +76,14 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public void addAttachment(
-			long companyId, long groupId, long resourcePrimKey, String dirName,
-			String shortFileName, byte[] bytes)
+			long resourcePrimKey, String dirName, String shortFileName,
+			byte[] bytes, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (resourcePrimKey <= 0) {
 			AdminPermission.check(
-				getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_ARTICLE);
 		}
 		else {
 			ArticlePermission.check(
@@ -90,7 +91,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		articleLocalService.addAttachment(
-			companyId, dirName, shortFileName, bytes);
+			dirName, shortFileName, bytes, serviceContext);
 	}
 
 	public void deleteArticle(long resourcePrimKey)
@@ -507,12 +508,13 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 	}
 
 	public String updateAttachments(
-			long companyId, long groupId, long resourcePrimKey, String dirName)
+			long resourcePrimKey, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (resourcePrimKey <= 0) {
 			AdminPermission.check(
-				getPermissionChecker(), groupId, ActionKeys.ADD_ARTICLE);
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_ARTICLE);
 		}
 		else {
 			ArticlePermission.check(
@@ -520,7 +522,7 @@ public class ArticleServiceImpl extends ArticleServiceBaseImpl {
 		}
 
 		return articleLocalService.updateAttachments(
-			companyId, resourcePrimKey, dirName);
+			resourcePrimKey, dirName, serviceContext);
 	}
 
 	public void updatePriorities(

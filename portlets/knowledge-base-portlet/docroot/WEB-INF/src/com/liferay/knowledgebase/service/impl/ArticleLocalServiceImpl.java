@@ -32,6 +32,7 @@ import com.liferay.knowledgebase.util.comparator.ArticlePriorityComparator;
 import com.liferay.knowledgebase.util.comparator.ArticleVersionComparator;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -154,7 +155,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		addAttachments(article, dirName);
+		addAttachments(article, dirName, serviceContext);
 
 		// Workflow
 
@@ -188,16 +189,15 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public void addAttachment(
-			long companyId, String dirName, String shortFileName, byte[] bytes)
+			String dirName, String shortFileName, byte[] bytes,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		ServiceContext serviceContext = new ServiceContext();
-
 		dlLocalService.addFile(
-			companyId, CompanyConstants.SYSTEM_STRING,
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM_STRING,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, CompanyConstants.SYSTEM,
 			dirName + StringPool.SLASH + shortFileName, 0, StringPool.BLANK,
-			serviceContext.getCreateDate(null), serviceContext, bytes);
+			serviceContext.getModifiedDate(null), serviceContext, bytes);
 	}
 
 	public void checkAttachments() throws PortalException, SystemException {
@@ -714,7 +714,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 
 		// Attachments
 
-		updateAttachments(article, oldVersion, dirName);
+		updateAttachments(article, oldVersion, dirName, serviceContext);
 
 		// Workflow
 
@@ -750,7 +750,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	public String updateAttachments(
-			long companyId, long resourcePrimKey, String dirName)
+			long resourcePrimKey, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (Validator.isNotNull(dirName)) {
@@ -761,7 +761,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			"knowledgebase/temp/attachments/" + counterLocalService.increment();
 
 		dlLocalService.addDirectory(
-			companyId, CompanyConstants.SYSTEM, dirName);
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		if (resourcePrimKey <= 0) {
 			return dirName;
@@ -776,7 +776,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			byte[] bytes = dlLocalService.getFile(
 				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
 
-			addAttachment(companyId, dirName, shortFileName, bytes);
+			addAttachment(dirName, shortFileName, bytes, serviceContext);
 		}
 
 		return dirName;
@@ -891,7 +891,7 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		String dirName =
 			ArticleConstants.DIR_NAME_PREFIX + article.getPrimaryKey();
 
-		addAttachments(article, dirName);
+		addAttachments(article, dirName, serviceContext);
 
 		deleteAttachments(article, article.getPrimaryKey());
 
@@ -925,12 +925,13 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		articlePersistence.update(article, false);
 	}
 
-	protected void addAttachments(Article article, String dirName)
+	protected void addAttachments(
+			Article article, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		try {
 			dlLocalService.addDirectory(
-				article.getCompanyId(), CompanyConstants.SYSTEM,
+				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 				article.getAttachmentsDirName());
 		}
 		catch (DuplicateDirectoryException dde) {
@@ -942,16 +943,17 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 		}
 
 		String[] fileNames = dlLocalService.getFileNames(
-			article.getCompanyId(), CompanyConstants.SYSTEM, dirName);
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM, dirName);
 
 		for (String fileName : fileNames) {
 			byte[] bytes = dlLocalService.getFile(
-				article.getCompanyId(), CompanyConstants.SYSTEM, fileName);
+				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+				fileName);
 
 			try {
 				addAttachment(
-					article.getCompanyId(), article.getAttachmentsDirName(),
-					FileUtil.getShortFileName(fileName), bytes);
+					article.getAttachmentsDirName(),
+					FileUtil.getShortFileName(fileName), bytes, serviceContext);
 			}
 			catch (DuplicateFileException dfe) {
 				_log.error("File already exists for " + dfe.getMessage());
@@ -989,10 +991,10 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
 			for (String keyword : KnowledgeBaseUtil.splitKeywords(value)) {
-				disjunction.add(
-					RestrictionsFactoryUtil.ilike(
-						key,
-					StringPool.PERCENT + keyword + StringPool.PERCENT));
+				Criterion criterion = RestrictionsFactoryUtil.ilike(
+					key, StringUtil.quote(keyword, StringPool.PERCENT));
+
+				disjunction.add(criterion);
 			}
 
 			junction.add(disjunction);
@@ -1290,7 +1292,8 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 	}
 
 	protected void updateAttachments(
-			Article article, int oldVersion, String dirName)
+			Article article, int oldVersion, String dirName,
+			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (article.getVersion() > oldVersion) {
@@ -1298,16 +1301,16 @@ public class ArticleLocalServiceImpl extends ArticleLocalServiceBaseImpl {
 				ArticleConstants.DIR_NAME_PREFIX + article.getResourcePrimKey();
 
 			if (Validator.isNull(dirName)) {
-				addAttachments(article, oldDirName);
+				addAttachments(article, oldDirName, serviceContext);
 			}
 			else {
-				addAttachments(article, dirName);
+				addAttachments(article, dirName, serviceContext);
 			}
 		}
 		else if (Validator.isNotNull(dirName)) {
 			deleteAttachments(article, article.getClassPK());
 
-			addAttachments(article, dirName);
+			addAttachments(article, dirName, serviceContext);
 		}
 	}
 

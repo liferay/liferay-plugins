@@ -94,9 +94,12 @@ public class AdminPortlet extends MVCPortlet {
 		File file = uploadRequest.getFile("file");
 		String fileName = uploadRequest.getFileName("file");
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Article.class.getName(), actionRequest);
+
 		ArticleServiceUtil.addAttachment(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			resourcePrimKey, dirName, fileName, FileUtil.getBytes(file));
+			resourcePrimKey, dirName, fileName, FileUtil.getBytes(file),
+			serviceContext);
 	}
 
 	public void deleteArticle(
@@ -402,9 +405,11 @@ public class AdminPortlet extends MVCPortlet {
 
 		String dirName = ParamUtil.getString(actionRequest, "dirName");
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			Article.class.getName(), actionRequest);
+
 		dirName = ArticleServiceUtil.updateAttachments(
-			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-			resourcePrimKey, dirName);
+			resourcePrimKey, dirName, serviceContext);
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 

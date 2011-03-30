@@ -22,6 +22,7 @@ import com.liferay.knowledgebase.model.Template;
 import com.liferay.knowledgebase.service.base.TemplateLocalServiceBaseImpl;
 import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.portal.kernel.dao.orm.Conjunction;
+import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.Disjunction;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -33,6 +34,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
@@ -287,10 +289,10 @@ public class TemplateLocalServiceImpl extends TemplateLocalServiceBaseImpl {
 			Disjunction disjunction = RestrictionsFactoryUtil.disjunction();
 
 			for (String keyword : KnowledgeBaseUtil.splitKeywords(value)) {
-				disjunction.add(
-					RestrictionsFactoryUtil.ilike(
-						key,
-					StringPool.PERCENT + keyword + StringPool.PERCENT));
+				Criterion criterion = RestrictionsFactoryUtil.ilike(
+					key, StringUtil.quote(keyword, StringPool.PERCENT));
+
+				disjunction.add(criterion);
 			}
 
 			junction.add(disjunction);
