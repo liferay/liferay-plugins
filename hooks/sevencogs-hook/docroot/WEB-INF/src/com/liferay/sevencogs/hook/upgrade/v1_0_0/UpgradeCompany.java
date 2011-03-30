@@ -221,9 +221,10 @@ public class UpgradeCompany extends UpgradeProcess {
 			JournalArticleLocalServiceUtil.addArticle(
 				userId, groupId, StringPool.BLANK, true,
 				JournalArticleConstants.DEFAULT_VERSION, titleMap, null,
-				content, "general", structureId, templateId, StringPool.BLANK, 1, 1, 2008, 0, 0,
-				0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true, true, false,
-				StringPool.BLANK, null, null, StringPool.BLANK, serviceContext);
+				content, "general", structureId, templateId, StringPool.BLANK,
+				1, 1, 2008, 0, 0, 0, 0, 0, 0, 0, true, 0, 0, 0, 0, 0, true,
+				true, false, StringPool.BLANK, null, null, StringPool.BLANK,
+				serviceContext);
 
 		JournalArticleLocalServiceUtil.updateStatus(
 			userId, groupId, journalArticle.getArticleId(),
