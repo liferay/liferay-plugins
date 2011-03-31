@@ -19,6 +19,8 @@
 <c:if test="<%= themeDisplay.isSignedIn() && !(BrowserSnifferUtil.isIe(request) && (BrowserSnifferUtil.getMajorVersion(request) < 7)) && !BrowserSnifferUtil.isMobile(request) %>">
 
 	<%
+	boolean contactsInstalled = PortletLocalServiceUtil.hasPortlet(company.getCompanyId(), "1_WAR_contactsportlet");
+
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
 	%>
 
@@ -93,6 +95,12 @@
 												<div class="name">
 													<%= fullName %>
 												</div>
+
+												<c:if test="<%= contactsInstalled %>">
+													<div class="services">
+														<div class="contacts"></div>
+													</div>
+												</c:if>
 											</li>
 
 										<%
@@ -143,5 +151,45 @@
 
 		<input id="activePanelId" type="hidden" value="<%= activePanelId %>" />
 		<input id="chatPortletId" type="hidden" value="<%= portletDisplay.getId() %>" />
+		<input id="contactsInstalled" type="hidden" value="<%= contactsInstalled %>" />
+
+		<c:if test="<%= contactsInstalled %>">
+			<liferay-portlet:renderURL portletName="1_WAR_contactsportlet" windowState="<%= WindowState.MAXIMIZED.toString() %>" varImpl="contactsURL">
+				<liferay-portlet:param name="jspPage" value="/contacts_center/view_user.jsp" />
+				<liferay-portlet:param name="backURL" value="<%= PortalUtil.getCurrentURL(request) %>" />
+			</liferay-portlet:renderURL>
+
+			<input id="contactsURL" type="hidden" value="<%= contactsURL %>" />
+		</c:if>
+
+		<c:if test="<%= contactsInstalled %>">
+			<style type="text/css">
+				#chatBar .online-users .services {
+					display: none;
+					float: right;
+					margin-top: 4px;
+				}
+
+				#chatBar .panel-content li:hover .services {
+					display: block;
+				}
+
+				#chatBar .services div {
+					background: transparent no-repeat;
+					float: left;
+					height: 16px;
+					margin-right: 3px;
+					width: 16px;
+				}
+
+				<%
+				Portlet curPortlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), "1_WAR_contactsportlet");
+				%>
+
+				#chatBar .services .contacts {
+					background-image: url(<%= curPortlet.getStaticResourcePath().concat(curPortlet.getIcon()) %>);
+				}
+			</style>
+		</c:if>
 	</div>
 </c:if>
