@@ -18,7 +18,7 @@
 <%@ page import="com.liferay.testtransaction.model.Bar" %>
 <%@ page import="com.liferay.testtransaction.service.BarLocalServiceUtil" %>
 
-BarLocalServiceUtil.addBar=<%= _testAddBarPortalRollback() %><br />
+BarLocalServiceUtil.addBar=<%= _testAddBar() %><br />
 BarLocalServiceUtil.addBarPortalRollback=<%= _testAddBarPortalRollback() %><br />
 BarLocalServiceUtil.addBarPortletRollback=<%= _testAddBarPortletRollback() %>
 
