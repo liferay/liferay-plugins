@@ -106,9 +106,9 @@ else {
 	<aui:button-row>
 		<aui:button type="submit" value="send" />
 
-		<aui:button cssClass="save-draft" data-messageId="<%= messageId %>" type="button" value="save" />
+		<aui:button cssClass="save-draft" data-messageId="<%= messageId %>" value="save" />
 
-		<aui:button cssClass="discard-draft" data-messageId="<%= messageId %>" type="button" value="discard" />
+		<aui:button cssClass="discard-draft" data-messageId="<%= messageId %>" value="discard" />
 	</aui:button-row>
 </form>
 
